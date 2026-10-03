@@ -1,0 +1,1407 @@
+{
+  "schema_version": 1,
+  "rom_sha1": "c2103dd94e2a1a65a495fc02adc2e7d040f31212",
+  "scope": "Restricted original-ROM branch executions with controlled inputs; not complete catches or strength rankings.",
+  "fish_id_hex": "06",
+  "fish_name_ja": "ニジマス",
+  "base_mask": 7,
+  "sizes_note": "Boundary probes 15/16/35/36 are controlled numerical inputs, not claims of natural encounter sizes.",
+  "lure_response_rules": {
+    "0": [
+      "H",
+      "unchanged",
+      "G"
+    ],
+    "1": [
+      "unchanged",
+      "H",
+      "unchanged"
+    ],
+    "2": [
+      "G",
+      "unchanged",
+      "H"
+    ]
+  },
+  "raw_size_bands": [
+    "<=15",
+    "16..35",
+    ">35"
+  ],
+  "operations": {
+    "H": "floor(x/2)",
+    "G": "(2*x+1)&63"
+  },
+  "executions": [
+    {
+      "rom_sha1": "c2103dd94e2a1a65a495fc02adc2e7d040f31212",
+      "scope": "ROM instruction execution of fight setup only; not a catch-rate or whole-game simulation",
+      "source_cpu": "04:8D2A..8EC3; 04:8F6F..8FC6",
+      "rod_id_hex": "0A",
+      "lure_id_hex": "17",
+      "fish_id_hex": "06",
+      "fish_size_raw": 15,
+      "base_mask": 7,
+      "rod_response_code": 0,
+      "lure_response_code": 0,
+      "rod_fish_id_match": false,
+      "lure_fish_id_match": false,
+      "final_mask": 1,
+      "display_offset_raw": 4,
+      "transforms": [
+        {
+          "call_cpu": "04:8D32",
+          "operation": "halve",
+          "input_mask": 7
+        },
+        {
+          "call_cpu": "04:8DCF",
+          "operation": "halve",
+          "input_mask": 3
+        }
+      ]
+    },
+    {
+      "rom_sha1": "c2103dd94e2a1a65a495fc02adc2e7d040f31212",
+      "scope": "ROM instruction execution of fight setup only; not a catch-rate or whole-game simulation",
+      "source_cpu": "04:8D2A..8EC3; 04:8F6F..8FC6",
+      "rod_id_hex": "0A",
+      "lure_id_hex": "17",
+      "fish_id_hex": "06",
+      "fish_size_raw": 16,
+      "base_mask": 7,
+      "rod_response_code": 0,
+      "lure_response_code": 0,
+      "rod_fish_id_match": false,
+      "lure_fish_id_match": false,
+      "final_mask": 7,
+      "display_offset_raw": 2,
+      "transforms": [
+        {
+          "call_cpu": "04:8D32",
+          "operation": "halve",
+          "input_mask": 7
+        },
+        {
+          "call_cpu": "04:8E5C",
+          "operation": "double_add_one_mask_63",
+          "input_mask": 3
+        }
+      ]
+    },
+    {
+      "rom_sha1": "c2103dd94e2a1a65a495fc02adc2e7d040f31212",
+      "scope": "ROM instruction execution of fight setup only; not a catch-rate or whole-game simulation",
+      "source_cpu": "04:8D2A..8EC3; 04:8F6F..8FC6",
+      "rod_id_hex": "0A",
+      "lure_id_hex": "17",
+      "fish_id_hex": "06",
+      "fish_size_raw": 35,
+      "base_mask": 7,
+      "rod_response_code": 0,
+      "lure_response_code": 0,
+      "rod_fish_id_match": false,
+      "lure_fish_id_match": false,
+      "final_mask": 7,
+      "display_offset_raw": 2,
+      "transforms": [
+        {
+          "call_cpu": "04:8D32",
+          "operation": "halve",
+          "input_mask": 7
+        },
+        {
+          "call_cpu": "04:8E5C",
+          "operation": "double_add_one_mask_63",
+          "input_mask": 3
+        }
+      ]
+    },
+    {
+      "rom_sha1": "c2103dd94e2a1a65a495fc02adc2e7d040f31212",
+      "scope": "ROM instruction execution of fight setup only; not a catch-rate or whole-game simulation",
+      "source_cpu": "04:8D2A..8EC3; 04:8F6F..8FC6",
+      "rod_id_hex": "0A",
+      "lure_id_hex": "17",
+      "fish_id_hex": "06",
+      "fish_size_raw": 36,
+      "base_mask": 7,
+      "rod_response_code": 0,
+      "lure_response_code": 0,
+      "rod_fish_id_match": false,
+      "lure_fish_id_match": false,
+      "final_mask": 31,
+      "display_offset_raw": 0,
+      "transforms": [
+        {
+          "call_cpu": "04:8D32",
+          "operation": "halve",
+          "input_mask": 7
+        },
+        {
+          "call_cpu": "04:8DDF",
+          "operation": "double_add_one_mask_63",
+          "input_mask": 3
+        },
+        {
+          "call_cpu": "04:8E62",
+          "operation": "double_add_one_mask_63",
+          "input_mask": 7
+        },
+        {
+          "call_cpu": "04:8E65",
+          "operation": "double_add_one_mask_63",
+          "input_mask": 15
+        }
+      ]
+    },
+    {
+      "rom_sha1": "c2103dd94e2a1a65a495fc02adc2e7d040f31212",
+      "scope": "ROM instruction execution of fight setup only; not a catch-rate or whole-game simulation",
+      "source_cpu": "04:8D2A..8EC3; 04:8F6F..8FC6",
+      "rod_id_hex": "0A",
+      "lure_id_hex": "23",
+      "fish_id_hex": "06",
+      "fish_size_raw": 15,
+      "base_mask": 7,
+      "rod_response_code": 0,
+      "lure_response_code": 1,
+      "rod_fish_id_match": false,
+      "lure_fish_id_match": false,
+      "final_mask": 3,
+      "display_offset_raw": 3,
+      "transforms": [
+        {
+          "call_cpu": "04:8D32",
+          "operation": "halve",
+          "input_mask": 7
+        }
+      ]
+    },
+    {
+      "rom_sha1": "c2103dd94e2a1a65a495fc02adc2e7d040f31212",
+      "scope": "ROM instruction execution of fight setup only; not a catch-rate or whole-game simulation",
+      "source_cpu": "04:8D2A..8EC3; 04:8F6F..8FC6",
+      "rod_id_hex": "0A",
+      "lure_id_hex": "23",
+      "fish_id_hex": "06",
+      "fish_size_raw": 16,
+      "base_mask": 7,
+      "rod_response_code": 0,
+      "lure_response_code": 1,
+      "rod_fish_id_match": false,
+      "lure_fish_id_match": false,
+      "final_mask": 3,
+      "display_offset_raw": 3,
+      "transforms": [
+        {
+          "call_cpu": "04:8D32",
+          "operation": "halve",
+          "input_mask": 7
+        },
+        {
+          "call_cpu": "04:8E01",
+          "operation": "halve",
+          "input_mask": 3
+        },
+        {
+          "call_cpu": "04:8E5C",
+          "operation": "double_add_one_mask_63",
+          "input_mask": 1
+        }
+      ]
+    },
+    {
+      "rom_sha1": "c2103dd94e2a1a65a495fc02adc2e7d040f31212",
+      "scope": "ROM instruction execution of fight setup only; not a catch-rate or whole-game simulation",
+      "source_cpu": "04:8D2A..8EC3; 04:8F6F..8FC6",
+      "rod_id_hex": "0A",
+      "lure_id_hex": "23",
+      "fish_id_hex": "06",
+      "fish_size_raw": 35,
+      "base_mask": 7,
+      "rod_response_code": 0,
+      "lure_response_code": 1,
+      "rod_fish_id_match": false,
+      "lure_fish_id_match": false,
+      "final_mask": 3,
+      "display_offset_raw": 3,
+      "transforms": [
+        {
+          "call_cpu": "04:8D32",
+          "operation": "halve",
+          "input_mask": 7
+        },
+        {
+          "call_cpu": "04:8E01",
+          "operation": "halve",
+          "input_mask": 3
+        },
+        {
+          "call_cpu": "04:8E5C",
+          "operation": "double_add_one_mask_63",
+          "input_mask": 1
+        }
+      ]
+    },
+    {
+      "rom_sha1": "c2103dd94e2a1a65a495fc02adc2e7d040f31212",
+      "scope": "ROM instruction execution of fight setup only; not a catch-rate or whole-game simulation",
+      "source_cpu": "04:8D2A..8EC3; 04:8F6F..8FC6",
+      "rod_id_hex": "0A",
+      "lure_id_hex": "23",
+      "fish_id_hex": "06",
+      "fish_size_raw": 36,
+      "base_mask": 7,
+      "rod_response_code": 0,
+      "lure_response_code": 1,
+      "rod_fish_id_match": false,
+      "lure_fish_id_match": false,
+      "final_mask": 15,
+      "display_offset_raw": 0,
+      "transforms": [
+        {
+          "call_cpu": "04:8D32",
+          "operation": "halve",
+          "input_mask": 7
+        },
+        {
+          "call_cpu": "04:8E62",
+          "operation": "double_add_one_mask_63",
+          "input_mask": 3
+        },
+        {
+          "call_cpu": "04:8E65",
+          "operation": "double_add_one_mask_63",
+          "input_mask": 7
+        }
+      ]
+    },
+    {
+      "rom_sha1": "c2103dd94e2a1a65a495fc02adc2e7d040f31212",
+      "scope": "ROM instruction execution of fight setup only; not a catch-rate or whole-game simulation",
+      "source_cpu": "04:8D2A..8EC3; 04:8F6F..8FC6",
+      "rod_id_hex": "0A",
+      "lure_id_hex": "01",
+      "fish_id_hex": "06",
+      "fish_size_raw": 15,
+      "base_mask": 7,
+      "rod_response_code": 0,
+      "lure_response_code": 2,
+      "rod_fish_id_match": false,
+      "lure_fish_id_match": false,
+      "final_mask": 7,
+      "display_offset_raw": 2,
+      "transforms": [
+        {
+          "call_cpu": "04:8D32",
+          "operation": "halve",
+          "input_mask": 7
+        },
+        {
+          "call_cpu": "04:8E1C",
+          "operation": "double_add_one_mask_63",
+          "input_mask": 3
+        }
+      ]
+    },
+    {
+      "rom_sha1": "c2103dd94e2a1a65a495fc02adc2e7d040f31212",
+      "scope": "ROM instruction execution of fight setup only; not a catch-rate or whole-game simulation",
+      "source_cpu": "04:8D2A..8EC3; 04:8F6F..8FC6",
+      "rod_id_hex": "0A",
+      "lure_id_hex": "01",
+      "fish_id_hex": "06",
+      "fish_size_raw": 16,
+      "base_mask": 7,
+      "rod_response_code": 0,
+      "lure_response_code": 2,
+      "rod_fish_id_match": false,
+      "lure_fish_id_match": false,
+      "final_mask": 7,
+      "display_offset_raw": 2,
+      "transforms": [
+        {
+          "call_cpu": "04:8D32",
+          "operation": "halve",
+          "input_mask": 7
+        },
+        {
+          "call_cpu": "04:8E5C",
+          "operation": "double_add_one_mask_63",
+          "input_mask": 3
+        }
+      ]
+    },
+    {
+      "rom_sha1": "c2103dd94e2a1a65a495fc02adc2e7d040f31212",
+      "scope": "ROM instruction execution of fight setup only; not a catch-rate or whole-game simulation",
+      "source_cpu": "04:8D2A..8EC3; 04:8F6F..8FC6",
+      "rod_id_hex": "0A",
+      "lure_id_hex": "01",
+      "fish_id_hex": "06",
+      "fish_size_raw": 35,
+      "base_mask": 7,
+      "rod_response_code": 0,
+      "lure_response_code": 2,
+      "rod_fish_id_match": false,
+      "lure_fish_id_match": false,
+      "final_mask": 7,
+      "display_offset_raw": 2,
+      "transforms": [
+        {
+          "call_cpu": "04:8D32",
+          "operation": "halve",
+          "input_mask": 7
+        },
+        {
+          "call_cpu": "04:8E5C",
+          "operation": "double_add_one_mask_63",
+          "input_mask": 3
+        }
+      ]
+    },
+    {
+      "rom_sha1": "c2103dd94e2a1a65a495fc02adc2e7d040f31212",
+      "scope": "ROM instruction execution of fight setup only; not a catch-rate or whole-game simulation",
+      "source_cpu": "04:8D2A..8EC3; 04:8F6F..8FC6",
+      "rod_id_hex": "0A",
+      "lure_id_hex": "01",
+      "fish_id_hex": "06",
+      "fish_size_raw": 36,
+      "base_mask": 7,
+      "rod_response_code": 0,
+      "lure_response_code": 2,
+      "rod_fish_id_match": false,
+      "lure_fish_id_match": false,
+      "final_mask": 7,
+      "display_offset_raw": 2,
+      "transforms": [
+        {
+          "call_cpu": "04:8D32",
+          "operation": "halve",
+          "input_mask": 7
+        },
+        {
+          "call_cpu": "04:8E2C",
+          "operation": "halve",
+          "input_mask": 3
+        },
+        {
+          "call_cpu": "04:8E62",
+          "operation": "double_add_one_mask_63",
+          "input_mask": 1
+        },
+        {
+          "call_cpu": "04:8E65",
+          "operation": "double_add_one_mask_63",
+          "input_mask": 3
+        }
+      ]
+    },
+    {
+      "rom_sha1": "c2103dd94e2a1a65a495fc02adc2e7d040f31212",
+      "scope": "ROM instruction execution of fight setup only; not a catch-rate or whole-game simulation",
+      "source_cpu": "04:8D2A..8EC3; 04:8F6F..8FC6",
+      "rod_id_hex": "0B",
+      "lure_id_hex": "17",
+      "fish_id_hex": "06",
+      "fish_size_raw": 15,
+      "base_mask": 7,
+      "rod_response_code": 0,
+      "lure_response_code": 0,
+      "rod_fish_id_match": false,
+      "lure_fish_id_match": false,
+      "final_mask": 1,
+      "display_offset_raw": 4,
+      "transforms": [
+        {
+          "call_cpu": "04:8D32",
+          "operation": "halve",
+          "input_mask": 7
+        },
+        {
+          "call_cpu": "04:8DCF",
+          "operation": "halve",
+          "input_mask": 3
+        }
+      ]
+    },
+    {
+      "rom_sha1": "c2103dd94e2a1a65a495fc02adc2e7d040f31212",
+      "scope": "ROM instruction execution of fight setup only; not a catch-rate or whole-game simulation",
+      "source_cpu": "04:8D2A..8EC3; 04:8F6F..8FC6",
+      "rod_id_hex": "0B",
+      "lure_id_hex": "17",
+      "fish_id_hex": "06",
+      "fish_size_raw": 16,
+      "base_mask": 7,
+      "rod_response_code": 0,
+      "lure_response_code": 0,
+      "rod_fish_id_match": false,
+      "lure_fish_id_match": false,
+      "final_mask": 7,
+      "display_offset_raw": 2,
+      "transforms": [
+        {
+          "call_cpu": "04:8D32",
+          "operation": "halve",
+          "input_mask": 7
+        },
+        {
+          "call_cpu": "04:8E5C",
+          "operation": "double_add_one_mask_63",
+          "input_mask": 3
+        }
+      ]
+    },
+    {
+      "rom_sha1": "c2103dd94e2a1a65a495fc02adc2e7d040f31212",
+      "scope": "ROM instruction execution of fight setup only; not a catch-rate or whole-game simulation",
+      "source_cpu": "04:8D2A..8EC3; 04:8F6F..8FC6",
+      "rod_id_hex": "0B",
+      "lure_id_hex": "17",
+      "fish_id_hex": "06",
+      "fish_size_raw": 35,
+      "base_mask": 7,
+      "rod_response_code": 0,
+      "lure_response_code": 0,
+      "rod_fish_id_match": false,
+      "lure_fish_id_match": false,
+      "final_mask": 7,
+      "display_offset_raw": 2,
+      "transforms": [
+        {
+          "call_cpu": "04:8D32",
+          "operation": "halve",
+          "input_mask": 7
+        },
+        {
+          "call_cpu": "04:8E5C",
+          "operation": "double_add_one_mask_63",
+          "input_mask": 3
+        }
+      ]
+    },
+    {
+      "rom_sha1": "c2103dd94e2a1a65a495fc02adc2e7d040f31212",
+      "scope": "ROM instruction execution of fight setup only; not a catch-rate or whole-game simulation",
+      "source_cpu": "04:8D2A..8EC3; 04:8F6F..8FC6",
+      "rod_id_hex": "0B",
+      "lure_id_hex": "17",
+      "fish_id_hex": "06",
+      "fish_size_raw": 36,
+      "base_mask": 7,
+      "rod_response_code": 0,
+      "lure_response_code": 0,
+      "rod_fish_id_match": false,
+      "lure_fish_id_match": false,
+      "final_mask": 31,
+      "display_offset_raw": 0,
+      "transforms": [
+        {
+          "call_cpu": "04:8D32",
+          "operation": "halve",
+          "input_mask": 7
+        },
+        {
+          "call_cpu": "04:8DDF",
+          "operation": "double_add_one_mask_63",
+          "input_mask": 3
+        },
+        {
+          "call_cpu": "04:8E62",
+          "operation": "double_add_one_mask_63",
+          "input_mask": 7
+        },
+        {
+          "call_cpu": "04:8E65",
+          "operation": "double_add_one_mask_63",
+          "input_mask": 15
+        }
+      ]
+    },
+    {
+      "rom_sha1": "c2103dd94e2a1a65a495fc02adc2e7d040f31212",
+      "scope": "ROM instruction execution of fight setup only; not a catch-rate or whole-game simulation",
+      "source_cpu": "04:8D2A..8EC3; 04:8F6F..8FC6",
+      "rod_id_hex": "0B",
+      "lure_id_hex": "23",
+      "fish_id_hex": "06",
+      "fish_size_raw": 15,
+      "base_mask": 7,
+      "rod_response_code": 0,
+      "lure_response_code": 1,
+      "rod_fish_id_match": false,
+      "lure_fish_id_match": false,
+      "final_mask": 3,
+      "display_offset_raw": 3,
+      "transforms": [
+        {
+          "call_cpu": "04:8D32",
+          "operation": "halve",
+          "input_mask": 7
+        }
+      ]
+    },
+    {
+      "rom_sha1": "c2103dd94e2a1a65a495fc02adc2e7d040f31212",
+      "scope": "ROM instruction execution of fight setup only; not a catch-rate or whole-game simulation",
+      "source_cpu": "04:8D2A..8EC3; 04:8F6F..8FC6",
+      "rod_id_hex": "0B",
+      "lure_id_hex": "23",
+      "fish_id_hex": "06",
+      "fish_size_raw": 16,
+      "base_mask": 7,
+      "rod_response_code": 0,
+      "lure_response_code": 1,
+      "rod_fish_id_match": false,
+      "lure_fish_id_match": false,
+      "final_mask": 3,
+      "display_offset_raw": 3,
+      "transforms": [
+        {
+          "call_cpu": "04:8D32",
+          "operation": "halve",
+          "input_mask": 7
+        },
+        {
+          "call_cpu": "04:8E01",
+          "operation": "halve",
+          "input_mask": 3
+        },
+        {
+          "call_cpu": "04:8E5C",
+          "operation": "double_add_one_mask_63",
+          "input_mask": 1
+        }
+      ]
+    },
+    {
+      "rom_sha1": "c2103dd94e2a1a65a495fc02adc2e7d040f31212",
+      "scope": "ROM instruction execution of fight setup only; not a catch-rate or whole-game simulation",
+      "source_cpu": "04:8D2A..8EC3; 04:8F6F..8FC6",
+      "rod_id_hex": "0B",
+      "lure_id_hex": "23",
+      "fish_id_hex": "06",
+      "fish_size_raw": 35,
+      "base_mask": 7,
+      "rod_response_code": 0,
+      "lure_response_code": 1,
+      "rod_fish_id_match": false,
+      "lure_fish_id_match": false,
+      "final_mask": 3,
+      "display_offset_raw": 3,
+      "transforms": [
+        {
+          "call_cpu": "04:8D32",
+          "operation": "halve",
+          "input_mask": 7
+        },
+        {
+          "call_cpu": "04:8E01",
+          "operation": "halve",
+          "input_mask": 3
+        },
+        {
+          "call_cpu": "04:8E5C",
+          "operation": "double_add_one_mask_63",
+          "input_mask": 1
+        }
+      ]
+    },
+    {
+      "rom_sha1": "c2103dd94e2a1a65a495fc02adc2e7d040f31212",
+      "scope": "ROM instruction execution of fight setup only; not a catch-rate or whole-game simulation",
+      "source_cpu": "04:8D2A..8EC3; 04:8F6F..8FC6",
+      "rod_id_hex": "0B",
+      "lure_id_hex": "23",
+      "fish_id_hex": "06",
+      "fish_size_raw": 36,
+      "base_mask": 7,
+      "rod_response_code": 0,
+      "lure_response_code": 1,
+      "rod_fish_id_match": false,
+      "lure_fish_id_match": false,
+      "final_mask": 15,
+      "display_offset_raw": 0,
+      "transforms": [
+        {
+          "call_cpu": "04:8D32",
+          "operation": "halve",
+          "input_mask": 7
+        },
+        {
+          "call_cpu": "04:8E62",
+          "operation": "double_add_one_mask_63",
+          "input_mask": 3
+        },
+        {
+          "call_cpu": "04:8E65",
+          "operation": "double_add_one_mask_63",
+          "input_mask": 7
+        }
+      ]
+    },
+    {
+      "rom_sha1": "c2103dd94e2a1a65a495fc02adc2e7d040f31212",
+      "scope": "ROM instruction execution of fight setup only; not a catch-rate or whole-game simulation",
+      "source_cpu": "04:8D2A..8EC3; 04:8F6F..8FC6",
+      "rod_id_hex": "0B",
+      "lure_id_hex": "01",
+      "fish_id_hex": "06",
+      "fish_size_raw": 15,
+      "base_mask": 7,
+      "rod_response_code": 0,
+      "lure_response_code": 2,
+      "rod_fish_id_match": false,
+      "lure_fish_id_match": false,
+      "final_mask": 7,
+      "display_offset_raw": 2,
+      "transforms": [
+        {
+          "call_cpu": "04:8D32",
+          "operation": "halve",
+          "input_mask": 7
+        },
+        {
+          "call_cpu": "04:8E1C",
+          "operation": "double_add_one_mask_63",
+          "input_mask": 3
+        }
+      ]
+    },
+    {
+      "rom_sha1": "c2103dd94e2a1a65a495fc02adc2e7d040f31212",
+      "scope": "ROM instruction execution of fight setup only; not a catch-rate or whole-game simulation",
+      "source_cpu": "04:8D2A..8EC3; 04:8F6F..8FC6",
+      "rod_id_hex": "0B",
+      "lure_id_hex": "01",
+      "fish_id_hex": "06",
+      "fish_size_raw": 16,
+      "base_mask": 7,
+      "rod_response_code": 0,
+      "lure_response_code": 2,
+      "rod_fish_id_match": false,
+      "lure_fish_id_match": false,
+      "final_mask": 7,
+      "display_offset_raw": 2,
+      "transforms": [
+        {
+          "call_cpu": "04:8D32",
+          "operation": "halve",
+          "input_mask": 7
+        },
+        {
+          "call_cpu": "04:8E5C",
+          "operation": "double_add_one_mask_63",
+          "input_mask": 3
+        }
+      ]
+    },
+    {
+      "rom_sha1": "c2103dd94e2a1a65a495fc02adc2e7d040f31212",
+      "scope": "ROM instruction execution of fight setup only; not a catch-rate or whole-game simulation",
+      "source_cpu": "04:8D2A..8EC3; 04:8F6F..8FC6",
+      "rod_id_hex": "0B",
+      "lure_id_hex": "01",
+      "fish_id_hex": "06",
+      "fish_size_raw": 35,
+      "base_mask": 7,
+      "rod_response_code": 0,
+      "lure_response_code": 2,
+      "rod_fish_id_match": false,
+      "lure_fish_id_match": false,
+      "final_mask": 7,
+      "display_offset_raw": 2,
+      "transforms": [
+        {
+          "call_cpu": "04:8D32",
+          "operation": "halve",
+          "input_mask": 7
+        },
+        {
+          "call_cpu": "04:8E5C",
+          "operation": "double_add_one_mask_63",
+          "input_mask": 3
+        }
+      ]
+    },
+    {
+      "rom_sha1": "c2103dd94e2a1a65a495fc02adc2e7d040f31212",
+      "scope": "ROM instruction execution of fight setup only; not a catch-rate or whole-game simulation",
+      "source_cpu": "04:8D2A..8EC3; 04:8F6F..8FC6",
+      "rod_id_hex": "0B",
+      "lure_id_hex": "01",
+      "fish_id_hex": "06",
+      "fish_size_raw": 36,
+      "base_mask": 7,
+      "rod_response_code": 0,
+      "lure_response_code": 2,
+      "rod_fish_id_match": false,
+      "lure_fish_id_match": false,
+      "final_mask": 7,
+      "display_offset_raw": 2,
+      "transforms": [
+        {
+          "call_cpu": "04:8D32",
+          "operation": "halve",
+          "input_mask": 7
+        },
+        {
+          "call_cpu": "04:8E2C",
+          "operation": "halve",
+          "input_mask": 3
+        },
+        {
+          "call_cpu": "04:8E62",
+          "operation": "double_add_one_mask_63",
+          "input_mask": 1
+        },
+        {
+          "call_cpu": "04:8E65",
+          "operation": "double_add_one_mask_63",
+          "input_mask": 3
+        }
+      ]
+    },
+    {
+      "rom_sha1": "c2103dd94e2a1a65a495fc02adc2e7d040f31212",
+      "scope": "ROM instruction execution of fight setup only; not a catch-rate or whole-game simulation",
+      "source_cpu": "04:8D2A..8EC3; 04:8F6F..8FC6",
+      "rod_id_hex": "0C",
+      "lure_id_hex": "17",
+      "fish_id_hex": "06",
+      "fish_size_raw": 15,
+      "base_mask": 7,
+      "rod_response_code": 1,
+      "lure_response_code": 0,
+      "rod_fish_id_match": false,
+      "lure_fish_id_match": false,
+      "final_mask": 7,
+      "display_offset_raw": 2,
+      "transforms": [
+        {
+          "call_cpu": "04:8DCF",
+          "operation": "halve",
+          "input_mask": 7
+        },
+        {
+          "call_cpu": "04:8E7D",
+          "operation": "double_add_one_mask_63",
+          "input_mask": 3
+        }
+      ]
+    },
+    {
+      "rom_sha1": "c2103dd94e2a1a65a495fc02adc2e7d040f31212",
+      "scope": "ROM instruction execution of fight setup only; not a catch-rate or whole-game simulation",
+      "source_cpu": "04:8D2A..8EC3; 04:8F6F..8FC6",
+      "rod_id_hex": "0C",
+      "lure_id_hex": "17",
+      "fish_id_hex": "06",
+      "fish_size_raw": 16,
+      "base_mask": 7,
+      "rod_response_code": 1,
+      "lure_response_code": 0,
+      "rod_fish_id_match": false,
+      "lure_fish_id_match": false,
+      "final_mask": 7,
+      "display_offset_raw": 2,
+      "transforms": []
+    },
+    {
+      "rom_sha1": "c2103dd94e2a1a65a495fc02adc2e7d040f31212",
+      "scope": "ROM instruction execution of fight setup only; not a catch-rate or whole-game simulation",
+      "source_cpu": "04:8D2A..8EC3; 04:8F6F..8FC6",
+      "rod_id_hex": "0C",
+      "lure_id_hex": "17",
+      "fish_id_hex": "06",
+      "fish_size_raw": 35,
+      "base_mask": 7,
+      "rod_response_code": 1,
+      "lure_response_code": 0,
+      "rod_fish_id_match": false,
+      "lure_fish_id_match": false,
+      "final_mask": 7,
+      "display_offset_raw": 2,
+      "transforms": []
+    },
+    {
+      "rom_sha1": "c2103dd94e2a1a65a495fc02adc2e7d040f31212",
+      "scope": "ROM instruction execution of fight setup only; not a catch-rate or whole-game simulation",
+      "source_cpu": "04:8D2A..8EC3; 04:8F6F..8FC6",
+      "rod_id_hex": "0C",
+      "lure_id_hex": "17",
+      "fish_id_hex": "06",
+      "fish_size_raw": 36,
+      "base_mask": 7,
+      "rod_response_code": 1,
+      "lure_response_code": 0,
+      "rod_fish_id_match": false,
+      "lure_fish_id_match": false,
+      "final_mask": 31,
+      "display_offset_raw": 0,
+      "transforms": [
+        {
+          "call_cpu": "04:8DDF",
+          "operation": "double_add_one_mask_63",
+          "input_mask": 7
+        },
+        {
+          "call_cpu": "04:8E8D",
+          "operation": "double_add_one_mask_63",
+          "input_mask": 15
+        }
+      ]
+    },
+    {
+      "rom_sha1": "c2103dd94e2a1a65a495fc02adc2e7d040f31212",
+      "scope": "ROM instruction execution of fight setup only; not a catch-rate or whole-game simulation",
+      "source_cpu": "04:8D2A..8EC3; 04:8F6F..8FC6",
+      "rod_id_hex": "0C",
+      "lure_id_hex": "23",
+      "fish_id_hex": "06",
+      "fish_size_raw": 15,
+      "base_mask": 7,
+      "rod_response_code": 1,
+      "lure_response_code": 1,
+      "rod_fish_id_match": false,
+      "lure_fish_id_match": false,
+      "final_mask": 15,
+      "display_offset_raw": 0,
+      "transforms": [
+        {
+          "call_cpu": "04:8E7D",
+          "operation": "double_add_one_mask_63",
+          "input_mask": 7
+        }
+      ]
+    },
+    {
+      "rom_sha1": "c2103dd94e2a1a65a495fc02adc2e7d040f31212",
+      "scope": "ROM instruction execution of fight setup only; not a catch-rate or whole-game simulation",
+      "source_cpu": "04:8D2A..8EC3; 04:8F6F..8FC6",
+      "rod_id_hex": "0C",
+      "lure_id_hex": "23",
+      "fish_id_hex": "06",
+      "fish_size_raw": 16,
+      "base_mask": 7,
+      "rod_response_code": 1,
+      "lure_response_code": 1,
+      "rod_fish_id_match": false,
+      "lure_fish_id_match": false,
+      "final_mask": 3,
+      "display_offset_raw": 3,
+      "transforms": [
+        {
+          "call_cpu": "04:8E01",
+          "operation": "halve",
+          "input_mask": 7
+        }
+      ]
+    },
+    {
+      "rom_sha1": "c2103dd94e2a1a65a495fc02adc2e7d040f31212",
+      "scope": "ROM instruction execution of fight setup only; not a catch-rate or whole-game simulation",
+      "source_cpu": "04:8D2A..8EC3; 04:8F6F..8FC6",
+      "rod_id_hex": "0C",
+      "lure_id_hex": "23",
+      "fish_id_hex": "06",
+      "fish_size_raw": 35,
+      "base_mask": 7,
+      "rod_response_code": 1,
+      "lure_response_code": 1,
+      "rod_fish_id_match": false,
+      "lure_fish_id_match": false,
+      "final_mask": 3,
+      "display_offset_raw": 3,
+      "transforms": [
+        {
+          "call_cpu": "04:8E01",
+          "operation": "halve",
+          "input_mask": 7
+        }
+      ]
+    },
+    {
+      "rom_sha1": "c2103dd94e2a1a65a495fc02adc2e7d040f31212",
+      "scope": "ROM instruction execution of fight setup only; not a catch-rate or whole-game simulation",
+      "source_cpu": "04:8D2A..8EC3; 04:8F6F..8FC6",
+      "rod_id_hex": "0C",
+      "lure_id_hex": "23",
+      "fish_id_hex": "06",
+      "fish_size_raw": 36,
+      "base_mask": 7,
+      "rod_response_code": 1,
+      "lure_response_code": 1,
+      "rod_fish_id_match": false,
+      "lure_fish_id_match": false,
+      "final_mask": 15,
+      "display_offset_raw": 0,
+      "transforms": [
+        {
+          "call_cpu": "04:8E8D",
+          "operation": "double_add_one_mask_63",
+          "input_mask": 7
+        }
+      ]
+    },
+    {
+      "rom_sha1": "c2103dd94e2a1a65a495fc02adc2e7d040f31212",
+      "scope": "ROM instruction execution of fight setup only; not a catch-rate or whole-game simulation",
+      "source_cpu": "04:8D2A..8EC3; 04:8F6F..8FC6",
+      "rod_id_hex": "0C",
+      "lure_id_hex": "01",
+      "fish_id_hex": "06",
+      "fish_size_raw": 15,
+      "base_mask": 7,
+      "rod_response_code": 1,
+      "lure_response_code": 2,
+      "rod_fish_id_match": false,
+      "lure_fish_id_match": false,
+      "final_mask": 31,
+      "display_offset_raw": 0,
+      "transforms": [
+        {
+          "call_cpu": "04:8E1C",
+          "operation": "double_add_one_mask_63",
+          "input_mask": 7
+        },
+        {
+          "call_cpu": "04:8E7D",
+          "operation": "double_add_one_mask_63",
+          "input_mask": 15
+        }
+      ]
+    },
+    {
+      "rom_sha1": "c2103dd94e2a1a65a495fc02adc2e7d040f31212",
+      "scope": "ROM instruction execution of fight setup only; not a catch-rate or whole-game simulation",
+      "source_cpu": "04:8D2A..8EC3; 04:8F6F..8FC6",
+      "rod_id_hex": "0C",
+      "lure_id_hex": "01",
+      "fish_id_hex": "06",
+      "fish_size_raw": 16,
+      "base_mask": 7,
+      "rod_response_code": 1,
+      "lure_response_code": 2,
+      "rod_fish_id_match": false,
+      "lure_fish_id_match": false,
+      "final_mask": 7,
+      "display_offset_raw": 2,
+      "transforms": []
+    },
+    {
+      "rom_sha1": "c2103dd94e2a1a65a495fc02adc2e7d040f31212",
+      "scope": "ROM instruction execution of fight setup only; not a catch-rate or whole-game simulation",
+      "source_cpu": "04:8D2A..8EC3; 04:8F6F..8FC6",
+      "rod_id_hex": "0C",
+      "lure_id_hex": "01",
+      "fish_id_hex": "06",
+      "fish_size_raw": 35,
+      "base_mask": 7,
+      "rod_response_code": 1,
+      "lure_response_code": 2,
+      "rod_fish_id_match": false,
+      "lure_fish_id_match": false,
+      "final_mask": 7,
+      "display_offset_raw": 2,
+      "transforms": []
+    },
+    {
+      "rom_sha1": "c2103dd94e2a1a65a495fc02adc2e7d040f31212",
+      "scope": "ROM instruction execution of fight setup only; not a catch-rate or whole-game simulation",
+      "source_cpu": "04:8D2A..8EC3; 04:8F6F..8FC6",
+      "rod_id_hex": "0C",
+      "lure_id_hex": "01",
+      "fish_id_hex": "06",
+      "fish_size_raw": 36,
+      "base_mask": 7,
+      "rod_response_code": 1,
+      "lure_response_code": 2,
+      "rod_fish_id_match": false,
+      "lure_fish_id_match": false,
+      "final_mask": 7,
+      "display_offset_raw": 2,
+      "transforms": [
+        {
+          "call_cpu": "04:8E2C",
+          "operation": "halve",
+          "input_mask": 7
+        },
+        {
+          "call_cpu": "04:8E8D",
+          "operation": "double_add_one_mask_63",
+          "input_mask": 3
+        }
+      ]
+    },
+    {
+      "rom_sha1": "c2103dd94e2a1a65a495fc02adc2e7d040f31212",
+      "scope": "ROM instruction execution of fight setup only; not a catch-rate or whole-game simulation",
+      "source_cpu": "04:8D2A..8EC3; 04:8F6F..8FC6",
+      "rod_id_hex": "0D",
+      "lure_id_hex": "17",
+      "fish_id_hex": "06",
+      "fish_size_raw": 15,
+      "base_mask": 7,
+      "rod_response_code": 2,
+      "lure_response_code": 0,
+      "rod_fish_id_match": false,
+      "lure_fish_id_match": false,
+      "final_mask": 31,
+      "display_offset_raw": 0,
+      "transforms": [
+        {
+          "call_cpu": "04:8D45",
+          "operation": "double_add_one_mask_63",
+          "input_mask": 7
+        },
+        {
+          "call_cpu": "04:8DCF",
+          "operation": "halve",
+          "input_mask": 15
+        },
+        {
+          "call_cpu": "04:8EA5",
+          "operation": "double_add_one_mask_63",
+          "input_mask": 7
+        },
+        {
+          "call_cpu": "04:8EA8",
+          "operation": "double_add_one_mask_63",
+          "input_mask": 15
+        }
+      ]
+    },
+    {
+      "rom_sha1": "c2103dd94e2a1a65a495fc02adc2e7d040f31212",
+      "scope": "ROM instruction execution of fight setup only; not a catch-rate or whole-game simulation",
+      "source_cpu": "04:8D2A..8EC3; 04:8F6F..8FC6",
+      "rod_id_hex": "0D",
+      "lure_id_hex": "17",
+      "fish_id_hex": "06",
+      "fish_size_raw": 16,
+      "base_mask": 7,
+      "rod_response_code": 2,
+      "lure_response_code": 0,
+      "rod_fish_id_match": false,
+      "lure_fish_id_match": false,
+      "final_mask": 31,
+      "display_offset_raw": 0,
+      "transforms": [
+        {
+          "call_cpu": "04:8D45",
+          "operation": "double_add_one_mask_63",
+          "input_mask": 7
+        },
+        {
+          "call_cpu": "04:8EB5",
+          "operation": "double_add_one_mask_63",
+          "input_mask": 15
+        }
+      ]
+    },
+    {
+      "rom_sha1": "c2103dd94e2a1a65a495fc02adc2e7d040f31212",
+      "scope": "ROM instruction execution of fight setup only; not a catch-rate or whole-game simulation",
+      "source_cpu": "04:8D2A..8EC3; 04:8F6F..8FC6",
+      "rod_id_hex": "0D",
+      "lure_id_hex": "17",
+      "fish_id_hex": "06",
+      "fish_size_raw": 35,
+      "base_mask": 7,
+      "rod_response_code": 2,
+      "lure_response_code": 0,
+      "rod_fish_id_match": false,
+      "lure_fish_id_match": false,
+      "final_mask": 31,
+      "display_offset_raw": 0,
+      "transforms": [
+        {
+          "call_cpu": "04:8D45",
+          "operation": "double_add_one_mask_63",
+          "input_mask": 7
+        },
+        {
+          "call_cpu": "04:8EB5",
+          "operation": "double_add_one_mask_63",
+          "input_mask": 15
+        }
+      ]
+    },
+    {
+      "rom_sha1": "c2103dd94e2a1a65a495fc02adc2e7d040f31212",
+      "scope": "ROM instruction execution of fight setup only; not a catch-rate or whole-game simulation",
+      "source_cpu": "04:8D2A..8EC3; 04:8F6F..8FC6",
+      "rod_id_hex": "0D",
+      "lure_id_hex": "17",
+      "fish_id_hex": "06",
+      "fish_size_raw": 36,
+      "base_mask": 7,
+      "rod_response_code": 2,
+      "lure_response_code": 0,
+      "rod_fish_id_match": false,
+      "lure_fish_id_match": false,
+      "final_mask": 31,
+      "display_offset_raw": 0,
+      "transforms": [
+        {
+          "call_cpu": "04:8D45",
+          "operation": "double_add_one_mask_63",
+          "input_mask": 7
+        },
+        {
+          "call_cpu": "04:8DDF",
+          "operation": "double_add_one_mask_63",
+          "input_mask": 15
+        }
+      ]
+    },
+    {
+      "rom_sha1": "c2103dd94e2a1a65a495fc02adc2e7d040f31212",
+      "scope": "ROM instruction execution of fight setup only; not a catch-rate or whole-game simulation",
+      "source_cpu": "04:8D2A..8EC3; 04:8F6F..8FC6",
+      "rod_id_hex": "0D",
+      "lure_id_hex": "23",
+      "fish_id_hex": "06",
+      "fish_size_raw": 15,
+      "base_mask": 7,
+      "rod_response_code": 2,
+      "lure_response_code": 1,
+      "rod_fish_id_match": false,
+      "lure_fish_id_match": false,
+      "final_mask": 63,
+      "display_offset_raw": 0,
+      "transforms": [
+        {
+          "call_cpu": "04:8D45",
+          "operation": "double_add_one_mask_63",
+          "input_mask": 7
+        },
+        {
+          "call_cpu": "04:8EA5",
+          "operation": "double_add_one_mask_63",
+          "input_mask": 15
+        },
+        {
+          "call_cpu": "04:8EA8",
+          "operation": "double_add_one_mask_63",
+          "input_mask": 31
+        }
+      ]
+    },
+    {
+      "rom_sha1": "c2103dd94e2a1a65a495fc02adc2e7d040f31212",
+      "scope": "ROM instruction execution of fight setup only; not a catch-rate or whole-game simulation",
+      "source_cpu": "04:8D2A..8EC3; 04:8F6F..8FC6",
+      "rod_id_hex": "0D",
+      "lure_id_hex": "23",
+      "fish_id_hex": "06",
+      "fish_size_raw": 16,
+      "base_mask": 7,
+      "rod_response_code": 2,
+      "lure_response_code": 1,
+      "rod_fish_id_match": false,
+      "lure_fish_id_match": false,
+      "final_mask": 15,
+      "display_offset_raw": 0,
+      "transforms": [
+        {
+          "call_cpu": "04:8D45",
+          "operation": "double_add_one_mask_63",
+          "input_mask": 7
+        },
+        {
+          "call_cpu": "04:8E01",
+          "operation": "halve",
+          "input_mask": 15
+        },
+        {
+          "call_cpu": "04:8EB5",
+          "operation": "double_add_one_mask_63",
+          "input_mask": 7
+        }
+      ]
+    },
+    {
+      "rom_sha1": "c2103dd94e2a1a65a495fc02adc2e7d040f31212",
+      "scope": "ROM instruction execution of fight setup only; not a catch-rate or whole-game simulation",
+      "source_cpu": "04:8D2A..8EC3; 04:8F6F..8FC6",
+      "rod_id_hex": "0D",
+      "lure_id_hex": "23",
+      "fish_id_hex": "06",
+      "fish_size_raw": 35,
+      "base_mask": 7,
+      "rod_response_code": 2,
+      "lure_response_code": 1,
+      "rod_fish_id_match": false,
+      "lure_fish_id_match": false,
+      "final_mask": 15,
+      "display_offset_raw": 0,
+      "transforms": [
+        {
+          "call_cpu": "04:8D45",
+          "operation": "double_add_one_mask_63",
+          "input_mask": 7
+        },
+        {
+          "call_cpu": "04:8E01",
+          "operation": "halve",
+          "input_mask": 15
+        },
+        {
+          "call_cpu": "04:8EB5",
+          "operation": "double_add_one_mask_63",
+          "input_mask": 7
+        }
+      ]
+    },
+    {
+      "rom_sha1": "c2103dd94e2a1a65a495fc02adc2e7d040f31212",
+      "scope": "ROM instruction execution of fight setup only; not a catch-rate or whole-game simulation",
+      "source_cpu": "04:8D2A..8EC3; 04:8F6F..8FC6",
+      "rod_id_hex": "0D",
+      "lure_id_hex": "23",
+      "fish_id_hex": "06",
+      "fish_size_raw": 36,
+      "base_mask": 7,
+      "rod_response_code": 2,
+      "lure_response_code": 1,
+      "rod_fish_id_match": false,
+      "lure_fish_id_match": false,
+      "final_mask": 15,
+      "display_offset_raw": 0,
+      "transforms": [
+        {
+          "call_cpu": "04:8D45",
+          "operation": "double_add_one_mask_63",
+          "input_mask": 7
+        }
+      ]
+    },
+    {
+      "rom_sha1": "c2103dd94e2a1a65a495fc02adc2e7d040f31212",
+      "scope": "ROM instruction execution of fight setup only; not a catch-rate or whole-game simulation",
+      "source_cpu": "04:8D2A..8EC3; 04:8F6F..8FC6",
+      "rod_id_hex": "0D",
+      "lure_id_hex": "01",
+      "fish_id_hex": "06",
+      "fish_size_raw": 15,
+      "base_mask": 7,
+      "rod_response_code": 2,
+      "lure_response_code": 2,
+      "rod_fish_id_match": false,
+      "lure_fish_id_match": false,
+      "final_mask": 63,
+      "display_offset_raw": 0,
+      "transforms": [
+        {
+          "call_cpu": "04:8D45",
+          "operation": "double_add_one_mask_63",
+          "input_mask": 7
+        },
+        {
+          "call_cpu": "04:8E1C",
+          "operation": "double_add_one_mask_63",
+          "input_mask": 15
+        },
+        {
+          "call_cpu": "04:8EA5",
+          "operation": "double_add_one_mask_63",
+          "input_mask": 31
+        },
+        {
+          "call_cpu": "04:8EA8",
+          "operation": "double_add_one_mask_63",
+          "input_mask": 63
+        }
+      ]
+    },
+    {
+      "rom_sha1": "c2103dd94e2a1a65a495fc02adc2e7d040f31212",
+      "scope": "ROM instruction execution of fight setup only; not a catch-rate or whole-game simulation",
+      "source_cpu": "04:8D2A..8EC3; 04:8F6F..8FC6",
+      "rod_id_hex": "0D",
+      "lure_id_hex": "01",
+      "fish_id_hex": "06",
+      "fish_size_raw": 16,
+      "base_mask": 7,
+      "rod_response_code": 2,
+      "lure_response_code": 2,
+      "rod_fish_id_match": false,
+      "lure_fish_id_match": false,
+      "final_mask": 31,
+      "display_offset_raw": 0,
+      "transforms": [
+        {
+          "call_cpu": "04:8D45",
+          "operation": "double_add_one_mask_63",
+          "input_mask": 7
+        },
+        {
+          "call_cpu": "04:8EB5",
+          "operation": "double_add_one_mask_63",
+          "input_mask": 15
+        }
+      ]
+    },
+    {
+      "rom_sha1": "c2103dd94e2a1a65a495fc02adc2e7d040f31212",
+      "scope": "ROM instruction execution of fight setup only; not a catch-rate or whole-game simulation",
+      "source_cpu": "04:8D2A..8EC3; 04:8F6F..8FC6",
+      "rod_id_hex": "0D",
+      "lure_id_hex": "01",
+      "fish_id_hex": "06",
+      "fish_size_raw": 35,
+      "base_mask": 7,
+      "rod_response_code": 2,
+      "lure_response_code": 2,
+      "rod_fish_id_match": false,
+      "lure_fish_id_match": false,
+      "final_mask": 31,
+      "display_offset_raw": 0,
+      "transforms": [
+        {
+          "call_cpu": "04:8D45",
+          "operation": "double_add_one_mask_63",
+          "input_mask": 7
+        },
+        {
+          "call_cpu": "04:8EB5",
+          "operation": "double_add_one_mask_63",
+          "input_mask": 15
+        }
+      ]
+    },
+    {
+      "rom_sha1": "c2103dd94e2a1a65a495fc02adc2e7d040f31212",
+      "scope": "ROM instruction execution of fight setup only; not a catch-rate or whole-game simulation",
+      "source_cpu": "04:8D2A..8EC3; 04:8F6F..8FC6",
+      "rod_id_hex": "0D",
+      "lure_id_hex": "01",
+      "fish_id_hex": "06",
+      "fish_size_raw": 36,
+      "base_mask": 7,
+      "rod_response_code": 2,
+      "lure_response_code": 2,
+      "rod_fish_id_match": false,
+      "lure_fish_id_match": false,
+      "final_mask": 7,
+      "display_offset_raw": 2,
+      "transforms": [
+        {
+          "call_cpu": "04:8D45",
+          "operation": "double_add_one_mask_63",
+          "input_mask": 7
+        },
+        {
+          "call_cpu": "04:8E2C",
+          "operation": "halve",
+          "input_mask": 15
+        }
+      ]
+    }
+  ]
+}

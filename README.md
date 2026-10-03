@@ -10,6 +10,24 @@ An independent, source-linked study of the Japanese Super Famicom release of **K
 
 ![Sample research catalogue](examples/catalogue-en.png)
 
+## New equipment research — 2026-10-04
+
+**[Visual guide: English](https://polaminggkub-debug.github.io/kawa-no-nushi-tsuri-2-research/research/) · [日本語](https://polaminggkub-debug.github.io/kawa-no-nushi-tsuri-2-research/research/index.ja.html) · [ไทย](https://polaminggkub-debug.github.io/kawa-no-nushi-tsuri-2-research/research/index.th.html)**
+
+- Two lure IDs cover the **mask compatibility** of all 38 lure-eligible fish/creature profiles: one of `17/18/2E/2F/30/31` plus `23/24` (hex). The cheapest ROM base-price pair is `17 + 23`, ¥50; shop availability remains unconfirmed.
+- Rod byte `+2` was previously mislabeled as a fight counter. Target movement, B release and the next state identify it as a **pre-hook aim/cast hold-time cutoff**. It is not fight strength.
+- Fly body normalization and bait/lure mask checks now have a [reproducible matrix](docs/fish-acceptance-research.md). These are compatibility checks, not measured bite or landing rates.
+- [Rod consumers](docs/rod-response-research.md), [lure setup transforms](docs/lure-response-research.md), and [one observed shop menu](docs/shop-inventory-research.md) document exact limits.
+
+Reproduce with your own original ROM:
+
+```sh
+python3 scripts/extract_lure_coverage.py --rom /path/to/game.sfc --output /tmp/lure-coverage.json
+python3 scripts/extract_fish_acceptance.py --rom /path/to/game.sfc --output /tmp/fish-acceptance.json
+python3 scripts/extract_rod_response.py --rom /path/to/game.sfc --output /tmp/rod-response.json
+python3 scripts/extract_lure_response_grid.py --rom /path/to/game.sfc --output /tmp/lure-response.json
+```
+
 ## What is covered
 
 The current research index has 315 entries. A lure or fly-part ID is a distinct game record, even when the game reuses a displayed name.

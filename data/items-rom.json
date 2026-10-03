@@ -1,5 +1,5 @@
 {
-  "schemaVersion": 2,
+  "schemaVersion": 3,
   "game": {
     "titleJapanese": "川のぬし釣り2",
     "titleEnglish": "Kawa no Nushi Tsuri 2",
@@ -26,15 +26,16 @@
       "equipped lure field at 7E:087A and equipped fly field at 7E:087E",
       "inventory array bases for rods, lures, flies, hooks, floats, and baits appear as absolute operands in ROM code",
       "rod/lure/bait/fly/hook/float record table pointers, strides, per-item raw records, and price offsets decoded from the original ROM",
-      "rod table +2 is consumed as an internal fight-counter cutoff and styles 2/4 scale it against WRAM 7E:0862; +3 computes an internal reach threshold at 0x0150 units per point",
+      "rod table +2 is consumed as an internal cast/aim hold-time cutoff and styles 2/4 scale it against WRAM 7E:0862; +3 computes an internal reach threshold at 0x0150 units per point",
       "rod table +4 is compared to active fish ID; +5 feeds rod graphic selection; +7 selects fight-response branches",
       "lure table +0 controls action branches; +2 is compared to active fish ID; +6 is masked against a fish-record field",
-      "the three nonzero lure +2 values resolve to fish IDs 0B black bass, 26 namazu, and 37 akame; a match changes a behavior path but does not prove exclusivity or a bonus"
+      "the three nonzero lure +2 values resolve to fish IDs 0B black bass, 26 namazu, and 37 akame; a match changes a behavior path but does not prove exclusivity or a bonus",
+      "fly body +0/+2 normalize to bait IDs04/07/08; selected BODY/WING ID low-two-bit equality checks can clear 1FA7 and block the mode3 event path; see fish-acceptance.json"
     ],
     "notYetDecoded": [
-      "the player-facing stat name and units of the rod fight-counter cutoff",
+      "the player-facing stat name and units of the rod cast/aim hold-time cutoff",
       "lure byte fields not labeled in the confirmed code paths, especially any physical depth/weight meaning",
-      "each fly component's hidden gameplay effect; do not treat component prices as effectiveness stats",
+      "remaining fly component effects and complete landing behavior; body/wing mask filters are documented separately",
       "numeric hook/float/sinker statistics"
     ],
     "runtimeCrossEvidence": [
@@ -86,7 +87,7 @@
             },
             "confirmedFields": {
               "styleCode": 1,
-              "fightLimitInternal": 10,
+              "castAimHoldCutoffInternal": 10,
               "rangeMultiplier": 3,
               "rangeInternalValueAtBase0x0150": 1008,
               "fishIdMatchCode": 57,
@@ -124,7 +125,7 @@
             },
             "confirmedFields": {
               "styleCode": 1,
-              "fightLimitInternal": 60,
+              "castAimHoldCutoffInternal": 60,
               "rangeMultiplier": 8,
               "rangeInternalValueAtBase0x0150": 2688,
               "fishIdMatchCode": 1,
@@ -162,7 +163,7 @@
             },
             "confirmedFields": {
               "styleCode": 1,
-              "fightLimitInternal": 30,
+              "castAimHoldCutoffInternal": 30,
               "rangeMultiplier": 5,
               "rangeInternalValueAtBase0x0150": 1680,
               "fishIdMatchCode": 0,
@@ -200,7 +201,7 @@
             },
             "confirmedFields": {
               "styleCode": 1,
-              "fightLimitInternal": 50,
+              "castAimHoldCutoffInternal": 50,
               "rangeMultiplier": 7,
               "rangeInternalValueAtBase0x0150": 2352,
               "fishIdMatchCode": 0,
@@ -238,7 +239,7 @@
             },
             "confirmedFields": {
               "styleCode": 1,
-              "fightLimitInternal": 40,
+              "castAimHoldCutoffInternal": 40,
               "rangeMultiplier": 6,
               "rangeInternalValueAtBase0x0150": 2016,
               "fishIdMatchCode": 3,
@@ -276,7 +277,7 @@
             },
             "confirmedFields": {
               "styleCode": 1,
-              "fightLimitInternal": 20,
+              "castAimHoldCutoffInternal": 20,
               "rangeMultiplier": 4,
               "rangeInternalValueAtBase0x0150": 1344,
               "fishIdMatchCode": 29,
@@ -314,7 +315,7 @@
             },
             "confirmedFields": {
               "styleCode": 1,
-              "fightLimitInternal": 70,
+              "castAimHoldCutoffInternal": 70,
               "rangeMultiplier": 9,
               "rangeInternalValueAtBase0x0150": 3024,
               "fishIdMatchCode": 56,
@@ -352,7 +353,7 @@
             },
             "confirmedFields": {
               "styleCode": 1,
-              "fightLimitInternal": 40,
+              "castAimHoldCutoffInternal": 40,
               "rangeMultiplier": 24,
               "rangeInternalValueAtBase0x0150": 8064,
               "fishIdMatchCode": 13,
@@ -390,7 +391,7 @@
             },
             "confirmedFields": {
               "styleCode": 1,
-              "fightLimitInternal": 30,
+              "castAimHoldCutoffInternal": 30,
               "rangeMultiplier": 12,
               "rangeInternalValueAtBase0x0150": 4032,
               "fishIdMatchCode": 37,
@@ -428,7 +429,7 @@
             },
             "confirmedFields": {
               "styleCode": 4,
-              "fightLimitInternal": 70,
+              "castAimHoldCutoffInternal": 70,
               "rangeMultiplier": 15,
               "rangeInternalValueAtBase0x0150": 5040,
               "fishIdMatchCode": 0,
@@ -466,7 +467,7 @@
             },
             "confirmedFields": {
               "styleCode": 4,
-              "fightLimitInternal": 80,
+              "castAimHoldCutoffInternal": 80,
               "rangeMultiplier": 18,
               "rangeInternalValueAtBase0x0150": 6048,
               "fishIdMatchCode": 0,
@@ -504,7 +505,7 @@
             },
             "confirmedFields": {
               "styleCode": 4,
-              "fightLimitInternal": 100,
+              "castAimHoldCutoffInternal": 100,
               "rangeMultiplier": 21,
               "rangeInternalValueAtBase0x0150": 7056,
               "fishIdMatchCode": 0,
@@ -542,7 +543,7 @@
             },
             "confirmedFields": {
               "styleCode": 4,
-              "fightLimitInternal": 120,
+              "castAimHoldCutoffInternal": 120,
               "rangeMultiplier": 24,
               "rangeInternalValueAtBase0x0150": 8064,
               "fishIdMatchCode": 38,
@@ -580,7 +581,7 @@
             },
             "confirmedFields": {
               "styleCode": 2,
-              "fightLimitInternal": 70,
+              "castAimHoldCutoffInternal": 70,
               "rangeMultiplier": 18,
               "rangeInternalValueAtBase0x0150": 6048,
               "fishIdMatchCode": 0,
@@ -618,7 +619,7 @@
             },
             "confirmedFields": {
               "styleCode": 2,
-              "fightLimitInternal": 100,
+              "castAimHoldCutoffInternal": 100,
               "rangeMultiplier": 21,
               "rangeInternalValueAtBase0x0150": 7056,
               "fishIdMatchCode": 0,
@@ -656,7 +657,7 @@
             },
             "confirmedFields": {
               "styleCode": 2,
-              "fightLimitInternal": 120,
+              "castAimHoldCutoffInternal": 120,
               "rangeMultiplier": 24,
               "rangeInternalValueAtBase0x0150": 8064,
               "fishIdMatchCode": 55,
@@ -694,7 +695,7 @@
             },
             "confirmedFields": {
               "styleCode": 8,
-              "fightLimitInternal": 50,
+              "castAimHoldCutoffInternal": 50,
               "rangeMultiplier": 15,
               "rangeInternalValueAtBase0x0150": 5040,
               "fishIdMatchCode": 0,
@@ -732,7 +733,7 @@
             },
             "confirmedFields": {
               "styleCode": 8,
-              "fightLimitInternal": 60,
+              "castAimHoldCutoffInternal": 60,
               "rangeMultiplier": 18,
               "rangeInternalValueAtBase0x0150": 6048,
               "fishIdMatchCode": 0,
@@ -770,7 +771,7 @@
             },
             "confirmedFields": {
               "styleCode": 8,
-              "fightLimitInternal": 70,
+              "castAimHoldCutoffInternal": 70,
               "rangeMultiplier": 21,
               "rangeInternalValueAtBase0x0150": 7056,
               "fishIdMatchCode": 0,
@@ -808,7 +809,7 @@
             },
             "confirmedFields": {
               "styleCode": 1,
-              "fightLimitInternal": 80,
+              "castAimHoldCutoffInternal": 80,
               "rangeMultiplier": 15,
               "rangeInternalValueAtBase0x0150": 5040,
               "fishIdMatchCode": 56,
@@ -846,7 +847,7 @@
             },
             "confirmedFields": {
               "styleCode": 1,
-              "fightLimitInternal": 60,
+              "castAimHoldCutoffInternal": 60,
               "rangeMultiplier": 24,
               "rangeInternalValueAtBase0x0150": 8064,
               "fishIdMatchCode": 37,
@@ -1395,7 +1396,7 @@
               "specialFishComparisonID": 11,
               "nameJapanese": "ブラックバス",
               "nameEnglish": "Black bass",
-              "condition": "when the equipped hook record's first field is 2, this byte is compared to active fish ID 0x11E8; equality enters a different behavior path"
+              "condition": "In lure fishing mode ($0C14 = 2), equality of lure +2 and active fish ID halves the setup mask $11FE and skips the lure size-response switch; the later rod response still applies."
             }
           },
           "priceYen": 35
@@ -1836,7 +1837,7 @@
               "specialFishComparisonID": 38,
               "nameJapanese": "ナマズ",
               "nameEnglish": "Namazu",
-              "condition": "when the equipped hook record's first field is 2, this byte is compared to active fish ID 0x11E8; equality enters a different behavior path"
+              "condition": "In lure fishing mode ($0C14 = 2), equality of lure +2 and active fish ID halves the setup mask $11FE and skips the lure size-response switch; the later rod response still applies."
             }
           },
           "priceYen": 75
@@ -3234,7 +3235,7 @@
               "specialFishComparisonID": 55,
               "nameJapanese": "アカメ",
               "nameEnglish": "Akame",
-              "condition": "when the equipped hook record's first field is 2, this byte is compared to active fish ID 0x11E8; equality enters a different behavior path"
+              "condition": "In lure fishing mode ($0C14 = 2), equality of lure +2 and active fish ID halves the setup mask $11FE and skips the lure size-response switch; the later rod response still applies."
             }
           },
           "priceYen": 500
@@ -8335,7 +8336,7 @@
       "rod": {
         "+0": "style code: 1 float/Ayu family, 2 casting family, 4 lure family, 8 fly family",
         "+1": "not yet assigned a meaning",
-        "+2": "internal fight-counter cutoff. Style 1 uses this raw value; style 8 also uses it raw and sets a second cutoff to half. Styles 2 and 4 scale it by current HP at 7E:0862 divided by 100 when HP is below 100, with a minimum of 10; at HP 100 or higher they use the raw value. The player-facing name/units are unknown",
+        "+2": "internal cast/aim hold-time cutoff. Style 1 uses this raw value; style 8 also uses it raw and sets a second cutoff to half. Styles 2 and 4 scale it by current HP at 7E:0862 divided by 100 when HP is below 100, with a minimum of 10; at HP 100 or higher they use the raw value. The player-facing name/units are unknown",
         "+3": "range multiplier; runtime multiplies it by 0x0150 and compares fish position against the result; internal units, not meters or seconds",
         "+4": "compared directly with active fish ID 0x11E8; the matching branch changes fish handling, so treat as a fish-ID match code, not a universal size rating",
         "+5": "used to calculate rod graphic tile offset",
@@ -8346,13 +8347,13 @@
       },
       "lure": {
         "+0": "behavior/action selector used by lure-specific runtime branches",
-        "+1": "selector for updating 0x11FE based on field 0x1EB1: 0 shifts right below 15 and left above 35; 1 shifts right from 15 through 35; 2 shifts left twice through 15 and once from 16 through 35. The chance effect/user-facing meaning is unknown",
+        "+1": "Size-response selector in lure fight setup: 0 applies H for raw size<=15 and G for >35; 1 applies H only for 15<size<=35; 2 applies G for <=15 and H for >35. H(x)=floor(x/2), G(x)=(2*x+1)&63. The overall catch effect is not established.",
         "+2": "compared directly with the active fish ID in a lure-response branch; zero/nonzero semantics are not fully decoded",
         "+3": "graphics asset selector passed to a helper that chooses and copies lure sprite tiles",
         "+4/+5": "render/animation selectors in scene setup; no depth/weight meaning established",
-        "+6": "mask ANDed with the active fish record's 0x1208 field before a lure-related event; preserve as a raw mask",
         "+8": "price in yen",
-        "+10": "display-name pointer in bank 05"
+        "+10": "display-name pointer in bank 05",
+        "+6/+7": "16-bit lure-hook acceptance mask, ANDed with fish profile +0F word (1208). A nonzero result passes this mask gate; position, timing and input remain separate conditions."
       },
       "bait": {
         "+8": "price in yen",

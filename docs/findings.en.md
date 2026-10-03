@@ -14,7 +14,7 @@ Names were seeded from published community item-ID lists and checked against ROM
 
 Rod table rows are 12 bytes. Code copies their first eight bytes into working fields and uses them in fishing-style and fish-fight routines. This table shows three examples; values labeled “cutoff” and “range” are internal game quantities, not ratings shown in the manual.
 
-| ID | Japanese name | English gloss | Style | Fight counter cutoff at 100+ HP | Range multiplier | Internal range threshold (`0x0150 × multiplier`) | Fish-ID compare byte | ROM price |
+| ID | Japanese name | English gloss | Style | Cast/aim hold-time cutoff at 100+ HP | Range multiplier | Internal range threshold (`0x0150 × multiplier`) | Fish-ID compare byte | ROM price |
 | ---: | --- | --- | ---: | ---: | ---: | ---: | ---: | ---: |
 | `01` | タナゴ竿10本継2m | Bitterling rod, 10-piece, 2 m | 1 | 10 | 3 | 1,008 | `0x39` | ¥500 |
 | `07` | アユ竿6本継7m | Ayu rod, 6-piece, 7 m | 1 | 70 | 9 | 3,024 | `0x38` | ¥1,500 |
@@ -23,7 +23,7 @@ Rod table rows are 12 bytes. Code copies their first eight bytes into working fi
 **How to interpret these fields:**
 
 - Rod byte `+0` selects a fishing-style family: `1` float/Ayu, `2` casting, `4` lure, `8` fly.
-- Byte `+2` feeds a counter cutoff in the fish-fight routine. For style `1`, the value is used directly. Style `8` uses it directly and also derives a second cutoff at half that value. Styles `2` and `4` scale it by current HP when HP is below 100, with a floor of 10; at 100 HP or more the raw value is used. The player-facing name and unit for this parameter remain unknown.
+- Byte `+2` feeds a hold-time cutoff in the pre-hook aim/cast routine. For style `1`, the value is used directly. Style `8` uses it directly and also derives a second cutoff at half that value. Styles `2` and `4` scale it by current HP when HP is below 100, with a floor of 10; at 100 HP or more the raw value is used. The player-facing name and unit for this parameter remain unknown.
 - Byte `+3` is multiplied by `0x0150` and compared with an internal fish-position quantity. The unit conversion to distance, time, or meters is unknown; do not read the result as a cast distance in meters.
 - Byte `+4` is compared with the active fish ID in a handling branch. It is a fish-ID comparison, not a general fish-size score.
 - Byte `+5` affects rod graphic selection. Byte `+7` selects branches in fight-response logic; its player-facing meaning has not been named. Bytes `+1` and `+6` remain unresolved.
@@ -39,7 +39,7 @@ Lure records are also 12 bytes. The code paths inspected establish uses for some
 | `1D` | シャローライナー / Shallow runner | 3 | 2 | 0 | ¥60 |
 | `51` | シンキング / Sinking lure | 5 | 2 | `0x37` (Akame fish ID) | ¥500 |
 
-The action byte selects branches. Byte `+1` affects how an internal value is adjusted during a lure interaction, but its player-facing effect is not established. For ID `0x51`, byte `+2` is compared to the active fish ID in a particular response path when a hook-record condition is met; that changes a behavior branch and does **not** establish exclusive compatibility or a catch bonus. Other lure bytes are used in graphics/animation setup or as a mask against a fish-record field. The inspected code does not establish a depth-in-meters, weight, durability, or catch-rate scale.
+The action byte selects branches. Byte `+1` affects how an internal value is adjusted during a lure interaction, but its player-facing effect is not established. For ID `0x51`, byte `+2` is compared to the active fish ID in a particular response path in lure fishing mode; that changes a behavior branch and does **not** establish exclusive compatibility or a catch bonus. Other lure bytes are used in graphics/animation setup or as a mask against a fish-record field. The inspected code does not establish a depth-in-meters, weight, durability, or catch-rate scale.
 
 The manual describes lure families and actions, including spinners, spinnerbaits, spoons, plugs/topwater, shallow runners, deep runners, sinking lures, jigs, and soft lures (printed pages 20–23). It does not give a numeric stat table for each lure ID. A 2025 player report describes choosing and working lures but says individual lure actions did not seem configurable; this remains an observation, not proof that no customization exists in every area. [Player report](https://note.com/holy_heron2678/n/na12caa0f2974?hl=en)
 
@@ -94,3 +94,9 @@ For fish food, a controlled basket record with raw size 30 produced 7 HP, and no
 - [Early-shop and fly-maker gameplay screenshots](https://evaandmaicy.blogspot.com/2014/11/sfc-2_18.html).
 
 Research snapshot: 4 October 2026.
+
+## Further ROM research and corrections
+
+The lure-hook gate uses a 16-bit acceptance word, and the gear setup response has now been traced more precisely. See [lure acceptance coverage](../data/lure-coverage.json), [fish acceptance](fish-acceptance-research.md), [lure setup](lure-response-research.md), and [rod trace](rod-response-research.md). The old description of rod +2 as a catch-failure cutoff is withdrawn; its gameplay phase is being followed separately.
+
+Rod +2 correction: target-coordinate movement, B-button release and the downstream tile-target resolver identify this timer as the **pre-hook aim/cast hold-time cutoff**, not fight endurance. See [the traced consumers](rod-response-research.md).

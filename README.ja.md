@@ -66,3 +66,9 @@ python3 scripts/extract_items.py --rom /path/to/your/Kawa-no-Nushi-Tsuri-2.sfc -
 - 序盤の店の画面と毛バリ作成画面の参考: [SFC 釣魚太郎2 walkthrough](https://evaandmaicy.blogspot.com/2014/11/sfc-2_18.html)。
 
 調査記録日: **2026年10月4日**。訂正やより確かな解釈を歓迎します。提案にはゲームの版、ROMハッシュ、根拠となる資料を添えてください。
+
+## 追加調査（2026-10-04）
+
+[日本語の装備ガイド](https://polaminggkub-debug.github.io/kawa-no-nushi-tsuri-2-research/research/index.ja.html)：ルアー2IDでルアー適合38プロフィールのマスク判定を網羅。最安のROM価格欄は17 + 23で50円。販売店・取り込み成功率は未確認。竿+2はファイトの強さではなく、針掛かり前の投げ・照準保持時間上限に訂正した。
+
+[エサ・フライの判定](docs/fish-acceptance-research.md) · [竿の処理](docs/rod-response-research.md) · [ルアー初期化](docs/lure-response-research.md) · [店頭観察](docs/shop-inventory-research.md)

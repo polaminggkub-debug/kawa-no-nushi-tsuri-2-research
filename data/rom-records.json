@@ -1,5 +1,5 @@
 {
-  "schema_version": 1,
+  "schema_version": 2,
   "rom": {
     "size_bytes": 1572864,
     "sha1": "c2103dd94e2a1a65a495fc02adc2e7d040f31212",
@@ -31,7 +31,7 @@
           "base_price_yen": 500,
           "name_pointer_hex": "05:A951",
           "style_code": 1,
-          "fight_cutoff_raw": 10,
+          "cast_aim_hold_cutoff_raw": 10,
           "reach_factor_raw": 3,
           "reach_threshold_internal": 1008,
           "special_fish_compare_id": 57
@@ -56,7 +56,7 @@
           "base_price_yen": 500,
           "name_pointer_hex": "05:A95F",
           "style_code": 1,
-          "fight_cutoff_raw": 60,
+          "cast_aim_hold_cutoff_raw": 60,
           "reach_factor_raw": 8,
           "reach_threshold_internal": 2688,
           "special_fish_compare_id": 1
@@ -81,7 +81,7 @@
           "base_price_yen": 350,
           "name_pointer_hex": "05:A96C",
           "style_code": 1,
-          "fight_cutoff_raw": 30,
+          "cast_aim_hold_cutoff_raw": 30,
           "reach_factor_raw": 5,
           "reach_threshold_internal": 1680,
           "special_fish_compare_id": 0
@@ -106,7 +106,7 @@
           "base_price_yen": 500,
           "name_pointer_hex": "05:A97B",
           "style_code": 1,
-          "fight_cutoff_raw": 50,
+          "cast_aim_hold_cutoff_raw": 50,
           "reach_factor_raw": 7,
           "reach_threshold_internal": 2352,
           "special_fish_compare_id": 0
@@ -131,7 +131,7 @@
           "base_price_yen": 750,
           "name_pointer_hex": "05:A98A",
           "style_code": 1,
-          "fight_cutoff_raw": 40,
+          "cast_aim_hold_cutoff_raw": 40,
           "reach_factor_raw": 6,
           "reach_threshold_internal": 2016,
           "special_fish_compare_id": 3
@@ -156,7 +156,7 @@
           "base_price_yen": 100,
           "name_pointer_hex": "05:A999",
           "style_code": 1,
-          "fight_cutoff_raw": 20,
+          "cast_aim_hold_cutoff_raw": 20,
           "reach_factor_raw": 4,
           "reach_threshold_internal": 1344,
           "special_fish_compare_id": 29
@@ -181,7 +181,7 @@
           "base_price_yen": 1500,
           "name_pointer_hex": "05:A9A8",
           "style_code": 1,
-          "fight_cutoff_raw": 70,
+          "cast_aim_hold_cutoff_raw": 70,
           "reach_factor_raw": 9,
           "reach_threshold_internal": 3024,
           "special_fish_compare_id": 56
@@ -206,7 +206,7 @@
           "base_price_yen": 1500,
           "name_pointer_hex": "05:A9B4",
           "style_code": 1,
-          "fight_cutoff_raw": 40,
+          "cast_aim_hold_cutoff_raw": 40,
           "reach_factor_raw": 24,
           "reach_threshold_internal": 8064,
           "special_fish_compare_id": 13
@@ -231,7 +231,7 @@
           "base_price_yen": 200,
           "name_pointer_hex": "05:A9C0",
           "style_code": 1,
-          "fight_cutoff_raw": 30,
+          "cast_aim_hold_cutoff_raw": 30,
           "reach_factor_raw": 12,
           "reach_threshold_internal": 4032,
           "special_fish_compare_id": 37
@@ -256,7 +256,7 @@
           "base_price_yen": 500,
           "name_pointer_hex": "05:A9CC",
           "style_code": 4,
-          "fight_cutoff_raw": 70,
+          "cast_aim_hold_cutoff_raw": 70,
           "reach_factor_raw": 15,
           "reach_threshold_internal": 5040,
           "special_fish_compare_id": 0
@@ -281,7 +281,7 @@
           "base_price_yen": 550,
           "name_pointer_hex": "05:A9D5",
           "style_code": 4,
-          "fight_cutoff_raw": 80,
+          "cast_aim_hold_cutoff_raw": 80,
           "reach_factor_raw": 18,
           "reach_threshold_internal": 6048,
           "special_fish_compare_id": 0
@@ -306,7 +306,7 @@
           "base_price_yen": 600,
           "name_pointer_hex": "05:A9DE",
           "style_code": 4,
-          "fight_cutoff_raw": 100,
+          "cast_aim_hold_cutoff_raw": 100,
           "reach_factor_raw": 21,
           "reach_threshold_internal": 7056,
           "special_fish_compare_id": 0
@@ -331,7 +331,7 @@
           "base_price_yen": 650,
           "name_pointer_hex": "05:A9E7",
           "style_code": 4,
-          "fight_cutoff_raw": 120,
+          "cast_aim_hold_cutoff_raw": 120,
           "reach_factor_raw": 24,
           "reach_threshold_internal": 8064,
           "special_fish_compare_id": 38
@@ -356,7 +356,7 @@
           "base_price_yen": 250,
           "name_pointer_hex": "05:A9F4",
           "style_code": 2,
-          "fight_cutoff_raw": 70,
+          "cast_aim_hold_cutoff_raw": 70,
           "reach_factor_raw": 18,
           "reach_threshold_internal": 6048,
           "special_fish_compare_id": 0
@@ -381,7 +381,7 @@
           "base_price_yen": 600,
           "name_pointer_hex": "05:A9FC",
           "style_code": 2,
-          "fight_cutoff_raw": 100,
+          "cast_aim_hold_cutoff_raw": 100,
           "reach_factor_raw": 21,
           "reach_threshold_internal": 7056,
           "special_fish_compare_id": 0
@@ -406,7 +406,7 @@
           "base_price_yen": 1500,
           "name_pointer_hex": "05:AA04",
           "style_code": 2,
-          "fight_cutoff_raw": 120,
+          "cast_aim_hold_cutoff_raw": 120,
           "reach_factor_raw": 24,
           "reach_threshold_internal": 8064,
           "special_fish_compare_id": 55
@@ -431,7 +431,7 @@
           "base_price_yen": 350,
           "name_pointer_hex": "05:AA0E",
           "style_code": 8,
-          "fight_cutoff_raw": 50,
+          "cast_aim_hold_cutoff_raw": 50,
           "reach_factor_raw": 15,
           "reach_threshold_internal": 5040,
           "special_fish_compare_id": 0
@@ -456,7 +456,7 @@
           "base_price_yen": 400,
           "name_pointer_hex": "05:AA17",
           "style_code": 8,
-          "fight_cutoff_raw": 60,
+          "cast_aim_hold_cutoff_raw": 60,
           "reach_factor_raw": 18,
           "reach_threshold_internal": 6048,
           "special_fish_compare_id": 0
@@ -481,7 +481,7 @@
           "base_price_yen": 450,
           "name_pointer_hex": "05:AA20",
           "style_code": 8,
-          "fight_cutoff_raw": 70,
+          "cast_aim_hold_cutoff_raw": 70,
           "reach_factor_raw": 21,
           "reach_threshold_internal": 7056,
           "special_fish_compare_id": 0
@@ -506,7 +506,7 @@
           "base_price_yen": 1500,
           "name_pointer_hex": "05:AA29",
           "style_code": 1,
-          "fight_cutoff_raw": 80,
+          "cast_aim_hold_cutoff_raw": 80,
           "reach_factor_raw": 15,
           "reach_threshold_internal": 5040,
           "special_fish_compare_id": 56
@@ -531,7 +531,7 @@
           "base_price_yen": 2000,
           "name_pointer_hex": "05:AA35",
           "style_code": 1,
-          "fight_cutoff_raw": 60,
+          "cast_aim_hold_cutoff_raw": 60,
           "reach_factor_raw": 24,
           "reach_threshold_internal": 8064,
           "special_fish_compare_id": 37

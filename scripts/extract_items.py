@@ -36,7 +36,7 @@ def extract(rom):
         raise ValueError('This extractor supports only the headerless original Japanese dump. '
                          f'Expected {EXPECTED_SIZE} bytes, SHA-1 {EXPECTED_SHA1}; '
                          f'received {len(rom)} bytes, SHA-1 {digest}.')
-    result = {'schema_version': 1, 'rom': {'size_bytes': len(rom), 'sha1': digest,
+    result = {'schema_version': 2, 'rom': {'size_bytes': len(rom), 'sha1': digest,
               'sha256': hashlib.sha256(rom).hexdigest()},
               'scope': 'ROM table records and base prices, not complete gameplay-stat decoding.',
               'categories': {}}
@@ -52,7 +52,7 @@ def extract(rom):
                      'raw_bytes': list(record), 'base_price_yen': word(record, price),
                      'name_pointer_hex': f'05:{word(record, name):04X}'}
             if category == 'rod':
-                entry.update(style_code=record[0], fight_cutoff_raw=record[2],
+                entry.update(style_code=record[0], cast_aim_hold_cutoff_raw=record[2],
                              reach_factor_raw=record[3], reach_threshold_internal=record[3] * 336,
                              special_fish_compare_id=record[4])
             elif category == 'lure':

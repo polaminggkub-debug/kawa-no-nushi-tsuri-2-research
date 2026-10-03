@@ -1,0 +1,861 @@
+{
+  "schema_version": 1,
+  "rom": {
+    "size_bytes": 1572864,
+    "sha1": "c2103dd94e2a1a65a495fc02adc2e7d040f31212"
+  },
+  "scope": "Rod records plus static code-path analysis; not a claim of a measured universal best rod.",
+  "source_evidence": {
+    "rod_table": {
+      "pointer_cpu_address": "05:800A",
+      "record_cpu_address": "05:A7F5",
+      "record_file_offset": "0x02A7F5",
+      "record_stride_bytes": 12,
+      "record_count": 21
+    },
+    "rod_record_loader": {
+      "cpu_address": "83:D11F",
+      "file_offset": "0x01D11F"
+    },
+    "cast_aim_hold_cutoff_setup": {
+      "cpu_address": "84:D58C",
+      "file_offset": "0x02558C"
+    },
+    "cast_aim_hold_counter": {
+      "cpu_address": "84:D6EE",
+      "file_offset": "0x0256EE",
+      "notes": "in the D66B control loop, increments 1F6F while the action button remains held; when 1F6F >= 1F71, writes 1 to 1F73 to end this input/aim phase"
+    },
+    "aim_input_handler": {
+      "cpu_address": "84:D66B",
+      "file_offset": "0x02566B",
+      "button_release": "84:D6E0 sets 1F73 when controller mask 1348 bit 8000 is clear",
+      "target_tile_resolution": {
+        "cpu_address": "84:D056",
+        "file_offset": "0x025056"
+      },
+      "phase_dispatcher": {
+        "cpu_address": "84:BF61",
+        "file_offset": "0x023F61",
+        "notes": "after D056 resolves the current tile, a conditional branch sends 1322==0 to D17B (phase 1 setup, 1F6D=1) or 1322!=0 to C01D (phase 3 setup, 1F6D=3 and a mode-specific text code)"
+      },
+      "next_phase_setup": {
+        "cpu_address": "84:D17B",
+        "file_offset": "0x02517B"
+      }
+    },
+    "range_setup": {
+      "cpu_address": "84:8721",
+      "file_offset": "0x020721"
+    },
+    "range_failure_branch": {
+      "cpu_address": "84:9C35",
+      "file_offset": "0x021C35",
+      "notes": "when 1EC9 reaches 63 and fish-position 1ED5 >= rod threshold 1ED7, sets 1ECD=1 and 16AA=0x1A"
+    },
+    "rod_response_pre_adjustment": {
+      "cpu_address": "84:8D2A",
+      "file_offset": "0x020D2A"
+    },
+    "rod_match_and_size_response": {
+      "cpu_address": "84:8E35",
+      "file_offset": "0x020E35"
+    },
+    "response_rotate_left_helper": {
+      "cpu_address": "84:8F77",
+      "file_offset": "0x020F77"
+    },
+    "response_render_mapping": {
+      "cpu_address": "84:8F83",
+      "file_offset": "0x020F83"
+    },
+    "fish_id_labels_source": "ROM-decoded profile names and profile offsets from publication/data/lure-coverage.json fish[]. The rod record provides the numeric ID; 84:8E35 compares it to active fish ID 7E:11E8."
+  },
+  "field_rules": {
+    "cast_aim_hold_cutoff": {
+      "rod_record_field": "+2",
+      "wram_cutoff": "7E:1F71",
+      "counter": "7E:1F6F",
+      "style_1": "uses the field directly",
+      "styles_2_and_4": "if HP at 7E:0862 is below 100, computes raw * HP / 100 and clamps the result to at least 10; at HP 100 or above it uses raw",
+      "style_8": "uses raw and also stores raw >> 1 in 7E:1FA3",
+      "branch_effect": "The D66B control loop increments 1F6F while the action button is held. Releasing it or reaching the cutoff sets 1F73. The BF61 dispatcher then resolves the current world target tile; it sends 1322==0 to D17B phase 1 setup or 1322!=0 to C01D phase 3 setup. Static call flow identifies this as a cast/aim hold-time cutoff, not a fish-fight strength rating. A larger threshold leaves more time before automatic advance; no catch or cast-distance advantage has been measured.",
+      "phase_identification_confidence": "strong static identification from D66B button/release checks, directional target-coordinate updates, BF61 target-tile resolution, and D17B/C01D phase setup; D66B itself does not read 11E8; no controlled in-game visual capture in this subtask"
+    },
+    "reach": {
+      "rod_record_field": "+3",
+      "wram_threshold": "7E:1ED7",
+      "formula": "range_multiplier * 0x0150 (336) internal position units",
+      "position": "7E:1ED5",
+      "branch_effect": "When the fight-response value 1EC9 reaches 63, the code sets 1ECF and changes fight state. Only when 1ED5 >= 1ED7 does it additionally set 1ECD and 16AA=0x1A. Downstream handling of 1ECD removes equipped lure/fly components and resets the active fish entry; this is consistent with a fish/tackle loss path, but the player-facing message was not captured. This is evidence that +3 participates in a reach limit; it does not reveal meters or prove a universal catch-rate effect."
+    },
+    "fish_id_match": {
+      "rod_record_field": "+4",
+      "active_fish_id": "7E:11E8",
+      "branch_effect": "At 84:8E35, equality jumps directly to 84:8EC1 and skips only the later +7/size-dependent transform. The earlier +7 pre-adjustment at 84:8D2A has already run. Do not describe this as fish exclusivity or a catch bonus.",
+      "nonzero_ids": "Each row includes the ID and ROM-decoded name/profile offset from publication/data/lure-coverage.json fish[]."
+    },
+    "fight_response": {
+      "rod_record_field": "+7",
+      "wram_value": "7E:11FE",
+      "pre_adjustment_at_84_8D2A": {
+        "0": "LSR: floor(x / 2)",
+        "1": "unchanged",
+        "2": "F(x) = (2*x + 1) & 0x3F"
+      },
+      "size_value": "7E:1EB1",
+      "size_adjustment_at_84_8E40_when_fish_id_does_not_match": {
+        "size_0_to_15": {
+          "0": 0,
+          "1": 1,
+          "2": 2
+        },
+        "size_16_to_35": {
+          "0": 1,
+          "1": 0,
+          "2": 1
+        },
+        "size_36_or_more": {
+          "0": 2,
+          "1": 1,
+          "2": 0
+        },
+        "unit": "number of F applications, where F(x) = (2*x + 1) & 0x3F"
+      },
+      "matched_fish": "When +4 equals active fish ID, the size-adjustment table is skipped; the pre-adjustment still applies.",
+      "downstream": "The transformed 11FE is copied into 1EC9 and evolves during the fight. When 1EC9 reaches 63, 1ECF marks a later fight-state transition; 1ECF alone is not shown to mean catch failure. A separate 8F83 lookup maps selected 11FE values to 1F65, which is used as a render offset. No universally better direction for response codes 0/1/2 has been established."
+    }
+  },
+  "entries": [
+    {
+      "id_hex": "01",
+      "name_japanese": "タナゴ竿10本継2m",
+      "name_english": "Bitterling rod, 10-piece, 2 m",
+      "record_file_offset": "0x02A7F5",
+      "raw_bytes_hex": "01 00 0a 03 39 00 08 00 51 a9 f4 01",
+      "raw_fields": {
+        "+0": 1,
+        "+1": 0,
+        "+2": 10,
+        "+3": 3,
+        "+4": 57,
+        "+5": 0,
+        "+6": 8,
+        "+7": 0,
+        "+8": 81,
+        "+9": 169,
+        "+10": 244,
+        "+11": 1
+      },
+      "style_code": 1,
+      "style": "float_or_ayu",
+      "cast_aim_hold_cutoff_raw": 10,
+      "range_multiplier_raw": 3,
+      "range_threshold_internal_at_base_0x0150": 1008,
+      "fish_id_match_code": "0x39",
+      "fish_id_match_label": {
+        "id_hex": "0x39",
+        "name_ja": "タナゴ",
+        "name_has_unmapped_glyph": false,
+        "profile_file_offset": "0x028520",
+        "name_source": "publication/data/lure-coverage.json fish[] (decoded ROM profile)"
+      },
+      "fight_response_code": 0,
+      "cast_aim_hold_cutoff_rule": "raw cutoff"
+    },
+    {
+      "id_hex": "02",
+      "name_japanese": "渓流カーボン竿6m",
+      "name_english": "Mountain stream carbon rod, 6 m",
+      "record_file_offset": "0x02A801",
+      "raw_bytes_hex": "01 02 3c 08 01 09 0e 01 5f a9 f4 01",
+      "raw_fields": {
+        "+0": 1,
+        "+1": 2,
+        "+2": 60,
+        "+3": 8,
+        "+4": 1,
+        "+5": 9,
+        "+6": 14,
+        "+7": 1,
+        "+8": 95,
+        "+9": 169,
+        "+10": 244,
+        "+11": 1
+      },
+      "style_code": 1,
+      "style": "float_or_ayu",
+      "cast_aim_hold_cutoff_raw": 60,
+      "range_multiplier_raw": 8,
+      "range_threshold_internal_at_base_0x0150": 2688,
+      "fish_id_match_code": "0x01",
+      "fish_id_match_label": {
+        "id_hex": "0x01",
+        "name_ja": "イワナ",
+        "name_has_unmapped_glyph": false,
+        "profile_file_offset": "0x028018",
+        "name_source": "publication/data/lure-coverage.json fish[] (decoded ROM profile)"
+      },
+      "fight_response_code": 1,
+      "cast_aim_hold_cutoff_rule": "raw cutoff"
+    },
+    {
+      "id_hex": "03",
+      "name_japanese": "ヤマベ竿6本継3.9m",
+      "name_english": "Yamabe rod, 6-piece, 3.9 m",
+      "record_file_offset": "0x02A80D",
+      "raw_bytes_hex": "01 00 1e 05 00 06 08 01 6c a9 5e 01",
+      "raw_fields": {
+        "+0": 1,
+        "+1": 0,
+        "+2": 30,
+        "+3": 5,
+        "+4": 0,
+        "+5": 6,
+        "+6": 8,
+        "+7": 1,
+        "+8": 108,
+        "+9": 169,
+        "+10": 94,
+        "+11": 1
+      },
+      "style_code": 1,
+      "style": "float_or_ayu",
+      "cast_aim_hold_cutoff_raw": 30,
+      "range_multiplier_raw": 5,
+      "range_threshold_internal_at_base_0x0150": 1680,
+      "fish_id_match_code": "0x00",
+      "fish_id_match_label": null,
+      "fight_response_code": 1,
+      "cast_aim_hold_cutoff_rule": "raw cutoff"
+    },
+    {
+      "id_hex": "04",
+      "name_japanese": "清流カーボン竿5.3m",
+      "name_english": "Clear stream carbon rod, 5.3 m",
+      "record_file_offset": "0x02A819",
+      "raw_bytes_hex": "01 02 32 07 00 0a 0e 01 7b a9 f4 01",
+      "raw_fields": {
+        "+0": 1,
+        "+1": 2,
+        "+2": 50,
+        "+3": 7,
+        "+4": 0,
+        "+5": 10,
+        "+6": 14,
+        "+7": 1,
+        "+8": 123,
+        "+9": 169,
+        "+10": 244,
+        "+11": 1
+      },
+      "style_code": 1,
+      "style": "float_or_ayu",
+      "cast_aim_hold_cutoff_raw": 50,
+      "range_multiplier_raw": 7,
+      "range_threshold_internal_at_base_0x0150": 2352,
+      "fish_id_match_code": "0x00",
+      "fish_id_match_label": null,
+      "fight_response_code": 1,
+      "cast_aim_hold_cutoff_rule": "raw cutoff"
+    },
+    {
+      "id_hex": "05",
+      "name_japanese": "ヤマメ竿8本継4.5m",
+      "name_english": "Yamame rod, 8-piece, 4.5 m",
+      "record_file_offset": "0x02A825",
+      "raw_bytes_hex": "01 00 28 06 03 02 08 01 8a a9 ee 02",
+      "raw_fields": {
+        "+0": 1,
+        "+1": 0,
+        "+2": 40,
+        "+3": 6,
+        "+4": 3,
+        "+5": 2,
+        "+6": 8,
+        "+7": 1,
+        "+8": 138,
+        "+9": 169,
+        "+10": 238,
+        "+11": 2
+      },
+      "style_code": 1,
+      "style": "float_or_ayu",
+      "cast_aim_hold_cutoff_raw": 40,
+      "range_multiplier_raw": 6,
+      "range_threshold_internal_at_base_0x0150": 2016,
+      "fish_id_match_code": "0x03",
+      "fish_id_match_label": {
+        "id_hex": "0x03",
+        "name_ja": "ヤマメ",
+        "name_has_unmapped_glyph": false,
+        "profile_file_offset": "0x028046",
+        "name_source": "publication/data/lure-coverage.json fish[] (decoded ROM profile)"
+      },
+      "fight_response_code": 1,
+      "cast_aim_hold_cutoff_rule": "raw cutoff"
+    },
+    {
+      "id_hex": "06",
+      "name_japanese": "マブナ竿9本継3.3m",
+      "name_english": "Mabuna rod, 9-piece, 3.3 m",
+      "record_file_offset": "0x02A831",
+      "raw_bytes_hex": "01 00 14 04 1d 03 08 00 99 a9 64 00",
+      "raw_fields": {
+        "+0": 1,
+        "+1": 0,
+        "+2": 20,
+        "+3": 4,
+        "+4": 29,
+        "+5": 3,
+        "+6": 8,
+        "+7": 0,
+        "+8": 153,
+        "+9": 169,
+        "+10": 100,
+        "+11": 0
+      },
+      "style_code": 1,
+      "style": "float_or_ayu",
+      "cast_aim_hold_cutoff_raw": 20,
+      "range_multiplier_raw": 4,
+      "range_threshold_internal_at_base_0x0150": 1344,
+      "fish_id_match_code": "0x1D",
+      "fish_id_match_label": {
+        "id_hex": "0x1D",
+        "name_ja": "マブナ",
+        "name_has_unmapped_glyph": false,
+        "profile_file_offset": "0x02829C",
+        "name_source": "publication/data/lure-coverage.json fish[] (decoded ROM profile)"
+      },
+      "fight_response_code": 0,
+      "cast_aim_hold_cutoff_rule": "raw cutoff"
+    },
+    {
+      "id_hex": "07",
+      "name_japanese": "アユ竿6本継7m",
+      "name_english": "Ayu rod, 6-piece, 7 m",
+      "record_file_offset": "0x02A83D",
+      "raw_bytes_hex": "01 00 46 09 38 01 08 01 a8 a9 dc 05",
+      "raw_fields": {
+        "+0": 1,
+        "+1": 0,
+        "+2": 70,
+        "+3": 9,
+        "+4": 56,
+        "+5": 1,
+        "+6": 8,
+        "+7": 1,
+        "+8": 168,
+        "+9": 169,
+        "+10": 220,
+        "+11": 5
+      },
+      "style_code": 1,
+      "style": "float_or_ayu",
+      "cast_aim_hold_cutoff_raw": 70,
+      "range_multiplier_raw": 9,
+      "range_threshold_internal_at_base_0x0150": 3024,
+      "fish_id_match_code": "0x38",
+      "fish_id_match_label": {
+        "id_hex": "0x38",
+        "name_ja": "アユ",
+        "name_has_unmapped_glyph": false,
+        "profile_file_offset": "0x028509",
+        "name_source": "publication/data/lure-coverage.json fish[] (decoded ROM profile)"
+      },
+      "fight_response_code": 1,
+      "cast_aim_hold_cutoff_rule": "raw cutoff"
+    },
+    {
+      "id_hex": "08",
+      "name_japanese": "コイ竿8本継5m",
+      "name_english": "Carp rod, 8-piece, 5 m",
+      "record_file_offset": "0x02A849",
+      "raw_bytes_hex": "01 00 28 18 0d 05 08 02 b4 a9 dc 05",
+      "raw_fields": {
+        "+0": 1,
+        "+1": 0,
+        "+2": 40,
+        "+3": 24,
+        "+4": 13,
+        "+5": 5,
+        "+6": 8,
+        "+7": 2,
+        "+8": 180,
+        "+9": 169,
+        "+10": 220,
+        "+11": 5
+      },
+      "style_code": 1,
+      "style": "float_or_ayu",
+      "cast_aim_hold_cutoff_raw": 40,
+      "range_multiplier_raw": 24,
+      "range_threshold_internal_at_base_0x0150": 8064,
+      "fish_id_match_code": "0x0D",
+      "fish_id_match_label": {
+        "id_hex": "0x0D",
+        "name_ja": "コイ",
+        "name_has_unmapped_glyph": false,
+        "profile_file_offset": "0x02812C",
+        "name_source": "publication/data/lure-coverage.json fish[] (decoded ROM profile)"
+      },
+      "fight_response_code": 2,
+      "cast_aim_hold_cutoff_rule": "raw cutoff"
+    },
+    {
+      "id_hex": "09",
+      "name_japanese": "ヘラ竿3本継3m",
+      "name_english": "Hera rod, 3-piece, 3 m",
+      "record_file_offset": "0x02A855",
+      "raw_bytes_hex": "01 00 1e 0c 25 04 08 01 c0 a9 c8 00",
+      "raw_fields": {
+        "+0": 1,
+        "+1": 0,
+        "+2": 30,
+        "+3": 12,
+        "+4": 37,
+        "+5": 4,
+        "+6": 8,
+        "+7": 1,
+        "+8": 192,
+        "+9": 169,
+        "+10": 200,
+        "+11": 0
+      },
+      "style_code": 1,
+      "style": "float_or_ayu",
+      "cast_aim_hold_cutoff_raw": 30,
+      "range_multiplier_raw": 12,
+      "range_threshold_internal_at_base_0x0150": 4032,
+      "fish_id_match_code": "0x25",
+      "fish_id_match_label": {
+        "id_hex": "0x25",
+        "name_ja": "ヘラブナ",
+        "name_has_unmapped_glyph": false,
+        "profile_file_offset": "0x028354",
+        "name_source": "publication/data/lure-coverage.json fish[] (decoded ROM profile)"
+      },
+      "fight_response_code": 1,
+      "cast_aim_hold_cutoff_rule": "raw cutoff"
+    },
+    {
+      "id_hex": "0A",
+      "name_japanese": "ルアーロッド小",
+      "name_english": "Small lure rod",
+      "record_file_offset": "0x02A861",
+      "raw_bytes_hex": "04 02 46 0f 00 0f 08 00 cc a9 f4 01",
+      "raw_fields": {
+        "+0": 4,
+        "+1": 2,
+        "+2": 70,
+        "+3": 15,
+        "+4": 0,
+        "+5": 15,
+        "+6": 8,
+        "+7": 0,
+        "+8": 204,
+        "+9": 169,
+        "+10": 244,
+        "+11": 1
+      },
+      "style_code": 4,
+      "style": "lure",
+      "cast_aim_hold_cutoff_raw": 70,
+      "range_multiplier_raw": 15,
+      "range_threshold_internal_at_base_0x0150": 5040,
+      "fish_id_match_code": "0x00",
+      "fish_id_match_label": null,
+      "fight_response_code": 0,
+      "cast_aim_hold_cutoff_rule": "HP >= 100: raw; HP < 100: max(10, floor(raw * current_HP / 100))"
+    },
+    {
+      "id_hex": "0B",
+      "name_japanese": "ルアーロッド中",
+      "name_english": "Medium lure rod",
+      "record_file_offset": "0x02A86D",
+      "raw_bytes_hex": "04 02 50 12 00 10 08 00 d5 a9 26 02",
+      "raw_fields": {
+        "+0": 4,
+        "+1": 2,
+        "+2": 80,
+        "+3": 18,
+        "+4": 0,
+        "+5": 16,
+        "+6": 8,
+        "+7": 0,
+        "+8": 213,
+        "+9": 169,
+        "+10": 38,
+        "+11": 2
+      },
+      "style_code": 4,
+      "style": "lure",
+      "cast_aim_hold_cutoff_raw": 80,
+      "range_multiplier_raw": 18,
+      "range_threshold_internal_at_base_0x0150": 6048,
+      "fish_id_match_code": "0x00",
+      "fish_id_match_label": null,
+      "fight_response_code": 0,
+      "cast_aim_hold_cutoff_rule": "HP >= 100: raw; HP < 100: max(10, floor(raw * current_HP / 100))"
+    },
+    {
+      "id_hex": "0C",
+      "name_japanese": "ルアーロッド大",
+      "name_english": "Large lure rod",
+      "record_file_offset": "0x02A879",
+      "raw_bytes_hex": "04 02 64 15 00 11 08 01 de a9 58 02",
+      "raw_fields": {
+        "+0": 4,
+        "+1": 2,
+        "+2": 100,
+        "+3": 21,
+        "+4": 0,
+        "+5": 17,
+        "+6": 8,
+        "+7": 1,
+        "+8": 222,
+        "+9": 169,
+        "+10": 88,
+        "+11": 2
+      },
+      "style_code": 4,
+      "style": "lure",
+      "cast_aim_hold_cutoff_raw": 100,
+      "range_multiplier_raw": 21,
+      "range_threshold_internal_at_base_0x0150": 7056,
+      "fish_id_match_code": "0x00",
+      "fish_id_match_label": null,
+      "fight_response_code": 1,
+      "cast_aim_hold_cutoff_rule": "HP >= 100: raw; HP < 100: max(10, floor(raw * current_HP / 100))"
+    },
+    {
+      "id_hex": "0D",
+      "name_japanese": "大物用ルアーロッド",
+      "name_english": "Heavy-fish lure rod",
+      "record_file_offset": "0x02A885",
+      "raw_bytes_hex": "04 02 78 18 26 12 08 02 e7 a9 8a 02",
+      "raw_fields": {
+        "+0": 4,
+        "+1": 2,
+        "+2": 120,
+        "+3": 24,
+        "+4": 38,
+        "+5": 18,
+        "+6": 8,
+        "+7": 2,
+        "+8": 231,
+        "+9": 169,
+        "+10": 138,
+        "+11": 2
+      },
+      "style_code": 4,
+      "style": "lure",
+      "cast_aim_hold_cutoff_raw": 120,
+      "range_multiplier_raw": 24,
+      "range_threshold_internal_at_base_0x0150": 8064,
+      "fish_id_match_code": "0x26",
+      "fish_id_match_label": {
+        "id_hex": "0x26",
+        "name_ja": "ナマズ",
+        "name_has_unmapped_glyph": false,
+        "profile_file_offset": "0x02836B",
+        "name_source": "publication/data/lure-coverage.json fish[] (decoded ROM profile)"
+      },
+      "fight_response_code": 2,
+      "cast_aim_hold_cutoff_rule": "HP >= 100: raw; HP < 100: max(10, floor(raw * current_HP / 100))"
+    },
+    {
+      "id_hex": "0E",
+      "name_japanese": "投げ竿小",
+      "name_english": "Small casting rod",
+      "record_file_offset": "0x02A891",
+      "raw_bytes_hex": "02 02 46 12 00 13 0e 00 f4 a9 fa 00",
+      "raw_fields": {
+        "+0": 2,
+        "+1": 2,
+        "+2": 70,
+        "+3": 18,
+        "+4": 0,
+        "+5": 19,
+        "+6": 14,
+        "+7": 0,
+        "+8": 244,
+        "+9": 169,
+        "+10": 250,
+        "+11": 0
+      },
+      "style_code": 2,
+      "style": "casting",
+      "cast_aim_hold_cutoff_raw": 70,
+      "range_multiplier_raw": 18,
+      "range_threshold_internal_at_base_0x0150": 6048,
+      "fish_id_match_code": "0x00",
+      "fish_id_match_label": null,
+      "fight_response_code": 0,
+      "cast_aim_hold_cutoff_rule": "HP >= 100: raw; HP < 100: max(10, floor(raw * current_HP / 100))"
+    },
+    {
+      "id_hex": "0F",
+      "name_japanese": "投げ竿中",
+      "name_english": "Medium casting rod",
+      "record_file_offset": "0x02A89D",
+      "raw_bytes_hex": "02 02 64 15 00 14 0e 01 fc a9 58 02",
+      "raw_fields": {
+        "+0": 2,
+        "+1": 2,
+        "+2": 100,
+        "+3": 21,
+        "+4": 0,
+        "+5": 20,
+        "+6": 14,
+        "+7": 1,
+        "+8": 252,
+        "+9": 169,
+        "+10": 88,
+        "+11": 2
+      },
+      "style_code": 2,
+      "style": "casting",
+      "cast_aim_hold_cutoff_raw": 100,
+      "range_multiplier_raw": 21,
+      "range_threshold_internal_at_base_0x0150": 7056,
+      "fish_id_match_code": "0x00",
+      "fish_id_match_label": null,
+      "fight_response_code": 1,
+      "cast_aim_hold_cutoff_rule": "HP >= 100: raw; HP < 100: max(10, floor(raw * current_HP / 100))"
+    },
+    {
+      "id_hex": "10",
+      "name_japanese": "両手投げ竿",
+      "name_english": "Two-handed casting rod",
+      "record_file_offset": "0x02A8A9",
+      "raw_bytes_hex": "02 02 78 18 37 07 0e 02 04 aa dc 05",
+      "raw_fields": {
+        "+0": 2,
+        "+1": 2,
+        "+2": 120,
+        "+3": 24,
+        "+4": 55,
+        "+5": 7,
+        "+6": 14,
+        "+7": 2,
+        "+8": 4,
+        "+9": 170,
+        "+10": 220,
+        "+11": 5
+      },
+      "style_code": 2,
+      "style": "casting",
+      "cast_aim_hold_cutoff_raw": 120,
+      "range_multiplier_raw": 24,
+      "range_threshold_internal_at_base_0x0150": 8064,
+      "fish_id_match_code": "0x37",
+      "fish_id_match_label": {
+        "id_hex": "0x37",
+        "name_ja": "アカメ",
+        "name_has_unmapped_glyph": false,
+        "profile_file_offset": "0x0284F2",
+        "name_source": "publication/data/lure-coverage.json fish[] (decoded ROM profile)"
+      },
+      "fight_response_code": 2,
+      "cast_aim_hold_cutoff_rule": "HP >= 100: raw; HP < 100: max(10, floor(raw * current_HP / 100))"
+    },
+    {
+      "id_hex": "11",
+      "name_japanese": "フライロッド小",
+      "name_english": "Small fly rod",
+      "record_file_offset": "0x02A8B5",
+      "raw_bytes_hex": "08 02 32 0f 00 0c 08 00 0e aa 5e 01",
+      "raw_fields": {
+        "+0": 8,
+        "+1": 2,
+        "+2": 50,
+        "+3": 15,
+        "+4": 0,
+        "+5": 12,
+        "+6": 8,
+        "+7": 0,
+        "+8": 14,
+        "+9": 170,
+        "+10": 94,
+        "+11": 1
+      },
+      "style_code": 8,
+      "style": "fly",
+      "cast_aim_hold_cutoff_raw": 50,
+      "range_multiplier_raw": 15,
+      "range_threshold_internal_at_base_0x0150": 5040,
+      "fish_id_match_code": "0x00",
+      "fish_id_match_label": null,
+      "fight_response_code": 0,
+      "cast_aim_hold_cutoff_rule": "primary cutoff is raw; the fly handler also uses raw >> 1"
+    },
+    {
+      "id_hex": "12",
+      "name_japanese": "フライロッド中",
+      "name_english": "Medium fly rod",
+      "record_file_offset": "0x02A8C1",
+      "raw_bytes_hex": "08 02 3c 12 00 0d 08 01 17 aa 90 01",
+      "raw_fields": {
+        "+0": 8,
+        "+1": 2,
+        "+2": 60,
+        "+3": 18,
+        "+4": 0,
+        "+5": 13,
+        "+6": 8,
+        "+7": 1,
+        "+8": 23,
+        "+9": 170,
+        "+10": 144,
+        "+11": 1
+      },
+      "style_code": 8,
+      "style": "fly",
+      "cast_aim_hold_cutoff_raw": 60,
+      "range_multiplier_raw": 18,
+      "range_threshold_internal_at_base_0x0150": 6048,
+      "fish_id_match_code": "0x00",
+      "fish_id_match_label": null,
+      "fight_response_code": 1,
+      "cast_aim_hold_cutoff_rule": "primary cutoff is raw; the fly handler also uses raw >> 1"
+    },
+    {
+      "id_hex": "13",
+      "name_japanese": "フライロッド大",
+      "name_english": "Large fly rod",
+      "record_file_offset": "0x02A8CD",
+      "raw_bytes_hex": "08 02 46 15 00 0e 08 02 20 aa c2 01",
+      "raw_fields": {
+        "+0": 8,
+        "+1": 2,
+        "+2": 70,
+        "+3": 21,
+        "+4": 0,
+        "+5": 14,
+        "+6": 8,
+        "+7": 2,
+        "+8": 32,
+        "+9": 170,
+        "+10": 194,
+        "+11": 1
+      },
+      "style_code": 8,
+      "style": "fly",
+      "cast_aim_hold_cutoff_raw": 70,
+      "range_multiplier_raw": 21,
+      "range_threshold_internal_at_base_0x0150": 7056,
+      "fish_id_match_code": "0x00",
+      "fish_id_match_label": null,
+      "fight_response_code": 2,
+      "cast_aim_hold_cutoff_rule": "primary cutoff is raw; the fly handler also uses raw >> 1"
+    },
+    {
+      "id_hex": "14",
+      "name_japanese": "アユ竿カーボン10m",
+      "name_english": "Ayu carbon rod, 10 m",
+      "record_file_offset": "0x02A8D9",
+      "raw_bytes_hex": "01 02 50 0f 38 08 0e 01 29 aa dc 05",
+      "raw_fields": {
+        "+0": 1,
+        "+1": 2,
+        "+2": 80,
+        "+3": 15,
+        "+4": 56,
+        "+5": 8,
+        "+6": 14,
+        "+7": 1,
+        "+8": 41,
+        "+9": 170,
+        "+10": 220,
+        "+11": 5
+      },
+      "style_code": 1,
+      "style": "float_or_ayu",
+      "cast_aim_hold_cutoff_raw": 80,
+      "range_multiplier_raw": 15,
+      "range_threshold_internal_at_base_0x0150": 5040,
+      "fish_id_match_code": "0x38",
+      "fish_id_match_label": {
+        "id_hex": "0x38",
+        "name_ja": "アユ",
+        "name_has_unmapped_glyph": false,
+        "profile_file_offset": "0x028509",
+        "name_source": "publication/data/lure-coverage.json fish[] (decoded ROM profile)"
+      },
+      "fight_response_code": 1,
+      "cast_aim_hold_cutoff_rule": "raw cutoff"
+    },
+    {
+      "id_hex": "15",
+      "name_japanese": "ヘラ竿カーボン6.5m",
+      "name_english": "Hera carbon rod, 6.5 m",
+      "record_file_offset": "0x02A8E5",
+      "raw_bytes_hex": "01 02 3c 18 25 0b 0e 01 35 aa d0 07",
+      "raw_fields": {
+        "+0": 1,
+        "+1": 2,
+        "+2": 60,
+        "+3": 24,
+        "+4": 37,
+        "+5": 11,
+        "+6": 14,
+        "+7": 1,
+        "+8": 53,
+        "+9": 170,
+        "+10": 208,
+        "+11": 7
+      },
+      "style_code": 1,
+      "style": "float_or_ayu",
+      "cast_aim_hold_cutoff_raw": 60,
+      "range_multiplier_raw": 24,
+      "range_threshold_internal_at_base_0x0150": 8064,
+      "fish_id_match_code": "0x25",
+      "fish_id_match_label": {
+        "id_hex": "0x25",
+        "name_ja": "ヘラブナ",
+        "name_has_unmapped_glyph": false,
+        "profile_file_offset": "0x028354",
+        "name_source": "publication/data/lure-coverage.json fish[] (decoded ROM profile)"
+      },
+      "fight_response_code": 1,
+      "cast_aim_hold_cutoff_rule": "raw cutoff"
+    }
+  ],
+  "static_field_leaders": [
+    {
+      "style": "float_or_ayu",
+      "highest_cutoff": [
+        "14"
+      ],
+      "highest_reach": [
+        "08",
+        "15"
+      ],
+      "note": "Different rods lead on the two traced dimensions; rod 14's fish-ID match is Ayu (0x38), while rod 15's is Herabuna (0x25)."
+    },
+    {
+      "style": "casting",
+      "highest_cutoff_and_reach": [
+        "10"
+      ],
+      "note": "This identifies the highest raw +2/+3 values within this style, not experimentally proven overall best performance."
+    },
+    {
+      "style": "lure",
+      "highest_cutoff_and_reach": [
+        "0D"
+      ],
+      "note": "This identifies the highest raw +2/+3 values within this style, not experimentally proven overall best performance."
+    },
+    {
+      "style": "fly",
+      "highest_cutoff_and_reach": [
+        "13"
+      ],
+      "note": "Style 8 also has a secondary raw-half threshold; response-code effects still lack a confirmed good/bad direction."
+    }
+  ]
+}

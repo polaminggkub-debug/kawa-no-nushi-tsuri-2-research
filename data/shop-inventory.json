@@ -1,0 +1,63 @@
+{
+  "schema_version": 1,
+  "game": {
+    "title": "Kawa no Nushi Tsuri 2",
+    "platform": "Super Famicom",
+    "rom_sha1": "c2103dd94e2a1a65a495fc02adc2e7d040f31212",
+    "rom_size_bytes": 1572864
+  },
+  "scope": {
+    "summary": "One original-ROM shop menu was observed. The observation proves only which rod rows appeared in that captured menu context; it does not establish a six-stage shop map.",
+    "observed_shop_contexts": 1,
+    "stage_number": null,
+    "region_text_japanese": "渓流",
+    "region_to_stage_mapping": "not established",
+    "stock_table_rom_offset": null,
+    "stock_table_note": "No ROM stock table or routine offset has been identified. The item-record tables contain names and base prices, not demonstrated shop availability flags."
+  },
+  "runtime_observation": {
+    "category_japanese": "サオ",
+    "category_english": "Rod",
+    "initial_selected_item_id_hex": "03",
+    "navigation": "The visible rod selector was advanced with Right. Eight unique choices appeared; further Right presses remained on the final visible choice.",
+    "account_balance_yen": 100,
+    "purchase_attempt": {
+      "item_id_hex": "03",
+      "result": "not purchased",
+      "message_japanese": "お金が足らないけれど。",
+      "note": "The menu displayed the item and price, but the captured save state lacked enough money to complete a purchase."
+    },
+    "screen_evidence": "../examples/shop-rod-price.png",
+    "capture_method": "Original Japanese ROM run with the local Snes9x Libretro core from a copied local shop-menu save state. Save states and ROM data are not part of the publication."
+  },
+  "rod_offers_observed_in_order": [
+    {"menu_order": 1, "item_id_hex": "03", "name_japanese": "ヤマベ竿6本継3.9m", "rom_base_price_yen": 350, "record_file_offset_hex": "0x02A80D", "record_cpu_address": "05:A80D"},
+    {"menu_order": 2, "item_id_hex": "05", "name_japanese": "ヤマメ竿8本継4.5m", "rom_base_price_yen": 750, "record_file_offset_hex": "0x02A825", "record_cpu_address": "05:A825"},
+    {"menu_order": 3, "item_id_hex": "04", "name_japanese": "清流カーボン竿5.3m", "rom_base_price_yen": 500, "record_file_offset_hex": "0x02A819", "record_cpu_address": "05:A819"},
+    {"menu_order": 4, "item_id_hex": "0E", "name_japanese": "投げ竿小", "rom_base_price_yen": 250, "record_file_offset_hex": "0x02A891", "record_cpu_address": "05:A891"},
+    {"menu_order": 5, "item_id_hex": "0A", "name_japanese": "ルアーロッド小", "rom_base_price_yen": 500, "record_file_offset_hex": "0x02A861", "record_cpu_address": "05:A861"},
+    {"menu_order": 6, "item_id_hex": "0C", "name_japanese": "ルアーロッド大", "rom_base_price_yen": 600, "record_file_offset_hex": "0x02A879", "record_cpu_address": "05:A879"},
+    {"menu_order": 7, "item_id_hex": "12", "name_japanese": "フライロッド中", "rom_base_price_yen": 400, "record_file_offset_hex": "0x02A8C1", "record_cpu_address": "05:A8C1"},
+    {"menu_order": 8, "item_id_hex": "13", "name_japanese": "フライロッド大", "rom_base_price_yen": 450, "record_file_offset_hex": "0x02A8CD", "record_cpu_address": "05:A8CD"}
+  ],
+  "lure_candidates_availability_unobserved": [
+    {"item_id_hex": "17", "name_japanese": "シンキング", "rom_base_price_yen": 20, "record_file_offset_hex": "0x02A2E0", "availability_at_observed_shop": "unknown; lure category was not observed"},
+    {"item_id_hex": "18", "name_japanese": "シンキング", "rom_base_price_yen": 25, "record_file_offset_hex": "0x02A2EC", "availability_at_observed_shop": "unknown; lure category was not observed"},
+    {"item_id_hex": "2E", "name_japanese": "スプーン", "rom_base_price_yen": 25, "record_file_offset_hex": "0x02A3F4", "availability_at_observed_shop": "unknown; lure category was not observed"},
+    {"item_id_hex": "2F", "name_japanese": "スプーン", "rom_base_price_yen": 25, "record_file_offset_hex": "0x02A400", "availability_at_observed_shop": "unknown; lure category was not observed"},
+    {"item_id_hex": "30", "name_japanese": "スプーン", "rom_base_price_yen": 25, "record_file_offset_hex": "0x02A40C", "availability_at_observed_shop": "unknown; lure category was not observed"},
+    {"item_id_hex": "31", "name_japanese": "スプーン", "rom_base_price_yen": 25, "record_file_offset_hex": "0x02A418", "availability_at_observed_shop": "unknown; lure category was not observed"},
+    {"item_id_hex": "23", "name_japanese": "ソフト・ワーム", "rom_base_price_yen": 30, "record_file_offset_hex": "0x02A370", "availability_at_observed_shop": "unknown; lure category was not observed"},
+    {"item_id_hex": "24", "name_japanese": "ソフト・ワーム", "rom_base_price_yen": 35, "record_file_offset_hex": "0x02A37C", "availability_at_observed_shop": "unknown; lure category was not observed"}
+  ],
+  "rom_item_record_tables": {
+    "rod": {"pointer_word_file_offset_hex": "0x02800A", "pointer_word_value_hex": "0xA7F5", "records_base_file_offset_hex": "0x02A7F5", "record_stride_bytes": 12, "record_count": 21, "price_word_record_offset_bytes": 10},
+    "lure": {"pointer_word_file_offset_hex": "0x028008", "pointer_word_value_hex": "0xA1D8", "records_base_file_offset_hex": "0x02A1D8", "record_stride_bytes": 12, "record_count": 81, "price_word_record_offset_bytes": 8}
+  },
+  "limitations": [
+    "A ROM base-price field does not prove an item is sold by a particular shop or available in a particular stage.",
+    "Only the rod category was traversed in this shop context. Lure IDs 17, 18, 2E, 2F, 30, 31, 23, and 24 were not observed in its menu.",
+    "The visible region text 渓流 has not been mapped to one of the six guide stages from ROM evidence.",
+    "No other shop, shop category, progression flag, time condition, or alternate stock set was tested."
+  ]
+}
