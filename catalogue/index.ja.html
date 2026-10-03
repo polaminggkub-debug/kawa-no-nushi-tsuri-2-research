@@ -1,0 +1,83 @@
+<!doctype html>
+<html lang="ja" data-locale="ja">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="スーパーファミコン版『川のぬし釣り2』のROM解析に基づくアイテム一覧。">
+  <title>川のぬし釣り2 — アイテム調査</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header class="hero">
+    <div class="hero-inner">
+      <div class="eyebrow" data-t="edition">SFC · 日本版</div>
+      <h1 data-t="title">釣り道具の中身を、ROMから調べる</h1>
+      <p class="lead" data-t="lead">竿、ルアー、毛バリ部品、餌、針、ウキ、食料、道具を検索できる一覧。ROMで確認できた数値と、まだ意味が分からない値を分けて掲載。</p>
+      <div class="hero-meta">
+        <span id="entry-count" class="count-chip">掲載315件</span>
+        <span class="hash-chip">日本版ROM · SHA-1 c2103dd94e2a1a65</span>
+        <a class="language-link" href="index.html" lang="en">English</a>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <section class="intro-section">
+      <div>
+        <p class="eyebrow dark" data-t="sample-kicker">解読できた数値の例</p>
+        <h2 data-t="sample-title">数字の意味をゲーム処理と照合</h2>
+        <p class="section-copy" data-t="sample-copy">ROMには数値が保存されていますが、「強さ」や「ヒット率」のような単純な能力値とは限りません。実際の値と、ゲーム内コードでの使われ方を例示します。</p>
+      </div>
+      <div class="table-wrap">
+        <table class="sample-table">
+          <thead><tr><th>アイテム</th><th>意味を確認できたROM値</th><th>ROM価格欄</th></tr></thead>
+          <tbody id="sample-rows"></tbody>
+        </table>
+      </div>
+    </section>
+
+    <section class="customizer-section">
+      <div class="section-heading">
+        <div>
+          <p class="eyebrow dark" data-t="fly-kicker">毛バリ作成NPC</p>
+          <h2 data-t="fly-title">ボディ、ウィング、テール、そして見積もり</h2>
+        </div>
+        <p class="section-copy" data-t="fly-copy">日本版ゲームを直接撮影した画面です。ステージ1の店でメイフライ作成を最後まで進め、所持金の変化で一例の価格を確認しました。</p>
+      </div>
+      <div id="customizer-frames" class="custom-grid"></div>
+      <p class="custom-fact" data-t="fly-fact">確認したメイフライ画面: ウィング20種、テール画像9種と別枠の「無し」。最初のボディ+最初のウィング+最初のテールは25円（5+5+15円）。これは実測した一例で、全組み合わせ共通ではありません。</p>
+    </section>
+
+    <section class="catalogue-section">
+      <div class="section-heading catalogue-heading">
+        <div>
+          <p class="eyebrow dark" data-t="catalogue-kicker">全アイテム一覧</p>
+          <h2 data-t="catalogue-title">掲載315件を検索</h2>
+        </div>
+        <p class="section-copy" data-t="catalogue-copy">英語・日本語、アイテムID、数値で検索できます。各カードを開くとROM生データとファイル位置を確認できます。</p>
+      </div>
+      <div class="filters" role="search">
+        <label class="search-label"><span data-t="search-label">検索</span><input id="search" type="search" autocomplete="off" placeholder="例: 「rod」「トップウォータ」「0D」"></label>
+        <label><span data-t="category-label">カテゴリ</span><select id="category-filter"></select></label>
+        <label><span data-t="sort-label">並び順</span><select id="sort-filter"></select></label>
+      </div>
+      <p id="result-count" class="result-count" aria-live="polite"></p>
+      <div id="cards" class="cards"></div>
+    </section>
+
+    <section class="methods-section">
+      <div class="section-heading">
+        <div><p class="eyebrow dark" data-t="method-kicker">読み方</p><h2 data-t="method-title">確認済み、翻訳、未解読を区別</h2></div>
+      </div>
+      <div id="research-notes" class="notes-grid"></div>
+      <div class="sources-block">
+        <h3 data-t="sources-title">出典と調査方法</h3>
+        <div id="sources"></div>
+      </div>
+    </section>
+  </main>
+
+  <footer><span data-t="footer">ファンによる独立調査。ROMファイルは含みません。</span><a href="../README.md" data-t="readme-link">プロジェクトノート</a></footer>
+  <script src="gallery.js" defer></script>
+</body>
+</html>

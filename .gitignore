@@ -1,0 +1,24 @@
+# Original/patched games and patches
+*.sfc
+*.smc
+*.rom
+*.ips
+*.bps
+# Emulator binaries, runtime states/memory and local generated runs
+*.dylib
+*.dll
+*.so
+*.state
+*.srm
+*.bin
+local-run/
+.venv/
+__pycache__/
+*.pyc
+# Research downloads and bundled archives
+*.mp4
+*.webm
+*.mov
+*.zip
+*.7z
+.DS_Store

@@ -1,0 +1,748 @@
+{
+  "stages": [
+    {
+      "stage": 2,
+      "title_th": "ทะเลสาบ",
+      "title_jp": "山上湖",
+      "title_romaji": "Sanjōko",
+      "species": [
+        {
+          "name_th": "ปลาแบล็กแบส",
+          "name_jp": "ブラックバス",
+          "name_latin": "Black bass",
+          "kind": "fish",
+          "status_in_region": "present; first appears in this region",
+          "habitat": {
+            "legend_color": "แดง",
+            "source_map_parts": [
+              "references/stage2-maps/stage2-habitat-part-1.jpg",
+              "references/stage2-maps/stage2-habitat-part-2.jpg",
+              "references/stage2-maps/stage2-habitat-part-3.jpg"
+            ],
+            "note": "วงแดงกระจายกว้างในแผนที่; ผู้เขียนระบุว่าแบล็กแบสกับบลูกิลพบได้กว้างและมักติดเป็นปลานอกเป้าหมาย"
+          },
+          "bait": [
+            "กบ (カエル)",
+            "แมลงน้ำ (カワムシ)"
+          ]
+        },
+        {
+          "name_th": "กบ",
+          "name_jp": "カエル",
+          "name_latin": "Kaeru",
+          "kind": "nonfish",
+          "status_in_region": "non-fish catch shown on the regional map",
+          "habitat": {
+            "legend_color": "ดำ",
+            "source_map_parts": [
+              "references/stage2-maps/stage2-habitat-part-1.jpg",
+              "references/stage2-maps/stage2-habitat-part-2.jpg",
+              "references/stage2-maps/stage2-habitat-part-3.jpg"
+            ],
+            "note": "วงดำในแผนที่; ผู้เขียนบอกว่าหาตัวยากและต่อให้ติดเบ็ดก็อาจดึงขึ้นยาก"
+          },
+          "bait": [
+            "แมลงน้ำ (カワムシ)"
+          ]
+        },
+        {
+          "name_th": "ปลาอาเมะมาสุ",
+          "name_jp": "アメマス",
+          "name_latin": "Amemasu",
+          "kind": "fish",
+          "status_in_region": "present; first appears in this region",
+          "habitat": {
+            "legend_color": "ขาว",
+            "source_map_parts": [
+              "references/stage2-maps/stage2-habitat-part-1.jpg",
+              "references/stage2-maps/stage2-habitat-part-2.jpg",
+              "references/stage2-maps/stage2-habitat-part-3.jpg"
+            ],
+            "note": "อยู่ฝั่งตะวันตกของทะเลสาบตามบทความแผนที่; ต้องใช้กะละมัง/พาหนะเข้าถึงแหล่งตก"
+          },
+          "bait": [
+            "กบ (カエル)",
+            "แมลงน้ำ (カワムシ)"
+          ]
+        },
+        {
+          "name_th": "ปลาดงโกะ",
+          "name_jp": "ドンコ",
+          "name_latin": "Donko",
+          "kind": "fish",
+          "status_in_region": "present; first appears in this region",
+          "habitat": {
+            "legend_color": "น้ำเงิน",
+            "source_map_parts": [
+              "references/stage2-maps/stage2-habitat-part-1.jpg",
+              "references/stage2-maps/stage2-habitat-part-2.jpg",
+              "references/stage2-maps/stage2-habitat-part-3.jpg"
+            ],
+            "note": "ดูวงสีน้ำเงินในแผนที่ถิ่นอาศัย"
+          },
+          "bait": [
+            "แมลงน้ำ (カワムシ)"
+          ]
+        },
+        {
+          "name_th": "ปลาบลูกิล",
+          "name_jp": "ブルーギル",
+          "name_latin": "Bluegill",
+          "kind": "fish",
+          "status_in_region": "present; first appears in this region",
+          "habitat": {
+            "legend_color": "เหลือง",
+            "source_map_parts": [
+              "references/stage2-maps/stage2-habitat-part-1.jpg",
+              "references/stage2-maps/stage2-habitat-part-2.jpg",
+              "references/stage2-maps/stage2-habitat-part-3.jpg"
+            ],
+            "note": "วงเหลืองกระจายหลายช่วง; ผู้เขียนระบุว่าพบกว้างและมักติดเบ็ดระหว่างล่าปลาอื่น"
+          },
+          "bait": [
+            "ไข่ปลา (イクラ)",
+            "กบ (カエル)"
+          ]
+        },
+        {
+          "name_th": "ปลาอาบุระฮายะ",
+          "name_jp": "アブラハヤ",
+          "name_latin": "Aburahaya",
+          "kind": "fish",
+          "status_in_region": "present; first appears in this region",
+          "habitat": {
+            "legend_color": "เขียวสด",
+            "source_map_parts": [
+              "references/stage2-maps/stage2-habitat-part-1.jpg",
+              "references/stage2-maps/stage2-habitat-part-2.jpg",
+              "references/stage2-maps/stage2-habitat-part-3.jpg"
+            ],
+            "note": "ดูวงสีเขียวสดในแผนที่ถิ่นอาศัย"
+          },
+          "bait": [
+            "หนอนแดง (アカムシ)",
+            "แมลงน้ำ (カワムシ)"
+          ]
+        },
+        {
+          "name_th": "ปลาฮาริโยะ",
+          "name_jp": "ハリヨ",
+          "name_latin": "Hariyo",
+          "kind": "fish",
+          "status_in_region": "present; first appears in this region; quest fish",
+          "habitat": {
+            "legend_color": "ม่วง",
+            "source_map_parts": [
+              "references/stage2-maps/stage2-habitat-part-1.jpg",
+              "references/stage2-maps/stage2-habitat-part-2.jpg",
+              "references/stage2-maps/stage2-habitat-part-3.jpg",
+              "references/stage2-quests/stage2-hariyo-bridge-screen.jpg"
+            ],
+            "note": "จุดเควสต์อยู่ตรงสะพานทางขวา/ตะวันออกของหมู่บ้าน; แผนที่วงสีม่วงแสดงช่วงถิ่นอาศัย"
+          },
+          "bait": [
+            "แมลงน้ำ (カワムシ)"
+          ]
+        },
+        {
+          "name_th": "ปลาซากุระมาสุ",
+          "name_jp": "サクラマス",
+          "name_latin": "Sakuramasu",
+          "kind": "fish",
+          "status_in_region": "present; first appears in this region; required to open the next-stage route",
+          "habitat": {
+            "legend_color": "ส้ม",
+            "source_map_parts": [
+              "references/stage2-maps/stage2-habitat-part-1.jpg",
+              "references/stage2-maps/stage2-habitat-part-2.jpg",
+              "references/stage2-maps/stage2-habitat-part-3.jpg",
+              "references/stage2-quests/stage2-route-to-sakuramasu-screen.jpg"
+            ],
+            "note": "อยู่ฝั่งตะวันตก; จุดเควสต์อยู่ลำน้ำด้านซ้าย/ตะวันตกเฉียงเหนือของหมู่บ้าน ใช้คันเบ็ดเหยื่อปลอมตามคู่มือไทย"
+          },
+          "bait": [
+            "เหยื่อปลอม (ルアー) สำหรับเควสต์ทางผ่าน",
+            "ไข่ปลา (イクラ) ตามตารางเหยื่อทดลอง"
+          ]
+        },
+        {
+          "name_th": "บราวน์เทราต์",
+          "name_jp": "ブラウントラウト",
+          "name_latin": "Brown trout",
+          "kind": "fish",
+          "status_in_region": "present; first appears in this region",
+          "habitat": {
+            "legend_color": "น้ำตาล",
+            "source_map_parts": [
+              "references/stage2-maps/stage2-habitat-part-1.jpg",
+              "references/stage2-maps/stage2-habitat-part-2.jpg",
+              "references/stage2-maps/stage2-habitat-part-3.jpg"
+            ],
+            "note": "ฝั่งตะวันตก; บทความระบุว่ามีจำนวนน้อยและเข้าถึงได้ยากโดยไม่มีพาหนะ"
+          },
+          "bait": [
+            "แป้งข้าวต้มเหยื่อ (おかゆネリ)",
+            "กบ (カエル)"
+          ]
+        },
+        {
+          "name_th": "ปลาวากาซากิ",
+          "name_jp": "ワカサギ",
+          "name_latin": "Wakasagi",
+          "kind": "fish",
+          "status_in_region": "present; first appears in this region",
+          "habitat": {
+            "legend_color": "ฟ้าอมเขียว",
+            "source_map_parts": [
+              "references/stage2-maps/stage2-habitat-part-1.jpg",
+              "references/stage2-maps/stage2-habitat-part-2.jpg",
+              "references/stage2-maps/stage2-habitat-part-3.jpg"
+            ],
+            "note": "ดูวงสีฟ้าอมเขียวในแผนที่ถิ่นอาศัย"
+          },
+          "bait": [
+            "หนอนแดง (アカムシ)"
+          ]
+        },
+        {
+          "name_th": "ปลาฮิเมะมาสุ",
+          "name_jp": "ヒメマス",
+          "name_latin": "Himemasu",
+          "kind": "fish",
+          "status_in_region": "present; first appears in this region",
+          "habitat": {
+            "legend_color": "เขียวเข้ม",
+            "source_map_parts": [
+              "references/stage2-maps/stage2-habitat-part-1.jpg",
+              "references/stage2-maps/stage2-habitat-part-2.jpg",
+              "references/stage2-maps/stage2-habitat-part-3.jpg"
+            ],
+            "note": "ฝั่งตะวันตก; บทความระบุว่าพบค่อนข้างน้อย"
+          },
+          "bait": [
+            "ไข่ปลา (イクラ)",
+            "ลูกปลา (小魚)"
+          ]
+        },
+        {
+          "name_th": "ปลาคาวะมาสุ",
+          "name_jp": "カワマス",
+          "name_latin": "Kawamasu",
+          "kind": "fish",
+          "status_in_region": "present; also occurs in Stage 1",
+          "habitat": {
+            "legend_color": "ชมพู",
+            "source_map_parts": [
+              "references/stage2-maps/stage2-habitat-part-1.jpg",
+              "references/stage2-maps/stage2-habitat-part-2.jpg",
+              "references/stage2-maps/stage2-habitat-part-3.jpg"
+            ],
+            "note": "มีวงในแผนที่ทะเลสาบด้วย แต่ผู้เขียนแนะนำย้อนกลับไปตกในลำธาร/渓流 เพราะเข้าถึงและระบุจุดง่ายกว่า"
+          },
+          "bait": [
+            "แมลงน้ำ (カワムシ)"
+          ]
+        },
+        {
+          "name_th": "ปลาเรนโบว์เทราต์",
+          "name_jp": "ニジマス",
+          "name_latin": "Nijimasu (rainbow trout)",
+          "kind": "fish",
+          "status_in_region": "present; also occurs in Stage 1",
+          "habitat": {
+            "legend_color": "บานเย็น",
+            "source_map_parts": [
+              "references/stage2-maps/stage2-habitat-part-1.jpg",
+              "references/stage2-maps/stage2-habitat-part-2.jpg",
+              "references/stage2-maps/stage2-habitat-part-3.jpg"
+            ],
+            "note": "มีวงในแผนที่ทะเลสาบด้วย แต่ผู้เขียนแนะนำย้อนกลับไปตกในลำธาร/渓流 ซึ่งง่ายกว่า"
+          },
+          "bait": [
+            "แมลงน้ำ (カワムシ)",
+            "ไข่ปลา (イクラ)"
+          ]
+        }
+      ],
+      "quests": [
+        {
+          "title": "ให้ฮาริโยะคุณตา แลกกะละมัง",
+          "category": "required_progression",
+          "steps": [
+            "ไปที่สะพานทางขวา/ตะวันออกของหมู่บ้าน แล้วตกฮาริโยะ 1 ตัว",
+            "นำฮาริโยะไปให้คุณตาที่กลางหมู่บ้าน",
+            "ได้กะละมัง (タライ) สำหรับล่องน้ำและตกปลา"
+          ]
+        },
+        {
+          "title": "ซากุระมาสุเปิดทางไปด่านถัดไป",
+          "category": "required_progression",
+          "steps": [
+            "ไปยังลำน้ำฝั่งซ้าย/ตะวันตกเฉียงเหนือของหมู่บ้าน ใช้คันเบ็ดเหยื่อปลอมจับซากุระมาสุ 1 ตัว",
+            "นั่งกะละมังกลับไปหาหมีบนเกาะทางซ้ายของหมู่บ้าน แล้วคุยกับหมี",
+            "หมีเปิดทางเข้าถ้ำ ให้เดินผ่านถ้ำตามทางเพื่อไปด่าน 3 น้ำใส"
+          ]
+        },
+        {
+          "title": "คันเบ็ดในบ้านร้าง",
+          "category": "equipment",
+          "steps": [
+            "ซื้อกุญแจจากร้าน",
+            "ไขตู้ในบ้านร้างด้านขวาล่างของหมู่บ้าน",
+            "รับคันเบ็ด"
+          ]
+        }
+      ],
+      "next_stage": {
+        "title": "น้ำใส (ด่าน 3)",
+        "steps": [
+          "ตกซากุระมาสุด้วยคันเบ็ดเหยื่อปลอมจากลำน้ำฝั่งซ้าย/ตะวันตกเฉียงเหนือของหมู่บ้าน",
+          "นำไปให้หมีบนเกาะทางซ้ายของหมู่บ้าน เพื่อให้เปิดทางถ้ำ",
+          "ผ่านถ้ำไปตามทางจนออกสู่ด่านน้ำใส"
+        ],
+        "note": "กะละมังจากเควสต์ฮาริโยะใช้เดินทางล่องน้ำไปกลับ; ไม่พบหลักฐานว่าต้องตกปลาในแผนที่ครบทุกชนิดเพื่อเปิดทาง"
+      },
+      "competition": {
+        "title": "แข่งตกแบล็กแบส",
+        "description": "เป็นกิจกรรมหาเงิน ไม่ใช่เงื่อนไขไปด่าน 3: ตกแบล็กแบส 5 ตัวให้ผลรวมขนาดมากกว่าสถิติบนกระดาน จ่ายค่าสมัครแล้วคุยกับผู้ชายที่ยืนข้างกระดานเพื่อรับเงินรางวัล; แหล่งข้อมูลไม่ได้ระบุยอดรางวัลแน่นอน"
+      },
+      "reference_paths": [
+        "references/stage2-maps/stage2-legend.jpg",
+        "references/stage2-maps/stage2-habitat-part-1.jpg",
+        "references/stage2-maps/stage2-habitat-part-2.jpg",
+        "references/stage2-maps/stage2-habitat-part-3.jpg",
+        "references/stage2-quests/stage2-village-map.jpg",
+        "references/stage2-quests/stage2-hariyo-bridge-screen.jpg",
+        "references/stage2-quests/stage2-hariyo-fish-profile.jpg",
+        "references/stage2-quests/stage2-blackbass-contest-screen.jpg",
+        "references/stage2-quests/stage2-blackbass-fish-profile.jpg",
+        "references/stage2-quests/stage2-route-to-sakuramasu-screen.jpg",
+        "references/stage2-quests/stage2-sakuramasu-fish-profile.jpg",
+        "references/stage2-quests/stage2-route-cave-screen.jpg"
+      ],
+      "sources": [
+        {
+          "title": "～魚の生息域マップ(山上湖)～川のぬし釣り2攻略",
+          "url": "https://retroboy.hatenablog.com/entry/2021/02/14/103000"
+        },
+        {
+          "title": "～エサの対応表～川のぬし釣り2攻略",
+          "url": "https://retroboy.hatenablog.com/entry/2020/07/13/193000"
+        },
+        {
+          "title": "Kawa no Nushi Tsuri 2 [By ถิ่งถิง Fangting]",
+          "url": "https://andaplus.com/games/index.php?catid=337&id=4319:kawa-no-nushi-tsuri-2-by-thingthing-fangting&view=article"
+        },
+        {
+          "title": "川のぬし釣り2攻略&魚とぬしの場所マップ",
+          "url": "https://cap-games.jp/retro-190529-10/"
+        }
+      ],
+      "limitations": [
+        "แผนที่ญี่ปุ่นเป็นวงสีระบุถิ่นอาศัยแบบประมาณและมีช่วงซ้อนกัน; วงสีและภาพต้นฉบับแนบไว้เพื่อวางตำแหน่งโดยตรง",
+        "ตารางเหยื่อเป็นผลทดลองของผู้เขียนเอง ซึ่งเตือนว่ามีโอกาสคลาดเคลื่อนบางรายการ; เหยื่อที่ระบุเป็นตัวเลือกที่ตารางทำเครื่องหมายว่ากินได้ ไม่ใช่การรับประกันอัตรากิน",
+        "แผนที่มีปลา 12 ชนิดกับกบ 1 ชนิด; ในจำนวนนั้นคาวะมาสุและเรนโบว์เทราต์ปรากฏตั้งแต่ Stage 1 ส่วนตารางเหยื่อจัดชนิดที่พบซ้ำไว้ที่พื้นที่แรกที่พบ",
+        "เควสต์ฮาริโยะเพื่อเอากะละมังกับเควสต์ซากุระมาสุเพื่อเปิดทางถ้ำมีเป้าหมายคนละอย่าง; ไม่ควรสรุปว่าการตกครบทุกชนิดเป็นเงื่อนไขผ่านด่าน"
+      ]
+    },
+    {
+      "stage": 3,
+      "title_th": "น้ำใส",
+      "title_jp": "清流",
+      "title_romaji": "Seiryū",
+      "species": [
+        {
+          "name_th": "ปลาคาจิกะ",
+          "name_jp": "カジカ",
+          "name_latin": "Kajika",
+          "kind": "fish",
+          "status_in_region": "present; first appears in this region",
+          "habitat": {
+            "legend_color": "แดง",
+            "source_map_parts": [
+              "references/stage3-maps/stage3-habitat-part-1.jpg",
+              "references/stage3-maps/stage3-habitat-part-2.jpg",
+              "references/stage3-maps/stage3-habitat-part-3.jpg"
+            ],
+            "note": "วงแดงตาม legend ต้นฉบับ"
+          },
+          "bait": [
+            "แมลงน้ำ (カワムシ)",
+            "ลูกปลา (小魚)"
+          ]
+        },
+        {
+          "name_th": "ปลาอุไก",
+          "name_jp": "ウグイ",
+          "name_latin": "Ugui",
+          "kind": "fish",
+          "status_in_region": "present; first appears in this region",
+          "habitat": {
+            "legend_color": "ดำ",
+            "source_map_parts": [
+              "references/stage3-maps/stage3-habitat-part-1.jpg",
+              "references/stage3-maps/stage3-habitat-part-2.jpg",
+              "references/stage3-maps/stage3-habitat-part-3.jpg"
+            ],
+            "note": "วงดำตาม legend ในแผนที่ลำน้ำทั้งสามส่วน"
+          },
+          "bait": [
+            "หนอนแดง (アカムシ)"
+          ]
+        },
+        {
+          "name_th": "ปลาชิมะโดโจ",
+          "name_jp": "シマドジョウ",
+          "name_latin": "Shimadojo",
+          "kind": "fish",
+          "status_in_region": "present; first appears in this region",
+          "habitat": {
+            "legend_color": "ขาว",
+            "source_map_parts": [
+              "references/stage3-maps/stage3-habitat-part-1.jpg",
+              "references/stage3-maps/stage3-habitat-part-2.jpg",
+              "references/stage3-maps/stage3-habitat-part-3.jpg"
+            ],
+            "note": "วงขาวตาม legend ในแผนที่; บทความเหยื่อเพิ่มชนิดนี้ภายหลังและมีตัวเลือกเหยื่อน้อย"
+          },
+          "bait": [
+            "หนอนแดง (アカムシ)"
+          ]
+        },
+        {
+          "name_th": "ปลาเรนโบว์เทราต์",
+          "name_jp": "ニジマス",
+          "name_latin": "Nijimasu (rainbow trout)",
+          "kind": "fish",
+          "status_in_region": "present; also occurs in Stage 1",
+          "habitat": {
+            "legend_color": "น้ำเงิน",
+            "source_map_parts": [
+              "references/stage3-maps/stage3-habitat-part-1.jpg",
+              "references/stage3-maps/stage3-habitat-part-2.jpg",
+              "references/stage3-maps/stage3-habitat-part-3.jpg"
+            ],
+            "note": "วงน้ำเงินตาม legend ในแผนที่ลำน้ำทั้งสามส่วน"
+          },
+          "bait": [
+            "ไข่ปลา (イクラ)",
+            "แมลงน้ำ (カワムシ)"
+          ]
+        },
+        {
+          "name_th": "บราวน์เทราต์",
+          "name_jp": "ブラウントラウト",
+          "name_latin": "Brown trout",
+          "kind": "fish",
+          "status_in_region": "present; also occurs in Stage 2",
+          "habitat": {
+            "legend_color": "เหลือง",
+            "source_map_parts": [
+              "references/stage3-maps/stage3-habitat-part-1.jpg",
+              "references/stage3-maps/stage3-habitat-part-2.jpg",
+              "references/stage3-maps/stage3-habitat-part-3.jpg"
+            ],
+            "note": "วงเหลืองตาม legend ในแผนที่ลำน้ำทั้งสามส่วน"
+          },
+          "bait": [
+            "กบ (カエル)",
+            "แป้งข้าวต้มเหยื่อ (おかゆネリ)"
+          ]
+        },
+        {
+          "name_th": "ปลาซัตสึกิมาสุ",
+          "name_jp": "サツキマス",
+          "name_latin": "Satsukimasu",
+          "kind": "fish",
+          "status_in_region": "present; first appears in this region",
+          "habitat": {
+            "legend_color": "เขียวสด",
+            "source_map_parts": [
+              "references/stage3-maps/stage3-habitat-part-1.jpg",
+              "references/stage3-maps/stage3-habitat-part-2.jpg",
+              "references/stage3-maps/stage3-habitat-part-3.jpg"
+            ],
+            "note": "วงเขียวสดตาม legend ในแผนที่ลำน้ำทั้งสามส่วน"
+          },
+          "bait": [
+            "ไข่ปลา (イクラ)",
+            "แมลงน้ำ (カワムシ)"
+          ]
+        },
+        {
+          "name_th": "ปลาคามะสึกะ",
+          "name_jp": "カマツカ",
+          "name_latin": "Kamatsuka",
+          "kind": "fish",
+          "status_in_region": "present; first appears in this region",
+          "habitat": {
+            "legend_color": "ม่วง",
+            "source_map_parts": [
+              "references/stage3-maps/stage3-habitat-part-1.jpg",
+              "references/stage3-maps/stage3-habitat-part-2.jpg",
+              "references/stage3-maps/stage3-habitat-part-3.jpg"
+            ],
+            "note": "วงม่วงตาม legend ในแผนที่ลำน้ำทั้งสามส่วน"
+          },
+          "bait": [
+            "แมลงน้ำ (カワムシ)"
+          ]
+        },
+        {
+          "name_th": "กุ้งเครย์ฟิชญี่ปุ่น (ซาริกานิ)",
+          "name_jp": "ザリガニ",
+          "name_latin": "Zarigani (crayfish)",
+          "kind": "nonfish",
+          "status_in_region": "non-fish catch shown on the regional map; first appears in this region",
+          "habitat": {
+            "legend_color": "ส้ม",
+            "source_map_parts": [
+              "references/stage3-maps/stage3-habitat-part-1.jpg",
+              "references/stage3-maps/stage3-habitat-part-2.jpg",
+              "references/stage3-maps/stage3-habitat-part-3.jpg"
+            ],
+            "note": "กุ้งเครย์ฟิช ไม่ใช่ปลา; วงส้มตาม legend"
+          },
+          "bait": [
+            "หนอนแดง (アカムシ)",
+            "กุ้ง (エビ)"
+          ]
+        },
+        {
+          "name_th": "ปลาโออิคาวะ",
+          "name_jp": "オイカワ",
+          "name_latin": "Oikawa",
+          "kind": "fish",
+          "status_in_region": "present; first appears in this region",
+          "habitat": {
+            "legend_color": "น้ำตาล",
+            "source_map_parts": [
+              "references/stage3-maps/stage3-habitat-part-1.jpg",
+              "references/stage3-maps/stage3-habitat-part-2.jpg",
+              "references/stage3-maps/stage3-habitat-part-3.jpg"
+            ],
+            "note": "วงน้ำตาลตาม legend; อยู่ใกล้จุดที่บทความชี้ว่ามีฮาสุและยามาโนะคามิด้วย"
+          },
+          "bait": [
+            "หนอนแดง (アカムシ)",
+            "แมลงน้ำ (カワムシ)"
+          ]
+        },
+        {
+          "name_th": "ปลาคาวะมุสึ",
+          "name_jp": "カワムツ",
+          "name_latin": "Kawamutsu",
+          "kind": "fish",
+          "status_in_region": "present; first appears in this region",
+          "habitat": {
+            "legend_color": "ฟ้า",
+            "source_map_parts": [
+              "references/stage3-maps/stage3-habitat-part-1.jpg",
+              "references/stage3-maps/stage3-habitat-part-2.jpg",
+              "references/stage3-maps/stage3-habitat-part-3.jpg"
+            ],
+            "note": "วงฟ้าตาม legend; อยู่ใกล้จุดที่บทความชี้ว่ามีฮาสุและยามาโนะคามิด้วย"
+          },
+          "bait": [
+            "แมลงน้ำ (カワムシ)"
+          ]
+        },
+        {
+          "name_th": "ปลาอายุ",
+          "name_jp": "アユ",
+          "name_latin": "Ayu",
+          "kind": "fish",
+          "status_in_region": "present; first appears in this region; stage-record fish",
+          "habitat": {
+            "legend_color": "เขียวเข้ม",
+            "source_map_parts": [
+              "references/stage3-maps/stage3-habitat-part-1.jpg",
+              "references/stage3-maps/stage3-habitat-part-2.jpg",
+              "references/stage3-maps/stage3-habitat-part-3.jpg",
+              "references/stage3-quests/stage3-ayu-fish-profile.jpg"
+            ],
+            "note": "วงเขียวเข้มตาม legend; ตัวอย่างคู่มือยืนยันชื่อปลา アユ (Ayu)"
+          },
+          "bait": [
+            "ปลาอายุเป็นเหยื่อล่อ (おとりアユ) กับตะขอ/วิธีตกเหยื่อเป็น",
+            "แมลงน้ำ (カワムシ)"
+          ]
+        },
+        {
+          "name_th": "ปลาอาคาซะ",
+          "name_jp": "アカザ",
+          "name_latin": "Akaza",
+          "kind": "fish",
+          "status_in_region": "present; also occurs in Stage 1",
+          "habitat": {
+            "legend_color": "ชมพู",
+            "source_map_parts": [
+              "references/stage3-maps/stage3-habitat-part-1.jpg",
+              "references/stage3-maps/stage3-habitat-part-2.jpg",
+              "references/stage3-maps/stage3-habitat-part-3.jpg"
+            ],
+            "note": "วงชมพูตาม legend ในแผนที่ลำน้ำทั้งสามส่วน"
+          },
+          "bait": [
+            "แมลงน้ำ (カワムシ)",
+            "ตัวอ่อนแมลงน้ำ (トビケラ)"
+          ]
+        },
+        {
+          "name_th": "ปลาฮาสุ",
+          "name_jp": "ハス",
+          "name_latin": "Hasu",
+          "kind": "fish",
+          "status_in_region": "present; first appears in this region",
+          "habitat": {
+            "legend_color": "บานเย็น",
+            "source_map_parts": [
+              "references/stage3-maps/stage3-habitat-part-1.jpg",
+              "references/stage3-maps/stage3-habitat-part-2.jpg",
+              "references/stage3-maps/stage3-habitat-part-3.jpg"
+            ],
+            "note": "วงบานเย็นตาม legend ต้นฉบับ"
+          },
+          "bait": [
+            "กบ (カエル)",
+            "ลูกปลา (小魚)"
+          ]
+        },
+        {
+          "name_th": "ปลายามาโนะคามิ",
+          "name_jp": "ヤマノカミ",
+          "name_latin": "Yamanokami",
+          "kind": "fish",
+          "status_in_region": "present; first appears in this region; optional item trade",
+          "habitat": {
+            "legend_color": "เทา",
+            "source_map_parts": [
+              "references/stage3-maps/stage3-habitat-part-1.jpg",
+              "references/stage3-maps/stage3-habitat-part-2.jpg",
+              "references/stage3-maps/stage3-habitat-part-3.jpg"
+            ],
+            "note": "บริเวณใกล้โออิคาวะ, อายุ และซาริกานิ; ใช้ลูกปลาเพื่อลดโอกาสติดสามชนิดข้างเคียง"
+          },
+          "bait": [
+            "ลูกปลา (小魚)",
+            "กุ้ง (エビ)"
+          ]
+        },
+        {
+          "name_th": "ปลาดงโกะ",
+          "name_jp": "ドンコ",
+          "name_latin": "Donko",
+          "kind": "fish",
+          "status_in_region": "present; also occurs in Stage 2",
+          "habitat": {
+            "legend_color": "ฟ้าอมเทา",
+            "source_map_parts": [
+              "references/stage3-maps/stage3-habitat-part-1.jpg",
+              "references/stage3-maps/stage3-habitat-part-2.jpg",
+              "references/stage3-maps/stage3-habitat-part-3.jpg"
+            ],
+            "note": "วงฟ้าอมเทาตาม legend ในแผนที่ลำน้ำทั้งสามส่วน"
+          },
+          "bait": [
+            "แมลงน้ำ (カワムシ)"
+          ]
+        },
+        {
+          "name_th": "ปลานิโกอิ",
+          "name_jp": "ニゴイ",
+          "name_latin": "Nigoi",
+          "kind": "fish",
+          "status_in_region": "present; first appears in this region",
+          "habitat": {
+            "legend_color": "เขียวมะกอก",
+            "source_map_parts": [
+              "references/stage3-maps/stage3-habitat-part-1.jpg",
+              "references/stage3-maps/stage3-habitat-part-2.jpg",
+              "references/stage3-maps/stage3-habitat-part-3.jpg"
+            ],
+            "note": "วงเขียวมะกอกตาม legend ในแผนที่ลำน้ำทั้งสามส่วน"
+          },
+          "bait": [
+            "หนอนแดง (アカムシ)",
+            "กบ (カエル)"
+          ]
+        }
+      ],
+      "quests": [
+        {
+          "title": "ขวดโหลใส่นมแลกเรือพาย",
+          "category": "required_progression",
+          "steps": [
+            "เตรียมกุญแจจากร้านในด่านก่อนหน้า เริ่มจากเกาะล่างซ้ายแล้วข้ามสะพานไปหมู่บ้าน",
+            "นั่งกะละมังไปเกาะด้านบน เปิดตู้เซฟในบ้านร้างเพื่อเอาขวดโหลเปล่า",
+            "กลับเกาะล่างซ้าย ข้ามสะพานแล้วเดินลงไปคุยกับแม่วัวเพื่อเติมนมลงขวดโหล",
+            "นำขวดนมกลับไปให้คุณตาหน้าบ้านร้าง แลกเป็นเรือพาย"
+          ]
+        },
+        {
+          "title": "รับวิธีตกเหยื่อเป็นสำหรับปลาอายุ",
+          "category": "optional_fishing_unlock",
+          "steps": [
+            "ซื้อเบ็ดตะขอวงแหวน/อุปกรณ์ตกเหยื่อเป็นจากร้าน",
+            "ไปเกาะด้านบน บริเวณริมแม่น้ำฝั่งซ้ายใกล้โขดหิน แล้วคุยกับชาวประมงสูงวัย",
+            "รับคำสอนและเหยื่อเป็น; ใช้กับตะขอพิเศษเพื่อตกปลาอายุ (アユ)"
+          ]
+        },
+        {
+          "title": "นำยามาโนะคามิไปแลกหัวไชเท้า",
+          "category": "optional_item_trade",
+          "steps": [
+            "ตกยามาโนะคามิจากแหล่งเล็กในด่านน้ำใส",
+            "นำไปให้คนที่อยู่ในแปลงนาในหมู่บ้าน",
+            "ได้รับหัวไชเท้าจำนวนมาก; แต่ละชิ้นฟื้นพลังชีวิต 40 ตามบันทึกผู้เขียน"
+          ]
+        }
+      ],
+      "next_stage": {
+        "title": "บึง (ด่าน 4)",
+        "steps": [
+          "ทำขวดนมแลกเรือพายกับคุณตาให้สำเร็จก่อน",
+          "ขึ้นเรือพายที่เกาะเหนือ แล้วพายทวนน้ำตกขึ้นไป",
+          "ที่ทางแยกแรกเลี้ยวขวา; เดินตรงขึ้นไปแล้วเลี้ยวขวาที่ทางแยกที่สอง",
+          "เข้าถ้ำตรงหน้าผาเพื่อไปด่านบึง"
+        ],
+        "note": "เรือพายเป็นไอเท็มที่เปิดเส้นทางทวนน้ำตก; ไม่มีหลักฐานว่าต้องสะสมปลาครบทุกชนิดก่อนเข้า Stage 4"
+      },
+      "competition": {
+        "title": "ปลาเป้าหมาย/บอร์ดด่าน: ปลาอายุ (アユ)",
+        "description": "คู่มือไทยระบุว่าอายุเป็นปลาเด่นของด่านและพูดถึงการทำชื่อขึ้นบอร์ดตามความจุตะกร้าที่มี; ไม่มีการระบุเงินรางวัลแบบการแข่งขันแบล็กแบสของ Stage 2 หรือว่าเป็นเงื่อนไขผ่านด่าน ต้องใช้เหยื่อเป็นและตะขอพิเศษเพื่อทำกิจกรรมนี้ตามคำแนะนำในคู่มือ"
+      },
+      "reference_paths": [
+        "references/stage3-maps/stage3-legend.jpg",
+        "references/stage3-maps/stage3-habitat-part-1.jpg",
+        "references/stage3-maps/stage3-habitat-part-2.jpg",
+        "references/stage3-maps/stage3-habitat-part-3.jpg",
+        "references/stage3-quests/stage3-map-screen.jpg",
+        "references/stage3-quests/stage3-canoe-quest-screen.jpg",
+        "references/stage3-quests/stage3-mother-cow-screen.jpg",
+        "references/stage3-quests/stage3-live-bait-lesson-screen.jpg",
+        "references/stage3-quests/stage3-ayu-fish-profile.jpg"
+      ],
+      "sources": [
+        {
+          "title": "～魚の生息域マップ(清流)～川のぬし釣り2攻略",
+          "url": "https://retroboy.hatenablog.com/entry/2021/02/21/103000"
+        },
+        {
+          "title": "～エサの対応表～川のぬし釣り2攻略",
+          "url": "https://retroboy.hatenablog.com/entry/2020/07/13/193000"
+        },
+        {
+          "title": "Kawa no Nushi Tsuri 2 [By ถิ่งถิง Fangting]",
+          "url": "https://andaplus.com/games/index.php?catid=337&id=4319:kawa-no-nushi-tsuri-2-by-thingthing-fangting&view=article"
+        }
+      ],
+      "limitations": [
+        "แผนที่ถิ่นอาศัยแนวตั้งแบ่งสามภาพและใช้วงสีบอกช่วงโดยประมาณ; บางชนิดอยู่ทับกันและผู้เขียนเตือนว่าปลาหาสุยากเพราะแหล่งเล็กและมีจำนวนน้อย",
+        "ตารางเหยื่อเป็นผลทดลองของผู้เขียนเอง ซึ่งเตือนว่ามีโอกาสคลาดเคลื่อนบางรายการ; เหยื่อที่ให้เป็นตัวเลือกที่มีเครื่องหมายว่ากินได้",
+        "แผนที่แสดงปลา 15 ชนิดและซาริกานิซึ่งเป็นกุ้งเครย์ฟิช; อาคาซะ, ดงโกะ, เรนโบว์เทราต์, บราวน์เทราต์ปรากฏในพื้นที่ก่อนหน้า ส่วนตารางเหยื่อเน้นชนิดที่ปรากฏครั้งแรก",
+        "ทางไป Stage 4 คือแลกขวดนมเป็นเรือพายแล้วพายขึ้นน้ำตก; ไม่มีหลักฐานว่าการตกครบทุกชนิดหรือทำรายการแลกหัวไชเท้าเป็นข้อบังคับ"
+      ]
+    }
+  ]
+}

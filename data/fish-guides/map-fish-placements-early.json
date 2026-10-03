@@ -1,0 +1,252 @@
+{
+  "stages": {
+    "1": [
+      {
+        "map": "map-2.jpg",
+        "fish": "イワナ",
+        "x": 0.49,
+        "y": 0.71
+      },
+      {
+        "map": "map-2.jpg",
+        "fish": "カワマス",
+        "x": 0.36,
+        "y": 0.62
+      },
+      {
+        "map": "map-3.jpg",
+        "fish": "イワナ",
+        "x": 0.79,
+        "y": 0.24
+      },
+      {
+        "map": "map-3.jpg",
+        "fish": "ニジマス",
+        "x": 0.51,
+        "y": 0.3
+      },
+      {
+        "map": "map-3.jpg",
+        "fish": "イワナ",
+        "x": 0.51,
+        "y": 0.53
+      },
+      {
+        "map": "map-4.jpg",
+        "fish": "イワナ",
+        "x": 0.51,
+        "y": 0.64
+      },
+      {
+        "map": "map-4.jpg",
+        "fish": "カワマス",
+        "x": 0.52,
+        "y": 0.31
+      },
+      {
+        "map": "map-4.jpg",
+        "fish": "ヤマメ",
+        "x": 0.34,
+        "y": 0.81
+      },
+      {
+        "map": "map-6.jpg",
+        "fish": "アマゴ",
+        "x": 0.24,
+        "y": 0.18
+      },
+      {
+        "map": "map-6.jpg",
+        "fish": "アカザ",
+        "x": 0.57,
+        "y": 0.45
+      },
+      {
+        "map": "map-5.jpg",
+        "fish": "イモリ",
+        "x": 0.35,
+        "y": 0.28,
+        "text_only": true
+      }
+    ],
+    "2": [
+      {
+        "map": "stage2-habitat-part-1.jpg",
+        "fish": "ブラックバス",
+        "x": 0.72,
+        "y": 0.33
+      },
+      {
+        "map": "stage2-habitat-part-1.jpg",
+        "fish": "ブルーギル",
+        "x": 0.34,
+        "y": 0.3
+      },
+      {
+        "map": "stage2-habitat-part-1.jpg",
+        "fish": "ドンコ",
+        "x": 0.29,
+        "y": 0.82
+      },
+      {
+        "map": "stage2-habitat-part-1.jpg",
+        "fish": "アブラハヤ",
+        "x": 0.7,
+        "y": 0.84
+      },
+      {
+        "map": "stage2-habitat-part-1.jpg",
+        "fish": "ハリヨ",
+        "x": 0.81,
+        "y": 0.75
+      },
+      {
+        "map": "stage2-habitat-part-3.jpg",
+        "fish": "ブラウントラウト",
+        "x": 0.68,
+        "y": 0.11
+      },
+      {
+        "map": "stage2-habitat-part-2.jpg",
+        "fish": "ワカサギ",
+        "x": 0.14,
+        "y": 0.33
+      },
+      {
+        "map": "stage2-habitat-part-3.jpg",
+        "fish": "カワマス",
+        "x": 0.84,
+        "y": 0.7
+      },
+      {
+        "map": "stage2-habitat-part-3.jpg",
+        "fish": "ニジマス",
+        "x": 0.27,
+        "y": 0.77
+      },
+      {
+        "map": "stage2-habitat-part-3.jpg",
+        "fish": "サクラマス",
+        "x": 0.13,
+        "y": 0.18
+      },
+      {
+        "map": "stage2-habitat-part-3.jpg",
+        "fish": "アメマス",
+        "x": 0.16,
+        "y": 0.42
+      },
+      {
+        "map": "stage2-habitat-part-3.jpg",
+        "fish": "ヒメマス",
+        "x": 0.48,
+        "y": 0.33
+      },
+      {
+        "map": "stage2-habitat-part-1.jpg",
+        "fish": "カエル",
+        "x": 0.49,
+        "y": 0.2,
+        "text_only": true
+      }
+    ],
+    "3": [
+      {
+        "map": "stage3-habitat-part-1.jpg",
+        "fish": "ブラウントラウト",
+        "x": 0.17,
+        "y": 0.16
+      },
+      {
+        "map": "stage3-habitat-part-1.jpg",
+        "fish": "サツキマス",
+        "x": 0.29,
+        "y": 0.28
+      },
+      {
+        "map": "stage3-habitat-part-1.jpg",
+        "fish": "ニジマス",
+        "x": 0.25,
+        "y": 0.5
+      },
+      {
+        "map": "stage3-habitat-part-2.jpg",
+        "fish": "ハス",
+        "x": 0.3,
+        "y": 0.84
+      },
+      {
+        "map": "stage3-habitat-part-2.jpg",
+        "fish": "アカザ",
+        "x": 0.53,
+        "y": 0.69
+      },
+      {
+        "map": "stage3-habitat-part-1.jpg",
+        "fish": "カマツカ",
+        "x": 0.48,
+        "y": 0.57
+      },
+      {
+        "map": "stage3-habitat-part-1.jpg",
+        "fish": "シマドジョウ",
+        "x": 0.22,
+        "y": 0.84
+      },
+      {
+        "map": "stage3-habitat-part-1.jpg",
+        "fish": "ウグイ",
+        "x": 0.43,
+        "y": 0.87
+      },
+      {
+        "map": "stage3-habitat-part-2.jpg",
+        "fish": "ザリガニ",
+        "x": 0.48,
+        "y": 0.39
+      },
+      {
+        "map": "stage3-habitat-part-3.jpg",
+        "fish": "ニゴイ",
+        "x": 0.24,
+        "y": 0.92
+      },
+      {
+        "map": "stage3-habitat-part-3.jpg",
+        "fish": "オイカワ",
+        "x": 0.31,
+        "y": 0.12
+      },
+      {
+        "map": "stage3-habitat-part-3.jpg",
+        "fish": "カワムツ",
+        "x": 0.45,
+        "y": 0.85
+      },
+      {
+        "map": "stage3-habitat-part-3.jpg",
+        "fish": "アユ",
+        "x": 0.31,
+        "y": 0.36
+      },
+      {
+        "map": "stage3-habitat-part-3.jpg",
+        "fish": "ヤマノカミ",
+        "x": 0.55,
+        "y": 0.5
+      },
+      {
+        "map": "stage3-habitat-part-2.jpg",
+        "fish": "ドンコ",
+        "x": 0.28,
+        "y": 0.95
+      },
+      {
+        "map": "stage3-habitat-part-1.jpg",
+        "fish": "カジカ",
+        "x": 0.64,
+        "y": 0.17
+      }
+    ]
+  }
+}

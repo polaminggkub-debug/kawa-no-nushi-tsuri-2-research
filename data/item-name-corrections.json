@@ -1,0 +1,7 @@
+{
+  "lure": {
+    "11": "トップウォータ",
+    "1D": "シャローライナー"
+  },
+  "method": "Identical zero-terminated name bytes in ROM, majority name labels, then visually verified runtime menus for differing IDs 11 and1D"
+}

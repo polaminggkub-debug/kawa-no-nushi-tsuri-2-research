@@ -1,0 +1,7 @@
+{
+  "status": "Legacy source-guided stage/quest/habitat notes, not independently decoded ROM tables. Some fields are Thai.",
+  "stage_sources": "URLs embedded in each stage JSON; third-party map/video/manual assets are linked rather than redistributed.",
+  "capture_source_index": "data/fish-guides/real-fish-map.json retains source video timestamps and crop provenance. The referenced video/portraits/map backgrounds are not included.",
+  "coordinate_notes": "The placement coordinates refer to externally sourced map images, not an independently decoded tile map. Corrections already applied in local prior work: stage2 Kawamasu pink and Rainbow trout magenta; stage3 Kajika red and Hasu magenta; Donko pale blue and Yamanokami gray.",
+  "excluded": "Original/patched ROMs, translation patch, downloaded videos, full manual scans, third-party map images, emulator binaries, saved states, bulk RAM dumps."
+}

@@ -1,0 +1,145 @@
+{
+  "game": "Kawa no Nushi Tsuri 2 / 川のぬし釣り2 (SFC/SNES, 1995)",
+  "scope": "Custom-fly maker at the rear NPC in the first-stage (early stream) tackle shop. This records only what was directly observed there; it does not claim later shops have the same or fewer choices.",
+  "capture_provenance": {
+    "rom": "User-supplied Japanese SFC ROM, 1-Kawa-no-Nushi-Tsuri-2-Japan-.sfc; unpatched original used for these captures.",
+    "rom_size_bytes": 1572864,
+    "rom_sha256": "e0594921a5a2ef1a2613b9d2e29fed066569e3793393c591bf4c4968a54c0b49",
+    "capture_method": "Direct 256x224 screenshots from an isolated Snes9x Libretro runtime, using a copied shop-entry save state. The PNGs preserve the rendered game screen; no AI artwork or menu redraws were used.",
+    "captured_date": "2026-10-04",
+    "notes": "The NPC is the person behind the main shop counter. Walking into the NPC starts the interaction; A advances dialogue and confirms the default yes choice."
+  },
+  "observed_process": [
+    {
+      "step": 1,
+      "action": "Walk into the rear shop NPC to start the custom-fly interaction.",
+      "screen_text_ja": "いらっしゃいませ！どの毛バリを作りますか？",
+      "evidence": "references/items-images/customization/rear-npc-dialogue-5.png",
+      "confidence": "directly observed in original SFC runtime"
+    },
+    {
+      "step": 2,
+      "action": "Choose a fly family. The first-stage shop's chooser visibly lists three entries.",
+      "options_ja": [
+        "メイフライ",
+        "カディス",
+        "テレストリアル"
+      ],
+      "options_en": [
+        "Mayfly",
+        "Caddis",
+        "Terrestrial"
+      ],
+      "evidence": "references/items-images/customization/fly-family-menu.png",
+      "availability_limit": "Only the first-stage shop was checked. This is not evidence that additional families are unavailable from later shops."
+    },
+    {
+      "step": 3,
+      "action": "Choose a body sprite from the Body palette for the selected family.",
+      "observed_palette_counts": {
+        "メイフライ": 15,
+        "カディス": 14,
+        "テレストリアル": 16
+      },
+      "evidence": [
+        "references/items-images/customization/mayfly-body-choices.png",
+        "references/items-images/customization/caddis-body-palette.png",
+        "references/items-images/customization/terrestrial-body-palette.png"
+      ],
+      "notes": "These are counts of sprites visible in the captured first-stage palettes, not totals for every ROM record or later shop. The current selection label shown below the Mayfly and Caddis palettes is ウェット; the Terrestrial capture shows アント."
+    },
+    {
+      "step": 4,
+      "action": "Choose a wing sprite.",
+      "observed_palette_count": 20,
+      "observed_palette_layout": {
+        "rows": 5,
+        "columns": 4,
+        "screen_y_rows": [
+          102,
+          114,
+          126,
+          138,
+          150
+        ],
+        "screen_x_columns": [
+          40,
+          72,
+          104,
+          136
+        ]
+      },
+      "evidence": "references/items-images/customization/after-body-select.png",
+      "notes": "The captured Mayfly sequence shows 20 choices in a 5-by-4 palette. The final two visible icons are gray and pale yellow at row 5, columns 3 and 4. Their correspondence to the final special wing records (66/67) is based on the decoded ROM component ordering; the UI itself does not display internal IDs."
+    },
+    {
+      "step": 5,
+      "action": "Choose a tail sprite, or choose 無し (none).",
+      "observed_choices": {
+        "tail_sprites": 9,
+        "none_option": "無し"
+      },
+      "observed_palette_layout": {
+        "rows": 4,
+        "row_sprite_counts": [
+          3,
+          2,
+          2,
+          2
+        ],
+        "none_is_a_sprite": false
+      },
+      "evidence": "references/items-images/customization/after-wing-select.png",
+      "notes": "This was observed in the same first-stage Mayfly sequence: nine tail sprites across four rows, plus a separate 無し (none) option."
+    },
+    {
+      "step": 6,
+      "action": "Review the quoted cost and confirm the order.",
+      "example_combination": "Default first body + first wing + first tail in the Mayfly sequence",
+      "price_yen": 25,
+      "screen_text_ja": "25円いただきますが、よろしいですか？",
+      "evidence": [
+        "references/items-images/customization/after-tail-select.png",
+        "references/items-images/customization/fly-purchase-confirm.png",
+        "references/items-images/customization/fly-created-result2.png"
+      ],
+      "price_limit": "25 yen is confirmed for this one selected combination only; other combinations were not price-tested."
+    },
+    {
+      "step": 7,
+      "action": "Select はい to create the fly.",
+      "result": "Money on the status panel changed from 100 to 75; the NPC then displayed a thank-you message and asked ほかにございますか?",
+      "evidence": [
+        "references/items-images/customization/fly-created-result3.png",
+        "references/items-images/customization/fly-created-result5.png",
+        "references/items-images/customization/fly-created-result7.png"
+      ]
+    }
+  ],
+  "stat_caveat": {
+    "customizer_screen": "The captured creation screens display component sprites, a fly-type label, and the quoted yen price. They do not show a numeric fishing-stat panel.",
+    "do_not_infer": "Do not conclude that component stats or behavior differences are absent just because this UI has no numeric stat display. ROM-level fishing-preference analysis is a separate evidence source."
+  },
+  "sources": [
+    {
+      "title": "SFC 釣魚太郎2 - 溪流 (初始劇情、村莊設施)",
+      "url": "https://evaandmaicy.blogspot.com/2014/11/sfc-2_18.html",
+      "published": "2014-11-18",
+      "type": "Player walkthrough with original SFC screenshots",
+      "relevant_detail": "The author says some tackle shops have an NPC in the back who can customize flies. Existing screenshot asset references/items-images/walkthrough-fly-customization.jpg shows the family/body menu but not later component screens."
+    },
+    {
+      "title": "Original SFC instruction manual, fly section (printed page 23)",
+      "url": "https://gamemanual.midnightmeattrain.com/entry/%E5%B7%9D%E3%81%AE%E3%81%AC%E3%81%97%E9%87%A3%E3%82%8A2",
+      "type": "Photographs of the original Japanese manual",
+      "local_reference": "references/items-images/manual-crops/manual-p23-fly-families.jpg",
+      "relevant_detail": "Explains equipped-fly selection and the manual's broader fly taxonomy, including families and Wet/Dry types. It does not document the custom-fly maker's full screen sequence."
+    },
+    {
+      "title": "川のぬし釣り2全魚種RTA part 2/3 (player Q&A)",
+      "url": "https://www.nicozon.net/watch/sm32826464",
+      "type": "Player commentary, secondary evidence",
+      "relevant_detail": "The creator says two flies with the same name, メイフライウェット, can perform differently. This supports keeping numeric/stat conclusions separate from the customizer's display."
+    }
+  ]
+}

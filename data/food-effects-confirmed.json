@@ -1,0 +1,312 @@
+{
+  "title": "Kawa no Nushi Tsuri 2 (Japan, SFC): runtime-confirmed food effects",
+  "scope": "Food items only. Measurements were made in an isolated SNES9x libretro run of the supplied Japan ROM; results describe controlled WRAM values after using each item, not a claim about every possible UI/game state.",
+  "rom": {
+    "filename": "Kawa-no-Nushi-Tsuri-2-Japan-.sfc",
+    "size_bytes": 1572864,
+    "sha256": "e0594921a5a2ef1a2613b9d2e29fed066569e3793393c591bf4c4968a54c0b49"
+  },
+  "method": {
+    "initial_state": "Copied rom-analysis/runtime/gear-menu.state into an isolated runner directory for every trial.",
+    "initial_hp": 1,
+    "max_hp": 100,
+    "money": 100,
+    "wram_fields": {
+      "current_hp": {
+        "address": "7E:0862",
+        "encoding": "u16 little-endian"
+      },
+      "maximum_hp": {
+        "address": "7E:0864",
+        "encoding": "u16 little-endian"
+      },
+      "money": {
+        "address": "7E:0866",
+        "encoding": "u16 little-endian"
+      }
+    },
+    "first_food_slot": {
+      "address": "7E:0B3A",
+      "encoding": "item ID in low byte, high byte zero"
+    },
+    "first_basket_fish": {
+      "species_address": "7E:0B7A",
+      "size_address": "7E:0BB6",
+      "species_encoding": "u8",
+      "size_encoding": "u16 little-endian"
+    },
+    "input_sequence": {
+      "open_food_menu_button_indices": [
+        0,
+        4,
+        4,
+        7,
+        8
+      ],
+      "press_frames": 1,
+      "release_frames_between_inputs": 12,
+      "eat": "A (index 8), wait 120 frames, A to advance the message"
+    },
+    "measurement": "Read current HP from WRAM after the meal message was advanced. Final screenshots preserve the rendered game screen.",
+    "pre_use_screenshot_caveat": "WRAM current HP was set to 1 for each controlled run, but the pre-use screenshot continues to render the cached 100 from the save state. Treat hp_before and the listed WRAM bytes as the measured starting value; the post-use screenshot renders the resulting value."
+  },
+  "items": [
+    {
+      "id": "0x01",
+      "name_ja": "ミカン",
+      "hp_before": 1,
+      "hp_after": 6,
+      "hp_delta": 5,
+      "result": "restores 5 HP",
+      "runtime_confirmed": true,
+      "screenshots": [
+        "references/items-research/food-effects/01-mikan-before.png",
+        "references/items-research/food-effects/01-mikan-after.png"
+      ],
+      "wram_current_hp_before_le_hex": "01 00",
+      "wram_current_hp_after_le_hex": "06 00"
+    },
+    {
+      "id": "0x02",
+      "name_ja": "おむすび",
+      "hp_before": 1,
+      "hp_after": 11,
+      "hp_delta": 10,
+      "result": "restores 10 HP",
+      "runtime_confirmed": true,
+      "screenshots": [
+        "references/items-research/food-effects/02-omusubi-before.png",
+        "references/items-research/food-effects/02-omusubi-after.png"
+      ],
+      "wram_current_hp_before_le_hex": "01 00",
+      "wram_current_hp_after_le_hex": "0b 00"
+    },
+    {
+      "id": "0x03",
+      "name_ja": "だんご",
+      "hp_before": 1,
+      "hp_after": 16,
+      "hp_delta": 15,
+      "result": "restores 15 HP",
+      "runtime_confirmed": true,
+      "screenshots": [
+        "references/items-research/food-effects/03-dango-before.png",
+        "references/items-research/food-effects/03-dango-after.png"
+      ],
+      "wram_current_hp_before_le_hex": "01 00",
+      "wram_current_hp_after_le_hex": "10 00"
+    },
+    {
+      "id": "0x04",
+      "name_ja": "バナナ",
+      "hp_before": 1,
+      "hp_after": 21,
+      "hp_delta": 20,
+      "result": "restores 20 HP",
+      "runtime_confirmed": true,
+      "screenshots": [
+        "references/items-research/food-effects/04-banana-before.png",
+        "references/items-research/food-effects/04-banana-after.png"
+      ],
+      "wram_current_hp_before_le_hex": "01 00",
+      "wram_current_hp_after_le_hex": "15 00"
+    },
+    {
+      "id": "0x05",
+      "name_ja": "ブドウ",
+      "hp_before": 1,
+      "hp_after": 31,
+      "hp_delta": 30,
+      "result": "restores 30 HP",
+      "runtime_confirmed": true,
+      "screenshots": [
+        "references/items-research/food-effects/05-budo-before.png",
+        "references/items-research/food-effects/05-budo-after.png"
+      ],
+      "wram_current_hp_before_le_hex": "01 00",
+      "wram_current_hp_after_le_hex": "1f 00"
+    },
+    {
+      "id": "0x06",
+      "name_ja": "日の丸弁当",
+      "hp_before": 1,
+      "hp_after": 41,
+      "hp_delta": 40,
+      "result": "restores 40 HP",
+      "runtime_confirmed": true,
+      "screenshots": [
+        "references/items-research/food-effects/06-hinomaru-bento-before.png",
+        "references/items-research/food-effects/06-hinomaru-bento-after.png"
+      ],
+      "wram_current_hp_before_le_hex": "01 00",
+      "wram_current_hp_after_le_hex": "29 00"
+    },
+    {
+      "id": "0x07",
+      "name_ja": "ダイコン",
+      "hp_before": 1,
+      "hp_after": 41,
+      "hp_delta": 40,
+      "result": "restores 40 HP",
+      "runtime_confirmed": true,
+      "screenshots": [
+        "references/items-research/food-effects/07-daikon-before.png",
+        "references/items-research/food-effects/07-daikon-after.png"
+      ],
+      "wram_current_hp_before_le_hex": "01 00",
+      "wram_current_hp_after_le_hex": "29 00"
+    },
+    {
+      "id": "0x08",
+      "name_ja": "魚",
+      "runtime_confirmed": true,
+      "result": "variable; consumes one stored basket fish and restores floor(raw_size/4) HP for the tested cases",
+      "no_fish_record_test": {
+        "hp_before": 1,
+        "hp_after": 1,
+        "hp_delta": 0,
+        "fish_record_present": false,
+        "consumed": false,
+        "screenshots": [
+          "references/items-research/food-effects/08-fish-no-record-before.png",
+          "references/items-research/food-effects/08-fish-no-record-after.png"
+        ],
+        "wram_current_hp_before_le_hex": "01 00",
+        "wram_current_hp_after_le_hex": "01 00"
+      },
+      "fish_record_test": {
+        "species_id": "0x06",
+        "species_name_ja": "ニジマス",
+        "raw_size": 30,
+        "hp_before": 1,
+        "hp_after": 8,
+        "hp_delta": 7,
+        "consumed": true,
+        "screenshots": [
+          "references/items-research/food-effects/08-fish-nijimasu-size30-before.png",
+          "references/items-research/food-effects/08-fish-nijimasu-size30-after.png"
+        ],
+        "wram_current_hp_before_le_hex": "01 00",
+        "wram_current_hp_after_le_hex": "08 00"
+      },
+      "size_trials": [
+        {
+          "raw_size": 4,
+          "hp_delta": 1
+        },
+        {
+          "raw_size": 10,
+          "hp_delta": 2
+        },
+        {
+          "raw_size": 20,
+          "hp_delta": 5
+        },
+        {
+          "raw_size": 30,
+          "hp_delta": 7
+        },
+        {
+          "raw_size": 40,
+          "hp_delta": 10
+        },
+        {
+          "raw_size": 60,
+          "hp_delta": 15
+        },
+        {
+          "raw_size": 80,
+          "hp_delta": 20
+        },
+        {
+          "raw_size": 100,
+          "hp_delta": 25
+        },
+        {
+          "raw_size": 140,
+          "hp_delta": 35
+        },
+        {
+          "raw_size": 200,
+          "hp_delta": 50
+        }
+      ],
+      "species_trials_at_raw_size_30": [
+        {
+          "species_id": "0x01",
+          "species_name_ja": "イワナ",
+          "hp_delta": 7
+        },
+        {
+          "species_id": "0x06",
+          "species_name_ja": "ニジマス",
+          "hp_delta": 7
+        },
+        {
+          "species_id": "0x08",
+          "species_name_ja": "ブラウントラウト",
+          "hp_delta": 7
+        },
+        {
+          "species_id": "0x20",
+          "species_name_ja": "ブルーギル",
+          "hp_delta": 7
+        },
+        {
+          "species_id": "0x38",
+          "species_name_ja": "アユ",
+          "hp_delta": 7
+        },
+        {
+          "species_id": "0x49",
+          "species_name_ja": "カニ",
+          "hp_delta": 7
+        }
+      ],
+      "screenshots": [
+        "references/items-research/food-effects/08-fish-size140-after.png"
+      ],
+      "fish_size_unit": "unknown; raw WRAM value was used, and the size-unit was not confirmed from an in-game catch-size display"
+    },
+    {
+      "id": "0x09",
+      "name_ja": "きのこ",
+      "game_menu_label_ja": "きのこ",
+      "hp_before": 1,
+      "hp_after": 11,
+      "hp_delta": 10,
+      "result": "restores 10 HP",
+      "runtime_confirmed": true,
+      "discrepancy_note": "Runtime gives +10 HP; the community walkthrough's reported +5 HP is not supported by this controlled run or the ROM item table byte.",
+      "screenshots": [
+        "references/items-research/food-effects/09-kinoko-before.png",
+        "references/items-research/food-effects/09-kinoko-after.png"
+      ],
+      "wram_current_hp_before_le_hex": "01 00",
+      "wram_current_hp_after_le_hex": "0b 00"
+    },
+    {
+      "id": "0x0A",
+      "name_ja": "毒きのこ",
+      "game_menu_label_ja": "きのこ",
+      "hp_before": 1,
+      "hp_after": 0,
+      "hp_delta": -1,
+      "result": "sets current HP to 0",
+      "runtime_confirmed": true,
+      "display_note": "The tested menu renders the same label, きのこ, as item 0x09; the item IDs have different effects.",
+      "screenshots": [
+        "references/items-research/food-effects/0a-poison-kinoko-before.png",
+        "references/items-research/food-effects/0a-poison-kinoko-after.png"
+      ],
+      "wram_current_hp_before_le_hex": "01 00",
+      "wram_current_hp_after_le_hex": "00 00"
+    }
+  ],
+  "notes": [
+    "Common foods were tested with current HP 1 and maximum HP 100 to avoid healing caps.",
+    "For item 0x08, a selected food item with no fish stored in the basket did not change HP or consume a fish. With a fish record present, the game consumed that fish and the observed healing matched floor(raw_size/4) for all tested sizes 4 through 200.",
+    "The fish size formula is an empirical fit to tested samples. Species IDs 0x01, 0x06, 0x08, 0x20, 0x38, and 0x49 all yielded the same +7 at raw size 30; do not infer behavior for untested memory layouts or malformed values.",
+    "Item 0x09 and 0x0A both displayed きのこ in the tested menu; 0x09 restored 10 HP and 0x0A set HP to zero."
+  ]
+}

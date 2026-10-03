@@ -1,0 +1,21 @@
+{
+  "stages": {
+    "6": [
+      { "map": "stage6-habitat-map-2.jpg", "fish": "アカメ", "x": 0.656, "y": 0.439 },
+      { "map": "stage6-habitat-map-2.jpg", "fish": "メゴチ", "x": 0.536, "y": 0.152 },
+      { "map": "stage6-habitat-map-2.jpg", "fish": "スズキ", "x": 0.667, "y": 0.321 },
+      { "map": "stage6-habitat-map-2.jpg", "fish": "ヌマガレイ", "x": 0.114, "y": 0.230 },
+      { "map": "stage6-habitat-map-2.jpg", "fish": "サヨリ", "x": 0.222, "y": 0.091 },
+      { "map": "stage6-habitat-map-2.jpg", "fish": "クサフグ", "x": 0.778, "y": 0.727 },
+      { "map": "stage6-habitat-map-2.jpg", "fish": "カニ", "x": 0.469, "y": 0.539 },
+      { "map": "stage6-habitat-map-2.jpg", "fish": "ハゼ", "x": 0.242, "y": 0.239 },
+      { "map": "stage6-habitat-map-2.jpg", "fish": "ニゴイ", "x": 0.278, "y": 0.503 },
+      { "map": "stage6-habitat-map-2.jpg", "fish": "ボラ", "x": 0.744, "y": 0.394 },
+      { "map": "stage6-habitat-map-2.jpg", "fish": "クロダイ", "x": 0.492, "y": 0.276 },
+      { "map": "stage6-habitat-map-2.jpg", "fish": "マルタ", "x": 0.725, "y": 0.124 },
+      { "map": "stage6-habitat-map-2.jpg", "fish": "ウナギ", "x": 0.303, "y": 0.418 },
+      { "map": "stage6-habitat-map-2.jpg", "fish": "コイ", "x": 0.417, "y": 0.167 },
+      { "map": "stage6-habitat-map-2.jpg", "fish": "ワカサギ", "x": 0.278, "y": 0.909 }
+    ]
+  }
+}

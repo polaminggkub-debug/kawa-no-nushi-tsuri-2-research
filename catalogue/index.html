@@ -1,0 +1,83 @@
+<!doctype html>
+<html lang="en" data-locale="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="A bilingual, ROM-backed item catalogue for Kawa no Nushi Tsuri 2 on Super Famicom.">
+  <title>Kawa no Nushi Tsuri 2 — Item Research</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header class="hero">
+    <div class="hero-inner">
+      <div class="eyebrow" data-t="edition">SFC / SNES · JAPAN VERSION</div>
+      <h1 data-t="title">What is actually inside the tackle box?</h1>
+      <p class="lead" data-t="lead">A searchable catalogue of the game's rods, lures, fly parts, baits, hooks, floats, food and tools—with the ROM fields we could verify and honest notes where a stat is still a mystery.</p>
+      <div class="hero-meta">
+        <span id="entry-count" class="count-chip">315 entries</span>
+        <span class="hash-chip">Japan ROM · SHA-1 c2103dd94e2a1a65</span>
+        <a class="language-link" href="index.ja.html" lang="ja">日本語</a>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <section class="intro-section">
+      <div>
+        <p class="eyebrow dark" data-t="sample-kicker">A few decoded examples</p>
+        <h2 data-t="sample-title">The numbers finally have context</h2>
+        <p class="section-copy" data-t="sample-copy">The ROM stores real numeric fields, but many are internal selectors rather than familiar “power” or “bite rate” stats. These examples show the exact values and what the game code does with them.</p>
+      </div>
+      <div class="table-wrap">
+        <table class="sample-table">
+          <thead><tr><th data-t="th-item">Item</th><th data-t="th-rom">ROM fields we can explain</th><th data-t="th-price">Price field</th></tr></thead>
+          <tbody id="sample-rows"></tbody>
+        </table>
+      </div>
+    </section>
+
+    <section class="customizer-section">
+      <div class="section-heading">
+        <div>
+          <p class="eyebrow dark" data-t="fly-kicker">THE CUSTOM FLY MAKER</p>
+          <h2 data-t="fly-title">Body, wing, tail… and a real price quote</h2>
+        </div>
+        <p class="section-copy" data-t="fly-copy">These are direct captures of the original Japanese game. In the first-stage shop, we followed the full Mayfly sequence and checked one order against the money counter.</p>
+      </div>
+      <div id="customizer-frames" class="custom-grid"></div>
+      <p class="custom-fact" data-t="fly-fact">Observed Mayfly palette: 20 wing choices; 9 tail sprites plus a separate “None”. One first-body + first-wing + first-tail order cost ¥25 (¥5 + ¥5 + ¥15). That is one measured combination, not a universal price.</p>
+    </section>
+
+    <section class="catalogue-section">
+      <div class="section-heading catalogue-heading">
+        <div>
+          <p class="eyebrow dark" data-t="catalogue-kicker">THE FULL INDEX</p>
+          <h2 data-t="catalogue-title">Browse all 315 listed entries</h2>
+        </div>
+        <p class="section-copy" data-t="catalogue-copy">Search either language, an item ID, or a stat. Open any card for its raw ROM bytes and record offset.</p>
+      </div>
+      <div class="filters" role="search">
+        <label class="search-label"><span data-t="search-label">Search</span><input id="search" type="search" autocomplete="off" data-t-placeholder="search-placeholder" placeholder="Try ‘rod’, ‘トップウォータ’, or ‘0D’"></label>
+        <label><span data-t="category-label">Category</span><select id="category-filter"></select></label>
+        <label><span data-t="sort-label">Sort</span><select id="sort-filter"></select></label>
+      </div>
+      <p id="result-count" class="result-count" aria-live="polite"></p>
+      <div id="cards" class="cards"></div>
+    </section>
+
+    <section class="methods-section">
+      <div class="section-heading">
+        <div><p class="eyebrow dark" data-t="method-kicker">HOW TO READ THIS</p><h2 data-t="method-title">Confirmed, translated, and still unknown</h2></div>
+      </div>
+      <div id="research-notes" class="notes-grid"></div>
+      <div class="sources-block">
+        <h3 data-t="sources-title">Sources and method</h3>
+        <div id="sources"></div>
+      </div>
+    </section>
+  </main>
+
+  <footer><span data-t="footer">An independent fan research project. No ROM file is included.</span><a href="../README.md" data-t="readme-link">Project notes</a></footer>
+  <script src="gallery.js" defer></script>
+</body>
+</html>

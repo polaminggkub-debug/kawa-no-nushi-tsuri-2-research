@@ -1,0 +1,805 @@
+{
+  "カワマス": {
+    "image": "fish/fish-027.png",
+    "frame": 27,
+    "source": "https://www.youtube.com/watch?v=Y8JKlgIV91c&t=26s",
+    "source_frame": "references/all-fish-frames/frame-0027.png",
+    "crop": [
+      584,
+      110,
+      1020,
+      350
+    ]
+  },
+  "イワナ": {
+    "image": "fish/fish-030.png",
+    "frame": 30,
+    "source": "https://www.youtube.com/watch?v=Y8JKlgIV91c&t=29s",
+    "source_frame": "references/all-fish-frames/frame-0030.png",
+    "crop": [
+      584,
+      110,
+      1020,
+      350
+    ]
+  },
+  "ヤマメ": {
+    "image": "fish/fish-034.png",
+    "frame": 34,
+    "source": "https://www.youtube.com/watch?v=Y8JKlgIV91c&t=33s",
+    "source_frame": "references/all-fish-frames/frame-0034.png",
+    "crop": [
+      584,
+      110,
+      1020,
+      350
+    ]
+  },
+  "アカザ": {
+    "image": "fish/fish-037.png",
+    "frame": 37,
+    "source": "https://www.youtube.com/watch?v=Y8JKlgIV91c&t=36s",
+    "source_frame": "references/all-fish-frames/frame-0037.png",
+    "crop": [
+      584,
+      110,
+      1020,
+      350
+    ]
+  },
+  "アマゴ": {
+    "image": "fish/fish-040.png",
+    "frame": 40,
+    "source": "https://www.youtube.com/watch?v=Y8JKlgIV91c&t=39s",
+    "source_frame": "references/all-fish-frames/frame-0040.png",
+    "crop": [
+      584,
+      110,
+      1020,
+      350
+    ]
+  },
+  "サクラマス": {
+    "image": "fish/fish-053.png",
+    "frame": 53,
+    "source": "https://www.youtube.com/watch?v=Y8JKlgIV91c&t=52s",
+    "source_frame": "references/all-fish-frames/frame-0053.png",
+    "crop": [
+      584,
+      110,
+      1020,
+      350
+    ]
+  },
+  "ブルーギル": {
+    "image": "fish/fish-056.png",
+    "frame": 56,
+    "source": "https://www.youtube.com/watch?v=Y8JKlgIV91c&t=55s",
+    "source_frame": "references/all-fish-frames/frame-0056.png",
+    "crop": [
+      584,
+      110,
+      1020,
+      350
+    ]
+  },
+  "アメマス": {
+    "image": "fish/fish-060.png",
+    "frame": 60,
+    "source": "https://www.youtube.com/watch?v=Y8JKlgIV91c&t=59s",
+    "source_frame": "references/all-fish-frames/frame-0060.png",
+    "crop": [
+      584,
+      110,
+      1020,
+      350
+    ]
+  },
+  "ヒメマス": {
+    "image": "fish/fish-063.png",
+    "frame": 63,
+    "source": "https://www.youtube.com/watch?v=Y8JKlgIV91c&t=62s",
+    "source_frame": "references/all-fish-frames/frame-0063.png",
+    "crop": [
+      584,
+      110,
+      1020,
+      350
+    ]
+  },
+  "ブラックバス": {
+    "image": "fish/fish-066.png",
+    "frame": 66,
+    "source": "https://www.youtube.com/watch?v=Y8JKlgIV91c&t=65s",
+    "source_frame": "references/all-fish-frames/frame-0066.png",
+    "crop": [
+      584,
+      110,
+      1020,
+      350
+    ]
+  },
+  "アブラハヤ": {
+    "image": "fish/fish-069.png",
+    "frame": 69,
+    "source": "https://www.youtube.com/watch?v=Y8JKlgIV91c&t=68s",
+    "source_frame": "references/all-fish-frames/frame-0069.png",
+    "crop": [
+      584,
+      110,
+      1020,
+      350
+    ]
+  },
+  "ハリヨ": {
+    "image": "fish/fish-072.png",
+    "frame": 72,
+    "source": "https://www.youtube.com/watch?v=Y8JKlgIV91c&t=71s",
+    "source_frame": "references/all-fish-frames/frame-0072.png",
+    "crop": [
+      584,
+      110,
+      1020,
+      350
+    ]
+  },
+  "ニジマス": {
+    "image": "fish/fish-075.png",
+    "frame": 75,
+    "source": "https://www.youtube.com/watch?v=Y8JKlgIV91c&t=74s",
+    "source_frame": "references/all-fish-frames/frame-0075.png",
+    "crop": [
+      584,
+      110,
+      1020,
+      350
+    ]
+  },
+  "カマツカ": {
+    "image": "fish/fish-089.png",
+    "frame": 89,
+    "source": "https://www.youtube.com/watch?v=Y8JKlgIV91c&t=88s",
+    "source_frame": "references/all-fish-frames/frame-0089.png",
+    "crop": [
+      584,
+      110,
+      1020,
+      350
+    ]
+  },
+  "サツキマス": {
+    "image": "fish/fish-092.png",
+    "frame": 92,
+    "source": "https://www.youtube.com/watch?v=Y8JKlgIV91c&t=91s",
+    "source_frame": "references/all-fish-frames/frame-0092.png",
+    "crop": [
+      584,
+      110,
+      1020,
+      350
+    ]
+  },
+  "ブラウントラウト": {
+    "image": "fish/fish-095.png",
+    "frame": 95,
+    "source": "https://www.youtube.com/watch?v=Y8JKlgIV91c&t=94s",
+    "source_frame": "references/all-fish-frames/frame-0095.png",
+    "crop": [
+      584,
+      110,
+      1020,
+      350
+    ]
+  },
+  "カジカ": {
+    "image": "fish/fish-098.png",
+    "frame": 98,
+    "source": "https://www.youtube.com/watch?v=Y8JKlgIV91c&t=97s",
+    "source_frame": "references/all-fish-frames/frame-0098.png",
+    "crop": [
+      584,
+      110,
+      1020,
+      350
+    ]
+  },
+  "シマドジョウ": {
+    "image": "fish/fish-101.png",
+    "frame": 101,
+    "source": "https://www.youtube.com/watch?v=Y8JKlgIV91c&t=100s",
+    "source_frame": "references/all-fish-frames/frame-0101.png",
+    "crop": [
+      584,
+      110,
+      1020,
+      350
+    ]
+  },
+  "ハス": {
+    "image": "fish/fish-104.png",
+    "frame": 104,
+    "source": "https://www.youtube.com/watch?v=Y8JKlgIV91c&t=103s",
+    "source_frame": "references/all-fish-frames/frame-0104.png",
+    "crop": [
+      584,
+      110,
+      1020,
+      350
+    ]
+  },
+  "オイカワ": {
+    "image": "fish/fish-107.png",
+    "frame": 107,
+    "source": "https://www.youtube.com/watch?v=Y8JKlgIV91c&t=106s",
+    "source_frame": "references/all-fish-frames/frame-0107.png",
+    "crop": [
+      584,
+      110,
+      1020,
+      350
+    ]
+  },
+  "アユ": {
+    "image": "fish/fish-110.png",
+    "frame": 110,
+    "source": "https://www.youtube.com/watch?v=Y8JKlgIV91c&t=109s",
+    "source_frame": "references/all-fish-frames/frame-0110.png",
+    "crop": [
+      584,
+      110,
+      1020,
+      350
+    ]
+  },
+  "ヤマノカミ": {
+    "image": "fish/fish-113.png",
+    "frame": 113,
+    "source": "https://www.youtube.com/watch?v=Y8JKlgIV91c&t=112s",
+    "source_frame": "references/all-fish-frames/frame-0113.png",
+    "crop": [
+      584,
+      110,
+      1020,
+      350
+    ]
+  },
+  "カワムツ": {
+    "image": "fish/fish-116.png",
+    "frame": 116,
+    "source": "https://www.youtube.com/watch?v=Y8JKlgIV91c&t=115s",
+    "source_frame": "references/all-fish-frames/frame-0116.png",
+    "crop": [
+      584,
+      110,
+      1020,
+      350
+    ]
+  },
+  "ニゴイ": {
+    "image": "fish/fish-119.png",
+    "frame": 119,
+    "source": "https://www.youtube.com/watch?v=Y8JKlgIV91c&t=118s",
+    "source_frame": "references/all-fish-frames/frame-0119.png",
+    "crop": [
+      584,
+      110,
+      1020,
+      350
+    ]
+  },
+  "ドンコ": {
+    "image": "fish/fish-122.png",
+    "frame": 122,
+    "source": "https://www.youtube.com/watch?v=Y8JKlgIV91c&t=121s",
+    "source_frame": "references/all-fish-frames/frame-0122.png",
+    "crop": [
+      584,
+      110,
+      1020,
+      350
+    ]
+  },
+  "ギギ": {
+    "image": "fish/fish-179.png",
+    "frame": 179,
+    "source": "https://www.youtube.com/watch?v=Y8JKlgIV91c&t=178s",
+    "source_frame": "references/all-fish-frames/frame-0179.png",
+    "crop": [
+      584,
+      110,
+      1020,
+      350
+    ]
+  },
+  "ヒガイ": {
+    "image": "fish/fish-136.png",
+    "frame": 136,
+    "source": "https://www.youtube.com/watch?v=Y8JKlgIV91c&t=135s",
+    "source_frame": "references/all-fish-frames/frame-0136.png",
+    "crop": [
+      584,
+      110,
+      1020,
+      350
+    ]
+  },
+  "カムルチー": {
+    "image": "fish/fish-139.png",
+    "frame": 139,
+    "source": "https://www.youtube.com/watch?v=Y8JKlgIV91c&t=138s",
+    "source_frame": "references/all-fish-frames/frame-0139.png",
+    "crop": [
+      584,
+      110,
+      1020,
+      350
+    ]
+  },
+  "タナゴ": {
+    "image": "fish/fish-142.png",
+    "frame": 142,
+    "source": "https://www.youtube.com/watch?v=Y8JKlgIV91c&t=141s",
+    "source_frame": "references/all-fish-frames/frame-0142.png",
+    "crop": [
+      584,
+      110,
+      1020,
+      350
+    ]
+  },
+  "ライギョ": {
+    "image": "fish/fish-145.png",
+    "frame": 145,
+    "source": "https://www.youtube.com/watch?v=Y8JKlgIV91c&t=144s",
+    "source_frame": "references/all-fish-frames/frame-0145.png",
+    "crop": [
+      584,
+      110,
+      1020,
+      350
+    ]
+  },
+  "ワタカ": {
+    "image": "fish/fish-148.png",
+    "frame": 148,
+    "source": "https://www.youtube.com/watch?v=Y8JKlgIV91c&t=147s",
+    "source_frame": "references/all-fish-frames/frame-0148.png",
+    "crop": [
+      584,
+      110,
+      1020,
+      350
+    ]
+  },
+  "ヘラブナ": {
+    "image": "fish/fish-151.png",
+    "frame": 151,
+    "source": "https://www.youtube.com/watch?v=Y8JKlgIV91c&t=150s",
+    "source_frame": "references/all-fish-frames/frame-0151.png",
+    "crop": [
+      584,
+      110,
+      1020,
+      350
+    ]
+  },
+  "ホンモロコ": {
+    "image": "fish/fish-154.png",
+    "frame": 154,
+    "source": "https://www.youtube.com/watch?v=Y8JKlgIV91c&t=153s",
+    "source_frame": "references/all-fish-frames/frame-0154.png",
+    "crop": [
+      584,
+      110,
+      1020,
+      350
+    ]
+  },
+  "ソウギョ": {
+    "image": "fish/fish-157.png",
+    "frame": 157,
+    "source": "https://www.youtube.com/watch?v=Y8JKlgIV91c&t=156s",
+    "source_frame": "references/all-fish-frames/frame-0157.png",
+    "crop": [
+      584,
+      110,
+      1020,
+      350
+    ]
+  },
+  "ハクレン": {
+    "image": "fish/fish-160.png",
+    "frame": 160,
+    "source": "https://www.youtube.com/watch?v=Y8JKlgIV91c&t=159s",
+    "source_frame": "references/all-fish-frames/frame-0160.png",
+    "crop": [
+      584,
+      110,
+      1020,
+      350
+    ]
+  },
+  "タモロコ": {
+    "image": "fish/fish-163.png",
+    "frame": 163,
+    "source": "https://www.youtube.com/watch?v=Y8JKlgIV91c&t=162s",
+    "source_frame": "references/all-fish-frames/frame-0163.png",
+    "crop": [
+      584,
+      110,
+      1020,
+      350
+    ]
+  },
+  "アオウオ": {
+    "image": "fish/fish-166.png",
+    "frame": 166,
+    "source": "https://www.youtube.com/watch?v=Y8JKlgIV91c&t=165s",
+    "source_frame": "references/all-fish-frames/frame-0166.png",
+    "crop": [
+      584,
+      110,
+      1020,
+      350
+    ]
+  },
+  "ナマズ": {
+    "image": "fish/fish-169.png",
+    "frame": 169,
+    "source": "https://www.youtube.com/watch?v=Y8JKlgIV91c&t=168s",
+    "source_frame": "references/all-fish-frames/frame-0169.png",
+    "crop": [
+      584,
+      110,
+      1020,
+      350
+    ]
+  },
+  "マブナ": {
+    "image": "fish/fish-172.png",
+    "frame": 172,
+    "source": "https://www.youtube.com/watch?v=Y8JKlgIV91c&t=171s",
+    "source_frame": "references/all-fish-frames/frame-0172.png",
+    "crop": [
+      584,
+      110,
+      1020,
+      350
+    ]
+  },
+  "コクレン": {
+    "image": "fish/fish-175.png",
+    "frame": 175,
+    "source": "https://www.youtube.com/watch?v=Y8JKlgIV91c&t=174s",
+    "source_frame": "references/all-fish-frames/frame-0175.png",
+    "crop": [
+      584,
+      110,
+      1020,
+      350
+    ]
+  },
+  "ツチフキ": {
+    "image": "fish/fish-192.png",
+    "frame": 192,
+    "source": "https://www.youtube.com/watch?v=Y8JKlgIV91c&t=191s",
+    "source_frame": "references/all-fish-frames/frame-0192.png",
+    "crop": [
+      584,
+      110,
+      1020,
+      350
+    ]
+  },
+  "イトモロコ": {
+    "image": "fish/fish-195.png",
+    "frame": 195,
+    "source": "https://www.youtube.com/watch?v=Y8JKlgIV91c&t=194s",
+    "source_frame": "references/all-fish-frames/frame-0195.png",
+    "crop": [
+      584,
+      110,
+      1020,
+      350
+    ]
+  },
+  "オヤニラミ": {
+    "image": "fish/fish-199.png",
+    "frame": 199,
+    "source": "https://www.youtube.com/watch?v=Y8JKlgIV91c&t=198s",
+    "source_frame": "references/all-fish-frames/frame-0199.png",
+    "crop": [
+      584,
+      110,
+      1020,
+      350
+    ]
+  },
+  "キンブナ": {
+    "image": "fish/fish-202.png",
+    "frame": 202,
+    "source": "https://www.youtube.com/watch?v=Y8JKlgIV91c&t=201s",
+    "source_frame": "references/all-fish-frames/frame-0202.png",
+    "crop": [
+      584,
+      110,
+      1020,
+      350
+    ]
+  },
+  "トミヨ": {
+    "image": "fish/fish-205.png",
+    "frame": 205,
+    "source": "https://www.youtube.com/watch?v=Y8JKlgIV91c&t=204s",
+    "source_frame": "references/all-fish-frames/frame-0205.png",
+    "crop": [
+      584,
+      110,
+      1020,
+      350
+    ]
+  },
+  "ウグイ": {
+    "image": "fish/fish-208.png",
+    "frame": 208,
+    "source": "https://www.youtube.com/watch?v=Y8JKlgIV91c&t=207s",
+    "source_frame": "references/all-fish-frames/frame-0208.png",
+    "crop": [
+      584,
+      110,
+      1020,
+      350
+    ]
+  },
+  "モツゴ": {
+    "image": "fish/fish-211.png",
+    "frame": 211,
+    "source": "https://www.youtube.com/watch?v=Y8JKlgIV91c&t=210s",
+    "source_frame": "references/all-fish-frames/frame-0211.png",
+    "crop": [
+      584,
+      110,
+      1020,
+      350
+    ]
+  },
+  "トウギョ": {
+    "image": "fish/fish-214.png",
+    "frame": 214,
+    "source": "https://www.youtube.com/watch?v=Y8JKlgIV91c&t=213s",
+    "source_frame": "references/all-fish-frames/frame-0214.png",
+    "crop": [
+      584,
+      110,
+      1020,
+      350
+    ]
+  },
+  "メダカ": {
+    "image": "fish/fish-217.png",
+    "frame": 217,
+    "source": "https://www.youtube.com/watch?v=Y8JKlgIV91c&t=216s",
+    "source_frame": "references/all-fish-frames/frame-0217.png",
+    "crop": [
+      584,
+      110,
+      1020,
+      350
+    ]
+  },
+  "ムギツク": {
+    "image": "fish/fish-220.png",
+    "frame": 220,
+    "source": "https://www.youtube.com/watch?v=Y8JKlgIV91c&t=219s",
+    "source_frame": "references/all-fish-frames/frame-0220.png",
+    "crop": [
+      584,
+      110,
+      1020,
+      350
+    ]
+  },
+  "ドジョウ": {
+    "image": "fish/fish-223.png",
+    "frame": 223,
+    "source": "https://www.youtube.com/watch?v=Y8JKlgIV91c&t=222s",
+    "source_frame": "references/all-fish-frames/frame-0223.png",
+    "crop": [
+      584,
+      110,
+      1020,
+      350
+    ]
+  },
+  "テナガエビ": {
+    "image": "fish/fish-226.png",
+    "frame": 226,
+    "source": "https://www.youtube.com/watch?v=Y8JKlgIV91c&t=225s",
+    "source_frame": "references/all-fish-frames/frame-0226.png",
+    "crop": [
+      584,
+      110,
+      1020,
+      350
+    ]
+  },
+  "ワカサギ": {
+    "image": "fish/fish-240.png",
+    "frame": 240,
+    "source": "https://www.youtube.com/watch?v=Y8JKlgIV91c&t=239s",
+    "source_frame": "references/all-fish-frames/frame-0240.png",
+    "crop": [
+      584,
+      110,
+      1020,
+      350
+    ]
+  },
+  "オオウナギ": {
+    "image": "fish/fish-243.png",
+    "frame": 243,
+    "source": "https://www.youtube.com/watch?v=Y8JKlgIV91c&t=242s",
+    "source_frame": "references/all-fish-frames/frame-0243.png",
+    "crop": [
+      584,
+      110,
+      1020,
+      350
+    ]
+  },
+  "マルタ": {
+    "image": "fish/fish-246.png",
+    "frame": 246,
+    "source": "https://www.youtube.com/watch?v=Y8JKlgIV91c&t=245s",
+    "source_frame": "references/all-fish-frames/frame-0246.png",
+    "crop": [
+      584,
+      110,
+      1020,
+      350
+    ]
+  },
+  "ウナギ": {
+    "image": "fish/fish-249.png",
+    "frame": 249,
+    "source": "https://www.youtube.com/watch?v=Y8JKlgIV91c&t=248s",
+    "source_frame": "references/all-fish-frames/frame-0249.png",
+    "crop": [
+      584,
+      110,
+      1020,
+      350
+    ]
+  },
+  "ボラ": {
+    "image": "fish/fish-252.png",
+    "frame": 252,
+    "source": "https://www.youtube.com/watch?v=Y8JKlgIV91c&t=251s",
+    "source_frame": "references/all-fish-frames/frame-0252.png",
+    "crop": [
+      584,
+      110,
+      1020,
+      350
+    ]
+  },
+  "アカメ": {
+    "image": "fish/fish-255.png",
+    "frame": 255,
+    "source": "https://www.youtube.com/watch?v=Y8JKlgIV91c&t=254s",
+    "source_frame": "references/all-fish-frames/frame-0255.png",
+    "crop": [
+      584,
+      110,
+      1020,
+      350
+    ]
+  },
+  "スズキ": {
+    "image": "fish/fish-258.png",
+    "frame": 258,
+    "source": "https://www.youtube.com/watch?v=Y8JKlgIV91c&t=257s",
+    "source_frame": "references/all-fish-frames/frame-0258.png",
+    "crop": [
+      584,
+      110,
+      1020,
+      350
+    ]
+  },
+  "クロダイ": {
+    "image": "fish/fish-261.png",
+    "frame": 261,
+    "source": "https://www.youtube.com/watch?v=Y8JKlgIV91c&t=260s",
+    "source_frame": "references/all-fish-frames/frame-0261.png",
+    "crop": [
+      584,
+      110,
+      1020,
+      350
+    ]
+  },
+  "コイ": {
+    "image": "fish/fish-264.png",
+    "frame": 264,
+    "source": "https://www.youtube.com/watch?v=Y8JKlgIV91c&t=263s",
+    "source_frame": "references/all-fish-frames/frame-0264.png",
+    "crop": [
+      584,
+      110,
+      1020,
+      350
+    ]
+  },
+  "クサフグ": {
+    "image": "fish/fish-267.png",
+    "frame": 267,
+    "source": "https://www.youtube.com/watch?v=Y8JKlgIV91c&t=266s",
+    "source_frame": "references/all-fish-frames/frame-0267.png",
+    "crop": [
+      584,
+      110,
+      1020,
+      350
+    ]
+  },
+  "メゴチ": {
+    "image": "fish/fish-270.png",
+    "frame": 270,
+    "source": "https://www.youtube.com/watch?v=Y8JKlgIV91c&t=269s",
+    "source_frame": "references/all-fish-frames/frame-0270.png",
+    "crop": [
+      584,
+      110,
+      1020,
+      350
+    ]
+  },
+  "ヌマガレイ": {
+    "image": "fish/fish-273.png",
+    "frame": 273,
+    "source": "https://www.youtube.com/watch?v=Y8JKlgIV91c&t=272s",
+    "source_frame": "references/all-fish-frames/frame-0273.png",
+    "crop": [
+      584,
+      110,
+      1020,
+      350
+    ]
+  },
+  "サヨリ": {
+    "image": "fish/fish-276.png",
+    "frame": 276,
+    "source": "https://www.youtube.com/watch?v=Y8JKlgIV91c&t=275s",
+    "source_frame": "references/all-fish-frames/frame-0276.png",
+    "crop": [
+      584,
+      110,
+      1020,
+      350
+    ]
+  },
+  "ハゼ": {
+    "image": "fish/fish-279.png",
+    "frame": 279,
+    "source": "https://www.youtube.com/watch?v=Y8JKlgIV91c&t=278s",
+    "source_frame": "references/all-fish-frames/frame-0279.png",
+    "crop": [
+      584,
+      110,
+      1020,
+      350
+    ]
+  },
+  "ザリガニ": {
+    "image": "fish/extra-zarigani-gameplay.png",
+    "source": "https://note.com/holy_heron2678/n/nf6dccee118e2",
+    "source_frame": "references/real-fish-early/zarigani-gameplay.png",
+    "crop": [
+      300,
+      125,
+      625,
+      295
+    ]
+  }
+}

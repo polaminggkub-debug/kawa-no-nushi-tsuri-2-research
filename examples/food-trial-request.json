@@ -1,0 +1,14 @@
+{
+  "research_precondition": "Your own save state must match the equipment submenu context described in docs/runtime-capture.en.md. This does not bootstrap a game automatically.",
+  "steps": [
+    {"write": [["0x862", [1, 0]], ["0x864", [100, 0]], ["0xb3a", [9, 0, 0, 0]]], "frames": 1},
+    {"buttons": [0], "frames": 1}, {"frames": 12},
+    {"buttons": [4], "frames": 1}, {"frames": 12},
+    {"buttons": [4], "frames": 1}, {"frames": 12},
+    {"buttons": [7], "frames": 1}, {"frames": 12},
+    {"buttons": [8], "frames": 1}, {"frames": 12},
+    {"buttons": [8], "frames": 1}, {"frames": 120},
+    {"buttons": [8], "frames": 1}, {"frames": 12}
+  ],
+  "image": "mushroom-trial.png"
+}

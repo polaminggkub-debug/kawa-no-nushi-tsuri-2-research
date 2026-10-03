@@ -1,0 +1,7 @@
+{
+  "reset": true,
+  "steps": [
+    {"frames": 600}
+  ],
+  "image": "startup.png"
+}

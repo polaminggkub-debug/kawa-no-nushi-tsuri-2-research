@@ -1,0 +1,147 @@
+{
+  "stage": 1,
+  "title_th": "ลำธาร",
+  "title_jp": "渓流",
+  "fish_count": 6,
+  "other_count": 1,
+  "species": [
+    {
+      "name_th": "อิวานะ",
+      "name_latin": "Iwana",
+      "name_jp": "イワナ",
+      "kind": "fish",
+      "color": "green",
+      "habitat": "แอ่งน้ำช่วงบนและบริเวณน้ำตก",
+      "bait": "แมลงน้ำ / โทบิเคระ / ไส้เดือน"
+    },
+    {
+      "name_th": "ยามาเมะ",
+      "name_latin": "Yamame",
+      "name_jp": "ヤマメ",
+      "kind": "fish",
+      "color": "black",
+      "habitat": "ช่วงหมู่บ้านและเหนือหมู่บ้าน",
+      "bait": "แมลงน้ำ / โทบิเคระ / ไส้เดือน"
+    },
+    {
+      "name_th": "นิจิมาสุ",
+      "name_latin": "Nijimasu",
+      "name_jp": "ニジマス",
+      "kind": "fish",
+      "color": "white",
+      "habitat": "โขดหินในแม่น้ำทางเหนือ",
+      "bait": "แมลงน้ำ / โทบิเคระ / ไส้เดือน"
+    },
+    {
+      "name_th": "คาวามาสุ",
+      "name_latin": "Kawamasu",
+      "name_jp": "カワマス",
+      "kind": "fish",
+      "color": "purple",
+      "habitat": "สองแอ่งช่วงบน ดูวงม่วง",
+      "bait": "แมลงน้ำ / โทบิเคระ / ไส้เดือน"
+    },
+    {
+      "name_th": "อามาโกะ",
+      "name_latin": "Amago",
+      "name_jp": "アマゴ",
+      "kind": "fish",
+      "color": "blue",
+      "habitat": "แม่น้ำทางใต้ของหมู่บ้าน",
+      "bait": "แมลงน้ำ / โทบิเคระ / ไส้เดือน"
+    },
+    {
+      "name_th": "อาคาซะ",
+      "name_latin": "Akaza",
+      "name_jp": "アカザ",
+      "kind": "fish",
+      "color": "red",
+      "habitat": "ท่อนไม้ช่วงล่าง ยืนบนท่อนไม้ โยนขึ้นเหนือ",
+      "bait": "แมลงน้ำ / โทบิเคระ"
+    },
+    {
+      "name_th": "อิโมริ (นิวต์)",
+      "name_latin": "Imori",
+      "name_jp": "イモリ",
+      "kind": "nonfish",
+      "color": "yellow",
+      "habitat": "จุดเล็กตามวงเหลือง",
+      "bait": "แมลงน้ำ / โทบิเคระ / เหยื่อแป้ง"
+    }
+  ],
+  "quests": [
+    {
+      "title": "กระชอนเก็บเหยื่อ",
+      "steps": [
+        "ตกอามาโกะ 1 ตัว ทางใต้ของหมู่บ้าน",
+        "ให้คนที่ขอปลาใกล้บ่อน้ำในหมู่บ้าน",
+        "ได้กระชอน ใช้เก็บเหยื่อตามน้ำตื้น"
+      ],
+      "category": "item_exchange"
+    },
+    {
+      "title": "คันเบ็ดจากบ้านร้าง",
+      "steps": [
+        "ซื้อกุญแจจากร้าน",
+        "ไขตู้ในบ้านร้างด้านขวาล่างของหมู่บ้าน",
+        "รับคันเบ็ดฟลายขนาดเล็ก"
+      ],
+      "category": "equipment"
+    },
+    {
+      "title": "เตรียมผ่านถ้ำ",
+      "steps": [
+        "ซื้อแว่นขยายก่อนออกเดินทาง",
+        "ใช้ส่องพื้นถ้ำหาเห็ดไว้เป็นอาหารหรือรับมือสัตว์"
+      ],
+      "category": "preparation"
+    }
+  ],
+  "next_stage": {
+    "title": "ทางไปด่าน 2",
+    "steps": [
+      "ลงแม่น้ำไปทางใต้",
+      "หาถ้ำฝั่งขวา ใกล้เกาะที่มีคนนั่งตกปลา",
+      "ผ่านถ้ำไปทะเลสาบบนเขา"
+    ],
+    "note": "ไม่ต้องตกปลาให้ครบทุกชนิดก่อนเดินทาง"
+  },
+  "competition": {
+    "title": "ทำสถิติอิวานะ",
+    "description": "ตกอิวานะตัวใหญ่เพื่อขึ้นกระดานสถิติ เป็นกิจกรรมเสริม ไม่ใช่บอสเนื้อเรื่อง"
+  },
+  "bait_tip": "แมลงน้ำ (คาวะมุชิ) และโทบิเคระใช้ได้ครบทั้ง 7 ชนิด",
+  "reference_paths": [
+    "/Users/polamin/Documents/Codex/2026-10-03/kawa-no-nushi-tsuri-2-snes/references/map-2.jpg",
+    "/Users/polamin/Documents/Codex/2026-10-03/kawa-no-nushi-tsuri-2-snes/references/map-3.jpg",
+    "/Users/polamin/Documents/Codex/2026-10-03/kawa-no-nushi-tsuri-2-snes/references/map-4.jpg",
+    "/Users/polamin/Documents/Codex/2026-10-03/kawa-no-nushi-tsuri-2-snes/references/map-5.jpg",
+    "/Users/polamin/Documents/Codex/2026-10-03/kawa-no-nushi-tsuri-2-snes/references/map-6.jpg"
+  ],
+  "sources": [
+    {
+      "title": "แผนที่เขตอาศัยลำธาร",
+      "url": "https://retroboy.hatenablog.com/entry/2021/02/06/103000"
+    },
+    {
+      "title": "ตารางเหยื่อจากการทดลองผู้เขียน",
+      "url": "https://retroboy.hatenablog.com/entry/2020/07/13/193000"
+    },
+    {
+      "title": "บทสรุปเควสต์และทางเชื่อม โดย Fangting",
+      "url": "https://andaplus.com/games/index.php?catid=337&id=4319:kawa-no-nushi-tsuri-2-by-thingthing-fangting&view=article"
+    },
+    {
+      "title": "วิดีโอปลาลำธารทั้งหก",
+      "url": "https://www.youtube.com/watch?v=MSfAHh7d_Pc"
+    },
+    {
+      "title": "บันทึกผู้เล่น: กุญแจและคันเบ็ดฟลายขนาดเล็ก",
+      "url": "https://note.com/holy_heron2678/n/na12caa0f2974"
+    }
+  ],
+  "limitations": [
+    "ภาพแสดงเขตอาศัยโดยประมาณ ไม่ใช่ตำแหน่งเกิดปลาแน่นอน",
+    "ชื่อไทยบางชื่อใช้การถอดเสียง อาจต่างจากชื่อในแพตช์"
+  ]
+}
