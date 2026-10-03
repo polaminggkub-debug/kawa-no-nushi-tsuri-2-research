@@ -6,3 +6,43 @@
 .hero-layout{display:grid;grid-template-columns:minmax(0,1fr) 384px;gap:42px;align-items:center}.hero-copy h1{font-size:clamp(32px,3.5vw,49px)}.title-screen{margin:0}.title-screen img{display:block;width:100%;height:auto;image-rendering:pixelated;border-radius:10px;box-shadow:0 16px 40px rgba(0,0,0,.3)}.title-screen figcaption{font-size:12px;color:#d6e3d6;text-align:center;margin-top:12px}.hero-meta{margin-top:32px}@media(max-width:850px){.hero-layout{grid-template-columns:1fr;gap:26px}.title-screen{width:min(100%,384px);justify-self:center}.hero-copy h1{font-size:36px}.hero{padding-top:36px}}
 
 .language-links{margin-left:auto;display:flex;flex-wrap:wrap;align-items:center;gap:8px}.language-links .language-link{margin-left:0}.language-current{font-size:12px;color:#d6e3d6;padding:7px 12px}.translation-note{color:#64716c;max-width:900px;font-size:14px}.thai-rom-label{display:block;margin:8px 0;max-width:100%;width:240px;height:auto;image-rendering:pixelated;border-radius:4px}.thai-label-note{font-size:11px;color:#64716c}
+
+/* Larger game art across all three language pages. */
+.intro-section { grid-template-columns: 1fr; gap: 24px; }
+.intro-section .section-copy { max-width: 850px; }
+.sample-table { min-width: 760px; font-size: 14px; }
+.sample-item { min-width: 290px; gap: 18px; }
+.sample-item img { width: 128px; height: 128px; flex: 0 0 128px; padding: 8px; }
+.sample-item strong { font-size: 16px; }
+.sample-item small { font-size: 12px; }
+.custom-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 20px; }
+.custom-frame figcaption { padding: 14px; font-size: 14px; }
+.cards { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 20px; }
+.item-card { padding: 20px; }
+.card-main { grid-template-columns: 208px minmax(0, 1fr); gap: 20px; }
+.sprite { padding: 12px 8px; min-height: 260px; }
+.sprite img { width: 192px; height: 224px; max-width: 100%; }
+.sprite figcaption { font-size: 11px; margin-top: 10px; }
+.card-text { min-width: 0; }
+.card-text h3 { font-size: 22px; overflow-wrap: anywhere; }
+.jp-name { font-size: 14px; overflow-wrap: anywhere; }
+.stat-list { gap: 8px; padding-top: 14px; }
+.stat-list li { font-size: 13px; }
+.category-tag, .confidence, .frame-link { font-size: 12px; }
+.thai-rom-label { width: 100%; }
+.thai-label-note { display: block; font-size: 12px; }
+.hero-layout { grid-template-columns: minmax(0, 1fr) 512px; gap: 36px; }
+
+@media (max-width: 1050px) {
+  .hero-layout { grid-template-columns: 1fr; }
+  .title-screen { width: min(100%, 512px); justify-self: center; }
+  .card-main { grid-template-columns: 1fr; gap: 16px; }
+  .sprite img { width: 256px; height: 224px; }
+}
+@media (max-width: 650px) {
+  .cards, .custom-grid { grid-template-columns: 1fr; }
+  .item-card { padding: 16px; }
+  .sample-item img { width: 112px; height: 112px; flex-basis: 112px; }
+  .card-text h3 { font-size: 23px; }
+  .custom-frame figcaption { font-size: 14px; }
+}
