@@ -2,7 +2,7 @@
   const lang = document.documentElement.dataset.locale === 'ja' ? 'ja' : 'en';
   const copy = {
     en: {
-      title: 'What is actually inside the tackle box?', lead: 'A searchable catalogue of the game’s rods, lures, fly parts, baits, hooks, floats, food and tools—with ROM fields we could verify and clear notes where a stat is still a mystery.',
+      title: 'Kawa no Nushi Tsuri 2 — Item Catalogue & ROM Research', lead: 'A searchable catalogue of the game’s rods, lures, fly parts, baits, hooks, floats, food and tools—with ROM fields we could verify and clear notes where a stat is still a mystery.',
       edition: 'SFC / SNES · JAPAN VERSION', entries: n => `${n} listed entries`, sampleKicker: 'A FEW DECODED EXAMPLES', sampleTitle: 'The numbers finally have context', sampleCopy: 'The ROM stores real numeric fields, but many are internal selectors rather than familiar “power” or “bite rate” stats. These examples show exact values and what the game code does with them.',
       item: 'Item', rom: 'ROM fields we can explain', price: 'ROM price field', flyKicker: 'THE CUSTOM FLY MAKER', flyTitle: 'Body, wing, tail… and a real price quote', flyCopy: 'These are direct captures of the original Japanese game. In the first-stage shop, we followed the full Mayfly sequence and checked one order against the money counter.', flyFact: 'Observed Mayfly palette: 20 wing choices; 9 tail sprites plus a separate “None”. One first-body + first-wing + first-tail order cost ¥25 (¥5 + ¥5 + ¥15). That is one measured combination, not a universal price.',
       catalogueKicker: 'THE FULL INDEX', catalogueTitle: 'Browse all 315 listed entries', catalogueCopy: 'Search either language, an item ID, or a stat. Open any card for its raw ROM bytes and record offset.', search: 'Search', searchPlaceholder: 'Try “rod”, “トップウォータ”, or “0D”', category: 'Category', sort: 'Sort', all: 'All categories', sortId: 'Item ID', sortName: 'Name', sortPrice: 'Price field', results: n => `${n} entries shown`, empty: 'No matching entries. Try another name or ID.',
@@ -24,7 +24,7 @@
       noteNoJs: 'Enable JavaScript to load the searchable catalogue.'
     },
     ja: {
-      title: '釣り道具の中身を、ROMから調べる', lead: '竿、ルアー、毛バリ部品、餌、針、ウキ、食料、道具を検索できる一覧。ROMで確認できた数値と、まだ意味が分からない値を分けて掲載。',
+      title: '川のぬし釣り2 — アイテム一覧・ROM解析', lead: '竿、ルアー、毛バリ部品、餌、針、ウキ、食料、道具を検索できる一覧。ROMで確認できた数値と、まだ意味が分からない値を分けて掲載。',
       edition: 'SFC · 日本版', entries: n => `掲載 ${n} 件`, sampleKicker: '解読できた数値の例', sampleTitle: '数字の意味をゲーム処理と照合', sampleCopy: 'ROMには数値が保存されていますが、「強さ」や「ヒット率」のような単純な能力値とは限りません。実際の値と、ゲーム内コードでの使われ方を例示します。',
       item: 'アイテム', rom: '意味を確認できたROM値', price: 'ROM価格欄', flyKicker: '毛バリ作成NPC', flyTitle: 'ボディ、ウィング、テール、そして見積もり', flyCopy: '日本版ゲームを直接撮影した画面です。ステージ1の店でメイフライ作成を最後まで進め、所持金の変化で一例の価格を確認しました。', flyFact: '確認したメイフライ画面: ウィング20種、テール画像9種と別枠の「無し」。最初のボディ+最初のウィング+最初のテールは25円（5+5+15円）。これは実測した一例で、全組み合わせ共通ではありません。',
       catalogueKicker: '全アイテム一覧', catalogueTitle: '掲載315件を検索', catalogueCopy: '英語・日本語、アイテムID、数値で検索できます。各カードを開くとROM生データとファイル位置を確認できます。', search: '検索', searchPlaceholder: '例: 「rod」「トップウォータ」「0D」', category: 'カテゴリ', sort: '並び順', all: 'すべてのカテゴリ', sortId: 'アイテムID', sortName: '名前', sortPrice: '価格欄', results: n => `${n}件を表示`, empty: '一致するアイテムはありません。名前かIDを変えてください。',
@@ -46,9 +46,9 @@
   }[lang];
   const esc = value => String(value ?? '').replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
   const set = (selector, text) => { const node = document.querySelector(selector); if (node) node.textContent = text; };
-  document.title = lang === 'ja' ? '川のぬし釣り2 — アイテム調査' : 'Kawa no Nushi Tsuri 2 — Item Research';
-  document.querySelectorAll('[data-t]').forEach(node => { const value = copy[node.dataset.t]; if (typeof value === 'string') node.textContent = value; });
-  document.querySelectorAll('[data-t-placeholder]').forEach(node => { const value = copy[node.dataset.tPlaceholder]; if (value) node.placeholder = value; });
+  document.title = lang === 'ja' ? '川のぬし釣り2（SFC）アイテム一覧・竿・ルアー・ROM解析' : 'Kawa no Nushi Tsuri 2 (SNES/SFC) — Items, Rods, Lures & ROM Research';
+  document.querySelectorAll('[data-t]').forEach(node => { const value = copy[node.dataset.t] ?? copy[node.dataset.t.replace(/-([a-z])/g,(_,c)=>c.toUpperCase())]; if (typeof value === 'string') node.textContent = value; });
+  document.querySelectorAll('[data-t-placeholder]').forEach(node => { const value = copy[node.dataset.tPlaceholder] ?? copy[node.dataset.tPlaceholder.replace(/-([a-z])/g,(_,c)=>c.toUpperCase())]; if (value) node.placeholder = value; });
   const langLink = document.querySelector('.language-link'); if (langLink) langLink.textContent = copy.langLink;
   const itemLabel = document.querySelector('thead th'); if (itemLabel) itemLabel.textContent = copy.item;
   const headers = document.querySelectorAll('thead th'); if (headers[1]) headers[1].textContent = copy.rom; if (headers[2]) headers[2].textContent = copy.price;
@@ -114,6 +114,6 @@
     document.getElementById('category-filter').addEventListener('change',renderCards);
     document.getElementById('sort-filter').addEventListener('change',renderCards);
   }).catch(()=>{
-    document.getElementById('cards').innerHTML=`<p class="empty-state">${esc(copy.noteNoJs)}</p>`;
+    /* Keep the pre-rendered catalogue visible if interactive loading fails. */
   });
 })();

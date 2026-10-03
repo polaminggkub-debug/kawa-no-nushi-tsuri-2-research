@@ -32,3 +32,9 @@ Further stage/quest references and URLs are retained alongside the source-guided
 - Python standard library for record extraction; NumPy and Pillow for optional runtime screenshots.
 
 See [NOTICE.md](NOTICE.md) for the rights and license scope. Credits describe evidence sources; they do not imply endorsement by their authors or by the game's rights holders.
+
+## Title screen / タイトル画面
+
+The hero image is the original Japanese title-screen screenshot supplied by the project owner. It is displayed without repainting; the game artwork retains its underlying rights.
+
+ヘッダー画像はプロジェクト所有者が提供した原作日本版のタイトル画面です。描き直しは行っていません。原作画像の権利は権利者に帰属します。
