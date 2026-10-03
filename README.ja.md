@@ -1,10 +1,12 @@
 # 『川のぬし釣り2』（SFC）調査資料
 
+![川のぬし釣り2 / Kawa no Nushi Tsuri 2 title screen](catalogue/assets/kawa-no-nushi-tsuri-2-title-screen.png)
+
 スーパーファミコン版『川のぬし釣り2』を対象に、アイテムのROMレコード、毛バリの部品、実機相当のゲーム実行で確認した一部の効果を記録する個人研究です。ゲーム本体は配布しません。
 
-**言語:** [English](README.md) · [調査結果（日本語）](docs/findings.ja.md) · [Findings (English)](docs/findings.en.md) · [日本語アイテムカタログ](catalogue/index.ja.html) · [English item catalogue](catalogue/index.html)
+**言語:** [ไทย](https://polaminggkub-debug.github.io/kawa-no-nushi-tsuri-2-research/catalogue/index.th.html) · [English](README.md) · [調査結果（日本語）](docs/findings.ja.md) · [Findings (English)](docs/findings.en.md) · [日本語アイテムカタログ](catalogue/index.ja.html) · [English item catalogue](catalogue/index.html)
 
-**画像付きカタログ:** [English](https://polaminggkub-debug.github.io/kawa-no-nushi-tsuri-2-research/catalogue/) · [日本語](https://polaminggkub-debug.github.io/kawa-no-nushi-tsuri-2-research/catalogue/index.ja.html)
+**画像付きカタログ:** [English](https://polaminggkub-debug.github.io/kawa-no-nushi-tsuri-2-research/catalogue/) · [日本語](https://polaminggkub-debug.github.io/kawa-no-nushi-tsuri-2-research/catalogue/index.ja.html) · [ไทย](https://polaminggkub-debug.github.io/kawa-no-nushi-tsuri-2-research/catalogue/index.th.html)
 
 ![カタログの例](examples/catalogue-ja.png)
 

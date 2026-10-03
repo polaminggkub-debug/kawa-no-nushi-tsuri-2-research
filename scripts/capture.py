@@ -18,8 +18,9 @@ parser.add_argument('--output-dir',type=Path,default=Path('local-run'))
 args=parser.parse_args()
 rom=args.rom.resolve()
 rom_bytes=rom.read_bytes()
-if len(rom_bytes)!=1572864 or hashlib.sha1(rom_bytes).hexdigest()!='c2103dd94e2a1a65a495fc02adc2e7d040f31212':
- parser.error('Unsupported ROM: use the matching original headerless Japanese dump.')
+SUPPORTED_DUMPS={('c2103dd94e2a1a65a495fc02adc2e7d040f31212',1572864):'Japanese original',('453047280f53ab9faf93142b957967c1eec69afc',2097152):'Thai V1.2'}
+if (hashlib.sha1(rom_bytes).hexdigest(),len(rom_bytes)) not in SUPPORTED_DUMPS:
+ parser.error('Unsupported ROM: use the matching Japanese original or Thai V1.2 dump supplied by you.')
 HERE=args.output_dir.resolve();HERE.mkdir(parents=True,exist_ok=True)
 ROOT=HERE
 req=json.loads(args.request.read_text(encoding='utf-8'))

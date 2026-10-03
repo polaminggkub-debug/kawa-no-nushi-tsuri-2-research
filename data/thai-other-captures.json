@@ -1,0 +1,173 @@
+{
+  "schemaVersion": 1,
+  "romSha1": "c2103dd94e2a1a65a495fc02adc2e7d040f31212",
+  "patchedRomSha1": "453047280f53ab9faf93142b957967c1eec69afc",
+  "patchVersion": "V1.2",
+  "captureCoreSha256": "8ed333ac04544cc6ab67ceb445d095f7600bb17586d4887d99117fbd1ef776f6",
+  "method": "Each general-tool ID was injected into the first inventory slot at WRAM 7E:0B5A and opened through the 道具 menu in a copied gameplay state using Snes9x. The exact rendered bottom-panel label was cropped from each screenshot at x=24..232, y=168..216 and enlarged 3x with nearest-neighbor scaling. Identical render hashes preserve separately captured IDs with matching displayed labels.",
+  "captureType": "per-item rendered Thai label crop; Unicode transcription intentionally omitted",
+  "availabilityNote": "A rendered label proves the Thai V1.2 display string for the injected ID; it does not prove normal in-game availability, quest acquisition, or use effects.",
+  "entries": {
+    "general_tool:01": {
+      "nameTh": null,
+      "labelImageTh": "../catalogue/thai-labels/general_tool-01.png",
+      "representativeId": "01",
+      "capture": "Thai V1.2 ROM label rendered after per-ID WRAM injection",
+      "renderSha256": "0a6b713ff2d5ed6fd74ce6806460b1ae5cb38d245578d157039f1a9bdf40a6bc"
+    },
+    "general_tool:02": {
+      "nameTh": null,
+      "labelImageTh": "../catalogue/thai-labels/general_tool-02.png",
+      "representativeId": "02",
+      "capture": "Thai V1.2 ROM label rendered after per-ID WRAM injection",
+      "renderSha256": "678538dcf47d8d13423094be619077b95e8eb2199b975d07e1589093869315a0"
+    },
+    "general_tool:03": {
+      "nameTh": null,
+      "labelImageTh": "../catalogue/thai-labels/general_tool-03.png",
+      "representativeId": "03",
+      "capture": "Thai V1.2 ROM label rendered after per-ID WRAM injection",
+      "renderSha256": "f9cc00c1d6d3ac736d3c68df9373ca6f95a803ce017781cdecaa6e14267b889a"
+    },
+    "general_tool:04": {
+      "nameTh": null,
+      "labelImageTh": "../catalogue/thai-labels/general_tool-04.png",
+      "representativeId": "04",
+      "capture": "Thai V1.2 ROM label rendered after per-ID WRAM injection",
+      "renderSha256": "d72c32d45b31b77657669dda354d00fc8958ff1f4e9f04b0d2ae606693898380"
+    },
+    "general_tool:05": {
+      "nameTh": null,
+      "labelImageTh": "../catalogue/thai-labels/general_tool-05.png",
+      "representativeId": "05",
+      "capture": "Thai V1.2 ROM label rendered after per-ID WRAM injection",
+      "renderSha256": "678b812cb17ef52f45a93f80db7e6991649415b3d09f24030c7e5b4e4fd0c7cc"
+    },
+    "general_tool:06": {
+      "nameTh": null,
+      "labelImageTh": "../catalogue/thai-labels/general_tool-06.png",
+      "representativeId": "06",
+      "capture": "Thai V1.2 ROM label rendered after per-ID WRAM injection",
+      "renderSha256": "575239d08961ef7f9d2aba176819b885db00ce6b5cf228f2706e344c3320ad2d"
+    },
+    "general_tool:07": {
+      "nameTh": null,
+      "labelImageTh": "../catalogue/thai-labels/general_tool-07.png",
+      "representativeId": "07",
+      "capture": "Thai V1.2 ROM label rendered after per-ID WRAM injection",
+      "renderSha256": "9cb79a7a5a909ce2c176b9364746c39e397f016e8c07bc7b11a3c71de3e76f44"
+    },
+    "general_tool:08": {
+      "nameTh": null,
+      "labelImageTh": "../catalogue/thai-labels/general_tool-08.png",
+      "representativeId": "08",
+      "capture": "Thai V1.2 ROM label rendered after per-ID WRAM injection",
+      "renderSha256": "1e9cecb3a4738db8631f9734bea5a13e47e46dda7d78f2cbd02d718b22f26ed1"
+    },
+    "general_tool:09": {
+      "nameTh": null,
+      "labelImageTh": "../catalogue/thai-labels/general_tool-09.png",
+      "representativeId": "09",
+      "capture": "Thai V1.2 ROM label rendered after per-ID WRAM injection",
+      "renderSha256": "1e9cecb3a4738db8631f9734bea5a13e47e46dda7d78f2cbd02d718b22f26ed1"
+    },
+    "general_tool:0A": {
+      "nameTh": null,
+      "labelImageTh": "../catalogue/thai-labels/general_tool-0A.png",
+      "representativeId": "0A",
+      "capture": "Thai V1.2 ROM label rendered after per-ID WRAM injection",
+      "renderSha256": "1e9cecb3a4738db8631f9734bea5a13e47e46dda7d78f2cbd02d718b22f26ed1"
+    },
+    "general_tool:0B": {
+      "nameTh": null,
+      "labelImageTh": "../catalogue/thai-labels/general_tool-0B.png",
+      "representativeId": "0B",
+      "capture": "Thai V1.2 ROM label rendered after per-ID WRAM injection",
+      "renderSha256": "34950664acfe8f24ea7b22437164b40c29aa9914030241e5a10c0f357bac4e70"
+    },
+    "general_tool:0C": {
+      "nameTh": null,
+      "labelImageTh": "../catalogue/thai-labels/general_tool-0C.png",
+      "representativeId": "0C",
+      "capture": "Thai V1.2 ROM label rendered after per-ID WRAM injection",
+      "renderSha256": "5710cba78ba468aea24b52d20f90e74385faf1b4d3a99054bdbb3dff1094f221"
+    },
+    "general_tool:0D": {
+      "nameTh": null,
+      "labelImageTh": "../catalogue/thai-labels/general_tool-0D.png",
+      "representativeId": "0D",
+      "capture": "Thai V1.2 ROM label rendered after per-ID WRAM injection",
+      "renderSha256": "3c00990fd56da8f76f1ce2c8acaff3e0c2f9c7794a32f875652e290b7c65e4e0"
+    },
+    "general_tool:0E": {
+      "nameTh": null,
+      "labelImageTh": "../catalogue/thai-labels/general_tool-0E.png",
+      "representativeId": "0E",
+      "capture": "Thai V1.2 ROM label rendered after per-ID WRAM injection",
+      "renderSha256": "ad44f5a7c44671c158bcfde77c2529683cd9e2baa75d3683f699c0ca89a3d3a1"
+    },
+    "general_tool:0F": {
+      "nameTh": null,
+      "labelImageTh": "../catalogue/thai-labels/general_tool-0F.png",
+      "representativeId": "0F",
+      "capture": "Thai V1.2 ROM label rendered after per-ID WRAM injection",
+      "renderSha256": "234fa836cad9f6ff9c560917b3d7f367611f1f7dd7455264c73961e0c5e88e96"
+    },
+    "general_tool:10": {
+      "nameTh": null,
+      "labelImageTh": "../catalogue/thai-labels/general_tool-10.png",
+      "representativeId": "10",
+      "capture": "Thai V1.2 ROM label rendered after per-ID WRAM injection",
+      "renderSha256": "fb6bd93ffbc81ba9e241b3178a1c65cf7344b8f3b9575a750281888e5eb7c960"
+    },
+    "general_tool:11": {
+      "nameTh": null,
+      "labelImageTh": "../catalogue/thai-labels/general_tool-11.png",
+      "representativeId": "11",
+      "capture": "Thai V1.2 ROM label rendered after per-ID WRAM injection",
+      "renderSha256": "5da683387c128b3230e7b1b74d782e7da1b869f907ee27eaa3b8b965b7fd731d"
+    },
+    "general_tool:12": {
+      "nameTh": null,
+      "labelImageTh": "../catalogue/thai-labels/general_tool-12.png",
+      "representativeId": "12",
+      "capture": "Thai V1.2 ROM label rendered after per-ID WRAM injection",
+      "renderSha256": "ccb4be0af7eb68ea04301c313b65fcd4fa3517625c148f57e500cd55f143a7dc"
+    },
+    "general_tool:13": {
+      "nameTh": null,
+      "labelImageTh": "../catalogue/thai-labels/general_tool-13.png",
+      "representativeId": "13",
+      "capture": "Thai V1.2 ROM label rendered after per-ID WRAM injection",
+      "renderSha256": "914daf12f2b29f489dc5d67374b0dd53976b1ef91e11c16bc1b54b4957f71c3c"
+    },
+    "general_tool:14": {
+      "nameTh": null,
+      "labelImageTh": "../catalogue/thai-labels/general_tool-14.png",
+      "representativeId": "14",
+      "capture": "Thai V1.2 ROM label rendered after per-ID WRAM injection",
+      "renderSha256": "e90f73d7266eacba4ea75e036d365726eb94afd5eb455c764545fec096ea1a6a"
+    },
+    "general_tool:15": {
+      "nameTh": null,
+      "labelImageTh": "../catalogue/thai-labels/general_tool-15.png",
+      "representativeId": "15",
+      "capture": "Thai V1.2 ROM label rendered after per-ID WRAM injection",
+      "renderSha256": "e882a2bff622ed8ed7a5da5b75014c910c700716b0263165f384ecb14fa277dc"
+    },
+    "general_tool:16": {
+      "nameTh": null,
+      "labelImageTh": "../catalogue/thai-labels/general_tool-16.png",
+      "representativeId": "16",
+      "capture": "Thai V1.2 ROM label rendered after per-ID WRAM injection",
+      "renderSha256": "ec35f8f8da782936918a7aed51e18a3e7dd99e218562c9fc68c95e611011d1c7"
+    },
+    "general_tool:17": {
+      "nameTh": null,
+      "labelImageTh": "../catalogue/thai-labels/general_tool-17.png",
+      "representativeId": "17",
+      "capture": "Thai V1.2 ROM label rendered after per-ID WRAM injection",
+      "renderSha256": "bfe0d852d71521eec3341c8e6df11c776b52d7377f4c8780c3c5c7928b18798b"
+    }
+  }
+}

@@ -1,0 +1,39 @@
+{
+  "food:01": {
+    "nameTh": "ส้ม",
+    "evidenceImage": "../catalogue/thai-labels/food-01.png"
+  },
+  "food:02": {
+    "nameTh": "ข้าวปั้น",
+    "evidenceImage": "../catalogue/thai-labels/food-02.png"
+  },
+  "food:03": {
+    "nameTh": "ดังโงะ",
+    "evidenceImage": "../catalogue/thai-labels/food-03.png"
+  },
+  "food:04": {
+    "nameTh": "กล้วย",
+    "evidenceImage": "../catalogue/thai-labels/food-04.png"
+  },
+  "food:05": {
+    "nameTh": "องุ่น",
+    "evidenceImage": "../catalogue/thai-labels/food-05.png"
+  },
+  "food:06": {
+    "nameTh": "ข้าวกล่องบ๊วย",
+    "evidenceImage": "../catalogue/thai-labels/food-06.png"
+  },
+  "food:07": {
+    "nameTh": "หัวไชเท้า",
+    "evidenceImage": "../catalogue/thai-labels/food-07.png"
+  },
+  "food:09": {
+    "nameTh": "เห็ด",
+    "evidenceImage": "../catalogue/thai-labels/food-09.png"
+  },
+  "food:0A": {
+    "nameTh": "เห็ด",
+    "evidenceImage": "../catalogue/thai-labels/food-10.png",
+    "note": "ภาพชื่อไทยที่จับได้แสดงคำว่าเห็ดเช่นเดียวกับ09; ชื่อญี่ปุ่นและผลอาหารต้นฉบับต่างกัน ต้องไม่เติมคำว่าพิษลงในชื่อที่อ้างว่าเหมือนROM"
+  }
+}

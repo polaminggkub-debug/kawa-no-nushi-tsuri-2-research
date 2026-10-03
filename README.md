@@ -1,10 +1,12 @@
 # Kawa no Nushi Tsuri 2 (SFC/SNES) research
 
+![川のぬし釣り2 / Kawa no Nushi Tsuri 2 title screen](catalogue/assets/kawa-no-nushi-tsuri-2-title-screen.png)
+
 An independent, source-linked study of the Japanese Super Famicom release of **Kawa no Nushi Tsuri 2** (『川のぬし釣り2』). The project documents item records, the parts used to make flies, and a small set of effects confirmed by running the game. It does not distribute the game.
 
-**Languages:** [日本語](README.ja.md) · [Findings (English)](docs/findings.en.md) · [調査結果（日本語）](docs/findings.ja.md) · [English item catalogue](catalogue/index.html) · [日本語アイテムカタログ](catalogue/index.ja.html)
+**Languages:** [ไทย — item catalogue](https://polaminggkub-debug.github.io/kawa-no-nushi-tsuri-2-research/catalogue/index.th.html) · [日本語](README.ja.md) · [Findings (English)](docs/findings.en.md) · [調査結果（日本語）](docs/findings.ja.md) · [English item catalogue](catalogue/index.html) · [日本語アイテムカタログ](catalogue/index.ja.html)
 
-**Open the searchable gallery:** [English](https://polaminggkub-debug.github.io/kawa-no-nushi-tsuri-2-research/catalogue/) · [日本語](https://polaminggkub-debug.github.io/kawa-no-nushi-tsuri-2-research/catalogue/index.ja.html)
+**Open the searchable gallery:** [English](https://polaminggkub-debug.github.io/kawa-no-nushi-tsuri-2-research/catalogue/) · [日本語](https://polaminggkub-debug.github.io/kawa-no-nushi-tsuri-2-research/catalogue/index.ja.html) · [ไทย](https://polaminggkub-debug.github.io/kawa-no-nushi-tsuri-2-research/catalogue/index.th.html)
 
 ![Sample research catalogue](examples/catalogue-en.png)
 

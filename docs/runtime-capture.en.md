@@ -1,6 +1,6 @@
 # Optional runtime captures
 
-This helper is a small headless Libretro frontend for the research workflow. It reads your matching original ROM, runs a separately supplied Snes9x Libretro core and saves genuine game frames. It supports controlled WRAM changes for investigation. It is not a general emulator UI or a deterministic replay of every experiment in this repository.
+This helper is a small headless Libretro frontend for the research workflow. It reads your matching original Japanese ROM or known Thai V1.2 patched ROM, runs a separately supplied Snes9x Libretro core and saves genuine game frames. It supports controlled WRAM changes for investigation. It is not a general emulator UI or a deterministic replay of every experiment in this repository.
 
 ## Requirements and first capture
 
@@ -32,3 +32,7 @@ python3 scripts/capture.py --rom /path/to/your/game.sfc --core /path/to/snes9x_l
 ```
 
 Observe the selected item and resulting message before interpreting RAM. The recorded mushroom experiment ended at 11 HP from a controlled start of 1 HP. Evidence images and measurements are provided in `data/food-effects-confirmed.json`; the original source states are not redistributed. Fish-food trials additionally require a valid carried-fish record, so changing only the food selector does not reproduce them.
+
+## Thai label captures
+
+The helper also accepts the locally verified Thai V1.2 build (2,097,152 bytes, SHA-1 `453047280f53ab9faf93142b957967c1eec69afc`) for label screenshots. This does not expand the supported builds of the original-ROM table extractor. Label spelling and source crop evidence are separate from the gameplay measurements made on the Japanese original. Obtain your own patch/ROM separately; neither is included here.

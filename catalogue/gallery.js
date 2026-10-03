@@ -1,5 +1,5 @@
 (() => {
-  const lang = document.documentElement.dataset.locale === 'ja' ? 'ja' : 'en';
+  const lang = ['ja','th'].includes(document.documentElement.dataset.locale) ? document.documentElement.dataset.locale : 'en';
   const copy = {
     en: {
       title: 'Kawa no Nushi Tsuri 2 — Item Catalogue & ROM Research', lead: 'A searchable catalogue of the game’s rods, lures, fly parts, baits, hooks, floats, food and tools—with ROM fields we could verify and clear notes where a stat is still a mystery.',
@@ -23,6 +23,9 @@
       fieldNames: { styleCode: 'Rod style code', fightLimitInternal: 'Fight counter cutoff (internal)', rangeMultiplier: 'Reach multiplier', rangeInternalValueAtBase0x0150: 'Reach threshold (internal units)', fishIdMatchCode: 'Fish-ID comparison code', fightResponseCode: 'Fight-response branch selector', specialFishComparisonID: 'Fish-ID comparison value' },
       noteNoJs: 'Enable JavaScript to load the searchable catalogue.'
     },
+    // THAI_COPY_START
+    th: {"title":"ตกปลาทาโร่ 2 (Kawa no Nushi Tsuri 2) — คลังไอเท็มและข้อมูลจาก ROM","lead":"แค็ตตาล็อกค้นหาเบ็ด เหยื่อปลอม ชิ้นส่วนฟลาย เหยื่อ ตะขอ ทุ่น อาหาร และอุปกรณ์ พร้อมค่าจาก ROM ที่ตรวจสอบได้ และระบุชัดเจนว่าส่วนใดยังไม่ทราบความหมาย","edition":"SFC / SNES · ฉบับญี่ปุ่น","entries":"มีข้อมูล {n} รายการ","sampleKicker":"ตัวอย่างค่าที่ถอดความหมายได้","sampleTitle":"ดูค่าตัวเลขพร้อมความหมายที่ตรวจสอบแล้ว","sampleCopy":"ROM เก็บตัวเลขไว้หลายแบบ แต่หลายค่าเป็นตัวควบคุมภายใน ไม่ใช่ค่าสถานะอย่าง “พลัง” หรือ “โอกาสปลากินเหยื่อ” ตัวอย่างนี้แสดงค่าจริงและสิ่งที่โค้ดเกมทำกับมัน","item":"ไอเท็ม","rom":"ช่องข้อมูล ROM ที่อธิบายได้","price":"ช่องราคาใน ROM","flyKicker":"เมนูประกอบฟลาย","flyTitle":"เลือกบอดี้ ปีก หาง พร้อมตรวจราคาจริง","flyCopy":"ภาพเหล่านี้จับจากเกมญี่ปุ่นต้นฉบับโดยตรง เราตามขั้นตอนเมนูประกอบฟลายในร้านด่านแรกจนจบ และตรวจสอบราคาหนึ่งรายการกับเงินที่ลดลง","flyFact":"จากหน้าจอเมย์ฟลายที่ตรวจ: ปีก 20 แบบ และภาพหาง 9 แบบ พร้อมตัวเลือก “ไม่มี” แยกต่างหาก ชุดบอดี้แรก + ปีกแรก + หางแรก คิดราคา 25 เยน (5 + 5 + 15) เป็นราคาจากชุดที่ทดลองหนึ่งชุด ไม่ใช่ราคาทุกชุด","catalogueKicker":"รายการไอเท็มทั้งหมด","catalogueTitle":"ค้นหาข้อมูลทั้ง 315 รายการ","catalogueCopy":"ค้นด้วยชื่อภาษาไทยที่ถอดจากภาพแล้ว ภาษาอังกฤษ ญี่ปุ่น หรือเลข ID ได้ เปิดการ์ดเพื่อดูไบต์ดิบและตำแหน่งระเบียนใน ROM","search":"ค้นหา","searchPlaceholder":"ลองพิมพ์ชื่อไอเท็ม หรือ ID เช่น 0D","category":"ประเภท","sort":"เรียงตาม","all":"ทุกประเภท","sortId":"ID ไอเท็ม","sortName":"ชื่อ","sortPrice":"ช่องราคา","results":"แสดง {n} รายการ","empty":"ไม่พบรายการที่ตรงกัน ลองค้นด้วยชื่อหรือ ID อื่น","noPrice":"ไม่มีช่องราคา","yen":"¥","imageNote":"ภาพจากเกมจริง","openFrame":"เปิดภาพหน้าจอเกมเต็ม ↗","details":"ระเบียน ROM และคำอธิบายฟิลด์","offset":"ตำแหน่งในไฟล์","bytes":"ไบต์ดิบ","decoded":"ฟิลด์ที่อธิบายความหมายได้","none":"ไม่มีระเบียนตารางสำหรับรายการนี้","confidence":"หลักฐาน","japanese":"ชื่อที่แสดงในเกมภาษาญี่ปุ่น","priceField":"ช่องราคาใน ROM","zeroPrice":"ค่าในตาราง ROM เป็น 0 เยน แต่ยังยืนยันไม่ได้ว่าไอเท็มนี้ฟรีหรือมีขายในร้าน","methodKicker":"วิธีอ่านข้อมูล","methodTitle":"แยกข้อมูลที่ยืนยัน คำแปล และค่าที่ยังไม่รู้","sourcesTitle":"แหล่งข้อมูลและวิธีค้นคว้า","footer":"งานค้นคว้าอิสระของแฟนเกม ไม่มีไฟล์ ROM รวมอยู่ด้วย","readme":"รายละเอียดโครงการ","langLink":"English / 日本語","customFrames":["ร้านในด่านแรก: เลือกประเภทฟลาย","หน้าจอเลือกบอดี้เมย์ฟลาย","หลังเลือกบอดี้: หน้าจอเลือกปีก","หลังเลือกปีก: ภาพหางและตัวเลือก “ไม่มี” แยกต่างหาก","ตัวอย่างชุดที่ประเมินราคา 25 เยน","หลังยืนยันการสั่งทำ"],"quick":{"rod:0A":"เกณฑ์ตัวนับช่วงสู้ปลา 70; เกณฑ์ระยะ 15 × 336 = 5,040 หน่วยภายใน หาก HP ต่ำกว่า 100 เกณฑ์สู้ปลาจะลดตาม HP ปัจจุบัน (ขั้นต่ำ 10)","rod:0D":"เกณฑ์ตัวนับช่วงสู้ปลา 120; เกณฑ์ระยะ 24 × 336 = 8,064 หน่วยภายใน หาก HP ต่ำกว่า 100 เกณฑ์สู้ปลาจะลดตาม HP ปัจจุบัน (ขั้นต่ำ 10)","lure:12":"รหัสแขนงการทำงาน 9; มีการเทียบ ID ปลาแบบมีเงื่อนไขกับค่า 11 → Black bass (ブラックバス) ทำให้เข้าเส้นทางการทำงานอีกแบบ ไม่ได้ยืนยันว่าใช้ได้เฉพาะปลานี้หรือมีโบนัส","lure:21":"รหัสแขนงการทำงาน 7; มีการเทียบ ID ปลาแบบมีเงื่อนไขกับค่า 38 → Namazu (ナマズ) ทำให้เข้าเส้นทางการทำงานอีกแบบ ไม่ได้ยืนยันว่าใช้ได้เฉพาะปลานี้หรือมีโบนัส","lure:51":"รหัสแขนงการทำงาน 5; มีการเทียบ ID ปลาแบบมีเงื่อนไขกับค่า 55 → Akame (アカメ) ทำให้เข้าเส้นทางการทำงานอีกแบบ ไม่ได้ยืนยันว่าใช้ได้เฉพาะปลานี้หรือมีโบนัส","food:01":"ผลที่วัดในเกม: ฟื้น HP 5 หน่วย","food:0A":"ผลที่วัดในเกม: HP กลายเป็น 0"},"fieldNames":{"styleCode":"รหัสรูปแบบการตกของคันเบ็ด","fightLimitInternal":"เกณฑ์ตัวนับช่วงสู้ปลา (ค่าภายใน)","rangeMultiplier":"ตัวคูณระยะ","rangeInternalValueAtBase0x0150":"เกณฑ์ระยะ (หน่วยภายในเกม)","fishIdMatchCode":"รหัสเทียบ ID ปลา","fightResponseCode":"รหัสแขนงการตอบสนองช่วงสู้ปลา","specialFishComparisonID":"ค่า ID ปลาที่ใช้เทียบ"},"noteNoJs":"เปิด JavaScript เพื่อโหลดแค็ตตาล็อกแบบค้นหาได้","researchNotes":["แค็ตตาล็อกนี้ลงรายการที่มีชื่อหรือภาพให้ตรวจสอบได้ครบ 315 รายการ: คันเบ็ด 21, เหยื่อปลอม 81, บอดี้ฟลาย 64, ปีก 47, หาง 23, เหยื่อ 23, ตะขอ 13, ทุ่น/ตะกั่ว 10, อาหาร 10 และอุปกรณ์/ไอเท็มเควสต์ 23 ชิ้นส่วนบอดี้ 64 + ปีก 47 + หาง 23 ครบระเบียนฟลายทั้ง 134 รายการในตาราง ROM","แสดงระเบียนตารางฟลายทั้ง 134 รายการ แบ่งเป็นบอดี้ 64 ปีก 47 และหาง 23 โดยตัด ID 87 ซึ่งเป็นรหัสว่าไม่มีไอเท็มออก","ช่องราคาใน ROM ไม่ได้ยืนยันว่าร้านใดมีไอเท็มขาย และช่องราคา 0 ก็ไม่ได้ยืนยันว่าได้มาฟรี ค่าราคาของชิ้นส่วนฟลายเป็นราคาของชิ้นส่วน ไม่ใช่ราคาขายปลีกของฟลายที่ประกอบเสร็จแล้ว","คู่มือ SFC ภาษาญี่ปุ่นอธิบายประเภทคันเบ็ด ทุ่น เครื่องหมายบนสาย ตะกั่ว ตะขอ เหยื่อ และตระกูลฟลาย ชื่อภาษาอังกฤษในรายการเป็นคำแปล ส่วนชื่อญี่ปุ่นคงข้อความที่พบในเกม","ตรวจเมนูช่างประกอบฟลายในร้านด่านแรกโดยตรง: เลือกประเภท บอดี้ ปีก หางหรือ “ไม่มี” แล้วจึงยืนยัน หน้าจอเมย์ฟลายที่ตรวจมีปีก 20 แบบ และภาพหาง 9 แบบพร้อมตัวเลือก “ไม่มี” แยกต่างหาก ราคาหนึ่งชุดที่วัดได้คือ 25 เยน (5 + 5 + 15) ไม่ใช่ราคากลางของทุกชุด","ภาพจับจาก ROM ญี่ปุ่นที่ผู้ใช้ให้มา ซึ่งไม่ได้ดัดแปลง ในการจำลอง Snes9x แบบแยกสำหรับไอเท็มที่ซ่อนอยู่ เราเขียน ID ของไอเท็มที่ถูกต้องลง WRAM ชั่วคราวเพื่อให้ตัวเกมเป็นผู้วาดภาพ ไม่ได้ใช้ภาพที่สร้างด้วย AI","ชื่อไทยที่มีภาพประกอบใต้ชื่อไอเท็ม จับจากแพตช์ไทย V1.2 โดยตรง หากยังอ่านตัวสะกดจากภาพไม่ชัด จะคงชื่อญี่ปุ่นไว้ให้เทียบกับภาพ ชื่อปลาที่ถือในเมนูอาหารเปลี่ยนตามปลาตัวนั้น ส่วนคำอธิบายค่าต่าง ๆ เป็นคำแปลสำหรับเว็บไซต์จากผลวิจัย ROM ญี่ปุ่นต้นฉบับ"],"customizerFrames":["ร้านในด่านแรก: เลือกประเภทฟลาย","หน้าจอเลือกบอดี้เมย์ฟลาย","หลังเลือกบอดี้: หน้าจอเลือกปีก","หลังเลือกปีก: ภาพหางและตัวเลือก “ไม่มี” แยกต่างหาก","ตัวอย่างชุดที่ประเมินราคา 25 เยน","หลังยืนยันการสั่งทำ"],"sources":[{"title":"คู่มือ SFC ต้นฉบับ: 川のぬし釣り2","detail":"ภาพสแกนคู่มือ ใช้อ้างอิงหน้าที่ทั่วไปของอุปกรณ์และคำเรียกประเภทฟลาย"},{"title":"รายการไอเท็มและการสำรวจหน่วยความจำโดยชุมชนผู้เล่น","detail":"ข้อมูลประกอบสำหรับ ID ชื่อไอเท็ม และจำนวนที่ถือได้ รายการนี้ตรวจทานกับระเบียน ROM และชื่อภาษาญี่ปุ่นในเกม"},{"title":"ข้อมูลระบุ ROM ที่ใช้ในการค้นคว้า","detail":"ROM ญี่ปุ่นต้นฉบับที่ผู้ใช้แนบมา ขนาด 1,572,864 ไบต์; SHA-1 c2103dd94e2a1a65a495fc02adc2e7d040f31212"}]},
+    // THAI_COPY_END
     ja: {
       title: '川のぬし釣り2 — アイテム一覧・ROM解析', lead: '竿、ルアー、毛バリ部品、餌、針、ウキ、食料、道具を検索できる一覧。ROMで確認できた数値と、まだ意味が分からない値を分けて掲載。',
       edition: 'SFC · 日本版', entries: n => `掲載 ${n} 件`, sampleKicker: '解読できた数値の例', sampleTitle: '数字の意味をゲーム処理と照合', sampleCopy: 'ROMには数値が保存されていますが、「強さ」や「ヒット率」のような単純な能力値とは限りません。実際の値と、ゲーム内コードでの使われ方を例示します。',
@@ -44,15 +47,19 @@
       noteNoJs: '検索カタログを表示するにはJavaScriptを有効にしてください。'
     }
   }[lang];
+  if (typeof copy.entries === 'string') { const template=copy.entries; copy.entries=n=>template.replace('{n}',n); }
+  if (typeof copy.results === 'string') { const template=copy.results; copy.results=n=>template.replace('{n}',n); }
+  const itemName=item=>lang==='th'?(item.nameTh||item.nameJa):lang==='ja'?item.nameJa:item.nameEn;
+  const itemNotes=item=>lang==='th'?(item.notesTh||item.notesEn):lang==='ja'?item.notesJa:item.notesEn;
   const esc = value => String(value ?? '').replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
   const set = (selector, text) => { const node = document.querySelector(selector); if (node) node.textContent = text; };
-  document.title = lang === 'ja' ? '川のぬし釣り2（SFC）アイテム一覧・竿・ルアー・ROM解析' : 'Kawa no Nushi Tsuri 2 (SNES/SFC) — Items, Rods, Lures & ROM Research';
-  document.querySelectorAll('[data-t]').forEach(node => { const value = copy[node.dataset.t] ?? copy[node.dataset.t.replace(/-([a-z])/g,(_,c)=>c.toUpperCase())]; if (typeof value === 'string') node.textContent = value; });
+  document.title = lang === 'th' ? 'ตกปลาทาโร่ 2 — ไอเท็ม คันเบ็ด เหยื่อ และข้อมูล ROM | Kawa no Nushi Tsuri 2' : lang === 'ja' ? '川のぬし釣り2（SFC）アイテム一覧・竿・ルアー・ROM解析' : 'Kawa no Nushi Tsuri 2 (SNES/SFC) — Items, Rods, Lures & ROM Research';
+  document.querySelectorAll('[data-t]').forEach(node => { const key=({'th-item':'item','th-rom':'rom','th-price':'price','search-label':'search','category-label':'category','sort-label':'sort','readme-link':'readme'})[node.dataset.t]||node.dataset.t.replace(/-([a-z])/g,(_,c)=>c.toUpperCase()); const value=copy[key]; if (typeof value === 'string') node.textContent = value; });
   document.querySelectorAll('[data-t-placeholder]').forEach(node => { const value = copy[node.dataset.tPlaceholder] ?? copy[node.dataset.tPlaceholder.replace(/-([a-z])/g,(_,c)=>c.toUpperCase())]; if (value) node.placeholder = value; });
-  const langLink = document.querySelector('.language-link'); if (langLink) langLink.textContent = copy.langLink;
+
   const itemLabel = document.querySelector('thead th'); if (itemLabel) itemLabel.textContent = copy.item;
   const headers = document.querySelectorAll('thead th'); if (headers[1]) headers[1].textContent = copy.rom; if (headers[2]) headers[2].textContent = copy.price;
-  const imageText = item => lang === 'ja' ? item.imageNoteJa : item.imageNoteEn;
+  const imageText = item => lang === 'th' ? item.imageNoteTh : lang === 'ja' ? item.imageNoteJa : item.imageNoteEn;
   const formatYen = item => item.priceYen === null || item.priceYen === undefined ? copy.noPrice : `${copy.yen}${item.priceYen}`;
   const exampleIds = ['rod:0A','rod:0D','lure:12','lure:21','lure:51','food:01','food:0A'];
   const categoryNames = {};
@@ -62,18 +69,18 @@
     const tbody = document.getElementById('sample-rows');
     const selected = exampleIds.map(key => allItems.find(item => `${item.category}:${item.id}` === key)).filter(Boolean);
     tbody.innerHTML = selected.map(item => {
-      const summary = copy.quick[`${item.category}:${item.id}`] || (lang === 'ja' ? item.notesJa[0] : item.notesEn[0]);
-      return `<tr><td><div class="sample-item"><img src="${esc(item.image)}" alt=""><div><span class="item-id">${esc(item.id)}</span><strong>${esc(lang==='ja'?item.nameJa:item.nameEn)}</strong><small>${esc(item.nameJa)}</small></div></div></td><td>${esc(summary)}</td><td><span class="price-badge">${esc(formatYen(item))}</span></td></tr>`;
+      const summary = copy.quick[`${item.category}:${item.id}`] || itemNotes(item)[0];
+      return `<tr><td><div class="sample-item"><img src="${esc(item.image)}" alt=""><div><span class="item-id">${esc(item.id)}</span><strong>${esc(itemName(item))}</strong><small>${esc(item.nameJa)}</small></div></div></td><td>${esc(summary)}</td><td><span class="price-badge">${esc(formatYen(item))}</span></td></tr>`;
     }).join('');
   }
   function renderFrames(data) {
     const box=document.getElementById('customizer-frames');
-    box.innerHTML=data.customizerFrames.map((frame,index)=>`<figure class="custom-frame"><a href="${esc(frame.src)}" target="_blank" rel="noopener"><img loading="lazy" src="${esc(frame.src)}" alt="${esc(lang==='ja'?frame.captionJa:frame.captionEn)}"></a><figcaption><span>${String(index+1).padStart(2,'0')}</span>${esc(lang==='ja'?frame.captionJa:frame.captionEn)}</figcaption></figure>`).join('');
+    box.innerHTML=data.customizerFrames.map((frame,index)=>`<figure class="custom-frame"><a href="${esc(frame.src)}" target="_blank" rel="noopener"><img loading="lazy" src="${esc(frame.src)}" alt="${esc(lang==='th'?frame.captionTh:lang==='ja'?frame.captionJa:frame.captionEn)}"></a><figcaption><span>${String(index+1).padStart(2,'0')}</span>${esc(lang==='th'?frame.captionTh:lang==='ja'?frame.captionJa:frame.captionEn)}</figcaption></figure>`).join('');
   }
   function renderNotes(data) {
-    const list=lang==='ja'?data.researchNotes.ja:data.researchNotes.en;
+    const list=data.researchNotes[lang]||data.researchNotes.en;
     document.getElementById('research-notes').innerHTML=list.map(text=>`<p>${esc(text)}</p>`).join('');
-    document.getElementById('sources').innerHTML=data.sources.map(src=>`<p>${src.url?`<a href="${esc(src.url)}" target="_blank" rel="noopener">${esc(lang==='ja'?src.titleJa:src.titleEn)} ↗</a>`:`<strong>${esc(lang==='ja'?src.titleJa:src.titleEn)}</strong>`}<br><span>${esc(lang==='ja'?src.detailJa:src.detailEn)}</span></p>`).join('');
+    document.getElementById('sources').innerHTML=data.sources.map(src=>`<p>${src.url?`<a href="${esc(src.url)}" target="_blank" rel="noopener">${esc(lang==='th'?src.titleTh:lang==='ja'?src.titleJa:src.titleEn)} ↗</a>`:`<strong>${esc(lang==='th'?src.titleTh:lang==='ja'?src.titleJa:src.titleEn)}</strong>`}<br><span>${esc(lang==='th'?src.detailTh:lang==='ja'?src.detailJa:src.detailEn)}</span></p>`).join('');
   }
   function renderFilters() {
     const cats=[...new Set(allItems.map(x=>x.category))];
@@ -87,27 +94,30 @@
     const raw=Object.entries(item.rawFields||{}).map(([key,value])=>`<dt>${esc(key)}</dt><dd>${Number(value).toString(16).toUpperCase().padStart(2,'0')} <span class="decimal">(${esc(value)})</span></dd>`).join('');
     return `<details class="record-details"><summary>${esc(copy.details)}</summary>${bytes}${decoded?`<h4>${esc(copy.decoded)}</h4><dl>${decoded}</dl>`:''}${raw?`<h4>${esc(copy.bytes)}</h4><dl>${raw}</dl>`:''}</details>`;
   }
+  function thaiLabel(item) {
+    return lang==='th'&&item.labelImageTh?`<a href="${esc(item.labelImageTh)}" target="_blank" rel="noopener"><img class="thai-rom-label" loading="lazy" src="${esc(item.labelImageTh)}" alt="${esc(item.nameTh||'ชื่อไอเท็มจาก ROM ไทย · ID '+item.id)}"></a><span class="thai-label-note">${esc(item.labelContextTh||'ภาพชื่อจากแพตช์ไทย V1.2')}</span>`:'';
+  }
   function renderCards() {
     const term=document.getElementById('search').value.trim().toLocaleLowerCase();
     const category=document.getElementById('category-filter').value;
     const order=document.getElementById('sort-filter').value;
-    let shown=allItems.filter(item=>(category==='all'||item.category===category)&&(!term||item.search.toLocaleLowerCase().includes(term)||item.notesEn.join(' ').toLocaleLowerCase().includes(term)||item.notesJa.join(' ').toLocaleLowerCase().includes(term)));
-    if(order==='name') shown.sort((a,b)=>(lang==='ja'?a.nameJa.localeCompare(b.nameJa,'ja'):a.nameEn.localeCompare(b.nameEn))||a.id.localeCompare(b.id));
+    let shown=allItems.filter(item=>(category==='all'||item.category===category)&&(!term||item.search.toLocaleLowerCase().includes(term)||item.notesEn.join(' ').toLocaleLowerCase().includes(term)||item.notesJa.join(' ').toLocaleLowerCase().includes(term)||(item.nameTh||'').toLocaleLowerCase().includes(term)||(item.notesTh||[]).join(' ').toLocaleLowerCase().includes(term)));
+    if(order==='name') shown.sort((a,b)=>itemName(a).localeCompare(itemName(b),lang)||a.id.localeCompare(b.id));
     else if(order==='price') shown.sort((a,b)=>(a.priceYen??Infinity)-(b.priceYen??Infinity)||a.category.localeCompare(b.category)||a.id.localeCompare(b.id));
     else shown.sort((a,b)=>a.category.localeCompare(b.category)||a.id.localeCompare(b.id));
     set('#result-count',copy.results(shown.length));
     const box=document.getElementById('cards');
     if(!shown.length){box.innerHTML=`<p class="empty-state">${esc(copy.empty)}</p>`;return;}
     box.innerHTML=shown.map(item=>{
-      const name=lang==='ja'?item.nameJa:item.nameEn;
-      const notes=lang==='ja'?item.notesJa:item.notesEn;
-      const confidence=lang==='ja'?item.confidenceLabelJa:item.confidenceLabelEn;
-      return `<article class="item-card"><div class="card-main"><figure class="sprite"><img loading="lazy" src="${esc(item.image)}" alt="${esc(name)}"><figcaption>${esc(imageText(item))}</figcaption></figure><div class="card-text"><div class="card-topline"><span class="category-tag">${esc(lang==='ja'?item.categoryJa:item.categoryEn)}</span><span class="item-id">ID ${esc(item.id)}</span></div><h3>${esc(name)}</h3><p class="jp-name" lang="ja">${esc(item.nameJa)}</p><div class="price-row"><span class="price-badge">${esc(formatYen(item))}</span><span class="confidence">${esc(confidence)}</span></div></div></div><ul class="stat-list">${notes.map(note=>`<li>${esc(note)}</li>`).join('')}</ul><div class="card-actions"><a class="frame-link" href="${esc(item.frame)}" target="_blank" rel="noopener">${esc(copy.openFrame)}</a></div>${detailedFields(item)}</article>`;
+      const name=itemName(item);
+      const notes=itemNotes(item);
+      const confidence=lang==='th'?item.confidenceLabelTh:lang==='ja'?item.confidenceLabelJa:item.confidenceLabelEn;
+      return `<article class="item-card"><div class="card-main"><figure class="sprite"><img loading="lazy" src="${esc(item.image)}" alt="${esc(name)}"><figcaption>${esc(imageText(item))}</figcaption></figure><div class="card-text"><div class="card-topline"><span class="category-tag">${esc(lang==='th'?item.categoryTh:lang==='ja'?item.categoryJa:item.categoryEn)}</span><span class="item-id">ID ${esc(item.id)}</span></div><h3>${esc(name)}</h3>${thaiLabel(item)}<p class="jp-name" lang="ja">${esc(item.nameJa)}</p><div class="price-row"><span class="price-badge">${esc(formatYen(item))}</span><span class="confidence">${esc(confidence)}</span></div></div></div><ul class="stat-list">${notes.map(note=>`<li>${esc(note)}</li>`).join('')}</ul><div class="card-actions"><a class="frame-link" href="${esc(item.frame)}" target="_blank" rel="noopener">${esc(copy.openFrame)}</a></div>${detailedFields(item)}</article>`;
     }).join('');
   }
   fetch('gallery-data.json').then(response=>{if(!response.ok)throw new Error('catalogue unavailable');return response.json();}).then(data=>{
     allItems=data.items;
-    for (const item of allItems) categoryNames[item.category]=lang==='ja'?item.categoryJa:item.categoryEn;
+    for (const item of allItems) categoryNames[item.category]=lang==='th'?item.categoryTh:lang==='ja'?item.categoryJa:item.categoryEn;
     set('#entry-count',copy.entries(allItems.length));
     renderSamples();renderFrames(data);renderNotes(data);renderFilters();renderCards();
     document.getElementById('search').addEventListener('input',renderCards);

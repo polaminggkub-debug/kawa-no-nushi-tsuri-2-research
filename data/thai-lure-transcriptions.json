@@ -1,0 +1,58 @@
+{
+  "lure:01": {
+    "nameTh": "ท็อปวอเตอร์",
+    "evidenceImage": "../catalogue/thai-labels/lure-01.png"
+  },
+  "lure:0E": {
+    "nameTh": "วิ่งน้ำตื้น",
+    "evidenceImage": "../catalogue/thai-labels/lure-0E.png"
+  },
+  "lure:0F": {
+    "evidenceImage": "../catalogue/thai-labels/lure-0F.png",
+    "note": "ตัวสะกดส่วนท้ายอ่านจากภาพครอปได้ไม่ชัด จึงเว้น nameTh ไว้"
+  },
+  "lure:12": {
+    "evidenceImage": "../catalogue/thai-labels/lure-12.png",
+    "note": "ตัวสะกดส่วนท้ายอ่านจากภาพครอปได้ไม่ชัด จึงเว้น nameTh ไว้"
+  },
+  "lure:15": {
+    "nameTh": "ดำน้ำลึก",
+    "evidenceImage": "../catalogue/thai-labels/lure-15.png"
+  },
+  "lure:16": {
+    "nameTh": "จมน้ำ",
+    "evidenceImage": "../catalogue/thai-labels/lure-16.png"
+  },
+  "lure:20": {
+    "nameTh": "ยางกบ",
+    "evidenceImage": "../catalogue/thai-labels/lure-20.png"
+  },
+  "lure:21": {
+    "nameTh": "ยางกบแดง",
+    "evidenceImage": "../catalogue/thai-labels/lure-21.png"
+  },
+  "lure:22": {
+    "nameTh": "ยางหนู",
+    "evidenceImage": "../catalogue/thai-labels/lure-22.png"
+  },
+  "lure:23": {
+    "nameTh": "ยางหนอน",
+    "evidenceImage": "../catalogue/thai-labels/lure-23.png"
+  },
+  "lure:25": {
+    "nameTh": "ยางกุ้ง",
+    "evidenceImage": "../catalogue/thai-labels/lure-25.png"
+  },
+  "lure:29": {
+    "nameTh": "จิ๊ก",
+    "evidenceImage": "../catalogue/thai-labels/lure-29.png"
+  },
+  "lure:2E": {
+    "nameTh": "สปูน",
+    "evidenceImage": "../catalogue/thai-labels/lure-2E.png"
+  },
+  "lure:46": {
+    "nameTh": "สปินเนอร์",
+    "evidenceImage": "../catalogue/thai-labels/lure-46.png"
+  }
+}

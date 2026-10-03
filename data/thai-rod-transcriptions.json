@@ -1,0 +1,86 @@
+{
+  "rod:01": {
+    "nameTh": "คันทานาโกะ 2m",
+    "evidenceImage": "../catalogue/thai-labels/rod-01.png"
+  },
+  "rod:02": {
+    "nameTh": "คันคาร์บอนลำธาร 6m",
+    "evidenceImage": "../catalogue/thai-labels/rod-02.png"
+  },
+  "rod:03": {
+    "nameTh": "คันยามาเบะ 3.9m",
+    "evidenceImage": "../catalogue/thai-labels/rod-03.png"
+  },
+  "rod:04": {
+    "nameTh": "คันคาร์บอนน้ำใส 5.3m",
+    "evidenceImage": "../catalogue/thai-labels/rod-04.png"
+  },
+  "rod:05": {
+    "nameTh": "คันยามาเมะ 4.5m",
+    "evidenceImage": "../catalogue/thai-labels/rod-05.png"
+  },
+  "rod:07": {
+    "nameTh": "คันอายุ 7m",
+    "evidenceImage": "../catalogue/thai-labels/rod-07.png"
+  },
+  "rod:08": {
+    "nameTh": "คันคาร์ป 5m",
+    "evidenceImage": "../catalogue/thai-labels/rod-08.png"
+  },
+  "rod:09": {
+    "nameTh": "คันเฮระ 3m",
+    "evidenceImage": "../catalogue/thai-labels/rod-09.png"
+  },
+  "rod:0A": {
+    "nameTh": "คันลัวร์เล็ก",
+    "evidenceImage": "../catalogue/thai-labels/rod-10.png"
+  },
+  "rod:0B": {
+    "nameTh": "คันลัวร์กลาง",
+    "evidenceImage": "../catalogue/thai-labels/rod-11.png"
+  },
+  "rod:0C": {
+    "nameTh": "คันลัวร์ใหญ่",
+    "evidenceImage": "../catalogue/thai-labels/rod-12.png"
+  },
+  "rod:0D": {
+    "nameTh": "คันลัวร์ปลาใหญ่",
+    "evidenceImage": "../catalogue/thai-labels/rod-13.png"
+  },
+  "rod:0E": {
+    "nameTh": "คันหวดเล็ก",
+    "evidenceImage": "../catalogue/thai-labels/rod-14.png"
+  },
+  "rod:0F": {
+    "nameTh": "คันหวดกลาง",
+    "evidenceImage": "../catalogue/thai-labels/rod-15.png"
+  },
+  "rod:10": {
+    "nameTh": "คันหวดสองมือ",
+    "evidenceImage": "../catalogue/thai-labels/rod-16.png"
+  },
+  "rod:11": {
+    "nameTh": "คันฟลายเล็ก",
+    "evidenceImage": "../catalogue/thai-labels/rod-17.png"
+  },
+  "rod:12": {
+    "nameTh": "คันฟลายกลาง",
+    "evidenceImage": "../catalogue/thai-labels/rod-18.png"
+  },
+  "rod:13": {
+    "nameTh": "คันฟลายใหญ่",
+    "evidenceImage": "../catalogue/thai-labels/rod-19.png"
+  },
+  "rod:14": {
+    "nameTh": "คันอายุคาร์บอน 10m",
+    "evidenceImage": "../catalogue/thai-labels/rod-20.png"
+  },
+  "rod:15": {
+    "nameTh": "คันเฮระคาร์บอน 6.5m",
+    "evidenceImage": "../catalogue/thai-labels/rod-21.png"
+  },
+  "rod:06": {
+    "evidenceImage": "../catalogue/thai-labels/rod-06.png",
+    "note": "อ่านชื่อชนิดปลาระหว่างคำว่า “คัน” กับความยาว 3.3 m จากพิกเซลได้ไม่แน่ชัด จึงเว้น nameTh ไว้"
+  }
+}

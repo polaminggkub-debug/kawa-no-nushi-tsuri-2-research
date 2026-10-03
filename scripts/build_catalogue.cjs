@@ -4,9 +4,47 @@
 const fs = require('node:fs');
 const path = require('node:path');
 const vm = require('node:vm');
+const crypto = require('node:crypto');
 const root = path.resolve(__dirname, '..');
 const data = JSON.parse(fs.readFileSync(path.join(root, 'catalogue/gallery-data.json'), 'utf8'));
-const source = fs.readFileSync(path.join(root, 'catalogue/gallery.js'), 'utf8');
+let source = fs.readFileSync(path.join(root, 'catalogue/gallery.js'), 'utf8');
+const thaiCopyPath=path.join(root,'catalogue/thai-copy.json');
+const thaiItemsPath=path.join(root,'catalogue/thai-items.json');
+if(fs.existsSync(thaiCopyPath)&&fs.existsSync(thaiItemsPath)) {
+  const thai=JSON.parse(fs.readFileSync(thaiCopyPath,'utf8'));
+  const items=JSON.parse(fs.readFileSync(thaiItemsPath,'utf8'));
+  for(const item of data.items)Object.assign(item,items[`${item.category}:${item.id}`]||{});
+  data.researchNotes.th=thai.researchNotes;
+  data.customizerFrames.forEach((frame,index)=>frame.captionTh=thai.customizerFrames[index]);
+  data.sources.forEach((entry,index)=>{entry.titleTh=thai.sources[index]?.title||entry.titleEn;entry.detailTh=thai.sources[index]?.detail||entry.detailEn;});
+  fs.writeFileSync(path.join(root,'catalogue/gallery-data.json'),JSON.stringify(data,null,2)+'\n');
+  source=source.replace(/    \/\/ THAI_COPY_START[\s\S]*?    \/\/ THAI_COPY_END/,()=>`    // THAI_COPY_START\n    th: ${JSON.stringify(thai)},\n    // THAI_COPY_END`);
+  fs.writeFileSync(path.join(root,'catalogue/gallery.js'),source);
+}
+for(const item of data.items){delete item.nameTh;delete item.labelImageTh;}
+for(const file of ['thai-rom-names.json','thai-other-captures.json']) {
+  const namesPath=path.join(root,'data',file);
+  if(!fs.existsSync(namesPath))continue;
+  const names=JSON.parse(fs.readFileSync(namesPath,'utf8'));
+  for(const item of data.items)Object.assign(item,names.entries?.[`${item.category}:${item.id}`]||{});
+}
+for(const item of data.items)if(item.labelImageTh)item.labelImageTh=item.labelImageTh.replace(/^\.\.\/catalogue\//,'');
+const rodNamesPath=path.join(root,'data/thai-rod-transcriptions.json');
+if(fs.existsSync(rodNamesPath)){const names=JSON.parse(fs.readFileSync(rodNamesPath,'utf8'));for(const item of data.items){const entry=names[`${item.category}:${item.id}`];if(entry){if(entry.nameTh)item.nameTh=entry.nameTh;item.labelImageTh=entry.evidenceImage.replace('../catalogue/','');}}fs.writeFileSync(path.join(root,'catalogue/gallery-data.json'),JSON.stringify(data,null,2)+'\n');}
+// Transfer a verified transcription only between byte-identical rendered label PNGs.
+const verifiedNamesByImage=new Map();
+for(const file of ['thai-rod-transcriptions.json','thai-lure-transcriptions.json','thai-food-transcriptions.json']) {
+  const filePath=path.join(root,'data',file);if(!fs.existsSync(filePath))continue;
+  const entries=JSON.parse(fs.readFileSync(filePath,'utf8'));
+  for(const entry of Object.values(entries)) {
+    if(!entry.nameTh||!entry.evidenceImage)continue;
+    const imagePath=path.resolve(root,'data',entry.evidenceImage);if(!fs.existsSync(imagePath))continue;
+    verifiedNamesByImage.set(crypto.createHash('sha256').update(fs.readFileSync(imagePath)).digest('hex'),entry.nameTh);
+  }
+}
+for(const item of data.items){if(!item.labelImageTh)continue;const imagePath=path.resolve(root,'catalogue',item.labelImageTh);if(fs.existsSync(imagePath)){const key=crypto.createHash('sha256').update(fs.readFileSync(imagePath)).digest('hex');if(verifiedNamesByImage.has(key))item.nameTh=verifiedNamesByImage.get(key);}}
+const fishFood=data.items.find(item=>item.category==='food'&&item.id==='08');if(fishFood&&fishFood.labelImageTh)fishFood.labelContextTh='ตัวอย่างชื่อปลาที่ถือ: เรนโบว์เทราต์ (รหัสชนิด06 ขนาดดิบ30) ชื่อนี้เปลี่ยนตามปลาที่ถือ ไม่ใช่ชื่ออาหารตายตัว';
+fs.writeFileSync(path.join(root,'catalogue/gallery-data.json'),JSON.stringify(data,null,2)+'\n');
 async function build(locale, filename) {
   const nodes = {};
   function node(id) {
@@ -23,7 +61,7 @@ async function build(locale, filename) {
   await new Promise(resolve=>setImmediate(resolve));
   const file=path.join(root,'catalogue',filename);
   let html=fs.readFileSync(file,'utf8');
-  html=html.replace(/(<([a-z0-9]+)[^>]*data-t="([^"]+)"[^>]*>)[^<]*(<\/\2>)/g, (whole,open,tag,key,close)=>{const camel=key.replace(/-([a-z])/g,(_,c)=>c.toUpperCase());const value=context.catalogueCopy[key]??context.catalogueCopy[camel];return typeof value==='string'?open+value+close:whole;});
+  html=html.replace(/(<([a-z0-9]+)[^>]*data-t="([^"]+)"[^>]*>)[^<]*(<\/\2>)/g, (whole,open,tag,key,close)=>{const camel=({'th-item':'item','th-rom':'rom','th-price':'price','search-label':'search','category-label':'category','sort-label':'sort','readme-link':'readme'})[key]||key.replace(/-([a-z])/g,(_,c)=>c.toUpperCase());const value=context.catalogueCopy[key]??context.catalogueCopy[camel];return typeof value==='string'?open+value+close:whole;});
   for (const [id,n] of Object.entries(nodes)) {
     const value=n.innerHTML || n.textContent;
     if(!value)continue;

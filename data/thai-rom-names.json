@@ -1,0 +1,1568 @@
+{
+  "schemaVersion": 1,
+  "romSha1": "c2103dd94e2a1a65a495fc02adc2e7d040f31212",
+  "patchedRomSha1": "453047280f53ab9faf93142b957967c1eec69afc",
+  "patchVersion": "V1.2",
+  "patchCredits": [
+    "ช.ช้าง (original Thai patch)",
+    "Memory_Card_TH (continuation, retranslation, and font)"
+  ],
+  "method": "Each listed item ID was injected into a temporary WRAM slot and captured separately from an actual Snes9x render of the SHA-1-identified Thai V1.2 patched ROM. Label images preserve the ROM's exact rendered spelling. Identical image hashes may establish visually identical captures, but Japanese names are not used to infer Thai labels. No ROM, patch, save state, or memory dump is included. Bait IDs are listed with Japanese fallback only because the attempted capture route yielded identical screenshots for all IDs; no bait Thai name is claimed. Hook and float/sinker entries are listed with Japanese fallback only; no verified Thai ROM label crops were captured for them.",
+  "captureType": "per-item rendered label crop; Unicode name only when verified independently",
+  "entries": {
+    "rod:01": {
+      "nameTh": null,
+      "nameJapanese": "タナゴ竿10本継2m",
+      "labelImageTh": "thai-labels/rod-01.png",
+      "representativeId": "01",
+      "capture": "patched-ROM label crop"
+    },
+    "rod:02": {
+      "nameTh": null,
+      "nameJapanese": "渓流カーボン竿6m",
+      "labelImageTh": "thai-labels/rod-02.png",
+      "representativeId": "02",
+      "capture": "patched-ROM label crop"
+    },
+    "rod:03": {
+      "nameTh": null,
+      "nameJapanese": "ヤマベ竿6本継3.9m",
+      "labelImageTh": "thai-labels/rod-03.png",
+      "representativeId": "03",
+      "capture": "patched-ROM label crop"
+    },
+    "rod:04": {
+      "nameTh": null,
+      "nameJapanese": "清流カーボン竿5.3m",
+      "labelImageTh": "thai-labels/rod-04.png",
+      "representativeId": "04",
+      "capture": "patched-ROM label crop"
+    },
+    "rod:05": {
+      "nameTh": null,
+      "nameJapanese": "ヤマメ竿8本継4.5m",
+      "labelImageTh": "thai-labels/rod-05.png",
+      "representativeId": "05",
+      "capture": "patched-ROM label crop"
+    },
+    "rod:06": {
+      "nameTh": null,
+      "nameJapanese": "マブナ竿9本継3.3m",
+      "labelImageTh": "thai-labels/rod-06.png",
+      "representativeId": "06",
+      "capture": "patched-ROM label crop"
+    },
+    "rod:07": {
+      "nameTh": null,
+      "nameJapanese": "アユ竿6本継7m",
+      "labelImageTh": "thai-labels/rod-07.png",
+      "representativeId": "07",
+      "capture": "patched-ROM label crop"
+    },
+    "rod:08": {
+      "nameTh": null,
+      "nameJapanese": "コイ竿8本継5m",
+      "labelImageTh": "thai-labels/rod-08.png",
+      "representativeId": "08",
+      "capture": "patched-ROM label crop"
+    },
+    "rod:09": {
+      "nameTh": null,
+      "nameJapanese": "ヘラ竿3本継3m",
+      "labelImageTh": "thai-labels/rod-09.png",
+      "representativeId": "09",
+      "capture": "patched-ROM label crop"
+    },
+    "rod:0A": {
+      "nameTh": null,
+      "nameJapanese": "ルアーロッド小",
+      "labelImageTh": "thai-labels/rod-10.png",
+      "representativeId": "0A",
+      "capture": "patched-ROM label crop"
+    },
+    "rod:0B": {
+      "nameTh": null,
+      "nameJapanese": "ルアーロッド中",
+      "labelImageTh": "thai-labels/rod-11.png",
+      "representativeId": "0B",
+      "capture": "patched-ROM label crop"
+    },
+    "rod:0C": {
+      "nameTh": null,
+      "nameJapanese": "ルアーロッド大",
+      "labelImageTh": "thai-labels/rod-12.png",
+      "representativeId": "0C",
+      "capture": "patched-ROM label crop"
+    },
+    "rod:0D": {
+      "nameTh": null,
+      "nameJapanese": "大物用ルアーロッド",
+      "labelImageTh": "thai-labels/rod-13.png",
+      "representativeId": "0D",
+      "capture": "patched-ROM label crop"
+    },
+    "rod:0E": {
+      "nameTh": null,
+      "nameJapanese": "投げ竿小",
+      "labelImageTh": "thai-labels/rod-14.png",
+      "representativeId": "0E",
+      "capture": "patched-ROM label crop"
+    },
+    "rod:0F": {
+      "nameTh": null,
+      "nameJapanese": "投げ竿中",
+      "labelImageTh": "thai-labels/rod-15.png",
+      "representativeId": "0F",
+      "capture": "patched-ROM label crop"
+    },
+    "rod:10": {
+      "nameTh": null,
+      "nameJapanese": "両手投げ竿",
+      "labelImageTh": "thai-labels/rod-16.png",
+      "representativeId": "10",
+      "capture": "patched-ROM label crop"
+    },
+    "rod:11": {
+      "nameTh": null,
+      "nameJapanese": "フライロッド小",
+      "labelImageTh": "thai-labels/rod-17.png",
+      "representativeId": "11",
+      "capture": "patched-ROM label crop"
+    },
+    "rod:12": {
+      "nameTh": null,
+      "nameJapanese": "フライロッド中",
+      "labelImageTh": "thai-labels/rod-18.png",
+      "representativeId": "12",
+      "capture": "patched-ROM label crop"
+    },
+    "rod:13": {
+      "nameTh": null,
+      "nameJapanese": "フライロッド大",
+      "labelImageTh": "thai-labels/rod-19.png",
+      "representativeId": "13",
+      "capture": "patched-ROM label crop"
+    },
+    "rod:14": {
+      "nameTh": null,
+      "nameJapanese": "アユ竿カーボン10m",
+      "labelImageTh": "thai-labels/rod-20.png",
+      "representativeId": "14",
+      "capture": "patched-ROM label crop"
+    },
+    "rod:15": {
+      "nameTh": null,
+      "nameJapanese": "ヘラ竿カーボン6.5m",
+      "labelImageTh": "thai-labels/rod-21.png",
+      "representativeId": "15",
+      "capture": "patched-ROM label crop"
+    },
+    "lure:01": {
+      "nameTh": null,
+      "nameJapanese": "トップウォータ",
+      "labelImageTh": "thai-labels/lure-01.png",
+      "representativeId": "01",
+      "capture": "individual patched-ROM label crop; lure ID injected into WRAM; selected inventory slot 0"
+    },
+    "lure:02": {
+      "nameTh": null,
+      "nameJapanese": "トップウォータ",
+      "labelImageTh": "thai-labels/lure-02.png",
+      "representativeId": "02",
+      "capture": "individual patched-ROM label crop; lure ID injected into WRAM; selected inventory slot 0"
+    },
+    "lure:03": {
+      "nameTh": null,
+      "nameJapanese": "トップウォータ",
+      "labelImageTh": "thai-labels/lure-03.png",
+      "representativeId": "03",
+      "capture": "individual patched-ROM label crop; lure ID injected into WRAM; selected inventory slot 0"
+    },
+    "lure:04": {
+      "nameTh": null,
+      "nameJapanese": "トップウォータ",
+      "labelImageTh": "thai-labels/lure-04.png",
+      "representativeId": "04",
+      "capture": "individual patched-ROM label crop; lure ID injected into WRAM; selected inventory slot 0"
+    },
+    "lure:05": {
+      "nameTh": null,
+      "nameJapanese": "トップウォータ",
+      "labelImageTh": "thai-labels/lure-05.png",
+      "representativeId": "05",
+      "capture": "individual patched-ROM label crop; lure ID injected into WRAM; selected inventory slot 0"
+    },
+    "lure:06": {
+      "nameTh": null,
+      "nameJapanese": "トップウォータ",
+      "labelImageTh": "thai-labels/lure-06.png",
+      "representativeId": "06",
+      "capture": "individual patched-ROM label crop; lure ID injected into WRAM; selected inventory slot 0"
+    },
+    "lure:07": {
+      "nameTh": null,
+      "nameJapanese": "トップウォータ",
+      "labelImageTh": "thai-labels/lure-07.png",
+      "representativeId": "07",
+      "capture": "individual patched-ROM label crop; lure ID injected into WRAM; selected inventory slot 0"
+    },
+    "lure:08": {
+      "nameTh": null,
+      "nameJapanese": "トップウォータ",
+      "labelImageTh": "thai-labels/lure-08.png",
+      "representativeId": "08",
+      "capture": "individual patched-ROM label crop; lure ID injected into WRAM; selected inventory slot 0"
+    },
+    "lure:09": {
+      "nameTh": null,
+      "nameJapanese": "トップウォータ",
+      "labelImageTh": "thai-labels/lure-09.png",
+      "representativeId": "09",
+      "capture": "individual patched-ROM label crop; lure ID injected into WRAM; selected inventory slot 0"
+    },
+    "lure:0A": {
+      "nameTh": null,
+      "nameJapanese": "トップウォータ",
+      "labelImageTh": "thai-labels/lure-0A.png",
+      "representativeId": "0A",
+      "capture": "individual patched-ROM label crop; lure ID injected into WRAM; selected inventory slot 0"
+    },
+    "lure:0B": {
+      "nameTh": null,
+      "nameJapanese": "トップウォータ",
+      "labelImageTh": "thai-labels/lure-0B.png",
+      "representativeId": "0B",
+      "capture": "individual patched-ROM label crop; lure ID injected into WRAM; selected inventory slot 0"
+    },
+    "lure:0C": {
+      "nameTh": null,
+      "nameJapanese": "トップウォータ",
+      "labelImageTh": "thai-labels/lure-0C.png",
+      "representativeId": "0C",
+      "capture": "individual patched-ROM label crop; lure ID injected into WRAM; selected inventory slot 0"
+    },
+    "lure:0D": {
+      "nameTh": null,
+      "nameJapanese": "トップウォータ",
+      "labelImageTh": "thai-labels/lure-0D.png",
+      "representativeId": "0D",
+      "capture": "individual patched-ROM label crop; lure ID injected into WRAM; selected inventory slot 0"
+    },
+    "lure:0E": {
+      "nameTh": null,
+      "nameJapanese": "シャローライナー",
+      "labelImageTh": "thai-labels/lure-0E.png",
+      "representativeId": "0E",
+      "capture": "individual patched-ROM label crop; lure ID injected into WRAM; selected inventory slot 0"
+    },
+    "lure:0F": {
+      "nameTh": null,
+      "nameJapanese": "シンキングバイブ",
+      "labelImageTh": "thai-labels/lure-0F.png",
+      "representativeId": "0F",
+      "capture": "individual patched-ROM label crop; lure ID injected into WRAM; selected inventory slot 0"
+    },
+    "lure:10": {
+      "nameTh": null,
+      "nameJapanese": "シンキングバイブ",
+      "labelImageTh": "thai-labels/lure-10.png",
+      "representativeId": "10",
+      "capture": "individual patched-ROM label crop; lure ID injected into WRAM; selected inventory slot 0"
+    },
+    "lure:11": {
+      "nameTh": null,
+      "nameJapanese": "トップウォータ",
+      "labelImageTh": "thai-labels/lure-11.png",
+      "representativeId": "11",
+      "capture": "individual patched-ROM label crop; lure ID injected into WRAM; selected inventory slot 0"
+    },
+    "lure:12": {
+      "nameTh": null,
+      "nameJapanese": "スピナーベイト",
+      "labelImageTh": "thai-labels/lure-12.png",
+      "representativeId": "12",
+      "capture": "individual patched-ROM label crop; lure ID injected into WRAM; selected inventory slot 0"
+    },
+    "lure:13": {
+      "nameTh": null,
+      "nameJapanese": "トップウォータ",
+      "labelImageTh": "thai-labels/lure-13.png",
+      "representativeId": "13",
+      "capture": "individual patched-ROM label crop; lure ID injected into WRAM; selected inventory slot 0"
+    },
+    "lure:14": {
+      "nameTh": null,
+      "nameJapanese": "シャローライナー",
+      "labelImageTh": "thai-labels/lure-14.png",
+      "representativeId": "14",
+      "capture": "individual patched-ROM label crop; lure ID injected into WRAM; selected inventory slot 0"
+    },
+    "lure:15": {
+      "nameTh": null,
+      "nameJapanese": "ディープ",
+      "labelImageTh": "thai-labels/lure-15.png",
+      "representativeId": "15",
+      "capture": "individual patched-ROM label crop; lure ID injected into WRAM; selected inventory slot 0"
+    },
+    "lure:16": {
+      "nameTh": null,
+      "nameJapanese": "シンキング",
+      "labelImageTh": "thai-labels/lure-16.png",
+      "representativeId": "16",
+      "capture": "individual patched-ROM label crop; lure ID injected into WRAM; selected inventory slot 0"
+    },
+    "lure:17": {
+      "nameTh": null,
+      "nameJapanese": "シンキング",
+      "labelImageTh": "thai-labels/lure-17.png",
+      "representativeId": "17",
+      "capture": "individual patched-ROM label crop; lure ID injected into WRAM; selected inventory slot 0"
+    },
+    "lure:18": {
+      "nameTh": null,
+      "nameJapanese": "シンキング",
+      "labelImageTh": "thai-labels/lure-18.png",
+      "representativeId": "18",
+      "capture": "individual patched-ROM label crop; lure ID injected into WRAM; selected inventory slot 0"
+    },
+    "lure:19": {
+      "nameTh": null,
+      "nameJapanese": "シャローライナー",
+      "labelImageTh": "thai-labels/lure-19.png",
+      "representativeId": "19",
+      "capture": "individual patched-ROM label crop; lure ID injected into WRAM; selected inventory slot 0"
+    },
+    "lure:1A": {
+      "nameTh": null,
+      "nameJapanese": "シャローライナー",
+      "labelImageTh": "thai-labels/lure-1A.png",
+      "representativeId": "1A",
+      "capture": "individual patched-ROM label crop; lure ID injected into WRAM; selected inventory slot 0"
+    },
+    "lure:1B": {
+      "nameTh": null,
+      "nameJapanese": "ディープ",
+      "labelImageTh": "thai-labels/lure-1B.png",
+      "representativeId": "1B",
+      "capture": "individual patched-ROM label crop; lure ID injected into WRAM; selected inventory slot 0"
+    },
+    "lure:1C": {
+      "nameTh": null,
+      "nameJapanese": "ディープ",
+      "labelImageTh": "thai-labels/lure-1C.png",
+      "representativeId": "1C",
+      "capture": "individual patched-ROM label crop; lure ID injected into WRAM; selected inventory slot 0"
+    },
+    "lure:1D": {
+      "nameTh": null,
+      "nameJapanese": "シャローライナー",
+      "labelImageTh": "thai-labels/lure-1D.png",
+      "representativeId": "1D",
+      "capture": "individual patched-ROM label crop; lure ID injected into WRAM; selected inventory slot 0"
+    },
+    "lure:1E": {
+      "nameTh": null,
+      "nameJapanese": "ディープ",
+      "labelImageTh": "thai-labels/lure-1E.png",
+      "representativeId": "1E",
+      "capture": "individual patched-ROM label crop; lure ID injected into WRAM; selected inventory slot 0"
+    },
+    "lure:1F": {
+      "nameTh": null,
+      "nameJapanese": "シンキング",
+      "labelImageTh": "thai-labels/lure-1F.png",
+      "representativeId": "1F",
+      "capture": "individual patched-ROM label crop; lure ID injected into WRAM; selected inventory slot 0"
+    },
+    "lure:20": {
+      "nameTh": null,
+      "nameJapanese": "ソフト・カエル",
+      "labelImageTh": "thai-labels/lure-20.png",
+      "representativeId": "20",
+      "capture": "individual patched-ROM label crop; lure ID injected into WRAM; selected inventory slot 0"
+    },
+    "lure:21": {
+      "nameTh": null,
+      "nameJapanese": "ソフト・赤ガエル",
+      "labelImageTh": "thai-labels/lure-21.png",
+      "representativeId": "21",
+      "capture": "individual patched-ROM label crop; lure ID injected into WRAM; selected inventory slot 0"
+    },
+    "lure:22": {
+      "nameTh": null,
+      "nameJapanese": "ソフト・ネズミ",
+      "labelImageTh": "thai-labels/lure-22.png",
+      "representativeId": "22",
+      "capture": "individual patched-ROM label crop; lure ID injected into WRAM; selected inventory slot 0"
+    },
+    "lure:23": {
+      "nameTh": null,
+      "nameJapanese": "ソフト・ワーム",
+      "labelImageTh": "thai-labels/lure-23.png",
+      "representativeId": "23",
+      "capture": "individual patched-ROM label crop; lure ID injected into WRAM; selected inventory slot 0"
+    },
+    "lure:24": {
+      "nameTh": null,
+      "nameJapanese": "ソフト・ワーム",
+      "labelImageTh": "thai-labels/lure-24.png",
+      "representativeId": "24",
+      "capture": "individual patched-ROM label crop; lure ID injected into WRAM; selected inventory slot 0"
+    },
+    "lure:25": {
+      "nameTh": null,
+      "nameJapanese": "ソフト・クロー",
+      "labelImageTh": "thai-labels/lure-25.png",
+      "representativeId": "25",
+      "capture": "individual patched-ROM label crop; lure ID injected into WRAM; selected inventory slot 0"
+    },
+    "lure:26": {
+      "nameTh": null,
+      "nameJapanese": "スピナーベイト",
+      "labelImageTh": "thai-labels/lure-26.png",
+      "representativeId": "26",
+      "capture": "individual patched-ROM label crop; lure ID injected into WRAM; selected inventory slot 0"
+    },
+    "lure:27": {
+      "nameTh": null,
+      "nameJapanese": "スピナーベイト",
+      "labelImageTh": "thai-labels/lure-27.png",
+      "representativeId": "27",
+      "capture": "individual patched-ROM label crop; lure ID injected into WRAM; selected inventory slot 0"
+    },
+    "lure:28": {
+      "nameTh": null,
+      "nameJapanese": "スピナーベイト",
+      "labelImageTh": "thai-labels/lure-28.png",
+      "representativeId": "28",
+      "capture": "individual patched-ROM label crop; lure ID injected into WRAM; selected inventory slot 0"
+    },
+    "lure:29": {
+      "nameTh": null,
+      "nameJapanese": "ジグ",
+      "labelImageTh": "thai-labels/lure-29.png",
+      "representativeId": "29",
+      "capture": "individual patched-ROM label crop; lure ID injected into WRAM; selected inventory slot 0"
+    },
+    "lure:2A": {
+      "nameTh": null,
+      "nameJapanese": "ジグ",
+      "labelImageTh": "thai-labels/lure-2A.png",
+      "representativeId": "2A",
+      "capture": "individual patched-ROM label crop; lure ID injected into WRAM; selected inventory slot 0"
+    },
+    "lure:2B": {
+      "nameTh": null,
+      "nameJapanese": "ジグ",
+      "labelImageTh": "thai-labels/lure-2B.png",
+      "representativeId": "2B",
+      "capture": "individual patched-ROM label crop; lure ID injected into WRAM; selected inventory slot 0"
+    },
+    "lure:2C": {
+      "nameTh": null,
+      "nameJapanese": "ジグ",
+      "labelImageTh": "thai-labels/lure-2C.png",
+      "representativeId": "2C",
+      "capture": "individual patched-ROM label crop; lure ID injected into WRAM; selected inventory slot 0"
+    },
+    "lure:2D": {
+      "nameTh": null,
+      "nameJapanese": "ジグ",
+      "labelImageTh": "thai-labels/lure-2D.png",
+      "representativeId": "2D",
+      "capture": "individual patched-ROM label crop; lure ID injected into WRAM; selected inventory slot 0"
+    },
+    "lure:2E": {
+      "nameTh": null,
+      "nameJapanese": "スプーン",
+      "labelImageTh": "thai-labels/lure-2E.png",
+      "representativeId": "2E",
+      "capture": "individual patched-ROM label crop; lure ID injected into WRAM; selected inventory slot 0"
+    },
+    "lure:2F": {
+      "nameTh": null,
+      "nameJapanese": "スプーン",
+      "labelImageTh": "thai-labels/lure-2F.png",
+      "representativeId": "2F",
+      "capture": "individual patched-ROM label crop; lure ID injected into WRAM; selected inventory slot 0"
+    },
+    "lure:30": {
+      "nameTh": null,
+      "nameJapanese": "スプーン",
+      "labelImageTh": "thai-labels/lure-30.png",
+      "representativeId": "30",
+      "capture": "individual patched-ROM label crop; lure ID injected into WRAM; selected inventory slot 0"
+    },
+    "lure:31": {
+      "nameTh": null,
+      "nameJapanese": "スプーン",
+      "labelImageTh": "thai-labels/lure-31.png",
+      "representativeId": "31",
+      "capture": "individual patched-ROM label crop; lure ID injected into WRAM; selected inventory slot 0"
+    },
+    "lure:32": {
+      "nameTh": null,
+      "nameJapanese": "スプーン",
+      "labelImageTh": "thai-labels/lure-32.png",
+      "representativeId": "32",
+      "capture": "individual patched-ROM label crop; lure ID injected into WRAM; selected inventory slot 0"
+    },
+    "lure:33": {
+      "nameTh": null,
+      "nameJapanese": "スプーン",
+      "labelImageTh": "thai-labels/lure-33.png",
+      "representativeId": "33",
+      "capture": "individual patched-ROM label crop; lure ID injected into WRAM; selected inventory slot 0"
+    },
+    "lure:34": {
+      "nameTh": null,
+      "nameJapanese": "スプーン",
+      "labelImageTh": "thai-labels/lure-34.png",
+      "representativeId": "34",
+      "capture": "individual patched-ROM label crop; lure ID injected into WRAM; selected inventory slot 0"
+    },
+    "lure:35": {
+      "nameTh": null,
+      "nameJapanese": "スプーン",
+      "labelImageTh": "thai-labels/lure-35.png",
+      "representativeId": "35",
+      "capture": "individual patched-ROM label crop; lure ID injected into WRAM; selected inventory slot 0"
+    },
+    "lure:36": {
+      "nameTh": null,
+      "nameJapanese": "スプーン",
+      "labelImageTh": "thai-labels/lure-36.png",
+      "representativeId": "36",
+      "capture": "individual patched-ROM label crop; lure ID injected into WRAM; selected inventory slot 0"
+    },
+    "lure:37": {
+      "nameTh": null,
+      "nameJapanese": "スプーン",
+      "labelImageTh": "thai-labels/lure-37.png",
+      "representativeId": "37",
+      "capture": "individual patched-ROM label crop; lure ID injected into WRAM; selected inventory slot 0"
+    },
+    "lure:38": {
+      "nameTh": null,
+      "nameJapanese": "スプーン",
+      "labelImageTh": "thai-labels/lure-38.png",
+      "representativeId": "38",
+      "capture": "individual patched-ROM label crop; lure ID injected into WRAM; selected inventory slot 0"
+    },
+    "lure:39": {
+      "nameTh": null,
+      "nameJapanese": "シャローライナー",
+      "labelImageTh": "thai-labels/lure-39.png",
+      "representativeId": "39",
+      "capture": "individual patched-ROM label crop; lure ID injected into WRAM; selected inventory slot 0"
+    },
+    "lure:3A": {
+      "nameTh": null,
+      "nameJapanese": "スプーン",
+      "labelImageTh": "thai-labels/lure-3A.png",
+      "representativeId": "3A",
+      "capture": "individual patched-ROM label crop; lure ID injected into WRAM; selected inventory slot 0"
+    },
+    "lure:3B": {
+      "nameTh": null,
+      "nameJapanese": "スプーン",
+      "labelImageTh": "thai-labels/lure-3B.png",
+      "representativeId": "3B",
+      "capture": "individual patched-ROM label crop; lure ID injected into WRAM; selected inventory slot 0"
+    },
+    "lure:3C": {
+      "nameTh": null,
+      "nameJapanese": "スプーン",
+      "labelImageTh": "thai-labels/lure-3C.png",
+      "representativeId": "3C",
+      "capture": "individual patched-ROM label crop; lure ID injected into WRAM; selected inventory slot 0"
+    },
+    "lure:3D": {
+      "nameTh": null,
+      "nameJapanese": "スプーン",
+      "labelImageTh": "thai-labels/lure-3D.png",
+      "representativeId": "3D",
+      "capture": "individual patched-ROM label crop; lure ID injected into WRAM; selected inventory slot 0"
+    },
+    "lure:3E": {
+      "nameTh": null,
+      "nameJapanese": "スプーン",
+      "labelImageTh": "thai-labels/lure-3E.png",
+      "representativeId": "3E",
+      "capture": "individual patched-ROM label crop; lure ID injected into WRAM; selected inventory slot 0"
+    },
+    "lure:3F": {
+      "nameTh": null,
+      "nameJapanese": "スプーン",
+      "labelImageTh": "thai-labels/lure-3F.png",
+      "representativeId": "3F",
+      "capture": "individual patched-ROM label crop; lure ID injected into WRAM; selected inventory slot 0"
+    },
+    "lure:40": {
+      "nameTh": null,
+      "nameJapanese": "スプーン",
+      "labelImageTh": "thai-labels/lure-40.png",
+      "representativeId": "40",
+      "capture": "individual patched-ROM label crop; lure ID injected into WRAM; selected inventory slot 0"
+    },
+    "lure:41": {
+      "nameTh": null,
+      "nameJapanese": "スプーン",
+      "labelImageTh": "thai-labels/lure-41.png",
+      "representativeId": "41",
+      "capture": "individual patched-ROM label crop; lure ID injected into WRAM; selected inventory slot 0"
+    },
+    "lure:42": {
+      "nameTh": null,
+      "nameJapanese": "スプーン",
+      "labelImageTh": "thai-labels/lure-42.png",
+      "representativeId": "42",
+      "capture": "individual patched-ROM label crop; lure ID injected into WRAM; selected inventory slot 0"
+    },
+    "lure:43": {
+      "nameTh": null,
+      "nameJapanese": "スプーン",
+      "labelImageTh": "thai-labels/lure-43.png",
+      "representativeId": "43",
+      "capture": "individual patched-ROM label crop; lure ID injected into WRAM; selected inventory slot 0"
+    },
+    "lure:44": {
+      "nameTh": null,
+      "nameJapanese": "スプーン",
+      "labelImageTh": "thai-labels/lure-44.png",
+      "representativeId": "44",
+      "capture": "individual patched-ROM label crop; lure ID injected into WRAM; selected inventory slot 0"
+    },
+    "lure:45": {
+      "nameTh": null,
+      "nameJapanese": "スプーン",
+      "labelImageTh": "thai-labels/lure-45.png",
+      "representativeId": "45",
+      "capture": "individual patched-ROM label crop; lure ID injected into WRAM; selected inventory slot 0"
+    },
+    "lure:46": {
+      "nameTh": null,
+      "nameJapanese": "スピナー",
+      "labelImageTh": "thai-labels/lure-46.png",
+      "representativeId": "46",
+      "capture": "individual patched-ROM label crop; lure ID injected into WRAM; selected inventory slot 0"
+    },
+    "lure:47": {
+      "nameTh": null,
+      "nameJapanese": "スピナー",
+      "labelImageTh": "thai-labels/lure-47.png",
+      "representativeId": "47",
+      "capture": "individual patched-ROM label crop; lure ID injected into WRAM; selected inventory slot 0"
+    },
+    "lure:48": {
+      "nameTh": null,
+      "nameJapanese": "スピナー",
+      "labelImageTh": "thai-labels/lure-48.png",
+      "representativeId": "48",
+      "capture": "individual patched-ROM label crop; lure ID injected into WRAM; selected inventory slot 0"
+    },
+    "lure:49": {
+      "nameTh": null,
+      "nameJapanese": "スピナー",
+      "labelImageTh": "thai-labels/lure-49.png",
+      "representativeId": "49",
+      "capture": "individual patched-ROM label crop; lure ID injected into WRAM; selected inventory slot 0"
+    },
+    "lure:4A": {
+      "nameTh": null,
+      "nameJapanese": "スピナー",
+      "labelImageTh": "thai-labels/lure-4A.png",
+      "representativeId": "4A",
+      "capture": "individual patched-ROM label crop; lure ID injected into WRAM; selected inventory slot 0"
+    },
+    "lure:4B": {
+      "nameTh": null,
+      "nameJapanese": "スピナー",
+      "labelImageTh": "thai-labels/lure-4B.png",
+      "representativeId": "4B",
+      "capture": "individual patched-ROM label crop; lure ID injected into WRAM; selected inventory slot 0"
+    },
+    "lure:4C": {
+      "nameTh": null,
+      "nameJapanese": "スピナー",
+      "labelImageTh": "thai-labels/lure-4C.png",
+      "representativeId": "4C",
+      "capture": "individual patched-ROM label crop; lure ID injected into WRAM; selected inventory slot 0"
+    },
+    "lure:4D": {
+      "nameTh": null,
+      "nameJapanese": "スピナー",
+      "labelImageTh": "thai-labels/lure-4D.png",
+      "representativeId": "4D",
+      "capture": "individual patched-ROM label crop; lure ID injected into WRAM; selected inventory slot 0"
+    },
+    "lure:4E": {
+      "nameTh": null,
+      "nameJapanese": "スピナー",
+      "labelImageTh": "thai-labels/lure-4E.png",
+      "representativeId": "4E",
+      "capture": "individual patched-ROM label crop; lure ID injected into WRAM; selected inventory slot 0"
+    },
+    "lure:4F": {
+      "nameTh": null,
+      "nameJapanese": "スピナー",
+      "labelImageTh": "thai-labels/lure-4F.png",
+      "representativeId": "4F",
+      "capture": "individual patched-ROM label crop; lure ID injected into WRAM; selected inventory slot 0"
+    },
+    "lure:50": {
+      "nameTh": null,
+      "nameJapanese": "スピナー",
+      "labelImageTh": "thai-labels/lure-50.png",
+      "representativeId": "50",
+      "capture": "individual patched-ROM label crop; lure ID injected into WRAM; selected inventory slot 0"
+    },
+    "lure:51": {
+      "nameTh": null,
+      "nameJapanese": "シンキング",
+      "labelImageTh": "thai-labels/lure-51.png",
+      "representativeId": "51",
+      "capture": "individual patched-ROM label crop; lure ID injected into WRAM; selected inventory slot 0"
+    },
+    "food:01": {
+      "nameTh": null,
+      "nameJapanese": "ミカン",
+      "labelImageTh": "thai-labels/food-01.png",
+      "representativeId": "01",
+      "capture": "individual patched-ROM label crop; food ID injected into WRAM; held fish species 06, size 30 for the food-name display"
+    },
+    "food:02": {
+      "nameTh": null,
+      "nameJapanese": "おむすび",
+      "labelImageTh": "thai-labels/food-02.png",
+      "representativeId": "02",
+      "capture": "individual patched-ROM label crop; food ID injected into WRAM; held fish species 06, size 30 for the food-name display"
+    },
+    "food:03": {
+      "nameTh": null,
+      "nameJapanese": "だんご",
+      "labelImageTh": "thai-labels/food-03.png",
+      "representativeId": "03",
+      "capture": "individual patched-ROM label crop; food ID injected into WRAM; held fish species 06, size 30 for the food-name display"
+    },
+    "food:04": {
+      "nameTh": null,
+      "nameJapanese": "バナナ",
+      "labelImageTh": "thai-labels/food-04.png",
+      "representativeId": "04",
+      "capture": "individual patched-ROM label crop; food ID injected into WRAM; held fish species 06, size 30 for the food-name display"
+    },
+    "food:05": {
+      "nameTh": null,
+      "nameJapanese": "ブドウ",
+      "labelImageTh": "thai-labels/food-05.png",
+      "representativeId": "05",
+      "capture": "individual patched-ROM label crop; food ID injected into WRAM; held fish species 06, size 30 for the food-name display"
+    },
+    "food:06": {
+      "nameTh": null,
+      "nameJapanese": "日の丸弁当",
+      "labelImageTh": "thai-labels/food-06.png",
+      "representativeId": "06",
+      "capture": "individual patched-ROM label crop; food ID injected into WRAM; held fish species 06, size 30 for the food-name display"
+    },
+    "food:07": {
+      "nameTh": null,
+      "nameJapanese": "ダイコン",
+      "labelImageTh": "thai-labels/food-07.png",
+      "representativeId": "07",
+      "capture": "individual patched-ROM label crop; food ID injected into WRAM; held fish species 06, size 30 for the food-name display"
+    },
+    "food:08": {
+      "nameTh": null,
+      "nameJapanese": "魚",
+      "labelImageTh": "thai-labels/food-08.png",
+      "representativeId": "08",
+      "capture": "individual patched-ROM label crop; food ID injected into WRAM; held fish species 06, size 30 for the food-name display"
+    },
+    "food:09": {
+      "nameTh": null,
+      "nameJapanese": "きのこ",
+      "labelImageTh": "thai-labels/food-09.png",
+      "representativeId": "09",
+      "capture": "individual patched-ROM label crop; food ID injected into WRAM; held fish species 06, size 30 for the food-name display"
+    },
+    "food:0A": {
+      "nameTh": null,
+      "nameJapanese": "毒きのこ",
+      "labelImageTh": "thai-labels/food-10.png",
+      "representativeId": "0A",
+      "capture": "individual patched-ROM label crop; food ID injected into WRAM; held fish species 06, size 30 for the food-name display"
+    },
+    "fly:01": {
+      "nameTh": null,
+      "nameJapanese": "メイフライ・ウェット",
+      "labelImageTh": "thai-labels/fly-01.png",
+      "representativeId": "01",
+      "capture": "individual patched-ROM label crop; fly BODY ID injected at WRAM 095E; selected slot offset 0"
+    },
+    "fly:02": {
+      "nameTh": null,
+      "nameJapanese": "メイフライ・ウェット",
+      "labelImageTh": "thai-labels/fly-02.png",
+      "representativeId": "02",
+      "capture": "individual patched-ROM label crop; fly BODY ID injected at WRAM 095E; selected slot offset 0"
+    },
+    "fly:03": {
+      "nameTh": null,
+      "nameJapanese": "メイフライ・ウェット",
+      "labelImageTh": "thai-labels/fly-03.png",
+      "representativeId": "03",
+      "capture": "individual patched-ROM label crop; fly BODY ID injected at WRAM 095E; selected slot offset 0"
+    },
+    "fly:04": {
+      "nameTh": null,
+      "nameJapanese": "メイフライ・ウェット",
+      "labelImageTh": "thai-labels/fly-04.png",
+      "representativeId": "04",
+      "capture": "individual patched-ROM label crop; fly BODY ID injected at WRAM 095E; selected slot offset 0"
+    },
+    "fly:05": {
+      "nameTh": null,
+      "nameJapanese": "メイフライ・ウェット",
+      "labelImageTh": "thai-labels/fly-05.png",
+      "representativeId": "05",
+      "capture": "individual patched-ROM label crop; fly BODY ID injected at WRAM 095E; selected slot offset 0"
+    },
+    "fly:06": {
+      "nameTh": null,
+      "nameJapanese": "メイフライ・ウェット",
+      "labelImageTh": "thai-labels/fly-06.png",
+      "representativeId": "06",
+      "capture": "individual patched-ROM label crop; fly BODY ID injected at WRAM 095E; selected slot offset 0"
+    },
+    "fly:07": {
+      "nameTh": null,
+      "nameJapanese": "メイフライ・ウェット",
+      "labelImageTh": "thai-labels/fly-07.png",
+      "representativeId": "07",
+      "capture": "individual patched-ROM label crop; fly BODY ID injected at WRAM 095E; selected slot offset 0"
+    },
+    "fly:08": {
+      "nameTh": null,
+      "nameJapanese": "メイフライ・ウェット",
+      "labelImageTh": "thai-labels/fly-08.png",
+      "representativeId": "08",
+      "capture": "individual patched-ROM label crop; fly BODY ID injected at WRAM 095E; selected slot offset 0"
+    },
+    "fly:18": {
+      "nameTh": null,
+      "nameJapanese": "メイフライ・ドライ",
+      "labelImageTh": "thai-labels/fly-18.png",
+      "representativeId": "18",
+      "capture": "individual patched-ROM label crop; fly BODY ID injected at WRAM 095E; selected slot offset 0"
+    },
+    "fly:19": {
+      "nameTh": null,
+      "nameJapanese": "メイフライ・ドライ",
+      "labelImageTh": "thai-labels/fly-19.png",
+      "representativeId": "19",
+      "capture": "individual patched-ROM label crop; fly BODY ID injected at WRAM 095E; selected slot offset 0"
+    },
+    "fly:1A": {
+      "nameTh": null,
+      "nameJapanese": "メイフライ・ドライ",
+      "labelImageTh": "thai-labels/fly-1A.png",
+      "representativeId": "1A",
+      "capture": "individual patched-ROM label crop; fly BODY ID injected at WRAM 095E; selected slot offset 0"
+    },
+    "fly:1B": {
+      "nameTh": null,
+      "nameJapanese": "メイフライ・ドライ",
+      "labelImageTh": "thai-labels/fly-1B.png",
+      "representativeId": "1B",
+      "capture": "individual patched-ROM label crop; fly BODY ID injected at WRAM 095E; selected slot offset 0"
+    },
+    "fly:1C": {
+      "nameTh": null,
+      "nameJapanese": "メイフライ・ドライ",
+      "labelImageTh": "thai-labels/fly-1C.png",
+      "representativeId": "1C",
+      "capture": "individual patched-ROM label crop; fly BODY ID injected at WRAM 095E; selected slot offset 0"
+    },
+    "fly:1D": {
+      "nameTh": null,
+      "nameJapanese": "メイフライ・ドライ",
+      "labelImageTh": "thai-labels/fly-1D.png",
+      "representativeId": "1D",
+      "capture": "individual patched-ROM label crop; fly BODY ID injected at WRAM 095E; selected slot offset 0"
+    },
+    "fly:1E": {
+      "nameTh": null,
+      "nameJapanese": "メイフライ・ドライ",
+      "labelImageTh": "thai-labels/fly-1E.png",
+      "representativeId": "1E",
+      "capture": "individual patched-ROM label crop; fly BODY ID injected at WRAM 095E; selected slot offset 0"
+    },
+    "fly:2B": {
+      "nameTh": null,
+      "nameJapanese": "カディス・ウェット",
+      "labelImageTh": "thai-labels/fly-2B.png",
+      "representativeId": "2B",
+      "capture": "individual patched-ROM label crop; fly BODY ID injected at WRAM 095E; selected slot offset 0"
+    },
+    "fly:2C": {
+      "nameTh": null,
+      "nameJapanese": "カディス・ウェット",
+      "labelImageTh": "thai-labels/fly-2C.png",
+      "representativeId": "2C",
+      "capture": "individual patched-ROM label crop; fly BODY ID injected at WRAM 095E; selected slot offset 0"
+    },
+    "fly:2D": {
+      "nameTh": null,
+      "nameJapanese": "カディス・ウェット",
+      "labelImageTh": "thai-labels/fly-2D.png",
+      "representativeId": "2D",
+      "capture": "individual patched-ROM label crop; fly BODY ID injected at WRAM 095E; selected slot offset 0"
+    },
+    "fly:2E": {
+      "nameTh": null,
+      "nameJapanese": "カディス・ウェット",
+      "labelImageTh": "thai-labels/fly-2E.png",
+      "representativeId": "2E",
+      "capture": "individual patched-ROM label crop; fly BODY ID injected at WRAM 095E; selected slot offset 0"
+    },
+    "fly:2F": {
+      "nameTh": null,
+      "nameJapanese": "カディス・ウェット",
+      "labelImageTh": "thai-labels/fly-2F.png",
+      "representativeId": "2F",
+      "capture": "individual patched-ROM label crop; fly BODY ID injected at WRAM 095E; selected slot offset 0"
+    },
+    "fly:30": {
+      "nameTh": null,
+      "nameJapanese": "カディス・ウェット",
+      "labelImageTh": "thai-labels/fly-30.png",
+      "representativeId": "30",
+      "capture": "individual patched-ROM label crop; fly BODY ID injected at WRAM 095E; selected slot offset 0"
+    },
+    "fly:31": {
+      "nameTh": null,
+      "nameJapanese": "カディス・ウェット",
+      "labelImageTh": "thai-labels/fly-31.png",
+      "representativeId": "31",
+      "capture": "individual patched-ROM label crop; fly BODY ID injected at WRAM 095E; selected slot offset 0"
+    },
+    "fly:32": {
+      "nameTh": null,
+      "nameJapanese": "カディス・ウェット",
+      "labelImageTh": "thai-labels/fly-32.png",
+      "representativeId": "32",
+      "capture": "individual patched-ROM label crop; fly BODY ID injected at WRAM 095E; selected slot offset 0"
+    },
+    "fly:33": {
+      "nameTh": null,
+      "nameJapanese": "カディス・ウェット",
+      "labelImageTh": "thai-labels/fly-33.png",
+      "representativeId": "33",
+      "capture": "individual patched-ROM label crop; fly BODY ID injected at WRAM 095E; selected slot offset 0"
+    },
+    "fly:3E": {
+      "nameTh": null,
+      "nameJapanese": "カディス・ドライ",
+      "labelImageTh": "thai-labels/fly-3E.png",
+      "representativeId": "3E",
+      "capture": "individual patched-ROM label crop; fly BODY ID injected at WRAM 095E; selected slot offset 0"
+    },
+    "fly:3F": {
+      "nameTh": null,
+      "nameJapanese": "カディス・ドライ",
+      "labelImageTh": "thai-labels/fly-3F.png",
+      "representativeId": "3F",
+      "capture": "individual patched-ROM label crop; fly BODY ID injected at WRAM 095E; selected slot offset 0"
+    },
+    "fly:40": {
+      "nameTh": null,
+      "nameJapanese": "カディス・ドライ",
+      "labelImageTh": "thai-labels/fly-40.png",
+      "representativeId": "40",
+      "capture": "individual patched-ROM label crop; fly BODY ID injected at WRAM 095E; selected slot offset 0"
+    },
+    "fly:41": {
+      "nameTh": null,
+      "nameJapanese": "カディス・ドライ",
+      "labelImageTh": "thai-labels/fly-41.png",
+      "representativeId": "41",
+      "capture": "individual patched-ROM label crop; fly BODY ID injected at WRAM 095E; selected slot offset 0"
+    },
+    "fly:42": {
+      "nameTh": null,
+      "nameJapanese": "カディス・ドライ",
+      "labelImageTh": "thai-labels/fly-42.png",
+      "representativeId": "42",
+      "capture": "individual patched-ROM label crop; fly BODY ID injected at WRAM 095E; selected slot offset 0"
+    },
+    "fly:4B": {
+      "nameTh": null,
+      "nameJapanese": "ディプテラ・ウェット",
+      "labelImageTh": "thai-labels/fly-4B.png",
+      "representativeId": "4B",
+      "capture": "individual patched-ROM label crop; fly BODY ID injected at WRAM 095E; selected slot offset 0"
+    },
+    "fly:4C": {
+      "nameTh": null,
+      "nameJapanese": "ディプテラ・ウェット",
+      "labelImageTh": "thai-labels/fly-4C.png",
+      "representativeId": "4C",
+      "capture": "individual patched-ROM label crop; fly BODY ID injected at WRAM 095E; selected slot offset 0"
+    },
+    "fly:4D": {
+      "nameTh": null,
+      "nameJapanese": "ディプテラ・ウェット",
+      "labelImageTh": "thai-labels/fly-4D.png",
+      "representativeId": "4D",
+      "capture": "individual patched-ROM label crop; fly BODY ID injected at WRAM 095E; selected slot offset 0"
+    },
+    "fly:4E": {
+      "nameTh": null,
+      "nameJapanese": "ディプテラ・ウェット",
+      "labelImageTh": "thai-labels/fly-4E.png",
+      "representativeId": "4E",
+      "capture": "individual patched-ROM label crop; fly BODY ID injected at WRAM 095E; selected slot offset 0"
+    },
+    "fly:4F": {
+      "nameTh": null,
+      "nameJapanese": "ディプテラ・ウェット",
+      "labelImageTh": "thai-labels/fly-4F.png",
+      "representativeId": "4F",
+      "capture": "individual patched-ROM label crop; fly BODY ID injected at WRAM 095E; selected slot offset 0"
+    },
+    "fly:56": {
+      "nameTh": null,
+      "nameJapanese": "ディプテラ・ドライ",
+      "labelImageTh": "thai-labels/fly-56.png",
+      "representativeId": "56",
+      "capture": "individual patched-ROM label crop; fly BODY ID injected at WRAM 095E; selected slot offset 0"
+    },
+    "fly:57": {
+      "nameTh": null,
+      "nameJapanese": "ディプテラ・ドライ",
+      "labelImageTh": "thai-labels/fly-57.png",
+      "representativeId": "57",
+      "capture": "individual patched-ROM label crop; fly BODY ID injected at WRAM 095E; selected slot offset 0"
+    },
+    "fly:58": {
+      "nameTh": null,
+      "nameJapanese": "ディプテラ・ドライ",
+      "labelImageTh": "thai-labels/fly-58.png",
+      "representativeId": "58",
+      "capture": "individual patched-ROM label crop; fly BODY ID injected at WRAM 095E; selected slot offset 0"
+    },
+    "fly:59": {
+      "nameTh": null,
+      "nameJapanese": "ディプテラ・ドライ",
+      "labelImageTh": "thai-labels/fly-59.png",
+      "representativeId": "59",
+      "capture": "individual patched-ROM label crop; fly BODY ID injected at WRAM 095E; selected slot offset 0"
+    },
+    "fly:60": {
+      "nameTh": null,
+      "nameJapanese": "ストーンフライ・ウェット",
+      "labelImageTh": "thai-labels/fly-60.png",
+      "representativeId": "60",
+      "capture": "individual patched-ROM label crop; fly BODY ID injected at WRAM 095E; selected slot offset 0"
+    },
+    "fly:61": {
+      "nameTh": null,
+      "nameJapanese": "ストーンフライ・ウェット",
+      "labelImageTh": "thai-labels/fly-61.png",
+      "representativeId": "61",
+      "capture": "individual patched-ROM label crop; fly BODY ID injected at WRAM 095E; selected slot offset 0"
+    },
+    "fly:62": {
+      "nameTh": null,
+      "nameJapanese": "ストーンフライ・ウェット",
+      "labelImageTh": "thai-labels/fly-62.png",
+      "representativeId": "62",
+      "capture": "individual patched-ROM label crop; fly BODY ID injected at WRAM 095E; selected slot offset 0"
+    },
+    "fly:63": {
+      "nameTh": null,
+      "nameJapanese": "ストーンフライ・ウェット",
+      "labelImageTh": "thai-labels/fly-63.png",
+      "representativeId": "63",
+      "capture": "individual patched-ROM label crop; fly BODY ID injected at WRAM 095E; selected slot offset 0"
+    },
+    "fly:64": {
+      "nameTh": null,
+      "nameJapanese": "ストーンフライ・ウェット",
+      "labelImageTh": "thai-labels/fly-64.png",
+      "representativeId": "64",
+      "capture": "individual patched-ROM label crop; fly BODY ID injected at WRAM 095E; selected slot offset 0"
+    },
+    "fly:65": {
+      "nameTh": null,
+      "nameJapanese": "ストーンフライ・ウェット",
+      "labelImageTh": "thai-labels/fly-65.png",
+      "representativeId": "65",
+      "capture": "individual patched-ROM label crop; fly BODY ID injected at WRAM 095E; selected slot offset 0"
+    },
+    "fly:6C": {
+      "nameTh": null,
+      "nameJapanese": "ストーンフライ・ドライ",
+      "labelImageTh": "thai-labels/fly-6C.png",
+      "representativeId": "6C",
+      "capture": "individual patched-ROM label crop; fly BODY ID injected at WRAM 095E; selected slot offset 0"
+    },
+    "fly:6D": {
+      "nameTh": null,
+      "nameJapanese": "ストーンフライ・ドライ",
+      "labelImageTh": "thai-labels/fly-6D.png",
+      "representativeId": "6D",
+      "capture": "individual patched-ROM label crop; fly BODY ID injected at WRAM 095E; selected slot offset 0"
+    },
+    "fly:6E": {
+      "nameTh": null,
+      "nameJapanese": "ストーンフライ・ドライ",
+      "labelImageTh": "thai-labels/fly-6E.png",
+      "representativeId": "6E",
+      "capture": "individual patched-ROM label crop; fly BODY ID injected at WRAM 095E; selected slot offset 0"
+    },
+    "fly:6F": {
+      "nameTh": null,
+      "nameJapanese": "ストーンフライ・ドライ",
+      "labelImageTh": "thai-labels/fly-6F.png",
+      "representativeId": "6F",
+      "capture": "individual patched-ROM label crop; fly BODY ID injected at WRAM 095E; selected slot offset 0"
+    },
+    "fly:77": {
+      "nameTh": null,
+      "nameJapanese": "テレストリアル・アント",
+      "labelImageTh": "thai-labels/fly-77.png",
+      "representativeId": "77",
+      "capture": "individual patched-ROM label crop; fly BODY ID injected at WRAM 095E; selected slot offset 0"
+    },
+    "fly:78": {
+      "nameTh": null,
+      "nameJapanese": "テレストリアル・アント",
+      "labelImageTh": "thai-labels/fly-78.png",
+      "representativeId": "78",
+      "capture": "individual patched-ROM label crop; fly BODY ID injected at WRAM 095E; selected slot offset 0"
+    },
+    "fly:79": {
+      "nameTh": null,
+      "nameJapanese": "テレストリアル・アント",
+      "labelImageTh": "thai-labels/fly-79.png",
+      "representativeId": "79",
+      "capture": "individual patched-ROM label crop; fly BODY ID injected at WRAM 095E; selected slot offset 0"
+    },
+    "fly:7A": {
+      "nameTh": null,
+      "nameJapanese": "テレストリアル・アント",
+      "labelImageTh": "thai-labels/fly-7A.png",
+      "representativeId": "7A",
+      "capture": "individual patched-ROM label crop; fly BODY ID injected at WRAM 095E; selected slot offset 0"
+    },
+    "fly:7B": {
+      "nameTh": null,
+      "nameJapanese": "テレストリアル・アント",
+      "labelImageTh": "thai-labels/fly-7B.png",
+      "representativeId": "7B",
+      "capture": "individual patched-ROM label crop; fly BODY ID injected at WRAM 095E; selected slot offset 0"
+    },
+    "fly:7C": {
+      "nameTh": null,
+      "nameJapanese": "テレストリアル・ビートル",
+      "labelImageTh": "thai-labels/fly-7C.png",
+      "representativeId": "7C",
+      "capture": "individual patched-ROM label crop; fly BODY ID injected at WRAM 095E; selected slot offset 0"
+    },
+    "fly:7D": {
+      "nameTh": null,
+      "nameJapanese": "テレストリアル・ビートル",
+      "labelImageTh": "thai-labels/fly-7D.png",
+      "representativeId": "7D",
+      "capture": "individual patched-ROM label crop; fly BODY ID injected at WRAM 095E; selected slot offset 0"
+    },
+    "fly:7E": {
+      "nameTh": null,
+      "nameJapanese": "テレストリアル・ビートル",
+      "labelImageTh": "thai-labels/fly-7E.png",
+      "representativeId": "7E",
+      "capture": "individual patched-ROM label crop; fly BODY ID injected at WRAM 095E; selected slot offset 0"
+    },
+    "fly:7F": {
+      "nameTh": null,
+      "nameJapanese": "テレストリアル・ビートル",
+      "labelImageTh": "thai-labels/fly-7F.png",
+      "representativeId": "7F",
+      "capture": "individual patched-ROM label crop; fly BODY ID injected at WRAM 095E; selected slot offset 0"
+    },
+    "fly:80": {
+      "nameTh": null,
+      "nameJapanese": "テレストリアル・ワーム",
+      "labelImageTh": "thai-labels/fly-80.png",
+      "representativeId": "80",
+      "capture": "individual patched-ROM label crop; fly BODY ID injected at WRAM 095E; selected slot offset 0"
+    },
+    "fly:81": {
+      "nameTh": null,
+      "nameJapanese": "テレストリアル・ワーム",
+      "labelImageTh": "thai-labels/fly-81.png",
+      "representativeId": "81",
+      "capture": "individual patched-ROM label crop; fly BODY ID injected at WRAM 095E; selected slot offset 0"
+    },
+    "fly:82": {
+      "nameTh": null,
+      "nameJapanese": "テレストリアル・ワーム",
+      "labelImageTh": "thai-labels/fly-82.png",
+      "representativeId": "82",
+      "capture": "individual patched-ROM label crop; fly BODY ID injected at WRAM 095E; selected slot offset 0"
+    },
+    "fly:83": {
+      "nameTh": null,
+      "nameJapanese": "テレストリアル・ホッパー",
+      "labelImageTh": "thai-labels/fly-83.png",
+      "representativeId": "83",
+      "capture": "individual patched-ROM label crop; fly BODY ID injected at WRAM 095E; selected slot offset 0"
+    },
+    "fly:84": {
+      "nameTh": null,
+      "nameJapanese": "テレストリアル・ホッパー",
+      "labelImageTh": "thai-labels/fly-84.png",
+      "representativeId": "84",
+      "capture": "individual patched-ROM label crop; fly BODY ID injected at WRAM 095E; selected slot offset 0"
+    },
+    "fly:85": {
+      "nameTh": null,
+      "nameJapanese": "テレストリアル・ホッパー",
+      "labelImageTh": "thai-labels/fly-85.png",
+      "representativeId": "85",
+      "capture": "individual patched-ROM label crop; fly BODY ID injected at WRAM 095E; selected slot offset 0"
+    },
+    "fly:86": {
+      "nameTh": null,
+      "nameJapanese": "テレストリアル・スパイダー",
+      "labelImageTh": "thai-labels/fly-86.png",
+      "representativeId": "86",
+      "capture": "individual patched-ROM label crop; fly BODY ID injected at WRAM 095E; selected slot offset 0"
+    },
+    "bait:01": {
+      "nameTh": null,
+      "nameJapanese": "ミミズ",
+      "labelImageTh": null,
+      "captureStatus": "unavailable-unverified",
+      "captureNote": "Attempted patched-ROM rendering after WRAM item-ID injection, but all 23 bait IDs produced byte-identical menu screenshots. No per-item Thai label is claimed."
+    },
+    "bait:02": {
+      "nameTh": null,
+      "nameJapanese": "サシ",
+      "labelImageTh": null,
+      "captureStatus": "unavailable-unverified",
+      "captureNote": "Attempted patched-ROM rendering after WRAM item-ID injection, but all 23 bait IDs produced byte-identical menu screenshots. No per-item Thai label is claimed."
+    },
+    "bait:03": {
+      "nameTh": null,
+      "nameJapanese": "紅サシ",
+      "labelImageTh": null,
+      "captureStatus": "unavailable-unverified",
+      "captureNote": "Attempted patched-ROM rendering after WRAM item-ID injection, but all 23 bait IDs produced byte-identical menu screenshots. No per-item Thai label is claimed."
+    },
+    "bait:04": {
+      "nameTh": null,
+      "nameJapanese": "昆虫",
+      "labelImageTh": null,
+      "captureStatus": "unavailable-unverified",
+      "captureNote": "Attempted patched-ROM rendering after WRAM item-ID injection, but all 23 bait IDs produced byte-identical menu screenshots. No per-item Thai label is claimed."
+    },
+    "bait:05": {
+      "nameTh": null,
+      "nameJapanese": "アカムシ",
+      "labelImageTh": null,
+      "captureStatus": "unavailable-unverified",
+      "captureNote": "Attempted patched-ROM rendering after WRAM item-ID injection, but all 23 bait IDs produced byte-identical menu screenshots. No per-item Thai label is claimed."
+    },
+    "bait:06": {
+      "nameTh": null,
+      "nameJapanese": "ゴカイ",
+      "labelImageTh": null,
+      "captureStatus": "unavailable-unverified",
+      "captureNote": "Attempted patched-ROM rendering after WRAM item-ID injection, but all 23 bait IDs produced byte-identical menu screenshots. No per-item Thai label is claimed."
+    },
+    "bait:07": {
+      "nameTh": null,
+      "nameJapanese": "カワムシ",
+      "labelImageTh": null,
+      "captureStatus": "unavailable-unverified",
+      "captureNote": "Attempted patched-ROM rendering after WRAM item-ID injection, but all 23 bait IDs produced byte-identical menu screenshots. No per-item Thai label is claimed."
+    },
+    "bait:08": {
+      "nameTh": null,
+      "nameJapanese": "トビケラ",
+      "labelImageTh": null,
+      "captureStatus": "unavailable-unverified",
+      "captureNote": "Attempted patched-ROM rendering after WRAM item-ID injection, but all 23 bait IDs produced byte-identical menu screenshots. No per-item Thai label is claimed."
+    },
+    "bait:09": {
+      "nameTh": null,
+      "nameJapanese": "イクラ",
+      "labelImageTh": null,
+      "captureStatus": "unavailable-unverified",
+      "captureNote": "Attempted patched-ROM rendering after WRAM item-ID injection, but all 23 bait IDs produced byte-identical menu screenshots. No per-item Thai label is claimed."
+    },
+    "bait:0A": {
+      "nameTh": null,
+      "nameJapanese": "ドバミミズ",
+      "labelImageTh": null,
+      "captureStatus": "unavailable-unverified",
+      "captureNote": "Attempted patched-ROM rendering after WRAM item-ID injection, but all 23 bait IDs produced byte-identical menu screenshots. No per-item Thai label is claimed."
+    },
+    "bait:0B": {
+      "nameTh": null,
+      "nameJapanese": "ブドウムシ",
+      "labelImageTh": null,
+      "captureStatus": "unavailable-unverified",
+      "captureNote": "Attempted patched-ROM rendering after WRAM item-ID injection, but all 23 bait IDs produced byte-identical menu screenshots. No per-item Thai label is claimed."
+    },
+    "bait:0C": {
+      "nameTh": null,
+      "nameJapanese": "ハチの子",
+      "labelImageTh": null,
+      "captureStatus": "unavailable-unverified",
+      "captureNote": "Attempted patched-ROM rendering after WRAM item-ID injection, but all 23 bait IDs produced byte-identical menu screenshots. No per-item Thai label is claimed."
+    },
+    "bait:0D": {
+      "nameTh": null,
+      "nameJapanese": "ネリエ",
+      "labelImageTh": null,
+      "captureStatus": "unavailable-unverified",
+      "captureNote": "Attempted patched-ROM rendering after WRAM item-ID injection, but all 23 bait IDs produced byte-identical menu screenshots. No per-item Thai label is claimed."
+    },
+    "bait:0E": {
+      "nameTh": null,
+      "nameJapanese": "ヘラネリ",
+      "labelImageTh": null,
+      "captureStatus": "unavailable-unverified",
+      "captureNote": "Attempted patched-ROM rendering after WRAM item-ID injection, but all 23 bait IDs produced byte-identical menu screenshots. No per-item Thai label is claimed."
+    },
+    "bait:0F": {
+      "nameTh": null,
+      "nameJapanese": "コイネリ",
+      "labelImageTh": null,
+      "captureStatus": "unavailable-unverified",
+      "captureNote": "Attempted patched-ROM rendering after WRAM item-ID injection, but all 23 bait IDs produced byte-identical menu screenshots. No per-item Thai label is claimed."
+    },
+    "bait:10": {
+      "nameTh": null,
+      "nameJapanese": "おかゆネリ",
+      "labelImageTh": null,
+      "captureStatus": "unavailable-unverified",
+      "captureNote": "Attempted patched-ROM rendering after WRAM item-ID injection, but all 23 bait IDs produced byte-identical menu screenshots. No per-item Thai label is claimed."
+    },
+    "bait:11": {
+      "nameTh": null,
+      "nameJapanese": "イモ",
+      "labelImageTh": null,
+      "captureStatus": "unavailable-unverified",
+      "captureNote": "Attempted patched-ROM rendering after WRAM item-ID injection, but all 23 bait IDs produced byte-identical menu screenshots. No per-item Thai label is claimed."
+    },
+    "bait:12": {
+      "nameTh": null,
+      "nameJapanese": "小魚",
+      "labelImageTh": null,
+      "captureStatus": "unavailable-unverified",
+      "captureNote": "Attempted patched-ROM rendering after WRAM item-ID injection, but all 23 bait IDs produced byte-identical menu screenshots. No per-item Thai label is claimed."
+    },
+    "bait:13": {
+      "nameTh": null,
+      "nameJapanese": "ドジョウ",
+      "labelImageTh": null,
+      "captureStatus": "unavailable-unverified",
+      "captureNote": "Attempted patched-ROM rendering after WRAM item-ID injection, but all 23 bait IDs produced byte-identical menu screenshots. No per-item Thai label is claimed."
+    },
+    "bait:14": {
+      "nameTh": null,
+      "nameJapanese": "カエル",
+      "labelImageTh": null,
+      "captureStatus": "unavailable-unverified",
+      "captureNote": "Attempted patched-ROM rendering after WRAM item-ID injection, but all 23 bait IDs produced byte-identical menu screenshots. No per-item Thai label is claimed."
+    },
+    "bait:15": {
+      "nameTh": null,
+      "nameJapanese": "エビ",
+      "labelImageTh": null,
+      "captureStatus": "unavailable-unverified",
+      "captureNote": "Attempted patched-ROM rendering after WRAM item-ID injection, but all 23 bait IDs produced byte-identical menu screenshots. No per-item Thai label is claimed."
+    },
+    "bait:16": {
+      "nameTh": null,
+      "nameJapanese": "貝のむきみ",
+      "labelImageTh": null,
+      "captureStatus": "unavailable-unverified",
+      "captureNote": "Attempted patched-ROM rendering after WRAM item-ID injection, but all 23 bait IDs produced byte-identical menu screenshots. No per-item Thai label is claimed."
+    },
+    "bait:17": {
+      "nameTh": null,
+      "nameJapanese": "おとりアユ",
+      "labelImageTh": null,
+      "captureStatus": "unavailable-unverified",
+      "captureNote": "Attempted patched-ROM rendering after WRAM item-ID injection, but all 23 bait IDs produced byte-identical menu screenshots. No per-item Thai label is claimed."
+    },
+    "hook:01": {
+      "nameTh": null,
+      "nameJapanese": "シビ",
+      "labelImageTh": null,
+      "captureStatus": "not-captured",
+      "captureNote": "No verified patched-ROM label crop is available for this ID; retain the Japanese fallback and do not infer Thai spelling."
+    },
+    "hook:02": {
+      "nameTh": null,
+      "nameJapanese": "ウナギバリ",
+      "labelImageTh": null,
+      "captureStatus": "not-captured",
+      "captureNote": "No verified patched-ROM label crop is available for this ID; retain the Japanese fallback and do not infer Thai spelling."
+    },
+    "hook:03": {
+      "nameTh": null,
+      "nameJapanese": "せいごバリ",
+      "labelImageTh": null,
+      "captureStatus": "not-captured",
+      "captureNote": "No verified patched-ROM label crop is available for this ID; retain the Japanese fallback and do not infer Thai spelling."
+    },
+    "hook:04": {
+      "nameTh": null,
+      "nameJapanese": "コイバリ",
+      "labelImageTh": null,
+      "captureStatus": "not-captured",
+      "captureNote": "No verified patched-ROM label crop is available for this ID; retain the Japanese fallback and do not infer Thai spelling."
+    },
+    "hook:05": {
+      "nameTh": null,
+      "nameJapanese": "ヘラスレ",
+      "labelImageTh": null,
+      "captureStatus": "not-captured",
+      "captureNote": "No verified patched-ROM label crop is available for this ID; retain the Japanese fallback and do not infer Thai spelling."
+    },
+    "hook:06": {
+      "nameTh": null,
+      "nameJapanese": "ハリ",
+      "labelImageTh": null,
+      "captureStatus": "not-captured",
+      "captureNote": "No verified patched-ROM label crop is available for this ID; retain the Japanese fallback and do not infer Thai spelling."
+    },
+    "hook:07": {
+      "nameTh": null,
+      "nameJapanese": "袖ヒガイ",
+      "labelImageTh": null,
+      "captureStatus": "not-captured",
+      "captureNote": "No verified patched-ROM label crop is available for this ID; retain the Japanese fallback and do not infer Thai spelling."
+    },
+    "hook:08": {
+      "nameTh": null,
+      "nameJapanese": "ハヤ・ヤマベ",
+      "labelImageTh": null,
+      "captureStatus": "not-captured",
+      "captureNote": "No verified patched-ROM label crop is available for this ID; retain the Japanese fallback and do not infer Thai spelling."
+    },
+    "hook:09": {
+      "nameTh": null,
+      "nameJapanese": "マスバリ",
+      "labelImageTh": null,
+      "captureStatus": "not-captured",
+      "captureNote": "No verified patched-ROM label crop is available for this ID; retain the Japanese fallback and do not infer Thai spelling."
+    },
+    "hook:0A": {
+      "nameTh": null,
+      "nameJapanese": "ハナカン",
+      "labelImageTh": null,
+      "captureStatus": "not-captured",
+      "captureNote": "No verified patched-ROM label crop is available for this ID; retain the Japanese fallback and do not infer Thai spelling."
+    },
+    "hook:0B": {
+      "nameTh": null,
+      "nameJapanese": "タナゴバリ",
+      "labelImageTh": null,
+      "captureStatus": "not-captured",
+      "captureNote": "No verified patched-ROM label crop is available for this ID; retain the Japanese fallback and do not infer Thai spelling."
+    },
+    "hook:0C": {
+      "nameTh": null,
+      "nameJapanese": "イワナバリ",
+      "labelImageTh": null,
+      "captureStatus": "not-captured",
+      "captureNote": "No verified patched-ROM label crop is available for this ID; retain the Japanese fallback and do not infer Thai spelling."
+    },
+    "hook:0D": {
+      "nameTh": null,
+      "nameJapanese": "ヤマメバリ",
+      "labelImageTh": null,
+      "captureStatus": "not-captured",
+      "captureNote": "No verified patched-ROM label crop is available for this ID; retain the Japanese fallback and do not infer Thai spelling."
+    },
+    "float_weight:01": {
+      "nameTh": null,
+      "nameJapanese": "ヘラウキ",
+      "labelImageTh": null,
+      "captureStatus": "not-captured",
+      "captureNote": "No verified patched-ROM label crop is available for this ID; retain the Japanese fallback and do not infer Thai spelling."
+    },
+    "float_weight:02": {
+      "nameTh": null,
+      "nameJapanese": "丸型シモリ",
+      "labelImageTh": null,
+      "captureStatus": "not-captured",
+      "captureNote": "No verified patched-ROM label crop is available for this ID; retain the Japanese fallback and do not infer Thai spelling."
+    },
+    "float_weight:03": {
+      "nameTh": null,
+      "nameJapanese": "流線シモリ",
+      "labelImageTh": null,
+      "captureStatus": "not-captured",
+      "captureNote": "No verified patched-ROM label crop is available for this ID; retain the Japanese fallback and do not infer Thai spelling."
+    },
+    "float_weight:04": {
+      "nameTh": null,
+      "nameJapanese": "玉ウキ",
+      "labelImageTh": null,
+      "captureStatus": "not-captured",
+      "captureNote": "No verified patched-ROM label crop is available for this ID; retain the Japanese fallback and do not infer Thai spelling."
+    },
+    "float_weight:05": {
+      "nameTh": null,
+      "nameJapanese": "棒ウキ",
+      "labelImageTh": null,
+      "captureStatus": "not-captured",
+      "captureNote": "No verified patched-ROM label crop is available for this ID; retain the Japanese fallback and do not infer Thai spelling."
+    },
+    "float_weight:06": {
+      "nameTh": null,
+      "nameJapanese": "どんぐりウキ",
+      "labelImageTh": null,
+      "captureStatus": "not-captured",
+      "captureNote": "No verified patched-ROM label crop is available for this ID; retain the Japanese fallback and do not infer Thai spelling."
+    },
+    "float_weight:07": {
+      "nameTh": null,
+      "nameJapanese": "トウガラシウキ",
+      "labelImageTh": null,
+      "captureStatus": "not-captured",
+      "captureNote": "No verified patched-ROM label crop is available for this ID; retain the Japanese fallback and do not infer Thai spelling."
+    },
+    "float_weight:08": {
+      "nameTh": null,
+      "nameJapanese": "目印",
+      "labelImageTh": null,
+      "captureStatus": "not-captured",
+      "captureNote": "No verified patched-ROM label crop is available for this ID; retain the Japanese fallback and do not infer Thai spelling."
+    },
+    "float_weight:09": {
+      "nameTh": null,
+      "nameJapanese": "小判型おもり",
+      "labelImageTh": null,
+      "captureStatus": "not-captured",
+      "captureNote": "No verified patched-ROM label crop is available for this ID; retain the Japanese fallback and do not infer Thai spelling."
+    },
+    "float_weight:0A": {
+      "nameTh": null,
+      "nameJapanese": "ナツメ型おもり",
+      "labelImageTh": null,
+      "captureStatus": "not-captured",
+      "captureNote": "No verified patched-ROM label crop is available for this ID; retain the Japanese fallback and do not infer Thai spelling."
+    }
+  }
+}

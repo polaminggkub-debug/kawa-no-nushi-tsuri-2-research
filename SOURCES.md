@@ -38,3 +38,9 @@ See [NOTICE.md](NOTICE.md) for the rights and license scope. Credits describe ev
 The hero image is the original Japanese title-screen screenshot supplied by the project owner. It is displayed without repainting; the game artwork retains its underlying rights.
 
 ヘッダー画像はプロジェクト所有者が提供した原作日本版のタイトル画面です。描き直しは行っていません。原作画像の権利は権利者に帰属します。
+
+## Thai labels / ชื่อไทย
+
+Thai interface and research explanations are website translations. Thai item labels are attributed only when verified against the local Thai V1.2 patch (SHA-1 `453047280f53ab9faf93142b957967c1eec69afc`), credited by its supplied README to ช.ช้าง and Memory_Card_TH. Labels that are not yet verified retain the Japanese name. This repository distributes neither the patch nor the patched ROM. Core mechanic measurements refer to the original Japanese ROM; a Thai label does not establish that every patched gameplay behavior is unchanged.
+
+Per-item label provenance and unavailable captures are recorded in `data/thai-rom-names.json` and `data/thai-other-captures.json` when present. Unicode transcriptions are stored separately from source crops. A verified transcription is reused only for byte-identical cropped label images; Japanese-name similarity is not evidence of the Thai spelling. Fish in the food menu displays the held fish species, and the two mushroom records display the same Thai name despite different original-ROM effects.

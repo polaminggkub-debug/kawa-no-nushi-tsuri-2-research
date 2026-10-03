@@ -1,5 +1,7 @@
 # Search discovery / 検索への公開
 
+The English, Japanese and Thai catalogues each have their own URL. Thai research explanations are translated for this website; game label crops come from the identified Thai V1.2 patch and do not imply a complete Unicode decoding of its font.
+
 The catalogue uses separate language URLs, self-canonical links, reciprocal `hreflang` links, descriptive titles, game names in visible headings, image alt text, structured page metadata and a [sitemap](../sitemap.xml). Initial HTML includes all catalogue cards, evidence notes and source links; JavaScript adds filtering and sorting rather than supplying the only readable content.
 
 Regenerate the static content after changing catalogue data or the shared renderer:
@@ -19,3 +21,5 @@ GitHub Pages serves this project below a path on `github.io`; the project does n
 言語別URL・canonical・相互hreflang・説明的なタイトル・サイトマップを設置し、JavaScript実行前のHTMLにも一覧を含めています。これらは検索エンジンの発見を助けますが、登録時期や順位を保証しません。Search Consoleの所有権確認・サイトマップ送信は所有者のアカウントで別途行う手順です。
 
 Sources: [Google multilingual sites](https://developers.google.com/search/docs/specialty/international/managing-multi-regional-sites), [localized versions](https://developers.google.com/search/docs/specialty/international/localized-versions), [sitemaps](https://developers.google.com/search/docs/crawling-indexing/sitemaps/build-sitemap), [JavaScript SEO](https://developers.google.com/search/docs/crawling-indexing/javascript/javascript-seo-basics).
+
+หน้าอังกฤษ ญี่ปุ่น และไทยมี URL แยกกัน พร้อมชื่อหน้าและข้อมูลสำหรับค้นหา แต่ยังไม่ยืนยันว่า Google เก็บเข้าดัชนีแล้ว หรือจะได้อันดับใด การยืนยันเจ้าของเว็บใน Search Console และส่ง sitemap ยังเป็นขั้นตอนที่เจ้าของบัญชีต้องดำเนินการ
