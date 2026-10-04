@@ -68,4 +68,6 @@ Actual local browser clicks passed:
 - Fly body 01 → wing 09 → Back: original body profile.
 - Desktop fish/item/map layouts inspected; item/fly layout at 390px inspected with no horizontal page overflow.
 
+Catalogue search and filter controls stay disabled until their data and event handlers are ready, preventing early input from being overwritten during initialization.
+
 Individual references were checked exhaustively by the source checker. Browser clicks exercise representative navigation paths; they do not claim a separate manual click of every repeated link.
