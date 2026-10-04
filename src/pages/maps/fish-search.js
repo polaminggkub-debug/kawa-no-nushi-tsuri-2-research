@@ -135,7 +135,11 @@ export function updateUrl(ctx) {
   if (ctx.activeSection) params.set('section', ctx.activeSection)
   if (ctx.selectedFish) params.set('fish', ctx.selectedFish)
   if (ctx.listScope === 'section') params.set('scope', 'section')
-  history.replaceState(null, '', `${location.pathname}?${params.toString()}`)
+  history.replaceState(
+    null,
+    '',
+    `${location.pathname}?${params.toString()}${ctx.openNotebookGuide ? '#notebook-guide' : ''}`,
+  )
   ctx.updateLanguageLinks(params)
 }
 

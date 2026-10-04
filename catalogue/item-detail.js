@@ -553,28 +553,28 @@
   function isCurrentItem(marker, item) {
     return marker.category === item.category && marker.id === item.id;
   }
-  function locationPinNote(ctx, loc, text2) {
+  function locationPinNote(ctx, loc, text3) {
     if (loc.kind === "runtime_net_use") {
       if (ctx.lang === "th") return "รูปแมลงน้ำชี้ช่องที่ทดลองใช้ตาข่ายสำเร็จ";
       if (ctx.lang === "ja") return "カワムシ画像はアミ使用に成功したタイルを示す。";
       return "The aquatic insect portrait marks the successfully tested net tile.";
     }
-    return loc.forage ? text2.forage : text2.pin;
+    return loc.forage ? text3.forage : text3.pin;
   }
   function locationMarkerLink(ctx, marker, item, loc, stage) {
     if (isCurrentItem(marker, item)) return loc.image;
     const returnRoute = loc.forage ? ctx.foragePointReturn(stage, loc.context) : "";
     return ctx.areaItemLink(marker, stage, "", returnRoute);
   }
-  function locationVisual(ctx, loc, item, markers, stage, text2) {
+  function locationVisual(ctx, loc, item, markers, stage, text3) {
     if (!loc.image || !loc.pin) return "";
     const markerLinks = markers.map((marker) => {
       const current = isCurrentItem(marker, item);
       const target = current ? ' target="_blank" rel="noopener"' : "";
-      const label = current ? text2.open : ctx.imageName(marker);
+      const label = current ? text3.open : ctx.imageName(marker);
       return `<a href="${ctx.esc(locationMarkerLink(ctx, marker, item, loc, stage))}"${target} aria-label="${ctx.esc(label)}"><img src="${ctx.esc(marker.image)}" alt="${ctx.esc(ctx.imageName(marker))}"></a>`;
     }).join("");
-    const note = locationPinNote(ctx, loc, text2);
+    const note = locationPinNote(ctx, loc, text3);
     return `<div class="tool-use-map" style="aspect-ratio:${Number(loc.width) || 1}/${Number(loc.height) || 1}"><img class="tool-use-ground" src="${ctx.esc(loc.image)}" alt="${ctx.esc(ctx.local(loc.name))}"><span class="tool-use-pin" style="left:${Number(loc.pin.x) * 100}%;top:${Number(loc.pin.y) * 100}%">${markerLinks}</span></div><p class="muted">${ctx.esc(note)}</p>`;
   }
   function entranceTitle(ctx) {
@@ -587,12 +587,12 @@
     if (ctx.lang === "ja") return "道具画像が示す入口に入り、上の部屋画像の宝箱へ進みます。";
     return "Enter through the door marked by the item portrait, then find the chest in the room shown above.";
   }
-  function renderEntranceGuide(ctx, item, loc, text2) {
+  function renderEntranceGuide(ctx, item, loc, text3) {
     const approach = loc.approach;
     if (!approach) return "";
     const pin = `<span class="tool-use-pin" style="left:${approach.pin.x * 100}%;top:${approach.pin.y * 100}%"><a href="${ctx.esc(approach.image)}" target="_blank" rel="noopener"><img src="${ctx.esc(item.image)}" alt="${ctx.esc(ctx.imageName(item))}"></a></span>`;
     const map = `<div class="tool-use-map" style="aspect-ratio:${approach.width}/${approach.height}"><img class="tool-use-ground" src="${ctx.esc(approach.image)}" alt="${ctx.esc(entranceTitle(ctx))}">${pin}</div>`;
-    const full = `<a href="${ctx.esc(approach.fullImage)}" target="_blank" rel="noopener">${ctx.esc(text2.full)} ↗</a>`;
+    const full = `<a href="${ctx.esc(approach.fullImage)}" target="_blank" rel="noopener">${ctx.esc(text3.full)} ↗</a>`;
     return `<details class="town-approach"><summary>${ctx.esc(entranceTitle(ctx))}</summary><p>${ctx.esc(entranceText(ctx))}</p>${map}<p>X ${approach.tileX}, Y ${approach.tileY}</p>${full}</details>`;
   }
   function rewardItem(loc, allItems) {
@@ -646,8 +646,8 @@
     const label = ctx.lang === "th" ? `ห้องของทางเข้าเมืองที่ ${ordinal}` : ctx.lang === "ja" ? `町入口${ordinal}につながる部屋` : `Room reached from town entrance ${ordinal}`;
     return `<p>${ctx.esc(label)}</p>`;
   }
-  function fullImageLabel(ctx, loc, text2) {
-    if (loc.context !== "town") return text2.full;
+  function fullImageLabel(ctx, loc, text3) {
+    if (loc.context !== "town") return text3.full;
     if (ctx.lang === "th") return "เปิดภาพในเมืองทั้งห้าห้อง";
     if (ctx.lang === "ja") return "町内の5部屋の画像を開く";
     return "Open all five town rooms";
@@ -659,25 +659,25 @@
     if (loc.forage) return `id="forage-stage-${stage}-context-${Number(loc.context)}"`;
     return "";
   }
-  function locationCoordinates(ctx, loc, text2) {
+  function locationCoordinates(ctx, loc, text3) {
     const tile = `<p>X ${ctx.esc(loc.tileX)}, Y ${ctx.esc(loc.tileY)}</p>`;
     if (!loc.useWindow) return tile;
     const { xMin, xMax, yMin, yMax } = loc.useWindow;
-    return `${tile}<p>${ctx.esc(text2.window)} X ${xMin}–${xMax}, Y ${yMin}–${yMax}</p>`;
+    return `${tile}<p>${ctx.esc(text3.window)} X ${xMin}–${xMax}, Y ${yMin}–${yMax}</p>`;
   }
-  function locationImageLinks(ctx, loc, text2) {
-    const image = loc.image ? `<a href="${ctx.esc(loc.image)}" target="_blank" rel="noopener">${ctx.esc(text2.open)} ↗</a>` : "";
-    const full = loc.fullImage ? ` · <a href="${ctx.esc(loc.fullImage)}" target="_blank" rel="noopener">${ctx.esc(fullImageLabel(ctx, loc, text2))} ↗</a>` : "";
+  function locationImageLinks(ctx, loc, text3) {
+    const image = loc.image ? `<a href="${ctx.esc(loc.image)}" target="_blank" rel="noopener">${ctx.esc(text3.open)} ↗</a>` : "";
+    const full = loc.fullImage ? ` · <a href="${ctx.esc(loc.fullImage)}" target="_blank" rel="noopener">${ctx.esc(fullImageLabel(ctx, loc, text3))} ↗</a>` : "";
     const capture = loc.runtimeImage ? ` · <a href="${ctx.esc(loc.runtimeImage)}" target="_blank" rel="noopener">${ctx.esc(ctx.local(loc.runtimeCaption))} ↗</a>` : "";
     return `${image}${full}${capture}`;
   }
   function locationDescription(ctx, loc) {
     return ctx.esc(ctx.local(loc.description) || ctx.local(loc.name) || "");
   }
-  function locationEntry(ctx, item, loc, fishLocations, allItems, text2) {
+  function locationEntry(ctx, item, loc, fishLocations, allItems, text3) {
     const stage = Number(loc.stage) || 0;
     const markers = locationMarkerItems(loc, item, allItems);
-    const visual = locationVisual(ctx, loc, item, markers, stage, text2);
+    const visual = locationVisual(ctx, loc, item, markers, stage, text3);
     const stageName2 = stage ? `${ctx.copy.area(stage)} · ${ctx.stageName(stage, fishLocations)}` : "";
     const action = loc.action ? `<p class="acquisition-action">${ctx.esc(ctx.local(loc.action))}</p>` : "";
     const content = [
@@ -687,17 +687,17 @@
       action,
       `<p>${locationDescription(ctx, loc)}</p>`,
       visual,
-      locationCoordinates(ctx, loc, text2),
-      locationImageLinks(ctx, loc, text2),
-      renderEntranceGuide(ctx, item, loc, text2)
+      locationCoordinates(ctx, loc, text3),
+      locationImageLinks(ctx, loc, text3),
+      renderEntranceGuide(ctx, item, loc, text3)
     ].join("");
     return `<article class="detail-section" ${locationAnchor(loc, stage)}><h3>${ctx.esc(stageName2 + townLabel(ctx, loc))}</h3>${content}</article>`;
   }
   function useLocationSection(ctx, item, fishLocations, allItems) {
     const locations = item.playerUse?.useLocations || [];
     if (!locations.length) return "";
-    const text2 = locationCopy(ctx);
-    const cards = locations.map((loc) => locationEntry(ctx, item, loc, fishLocations, allItems, text2)).join("");
+    const text3 = locationCopy(ctx);
+    const cards = locations.map((loc) => locationEntry(ctx, item, loc, fishLocations, allItems, text3)).join("");
     const layout = locations.length === 1 ? "single-location" : "";
     return `<section class="detail-section locations-section" id="use-locations"><h2>${ctx.esc(ctx.copy.useLocations)}</h2><div class="detail-grid tool-location-grid ${layout}">${cards}</div></section>`;
   }
@@ -880,6 +880,35 @@
     return `<details class="more-options"><summary>${ctx.esc(title)}</summary><div class="detail-content">${content}</div></details>`;
   }
 
+  // src/pages/item/notebook.js
+  var text = {
+    th: [
+      "เก็บสมุดให้ครบ 66 ชนิด",
+      "สมุดเก็บหนึ่งรายการต่อชนิดปลา ด่านในสมุดคือด่านที่ทำสถิติขนาดใหญ่ที่สุด ตกชนิดเดิมที่ขนาดเท่าเดิมหรือเล็กกว่าจะไม่เพิ่มรายการใหม่",
+      "ดูรายชื่อที่ควรเก็บเพิ่มในแต่ละด่าน"
+    ],
+    en: [
+      "Complete all 66 notebook species",
+      "The notebook keeps one entry per species. Its area is where the largest-size record was set; an equal or smaller duplicate does not add another entry.",
+      "See new collection targets in each area"
+    ],
+    ja: [
+      "釣りノート66種をそろえる",
+      "魚種ごとに1件だけ記録します。表示エリアは最大サイズの記録を作った場所です。同じサイズ以下の同種では別の項目は増えません。",
+      "エリア別の未重複収集ルートを見る"
+    ]
+  };
+  function notebookAction(ctx, item) {
+    if (item.category !== "general_tool" || item.id !== "05") return "";
+    const c = text[ctx.lang];
+    const query = new URLSearchParams({
+      stage: String(ctx.selectedStage || 1),
+      return: ctx.currentLocalRoute()
+    });
+    const href = `maps${ctx.lang === "en" ? "" : `.${ctx.lang}`}.html?${query}#notebook-guide`;
+    return `<aside class="detail-section" data-notebook-action><h2>${ctx.esc(c[0])}</h2><p>${ctx.esc(c[1])}</p><a class="route-button" href="${ctx.esc(href)}">${ctx.esc(c[2])} ↗</a></aside>`;
+  }
+
   // src/shared/lib/target-advice.js
   function acceptedFor(item, fish, route) {
     const use = item.playerUse || {};
@@ -954,18 +983,18 @@
   }
   function compatibilityText(ctx, fish, route) {
     if (route === "lure")
-      return text(ctx, {
+      return text2(ctx, {
         th: `ผ่านเงื่อนไขลัวร์สำหรับ${fish}`,
         ja: `${fish}のルアー判定に適合`,
         en: `Passes the lure check for ${fish}`
       });
-    return text(ctx, {
+    return text2(ctx, {
       th: `ผ่านเงื่อนไขเหยื่อสำหรับ${fish} · ${routeName(ctx, route)}`,
       ja: `${fish}のエサ判定に適合 · ${routeName(ctx, route)}`,
       en: `Passes the bait check for ${fish} · ${routeName(ctx, route)}`
     });
   }
-  function text(ctx, values) {
+  function text2(ctx, values) {
     return values[ctx.lang] || values.en;
   }
   function conditionText(ctx, condition) {
@@ -984,11 +1013,11 @@
   }
   function alternativeList(ctx, advice) {
     if (!advice.alternatives.length) return "";
-    const heading = advice.currentStock?.available ? text(ctx, {
+    const heading = advice.currentStock?.available ? text2(ctx, {
       th: "ตัวเลือกที่ถูกกว่าซึ่งผ่านเงื่อนไขปลาและมีขายในด่านนี้",
       ja: "この魚の判定を通り、エリア内で買える安い候補",
       en: "Cheaper local offers that pass this fish check"
-    }) : text(ctx, {
+    }) : text2(ctx, {
       th: "ตัวเลือกที่มีขายในด่านนี้และผ่านเงื่อนไขปลา",
       ja: "エリア内で販売され、この魚の判定を通る候補",
       en: "Local offers that pass this fish check"
@@ -996,7 +1025,7 @@
     return `<p>${ctx.esc(heading)}</p><ul>${advice.alternatives.map((offer) => alternativeLink(ctx, offer)).join("")}</ul>`;
   }
   function noAreaDecision(ctx) {
-    return text(ctx, {
+    return text2(ctx, {
       th: "มีของชิ้นนี้อยู่แล้วใช้ต่อได้ เลือกด่านจากแผนที่เพื่อดูว่ามีขายอะไรและราคาเท่าไร",
       ja: "所持していれば使用できます。地図でエリアを選ぶと、店頭在庫と価格を確認できます。",
       en: "Use it if you already own it. Choose an area on the map to check local stock and prices."
@@ -1004,33 +1033,33 @@
   }
   function absentStockDecision(ctx, advice) {
     if (advice.alternatives.length)
-      return text(ctx, {
+      return text2(ctx, {
         th: "ถ้ามีชิ้นนี้อยู่แล้วใช้ต่อได้ ชิ้นนี้ไม่มีรายการขายในด่านนี้; ถ้าจะซื้อใหม่ ให้เลือกตัวเลือกด้านล่าง",
         ja: "所持していればそのまま使えます。この品はエリア内の在庫記録がありません。新しく買うなら下記の候補を選べます。",
         en: "Keep using it if owned. This item has no recorded stock in this area; for a new purchase, choose a compatible offer below."
       });
-    return text(ctx, {
+    return text2(ctx, {
       th: "ชิ้นนี้ไม่มีรายการขายในด่านนี้; ถ้ามีอยู่แล้วใช้ต่อได้ หรือดูร้านในด่านอื่น",
       ja: "この品はエリア内の在庫記録がありません。所持品は使えます。別エリアの店を確認してください。",
       en: "This item has no recorded stock in this area. Use it if owned, or check another area’s shops."
     });
   }
   function conditionalStockDecision(ctx, stage, stock) {
-    return text(ctx, {
+    return text2(ctx, {
       th: `มีขายในด่าน ${stage} ราคา ¥${stock.priceYen} แต่${conditionText(ctx, stock.condition)}`,
       ja: `エリア${stage}で${stock.priceYen}円で販売。ただし${conditionText(ctx, stock.condition)}`,
       en: `Stocked in area ${stage} for ¥${stock.priceYen}, but ${conditionText(ctx, stock.condition)}.`
     });
   }
   function cheapestStockDecision(ctx, stage, stock) {
-    return text(ctx, {
+    return text2(ctx, {
       th: `มีขายในด่าน ${stage} ราคา ¥${stock.priceYen}; ถ้าจะซื้อ ชิ้นนี้เป็นหนึ่งในตัวเลือกที่ถูกที่สุดซึ่งผ่านเงื่อนไขปลาในสต็อกที่ตรวจได้`,
       ja: `エリア${stage}で${stock.priceYen}円。このエリアで確認できた魚判定を通る在庫品の最安候補の一つです。`,
       en: `Stocked in area ${stage} for ¥${stock.priceYen}; it is one of the cheapest recorded local offers passing this fish check.`
     });
   }
   function compareStockDecision(ctx, stage, stock) {
-    return text(ctx, {
+    return text2(ctx, {
       th: `มีขายในด่าน ${stage} ราคา ¥${stock.priceYen}; ถ้ามีอยู่แล้วใช้ต่อได้ ถ้าจะซื้อให้ดูตัวเลือกที่ถูกกว่าด้านล่าง`,
       ja: `エリア${stage}で${stock.priceYen}円。所持品はそのまま使えます。購入するなら下記の安い候補を確認してください。`,
       en: `Stocked in area ${stage} for ¥${stock.priceYen}. Keep using it if owned; compare the cheaper offers below before buying.`
@@ -1051,7 +1080,7 @@
     if (!advice) return "";
     const fishName2 = ctx.fishName(fish);
     const status = compatibilityText(ctx, fishName2, advice.route);
-    const limit = text(ctx, {
+    const limit = text2(ctx, {
       th: "ยืนยันเฉพาะว่าเข้าเงื่อนไขตรวจเหยื่อ ไม่ได้ยืนยันโอกาสกินเหยื่อหรือจับขึ้น",
       ja: "エサの判定を通ることのみ確認。食いつき率・取り込みは示しません。",
       en: "This confirms the bait check only; it does not establish bite odds or landing success."
@@ -1218,6 +1247,7 @@
   }
   function renderQuickOptions(ctx, item, allItems) {
     const options = [
+      notebookAction(ctx, item),
       ctx.boatBoardingChoice(item),
       ctx.acquisitionChoice(item),
       ctx.baitGatherChoice(item),
@@ -1297,7 +1327,7 @@
   function loadCatalogue(ctx) {
     ctx.flyMakerLink = (item) => item.category.startsWith("fly") ? `<p><a class="route-button" data-fly-maker href="${ctx.esc(ctx.currentCategoryLink().split("#")[0] + "#fly-instructions")}">${ctx.lang === "th" ? "ดูขั้นตอนประกอบฟลายเองและตรวจราคาในเกม" : ctx.lang === "ja" ? "自作フライの手順とゲーム内見積額を確認" : "See custom fly steps and check the in-game quote"} ↗</a></p>` : "";
     ctx.setNavigation();
-    fetch("gallery-data.json?v=compendium-20261005-12").then((response) => {
+    fetch("gallery-data.json?v=compendium-20261005-14").then((response) => {
       if (!response.ok) throw new Error("catalogue data unavailable");
       return response.json();
     }).then((data) => {

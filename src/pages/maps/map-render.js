@@ -252,6 +252,7 @@ export function render(ctx) {
   ctx.renderFishList()
   ctx.renderMap()
   ctx.renderWaterKey()
+  ctx.renderNotebookGuide()
 }
 
 export function enableControls(ctx) {
@@ -261,6 +262,7 @@ export function enableControls(ctx) {
 }
 
 export function initFromUrl(ctx) {
+  ctx.openNotebookGuide = location.hash === '#notebook-guide'
   const p = new URLSearchParams(location.search)
   if (p.get('scope') === 'section') ctx.listScope = 'section'
   const stage = Number(p.get('stage'))

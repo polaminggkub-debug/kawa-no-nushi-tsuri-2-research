@@ -1,3 +1,4 @@
+import { notebookAction } from './notebook.js'
 import { targetAdviceSection } from './target-advice.js'
 function renderFishTarget(ctx, fishVisuals, fishLocations) {
   if (!ctx.selectedFish) return ''
@@ -142,6 +143,7 @@ function renderDecisionSection(
 
 function renderQuickOptions(ctx, item, allItems) {
   const options = [
+    notebookAction(ctx, item),
     ctx.boatBoardingChoice(item),
     ctx.acquisitionChoice(item),
     ctx.baitGatherChoice(item),

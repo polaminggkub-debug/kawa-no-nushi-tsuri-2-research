@@ -66,7 +66,7 @@ The source bytes at file `0x01C04C` are `02 60 07 00 08 00 09 00 16 00 05 00 06 
 
 Handler `$03:C05C..C071` saves the current state in `$0836`, switches `$0834` to `8`, and increments the shared item-use counter. State 8 dispatches to `$00:83A4`, which calls `$01:9738`; that routine calls `$01:BF30`.
 
-`$01:BF30..C00B` scans the 66 word entries in `$0C3C`. It gathers entries whose area value is 1–6 into six lists in `$7F:2AFA` and records the list sizes at `$7F:2A8E..2A98`. `$01:C258..C2EA` sorts each list using corresponding values in `$0CC0` and `$0D44`. This is the notebook's fish-record organization. The ROM-backed notebook renderer also has six overview pages in the same order as field areas 1–6. Its overview artwork does not itself read the fish-spawn coordinate tables; see [`fish-location-research.md`](fish-location-research.md).
+`$01:BF30..C00B` scans the 66 word entries in `$0C3C`. It gathers entries whose area value is 1–6 into six lists in `$7F:2AFA` and records cumulative list byte boundaries at `$7F:2A8E..2A98`. `$01:C258..C2EA` sorts each list using corresponding values in `$0CC0` and `$0D44`. This is the notebook's fish-record organization. The ROM-backed notebook renderer also has six overview pages in the same order as field areas 1–6. Its overview artwork does not itself read the fish-spawn coordinate tables; see [`fish-location-research.md`](fish-location-research.md).
 
 ## Magnet: ID 0E
 
@@ -100,3 +100,5 @@ The tool label reflects the current mode. Using it toggles to the opposite mode;
 ## Evidence boundary
 
 All action claims above come from the supplied original ROM's selected-use dispatch, state handlers, message strings, data tables, and the consumers named at each section. Bait display names are matched by item ID to the Japanese names in the ROM-derived item catalogue. This research does not use fan guides to fill gaps. Remaining limits are explicit: the numeric magnifier context values are not yet mapped to named terrain; the two vehicle routes are demonstrably distinct but their full player-visible gameplay differences are not assigned; the magnet's message reports a heading and current region, not a destination name.
+
+The [notebook completion guide](notebook-completion-research.md) traces the 66 global species records and explains why a new larger record can move an entry between area pages.

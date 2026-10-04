@@ -1,0 +1,1447 @@
+{
+  "schemaVersion": 1,
+  "rom": {
+    "sizeBytes": 1572864,
+    "sha1": "c2103dd94e2a1a65a495fc02adc2e7d040f31212"
+  },
+  "scope": "Unique fish profiles in the six ROM spawn tables, filtered by the notebook record updater's accepted fish-ID range. Configured spawn rows are not a promise that each fish is active in every generated state.",
+  "recordRule": {
+    "notebookSlots": 66,
+    "eligibleFishIds": "01-42",
+    "updaterCpu": "01:8B00..8C8F",
+    "updaterFileOffset": "0x008B00",
+    "updaterFingerprint": "ad e8 11 c9 42 00 f0 03 90 01 60 3a 0a aa bd 4c 0e c9 e8 03 b0 04 1a 9d 4c 0e bd c8 0d cd b1 1e 90 01 60",
+    "recordSlotIndex": "fishId - 1",
+    "areaUpdate": "When the updater runs, it stores the current stage only if the current raw-size value strictly exceeds that species' previous recorded size. A later, larger value in another stage moves that species' single notebook entry to the later stage.",
+    "repeatMeaning": "A species appearing in another stage does not create a second notebook slot. The stored stage changes only when the updater runs with a new raw-size record.",
+    "triggerLimit": "The static caller trace does not prove whether the updater runs only after a landed catch or can run after another fishing outcome. This dataset identifies eligible species and spawn areas, not the exact in-game event needed to record them."
+  },
+  "guideRule": "Use firstOccurrenceSpecies in stage order to find every notebook-eligible fish profile once. This covers the 66 IDs present in the six ROM maps; it is not a promise to keep every notebook page simultaneously filled, and static table data does not establish the exact event that writes a record.",
+  "stages": [
+    {
+      "stage": 1,
+      "mapSet": "01",
+      "configuredSpawnRows": 256,
+      "speciesIds": [
+        "01",
+        "03",
+        "04",
+        "06",
+        "09",
+        "1E",
+        "44"
+      ],
+      "rowCounts": {
+        "01": 100,
+        "44": 11,
+        "09": 30,
+        "06": 18,
+        "03": 42,
+        "04": 48,
+        "1E": 7
+      },
+      "name": {
+        "en": "Mountain Stream",
+        "ja": "渓流",
+        "th": "ลำธารบนภูเขา"
+      },
+      "recordableSpeciesCount": 6,
+      "allConfiguredProfileSpeciesCount": 7,
+      "firstOccurrenceCount": 6,
+      "firstOccurrenceSpecies": [
+        "01",
+        "03",
+        "04",
+        "06",
+        "09",
+        "1E"
+      ],
+      "species": [
+        "01",
+        "03",
+        "04",
+        "06",
+        "09",
+        "1E"
+      ],
+      "repeatedFromEarlierStages": [],
+      "excludedFromNotebook": [
+        "44"
+      ]
+    },
+    {
+      "stage": 2,
+      "mapSet": "02",
+      "configuredSpawnRows": 256,
+      "speciesIds": [
+        "02",
+        "06",
+        "07",
+        "08",
+        "09",
+        "0A",
+        "0B",
+        "0E",
+        "13",
+        "20",
+        "22",
+        "3C",
+        "45"
+      ],
+      "rowCounts": {
+        "02": 14,
+        "13": 9,
+        "07": 15,
+        "08": 9,
+        "09": 30,
+        "0A": 28,
+        "0B": 53,
+        "20": 18,
+        "45": 9,
+        "06": 24,
+        "22": 19,
+        "0E": 8,
+        "3C": 20
+      },
+      "name": {
+        "en": "Mountain Lake",
+        "ja": "山上湖",
+        "th": "ทะเลสาบบนภูเขา"
+      },
+      "recordableSpeciesCount": 12,
+      "allConfiguredProfileSpeciesCount": 13,
+      "firstOccurrenceCount": 10,
+      "firstOccurrenceSpecies": [
+        "02",
+        "07",
+        "08",
+        "0A",
+        "0B",
+        "0E",
+        "13",
+        "20",
+        "22",
+        "3C"
+      ],
+      "species": [
+        "02",
+        "06",
+        "07",
+        "08",
+        "09",
+        "0A",
+        "0B",
+        "0E",
+        "13",
+        "20",
+        "22",
+        "3C"
+      ],
+      "repeatedFromEarlierStages": [
+        "06",
+        "09"
+      ],
+      "excludedFromNotebook": [
+        "45"
+      ]
+    },
+    {
+      "stage": 3,
+      "mapSet": "03",
+      "configuredSpawnRows": 256,
+      "speciesIds": [
+        "05",
+        "06",
+        "08",
+        "0C",
+        "0E",
+        "0F",
+        "18",
+        "1B",
+        "1E",
+        "28",
+        "2A",
+        "2C",
+        "31",
+        "38",
+        "42",
+        "46"
+      ],
+      "rowCounts": {
+        "08": 7,
+        "05": 13,
+        "2A": 21,
+        "42": 5,
+        "06": 17,
+        "2C": 12,
+        "0F": 29,
+        "0C": 31,
+        "46": 11,
+        "38": 52,
+        "1E": 8,
+        "1B": 24,
+        "28": 2,
+        "0E": 8,
+        "18": 8,
+        "31": 8
+      },
+      "name": {
+        "en": "Clear Stream",
+        "ja": "清流",
+        "th": "ลำธารใส"
+      },
+      "recordableSpeciesCount": 15,
+      "allConfiguredProfileSpeciesCount": 16,
+      "firstOccurrenceCount": 11,
+      "firstOccurrenceSpecies": [
+        "05",
+        "0C",
+        "0F",
+        "18",
+        "1B",
+        "28",
+        "2A",
+        "2C",
+        "31",
+        "38",
+        "42"
+      ],
+      "species": [
+        "05",
+        "06",
+        "08",
+        "0C",
+        "0E",
+        "0F",
+        "18",
+        "1B",
+        "1E",
+        "28",
+        "2A",
+        "2C",
+        "31",
+        "38",
+        "42"
+      ],
+      "repeatedFromEarlierStages": [
+        "06",
+        "08",
+        "0E",
+        "1E"
+      ],
+      "excludedFromNotebook": [
+        "46"
+      ]
+    },
+    {
+      "stage": 4,
+      "mapSet": "04",
+      "configuredSpawnRows": 256,
+      "speciesIds": [
+        "0A",
+        "0C",
+        "0D",
+        "12",
+        "14",
+        "15",
+        "17",
+        "1A",
+        "1D",
+        "24",
+        "25",
+        "26",
+        "28",
+        "29",
+        "2A",
+        "2D",
+        "2E",
+        "2F",
+        "30",
+        "38",
+        "39",
+        "3A",
+        "47"
+      ],
+      "rowCounts": {
+        "26": 11,
+        "1A": 16,
+        "12": 20,
+        "39": 14,
+        "2E": 15,
+        "2D": 6,
+        "47": 10,
+        "15": 10,
+        "0C": 5,
+        "0D": 22,
+        "2A": 13,
+        "24": 4,
+        "29": 4,
+        "17": 11,
+        "0A": 5,
+        "25": 44,
+        "2F": 6,
+        "28": 7,
+        "3A": 5,
+        "38": 4,
+        "14": 5,
+        "30": 6,
+        "1D": 13
+      },
+      "name": {
+        "en": "Lake",
+        "ja": "湖",
+        "th": "ทะเลสาบ"
+      },
+      "recordableSpeciesCount": 22,
+      "allConfiguredProfileSpeciesCount": 23,
+      "firstOccurrenceCount": 17,
+      "firstOccurrenceSpecies": [
+        "0D",
+        "12",
+        "14",
+        "15",
+        "17",
+        "1A",
+        "1D",
+        "24",
+        "25",
+        "26",
+        "29",
+        "2D",
+        "2E",
+        "2F",
+        "30",
+        "39",
+        "3A"
+      ],
+      "species": [
+        "0A",
+        "0C",
+        "0D",
+        "12",
+        "14",
+        "15",
+        "17",
+        "1A",
+        "1D",
+        "24",
+        "25",
+        "26",
+        "28",
+        "29",
+        "2A",
+        "2D",
+        "2E",
+        "2F",
+        "30",
+        "38",
+        "39",
+        "3A"
+      ],
+      "repeatedFromEarlierStages": [
+        "0A",
+        "0C",
+        "28",
+        "2A",
+        "38"
+      ],
+      "excludedFromNotebook": [
+        "47"
+      ]
+    },
+    {
+      "stage": 5,
+      "mapSet": "05",
+      "configuredSpawnRows": 256,
+      "speciesIds": [
+        "0C",
+        "0D",
+        "10",
+        "11",
+        "15",
+        "16",
+        "19",
+        "1A",
+        "1C",
+        "1D",
+        "1F",
+        "21",
+        "23",
+        "24",
+        "25",
+        "26",
+        "29",
+        "2A",
+        "2B",
+        "2C",
+        "2D",
+        "31",
+        "39",
+        "3A",
+        "40",
+        "41",
+        "42",
+        "48"
+      ],
+      "rowCounts": {
+        "39": 18,
+        "0D": 11,
+        "2B": 26,
+        "24": 6,
+        "41": 18,
+        "48": 9,
+        "2D": 4,
+        "1A": 14,
+        "23": 11,
+        "29": 4,
+        "10": 8,
+        "1C": 12,
+        "21": 7,
+        "11": 10,
+        "1F": 20,
+        "2A": 7,
+        "16": 5,
+        "19": 26,
+        "2C": 9,
+        "0C": 8,
+        "40": 5,
+        "15": 3,
+        "31": 4,
+        "42": 1,
+        "26": 6,
+        "25": 2,
+        "1D": 1,
+        "3A": 1
+      },
+      "name": {
+        "en": "Downstream",
+        "ja": "下流",
+        "th": "แม่น้ำตอนล่าง"
+      },
+      "recordableSpeciesCount": 27,
+      "allConfiguredProfileSpeciesCount": 28,
+      "firstOccurrenceCount": 11,
+      "firstOccurrenceSpecies": [
+        "10",
+        "11",
+        "16",
+        "19",
+        "1C",
+        "1F",
+        "21",
+        "23",
+        "2B",
+        "40",
+        "41"
+      ],
+      "species": [
+        "0C",
+        "0D",
+        "10",
+        "11",
+        "15",
+        "16",
+        "19",
+        "1A",
+        "1C",
+        "1D",
+        "1F",
+        "21",
+        "23",
+        "24",
+        "25",
+        "26",
+        "29",
+        "2A",
+        "2B",
+        "2C",
+        "2D",
+        "31",
+        "39",
+        "3A",
+        "40",
+        "41",
+        "42"
+      ],
+      "repeatedFromEarlierStages": [
+        "0C",
+        "0D",
+        "15",
+        "1A",
+        "1D",
+        "24",
+        "25",
+        "26",
+        "29",
+        "2A",
+        "2C",
+        "2D",
+        "31",
+        "39",
+        "3A",
+        "42"
+      ],
+      "excludedFromNotebook": [
+        "48"
+      ]
+    },
+    {
+      "stage": 6,
+      "mapSet": "06",
+      "configuredSpawnRows": 256,
+      "speciesIds": [
+        "0A",
+        "0D",
+        "27",
+        "31",
+        "32",
+        "33",
+        "34",
+        "35",
+        "36",
+        "37",
+        "3A",
+        "3B",
+        "3D",
+        "3E",
+        "3F",
+        "49"
+      ],
+      "rowCounts": {
+        "37": 1,
+        "3B": 1,
+        "34": 30,
+        "3E": 29,
+        "49": 16,
+        "31": 6,
+        "3A": 11,
+        "0D": 20,
+        "0A": 17,
+        "33": 15,
+        "36": 25,
+        "32": 21,
+        "3D": 13,
+        "35": 15,
+        "27": 18,
+        "3F": 18
+      },
+      "name": {
+        "en": "River Mouth",
+        "ja": "河口",
+        "th": "ปากแม่น้ำ"
+      },
+      "recordableSpeciesCount": 15,
+      "allConfiguredProfileSpeciesCount": 16,
+      "firstOccurrenceCount": 11,
+      "firstOccurrenceSpecies": [
+        "27",
+        "32",
+        "33",
+        "34",
+        "35",
+        "36",
+        "37",
+        "3B",
+        "3D",
+        "3E",
+        "3F"
+      ],
+      "species": [
+        "0A",
+        "0D",
+        "27",
+        "31",
+        "32",
+        "33",
+        "34",
+        "35",
+        "36",
+        "37",
+        "3A",
+        "3B",
+        "3D",
+        "3E",
+        "3F"
+      ],
+      "repeatedFromEarlierStages": [
+        "0A",
+        "0D",
+        "31",
+        "3A"
+      ],
+      "excludedFromNotebook": [
+        "49"
+      ]
+    }
+  ],
+  "species": {
+    "01": {
+      "nameJaFromRom": "イワナ",
+      "notebookEligible": true,
+      "stages": [
+        1
+      ],
+      "configuredSpawnRowsByStage": {
+        "01": 100
+      },
+      "firstOccurrenceStage": 1
+    },
+    "02": {
+      "nameJaFromRom": "アメマス",
+      "notebookEligible": true,
+      "stages": [
+        2
+      ],
+      "configuredSpawnRowsByStage": {
+        "02": 14
+      },
+      "firstOccurrenceStage": 2
+    },
+    "03": {
+      "nameJaFromRom": "ヤマメ",
+      "notebookEligible": true,
+      "stages": [
+        1
+      ],
+      "configuredSpawnRowsByStage": {
+        "01": 42
+      },
+      "firstOccurrenceStage": 1
+    },
+    "04": {
+      "nameJaFromRom": "アマゴ",
+      "notebookEligible": true,
+      "stages": [
+        1
+      ],
+      "configuredSpawnRowsByStage": {
+        "01": 48
+      },
+      "firstOccurrenceStage": 1
+    },
+    "05": {
+      "nameJaFromRom": "カジカ",
+      "notebookEligible": true,
+      "stages": [
+        3
+      ],
+      "configuredSpawnRowsByStage": {
+        "03": 13
+      },
+      "firstOccurrenceStage": 3
+    },
+    "06": {
+      "nameJaFromRom": "ニジマス",
+      "notebookEligible": true,
+      "stages": [
+        1,
+        2,
+        3
+      ],
+      "configuredSpawnRowsByStage": {
+        "01": 18,
+        "02": 24,
+        "03": 17
+      },
+      "firstOccurrenceStage": 1
+    },
+    "07": {
+      "nameJaFromRom": "ヒメマス",
+      "notebookEligible": true,
+      "stages": [
+        2
+      ],
+      "configuredSpawnRowsByStage": {
+        "02": 15
+      },
+      "firstOccurrenceStage": 2
+    },
+    "08": {
+      "nameJaFromRom": "ブラウントラウト",
+      "notebookEligible": true,
+      "stages": [
+        2,
+        3
+      ],
+      "configuredSpawnRowsByStage": {
+        "02": 9,
+        "03": 7
+      },
+      "firstOccurrenceStage": 2
+    },
+    "09": {
+      "nameJaFromRom": "カワマス",
+      "notebookEligible": true,
+      "stages": [
+        1,
+        2
+      ],
+      "configuredSpawnRowsByStage": {
+        "01": 30,
+        "02": 30
+      },
+      "firstOccurrenceStage": 1
+    },
+    "0A": {
+      "nameJaFromRom": "ワカサギ",
+      "notebookEligible": true,
+      "stages": [
+        2,
+        4,
+        6
+      ],
+      "configuredSpawnRowsByStage": {
+        "02": 28,
+        "04": 5,
+        "06": 17
+      },
+      "firstOccurrenceStage": 2
+    },
+    "0B": {
+      "nameJaFromRom": "ブラックバス",
+      "notebookEligible": true,
+      "stages": [
+        2
+      ],
+      "configuredSpawnRowsByStage": {
+        "02": 53
+      },
+      "firstOccurrenceStage": 2
+    },
+    "0C": {
+      "nameJaFromRom": "ウグイ",
+      "notebookEligible": true,
+      "stages": [
+        3,
+        4,
+        5
+      ],
+      "configuredSpawnRowsByStage": {
+        "03": 31,
+        "04": 5,
+        "05": 8
+      },
+      "firstOccurrenceStage": 3
+    },
+    "0D": {
+      "nameJaFromRom": "コイ",
+      "notebookEligible": true,
+      "stages": [
+        4,
+        5,
+        6
+      ],
+      "configuredSpawnRowsByStage": {
+        "04": 22,
+        "05": 11,
+        "06": 20
+      },
+      "firstOccurrenceStage": 4
+    },
+    "0E": {
+      "nameJaFromRom": "ドンコ",
+      "notebookEligible": true,
+      "stages": [
+        2,
+        3
+      ],
+      "configuredSpawnRowsByStage": {
+        "02": 8,
+        "03": 8
+      },
+      "firstOccurrenceStage": 2
+    },
+    "0F": {
+      "nameJaFromRom": "オイカワ",
+      "notebookEligible": true,
+      "stages": [
+        3
+      ],
+      "configuredSpawnRowsByStage": {
+        "03": 29
+      },
+      "firstOccurrenceStage": 3
+    },
+    "10": {
+      "nameJaFromRom": "モツゴ",
+      "notebookEligible": true,
+      "stages": [
+        5
+      ],
+      "configuredSpawnRowsByStage": {
+        "05": 8
+      },
+      "firstOccurrenceStage": 5
+    },
+    "11": {
+      "nameJaFromRom": "イトモロコ",
+      "notebookEligible": true,
+      "stages": [
+        5
+      ],
+      "configuredSpawnRowsByStage": {
+        "05": 10
+      },
+      "firstOccurrenceStage": 5
+    },
+    "12": {
+      "nameJaFromRom": "ギギ",
+      "notebookEligible": true,
+      "stages": [
+        4
+      ],
+      "configuredSpawnRowsByStage": {
+        "04": 20
+      },
+      "firstOccurrenceStage": 4
+    },
+    "13": {
+      "nameJaFromRom": "サクラマス",
+      "notebookEligible": true,
+      "stages": [
+        2
+      ],
+      "configuredSpawnRowsByStage": {
+        "02": 9
+      },
+      "firstOccurrenceStage": 2
+    },
+    "14": {
+      "nameJaFromRom": "コクレン",
+      "notebookEligible": true,
+      "stages": [
+        4
+      ],
+      "configuredSpawnRowsByStage": {
+        "04": 5
+      },
+      "firstOccurrenceStage": 4
+    },
+    "15": {
+      "nameJaFromRom": "ハクレン",
+      "notebookEligible": true,
+      "stages": [
+        4,
+        5
+      ],
+      "configuredSpawnRowsByStage": {
+        "04": 10,
+        "05": 3
+      },
+      "firstOccurrenceStage": 4
+    },
+    "16": {
+      "nameJaFromRom": "ムギツク",
+      "notebookEligible": true,
+      "stages": [
+        5
+      ],
+      "configuredSpawnRowsByStage": {
+        "05": 5
+      },
+      "firstOccurrenceStage": 5
+    },
+    "17": {
+      "nameJaFromRom": "ホンモロコ",
+      "notebookEligible": true,
+      "stages": [
+        4
+      ],
+      "configuredSpawnRowsByStage": {
+        "04": 11
+      },
+      "firstOccurrenceStage": 4
+    },
+    "18": {
+      "nameJaFromRom": "ヤマノカミ",
+      "notebookEligible": true,
+      "stages": [
+        3
+      ],
+      "configuredSpawnRowsByStage": {
+        "03": 8
+      },
+      "firstOccurrenceStage": 3
+    },
+    "19": {
+      "nameJaFromRom": "ドジョウ",
+      "notebookEligible": true,
+      "stages": [
+        5
+      ],
+      "configuredSpawnRowsByStage": {
+        "05": 26
+      },
+      "firstOccurrenceStage": 5
+    },
+    "1A": {
+      "nameJaFromRom": "タモロコ",
+      "notebookEligible": true,
+      "stages": [
+        4,
+        5
+      ],
+      "configuredSpawnRowsByStage": {
+        "04": 16,
+        "05": 14
+      },
+      "firstOccurrenceStage": 4
+    },
+    "1B": {
+      "nameJaFromRom": "カワムツ",
+      "notebookEligible": true,
+      "stages": [
+        3
+      ],
+      "configuredSpawnRowsByStage": {
+        "03": 24
+      },
+      "firstOccurrenceStage": 3
+    },
+    "1C": {
+      "nameJaFromRom": "キンブナ",
+      "notebookEligible": true,
+      "stages": [
+        5
+      ],
+      "configuredSpawnRowsByStage": {
+        "05": 12
+      },
+      "firstOccurrenceStage": 5
+    },
+    "1D": {
+      "nameJaFromRom": "マブナ",
+      "notebookEligible": true,
+      "stages": [
+        4,
+        5
+      ],
+      "configuredSpawnRowsByStage": {
+        "04": 13,
+        "05": 1
+      },
+      "firstOccurrenceStage": 4
+    },
+    "1E": {
+      "nameJaFromRom": "アカザ",
+      "notebookEligible": true,
+      "stages": [
+        1,
+        3
+      ],
+      "configuredSpawnRowsByStage": {
+        "01": 7,
+        "03": 8
+      },
+      "firstOccurrenceStage": 1
+    },
+    "1F": {
+      "nameJaFromRom": "メダカ",
+      "notebookEligible": true,
+      "stages": [
+        5
+      ],
+      "configuredSpawnRowsByStage": {
+        "05": 20
+      },
+      "firstOccurrenceStage": 5
+    },
+    "20": {
+      "nameJaFromRom": "ブルーギル",
+      "notebookEligible": true,
+      "stages": [
+        2
+      ],
+      "configuredSpawnRowsByStage": {
+        "02": 18
+      },
+      "firstOccurrenceStage": 2
+    },
+    "21": {
+      "nameJaFromRom": "オヤニラミ",
+      "notebookEligible": true,
+      "stages": [
+        5
+      ],
+      "configuredSpawnRowsByStage": {
+        "05": 7
+      },
+      "firstOccurrenceStage": 5
+    },
+    "22": {
+      "nameJaFromRom": "ハリヨ",
+      "notebookEligible": true,
+      "stages": [
+        2
+      ],
+      "configuredSpawnRowsByStage": {
+        "02": 19
+      },
+      "firstOccurrenceStage": 2
+    },
+    "23": {
+      "nameJaFromRom": "トミヨ",
+      "notebookEligible": true,
+      "stages": [
+        5
+      ],
+      "configuredSpawnRowsByStage": {
+        "05": 11
+      },
+      "firstOccurrenceStage": 5
+    },
+    "24": {
+      "nameJaFromRom": "ライギョ",
+      "notebookEligible": true,
+      "stages": [
+        4,
+        5
+      ],
+      "configuredSpawnRowsByStage": {
+        "04": 4,
+        "05": 6
+      },
+      "firstOccurrenceStage": 4
+    },
+    "25": {
+      "nameJaFromRom": "ヘラブナ",
+      "notebookEligible": true,
+      "stages": [
+        4,
+        5
+      ],
+      "configuredSpawnRowsByStage": {
+        "04": 44,
+        "05": 2
+      },
+      "firstOccurrenceStage": 4
+    },
+    "26": {
+      "nameJaFromRom": "ナマズ",
+      "notebookEligible": true,
+      "stages": [
+        4,
+        5
+      ],
+      "configuredSpawnRowsByStage": {
+        "04": 11,
+        "05": 6
+      },
+      "firstOccurrenceStage": 4
+    },
+    "27": {
+      "nameJaFromRom": "サヨリ",
+      "notebookEligible": true,
+      "stages": [
+        6
+      ],
+      "configuredSpawnRowsByStage": {
+        "06": 18
+      },
+      "firstOccurrenceStage": 6
+    },
+    "28": {
+      "nameJaFromRom": "ハス",
+      "notebookEligible": true,
+      "stages": [
+        3,
+        4
+      ],
+      "configuredSpawnRowsByStage": {
+        "03": 2,
+        "04": 7
+      },
+      "firstOccurrenceStage": 3
+    },
+    "29": {
+      "nameJaFromRom": "ワタカ",
+      "notebookEligible": true,
+      "stages": [
+        4,
+        5
+      ],
+      "configuredSpawnRowsByStage": {
+        "04": 4,
+        "05": 4
+      },
+      "firstOccurrenceStage": 4
+    },
+    "2A": {
+      "nameJaFromRom": "カマツカ",
+      "notebookEligible": true,
+      "stages": [
+        3,
+        4,
+        5
+      ],
+      "configuredSpawnRowsByStage": {
+        "03": 21,
+        "04": 13,
+        "05": 7
+      },
+      "firstOccurrenceStage": 3
+    },
+    "2B": {
+      "nameJaFromRom": "ツチフキ",
+      "notebookEligible": true,
+      "stages": [
+        5
+      ],
+      "configuredSpawnRowsByStage": {
+        "05": 26
+      },
+      "firstOccurrenceStage": 5
+    },
+    "2C": {
+      "nameJaFromRom": "シマドジョウ",
+      "notebookEligible": true,
+      "stages": [
+        3,
+        5
+      ],
+      "configuredSpawnRowsByStage": {
+        "03": 12,
+        "05": 9
+      },
+      "firstOccurrenceStage": 3
+    },
+    "2D": {
+      "nameJaFromRom": "カムルチー",
+      "notebookEligible": true,
+      "stages": [
+        4,
+        5
+      ],
+      "configuredSpawnRowsByStage": {
+        "04": 6,
+        "05": 4
+      },
+      "firstOccurrenceStage": 4
+    },
+    "2E": {
+      "nameJaFromRom": "ヒガイ",
+      "notebookEligible": true,
+      "stages": [
+        4
+      ],
+      "configuredSpawnRowsByStage": {
+        "04": 15
+      },
+      "firstOccurrenceStage": 4
+    },
+    "2F": {
+      "nameJaFromRom": "ソウギョ",
+      "notebookEligible": true,
+      "stages": [
+        4
+      ],
+      "configuredSpawnRowsByStage": {
+        "04": 6
+      },
+      "firstOccurrenceStage": 4
+    },
+    "30": {
+      "nameJaFromRom": "アオウオ",
+      "notebookEligible": true,
+      "stages": [
+        4
+      ],
+      "configuredSpawnRowsByStage": {
+        "04": 6
+      },
+      "firstOccurrenceStage": 4
+    },
+    "31": {
+      "nameJaFromRom": "ニゴイ",
+      "notebookEligible": true,
+      "stages": [
+        3,
+        5,
+        6
+      ],
+      "configuredSpawnRowsByStage": {
+        "03": 8,
+        "05": 4,
+        "06": 6
+      },
+      "firstOccurrenceStage": 3
+    },
+    "32": {
+      "nameJaFromRom": "メゴチ",
+      "notebookEligible": true,
+      "stages": [
+        6
+      ],
+      "configuredSpawnRowsByStage": {
+        "06": 21
+      },
+      "firstOccurrenceStage": 6
+    },
+    "33": {
+      "nameJaFromRom": "マルタ",
+      "notebookEligible": true,
+      "stages": [
+        6
+      ],
+      "configuredSpawnRowsByStage": {
+        "06": 15
+      },
+      "firstOccurrenceStage": 6
+    },
+    "34": {
+      "nameJaFromRom": "ハゼ",
+      "notebookEligible": true,
+      "stages": [
+        6
+      ],
+      "configuredSpawnRowsByStage": {
+        "06": 30
+      },
+      "firstOccurrenceStage": 6
+    },
+    "35": {
+      "nameJaFromRom": "ボラ",
+      "notebookEligible": true,
+      "stages": [
+        6
+      ],
+      "configuredSpawnRowsByStage": {
+        "06": 15
+      },
+      "firstOccurrenceStage": 6
+    },
+    "36": {
+      "nameJaFromRom": "スズキ",
+      "notebookEligible": true,
+      "stages": [
+        6
+      ],
+      "configuredSpawnRowsByStage": {
+        "06": 25
+      },
+      "firstOccurrenceStage": 6
+    },
+    "37": {
+      "nameJaFromRom": "アカメ",
+      "notebookEligible": true,
+      "stages": [
+        6
+      ],
+      "configuredSpawnRowsByStage": {
+        "06": 1
+      },
+      "firstOccurrenceStage": 6
+    },
+    "38": {
+      "nameJaFromRom": "アユ",
+      "notebookEligible": true,
+      "stages": [
+        3,
+        4
+      ],
+      "configuredSpawnRowsByStage": {
+        "03": 52,
+        "04": 4
+      },
+      "firstOccurrenceStage": 3
+    },
+    "39": {
+      "nameJaFromRom": "タナゴ",
+      "notebookEligible": true,
+      "stages": [
+        4,
+        5
+      ],
+      "configuredSpawnRowsByStage": {
+        "04": 14,
+        "05": 18
+      },
+      "firstOccurrenceStage": 4
+    },
+    "3A": {
+      "nameJaFromRom": "ウナギ",
+      "notebookEligible": true,
+      "stages": [
+        4,
+        5,
+        6
+      ],
+      "configuredSpawnRowsByStage": {
+        "04": 5,
+        "05": 1,
+        "06": 11
+      },
+      "firstOccurrenceStage": 4
+    },
+    "3B": {
+      "nameJaFromRom": "オオウナギ",
+      "notebookEligible": true,
+      "stages": [
+        6
+      ],
+      "configuredSpawnRowsByStage": {
+        "06": 1
+      },
+      "firstOccurrenceStage": 6
+    },
+    "3C": {
+      "nameJaFromRom": "アブラハヤ",
+      "notebookEligible": true,
+      "stages": [
+        2
+      ],
+      "configuredSpawnRowsByStage": {
+        "02": 20
+      },
+      "firstOccurrenceStage": 2
+    },
+    "3D": {
+      "nameJaFromRom": "クロダイ",
+      "notebookEligible": true,
+      "stages": [
+        6
+      ],
+      "configuredSpawnRowsByStage": {
+        "06": 13
+      },
+      "firstOccurrenceStage": 6
+    },
+    "3E": {
+      "nameJaFromRom": "ヌマガレイ",
+      "notebookEligible": true,
+      "stages": [
+        6
+      ],
+      "configuredSpawnRowsByStage": {
+        "06": 29
+      },
+      "firstOccurrenceStage": 6
+    },
+    "3F": {
+      "nameJaFromRom": "クサフグ",
+      "notebookEligible": true,
+      "stages": [
+        6
+      ],
+      "configuredSpawnRowsByStage": {
+        "06": 18
+      },
+      "firstOccurrenceStage": 6
+    },
+    "40": {
+      "nameJaFromRom": "トウギョ",
+      "notebookEligible": true,
+      "stages": [
+        5
+      ],
+      "configuredSpawnRowsByStage": {
+        "05": 5
+      },
+      "firstOccurrenceStage": 5
+    },
+    "41": {
+      "nameJaFromRom": "テナガエビ",
+      "notebookEligible": true,
+      "stages": [
+        5
+      ],
+      "configuredSpawnRowsByStage": {
+        "05": 18
+      },
+      "firstOccurrenceStage": 5
+    },
+    "42": {
+      "nameJaFromRom": "サツキマス",
+      "notebookEligible": true,
+      "stages": [
+        3,
+        5
+      ],
+      "configuredSpawnRowsByStage": {
+        "03": 5,
+        "05": 1
+      },
+      "firstOccurrenceStage": 3
+    },
+    "44": {
+      "nameJaFromRom": "イモリ",
+      "notebookEligible": false,
+      "stages": [
+        1
+      ],
+      "configuredSpawnRowsByStage": {
+        "01": 11
+      },
+      "firstOccurrenceStage": 1
+    },
+    "45": {
+      "nameJaFromRom": "カエル",
+      "notebookEligible": false,
+      "stages": [
+        2
+      ],
+      "configuredSpawnRowsByStage": {
+        "02": 9
+      },
+      "firstOccurrenceStage": 2
+    },
+    "46": {
+      "nameJaFromRom": "ザリガニ",
+      "notebookEligible": false,
+      "stages": [
+        3
+      ],
+      "configuredSpawnRowsByStage": {
+        "03": 11
+      },
+      "firstOccurrenceStage": 3
+    },
+    "47": {
+      "nameJaFromRom": "カメ",
+      "notebookEligible": false,
+      "stages": [
+        4
+      ],
+      "configuredSpawnRowsByStage": {
+        "04": 10
+      },
+      "firstOccurrenceStage": 4
+    },
+    "48": {
+      "nameJaFromRom": "スッポン",
+      "notebookEligible": false,
+      "stages": [
+        5
+      ],
+      "configuredSpawnRowsByStage": {
+        "05": 9
+      },
+      "firstOccurrenceStage": 5
+    },
+    "49": {
+      "nameJaFromRom": "カニ",
+      "notebookEligible": false,
+      "stages": [
+        6
+      ],
+      "configuredSpawnRowsByStage": {
+        "06": 16
+      },
+      "firstOccurrenceStage": 6
+    }
+  },
+  "totals": {
+    "notebookEligibleSpecies": 66,
+    "configuredSpeciesAcrossSixMaps": 72,
+    "uniqueFirstOccurrenceAdditions": 66,
+    "nonNotebookSpeciesIds": [
+      "44",
+      "45",
+      "46",
+      "47",
+      "48",
+      "49"
+    ],
+    "unmappedNotebookIds": []
+  }
+}

@@ -1,0 +1,22 @@
+{
+  "romSha1": "c2103dd94e2a1a65a495fc02adc2e7d040f31212",
+  "image": "../catalogue/images/notebook/route-example.png",
+  "sha256": "c12e683806799168e21d23c0fc6ab0448149df207191220622e8f61298761b50",
+  "method": "Controlled notebook-display fixture: 66 area words and size records injected according to first-occurrence route, then ordinary notebook item input. Original full-frame game pixels. Not natural catches or a completed save proof.",
+  "visiblePageCounts": [
+    6,
+    10,
+    11,
+    17,
+    11,
+    11
+  ],
+  "listBoundaryWords": [
+    12,
+    32,
+    54,
+    88,
+    110,
+    132
+  ]
+}

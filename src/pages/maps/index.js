@@ -1,3 +1,4 @@
+export { renderNotebookGuide } from './notebook-guide.js'
 export { renderWaterKey } from './water-icons.js'
 export {
   safeReturn,

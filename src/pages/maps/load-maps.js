@@ -4,17 +4,19 @@ export function loadMaps(ctx) {
       if (!r.ok) throw Error('fish locations')
       return r.json()
     }),
-    fetch('gallery-data.json?v=compendium-20261005-12').then((r) => {
+    fetch('gallery-data.json?v=compendium-20261005-14').then((r) => {
       if (!r.ok) throw Error('fish sprites')
       return r.json()
     }),
   ])
     .then(([locations, gallery]) => {
+      ctx.notebookCompletion = gallery.notebookCompletion
       ctx.waterIcons = gallery.waterIcons
       ctx.buildData(locations, gallery)
       ctx.initFromUrl()
       ctx.enableControls()
       ctx.render()
+      if (ctx.openNotebookGuide) ctx.$('notebook-guide')?.scrollIntoView({ block: 'start' })
     })
     .catch((error) => {
       console.error(error)

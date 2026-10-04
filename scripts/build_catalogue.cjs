@@ -9,6 +9,8 @@ const root = path.resolve(__dirname, '..');
 const data = JSON.parse(fs.readFileSync(path.join(root, 'catalogue/gallery-data.json'), 'utf8'));
 const waterIconsPath=path.join(root,'data/rom-water-icons.json');
 if(fs.existsSync(waterIconsPath)){data.waterIcons=JSON.parse(fs.readFileSync(waterIconsPath,'utf8'));const images=JSON.parse(fs.readFileSync(path.join(root,'data/water-icon-images.json'),'utf8'));data.waterIcons.classes=Object.fromEntries(images.images.map(entry=>[entry.class,{image:entry.image}]));}
+const notebookPath=path.join(root,'data/notebook-completion.json');
+if(fs.existsSync(notebookPath))data.notebookCompletion=JSON.parse(fs.readFileSync(notebookPath,'utf8'));
 const decisionsPath=path.join(root,'data/player-decisions.json');
 if(fs.existsSync(decisionsPath))data.playerDecisions=JSON.parse(fs.readFileSync(decisionsPath,'utf8'));
 const flyBackupsPath=path.join(root,'data/fly-backup-choices.json');

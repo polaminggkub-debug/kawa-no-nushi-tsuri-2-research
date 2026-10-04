@@ -11,7 +11,10 @@ export function bindMapTargets(ctx) {
           : '← Back to the page that opened this map'
     document.querySelector('.hero-meta').prepend(back)
   }
-  ctx.sourceReturn = () => location.pathname.split('/').pop() + location.search
+  ctx.sourceReturn = () =>
+    location.pathname.split('/').pop() +
+    location.search +
+    (ctx.openNotebookGuide ? '#notebook-guide' : '')
   ctx.fishHref = (id) =>
     `fish${ctx.lang === 'en' ? '' : '.' + ctx.lang}.html?id=${id}&stage=${ctx.activeStage}&return=${encodeURIComponent(ctx.sourceReturn())}`
   ctx.areaList.addEventListener('click', (event) => {

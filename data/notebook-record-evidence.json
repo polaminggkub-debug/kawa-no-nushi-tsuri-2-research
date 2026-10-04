@@ -1,0 +1,96 @@
+{
+  "rom": {
+    "sizeBytes": 1572864,
+    "sha1": "c2103dd94e2a1a65a495fc02adc2e7d040f31212"
+  },
+  "speciesIdRangeInclusive": [
+    1,
+    66
+  ],
+  "speciesSlotCount": 66,
+  "areaArray": {
+    "address": "$7E:0C3C",
+    "entryWidthBytes": 2,
+    "entries": 66
+  },
+  "recordSizeArray": {
+    "address": "$7E:0DC8",
+    "entryWidthBytes": 2,
+    "entries": 66
+  },
+  "callbackCounter": {
+    "address": "$7E:0E4C",
+    "entryWidthBytes": 2,
+    "limit": 1000,
+    "displayRead": "01:D300..D30C (file offset 0x00D300) formats the active profile's value as decimal for a game display; this trace does not identify its player-facing label."
+  },
+  "rule": "A profile ID above 0x42 exits before indexing. For IDs 1..0x42, the per-profile callback counter increments, saturating at 0x03E8. Separately, current raw size is compared against that ID's prior best at $0DC8. Equal or smaller sizes leave the best size and recorded area unchanged. A strictly larger size replaces the best and writes the current area to that species' single area slot.",
+  "notebookPages": "The notebook scans all area words and appends the species index for values 1..6. Its six metadata values are cumulative byte endpoints into the shared list; derive each page count as (current endpoint - previous endpoint) / 2. Thus one species appears on at most one area page at a time; a later personal best in another area moves that entry instead of creating a second copy.",
+  "checks": [
+    {
+      "cpu": "01:8B00",
+      "fileOffset": "0x008B00",
+      "bytes": "ad e8 11 c9 42 00 f0 03 90 01 60"
+    },
+    {
+      "cpu": "01:8B0B",
+      "fileOffset": "0x008B0B",
+      "bytes": "3a 0a aa bd 4c 0e c9 e8 03 b0 04 1a 9d 4c 0e bd c8 0d cd b1 1e 90 01 60"
+    },
+    {
+      "cpu": "01:8B23",
+      "fileOffset": "0x008B23",
+      "bytes": "ad 6b 1f 9d 64 11 ad 5a 08 9d 3c 0c"
+    },
+    {
+      "cpu": "01:8C76",
+      "fileOffset": "0x008C76",
+      "bytes": "a5 06 0a 0a 0a 9d c0 0c 85 06 a5 08 0a 0a 0a 9d 44 0d 85 08 ad b1 1e 9d c8 0d"
+    },
+    {
+      "cpu": "01:BF5B",
+      "fileOffset": "0x00BF5B",
+      "bytes": "a0 00 00 b9 3c 0c c9 01 00 d0 07 98 9f fa 2a 7f"
+    },
+    {
+      "cpu": "01:BF7C",
+      "fileOffset": "0x00BF7C",
+      "bytes": "b9 3c 0c c9 02 00 d0 07 98 9f fa 2a 7f"
+    },
+    {
+      "cpu": "01:BF9A",
+      "fileOffset": "0x00BF9A",
+      "bytes": "b9 3c 0c c9 03 00 d0 07 98 9f fa 2a 7f"
+    },
+    {
+      "cpu": "01:BFB8",
+      "fileOffset": "0x00BFB8",
+      "bytes": "b9 3c 0c c9 04 00 d0 07 98 9f fa 2a 7f"
+    },
+    {
+      "cpu": "01:BFD6",
+      "fileOffset": "0x00BFD6",
+      "bytes": "b9 3c 0c c9 05 00 d0 07 98 9f fa 2a 7f"
+    },
+    {
+      "cpu": "01:BFF4",
+      "fileOffset": "0x00BFF4",
+      "bytes": "b9 3c 0c c9 06 00 d0 07 98 9f fa 2a 7f"
+    },
+    {
+      "cpu": "01:C258",
+      "fileOffset": "0x00C258",
+      "bytes": "a5 06 c5 12 d0 01 60"
+    },
+    {
+      "cpu": "01:D300",
+      "fileOffset": "0x00D300",
+      "bytes": "ad e8 11 3a 0a aa da bd 4c 0e 85 3e 22 4a da 00"
+    },
+    {
+      "cpu": "01:D32D",
+      "fileOffset": "0x00D32D",
+      "bytes": "da bd c8 0d 85 3e 22 4a da 00"
+    }
+  ]
+}
