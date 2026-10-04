@@ -1,0 +1,1184 @@
+{
+  "schema_version": 1,
+  "rom_sha1": "c2103dd94e2a1a65a495fc02adc2e7d040f31212",
+  "scope": "Player-facing item-use overrides traced only from the supplied original Japanese SFC ROM. No external guides used.",
+  "items": {
+    "hook:01": {
+      "summary": {
+        "th": "ถ้าเล็งอาคาเมะและตกด้วยเหยื่อ เบ็ดนี้เป็นตัวที่ ROM ผูกกับปลาชนิดนี้; มันเปลี่ยนจังหวะช่วงสู้หลังปลากินเหยื่อ",
+        "en": "For bait fishing aimed at Akame, this is the hook the ROM matches to that fish; it changes the fight sequence after the fish takes bait.",
+        "ja": "アカメをエサ釣りで狙うとき、ROM上で魚IDが結び付く針。魚がエサを食った後のファイト進行が変わる。"
+      },
+      "facts": {
+        "th": [
+          "เบ็ดนี้มีการตอบสนองเฉพาะกับอาคาเมะ; ปลาอาคาเมะยังกินเหยื่อชนิดอื่นและใช้เบ็ดชนิดอื่นได้ ถ้าเหยื่อผ่านเงื่อนไขของมัน",
+          "เบ็ดนี้ไม่ได้ทำให้ปลากินเหยื่อเพิ่ม; ใช้ตารางเหยื่อที่ปลารับได้เพื่อเลือกเหยื่อ",
+          "ผลช่วงสู้เปลี่ยนจังหวะที่เกมตรวจเหตุการณ์ซึ่งอาจทำให้ปลาหนีและเบ็ดหาย; ในบางชุดจะเร็วขึ้น บางชุดจะช้าลง จึงไม่มีเบ็ดตัวไหนที่โค้ดยืนยันว่าจับง่ายกว่าเสมอ",
+          "ไม่ควรซื้อโดยคาดหวังว่าจะเพิ่มโอกาสกัดหรือรับประกันการจับปลา"
+        ],
+        "en": [
+          "This hook has a specific response for Akame. That fish can still take other compatible baits and be fished with other hooks.",
+          "This hook does not add bait compatibility; choose bait from the fish-acceptance table.",
+          "It changes when the game reaches a fish-escape check that can cost the hook. Depending on the rod, bait and fish size, this can happen sooner or later; the ROM does not establish a hook that always lands fish more easily.",
+          "Do not buy it expecting more bites or a guaranteed catch."
+        ],
+        "ja": [
+          "アカメを狙うときの候補。この魚は適合する別のエサや別の針でも釣れる。",
+          "エサの適合範囲を広げる効果はない。エサは魚の適合表から選ぶ。",
+          "魚が逃げて針を失う可能性がある判定に到達するタイミングが変わる。竿・エサ・魚サイズによって早まる場合と遅くなる場合があり、常に取り込みやすい針はROMから確認できない。",
+          "食いつき率上昇や確実な釣果を期待して買うものではない。"
+        ]
+      },
+      "evidenceNotes": {
+        "th": [
+          "ROM เทียบ ID ปลาในข้อมูลเบ็ด +1 กับปลาที่สู้; เมื่อ ID ตรงจะหารค่าตั้งต้นด้วย 2 และข้าม branch ปกติจาก +0 (04:8D53–8D99, 04:8F6F).",
+          "ค่าเดียวกันไปตั้ง state การสู้ 1EC9 และตำแหน่งวาดปลา 1F65; ระหว่างสู้อัปเดตต่อใน 04:9C35 เป็นต้น.",
+          "ข้อความจาก ROM: เส้นทางเหยื่อทั่วไปที่เข้าแฟล็กเหตุการณ์แสดงว่า “เบ็ดถูกขโมย/ปลาหนี/เสียแต้ม” (00:0096); อีกเส้นทางแสดงว่า “ปลาหนี/เหยื่อถูกขโมย” (00:009A) ของที่หายขึ้นกับสถานะตอนนั้น"
+        ],
+        "en": [
+          "The ROM compares the hook record’s +1 fish ID to the active fish. A match halves the starting response value and bypasses the ordinary +0 branch (04:8D53–8D99, 04:8F6F).",
+          "The value seeds fight state 1EC9 and fish display offset 1F65; the fight routine updates it later (04:9C35 onward).",
+          "ROM outcome messages: the flagged ordinary-bait path says the hook is stolen, the fish escapes and points are damaged (00:0096); the fallback says the fish escapes and bait is stolen (00:009A). The lost item depends on the state path."
+        ],
+        "ja": [
+          "針レコード+1の魚IDを現在の魚IDと比較。一致時は初期応答値を半分にし、+0の通常分岐を飛ばす（04:8D53–8D99、04:8F6F）。",
+          "値はファイト状態1EC9と魚の表示位置1F65に使われ、戦闘中に更新される（04:9C35以降）。",
+          "ROMメッセージ: 通常エサで判定フラグありは「針を盗られた／魚に逃げられた／ポイントダメージ」(00:0096)、通常エサの別経路は「魚に逃げられた／エサを盗られた」(00:009A)。失う物は状態経路で変わる。"
+        ]
+      },
+      "fishIds": [
+        "37"
+      ],
+      "evidence": {
+        "type": "rom_trace",
+        "sources": [
+          "docs/hook-float-use.md",
+          "docs/rod-response-research.md"
+        ]
+      }
+    },
+    "hook:02": {
+      "summary": {
+        "th": "ถ้าเล็งปลาไหลยักษ์และตกด้วยเหยื่อ เบ็ดนี้เป็นตัวที่ ROM ผูกกับปลาชนิดนี้; มันเปลี่ยนจังหวะช่วงสู้หลังปลากินเหยื่อ",
+        "en": "For bait fishing aimed at giant eel, this is the hook the ROM matches to that fish; it changes the fight sequence after the fish takes bait.",
+        "ja": "オオウナギをエサ釣りで狙うとき、ROM上で魚IDが結び付く針。魚がエサを食った後のファイト進行が変わる。"
+      },
+      "facts": {
+        "th": [
+          "เบ็ดนี้มีการตอบสนองเฉพาะกับปลาไหลยักษ์; ปลาไหลยักษ์ยังกินเหยื่อชนิดอื่นและใช้เบ็ดชนิดอื่นได้ ถ้าเหยื่อผ่านเงื่อนไขของมัน",
+          "เบ็ดนี้ไม่ได้ทำให้ปลากินเหยื่อเพิ่ม; ใช้ตารางเหยื่อที่ปลารับได้เพื่อเลือกเหยื่อ",
+          "ผลช่วงสู้เปลี่ยนจังหวะที่เกมตรวจเหตุการณ์ซึ่งอาจทำให้ปลาหนีและเบ็ดหาย; ในบางชุดจะเร็วขึ้น บางชุดจะช้าลง จึงไม่มีเบ็ดตัวไหนที่โค้ดยืนยันว่าจับง่ายกว่าเสมอ",
+          "ไม่ควรซื้อโดยคาดหวังว่าจะเพิ่มโอกาสกัดหรือรับประกันการจับปลา"
+        ],
+        "en": [
+          "This hook has a specific response for giant eel. That fish can still take other compatible baits and be fished with other hooks.",
+          "This hook does not add bait compatibility; choose bait from the fish-acceptance table.",
+          "It changes when the game reaches a fish-escape check that can cost the hook. Depending on the rod, bait and fish size, this can happen sooner or later; the ROM does not establish a hook that always lands fish more easily.",
+          "Do not buy it expecting more bites or a guaranteed catch."
+        ],
+        "ja": [
+          "オオウナギを狙うときの候補。この魚は適合する別のエサや別の針でも釣れる。",
+          "エサの適合範囲を広げる効果はない。エサは魚の適合表から選ぶ。",
+          "魚が逃げて針を失う可能性がある判定に到達するタイミングが変わる。竿・エサ・魚サイズによって早まる場合と遅くなる場合があり、常に取り込みやすい針はROMから確認できない。",
+          "食いつき率上昇や確実な釣果を期待して買うものではない。"
+        ]
+      },
+      "evidenceNotes": {
+        "th": [
+          "ROM เทียบ ID ปลาในข้อมูลเบ็ด +1 กับปลาที่สู้; เมื่อ ID ตรงจะหารค่าตั้งต้นด้วย 2 และข้าม branch ปกติจาก +0 (04:8D53–8D99, 04:8F6F).",
+          "ค่าเดียวกันไปตั้ง state การสู้ 1EC9 และตำแหน่งวาดปลา 1F65; ระหว่างสู้อัปเดตต่อใน 04:9C35 เป็นต้น.",
+          "ข้อความจาก ROM: เส้นทางเหยื่อทั่วไปที่เข้าแฟล็กเหตุการณ์แสดงว่า “เบ็ดถูกขโมย/ปลาหนี/เสียแต้ม” (00:0096); อีกเส้นทางแสดงว่า “ปลาหนี/เหยื่อถูกขโมย” (00:009A) ของที่หายขึ้นกับสถานะตอนนั้น"
+        ],
+        "en": [
+          "The ROM compares the hook record’s +1 fish ID to the active fish. A match halves the starting response value and bypasses the ordinary +0 branch (04:8D53–8D99, 04:8F6F).",
+          "The value seeds fight state 1EC9 and fish display offset 1F65; the fight routine updates it later (04:9C35 onward).",
+          "ROM outcome messages: the flagged ordinary-bait path says the hook is stolen, the fish escapes and points are damaged (00:0096); the fallback says the fish escapes and bait is stolen (00:009A). The lost item depends on the state path."
+        ],
+        "ja": [
+          "針レコード+1の魚IDを現在の魚IDと比較。一致時は初期応答値を半分にし、+0の通常分岐を飛ばす（04:8D53–8D99、04:8F6F）。",
+          "値はファイト状態1EC9と魚の表示位置1F65に使われ、戦闘中に更新される（04:9C35以降）。",
+          "ROMメッセージ: 通常エサで判定フラグありは「針を盗られた／魚に逃げられた／ポイントダメージ」(00:0096)、通常エサの別経路は「魚に逃げられた／エサを盗られた」(00:009A)。失う物は状態経路で変わる。"
+        ]
+      },
+      "fishIds": [
+        "3B"
+      ],
+      "evidence": {
+        "type": "rom_trace",
+        "sources": [
+          "docs/hook-float-use.md",
+          "docs/rod-response-research.md"
+        ]
+      }
+    },
+    "hook:03": {
+      "summary": {
+        "th": "ถ้าเล็งปลาซึซึกิและตกด้วยเหยื่อ เบ็ดนี้เป็นตัวที่ ROM ผูกกับปลาชนิดนี้; มันเปลี่ยนจังหวะช่วงสู้หลังปลากินเหยื่อ",
+        "en": "For bait fishing aimed at Japanese sea bass, this is the hook the ROM matches to that fish; it changes the fight sequence after the fish takes bait.",
+        "ja": "スズキをエサ釣りで狙うとき、ROM上で魚IDが結び付く針。魚がエサを食った後のファイト進行が変わる。"
+      },
+      "facts": {
+        "th": [
+          "เบ็ดนี้มีการตอบสนองเฉพาะกับปลาซึซึกิ; ปลาซึซึกิยังกินเหยื่อชนิดอื่นและใช้เบ็ดชนิดอื่นได้ ถ้าเหยื่อผ่านเงื่อนไขของมัน",
+          "เบ็ดนี้ไม่ได้ทำให้ปลากินเหยื่อเพิ่ม; ใช้ตารางเหยื่อที่ปลารับได้เพื่อเลือกเหยื่อ",
+          "ผลช่วงสู้เปลี่ยนจังหวะที่เกมตรวจเหตุการณ์ซึ่งอาจทำให้ปลาหนีและเบ็ดหาย; ในบางชุดจะเร็วขึ้น บางชุดจะช้าลง จึงไม่มีเบ็ดตัวไหนที่โค้ดยืนยันว่าจับง่ายกว่าเสมอ",
+          "ไม่ควรซื้อโดยคาดหวังว่าจะเพิ่มโอกาสกัดหรือรับประกันการจับปลา"
+        ],
+        "en": [
+          "This hook has a specific response for Japanese sea bass. That fish can still take other compatible baits and be fished with other hooks.",
+          "This hook does not add bait compatibility; choose bait from the fish-acceptance table.",
+          "It changes when the game reaches a fish-escape check that can cost the hook. Depending on the rod, bait and fish size, this can happen sooner or later; the ROM does not establish a hook that always lands fish more easily.",
+          "Do not buy it expecting more bites or a guaranteed catch."
+        ],
+        "ja": [
+          "スズキを狙うときの候補。この魚は適合する別のエサや別の針でも釣れる。",
+          "エサの適合範囲を広げる効果はない。エサは魚の適合表から選ぶ。",
+          "魚が逃げて針を失う可能性がある判定に到達するタイミングが変わる。竿・エサ・魚サイズによって早まる場合と遅くなる場合があり、常に取り込みやすい針はROMから確認できない。",
+          "食いつき率上昇や確実な釣果を期待して買うものではない。"
+        ]
+      },
+      "evidenceNotes": {
+        "th": [
+          "ROM เทียบ ID ปลาในข้อมูลเบ็ด +1 กับปลาที่สู้; เมื่อ ID ตรงจะหารค่าตั้งต้นด้วย 2 และข้าม branch ปกติจาก +0 (04:8D53–8D99, 04:8F6F).",
+          "ค่าเดียวกันไปตั้ง state การสู้ 1EC9 และตำแหน่งวาดปลา 1F65; ระหว่างสู้อัปเดตต่อใน 04:9C35 เป็นต้น.",
+          "ข้อความจาก ROM: เส้นทางเหยื่อทั่วไปที่เข้าแฟล็กเหตุการณ์แสดงว่า “เบ็ดถูกขโมย/ปลาหนี/เสียแต้ม” (00:0096); อีกเส้นทางแสดงว่า “ปลาหนี/เหยื่อถูกขโมย” (00:009A) ของที่หายขึ้นกับสถานะตอนนั้น"
+        ],
+        "en": [
+          "The ROM compares the hook record’s +1 fish ID to the active fish. A match halves the starting response value and bypasses the ordinary +0 branch (04:8D53–8D99, 04:8F6F).",
+          "The value seeds fight state 1EC9 and fish display offset 1F65; the fight routine updates it later (04:9C35 onward).",
+          "ROM outcome messages: the flagged ordinary-bait path says the hook is stolen, the fish escapes and points are damaged (00:0096); the fallback says the fish escapes and bait is stolen (00:009A). The lost item depends on the state path."
+        ],
+        "ja": [
+          "針レコード+1の魚IDを現在の魚IDと比較。一致時は初期応答値を半分にし、+0の通常分岐を飛ばす（04:8D53–8D99、04:8F6F）。",
+          "値はファイト状態1EC9と魚の表示位置1F65に使われ、戦闘中に更新される（04:9C35以降）。",
+          "ROMメッセージ: 通常エサで判定フラグありは「針を盗られた／魚に逃げられた／ポイントダメージ」(00:0096)、通常エサの別経路は「魚に逃げられた／エサを盗られた」(00:009A)。失う物は状態経路で変わる。"
+        ]
+      },
+      "fishIds": [
+        "36"
+      ],
+      "evidence": {
+        "type": "rom_trace",
+        "sources": [
+          "docs/hook-float-use.md",
+          "docs/rod-response-research.md"
+        ]
+      }
+    },
+    "hook:04": {
+      "summary": {
+        "th": "ถ้าเล็งปลาคาร์ปและตกด้วยเหยื่อ เบ็ดนี้เป็นตัวที่ ROM ผูกกับปลาชนิดนี้; มันเปลี่ยนจังหวะช่วงสู้หลังปลากินเหยื่อ",
+        "en": "For bait fishing aimed at carp, this is the hook the ROM matches to that fish; it changes the fight sequence after the fish takes bait.",
+        "ja": "コイをエサ釣りで狙うとき、ROM上で魚IDが結び付く針。魚がエサを食った後のファイト進行が変わる。"
+      },
+      "facts": {
+        "th": [
+          "เบ็ดนี้มีการตอบสนองเฉพาะกับปลาคาร์ป; ปลาคาร์ปยังกินเหยื่อชนิดอื่นและใช้เบ็ดชนิดอื่นได้ ถ้าเหยื่อผ่านเงื่อนไขของมัน",
+          "เบ็ดนี้ไม่ได้ทำให้ปลากินเหยื่อเพิ่ม; ใช้ตารางเหยื่อที่ปลารับได้เพื่อเลือกเหยื่อ",
+          "ผลช่วงสู้เปลี่ยนจังหวะที่เกมตรวจเหตุการณ์ซึ่งอาจทำให้ปลาหนีและเบ็ดหาย; ในบางชุดจะเร็วขึ้น บางชุดจะช้าลง จึงไม่มีเบ็ดตัวไหนที่โค้ดยืนยันว่าจับง่ายกว่าเสมอ",
+          "ไม่ควรซื้อโดยคาดหวังว่าจะเพิ่มโอกาสกัดหรือรับประกันการจับปลา"
+        ],
+        "en": [
+          "This hook has a specific response for carp. That fish can still take other compatible baits and be fished with other hooks.",
+          "This hook does not add bait compatibility; choose bait from the fish-acceptance table.",
+          "It changes when the game reaches a fish-escape check that can cost the hook. Depending on the rod, bait and fish size, this can happen sooner or later; the ROM does not establish a hook that always lands fish more easily.",
+          "Do not buy it expecting more bites or a guaranteed catch."
+        ],
+        "ja": [
+          "コイを狙うときの候補。この魚は適合する別のエサや別の針でも釣れる。",
+          "エサの適合範囲を広げる効果はない。エサは魚の適合表から選ぶ。",
+          "魚が逃げて針を失う可能性がある判定に到達するタイミングが変わる。竿・エサ・魚サイズによって早まる場合と遅くなる場合があり、常に取り込みやすい針はROMから確認できない。",
+          "食いつき率上昇や確実な釣果を期待して買うものではない。"
+        ]
+      },
+      "evidenceNotes": {
+        "th": [
+          "ROM เทียบ ID ปลาในข้อมูลเบ็ด +1 กับปลาที่สู้; เมื่อ ID ตรงจะหารค่าตั้งต้นด้วย 2 และข้าม branch ปกติจาก +0 (04:8D53–8D99, 04:8F6F).",
+          "ค่าเดียวกันไปตั้ง state การสู้ 1EC9 และตำแหน่งวาดปลา 1F65; ระหว่างสู้อัปเดตต่อใน 04:9C35 เป็นต้น.",
+          "ข้อความจาก ROM: เส้นทางเหยื่อทั่วไปที่เข้าแฟล็กเหตุการณ์แสดงว่า “เบ็ดถูกขโมย/ปลาหนี/เสียแต้ม” (00:0096); อีกเส้นทางแสดงว่า “ปลาหนี/เหยื่อถูกขโมย” (00:009A) ของที่หายขึ้นกับสถานะตอนนั้น"
+        ],
+        "en": [
+          "The ROM compares the hook record’s +1 fish ID to the active fish. A match halves the starting response value and bypasses the ordinary +0 branch (04:8D53–8D99, 04:8F6F).",
+          "The value seeds fight state 1EC9 and fish display offset 1F65; the fight routine updates it later (04:9C35 onward).",
+          "ROM outcome messages: the flagged ordinary-bait path says the hook is stolen, the fish escapes and points are damaged (00:0096); the fallback says the fish escapes and bait is stolen (00:009A). The lost item depends on the state path."
+        ],
+        "ja": [
+          "針レコード+1の魚IDを現在の魚IDと比較。一致時は初期応答値を半分にし、+0の通常分岐を飛ばす（04:8D53–8D99、04:8F6F）。",
+          "値はファイト状態1EC9と魚の表示位置1F65に使われ、戦闘中に更新される（04:9C35以降）。",
+          "ROMメッセージ: 通常エサで判定フラグありは「針を盗られた／魚に逃げられた／ポイントダメージ」(00:0096)、通常エサの別経路は「魚に逃げられた／エサを盗られた」(00:009A)。失う物は状態経路で変わる。"
+        ]
+      },
+      "fishIds": [
+        "0D"
+      ],
+      "evidence": {
+        "type": "rom_trace",
+        "sources": [
+          "docs/hook-float-use.md",
+          "docs/rod-response-research.md"
+        ]
+      }
+    },
+    "hook:05": {
+      "summary": {
+        "th": "ถ้าเล็งปลาเฮระบูนะและตกด้วยเหยื่อ เบ็ดนี้เป็นตัวที่ ROM ผูกกับปลาชนิดนี้; มันเปลี่ยนจังหวะช่วงสู้หลังปลากินเหยื่อ",
+        "en": "For bait fishing aimed at Herabuna, this is the hook the ROM matches to that fish; it changes the fight sequence after the fish takes bait.",
+        "ja": "ヘラブナをエサ釣りで狙うとき、ROM上で魚IDが結び付く針。魚がエサを食った後のファイト進行が変わる。"
+      },
+      "facts": {
+        "th": [
+          "เบ็ดนี้มีการตอบสนองเฉพาะกับปลาเฮระบูนะ; ปลาเฮระบูนะยังกินเหยื่อชนิดอื่นและใช้เบ็ดชนิดอื่นได้ ถ้าเหยื่อผ่านเงื่อนไขของมัน",
+          "เบ็ดนี้ไม่ได้ทำให้ปลากินเหยื่อเพิ่ม; ใช้ตารางเหยื่อที่ปลารับได้เพื่อเลือกเหยื่อ",
+          "ผลช่วงสู้เปลี่ยนจังหวะที่เกมตรวจเหตุการณ์ซึ่งอาจทำให้ปลาหนีและเบ็ดหาย; ในบางชุดจะเร็วขึ้น บางชุดจะช้าลง จึงไม่มีเบ็ดตัวไหนที่โค้ดยืนยันว่าจับง่ายกว่าเสมอ",
+          "ไม่ควรซื้อโดยคาดหวังว่าจะเพิ่มโอกาสกัดหรือรับประกันการจับปลา"
+        ],
+        "en": [
+          "This hook has a specific response for Herabuna. That fish can still take other compatible baits and be fished with other hooks.",
+          "This hook does not add bait compatibility; choose bait from the fish-acceptance table.",
+          "It changes when the game reaches a fish-escape check that can cost the hook. Depending on the rod, bait and fish size, this can happen sooner or later; the ROM does not establish a hook that always lands fish more easily.",
+          "Do not buy it expecting more bites or a guaranteed catch."
+        ],
+        "ja": [
+          "ヘラブナを狙うときの候補。この魚は適合する別のエサや別の針でも釣れる。",
+          "エサの適合範囲を広げる効果はない。エサは魚の適合表から選ぶ。",
+          "魚が逃げて針を失う可能性がある判定に到達するタイミングが変わる。竿・エサ・魚サイズによって早まる場合と遅くなる場合があり、常に取り込みやすい針はROMから確認できない。",
+          "食いつき率上昇や確実な釣果を期待して買うものではない。"
+        ]
+      },
+      "evidenceNotes": {
+        "th": [
+          "ROM เทียบ ID ปลาในข้อมูลเบ็ด +1 กับปลาที่สู้; เมื่อ ID ตรงจะหารค่าตั้งต้นด้วย 2 และข้าม branch ปกติจาก +0 (04:8D53–8D99, 04:8F6F).",
+          "ค่าเดียวกันไปตั้ง state การสู้ 1EC9 และตำแหน่งวาดปลา 1F65; ระหว่างสู้อัปเดตต่อใน 04:9C35 เป็นต้น.",
+          "ข้อความจาก ROM: เส้นทางเหยื่อทั่วไปที่เข้าแฟล็กเหตุการณ์แสดงว่า “เบ็ดถูกขโมย/ปลาหนี/เสียแต้ม” (00:0096); อีกเส้นทางแสดงว่า “ปลาหนี/เหยื่อถูกขโมย” (00:009A) ของที่หายขึ้นกับสถานะตอนนั้น"
+        ],
+        "en": [
+          "The ROM compares the hook record’s +1 fish ID to the active fish. A match halves the starting response value and bypasses the ordinary +0 branch (04:8D53–8D99, 04:8F6F).",
+          "The value seeds fight state 1EC9 and fish display offset 1F65; the fight routine updates it later (04:9C35 onward).",
+          "ROM outcome messages: the flagged ordinary-bait path says the hook is stolen, the fish escapes and points are damaged (00:0096); the fallback says the fish escapes and bait is stolen (00:009A). The lost item depends on the state path."
+        ],
+        "ja": [
+          "針レコード+1の魚IDを現在の魚IDと比較。一致時は初期応答値を半分にし、+0の通常分岐を飛ばす（04:8D53–8D99、04:8F6F）。",
+          "値はファイト状態1EC9と魚の表示位置1F65に使われ、戦闘中に更新される（04:9C35以降）。",
+          "ROMメッセージ: 通常エサで判定フラグありは「針を盗られた／魚に逃げられた／ポイントダメージ」(00:0096)、通常エサの別経路は「魚に逃げられた／エサを盗られた」(00:009A)。失う物は状態経路で変わる。"
+        ]
+      },
+      "fishIds": [
+        "25"
+      ],
+      "evidence": {
+        "type": "rom_trace",
+        "sources": [
+          "docs/hook-float-use.md",
+          "docs/rod-response-research.md"
+        ]
+      }
+    },
+    "hook:0A": {
+      "summary": {
+        "th": "ถ้าเล็งปลาอายุและตกด้วยเหยื่อ เบ็ดนี้เป็นตัวที่ ROM ผูกกับปลาชนิดนี้; มันเปลี่ยนจังหวะช่วงสู้หลังปลากินเหยื่อ",
+        "en": "For bait fishing aimed at Ayu, this is the hook the ROM matches to that fish; it changes the fight sequence after the fish takes bait.",
+        "ja": "アユをエサ釣りで狙うとき、ROM上で魚IDが結び付く針。魚がエサを食った後のファイト進行が変わる。"
+      },
+      "facts": {
+        "th": [
+          "เบ็ดนี้มีการตอบสนองเฉพาะกับปลาอายุ; ปลาอายุยังกินเหยื่อชนิดอื่นและใช้เบ็ดชนิดอื่นได้ ถ้าเหยื่อผ่านเงื่อนไขของมัน",
+          "ถ้าเล็งปลาชนิดอื่น เงื่อนไขเฉพาะอายุจะไม่ทำงาน; ROM ไม่ยืนยันว่าเบ็ดนี้ช่วยจับปลาอื่นได้ดีกว่า",
+          "เบ็ดนี้ไม่ได้ทำให้ปลากินเหยื่อเพิ่ม; ใช้ตารางเหยื่อที่ปลารับได้เพื่อเลือกเหยื่อ",
+          "ผลช่วงสู้เปลี่ยนจังหวะที่เกมตรวจเหตุการณ์ซึ่งอาจทำให้ปลาหนีและเบ็ดหาย; ในบางชุดจะเร็วขึ้น บางชุดจะช้าลง จึงไม่มีเบ็ดตัวไหนที่โค้ดยืนยันว่าจับง่ายกว่าเสมอ",
+          "ไม่ควรซื้อโดยคาดหวังว่าจะเพิ่มโอกาสกัดหรือรับประกันการจับปลา"
+        ],
+        "en": [
+          "This hook has a specific response for Ayu. That fish can still take other compatible baits and be fished with other hooks.",
+          "This hook does not add bait compatibility; choose bait from the fish-acceptance table.",
+          "It changes when the game reaches a fish-escape check that can cost the hook. Depending on the rod, bait and fish size, this can happen sooner or later; the ROM does not establish a hook that always lands fish more easily.",
+          "Do not buy it expecting more bites or a guaranteed catch."
+        ],
+        "ja": [
+          "アユを狙うときの候補。この魚は適合する別のエサや別の針でも釣れる。",
+          "エサの適合範囲を広げる効果はない。エサは魚の適合表から選ぶ。",
+          "魚が逃げて針を失う可能性がある判定に到達するタイミングが変わる。竿・エサ・魚サイズによって早まる場合と遅くなる場合があり、常に取り込みやすい針はROMから確認できない。",
+          "食いつき率上昇や確実な釣果を期待して買うものではない。"
+        ]
+      },
+      "evidenceNotes": {
+        "th": [
+          "ROM เทียบ ID ปลาในข้อมูลเบ็ด +1 กับปลาที่สู้; เมื่อ ID ตรงจะหารค่าตั้งต้นด้วย 2 และข้าม branch ปกติจาก +0 (04:8D53–8D99, 04:8F6F).",
+          "ค่าเดียวกันไปตั้ง state การสู้ 1EC9 และตำแหน่งวาดปลา 1F65; ระหว่างสู้อัปเดตต่อใน 04:9C35 เป็นต้น.",
+          "ข้อความจาก ROM: เส้นทางเหยื่อทั่วไปที่เข้าแฟล็กเหตุการณ์แสดงว่า “เบ็ดถูกขโมย/ปลาหนี/เสียแต้ม” (00:0096); อีกเส้นทางแสดงว่า “ปลาหนี/เหยื่อถูกขโมย” (00:009A) ของที่หายขึ้นกับสถานะตอนนั้น"
+        ],
+        "en": [
+          "The ROM compares the hook record’s +1 fish ID to the active fish. A match halves the starting response value and bypasses the ordinary +0 branch (04:8D53–8D99, 04:8F6F).",
+          "The value seeds fight state 1EC9 and fish display offset 1F65; the fight routine updates it later (04:9C35 onward).",
+          "ROM outcome messages: the flagged ordinary-bait path says the hook is stolen, the fish escapes and points are damaged (00:0096); the fallback says the fish escapes and bait is stolen (00:009A). The lost item depends on the state path."
+        ],
+        "ja": [
+          "針レコード+1の魚IDを現在の魚IDと比較。一致時は初期応答値を半分にし、+0の通常分岐を飛ばす（04:8D53–8D99、04:8F6F）。",
+          "値はファイト状態1EC9と魚の表示位置1F65に使われ、戦闘中に更新される（04:9C35以降）。",
+          "ROMメッセージ: 通常エサで判定フラグありは「針を盗られた／魚に逃げられた／ポイントダメージ」(00:0096)、通常エサの別経路は「魚に逃げられた／エサを盗られた」(00:009A)。失う物は状態経路で変わる。"
+        ]
+      },
+      "fishIds": [
+        "38"
+      ],
+      "evidence": {
+        "type": "rom_trace",
+        "sources": [
+          "docs/hook-float-use.md",
+          "docs/rod-response-research.md"
+        ]
+      }
+    },
+    "hook:0B": {
+      "summary": {
+        "th": "ถ้าเล็งปลาทานาโกะและตกด้วยเหยื่อ เบ็ดนี้เป็นตัวที่ ROM ผูกกับปลาชนิดนี้; มันเปลี่ยนจังหวะช่วงสู้หลังปลากินเหยื่อ",
+        "en": "For bait fishing aimed at bitterling, this is the hook the ROM matches to that fish; it changes the fight sequence after the fish takes bait.",
+        "ja": "タナゴをエサ釣りで狙うとき、ROM上で魚IDが結び付く針。魚がエサを食った後のファイト進行が変わる。"
+      },
+      "facts": {
+        "th": [
+          "เบ็ดนี้มีการตอบสนองเฉพาะกับปลาทานาโกะ; ปลาทานาโกะยังกินเหยื่อชนิดอื่นและใช้เบ็ดชนิดอื่นได้ ถ้าเหยื่อผ่านเงื่อนไขของมัน",
+          "เบ็ดนี้ไม่ได้ทำให้ปลากินเหยื่อเพิ่ม; ใช้ตารางเหยื่อที่ปลารับได้เพื่อเลือกเหยื่อ",
+          "ผลช่วงสู้เปลี่ยนจังหวะที่เกมตรวจเหตุการณ์ซึ่งอาจทำให้ปลาหนีและเบ็ดหาย; ในบางชุดจะเร็วขึ้น บางชุดจะช้าลง จึงไม่มีเบ็ดตัวไหนที่โค้ดยืนยันว่าจับง่ายกว่าเสมอ",
+          "ไม่ควรซื้อโดยคาดหวังว่าจะเพิ่มโอกาสกัดหรือรับประกันการจับปลา"
+        ],
+        "en": [
+          "This hook has a specific response for bitterling. That fish can still take other compatible baits and be fished with other hooks.",
+          "This hook does not add bait compatibility; choose bait from the fish-acceptance table.",
+          "It changes when the game reaches a fish-escape check that can cost the hook. Depending on the rod, bait and fish size, this can happen sooner or later; the ROM does not establish a hook that always lands fish more easily.",
+          "Do not buy it expecting more bites or a guaranteed catch."
+        ],
+        "ja": [
+          "タナゴを狙うときの候補。この魚は適合する別のエサや別の針でも釣れる。",
+          "エサの適合範囲を広げる効果はない。エサは魚の適合表から選ぶ。",
+          "魚が逃げて針を失う可能性がある判定に到達するタイミングが変わる。竿・エサ・魚サイズによって早まる場合と遅くなる場合があり、常に取り込みやすい針はROMから確認できない。",
+          "食いつき率上昇や確実な釣果を期待して買うものではない。"
+        ]
+      },
+      "evidenceNotes": {
+        "th": [
+          "ROM เทียบ ID ปลาในข้อมูลเบ็ด +1 กับปลาที่สู้; เมื่อ ID ตรงจะหารค่าตั้งต้นด้วย 2 และข้าม branch ปกติจาก +0 (04:8D53–8D99, 04:8F6F).",
+          "ค่าเดียวกันไปตั้ง state การสู้ 1EC9 และตำแหน่งวาดปลา 1F65; ระหว่างสู้อัปเดตต่อใน 04:9C35 เป็นต้น.",
+          "ข้อความจาก ROM: เส้นทางเหยื่อทั่วไปที่เข้าแฟล็กเหตุการณ์แสดงว่า “เบ็ดถูกขโมย/ปลาหนี/เสียแต้ม” (00:0096); อีกเส้นทางแสดงว่า “ปลาหนี/เหยื่อถูกขโมย” (00:009A) ของที่หายขึ้นกับสถานะตอนนั้น"
+        ],
+        "en": [
+          "The ROM compares the hook record’s +1 fish ID to the active fish. A match halves the starting response value and bypasses the ordinary +0 branch (04:8D53–8D99, 04:8F6F).",
+          "The value seeds fight state 1EC9 and fish display offset 1F65; the fight routine updates it later (04:9C35 onward).",
+          "ROM outcome messages: the flagged ordinary-bait path says the hook is stolen, the fish escapes and points are damaged (00:0096); the fallback says the fish escapes and bait is stolen (00:009A). The lost item depends on the state path."
+        ],
+        "ja": [
+          "針レコード+1の魚IDを現在の魚IDと比較。一致時は初期応答値を半分にし、+0の通常分岐を飛ばす（04:8D53–8D99、04:8F6F）。",
+          "値はファイト状態1EC9と魚の表示位置1F65に使われ、戦闘中に更新される（04:9C35以降）。",
+          "ROMメッセージ: 通常エサで判定フラグありは「針を盗られた／魚に逃げられた／ポイントダメージ」(00:0096)、通常エサの別経路は「魚に逃げられた／エサを盗られた」(00:009A)。失う物は状態経路で変わる。"
+        ]
+      },
+      "fishIds": [
+        "39"
+      ],
+      "evidence": {
+        "type": "rom_trace",
+        "sources": [
+          "docs/hook-float-use.md",
+          "docs/rod-response-research.md"
+        ]
+      }
+    },
+    "hook:0C": {
+      "summary": {
+        "th": "ถ้าเล็งปลาอิวานะและตกด้วยเหยื่อ เบ็ดนี้เป็นตัวที่ ROM ผูกกับปลาชนิดนี้; มันเปลี่ยนจังหวะช่วงสู้หลังปลากินเหยื่อ",
+        "en": "For bait fishing aimed at Iwana, this is the hook the ROM matches to that fish; it changes the fight sequence after the fish takes bait.",
+        "ja": "イワナをエサ釣りで狙うとき、ROM上で魚IDが結び付く針。魚がエサを食った後のファイト進行が変わる。"
+      },
+      "facts": {
+        "th": [
+          "เบ็ดนี้มีการตอบสนองเฉพาะกับปลาอิวานะ; ปลาอิวานะยังกินเหยื่อชนิดอื่นและใช้เบ็ดชนิดอื่นได้ ถ้าเหยื่อผ่านเงื่อนไขของมัน",
+          "เบ็ดนี้ไม่ได้ทำให้ปลากินเหยื่อเพิ่ม; ใช้ตารางเหยื่อที่ปลารับได้เพื่อเลือกเหยื่อ",
+          "ผลช่วงสู้เปลี่ยนจังหวะที่เกมตรวจเหตุการณ์ซึ่งอาจทำให้ปลาหนีและเบ็ดหาย; ในบางชุดจะเร็วขึ้น บางชุดจะช้าลง จึงไม่มีเบ็ดตัวไหนที่โค้ดยืนยันว่าจับง่ายกว่าเสมอ",
+          "ไม่ควรซื้อโดยคาดหวังว่าจะเพิ่มโอกาสกัดหรือรับประกันการจับปลา"
+        ],
+        "en": [
+          "This hook has a specific response for Iwana. That fish can still take other compatible baits and be fished with other hooks.",
+          "This hook does not add bait compatibility; choose bait from the fish-acceptance table.",
+          "It changes when the game reaches a fish-escape check that can cost the hook. Depending on the rod, bait and fish size, this can happen sooner or later; the ROM does not establish a hook that always lands fish more easily.",
+          "Do not buy it expecting more bites or a guaranteed catch."
+        ],
+        "ja": [
+          "イワナを狙うときの候補。この魚は適合する別のエサや別の針でも釣れる。",
+          "エサの適合範囲を広げる効果はない。エサは魚の適合表から選ぶ。",
+          "魚が逃げて針を失う可能性がある判定に到達するタイミングが変わる。竿・エサ・魚サイズによって早まる場合と遅くなる場合があり、常に取り込みやすい針はROMから確認できない。",
+          "食いつき率上昇や確実な釣果を期待して買うものではない。"
+        ]
+      },
+      "evidenceNotes": {
+        "th": [
+          "ROM เทียบ ID ปลาในข้อมูลเบ็ด +1 กับปลาที่สู้; เมื่อ ID ตรงจะหารค่าตั้งต้นด้วย 2 และข้าม branch ปกติจาก +0 (04:8D53–8D99, 04:8F6F).",
+          "ค่าเดียวกันไปตั้ง state การสู้ 1EC9 และตำแหน่งวาดปลา 1F65; ระหว่างสู้อัปเดตต่อใน 04:9C35 เป็นต้น.",
+          "ข้อความจาก ROM: เส้นทางเหยื่อทั่วไปที่เข้าแฟล็กเหตุการณ์แสดงว่า “เบ็ดถูกขโมย/ปลาหนี/เสียแต้ม” (00:0096); อีกเส้นทางแสดงว่า “ปลาหนี/เหยื่อถูกขโมย” (00:009A) ของที่หายขึ้นกับสถานะตอนนั้น"
+        ],
+        "en": [
+          "The ROM compares the hook record’s +1 fish ID to the active fish. A match halves the starting response value and bypasses the ordinary +0 branch (04:8D53–8D99, 04:8F6F).",
+          "The value seeds fight state 1EC9 and fish display offset 1F65; the fight routine updates it later (04:9C35 onward).",
+          "ROM outcome messages: the flagged ordinary-bait path says the hook is stolen, the fish escapes and points are damaged (00:0096); the fallback says the fish escapes and bait is stolen (00:009A). The lost item depends on the state path."
+        ],
+        "ja": [
+          "針レコード+1の魚IDを現在の魚IDと比較。一致時は初期応答値を半分にし、+0の通常分岐を飛ばす（04:8D53–8D99、04:8F6F）。",
+          "値はファイト状態1EC9と魚の表示位置1F65に使われ、戦闘中に更新される（04:9C35以降）。",
+          "ROMメッセージ: 通常エサで判定フラグありは「針を盗られた／魚に逃げられた／ポイントダメージ」(00:0096)、通常エサの別経路は「魚に逃げられた／エサを盗られた」(00:009A)。失う物は状態経路で変わる。"
+        ]
+      },
+      "fishIds": [
+        "01"
+      ],
+      "evidence": {
+        "type": "rom_trace",
+        "sources": [
+          "docs/hook-float-use.md",
+          "docs/rod-response-research.md"
+        ]
+      }
+    },
+    "hook:0D": {
+      "summary": {
+        "th": "ถ้าเล็งปลายามาเมะและตกด้วยเหยื่อ เบ็ดนี้เป็นตัวที่ ROM ผูกกับปลาชนิดนี้; มันเปลี่ยนจังหวะช่วงสู้หลังปลากินเหยื่อ",
+        "en": "For bait fishing aimed at Yamame, this is the hook the ROM matches to that fish; it changes the fight sequence after the fish takes bait.",
+        "ja": "ヤマメをエサ釣りで狙うとき、ROM上で魚IDが結び付く針。魚がエサを食った後のファイト進行が変わる。"
+      },
+      "facts": {
+        "th": [
+          "เบ็ดนี้มีการตอบสนองเฉพาะกับปลายามาเมะ; ปลายามาเมะยังกินเหยื่อชนิดอื่นและใช้เบ็ดชนิดอื่นได้ ถ้าเหยื่อผ่านเงื่อนไขของมัน",
+          "เบ็ดนี้ไม่ได้ทำให้ปลากินเหยื่อเพิ่ม; ใช้ตารางเหยื่อที่ปลารับได้เพื่อเลือกเหยื่อ",
+          "ผลช่วงสู้เปลี่ยนจังหวะที่เกมตรวจเหตุการณ์ซึ่งอาจทำให้ปลาหนีและเบ็ดหาย; ในบางชุดจะเร็วขึ้น บางชุดจะช้าลง จึงไม่มีเบ็ดตัวไหนที่โค้ดยืนยันว่าจับง่ายกว่าเสมอ",
+          "ไม่ควรซื้อโดยคาดหวังว่าจะเพิ่มโอกาสกัดหรือรับประกันการจับปลา"
+        ],
+        "en": [
+          "This hook has a specific response for Yamame. That fish can still take other compatible baits and be fished with other hooks.",
+          "This hook does not add bait compatibility; choose bait from the fish-acceptance table.",
+          "It changes when the game reaches a fish-escape check that can cost the hook. Depending on the rod, bait and fish size, this can happen sooner or later; the ROM does not establish a hook that always lands fish more easily.",
+          "Do not buy it expecting more bites or a guaranteed catch."
+        ],
+        "ja": [
+          "ヤマメを狙うときの候補。この魚は適合する別のエサや別の針でも釣れる。",
+          "エサの適合範囲を広げる効果はない。エサは魚の適合表から選ぶ。",
+          "魚が逃げて針を失う可能性がある判定に到達するタイミングが変わる。竿・エサ・魚サイズによって早まる場合と遅くなる場合があり、常に取り込みやすい針はROMから確認できない。",
+          "食いつき率上昇や確実な釣果を期待して買うものではない。"
+        ]
+      },
+      "evidenceNotes": {
+        "th": [
+          "ROM เทียบ ID ปลาในข้อมูลเบ็ด +1 กับปลาที่สู้; เมื่อ ID ตรงจะหารค่าตั้งต้นด้วย 2 และข้าม branch ปกติจาก +0 (04:8D53–8D99, 04:8F6F).",
+          "ค่าเดียวกันไปตั้ง state การสู้ 1EC9 และตำแหน่งวาดปลา 1F65; ระหว่างสู้อัปเดตต่อใน 04:9C35 เป็นต้น.",
+          "ข้อความจาก ROM: เส้นทางเหยื่อทั่วไปที่เข้าแฟล็กเหตุการณ์แสดงว่า “เบ็ดถูกขโมย/ปลาหนี/เสียแต้ม” (00:0096); อีกเส้นทางแสดงว่า “ปลาหนี/เหยื่อถูกขโมย” (00:009A) ของที่หายขึ้นกับสถานะตอนนั้น"
+        ],
+        "en": [
+          "The ROM compares the hook record’s +1 fish ID to the active fish. A match halves the starting response value and bypasses the ordinary +0 branch (04:8D53–8D99, 04:8F6F).",
+          "The value seeds fight state 1EC9 and fish display offset 1F65; the fight routine updates it later (04:9C35 onward).",
+          "ROM outcome messages: the flagged ordinary-bait path says the hook is stolen, the fish escapes and points are damaged (00:0096); the fallback says the fish escapes and bait is stolen (00:009A). The lost item depends on the state path."
+        ],
+        "ja": [
+          "針レコード+1の魚IDを現在の魚IDと比較。一致時は初期応答値を半分にし、+0の通常分岐を飛ばす（04:8D53–8D99、04:8F6F）。",
+          "値はファイト状態1EC9と魚の表示位置1F65に使われ、戦闘中に更新される（04:9C35以降）。",
+          "ROMメッセージ: 通常エサで判定フラグありは「針を盗られた／魚に逃げられた／ポイントダメージ」(00:0096)、通常エサの別経路は「魚に逃げられた／エサを盗られた」(00:009A)。失う物は状態経路で変わる。"
+        ]
+      },
+      "fishIds": [
+        "03"
+      ],
+      "evidence": {
+        "type": "rom_trace",
+        "sources": [
+          "docs/hook-float-use.md",
+          "docs/rod-response-research.md"
+        ]
+      }
+    },
+    "hook:06": {
+      "summary": {
+        "th": "เบ็ดทั่วไป: ใช้เป็นเบ็ดทั่วไปในชุดตกเหยื่อ; ROM ไม่ผูกกับ ID ปลาเป้าหมายเฉพาะ",
+        "en": "general hook: a general bait-fishing hook; the ROM does not associate it with a target fish ID.",
+        "ja": "ハリ。魚ID一致分岐のない、一般的なエサ釣り用の針。"
+      },
+      "facts": {
+        "th": [
+          "ใช้ได้ในชุดทุ่นหรือตะกั่ว; ไม่เปลี่ยนว่าปลาชนิดไหนรับเหยื่อได้",
+          "รหัสของเบ็ดจะเปลี่ยนจังหวะการขยับของปลาในช่วงสู้ และจังหวะที่เกมตรวจเหตุการณ์ซึ่งอาจทำให้ปลา/เบ็ดหรือเหยื่อหาย",
+          "รูปแบบที่เกิดขึ้นขึ้นกับขนาดปลาดิบ รหัสคัน และเหยื่อ; ROM ไม่ได้บอกว่าตัวนี้ดีกว่าเบ็ดทั่วไปตัวอื่น",
+          "ใช้เมื่อไม่มีเบ็ดที่จับคู่กับปลาที่เล็ง; อย่าซื้อโดยคาดว่าจะทำให้ปลากินง่ายขึ้น"
+        ],
+        "en": [
+          "Works with either the float or sinker bait route; it does not change which fish accepts the bait.",
+          "Its response code changes the fish’s opening fight sequence and the timing of checks that can lead to losing a hook or bait.",
+          "The result depends on internal fish size, rod code and bait; the ROM does not rank this above the other general hooks.",
+          "Use it when no fish-matched hook is relevant; do not expect it to increase bites."
+        ],
+        "ja": [
+          "ウキ・オモリのエサ釣りで使用できる。エサ適合魚は変わらない。",
+          "応答コードがファイト開始時の魚の動きと、針・エサを失うことがある判定のタイミングを変える。",
+          "内部サイズ・竿コード・エサに依存し、他の汎用針より優れるとはROMから判断できない。",
+          "対象魚に対応した針がない場合に使う。食いつきやすくなると期待して買わない。"
+        ]
+      },
+      "evidenceNotes": {
+        "th": [
+          "ไบต์ +1 เป็น 0 จึงไม่เข้าแขนงจับคู่ชนิดปลา; +0 เลือกปรับค่าตามขนาดดิบ ≤15, 16–35 หรือ ≥36 (04:8D61–8E32).",
+          "H คือหารสอง; G คือ (2x+1) จำกัดที่ 63. ค่าที่ได้ไปตั้งการแสดง/สถานะสู้ ไม่ใช่ตรวจว่าเหยื่อเข้ากับปลา (04:8F6F–8F83).",
+          "このデータの+1魚IDは0。+0（1）が内部サイズ帯ごとの変換を選ぶ。H/Gと範囲はROM記録の説明に限定し、カードの主説明では使っていない。"
+        ],
+        "en": [
+          "The hook +1 fish ID is zero, so no species-match branch runs. +0 selects a transform by internal size bands ≤15, 16–35, or ≥36 (04:8D61–8E32).",
+          "H halves; G maps to (2x+1) masked to 63. The result feeds fight setup/display, not bait acceptance (04:8F6F–8F83)."
+        ],
+        "ja": [
+          "針+1魚IDは0で、魚別分岐に入らない。+0が内部サイズ帯（≤15、16–35、≥36）ごとの変換を選ぶ（04:8D61–8E32）。",
+          "Hは半分、Gは(2x+1)を63でマスク。結果はファイト初期化・表示に使われ、エサ適合判定ではない（04:8F6F–8F83）。"
+        ]
+      },
+      "fishIds": [],
+      "evidence": {
+        "type": "rom_trace",
+        "sources": [
+          "docs/hook-float-use.md",
+          "docs/rod-response-research.md"
+        ]
+      }
+    },
+    "hook:07": {
+      "summary": {
+        "th": "เบ็ดปลาฮิไก: ใช้เป็นเบ็ดทั่วไปในชุดตกเหยื่อ; ROM ไม่ผูกกับ ID ปลาเป้าหมายเฉพาะ",
+        "en": "Higai hook: a general bait-fishing hook; the ROM does not associate it with a target fish ID.",
+        "ja": "袖ヒガイ。魚ID一致分岐のない、一般的なエサ釣り用の針。"
+      },
+      "facts": {
+        "th": [
+          "ใช้ได้ในชุดทุ่นหรือตะกั่ว; ไม่เปลี่ยนว่าปลาชนิดไหนรับเหยื่อได้",
+          "รหัสของเบ็ดจะเปลี่ยนจังหวะการขยับของปลาในช่วงสู้ และจังหวะที่เกมตรวจเหตุการณ์ซึ่งอาจทำให้ปลา/เบ็ดหรือเหยื่อหาย",
+          "รูปแบบที่เกิดขึ้นขึ้นกับขนาดปลาดิบ รหัสคัน และเหยื่อ; ROM ไม่ได้บอกว่าตัวนี้ดีกว่าเบ็ดทั่วไปตัวอื่น",
+          "ใช้เมื่อไม่มีเบ็ดที่จับคู่กับปลาที่เล็ง; อย่าซื้อโดยคาดว่าจะทำให้ปลากินง่ายขึ้น"
+        ],
+        "en": [
+          "Works with either the float or sinker bait route; it does not change which fish accepts the bait.",
+          "Its response code changes the fish’s opening fight sequence and the timing of checks that can lead to losing a hook or bait.",
+          "The result depends on internal fish size, rod code and bait; the ROM does not rank this above the other general hooks.",
+          "Use it when no fish-matched hook is relevant; do not expect it to increase bites."
+        ],
+        "ja": [
+          "ウキ・オモリのエサ釣りで使用できる。エサ適合魚は変わらない。",
+          "応答コードがファイト開始時の魚の動きと、針・エサを失うことがある判定のタイミングを変える。",
+          "内部サイズ・竿コード・エサに依存し、他の汎用針より優れるとはROMから判断できない。",
+          "対象魚に対応した針がない場合に使う。食いつきやすくなると期待して買わない。"
+        ]
+      },
+      "evidenceNotes": {
+        "th": [
+          "ไบต์ +1 เป็น 0 จึงไม่เข้าแขนงจับคู่ชนิดปลา; +0 เลือกปรับค่าตามขนาดดิบ ≤15, 16–35 หรือ ≥36 (04:8D61–8E32).",
+          "H คือหารสอง; G คือ (2x+1) จำกัดที่ 63. ค่าที่ได้ไปตั้งการแสดง/สถานะสู้ ไม่ใช่ตรวจว่าเหยื่อเข้ากับปลา (04:8F6F–8F83).",
+          "このデータの+1魚IDは0。+0（0）が内部サイズ帯ごとの変換を選ぶ。H/Gと範囲はROM記録の説明に限定し、カードの主説明では使っていない。"
+        ],
+        "en": [
+          "The hook +1 fish ID is zero, so no species-match branch runs. +0 selects a transform by internal size bands ≤15, 16–35, or ≥36 (04:8D61–8E32).",
+          "H halves; G maps to (2x+1) masked to 63. The result feeds fight setup/display, not bait acceptance (04:8F6F–8F83)."
+        ],
+        "ja": [
+          "針+1魚IDは0で、魚別分岐に入らない。+0が内部サイズ帯（≤15、16–35、≥36）ごとの変換を選ぶ（04:8D61–8E32）。",
+          "Hは半分、Gは(2x+1)を63でマスク。結果はファイト初期化・表示に使われ、エサ適合判定ではない（04:8F6F–8F83）。"
+        ]
+      },
+      "fishIds": [],
+      "evidence": {
+        "type": "rom_trace",
+        "sources": [
+          "docs/hook-float-use.md",
+          "docs/rod-response-research.md"
+        ]
+      }
+    },
+    "hook:08": {
+      "summary": {
+        "th": "เบ็ดปลาฮายะ / ยามาเบะ: ใช้เป็นเบ็ดทั่วไปในชุดตกเหยื่อ; ROM ไม่ผูกกับ ID ปลาเป้าหมายเฉพาะ",
+        "en": "Haya/Yamabe hook: a general bait-fishing hook; the ROM does not associate it with a target fish ID.",
+        "ja": "ハヤ・ヤマベ。魚ID一致分岐のない、一般的なエサ釣り用の針。"
+      },
+      "facts": {
+        "th": [
+          "ใช้ได้ในชุดทุ่นหรือตะกั่ว; ไม่เปลี่ยนว่าปลาชนิดไหนรับเหยื่อได้",
+          "รหัสของเบ็ดจะเปลี่ยนจังหวะการขยับของปลาในช่วงสู้ และจังหวะที่เกมตรวจเหตุการณ์ซึ่งอาจทำให้ปลา/เบ็ดหรือเหยื่อหาย",
+          "รูปแบบที่เกิดขึ้นขึ้นกับขนาดปลาดิบ รหัสคัน และเหยื่อ; ROM ไม่ได้บอกว่าตัวนี้ดีกว่าเบ็ดทั่วไปตัวอื่น",
+          "ใช้เมื่อไม่มีเบ็ดที่จับคู่กับปลาที่เล็ง; อย่าซื้อโดยคาดว่าจะทำให้ปลากินง่ายขึ้น"
+        ],
+        "en": [
+          "Works with either the float or sinker bait route; it does not change which fish accepts the bait.",
+          "Its response code changes the fish’s opening fight sequence and the timing of checks that can lead to losing a hook or bait.",
+          "The result depends on internal fish size, rod code and bait; the ROM does not rank this above the other general hooks.",
+          "Use it when no fish-matched hook is relevant; do not expect it to increase bites."
+        ],
+        "ja": [
+          "ウキ・オモリのエサ釣りで使用できる。エサ適合魚は変わらない。",
+          "応答コードがファイト開始時の魚の動きと、針・エサを失うことがある判定のタイミングを変える。",
+          "内部サイズ・竿コード・エサに依存し、他の汎用針より優れるとはROMから判断できない。",
+          "対象魚に対応した針がない場合に使う。食いつきやすくなると期待して買わない。"
+        ]
+      },
+      "evidenceNotes": {
+        "th": [
+          "ไบต์ +1 เป็น 0 จึงไม่เข้าแขนงจับคู่ชนิดปลา; +0 เลือกปรับค่าตามขนาดดิบ ≤15, 16–35 หรือ ≥36 (04:8D61–8E32).",
+          "H คือหารสอง; G คือ (2x+1) จำกัดที่ 63. ค่าที่ได้ไปตั้งการแสดง/สถานะสู้ ไม่ใช่ตรวจว่าเหยื่อเข้ากับปลา (04:8F6F–8F83).",
+          "このデータの+1魚IDは0。+0（0）が内部サイズ帯ごとの変換を選ぶ。H/Gと範囲はROM記録の説明に限定し、カードの主説明では使っていない。"
+        ],
+        "en": [
+          "The hook +1 fish ID is zero, so no species-match branch runs. +0 selects a transform by internal size bands ≤15, 16–35, or ≥36 (04:8D61–8E32).",
+          "H halves; G maps to (2x+1) masked to 63. The result feeds fight setup/display, not bait acceptance (04:8F6F–8F83)."
+        ],
+        "ja": [
+          "針+1魚IDは0で、魚別分岐に入らない。+0が内部サイズ帯（≤15、16–35、≥36）ごとの変換を選ぶ（04:8D61–8E32）。",
+          "Hは半分、Gは(2x+1)を63でマスク。結果はファイト初期化・表示に使われ、エサ適合判定ではない（04:8F6F–8F83）。"
+        ]
+      },
+      "fishIds": [],
+      "evidence": {
+        "type": "rom_trace",
+        "sources": [
+          "docs/hook-float-use.md",
+          "docs/rod-response-research.md"
+        ]
+      }
+    },
+    "hook:09": {
+      "summary": {
+        "th": "เบ็ดปลาเทราต์: ใช้เป็นเบ็ดทั่วไปในชุดตกเหยื่อ; ROM ไม่ผูกกับ ID ปลาเป้าหมายเฉพาะ",
+        "en": "trout hook: a general bait-fishing hook; the ROM does not associate it with a target fish ID.",
+        "ja": "マスバリ。魚ID一致分岐のない、一般的なエサ釣り用の針。"
+      },
+      "facts": {
+        "th": [
+          "ใช้ได้ในชุดทุ่นหรือตะกั่ว; ไม่เปลี่ยนว่าปลาชนิดไหนรับเหยื่อได้",
+          "รหัสของเบ็ดจะเปลี่ยนจังหวะการขยับของปลาในช่วงสู้ และจังหวะที่เกมตรวจเหตุการณ์ซึ่งอาจทำให้ปลา/เบ็ดหรือเหยื่อหาย",
+          "รูปแบบที่เกิดขึ้นขึ้นกับขนาดปลาดิบ รหัสคัน และเหยื่อ; ROM ไม่ได้บอกว่าตัวนี้ดีกว่าเบ็ดทั่วไปตัวอื่น",
+          "ใช้เมื่อไม่มีเบ็ดที่จับคู่กับปลาที่เล็ง; อย่าซื้อโดยคาดว่าจะทำให้ปลากินง่ายขึ้น"
+        ],
+        "en": [
+          "Works with either the float or sinker bait route; it does not change which fish accepts the bait.",
+          "Its response code changes the fish’s opening fight sequence and the timing of checks that can lead to losing a hook or bait.",
+          "The result depends on internal fish size, rod code and bait; the ROM does not rank this above the other general hooks.",
+          "Use it when no fish-matched hook is relevant; do not expect it to increase bites."
+        ],
+        "ja": [
+          "ウキ・オモリのエサ釣りで使用できる。エサ適合魚は変わらない。",
+          "応答コードがファイト開始時の魚の動きと、針・エサを失うことがある判定のタイミングを変える。",
+          "内部サイズ・竿コード・エサに依存し、他の汎用針より優れるとはROMから判断できない。",
+          "対象魚に対応した針がない場合に使う。食いつきやすくなると期待して買わない。"
+        ]
+      },
+      "evidenceNotes": {
+        "th": [
+          "ไบต์ +1 เป็น 0 จึงไม่เข้าแขนงจับคู่ชนิดปลา; +0 เลือกปรับค่าตามขนาดดิบ ≤15, 16–35 หรือ ≥36 (04:8D61–8E32).",
+          "H คือหารสอง; G คือ (2x+1) จำกัดที่ 63. ค่าที่ได้ไปตั้งการแสดง/สถานะสู้ ไม่ใช่ตรวจว่าเหยื่อเข้ากับปลา (04:8F6F–8F83).",
+          "このデータの+1魚IDは0。+0（1）が内部サイズ帯ごとの変換を選ぶ。H/Gと範囲はROM記録の説明に限定し、カードの主説明では使っていない。"
+        ],
+        "en": [
+          "The hook +1 fish ID is zero, so no species-match branch runs. +0 selects a transform by internal size bands ≤15, 16–35, or ≥36 (04:8D61–8E32).",
+          "H halves; G maps to (2x+1) masked to 63. The result feeds fight setup/display, not bait acceptance (04:8F6F–8F83)."
+        ],
+        "ja": [
+          "針+1魚IDは0で、魚別分岐に入らない。+0が内部サイズ帯（≤15、16–35、≥36）ごとの変換を選ぶ（04:8D61–8E32）。",
+          "Hは半分、Gは(2x+1)を63でマスク。結果はファイト初期化・表示に使われ、エサ適合判定ではない（04:8F6F–8F83）。"
+        ]
+      },
+      "fishIds": [],
+      "evidence": {
+        "type": "rom_trace",
+        "sources": [
+          "docs/hook-float-use.md",
+          "docs/rod-response-research.md"
+        ]
+      }
+    },
+    "float_weight:01": {
+      "summary": {
+        "th": "ทุ่นเฮระ: ใช้กับชุดตกเหยื่อติดทุ่น; เลือกจากปลาที่เหยื่อนั้นผ่านเงื่อนไข ไม่ใช่จากชื่อปลาในรุ่นทุ่น",
+        "en": "Hera float: use with float bait fishing; choose by the fish that accepts your bait, not by a fish-specific float bonus.",
+        "ja": "ヘラウキ。ウキのエサ釣り用。対象魚はウキ名ではなくエサ適合表で選ぶ。"
+      },
+      "facts": {
+        "th": [
+          "ไอเท็ม 01–08 เลือกชุดเหยื่อติดทุ่น ซึ่งมีรายชื่อปลาในเงื่อนไขรับเหยื่อกว้างกว่าชุดตะกั่ว",
+          "เปลี่ยนทุ่นรุ่นไหนก็ไม่เปลี่ยน ID เหยื่อหรือรายชื่อปลาที่ผ่านหน้ากากเหยื่อ; รุ่นย่อยเปลี่ยนรูปแบบสัญญาณทุ่นบนจอ",
+          "ROM ไม่ยืนยันว่ารุ่นใดลึกกว่า ไวกว่า หรือทำให้ปลากัดมากกว่า; ถ้าเล็งปลา ให้ดูรายชื่อในตารางเหยื่อที่ปลารับได้"
+        ],
+        "en": [
+          "IDs 01–08 select float bait fishing, whose fish-profile checks cover a broader set than the sinker route.",
+          "Changing the float model does not change the bait ID or bait-mask matches; the model changes the on-screen float-indicator pattern.",
+          "The ROM does not establish depth, sensitivity or bite chance by float model. Check the bait-acceptance table for your target fish."
+        ],
+        "ja": [
+          "ID 01–08はウキのエサ釣り経路で、オモリ経路より魚プロフィール条件の対象が広い。",
+          "ウキ形状を変えてもエサIDと適合マスクは変わらない。画面のウキ表示パターンが変わる。",
+          "形状ごとの深さ・感度・食いつき率は確認できない。対象魚はエサ適合表を参照。"
+        ]
+      },
+      "evidenceNotes": {
+        "th": [
+          "型ごとの +0 が state 1260 の更新分岐を選び、その値ถูกใช้ในการวาดตัวบอกสถานะทุ่น; ไม่พบว่าค่าทุ่นเป็นตัวตรวจหน้ากากเหยื่อ (04:E5C8–E724, 00:A142–A1E1, 02:DC31–DC84).",
+          "IDs 01–08 ใช้ชุดทุ่น; 09–0A ใช้ชุดตะกั่ว (83:B31C–B362). เงื่อนไขเพิ่มของชุดตะกั่วอยู่ใน fish-acceptance-research.md.",
+          "ทุ่นเฮระมีไบต์ +1 = 0x25 แต่ไม่พบ consumer ที่อ่านค่าซึ่งโหลดไปยังช่องนี้; จึงยังยืนยันโบนัสเฉพาะปลาเฮระบูนะไม่ได้."
+        ],
+        "en": [
+          "The record +0 selects a state-1260 update branch; that value is used by float/equipment indicator drawing. The float model is not read by the bait-mask comparison (04:E5C8–E724, 00:A142–A1E1, 02:DC31–DC84).",
+          "IDs 01–08 select the float route; 09–0A select the sinker route (83:B31C–B362). The sinker-route precheck is documented in fish-acceptance-research.md.",
+          "The Hera float has +1 = 0x25, but no consumer was found reading the loaded field; a Herabuna-specific bonus is not established."
+        ],
+        "ja": [
+          "+0コードは状態値1260の更新分岐を選び、その値はウキ・仕掛け表示に使われる。エサマスク判定では形状を参照しない（04:E5C8–E724、00:A142–A1E1、02:DC31–DC84）。",
+          "ID 01–08はウキ、09–0Aはオモリ経路（83:B31C–B362）。オモリ経路の追加条件はfish-acceptance-research.md参照。",
+          "ヘラウキの+1は0x25だが、ロードされた値を読み出す箇所が見つからず、ヘラブナ専用ボーナスは確認できない。"
+        ]
+      },
+      "fishIds": [],
+      "equipmentRoute": "float",
+      "evidence": {
+        "type": "rom_trace",
+        "sources": [
+          "docs/hook-float-use.md",
+          "docs/fish-acceptance-research.md"
+        ]
+      }
+    },
+    "float_weight:02": {
+      "summary": {
+        "th": "ทุ่นชิโมริทรงกลม: ใช้กับชุดตกเหยื่อติดทุ่น; เลือกจากปลาที่เหยื่อนั้นผ่านเงื่อนไข ไม่ใช่จากชื่อปลาในรุ่นทุ่น",
+        "en": "round shimori float: use with float bait fishing; choose by the fish that accepts your bait, not by a fish-specific float bonus.",
+        "ja": "丸型シモリ。ウキのエサ釣り用。対象魚はウキ名ではなくエサ適合表で選ぶ。"
+      },
+      "facts": {
+        "th": [
+          "ไอเท็ม 01–08 เลือกชุดเหยื่อติดทุ่น ซึ่งมีรายชื่อปลาในเงื่อนไขรับเหยื่อกว้างกว่าชุดตะกั่ว",
+          "เปลี่ยนทุ่นรุ่นไหนก็ไม่เปลี่ยน ID เหยื่อหรือรายชื่อปลาที่ผ่านหน้ากากเหยื่อ; รุ่นย่อยเปลี่ยนรูปแบบสัญญาณทุ่นบนจอ",
+          "ROM ไม่ยืนยันว่ารุ่นใดลึกกว่า ไวกว่า หรือทำให้ปลากัดมากกว่า; ถ้าเล็งปลา ให้ดูรายชื่อในตารางเหยื่อที่ปลารับได้"
+        ],
+        "en": [
+          "IDs 01–08 select float bait fishing, whose fish-profile checks cover a broader set than the sinker route.",
+          "Changing the float model does not change the bait ID or bait-mask matches; the model changes the on-screen float-indicator pattern.",
+          "The ROM does not establish depth, sensitivity or bite chance by float model. Check the bait-acceptance table for your target fish."
+        ],
+        "ja": [
+          "ID 01–08はウキのエサ釣り経路で、オモリ経路より魚プロフィール条件の対象が広い。",
+          "ウキ形状を変えてもエサIDと適合マスクは変わらない。画面のウキ表示パターンが変わる。",
+          "形状ごとの深さ・感度・食いつき率は確認できない。対象魚はエサ適合表を参照。"
+        ]
+      },
+      "evidenceNotes": {
+        "th": [
+          "型ごとの +0 が state 1260 の更新分岐を選び、その値ถูกใช้ในการวาดตัวบอกสถานะทุ่น; ไม่พบว่าค่าทุ่นเป็นตัวตรวจหน้ากากเหยื่อ (04:E5C8–E724, 00:A142–A1E1, 02:DC31–DC84).",
+          "IDs 01–08 ใช้ชุดทุ่น; 09–0A ใช้ชุดตะกั่ว (83:B31C–B362). เงื่อนไขเพิ่มของชุดตะกั่วอยู่ใน fish-acceptance-research.md."
+        ],
+        "en": [
+          "The record +0 selects a state-1260 update branch; that value is used by float/equipment indicator drawing. The float model is not read by the bait-mask comparison (04:E5C8–E724, 00:A142–A1E1, 02:DC31–DC84).",
+          "IDs 01–08 select the float route; 09–0A select the sinker route (83:B31C–B362). The sinker-route precheck is documented in fish-acceptance-research.md."
+        ],
+        "ja": [
+          "+0コードは状態値1260の更新分岐を選び、その値はウキ・仕掛け表示に使われる。エサマスク判定では形状を参照しない（04:E5C8–E724、00:A142–A1E1、02:DC31–DC84）。",
+          "ID 01–08はウキ、09–0Aはオモリ経路（83:B31C–B362）。オモリ経路の追加条件はfish-acceptance-research.md参照。"
+        ]
+      },
+      "fishIds": [],
+      "equipmentRoute": "float",
+      "evidence": {
+        "type": "rom_trace",
+        "sources": [
+          "docs/hook-float-use.md",
+          "docs/fish-acceptance-research.md"
+        ]
+      }
+    },
+    "float_weight:03": {
+      "summary": {
+        "th": "ทุ่นชิโมริทรงเรียว: ใช้กับชุดตกเหยื่อติดทุ่น; เลือกจากปลาที่เหยื่อนั้นผ่านเงื่อนไข ไม่ใช่จากชื่อปลาในรุ่นทุ่น",
+        "en": "streamlined shimori float: use with float bait fishing; choose by the fish that accepts your bait, not by a fish-specific float bonus.",
+        "ja": "流線シモリ。ウキのエサ釣り用。対象魚はウキ名ではなくエサ適合表で選ぶ。"
+      },
+      "facts": {
+        "th": [
+          "ไอเท็ม 01–08 เลือกชุดเหยื่อติดทุ่น ซึ่งมีรายชื่อปลาในเงื่อนไขรับเหยื่อกว้างกว่าชุดตะกั่ว",
+          "เปลี่ยนทุ่นรุ่นไหนก็ไม่เปลี่ยน ID เหยื่อหรือรายชื่อปลาที่ผ่านหน้ากากเหยื่อ; รุ่นย่อยเปลี่ยนรูปแบบสัญญาณทุ่นบนจอ",
+          "ROM ไม่ยืนยันว่ารุ่นใดลึกกว่า ไวกว่า หรือทำให้ปลากัดมากกว่า; ถ้าเล็งปลา ให้ดูรายชื่อในตารางเหยื่อที่ปลารับได้"
+        ],
+        "en": [
+          "IDs 01–08 select float bait fishing, whose fish-profile checks cover a broader set than the sinker route.",
+          "Changing the float model does not change the bait ID or bait-mask matches; the model changes the on-screen float-indicator pattern.",
+          "The ROM does not establish depth, sensitivity or bite chance by float model. Check the bait-acceptance table for your target fish."
+        ],
+        "ja": [
+          "ID 01–08はウキのエサ釣り経路で、オモリ経路より魚プロフィール条件の対象が広い。",
+          "ウキ形状を変えてもエサIDと適合マスクは変わらない。画面のウキ表示パターンが変わる。",
+          "形状ごとの深さ・感度・食いつき率は確認できない。対象魚はエサ適合表を参照。"
+        ]
+      },
+      "evidenceNotes": {
+        "th": [
+          "型ごとの +0 が state 1260 の更新分岐を選び、その値ถูกใช้ในการวาดตัวบอกสถานะทุ่น; ไม่พบว่าค่าทุ่นเป็นตัวตรวจหน้ากากเหยื่อ (04:E5C8–E724, 00:A142–A1E1, 02:DC31–DC84).",
+          "IDs 01–08 ใช้ชุดทุ่น; 09–0A ใช้ชุดตะกั่ว (83:B31C–B362). เงื่อนไขเพิ่มของชุดตะกั่วอยู่ใน fish-acceptance-research.md."
+        ],
+        "en": [
+          "The record +0 selects a state-1260 update branch; that value is used by float/equipment indicator drawing. The float model is not read by the bait-mask comparison (04:E5C8–E724, 00:A142–A1E1, 02:DC31–DC84).",
+          "IDs 01–08 select the float route; 09–0A select the sinker route (83:B31C–B362). The sinker-route precheck is documented in fish-acceptance-research.md."
+        ],
+        "ja": [
+          "+0コードは状態値1260の更新分岐を選び、その値はウキ・仕掛け表示に使われる。エサマスク判定では形状を参照しない（04:E5C8–E724、00:A142–A1E1、02:DC31–DC84）。",
+          "ID 01–08はウキ、09–0Aはオモリ経路（83:B31C–B362）。オモリ経路の追加条件はfish-acceptance-research.md参照。"
+        ]
+      },
+      "fishIds": [],
+      "equipmentRoute": "float",
+      "evidence": {
+        "type": "rom_trace",
+        "sources": [
+          "docs/hook-float-use.md",
+          "docs/fish-acceptance-research.md"
+        ]
+      }
+    },
+    "float_weight:04": {
+      "summary": {
+        "th": "ทุ่นลูกบอล: ใช้กับชุดตกเหยื่อติดทุ่น; เลือกจากปลาที่เหยื่อนั้นผ่านเงื่อนไข ไม่ใช่จากชื่อปลาในรุ่นทุ่น",
+        "en": "ball float: use with float bait fishing; choose by the fish that accepts your bait, not by a fish-specific float bonus.",
+        "ja": "玉ウキ。ウキのエサ釣り用。対象魚はウキ名ではなくエサ適合表で選ぶ。"
+      },
+      "facts": {
+        "th": [
+          "ไอเท็ม 01–08 เลือกชุดเหยื่อติดทุ่น ซึ่งมีรายชื่อปลาในเงื่อนไขรับเหยื่อกว้างกว่าชุดตะกั่ว",
+          "เปลี่ยนทุ่นรุ่นไหนก็ไม่เปลี่ยน ID เหยื่อหรือรายชื่อปลาที่ผ่านหน้ากากเหยื่อ; รุ่นย่อยเปลี่ยนรูปแบบสัญญาณทุ่นบนจอ",
+          "ROM ไม่ยืนยันว่ารุ่นใดลึกกว่า ไวกว่า หรือทำให้ปลากัดมากกว่า; ถ้าเล็งปลา ให้ดูรายชื่อในตารางเหยื่อที่ปลารับได้"
+        ],
+        "en": [
+          "IDs 01–08 select float bait fishing, whose fish-profile checks cover a broader set than the sinker route.",
+          "Changing the float model does not change the bait ID or bait-mask matches; the model changes the on-screen float-indicator pattern.",
+          "The ROM does not establish depth, sensitivity or bite chance by float model. Check the bait-acceptance table for your target fish."
+        ],
+        "ja": [
+          "ID 01–08はウキのエサ釣り経路で、オモリ経路より魚プロフィール条件の対象が広い。",
+          "ウキ形状を変えてもエサIDと適合マスクは変わらない。画面のウキ表示パターンが変わる。",
+          "形状ごとの深さ・感度・食いつき率は確認できない。対象魚はエサ適合表を参照。"
+        ]
+      },
+      "evidenceNotes": {
+        "th": [
+          "型ごとの +0 が state 1260 の更新分岐を選び、その値ถูกใช้ในการวาดตัวบอกสถานะทุ่น; ไม่พบว่าค่าทุ่นเป็นตัวตรวจหน้ากากเหยื่อ (04:E5C8–E724, 00:A142–A1E1, 02:DC31–DC84).",
+          "IDs 01–08 ใช้ชุดทุ่น; 09–0A ใช้ชุดตะกั่ว (83:B31C–B362). เงื่อนไขเพิ่มของชุดตะกั่วอยู่ใน fish-acceptance-research.md."
+        ],
+        "en": [
+          "The record +0 selects a state-1260 update branch; that value is used by float/equipment indicator drawing. The float model is not read by the bait-mask comparison (04:E5C8–E724, 00:A142–A1E1, 02:DC31–DC84).",
+          "IDs 01–08 select the float route; 09–0A select the sinker route (83:B31C–B362). The sinker-route precheck is documented in fish-acceptance-research.md."
+        ],
+        "ja": [
+          "+0コードは状態値1260の更新分岐を選び、その値はウキ・仕掛け表示に使われる。エサマスク判定では形状を参照しない（04:E5C8–E724、00:A142–A1E1、02:DC31–DC84）。",
+          "ID 01–08はウキ、09–0Aはオモリ経路（83:B31C–B362）。オモリ経路の追加条件はfish-acceptance-research.md参照。"
+        ]
+      },
+      "fishIds": [],
+      "equipmentRoute": "float",
+      "evidence": {
+        "type": "rom_trace",
+        "sources": [
+          "docs/hook-float-use.md",
+          "docs/fish-acceptance-research.md"
+        ]
+      }
+    },
+    "float_weight:05": {
+      "summary": {
+        "th": "ทุ่นแท่ง: ใช้กับชุดตกเหยื่อติดทุ่น; เลือกจากปลาที่เหยื่อนั้นผ่านเงื่อนไข ไม่ใช่จากชื่อปลาในรุ่นทุ่น",
+        "en": "stick float: use with float bait fishing; choose by the fish that accepts your bait, not by a fish-specific float bonus.",
+        "ja": "棒ウキ。ウキのエサ釣り用。対象魚はウキ名ではなくエサ適合表で選ぶ。"
+      },
+      "facts": {
+        "th": [
+          "ไอเท็ม 01–08 เลือกชุดเหยื่อติดทุ่น ซึ่งมีรายชื่อปลาในเงื่อนไขรับเหยื่อกว้างกว่าชุดตะกั่ว",
+          "เปลี่ยนทุ่นรุ่นไหนก็ไม่เปลี่ยน ID เหยื่อหรือรายชื่อปลาที่ผ่านหน้ากากเหยื่อ; รุ่นย่อยเปลี่ยนรูปแบบสัญญาณทุ่นบนจอ",
+          "ROM ไม่ยืนยันว่ารุ่นใดลึกกว่า ไวกว่า หรือทำให้ปลากัดมากกว่า; ถ้าเล็งปลา ให้ดูรายชื่อในตารางเหยื่อที่ปลารับได้"
+        ],
+        "en": [
+          "IDs 01–08 select float bait fishing, whose fish-profile checks cover a broader set than the sinker route.",
+          "Changing the float model does not change the bait ID or bait-mask matches; the model changes the on-screen float-indicator pattern.",
+          "The ROM does not establish depth, sensitivity or bite chance by float model. Check the bait-acceptance table for your target fish."
+        ],
+        "ja": [
+          "ID 01–08はウキのエサ釣り経路で、オモリ経路より魚プロフィール条件の対象が広い。",
+          "ウキ形状を変えてもエサIDと適合マスクは変わらない。画面のウキ表示パターンが変わる。",
+          "形状ごとの深さ・感度・食いつき率は確認できない。対象魚はエサ適合表を参照。"
+        ]
+      },
+      "evidenceNotes": {
+        "th": [
+          "型ごとの +0 が state 1260 の更新分岐を選び、その値ถูกใช้ในการวาดตัวบอกสถานะทุ่น; ไม่พบว่าค่าทุ่นเป็นตัวตรวจหน้ากากเหยื่อ (04:E5C8–E724, 00:A142–A1E1, 02:DC31–DC84).",
+          "IDs 01–08 ใช้ชุดทุ่น; 09–0A ใช้ชุดตะกั่ว (83:B31C–B362). เงื่อนไขเพิ่มของชุดตะกั่วอยู่ใน fish-acceptance-research.md."
+        ],
+        "en": [
+          "The record +0 selects a state-1260 update branch; that value is used by float/equipment indicator drawing. The float model is not read by the bait-mask comparison (04:E5C8–E724, 00:A142–A1E1, 02:DC31–DC84).",
+          "IDs 01–08 select the float route; 09–0A select the sinker route (83:B31C–B362). The sinker-route precheck is documented in fish-acceptance-research.md."
+        ],
+        "ja": [
+          "+0コードは状態値1260の更新分岐を選び、その値はウキ・仕掛け表示に使われる。エサマスク判定では形状を参照しない（04:E5C8–E724、00:A142–A1E1、02:DC31–DC84）。",
+          "ID 01–08はウキ、09–0Aはオモリ経路（83:B31C–B362）。オモリ経路の追加条件はfish-acceptance-research.md参照。"
+        ]
+      },
+      "fishIds": [],
+      "equipmentRoute": "float",
+      "evidence": {
+        "type": "rom_trace",
+        "sources": [
+          "docs/hook-float-use.md",
+          "docs/fish-acceptance-research.md"
+        ]
+      }
+    },
+    "float_weight:06": {
+      "summary": {
+        "th": "ทุ่นลูกโอ๊ก: ใช้กับชุดตกเหยื่อติดทุ่น; เลือกจากปลาที่เหยื่อนั้นผ่านเงื่อนไข ไม่ใช่จากชื่อปลาในรุ่นทุ่น",
+        "en": "acorn float: use with float bait fishing; choose by the fish that accepts your bait, not by a fish-specific float bonus.",
+        "ja": "どんぐりウキ。ウキのエサ釣り用。対象魚はウキ名ではなくエサ適合表で選ぶ。"
+      },
+      "facts": {
+        "th": [
+          "ไอเท็ม 01–08 เลือกชุดเหยื่อติดทุ่น ซึ่งมีรายชื่อปลาในเงื่อนไขรับเหยื่อกว้างกว่าชุดตะกั่ว",
+          "เปลี่ยนทุ่นรุ่นไหนก็ไม่เปลี่ยน ID เหยื่อหรือรายชื่อปลาที่ผ่านหน้ากากเหยื่อ; รุ่นย่อยเปลี่ยนรูปแบบสัญญาณทุ่นบนจอ",
+          "ROM ไม่ยืนยันว่ารุ่นใดลึกกว่า ไวกว่า หรือทำให้ปลากัดมากกว่า; ถ้าเล็งปลา ให้ดูรายชื่อในตารางเหยื่อที่ปลารับได้"
+        ],
+        "en": [
+          "IDs 01–08 select float bait fishing, whose fish-profile checks cover a broader set than the sinker route.",
+          "Changing the float model does not change the bait ID or bait-mask matches; the model changes the on-screen float-indicator pattern.",
+          "The ROM does not establish depth, sensitivity or bite chance by float model. Check the bait-acceptance table for your target fish."
+        ],
+        "ja": [
+          "ID 01–08はウキのエサ釣り経路で、オモリ経路より魚プロフィール条件の対象が広い。",
+          "ウキ形状を変えてもエサIDと適合マスクは変わらない。画面のウキ表示パターンが変わる。",
+          "形状ごとの深さ・感度・食いつき率は確認できない。対象魚はエサ適合表を参照。"
+        ]
+      },
+      "evidenceNotes": {
+        "th": [
+          "型ごとの +0 が state 1260 の更新分岐を選び、その値ถูกใช้ในการวาดตัวบอกสถานะทุ่น; ไม่พบว่าค่าทุ่นเป็นตัวตรวจหน้ากากเหยื่อ (04:E5C8–E724, 00:A142–A1E1, 02:DC31–DC84).",
+          "IDs 01–08 ใช้ชุดทุ่น; 09–0A ใช้ชุดตะกั่ว (83:B31C–B362). เงื่อนไขเพิ่มของชุดตะกั่วอยู่ใน fish-acceptance-research.md."
+        ],
+        "en": [
+          "The record +0 selects a state-1260 update branch; that value is used by float/equipment indicator drawing. The float model is not read by the bait-mask comparison (04:E5C8–E724, 00:A142–A1E1, 02:DC31–DC84).",
+          "IDs 01–08 select the float route; 09–0A select the sinker route (83:B31C–B362). The sinker-route precheck is documented in fish-acceptance-research.md."
+        ],
+        "ja": [
+          "+0コードは状態値1260の更新分岐を選び、その値はウキ・仕掛け表示に使われる。エサマスク判定では形状を参照しない（04:E5C8–E724、00:A142–A1E1、02:DC31–DC84）。",
+          "ID 01–08はウキ、09–0Aはオモリ経路（83:B31C–B362）。オモリ経路の追加条件はfish-acceptance-research.md参照。"
+        ]
+      },
+      "fishIds": [],
+      "equipmentRoute": "float",
+      "evidence": {
+        "type": "rom_trace",
+        "sources": [
+          "docs/hook-float-use.md",
+          "docs/fish-acceptance-research.md"
+        ]
+      }
+    },
+    "float_weight:07": {
+      "summary": {
+        "th": "ทุ่นพริก: ใช้กับชุดตกเหยื่อติดทุ่น; เลือกจากปลาที่เหยื่อนั้นผ่านเงื่อนไข ไม่ใช่จากชื่อปลาในรุ่นทุ่น",
+        "en": "chili float: use with float bait fishing; choose by the fish that accepts your bait, not by a fish-specific float bonus.",
+        "ja": "トウガラシウキ。ウキのエサ釣り用。対象魚はウキ名ではなくエサ適合表で選ぶ。"
+      },
+      "facts": {
+        "th": [
+          "ไอเท็ม 01–08 เลือกชุดเหยื่อติดทุ่น ซึ่งมีรายชื่อปลาในเงื่อนไขรับเหยื่อกว้างกว่าชุดตะกั่ว",
+          "เปลี่ยนทุ่นรุ่นไหนก็ไม่เปลี่ยน ID เหยื่อหรือรายชื่อปลาที่ผ่านหน้ากากเหยื่อ; รุ่นย่อยเปลี่ยนรูปแบบสัญญาณทุ่นบนจอ",
+          "ROM ไม่ยืนยันว่ารุ่นใดลึกกว่า ไวกว่า หรือทำให้ปลากัดมากกว่า; ถ้าเล็งปลา ให้ดูรายชื่อในตารางเหยื่อที่ปลารับได้"
+        ],
+        "en": [
+          "IDs 01–08 select float bait fishing, whose fish-profile checks cover a broader set than the sinker route.",
+          "Changing the float model does not change the bait ID or bait-mask matches; the model changes the on-screen float-indicator pattern.",
+          "The ROM does not establish depth, sensitivity or bite chance by float model. Check the bait-acceptance table for your target fish."
+        ],
+        "ja": [
+          "ID 01–08はウキのエサ釣り経路で、オモリ経路より魚プロフィール条件の対象が広い。",
+          "ウキ形状を変えてもエサIDと適合マスクは変わらない。画面のウキ表示パターンが変わる。",
+          "形状ごとの深さ・感度・食いつき率は確認できない。対象魚はエサ適合表を参照。"
+        ]
+      },
+      "evidenceNotes": {
+        "th": [
+          "型ごとの +0 が state 1260 の更新分岐を選び、その値ถูกใช้ในการวาดตัวบอกสถานะทุ่น; ไม่พบว่าค่าทุ่นเป็นตัวตรวจหน้ากากเหยื่อ (04:E5C8–E724, 00:A142–A1E1, 02:DC31–DC84).",
+          "IDs 01–08 ใช้ชุดทุ่น; 09–0A ใช้ชุดตะกั่ว (83:B31C–B362). เงื่อนไขเพิ่มของชุดตะกั่วอยู่ใน fish-acceptance-research.md."
+        ],
+        "en": [
+          "The record +0 selects a state-1260 update branch; that value is used by float/equipment indicator drawing. The float model is not read by the bait-mask comparison (04:E5C8–E724, 00:A142–A1E1, 02:DC31–DC84).",
+          "IDs 01–08 select the float route; 09–0A select the sinker route (83:B31C–B362). The sinker-route precheck is documented in fish-acceptance-research.md."
+        ],
+        "ja": [
+          "+0コードは状態値1260の更新分岐を選び、その値はウキ・仕掛け表示に使われる。エサマスク判定では形状を参照しない（04:E5C8–E724、00:A142–A1E1、02:DC31–DC84）。",
+          "ID 01–08はウキ、09–0Aはオモリ経路（83:B31C–B362）。オモリ経路の追加条件はfish-acceptance-research.md参照。"
+        ]
+      },
+      "fishIds": [],
+      "equipmentRoute": "float",
+      "evidence": {
+        "type": "rom_trace",
+        "sources": [
+          "docs/hook-float-use.md",
+          "docs/fish-acceptance-research.md"
+        ]
+      }
+    },
+    "float_weight:08": {
+      "summary": {
+        "th": "มาร์กเกอร์: เกมใส่ให้เองในชุดฟลาย; ตอนตกเหยื่อใช้เป็นหนึ่งในตัวเลือกชุดทุ่น",
+        "en": "Marker: fly setup loads it automatically; in bait fishing it is one of the float-route choices.",
+        "ja": "目印。フライ設定では自動ロードされ、エサ釣りではウキ経路の選択肢の一つ。"
+      },
+      "facts": {
+        "th": [
+          "ไม่ต้องซื้อหรือเลือกมาร์กเกอร์เพื่อให้ฟลายดีขึ้น; โค้ดโหลด ID นี้เอง",
+          "เมื่อตกเหยื่อ ID 08 ใช้เส้นทางทุ่นเหมือนไอเท็มทุ่นอื่น; รูปแบบการขยับ/แสดงทุ่นต่างกันตามรุ่น แต่ไม่พบโบนัสกัดหรือจับ"
+        ],
+        "en": [
+          "Do not buy/select a marker to improve fly fishing; the game loads ID 08 automatically.",
+          "For bait fishing, ID 08 follows the float route. Its bob/display pattern differs by model; no bite or catch bonus was found."
+        ],
+        "ja": [
+          "フライを強化するために購入・選択する必要はない。ゲームがID 08を自動ロードする。",
+          "エサ釣りではウキ経路。形状によってウキ表示が異なるが、食いつき・釣果ボーナスは確認されていない。"
+        ]
+      },
+      "evidenceNotes": {
+        "th": [
+          "型ごとの +0 が state 1260 の更新分岐を選び、その値ถูกใช้ในการวาดตัวบอกสถานะทุ่น; ไม่พบว่าค่าทุ่นเป็นตัวตรวจหน้ากากเหยื่อ (04:E5C8–E724, 00:A142–A1E1, 02:DC31–DC84).",
+          "IDs 01–08 ใช้ชุดทุ่น; 09–0A ใช้ชุดตะกั่ว (83:B31C–B362). เงื่อนไขเพิ่มของชุดตะกั่วอยู่ใน fish-acceptance-research.md.",
+          "ขั้นเตรียมฟลายเขียน ID 08 ลงช่องอุปกรณ์เอง (04:D4D0); ไม่ต้องซื้อ/เลือกเพื่อเพิ่มผลฟลาย."
+        ],
+        "en": [
+          "The record +0 selects a state-1260 update branch; that value is used by float/equipment indicator drawing. The float model is not read by the bait-mask comparison (04:E5C8–E724, 00:A142–A1E1, 02:DC31–DC84).",
+          "IDs 01–08 select the float route; 09–0A select the sinker route (83:B31C–B362). The sinker-route precheck is documented in fish-acceptance-research.md.",
+          "Fly setup writes ID 08 into the equipment slot automatically (04:D4D0); buying/selecting it does not improve fly results."
+        ],
+        "ja": [
+          "+0コードは状態値1260の更新分岐を選び、その値はウキ・仕掛け表示に使われる。エサマスク判定では形状を参照しない（04:E5C8–E724、00:A142–A1E1、02:DC31–DC84）。",
+          "ID 01–08はウキ、09–0Aはオモリ経路（83:B31C–B362）。オモリ経路の追加条件はfish-acceptance-research.md参照。",
+          "フライ設定は装備欄にID 08を自動で書き込む（04:D4D0）。釣果目的で購入・選択する必要はない。"
+        ]
+      },
+      "fishIds": [],
+      "equipmentRoute": "float",
+      "evidence": {
+        "type": "rom_trace",
+        "sources": [
+          "docs/hook-float-use.md",
+          "docs/fish-acceptance-research.md"
+        ]
+      }
+    },
+    "float_weight:09": {
+      "summary": {
+        "th": "ตะกั่วทรงรี: ใช้กับชุดตกเหยื่อติดตะกั่ว; ตรวจตารางว่าปลาที่เล็งผ่านเงื่อนไขเพิ่มของชุดนี้หรือไม่",
+        "en": "oval sinker: use with sinker bait fishing; check whether your target passes this route’s extra fish-profile condition.",
+        "ja": "小判型おもり。オモリのエサ釣り用。狙う魚が追加プロフィール条件を通るか適合表で確認。"
+      },
+      "facts": {
+        "th": [
+          "ไอเท็ม 09–0A เลือกชุดเหยื่อติดตะกั่ว; เกมเพิ่มเงื่อนไขข้อมูลปลาก่อนตรวจว่าเหยื่อเข้ากับปลาหรือไม่",
+          "ตะกั่ว 09 กับ 0A ใช้เงื่อนไขปลาชุดเดียวกัน; เลือกตามอุปกรณ์ที่ต้องการ ไม่ใช่หวังว่าทรงใดจะเรียกปลาคนละชนิด",
+          "รูปแบบการขยับ/แสดงตัวบอกสถานะต่างกันตามรุ่น; ROM ไม่ยืนยันความลึก ความไว หรือโอกาสกัดที่เพิ่มขึ้น"
+        ],
+        "en": [
+          "IDs 09–0A select sinker bait fishing; the game applies an extra fish-profile condition before checking bait compatibility.",
+          "Both sinker models use the same fish-route condition; choose by gear preference, not to target different species.",
+          "The on-screen indicator pattern differs by model; the ROM does not establish extra depth, sensitivity or bite chance."
+        ],
+        "ja": [
+          "ID 09–0Aはオモリのエサ釣り経路を選び、エサ適合前に魚プロフィール条件を追加する。",
+          "両方のオモリは同じ魚条件を使う。別の魚種を狙うために形を変える必要はない。",
+          "形状でウキ表示パターンは変わるが、深さ・感度・食いつき率の向上は確認できない。"
+        ]
+      },
+      "evidenceNotes": {
+        "th": [
+          "型ごとの +0 が state 1260 の更新分岐を選び、その値ถูกใช้ในการวาดตัวบอกสถานะทุ่น; ไม่พบว่าค่าทุ่นเป็นตัวตรวจหน้ากากเหยื่อ (04:E5C8–E724, 00:A142–A1E1, 02:DC31–DC84).",
+          "IDs 01–08 ใช้ชุดทุ่น; 09–0A ใช้ชุดตะกั่ว (83:B31C–B362). เงื่อนไขเพิ่มของชุดตะกั่วอยู่ใน fish-acceptance-research.md."
+        ],
+        "en": [
+          "The record +0 selects a state-1260 update branch; that value is used by float/equipment indicator drawing. The float model is not read by the bait-mask comparison (04:E5C8–E724, 00:A142–A1E1, 02:DC31–DC84).",
+          "IDs 01–08 select the float route; 09–0A select the sinker route (83:B31C–B362). The sinker-route precheck is documented in fish-acceptance-research.md."
+        ],
+        "ja": [
+          "+0コードは状態値1260の更新分岐を選び、その値はウキ・仕掛け表示に使われる。エサマスク判定では形状を参照しない（04:E5C8–E724、00:A142–A1E1、02:DC31–DC84）。",
+          "ID 01–08はウキ、09–0Aはオモリ経路（83:B31C–B362）。オモリ経路の追加条件はfish-acceptance-research.md参照。"
+        ]
+      },
+      "fishIds": [],
+      "equipmentRoute": "sinker",
+      "evidence": {
+        "type": "rom_trace",
+        "sources": [
+          "docs/hook-float-use.md",
+          "docs/fish-acceptance-research.md"
+        ]
+      }
+    },
+    "float_weight:0A": {
+      "summary": {
+        "th": "ตะกั่วทรงนัตสึเมะ: ใช้กับชุดตกเหยื่อติดตะกั่ว; ตรวจตารางว่าปลาที่เล็งผ่านเงื่อนไขเพิ่มของชุดนี้หรือไม่",
+        "en": "natsume-shaped sinker: use with sinker bait fishing; check whether your target passes this route’s extra fish-profile condition.",
+        "ja": "ナツメ型おもり。オモリのエサ釣り用。狙う魚が追加プロフィール条件を通るか適合表で確認。"
+      },
+      "facts": {
+        "th": [
+          "ไอเท็ม 09–0A เลือกชุดเหยื่อติดตะกั่ว; เกมเพิ่มเงื่อนไขข้อมูลปลาก่อนตรวจว่าเหยื่อเข้ากับปลาหรือไม่",
+          "ตะกั่ว 09 กับ 0A ใช้เงื่อนไขปลาชุดเดียวกัน; เลือกตามอุปกรณ์ที่ต้องการ ไม่ใช่หวังว่าทรงใดจะเรียกปลาคนละชนิด",
+          "รูปแบบการขยับ/แสดงตัวบอกสถานะต่างกันตามรุ่น; ROM ไม่ยืนยันความลึก ความไว หรือโอกาสกัดที่เพิ่มขึ้น"
+        ],
+        "en": [
+          "IDs 09–0A select sinker bait fishing; the game applies an extra fish-profile condition before checking bait compatibility.",
+          "Both sinker models use the same fish-route condition; choose by gear preference, not to target different species.",
+          "The on-screen indicator pattern differs by model; the ROM does not establish extra depth, sensitivity or bite chance."
+        ],
+        "ja": [
+          "ID 09–0Aはオモリのエサ釣り経路を選び、エサ適合前に魚プロフィール条件を追加する。",
+          "両方のオモリは同じ魚条件を使う。別の魚種を狙うために形を変える必要はない。",
+          "形状でウキ表示パターンは変わるが、深さ・感度・食いつき率の向上は確認できない。"
+        ]
+      },
+      "evidenceNotes": {
+        "th": [
+          "型ごとの +0 が state 1260 の更新分岐を選び、その値ถูกใช้ในการวาดตัวบอกสถานะทุ่น; ไม่พบว่าค่าทุ่นเป็นตัวตรวจหน้ากากเหยื่อ (04:E5C8–E724, 00:A142–A1E1, 02:DC31–DC84).",
+          "IDs 01–08 ใช้ชุดทุ่น; 09–0A ใช้ชุดตะกั่ว (83:B31C–B362). เงื่อนไขเพิ่มของชุดตะกั่วอยู่ใน fish-acceptance-research.md."
+        ],
+        "en": [
+          "The record +0 selects a state-1260 update branch; that value is used by float/equipment indicator drawing. The float model is not read by the bait-mask comparison (04:E5C8–E724, 00:A142–A1E1, 02:DC31–DC84).",
+          "IDs 01–08 select the float route; 09–0A select the sinker route (83:B31C–B362). The sinker-route precheck is documented in fish-acceptance-research.md."
+        ],
+        "ja": [
+          "+0コードは状態値1260の更新分岐を選び、その値はウキ・仕掛け表示に使われる。エサマスク判定では形状を参照しない（04:E5C8–E724、00:A142–A1E1、02:DC31–DC84）。",
+          "ID 01–08はウキ、09–0Aはオモリ経路（83:B31C–B362）。オモリ経路の追加条件はfish-acceptance-research.md参照。"
+        ]
+      },
+      "fishIds": [],
+      "equipmentRoute": "sinker",
+      "evidence": {
+        "type": "rom_trace",
+        "sources": [
+          "docs/hook-float-use.md",
+          "docs/fish-acceptance-research.md"
+        ]
+      }
+    }
+  },
+  "globalFindings": {
+    "th": [
+      "เบ็ดมีผลหลังปลาเข้าช่วงสู้: เก้ารุ่นมีแขนงที่ผูกกับปลาชื่อเฉพาะ และสี่รุ่นเป็นเบ็ดทั่วไป. ไม่มีเบ็ดไหนเพิ่มชนิดเหยื่อที่ปลารับได้.",
+      "ทุ่นกับตะกั่วคือคนละเส้นทางตกเหยื่อ: ทุ่นเปิดเงื่อนไขปลาได้กว้างกว่า; ตะกั่วมีตัวกรองข้อมูลปลาเพิ่ม. ดูตารางรายชื่อปลาเพื่อเลือก.",
+      "รุ่นย่อยของทุ่น/ตะกั่วเปลี่ยนสัญญาณบนจอ. ไม่มีหลักฐานจาก ROM ว่ารุ่นแพงหรือรูปทรงใดทำให้ปลากัดมากขึ้นหรือจับได้ง่ายขึ้น. มาร์กเกอร์ถูกใส่ให้อัตโนมัติในชุดฟลาย."
+    ],
+    "en": [
+      "Hooks act after a fish enters the fight: nine models have a named-fish branch and four are general hooks. No hook adds bait compatibility.",
+      "Float and sinker equipment select separate bait routes: the float route passes a broader fish-profile set; the sinker route adds a fish check. Use the target-fish table to choose.",
+      "Float/sinker models change the on-screen indicator. The ROM does not show a more expensive shape attracts more bites or makes fish easier to land. Fly setup loads the marker automatically."
+    ],
+    "ja": [
+      "針は魚が掛かった後に作用する。9種類は特定魚の分岐があり、4種類は汎用。エサ適合魚を増やす針はない。",
+      "ウキとオモリは別のエサ釣り経路を選ぶ。ウキは広い魚プロフィールを通し、オモリは追加条件を持つ。対象魚の表で選ぶ。",
+      "形状差は画面のウキ表示に出る。高価な形状が食いつきやすい・取り込みやすいとはROMから言えない。フライ設定では目印を自動ロード。"
+    ]
+  }
+}

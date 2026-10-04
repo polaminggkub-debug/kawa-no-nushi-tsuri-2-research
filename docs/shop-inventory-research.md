@@ -1,5 +1,7 @@
 # Shop menu inventory: observed scope
 
+> Updated scope: Purchase availability beyond this historical one-menu observation is now decoded in [six-area shop stock](shop-stock-research.md).
+
 ## What this capture establishes
 
 One shop menu was inspected in the original Japanese ROM. Its status window shows the region text `渓流`; this research does not map that text to a numbered stage. The `サオ` (rod) selector showed eight distinct entries in this order:

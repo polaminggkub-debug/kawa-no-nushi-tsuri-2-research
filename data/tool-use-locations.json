@@ -75,6 +75,39 @@
           "objectSlotHex": "1A",
           "coordinateFileOffset": "0x003ED6",
           "consumer": "00:C8D4..C911"
+        },
+        "markerItem": {
+          "category": "general_tool",
+          "id": "10"
+        }
+      }
+    ],
+    "02": [
+      {
+        "stage": 3,
+        "name": {
+          "en": "Canoe maker: trade milk for a canoe",
+          "ja": "カヌー職人：牛乳とカヌーを交換",
+          "th": "คนทำเรือ: นำนมมาแลกเรือแคนู"
+        },
+        "tileX": 28,
+        "tileY": 39,
+        "image": "maps/tool-use-canoe-maker.png",
+        "fullImage": "maps/rom-field-03.png",
+        "width": 384,
+        "height": 384,
+        "pin": {
+          "x": 0.8541666666666666,
+          "y": 0.5
+        },
+        "source": {
+          "objectSlotHex": "1A",
+          "coordinateFileOffset": "0x003ED6",
+          "consumer": "00:C8D4..C911"
+        },
+        "markerItem": {
+          "category": "general_tool",
+          "id": "10"
         }
       }
     ],

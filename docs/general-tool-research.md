@@ -39,4 +39,8 @@ This image is a direct rendering of text and font data from the original ROM, no
 
 ## Tool-use maps
 
-Seven event locations across six item cards use NPC coordinates read from the original ROM object pointer table at `00:BD76`, with traced consumers identifying the interaction. Crops come from the existing original-ROM field renders; item icons mark the interaction point. The fireworks rectangle is read from `03:C63A..C65E` (X 31–33, Y 42–43). NPC coordinates are their initial positions; the fox can move after its quest has finished. Interior chest coordinates are described separately and are not placed on outdoor terrain. [Location data](../data/tool-use-locations.json).
+Seven event locations across seven item cards use NPC coordinates read from the original ROM object pointer table at `00:BD76`, with traced consumers identifying the interaction. Crops come from the existing original-ROM field renders; item icons mark the interaction point. The fireworks rectangle is read from `03:C63A..C65E` (X 31–33, Y 42–43). NPC coordinates are their initial positions; the fox can move after its quest has finished. Interior chest coordinates are described separately and are not placed on outdoor terrain. [Location data](../data/tool-use-locations.json).
+
+## Practical follow-up audit
+
+The later [player-value audit](player-value-audit.md) adds [purchase areas for all six stocks](shop-stock-research.md), [30 example magnifying-glass context tiles](forage-location-research.md) with bait icons on ROM terrain, and the [tub/canoe movement difference](boat-movement-research.md). The [food consumer trace](food-practical-research.md) also corrects the basket advice: eating consumes the first stored fish, and Kusafugu sets HP to zero.

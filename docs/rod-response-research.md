@@ -1,5 +1,7 @@
 # Rod response and performance research
 
+> Updated scope: The downstream escape/loss messages and player-facing interpretation are now traced in [practical rod/lure research](rod-lure-practical-research.md).
+
 This note analyzes the original Japanese SFC dump (SHA-1 c2103dd94e2a1a65a495fc02adc2e7d040f31212, 1,572,864 bytes). It separates code-proven effects from claims that still need controlled fishing runs. The ROM is read only and is not included.
 
 ## What the rod numbers do

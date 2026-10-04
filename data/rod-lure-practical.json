@@ -1,0 +1,3506 @@
+{
+  "schema_version": 1,
+  "rom": {
+    "sha1": "c2103dd94e2a1a65a495fc02adc2e7d040f31212",
+    "size_bytes": 1572864,
+    "identity": "user-supplied headerless original Japanese SFC dump"
+  },
+  "scope": "Localized player-facing overlays for rods and lures. Claims are traced to original-ROM records, runtime consumers, or decoded original-ROM messages. Existing fish lists are preserved; no universal best-gear claim is made.",
+  "items": [
+    {
+      "category": "rod",
+      "id": "01",
+      "playerUse": {
+        "summary": {
+          "en": "Use for float/Ayu fishing. Move the target tile with the directions; release the cast button or let the aim window expire to check that spot.",
+          "ja": "ウキ・アユ釣り用。方向キーで狙うタイルを動かし、投げるボタンを離すか照準時間が切れると、その場所を判定する。",
+          "th": "ใช้ตกแบบสายทุ่น / ปลาอายุ ระหว่างเล็งกดทิศทางเพื่อย้ายช่องเป้าหมาย; ปล่อยปุ่มตกปลาหรือรอจนช่วงเล็งหมดเพื่อให้เกมตรวจจุดนั้น"
+        },
+        "facts": {
+          "en": [
+            "More aim time gives you longer to move the target tile before the game checks the cast.",
+            "A higher fish-position limit lets the fish move farther before this hook-loss escape branch. If it fires, the game says the hook was stolen as the fish escaped; Decoy Ayu has separate text. Other escape routes remain."
+          ],
+          "ja": [
+            "照準時間が長いほど、投げ先を動かしてからゲームが判定するまでの時間が増えます。",
+            "魚位置の上限が高いほど、ハリ損失の逃走分岐まで魚が遠くへ進めます。発生時はハリを盗られて魚に逃げられたと表示されます。おとりアユは別文で、別の逃げ方もあります。"
+          ],
+          "th": [
+            "ช่วงเล็งที่นานขึ้นให้เวลาขยับช่องเป้าหมายมากขึ้นก่อนเกมตรวจจุดตก",
+            "ขอบเขตตำแหน่งปลาที่สูงขึ้นให้ปลาไปได้ไกลขึ้นก่อนเข้าเส้นทางหนีที่ทำให้เบ็ดหาย; เมื่อเข้าเส้นทางนี้ เกมระบุว่าเบ็ดถูกขโมยและปลาหนี ส่วนเหยื่อปลาอายุแบบล่อมีข้อความแยก และปลายังหนีด้วยทางอื่นได้"
+          ]
+        },
+        "evidenceNotes": {
+          "en": [
+            "The D66B aim loop updates target coordinates while input is held; releasing or reaching the +2 cutoff advances to tile resolution. Aim comparisons use full HP and identical style records.",
+            "The path is checked only after 1EC9 reaches 63 and fish position 1ED5 is at/above this rod threshold 1ED7. Mode0/1 message IDs 0096/00B0; lure/fly IDs 00A4/00A6. Non-threshold escape messages are 009A/00A8."
+          ],
+          "ja": [
+            "D66Bの照準ループは入力中に狙い座標を更新し、ボタンを離すか+2の上限に達するとタイル判定へ進む。照準比較はHP100・同じ竿系統内。",
+            "1EC9が63に達し、魚位置1ED5が竿しきい値1ED7以上の場合だけ判定。モード0/1の文面は0096/00B0、ルアー／フライは00A4/00A6。別の逃げ文は009A/00A8。"
+          ],
+          "th": [
+            "ลูปเล็ง D66B ขยับพิกัดเป้าหมายระหว่างกดปุ่ม; เมื่อปล่อยหรือถึงขีด +2 เกมจึงตรวจช่องเป้าหมาย การเทียบช่วงเล็งใช้ HP 100 และคันชนิดเดียวกัน",
+            "ตรวจเส้นทางนี้เมื่อ 1EC9 ถึง 63 และตำแหน่งปลา 1ED5 มากกว่าหรือเท่ากับเกณฑ์คัน 1ED7 เท่านั้น; ข้อความโหมด 0/1 คือ 0096/00B0 ส่วนลัวร์/ฟลายคือ 00A4/00A6; ข้อความหนีเส้นทางอื่นคือ 009A/00A8"
+          ]
+        },
+        "evidence": {
+          "type": "rom_trace",
+          "sources": [
+            "data/rod-response.json",
+            "docs/rod-response-research.md",
+            "docs/rod-lure-practical-research.md"
+          ]
+        }
+      }
+    },
+    {
+      "category": "rod",
+      "id": "02",
+      "playerUse": {
+        "summary": {
+          "en": "Use for float/Ayu fishing. Move the target tile with the directions; release the cast button or let the aim window expire to check that spot.",
+          "ja": "ウキ・アユ釣り用。方向キーで狙うタイルを動かし、投げるボタンを離すか照準時間が切れると、その場所を判定する。",
+          "th": "ใช้ตกแบบสายทุ่น / ปลาอายุ ระหว่างเล็งกดทิศทางเพื่อย้ายช่องเป้าหมาย; ปล่อยปุ่มตกปลาหรือรอจนช่วงเล็งหมดเพื่อให้เกมตรวจจุดนั้น"
+        },
+        "facts": {
+          "en": [
+            "More aim time gives you longer to move the target tile before the game checks the cast.",
+            "A higher fish-position limit lets the fish move farther before this hook-loss escape branch. If it fires, the game says the hook was stolen as the fish escaped; Decoy Ayu has separate text. Other escape routes remain."
+          ],
+          "ja": [
+            "照準時間が長いほど、投げ先を動かしてからゲームが判定するまでの時間が増えます。",
+            "魚位置の上限が高いほど、ハリ損失の逃走分岐まで魚が遠くへ進めます。発生時はハリを盗られて魚に逃げられたと表示されます。おとりアユは別文で、別の逃げ方もあります。"
+          ],
+          "th": [
+            "ช่วงเล็งที่นานขึ้นให้เวลาขยับช่องเป้าหมายมากขึ้นก่อนเกมตรวจจุดตก",
+            "ขอบเขตตำแหน่งปลาที่สูงขึ้นให้ปลาไปได้ไกลขึ้นก่อนเข้าเส้นทางหนีที่ทำให้เบ็ดหาย; เมื่อเข้าเส้นทางนี้ เกมระบุว่าเบ็ดถูกขโมยและปลาหนี ส่วนเหยื่อปลาอายุแบบล่อมีข้อความแยก และปลายังหนีด้วยทางอื่นได้"
+          ]
+        },
+        "evidenceNotes": {
+          "en": [
+            "The D66B aim loop updates target coordinates while input is held; releasing or reaching the +2 cutoff advances to tile resolution. Aim comparisons use full HP and identical style records.",
+            "The path is checked only after 1EC9 reaches 63 and fish position 1ED5 is at/above this rod threshold 1ED7. Mode0/1 message IDs 0096/00B0; lure/fly IDs 00A4/00A6. Non-threshold escape messages are 009A/00A8."
+          ],
+          "ja": [
+            "D66Bの照準ループは入力中に狙い座標を更新し、ボタンを離すか+2の上限に達するとタイル判定へ進む。照準比較はHP100・同じ竿系統内。",
+            "1EC9が63に達し、魚位置1ED5が竿しきい値1ED7以上の場合だけ判定。モード0/1の文面は0096/00B0、ルアー／フライは00A4/00A6。別の逃げ文は009A/00A8。"
+          ],
+          "th": [
+            "ลูปเล็ง D66B ขยับพิกัดเป้าหมายระหว่างกดปุ่ม; เมื่อปล่อยหรือถึงขีด +2 เกมจึงตรวจช่องเป้าหมาย การเทียบช่วงเล็งใช้ HP 100 และคันชนิดเดียวกัน",
+            "ตรวจเส้นทางนี้เมื่อ 1EC9 ถึง 63 และตำแหน่งปลา 1ED5 มากกว่าหรือเท่ากับเกณฑ์คัน 1ED7 เท่านั้น; ข้อความโหมด 0/1 คือ 0096/00B0 ส่วนลัวร์/ฟลายคือ 00A4/00A6; ข้อความหนีเส้นทางอื่นคือ 009A/00A8"
+          ]
+        },
+        "evidence": {
+          "type": "rom_trace",
+          "sources": [
+            "data/rod-response.json",
+            "docs/rod-response-research.md",
+            "docs/rod-lure-practical-research.md"
+          ]
+        }
+      }
+    },
+    {
+      "category": "rod",
+      "id": "03",
+      "playerUse": {
+        "summary": {
+          "en": "Use for float/Ayu fishing. Move the target tile with the directions; release the cast button or let the aim window expire to check that spot.",
+          "ja": "ウキ・アユ釣り用。方向キーで狙うタイルを動かし、投げるボタンを離すか照準時間が切れると、その場所を判定する。",
+          "th": "ใช้ตกแบบสายทุ่น / ปลาอายุ ระหว่างเล็งกดทิศทางเพื่อย้ายช่องเป้าหมาย; ปล่อยปุ่มตกปลาหรือรอจนช่วงเล็งหมดเพื่อให้เกมตรวจจุดนั้น"
+        },
+        "facts": {
+          "en": [
+            "More aim time gives you longer to move the target tile before the game checks the cast.",
+            "A higher fish-position limit lets the fish move farther before this hook-loss escape branch. If it fires, the game says the hook was stolen as the fish escaped; Decoy Ayu has separate text. Other escape routes remain."
+          ],
+          "ja": [
+            "照準時間が長いほど、投げ先を動かしてからゲームが判定するまでの時間が増えます。",
+            "魚位置の上限が高いほど、ハリ損失の逃走分岐まで魚が遠くへ進めます。発生時はハリを盗られて魚に逃げられたと表示されます。おとりアユは別文で、別の逃げ方もあります。"
+          ],
+          "th": [
+            "ช่วงเล็งที่นานขึ้นให้เวลาขยับช่องเป้าหมายมากขึ้นก่อนเกมตรวจจุดตก",
+            "ขอบเขตตำแหน่งปลาที่สูงขึ้นให้ปลาไปได้ไกลขึ้นก่อนเข้าเส้นทางหนีที่ทำให้เบ็ดหาย; เมื่อเข้าเส้นทางนี้ เกมระบุว่าเบ็ดถูกขโมยและปลาหนี ส่วนเหยื่อปลาอายุแบบล่อมีข้อความแยก และปลายังหนีด้วยทางอื่นได้"
+          ]
+        },
+        "evidenceNotes": {
+          "en": [
+            "The D66B aim loop updates target coordinates while input is held; releasing or reaching the +2 cutoff advances to tile resolution. Aim comparisons use full HP and identical style records.",
+            "The path is checked only after 1EC9 reaches 63 and fish position 1ED5 is at/above this rod threshold 1ED7. Mode0/1 message IDs 0096/00B0; lure/fly IDs 00A4/00A6. Non-threshold escape messages are 009A/00A8."
+          ],
+          "ja": [
+            "D66Bの照準ループは入力中に狙い座標を更新し、ボタンを離すか+2の上限に達するとタイル判定へ進む。照準比較はHP100・同じ竿系統内。",
+            "1EC9が63に達し、魚位置1ED5が竿しきい値1ED7以上の場合だけ判定。モード0/1の文面は0096/00B0、ルアー／フライは00A4/00A6。別の逃げ文は009A/00A8。"
+          ],
+          "th": [
+            "ลูปเล็ง D66B ขยับพิกัดเป้าหมายระหว่างกดปุ่ม; เมื่อปล่อยหรือถึงขีด +2 เกมจึงตรวจช่องเป้าหมาย การเทียบช่วงเล็งใช้ HP 100 และคันชนิดเดียวกัน",
+            "ตรวจเส้นทางนี้เมื่อ 1EC9 ถึง 63 และตำแหน่งปลา 1ED5 มากกว่าหรือเท่ากับเกณฑ์คัน 1ED7 เท่านั้น; ข้อความโหมด 0/1 คือ 0096/00B0 ส่วนลัวร์/ฟลายคือ 00A4/00A6; ข้อความหนีเส้นทางอื่นคือ 009A/00A8"
+          ]
+        },
+        "evidence": {
+          "type": "rom_trace",
+          "sources": [
+            "data/rod-response.json",
+            "docs/rod-response-research.md",
+            "docs/rod-lure-practical-research.md"
+          ]
+        }
+      }
+    },
+    {
+      "category": "rod",
+      "id": "04",
+      "playerUse": {
+        "summary": {
+          "en": "Use for float/Ayu fishing. Move the target tile with the directions; release the cast button or let the aim window expire to check that spot.",
+          "ja": "ウキ・アユ釣り用。方向キーで狙うタイルを動かし、投げるボタンを離すか照準時間が切れると、その場所を判定する。",
+          "th": "ใช้ตกแบบสายทุ่น / ปลาอายุ ระหว่างเล็งกดทิศทางเพื่อย้ายช่องเป้าหมาย; ปล่อยปุ่มตกปลาหรือรอจนช่วงเล็งหมดเพื่อให้เกมตรวจจุดนั้น"
+        },
+        "facts": {
+          "en": [
+            "More aim time gives you longer to move the target tile before the game checks the cast.",
+            "A higher fish-position limit lets the fish move farther before this hook-loss escape branch. If it fires, the game says the hook was stolen as the fish escaped; Decoy Ayu has separate text. Other escape routes remain."
+          ],
+          "ja": [
+            "照準時間が長いほど、投げ先を動かしてからゲームが判定するまでの時間が増えます。",
+            "魚位置の上限が高いほど、ハリ損失の逃走分岐まで魚が遠くへ進めます。発生時はハリを盗られて魚に逃げられたと表示されます。おとりアユは別文で、別の逃げ方もあります。"
+          ],
+          "th": [
+            "ช่วงเล็งที่นานขึ้นให้เวลาขยับช่องเป้าหมายมากขึ้นก่อนเกมตรวจจุดตก",
+            "ขอบเขตตำแหน่งปลาที่สูงขึ้นให้ปลาไปได้ไกลขึ้นก่อนเข้าเส้นทางหนีที่ทำให้เบ็ดหาย; เมื่อเข้าเส้นทางนี้ เกมระบุว่าเบ็ดถูกขโมยและปลาหนี ส่วนเหยื่อปลาอายุแบบล่อมีข้อความแยก และปลายังหนีด้วยทางอื่นได้"
+          ]
+        },
+        "evidenceNotes": {
+          "en": [
+            "The D66B aim loop updates target coordinates while input is held; releasing or reaching the +2 cutoff advances to tile resolution. Aim comparisons use full HP and identical style records.",
+            "The path is checked only after 1EC9 reaches 63 and fish position 1ED5 is at/above this rod threshold 1ED7. Mode0/1 message IDs 0096/00B0; lure/fly IDs 00A4/00A6. Non-threshold escape messages are 009A/00A8."
+          ],
+          "ja": [
+            "D66Bの照準ループは入力中に狙い座標を更新し、ボタンを離すか+2の上限に達するとタイル判定へ進む。照準比較はHP100・同じ竿系統内。",
+            "1EC9が63に達し、魚位置1ED5が竿しきい値1ED7以上の場合だけ判定。モード0/1の文面は0096/00B0、ルアー／フライは00A4/00A6。別の逃げ文は009A/00A8。"
+          ],
+          "th": [
+            "ลูปเล็ง D66B ขยับพิกัดเป้าหมายระหว่างกดปุ่ม; เมื่อปล่อยหรือถึงขีด +2 เกมจึงตรวจช่องเป้าหมาย การเทียบช่วงเล็งใช้ HP 100 และคันชนิดเดียวกัน",
+            "ตรวจเส้นทางนี้เมื่อ 1EC9 ถึง 63 และตำแหน่งปลา 1ED5 มากกว่าหรือเท่ากับเกณฑ์คัน 1ED7 เท่านั้น; ข้อความโหมด 0/1 คือ 0096/00B0 ส่วนลัวร์/ฟลายคือ 00A4/00A6; ข้อความหนีเส้นทางอื่นคือ 009A/00A8"
+          ]
+        },
+        "evidence": {
+          "type": "rom_trace",
+          "sources": [
+            "data/rod-response.json",
+            "docs/rod-response-research.md",
+            "docs/rod-lure-practical-research.md"
+          ]
+        }
+      }
+    },
+    {
+      "category": "rod",
+      "id": "05",
+      "playerUse": {
+        "summary": {
+          "en": "Use for float/Ayu fishing. Move the target tile with the directions; release the cast button or let the aim window expire to check that spot.",
+          "ja": "ウキ・アユ釣り用。方向キーで狙うタイルを動かし、投げるボタンを離すか照準時間が切れると、その場所を判定する。",
+          "th": "ใช้ตกแบบสายทุ่น / ปลาอายุ ระหว่างเล็งกดทิศทางเพื่อย้ายช่องเป้าหมาย; ปล่อยปุ่มตกปลาหรือรอจนช่วงเล็งหมดเพื่อให้เกมตรวจจุดนั้น"
+        },
+        "facts": {
+          "en": [
+            "More aim time gives you longer to move the target tile before the game checks the cast.",
+            "A higher fish-position limit lets the fish move farther before this hook-loss escape branch. If it fires, the game says the hook was stolen as the fish escaped; Decoy Ayu has separate text. Other escape routes remain."
+          ],
+          "ja": [
+            "照準時間が長いほど、投げ先を動かしてからゲームが判定するまでの時間が増えます。",
+            "魚位置の上限が高いほど、ハリ損失の逃走分岐まで魚が遠くへ進めます。発生時はハリを盗られて魚に逃げられたと表示されます。おとりアユは別文で、別の逃げ方もあります。"
+          ],
+          "th": [
+            "ช่วงเล็งที่นานขึ้นให้เวลาขยับช่องเป้าหมายมากขึ้นก่อนเกมตรวจจุดตก",
+            "ขอบเขตตำแหน่งปลาที่สูงขึ้นให้ปลาไปได้ไกลขึ้นก่อนเข้าเส้นทางหนีที่ทำให้เบ็ดหาย; เมื่อเข้าเส้นทางนี้ เกมระบุว่าเบ็ดถูกขโมยและปลาหนี ส่วนเหยื่อปลาอายุแบบล่อมีข้อความแยก และปลายังหนีด้วยทางอื่นได้"
+          ]
+        },
+        "evidenceNotes": {
+          "en": [
+            "The D66B aim loop updates target coordinates while input is held; releasing or reaching the +2 cutoff advances to tile resolution. Aim comparisons use full HP and identical style records.",
+            "The path is checked only after 1EC9 reaches 63 and fish position 1ED5 is at/above this rod threshold 1ED7. Mode0/1 message IDs 0096/00B0; lure/fly IDs 00A4/00A6. Non-threshold escape messages are 009A/00A8."
+          ],
+          "ja": [
+            "D66Bの照準ループは入力中に狙い座標を更新し、ボタンを離すか+2の上限に達するとタイル判定へ進む。照準比較はHP100・同じ竿系統内。",
+            "1EC9が63に達し、魚位置1ED5が竿しきい値1ED7以上の場合だけ判定。モード0/1の文面は0096/00B0、ルアー／フライは00A4/00A6。別の逃げ文は009A/00A8。"
+          ],
+          "th": [
+            "ลูปเล็ง D66B ขยับพิกัดเป้าหมายระหว่างกดปุ่ม; เมื่อปล่อยหรือถึงขีด +2 เกมจึงตรวจช่องเป้าหมาย การเทียบช่วงเล็งใช้ HP 100 และคันชนิดเดียวกัน",
+            "ตรวจเส้นทางนี้เมื่อ 1EC9 ถึง 63 และตำแหน่งปลา 1ED5 มากกว่าหรือเท่ากับเกณฑ์คัน 1ED7 เท่านั้น; ข้อความโหมด 0/1 คือ 0096/00B0 ส่วนลัวร์/ฟลายคือ 00A4/00A6; ข้อความหนีเส้นทางอื่นคือ 009A/00A8"
+          ]
+        },
+        "evidence": {
+          "type": "rom_trace",
+          "sources": [
+            "data/rod-response.json",
+            "docs/rod-response-research.md",
+            "docs/rod-lure-practical-research.md"
+          ]
+        }
+      }
+    },
+    {
+      "category": "rod",
+      "id": "06",
+      "playerUse": {
+        "summary": {
+          "en": "Use for float/Ayu fishing. Move the target tile with the directions; release the cast button or let the aim window expire to check that spot.",
+          "ja": "ウキ・アユ釣り用。方向キーで狙うタイルを動かし、投げるボタンを離すか照準時間が切れると、その場所を判定する。",
+          "th": "ใช้ตกแบบสายทุ่น / ปลาอายุ ระหว่างเล็งกดทิศทางเพื่อย้ายช่องเป้าหมาย; ปล่อยปุ่มตกปลาหรือรอจนช่วงเล็งหมดเพื่อให้เกมตรวจจุดนั้น"
+        },
+        "facts": {
+          "en": [
+            "More aim time gives you longer to move the target tile before the game checks the cast.",
+            "A higher fish-position limit lets the fish move farther before this hook-loss escape branch. If it fires, the game says the hook was stolen as the fish escaped; Decoy Ayu has separate text. Other escape routes remain."
+          ],
+          "ja": [
+            "照準時間が長いほど、投げ先を動かしてからゲームが判定するまでの時間が増えます。",
+            "魚位置の上限が高いほど、ハリ損失の逃走分岐まで魚が遠くへ進めます。発生時はハリを盗られて魚に逃げられたと表示されます。おとりアユは別文で、別の逃げ方もあります。"
+          ],
+          "th": [
+            "ช่วงเล็งที่นานขึ้นให้เวลาขยับช่องเป้าหมายมากขึ้นก่อนเกมตรวจจุดตก",
+            "ขอบเขตตำแหน่งปลาที่สูงขึ้นให้ปลาไปได้ไกลขึ้นก่อนเข้าเส้นทางหนีที่ทำให้เบ็ดหาย; เมื่อเข้าเส้นทางนี้ เกมระบุว่าเบ็ดถูกขโมยและปลาหนี ส่วนเหยื่อปลาอายุแบบล่อมีข้อความแยก และปลายังหนีด้วยทางอื่นได้"
+          ]
+        },
+        "evidenceNotes": {
+          "en": [
+            "The D66B aim loop updates target coordinates while input is held; releasing or reaching the +2 cutoff advances to tile resolution. Aim comparisons use full HP and identical style records.",
+            "The path is checked only after 1EC9 reaches 63 and fish position 1ED5 is at/above this rod threshold 1ED7. Mode0/1 message IDs 0096/00B0; lure/fly IDs 00A4/00A6. Non-threshold escape messages are 009A/00A8."
+          ],
+          "ja": [
+            "D66Bの照準ループは入力中に狙い座標を更新し、ボタンを離すか+2の上限に達するとタイル判定へ進む。照準比較はHP100・同じ竿系統内。",
+            "1EC9が63に達し、魚位置1ED5が竿しきい値1ED7以上の場合だけ判定。モード0/1の文面は0096/00B0、ルアー／フライは00A4/00A6。別の逃げ文は009A/00A8。"
+          ],
+          "th": [
+            "ลูปเล็ง D66B ขยับพิกัดเป้าหมายระหว่างกดปุ่ม; เมื่อปล่อยหรือถึงขีด +2 เกมจึงตรวจช่องเป้าหมาย การเทียบช่วงเล็งใช้ HP 100 และคันชนิดเดียวกัน",
+            "ตรวจเส้นทางนี้เมื่อ 1EC9 ถึง 63 และตำแหน่งปลา 1ED5 มากกว่าหรือเท่ากับเกณฑ์คัน 1ED7 เท่านั้น; ข้อความโหมด 0/1 คือ 0096/00B0 ส่วนลัวร์/ฟลายคือ 00A4/00A6; ข้อความหนีเส้นทางอื่นคือ 009A/00A8"
+          ]
+        },
+        "evidence": {
+          "type": "rom_trace",
+          "sources": [
+            "data/rod-response.json",
+            "docs/rod-response-research.md",
+            "docs/rod-lure-practical-research.md"
+          ]
+        }
+      }
+    },
+    {
+      "category": "rod",
+      "id": "07",
+      "playerUse": {
+        "summary": {
+          "en": "Use for float/Ayu fishing. Move the target tile with the directions; release the cast button or let the aim window expire to check that spot.",
+          "ja": "ウキ・アユ釣り用。方向キーで狙うタイルを動かし、投げるボタンを離すか照準時間が切れると、その場所を判定する。",
+          "th": "ใช้ตกแบบสายทุ่น / ปลาอายุ ระหว่างเล็งกดทิศทางเพื่อย้ายช่องเป้าหมาย; ปล่อยปุ่มตกปลาหรือรอจนช่วงเล็งหมดเพื่อให้เกมตรวจจุดนั้น"
+        },
+        "facts": {
+          "en": [
+            "More aim time gives you longer to move the target tile before the game checks the cast.",
+            "A higher fish-position limit lets the fish move farther before this hook-loss escape branch. If it fires, the game says the hook was stolen as the fish escaped; Decoy Ayu has separate text. Other escape routes remain."
+          ],
+          "ja": [
+            "照準時間が長いほど、投げ先を動かしてからゲームが判定するまでの時間が増えます。",
+            "魚位置の上限が高いほど、ハリ損失の逃走分岐まで魚が遠くへ進めます。発生時はハリを盗られて魚に逃げられたと表示されます。おとりアユは別文で、別の逃げ方もあります。"
+          ],
+          "th": [
+            "ช่วงเล็งที่นานขึ้นให้เวลาขยับช่องเป้าหมายมากขึ้นก่อนเกมตรวจจุดตก",
+            "ขอบเขตตำแหน่งปลาที่สูงขึ้นให้ปลาไปได้ไกลขึ้นก่อนเข้าเส้นทางหนีที่ทำให้เบ็ดหาย; เมื่อเข้าเส้นทางนี้ เกมระบุว่าเบ็ดถูกขโมยและปลาหนี ส่วนเหยื่อปลาอายุแบบล่อมีข้อความแยก และปลายังหนีด้วยทางอื่นได้"
+          ]
+        },
+        "evidenceNotes": {
+          "en": [
+            "The D66B aim loop updates target coordinates while input is held; releasing or reaching the +2 cutoff advances to tile resolution. Aim comparisons use full HP and identical style records.",
+            "The path is checked only after 1EC9 reaches 63 and fish position 1ED5 is at/above this rod threshold 1ED7. Mode0/1 message IDs 0096/00B0; lure/fly IDs 00A4/00A6. Non-threshold escape messages are 009A/00A8."
+          ],
+          "ja": [
+            "D66Bの照準ループは入力中に狙い座標を更新し、ボタンを離すか+2の上限に達するとタイル判定へ進む。照準比較はHP100・同じ竿系統内。",
+            "1EC9が63に達し、魚位置1ED5が竿しきい値1ED7以上の場合だけ判定。モード0/1の文面は0096/00B0、ルアー／フライは00A4/00A6。別の逃げ文は009A/00A8。"
+          ],
+          "th": [
+            "ลูปเล็ง D66B ขยับพิกัดเป้าหมายระหว่างกดปุ่ม; เมื่อปล่อยหรือถึงขีด +2 เกมจึงตรวจช่องเป้าหมาย การเทียบช่วงเล็งใช้ HP 100 และคันชนิดเดียวกัน",
+            "ตรวจเส้นทางนี้เมื่อ 1EC9 ถึง 63 และตำแหน่งปลา 1ED5 มากกว่าหรือเท่ากับเกณฑ์คัน 1ED7 เท่านั้น; ข้อความโหมด 0/1 คือ 0096/00B0 ส่วนลัวร์/ฟลายคือ 00A4/00A6; ข้อความหนีเส้นทางอื่นคือ 009A/00A8"
+          ]
+        },
+        "evidence": {
+          "type": "rom_trace",
+          "sources": [
+            "data/rod-response.json",
+            "docs/rod-response-research.md",
+            "docs/rod-lure-practical-research.md"
+          ]
+        }
+      }
+    },
+    {
+      "category": "rod",
+      "id": "08",
+      "playerUse": {
+        "summary": {
+          "en": "Use for float/Ayu fishing. Move the target tile with the directions; release the cast button or let the aim window expire to check that spot.",
+          "ja": "ウキ・アユ釣り用。方向キーで狙うタイルを動かし、投げるボタンを離すか照準時間が切れると、その場所を判定する。",
+          "th": "ใช้ตกแบบสายทุ่น / ปลาอายุ ระหว่างเล็งกดทิศทางเพื่อย้ายช่องเป้าหมาย; ปล่อยปุ่มตกปลาหรือรอจนช่วงเล็งหมดเพื่อให้เกมตรวจจุดนั้น"
+        },
+        "facts": {
+          "en": [
+            "More aim time gives you longer to move the target tile before the game checks the cast.",
+            "A higher fish-position limit lets the fish move farther before this hook-loss escape branch. If it fires, the game says the hook was stolen as the fish escaped; Decoy Ayu has separate text. Other escape routes remain."
+          ],
+          "ja": [
+            "照準時間が長いほど、投げ先を動かしてからゲームが判定するまでの時間が増えます。",
+            "魚位置の上限が高いほど、ハリ損失の逃走分岐まで魚が遠くへ進めます。発生時はハリを盗られて魚に逃げられたと表示されます。おとりアユは別文で、別の逃げ方もあります。"
+          ],
+          "th": [
+            "ช่วงเล็งที่นานขึ้นให้เวลาขยับช่องเป้าหมายมากขึ้นก่อนเกมตรวจจุดตก",
+            "ขอบเขตตำแหน่งปลาที่สูงขึ้นให้ปลาไปได้ไกลขึ้นก่อนเข้าเส้นทางหนีที่ทำให้เบ็ดหาย; เมื่อเข้าเส้นทางนี้ เกมระบุว่าเบ็ดถูกขโมยและปลาหนี ส่วนเหยื่อปลาอายุแบบล่อมีข้อความแยก และปลายังหนีด้วยทางอื่นได้"
+          ]
+        },
+        "evidenceNotes": {
+          "en": [
+            "The D66B aim loop updates target coordinates while input is held; releasing or reaching the +2 cutoff advances to tile resolution. Aim comparisons use full HP and identical style records.",
+            "The path is checked only after 1EC9 reaches 63 and fish position 1ED5 is at/above this rod threshold 1ED7. Mode0/1 message IDs 0096/00B0; lure/fly IDs 00A4/00A6. Non-threshold escape messages are 009A/00A8."
+          ],
+          "ja": [
+            "D66Bの照準ループは入力中に狙い座標を更新し、ボタンを離すか+2の上限に達するとタイル判定へ進む。照準比較はHP100・同じ竿系統内。",
+            "1EC9が63に達し、魚位置1ED5が竿しきい値1ED7以上の場合だけ判定。モード0/1の文面は0096/00B0、ルアー／フライは00A4/00A6。別の逃げ文は009A/00A8。"
+          ],
+          "th": [
+            "ลูปเล็ง D66B ขยับพิกัดเป้าหมายระหว่างกดปุ่ม; เมื่อปล่อยหรือถึงขีด +2 เกมจึงตรวจช่องเป้าหมาย การเทียบช่วงเล็งใช้ HP 100 และคันชนิดเดียวกัน",
+            "ตรวจเส้นทางนี้เมื่อ 1EC9 ถึง 63 และตำแหน่งปลา 1ED5 มากกว่าหรือเท่ากับเกณฑ์คัน 1ED7 เท่านั้น; ข้อความโหมด 0/1 คือ 0096/00B0 ส่วนลัวร์/ฟลายคือ 00A4/00A6; ข้อความหนีเส้นทางอื่นคือ 009A/00A8"
+          ]
+        },
+        "evidence": {
+          "type": "rom_trace",
+          "sources": [
+            "data/rod-response.json",
+            "docs/rod-response-research.md",
+            "docs/rod-lure-practical-research.md"
+          ]
+        }
+      }
+    },
+    {
+      "category": "rod",
+      "id": "09",
+      "playerUse": {
+        "summary": {
+          "en": "Use for float/Ayu fishing. Move the target tile with the directions; release the cast button or let the aim window expire to check that spot.",
+          "ja": "ウキ・アユ釣り用。方向キーで狙うタイルを動かし、投げるボタンを離すか照準時間が切れると、その場所を判定する。",
+          "th": "ใช้ตกแบบสายทุ่น / ปลาอายุ ระหว่างเล็งกดทิศทางเพื่อย้ายช่องเป้าหมาย; ปล่อยปุ่มตกปลาหรือรอจนช่วงเล็งหมดเพื่อให้เกมตรวจจุดนั้น"
+        },
+        "facts": {
+          "en": [
+            "More aim time gives you longer to move the target tile before the game checks the cast.",
+            "A higher fish-position limit lets the fish move farther before this hook-loss escape branch. If it fires, the game says the hook was stolen as the fish escaped; Decoy Ayu has separate text. Other escape routes remain."
+          ],
+          "ja": [
+            "照準時間が長いほど、投げ先を動かしてからゲームが判定するまでの時間が増えます。",
+            "魚位置の上限が高いほど、ハリ損失の逃走分岐まで魚が遠くへ進めます。発生時はハリを盗られて魚に逃げられたと表示されます。おとりアユは別文で、別の逃げ方もあります。"
+          ],
+          "th": [
+            "ช่วงเล็งที่นานขึ้นให้เวลาขยับช่องเป้าหมายมากขึ้นก่อนเกมตรวจจุดตก",
+            "ขอบเขตตำแหน่งปลาที่สูงขึ้นให้ปลาไปได้ไกลขึ้นก่อนเข้าเส้นทางหนีที่ทำให้เบ็ดหาย; เมื่อเข้าเส้นทางนี้ เกมระบุว่าเบ็ดถูกขโมยและปลาหนี ส่วนเหยื่อปลาอายุแบบล่อมีข้อความแยก และปลายังหนีด้วยทางอื่นได้"
+          ]
+        },
+        "evidenceNotes": {
+          "en": [
+            "The D66B aim loop updates target coordinates while input is held; releasing or reaching the +2 cutoff advances to tile resolution. Aim comparisons use full HP and identical style records.",
+            "The path is checked only after 1EC9 reaches 63 and fish position 1ED5 is at/above this rod threshold 1ED7. Mode0/1 message IDs 0096/00B0; lure/fly IDs 00A4/00A6. Non-threshold escape messages are 009A/00A8."
+          ],
+          "ja": [
+            "D66Bの照準ループは入力中に狙い座標を更新し、ボタンを離すか+2の上限に達するとタイル判定へ進む。照準比較はHP100・同じ竿系統内。",
+            "1EC9が63に達し、魚位置1ED5が竿しきい値1ED7以上の場合だけ判定。モード0/1の文面は0096/00B0、ルアー／フライは00A4/00A6。別の逃げ文は009A/00A8。"
+          ],
+          "th": [
+            "ลูปเล็ง D66B ขยับพิกัดเป้าหมายระหว่างกดปุ่ม; เมื่อปล่อยหรือถึงขีด +2 เกมจึงตรวจช่องเป้าหมาย การเทียบช่วงเล็งใช้ HP 100 และคันชนิดเดียวกัน",
+            "ตรวจเส้นทางนี้เมื่อ 1EC9 ถึง 63 และตำแหน่งปลา 1ED5 มากกว่าหรือเท่ากับเกณฑ์คัน 1ED7 เท่านั้น; ข้อความโหมด 0/1 คือ 0096/00B0 ส่วนลัวร์/ฟลายคือ 00A4/00A6; ข้อความหนีเส้นทางอื่นคือ 009A/00A8"
+          ]
+        },
+        "evidence": {
+          "type": "rom_trace",
+          "sources": [
+            "data/rod-response.json",
+            "docs/rod-response-research.md",
+            "docs/rod-lure-practical-research.md"
+          ]
+        }
+      }
+    },
+    {
+      "category": "rod",
+      "id": "0A",
+      "playerUse": {
+        "summary": {
+          "en": "Use for lure fishing. Move the target tile with the directions; release the cast button or let the aim window expire to check that spot.",
+          "ja": "ルアー釣り用。方向キーで狙うタイルを動かし、投げるボタンを離すか照準時間が切れると、その場所を判定する。",
+          "th": "ใช้ตกแบบลัวร์ ระหว่างเล็งกดทิศทางเพื่อย้ายช่องเป้าหมาย; ปล่อยปุ่มตกปลาหรือรอจนช่วงเล็งหมดเพื่อให้เกมตรวจจุดนั้น"
+        },
+        "facts": {
+          "en": [
+            "More aim time gives you longer to move the target tile before the game checks the cast.",
+            "Below 100 HP, casting/lure aim time shrinks; restoring HP to 100 brings back the full window.",
+            "A higher fish-position limit lets the fish move farther before this lure-loss escape branch. If it fires, the game says the lure was stolen as the fish escaped; other escape routes remain."
+          ],
+          "ja": [
+            "照準時間が長いほど、投げ先を動かしてからゲームが判定するまでの時間が増えます。",
+            "投げ竿／ルアー竿はHP100未満で照準時間が短くなり、HP100に戻すと全時間に戻ります。",
+            "魚位置の上限が高いほど、ルアー損失の逃走分岐まで魚が遠くへ進めます。発生時はルアーを盗られて魚に逃げられたと表示されます。別の逃げ方もあります。"
+          ],
+          "th": [
+            "ช่วงเล็งที่นานขึ้นให้เวลาขยับช่องเป้าหมายมากขึ้นก่อนเกมตรวจจุดตก",
+            "คันตีเหยื่อ/ลัวร์: เมื่อ HP ต่ำกว่า 100 ช่วงเล็งจะสั้นลง; ฟื้น HP ให้ถึง 100 เพื่อกลับมาใช้ช่วงเต็ม",
+            "ขอบเขตตำแหน่งปลาที่สูงขึ้นให้ปลาไปได้ไกลขึ้นก่อนเข้าเส้นทางหนีที่ทำให้ลัวร์หาย; เมื่อเข้าเส้นทางนี้ เกมระบุว่าลัวร์ถูกขโมยและปลาหนี และปลายังหนีด้วยทางอื่นได้"
+          ]
+        },
+        "evidenceNotes": {
+          "en": [
+            "The D66B aim loop updates target coordinates while input is held; releasing or reaching the +2 cutoff advances to tile resolution. Aim comparisons use full HP and identical style records.",
+            "The path is checked only after 1EC9 reaches 63 and fish position 1ED5 is at/above this rod threshold 1ED7. Mode0/1 message IDs 0096/00B0; lure/fly IDs 00A4/00A6. Non-threshold escape messages are 009A/00A8."
+          ],
+          "ja": [
+            "D66Bの照準ループは入力中に狙い座標を更新し、ボタンを離すか+2の上限に達するとタイル判定へ進む。照準比較はHP100・同じ竿系統内。",
+            "1EC9が63に達し、魚位置1ED5が竿しきい値1ED7以上の場合だけ判定。モード0/1の文面は0096/00B0、ルアー／フライは00A4/00A6。別の逃げ文は009A/00A8。"
+          ],
+          "th": [
+            "ลูปเล็ง D66B ขยับพิกัดเป้าหมายระหว่างกดปุ่ม; เมื่อปล่อยหรือถึงขีด +2 เกมจึงตรวจช่องเป้าหมาย การเทียบช่วงเล็งใช้ HP 100 และคันชนิดเดียวกัน",
+            "ตรวจเส้นทางนี้เมื่อ 1EC9 ถึง 63 และตำแหน่งปลา 1ED5 มากกว่าหรือเท่ากับเกณฑ์คัน 1ED7 เท่านั้น; ข้อความโหมด 0/1 คือ 0096/00B0 ส่วนลัวร์/ฟลายคือ 00A4/00A6; ข้อความหนีเส้นทางอื่นคือ 009A/00A8"
+          ]
+        },
+        "evidence": {
+          "type": "rom_trace",
+          "sources": [
+            "data/rod-response.json",
+            "docs/rod-response-research.md",
+            "docs/rod-lure-practical-research.md"
+          ]
+        }
+      }
+    },
+    {
+      "category": "rod",
+      "id": "0B",
+      "playerUse": {
+        "summary": {
+          "en": "Use for lure fishing. Move the target tile with the directions; release the cast button or let the aim window expire to check that spot.",
+          "ja": "ルアー釣り用。方向キーで狙うタイルを動かし、投げるボタンを離すか照準時間が切れると、その場所を判定する。",
+          "th": "ใช้ตกแบบลัวร์ ระหว่างเล็งกดทิศทางเพื่อย้ายช่องเป้าหมาย; ปล่อยปุ่มตกปลาหรือรอจนช่วงเล็งหมดเพื่อให้เกมตรวจจุดนั้น"
+        },
+        "facts": {
+          "en": [
+            "More aim time gives you longer to move the target tile before the game checks the cast.",
+            "Below 100 HP, casting/lure aim time shrinks; restoring HP to 100 brings back the full window.",
+            "A higher fish-position limit lets the fish move farther before this lure-loss escape branch. If it fires, the game says the lure was stolen as the fish escaped; other escape routes remain."
+          ],
+          "ja": [
+            "照準時間が長いほど、投げ先を動かしてからゲームが判定するまでの時間が増えます。",
+            "投げ竿／ルアー竿はHP100未満で照準時間が短くなり、HP100に戻すと全時間に戻ります。",
+            "魚位置の上限が高いほど、ルアー損失の逃走分岐まで魚が遠くへ進めます。発生時はルアーを盗られて魚に逃げられたと表示されます。別の逃げ方もあります。"
+          ],
+          "th": [
+            "ช่วงเล็งที่นานขึ้นให้เวลาขยับช่องเป้าหมายมากขึ้นก่อนเกมตรวจจุดตก",
+            "คันตีเหยื่อ/ลัวร์: เมื่อ HP ต่ำกว่า 100 ช่วงเล็งจะสั้นลง; ฟื้น HP ให้ถึง 100 เพื่อกลับมาใช้ช่วงเต็ม",
+            "ขอบเขตตำแหน่งปลาที่สูงขึ้นให้ปลาไปได้ไกลขึ้นก่อนเข้าเส้นทางหนีที่ทำให้ลัวร์หาย; เมื่อเข้าเส้นทางนี้ เกมระบุว่าลัวร์ถูกขโมยและปลาหนี และปลายังหนีด้วยทางอื่นได้"
+          ]
+        },
+        "evidenceNotes": {
+          "en": [
+            "The D66B aim loop updates target coordinates while input is held; releasing or reaching the +2 cutoff advances to tile resolution. Aim comparisons use full HP and identical style records.",
+            "The path is checked only after 1EC9 reaches 63 and fish position 1ED5 is at/above this rod threshold 1ED7. Mode0/1 message IDs 0096/00B0; lure/fly IDs 00A4/00A6. Non-threshold escape messages are 009A/00A8."
+          ],
+          "ja": [
+            "D66Bの照準ループは入力中に狙い座標を更新し、ボタンを離すか+2の上限に達するとタイル判定へ進む。照準比較はHP100・同じ竿系統内。",
+            "1EC9が63に達し、魚位置1ED5が竿しきい値1ED7以上の場合だけ判定。モード0/1の文面は0096/00B0、ルアー／フライは00A4/00A6。別の逃げ文は009A/00A8。"
+          ],
+          "th": [
+            "ลูปเล็ง D66B ขยับพิกัดเป้าหมายระหว่างกดปุ่ม; เมื่อปล่อยหรือถึงขีด +2 เกมจึงตรวจช่องเป้าหมาย การเทียบช่วงเล็งใช้ HP 100 และคันชนิดเดียวกัน",
+            "ตรวจเส้นทางนี้เมื่อ 1EC9 ถึง 63 และตำแหน่งปลา 1ED5 มากกว่าหรือเท่ากับเกณฑ์คัน 1ED7 เท่านั้น; ข้อความโหมด 0/1 คือ 0096/00B0 ส่วนลัวร์/ฟลายคือ 00A4/00A6; ข้อความหนีเส้นทางอื่นคือ 009A/00A8"
+          ]
+        },
+        "evidence": {
+          "type": "rom_trace",
+          "sources": [
+            "data/rod-response.json",
+            "docs/rod-response-research.md",
+            "docs/rod-lure-practical-research.md"
+          ]
+        }
+      }
+    },
+    {
+      "category": "rod",
+      "id": "0C",
+      "playerUse": {
+        "summary": {
+          "en": "Use for lure fishing. Move the target tile with the directions; release the cast button or let the aim window expire to check that spot.",
+          "ja": "ルアー釣り用。方向キーで狙うタイルを動かし、投げるボタンを離すか照準時間が切れると、その場所を判定する。",
+          "th": "ใช้ตกแบบลัวร์ ระหว่างเล็งกดทิศทางเพื่อย้ายช่องเป้าหมาย; ปล่อยปุ่มตกปลาหรือรอจนช่วงเล็งหมดเพื่อให้เกมตรวจจุดนั้น"
+        },
+        "facts": {
+          "en": [
+            "More aim time gives you longer to move the target tile before the game checks the cast.",
+            "Below 100 HP, casting/lure aim time shrinks; restoring HP to 100 brings back the full window.",
+            "A higher fish-position limit lets the fish move farther before this lure-loss escape branch. If it fires, the game says the lure was stolen as the fish escaped; other escape routes remain."
+          ],
+          "ja": [
+            "照準時間が長いほど、投げ先を動かしてからゲームが判定するまでの時間が増えます。",
+            "投げ竿／ルアー竿はHP100未満で照準時間が短くなり、HP100に戻すと全時間に戻ります。",
+            "魚位置の上限が高いほど、ルアー損失の逃走分岐まで魚が遠くへ進めます。発生時はルアーを盗られて魚に逃げられたと表示されます。別の逃げ方もあります。"
+          ],
+          "th": [
+            "ช่วงเล็งที่นานขึ้นให้เวลาขยับช่องเป้าหมายมากขึ้นก่อนเกมตรวจจุดตก",
+            "คันตีเหยื่อ/ลัวร์: เมื่อ HP ต่ำกว่า 100 ช่วงเล็งจะสั้นลง; ฟื้น HP ให้ถึง 100 เพื่อกลับมาใช้ช่วงเต็ม",
+            "ขอบเขตตำแหน่งปลาที่สูงขึ้นให้ปลาไปได้ไกลขึ้นก่อนเข้าเส้นทางหนีที่ทำให้ลัวร์หาย; เมื่อเข้าเส้นทางนี้ เกมระบุว่าลัวร์ถูกขโมยและปลาหนี และปลายังหนีด้วยทางอื่นได้"
+          ]
+        },
+        "evidenceNotes": {
+          "en": [
+            "The D66B aim loop updates target coordinates while input is held; releasing or reaching the +2 cutoff advances to tile resolution. Aim comparisons use full HP and identical style records.",
+            "The path is checked only after 1EC9 reaches 63 and fish position 1ED5 is at/above this rod threshold 1ED7. Mode0/1 message IDs 0096/00B0; lure/fly IDs 00A4/00A6. Non-threshold escape messages are 009A/00A8."
+          ],
+          "ja": [
+            "D66Bの照準ループは入力中に狙い座標を更新し、ボタンを離すか+2の上限に達するとタイル判定へ進む。照準比較はHP100・同じ竿系統内。",
+            "1EC9が63に達し、魚位置1ED5が竿しきい値1ED7以上の場合だけ判定。モード0/1の文面は0096/00B0、ルアー／フライは00A4/00A6。別の逃げ文は009A/00A8。"
+          ],
+          "th": [
+            "ลูปเล็ง D66B ขยับพิกัดเป้าหมายระหว่างกดปุ่ม; เมื่อปล่อยหรือถึงขีด +2 เกมจึงตรวจช่องเป้าหมาย การเทียบช่วงเล็งใช้ HP 100 และคันชนิดเดียวกัน",
+            "ตรวจเส้นทางนี้เมื่อ 1EC9 ถึง 63 และตำแหน่งปลา 1ED5 มากกว่าหรือเท่ากับเกณฑ์คัน 1ED7 เท่านั้น; ข้อความโหมด 0/1 คือ 0096/00B0 ส่วนลัวร์/ฟลายคือ 00A4/00A6; ข้อความหนีเส้นทางอื่นคือ 009A/00A8"
+          ]
+        },
+        "evidence": {
+          "type": "rom_trace",
+          "sources": [
+            "data/rod-response.json",
+            "docs/rod-response-research.md",
+            "docs/rod-lure-practical-research.md"
+          ]
+        }
+      }
+    },
+    {
+      "category": "rod",
+      "id": "0D",
+      "playerUse": {
+        "summary": {
+          "en": "Use for lure fishing. Move the target tile with the directions; release the cast button or let the aim window expire to check that spot.",
+          "ja": "ルアー釣り用。方向キーで狙うタイルを動かし、投げるボタンを離すか照準時間が切れると、その場所を判定する。",
+          "th": "ใช้ตกแบบลัวร์ ระหว่างเล็งกดทิศทางเพื่อย้ายช่องเป้าหมาย; ปล่อยปุ่มตกปลาหรือรอจนช่วงเล็งหมดเพื่อให้เกมตรวจจุดนั้น"
+        },
+        "facts": {
+          "en": [
+            "More aim time gives you longer to move the target tile before the game checks the cast.",
+            "Below 100 HP, casting/lure aim time shrinks; restoring HP to 100 brings back the full window.",
+            "A higher fish-position limit lets the fish move farther before this lure-loss escape branch. If it fires, the game says the lure was stolen as the fish escaped; other escape routes remain."
+          ],
+          "ja": [
+            "照準時間が長いほど、投げ先を動かしてからゲームが判定するまでの時間が増えます。",
+            "投げ竿／ルアー竿はHP100未満で照準時間が短くなり、HP100に戻すと全時間に戻ります。",
+            "魚位置の上限が高いほど、ルアー損失の逃走分岐まで魚が遠くへ進めます。発生時はルアーを盗られて魚に逃げられたと表示されます。別の逃げ方もあります。"
+          ],
+          "th": [
+            "ช่วงเล็งที่นานขึ้นให้เวลาขยับช่องเป้าหมายมากขึ้นก่อนเกมตรวจจุดตก",
+            "คันตีเหยื่อ/ลัวร์: เมื่อ HP ต่ำกว่า 100 ช่วงเล็งจะสั้นลง; ฟื้น HP ให้ถึง 100 เพื่อกลับมาใช้ช่วงเต็ม",
+            "ขอบเขตตำแหน่งปลาที่สูงขึ้นให้ปลาไปได้ไกลขึ้นก่อนเข้าเส้นทางหนีที่ทำให้ลัวร์หาย; เมื่อเข้าเส้นทางนี้ เกมระบุว่าลัวร์ถูกขโมยและปลาหนี และปลายังหนีด้วยทางอื่นได้"
+          ]
+        },
+        "evidenceNotes": {
+          "en": [
+            "The D66B aim loop updates target coordinates while input is held; releasing or reaching the +2 cutoff advances to tile resolution. Aim comparisons use full HP and identical style records.",
+            "The path is checked only after 1EC9 reaches 63 and fish position 1ED5 is at/above this rod threshold 1ED7. Mode0/1 message IDs 0096/00B0; lure/fly IDs 00A4/00A6. Non-threshold escape messages are 009A/00A8."
+          ],
+          "ja": [
+            "D66Bの照準ループは入力中に狙い座標を更新し、ボタンを離すか+2の上限に達するとタイル判定へ進む。照準比較はHP100・同じ竿系統内。",
+            "1EC9が63に達し、魚位置1ED5が竿しきい値1ED7以上の場合だけ判定。モード0/1の文面は0096/00B0、ルアー／フライは00A4/00A6。別の逃げ文は009A/00A8。"
+          ],
+          "th": [
+            "ลูปเล็ง D66B ขยับพิกัดเป้าหมายระหว่างกดปุ่ม; เมื่อปล่อยหรือถึงขีด +2 เกมจึงตรวจช่องเป้าหมาย การเทียบช่วงเล็งใช้ HP 100 และคันชนิดเดียวกัน",
+            "ตรวจเส้นทางนี้เมื่อ 1EC9 ถึง 63 และตำแหน่งปลา 1ED5 มากกว่าหรือเท่ากับเกณฑ์คัน 1ED7 เท่านั้น; ข้อความโหมด 0/1 คือ 0096/00B0 ส่วนลัวร์/ฟลายคือ 00A4/00A6; ข้อความหนีเส้นทางอื่นคือ 009A/00A8"
+          ]
+        },
+        "evidence": {
+          "type": "rom_trace",
+          "sources": [
+            "data/rod-response.json",
+            "docs/rod-response-research.md",
+            "docs/rod-lure-practical-research.md"
+          ]
+        }
+      }
+    },
+    {
+      "category": "rod",
+      "id": "0E",
+      "playerUse": {
+        "summary": {
+          "en": "Use for casting fishing. Move the target tile with the directions; release the cast button or let the aim window expire to check that spot.",
+          "ja": "キャスティング釣り用。方向キーで狙うタイルを動かし、投げるボタンを離すか照準時間が切れると、その場所を判定する。",
+          "th": "ใช้ตกแบบคาสติ้ง ระหว่างเล็งกดทิศทางเพื่อย้ายช่องเป้าหมาย; ปล่อยปุ่มตกปลาหรือรอจนช่วงเล็งหมดเพื่อให้เกมตรวจจุดนั้น"
+        },
+        "facts": {
+          "en": [
+            "More aim time gives you longer to move the target tile before the game checks the cast.",
+            "Below 100 HP, casting/lure aim time shrinks; restoring HP to 100 brings back the full window.",
+            "A higher fish-position limit lets the fish move farther before this hook-loss escape branch. If it fires, the game says the hook was stolen as the fish escaped; Decoy Ayu has separate text. Other escape routes remain."
+          ],
+          "ja": [
+            "照準時間が長いほど、投げ先を動かしてからゲームが判定するまでの時間が増えます。",
+            "投げ竿／ルアー竿はHP100未満で照準時間が短くなり、HP100に戻すと全時間に戻ります。",
+            "魚位置の上限が高いほど、ハリ損失の逃走分岐まで魚が遠くへ進めます。発生時はハリを盗られて魚に逃げられたと表示されます。おとりアユは別文で、別の逃げ方もあります。"
+          ],
+          "th": [
+            "ช่วงเล็งที่นานขึ้นให้เวลาขยับช่องเป้าหมายมากขึ้นก่อนเกมตรวจจุดตก",
+            "คันตีเหยื่อ/ลัวร์: เมื่อ HP ต่ำกว่า 100 ช่วงเล็งจะสั้นลง; ฟื้น HP ให้ถึง 100 เพื่อกลับมาใช้ช่วงเต็ม",
+            "ขอบเขตตำแหน่งปลาที่สูงขึ้นให้ปลาไปได้ไกลขึ้นก่อนเข้าเส้นทางหนีที่ทำให้เบ็ดหาย; เมื่อเข้าเส้นทางนี้ เกมระบุว่าเบ็ดถูกขโมยและปลาหนี ส่วนเหยื่อปลาอายุแบบล่อมีข้อความแยก และปลายังหนีด้วยทางอื่นได้"
+          ]
+        },
+        "evidenceNotes": {
+          "en": [
+            "The D66B aim loop updates target coordinates while input is held; releasing or reaching the +2 cutoff advances to tile resolution. Aim comparisons use full HP and identical style records.",
+            "The path is checked only after 1EC9 reaches 63 and fish position 1ED5 is at/above this rod threshold 1ED7. Mode0/1 message IDs 0096/00B0; lure/fly IDs 00A4/00A6. Non-threshold escape messages are 009A/00A8."
+          ],
+          "ja": [
+            "D66Bの照準ループは入力中に狙い座標を更新し、ボタンを離すか+2の上限に達するとタイル判定へ進む。照準比較はHP100・同じ竿系統内。",
+            "1EC9が63に達し、魚位置1ED5が竿しきい値1ED7以上の場合だけ判定。モード0/1の文面は0096/00B0、ルアー／フライは00A4/00A6。別の逃げ文は009A/00A8。"
+          ],
+          "th": [
+            "ลูปเล็ง D66B ขยับพิกัดเป้าหมายระหว่างกดปุ่ม; เมื่อปล่อยหรือถึงขีด +2 เกมจึงตรวจช่องเป้าหมาย การเทียบช่วงเล็งใช้ HP 100 และคันชนิดเดียวกัน",
+            "ตรวจเส้นทางนี้เมื่อ 1EC9 ถึง 63 และตำแหน่งปลา 1ED5 มากกว่าหรือเท่ากับเกณฑ์คัน 1ED7 เท่านั้น; ข้อความโหมด 0/1 คือ 0096/00B0 ส่วนลัวร์/ฟลายคือ 00A4/00A6; ข้อความหนีเส้นทางอื่นคือ 009A/00A8"
+          ]
+        },
+        "evidence": {
+          "type": "rom_trace",
+          "sources": [
+            "data/rod-response.json",
+            "docs/rod-response-research.md",
+            "docs/rod-lure-practical-research.md"
+          ]
+        }
+      }
+    },
+    {
+      "category": "rod",
+      "id": "0F",
+      "playerUse": {
+        "summary": {
+          "en": "Use for casting fishing. Move the target tile with the directions; release the cast button or let the aim window expire to check that spot.",
+          "ja": "キャスティング釣り用。方向キーで狙うタイルを動かし、投げるボタンを離すか照準時間が切れると、その場所を判定する。",
+          "th": "ใช้ตกแบบคาสติ้ง ระหว่างเล็งกดทิศทางเพื่อย้ายช่องเป้าหมาย; ปล่อยปุ่มตกปลาหรือรอจนช่วงเล็งหมดเพื่อให้เกมตรวจจุดนั้น"
+        },
+        "facts": {
+          "en": [
+            "More aim time gives you longer to move the target tile before the game checks the cast.",
+            "Below 100 HP, casting/lure aim time shrinks; restoring HP to 100 brings back the full window.",
+            "A higher fish-position limit lets the fish move farther before this hook-loss escape branch. If it fires, the game says the hook was stolen as the fish escaped; Decoy Ayu has separate text. Other escape routes remain."
+          ],
+          "ja": [
+            "照準時間が長いほど、投げ先を動かしてからゲームが判定するまでの時間が増えます。",
+            "投げ竿／ルアー竿はHP100未満で照準時間が短くなり、HP100に戻すと全時間に戻ります。",
+            "魚位置の上限が高いほど、ハリ損失の逃走分岐まで魚が遠くへ進めます。発生時はハリを盗られて魚に逃げられたと表示されます。おとりアユは別文で、別の逃げ方もあります。"
+          ],
+          "th": [
+            "ช่วงเล็งที่นานขึ้นให้เวลาขยับช่องเป้าหมายมากขึ้นก่อนเกมตรวจจุดตก",
+            "คันตีเหยื่อ/ลัวร์: เมื่อ HP ต่ำกว่า 100 ช่วงเล็งจะสั้นลง; ฟื้น HP ให้ถึง 100 เพื่อกลับมาใช้ช่วงเต็ม",
+            "ขอบเขตตำแหน่งปลาที่สูงขึ้นให้ปลาไปได้ไกลขึ้นก่อนเข้าเส้นทางหนีที่ทำให้เบ็ดหาย; เมื่อเข้าเส้นทางนี้ เกมระบุว่าเบ็ดถูกขโมยและปลาหนี ส่วนเหยื่อปลาอายุแบบล่อมีข้อความแยก และปลายังหนีด้วยทางอื่นได้"
+          ]
+        },
+        "evidenceNotes": {
+          "en": [
+            "The D66B aim loop updates target coordinates while input is held; releasing or reaching the +2 cutoff advances to tile resolution. Aim comparisons use full HP and identical style records.",
+            "The path is checked only after 1EC9 reaches 63 and fish position 1ED5 is at/above this rod threshold 1ED7. Mode0/1 message IDs 0096/00B0; lure/fly IDs 00A4/00A6. Non-threshold escape messages are 009A/00A8."
+          ],
+          "ja": [
+            "D66Bの照準ループは入力中に狙い座標を更新し、ボタンを離すか+2の上限に達するとタイル判定へ進む。照準比較はHP100・同じ竿系統内。",
+            "1EC9が63に達し、魚位置1ED5が竿しきい値1ED7以上の場合だけ判定。モード0/1の文面は0096/00B0、ルアー／フライは00A4/00A6。別の逃げ文は009A/00A8。"
+          ],
+          "th": [
+            "ลูปเล็ง D66B ขยับพิกัดเป้าหมายระหว่างกดปุ่ม; เมื่อปล่อยหรือถึงขีด +2 เกมจึงตรวจช่องเป้าหมาย การเทียบช่วงเล็งใช้ HP 100 และคันชนิดเดียวกัน",
+            "ตรวจเส้นทางนี้เมื่อ 1EC9 ถึง 63 และตำแหน่งปลา 1ED5 มากกว่าหรือเท่ากับเกณฑ์คัน 1ED7 เท่านั้น; ข้อความโหมด 0/1 คือ 0096/00B0 ส่วนลัวร์/ฟลายคือ 00A4/00A6; ข้อความหนีเส้นทางอื่นคือ 009A/00A8"
+          ]
+        },
+        "evidence": {
+          "type": "rom_trace",
+          "sources": [
+            "data/rod-response.json",
+            "docs/rod-response-research.md",
+            "docs/rod-lure-practical-research.md"
+          ]
+        }
+      }
+    },
+    {
+      "category": "rod",
+      "id": "10",
+      "playerUse": {
+        "summary": {
+          "en": "Use for casting fishing. Move the target tile with the directions; release the cast button or let the aim window expire to check that spot.",
+          "ja": "キャスティング釣り用。方向キーで狙うタイルを動かし、投げるボタンを離すか照準時間が切れると、その場所を判定する。",
+          "th": "ใช้ตกแบบคาสติ้ง ระหว่างเล็งกดทิศทางเพื่อย้ายช่องเป้าหมาย; ปล่อยปุ่มตกปลาหรือรอจนช่วงเล็งหมดเพื่อให้เกมตรวจจุดนั้น"
+        },
+        "facts": {
+          "en": [
+            "More aim time gives you longer to move the target tile before the game checks the cast.",
+            "Below 100 HP, casting/lure aim time shrinks; restoring HP to 100 brings back the full window.",
+            "A higher fish-position limit lets the fish move farther before this hook-loss escape branch. If it fires, the game says the hook was stolen as the fish escaped; Decoy Ayu has separate text. Other escape routes remain."
+          ],
+          "ja": [
+            "照準時間が長いほど、投げ先を動かしてからゲームが判定するまでの時間が増えます。",
+            "投げ竿／ルアー竿はHP100未満で照準時間が短くなり、HP100に戻すと全時間に戻ります。",
+            "魚位置の上限が高いほど、ハリ損失の逃走分岐まで魚が遠くへ進めます。発生時はハリを盗られて魚に逃げられたと表示されます。おとりアユは別文で、別の逃げ方もあります。"
+          ],
+          "th": [
+            "ช่วงเล็งที่นานขึ้นให้เวลาขยับช่องเป้าหมายมากขึ้นก่อนเกมตรวจจุดตก",
+            "คันตีเหยื่อ/ลัวร์: เมื่อ HP ต่ำกว่า 100 ช่วงเล็งจะสั้นลง; ฟื้น HP ให้ถึง 100 เพื่อกลับมาใช้ช่วงเต็ม",
+            "ขอบเขตตำแหน่งปลาที่สูงขึ้นให้ปลาไปได้ไกลขึ้นก่อนเข้าเส้นทางหนีที่ทำให้เบ็ดหาย; เมื่อเข้าเส้นทางนี้ เกมระบุว่าเบ็ดถูกขโมยและปลาหนี ส่วนเหยื่อปลาอายุแบบล่อมีข้อความแยก และปลายังหนีด้วยทางอื่นได้"
+          ]
+        },
+        "evidenceNotes": {
+          "en": [
+            "The D66B aim loop updates target coordinates while input is held; releasing or reaching the +2 cutoff advances to tile resolution. Aim comparisons use full HP and identical style records.",
+            "The path is checked only after 1EC9 reaches 63 and fish position 1ED5 is at/above this rod threshold 1ED7. Mode0/1 message IDs 0096/00B0; lure/fly IDs 00A4/00A6. Non-threshold escape messages are 009A/00A8."
+          ],
+          "ja": [
+            "D66Bの照準ループは入力中に狙い座標を更新し、ボタンを離すか+2の上限に達するとタイル判定へ進む。照準比較はHP100・同じ竿系統内。",
+            "1EC9が63に達し、魚位置1ED5が竿しきい値1ED7以上の場合だけ判定。モード0/1の文面は0096/00B0、ルアー／フライは00A4/00A6。別の逃げ文は009A/00A8。"
+          ],
+          "th": [
+            "ลูปเล็ง D66B ขยับพิกัดเป้าหมายระหว่างกดปุ่ม; เมื่อปล่อยหรือถึงขีด +2 เกมจึงตรวจช่องเป้าหมาย การเทียบช่วงเล็งใช้ HP 100 และคันชนิดเดียวกัน",
+            "ตรวจเส้นทางนี้เมื่อ 1EC9 ถึง 63 และตำแหน่งปลา 1ED5 มากกว่าหรือเท่ากับเกณฑ์คัน 1ED7 เท่านั้น; ข้อความโหมด 0/1 คือ 0096/00B0 ส่วนลัวร์/ฟลายคือ 00A4/00A6; ข้อความหนีเส้นทางอื่นคือ 009A/00A8"
+          ]
+        },
+        "evidence": {
+          "type": "rom_trace",
+          "sources": [
+            "data/rod-response.json",
+            "docs/rod-response-research.md",
+            "docs/rod-lure-practical-research.md"
+          ]
+        }
+      }
+    },
+    {
+      "category": "rod",
+      "id": "11",
+      "playerUse": {
+        "summary": {
+          "en": "Use for fly fishing. Move the target tile with the directions; release the cast button or let the aim window expire to check that spot.",
+          "ja": "フライ釣り用。方向キーで狙うタイルを動かし、投げるボタンを離すか照準時間が切れると、その場所を判定する。",
+          "th": "ใช้ตกแบบฟลาย ระหว่างเล็งกดทิศทางเพื่อย้ายช่องเป้าหมาย; ปล่อยปุ่มตกปลาหรือรอจนช่วงเล็งหมดเพื่อให้เกมตรวจจุดนั้น"
+        },
+        "facts": {
+          "en": [
+            "More aim time gives you longer to move the target tile before the game checks the cast.",
+            "A higher fish-position limit lets the fish move farther before this fly-loss escape branch. If it fires, the game says the fly was stolen as the fish escaped; other escape routes remain."
+          ],
+          "ja": [
+            "照準時間が長いほど、投げ先を動かしてからゲームが判定するまでの時間が増えます。",
+            "魚位置の上限が高いほど、毛バリ損失の逃走分岐まで魚が遠くへ進めます。発生時は毛バリを盗られて魚に逃げられたと表示されます。別の逃げ方もあります。"
+          ],
+          "th": [
+            "ช่วงเล็งที่นานขึ้นให้เวลาขยับช่องเป้าหมายมากขึ้นก่อนเกมตรวจจุดตก",
+            "ขอบเขตตำแหน่งปลาที่สูงขึ้นให้ปลาไปได้ไกลขึ้นก่อนเข้าเส้นทางหนีที่ทำให้เหยื่อฟลายหาย; เมื่อเข้าเส้นทางนี้ เกมระบุว่าเหยื่อฟลายถูกขโมยและปลาหนี และปลายังหนีด้วยทางอื่นได้"
+          ]
+        },
+        "evidenceNotes": {
+          "en": [
+            "The D66B aim loop updates target coordinates while input is held; releasing or reaching the +2 cutoff advances to tile resolution. Aim comparisons use full HP and identical style records.",
+            "The path is checked only after 1EC9 reaches 63 and fish position 1ED5 is at/above this rod threshold 1ED7. Mode0/1 message IDs 0096/00B0; lure/fly IDs 00A4/00A6. Non-threshold escape messages are 009A/00A8."
+          ],
+          "ja": [
+            "D66Bの照準ループは入力中に狙い座標を更新し、ボタンを離すか+2の上限に達するとタイル判定へ進む。照準比較はHP100・同じ竿系統内。",
+            "1EC9が63に達し、魚位置1ED5が竿しきい値1ED7以上の場合だけ判定。モード0/1の文面は0096/00B0、ルアー／フライは00A4/00A6。別の逃げ文は009A/00A8。"
+          ],
+          "th": [
+            "ลูปเล็ง D66B ขยับพิกัดเป้าหมายระหว่างกดปุ่ม; เมื่อปล่อยหรือถึงขีด +2 เกมจึงตรวจช่องเป้าหมาย การเทียบช่วงเล็งใช้ HP 100 และคันชนิดเดียวกัน",
+            "ตรวจเส้นทางนี้เมื่อ 1EC9 ถึง 63 และตำแหน่งปลา 1ED5 มากกว่าหรือเท่ากับเกณฑ์คัน 1ED7 เท่านั้น; ข้อความโหมด 0/1 คือ 0096/00B0 ส่วนลัวร์/ฟลายคือ 00A4/00A6; ข้อความหนีเส้นทางอื่นคือ 009A/00A8"
+          ]
+        },
+        "evidence": {
+          "type": "rom_trace",
+          "sources": [
+            "data/rod-response.json",
+            "docs/rod-response-research.md",
+            "docs/rod-lure-practical-research.md"
+          ]
+        }
+      }
+    },
+    {
+      "category": "rod",
+      "id": "12",
+      "playerUse": {
+        "summary": {
+          "en": "Use for fly fishing. Move the target tile with the directions; release the cast button or let the aim window expire to check that spot.",
+          "ja": "フライ釣り用。方向キーで狙うタイルを動かし、投げるボタンを離すか照準時間が切れると、その場所を判定する。",
+          "th": "ใช้ตกแบบฟลาย ระหว่างเล็งกดทิศทางเพื่อย้ายช่องเป้าหมาย; ปล่อยปุ่มตกปลาหรือรอจนช่วงเล็งหมดเพื่อให้เกมตรวจจุดนั้น"
+        },
+        "facts": {
+          "en": [
+            "More aim time gives you longer to move the target tile before the game checks the cast.",
+            "A higher fish-position limit lets the fish move farther before this fly-loss escape branch. If it fires, the game says the fly was stolen as the fish escaped; other escape routes remain."
+          ],
+          "ja": [
+            "照準時間が長いほど、投げ先を動かしてからゲームが判定するまでの時間が増えます。",
+            "魚位置の上限が高いほど、毛バリ損失の逃走分岐まで魚が遠くへ進めます。発生時は毛バリを盗られて魚に逃げられたと表示されます。別の逃げ方もあります。"
+          ],
+          "th": [
+            "ช่วงเล็งที่นานขึ้นให้เวลาขยับช่องเป้าหมายมากขึ้นก่อนเกมตรวจจุดตก",
+            "ขอบเขตตำแหน่งปลาที่สูงขึ้นให้ปลาไปได้ไกลขึ้นก่อนเข้าเส้นทางหนีที่ทำให้เหยื่อฟลายหาย; เมื่อเข้าเส้นทางนี้ เกมระบุว่าเหยื่อฟลายถูกขโมยและปลาหนี และปลายังหนีด้วยทางอื่นได้"
+          ]
+        },
+        "evidenceNotes": {
+          "en": [
+            "The D66B aim loop updates target coordinates while input is held; releasing or reaching the +2 cutoff advances to tile resolution. Aim comparisons use full HP and identical style records.",
+            "The path is checked only after 1EC9 reaches 63 and fish position 1ED5 is at/above this rod threshold 1ED7. Mode0/1 message IDs 0096/00B0; lure/fly IDs 00A4/00A6. Non-threshold escape messages are 009A/00A8."
+          ],
+          "ja": [
+            "D66Bの照準ループは入力中に狙い座標を更新し、ボタンを離すか+2の上限に達するとタイル判定へ進む。照準比較はHP100・同じ竿系統内。",
+            "1EC9が63に達し、魚位置1ED5が竿しきい値1ED7以上の場合だけ判定。モード0/1の文面は0096/00B0、ルアー／フライは00A4/00A6。別の逃げ文は009A/00A8。"
+          ],
+          "th": [
+            "ลูปเล็ง D66B ขยับพิกัดเป้าหมายระหว่างกดปุ่ม; เมื่อปล่อยหรือถึงขีด +2 เกมจึงตรวจช่องเป้าหมาย การเทียบช่วงเล็งใช้ HP 100 และคันชนิดเดียวกัน",
+            "ตรวจเส้นทางนี้เมื่อ 1EC9 ถึง 63 และตำแหน่งปลา 1ED5 มากกว่าหรือเท่ากับเกณฑ์คัน 1ED7 เท่านั้น; ข้อความโหมด 0/1 คือ 0096/00B0 ส่วนลัวร์/ฟลายคือ 00A4/00A6; ข้อความหนีเส้นทางอื่นคือ 009A/00A8"
+          ]
+        },
+        "evidence": {
+          "type": "rom_trace",
+          "sources": [
+            "data/rod-response.json",
+            "docs/rod-response-research.md",
+            "docs/rod-lure-practical-research.md"
+          ]
+        }
+      }
+    },
+    {
+      "category": "rod",
+      "id": "13",
+      "playerUse": {
+        "summary": {
+          "en": "Use for fly fishing. Move the target tile with the directions; release the cast button or let the aim window expire to check that spot.",
+          "ja": "フライ釣り用。方向キーで狙うタイルを動かし、投げるボタンを離すか照準時間が切れると、その場所を判定する。",
+          "th": "ใช้ตกแบบฟลาย ระหว่างเล็งกดทิศทางเพื่อย้ายช่องเป้าหมาย; ปล่อยปุ่มตกปลาหรือรอจนช่วงเล็งหมดเพื่อให้เกมตรวจจุดนั้น"
+        },
+        "facts": {
+          "en": [
+            "More aim time gives you longer to move the target tile before the game checks the cast.",
+            "A higher fish-position limit lets the fish move farther before this fly-loss escape branch. If it fires, the game says the fly was stolen as the fish escaped; other escape routes remain."
+          ],
+          "ja": [
+            "照準時間が長いほど、投げ先を動かしてからゲームが判定するまでの時間が増えます。",
+            "魚位置の上限が高いほど、毛バリ損失の逃走分岐まで魚が遠くへ進めます。発生時は毛バリを盗られて魚に逃げられたと表示されます。別の逃げ方もあります。"
+          ],
+          "th": [
+            "ช่วงเล็งที่นานขึ้นให้เวลาขยับช่องเป้าหมายมากขึ้นก่อนเกมตรวจจุดตก",
+            "ขอบเขตตำแหน่งปลาที่สูงขึ้นให้ปลาไปได้ไกลขึ้นก่อนเข้าเส้นทางหนีที่ทำให้เหยื่อฟลายหาย; เมื่อเข้าเส้นทางนี้ เกมระบุว่าเหยื่อฟลายถูกขโมยและปลาหนี และปลายังหนีด้วยทางอื่นได้"
+          ]
+        },
+        "evidenceNotes": {
+          "en": [
+            "The D66B aim loop updates target coordinates while input is held; releasing or reaching the +2 cutoff advances to tile resolution. Aim comparisons use full HP and identical style records.",
+            "The path is checked only after 1EC9 reaches 63 and fish position 1ED5 is at/above this rod threshold 1ED7. Mode0/1 message IDs 0096/00B0; lure/fly IDs 00A4/00A6. Non-threshold escape messages are 009A/00A8."
+          ],
+          "ja": [
+            "D66Bの照準ループは入力中に狙い座標を更新し、ボタンを離すか+2の上限に達するとタイル判定へ進む。照準比較はHP100・同じ竿系統内。",
+            "1EC9が63に達し、魚位置1ED5が竿しきい値1ED7以上の場合だけ判定。モード0/1の文面は0096/00B0、ルアー／フライは00A4/00A6。別の逃げ文は009A/00A8。"
+          ],
+          "th": [
+            "ลูปเล็ง D66B ขยับพิกัดเป้าหมายระหว่างกดปุ่ม; เมื่อปล่อยหรือถึงขีด +2 เกมจึงตรวจช่องเป้าหมาย การเทียบช่วงเล็งใช้ HP 100 และคันชนิดเดียวกัน",
+            "ตรวจเส้นทางนี้เมื่อ 1EC9 ถึง 63 และตำแหน่งปลา 1ED5 มากกว่าหรือเท่ากับเกณฑ์คัน 1ED7 เท่านั้น; ข้อความโหมด 0/1 คือ 0096/00B0 ส่วนลัวร์/ฟลายคือ 00A4/00A6; ข้อความหนีเส้นทางอื่นคือ 009A/00A8"
+          ]
+        },
+        "evidence": {
+          "type": "rom_trace",
+          "sources": [
+            "data/rod-response.json",
+            "docs/rod-response-research.md",
+            "docs/rod-lure-practical-research.md"
+          ]
+        }
+      }
+    },
+    {
+      "category": "rod",
+      "id": "14",
+      "playerUse": {
+        "summary": {
+          "en": "Use for float/Ayu fishing. Move the target tile with the directions; release the cast button or let the aim window expire to check that spot.",
+          "ja": "ウキ・アユ釣り用。方向キーで狙うタイルを動かし、投げるボタンを離すか照準時間が切れると、その場所を判定する。",
+          "th": "ใช้ตกแบบสายทุ่น / ปลาอายุ ระหว่างเล็งกดทิศทางเพื่อย้ายช่องเป้าหมาย; ปล่อยปุ่มตกปลาหรือรอจนช่วงเล็งหมดเพื่อให้เกมตรวจจุดนั้น"
+        },
+        "facts": {
+          "en": [
+            "More aim time gives you longer to move the target tile before the game checks the cast.",
+            "A higher fish-position limit lets the fish move farther before this hook-loss escape branch. If it fires, the game says the hook was stolen as the fish escaped; Decoy Ayu has separate text. Other escape routes remain."
+          ],
+          "ja": [
+            "照準時間が長いほど、投げ先を動かしてからゲームが判定するまでの時間が増えます。",
+            "魚位置の上限が高いほど、ハリ損失の逃走分岐まで魚が遠くへ進めます。発生時はハリを盗られて魚に逃げられたと表示されます。おとりアユは別文で、別の逃げ方もあります。"
+          ],
+          "th": [
+            "ช่วงเล็งที่นานขึ้นให้เวลาขยับช่องเป้าหมายมากขึ้นก่อนเกมตรวจจุดตก",
+            "ขอบเขตตำแหน่งปลาที่สูงขึ้นให้ปลาไปได้ไกลขึ้นก่อนเข้าเส้นทางหนีที่ทำให้เบ็ดหาย; เมื่อเข้าเส้นทางนี้ เกมระบุว่าเบ็ดถูกขโมยและปลาหนี ส่วนเหยื่อปลาอายุแบบล่อมีข้อความแยก และปลายังหนีด้วยทางอื่นได้"
+          ]
+        },
+        "evidenceNotes": {
+          "en": [
+            "The D66B aim loop updates target coordinates while input is held; releasing or reaching the +2 cutoff advances to tile resolution. Aim comparisons use full HP and identical style records.",
+            "The path is checked only after 1EC9 reaches 63 and fish position 1ED5 is at/above this rod threshold 1ED7. Mode0/1 message IDs 0096/00B0; lure/fly IDs 00A4/00A6. Non-threshold escape messages are 009A/00A8."
+          ],
+          "ja": [
+            "D66Bの照準ループは入力中に狙い座標を更新し、ボタンを離すか+2の上限に達するとタイル判定へ進む。照準比較はHP100・同じ竿系統内。",
+            "1EC9が63に達し、魚位置1ED5が竿しきい値1ED7以上の場合だけ判定。モード0/1の文面は0096/00B0、ルアー／フライは00A4/00A6。別の逃げ文は009A/00A8。"
+          ],
+          "th": [
+            "ลูปเล็ง D66B ขยับพิกัดเป้าหมายระหว่างกดปุ่ม; เมื่อปล่อยหรือถึงขีด +2 เกมจึงตรวจช่องเป้าหมาย การเทียบช่วงเล็งใช้ HP 100 และคันชนิดเดียวกัน",
+            "ตรวจเส้นทางนี้เมื่อ 1EC9 ถึง 63 และตำแหน่งปลา 1ED5 มากกว่าหรือเท่ากับเกณฑ์คัน 1ED7 เท่านั้น; ข้อความโหมด 0/1 คือ 0096/00B0 ส่วนลัวร์/ฟลายคือ 00A4/00A6; ข้อความหนีเส้นทางอื่นคือ 009A/00A8"
+          ]
+        },
+        "evidence": {
+          "type": "rom_trace",
+          "sources": [
+            "data/rod-response.json",
+            "docs/rod-response-research.md",
+            "docs/rod-lure-practical-research.md"
+          ]
+        }
+      }
+    },
+    {
+      "category": "rod",
+      "id": "15",
+      "playerUse": {
+        "summary": {
+          "en": "Use for float/Ayu fishing. Move the target tile with the directions; release the cast button or let the aim window expire to check that spot.",
+          "ja": "ウキ・アユ釣り用。方向キーで狙うタイルを動かし、投げるボタンを離すか照準時間が切れると、その場所を判定する。",
+          "th": "ใช้ตกแบบสายทุ่น / ปลาอายุ ระหว่างเล็งกดทิศทางเพื่อย้ายช่องเป้าหมาย; ปล่อยปุ่มตกปลาหรือรอจนช่วงเล็งหมดเพื่อให้เกมตรวจจุดนั้น"
+        },
+        "facts": {
+          "en": [
+            "More aim time gives you longer to move the target tile before the game checks the cast.",
+            "A higher fish-position limit lets the fish move farther before this hook-loss escape branch. If it fires, the game says the hook was stolen as the fish escaped; Decoy Ayu has separate text. Other escape routes remain."
+          ],
+          "ja": [
+            "照準時間が長いほど、投げ先を動かしてからゲームが判定するまでの時間が増えます。",
+            "魚位置の上限が高いほど、ハリ損失の逃走分岐まで魚が遠くへ進めます。発生時はハリを盗られて魚に逃げられたと表示されます。おとりアユは別文で、別の逃げ方もあります。"
+          ],
+          "th": [
+            "ช่วงเล็งที่นานขึ้นให้เวลาขยับช่องเป้าหมายมากขึ้นก่อนเกมตรวจจุดตก",
+            "ขอบเขตตำแหน่งปลาที่สูงขึ้นให้ปลาไปได้ไกลขึ้นก่อนเข้าเส้นทางหนีที่ทำให้เบ็ดหาย; เมื่อเข้าเส้นทางนี้ เกมระบุว่าเบ็ดถูกขโมยและปลาหนี ส่วนเหยื่อปลาอายุแบบล่อมีข้อความแยก และปลายังหนีด้วยทางอื่นได้"
+          ]
+        },
+        "evidenceNotes": {
+          "en": [
+            "The D66B aim loop updates target coordinates while input is held; releasing or reaching the +2 cutoff advances to tile resolution. Aim comparisons use full HP and identical style records.",
+            "The path is checked only after 1EC9 reaches 63 and fish position 1ED5 is at/above this rod threshold 1ED7. Mode0/1 message IDs 0096/00B0; lure/fly IDs 00A4/00A6. Non-threshold escape messages are 009A/00A8."
+          ],
+          "ja": [
+            "D66Bの照準ループは入力中に狙い座標を更新し、ボタンを離すか+2の上限に達するとタイル判定へ進む。照準比較はHP100・同じ竿系統内。",
+            "1EC9が63に達し、魚位置1ED5が竿しきい値1ED7以上の場合だけ判定。モード0/1の文面は0096/00B0、ルアー／フライは00A4/00A6。別の逃げ文は009A/00A8。"
+          ],
+          "th": [
+            "ลูปเล็ง D66B ขยับพิกัดเป้าหมายระหว่างกดปุ่ม; เมื่อปล่อยหรือถึงขีด +2 เกมจึงตรวจช่องเป้าหมาย การเทียบช่วงเล็งใช้ HP 100 และคันชนิดเดียวกัน",
+            "ตรวจเส้นทางนี้เมื่อ 1EC9 ถึง 63 และตำแหน่งปลา 1ED5 มากกว่าหรือเท่ากับเกณฑ์คัน 1ED7 เท่านั้น; ข้อความโหมด 0/1 คือ 0096/00B0 ส่วนลัวร์/ฟลายคือ 00A4/00A6; ข้อความหนีเส้นทางอื่นคือ 009A/00A8"
+          ]
+        },
+        "evidence": {
+          "type": "rom_trace",
+          "sources": [
+            "data/rod-response.json",
+            "docs/rod-response-research.md",
+            "docs/rod-lure-practical-research.md"
+          ]
+        }
+      }
+    },
+    {
+      "category": "lure",
+      "id": "01",
+      "playerUse": {
+        "summary": {
+          "en": "Use with a lure rod. If targeting a particular fish, pick a card showing that fish: this lure passes its fish-type gate for that profile. Position, timing and landing checks still apply.",
+          "ja": "ルアー竿で使う。狙う魚の画像がこのカードにあれば、その魚プロフィールの判定をこのルアーは通る。ポイント・タイミング・取り込みの条件は別に残る。",
+          "th": "ใช้กับคันลัวร์ ถ้าจะตามปลาชนิดไหน ให้เลือกการ์ดที่มีรูปปลานั้น: ลัวร์ชิ้นนี้ผ่านด่านตรวจชนิดปลาของโปรไฟล์นั้นแล้ว แต่ตำแหน่ง จังหวะ และการดึงขึ้นยังมีเงื่อนไขอื่น"
+        },
+        "evidenceNotes": {
+          "en": [
+            "The portraits are target candidates for this exact item ID, not a guarantee of a bite or landed catch."
+          ],
+          "ja": [
+            "画像の魚はこのアイテムIDで対象候補になるが、食いつきや取り込みを保証するものではない。"
+          ],
+          "th": [
+            "รูปปลาใช้เป็นรายชื่อเป้าหมายที่ชิ้น ID นี้ผ่านด่านตรวจได้ ไม่ได้รับประกันว่าปลาจะกินเหยื่อหรือตกขึ้นมาได้"
+          ]
+        },
+        "evidence": {
+          "type": "rom_trace",
+          "sources": [
+            "data/fish-acceptance.json",
+            "data/lure-coverage.json",
+            "docs/fish-acceptance-research.md"
+          ]
+        }
+      }
+    },
+    {
+      "category": "lure",
+      "id": "02",
+      "playerUse": {
+        "summary": {
+          "en": "Use with a lure rod. If targeting a particular fish, pick a card showing that fish: this lure passes its fish-type gate for that profile. Position, timing and landing checks still apply.",
+          "ja": "ルアー竿で使う。狙う魚の画像がこのカードにあれば、その魚プロフィールの判定をこのルアーは通る。ポイント・タイミング・取り込みの条件は別に残る。",
+          "th": "ใช้กับคันลัวร์ ถ้าจะตามปลาชนิดไหน ให้เลือกการ์ดที่มีรูปปลานั้น: ลัวร์ชิ้นนี้ผ่านด่านตรวจชนิดปลาของโปรไฟล์นั้นแล้ว แต่ตำแหน่ง จังหวะ และการดึงขึ้นยังมีเงื่อนไขอื่น"
+        },
+        "evidenceNotes": {
+          "en": [
+            "The portraits are target candidates for this exact item ID, not a guarantee of a bite or landed catch."
+          ],
+          "ja": [
+            "画像の魚はこのアイテムIDで対象候補になるが、食いつきや取り込みを保証するものではない。"
+          ],
+          "th": [
+            "รูปปลาใช้เป็นรายชื่อเป้าหมายที่ชิ้น ID นี้ผ่านด่านตรวจได้ ไม่ได้รับประกันว่าปลาจะกินเหยื่อหรือตกขึ้นมาได้"
+          ]
+        },
+        "evidence": {
+          "type": "rom_trace",
+          "sources": [
+            "data/fish-acceptance.json",
+            "data/lure-coverage.json",
+            "docs/fish-acceptance-research.md"
+          ]
+        }
+      }
+    },
+    {
+      "category": "lure",
+      "id": "03",
+      "playerUse": {
+        "summary": {
+          "en": "Use with a lure rod. If targeting a particular fish, pick a card showing that fish: this lure passes its fish-type gate for that profile. Position, timing and landing checks still apply.",
+          "ja": "ルアー竿で使う。狙う魚の画像がこのカードにあれば、その魚プロフィールの判定をこのルアーは通る。ポイント・タイミング・取り込みの条件は別に残る。",
+          "th": "ใช้กับคันลัวร์ ถ้าจะตามปลาชนิดไหน ให้เลือกการ์ดที่มีรูปปลานั้น: ลัวร์ชิ้นนี้ผ่านด่านตรวจชนิดปลาของโปรไฟล์นั้นแล้ว แต่ตำแหน่ง จังหวะ และการดึงขึ้นยังมีเงื่อนไขอื่น"
+        },
+        "evidenceNotes": {
+          "en": [
+            "The portraits are target candidates for this exact item ID, not a guarantee of a bite or landed catch."
+          ],
+          "ja": [
+            "画像の魚はこのアイテムIDで対象候補になるが、食いつきや取り込みを保証するものではない。"
+          ],
+          "th": [
+            "รูปปลาใช้เป็นรายชื่อเป้าหมายที่ชิ้น ID นี้ผ่านด่านตรวจได้ ไม่ได้รับประกันว่าปลาจะกินเหยื่อหรือตกขึ้นมาได้"
+          ]
+        },
+        "evidence": {
+          "type": "rom_trace",
+          "sources": [
+            "data/fish-acceptance.json",
+            "data/lure-coverage.json",
+            "docs/fish-acceptance-research.md"
+          ]
+        }
+      }
+    },
+    {
+      "category": "lure",
+      "id": "04",
+      "playerUse": {
+        "summary": {
+          "en": "Use with a lure rod. If targeting a particular fish, pick a card showing that fish: this lure passes its fish-type gate for that profile. Position, timing and landing checks still apply.",
+          "ja": "ルアー竿で使う。狙う魚の画像がこのカードにあれば、その魚プロフィールの判定をこのルアーは通る。ポイント・タイミング・取り込みの条件は別に残る。",
+          "th": "ใช้กับคันลัวร์ ถ้าจะตามปลาชนิดไหน ให้เลือกการ์ดที่มีรูปปลานั้น: ลัวร์ชิ้นนี้ผ่านด่านตรวจชนิดปลาของโปรไฟล์นั้นแล้ว แต่ตำแหน่ง จังหวะ และการดึงขึ้นยังมีเงื่อนไขอื่น"
+        },
+        "evidenceNotes": {
+          "en": [
+            "The portraits are target candidates for this exact item ID, not a guarantee of a bite or landed catch."
+          ],
+          "ja": [
+            "画像の魚はこのアイテムIDで対象候補になるが、食いつきや取り込みを保証するものではない。"
+          ],
+          "th": [
+            "รูปปลาใช้เป็นรายชื่อเป้าหมายที่ชิ้น ID นี้ผ่านด่านตรวจได้ ไม่ได้รับประกันว่าปลาจะกินเหยื่อหรือตกขึ้นมาได้"
+          ]
+        },
+        "evidence": {
+          "type": "rom_trace",
+          "sources": [
+            "data/fish-acceptance.json",
+            "data/lure-coverage.json",
+            "docs/fish-acceptance-research.md"
+          ]
+        }
+      }
+    },
+    {
+      "category": "lure",
+      "id": "05",
+      "playerUse": {
+        "summary": {
+          "en": "Use with a lure rod. If targeting a particular fish, pick a card showing that fish: this lure passes its fish-type gate for that profile. Position, timing and landing checks still apply.",
+          "ja": "ルアー竿で使う。狙う魚の画像がこのカードにあれば、その魚プロフィールの判定をこのルアーは通る。ポイント・タイミング・取り込みの条件は別に残る。",
+          "th": "ใช้กับคันลัวร์ ถ้าจะตามปลาชนิดไหน ให้เลือกการ์ดที่มีรูปปลานั้น: ลัวร์ชิ้นนี้ผ่านด่านตรวจชนิดปลาของโปรไฟล์นั้นแล้ว แต่ตำแหน่ง จังหวะ และการดึงขึ้นยังมีเงื่อนไขอื่น"
+        },
+        "evidenceNotes": {
+          "en": [
+            "The portraits are target candidates for this exact item ID, not a guarantee of a bite or landed catch."
+          ],
+          "ja": [
+            "画像の魚はこのアイテムIDで対象候補になるが、食いつきや取り込みを保証するものではない。"
+          ],
+          "th": [
+            "รูปปลาใช้เป็นรายชื่อเป้าหมายที่ชิ้น ID นี้ผ่านด่านตรวจได้ ไม่ได้รับประกันว่าปลาจะกินเหยื่อหรือตกขึ้นมาได้"
+          ]
+        },
+        "evidence": {
+          "type": "rom_trace",
+          "sources": [
+            "data/fish-acceptance.json",
+            "data/lure-coverage.json",
+            "docs/fish-acceptance-research.md"
+          ]
+        }
+      }
+    },
+    {
+      "category": "lure",
+      "id": "06",
+      "playerUse": {
+        "summary": {
+          "en": "Use with a lure rod. If targeting a particular fish, pick a card showing that fish: this lure passes its fish-type gate for that profile. Position, timing and landing checks still apply.",
+          "ja": "ルアー竿で使う。狙う魚の画像がこのカードにあれば、その魚プロフィールの判定をこのルアーは通る。ポイント・タイミング・取り込みの条件は別に残る。",
+          "th": "ใช้กับคันลัวร์ ถ้าจะตามปลาชนิดไหน ให้เลือกการ์ดที่มีรูปปลานั้น: ลัวร์ชิ้นนี้ผ่านด่านตรวจชนิดปลาของโปรไฟล์นั้นแล้ว แต่ตำแหน่ง จังหวะ และการดึงขึ้นยังมีเงื่อนไขอื่น"
+        },
+        "evidenceNotes": {
+          "en": [
+            "The portraits are target candidates for this exact item ID, not a guarantee of a bite or landed catch."
+          ],
+          "ja": [
+            "画像の魚はこのアイテムIDで対象候補になるが、食いつきや取り込みを保証するものではない。"
+          ],
+          "th": [
+            "รูปปลาใช้เป็นรายชื่อเป้าหมายที่ชิ้น ID นี้ผ่านด่านตรวจได้ ไม่ได้รับประกันว่าปลาจะกินเหยื่อหรือตกขึ้นมาได้"
+          ]
+        },
+        "evidence": {
+          "type": "rom_trace",
+          "sources": [
+            "data/fish-acceptance.json",
+            "data/lure-coverage.json",
+            "docs/fish-acceptance-research.md"
+          ]
+        }
+      }
+    },
+    {
+      "category": "lure",
+      "id": "07",
+      "playerUse": {
+        "summary": {
+          "en": "Use with a lure rod. If targeting a particular fish, pick a card showing that fish: this lure passes its fish-type gate for that profile. Position, timing and landing checks still apply.",
+          "ja": "ルアー竿で使う。狙う魚の画像がこのカードにあれば、その魚プロフィールの判定をこのルアーは通る。ポイント・タイミング・取り込みの条件は別に残る。",
+          "th": "ใช้กับคันลัวร์ ถ้าจะตามปลาชนิดไหน ให้เลือกการ์ดที่มีรูปปลานั้น: ลัวร์ชิ้นนี้ผ่านด่านตรวจชนิดปลาของโปรไฟล์นั้นแล้ว แต่ตำแหน่ง จังหวะ และการดึงขึ้นยังมีเงื่อนไขอื่น"
+        },
+        "evidenceNotes": {
+          "en": [
+            "The portraits are target candidates for this exact item ID, not a guarantee of a bite or landed catch."
+          ],
+          "ja": [
+            "画像の魚はこのアイテムIDで対象候補になるが、食いつきや取り込みを保証するものではない。"
+          ],
+          "th": [
+            "รูปปลาใช้เป็นรายชื่อเป้าหมายที่ชิ้น ID นี้ผ่านด่านตรวจได้ ไม่ได้รับประกันว่าปลาจะกินเหยื่อหรือตกขึ้นมาได้"
+          ]
+        },
+        "evidence": {
+          "type": "rom_trace",
+          "sources": [
+            "data/fish-acceptance.json",
+            "data/lure-coverage.json",
+            "docs/fish-acceptance-research.md"
+          ]
+        }
+      }
+    },
+    {
+      "category": "lure",
+      "id": "08",
+      "playerUse": {
+        "summary": {
+          "en": "Use with a lure rod. If targeting a particular fish, pick a card showing that fish: this lure passes its fish-type gate for that profile. Position, timing and landing checks still apply.",
+          "ja": "ルアー竿で使う。狙う魚の画像がこのカードにあれば、その魚プロフィールの判定をこのルアーは通る。ポイント・タイミング・取り込みの条件は別に残る。",
+          "th": "ใช้กับคันลัวร์ ถ้าจะตามปลาชนิดไหน ให้เลือกการ์ดที่มีรูปปลานั้น: ลัวร์ชิ้นนี้ผ่านด่านตรวจชนิดปลาของโปรไฟล์นั้นแล้ว แต่ตำแหน่ง จังหวะ และการดึงขึ้นยังมีเงื่อนไขอื่น"
+        },
+        "evidenceNotes": {
+          "en": [
+            "The portraits are target candidates for this exact item ID, not a guarantee of a bite or landed catch."
+          ],
+          "ja": [
+            "画像の魚はこのアイテムIDで対象候補になるが、食いつきや取り込みを保証するものではない。"
+          ],
+          "th": [
+            "รูปปลาใช้เป็นรายชื่อเป้าหมายที่ชิ้น ID นี้ผ่านด่านตรวจได้ ไม่ได้รับประกันว่าปลาจะกินเหยื่อหรือตกขึ้นมาได้"
+          ]
+        },
+        "evidence": {
+          "type": "rom_trace",
+          "sources": [
+            "data/fish-acceptance.json",
+            "data/lure-coverage.json",
+            "docs/fish-acceptance-research.md"
+          ]
+        }
+      }
+    },
+    {
+      "category": "lure",
+      "id": "09",
+      "playerUse": {
+        "summary": {
+          "en": "Use with a lure rod. If targeting a particular fish, pick a card showing that fish: this lure passes its fish-type gate for that profile. Position, timing and landing checks still apply.",
+          "ja": "ルアー竿で使う。狙う魚の画像がこのカードにあれば、その魚プロフィールの判定をこのルアーは通る。ポイント・タイミング・取り込みの条件は別に残る。",
+          "th": "ใช้กับคันลัวร์ ถ้าจะตามปลาชนิดไหน ให้เลือกการ์ดที่มีรูปปลานั้น: ลัวร์ชิ้นนี้ผ่านด่านตรวจชนิดปลาของโปรไฟล์นั้นแล้ว แต่ตำแหน่ง จังหวะ และการดึงขึ้นยังมีเงื่อนไขอื่น"
+        },
+        "evidenceNotes": {
+          "en": [
+            "The portraits are target candidates for this exact item ID, not a guarantee of a bite or landed catch."
+          ],
+          "ja": [
+            "画像の魚はこのアイテムIDで対象候補になるが、食いつきや取り込みを保証するものではない。"
+          ],
+          "th": [
+            "รูปปลาใช้เป็นรายชื่อเป้าหมายที่ชิ้น ID นี้ผ่านด่านตรวจได้ ไม่ได้รับประกันว่าปลาจะกินเหยื่อหรือตกขึ้นมาได้"
+          ]
+        },
+        "evidence": {
+          "type": "rom_trace",
+          "sources": [
+            "data/fish-acceptance.json",
+            "data/lure-coverage.json",
+            "docs/fish-acceptance-research.md"
+          ]
+        }
+      }
+    },
+    {
+      "category": "lure",
+      "id": "0A",
+      "playerUse": {
+        "summary": {
+          "en": "Use with a lure rod. If targeting a particular fish, pick a card showing that fish: this lure passes its fish-type gate for that profile. Position, timing and landing checks still apply.",
+          "ja": "ルアー竿で使う。狙う魚の画像がこのカードにあれば、その魚プロフィールの判定をこのルアーは通る。ポイント・タイミング・取り込みの条件は別に残る。",
+          "th": "ใช้กับคันลัวร์ ถ้าจะตามปลาชนิดไหน ให้เลือกการ์ดที่มีรูปปลานั้น: ลัวร์ชิ้นนี้ผ่านด่านตรวจชนิดปลาของโปรไฟล์นั้นแล้ว แต่ตำแหน่ง จังหวะ และการดึงขึ้นยังมีเงื่อนไขอื่น"
+        },
+        "evidenceNotes": {
+          "en": [
+            "The portraits are target candidates for this exact item ID, not a guarantee of a bite or landed catch."
+          ],
+          "ja": [
+            "画像の魚はこのアイテムIDで対象候補になるが、食いつきや取り込みを保証するものではない。"
+          ],
+          "th": [
+            "รูปปลาใช้เป็นรายชื่อเป้าหมายที่ชิ้น ID นี้ผ่านด่านตรวจได้ ไม่ได้รับประกันว่าปลาจะกินเหยื่อหรือตกขึ้นมาได้"
+          ]
+        },
+        "evidence": {
+          "type": "rom_trace",
+          "sources": [
+            "data/fish-acceptance.json",
+            "data/lure-coverage.json",
+            "docs/fish-acceptance-research.md"
+          ]
+        }
+      }
+    },
+    {
+      "category": "lure",
+      "id": "0B",
+      "playerUse": {
+        "summary": {
+          "en": "Use with a lure rod. If targeting a particular fish, pick a card showing that fish: this lure passes its fish-type gate for that profile. Position, timing and landing checks still apply.",
+          "ja": "ルアー竿で使う。狙う魚の画像がこのカードにあれば、その魚プロフィールの判定をこのルアーは通る。ポイント・タイミング・取り込みの条件は別に残る。",
+          "th": "ใช้กับคันลัวร์ ถ้าจะตามปลาชนิดไหน ให้เลือกการ์ดที่มีรูปปลานั้น: ลัวร์ชิ้นนี้ผ่านด่านตรวจชนิดปลาของโปรไฟล์นั้นแล้ว แต่ตำแหน่ง จังหวะ และการดึงขึ้นยังมีเงื่อนไขอื่น"
+        },
+        "evidenceNotes": {
+          "en": [
+            "The portraits are target candidates for this exact item ID, not a guarantee of a bite or landed catch."
+          ],
+          "ja": [
+            "画像の魚はこのアイテムIDで対象候補になるが、食いつきや取り込みを保証するものではない。"
+          ],
+          "th": [
+            "รูปปลาใช้เป็นรายชื่อเป้าหมายที่ชิ้น ID นี้ผ่านด่านตรวจได้ ไม่ได้รับประกันว่าปลาจะกินเหยื่อหรือตกขึ้นมาได้"
+          ]
+        },
+        "evidence": {
+          "type": "rom_trace",
+          "sources": [
+            "data/fish-acceptance.json",
+            "data/lure-coverage.json",
+            "docs/fish-acceptance-research.md"
+          ]
+        }
+      }
+    },
+    {
+      "category": "lure",
+      "id": "0C",
+      "playerUse": {
+        "summary": {
+          "en": "Use with a lure rod. If targeting a particular fish, pick a card showing that fish: this lure passes its fish-type gate for that profile. Position, timing and landing checks still apply.",
+          "ja": "ルアー竿で使う。狙う魚の画像がこのカードにあれば、その魚プロフィールの判定をこのルアーは通る。ポイント・タイミング・取り込みの条件は別に残る。",
+          "th": "ใช้กับคันลัวร์ ถ้าจะตามปลาชนิดไหน ให้เลือกการ์ดที่มีรูปปลานั้น: ลัวร์ชิ้นนี้ผ่านด่านตรวจชนิดปลาของโปรไฟล์นั้นแล้ว แต่ตำแหน่ง จังหวะ และการดึงขึ้นยังมีเงื่อนไขอื่น"
+        },
+        "evidenceNotes": {
+          "en": [
+            "The portraits are target candidates for this exact item ID, not a guarantee of a bite or landed catch."
+          ],
+          "ja": [
+            "画像の魚はこのアイテムIDで対象候補になるが、食いつきや取り込みを保証するものではない。"
+          ],
+          "th": [
+            "รูปปลาใช้เป็นรายชื่อเป้าหมายที่ชิ้น ID นี้ผ่านด่านตรวจได้ ไม่ได้รับประกันว่าปลาจะกินเหยื่อหรือตกขึ้นมาได้"
+          ]
+        },
+        "evidence": {
+          "type": "rom_trace",
+          "sources": [
+            "data/fish-acceptance.json",
+            "data/lure-coverage.json",
+            "docs/fish-acceptance-research.md"
+          ]
+        }
+      }
+    },
+    {
+      "category": "lure",
+      "id": "0D",
+      "playerUse": {
+        "summary": {
+          "en": "Use with a lure rod. If targeting a particular fish, pick a card showing that fish: this lure passes its fish-type gate for that profile. Position, timing and landing checks still apply.",
+          "ja": "ルアー竿で使う。狙う魚の画像がこのカードにあれば、その魚プロフィールの判定をこのルアーは通る。ポイント・タイミング・取り込みの条件は別に残る。",
+          "th": "ใช้กับคันลัวร์ ถ้าจะตามปลาชนิดไหน ให้เลือกการ์ดที่มีรูปปลานั้น: ลัวร์ชิ้นนี้ผ่านด่านตรวจชนิดปลาของโปรไฟล์นั้นแล้ว แต่ตำแหน่ง จังหวะ และการดึงขึ้นยังมีเงื่อนไขอื่น"
+        },
+        "evidenceNotes": {
+          "en": [
+            "The portraits are target candidates for this exact item ID, not a guarantee of a bite or landed catch."
+          ],
+          "ja": [
+            "画像の魚はこのアイテムIDで対象候補になるが、食いつきや取り込みを保証するものではない。"
+          ],
+          "th": [
+            "รูปปลาใช้เป็นรายชื่อเป้าหมายที่ชิ้น ID นี้ผ่านด่านตรวจได้ ไม่ได้รับประกันว่าปลาจะกินเหยื่อหรือตกขึ้นมาได้"
+          ]
+        },
+        "evidence": {
+          "type": "rom_trace",
+          "sources": [
+            "data/fish-acceptance.json",
+            "data/lure-coverage.json",
+            "docs/fish-acceptance-research.md"
+          ]
+        }
+      }
+    },
+    {
+      "category": "lure",
+      "id": "0E",
+      "playerUse": {
+        "summary": {
+          "en": "Use with a lure rod. If targeting a particular fish, pick a card showing that fish: this lure passes its fish-type gate for that profile. Position, timing and landing checks still apply.",
+          "ja": "ルアー竿で使う。狙う魚の画像がこのカードにあれば、その魚プロフィールの判定をこのルアーは通る。ポイント・タイミング・取り込みの条件は別に残る。",
+          "th": "ใช้กับคันลัวร์ ถ้าจะตามปลาชนิดไหน ให้เลือกการ์ดที่มีรูปปลานั้น: ลัวร์ชิ้นนี้ผ่านด่านตรวจชนิดปลาของโปรไฟล์นั้นแล้ว แต่ตำแหน่ง จังหวะ และการดึงขึ้นยังมีเงื่อนไขอื่น"
+        },
+        "evidenceNotes": {
+          "en": [
+            "The portraits are target candidates for this exact item ID, not a guarantee of a bite or landed catch."
+          ],
+          "ja": [
+            "画像の魚はこのアイテムIDで対象候補になるが、食いつきや取り込みを保証するものではない。"
+          ],
+          "th": [
+            "รูปปลาใช้เป็นรายชื่อเป้าหมายที่ชิ้น ID นี้ผ่านด่านตรวจได้ ไม่ได้รับประกันว่าปลาจะกินเหยื่อหรือตกขึ้นมาได้"
+          ]
+        },
+        "evidence": {
+          "type": "rom_trace",
+          "sources": [
+            "data/fish-acceptance.json",
+            "data/lure-coverage.json",
+            "docs/fish-acceptance-research.md"
+          ]
+        }
+      }
+    },
+    {
+      "category": "lure",
+      "id": "0F",
+      "playerUse": {
+        "summary": {
+          "en": "Use with a lure rod. If targeting a particular fish, pick a card showing that fish: this lure passes its fish-type gate for that profile. Position, timing and landing checks still apply.",
+          "ja": "ルアー竿で使う。狙う魚の画像がこのカードにあれば、その魚プロフィールの判定をこのルアーは通る。ポイント・タイミング・取り込みの条件は別に残る。",
+          "th": "ใช้กับคันลัวร์ ถ้าจะตามปลาชนิดไหน ให้เลือกการ์ดที่มีรูปปลานั้น: ลัวร์ชิ้นนี้ผ่านด่านตรวจชนิดปลาของโปรไฟล์นั้นแล้ว แต่ตำแหน่ง จังหวะ และการดึงขึ้นยังมีเงื่อนไขอื่น"
+        },
+        "evidenceNotes": {
+          "en": [
+            "The portraits are target candidates for this exact item ID, not a guarantee of a bite or landed catch."
+          ],
+          "ja": [
+            "画像の魚はこのアイテムIDで対象候補になるが、食いつきや取り込みを保証するものではない。"
+          ],
+          "th": [
+            "รูปปลาใช้เป็นรายชื่อเป้าหมายที่ชิ้น ID นี้ผ่านด่านตรวจได้ ไม่ได้รับประกันว่าปลาจะกินเหยื่อหรือตกขึ้นมาได้"
+          ]
+        },
+        "evidence": {
+          "type": "rom_trace",
+          "sources": [
+            "data/fish-acceptance.json",
+            "data/lure-coverage.json",
+            "docs/fish-acceptance-research.md"
+          ]
+        }
+      }
+    },
+    {
+      "category": "lure",
+      "id": "10",
+      "playerUse": {
+        "summary": {
+          "en": "Use with a lure rod. If targeting a particular fish, pick a card showing that fish: this lure passes its fish-type gate for that profile. Position, timing and landing checks still apply.",
+          "ja": "ルアー竿で使う。狙う魚の画像がこのカードにあれば、その魚プロフィールの判定をこのルアーは通る。ポイント・タイミング・取り込みの条件は別に残る。",
+          "th": "ใช้กับคันลัวร์ ถ้าจะตามปลาชนิดไหน ให้เลือกการ์ดที่มีรูปปลานั้น: ลัวร์ชิ้นนี้ผ่านด่านตรวจชนิดปลาของโปรไฟล์นั้นแล้ว แต่ตำแหน่ง จังหวะ และการดึงขึ้นยังมีเงื่อนไขอื่น"
+        },
+        "evidenceNotes": {
+          "en": [
+            "The portraits are target candidates for this exact item ID, not a guarantee of a bite or landed catch."
+          ],
+          "ja": [
+            "画像の魚はこのアイテムIDで対象候補になるが、食いつきや取り込みを保証するものではない。"
+          ],
+          "th": [
+            "รูปปลาใช้เป็นรายชื่อเป้าหมายที่ชิ้น ID นี้ผ่านด่านตรวจได้ ไม่ได้รับประกันว่าปลาจะกินเหยื่อหรือตกขึ้นมาได้"
+          ]
+        },
+        "evidence": {
+          "type": "rom_trace",
+          "sources": [
+            "data/fish-acceptance.json",
+            "data/lure-coverage.json",
+            "docs/fish-acceptance-research.md"
+          ]
+        }
+      }
+    },
+    {
+      "category": "lure",
+      "id": "11",
+      "playerUse": {
+        "summary": {
+          "en": "Use with a lure rod. If targeting a particular fish, pick a card showing that fish: this lure passes its fish-type gate for that profile. Position, timing and landing checks still apply.",
+          "ja": "ルアー竿で使う。狙う魚の画像がこのカードにあれば、その魚プロフィールの判定をこのルアーは通る。ポイント・タイミング・取り込みの条件は別に残る。",
+          "th": "ใช้กับคันลัวร์ ถ้าจะตามปลาชนิดไหน ให้เลือกการ์ดที่มีรูปปลานั้น: ลัวร์ชิ้นนี้ผ่านด่านตรวจชนิดปลาของโปรไฟล์นั้นแล้ว แต่ตำแหน่ง จังหวะ และการดึงขึ้นยังมีเงื่อนไขอื่น"
+        },
+        "evidenceNotes": {
+          "en": [
+            "The portraits are target candidates for this exact item ID, not a guarantee of a bite or landed catch."
+          ],
+          "ja": [
+            "画像の魚はこのアイテムIDで対象候補になるが、食いつきや取り込みを保証するものではない。"
+          ],
+          "th": [
+            "รูปปลาใช้เป็นรายชื่อเป้าหมายที่ชิ้น ID นี้ผ่านด่านตรวจได้ ไม่ได้รับประกันว่าปลาจะกินเหยื่อหรือตกขึ้นมาได้"
+          ]
+        },
+        "evidence": {
+          "type": "rom_trace",
+          "sources": [
+            "data/fish-acceptance.json",
+            "data/lure-coverage.json",
+            "docs/fish-acceptance-research.md"
+          ]
+        }
+      }
+    },
+    {
+      "category": "lure",
+      "id": "12",
+      "playerUse": {
+        "summary": {
+          "en": "Use with a lure rod. If targeting a particular fish, pick a card showing that fish: this lure passes its fish-type gate for that profile. Position, timing and landing checks still apply.",
+          "ja": "ルアー竿で使う。狙う魚の画像がこのカードにあれば、その魚プロフィールの判定をこのルアーは通る。ポイント・タイミング・取り込みの条件は別に残る。",
+          "th": "ใช้กับคันลัวร์ ถ้าจะตามปลาชนิดไหน ให้เลือกการ์ดที่มีรูปปลานั้น: ลัวร์ชิ้นนี้ผ่านด่านตรวจชนิดปลาของโปรไฟล์นั้นแล้ว แต่ตำแหน่ง จังหวะ และการดึงขึ้นยังมีเงื่อนไขอื่น"
+        },
+        "evidenceNotes": {
+          "en": [
+            "The portraits are target candidates for this exact item ID, not a guarantee of a bite or landed catch.",
+            "The named-fish branch requires lure mode and an exact fish-ID match; it is separate from the broader fish-type gate shown in the portraits.",
+            "On lure mode plus exact fish-ID match, the handler halves the initial response value and skips this lure’s size-response branch; the rod response still runs afterward. The fish mask and ordinary eligible-fish list are separate."
+          ],
+          "ja": [
+            "画像の魚はこのアイテムIDで対象候補になるが、食いつきや取り込みを保証するものではない。",
+            "専用分岐はルアー釣り中かつ魚ID一致時だけ。画像の広い魚種判定とは別。",
+            "ルアー釣りかつ魚ID一致時、初期応答値を半分にしてルアーのサイズ応答分岐を飛ばす。後段の竿応答は実行される。魚種マスクと対象魚リストは別。"
+          ],
+          "th": [
+            "รูปปลาใช้เป็นรายชื่อเป้าหมายที่ชิ้น ID นี้ผ่านด่านตรวจได้ ไม่ได้รับประกันว่าปลาจะกินเหยื่อหรือตกขึ้นมาได้",
+            "เส้นทางเฉพาะทำงานเมื่ออยู่โหมดลัวร์และ ID ปลาตรงกันเท่านั้น; แยกจากด่านตรวจชนิดปลาที่แสดงด้วยรูป",
+            "เมื่ออยู่โหมดลัวร์และ ID ปลาตรงกัน โค้ดหารค่าตอบสนองเริ่มต้นลงครึ่งหนึ่งและข้ามเส้นทางตอบสนองตามขนาดของลัวร์; การตอบสนองของคันยังทำงานภายหลัง ส่วน mask ชนิดปลาและรายชื่อปลาที่ผ่านเป็นคนละเงื่อนไข"
+          ]
+        },
+        "evidence": {
+          "type": "rom_trace",
+          "sources": [
+            "data/fish-acceptance.json",
+            "data/lure-coverage.json",
+            "docs/fish-acceptance-research.md",
+            "data/lure-response.json",
+            "docs/lure-response-research.md"
+          ]
+        },
+        "facts": {
+          "en": [
+            "When pursuing Black bass, this lure takes a distinct opening fight-setup path. It still needs to pass the fish list shown on this card, and the ROM does not establish that it makes the fish easier to land."
+          ],
+          "ja": [
+            "ブラックバスを狙うとき、このルアーは開始時のファイト設定で専用分岐を通る。このカードの魚種判定は別に必要で、釣り上げやすくなるかはROMから確認できない。"
+          ],
+          "th": [
+            "เมื่อตามปลาแบล็กแบส ลัวร์ชิ้นนี้เข้าเส้นทางตั้งค่าการสู้ช่วงเริ่มต้นแบบเฉพาะ; ยังต้องผ่านรายชื่อปลาบนการ์ดนี้ และ ROM ไม่ได้ยืนยันว่าช่วยให้ตกขึ้นมาได้ง่ายกว่า"
+          ]
+        }
+      }
+    },
+    {
+      "category": "lure",
+      "id": "13",
+      "playerUse": {
+        "summary": {
+          "en": "Use with a lure rod. If targeting a particular fish, pick a card showing that fish: this lure passes its fish-type gate for that profile. Position, timing and landing checks still apply.",
+          "ja": "ルアー竿で使う。狙う魚の画像がこのカードにあれば、その魚プロフィールの判定をこのルアーは通る。ポイント・タイミング・取り込みの条件は別に残る。",
+          "th": "ใช้กับคันลัวร์ ถ้าจะตามปลาชนิดไหน ให้เลือกการ์ดที่มีรูปปลานั้น: ลัวร์ชิ้นนี้ผ่านด่านตรวจชนิดปลาของโปรไฟล์นั้นแล้ว แต่ตำแหน่ง จังหวะ และการดึงขึ้นยังมีเงื่อนไขอื่น"
+        },
+        "evidenceNotes": {
+          "en": [
+            "The portraits are target candidates for this exact item ID, not a guarantee of a bite or landed catch."
+          ],
+          "ja": [
+            "画像の魚はこのアイテムIDで対象候補になるが、食いつきや取り込みを保証するものではない。"
+          ],
+          "th": [
+            "รูปปลาใช้เป็นรายชื่อเป้าหมายที่ชิ้น ID นี้ผ่านด่านตรวจได้ ไม่ได้รับประกันว่าปลาจะกินเหยื่อหรือตกขึ้นมาได้"
+          ]
+        },
+        "evidence": {
+          "type": "rom_trace",
+          "sources": [
+            "data/fish-acceptance.json",
+            "data/lure-coverage.json",
+            "docs/fish-acceptance-research.md"
+          ]
+        }
+      }
+    },
+    {
+      "category": "lure",
+      "id": "14",
+      "playerUse": {
+        "summary": {
+          "en": "Use with a lure rod. If targeting a particular fish, pick a card showing that fish: this lure passes its fish-type gate for that profile. Position, timing and landing checks still apply.",
+          "ja": "ルアー竿で使う。狙う魚の画像がこのカードにあれば、その魚プロフィールの判定をこのルアーは通る。ポイント・タイミング・取り込みの条件は別に残る。",
+          "th": "ใช้กับคันลัวร์ ถ้าจะตามปลาชนิดไหน ให้เลือกการ์ดที่มีรูปปลานั้น: ลัวร์ชิ้นนี้ผ่านด่านตรวจชนิดปลาของโปรไฟล์นั้นแล้ว แต่ตำแหน่ง จังหวะ และการดึงขึ้นยังมีเงื่อนไขอื่น"
+        },
+        "evidenceNotes": {
+          "en": [
+            "The portraits are target candidates for this exact item ID, not a guarantee of a bite or landed catch."
+          ],
+          "ja": [
+            "画像の魚はこのアイテムIDで対象候補になるが、食いつきや取り込みを保証するものではない。"
+          ],
+          "th": [
+            "รูปปลาใช้เป็นรายชื่อเป้าหมายที่ชิ้น ID นี้ผ่านด่านตรวจได้ ไม่ได้รับประกันว่าปลาจะกินเหยื่อหรือตกขึ้นมาได้"
+          ]
+        },
+        "evidence": {
+          "type": "rom_trace",
+          "sources": [
+            "data/fish-acceptance.json",
+            "data/lure-coverage.json",
+            "docs/fish-acceptance-research.md"
+          ]
+        }
+      }
+    },
+    {
+      "category": "lure",
+      "id": "15",
+      "playerUse": {
+        "summary": {
+          "en": "Use with a lure rod. If targeting a particular fish, pick a card showing that fish: this lure passes its fish-type gate for that profile. Position, timing and landing checks still apply.",
+          "ja": "ルアー竿で使う。狙う魚の画像がこのカードにあれば、その魚プロフィールの判定をこのルアーは通る。ポイント・タイミング・取り込みの条件は別に残る。",
+          "th": "ใช้กับคันลัวร์ ถ้าจะตามปลาชนิดไหน ให้เลือกการ์ดที่มีรูปปลานั้น: ลัวร์ชิ้นนี้ผ่านด่านตรวจชนิดปลาของโปรไฟล์นั้นแล้ว แต่ตำแหน่ง จังหวะ และการดึงขึ้นยังมีเงื่อนไขอื่น"
+        },
+        "evidenceNotes": {
+          "en": [
+            "The portraits are target candidates for this exact item ID, not a guarantee of a bite or landed catch."
+          ],
+          "ja": [
+            "画像の魚はこのアイテムIDで対象候補になるが、食いつきや取り込みを保証するものではない。"
+          ],
+          "th": [
+            "รูปปลาใช้เป็นรายชื่อเป้าหมายที่ชิ้น ID นี้ผ่านด่านตรวจได้ ไม่ได้รับประกันว่าปลาจะกินเหยื่อหรือตกขึ้นมาได้"
+          ]
+        },
+        "evidence": {
+          "type": "rom_trace",
+          "sources": [
+            "data/fish-acceptance.json",
+            "data/lure-coverage.json",
+            "docs/fish-acceptance-research.md"
+          ]
+        }
+      }
+    },
+    {
+      "category": "lure",
+      "id": "16",
+      "playerUse": {
+        "summary": {
+          "en": "Use with a lure rod. If targeting a particular fish, pick a card showing that fish: this lure passes its fish-type gate for that profile. Position, timing and landing checks still apply.",
+          "ja": "ルアー竿で使う。狙う魚の画像がこのカードにあれば、その魚プロフィールの判定をこのルアーは通る。ポイント・タイミング・取り込みの条件は別に残る。",
+          "th": "ใช้กับคันลัวร์ ถ้าจะตามปลาชนิดไหน ให้เลือกการ์ดที่มีรูปปลานั้น: ลัวร์ชิ้นนี้ผ่านด่านตรวจชนิดปลาของโปรไฟล์นั้นแล้ว แต่ตำแหน่ง จังหวะ และการดึงขึ้นยังมีเงื่อนไขอื่น"
+        },
+        "evidenceNotes": {
+          "en": [
+            "The portraits are target candidates for this exact item ID, not a guarantee of a bite or landed catch."
+          ],
+          "ja": [
+            "画像の魚はこのアイテムIDで対象候補になるが、食いつきや取り込みを保証するものではない。"
+          ],
+          "th": [
+            "รูปปลาใช้เป็นรายชื่อเป้าหมายที่ชิ้น ID นี้ผ่านด่านตรวจได้ ไม่ได้รับประกันว่าปลาจะกินเหยื่อหรือตกขึ้นมาได้"
+          ]
+        },
+        "evidence": {
+          "type": "rom_trace",
+          "sources": [
+            "data/fish-acceptance.json",
+            "data/lure-coverage.json",
+            "docs/fish-acceptance-research.md"
+          ]
+        }
+      }
+    },
+    {
+      "category": "lure",
+      "id": "17",
+      "playerUse": {
+        "summary": {
+          "en": "Use with a lure rod. If targeting a particular fish, pick a card showing that fish: this lure passes its fish-type gate for that profile. Position, timing and landing checks still apply.",
+          "ja": "ルアー竿で使う。狙う魚の画像がこのカードにあれば、その魚プロフィールの判定をこのルアーは通る。ポイント・タイミング・取り込みの条件は別に残る。",
+          "th": "ใช้กับคันลัวร์ ถ้าจะตามปลาชนิดไหน ให้เลือกการ์ดที่มีรูปปลานั้น: ลัวร์ชิ้นนี้ผ่านด่านตรวจชนิดปลาของโปรไฟล์นั้นแล้ว แต่ตำแหน่ง จังหวะ และการดึงขึ้นยังมีเงื่อนไขอื่น"
+        },
+        "evidenceNotes": {
+          "en": [
+            "The portraits are target candidates for this exact item ID, not a guarantee of a bite or landed catch."
+          ],
+          "ja": [
+            "画像の魚はこのアイテムIDで対象候補になるが、食いつきや取り込みを保証するものではない。"
+          ],
+          "th": [
+            "รูปปลาใช้เป็นรายชื่อเป้าหมายที่ชิ้น ID นี้ผ่านด่านตรวจได้ ไม่ได้รับประกันว่าปลาจะกินเหยื่อหรือตกขึ้นมาได้"
+          ]
+        },
+        "evidence": {
+          "type": "rom_trace",
+          "sources": [
+            "data/fish-acceptance.json",
+            "data/lure-coverage.json",
+            "docs/fish-acceptance-research.md"
+          ]
+        }
+      }
+    },
+    {
+      "category": "lure",
+      "id": "18",
+      "playerUse": {
+        "summary": {
+          "en": "Use with a lure rod. If targeting a particular fish, pick a card showing that fish: this lure passes its fish-type gate for that profile. Position, timing and landing checks still apply.",
+          "ja": "ルアー竿で使う。狙う魚の画像がこのカードにあれば、その魚プロフィールの判定をこのルアーは通る。ポイント・タイミング・取り込みの条件は別に残る。",
+          "th": "ใช้กับคันลัวร์ ถ้าจะตามปลาชนิดไหน ให้เลือกการ์ดที่มีรูปปลานั้น: ลัวร์ชิ้นนี้ผ่านด่านตรวจชนิดปลาของโปรไฟล์นั้นแล้ว แต่ตำแหน่ง จังหวะ และการดึงขึ้นยังมีเงื่อนไขอื่น"
+        },
+        "evidenceNotes": {
+          "en": [
+            "The portraits are target candidates for this exact item ID, not a guarantee of a bite or landed catch."
+          ],
+          "ja": [
+            "画像の魚はこのアイテムIDで対象候補になるが、食いつきや取り込みを保証するものではない。"
+          ],
+          "th": [
+            "รูปปลาใช้เป็นรายชื่อเป้าหมายที่ชิ้น ID นี้ผ่านด่านตรวจได้ ไม่ได้รับประกันว่าปลาจะกินเหยื่อหรือตกขึ้นมาได้"
+          ]
+        },
+        "evidence": {
+          "type": "rom_trace",
+          "sources": [
+            "data/fish-acceptance.json",
+            "data/lure-coverage.json",
+            "docs/fish-acceptance-research.md"
+          ]
+        }
+      }
+    },
+    {
+      "category": "lure",
+      "id": "19",
+      "playerUse": {
+        "summary": {
+          "en": "Use with a lure rod. If targeting a particular fish, pick a card showing that fish: this lure passes its fish-type gate for that profile. Position, timing and landing checks still apply.",
+          "ja": "ルアー竿で使う。狙う魚の画像がこのカードにあれば、その魚プロフィールの判定をこのルアーは通る。ポイント・タイミング・取り込みの条件は別に残る。",
+          "th": "ใช้กับคันลัวร์ ถ้าจะตามปลาชนิดไหน ให้เลือกการ์ดที่มีรูปปลานั้น: ลัวร์ชิ้นนี้ผ่านด่านตรวจชนิดปลาของโปรไฟล์นั้นแล้ว แต่ตำแหน่ง จังหวะ และการดึงขึ้นยังมีเงื่อนไขอื่น"
+        },
+        "evidenceNotes": {
+          "en": [
+            "The portraits are target candidates for this exact item ID, not a guarantee of a bite or landed catch."
+          ],
+          "ja": [
+            "画像の魚はこのアイテムIDで対象候補になるが、食いつきや取り込みを保証するものではない。"
+          ],
+          "th": [
+            "รูปปลาใช้เป็นรายชื่อเป้าหมายที่ชิ้น ID นี้ผ่านด่านตรวจได้ ไม่ได้รับประกันว่าปลาจะกินเหยื่อหรือตกขึ้นมาได้"
+          ]
+        },
+        "evidence": {
+          "type": "rom_trace",
+          "sources": [
+            "data/fish-acceptance.json",
+            "data/lure-coverage.json",
+            "docs/fish-acceptance-research.md"
+          ]
+        }
+      }
+    },
+    {
+      "category": "lure",
+      "id": "1A",
+      "playerUse": {
+        "summary": {
+          "en": "Use with a lure rod. If targeting a particular fish, pick a card showing that fish: this lure passes its fish-type gate for that profile. Position, timing and landing checks still apply.",
+          "ja": "ルアー竿で使う。狙う魚の画像がこのカードにあれば、その魚プロフィールの判定をこのルアーは通る。ポイント・タイミング・取り込みの条件は別に残る。",
+          "th": "ใช้กับคันลัวร์ ถ้าจะตามปลาชนิดไหน ให้เลือกการ์ดที่มีรูปปลานั้น: ลัวร์ชิ้นนี้ผ่านด่านตรวจชนิดปลาของโปรไฟล์นั้นแล้ว แต่ตำแหน่ง จังหวะ และการดึงขึ้นยังมีเงื่อนไขอื่น"
+        },
+        "evidenceNotes": {
+          "en": [
+            "The portraits are target candidates for this exact item ID, not a guarantee of a bite or landed catch."
+          ],
+          "ja": [
+            "画像の魚はこのアイテムIDで対象候補になるが、食いつきや取り込みを保証するものではない。"
+          ],
+          "th": [
+            "รูปปลาใช้เป็นรายชื่อเป้าหมายที่ชิ้น ID นี้ผ่านด่านตรวจได้ ไม่ได้รับประกันว่าปลาจะกินเหยื่อหรือตกขึ้นมาได้"
+          ]
+        },
+        "evidence": {
+          "type": "rom_trace",
+          "sources": [
+            "data/fish-acceptance.json",
+            "data/lure-coverage.json",
+            "docs/fish-acceptance-research.md"
+          ]
+        }
+      }
+    },
+    {
+      "category": "lure",
+      "id": "1B",
+      "playerUse": {
+        "summary": {
+          "en": "Use with a lure rod. If targeting a particular fish, pick a card showing that fish: this lure passes its fish-type gate for that profile. Position, timing and landing checks still apply.",
+          "ja": "ルアー竿で使う。狙う魚の画像がこのカードにあれば、その魚プロフィールの判定をこのルアーは通る。ポイント・タイミング・取り込みの条件は別に残る。",
+          "th": "ใช้กับคันลัวร์ ถ้าจะตามปลาชนิดไหน ให้เลือกการ์ดที่มีรูปปลานั้น: ลัวร์ชิ้นนี้ผ่านด่านตรวจชนิดปลาของโปรไฟล์นั้นแล้ว แต่ตำแหน่ง จังหวะ และการดึงขึ้นยังมีเงื่อนไขอื่น"
+        },
+        "evidenceNotes": {
+          "en": [
+            "The portraits are target candidates for this exact item ID, not a guarantee of a bite or landed catch."
+          ],
+          "ja": [
+            "画像の魚はこのアイテムIDで対象候補になるが、食いつきや取り込みを保証するものではない。"
+          ],
+          "th": [
+            "รูปปลาใช้เป็นรายชื่อเป้าหมายที่ชิ้น ID นี้ผ่านด่านตรวจได้ ไม่ได้รับประกันว่าปลาจะกินเหยื่อหรือตกขึ้นมาได้"
+          ]
+        },
+        "evidence": {
+          "type": "rom_trace",
+          "sources": [
+            "data/fish-acceptance.json",
+            "data/lure-coverage.json",
+            "docs/fish-acceptance-research.md"
+          ]
+        }
+      }
+    },
+    {
+      "category": "lure",
+      "id": "1C",
+      "playerUse": {
+        "summary": {
+          "en": "Use with a lure rod. If targeting a particular fish, pick a card showing that fish: this lure passes its fish-type gate for that profile. Position, timing and landing checks still apply.",
+          "ja": "ルアー竿で使う。狙う魚の画像がこのカードにあれば、その魚プロフィールの判定をこのルアーは通る。ポイント・タイミング・取り込みの条件は別に残る。",
+          "th": "ใช้กับคันลัวร์ ถ้าจะตามปลาชนิดไหน ให้เลือกการ์ดที่มีรูปปลานั้น: ลัวร์ชิ้นนี้ผ่านด่านตรวจชนิดปลาของโปรไฟล์นั้นแล้ว แต่ตำแหน่ง จังหวะ และการดึงขึ้นยังมีเงื่อนไขอื่น"
+        },
+        "evidenceNotes": {
+          "en": [
+            "The portraits are target candidates for this exact item ID, not a guarantee of a bite or landed catch."
+          ],
+          "ja": [
+            "画像の魚はこのアイテムIDで対象候補になるが、食いつきや取り込みを保証するものではない。"
+          ],
+          "th": [
+            "รูปปลาใช้เป็นรายชื่อเป้าหมายที่ชิ้น ID นี้ผ่านด่านตรวจได้ ไม่ได้รับประกันว่าปลาจะกินเหยื่อหรือตกขึ้นมาได้"
+          ]
+        },
+        "evidence": {
+          "type": "rom_trace",
+          "sources": [
+            "data/fish-acceptance.json",
+            "data/lure-coverage.json",
+            "docs/fish-acceptance-research.md"
+          ]
+        }
+      }
+    },
+    {
+      "category": "lure",
+      "id": "1D",
+      "playerUse": {
+        "summary": {
+          "en": "Use with a lure rod. If targeting a particular fish, pick a card showing that fish: this lure passes its fish-type gate for that profile. Position, timing and landing checks still apply.",
+          "ja": "ルアー竿で使う。狙う魚の画像がこのカードにあれば、その魚プロフィールの判定をこのルアーは通る。ポイント・タイミング・取り込みの条件は別に残る。",
+          "th": "ใช้กับคันลัวร์ ถ้าจะตามปลาชนิดไหน ให้เลือกการ์ดที่มีรูปปลานั้น: ลัวร์ชิ้นนี้ผ่านด่านตรวจชนิดปลาของโปรไฟล์นั้นแล้ว แต่ตำแหน่ง จังหวะ และการดึงขึ้นยังมีเงื่อนไขอื่น"
+        },
+        "evidenceNotes": {
+          "en": [
+            "The portraits are target candidates for this exact item ID, not a guarantee of a bite or landed catch."
+          ],
+          "ja": [
+            "画像の魚はこのアイテムIDで対象候補になるが、食いつきや取り込みを保証するものではない。"
+          ],
+          "th": [
+            "รูปปลาใช้เป็นรายชื่อเป้าหมายที่ชิ้น ID นี้ผ่านด่านตรวจได้ ไม่ได้รับประกันว่าปลาจะกินเหยื่อหรือตกขึ้นมาได้"
+          ]
+        },
+        "evidence": {
+          "type": "rom_trace",
+          "sources": [
+            "data/fish-acceptance.json",
+            "data/lure-coverage.json",
+            "docs/fish-acceptance-research.md"
+          ]
+        }
+      }
+    },
+    {
+      "category": "lure",
+      "id": "1E",
+      "playerUse": {
+        "summary": {
+          "en": "Use with a lure rod. If targeting a particular fish, pick a card showing that fish: this lure passes its fish-type gate for that profile. Position, timing and landing checks still apply.",
+          "ja": "ルアー竿で使う。狙う魚の画像がこのカードにあれば、その魚プロフィールの判定をこのルアーは通る。ポイント・タイミング・取り込みの条件は別に残る。",
+          "th": "ใช้กับคันลัวร์ ถ้าจะตามปลาชนิดไหน ให้เลือกการ์ดที่มีรูปปลานั้น: ลัวร์ชิ้นนี้ผ่านด่านตรวจชนิดปลาของโปรไฟล์นั้นแล้ว แต่ตำแหน่ง จังหวะ และการดึงขึ้นยังมีเงื่อนไขอื่น"
+        },
+        "evidenceNotes": {
+          "en": [
+            "The portraits are target candidates for this exact item ID, not a guarantee of a bite or landed catch."
+          ],
+          "ja": [
+            "画像の魚はこのアイテムIDで対象候補になるが、食いつきや取り込みを保証するものではない。"
+          ],
+          "th": [
+            "รูปปลาใช้เป็นรายชื่อเป้าหมายที่ชิ้น ID นี้ผ่านด่านตรวจได้ ไม่ได้รับประกันว่าปลาจะกินเหยื่อหรือตกขึ้นมาได้"
+          ]
+        },
+        "evidence": {
+          "type": "rom_trace",
+          "sources": [
+            "data/fish-acceptance.json",
+            "data/lure-coverage.json",
+            "docs/fish-acceptance-research.md"
+          ]
+        }
+      }
+    },
+    {
+      "category": "lure",
+      "id": "1F",
+      "playerUse": {
+        "summary": {
+          "en": "Use with a lure rod. If targeting a particular fish, pick a card showing that fish: this lure passes its fish-type gate for that profile. Position, timing and landing checks still apply.",
+          "ja": "ルアー竿で使う。狙う魚の画像がこのカードにあれば、その魚プロフィールの判定をこのルアーは通る。ポイント・タイミング・取り込みの条件は別に残る。",
+          "th": "ใช้กับคันลัวร์ ถ้าจะตามปลาชนิดไหน ให้เลือกการ์ดที่มีรูปปลานั้น: ลัวร์ชิ้นนี้ผ่านด่านตรวจชนิดปลาของโปรไฟล์นั้นแล้ว แต่ตำแหน่ง จังหวะ และการดึงขึ้นยังมีเงื่อนไขอื่น"
+        },
+        "evidenceNotes": {
+          "en": [
+            "The portraits are target candidates for this exact item ID, not a guarantee of a bite or landed catch."
+          ],
+          "ja": [
+            "画像の魚はこのアイテムIDで対象候補になるが、食いつきや取り込みを保証するものではない。"
+          ],
+          "th": [
+            "รูปปลาใช้เป็นรายชื่อเป้าหมายที่ชิ้น ID นี้ผ่านด่านตรวจได้ ไม่ได้รับประกันว่าปลาจะกินเหยื่อหรือตกขึ้นมาได้"
+          ]
+        },
+        "evidence": {
+          "type": "rom_trace",
+          "sources": [
+            "data/fish-acceptance.json",
+            "data/lure-coverage.json",
+            "docs/fish-acceptance-research.md"
+          ]
+        }
+      }
+    },
+    {
+      "category": "lure",
+      "id": "20",
+      "playerUse": {
+        "summary": {
+          "en": "Use with a lure rod. If targeting a particular fish, pick a card showing that fish: this lure passes its fish-type gate for that profile. Position, timing and landing checks still apply.",
+          "ja": "ルアー竿で使う。狙う魚の画像がこのカードにあれば、その魚プロフィールの判定をこのルアーは通る。ポイント・タイミング・取り込みの条件は別に残る。",
+          "th": "ใช้กับคันลัวร์ ถ้าจะตามปลาชนิดไหน ให้เลือกการ์ดที่มีรูปปลานั้น: ลัวร์ชิ้นนี้ผ่านด่านตรวจชนิดปลาของโปรไฟล์นั้นแล้ว แต่ตำแหน่ง จังหวะ และการดึงขึ้นยังมีเงื่อนไขอื่น"
+        },
+        "evidenceNotes": {
+          "en": [
+            "The portraits are target candidates for this exact item ID, not a guarantee of a bite or landed catch."
+          ],
+          "ja": [
+            "画像の魚はこのアイテムIDで対象候補になるが、食いつきや取り込みを保証するものではない。"
+          ],
+          "th": [
+            "รูปปลาใช้เป็นรายชื่อเป้าหมายที่ชิ้น ID นี้ผ่านด่านตรวจได้ ไม่ได้รับประกันว่าปลาจะกินเหยื่อหรือตกขึ้นมาได้"
+          ]
+        },
+        "evidence": {
+          "type": "rom_trace",
+          "sources": [
+            "data/fish-acceptance.json",
+            "data/lure-coverage.json",
+            "docs/fish-acceptance-research.md"
+          ]
+        }
+      }
+    },
+    {
+      "category": "lure",
+      "id": "21",
+      "playerUse": {
+        "summary": {
+          "en": "Use with a lure rod. If targeting a particular fish, pick a card showing that fish: this lure passes its fish-type gate for that profile. Position, timing and landing checks still apply.",
+          "ja": "ルアー竿で使う。狙う魚の画像がこのカードにあれば、その魚プロフィールの判定をこのルアーは通る。ポイント・タイミング・取り込みの条件は別に残る。",
+          "th": "ใช้กับคันลัวร์ ถ้าจะตามปลาชนิดไหน ให้เลือกการ์ดที่มีรูปปลานั้น: ลัวร์ชิ้นนี้ผ่านด่านตรวจชนิดปลาของโปรไฟล์นั้นแล้ว แต่ตำแหน่ง จังหวะ และการดึงขึ้นยังมีเงื่อนไขอื่น"
+        },
+        "evidenceNotes": {
+          "en": [
+            "The portraits are target candidates for this exact item ID, not a guarantee of a bite or landed catch.",
+            "The named-fish branch requires lure mode and an exact fish-ID match; it is separate from the broader fish-type gate shown in the portraits.",
+            "On lure mode plus exact fish-ID match, the handler halves the initial response value and skips this lure’s size-response branch; the rod response still runs afterward. The fish mask and ordinary eligible-fish list are separate."
+          ],
+          "ja": [
+            "画像の魚はこのアイテムIDで対象候補になるが、食いつきや取り込みを保証するものではない。",
+            "専用分岐はルアー釣り中かつ魚ID一致時だけ。画像の広い魚種判定とは別。",
+            "ルアー釣りかつ魚ID一致時、初期応答値を半分にしてルアーのサイズ応答分岐を飛ばす。後段の竿応答は実行される。魚種マスクと対象魚リストは別。"
+          ],
+          "th": [
+            "รูปปลาใช้เป็นรายชื่อเป้าหมายที่ชิ้น ID นี้ผ่านด่านตรวจได้ ไม่ได้รับประกันว่าปลาจะกินเหยื่อหรือตกขึ้นมาได้",
+            "เส้นทางเฉพาะทำงานเมื่ออยู่โหมดลัวร์และ ID ปลาตรงกันเท่านั้น; แยกจากด่านตรวจชนิดปลาที่แสดงด้วยรูป",
+            "เมื่ออยู่โหมดลัวร์และ ID ปลาตรงกัน โค้ดหารค่าตอบสนองเริ่มต้นลงครึ่งหนึ่งและข้ามเส้นทางตอบสนองตามขนาดของลัวร์; การตอบสนองของคันยังทำงานภายหลัง ส่วน mask ชนิดปลาและรายชื่อปลาที่ผ่านเป็นคนละเงื่อนไข"
+          ]
+        },
+        "evidence": {
+          "type": "rom_trace",
+          "sources": [
+            "data/fish-acceptance.json",
+            "data/lure-coverage.json",
+            "docs/fish-acceptance-research.md",
+            "data/lure-response.json",
+            "docs/lure-response-research.md"
+          ]
+        },
+        "facts": {
+          "en": [
+            "When pursuing Namazu, this lure takes a distinct opening fight-setup path. It still needs to pass the fish list shown on this card, and the ROM does not establish that it makes the fish easier to land."
+          ],
+          "ja": [
+            "ナマズを狙うとき、このルアーは開始時のファイト設定で専用分岐を通る。このカードの魚種判定は別に必要で、釣り上げやすくなるかはROMから確認できない。"
+          ],
+          "th": [
+            "เมื่อตามนามาซุ / ปลาดุก ลัวร์ชิ้นนี้เข้าเส้นทางตั้งค่าการสู้ช่วงเริ่มต้นแบบเฉพาะ; ยังต้องผ่านรายชื่อปลาบนการ์ดนี้ และ ROM ไม่ได้ยืนยันว่าช่วยให้ตกขึ้นมาได้ง่ายกว่า"
+          ]
+        }
+      }
+    },
+    {
+      "category": "lure",
+      "id": "22",
+      "playerUse": {
+        "summary": {
+          "en": "Use with a lure rod. If targeting a particular fish, pick a card showing that fish: this lure passes its fish-type gate for that profile. Position, timing and landing checks still apply.",
+          "ja": "ルアー竿で使う。狙う魚の画像がこのカードにあれば、その魚プロフィールの判定をこのルアーは通る。ポイント・タイミング・取り込みの条件は別に残る。",
+          "th": "ใช้กับคันลัวร์ ถ้าจะตามปลาชนิดไหน ให้เลือกการ์ดที่มีรูปปลานั้น: ลัวร์ชิ้นนี้ผ่านด่านตรวจชนิดปลาของโปรไฟล์นั้นแล้ว แต่ตำแหน่ง จังหวะ และการดึงขึ้นยังมีเงื่อนไขอื่น"
+        },
+        "evidenceNotes": {
+          "en": [
+            "The portraits are target candidates for this exact item ID, not a guarantee of a bite or landed catch."
+          ],
+          "ja": [
+            "画像の魚はこのアイテムIDで対象候補になるが、食いつきや取り込みを保証するものではない。"
+          ],
+          "th": [
+            "รูปปลาใช้เป็นรายชื่อเป้าหมายที่ชิ้น ID นี้ผ่านด่านตรวจได้ ไม่ได้รับประกันว่าปลาจะกินเหยื่อหรือตกขึ้นมาได้"
+          ]
+        },
+        "evidence": {
+          "type": "rom_trace",
+          "sources": [
+            "data/fish-acceptance.json",
+            "data/lure-coverage.json",
+            "docs/fish-acceptance-research.md"
+          ]
+        }
+      }
+    },
+    {
+      "category": "lure",
+      "id": "23",
+      "playerUse": {
+        "summary": {
+          "en": "Use with a lure rod. If targeting a particular fish, pick a card showing that fish: this lure passes its fish-type gate for that profile. Position, timing and landing checks still apply.",
+          "ja": "ルアー竿で使う。狙う魚の画像がこのカードにあれば、その魚プロフィールの判定をこのルアーは通る。ポイント・タイミング・取り込みの条件は別に残る。",
+          "th": "ใช้กับคันลัวร์ ถ้าจะตามปลาชนิดไหน ให้เลือกการ์ดที่มีรูปปลานั้น: ลัวร์ชิ้นนี้ผ่านด่านตรวจชนิดปลาของโปรไฟล์นั้นแล้ว แต่ตำแหน่ง จังหวะ และการดึงขึ้นยังมีเงื่อนไขอื่น"
+        },
+        "evidenceNotes": {
+          "en": [
+            "The portraits are target candidates for this exact item ID, not a guarantee of a bite or landed catch."
+          ],
+          "ja": [
+            "画像の魚はこのアイテムIDで対象候補になるが、食いつきや取り込みを保証するものではない。"
+          ],
+          "th": [
+            "รูปปลาใช้เป็นรายชื่อเป้าหมายที่ชิ้น ID นี้ผ่านด่านตรวจได้ ไม่ได้รับประกันว่าปลาจะกินเหยื่อหรือตกขึ้นมาได้"
+          ]
+        },
+        "evidence": {
+          "type": "rom_trace",
+          "sources": [
+            "data/fish-acceptance.json",
+            "data/lure-coverage.json",
+            "docs/fish-acceptance-research.md"
+          ]
+        }
+      }
+    },
+    {
+      "category": "lure",
+      "id": "24",
+      "playerUse": {
+        "summary": {
+          "en": "Use with a lure rod. If targeting a particular fish, pick a card showing that fish: this lure passes its fish-type gate for that profile. Position, timing and landing checks still apply.",
+          "ja": "ルアー竿で使う。狙う魚の画像がこのカードにあれば、その魚プロフィールの判定をこのルアーは通る。ポイント・タイミング・取り込みの条件は別に残る。",
+          "th": "ใช้กับคันลัวร์ ถ้าจะตามปลาชนิดไหน ให้เลือกการ์ดที่มีรูปปลานั้น: ลัวร์ชิ้นนี้ผ่านด่านตรวจชนิดปลาของโปรไฟล์นั้นแล้ว แต่ตำแหน่ง จังหวะ และการดึงขึ้นยังมีเงื่อนไขอื่น"
+        },
+        "evidenceNotes": {
+          "en": [
+            "The portraits are target candidates for this exact item ID, not a guarantee of a bite or landed catch."
+          ],
+          "ja": [
+            "画像の魚はこのアイテムIDで対象候補になるが、食いつきや取り込みを保証するものではない。"
+          ],
+          "th": [
+            "รูปปลาใช้เป็นรายชื่อเป้าหมายที่ชิ้น ID นี้ผ่านด่านตรวจได้ ไม่ได้รับประกันว่าปลาจะกินเหยื่อหรือตกขึ้นมาได้"
+          ]
+        },
+        "evidence": {
+          "type": "rom_trace",
+          "sources": [
+            "data/fish-acceptance.json",
+            "data/lure-coverage.json",
+            "docs/fish-acceptance-research.md"
+          ]
+        }
+      }
+    },
+    {
+      "category": "lure",
+      "id": "25",
+      "playerUse": {
+        "summary": {
+          "en": "Use with a lure rod. If targeting a particular fish, pick a card showing that fish: this lure passes its fish-type gate for that profile. Position, timing and landing checks still apply.",
+          "ja": "ルアー竿で使う。狙う魚の画像がこのカードにあれば、その魚プロフィールの判定をこのルアーは通る。ポイント・タイミング・取り込みの条件は別に残る。",
+          "th": "ใช้กับคันลัวร์ ถ้าจะตามปลาชนิดไหน ให้เลือกการ์ดที่มีรูปปลานั้น: ลัวร์ชิ้นนี้ผ่านด่านตรวจชนิดปลาของโปรไฟล์นั้นแล้ว แต่ตำแหน่ง จังหวะ และการดึงขึ้นยังมีเงื่อนไขอื่น"
+        },
+        "evidenceNotes": {
+          "en": [
+            "The portraits are target candidates for this exact item ID, not a guarantee of a bite or landed catch."
+          ],
+          "ja": [
+            "画像の魚はこのアイテムIDで対象候補になるが、食いつきや取り込みを保証するものではない。"
+          ],
+          "th": [
+            "รูปปลาใช้เป็นรายชื่อเป้าหมายที่ชิ้น ID นี้ผ่านด่านตรวจได้ ไม่ได้รับประกันว่าปลาจะกินเหยื่อหรือตกขึ้นมาได้"
+          ]
+        },
+        "evidence": {
+          "type": "rom_trace",
+          "sources": [
+            "data/fish-acceptance.json",
+            "data/lure-coverage.json",
+            "docs/fish-acceptance-research.md"
+          ]
+        }
+      }
+    },
+    {
+      "category": "lure",
+      "id": "26",
+      "playerUse": {
+        "summary": {
+          "en": "Use with a lure rod. If targeting a particular fish, pick a card showing that fish: this lure passes its fish-type gate for that profile. Position, timing and landing checks still apply.",
+          "ja": "ルアー竿で使う。狙う魚の画像がこのカードにあれば、その魚プロフィールの判定をこのルアーは通る。ポイント・タイミング・取り込みの条件は別に残る。",
+          "th": "ใช้กับคันลัวร์ ถ้าจะตามปลาชนิดไหน ให้เลือกการ์ดที่มีรูปปลานั้น: ลัวร์ชิ้นนี้ผ่านด่านตรวจชนิดปลาของโปรไฟล์นั้นแล้ว แต่ตำแหน่ง จังหวะ และการดึงขึ้นยังมีเงื่อนไขอื่น"
+        },
+        "evidenceNotes": {
+          "en": [
+            "The portraits are target candidates for this exact item ID, not a guarantee of a bite or landed catch."
+          ],
+          "ja": [
+            "画像の魚はこのアイテムIDで対象候補になるが、食いつきや取り込みを保証するものではない。"
+          ],
+          "th": [
+            "รูปปลาใช้เป็นรายชื่อเป้าหมายที่ชิ้น ID นี้ผ่านด่านตรวจได้ ไม่ได้รับประกันว่าปลาจะกินเหยื่อหรือตกขึ้นมาได้"
+          ]
+        },
+        "evidence": {
+          "type": "rom_trace",
+          "sources": [
+            "data/fish-acceptance.json",
+            "data/lure-coverage.json",
+            "docs/fish-acceptance-research.md"
+          ]
+        }
+      }
+    },
+    {
+      "category": "lure",
+      "id": "27",
+      "playerUse": {
+        "summary": {
+          "en": "Use with a lure rod. If targeting a particular fish, pick a card showing that fish: this lure passes its fish-type gate for that profile. Position, timing and landing checks still apply.",
+          "ja": "ルアー竿で使う。狙う魚の画像がこのカードにあれば、その魚プロフィールの判定をこのルアーは通る。ポイント・タイミング・取り込みの条件は別に残る。",
+          "th": "ใช้กับคันลัวร์ ถ้าจะตามปลาชนิดไหน ให้เลือกการ์ดที่มีรูปปลานั้น: ลัวร์ชิ้นนี้ผ่านด่านตรวจชนิดปลาของโปรไฟล์นั้นแล้ว แต่ตำแหน่ง จังหวะ และการดึงขึ้นยังมีเงื่อนไขอื่น"
+        },
+        "evidenceNotes": {
+          "en": [
+            "The portraits are target candidates for this exact item ID, not a guarantee of a bite or landed catch."
+          ],
+          "ja": [
+            "画像の魚はこのアイテムIDで対象候補になるが、食いつきや取り込みを保証するものではない。"
+          ],
+          "th": [
+            "รูปปลาใช้เป็นรายชื่อเป้าหมายที่ชิ้น ID นี้ผ่านด่านตรวจได้ ไม่ได้รับประกันว่าปลาจะกินเหยื่อหรือตกขึ้นมาได้"
+          ]
+        },
+        "evidence": {
+          "type": "rom_trace",
+          "sources": [
+            "data/fish-acceptance.json",
+            "data/lure-coverage.json",
+            "docs/fish-acceptance-research.md"
+          ]
+        }
+      }
+    },
+    {
+      "category": "lure",
+      "id": "28",
+      "playerUse": {
+        "summary": {
+          "en": "Use with a lure rod. If targeting a particular fish, pick a card showing that fish: this lure passes its fish-type gate for that profile. Position, timing and landing checks still apply.",
+          "ja": "ルアー竿で使う。狙う魚の画像がこのカードにあれば、その魚プロフィールの判定をこのルアーは通る。ポイント・タイミング・取り込みの条件は別に残る。",
+          "th": "ใช้กับคันลัวร์ ถ้าจะตามปลาชนิดไหน ให้เลือกการ์ดที่มีรูปปลานั้น: ลัวร์ชิ้นนี้ผ่านด่านตรวจชนิดปลาของโปรไฟล์นั้นแล้ว แต่ตำแหน่ง จังหวะ และการดึงขึ้นยังมีเงื่อนไขอื่น"
+        },
+        "evidenceNotes": {
+          "en": [
+            "The portraits are target candidates for this exact item ID, not a guarantee of a bite or landed catch."
+          ],
+          "ja": [
+            "画像の魚はこのアイテムIDで対象候補になるが、食いつきや取り込みを保証するものではない。"
+          ],
+          "th": [
+            "รูปปลาใช้เป็นรายชื่อเป้าหมายที่ชิ้น ID นี้ผ่านด่านตรวจได้ ไม่ได้รับประกันว่าปลาจะกินเหยื่อหรือตกขึ้นมาได้"
+          ]
+        },
+        "evidence": {
+          "type": "rom_trace",
+          "sources": [
+            "data/fish-acceptance.json",
+            "data/lure-coverage.json",
+            "docs/fish-acceptance-research.md"
+          ]
+        }
+      }
+    },
+    {
+      "category": "lure",
+      "id": "29",
+      "playerUse": {
+        "summary": {
+          "en": "Use with a lure rod. If targeting a particular fish, pick a card showing that fish: this lure passes its fish-type gate for that profile. Position, timing and landing checks still apply.",
+          "ja": "ルアー竿で使う。狙う魚の画像がこのカードにあれば、その魚プロフィールの判定をこのルアーは通る。ポイント・タイミング・取り込みの条件は別に残る。",
+          "th": "ใช้กับคันลัวร์ ถ้าจะตามปลาชนิดไหน ให้เลือกการ์ดที่มีรูปปลานั้น: ลัวร์ชิ้นนี้ผ่านด่านตรวจชนิดปลาของโปรไฟล์นั้นแล้ว แต่ตำแหน่ง จังหวะ และการดึงขึ้นยังมีเงื่อนไขอื่น"
+        },
+        "evidenceNotes": {
+          "en": [
+            "The portraits are target candidates for this exact item ID, not a guarantee of a bite or landed catch."
+          ],
+          "ja": [
+            "画像の魚はこのアイテムIDで対象候補になるが、食いつきや取り込みを保証するものではない。"
+          ],
+          "th": [
+            "รูปปลาใช้เป็นรายชื่อเป้าหมายที่ชิ้น ID นี้ผ่านด่านตรวจได้ ไม่ได้รับประกันว่าปลาจะกินเหยื่อหรือตกขึ้นมาได้"
+          ]
+        },
+        "evidence": {
+          "type": "rom_trace",
+          "sources": [
+            "data/fish-acceptance.json",
+            "data/lure-coverage.json",
+            "docs/fish-acceptance-research.md"
+          ]
+        }
+      }
+    },
+    {
+      "category": "lure",
+      "id": "2A",
+      "playerUse": {
+        "summary": {
+          "en": "Use with a lure rod. If targeting a particular fish, pick a card showing that fish: this lure passes its fish-type gate for that profile. Position, timing and landing checks still apply.",
+          "ja": "ルアー竿で使う。狙う魚の画像がこのカードにあれば、その魚プロフィールの判定をこのルアーは通る。ポイント・タイミング・取り込みの条件は別に残る。",
+          "th": "ใช้กับคันลัวร์ ถ้าจะตามปลาชนิดไหน ให้เลือกการ์ดที่มีรูปปลานั้น: ลัวร์ชิ้นนี้ผ่านด่านตรวจชนิดปลาของโปรไฟล์นั้นแล้ว แต่ตำแหน่ง จังหวะ และการดึงขึ้นยังมีเงื่อนไขอื่น"
+        },
+        "evidenceNotes": {
+          "en": [
+            "The portraits are target candidates for this exact item ID, not a guarantee of a bite or landed catch."
+          ],
+          "ja": [
+            "画像の魚はこのアイテムIDで対象候補になるが、食いつきや取り込みを保証するものではない。"
+          ],
+          "th": [
+            "รูปปลาใช้เป็นรายชื่อเป้าหมายที่ชิ้น ID นี้ผ่านด่านตรวจได้ ไม่ได้รับประกันว่าปลาจะกินเหยื่อหรือตกขึ้นมาได้"
+          ]
+        },
+        "evidence": {
+          "type": "rom_trace",
+          "sources": [
+            "data/fish-acceptance.json",
+            "data/lure-coverage.json",
+            "docs/fish-acceptance-research.md"
+          ]
+        }
+      }
+    },
+    {
+      "category": "lure",
+      "id": "2B",
+      "playerUse": {
+        "summary": {
+          "en": "Use with a lure rod. If targeting a particular fish, pick a card showing that fish: this lure passes its fish-type gate for that profile. Position, timing and landing checks still apply.",
+          "ja": "ルアー竿で使う。狙う魚の画像がこのカードにあれば、その魚プロフィールの判定をこのルアーは通る。ポイント・タイミング・取り込みの条件は別に残る。",
+          "th": "ใช้กับคันลัวร์ ถ้าจะตามปลาชนิดไหน ให้เลือกการ์ดที่มีรูปปลานั้น: ลัวร์ชิ้นนี้ผ่านด่านตรวจชนิดปลาของโปรไฟล์นั้นแล้ว แต่ตำแหน่ง จังหวะ และการดึงขึ้นยังมีเงื่อนไขอื่น"
+        },
+        "evidenceNotes": {
+          "en": [
+            "The portraits are target candidates for this exact item ID, not a guarantee of a bite or landed catch."
+          ],
+          "ja": [
+            "画像の魚はこのアイテムIDで対象候補になるが、食いつきや取り込みを保証するものではない。"
+          ],
+          "th": [
+            "รูปปลาใช้เป็นรายชื่อเป้าหมายที่ชิ้น ID นี้ผ่านด่านตรวจได้ ไม่ได้รับประกันว่าปลาจะกินเหยื่อหรือตกขึ้นมาได้"
+          ]
+        },
+        "evidence": {
+          "type": "rom_trace",
+          "sources": [
+            "data/fish-acceptance.json",
+            "data/lure-coverage.json",
+            "docs/fish-acceptance-research.md"
+          ]
+        }
+      }
+    },
+    {
+      "category": "lure",
+      "id": "2C",
+      "playerUse": {
+        "summary": {
+          "en": "Use with a lure rod. If targeting a particular fish, pick a card showing that fish: this lure passes its fish-type gate for that profile. Position, timing and landing checks still apply.",
+          "ja": "ルアー竿で使う。狙う魚の画像がこのカードにあれば、その魚プロフィールの判定をこのルアーは通る。ポイント・タイミング・取り込みの条件は別に残る。",
+          "th": "ใช้กับคันลัวร์ ถ้าจะตามปลาชนิดไหน ให้เลือกการ์ดที่มีรูปปลานั้น: ลัวร์ชิ้นนี้ผ่านด่านตรวจชนิดปลาของโปรไฟล์นั้นแล้ว แต่ตำแหน่ง จังหวะ และการดึงขึ้นยังมีเงื่อนไขอื่น"
+        },
+        "evidenceNotes": {
+          "en": [
+            "The portraits are target candidates for this exact item ID, not a guarantee of a bite or landed catch."
+          ],
+          "ja": [
+            "画像の魚はこのアイテムIDで対象候補になるが、食いつきや取り込みを保証するものではない。"
+          ],
+          "th": [
+            "รูปปลาใช้เป็นรายชื่อเป้าหมายที่ชิ้น ID นี้ผ่านด่านตรวจได้ ไม่ได้รับประกันว่าปลาจะกินเหยื่อหรือตกขึ้นมาได้"
+          ]
+        },
+        "evidence": {
+          "type": "rom_trace",
+          "sources": [
+            "data/fish-acceptance.json",
+            "data/lure-coverage.json",
+            "docs/fish-acceptance-research.md"
+          ]
+        }
+      }
+    },
+    {
+      "category": "lure",
+      "id": "2D",
+      "playerUse": {
+        "summary": {
+          "en": "Use with a lure rod. If targeting a particular fish, pick a card showing that fish: this lure passes its fish-type gate for that profile. Position, timing and landing checks still apply.",
+          "ja": "ルアー竿で使う。狙う魚の画像がこのカードにあれば、その魚プロフィールの判定をこのルアーは通る。ポイント・タイミング・取り込みの条件は別に残る。",
+          "th": "ใช้กับคันลัวร์ ถ้าจะตามปลาชนิดไหน ให้เลือกการ์ดที่มีรูปปลานั้น: ลัวร์ชิ้นนี้ผ่านด่านตรวจชนิดปลาของโปรไฟล์นั้นแล้ว แต่ตำแหน่ง จังหวะ และการดึงขึ้นยังมีเงื่อนไขอื่น"
+        },
+        "evidenceNotes": {
+          "en": [
+            "The portraits are target candidates for this exact item ID, not a guarantee of a bite or landed catch."
+          ],
+          "ja": [
+            "画像の魚はこのアイテムIDで対象候補になるが、食いつきや取り込みを保証するものではない。"
+          ],
+          "th": [
+            "รูปปลาใช้เป็นรายชื่อเป้าหมายที่ชิ้น ID นี้ผ่านด่านตรวจได้ ไม่ได้รับประกันว่าปลาจะกินเหยื่อหรือตกขึ้นมาได้"
+          ]
+        },
+        "evidence": {
+          "type": "rom_trace",
+          "sources": [
+            "data/fish-acceptance.json",
+            "data/lure-coverage.json",
+            "docs/fish-acceptance-research.md"
+          ]
+        }
+      }
+    },
+    {
+      "category": "lure",
+      "id": "2E",
+      "playerUse": {
+        "summary": {
+          "en": "Use with a lure rod. If targeting a particular fish, pick a card showing that fish: this lure passes its fish-type gate for that profile. Position, timing and landing checks still apply.",
+          "ja": "ルアー竿で使う。狙う魚の画像がこのカードにあれば、その魚プロフィールの判定をこのルアーは通る。ポイント・タイミング・取り込みの条件は別に残る。",
+          "th": "ใช้กับคันลัวร์ ถ้าจะตามปลาชนิดไหน ให้เลือกการ์ดที่มีรูปปลานั้น: ลัวร์ชิ้นนี้ผ่านด่านตรวจชนิดปลาของโปรไฟล์นั้นแล้ว แต่ตำแหน่ง จังหวะ และการดึงขึ้นยังมีเงื่อนไขอื่น"
+        },
+        "evidenceNotes": {
+          "en": [
+            "The portraits are target candidates for this exact item ID, not a guarantee of a bite or landed catch."
+          ],
+          "ja": [
+            "画像の魚はこのアイテムIDで対象候補になるが、食いつきや取り込みを保証するものではない。"
+          ],
+          "th": [
+            "รูปปลาใช้เป็นรายชื่อเป้าหมายที่ชิ้น ID นี้ผ่านด่านตรวจได้ ไม่ได้รับประกันว่าปลาจะกินเหยื่อหรือตกขึ้นมาได้"
+          ]
+        },
+        "evidence": {
+          "type": "rom_trace",
+          "sources": [
+            "data/fish-acceptance.json",
+            "data/lure-coverage.json",
+            "docs/fish-acceptance-research.md"
+          ]
+        }
+      }
+    },
+    {
+      "category": "lure",
+      "id": "2F",
+      "playerUse": {
+        "summary": {
+          "en": "Use with a lure rod. If targeting a particular fish, pick a card showing that fish: this lure passes its fish-type gate for that profile. Position, timing and landing checks still apply.",
+          "ja": "ルアー竿で使う。狙う魚の画像がこのカードにあれば、その魚プロフィールの判定をこのルアーは通る。ポイント・タイミング・取り込みの条件は別に残る。",
+          "th": "ใช้กับคันลัวร์ ถ้าจะตามปลาชนิดไหน ให้เลือกการ์ดที่มีรูปปลานั้น: ลัวร์ชิ้นนี้ผ่านด่านตรวจชนิดปลาของโปรไฟล์นั้นแล้ว แต่ตำแหน่ง จังหวะ และการดึงขึ้นยังมีเงื่อนไขอื่น"
+        },
+        "evidenceNotes": {
+          "en": [
+            "The portraits are target candidates for this exact item ID, not a guarantee of a bite or landed catch."
+          ],
+          "ja": [
+            "画像の魚はこのアイテムIDで対象候補になるが、食いつきや取り込みを保証するものではない。"
+          ],
+          "th": [
+            "รูปปลาใช้เป็นรายชื่อเป้าหมายที่ชิ้น ID นี้ผ่านด่านตรวจได้ ไม่ได้รับประกันว่าปลาจะกินเหยื่อหรือตกขึ้นมาได้"
+          ]
+        },
+        "evidence": {
+          "type": "rom_trace",
+          "sources": [
+            "data/fish-acceptance.json",
+            "data/lure-coverage.json",
+            "docs/fish-acceptance-research.md"
+          ]
+        }
+      }
+    },
+    {
+      "category": "lure",
+      "id": "30",
+      "playerUse": {
+        "summary": {
+          "en": "Use with a lure rod. If targeting a particular fish, pick a card showing that fish: this lure passes its fish-type gate for that profile. Position, timing and landing checks still apply.",
+          "ja": "ルアー竿で使う。狙う魚の画像がこのカードにあれば、その魚プロフィールの判定をこのルアーは通る。ポイント・タイミング・取り込みの条件は別に残る。",
+          "th": "ใช้กับคันลัวร์ ถ้าจะตามปลาชนิดไหน ให้เลือกการ์ดที่มีรูปปลานั้น: ลัวร์ชิ้นนี้ผ่านด่านตรวจชนิดปลาของโปรไฟล์นั้นแล้ว แต่ตำแหน่ง จังหวะ และการดึงขึ้นยังมีเงื่อนไขอื่น"
+        },
+        "evidenceNotes": {
+          "en": [
+            "The portraits are target candidates for this exact item ID, not a guarantee of a bite or landed catch."
+          ],
+          "ja": [
+            "画像の魚はこのアイテムIDで対象候補になるが、食いつきや取り込みを保証するものではない。"
+          ],
+          "th": [
+            "รูปปลาใช้เป็นรายชื่อเป้าหมายที่ชิ้น ID นี้ผ่านด่านตรวจได้ ไม่ได้รับประกันว่าปลาจะกินเหยื่อหรือตกขึ้นมาได้"
+          ]
+        },
+        "evidence": {
+          "type": "rom_trace",
+          "sources": [
+            "data/fish-acceptance.json",
+            "data/lure-coverage.json",
+            "docs/fish-acceptance-research.md"
+          ]
+        }
+      }
+    },
+    {
+      "category": "lure",
+      "id": "31",
+      "playerUse": {
+        "summary": {
+          "en": "Use with a lure rod. If targeting a particular fish, pick a card showing that fish: this lure passes its fish-type gate for that profile. Position, timing and landing checks still apply.",
+          "ja": "ルアー竿で使う。狙う魚の画像がこのカードにあれば、その魚プロフィールの判定をこのルアーは通る。ポイント・タイミング・取り込みの条件は別に残る。",
+          "th": "ใช้กับคันลัวร์ ถ้าจะตามปลาชนิดไหน ให้เลือกการ์ดที่มีรูปปลานั้น: ลัวร์ชิ้นนี้ผ่านด่านตรวจชนิดปลาของโปรไฟล์นั้นแล้ว แต่ตำแหน่ง จังหวะ และการดึงขึ้นยังมีเงื่อนไขอื่น"
+        },
+        "evidenceNotes": {
+          "en": [
+            "The portraits are target candidates for this exact item ID, not a guarantee of a bite or landed catch."
+          ],
+          "ja": [
+            "画像の魚はこのアイテムIDで対象候補になるが、食いつきや取り込みを保証するものではない。"
+          ],
+          "th": [
+            "รูปปลาใช้เป็นรายชื่อเป้าหมายที่ชิ้น ID นี้ผ่านด่านตรวจได้ ไม่ได้รับประกันว่าปลาจะกินเหยื่อหรือตกขึ้นมาได้"
+          ]
+        },
+        "evidence": {
+          "type": "rom_trace",
+          "sources": [
+            "data/fish-acceptance.json",
+            "data/lure-coverage.json",
+            "docs/fish-acceptance-research.md"
+          ]
+        }
+      }
+    },
+    {
+      "category": "lure",
+      "id": "32",
+      "playerUse": {
+        "summary": {
+          "en": "Use with a lure rod. If targeting a particular fish, pick a card showing that fish: this lure passes its fish-type gate for that profile. Position, timing and landing checks still apply.",
+          "ja": "ルアー竿で使う。狙う魚の画像がこのカードにあれば、その魚プロフィールの判定をこのルアーは通る。ポイント・タイミング・取り込みの条件は別に残る。",
+          "th": "ใช้กับคันลัวร์ ถ้าจะตามปลาชนิดไหน ให้เลือกการ์ดที่มีรูปปลานั้น: ลัวร์ชิ้นนี้ผ่านด่านตรวจชนิดปลาของโปรไฟล์นั้นแล้ว แต่ตำแหน่ง จังหวะ และการดึงขึ้นยังมีเงื่อนไขอื่น"
+        },
+        "evidenceNotes": {
+          "en": [
+            "The portraits are target candidates for this exact item ID, not a guarantee of a bite or landed catch."
+          ],
+          "ja": [
+            "画像の魚はこのアイテムIDで対象候補になるが、食いつきや取り込みを保証するものではない。"
+          ],
+          "th": [
+            "รูปปลาใช้เป็นรายชื่อเป้าหมายที่ชิ้น ID นี้ผ่านด่านตรวจได้ ไม่ได้รับประกันว่าปลาจะกินเหยื่อหรือตกขึ้นมาได้"
+          ]
+        },
+        "evidence": {
+          "type": "rom_trace",
+          "sources": [
+            "data/fish-acceptance.json",
+            "data/lure-coverage.json",
+            "docs/fish-acceptance-research.md"
+          ]
+        }
+      }
+    },
+    {
+      "category": "lure",
+      "id": "33",
+      "playerUse": {
+        "summary": {
+          "en": "Use with a lure rod. If targeting a particular fish, pick a card showing that fish: this lure passes its fish-type gate for that profile. Position, timing and landing checks still apply.",
+          "ja": "ルアー竿で使う。狙う魚の画像がこのカードにあれば、その魚プロフィールの判定をこのルアーは通る。ポイント・タイミング・取り込みの条件は別に残る。",
+          "th": "ใช้กับคันลัวร์ ถ้าจะตามปลาชนิดไหน ให้เลือกการ์ดที่มีรูปปลานั้น: ลัวร์ชิ้นนี้ผ่านด่านตรวจชนิดปลาของโปรไฟล์นั้นแล้ว แต่ตำแหน่ง จังหวะ และการดึงขึ้นยังมีเงื่อนไขอื่น"
+        },
+        "evidenceNotes": {
+          "en": [
+            "The portraits are target candidates for this exact item ID, not a guarantee of a bite or landed catch."
+          ],
+          "ja": [
+            "画像の魚はこのアイテムIDで対象候補になるが、食いつきや取り込みを保証するものではない。"
+          ],
+          "th": [
+            "รูปปลาใช้เป็นรายชื่อเป้าหมายที่ชิ้น ID นี้ผ่านด่านตรวจได้ ไม่ได้รับประกันว่าปลาจะกินเหยื่อหรือตกขึ้นมาได้"
+          ]
+        },
+        "evidence": {
+          "type": "rom_trace",
+          "sources": [
+            "data/fish-acceptance.json",
+            "data/lure-coverage.json",
+            "docs/fish-acceptance-research.md"
+          ]
+        }
+      }
+    },
+    {
+      "category": "lure",
+      "id": "34",
+      "playerUse": {
+        "summary": {
+          "en": "Use with a lure rod. If targeting a particular fish, pick a card showing that fish: this lure passes its fish-type gate for that profile. Position, timing and landing checks still apply.",
+          "ja": "ルアー竿で使う。狙う魚の画像がこのカードにあれば、その魚プロフィールの判定をこのルアーは通る。ポイント・タイミング・取り込みの条件は別に残る。",
+          "th": "ใช้กับคันลัวร์ ถ้าจะตามปลาชนิดไหน ให้เลือกการ์ดที่มีรูปปลานั้น: ลัวร์ชิ้นนี้ผ่านด่านตรวจชนิดปลาของโปรไฟล์นั้นแล้ว แต่ตำแหน่ง จังหวะ และการดึงขึ้นยังมีเงื่อนไขอื่น"
+        },
+        "evidenceNotes": {
+          "en": [
+            "The portraits are target candidates for this exact item ID, not a guarantee of a bite or landed catch."
+          ],
+          "ja": [
+            "画像の魚はこのアイテムIDで対象候補になるが、食いつきや取り込みを保証するものではない。"
+          ],
+          "th": [
+            "รูปปลาใช้เป็นรายชื่อเป้าหมายที่ชิ้น ID นี้ผ่านด่านตรวจได้ ไม่ได้รับประกันว่าปลาจะกินเหยื่อหรือตกขึ้นมาได้"
+          ]
+        },
+        "evidence": {
+          "type": "rom_trace",
+          "sources": [
+            "data/fish-acceptance.json",
+            "data/lure-coverage.json",
+            "docs/fish-acceptance-research.md"
+          ]
+        }
+      }
+    },
+    {
+      "category": "lure",
+      "id": "35",
+      "playerUse": {
+        "summary": {
+          "en": "Use with a lure rod. If targeting a particular fish, pick a card showing that fish: this lure passes its fish-type gate for that profile. Position, timing and landing checks still apply.",
+          "ja": "ルアー竿で使う。狙う魚の画像がこのカードにあれば、その魚プロフィールの判定をこのルアーは通る。ポイント・タイミング・取り込みの条件は別に残る。",
+          "th": "ใช้กับคันลัวร์ ถ้าจะตามปลาชนิดไหน ให้เลือกการ์ดที่มีรูปปลานั้น: ลัวร์ชิ้นนี้ผ่านด่านตรวจชนิดปลาของโปรไฟล์นั้นแล้ว แต่ตำแหน่ง จังหวะ และการดึงขึ้นยังมีเงื่อนไขอื่น"
+        },
+        "evidenceNotes": {
+          "en": [
+            "The portraits are target candidates for this exact item ID, not a guarantee of a bite or landed catch."
+          ],
+          "ja": [
+            "画像の魚はこのアイテムIDで対象候補になるが、食いつきや取り込みを保証するものではない。"
+          ],
+          "th": [
+            "รูปปลาใช้เป็นรายชื่อเป้าหมายที่ชิ้น ID นี้ผ่านด่านตรวจได้ ไม่ได้รับประกันว่าปลาจะกินเหยื่อหรือตกขึ้นมาได้"
+          ]
+        },
+        "evidence": {
+          "type": "rom_trace",
+          "sources": [
+            "data/fish-acceptance.json",
+            "data/lure-coverage.json",
+            "docs/fish-acceptance-research.md"
+          ]
+        }
+      }
+    },
+    {
+      "category": "lure",
+      "id": "36",
+      "playerUse": {
+        "summary": {
+          "en": "Use with a lure rod. If targeting a particular fish, pick a card showing that fish: this lure passes its fish-type gate for that profile. Position, timing and landing checks still apply.",
+          "ja": "ルアー竿で使う。狙う魚の画像がこのカードにあれば、その魚プロフィールの判定をこのルアーは通る。ポイント・タイミング・取り込みの条件は別に残る。",
+          "th": "ใช้กับคันลัวร์ ถ้าจะตามปลาชนิดไหน ให้เลือกการ์ดที่มีรูปปลานั้น: ลัวร์ชิ้นนี้ผ่านด่านตรวจชนิดปลาของโปรไฟล์นั้นแล้ว แต่ตำแหน่ง จังหวะ และการดึงขึ้นยังมีเงื่อนไขอื่น"
+        },
+        "evidenceNotes": {
+          "en": [
+            "The portraits are target candidates for this exact item ID, not a guarantee of a bite or landed catch."
+          ],
+          "ja": [
+            "画像の魚はこのアイテムIDで対象候補になるが、食いつきや取り込みを保証するものではない。"
+          ],
+          "th": [
+            "รูปปลาใช้เป็นรายชื่อเป้าหมายที่ชิ้น ID นี้ผ่านด่านตรวจได้ ไม่ได้รับประกันว่าปลาจะกินเหยื่อหรือตกขึ้นมาได้"
+          ]
+        },
+        "evidence": {
+          "type": "rom_trace",
+          "sources": [
+            "data/fish-acceptance.json",
+            "data/lure-coverage.json",
+            "docs/fish-acceptance-research.md"
+          ]
+        }
+      }
+    },
+    {
+      "category": "lure",
+      "id": "37",
+      "playerUse": {
+        "summary": {
+          "en": "Use with a lure rod. If targeting a particular fish, pick a card showing that fish: this lure passes its fish-type gate for that profile. Position, timing and landing checks still apply.",
+          "ja": "ルアー竿で使う。狙う魚の画像がこのカードにあれば、その魚プロフィールの判定をこのルアーは通る。ポイント・タイミング・取り込みの条件は別に残る。",
+          "th": "ใช้กับคันลัวร์ ถ้าจะตามปลาชนิดไหน ให้เลือกการ์ดที่มีรูปปลานั้น: ลัวร์ชิ้นนี้ผ่านด่านตรวจชนิดปลาของโปรไฟล์นั้นแล้ว แต่ตำแหน่ง จังหวะ และการดึงขึ้นยังมีเงื่อนไขอื่น"
+        },
+        "evidenceNotes": {
+          "en": [
+            "The portraits are target candidates for this exact item ID, not a guarantee of a bite or landed catch."
+          ],
+          "ja": [
+            "画像の魚はこのアイテムIDで対象候補になるが、食いつきや取り込みを保証するものではない。"
+          ],
+          "th": [
+            "รูปปลาใช้เป็นรายชื่อเป้าหมายที่ชิ้น ID นี้ผ่านด่านตรวจได้ ไม่ได้รับประกันว่าปลาจะกินเหยื่อหรือตกขึ้นมาได้"
+          ]
+        },
+        "evidence": {
+          "type": "rom_trace",
+          "sources": [
+            "data/fish-acceptance.json",
+            "data/lure-coverage.json",
+            "docs/fish-acceptance-research.md"
+          ]
+        }
+      }
+    },
+    {
+      "category": "lure",
+      "id": "38",
+      "playerUse": {
+        "summary": {
+          "en": "Use with a lure rod. If targeting a particular fish, pick a card showing that fish: this lure passes its fish-type gate for that profile. Position, timing and landing checks still apply.",
+          "ja": "ルアー竿で使う。狙う魚の画像がこのカードにあれば、その魚プロフィールの判定をこのルアーは通る。ポイント・タイミング・取り込みの条件は別に残る。",
+          "th": "ใช้กับคันลัวร์ ถ้าจะตามปลาชนิดไหน ให้เลือกการ์ดที่มีรูปปลานั้น: ลัวร์ชิ้นนี้ผ่านด่านตรวจชนิดปลาของโปรไฟล์นั้นแล้ว แต่ตำแหน่ง จังหวะ และการดึงขึ้นยังมีเงื่อนไขอื่น"
+        },
+        "evidenceNotes": {
+          "en": [
+            "The portraits are target candidates for this exact item ID, not a guarantee of a bite or landed catch."
+          ],
+          "ja": [
+            "画像の魚はこのアイテムIDで対象候補になるが、食いつきや取り込みを保証するものではない。"
+          ],
+          "th": [
+            "รูปปลาใช้เป็นรายชื่อเป้าหมายที่ชิ้น ID นี้ผ่านด่านตรวจได้ ไม่ได้รับประกันว่าปลาจะกินเหยื่อหรือตกขึ้นมาได้"
+          ]
+        },
+        "evidence": {
+          "type": "rom_trace",
+          "sources": [
+            "data/fish-acceptance.json",
+            "data/lure-coverage.json",
+            "docs/fish-acceptance-research.md"
+          ]
+        }
+      }
+    },
+    {
+      "category": "lure",
+      "id": "39",
+      "playerUse": {
+        "summary": {
+          "en": "Use with a lure rod. If targeting a particular fish, pick a card showing that fish: this lure passes its fish-type gate for that profile. Position, timing and landing checks still apply.",
+          "ja": "ルアー竿で使う。狙う魚の画像がこのカードにあれば、その魚プロフィールの判定をこのルアーは通る。ポイント・タイミング・取り込みの条件は別に残る。",
+          "th": "ใช้กับคันลัวร์ ถ้าจะตามปลาชนิดไหน ให้เลือกการ์ดที่มีรูปปลานั้น: ลัวร์ชิ้นนี้ผ่านด่านตรวจชนิดปลาของโปรไฟล์นั้นแล้ว แต่ตำแหน่ง จังหวะ และการดึงขึ้นยังมีเงื่อนไขอื่น"
+        },
+        "evidenceNotes": {
+          "en": [
+            "The portraits are target candidates for this exact item ID, not a guarantee of a bite or landed catch."
+          ],
+          "ja": [
+            "画像の魚はこのアイテムIDで対象候補になるが、食いつきや取り込みを保証するものではない。"
+          ],
+          "th": [
+            "รูปปลาใช้เป็นรายชื่อเป้าหมายที่ชิ้น ID นี้ผ่านด่านตรวจได้ ไม่ได้รับประกันว่าปลาจะกินเหยื่อหรือตกขึ้นมาได้"
+          ]
+        },
+        "evidence": {
+          "type": "rom_trace",
+          "sources": [
+            "data/fish-acceptance.json",
+            "data/lure-coverage.json",
+            "docs/fish-acceptance-research.md"
+          ]
+        }
+      }
+    },
+    {
+      "category": "lure",
+      "id": "3A",
+      "playerUse": {
+        "summary": {
+          "en": "Use with a lure rod. If targeting a particular fish, pick a card showing that fish: this lure passes its fish-type gate for that profile. Position, timing and landing checks still apply.",
+          "ja": "ルアー竿で使う。狙う魚の画像がこのカードにあれば、その魚プロフィールの判定をこのルアーは通る。ポイント・タイミング・取り込みの条件は別に残る。",
+          "th": "ใช้กับคันลัวร์ ถ้าจะตามปลาชนิดไหน ให้เลือกการ์ดที่มีรูปปลานั้น: ลัวร์ชิ้นนี้ผ่านด่านตรวจชนิดปลาของโปรไฟล์นั้นแล้ว แต่ตำแหน่ง จังหวะ และการดึงขึ้นยังมีเงื่อนไขอื่น"
+        },
+        "evidenceNotes": {
+          "en": [
+            "The portraits are target candidates for this exact item ID, not a guarantee of a bite or landed catch."
+          ],
+          "ja": [
+            "画像の魚はこのアイテムIDで対象候補になるが、食いつきや取り込みを保証するものではない。"
+          ],
+          "th": [
+            "รูปปลาใช้เป็นรายชื่อเป้าหมายที่ชิ้น ID นี้ผ่านด่านตรวจได้ ไม่ได้รับประกันว่าปลาจะกินเหยื่อหรือตกขึ้นมาได้"
+          ]
+        },
+        "evidence": {
+          "type": "rom_trace",
+          "sources": [
+            "data/fish-acceptance.json",
+            "data/lure-coverage.json",
+            "docs/fish-acceptance-research.md"
+          ]
+        }
+      }
+    },
+    {
+      "category": "lure",
+      "id": "3B",
+      "playerUse": {
+        "summary": {
+          "en": "Use with a lure rod. If targeting a particular fish, pick a card showing that fish: this lure passes its fish-type gate for that profile. Position, timing and landing checks still apply.",
+          "ja": "ルアー竿で使う。狙う魚の画像がこのカードにあれば、その魚プロフィールの判定をこのルアーは通る。ポイント・タイミング・取り込みの条件は別に残る。",
+          "th": "ใช้กับคันลัวร์ ถ้าจะตามปลาชนิดไหน ให้เลือกการ์ดที่มีรูปปลานั้น: ลัวร์ชิ้นนี้ผ่านด่านตรวจชนิดปลาของโปรไฟล์นั้นแล้ว แต่ตำแหน่ง จังหวะ และการดึงขึ้นยังมีเงื่อนไขอื่น"
+        },
+        "evidenceNotes": {
+          "en": [
+            "The portraits are target candidates for this exact item ID, not a guarantee of a bite or landed catch."
+          ],
+          "ja": [
+            "画像の魚はこのアイテムIDで対象候補になるが、食いつきや取り込みを保証するものではない。"
+          ],
+          "th": [
+            "รูปปลาใช้เป็นรายชื่อเป้าหมายที่ชิ้น ID นี้ผ่านด่านตรวจได้ ไม่ได้รับประกันว่าปลาจะกินเหยื่อหรือตกขึ้นมาได้"
+          ]
+        },
+        "evidence": {
+          "type": "rom_trace",
+          "sources": [
+            "data/fish-acceptance.json",
+            "data/lure-coverage.json",
+            "docs/fish-acceptance-research.md"
+          ]
+        }
+      }
+    },
+    {
+      "category": "lure",
+      "id": "3C",
+      "playerUse": {
+        "summary": {
+          "en": "Use with a lure rod. If targeting a particular fish, pick a card showing that fish: this lure passes its fish-type gate for that profile. Position, timing and landing checks still apply.",
+          "ja": "ルアー竿で使う。狙う魚の画像がこのカードにあれば、その魚プロフィールの判定をこのルアーは通る。ポイント・タイミング・取り込みの条件は別に残る。",
+          "th": "ใช้กับคันลัวร์ ถ้าจะตามปลาชนิดไหน ให้เลือกการ์ดที่มีรูปปลานั้น: ลัวร์ชิ้นนี้ผ่านด่านตรวจชนิดปลาของโปรไฟล์นั้นแล้ว แต่ตำแหน่ง จังหวะ และการดึงขึ้นยังมีเงื่อนไขอื่น"
+        },
+        "evidenceNotes": {
+          "en": [
+            "The portraits are target candidates for this exact item ID, not a guarantee of a bite or landed catch."
+          ],
+          "ja": [
+            "画像の魚はこのアイテムIDで対象候補になるが、食いつきや取り込みを保証するものではない。"
+          ],
+          "th": [
+            "รูปปลาใช้เป็นรายชื่อเป้าหมายที่ชิ้น ID นี้ผ่านด่านตรวจได้ ไม่ได้รับประกันว่าปลาจะกินเหยื่อหรือตกขึ้นมาได้"
+          ]
+        },
+        "evidence": {
+          "type": "rom_trace",
+          "sources": [
+            "data/fish-acceptance.json",
+            "data/lure-coverage.json",
+            "docs/fish-acceptance-research.md"
+          ]
+        }
+      }
+    },
+    {
+      "category": "lure",
+      "id": "3D",
+      "playerUse": {
+        "summary": {
+          "en": "Use with a lure rod. If targeting a particular fish, pick a card showing that fish: this lure passes its fish-type gate for that profile. Position, timing and landing checks still apply.",
+          "ja": "ルアー竿で使う。狙う魚の画像がこのカードにあれば、その魚プロフィールの判定をこのルアーは通る。ポイント・タイミング・取り込みの条件は別に残る。",
+          "th": "ใช้กับคันลัวร์ ถ้าจะตามปลาชนิดไหน ให้เลือกการ์ดที่มีรูปปลานั้น: ลัวร์ชิ้นนี้ผ่านด่านตรวจชนิดปลาของโปรไฟล์นั้นแล้ว แต่ตำแหน่ง จังหวะ และการดึงขึ้นยังมีเงื่อนไขอื่น"
+        },
+        "evidenceNotes": {
+          "en": [
+            "The portraits are target candidates for this exact item ID, not a guarantee of a bite or landed catch."
+          ],
+          "ja": [
+            "画像の魚はこのアイテムIDで対象候補になるが、食いつきや取り込みを保証するものではない。"
+          ],
+          "th": [
+            "รูปปลาใช้เป็นรายชื่อเป้าหมายที่ชิ้น ID นี้ผ่านด่านตรวจได้ ไม่ได้รับประกันว่าปลาจะกินเหยื่อหรือตกขึ้นมาได้"
+          ]
+        },
+        "evidence": {
+          "type": "rom_trace",
+          "sources": [
+            "data/fish-acceptance.json",
+            "data/lure-coverage.json",
+            "docs/fish-acceptance-research.md"
+          ]
+        }
+      }
+    },
+    {
+      "category": "lure",
+      "id": "3E",
+      "playerUse": {
+        "summary": {
+          "en": "Use with a lure rod. If targeting a particular fish, pick a card showing that fish: this lure passes its fish-type gate for that profile. Position, timing and landing checks still apply.",
+          "ja": "ルアー竿で使う。狙う魚の画像がこのカードにあれば、その魚プロフィールの判定をこのルアーは通る。ポイント・タイミング・取り込みの条件は別に残る。",
+          "th": "ใช้กับคันลัวร์ ถ้าจะตามปลาชนิดไหน ให้เลือกการ์ดที่มีรูปปลานั้น: ลัวร์ชิ้นนี้ผ่านด่านตรวจชนิดปลาของโปรไฟล์นั้นแล้ว แต่ตำแหน่ง จังหวะ และการดึงขึ้นยังมีเงื่อนไขอื่น"
+        },
+        "evidenceNotes": {
+          "en": [
+            "The portraits are target candidates for this exact item ID, not a guarantee of a bite or landed catch."
+          ],
+          "ja": [
+            "画像の魚はこのアイテムIDで対象候補になるが、食いつきや取り込みを保証するものではない。"
+          ],
+          "th": [
+            "รูปปลาใช้เป็นรายชื่อเป้าหมายที่ชิ้น ID นี้ผ่านด่านตรวจได้ ไม่ได้รับประกันว่าปลาจะกินเหยื่อหรือตกขึ้นมาได้"
+          ]
+        },
+        "evidence": {
+          "type": "rom_trace",
+          "sources": [
+            "data/fish-acceptance.json",
+            "data/lure-coverage.json",
+            "docs/fish-acceptance-research.md"
+          ]
+        }
+      }
+    },
+    {
+      "category": "lure",
+      "id": "3F",
+      "playerUse": {
+        "summary": {
+          "en": "Use with a lure rod. If targeting a particular fish, pick a card showing that fish: this lure passes its fish-type gate for that profile. Position, timing and landing checks still apply.",
+          "ja": "ルアー竿で使う。狙う魚の画像がこのカードにあれば、その魚プロフィールの判定をこのルアーは通る。ポイント・タイミング・取り込みの条件は別に残る。",
+          "th": "ใช้กับคันลัวร์ ถ้าจะตามปลาชนิดไหน ให้เลือกการ์ดที่มีรูปปลานั้น: ลัวร์ชิ้นนี้ผ่านด่านตรวจชนิดปลาของโปรไฟล์นั้นแล้ว แต่ตำแหน่ง จังหวะ และการดึงขึ้นยังมีเงื่อนไขอื่น"
+        },
+        "evidenceNotes": {
+          "en": [
+            "The portraits are target candidates for this exact item ID, not a guarantee of a bite or landed catch."
+          ],
+          "ja": [
+            "画像の魚はこのアイテムIDで対象候補になるが、食いつきや取り込みを保証するものではない。"
+          ],
+          "th": [
+            "รูปปลาใช้เป็นรายชื่อเป้าหมายที่ชิ้น ID นี้ผ่านด่านตรวจได้ ไม่ได้รับประกันว่าปลาจะกินเหยื่อหรือตกขึ้นมาได้"
+          ]
+        },
+        "evidence": {
+          "type": "rom_trace",
+          "sources": [
+            "data/fish-acceptance.json",
+            "data/lure-coverage.json",
+            "docs/fish-acceptance-research.md"
+          ]
+        }
+      }
+    },
+    {
+      "category": "lure",
+      "id": "40",
+      "playerUse": {
+        "summary": {
+          "en": "Use with a lure rod. If targeting a particular fish, pick a card showing that fish: this lure passes its fish-type gate for that profile. Position, timing and landing checks still apply.",
+          "ja": "ルアー竿で使う。狙う魚の画像がこのカードにあれば、その魚プロフィールの判定をこのルアーは通る。ポイント・タイミング・取り込みの条件は別に残る。",
+          "th": "ใช้กับคันลัวร์ ถ้าจะตามปลาชนิดไหน ให้เลือกการ์ดที่มีรูปปลานั้น: ลัวร์ชิ้นนี้ผ่านด่านตรวจชนิดปลาของโปรไฟล์นั้นแล้ว แต่ตำแหน่ง จังหวะ และการดึงขึ้นยังมีเงื่อนไขอื่น"
+        },
+        "evidenceNotes": {
+          "en": [
+            "The portraits are target candidates for this exact item ID, not a guarantee of a bite or landed catch."
+          ],
+          "ja": [
+            "画像の魚はこのアイテムIDで対象候補になるが、食いつきや取り込みを保証するものではない。"
+          ],
+          "th": [
+            "รูปปลาใช้เป็นรายชื่อเป้าหมายที่ชิ้น ID นี้ผ่านด่านตรวจได้ ไม่ได้รับประกันว่าปลาจะกินเหยื่อหรือตกขึ้นมาได้"
+          ]
+        },
+        "evidence": {
+          "type": "rom_trace",
+          "sources": [
+            "data/fish-acceptance.json",
+            "data/lure-coverage.json",
+            "docs/fish-acceptance-research.md"
+          ]
+        }
+      }
+    },
+    {
+      "category": "lure",
+      "id": "41",
+      "playerUse": {
+        "summary": {
+          "en": "Use with a lure rod. If targeting a particular fish, pick a card showing that fish: this lure passes its fish-type gate for that profile. Position, timing and landing checks still apply.",
+          "ja": "ルアー竿で使う。狙う魚の画像がこのカードにあれば、その魚プロフィールの判定をこのルアーは通る。ポイント・タイミング・取り込みの条件は別に残る。",
+          "th": "ใช้กับคันลัวร์ ถ้าจะตามปลาชนิดไหน ให้เลือกการ์ดที่มีรูปปลานั้น: ลัวร์ชิ้นนี้ผ่านด่านตรวจชนิดปลาของโปรไฟล์นั้นแล้ว แต่ตำแหน่ง จังหวะ และการดึงขึ้นยังมีเงื่อนไขอื่น"
+        },
+        "evidenceNotes": {
+          "en": [
+            "The portraits are target candidates for this exact item ID, not a guarantee of a bite or landed catch."
+          ],
+          "ja": [
+            "画像の魚はこのアイテムIDで対象候補になるが、食いつきや取り込みを保証するものではない。"
+          ],
+          "th": [
+            "รูปปลาใช้เป็นรายชื่อเป้าหมายที่ชิ้น ID นี้ผ่านด่านตรวจได้ ไม่ได้รับประกันว่าปลาจะกินเหยื่อหรือตกขึ้นมาได้"
+          ]
+        },
+        "evidence": {
+          "type": "rom_trace",
+          "sources": [
+            "data/fish-acceptance.json",
+            "data/lure-coverage.json",
+            "docs/fish-acceptance-research.md"
+          ]
+        }
+      }
+    },
+    {
+      "category": "lure",
+      "id": "42",
+      "playerUse": {
+        "summary": {
+          "en": "Use with a lure rod. If targeting a particular fish, pick a card showing that fish: this lure passes its fish-type gate for that profile. Position, timing and landing checks still apply.",
+          "ja": "ルアー竿で使う。狙う魚の画像がこのカードにあれば、その魚プロフィールの判定をこのルアーは通る。ポイント・タイミング・取り込みの条件は別に残る。",
+          "th": "ใช้กับคันลัวร์ ถ้าจะตามปลาชนิดไหน ให้เลือกการ์ดที่มีรูปปลานั้น: ลัวร์ชิ้นนี้ผ่านด่านตรวจชนิดปลาของโปรไฟล์นั้นแล้ว แต่ตำแหน่ง จังหวะ และการดึงขึ้นยังมีเงื่อนไขอื่น"
+        },
+        "evidenceNotes": {
+          "en": [
+            "The portraits are target candidates for this exact item ID, not a guarantee of a bite or landed catch."
+          ],
+          "ja": [
+            "画像の魚はこのアイテムIDで対象候補になるが、食いつきや取り込みを保証するものではない。"
+          ],
+          "th": [
+            "รูปปลาใช้เป็นรายชื่อเป้าหมายที่ชิ้น ID นี้ผ่านด่านตรวจได้ ไม่ได้รับประกันว่าปลาจะกินเหยื่อหรือตกขึ้นมาได้"
+          ]
+        },
+        "evidence": {
+          "type": "rom_trace",
+          "sources": [
+            "data/fish-acceptance.json",
+            "data/lure-coverage.json",
+            "docs/fish-acceptance-research.md"
+          ]
+        }
+      }
+    },
+    {
+      "category": "lure",
+      "id": "43",
+      "playerUse": {
+        "summary": {
+          "en": "Use with a lure rod. If targeting a particular fish, pick a card showing that fish: this lure passes its fish-type gate for that profile. Position, timing and landing checks still apply.",
+          "ja": "ルアー竿で使う。狙う魚の画像がこのカードにあれば、その魚プロフィールの判定をこのルアーは通る。ポイント・タイミング・取り込みの条件は別に残る。",
+          "th": "ใช้กับคันลัวร์ ถ้าจะตามปลาชนิดไหน ให้เลือกการ์ดที่มีรูปปลานั้น: ลัวร์ชิ้นนี้ผ่านด่านตรวจชนิดปลาของโปรไฟล์นั้นแล้ว แต่ตำแหน่ง จังหวะ และการดึงขึ้นยังมีเงื่อนไขอื่น"
+        },
+        "evidenceNotes": {
+          "en": [
+            "The portraits are target candidates for this exact item ID, not a guarantee of a bite or landed catch."
+          ],
+          "ja": [
+            "画像の魚はこのアイテムIDで対象候補になるが、食いつきや取り込みを保証するものではない。"
+          ],
+          "th": [
+            "รูปปลาใช้เป็นรายชื่อเป้าหมายที่ชิ้น ID นี้ผ่านด่านตรวจได้ ไม่ได้รับประกันว่าปลาจะกินเหยื่อหรือตกขึ้นมาได้"
+          ]
+        },
+        "evidence": {
+          "type": "rom_trace",
+          "sources": [
+            "data/fish-acceptance.json",
+            "data/lure-coverage.json",
+            "docs/fish-acceptance-research.md"
+          ]
+        }
+      }
+    },
+    {
+      "category": "lure",
+      "id": "44",
+      "playerUse": {
+        "summary": {
+          "en": "Use with a lure rod. If targeting a particular fish, pick a card showing that fish: this lure passes its fish-type gate for that profile. Position, timing and landing checks still apply.",
+          "ja": "ルアー竿で使う。狙う魚の画像がこのカードにあれば、その魚プロフィールの判定をこのルアーは通る。ポイント・タイミング・取り込みの条件は別に残る。",
+          "th": "ใช้กับคันลัวร์ ถ้าจะตามปลาชนิดไหน ให้เลือกการ์ดที่มีรูปปลานั้น: ลัวร์ชิ้นนี้ผ่านด่านตรวจชนิดปลาของโปรไฟล์นั้นแล้ว แต่ตำแหน่ง จังหวะ และการดึงขึ้นยังมีเงื่อนไขอื่น"
+        },
+        "evidenceNotes": {
+          "en": [
+            "The portraits are target candidates for this exact item ID, not a guarantee of a bite or landed catch."
+          ],
+          "ja": [
+            "画像の魚はこのアイテムIDで対象候補になるが、食いつきや取り込みを保証するものではない。"
+          ],
+          "th": [
+            "รูปปลาใช้เป็นรายชื่อเป้าหมายที่ชิ้น ID นี้ผ่านด่านตรวจได้ ไม่ได้รับประกันว่าปลาจะกินเหยื่อหรือตกขึ้นมาได้"
+          ]
+        },
+        "evidence": {
+          "type": "rom_trace",
+          "sources": [
+            "data/fish-acceptance.json",
+            "data/lure-coverage.json",
+            "docs/fish-acceptance-research.md"
+          ]
+        }
+      }
+    },
+    {
+      "category": "lure",
+      "id": "45",
+      "playerUse": {
+        "summary": {
+          "en": "Use with a lure rod. If targeting a particular fish, pick a card showing that fish: this lure passes its fish-type gate for that profile. Position, timing and landing checks still apply.",
+          "ja": "ルアー竿で使う。狙う魚の画像がこのカードにあれば、その魚プロフィールの判定をこのルアーは通る。ポイント・タイミング・取り込みの条件は別に残る。",
+          "th": "ใช้กับคันลัวร์ ถ้าจะตามปลาชนิดไหน ให้เลือกการ์ดที่มีรูปปลานั้น: ลัวร์ชิ้นนี้ผ่านด่านตรวจชนิดปลาของโปรไฟล์นั้นแล้ว แต่ตำแหน่ง จังหวะ และการดึงขึ้นยังมีเงื่อนไขอื่น"
+        },
+        "evidenceNotes": {
+          "en": [
+            "The portraits are target candidates for this exact item ID, not a guarantee of a bite or landed catch."
+          ],
+          "ja": [
+            "画像の魚はこのアイテムIDで対象候補になるが、食いつきや取り込みを保証するものではない。"
+          ],
+          "th": [
+            "รูปปลาใช้เป็นรายชื่อเป้าหมายที่ชิ้น ID นี้ผ่านด่านตรวจได้ ไม่ได้รับประกันว่าปลาจะกินเหยื่อหรือตกขึ้นมาได้"
+          ]
+        },
+        "evidence": {
+          "type": "rom_trace",
+          "sources": [
+            "data/fish-acceptance.json",
+            "data/lure-coverage.json",
+            "docs/fish-acceptance-research.md"
+          ]
+        }
+      }
+    },
+    {
+      "category": "lure",
+      "id": "46",
+      "playerUse": {
+        "summary": {
+          "en": "Use with a lure rod. If targeting a particular fish, pick a card showing that fish: this lure passes its fish-type gate for that profile. Position, timing and landing checks still apply.",
+          "ja": "ルアー竿で使う。狙う魚の画像がこのカードにあれば、その魚プロフィールの判定をこのルアーは通る。ポイント・タイミング・取り込みの条件は別に残る。",
+          "th": "ใช้กับคันลัวร์ ถ้าจะตามปลาชนิดไหน ให้เลือกการ์ดที่มีรูปปลานั้น: ลัวร์ชิ้นนี้ผ่านด่านตรวจชนิดปลาของโปรไฟล์นั้นแล้ว แต่ตำแหน่ง จังหวะ และการดึงขึ้นยังมีเงื่อนไขอื่น"
+        },
+        "evidenceNotes": {
+          "en": [
+            "The portraits are target candidates for this exact item ID, not a guarantee of a bite or landed catch."
+          ],
+          "ja": [
+            "画像の魚はこのアイテムIDで対象候補になるが、食いつきや取り込みを保証するものではない。"
+          ],
+          "th": [
+            "รูปปลาใช้เป็นรายชื่อเป้าหมายที่ชิ้น ID นี้ผ่านด่านตรวจได้ ไม่ได้รับประกันว่าปลาจะกินเหยื่อหรือตกขึ้นมาได้"
+          ]
+        },
+        "evidence": {
+          "type": "rom_trace",
+          "sources": [
+            "data/fish-acceptance.json",
+            "data/lure-coverage.json",
+            "docs/fish-acceptance-research.md"
+          ]
+        }
+      }
+    },
+    {
+      "category": "lure",
+      "id": "47",
+      "playerUse": {
+        "summary": {
+          "en": "Use with a lure rod. If targeting a particular fish, pick a card showing that fish: this lure passes its fish-type gate for that profile. Position, timing and landing checks still apply.",
+          "ja": "ルアー竿で使う。狙う魚の画像がこのカードにあれば、その魚プロフィールの判定をこのルアーは通る。ポイント・タイミング・取り込みの条件は別に残る。",
+          "th": "ใช้กับคันลัวร์ ถ้าจะตามปลาชนิดไหน ให้เลือกการ์ดที่มีรูปปลานั้น: ลัวร์ชิ้นนี้ผ่านด่านตรวจชนิดปลาของโปรไฟล์นั้นแล้ว แต่ตำแหน่ง จังหวะ และการดึงขึ้นยังมีเงื่อนไขอื่น"
+        },
+        "evidenceNotes": {
+          "en": [
+            "The portraits are target candidates for this exact item ID, not a guarantee of a bite or landed catch."
+          ],
+          "ja": [
+            "画像の魚はこのアイテムIDで対象候補になるが、食いつきや取り込みを保証するものではない。"
+          ],
+          "th": [
+            "รูปปลาใช้เป็นรายชื่อเป้าหมายที่ชิ้น ID นี้ผ่านด่านตรวจได้ ไม่ได้รับประกันว่าปลาจะกินเหยื่อหรือตกขึ้นมาได้"
+          ]
+        },
+        "evidence": {
+          "type": "rom_trace",
+          "sources": [
+            "data/fish-acceptance.json",
+            "data/lure-coverage.json",
+            "docs/fish-acceptance-research.md"
+          ]
+        }
+      }
+    },
+    {
+      "category": "lure",
+      "id": "48",
+      "playerUse": {
+        "summary": {
+          "en": "Use with a lure rod. If targeting a particular fish, pick a card showing that fish: this lure passes its fish-type gate for that profile. Position, timing and landing checks still apply.",
+          "ja": "ルアー竿で使う。狙う魚の画像がこのカードにあれば、その魚プロフィールの判定をこのルアーは通る。ポイント・タイミング・取り込みの条件は別に残る。",
+          "th": "ใช้กับคันลัวร์ ถ้าจะตามปลาชนิดไหน ให้เลือกการ์ดที่มีรูปปลานั้น: ลัวร์ชิ้นนี้ผ่านด่านตรวจชนิดปลาของโปรไฟล์นั้นแล้ว แต่ตำแหน่ง จังหวะ และการดึงขึ้นยังมีเงื่อนไขอื่น"
+        },
+        "evidenceNotes": {
+          "en": [
+            "The portraits are target candidates for this exact item ID, not a guarantee of a bite or landed catch."
+          ],
+          "ja": [
+            "画像の魚はこのアイテムIDで対象候補になるが、食いつきや取り込みを保証するものではない。"
+          ],
+          "th": [
+            "รูปปลาใช้เป็นรายชื่อเป้าหมายที่ชิ้น ID นี้ผ่านด่านตรวจได้ ไม่ได้รับประกันว่าปลาจะกินเหยื่อหรือตกขึ้นมาได้"
+          ]
+        },
+        "evidence": {
+          "type": "rom_trace",
+          "sources": [
+            "data/fish-acceptance.json",
+            "data/lure-coverage.json",
+            "docs/fish-acceptance-research.md"
+          ]
+        }
+      }
+    },
+    {
+      "category": "lure",
+      "id": "49",
+      "playerUse": {
+        "summary": {
+          "en": "Use with a lure rod. If targeting a particular fish, pick a card showing that fish: this lure passes its fish-type gate for that profile. Position, timing and landing checks still apply.",
+          "ja": "ルアー竿で使う。狙う魚の画像がこのカードにあれば、その魚プロフィールの判定をこのルアーは通る。ポイント・タイミング・取り込みの条件は別に残る。",
+          "th": "ใช้กับคันลัวร์ ถ้าจะตามปลาชนิดไหน ให้เลือกการ์ดที่มีรูปปลานั้น: ลัวร์ชิ้นนี้ผ่านด่านตรวจชนิดปลาของโปรไฟล์นั้นแล้ว แต่ตำแหน่ง จังหวะ และการดึงขึ้นยังมีเงื่อนไขอื่น"
+        },
+        "evidenceNotes": {
+          "en": [
+            "The portraits are target candidates for this exact item ID, not a guarantee of a bite or landed catch."
+          ],
+          "ja": [
+            "画像の魚はこのアイテムIDで対象候補になるが、食いつきや取り込みを保証するものではない。"
+          ],
+          "th": [
+            "รูปปลาใช้เป็นรายชื่อเป้าหมายที่ชิ้น ID นี้ผ่านด่านตรวจได้ ไม่ได้รับประกันว่าปลาจะกินเหยื่อหรือตกขึ้นมาได้"
+          ]
+        },
+        "evidence": {
+          "type": "rom_trace",
+          "sources": [
+            "data/fish-acceptance.json",
+            "data/lure-coverage.json",
+            "docs/fish-acceptance-research.md"
+          ]
+        }
+      }
+    },
+    {
+      "category": "lure",
+      "id": "4A",
+      "playerUse": {
+        "summary": {
+          "en": "Use with a lure rod. If targeting a particular fish, pick a card showing that fish: this lure passes its fish-type gate for that profile. Position, timing and landing checks still apply.",
+          "ja": "ルアー竿で使う。狙う魚の画像がこのカードにあれば、その魚プロフィールの判定をこのルアーは通る。ポイント・タイミング・取り込みの条件は別に残る。",
+          "th": "ใช้กับคันลัวร์ ถ้าจะตามปลาชนิดไหน ให้เลือกการ์ดที่มีรูปปลานั้น: ลัวร์ชิ้นนี้ผ่านด่านตรวจชนิดปลาของโปรไฟล์นั้นแล้ว แต่ตำแหน่ง จังหวะ และการดึงขึ้นยังมีเงื่อนไขอื่น"
+        },
+        "evidenceNotes": {
+          "en": [
+            "The portraits are target candidates for this exact item ID, not a guarantee of a bite or landed catch."
+          ],
+          "ja": [
+            "画像の魚はこのアイテムIDで対象候補になるが、食いつきや取り込みを保証するものではない。"
+          ],
+          "th": [
+            "รูปปลาใช้เป็นรายชื่อเป้าหมายที่ชิ้น ID นี้ผ่านด่านตรวจได้ ไม่ได้รับประกันว่าปลาจะกินเหยื่อหรือตกขึ้นมาได้"
+          ]
+        },
+        "evidence": {
+          "type": "rom_trace",
+          "sources": [
+            "data/fish-acceptance.json",
+            "data/lure-coverage.json",
+            "docs/fish-acceptance-research.md"
+          ]
+        }
+      }
+    },
+    {
+      "category": "lure",
+      "id": "4B",
+      "playerUse": {
+        "summary": {
+          "en": "Use with a lure rod. If targeting a particular fish, pick a card showing that fish: this lure passes its fish-type gate for that profile. Position, timing and landing checks still apply.",
+          "ja": "ルアー竿で使う。狙う魚の画像がこのカードにあれば、その魚プロフィールの判定をこのルアーは通る。ポイント・タイミング・取り込みの条件は別に残る。",
+          "th": "ใช้กับคันลัวร์ ถ้าจะตามปลาชนิดไหน ให้เลือกการ์ดที่มีรูปปลานั้น: ลัวร์ชิ้นนี้ผ่านด่านตรวจชนิดปลาของโปรไฟล์นั้นแล้ว แต่ตำแหน่ง จังหวะ และการดึงขึ้นยังมีเงื่อนไขอื่น"
+        },
+        "evidenceNotes": {
+          "en": [
+            "The portraits are target candidates for this exact item ID, not a guarantee of a bite or landed catch."
+          ],
+          "ja": [
+            "画像の魚はこのアイテムIDで対象候補になるが、食いつきや取り込みを保証するものではない。"
+          ],
+          "th": [
+            "รูปปลาใช้เป็นรายชื่อเป้าหมายที่ชิ้น ID นี้ผ่านด่านตรวจได้ ไม่ได้รับประกันว่าปลาจะกินเหยื่อหรือตกขึ้นมาได้"
+          ]
+        },
+        "evidence": {
+          "type": "rom_trace",
+          "sources": [
+            "data/fish-acceptance.json",
+            "data/lure-coverage.json",
+            "docs/fish-acceptance-research.md"
+          ]
+        }
+      }
+    },
+    {
+      "category": "lure",
+      "id": "4C",
+      "playerUse": {
+        "summary": {
+          "en": "Use with a lure rod. If targeting a particular fish, pick a card showing that fish: this lure passes its fish-type gate for that profile. Position, timing and landing checks still apply.",
+          "ja": "ルアー竿で使う。狙う魚の画像がこのカードにあれば、その魚プロフィールの判定をこのルアーは通る。ポイント・タイミング・取り込みの条件は別に残る。",
+          "th": "ใช้กับคันลัวร์ ถ้าจะตามปลาชนิดไหน ให้เลือกการ์ดที่มีรูปปลานั้น: ลัวร์ชิ้นนี้ผ่านด่านตรวจชนิดปลาของโปรไฟล์นั้นแล้ว แต่ตำแหน่ง จังหวะ และการดึงขึ้นยังมีเงื่อนไขอื่น"
+        },
+        "evidenceNotes": {
+          "en": [
+            "The portraits are target candidates for this exact item ID, not a guarantee of a bite or landed catch."
+          ],
+          "ja": [
+            "画像の魚はこのアイテムIDで対象候補になるが、食いつきや取り込みを保証するものではない。"
+          ],
+          "th": [
+            "รูปปลาใช้เป็นรายชื่อเป้าหมายที่ชิ้น ID นี้ผ่านด่านตรวจได้ ไม่ได้รับประกันว่าปลาจะกินเหยื่อหรือตกขึ้นมาได้"
+          ]
+        },
+        "evidence": {
+          "type": "rom_trace",
+          "sources": [
+            "data/fish-acceptance.json",
+            "data/lure-coverage.json",
+            "docs/fish-acceptance-research.md"
+          ]
+        }
+      }
+    },
+    {
+      "category": "lure",
+      "id": "4D",
+      "playerUse": {
+        "summary": {
+          "en": "Use with a lure rod. If targeting a particular fish, pick a card showing that fish: this lure passes its fish-type gate for that profile. Position, timing and landing checks still apply.",
+          "ja": "ルアー竿で使う。狙う魚の画像がこのカードにあれば、その魚プロフィールの判定をこのルアーは通る。ポイント・タイミング・取り込みの条件は別に残る。",
+          "th": "ใช้กับคันลัวร์ ถ้าจะตามปลาชนิดไหน ให้เลือกการ์ดที่มีรูปปลานั้น: ลัวร์ชิ้นนี้ผ่านด่านตรวจชนิดปลาของโปรไฟล์นั้นแล้ว แต่ตำแหน่ง จังหวะ และการดึงขึ้นยังมีเงื่อนไขอื่น"
+        },
+        "evidenceNotes": {
+          "en": [
+            "The portraits are target candidates for this exact item ID, not a guarantee of a bite or landed catch."
+          ],
+          "ja": [
+            "画像の魚はこのアイテムIDで対象候補になるが、食いつきや取り込みを保証するものではない。"
+          ],
+          "th": [
+            "รูปปลาใช้เป็นรายชื่อเป้าหมายที่ชิ้น ID นี้ผ่านด่านตรวจได้ ไม่ได้รับประกันว่าปลาจะกินเหยื่อหรือตกขึ้นมาได้"
+          ]
+        },
+        "evidence": {
+          "type": "rom_trace",
+          "sources": [
+            "data/fish-acceptance.json",
+            "data/lure-coverage.json",
+            "docs/fish-acceptance-research.md"
+          ]
+        }
+      }
+    },
+    {
+      "category": "lure",
+      "id": "4E",
+      "playerUse": {
+        "summary": {
+          "en": "Use with a lure rod. If targeting a particular fish, pick a card showing that fish: this lure passes its fish-type gate for that profile. Position, timing and landing checks still apply.",
+          "ja": "ルアー竿で使う。狙う魚の画像がこのカードにあれば、その魚プロフィールの判定をこのルアーは通る。ポイント・タイミング・取り込みの条件は別に残る。",
+          "th": "ใช้กับคันลัวร์ ถ้าจะตามปลาชนิดไหน ให้เลือกการ์ดที่มีรูปปลานั้น: ลัวร์ชิ้นนี้ผ่านด่านตรวจชนิดปลาของโปรไฟล์นั้นแล้ว แต่ตำแหน่ง จังหวะ และการดึงขึ้นยังมีเงื่อนไขอื่น"
+        },
+        "evidenceNotes": {
+          "en": [
+            "The portraits are target candidates for this exact item ID, not a guarantee of a bite or landed catch."
+          ],
+          "ja": [
+            "画像の魚はこのアイテムIDで対象候補になるが、食いつきや取り込みを保証するものではない。"
+          ],
+          "th": [
+            "รูปปลาใช้เป็นรายชื่อเป้าหมายที่ชิ้น ID นี้ผ่านด่านตรวจได้ ไม่ได้รับประกันว่าปลาจะกินเหยื่อหรือตกขึ้นมาได้"
+          ]
+        },
+        "evidence": {
+          "type": "rom_trace",
+          "sources": [
+            "data/fish-acceptance.json",
+            "data/lure-coverage.json",
+            "docs/fish-acceptance-research.md"
+          ]
+        }
+      }
+    },
+    {
+      "category": "lure",
+      "id": "4F",
+      "playerUse": {
+        "summary": {
+          "en": "Use with a lure rod. If targeting a particular fish, pick a card showing that fish: this lure passes its fish-type gate for that profile. Position, timing and landing checks still apply.",
+          "ja": "ルアー竿で使う。狙う魚の画像がこのカードにあれば、その魚プロフィールの判定をこのルアーは通る。ポイント・タイミング・取り込みの条件は別に残る。",
+          "th": "ใช้กับคันลัวร์ ถ้าจะตามปลาชนิดไหน ให้เลือกการ์ดที่มีรูปปลานั้น: ลัวร์ชิ้นนี้ผ่านด่านตรวจชนิดปลาของโปรไฟล์นั้นแล้ว แต่ตำแหน่ง จังหวะ และการดึงขึ้นยังมีเงื่อนไขอื่น"
+        },
+        "evidenceNotes": {
+          "en": [
+            "The portraits are target candidates for this exact item ID, not a guarantee of a bite or landed catch."
+          ],
+          "ja": [
+            "画像の魚はこのアイテムIDで対象候補になるが、食いつきや取り込みを保証するものではない。"
+          ],
+          "th": [
+            "รูปปลาใช้เป็นรายชื่อเป้าหมายที่ชิ้น ID นี้ผ่านด่านตรวจได้ ไม่ได้รับประกันว่าปลาจะกินเหยื่อหรือตกขึ้นมาได้"
+          ]
+        },
+        "evidence": {
+          "type": "rom_trace",
+          "sources": [
+            "data/fish-acceptance.json",
+            "data/lure-coverage.json",
+            "docs/fish-acceptance-research.md"
+          ]
+        }
+      }
+    },
+    {
+      "category": "lure",
+      "id": "50",
+      "playerUse": {
+        "summary": {
+          "en": "Use with a lure rod. If targeting a particular fish, pick a card showing that fish: this lure passes its fish-type gate for that profile. Position, timing and landing checks still apply.",
+          "ja": "ルアー竿で使う。狙う魚の画像がこのカードにあれば、その魚プロフィールの判定をこのルアーは通る。ポイント・タイミング・取り込みの条件は別に残る。",
+          "th": "ใช้กับคันลัวร์ ถ้าจะตามปลาชนิดไหน ให้เลือกการ์ดที่มีรูปปลานั้น: ลัวร์ชิ้นนี้ผ่านด่านตรวจชนิดปลาของโปรไฟล์นั้นแล้ว แต่ตำแหน่ง จังหวะ และการดึงขึ้นยังมีเงื่อนไขอื่น"
+        },
+        "evidenceNotes": {
+          "en": [
+            "The portraits are target candidates for this exact item ID, not a guarantee of a bite or landed catch."
+          ],
+          "ja": [
+            "画像の魚はこのアイテムIDで対象候補になるが、食いつきや取り込みを保証するものではない。"
+          ],
+          "th": [
+            "รูปปลาใช้เป็นรายชื่อเป้าหมายที่ชิ้น ID นี้ผ่านด่านตรวจได้ ไม่ได้รับประกันว่าปลาจะกินเหยื่อหรือตกขึ้นมาได้"
+          ]
+        },
+        "evidence": {
+          "type": "rom_trace",
+          "sources": [
+            "data/fish-acceptance.json",
+            "data/lure-coverage.json",
+            "docs/fish-acceptance-research.md"
+          ]
+        }
+      }
+    },
+    {
+      "category": "lure",
+      "id": "51",
+      "playerUse": {
+        "summary": {
+          "en": "Use with a lure rod. If targeting a particular fish, pick a card showing that fish: this lure passes its fish-type gate for that profile. Position, timing and landing checks still apply.",
+          "ja": "ルアー竿で使う。狙う魚の画像がこのカードにあれば、その魚プロフィールの判定をこのルアーは通る。ポイント・タイミング・取り込みの条件は別に残る。",
+          "th": "ใช้กับคันลัวร์ ถ้าจะตามปลาชนิดไหน ให้เลือกการ์ดที่มีรูปปลานั้น: ลัวร์ชิ้นนี้ผ่านด่านตรวจชนิดปลาของโปรไฟล์นั้นแล้ว แต่ตำแหน่ง จังหวะ และการดึงขึ้นยังมีเงื่อนไขอื่น"
+        },
+        "evidenceNotes": {
+          "en": [
+            "The portraits are target candidates for this exact item ID, not a guarantee of a bite or landed catch.",
+            "The named-fish branch requires lure mode and an exact fish-ID match; it is separate from the broader fish-type gate shown in the portraits.",
+            "On lure mode plus exact fish-ID match, the handler halves the initial response value and skips this lure’s size-response branch; the rod response still runs afterward. The fish mask and ordinary eligible-fish list are separate."
+          ],
+          "ja": [
+            "画像の魚はこのアイテムIDで対象候補になるが、食いつきや取り込みを保証するものではない。",
+            "専用分岐はルアー釣り中かつ魚ID一致時だけ。画像の広い魚種判定とは別。",
+            "ルアー釣りかつ魚ID一致時、初期応答値を半分にしてルアーのサイズ応答分岐を飛ばす。後段の竿応答は実行される。魚種マスクと対象魚リストは別。"
+          ],
+          "th": [
+            "รูปปลาใช้เป็นรายชื่อเป้าหมายที่ชิ้น ID นี้ผ่านด่านตรวจได้ ไม่ได้รับประกันว่าปลาจะกินเหยื่อหรือตกขึ้นมาได้",
+            "เส้นทางเฉพาะทำงานเมื่ออยู่โหมดลัวร์และ ID ปลาตรงกันเท่านั้น; แยกจากด่านตรวจชนิดปลาที่แสดงด้วยรูป",
+            "เมื่ออยู่โหมดลัวร์และ ID ปลาตรงกัน โค้ดหารค่าตอบสนองเริ่มต้นลงครึ่งหนึ่งและข้ามเส้นทางตอบสนองตามขนาดของลัวร์; การตอบสนองของคันยังทำงานภายหลัง ส่วน mask ชนิดปลาและรายชื่อปลาที่ผ่านเป็นคนละเงื่อนไข"
+          ]
+        },
+        "evidence": {
+          "type": "rom_trace",
+          "sources": [
+            "data/fish-acceptance.json",
+            "data/lure-coverage.json",
+            "docs/fish-acceptance-research.md",
+            "data/lure-response.json",
+            "docs/lure-response-research.md"
+          ]
+        },
+        "facts": {
+          "en": [
+            "When pursuing Akame, this lure takes a distinct opening fight-setup path. It still needs to pass the fish list shown on this card, and the ROM does not establish that it makes the fish easier to land."
+          ],
+          "ja": [
+            "アカメを狙うとき、このルアーは開始時のファイト設定で専用分岐を通る。このカードの魚種判定は別に必要で、釣り上げやすくなるかはROMから確認できない。"
+          ],
+          "th": [
+            "เมื่อตามอาคาเมะ ลัวร์ชิ้นนี้เข้าเส้นทางตั้งค่าการสู้ช่วงเริ่มต้นแบบเฉพาะ; ยังต้องผ่านรายชื่อปลาบนการ์ดนี้ และ ROM ไม่ได้ยืนยันว่าช่วยให้ตกขึ้นมาได้ง่ายกว่า"
+          ]
+        }
+      }
+    }
+  ]
+}

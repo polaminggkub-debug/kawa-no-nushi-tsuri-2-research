@@ -472,17 +472,17 @@
         "en": [
           "Capacity: 10 fish; ROM item record lists 300 yen.",
           "At exactly full, the game stores the landed fish and then tells you the keepnet is full. The next fishing action is blocked until you make room.",
-          "Choose Fish in the Food category to eat one stored fish and free a keepnet slot."
+          "Sell fish to make room, or eat the first fish through Food → Fish when HP is not full. Check the first fish: eating Kusafugu sets HP to zero."
         ],
         "ja": [
           "容量は10匹。ROMレコードの価格欄は300円。",
           "満杯になる魚も先に保存され、その後びく満杯の表示が出る。次の釣り操作は空きを作るまで止まる。",
-          "食べ物の「魚」を選んで保存した魚を1匹食べると、びくに空きができる。"
+          "魚を売って空きを作るか、HP満タンでなければ食べ物→魚でびくの先頭を食べる。先頭がクサフグなら食べない。HPが0になる。"
         ],
         "th": [
           "ความจุ 10 ตัว; ระเบียนไอเท็มใน ROM ระบุราคา 300 เยน",
           "ปลาตัวที่ทำให้เต็มจะถูกเก็บก่อนแล้วจึงขึ้นข้อความว่าข้องเต็ม; กิจกรรมตกปลาครั้งต่อไปจะเริ่มไม่ได้จนกว่าจะมีที่ว่าง",
-          "เลือก “ปลา” ในหมวดอาหารเพื่อกินปลาที่เก็บไว้หนึ่งตัวและคืนที่ว่างในข้อง"
+          "ขายปลาเพื่อคืนที่ว่าง หรือเมื่อ HP ไม่เต็ม เลือก “ปลา” ในหมวดอาหารเพื่อกินตัวแรกในข้องหนึ่งตัว ตรวจให้ดีว่าตัวแรกไม่ใช่คุซะฟุกุ เพราะกินแล้ว HP เหลือ 0"
         ]
       },
       "evidence": {
@@ -490,7 +490,8 @@
         "sources": [
           "docs/chum-basket-research.md",
           "data/item-table-records.json",
-          "data/food-effects-confirmed.json"
+          "data/food-effects-confirmed.json",
+          "docs/food-practical-research.md"
         ]
       },
       "evidenceNotes": {
@@ -526,17 +527,17 @@
         "en": [
           "Capacity: 20 fish; ROM item record lists 400 yen.",
           "At exactly full, the game stores the landed fish and then tells you the keepnet is full. The next fishing action is blocked until you make room.",
-          "Choose Fish in the Food category to eat one stored fish and free a keepnet slot."
+          "Sell fish to make room, or eat the first fish through Food → Fish when HP is not full. Check the first fish: eating Kusafugu sets HP to zero."
         ],
         "ja": [
           "容量は20匹。ROMレコードの価格欄は400円。",
           "満杯になる魚も先に保存され、その後びく満杯の表示が出る。次の釣り操作は空きを作るまで止まる。",
-          "食べ物の「魚」を選んで保存した魚を1匹食べると、びくに空きができる。"
+          "魚を売って空きを作るか、HP満タンでなければ食べ物→魚でびくの先頭を食べる。先頭がクサフグなら食べない。HPが0になる。"
         ],
         "th": [
           "ความจุ 20 ตัว; ระเบียนไอเท็มใน ROM ระบุราคา 400 เยน",
           "ปลาตัวที่ทำให้เต็มจะถูกเก็บก่อนแล้วจึงขึ้นข้อความว่าข้องเต็ม; กิจกรรมตกปลาครั้งต่อไปจะเริ่มไม่ได้จนกว่าจะมีที่ว่าง",
-          "เลือก “ปลา” ในหมวดอาหารเพื่อกินปลาที่เก็บไว้หนึ่งตัวและคืนที่ว่างในข้อง"
+          "ขายปลาเพื่อคืนที่ว่าง หรือเมื่อ HP ไม่เต็ม เลือก “ปลา” ในหมวดอาหารเพื่อกินตัวแรกในข้องหนึ่งตัว ตรวจให้ดีว่าตัวแรกไม่ใช่คุซะฟุกุ เพราะกินแล้ว HP เหลือ 0"
         ]
       },
       "evidence": {
@@ -544,7 +545,8 @@
         "sources": [
           "docs/chum-basket-research.md",
           "data/item-table-records.json",
-          "data/food-effects-confirmed.json"
+          "data/food-effects-confirmed.json",
+          "docs/food-practical-research.md"
         ]
       },
       "evidenceNotes": {
@@ -577,17 +579,17 @@
         "en": [
           "Capacity: 30 fish; ROM item record lists 500 yen.",
           "At exactly full, the game stores the landed fish and then tells you the keepnet is full. The next fishing action is blocked until you make room.",
-          "Choose Fish in the Food category to eat one stored fish and free a keepnet slot."
+          "Sell fish to make room, or eat the first fish through Food → Fish when HP is not full. Check the first fish: eating Kusafugu sets HP to zero."
         ],
         "ja": [
           "容量は30匹。ROMレコードの価格欄は500円。",
           "満杯になる魚も先に保存され、その後びく満杯の表示が出る。次の釣り操作は空きを作るまで止まる。",
-          "食べ物の「魚」を選んで保存した魚を1匹食べると、びくに空きができる。"
+          "魚を売って空きを作るか、HP満タンでなければ食べ物→魚でびくの先頭を食べる。先頭がクサフグなら食べない。HPが0になる。"
         ],
         "th": [
           "ความจุ 30 ตัว; ระเบียนไอเท็มใน ROM ระบุราคา 500 เยน",
           "ปลาตัวที่ทำให้เต็มจะถูกเก็บก่อนแล้วจึงขึ้นข้อความว่าข้องเต็ม; กิจกรรมตกปลาครั้งต่อไปจะเริ่มไม่ได้จนกว่าจะมีที่ว่าง",
-          "เลือก “ปลา” ในหมวดอาหารเพื่อกินปลาที่เก็บไว้หนึ่งตัวและคืนที่ว่างในข้อง"
+          "ขายปลาเพื่อคืนที่ว่าง หรือเมื่อ HP ไม่เต็ม เลือก “ปลา” ในหมวดอาหารเพื่อกินตัวแรกในข้องหนึ่งตัว ตรวจให้ดีว่าตัวแรกไม่ใช่คุซะฟุกุ เพราะกินแล้ว HP เหลือ 0"
         ]
       },
       "evidence": {
@@ -595,7 +597,8 @@
         "sources": [
           "docs/chum-basket-research.md",
           "data/item-table-records.json",
-          "data/food-effects-confirmed.json"
+          "data/food-effects-confirmed.json",
+          "docs/food-practical-research.md"
         ]
       },
       "evidenceNotes": {

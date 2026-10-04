@@ -151,6 +151,16 @@ def build():
     lure_coverage = load(DATA / "lure-coverage.json")
     rod_research = load(DATA / "rod-response.json")
     food_research = load(DATA / "food-effects-confirmed.json")
+    shop_stock = load(DATA / "shop-stock-rom.json")["items"] if (DATA / "shop-stock-rom.json").exists() else {}
+    practical_research = {}
+    for filename in ("hook-practical-research.json", "rod-lure-practical.json", "fly-practical-research.json", "food-practical-research.json"):
+        if (DATA / filename).exists():
+            raw_findings = load(DATA / filename)["items"]
+            findings = raw_findings if isinstance(raw_findings, dict) else {key(row["category"], row["id"]): row["playerUse"] for row in raw_findings}
+            for item_key, finding in findings.items():
+                if item_key in practical_research:
+                    raise ValueError(f"Duplicate practical research: {item_key}")
+                practical_research[item_key] = finding
     tool_research = {}
     for filename in ("general-tool-actions.json", "chum-basket-use.json", "quest-tool-use.json"):
         research_path = DATA / filename
@@ -171,6 +181,8 @@ def build():
                 if not finding.get("summary", {}).get(locale) or not finding.get("facts", {}).get(locale):
                     raise ValueError(f"Missing practical tool explanation: {item_id}/{locale}")
     tool_locations = load(DATA / "tool-use-locations.json")["items"] if (DATA / "tool-use-locations.json").exists() else {}
+    if (DATA / "forage-locations.json").exists():
+        tool_locations.update(load(DATA / "forage-locations.json")["items"])
     thai_fish_names = stage_fish_names()
 
     fish = {entry["id_hex"].upper(): entry for entry in acceptance["fish_profiles"]}
@@ -195,7 +207,8 @@ def build():
     for style_code, entries in rod_groups.items():
         for field, rank_name in (("cast_aim_hold_cutoff_raw", "aim"), ("range_multiplier_raw", "range")):
             ordered = sorted(entries, key=lambda row: row[field], reverse=True)
-            for rank, entry in enumerate(ordered, 1):
+            for entry in ordered:
+                rank = 1 + sum(other[field] > entry[field] for other in entries)
                 rod_ranks[(entry["id_hex"].upper(), rank_name)] = (rank, len(entries))
 
     hook_targets = {
@@ -271,9 +284,9 @@ def build():
                 "aimRankAt100Hp": aim_rank,
                 "reachRank": range_rank,
                 "of": group_count,
-                "en": f"Within {style['en']} rods: aim window {aim_rank}/{group_count} at full HP; reach threshold {range_rank}/{group_count}. Rank 1 is longest/highest in that dimension.",
-                "ja": f"{style['ja']}用の竿{group_count}本中、HP満タン時の照準時間は{aim_rank}位、到達しきい値は{range_rank}位。1位が最長・最大。",
-                "th": f"ในกลุ่มคัน{style['th']} {group_count} คัน: ช่วงเล็ง {aim_rank}/{group_count} เมื่อ HP เต็ม; เกณฑ์ระยะ {range_rank}/{group_count}; อันดับ 1 คือเวลานาน/ค่าสูงสุด",
+                "en": f"Within {style['en']} rods: aim window {aim_rank}/{group_count} at full HP; fish-position loss limit {range_rank}/{group_count}. Rank 1 is longest/highest in that dimension.",
+                "ja": f"{style['ja']}用の竿{group_count}本中、HP満タン時の照準時間は{aim_rank}位、道具喪失の魚位置境界は{range_rank}位。1位が最長・最大。",
+                "th": f"ในกลุ่มคัน{style['th']} {group_count} คัน: ช่วงเล็ง {aim_rank}/{group_count} เมื่อ HP เต็ม; ขอบเขตก่อนเสียอุปกรณ์ {range_rank}/{group_count}; อันดับ 1 คือเวลานาน/ขอบเขตสูงสุด",
             }
             match_code = (rod.get("fish_id_match_label") or {}).get("id_hex")
             if match_code:
@@ -608,6 +621,16 @@ def build():
 
         if category == "general_tool" and item_id in tool_locations:
             entry["useLocations"] = tool_locations[item_id]
+        if key(category, item_id) in practical_research:
+            finding = practical_research[key(category, item_id)]
+            for field in ("summary", "facts", "evidence", "evidenceNotes", "comparison", "fishScope", "displayName"):
+                if field in finding:
+                    if field == "facts" and category == "lure":
+                        entry[field] = {lang: list(dict.fromkeys(entry.get(field, {}).get(lang, []) + finding[field].get(lang, []))) for lang in ("en", "ja", "th")}
+                    else:
+                        entry[field] = finding[field]
+        if (DATA / "shop-stock-rom.json").exists():
+            entry["shops"] = shop_stock.get(key(category, item_id), [])
         item_data[key(category, item_id)] = entry
 
     output = {
@@ -623,11 +646,14 @@ def build():
             "data/rod-response.json",
             "data/food-effects-confirmed.json",
             "data/hook-float-use.json",
+            "data/shop-stock-rom.json",
+            *[f"data/{filename}" for filename in ("hook-practical-research.json", "rod-lure-practical.json", "fly-practical-research.json", "food-practical-research.json") if (DATA / filename).exists()],
             "data/general-tool-actions.json",
             "data/chum-basket-use.json",
             "data/quest-tool-use.json",
             "data/general-tool-code-index.json",
             "data/tool-use-locations.json",
+            "data/forage-locations.json",
             "data/stages/*.json (Thai fish names where recorded)",
             "catalogue/gallery-data.json",
         ],

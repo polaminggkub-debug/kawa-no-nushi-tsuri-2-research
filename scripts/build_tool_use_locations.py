@@ -13,7 +13,7 @@ def build(rom):
     if manifest['provenance']['romSha1'] != SHA1: raise ValueError('Field maps belong to a different ROM')
     points = [
         ('cow', 3, 0x0C, ['0F','10'], loc('Cow: refill the empty bottle', '牛：空きビンに牛乳を入れる', 'คุยกับวัวเพื่อเติมนมใส่ขวดเปล่า'), '00:C804..C83B'),
-        ('canoe-maker', 3, 0x1A, ['10'], loc('Canoe maker: trade milk for a canoe', 'カヌー職人：牛乳とカヌーを交換', 'คนทำเรือ: นำนมมาแลกเรือแคนู'), '00:C8D4..C911'),
+        ('canoe-maker', 3, 0x1A, ['10','02'], loc('Canoe maker: trade milk for a canoe', 'カヌー職人：牛乳とカヌーを交換', 'คนทำเรือ: นำนมมาแลกเรือแคนู'), '00:C8D4..C911'),
         ('lottery-counter', 5, 0x18, ['11'], loc('Lottery drawing counter', '富くじの抽選所', 'เคาน์เตอร์ขึ้นสลาก'), '00:CBD9..CCD4'),
         ('jizo', 5, 0x08, ['11'], loc('Jizo: offer food to raise the lottery threshold', 'お地蔵さま：食べ物を供えて抽選の判定値を上げる', 'รูปปั้นจิโซ: ถวายอาหารเพิ่มค่าเกณฑ์ถูกรางวัล'), '00:C1E8..C1F7; 03:A3DF..A43B'),
         ('candle', 6, 0x22, ['12'], loc('Give the candle for the reunion event', '再会イベントのロウソクを渡す', 'คุยเพื่อให้เทียนและทำเควสต์ส่งสัญญาณ'), '00:CE4E..CE9E'),
@@ -39,6 +39,8 @@ def build(rom):
         im.crop((x0,y0,x0+w,y0+h)).save(ROOT/'catalogue'/image)
         entry = dict(stage=stage, name=name, tileX=x, tileY=y, image=image, fullImage='maps/'+m['image'], width=w, height=h,
                      pin=dict(x=(px-x0)/w,y=(py-y0)/h), source=dict(objectSlotHex=f'{slot:02X}',coordinateFileOffset=f'0x{source:06X}',consumer=consumer))
+        if key == 'canoe-maker':
+            entry['markerItem'] = dict(category='general_tool', id='10')
         if key == 'jizo':
             entry['markerItem'] = dict(category='food', id='07')
         if key == 'fox':

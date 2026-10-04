@@ -12,14 +12,26 @@ The guide starts with equipment categories, then explains each item's use. Bait/
 
 ![Sample research catalogue](examples/catalogue-en.png)
 
+## Practical questions answered from the ROM
+
+[Player-value audit: questions, answers and remaining limits](docs/player-value-audit.md).
+
+- [Rod and lure choices](docs/rod-lure-practical-research.md): aiming control, HP scaling, and the equipment-loss condition.
+- [Hooks, floats and sinkers](docs/hook-practical-research.md): rig selection and why a named hook is not automatically a catch bonus.
+- [Fly parts](docs/fly-practical-research.md): body coverage, hidden body/wing conditions, overnight changes, and the distinction between a ready-made bundle and custom parts.
+- [Shop stock across all six areas](docs/shop-stock-research.md): exact purchase areas, special rod merchants, and the sold-Ayu condition for live bait.
+- [Bait-search locations](docs/forage-location-research.md): example magnifying-glass tiles on real ROM terrain, with bait images marking the results.
+- [Food decisions](docs/food-practical-research.md): HP recovery, consumption, the first fish in the basket, and the deadly Kusafugu exception.
+- [Tub versus canoe movement](docs/boat-movement-research.md): the canoe makes 40% more movement steps in the traced no-current branch.
+
 ## New equipment research — 2026-10-04
 
 **[Visual guide: English](https://polaminggkub-debug.github.io/kawa-no-nushi-tsuri-2-research/research/) · [日本語](https://polaminggkub-debug.github.io/kawa-no-nushi-tsuri-2-research/research/index.ja.html) · [ไทย](https://polaminggkub-debug.github.io/kawa-no-nushi-tsuri-2-research/research/index.th.html)**
 
-- Two lure IDs cover the **mask compatibility** of all 38 lure-eligible fish/creature profiles: one of `17/18/2E/2F/30/31` plus `23/24` (hex). The cheapest ROM base-price pair is `17 + 23`, ¥50; shop availability remains unconfirmed.
+- Two lure IDs cover the **mask compatibility** of all 38 lure-eligible fish/creature profiles: one of `17/18/2E/2F/30/31` plus `23/24` (hex). The cheapest ROM base-price pair is `17 + 23`, ¥50. Area 1 sells the Spoon `2E` + Soft worm `23` alternative for ¥55; the ¥50 pair is sold together in area 4.
 - Rod byte `+2` was previously mislabeled as a fight counter. Target movement, B release and the next state identify it as a **pre-hook aim/cast hold-time cutoff**. It is not fight strength.
 - Fly body normalization and bait/lure mask checks now have a [reproducible matrix](docs/fish-acceptance-research.md). These are compatibility checks, not measured bite or landing rates.
-- [Rod consumers](docs/rod-response-research.md), [lure setup transforms](docs/lure-response-research.md), and [one observed shop menu](docs/shop-inventory-research.md) document exact limits.
+- [Rod consumers](docs/rod-response-research.md), [lure setup transforms](docs/lure-response-research.md), and [six-area shop stock](docs/shop-stock-research.md) document exact limits.
 
 Reproduce with your own original ROM:
 

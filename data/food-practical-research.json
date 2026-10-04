@@ -1,0 +1,247 @@
+{
+  "romSha1": "c2103dd94e2a1a65a495fc02adc2e7d040f31212",
+  "items": {
+    "food:01": {
+      "evidence": {
+        "type": "rom_trace",
+        "sources": [
+          "docs/food-practical-research.md",
+          "data/food-effects-confirmed.json"
+        ]
+      },
+      "facts": {
+        "en": [
+          "Recovers 5 HP, up to your maximum. At full HP, the food menu refuses to eat and keeps the item.",
+          "Eating consumes one food item.",
+          "All six shop foods cost 1 yen per HP. Choose recovery close to your missing HP: recovery above your maximum is wasted."
+        ],
+        "ja": [
+          "HPを5回復する。最大HPが上限。満タンでは食べず、アイテムも残る。",
+          "食べると食料を1個消費する。",
+          "店の食料6種はいずれも回復HPあたり1円。不足HPに近い量を選ぶと、最大HPを超える無駄を減らせる。"
+        ],
+        "th": [
+          "ฟื้น 5 HP แต่ไม่เกินค่าสูงสุด ถ้า HP เต็ม เมนูอาหารจะไม่ให้กินและไม่เสียไอเท็ม",
+          "กินแล้วอาหารหนึ่งชิ้นหมดไป",
+          "อาหารร้านทั้ง 6 แบบมีราคา 1 เยนต่อ HP เท่ากัน เลือกปริมาณที่ใกล้ HP ที่ขาด เพราะส่วนที่เกิน HP สูงสุดจะไม่ได้เพิ่มให้"
+        ]
+      }
+    },
+    "food:02": {
+      "evidence": {
+        "type": "rom_trace",
+        "sources": [
+          "docs/food-practical-research.md",
+          "data/food-effects-confirmed.json"
+        ]
+      },
+      "facts": {
+        "en": [
+          "Recovers 10 HP, up to your maximum. At full HP, the food menu refuses to eat and keeps the item.",
+          "Eating consumes one food item.",
+          "All six shop foods cost 1 yen per HP. Choose recovery close to your missing HP: recovery above your maximum is wasted."
+        ],
+        "ja": [
+          "HPを10回復する。最大HPが上限。満タンでは食べず、アイテムも残る。",
+          "食べると食料を1個消費する。",
+          "店の食料6種はいずれも回復HPあたり1円。不足HPに近い量を選ぶと、最大HPを超える無駄を減らせる。"
+        ],
+        "th": [
+          "ฟื้น 10 HP แต่ไม่เกินค่าสูงสุด ถ้า HP เต็ม เมนูอาหารจะไม่ให้กินและไม่เสียไอเท็ม",
+          "กินแล้วอาหารหนึ่งชิ้นหมดไป",
+          "อาหารร้านทั้ง 6 แบบมีราคา 1 เยนต่อ HP เท่ากัน เลือกปริมาณที่ใกล้ HP ที่ขาด เพราะส่วนที่เกิน HP สูงสุดจะไม่ได้เพิ่มให้"
+        ]
+      }
+    },
+    "food:03": {
+      "evidence": {
+        "type": "rom_trace",
+        "sources": [
+          "docs/food-practical-research.md",
+          "data/food-effects-confirmed.json"
+        ]
+      },
+      "facts": {
+        "en": [
+          "Recovers 15 HP, up to your maximum. At full HP, the food menu refuses to eat and keeps the item.",
+          "Eating consumes one food item.",
+          "All six shop foods cost 1 yen per HP. Choose recovery close to your missing HP: recovery above your maximum is wasted."
+        ],
+        "ja": [
+          "HPを15回復する。最大HPが上限。満タンでは食べず、アイテムも残る。",
+          "食べると食料を1個消費する。",
+          "店の食料6種はいずれも回復HPあたり1円。不足HPに近い量を選ぶと、最大HPを超える無駄を減らせる。"
+        ],
+        "th": [
+          "ฟื้น 15 HP แต่ไม่เกินค่าสูงสุด ถ้า HP เต็ม เมนูอาหารจะไม่ให้กินและไม่เสียไอเท็ม",
+          "กินแล้วอาหารหนึ่งชิ้นหมดไป",
+          "อาหารร้านทั้ง 6 แบบมีราคา 1 เยนต่อ HP เท่ากัน เลือกปริมาณที่ใกล้ HP ที่ขาด เพราะส่วนที่เกิน HP สูงสุดจะไม่ได้เพิ่มให้"
+        ]
+      }
+    },
+    "food:04": {
+      "evidence": {
+        "type": "rom_trace",
+        "sources": [
+          "docs/food-practical-research.md",
+          "data/food-effects-confirmed.json"
+        ]
+      },
+      "facts": {
+        "en": [
+          "Recovers 20 HP, up to your maximum. At full HP, the food menu refuses to eat and keeps the item.",
+          "Eating consumes one food item.",
+          "All six shop foods cost 1 yen per HP. Choose recovery close to your missing HP: recovery above your maximum is wasted."
+        ],
+        "ja": [
+          "HPを20回復する。最大HPが上限。満タンでは食べず、アイテムも残る。",
+          "食べると食料を1個消費する。",
+          "店の食料6種はいずれも回復HPあたり1円。不足HPに近い量を選ぶと、最大HPを超える無駄を減らせる。"
+        ],
+        "th": [
+          "ฟื้น 20 HP แต่ไม่เกินค่าสูงสุด ถ้า HP เต็ม เมนูอาหารจะไม่ให้กินและไม่เสียไอเท็ม",
+          "กินแล้วอาหารหนึ่งชิ้นหมดไป",
+          "อาหารร้านทั้ง 6 แบบมีราคา 1 เยนต่อ HP เท่ากัน เลือกปริมาณที่ใกล้ HP ที่ขาด เพราะส่วนที่เกิน HP สูงสุดจะไม่ได้เพิ่มให้"
+        ]
+      }
+    },
+    "food:05": {
+      "evidence": {
+        "type": "rom_trace",
+        "sources": [
+          "docs/food-practical-research.md",
+          "data/food-effects-confirmed.json"
+        ]
+      },
+      "facts": {
+        "en": [
+          "Recovers 30 HP, up to your maximum. At full HP, the food menu refuses to eat and keeps the item.",
+          "Eating consumes one food item.",
+          "All six shop foods cost 1 yen per HP. Choose recovery close to your missing HP: recovery above your maximum is wasted."
+        ],
+        "ja": [
+          "HPを30回復する。最大HPが上限。満タンでは食べず、アイテムも残る。",
+          "食べると食料を1個消費する。",
+          "店の食料6種はいずれも回復HPあたり1円。不足HPに近い量を選ぶと、最大HPを超える無駄を減らせる。"
+        ],
+        "th": [
+          "ฟื้น 30 HP แต่ไม่เกินค่าสูงสุด ถ้า HP เต็ม เมนูอาหารจะไม่ให้กินและไม่เสียไอเท็ม",
+          "กินแล้วอาหารหนึ่งชิ้นหมดไป",
+          "อาหารร้านทั้ง 6 แบบมีราคา 1 เยนต่อ HP เท่ากัน เลือกปริมาณที่ใกล้ HP ที่ขาด เพราะส่วนที่เกิน HP สูงสุดจะไม่ได้เพิ่มให้"
+        ]
+      }
+    },
+    "food:06": {
+      "evidence": {
+        "type": "rom_trace",
+        "sources": [
+          "docs/food-practical-research.md",
+          "data/food-effects-confirmed.json"
+        ]
+      },
+      "facts": {
+        "en": [
+          "Recovers 40 HP, up to your maximum. At full HP, the food menu refuses to eat and keeps the item.",
+          "Eating consumes one food item.",
+          "All six shop foods cost 1 yen per HP. Choose recovery close to your missing HP: recovery above your maximum is wasted."
+        ],
+        "ja": [
+          "HPを40回復する。最大HPが上限。満タンでは食べず、アイテムも残る。",
+          "食べると食料を1個消費する。",
+          "店の食料6種はいずれも回復HPあたり1円。不足HPに近い量を選ぶと、最大HPを超える無駄を減らせる。"
+        ],
+        "th": [
+          "ฟื้น 40 HP แต่ไม่เกินค่าสูงสุด ถ้า HP เต็ม เมนูอาหารจะไม่ให้กินและไม่เสียไอเท็ม",
+          "กินแล้วอาหารหนึ่งชิ้นหมดไป",
+          "อาหารร้านทั้ง 6 แบบมีราคา 1 เยนต่อ HP เท่ากัน เลือกปริมาณที่ใกล้ HP ที่ขาด เพราะส่วนที่เกิน HP สูงสุดจะไม่ได้เพิ่มให้"
+        ]
+      }
+    },
+    "food:07": {
+      "evidence": {
+        "type": "rom_trace",
+        "sources": [
+          "docs/food-practical-research.md",
+          "data/food-effects-confirmed.json"
+        ]
+      },
+      "facts": {
+        "en": [
+          "Recovers 40 HP, up to your maximum. At full HP, the food menu refuses to eat and keeps the item.",
+          "Eating consumes one food item."
+        ],
+        "ja": [
+          "HPを40回復する。最大HPが上限。満タンでは食べず、アイテムも残る。",
+          "食べると食料を1個消費する。"
+        ],
+        "th": [
+          "ฟื้น 40 HP แต่ไม่เกินค่าสูงสุด ถ้า HP เต็ม เมนูอาหารจะไม่ให้กินและไม่เสียไอเท็ม",
+          "กินแล้วอาหารหนึ่งชิ้นหมดไป"
+        ]
+      }
+    },
+    "food:08": {
+      "evidence": {
+        "type": "rom_trace",
+        "sources": [
+          "docs/food-practical-research.md",
+          "data/food-effects-confirmed.json"
+        ]
+      },
+      "summary": {
+        "th": "กินปลาตัวแรกในข้องเพื่อฟื้น HP และคืนช่องว่าง ต้องดูชื่อปลาก่อนกิน: คุซะฟุกุทำให้ HP เหลือ 0",
+        "en": "Eat the first fish in the keepnet to recover HP and free a slot. Check its name first: Kusafugu sets HP to zero.",
+        "ja": "びくの先頭の魚を食べてHPを回復し、空きを作る。名前を確認すること。クサフグはHPが0になる。"
+      },
+      "facts": {
+        "th": [
+          "เมนูแสดงชื่อปลาตัวแรกในข้องก่อนกิน ไม่ได้เลือกตัวไหนก็ได้จากข้อง",
+          "ปลาอื่นฟื้นตามขนาด: ค่าขนาดที่เกมเก็บหาร 4 ปัดลง ขั้นต่ำ 1 HP เช่น 30 → 7 HP, 100 → 25 HP",
+          "กินแล้วปลาตัวนั้นถูกนำออกจากข้อง HP ไม่เกินค่าสูงสุด",
+          "ข้อยกเว้นคือคุซะฟุกุ: กินแล้ว HP เหลือ 0 และเข้าสู่เหตุการณ์หมดแรง"
+        ],
+        "en": [
+          "The menu previews the first stored fish; it does not let you freely choose a different keepnet fish.",
+          "Other fish recover floor(stored size / 4), with a minimum of 1 HP: 30 → 7 HP, 100 → 25 HP.",
+          "Eating removes that fish and caps recovery at maximum HP.",
+          "Exception: Kusafugu sets HP to zero and enters the collapse event."
+        ],
+        "ja": [
+          "メニューはびくの先頭の魚名を表示する。任意の魚を選ぶ方式ではない。",
+          "他の魚は保存サイズ÷4の切り捨て、最低1HPを回復する。30なら7HP、100なら25HP。",
+          "食べた魚はびくから消え、HPは最大値を超えない。",
+          "クサフグは例外。HPが0になり、倒れるイベントに入る。"
+        ]
+      },
+      "evidenceNotes": {
+        "en": [
+          "Stored-size unit has not been mapped to the catch-screen unit; the formula is exact for the ROM integer."
+        ],
+        "ja": [
+          "保存サイズと釣果画面の単位の対応は未確定。式はROM整数値に対するもの。"
+        ],
+        "th": [
+          "สูตรตรงกับค่าจำนวนเต็มใน ROM แต่ยังไม่ยืนยันหน่วยขนาดเทียบกับหน้าจอรายงานปลาที่ตกได้"
+        ]
+      }
+    },
+    "food:09": {
+      "evidence": {
+        "type": "rom_trace",
+        "sources": [
+          "docs/food-practical-research.md",
+          "data/food-effects-confirmed.json"
+        ]
+      }
+    },
+    "food:0A": {
+      "evidence": {
+        "type": "rom_trace",
+        "sources": [
+          "docs/food-practical-research.md",
+          "data/food-effects-confirmed.json"
+        ]
+      }
+    }
+  }
+}

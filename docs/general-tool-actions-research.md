@@ -21,7 +21,7 @@ The selected-use dispatcher is `$03:BC4A..BD2E` (file `0x01BC4A..0x01BD2E`). It 
 
 The handlers `$03:BD2F` and `$03:BD76` set `$0834=5` and put `1` or `2` in `$130E`. Main state 5 at `$00:8283` checks whether the player can board. It allows the on-foot/shallow-water movement states, rejects swimming with message `0156` (`泳ぎながら乗ることはできない。`), and reports message `0152` (`[D6]はここでは使えない。`) when the current tile fails the ROM's launch check. At a valid location it places the vehicle according to the player's facing, shows `013A` (`[D0]が水に浮かんでいる。`), and returns to field state 2.
 
-`$00:836E` turns `$130E=1` into movement state `$0858=3` and `$130E=2` into state `$0858=4`. The movement code branches to `$00:A5F2` for the tub and `$00:A7BB` for the canoe. These are distinct movement routines. The ROM does not establish a simple speed or destination difference in the traced use path, so this research does not invent one.
+`$00:836E` turns `$130E=1` into movement state `$0858=3` and `$130E=2` into state `$0858=4`. The movement code branches to `$00:A5F2` for the tub and `$00:A7BB` for the canoe. These are distinct movement routines. The later [movement trace](boat-movement-research.md) follows those routines and establishes a scoped 40% canoe movement advantage where the current contribution is zero.
 
 The ROM also blocks direct switching while already in either vehicle mode. Selecting the same vehicle reports `013C` (`[D6]は今使っている。`); trying to switch to the other reports `0154` (`[D6]に乗りかえるのは危険だ。`). The movement path clears `$0858` when its tile probe sees `$084A==0`; the numeric tile class has not been assigned a plain-language terrain label here.
 

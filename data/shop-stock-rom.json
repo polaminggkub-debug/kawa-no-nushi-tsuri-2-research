@@ -1,0 +1,7087 @@
+{
+  "schemaVersion": 1,
+  "romSha1": "c2103dd94e2a1a65a495fc02adc2e7d040f31212",
+  "method": "Original-ROM field-block decompression and traced shop menu copies; no external guide",
+  "sources": [
+    "docs/shop-stock-research.md"
+  ],
+  "areas": [
+    {
+      "stage": 1,
+      "compressedFileOffset": "0x1137fb",
+      "decompressedSize": 19515,
+      "items": [
+        {
+          "category": "rod",
+          "id": "03",
+          "stockWord": 3,
+          "section": "rod",
+          "slot": 0,
+          "decompressedOffset": "0x4b85"
+        },
+        {
+          "category": "rod",
+          "id": "05",
+          "stockWord": 5,
+          "section": "rod",
+          "slot": 1,
+          "decompressedOffset": "0x4b87"
+        },
+        {
+          "category": "rod",
+          "id": "04",
+          "stockWord": 4,
+          "section": "rod",
+          "slot": 2,
+          "decompressedOffset": "0x4b89"
+        },
+        {
+          "category": "rod",
+          "id": "0E",
+          "stockWord": 14,
+          "section": "rod",
+          "slot": 3,
+          "decompressedOffset": "0x4b8b"
+        },
+        {
+          "category": "rod",
+          "id": "0A",
+          "stockWord": 10,
+          "section": "rod",
+          "slot": 4,
+          "decompressedOffset": "0x4b8d"
+        },
+        {
+          "category": "rod",
+          "id": "0C",
+          "stockWord": 12,
+          "section": "rod",
+          "slot": 5,
+          "decompressedOffset": "0x4b8f"
+        },
+        {
+          "category": "rod",
+          "id": "12",
+          "stockWord": 18,
+          "section": "rod",
+          "slot": 6,
+          "decompressedOffset": "0x4b91"
+        },
+        {
+          "category": "rod",
+          "id": "13",
+          "stockWord": 19,
+          "section": "rod",
+          "slot": 7,
+          "decompressedOffset": "0x4b93"
+        },
+        {
+          "category": "lure",
+          "id": "2E",
+          "stockWord": 46,
+          "section": "lure",
+          "slot": 0,
+          "decompressedOffset": "0x4b95"
+        },
+        {
+          "category": "lure",
+          "id": "2F",
+          "stockWord": 47,
+          "section": "lure",
+          "slot": 1,
+          "decompressedOffset": "0x4b97"
+        },
+        {
+          "category": "lure",
+          "id": "30",
+          "stockWord": 48,
+          "section": "lure",
+          "slot": 2,
+          "decompressedOffset": "0x4b99"
+        },
+        {
+          "category": "lure",
+          "id": "31",
+          "stockWord": 49,
+          "section": "lure",
+          "slot": 3,
+          "decompressedOffset": "0x4b9b"
+        },
+        {
+          "category": "lure",
+          "id": "35",
+          "stockWord": 53,
+          "section": "lure",
+          "slot": 4,
+          "decompressedOffset": "0x4b9d"
+        },
+        {
+          "category": "lure",
+          "id": "36",
+          "stockWord": 54,
+          "section": "lure",
+          "slot": 5,
+          "decompressedOffset": "0x4b9f"
+        },
+        {
+          "category": "lure",
+          "id": "37",
+          "stockWord": 55,
+          "section": "lure",
+          "slot": 6,
+          "decompressedOffset": "0x4ba1"
+        },
+        {
+          "category": "lure",
+          "id": "38",
+          "stockWord": 56,
+          "section": "lure",
+          "slot": 7,
+          "decompressedOffset": "0x4ba3"
+        },
+        {
+          "category": "lure",
+          "id": "41",
+          "stockWord": 65,
+          "section": "lure",
+          "slot": 8,
+          "decompressedOffset": "0x4ba5"
+        },
+        {
+          "category": "lure",
+          "id": "13",
+          "stockWord": 19,
+          "section": "lure",
+          "slot": 9,
+          "decompressedOffset": "0x4ba7"
+        },
+        {
+          "category": "lure",
+          "id": "02",
+          "stockWord": 2,
+          "section": "lure",
+          "slot": 10,
+          "decompressedOffset": "0x4ba9"
+        },
+        {
+          "category": "lure",
+          "id": "14",
+          "stockWord": 20,
+          "section": "lure",
+          "slot": 11,
+          "decompressedOffset": "0x4bab"
+        },
+        {
+          "category": "lure",
+          "id": "15",
+          "stockWord": 21,
+          "section": "lure",
+          "slot": 12,
+          "decompressedOffset": "0x4bad"
+        },
+        {
+          "category": "lure",
+          "id": "48",
+          "stockWord": 72,
+          "section": "lure",
+          "slot": 13,
+          "decompressedOffset": "0x4baf"
+        },
+        {
+          "category": "lure",
+          "id": "49",
+          "stockWord": 73,
+          "section": "lure",
+          "slot": 14,
+          "decompressedOffset": "0x4bb1"
+        },
+        {
+          "category": "lure",
+          "id": "4A",
+          "stockWord": 74,
+          "section": "lure",
+          "slot": 15,
+          "decompressedOffset": "0x4bb3"
+        },
+        {
+          "category": "lure",
+          "id": "19",
+          "stockWord": 25,
+          "section": "lure",
+          "slot": 16,
+          "decompressedOffset": "0x4bb5"
+        },
+        {
+          "category": "lure",
+          "id": "1A",
+          "stockWord": 26,
+          "section": "lure",
+          "slot": 17,
+          "decompressedOffset": "0x4bb7"
+        },
+        {
+          "category": "lure",
+          "id": "23",
+          "stockWord": 35,
+          "section": "lure",
+          "slot": 18,
+          "decompressedOffset": "0x4bb9"
+        },
+        {
+          "category": "lure",
+          "id": "25",
+          "stockWord": 37,
+          "section": "lure",
+          "slot": 19,
+          "decompressedOffset": "0x4bbb"
+        },
+        {
+          "category": "lure",
+          "id": "26",
+          "stockWord": 38,
+          "section": "lure",
+          "slot": 20,
+          "decompressedOffset": "0x4bbd"
+        },
+        {
+          "category": "lure",
+          "id": "27",
+          "stockWord": 39,
+          "section": "lure",
+          "slot": 21,
+          "decompressedOffset": "0x4bbf"
+        },
+        {
+          "category": "lure",
+          "id": "2B",
+          "stockWord": 43,
+          "section": "lure",
+          "slot": 22,
+          "decompressedOffset": "0x4bc1"
+        },
+        {
+          "category": "lure",
+          "id": "29",
+          "stockWord": 41,
+          "section": "lure",
+          "slot": 23,
+          "decompressedOffset": "0x4bc3"
+        },
+        {
+          "category": "hook",
+          "id": "08",
+          "stockWord": 8,
+          "section": "hook",
+          "slot": 0,
+          "decompressedOffset": "0x4bc5"
+        },
+        {
+          "category": "hook",
+          "id": "06",
+          "stockWord": 6,
+          "section": "hook",
+          "slot": 1,
+          "decompressedOffset": "0x4bc7"
+        },
+        {
+          "category": "hook",
+          "id": "0C",
+          "stockWord": 12,
+          "section": "hook",
+          "slot": 2,
+          "decompressedOffset": "0x4bc9"
+        },
+        {
+          "category": "hook",
+          "id": "0D",
+          "stockWord": 13,
+          "section": "hook",
+          "slot": 3,
+          "decompressedOffset": "0x4bcb"
+        },
+        {
+          "category": "float_weight",
+          "id": "06",
+          "stockWord": 6,
+          "section": "float_weight",
+          "slot": 0,
+          "decompressedOffset": "0x4bcd"
+        },
+        {
+          "category": "float_weight",
+          "id": "05",
+          "stockWord": 5,
+          "section": "float_weight",
+          "slot": 1,
+          "decompressedOffset": "0x4bcf"
+        },
+        {
+          "category": "bait",
+          "id": "07",
+          "stockWord": 7,
+          "section": "bait",
+          "slot": 0,
+          "decompressedOffset": "0x4bd9"
+        },
+        {
+          "category": "bait",
+          "id": "08",
+          "stockWord": 8,
+          "section": "bait",
+          "slot": 1,
+          "decompressedOffset": "0x4bdb"
+        },
+        {
+          "category": "bait",
+          "id": "01",
+          "stockWord": 1,
+          "section": "bait",
+          "slot": 2,
+          "decompressedOffset": "0x4bdd"
+        },
+        {
+          "category": "bait",
+          "id": "0A",
+          "stockWord": 10,
+          "section": "bait",
+          "slot": 3,
+          "decompressedOffset": "0x4bdf"
+        },
+        {
+          "category": "bait",
+          "id": "12",
+          "stockWord": 18,
+          "section": "bait",
+          "slot": 4,
+          "decompressedOffset": "0x4be1"
+        },
+        {
+          "category": "bait",
+          "id": "04",
+          "stockWord": 4,
+          "section": "bait",
+          "slot": 5,
+          "decompressedOffset": "0x4be3"
+        },
+        {
+          "category": "bait",
+          "id": "09",
+          "stockWord": 9,
+          "section": "bait",
+          "slot": 6,
+          "decompressedOffset": "0x4be5"
+        },
+        {
+          "category": "bait",
+          "id": "02",
+          "stockWord": 2,
+          "section": "bait",
+          "slot": 7,
+          "decompressedOffset": "0x4be7"
+        },
+        {
+          "category": "bait",
+          "id": "0B",
+          "stockWord": 11,
+          "section": "bait",
+          "slot": 8,
+          "decompressedOffset": "0x4be9"
+        },
+        {
+          "category": "fly",
+          "id": "01",
+          "stockWord": 1,
+          "section": "fly",
+          "slot": 0,
+          "decompressedOffset": "0x4bef"
+        },
+        {
+          "category": "fly",
+          "id": "18",
+          "stockWord": 24,
+          "section": "fly",
+          "slot": 1,
+          "decompressedOffset": "0x4bf1"
+        },
+        {
+          "category": "fly",
+          "id": "2B",
+          "stockWord": 43,
+          "section": "fly",
+          "slot": 2,
+          "decompressedOffset": "0x4bf3"
+        },
+        {
+          "category": "fly",
+          "id": "3E",
+          "stockWord": 62,
+          "section": "fly",
+          "slot": 3,
+          "decompressedOffset": "0x4bf5"
+        },
+        {
+          "category": "fly",
+          "id": "4B",
+          "stockWord": 75,
+          "section": "fly",
+          "slot": 4,
+          "decompressedOffset": "0x4bf7"
+        },
+        {
+          "category": "fly",
+          "id": "56",
+          "stockWord": 86,
+          "section": "fly",
+          "slot": 5,
+          "decompressedOffset": "0x4bf9"
+        },
+        {
+          "category": "fly",
+          "id": "6C",
+          "stockWord": 108,
+          "section": "fly",
+          "slot": 6,
+          "decompressedOffset": "0x4bfb"
+        },
+        {
+          "category": "fly",
+          "id": "77",
+          "stockWord": 119,
+          "section": "fly",
+          "slot": 7,
+          "decompressedOffset": "0x4bfd"
+        },
+        {
+          "category": "fly_wing",
+          "id": "09",
+          "stockWord": 9,
+          "section": "fly_wing",
+          "slot": 0,
+          "decompressedOffset": "0x4bff"
+        },
+        {
+          "category": "fly_wing",
+          "id": "1F",
+          "stockWord": 31,
+          "section": "fly_wing",
+          "slot": 1,
+          "decompressedOffset": "0x4c01"
+        },
+        {
+          "category": "fly_wing",
+          "id": "34",
+          "stockWord": 52,
+          "section": "fly_wing",
+          "slot": 2,
+          "decompressedOffset": "0x4c03"
+        },
+        {
+          "category": "fly_wing",
+          "id": "43",
+          "stockWord": 67,
+          "section": "fly_wing",
+          "slot": 3,
+          "decompressedOffset": "0x4c05"
+        },
+        {
+          "category": "fly_wing",
+          "id": "50",
+          "stockWord": 80,
+          "section": "fly_wing",
+          "slot": 4,
+          "decompressedOffset": "0x4c07"
+        },
+        {
+          "category": "fly_wing",
+          "id": "5A",
+          "stockWord": 90,
+          "section": "fly_wing",
+          "slot": 5,
+          "decompressedOffset": "0x4c09"
+        },
+        {
+          "category": "fly_wing",
+          "id": "70",
+          "stockWord": 112,
+          "section": "fly_wing",
+          "slot": 6,
+          "decompressedOffset": "0x4c0b"
+        },
+        {
+          "category": "fly_tail",
+          "id": "13",
+          "stockWord": 19,
+          "section": "fly_tail",
+          "slot": 0,
+          "decompressedOffset": "0x4c0f"
+        },
+        {
+          "category": "fly_tail",
+          "id": "27",
+          "stockWord": 39,
+          "section": "fly_tail",
+          "slot": 1,
+          "decompressedOffset": "0x4c11"
+        },
+        {
+          "category": "fly_tail",
+          "id": "49",
+          "stockWord": 73,
+          "section": "fly_tail",
+          "slot": 3,
+          "decompressedOffset": "0x4c15"
+        },
+        {
+          "category": "fly_tail",
+          "id": "53",
+          "stockWord": 83,
+          "section": "fly_tail",
+          "slot": 4,
+          "decompressedOffset": "0x4c17"
+        },
+        {
+          "category": "fly_tail",
+          "id": "5F",
+          "stockWord": 95,
+          "section": "fly_tail",
+          "slot": 5,
+          "decompressedOffset": "0x4c19"
+        },
+        {
+          "category": "fly_tail",
+          "id": "74",
+          "stockWord": 116,
+          "section": "fly_tail",
+          "slot": 6,
+          "decompressedOffset": "0x4c1b"
+        },
+        {
+          "category": "food",
+          "id": "01",
+          "stockWord": 32769,
+          "section": "mixed_tool_food",
+          "slot": 0,
+          "decompressedOffset": "0x4c1f"
+        },
+        {
+          "category": "food",
+          "id": "02",
+          "stockWord": 32770,
+          "section": "mixed_tool_food",
+          "slot": 1,
+          "decompressedOffset": "0x4c21"
+        },
+        {
+          "category": "general_tool",
+          "id": "03",
+          "stockWord": 3,
+          "section": "mixed_tool_food",
+          "slot": 2,
+          "decompressedOffset": "0x4c23"
+        },
+        {
+          "category": "general_tool",
+          "id": "07",
+          "stockWord": 7,
+          "section": "mixed_tool_food",
+          "slot": 3,
+          "decompressedOffset": "0x4c25"
+        },
+        {
+          "category": "general_tool",
+          "id": "0B",
+          "stockWord": 11,
+          "section": "mixed_tool_food",
+          "slot": 4,
+          "decompressedOffset": "0x4c27"
+        },
+        {
+          "category": "general_tool",
+          "id": "0E",
+          "stockWord": 14,
+          "section": "mixed_tool_food",
+          "slot": 5,
+          "decompressedOffset": "0x4c29"
+        },
+        {
+          "category": "general_tool",
+          "id": "17",
+          "stockWord": 23,
+          "section": "mixed_tool_food",
+          "slot": 6,
+          "decompressedOffset": "0x4c2b"
+        }
+      ],
+      "flyBundles": [
+        {
+          "slot": 0,
+          "body": "01",
+          "wing": "09",
+          "tail": "13",
+          "shopPriceYen": 5
+        },
+        {
+          "slot": 1,
+          "body": "18",
+          "wing": "1F",
+          "tail": "27",
+          "shopPriceYen": 18
+        },
+        {
+          "slot": 2,
+          "body": "2B",
+          "wing": "34",
+          "tail": "00",
+          "shopPriceYen": 15
+        },
+        {
+          "slot": 3,
+          "body": "3E",
+          "wing": "43",
+          "tail": "49",
+          "shopPriceYen": 5
+        },
+        {
+          "slot": 4,
+          "body": "4B",
+          "wing": "50",
+          "tail": "53",
+          "shopPriceYen": 20
+        },
+        {
+          "slot": 5,
+          "body": "56",
+          "wing": "5A",
+          "tail": "5F",
+          "shopPriceYen": 25
+        },
+        {
+          "slot": 6,
+          "body": "6C",
+          "wing": "70",
+          "tail": "74",
+          "shopPriceYen": 15
+        },
+        {
+          "slot": 7,
+          "body": "77",
+          "wing": "00",
+          "tail": "00",
+          "shopPriceYen": 25
+        }
+      ]
+    },
+    {
+      "stage": 2,
+      "compressedFileOffset": "0x11a2d8",
+      "decompressedSize": 19515,
+      "items": [
+        {
+          "category": "rod",
+          "id": "03",
+          "stockWord": 3,
+          "section": "rod",
+          "slot": 0,
+          "decompressedOffset": "0x4b85"
+        },
+        {
+          "category": "rod",
+          "id": "05",
+          "stockWord": 5,
+          "section": "rod",
+          "slot": 1,
+          "decompressedOffset": "0x4b87"
+        },
+        {
+          "category": "rod",
+          "id": "04",
+          "stockWord": 4,
+          "section": "rod",
+          "slot": 2,
+          "decompressedOffset": "0x4b89"
+        },
+        {
+          "category": "rod",
+          "id": "0F",
+          "stockWord": 15,
+          "section": "rod",
+          "slot": 3,
+          "decompressedOffset": "0x4b8b"
+        },
+        {
+          "category": "rod",
+          "id": "0A",
+          "stockWord": 10,
+          "section": "rod",
+          "slot": 4,
+          "decompressedOffset": "0x4b8d"
+        },
+        {
+          "category": "rod",
+          "id": "0C",
+          "stockWord": 12,
+          "section": "rod",
+          "slot": 5,
+          "decompressedOffset": "0x4b8f"
+        },
+        {
+          "category": "rod",
+          "id": "12",
+          "stockWord": 18,
+          "section": "rod",
+          "slot": 6,
+          "decompressedOffset": "0x4b91"
+        },
+        {
+          "category": "rod",
+          "id": "13",
+          "stockWord": 19,
+          "section": "rod",
+          "slot": 7,
+          "decompressedOffset": "0x4b93"
+        },
+        {
+          "category": "lure",
+          "id": "32",
+          "stockWord": 50,
+          "section": "lure",
+          "slot": 0,
+          "decompressedOffset": "0x4b95"
+        },
+        {
+          "category": "lure",
+          "id": "33",
+          "stockWord": 51,
+          "section": "lure",
+          "slot": 1,
+          "decompressedOffset": "0x4b97"
+        },
+        {
+          "category": "lure",
+          "id": "34",
+          "stockWord": 52,
+          "section": "lure",
+          "slot": 2,
+          "decompressedOffset": "0x4b99"
+        },
+        {
+          "category": "lure",
+          "id": "35",
+          "stockWord": 53,
+          "section": "lure",
+          "slot": 3,
+          "decompressedOffset": "0x4b9b"
+        },
+        {
+          "category": "lure",
+          "id": "42",
+          "stockWord": 66,
+          "section": "lure",
+          "slot": 4,
+          "decompressedOffset": "0x4b9d"
+        },
+        {
+          "category": "lure",
+          "id": "43",
+          "stockWord": 67,
+          "section": "lure",
+          "slot": 5,
+          "decompressedOffset": "0x4b9f"
+        },
+        {
+          "category": "lure",
+          "id": "06",
+          "stockWord": 6,
+          "section": "lure",
+          "slot": 6,
+          "decompressedOffset": "0x4ba1"
+        },
+        {
+          "category": "lure",
+          "id": "07",
+          "stockWord": 7,
+          "section": "lure",
+          "slot": 7,
+          "decompressedOffset": "0x4ba3"
+        },
+        {
+          "category": "lure",
+          "id": "0A",
+          "stockWord": 10,
+          "section": "lure",
+          "slot": 8,
+          "decompressedOffset": "0x4ba5"
+        },
+        {
+          "category": "lure",
+          "id": "0E",
+          "stockWord": 14,
+          "section": "lure",
+          "slot": 9,
+          "decompressedOffset": "0x4ba7"
+        },
+        {
+          "category": "lure",
+          "id": "10",
+          "stockWord": 16,
+          "section": "lure",
+          "slot": 10,
+          "decompressedOffset": "0x4ba9"
+        },
+        {
+          "category": "lure",
+          "id": "11",
+          "stockWord": 17,
+          "section": "lure",
+          "slot": 11,
+          "decompressedOffset": "0x4bab"
+        },
+        {
+          "category": "lure",
+          "id": "12",
+          "stockWord": 18,
+          "section": "lure",
+          "slot": 12,
+          "decompressedOffset": "0x4bad"
+        },
+        {
+          "category": "lure",
+          "id": "15",
+          "stockWord": 21,
+          "section": "lure",
+          "slot": 13,
+          "decompressedOffset": "0x4baf"
+        },
+        {
+          "category": "lure",
+          "id": "16",
+          "stockWord": 22,
+          "section": "lure",
+          "slot": 14,
+          "decompressedOffset": "0x4bb1"
+        },
+        {
+          "category": "lure",
+          "id": "17",
+          "stockWord": 23,
+          "section": "lure",
+          "slot": 15,
+          "decompressedOffset": "0x4bb3"
+        },
+        {
+          "category": "lure",
+          "id": "19",
+          "stockWord": 25,
+          "section": "lure",
+          "slot": 16,
+          "decompressedOffset": "0x4bb5"
+        },
+        {
+          "category": "lure",
+          "id": "1A",
+          "stockWord": 26,
+          "section": "lure",
+          "slot": 17,
+          "decompressedOffset": "0x4bb7"
+        },
+        {
+          "category": "lure",
+          "id": "20",
+          "stockWord": 32,
+          "section": "lure",
+          "slot": 18,
+          "decompressedOffset": "0x4bb9"
+        },
+        {
+          "category": "lure",
+          "id": "24",
+          "stockWord": 36,
+          "section": "lure",
+          "slot": 19,
+          "decompressedOffset": "0x4bbb"
+        },
+        {
+          "category": "lure",
+          "id": "26",
+          "stockWord": 38,
+          "section": "lure",
+          "slot": 20,
+          "decompressedOffset": "0x4bbd"
+        },
+        {
+          "category": "lure",
+          "id": "29",
+          "stockWord": 41,
+          "section": "lure",
+          "slot": 21,
+          "decompressedOffset": "0x4bbf"
+        },
+        {
+          "category": "lure",
+          "id": "4A",
+          "stockWord": 74,
+          "section": "lure",
+          "slot": 22,
+          "decompressedOffset": "0x4bc1"
+        },
+        {
+          "category": "lure",
+          "id": "4B",
+          "stockWord": 75,
+          "section": "lure",
+          "slot": 23,
+          "decompressedOffset": "0x4bc3"
+        },
+        {
+          "category": "hook",
+          "id": "07",
+          "stockWord": 7,
+          "section": "hook",
+          "slot": 0,
+          "decompressedOffset": "0x4bc5"
+        },
+        {
+          "category": "hook",
+          "id": "06",
+          "stockWord": 6,
+          "section": "hook",
+          "slot": 1,
+          "decompressedOffset": "0x4bc7"
+        },
+        {
+          "category": "hook",
+          "id": "09",
+          "stockWord": 9,
+          "section": "hook",
+          "slot": 2,
+          "decompressedOffset": "0x4bc9"
+        },
+        {
+          "category": "hook",
+          "id": "0D",
+          "stockWord": 13,
+          "section": "hook",
+          "slot": 3,
+          "decompressedOffset": "0x4bcb"
+        },
+        {
+          "category": "float_weight",
+          "id": "02",
+          "stockWord": 2,
+          "section": "float_weight",
+          "slot": 0,
+          "decompressedOffset": "0x4bcd"
+        },
+        {
+          "category": "float_weight",
+          "id": "03",
+          "stockWord": 3,
+          "section": "float_weight",
+          "slot": 1,
+          "decompressedOffset": "0x4bcf"
+        },
+        {
+          "category": "float_weight",
+          "id": "05",
+          "stockWord": 5,
+          "section": "float_weight",
+          "slot": 2,
+          "decompressedOffset": "0x4bd1"
+        },
+        {
+          "category": "float_weight",
+          "id": "06",
+          "stockWord": 6,
+          "section": "float_weight",
+          "slot": 3,
+          "decompressedOffset": "0x4bd3"
+        },
+        {
+          "category": "bait",
+          "id": "07",
+          "stockWord": 7,
+          "section": "bait",
+          "slot": 0,
+          "decompressedOffset": "0x4bd9"
+        },
+        {
+          "category": "bait",
+          "id": "08",
+          "stockWord": 8,
+          "section": "bait",
+          "slot": 1,
+          "decompressedOffset": "0x4bdb"
+        },
+        {
+          "category": "bait",
+          "id": "01",
+          "stockWord": 1,
+          "section": "bait",
+          "slot": 2,
+          "decompressedOffset": "0x4bdd"
+        },
+        {
+          "category": "bait",
+          "id": "12",
+          "stockWord": 18,
+          "section": "bait",
+          "slot": 3,
+          "decompressedOffset": "0x4bdf"
+        },
+        {
+          "category": "bait",
+          "id": "04",
+          "stockWord": 4,
+          "section": "bait",
+          "slot": 4,
+          "decompressedOffset": "0x4be1"
+        },
+        {
+          "category": "bait",
+          "id": "0A",
+          "stockWord": 10,
+          "section": "bait",
+          "slot": 5,
+          "decompressedOffset": "0x4be3"
+        },
+        {
+          "category": "bait",
+          "id": "15",
+          "stockWord": 21,
+          "section": "bait",
+          "slot": 6,
+          "decompressedOffset": "0x4be5"
+        },
+        {
+          "category": "bait",
+          "id": "03",
+          "stockWord": 3,
+          "section": "bait",
+          "slot": 7,
+          "decompressedOffset": "0x4be7"
+        },
+        {
+          "category": "bait",
+          "id": "09",
+          "stockWord": 9,
+          "section": "bait",
+          "slot": 8,
+          "decompressedOffset": "0x4be9"
+        },
+        {
+          "category": "bait",
+          "id": "14",
+          "stockWord": 20,
+          "section": "bait",
+          "slot": 9,
+          "decompressedOffset": "0x4beb"
+        },
+        {
+          "category": "fly",
+          "id": "02",
+          "stockWord": 2,
+          "section": "fly",
+          "slot": 0,
+          "decompressedOffset": "0x4bef"
+        },
+        {
+          "category": "fly",
+          "id": "19",
+          "stockWord": 25,
+          "section": "fly",
+          "slot": 1,
+          "decompressedOffset": "0x4bf1"
+        },
+        {
+          "category": "fly",
+          "id": "2C",
+          "stockWord": 44,
+          "section": "fly",
+          "slot": 2,
+          "decompressedOffset": "0x4bf3"
+        },
+        {
+          "category": "fly",
+          "id": "3F",
+          "stockWord": 63,
+          "section": "fly",
+          "slot": 3,
+          "decompressedOffset": "0x4bf5"
+        },
+        {
+          "category": "fly",
+          "id": "4C",
+          "stockWord": 76,
+          "section": "fly",
+          "slot": 4,
+          "decompressedOffset": "0x4bf7"
+        },
+        {
+          "category": "fly",
+          "id": "57",
+          "stockWord": 87,
+          "section": "fly",
+          "slot": 5,
+          "decompressedOffset": "0x4bf9"
+        },
+        {
+          "category": "fly",
+          "id": "60",
+          "stockWord": 96,
+          "section": "fly",
+          "slot": 6,
+          "decompressedOffset": "0x4bfb"
+        },
+        {
+          "category": "fly",
+          "id": "7F",
+          "stockWord": 127,
+          "section": "fly",
+          "slot": 7,
+          "decompressedOffset": "0x4bfd"
+        },
+        {
+          "category": "fly_wing",
+          "id": "0A",
+          "stockWord": 10,
+          "section": "fly_wing",
+          "slot": 0,
+          "decompressedOffset": "0x4bff"
+        },
+        {
+          "category": "fly_wing",
+          "id": "20",
+          "stockWord": 32,
+          "section": "fly_wing",
+          "slot": 1,
+          "decompressedOffset": "0x4c01"
+        },
+        {
+          "category": "fly_wing",
+          "id": "35",
+          "stockWord": 53,
+          "section": "fly_wing",
+          "slot": 2,
+          "decompressedOffset": "0x4c03"
+        },
+        {
+          "category": "fly_wing",
+          "id": "44",
+          "stockWord": 68,
+          "section": "fly_wing",
+          "slot": 3,
+          "decompressedOffset": "0x4c05"
+        },
+        {
+          "category": "fly_wing",
+          "id": "51",
+          "stockWord": 81,
+          "section": "fly_wing",
+          "slot": 4,
+          "decompressedOffset": "0x4c07"
+        },
+        {
+          "category": "fly_wing",
+          "id": "5B",
+          "stockWord": 91,
+          "section": "fly_wing",
+          "slot": 5,
+          "decompressedOffset": "0x4c09"
+        },
+        {
+          "category": "fly_tail",
+          "id": "14",
+          "stockWord": 20,
+          "section": "fly_tail",
+          "slot": 0,
+          "decompressedOffset": "0x4c0f"
+        },
+        {
+          "category": "fly_tail",
+          "id": "28",
+          "stockWord": 40,
+          "section": "fly_tail",
+          "slot": 1,
+          "decompressedOffset": "0x4c11"
+        },
+        {
+          "category": "fly_tail",
+          "id": "4A",
+          "stockWord": 74,
+          "section": "fly_tail",
+          "slot": 3,
+          "decompressedOffset": "0x4c15"
+        },
+        {
+          "category": "fly_tail",
+          "id": "54",
+          "stockWord": 84,
+          "section": "fly_tail",
+          "slot": 4,
+          "decompressedOffset": "0x4c17"
+        },
+        {
+          "category": "fly_tail",
+          "id": "5F",
+          "stockWord": 95,
+          "section": "fly_tail",
+          "slot": 5,
+          "decompressedOffset": "0x4c19"
+        },
+        {
+          "category": "fly_tail",
+          "id": "68",
+          "stockWord": 104,
+          "section": "fly_tail",
+          "slot": 6,
+          "decompressedOffset": "0x4c1b"
+        },
+        {
+          "category": "food",
+          "id": "02",
+          "stockWord": 32770,
+          "section": "mixed_tool_food",
+          "slot": 0,
+          "decompressedOffset": "0x4c1f"
+        },
+        {
+          "category": "food",
+          "id": "03",
+          "stockWord": 32771,
+          "section": "mixed_tool_food",
+          "slot": 1,
+          "decompressedOffset": "0x4c21"
+        },
+        {
+          "category": "general_tool",
+          "id": "03",
+          "stockWord": 3,
+          "section": "mixed_tool_food",
+          "slot": 2,
+          "decompressedOffset": "0x4c23"
+        },
+        {
+          "category": "general_tool",
+          "id": "07",
+          "stockWord": 7,
+          "section": "mixed_tool_food",
+          "slot": 3,
+          "decompressedOffset": "0x4c25"
+        },
+        {
+          "category": "general_tool",
+          "id": "08",
+          "stockWord": 8,
+          "section": "mixed_tool_food",
+          "slot": 4,
+          "decompressedOffset": "0x4c27"
+        },
+        {
+          "category": "general_tool",
+          "id": "0B",
+          "stockWord": 11,
+          "section": "mixed_tool_food",
+          "slot": 5,
+          "decompressedOffset": "0x4c29"
+        },
+        {
+          "category": "general_tool",
+          "id": "0E",
+          "stockWord": 14,
+          "section": "mixed_tool_food",
+          "slot": 6,
+          "decompressedOffset": "0x4c2b"
+        },
+        {
+          "category": "general_tool",
+          "id": "17",
+          "stockWord": 23,
+          "section": "mixed_tool_food",
+          "slot": 7,
+          "decompressedOffset": "0x4c2d"
+        }
+      ],
+      "flyBundles": [
+        {
+          "slot": 0,
+          "body": "02",
+          "wing": "0A",
+          "tail": "14",
+          "shopPriceYen": 10
+        },
+        {
+          "slot": 1,
+          "body": "19",
+          "wing": "20",
+          "tail": "28",
+          "shopPriceYen": 20
+        },
+        {
+          "slot": 2,
+          "body": "2C",
+          "wing": "35",
+          "tail": "00",
+          "shopPriceYen": 20
+        },
+        {
+          "slot": 3,
+          "body": "3F",
+          "wing": "44",
+          "tail": "4A",
+          "shopPriceYen": 7
+        },
+        {
+          "slot": 4,
+          "body": "4C",
+          "wing": "51",
+          "tail": "54",
+          "shopPriceYen": 25
+        },
+        {
+          "slot": 5,
+          "body": "57",
+          "wing": "5B",
+          "tail": "5F",
+          "shopPriceYen": 35
+        },
+        {
+          "slot": 6,
+          "body": "60",
+          "wing": "00",
+          "tail": "68",
+          "shopPriceYen": 35
+        },
+        {
+          "slot": 7,
+          "body": "7F",
+          "wing": "00",
+          "tail": "00",
+          "shopPriceYen": 50
+        }
+      ]
+    },
+    {
+      "stage": 3,
+      "compressedFileOffset": "0x1215a2",
+      "decompressedSize": 19515,
+      "items": [
+        {
+          "category": "rod",
+          "id": "04",
+          "stockWord": 4,
+          "section": "rod",
+          "slot": 0,
+          "decompressedOffset": "0x4b85"
+        },
+        {
+          "category": "rod",
+          "id": "07",
+          "stockWord": 7,
+          "section": "rod",
+          "slot": 1,
+          "decompressedOffset": "0x4b87"
+        },
+        {
+          "category": "rod",
+          "id": "14",
+          "stockWord": 20,
+          "section": "rod",
+          "slot": 2,
+          "decompressedOffset": "0x4b89"
+        },
+        {
+          "category": "rod",
+          "id": "0E",
+          "stockWord": 14,
+          "section": "rod",
+          "slot": 3,
+          "decompressedOffset": "0x4b8b"
+        },
+        {
+          "category": "rod",
+          "id": "0A",
+          "stockWord": 10,
+          "section": "rod",
+          "slot": 4,
+          "decompressedOffset": "0x4b8d"
+        },
+        {
+          "category": "rod",
+          "id": "0C",
+          "stockWord": 12,
+          "section": "rod",
+          "slot": 5,
+          "decompressedOffset": "0x4b8f"
+        },
+        {
+          "category": "rod",
+          "id": "12",
+          "stockWord": 18,
+          "section": "rod",
+          "slot": 6,
+          "decompressedOffset": "0x4b91"
+        },
+        {
+          "category": "rod",
+          "id": "13",
+          "stockWord": 19,
+          "section": "rod",
+          "slot": 7,
+          "decompressedOffset": "0x4b93"
+        },
+        {
+          "category": "lure",
+          "id": "31",
+          "stockWord": 49,
+          "section": "lure",
+          "slot": 0,
+          "decompressedOffset": "0x4b95"
+        },
+        {
+          "category": "lure",
+          "id": "34",
+          "stockWord": 52,
+          "section": "lure",
+          "slot": 1,
+          "decompressedOffset": "0x4b97"
+        },
+        {
+          "category": "lure",
+          "id": "3A",
+          "stockWord": 58,
+          "section": "lure",
+          "slot": 2,
+          "decompressedOffset": "0x4b99"
+        },
+        {
+          "category": "lure",
+          "id": "3B",
+          "stockWord": 59,
+          "section": "lure",
+          "slot": 3,
+          "decompressedOffset": "0x4b9b"
+        },
+        {
+          "category": "lure",
+          "id": "43",
+          "stockWord": 67,
+          "section": "lure",
+          "slot": 4,
+          "decompressedOffset": "0x4b9d"
+        },
+        {
+          "category": "lure",
+          "id": "03",
+          "stockWord": 3,
+          "section": "lure",
+          "slot": 5,
+          "decompressedOffset": "0x4b9f"
+        },
+        {
+          "category": "lure",
+          "id": "4C",
+          "stockWord": 76,
+          "section": "lure",
+          "slot": 6,
+          "decompressedOffset": "0x4ba1"
+        },
+        {
+          "category": "lure",
+          "id": "4D",
+          "stockWord": 77,
+          "section": "lure",
+          "slot": 7,
+          "decompressedOffset": "0x4ba3"
+        },
+        {
+          "category": "lure",
+          "id": "17",
+          "stockWord": 23,
+          "section": "lure",
+          "slot": 8,
+          "decompressedOffset": "0x4ba5"
+        },
+        {
+          "category": "lure",
+          "id": "18",
+          "stockWord": 24,
+          "section": "lure",
+          "slot": 9,
+          "decompressedOffset": "0x4ba7"
+        },
+        {
+          "category": "lure",
+          "id": "26",
+          "stockWord": 38,
+          "section": "lure",
+          "slot": 10,
+          "decompressedOffset": "0x4ba9"
+        },
+        {
+          "category": "lure",
+          "id": "27",
+          "stockWord": 39,
+          "section": "lure",
+          "slot": 11,
+          "decompressedOffset": "0x4bab"
+        },
+        {
+          "category": "lure",
+          "id": "2B",
+          "stockWord": 43,
+          "section": "lure",
+          "slot": 12,
+          "decompressedOffset": "0x4bad"
+        },
+        {
+          "category": "lure",
+          "id": "2C",
+          "stockWord": 44,
+          "section": "lure",
+          "slot": 13,
+          "decompressedOffset": "0x4baf"
+        },
+        {
+          "category": "lure",
+          "id": "1A",
+          "stockWord": 26,
+          "section": "lure",
+          "slot": 14,
+          "decompressedOffset": "0x4bb1"
+        },
+        {
+          "category": "lure",
+          "id": "1B",
+          "stockWord": 27,
+          "section": "lure",
+          "slot": 15,
+          "decompressedOffset": "0x4bb3"
+        },
+        {
+          "category": "lure",
+          "id": "1D",
+          "stockWord": 29,
+          "section": "lure",
+          "slot": 16,
+          "decompressedOffset": "0x4bb5"
+        },
+        {
+          "category": "lure",
+          "id": "1E",
+          "stockWord": 30,
+          "section": "lure",
+          "slot": 17,
+          "decompressedOffset": "0x4bb7"
+        },
+        {
+          "category": "lure",
+          "id": "24",
+          "stockWord": 36,
+          "section": "lure",
+          "slot": 18,
+          "decompressedOffset": "0x4bb9"
+        },
+        {
+          "category": "lure",
+          "id": "25",
+          "stockWord": 37,
+          "section": "lure",
+          "slot": 19,
+          "decompressedOffset": "0x4bbb"
+        },
+        {
+          "category": "lure",
+          "id": "0A",
+          "stockWord": 10,
+          "section": "lure",
+          "slot": 20,
+          "decompressedOffset": "0x4bbd"
+        },
+        {
+          "category": "lure",
+          "id": "0B",
+          "stockWord": 11,
+          "section": "lure",
+          "slot": 21,
+          "decompressedOffset": "0x4bbf"
+        },
+        {
+          "category": "lure",
+          "id": "0C",
+          "stockWord": 12,
+          "section": "lure",
+          "slot": 22,
+          "decompressedOffset": "0x4bc1"
+        },
+        {
+          "category": "lure",
+          "id": "0D",
+          "stockWord": 13,
+          "section": "lure",
+          "slot": 23,
+          "decompressedOffset": "0x4bc3"
+        },
+        {
+          "category": "hook",
+          "id": "08",
+          "stockWord": 8,
+          "section": "hook",
+          "slot": 0,
+          "decompressedOffset": "0x4bc5"
+        },
+        {
+          "category": "hook",
+          "id": "0A",
+          "stockWord": 10,
+          "section": "hook",
+          "slot": 1,
+          "decompressedOffset": "0x4bc7"
+        },
+        {
+          "category": "hook",
+          "id": "06",
+          "stockWord": 6,
+          "section": "hook",
+          "slot": 2,
+          "decompressedOffset": "0x4bc9"
+        },
+        {
+          "category": "hook",
+          "id": "09",
+          "stockWord": 9,
+          "section": "hook",
+          "slot": 3,
+          "decompressedOffset": "0x4bcb"
+        },
+        {
+          "category": "float_weight",
+          "id": "06",
+          "stockWord": 6,
+          "section": "float_weight",
+          "slot": 0,
+          "decompressedOffset": "0x4bcd"
+        },
+        {
+          "category": "float_weight",
+          "id": "07",
+          "stockWord": 7,
+          "section": "float_weight",
+          "slot": 1,
+          "decompressedOffset": "0x4bcf"
+        },
+        {
+          "category": "bait",
+          "id": "07",
+          "stockWord": 7,
+          "section": "bait",
+          "slot": 0,
+          "decompressedOffset": "0x4bd9"
+        },
+        {
+          "category": "bait",
+          "id": "08",
+          "stockWord": 8,
+          "section": "bait",
+          "slot": 1,
+          "decompressedOffset": "0x4bdb"
+        },
+        {
+          "category": "bait",
+          "id": "01",
+          "stockWord": 1,
+          "section": "bait",
+          "slot": 2,
+          "decompressedOffset": "0x4bdd"
+        },
+        {
+          "category": "bait",
+          "id": "04",
+          "stockWord": 4,
+          "section": "bait",
+          "slot": 3,
+          "decompressedOffset": "0x4bdf"
+        },
+        {
+          "category": "bait",
+          "id": "12",
+          "stockWord": 18,
+          "section": "bait",
+          "slot": 4,
+          "decompressedOffset": "0x4be1"
+        },
+        {
+          "category": "bait",
+          "id": "02",
+          "stockWord": 2,
+          "section": "bait",
+          "slot": 5,
+          "decompressedOffset": "0x4be3"
+        },
+        {
+          "category": "bait",
+          "id": "0C",
+          "stockWord": 12,
+          "section": "bait",
+          "slot": 6,
+          "decompressedOffset": "0x4be5"
+        },
+        {
+          "category": "bait",
+          "id": "05",
+          "stockWord": 5,
+          "section": "bait",
+          "slot": 7,
+          "decompressedOffset": "0x4be7"
+        },
+        {
+          "category": "bait",
+          "id": "09",
+          "stockWord": 9,
+          "section": "bait",
+          "slot": 8,
+          "decompressedOffset": "0x4be9"
+        },
+        {
+          "category": "bait",
+          "id": "13",
+          "stockWord": 19,
+          "section": "bait",
+          "slot": 9,
+          "decompressedOffset": "0x4beb"
+        },
+        {
+          "category": "bait",
+          "id": "17",
+          "stockWord": 23,
+          "section": "bait",
+          "slot": 10,
+          "decompressedOffset": "0x4bed",
+          "condition": "sell at least one Ayu before buying; each purchase subtracts 9 from sold-Ayu counter, floored at 0"
+        },
+        {
+          "category": "fly",
+          "id": "03",
+          "stockWord": 3,
+          "section": "fly",
+          "slot": 0,
+          "decompressedOffset": "0x4bef"
+        },
+        {
+          "category": "fly",
+          "id": "1A",
+          "stockWord": 26,
+          "section": "fly",
+          "slot": 1,
+          "decompressedOffset": "0x4bf1"
+        },
+        {
+          "category": "fly",
+          "id": "2D",
+          "stockWord": 45,
+          "section": "fly",
+          "slot": 2,
+          "decompressedOffset": "0x4bf3"
+        },
+        {
+          "category": "fly",
+          "id": "40",
+          "stockWord": 64,
+          "section": "fly",
+          "slot": 3,
+          "decompressedOffset": "0x4bf5"
+        },
+        {
+          "category": "fly",
+          "id": "4D",
+          "stockWord": 77,
+          "section": "fly",
+          "slot": 4,
+          "decompressedOffset": "0x4bf7"
+        },
+        {
+          "category": "fly",
+          "id": "58",
+          "stockWord": 88,
+          "section": "fly",
+          "slot": 5,
+          "decompressedOffset": "0x4bf9"
+        },
+        {
+          "category": "fly",
+          "id": "61",
+          "stockWord": 97,
+          "section": "fly",
+          "slot": 6,
+          "decompressedOffset": "0x4bfb"
+        },
+        {
+          "category": "fly",
+          "id": "82",
+          "stockWord": 130,
+          "section": "fly",
+          "slot": 7,
+          "decompressedOffset": "0x4bfd"
+        },
+        {
+          "category": "fly_wing",
+          "id": "0B",
+          "stockWord": 11,
+          "section": "fly_wing",
+          "slot": 0,
+          "decompressedOffset": "0x4bff"
+        },
+        {
+          "category": "fly_wing",
+          "id": "21",
+          "stockWord": 33,
+          "section": "fly_wing",
+          "slot": 1,
+          "decompressedOffset": "0x4c01"
+        },
+        {
+          "category": "fly_wing",
+          "id": "36",
+          "stockWord": 54,
+          "section": "fly_wing",
+          "slot": 2,
+          "decompressedOffset": "0x4c03"
+        },
+        {
+          "category": "fly_wing",
+          "id": "43",
+          "stockWord": 67,
+          "section": "fly_wing",
+          "slot": 3,
+          "decompressedOffset": "0x4c05"
+        },
+        {
+          "category": "fly_wing",
+          "id": "52",
+          "stockWord": 82,
+          "section": "fly_wing",
+          "slot": 4,
+          "decompressedOffset": "0x4c07"
+        },
+        {
+          "category": "fly_wing",
+          "id": "5C",
+          "stockWord": 92,
+          "section": "fly_wing",
+          "slot": 5,
+          "decompressedOffset": "0x4c09"
+        },
+        {
+          "category": "fly_tail",
+          "id": "15",
+          "stockWord": 21,
+          "section": "fly_tail",
+          "slot": 0,
+          "decompressedOffset": "0x4c0f"
+        },
+        {
+          "category": "fly_tail",
+          "id": "27",
+          "stockWord": 39,
+          "section": "fly_tail",
+          "slot": 1,
+          "decompressedOffset": "0x4c11"
+        },
+        {
+          "category": "fly_tail",
+          "id": "49",
+          "stockWord": 73,
+          "section": "fly_tail",
+          "slot": 3,
+          "decompressedOffset": "0x4c15"
+        },
+        {
+          "category": "fly_tail",
+          "id": "55",
+          "stockWord": 85,
+          "section": "fly_tail",
+          "slot": 4,
+          "decompressedOffset": "0x4c17"
+        },
+        {
+          "category": "fly_tail",
+          "id": "69",
+          "stockWord": 105,
+          "section": "fly_tail",
+          "slot": 6,
+          "decompressedOffset": "0x4c1b"
+        },
+        {
+          "category": "food",
+          "id": "02",
+          "stockWord": 32770,
+          "section": "mixed_tool_food",
+          "slot": 0,
+          "decompressedOffset": "0x4c1f"
+        },
+        {
+          "category": "food",
+          "id": "04",
+          "stockWord": 32772,
+          "section": "mixed_tool_food",
+          "slot": 1,
+          "decompressedOffset": "0x4c21"
+        },
+        {
+          "category": "general_tool",
+          "id": "03",
+          "stockWord": 3,
+          "section": "mixed_tool_food",
+          "slot": 2,
+          "decompressedOffset": "0x4c23"
+        },
+        {
+          "category": "general_tool",
+          "id": "04",
+          "stockWord": 4,
+          "section": "mixed_tool_food",
+          "slot": 3,
+          "decompressedOffset": "0x4c25"
+        },
+        {
+          "category": "general_tool",
+          "id": "07",
+          "stockWord": 7,
+          "section": "mixed_tool_food",
+          "slot": 4,
+          "decompressedOffset": "0x4c27"
+        },
+        {
+          "category": "general_tool",
+          "id": "08",
+          "stockWord": 8,
+          "section": "mixed_tool_food",
+          "slot": 5,
+          "decompressedOffset": "0x4c29"
+        },
+        {
+          "category": "general_tool",
+          "id": "0C",
+          "stockWord": 12,
+          "section": "mixed_tool_food",
+          "slot": 6,
+          "decompressedOffset": "0x4c2b"
+        },
+        {
+          "category": "general_tool",
+          "id": "0E",
+          "stockWord": 14,
+          "section": "mixed_tool_food",
+          "slot": 7,
+          "decompressedOffset": "0x4c2d"
+        }
+      ],
+      "flyBundles": [
+        {
+          "slot": 0,
+          "body": "03",
+          "wing": "0B",
+          "tail": "15",
+          "shopPriceYen": 15
+        },
+        {
+          "slot": 1,
+          "body": "1A",
+          "wing": "21",
+          "tail": "27",
+          "shopPriceYen": 22
+        },
+        {
+          "slot": 2,
+          "body": "2D",
+          "wing": "36",
+          "tail": "00",
+          "shopPriceYen": 30
+        },
+        {
+          "slot": 3,
+          "body": "40",
+          "wing": "43",
+          "tail": "49",
+          "shopPriceYen": 10
+        },
+        {
+          "slot": 4,
+          "body": "4D",
+          "wing": "52",
+          "tail": "55",
+          "shopPriceYen": 30
+        },
+        {
+          "slot": 5,
+          "body": "58",
+          "wing": "5C",
+          "tail": "00",
+          "shopPriceYen": 35
+        },
+        {
+          "slot": 6,
+          "body": "61",
+          "wing": "00",
+          "tail": "69",
+          "shopPriceYen": 35
+        },
+        {
+          "slot": 7,
+          "body": "82",
+          "wing": "00",
+          "tail": "00",
+          "shopPriceYen": 50
+        }
+      ]
+    },
+    {
+      "stage": 4,
+      "compressedFileOffset": "0x127e68",
+      "decompressedSize": 19515,
+      "items": [
+        {
+          "category": "rod",
+          "id": "09",
+          "stockWord": 9,
+          "section": "rod",
+          "slot": 0,
+          "decompressedOffset": "0x4b85"
+        },
+        {
+          "category": "rod",
+          "id": "03",
+          "stockWord": 3,
+          "section": "rod",
+          "slot": 1,
+          "decompressedOffset": "0x4b87"
+        },
+        {
+          "category": "rod",
+          "id": "15",
+          "stockWord": 21,
+          "section": "rod",
+          "slot": 2,
+          "decompressedOffset": "0x4b89"
+        },
+        {
+          "category": "rod",
+          "id": "14",
+          "stockWord": 20,
+          "section": "rod",
+          "slot": 3,
+          "decompressedOffset": "0x4b8b"
+        },
+        {
+          "category": "rod",
+          "id": "0E",
+          "stockWord": 14,
+          "section": "rod",
+          "slot": 4,
+          "decompressedOffset": "0x4b8d"
+        },
+        {
+          "category": "rod",
+          "id": "0F",
+          "stockWord": 15,
+          "section": "rod",
+          "slot": 5,
+          "decompressedOffset": "0x4b8f"
+        },
+        {
+          "category": "rod",
+          "id": "0C",
+          "stockWord": 12,
+          "section": "rod",
+          "slot": 6,
+          "decompressedOffset": "0x4b91"
+        },
+        {
+          "category": "rod",
+          "id": "13",
+          "stockWord": 19,
+          "section": "rod",
+          "slot": 7,
+          "decompressedOffset": "0x4b93"
+        },
+        {
+          "category": "lure",
+          "id": "37",
+          "stockWord": 55,
+          "section": "lure",
+          "slot": 0,
+          "decompressedOffset": "0x4b95"
+        },
+        {
+          "category": "lure",
+          "id": "39",
+          "stockWord": 57,
+          "section": "lure",
+          "slot": 1,
+          "decompressedOffset": "0x4b97"
+        },
+        {
+          "category": "lure",
+          "id": "3B",
+          "stockWord": 59,
+          "section": "lure",
+          "slot": 2,
+          "decompressedOffset": "0x4b99"
+        },
+        {
+          "category": "lure",
+          "id": "3C",
+          "stockWord": 60,
+          "section": "lure",
+          "slot": 3,
+          "decompressedOffset": "0x4b9b"
+        },
+        {
+          "category": "lure",
+          "id": "44",
+          "stockWord": 68,
+          "section": "lure",
+          "slot": 4,
+          "decompressedOffset": "0x4b9d"
+        },
+        {
+          "category": "lure",
+          "id": "45",
+          "stockWord": 69,
+          "section": "lure",
+          "slot": 5,
+          "decompressedOffset": "0x4b9f"
+        },
+        {
+          "category": "lure",
+          "id": "4E",
+          "stockWord": 78,
+          "section": "lure",
+          "slot": 6,
+          "decompressedOffset": "0x4ba1"
+        },
+        {
+          "category": "lure",
+          "id": "4F",
+          "stockWord": 79,
+          "section": "lure",
+          "slot": 7,
+          "decompressedOffset": "0x4ba3"
+        },
+        {
+          "category": "lure",
+          "id": "04",
+          "stockWord": 4,
+          "section": "lure",
+          "slot": 8,
+          "decompressedOffset": "0x4ba5"
+        },
+        {
+          "category": "lure",
+          "id": "01",
+          "stockWord": 1,
+          "section": "lure",
+          "slot": 9,
+          "decompressedOffset": "0x4ba7"
+        },
+        {
+          "category": "lure",
+          "id": "07",
+          "stockWord": 7,
+          "section": "lure",
+          "slot": 10,
+          "decompressedOffset": "0x4ba9"
+        },
+        {
+          "category": "lure",
+          "id": "08",
+          "stockWord": 8,
+          "section": "lure",
+          "slot": 11,
+          "decompressedOffset": "0x4bab"
+        },
+        {
+          "category": "lure",
+          "id": "0A",
+          "stockWord": 10,
+          "section": "lure",
+          "slot": 12,
+          "decompressedOffset": "0x4bad"
+        },
+        {
+          "category": "lure",
+          "id": "0B",
+          "stockWord": 11,
+          "section": "lure",
+          "slot": 13,
+          "decompressedOffset": "0x4baf"
+        },
+        {
+          "category": "lure",
+          "id": "0E",
+          "stockWord": 14,
+          "section": "lure",
+          "slot": 14,
+          "decompressedOffset": "0x4bb1"
+        },
+        {
+          "category": "lure",
+          "id": "0F",
+          "stockWord": 15,
+          "section": "lure",
+          "slot": 15,
+          "decompressedOffset": "0x4bb3"
+        },
+        {
+          "category": "lure",
+          "id": "11",
+          "stockWord": 17,
+          "section": "lure",
+          "slot": 16,
+          "decompressedOffset": "0x4bb5"
+        },
+        {
+          "category": "lure",
+          "id": "12",
+          "stockWord": 18,
+          "section": "lure",
+          "slot": 17,
+          "decompressedOffset": "0x4bb7"
+        },
+        {
+          "category": "lure",
+          "id": "17",
+          "stockWord": 23,
+          "section": "lure",
+          "slot": 18,
+          "decompressedOffset": "0x4bb9"
+        },
+        {
+          "category": "lure",
+          "id": "16",
+          "stockWord": 22,
+          "section": "lure",
+          "slot": 19,
+          "decompressedOffset": "0x4bbb"
+        },
+        {
+          "category": "lure",
+          "id": "1F",
+          "stockWord": 31,
+          "section": "lure",
+          "slot": 20,
+          "decompressedOffset": "0x4bbd"
+        },
+        {
+          "category": "lure",
+          "id": "21",
+          "stockWord": 33,
+          "section": "lure",
+          "slot": 21,
+          "decompressedOffset": "0x4bbf"
+        },
+        {
+          "category": "lure",
+          "id": "23",
+          "stockWord": 35,
+          "section": "lure",
+          "slot": 22,
+          "decompressedOffset": "0x4bc1"
+        },
+        {
+          "category": "lure",
+          "id": "2C",
+          "stockWord": 44,
+          "section": "lure",
+          "slot": 23,
+          "decompressedOffset": "0x4bc3"
+        },
+        {
+          "category": "hook",
+          "id": "0B",
+          "stockWord": 11,
+          "section": "hook",
+          "slot": 0,
+          "decompressedOffset": "0x4bc5"
+        },
+        {
+          "category": "hook",
+          "id": "04",
+          "stockWord": 4,
+          "section": "hook",
+          "slot": 1,
+          "decompressedOffset": "0x4bc7"
+        },
+        {
+          "category": "hook",
+          "id": "06",
+          "stockWord": 6,
+          "section": "hook",
+          "slot": 2,
+          "decompressedOffset": "0x4bc9"
+        },
+        {
+          "category": "hook",
+          "id": "05",
+          "stockWord": 5,
+          "section": "hook",
+          "slot": 3,
+          "decompressedOffset": "0x4bcb"
+        },
+        {
+          "category": "float_weight",
+          "id": "05",
+          "stockWord": 5,
+          "section": "float_weight",
+          "slot": 0,
+          "decompressedOffset": "0x4bcd"
+        },
+        {
+          "category": "float_weight",
+          "id": "02",
+          "stockWord": 2,
+          "section": "float_weight",
+          "slot": 1,
+          "decompressedOffset": "0x4bcf"
+        },
+        {
+          "category": "float_weight",
+          "id": "01",
+          "stockWord": 1,
+          "section": "float_weight",
+          "slot": 2,
+          "decompressedOffset": "0x4bd1"
+        },
+        {
+          "category": "float_weight",
+          "id": "09",
+          "stockWord": 9,
+          "section": "float_weight",
+          "slot": 4,
+          "decompressedOffset": "0x4bd5"
+        },
+        {
+          "category": "bait",
+          "id": "01",
+          "stockWord": 1,
+          "section": "bait",
+          "slot": 0,
+          "decompressedOffset": "0x4bd9"
+        },
+        {
+          "category": "bait",
+          "id": "0E",
+          "stockWord": 14,
+          "section": "bait",
+          "slot": 1,
+          "decompressedOffset": "0x4bdb"
+        },
+        {
+          "category": "bait",
+          "id": "05",
+          "stockWord": 5,
+          "section": "bait",
+          "slot": 2,
+          "decompressedOffset": "0x4bdd"
+        },
+        {
+          "category": "bait",
+          "id": "15",
+          "stockWord": 21,
+          "section": "bait",
+          "slot": 3,
+          "decompressedOffset": "0x4bdf"
+        },
+        {
+          "category": "bait",
+          "id": "12",
+          "stockWord": 18,
+          "section": "bait",
+          "slot": 4,
+          "decompressedOffset": "0x4be1"
+        },
+        {
+          "category": "bait",
+          "id": "11",
+          "stockWord": 17,
+          "section": "bait",
+          "slot": 5,
+          "decompressedOffset": "0x4be3"
+        },
+        {
+          "category": "bait",
+          "id": "16",
+          "stockWord": 22,
+          "section": "bait",
+          "slot": 6,
+          "decompressedOffset": "0x4be5"
+        },
+        {
+          "category": "bait",
+          "id": "0A",
+          "stockWord": 10,
+          "section": "bait",
+          "slot": 7,
+          "decompressedOffset": "0x4be7"
+        },
+        {
+          "category": "bait",
+          "id": "07",
+          "stockWord": 7,
+          "section": "bait",
+          "slot": 8,
+          "decompressedOffset": "0x4be9"
+        },
+        {
+          "category": "bait",
+          "id": "14",
+          "stockWord": 20,
+          "section": "bait",
+          "slot": 9,
+          "decompressedOffset": "0x4beb"
+        },
+        {
+          "category": "fly",
+          "id": "04",
+          "stockWord": 4,
+          "section": "fly",
+          "slot": 0,
+          "decompressedOffset": "0x4bef"
+        },
+        {
+          "category": "fly",
+          "id": "1B",
+          "stockWord": 27,
+          "section": "fly",
+          "slot": 1,
+          "decompressedOffset": "0x4bf1"
+        },
+        {
+          "category": "fly",
+          "id": "2E",
+          "stockWord": 46,
+          "section": "fly",
+          "slot": 2,
+          "decompressedOffset": "0x4bf3"
+        },
+        {
+          "category": "fly",
+          "id": "41",
+          "stockWord": 65,
+          "section": "fly",
+          "slot": 3,
+          "decompressedOffset": "0x4bf5"
+        },
+        {
+          "category": "fly",
+          "id": "4B",
+          "stockWord": 75,
+          "section": "fly",
+          "slot": 4,
+          "decompressedOffset": "0x4bf7"
+        },
+        {
+          "category": "fly",
+          "id": "56",
+          "stockWord": 86,
+          "section": "fly",
+          "slot": 5,
+          "decompressedOffset": "0x4bf9"
+        },
+        {
+          "category": "fly",
+          "id": "6D",
+          "stockWord": 109,
+          "section": "fly",
+          "slot": 6,
+          "decompressedOffset": "0x4bfb"
+        },
+        {
+          "category": "fly",
+          "id": "2F",
+          "stockWord": 47,
+          "section": "fly",
+          "slot": 7,
+          "decompressedOffset": "0x4bfd"
+        },
+        {
+          "category": "fly_wing",
+          "id": "0C",
+          "stockWord": 12,
+          "section": "fly_wing",
+          "slot": 0,
+          "decompressedOffset": "0x4bff"
+        },
+        {
+          "category": "fly_wing",
+          "id": "22",
+          "stockWord": 34,
+          "section": "fly_wing",
+          "slot": 1,
+          "decompressedOffset": "0x4c01"
+        },
+        {
+          "category": "fly_wing",
+          "id": "37",
+          "stockWord": 55,
+          "section": "fly_wing",
+          "slot": 2,
+          "decompressedOffset": "0x4c03"
+        },
+        {
+          "category": "fly_wing",
+          "id": "45",
+          "stockWord": 69,
+          "section": "fly_wing",
+          "slot": 3,
+          "decompressedOffset": "0x4c05"
+        },
+        {
+          "category": "fly_wing",
+          "id": "50",
+          "stockWord": 80,
+          "section": "fly_wing",
+          "slot": 4,
+          "decompressedOffset": "0x4c07"
+        },
+        {
+          "category": "fly_wing",
+          "id": "5D",
+          "stockWord": 93,
+          "section": "fly_wing",
+          "slot": 5,
+          "decompressedOffset": "0x4c09"
+        },
+        {
+          "category": "fly_wing",
+          "id": "71",
+          "stockWord": 113,
+          "section": "fly_wing",
+          "slot": 6,
+          "decompressedOffset": "0x4c0b"
+        },
+        {
+          "category": "fly_wing",
+          "id": "3C",
+          "stockWord": 60,
+          "section": "fly_wing",
+          "slot": 7,
+          "decompressedOffset": "0x4c0d"
+        },
+        {
+          "category": "fly_tail",
+          "id": "16",
+          "stockWord": 22,
+          "section": "fly_tail",
+          "slot": 0,
+          "decompressedOffset": "0x4c0f"
+        },
+        {
+          "category": "fly_tail",
+          "id": "28",
+          "stockWord": 40,
+          "section": "fly_tail",
+          "slot": 1,
+          "decompressedOffset": "0x4c11"
+        },
+        {
+          "category": "fly_tail",
+          "id": "3D",
+          "stockWord": 61,
+          "section": "fly_tail",
+          "slot": 2,
+          "decompressedOffset": "0x4c13"
+        },
+        {
+          "category": "fly_tail",
+          "id": "55",
+          "stockWord": 85,
+          "section": "fly_tail",
+          "slot": 4,
+          "decompressedOffset": "0x4c17"
+        },
+        {
+          "category": "fly_tail",
+          "id": "75",
+          "stockWord": 117,
+          "section": "fly_tail",
+          "slot": 6,
+          "decompressedOffset": "0x4c1b"
+        },
+        {
+          "category": "food",
+          "id": "02",
+          "stockWord": 32770,
+          "section": "mixed_tool_food",
+          "slot": 0,
+          "decompressedOffset": "0x4c1f"
+        },
+        {
+          "category": "food",
+          "id": "05",
+          "stockWord": 32773,
+          "section": "mixed_tool_food",
+          "slot": 1,
+          "decompressedOffset": "0x4c21"
+        },
+        {
+          "category": "general_tool",
+          "id": "07",
+          "stockWord": 7,
+          "section": "mixed_tool_food",
+          "slot": 2,
+          "decompressedOffset": "0x4c23"
+        },
+        {
+          "category": "general_tool",
+          "id": "08",
+          "stockWord": 8,
+          "section": "mixed_tool_food",
+          "slot": 3,
+          "decompressedOffset": "0x4c25"
+        },
+        {
+          "category": "general_tool",
+          "id": "15",
+          "stockWord": 21,
+          "section": "mixed_tool_food",
+          "slot": 4,
+          "decompressedOffset": "0x4c27"
+        },
+        {
+          "category": "general_tool",
+          "id": "16",
+          "stockWord": 22,
+          "section": "mixed_tool_food",
+          "slot": 5,
+          "decompressedOffset": "0x4c29"
+        },
+        {
+          "category": "general_tool",
+          "id": "0C",
+          "stockWord": 12,
+          "section": "mixed_tool_food",
+          "slot": 6,
+          "decompressedOffset": "0x4c2b"
+        },
+        {
+          "category": "general_tool",
+          "id": "17",
+          "stockWord": 23,
+          "section": "mixed_tool_food",
+          "slot": 7,
+          "decompressedOffset": "0x4c2d"
+        },
+        {
+          "category": "rod",
+          "id": "0D",
+          "section": "special_rod_shop",
+          "source": "03:86E1..8733"
+        }
+      ],
+      "flyBundles": [
+        {
+          "slot": 0,
+          "body": "04",
+          "wing": "0C",
+          "tail": "16",
+          "shopPriceYen": 20
+        },
+        {
+          "slot": 1,
+          "body": "1B",
+          "wing": "22",
+          "tail": "28",
+          "shopPriceYen": 25
+        },
+        {
+          "slot": 2,
+          "body": "2E",
+          "wing": "37",
+          "tail": "3D",
+          "shopPriceYen": 35
+        },
+        {
+          "slot": 3,
+          "body": "41",
+          "wing": "45",
+          "tail": "00",
+          "shopPriceYen": 15
+        },
+        {
+          "slot": 4,
+          "body": "4B",
+          "wing": "50",
+          "tail": "55",
+          "shopPriceYen": 20
+        },
+        {
+          "slot": 5,
+          "body": "56",
+          "wing": "5D",
+          "tail": "00",
+          "shopPriceYen": 25
+        },
+        {
+          "slot": 6,
+          "body": "6D",
+          "wing": "71",
+          "tail": "75",
+          "shopPriceYen": 25
+        },
+        {
+          "slot": 7,
+          "body": "2F",
+          "wing": "3C",
+          "tail": "00",
+          "shopPriceYen": 35
+        }
+      ]
+    },
+    {
+      "stage": 5,
+      "compressedFileOffset": "0x12e9b4",
+      "decompressedSize": 19515,
+      "items": [
+        {
+          "category": "rod",
+          "id": "09",
+          "stockWord": 9,
+          "section": "rod",
+          "slot": 0,
+          "decompressedOffset": "0x4b85"
+        },
+        {
+          "category": "rod",
+          "id": "04",
+          "stockWord": 4,
+          "section": "rod",
+          "slot": 1,
+          "decompressedOffset": "0x4b87"
+        },
+        {
+          "category": "rod",
+          "id": "15",
+          "stockWord": 21,
+          "section": "rod",
+          "slot": 2,
+          "decompressedOffset": "0x4b89"
+        },
+        {
+          "category": "rod",
+          "id": "07",
+          "stockWord": 7,
+          "section": "rod",
+          "slot": 3,
+          "decompressedOffset": "0x4b8b"
+        },
+        {
+          "category": "rod",
+          "id": "0E",
+          "stockWord": 14,
+          "section": "rod",
+          "slot": 4,
+          "decompressedOffset": "0x4b8d"
+        },
+        {
+          "category": "rod",
+          "id": "0F",
+          "stockWord": 15,
+          "section": "rod",
+          "slot": 5,
+          "decompressedOffset": "0x4b8f"
+        },
+        {
+          "category": "rod",
+          "id": "0A",
+          "stockWord": 10,
+          "section": "rod",
+          "slot": 6,
+          "decompressedOffset": "0x4b91"
+        },
+        {
+          "category": "rod",
+          "id": "12",
+          "stockWord": 18,
+          "section": "rod",
+          "slot": 7,
+          "decompressedOffset": "0x4b93"
+        },
+        {
+          "category": "lure",
+          "id": "17",
+          "stockWord": 23,
+          "section": "lure",
+          "slot": 0,
+          "decompressedOffset": "0x4b95"
+        },
+        {
+          "category": "lure",
+          "id": "18",
+          "stockWord": 24,
+          "section": "lure",
+          "slot": 1,
+          "decompressedOffset": "0x4b97"
+        },
+        {
+          "category": "lure",
+          "id": "14",
+          "stockWord": 20,
+          "section": "lure",
+          "slot": 2,
+          "decompressedOffset": "0x4b99"
+        },
+        {
+          "category": "lure",
+          "id": "15",
+          "stockWord": 21,
+          "section": "lure",
+          "slot": 3,
+          "decompressedOffset": "0x4b9b"
+        },
+        {
+          "category": "lure",
+          "id": "02",
+          "stockWord": 2,
+          "section": "lure",
+          "slot": 4,
+          "decompressedOffset": "0x4b9d"
+        },
+        {
+          "category": "lure",
+          "id": "01",
+          "stockWord": 1,
+          "section": "lure",
+          "slot": 5,
+          "decompressedOffset": "0x4b9f"
+        },
+        {
+          "category": "lure",
+          "id": "06",
+          "stockWord": 6,
+          "section": "lure",
+          "slot": 6,
+          "decompressedOffset": "0x4ba1"
+        },
+        {
+          "category": "lure",
+          "id": "0B",
+          "stockWord": 11,
+          "section": "lure",
+          "slot": 7,
+          "decompressedOffset": "0x4ba3"
+        },
+        {
+          "category": "lure",
+          "id": "0E",
+          "stockWord": 14,
+          "section": "lure",
+          "slot": 8,
+          "decompressedOffset": "0x4ba5"
+        },
+        {
+          "category": "lure",
+          "id": "0F",
+          "stockWord": 15,
+          "section": "lure",
+          "slot": 9,
+          "decompressedOffset": "0x4ba7"
+        },
+        {
+          "category": "lure",
+          "id": "11",
+          "stockWord": 17,
+          "section": "lure",
+          "slot": 10,
+          "decompressedOffset": "0x4ba9"
+        },
+        {
+          "category": "lure",
+          "id": "12",
+          "stockWord": 18,
+          "section": "lure",
+          "slot": 11,
+          "decompressedOffset": "0x4bab"
+        },
+        {
+          "category": "lure",
+          "id": "13",
+          "stockWord": 19,
+          "section": "lure",
+          "slot": 12,
+          "decompressedOffset": "0x4bad"
+        },
+        {
+          "category": "lure",
+          "id": "19",
+          "stockWord": 25,
+          "section": "lure",
+          "slot": 13,
+          "decompressedOffset": "0x4baf"
+        },
+        {
+          "category": "lure",
+          "id": "1C",
+          "stockWord": 28,
+          "section": "lure",
+          "slot": 14,
+          "decompressedOffset": "0x4bb1"
+        },
+        {
+          "category": "lure",
+          "id": "1B",
+          "stockWord": 27,
+          "section": "lure",
+          "slot": 15,
+          "decompressedOffset": "0x4bb3"
+        },
+        {
+          "category": "lure",
+          "id": "1D",
+          "stockWord": 29,
+          "section": "lure",
+          "slot": 16,
+          "decompressedOffset": "0x4bb5"
+        },
+        {
+          "category": "lure",
+          "id": "1E",
+          "stockWord": 30,
+          "section": "lure",
+          "slot": 17,
+          "decompressedOffset": "0x4bb7"
+        },
+        {
+          "category": "lure",
+          "id": "26",
+          "stockWord": 38,
+          "section": "lure",
+          "slot": 18,
+          "decompressedOffset": "0x4bb9"
+        },
+        {
+          "category": "lure",
+          "id": "27",
+          "stockWord": 39,
+          "section": "lure",
+          "slot": 19,
+          "decompressedOffset": "0x4bbb"
+        },
+        {
+          "category": "lure",
+          "id": "2C",
+          "stockWord": 44,
+          "section": "lure",
+          "slot": 20,
+          "decompressedOffset": "0x4bbd"
+        },
+        {
+          "category": "lure",
+          "id": "2A",
+          "stockWord": 42,
+          "section": "lure",
+          "slot": 21,
+          "decompressedOffset": "0x4bbf"
+        },
+        {
+          "category": "lure",
+          "id": "3D",
+          "stockWord": 61,
+          "section": "lure",
+          "slot": 22,
+          "decompressedOffset": "0x4bc1"
+        },
+        {
+          "category": "lure",
+          "id": "3E",
+          "stockWord": 62,
+          "section": "lure",
+          "slot": 23,
+          "decompressedOffset": "0x4bc3"
+        },
+        {
+          "category": "hook",
+          "id": "0B",
+          "stockWord": 11,
+          "section": "hook",
+          "slot": 0,
+          "decompressedOffset": "0x4bc5"
+        },
+        {
+          "category": "hook",
+          "id": "03",
+          "stockWord": 3,
+          "section": "hook",
+          "slot": 1,
+          "decompressedOffset": "0x4bc7"
+        },
+        {
+          "category": "hook",
+          "id": "06",
+          "stockWord": 6,
+          "section": "hook",
+          "slot": 2,
+          "decompressedOffset": "0x4bc9"
+        },
+        {
+          "category": "hook",
+          "id": "05",
+          "stockWord": 5,
+          "section": "hook",
+          "slot": 3,
+          "decompressedOffset": "0x4bcb"
+        },
+        {
+          "category": "float_weight",
+          "id": "06",
+          "stockWord": 6,
+          "section": "float_weight",
+          "slot": 0,
+          "decompressedOffset": "0x4bcd"
+        },
+        {
+          "category": "float_weight",
+          "id": "05",
+          "stockWord": 5,
+          "section": "float_weight",
+          "slot": 1,
+          "decompressedOffset": "0x4bcf"
+        },
+        {
+          "category": "float_weight",
+          "id": "02",
+          "stockWord": 2,
+          "section": "float_weight",
+          "slot": 2,
+          "decompressedOffset": "0x4bd1"
+        },
+        {
+          "category": "float_weight",
+          "id": "07",
+          "stockWord": 7,
+          "section": "float_weight",
+          "slot": 3,
+          "decompressedOffset": "0x4bd3"
+        },
+        {
+          "category": "float_weight",
+          "id": "09",
+          "stockWord": 9,
+          "section": "float_weight",
+          "slot": 4,
+          "decompressedOffset": "0x4bd5"
+        },
+        {
+          "category": "float_weight",
+          "id": "0A",
+          "stockWord": 10,
+          "section": "float_weight",
+          "slot": 5,
+          "decompressedOffset": "0x4bd7"
+        },
+        {
+          "category": "bait",
+          "id": "01",
+          "stockWord": 1,
+          "section": "bait",
+          "slot": 0,
+          "decompressedOffset": "0x4bd9"
+        },
+        {
+          "category": "bait",
+          "id": "05",
+          "stockWord": 5,
+          "section": "bait",
+          "slot": 1,
+          "decompressedOffset": "0x4bdb"
+        },
+        {
+          "category": "bait",
+          "id": "0F",
+          "stockWord": 15,
+          "section": "bait",
+          "slot": 2,
+          "decompressedOffset": "0x4bdd"
+        },
+        {
+          "category": "bait",
+          "id": "10",
+          "stockWord": 16,
+          "section": "bait",
+          "slot": 3,
+          "decompressedOffset": "0x4bdf"
+        },
+        {
+          "category": "bait",
+          "id": "02",
+          "stockWord": 2,
+          "section": "bait",
+          "slot": 4,
+          "decompressedOffset": "0x4be1"
+        },
+        {
+          "category": "bait",
+          "id": "12",
+          "stockWord": 18,
+          "section": "bait",
+          "slot": 5,
+          "decompressedOffset": "0x4be3"
+        },
+        {
+          "category": "bait",
+          "id": "0A",
+          "stockWord": 10,
+          "section": "bait",
+          "slot": 6,
+          "decompressedOffset": "0x4be5"
+        },
+        {
+          "category": "bait",
+          "id": "15",
+          "stockWord": 21,
+          "section": "bait",
+          "slot": 7,
+          "decompressedOffset": "0x4be7"
+        },
+        {
+          "category": "bait",
+          "id": "16",
+          "stockWord": 22,
+          "section": "bait",
+          "slot": 8,
+          "decompressedOffset": "0x4be9"
+        },
+        {
+          "category": "bait",
+          "id": "13",
+          "stockWord": 19,
+          "section": "bait",
+          "slot": 9,
+          "decompressedOffset": "0x4beb"
+        },
+        {
+          "category": "bait",
+          "id": "14",
+          "stockWord": 20,
+          "section": "bait",
+          "slot": 10,
+          "decompressedOffset": "0x4bed"
+        },
+        {
+          "category": "fly",
+          "id": "06",
+          "stockWord": 6,
+          "section": "fly",
+          "slot": 0,
+          "decompressedOffset": "0x4bef"
+        },
+        {
+          "category": "fly",
+          "id": "1D",
+          "stockWord": 29,
+          "section": "fly",
+          "slot": 1,
+          "decompressedOffset": "0x4bf1"
+        },
+        {
+          "category": "fly",
+          "id": "31",
+          "stockWord": 49,
+          "section": "fly",
+          "slot": 2,
+          "decompressedOffset": "0x4bf3"
+        },
+        {
+          "category": "fly",
+          "id": "42",
+          "stockWord": 66,
+          "section": "fly",
+          "slot": 3,
+          "decompressedOffset": "0x4bf5"
+        },
+        {
+          "category": "fly",
+          "id": "4E",
+          "stockWord": 78,
+          "section": "fly",
+          "slot": 4,
+          "decompressedOffset": "0x4bf7"
+        },
+        {
+          "category": "fly",
+          "id": "57",
+          "stockWord": 87,
+          "section": "fly",
+          "slot": 5,
+          "decompressedOffset": "0x4bf9"
+        },
+        {
+          "category": "fly",
+          "id": "64",
+          "stockWord": 100,
+          "section": "fly",
+          "slot": 6,
+          "decompressedOffset": "0x4bfb"
+        },
+        {
+          "category": "fly",
+          "id": "85",
+          "stockWord": 133,
+          "section": "fly",
+          "slot": 7,
+          "decompressedOffset": "0x4bfd"
+        },
+        {
+          "category": "fly_wing",
+          "id": "11",
+          "stockWord": 17,
+          "section": "fly_wing",
+          "slot": 0,
+          "decompressedOffset": "0x4bff"
+        },
+        {
+          "category": "fly_wing",
+          "id": "24",
+          "stockWord": 36,
+          "section": "fly_wing",
+          "slot": 1,
+          "decompressedOffset": "0x4c01"
+        },
+        {
+          "category": "fly_wing",
+          "id": "38",
+          "stockWord": 56,
+          "section": "fly_wing",
+          "slot": 2,
+          "decompressedOffset": "0x4c03"
+        },
+        {
+          "category": "fly_wing",
+          "id": "47",
+          "stockWord": 71,
+          "section": "fly_wing",
+          "slot": 3,
+          "decompressedOffset": "0x4c05"
+        },
+        {
+          "category": "fly_wing",
+          "id": "51",
+          "stockWord": 81,
+          "section": "fly_wing",
+          "slot": 4,
+          "decompressedOffset": "0x4c07"
+        },
+        {
+          "category": "fly_wing",
+          "id": "5C",
+          "stockWord": 92,
+          "section": "fly_wing",
+          "slot": 5,
+          "decompressedOffset": "0x4c09"
+        },
+        {
+          "category": "fly_tail",
+          "id": "13",
+          "stockWord": 19,
+          "section": "fly_tail",
+          "slot": 0,
+          "decompressedOffset": "0x4c0f"
+        },
+        {
+          "category": "fly_tail",
+          "id": "29",
+          "stockWord": 41,
+          "section": "fly_tail",
+          "slot": 1,
+          "decompressedOffset": "0x4c11"
+        },
+        {
+          "category": "fly_tail",
+          "id": "49",
+          "stockWord": 73,
+          "section": "fly_tail",
+          "slot": 3,
+          "decompressedOffset": "0x4c15"
+        },
+        {
+          "category": "fly_tail",
+          "id": "5F",
+          "stockWord": 95,
+          "section": "fly_tail",
+          "slot": 5,
+          "decompressedOffset": "0x4c19"
+        },
+        {
+          "category": "fly_tail",
+          "id": "6A",
+          "stockWord": 106,
+          "section": "fly_tail",
+          "slot": 6,
+          "decompressedOffset": "0x4c1b"
+        },
+        {
+          "category": "food",
+          "id": "03",
+          "stockWord": 32771,
+          "section": "mixed_tool_food",
+          "slot": 0,
+          "decompressedOffset": "0x4c1f"
+        },
+        {
+          "category": "food",
+          "id": "06",
+          "stockWord": 32774,
+          "section": "mixed_tool_food",
+          "slot": 1,
+          "decompressedOffset": "0x4c21"
+        },
+        {
+          "category": "general_tool",
+          "id": "03",
+          "stockWord": 3,
+          "section": "mixed_tool_food",
+          "slot": 2,
+          "decompressedOffset": "0x4c23"
+        },
+        {
+          "category": "general_tool",
+          "id": "04",
+          "stockWord": 4,
+          "section": "mixed_tool_food",
+          "slot": 3,
+          "decompressedOffset": "0x4c25"
+        },
+        {
+          "category": "general_tool",
+          "id": "07",
+          "stockWord": 7,
+          "section": "mixed_tool_food",
+          "slot": 4,
+          "decompressedOffset": "0x4c27"
+        },
+        {
+          "category": "general_tool",
+          "id": "08",
+          "stockWord": 8,
+          "section": "mixed_tool_food",
+          "slot": 5,
+          "decompressedOffset": "0x4c29"
+        },
+        {
+          "category": "general_tool",
+          "id": "11",
+          "stockWord": 17,
+          "section": "mixed_tool_food",
+          "slot": 6,
+          "decompressedOffset": "0x4c2b"
+        },
+        {
+          "category": "general_tool",
+          "id": "0D",
+          "stockWord": 13,
+          "section": "mixed_tool_food",
+          "slot": 7,
+          "decompressedOffset": "0x4c2d"
+        },
+        {
+          "category": "rod",
+          "id": "08",
+          "section": "special_rod_shop",
+          "source": "03:86E1..8733"
+        },
+        {
+          "category": "rod",
+          "id": "01",
+          "section": "special_rod_shop",
+          "source": "03:86E1..8733"
+        }
+      ],
+      "flyBundles": [
+        {
+          "slot": 0,
+          "body": "06",
+          "wing": "11",
+          "tail": "13",
+          "shopPriceYen": 30
+        },
+        {
+          "slot": 1,
+          "body": "1D",
+          "wing": "24",
+          "tail": "29",
+          "shopPriceYen": 40
+        },
+        {
+          "slot": 2,
+          "body": "31",
+          "wing": "38",
+          "tail": "00",
+          "shopPriceYen": 40
+        },
+        {
+          "slot": 3,
+          "body": "42",
+          "wing": "47",
+          "tail": "49",
+          "shopPriceYen": 15
+        },
+        {
+          "slot": 4,
+          "body": "4E",
+          "wing": "51",
+          "tail": "00",
+          "shopPriceYen": 45
+        },
+        {
+          "slot": 5,
+          "body": "57",
+          "wing": "5C",
+          "tail": "5F",
+          "shopPriceYen": 35
+        },
+        {
+          "slot": 6,
+          "body": "64",
+          "wing": "00",
+          "tail": "6A",
+          "shopPriceYen": 45
+        },
+        {
+          "slot": 7,
+          "body": "85",
+          "wing": "00",
+          "tail": "00",
+          "shopPriceYen": 65
+        }
+      ]
+    },
+    {
+      "stage": 6,
+      "compressedFileOffset": "0x134f1d",
+      "decompressedSize": 19515,
+      "items": [
+        {
+          "category": "rod",
+          "id": "03",
+          "stockWord": 3,
+          "section": "rod",
+          "slot": 0,
+          "decompressedOffset": "0x4b85"
+        },
+        {
+          "category": "rod",
+          "id": "04",
+          "stockWord": 4,
+          "section": "rod",
+          "slot": 1,
+          "decompressedOffset": "0x4b87"
+        },
+        {
+          "category": "rod",
+          "id": "15",
+          "stockWord": 21,
+          "section": "rod",
+          "slot": 2,
+          "decompressedOffset": "0x4b89"
+        },
+        {
+          "category": "rod",
+          "id": "14",
+          "stockWord": 20,
+          "section": "rod",
+          "slot": 3,
+          "decompressedOffset": "0x4b8b"
+        },
+        {
+          "category": "rod",
+          "id": "0A",
+          "stockWord": 10,
+          "section": "rod",
+          "slot": 4,
+          "decompressedOffset": "0x4b8d"
+        },
+        {
+          "category": "rod",
+          "id": "0C",
+          "stockWord": 12,
+          "section": "rod",
+          "slot": 5,
+          "decompressedOffset": "0x4b8f"
+        },
+        {
+          "category": "rod",
+          "id": "0E",
+          "stockWord": 14,
+          "section": "rod",
+          "slot": 6,
+          "decompressedOffset": "0x4b91"
+        },
+        {
+          "category": "rod",
+          "id": "0F",
+          "stockWord": 15,
+          "section": "rod",
+          "slot": 7,
+          "decompressedOffset": "0x4b93"
+        },
+        {
+          "category": "lure",
+          "id": "05",
+          "stockWord": 5,
+          "section": "lure",
+          "slot": 0,
+          "decompressedOffset": "0x4b95"
+        },
+        {
+          "category": "lure",
+          "id": "09",
+          "stockWord": 9,
+          "section": "lure",
+          "slot": 1,
+          "decompressedOffset": "0x4b97"
+        },
+        {
+          "category": "lure",
+          "id": "0C",
+          "stockWord": 12,
+          "section": "lure",
+          "slot": 2,
+          "decompressedOffset": "0x4b99"
+        },
+        {
+          "category": "lure",
+          "id": "0D",
+          "stockWord": 13,
+          "section": "lure",
+          "slot": 3,
+          "decompressedOffset": "0x4b9b"
+        },
+        {
+          "category": "lure",
+          "id": "10",
+          "stockWord": 16,
+          "section": "lure",
+          "slot": 4,
+          "decompressedOffset": "0x4b9d"
+        },
+        {
+          "category": "lure",
+          "id": "19",
+          "stockWord": 25,
+          "section": "lure",
+          "slot": 5,
+          "decompressedOffset": "0x4b9f"
+        },
+        {
+          "category": "lure",
+          "id": "1E",
+          "stockWord": 30,
+          "section": "lure",
+          "slot": 6,
+          "decompressedOffset": "0x4ba1"
+        },
+        {
+          "category": "lure",
+          "id": "20",
+          "stockWord": 32,
+          "section": "lure",
+          "slot": 7,
+          "decompressedOffset": "0x4ba3"
+        },
+        {
+          "category": "lure",
+          "id": "22",
+          "stockWord": 34,
+          "section": "lure",
+          "slot": 8,
+          "decompressedOffset": "0x4ba5"
+        },
+        {
+          "category": "lure",
+          "id": "25",
+          "stockWord": 37,
+          "section": "lure",
+          "slot": 9,
+          "decompressedOffset": "0x4ba7"
+        },
+        {
+          "category": "lure",
+          "id": "28",
+          "stockWord": 40,
+          "section": "lure",
+          "slot": 10,
+          "decompressedOffset": "0x4ba9"
+        },
+        {
+          "category": "lure",
+          "id": "2D",
+          "stockWord": 45,
+          "section": "lure",
+          "slot": 11,
+          "decompressedOffset": "0x4bab"
+        },
+        {
+          "category": "lure",
+          "id": "29",
+          "stockWord": 41,
+          "section": "lure",
+          "slot": 12,
+          "decompressedOffset": "0x4bad"
+        },
+        {
+          "category": "lure",
+          "id": "2A",
+          "stockWord": 42,
+          "section": "lure",
+          "slot": 13,
+          "decompressedOffset": "0x4baf"
+        },
+        {
+          "category": "lure",
+          "id": "39",
+          "stockWord": 57,
+          "section": "lure",
+          "slot": 14,
+          "decompressedOffset": "0x4bb1"
+        },
+        {
+          "category": "lure",
+          "id": "3F",
+          "stockWord": 63,
+          "section": "lure",
+          "slot": 15,
+          "decompressedOffset": "0x4bb3"
+        },
+        {
+          "category": "lure",
+          "id": "40",
+          "stockWord": 64,
+          "section": "lure",
+          "slot": 16,
+          "decompressedOffset": "0x4bb5"
+        },
+        {
+          "category": "lure",
+          "id": "45",
+          "stockWord": 69,
+          "section": "lure",
+          "slot": 17,
+          "decompressedOffset": "0x4bb7"
+        },
+        {
+          "category": "lure",
+          "id": "46",
+          "stockWord": 70,
+          "section": "lure",
+          "slot": 18,
+          "decompressedOffset": "0x4bb9"
+        },
+        {
+          "category": "lure",
+          "id": "47",
+          "stockWord": 71,
+          "section": "lure",
+          "slot": 19,
+          "decompressedOffset": "0x4bbb"
+        },
+        {
+          "category": "lure",
+          "id": "49",
+          "stockWord": 73,
+          "section": "lure",
+          "slot": 20,
+          "decompressedOffset": "0x4bbd"
+        },
+        {
+          "category": "lure",
+          "id": "4A",
+          "stockWord": 74,
+          "section": "lure",
+          "slot": 21,
+          "decompressedOffset": "0x4bbf"
+        },
+        {
+          "category": "lure",
+          "id": "50",
+          "stockWord": 80,
+          "section": "lure",
+          "slot": 22,
+          "decompressedOffset": "0x4bc1"
+        },
+        {
+          "category": "lure",
+          "id": "51",
+          "stockWord": 81,
+          "section": "lure",
+          "slot": 23,
+          "decompressedOffset": "0x4bc3"
+        },
+        {
+          "category": "hook",
+          "id": "07",
+          "stockWord": 7,
+          "section": "hook",
+          "slot": 0,
+          "decompressedOffset": "0x4bc5"
+        },
+        {
+          "category": "hook",
+          "id": "01",
+          "stockWord": 1,
+          "section": "hook",
+          "slot": 1,
+          "decompressedOffset": "0x4bc7"
+        },
+        {
+          "category": "hook",
+          "id": "06",
+          "stockWord": 6,
+          "section": "hook",
+          "slot": 2,
+          "decompressedOffset": "0x4bc9"
+        },
+        {
+          "category": "hook",
+          "id": "02",
+          "stockWord": 2,
+          "section": "hook",
+          "slot": 3,
+          "decompressedOffset": "0x4bcb"
+        },
+        {
+          "category": "float_weight",
+          "id": "06",
+          "stockWord": 6,
+          "section": "float_weight",
+          "slot": 0,
+          "decompressedOffset": "0x4bcd"
+        },
+        {
+          "category": "float_weight",
+          "id": "05",
+          "stockWord": 5,
+          "section": "float_weight",
+          "slot": 1,
+          "decompressedOffset": "0x4bcf"
+        },
+        {
+          "category": "float_weight",
+          "id": "07",
+          "stockWord": 7,
+          "section": "float_weight",
+          "slot": 2,
+          "decompressedOffset": "0x4bd1"
+        },
+        {
+          "category": "float_weight",
+          "id": "09",
+          "stockWord": 9,
+          "section": "float_weight",
+          "slot": 4,
+          "decompressedOffset": "0x4bd5"
+        },
+        {
+          "category": "float_weight",
+          "id": "0A",
+          "stockWord": 10,
+          "section": "float_weight",
+          "slot": 5,
+          "decompressedOffset": "0x4bd7"
+        },
+        {
+          "category": "bait",
+          "id": "06",
+          "stockWord": 6,
+          "section": "bait",
+          "slot": 0,
+          "decompressedOffset": "0x4bd9"
+        },
+        {
+          "category": "bait",
+          "id": "15",
+          "stockWord": 21,
+          "section": "bait",
+          "slot": 1,
+          "decompressedOffset": "0x4bdb"
+        },
+        {
+          "category": "bait",
+          "id": "16",
+          "stockWord": 22,
+          "section": "bait",
+          "slot": 2,
+          "decompressedOffset": "0x4bdd"
+        },
+        {
+          "category": "bait",
+          "id": "12",
+          "stockWord": 18,
+          "section": "bait",
+          "slot": 3,
+          "decompressedOffset": "0x4bdf"
+        },
+        {
+          "category": "bait",
+          "id": "01",
+          "stockWord": 1,
+          "section": "bait",
+          "slot": 4,
+          "decompressedOffset": "0x4be1"
+        },
+        {
+          "category": "bait",
+          "id": "0A",
+          "stockWord": 10,
+          "section": "bait",
+          "slot": 5,
+          "decompressedOffset": "0x4be3"
+        },
+        {
+          "category": "bait",
+          "id": "02",
+          "stockWord": 2,
+          "section": "bait",
+          "slot": 6,
+          "decompressedOffset": "0x4be5"
+        },
+        {
+          "category": "bait",
+          "id": "11",
+          "stockWord": 17,
+          "section": "bait",
+          "slot": 7,
+          "decompressedOffset": "0x4be7"
+        },
+        {
+          "category": "bait",
+          "id": "09",
+          "stockWord": 9,
+          "section": "bait",
+          "slot": 8,
+          "decompressedOffset": "0x4be9"
+        },
+        {
+          "category": "bait",
+          "id": "13",
+          "stockWord": 19,
+          "section": "bait",
+          "slot": 9,
+          "decompressedOffset": "0x4beb"
+        },
+        {
+          "category": "bait",
+          "id": "14",
+          "stockWord": 20,
+          "section": "bait",
+          "slot": 10,
+          "decompressedOffset": "0x4bed"
+        },
+        {
+          "category": "fly",
+          "id": "08",
+          "stockWord": 8,
+          "section": "fly",
+          "slot": 0,
+          "decompressedOffset": "0x4bef"
+        },
+        {
+          "category": "fly",
+          "id": "1E",
+          "stockWord": 30,
+          "section": "fly",
+          "slot": 1,
+          "decompressedOffset": "0x4bf1"
+        },
+        {
+          "category": "fly",
+          "id": "33",
+          "stockWord": 51,
+          "section": "fly",
+          "slot": 2,
+          "decompressedOffset": "0x4bf3"
+        },
+        {
+          "category": "fly",
+          "id": "3F",
+          "stockWord": 63,
+          "section": "fly",
+          "slot": 3,
+          "decompressedOffset": "0x4bf5"
+        },
+        {
+          "category": "fly",
+          "id": "4F",
+          "stockWord": 79,
+          "section": "fly",
+          "slot": 4,
+          "decompressedOffset": "0x4bf7"
+        },
+        {
+          "category": "fly",
+          "id": "59",
+          "stockWord": 89,
+          "section": "fly",
+          "slot": 5,
+          "decompressedOffset": "0x4bf9"
+        },
+        {
+          "category": "fly",
+          "id": "65",
+          "stockWord": 101,
+          "section": "fly",
+          "slot": 6,
+          "decompressedOffset": "0x4bfb"
+        },
+        {
+          "category": "fly",
+          "id": "86",
+          "stockWord": 134,
+          "section": "fly",
+          "slot": 7,
+          "decompressedOffset": "0x4bfd"
+        },
+        {
+          "category": "fly_wing",
+          "id": "12",
+          "stockWord": 18,
+          "section": "fly_wing",
+          "slot": 0,
+          "decompressedOffset": "0x4bff"
+        },
+        {
+          "category": "fly_wing",
+          "id": "26",
+          "stockWord": 38,
+          "section": "fly_wing",
+          "slot": 1,
+          "decompressedOffset": "0x4c01"
+        },
+        {
+          "category": "fly_wing",
+          "id": "39",
+          "stockWord": 57,
+          "section": "fly_wing",
+          "slot": 2,
+          "decompressedOffset": "0x4c03"
+        },
+        {
+          "category": "fly_wing",
+          "id": "48",
+          "stockWord": 72,
+          "section": "fly_wing",
+          "slot": 3,
+          "decompressedOffset": "0x4c05"
+        },
+        {
+          "category": "fly_wing",
+          "id": "52",
+          "stockWord": 82,
+          "section": "fly_wing",
+          "slot": 4,
+          "decompressedOffset": "0x4c07"
+        },
+        {
+          "category": "fly_wing",
+          "id": "5E",
+          "stockWord": 94,
+          "section": "fly_wing",
+          "slot": 5,
+          "decompressedOffset": "0x4c09"
+        },
+        {
+          "category": "fly_tail",
+          "id": "17",
+          "stockWord": 23,
+          "section": "fly_tail",
+          "slot": 0,
+          "decompressedOffset": "0x4c0f"
+        },
+        {
+          "category": "fly_tail",
+          "id": "2A",
+          "stockWord": 42,
+          "section": "fly_tail",
+          "slot": 1,
+          "decompressedOffset": "0x4c11"
+        },
+        {
+          "category": "fly_tail",
+          "id": "3D",
+          "stockWord": 61,
+          "section": "fly_tail",
+          "slot": 2,
+          "decompressedOffset": "0x4c13"
+        },
+        {
+          "category": "fly_tail",
+          "id": "4A",
+          "stockWord": 74,
+          "section": "fly_tail",
+          "slot": 3,
+          "decompressedOffset": "0x4c15"
+        },
+        {
+          "category": "fly_tail",
+          "id": "54",
+          "stockWord": 84,
+          "section": "fly_tail",
+          "slot": 4,
+          "decompressedOffset": "0x4c17"
+        },
+        {
+          "category": "fly_tail",
+          "id": "5F",
+          "stockWord": 95,
+          "section": "fly_tail",
+          "slot": 5,
+          "decompressedOffset": "0x4c19"
+        },
+        {
+          "category": "fly_tail",
+          "id": "69",
+          "stockWord": 105,
+          "section": "fly_tail",
+          "slot": 6,
+          "decompressedOffset": "0x4c1b"
+        },
+        {
+          "category": "food",
+          "id": "03",
+          "stockWord": 32771,
+          "section": "mixed_tool_food",
+          "slot": 0,
+          "decompressedOffset": "0x4c1f"
+        },
+        {
+          "category": "food",
+          "id": "06",
+          "stockWord": 32774,
+          "section": "mixed_tool_food",
+          "slot": 1,
+          "decompressedOffset": "0x4c21"
+        },
+        {
+          "category": "general_tool",
+          "id": "03",
+          "stockWord": 3,
+          "section": "mixed_tool_food",
+          "slot": 2,
+          "decompressedOffset": "0x4c23"
+        },
+        {
+          "category": "general_tool",
+          "id": "07",
+          "stockWord": 7,
+          "section": "mixed_tool_food",
+          "slot": 3,
+          "decompressedOffset": "0x4c25"
+        },
+        {
+          "category": "general_tool",
+          "id": "08",
+          "stockWord": 8,
+          "section": "mixed_tool_food",
+          "slot": 4,
+          "decompressedOffset": "0x4c27"
+        },
+        {
+          "category": "general_tool",
+          "id": "0D",
+          "stockWord": 13,
+          "section": "mixed_tool_food",
+          "slot": 5,
+          "decompressedOffset": "0x4c29"
+        },
+        {
+          "category": "general_tool",
+          "id": "0E",
+          "stockWord": 14,
+          "section": "mixed_tool_food",
+          "slot": 6,
+          "decompressedOffset": "0x4c2b"
+        },
+        {
+          "category": "general_tool",
+          "id": "17",
+          "stockWord": 23,
+          "section": "mixed_tool_food",
+          "slot": 7,
+          "decompressedOffset": "0x4c2d"
+        },
+        {
+          "category": "rod",
+          "id": "10",
+          "section": "special_rod_shop",
+          "source": "03:86E1..8733"
+        }
+      ],
+      "flyBundles": [
+        {
+          "slot": 0,
+          "body": "08",
+          "wing": "12",
+          "tail": "17",
+          "shopPriceYen": 45
+        },
+        {
+          "slot": 1,
+          "body": "1E",
+          "wing": "26",
+          "tail": "2A",
+          "shopPriceYen": 50
+        },
+        {
+          "slot": 2,
+          "body": "33",
+          "wing": "39",
+          "tail": "3D",
+          "shopPriceYen": 45
+        },
+        {
+          "slot": 3,
+          "body": "3F",
+          "wing": "48",
+          "tail": "4A",
+          "shopPriceYen": 7
+        },
+        {
+          "slot": 4,
+          "body": "4F",
+          "wing": "52",
+          "tail": "54",
+          "shopPriceYen": 50
+        },
+        {
+          "slot": 5,
+          "body": "59",
+          "wing": "5E",
+          "tail": "5F",
+          "shopPriceYen": 40
+        },
+        {
+          "slot": 6,
+          "body": "65",
+          "wing": "00",
+          "tail": "69",
+          "shopPriceYen": 50
+        },
+        {
+          "slot": 7,
+          "body": "86",
+          "wing": "00",
+          "tail": "00",
+          "shopPriceYen": 50
+        }
+      ]
+    }
+  ],
+  "items": {
+    "rod:03": [
+      {
+        "stage": 1
+      },
+      {
+        "stage": 2
+      },
+      {
+        "stage": 4
+      },
+      {
+        "stage": 6
+      }
+    ],
+    "rod:05": [
+      {
+        "stage": 1
+      },
+      {
+        "stage": 2
+      }
+    ],
+    "rod:04": [
+      {
+        "stage": 1
+      },
+      {
+        "stage": 2
+      },
+      {
+        "stage": 3
+      },
+      {
+        "stage": 5
+      },
+      {
+        "stage": 6
+      }
+    ],
+    "rod:0E": [
+      {
+        "stage": 1
+      },
+      {
+        "stage": 3
+      },
+      {
+        "stage": 4
+      },
+      {
+        "stage": 5
+      },
+      {
+        "stage": 6
+      }
+    ],
+    "rod:0A": [
+      {
+        "stage": 1
+      },
+      {
+        "stage": 2
+      },
+      {
+        "stage": 3
+      },
+      {
+        "stage": 5
+      },
+      {
+        "stage": 6
+      }
+    ],
+    "rod:0C": [
+      {
+        "stage": 1
+      },
+      {
+        "stage": 2
+      },
+      {
+        "stage": 3
+      },
+      {
+        "stage": 4
+      },
+      {
+        "stage": 6
+      }
+    ],
+    "rod:12": [
+      {
+        "stage": 1
+      },
+      {
+        "stage": 2
+      },
+      {
+        "stage": 3
+      },
+      {
+        "stage": 5
+      }
+    ],
+    "rod:13": [
+      {
+        "stage": 1
+      },
+      {
+        "stage": 2
+      },
+      {
+        "stage": 3
+      },
+      {
+        "stage": 4
+      }
+    ],
+    "lure:2E": [
+      {
+        "stage": 1
+      }
+    ],
+    "lure:2F": [
+      {
+        "stage": 1
+      }
+    ],
+    "lure:30": [
+      {
+        "stage": 1
+      }
+    ],
+    "lure:31": [
+      {
+        "stage": 1
+      },
+      {
+        "stage": 3
+      }
+    ],
+    "lure:35": [
+      {
+        "stage": 1
+      },
+      {
+        "stage": 2
+      }
+    ],
+    "lure:36": [
+      {
+        "stage": 1
+      }
+    ],
+    "lure:37": [
+      {
+        "stage": 1
+      },
+      {
+        "stage": 4
+      }
+    ],
+    "lure:38": [
+      {
+        "stage": 1
+      }
+    ],
+    "lure:41": [
+      {
+        "stage": 1
+      }
+    ],
+    "lure:13": [
+      {
+        "stage": 1
+      },
+      {
+        "stage": 5
+      }
+    ],
+    "lure:02": [
+      {
+        "stage": 1
+      },
+      {
+        "stage": 5
+      }
+    ],
+    "lure:14": [
+      {
+        "stage": 1
+      },
+      {
+        "stage": 5
+      }
+    ],
+    "lure:15": [
+      {
+        "stage": 1
+      },
+      {
+        "stage": 2
+      },
+      {
+        "stage": 5
+      }
+    ],
+    "lure:48": [
+      {
+        "stage": 1
+      }
+    ],
+    "lure:49": [
+      {
+        "stage": 1
+      },
+      {
+        "stage": 6
+      }
+    ],
+    "lure:4A": [
+      {
+        "stage": 1
+      },
+      {
+        "stage": 2
+      },
+      {
+        "stage": 6
+      }
+    ],
+    "lure:19": [
+      {
+        "stage": 1
+      },
+      {
+        "stage": 2
+      },
+      {
+        "stage": 5
+      },
+      {
+        "stage": 6
+      }
+    ],
+    "lure:1A": [
+      {
+        "stage": 1
+      },
+      {
+        "stage": 2
+      },
+      {
+        "stage": 3
+      }
+    ],
+    "lure:23": [
+      {
+        "stage": 1
+      },
+      {
+        "stage": 4
+      }
+    ],
+    "lure:25": [
+      {
+        "stage": 1
+      },
+      {
+        "stage": 3
+      },
+      {
+        "stage": 6
+      }
+    ],
+    "lure:26": [
+      {
+        "stage": 1
+      },
+      {
+        "stage": 2
+      },
+      {
+        "stage": 3
+      },
+      {
+        "stage": 5
+      }
+    ],
+    "lure:27": [
+      {
+        "stage": 1
+      },
+      {
+        "stage": 3
+      },
+      {
+        "stage": 5
+      }
+    ],
+    "lure:2B": [
+      {
+        "stage": 1
+      },
+      {
+        "stage": 3
+      }
+    ],
+    "lure:29": [
+      {
+        "stage": 1
+      },
+      {
+        "stage": 2
+      },
+      {
+        "stage": 6
+      }
+    ],
+    "hook:08": [
+      {
+        "stage": 1
+      },
+      {
+        "stage": 3
+      }
+    ],
+    "hook:06": [
+      {
+        "stage": 1
+      },
+      {
+        "stage": 2
+      },
+      {
+        "stage": 3
+      },
+      {
+        "stage": 4
+      },
+      {
+        "stage": 5
+      },
+      {
+        "stage": 6
+      }
+    ],
+    "hook:0C": [
+      {
+        "stage": 1
+      }
+    ],
+    "hook:0D": [
+      {
+        "stage": 1
+      },
+      {
+        "stage": 2
+      }
+    ],
+    "float_weight:06": [
+      {
+        "stage": 1
+      },
+      {
+        "stage": 2
+      },
+      {
+        "stage": 3
+      },
+      {
+        "stage": 5
+      },
+      {
+        "stage": 6
+      }
+    ],
+    "float_weight:05": [
+      {
+        "stage": 1
+      },
+      {
+        "stage": 2
+      },
+      {
+        "stage": 4
+      },
+      {
+        "stage": 5
+      },
+      {
+        "stage": 6
+      }
+    ],
+    "bait:07": [
+      {
+        "stage": 1
+      },
+      {
+        "stage": 2
+      },
+      {
+        "stage": 3
+      },
+      {
+        "stage": 4
+      }
+    ],
+    "bait:08": [
+      {
+        "stage": 1
+      },
+      {
+        "stage": 2
+      },
+      {
+        "stage": 3
+      }
+    ],
+    "bait:01": [
+      {
+        "stage": 1
+      },
+      {
+        "stage": 2
+      },
+      {
+        "stage": 3
+      },
+      {
+        "stage": 4
+      },
+      {
+        "stage": 5
+      },
+      {
+        "stage": 6
+      }
+    ],
+    "bait:0A": [
+      {
+        "stage": 1
+      },
+      {
+        "stage": 2
+      },
+      {
+        "stage": 4
+      },
+      {
+        "stage": 5
+      },
+      {
+        "stage": 6
+      }
+    ],
+    "bait:12": [
+      {
+        "stage": 1
+      },
+      {
+        "stage": 2
+      },
+      {
+        "stage": 3
+      },
+      {
+        "stage": 4
+      },
+      {
+        "stage": 5
+      },
+      {
+        "stage": 6
+      }
+    ],
+    "bait:04": [
+      {
+        "stage": 1
+      },
+      {
+        "stage": 2
+      },
+      {
+        "stage": 3
+      }
+    ],
+    "bait:09": [
+      {
+        "stage": 1
+      },
+      {
+        "stage": 2
+      },
+      {
+        "stage": 3
+      },
+      {
+        "stage": 6
+      }
+    ],
+    "bait:02": [
+      {
+        "stage": 1
+      },
+      {
+        "stage": 3
+      },
+      {
+        "stage": 5
+      },
+      {
+        "stage": 6
+      }
+    ],
+    "bait:0B": [
+      {
+        "stage": 1
+      }
+    ],
+    "fly:01": [
+      {
+        "stage": 1,
+        "shop": "fly_bundle",
+        "bundle": {
+          "slot": 0,
+          "body": "01",
+          "wing": "09",
+          "tail": "13",
+          "shopPriceYen": 5
+        }
+      }
+    ],
+    "fly:18": [
+      {
+        "stage": 1,
+        "shop": "fly_bundle",
+        "bundle": {
+          "slot": 1,
+          "body": "18",
+          "wing": "1F",
+          "tail": "27",
+          "shopPriceYen": 18
+        }
+      }
+    ],
+    "fly:2B": [
+      {
+        "stage": 1,
+        "shop": "fly_bundle",
+        "bundle": {
+          "slot": 2,
+          "body": "2B",
+          "wing": "34",
+          "tail": "00",
+          "shopPriceYen": 15
+        }
+      }
+    ],
+    "fly:3E": [
+      {
+        "stage": 1,
+        "shop": "fly_bundle",
+        "bundle": {
+          "slot": 3,
+          "body": "3E",
+          "wing": "43",
+          "tail": "49",
+          "shopPriceYen": 5
+        }
+      }
+    ],
+    "fly:4B": [
+      {
+        "stage": 1,
+        "shop": "fly_bundle",
+        "bundle": {
+          "slot": 4,
+          "body": "4B",
+          "wing": "50",
+          "tail": "53",
+          "shopPriceYen": 20
+        }
+      },
+      {
+        "stage": 4,
+        "shop": "fly_bundle",
+        "bundle": {
+          "slot": 4,
+          "body": "4B",
+          "wing": "50",
+          "tail": "55",
+          "shopPriceYen": 20
+        }
+      }
+    ],
+    "fly:56": [
+      {
+        "stage": 1,
+        "shop": "fly_bundle",
+        "bundle": {
+          "slot": 5,
+          "body": "56",
+          "wing": "5A",
+          "tail": "5F",
+          "shopPriceYen": 25
+        }
+      },
+      {
+        "stage": 4,
+        "shop": "fly_bundle",
+        "bundle": {
+          "slot": 5,
+          "body": "56",
+          "wing": "5D",
+          "tail": "00",
+          "shopPriceYen": 25
+        }
+      }
+    ],
+    "fly:6C": [
+      {
+        "stage": 1,
+        "shop": "fly_bundle",
+        "bundle": {
+          "slot": 6,
+          "body": "6C",
+          "wing": "70",
+          "tail": "74",
+          "shopPriceYen": 15
+        }
+      }
+    ],
+    "fly:77": [
+      {
+        "stage": 1,
+        "shop": "fly_bundle",
+        "bundle": {
+          "slot": 7,
+          "body": "77",
+          "wing": "00",
+          "tail": "00",
+          "shopPriceYen": 25
+        }
+      }
+    ],
+    "fly_wing:09": [
+      {
+        "stage": 1,
+        "shop": "fly_bundle",
+        "bundle": {
+          "slot": 0,
+          "body": "01",
+          "wing": "09",
+          "tail": "13",
+          "shopPriceYen": 5
+        }
+      }
+    ],
+    "fly_wing:1F": [
+      {
+        "stage": 1,
+        "shop": "fly_bundle",
+        "bundle": {
+          "slot": 1,
+          "body": "18",
+          "wing": "1F",
+          "tail": "27",
+          "shopPriceYen": 18
+        }
+      }
+    ],
+    "fly_wing:34": [
+      {
+        "stage": 1,
+        "shop": "fly_bundle",
+        "bundle": {
+          "slot": 2,
+          "body": "2B",
+          "wing": "34",
+          "tail": "00",
+          "shopPriceYen": 15
+        }
+      }
+    ],
+    "fly_wing:43": [
+      {
+        "stage": 1,
+        "shop": "fly_bundle",
+        "bundle": {
+          "slot": 3,
+          "body": "3E",
+          "wing": "43",
+          "tail": "49",
+          "shopPriceYen": 5
+        }
+      },
+      {
+        "stage": 3,
+        "shop": "fly_bundle",
+        "bundle": {
+          "slot": 3,
+          "body": "40",
+          "wing": "43",
+          "tail": "49",
+          "shopPriceYen": 10
+        }
+      }
+    ],
+    "fly_wing:50": [
+      {
+        "stage": 1,
+        "shop": "fly_bundle",
+        "bundle": {
+          "slot": 4,
+          "body": "4B",
+          "wing": "50",
+          "tail": "53",
+          "shopPriceYen": 20
+        }
+      },
+      {
+        "stage": 4,
+        "shop": "fly_bundle",
+        "bundle": {
+          "slot": 4,
+          "body": "4B",
+          "wing": "50",
+          "tail": "55",
+          "shopPriceYen": 20
+        }
+      }
+    ],
+    "fly_wing:5A": [
+      {
+        "stage": 1,
+        "shop": "fly_bundle",
+        "bundle": {
+          "slot": 5,
+          "body": "56",
+          "wing": "5A",
+          "tail": "5F",
+          "shopPriceYen": 25
+        }
+      }
+    ],
+    "fly_wing:70": [
+      {
+        "stage": 1,
+        "shop": "fly_bundle",
+        "bundle": {
+          "slot": 6,
+          "body": "6C",
+          "wing": "70",
+          "tail": "74",
+          "shopPriceYen": 15
+        }
+      }
+    ],
+    "fly_tail:13": [
+      {
+        "stage": 1,
+        "shop": "fly_bundle",
+        "bundle": {
+          "slot": 0,
+          "body": "01",
+          "wing": "09",
+          "tail": "13",
+          "shopPriceYen": 5
+        }
+      },
+      {
+        "stage": 5,
+        "shop": "fly_bundle",
+        "bundle": {
+          "slot": 0,
+          "body": "06",
+          "wing": "11",
+          "tail": "13",
+          "shopPriceYen": 30
+        }
+      }
+    ],
+    "fly_tail:27": [
+      {
+        "stage": 1,
+        "shop": "fly_bundle",
+        "bundle": {
+          "slot": 1,
+          "body": "18",
+          "wing": "1F",
+          "tail": "27",
+          "shopPriceYen": 18
+        }
+      },
+      {
+        "stage": 3,
+        "shop": "fly_bundle",
+        "bundle": {
+          "slot": 1,
+          "body": "1A",
+          "wing": "21",
+          "tail": "27",
+          "shopPriceYen": 22
+        }
+      }
+    ],
+    "fly_tail:49": [
+      {
+        "stage": 1,
+        "shop": "fly_bundle",
+        "bundle": {
+          "slot": 3,
+          "body": "3E",
+          "wing": "43",
+          "tail": "49",
+          "shopPriceYen": 5
+        }
+      },
+      {
+        "stage": 3,
+        "shop": "fly_bundle",
+        "bundle": {
+          "slot": 3,
+          "body": "40",
+          "wing": "43",
+          "tail": "49",
+          "shopPriceYen": 10
+        }
+      },
+      {
+        "stage": 5,
+        "shop": "fly_bundle",
+        "bundle": {
+          "slot": 3,
+          "body": "42",
+          "wing": "47",
+          "tail": "49",
+          "shopPriceYen": 15
+        }
+      }
+    ],
+    "fly_tail:53": [
+      {
+        "stage": 1,
+        "shop": "fly_bundle",
+        "bundle": {
+          "slot": 4,
+          "body": "4B",
+          "wing": "50",
+          "tail": "53",
+          "shopPriceYen": 20
+        }
+      }
+    ],
+    "fly_tail:5F": [
+      {
+        "stage": 1,
+        "shop": "fly_bundle",
+        "bundle": {
+          "slot": 5,
+          "body": "56",
+          "wing": "5A",
+          "tail": "5F",
+          "shopPriceYen": 25
+        }
+      },
+      {
+        "stage": 2,
+        "shop": "fly_bundle",
+        "bundle": {
+          "slot": 5,
+          "body": "57",
+          "wing": "5B",
+          "tail": "5F",
+          "shopPriceYen": 35
+        }
+      },
+      {
+        "stage": 5,
+        "shop": "fly_bundle",
+        "bundle": {
+          "slot": 5,
+          "body": "57",
+          "wing": "5C",
+          "tail": "5F",
+          "shopPriceYen": 35
+        }
+      },
+      {
+        "stage": 6,
+        "shop": "fly_bundle",
+        "bundle": {
+          "slot": 5,
+          "body": "59",
+          "wing": "5E",
+          "tail": "5F",
+          "shopPriceYen": 40
+        }
+      }
+    ],
+    "fly_tail:74": [
+      {
+        "stage": 1,
+        "shop": "fly_bundle",
+        "bundle": {
+          "slot": 6,
+          "body": "6C",
+          "wing": "70",
+          "tail": "74",
+          "shopPriceYen": 15
+        }
+      }
+    ],
+    "food:01": [
+      {
+        "stage": 1
+      }
+    ],
+    "food:02": [
+      {
+        "stage": 1
+      },
+      {
+        "stage": 2
+      },
+      {
+        "stage": 3
+      },
+      {
+        "stage": 4
+      }
+    ],
+    "general_tool:03": [
+      {
+        "stage": 1
+      },
+      {
+        "stage": 2
+      },
+      {
+        "stage": 3
+      },
+      {
+        "stage": 5
+      },
+      {
+        "stage": 6
+      }
+    ],
+    "general_tool:07": [
+      {
+        "stage": 1
+      },
+      {
+        "stage": 2
+      },
+      {
+        "stage": 3
+      },
+      {
+        "stage": 4
+      },
+      {
+        "stage": 5
+      },
+      {
+        "stage": 6
+      }
+    ],
+    "general_tool:0B": [
+      {
+        "stage": 1
+      },
+      {
+        "stage": 2
+      }
+    ],
+    "general_tool:0E": [
+      {
+        "stage": 1
+      },
+      {
+        "stage": 2
+      },
+      {
+        "stage": 3
+      },
+      {
+        "stage": 6
+      }
+    ],
+    "general_tool:17": [
+      {
+        "stage": 1
+      },
+      {
+        "stage": 2
+      },
+      {
+        "stage": 4
+      },
+      {
+        "stage": 6
+      }
+    ],
+    "rod:0F": [
+      {
+        "stage": 2
+      },
+      {
+        "stage": 4
+      },
+      {
+        "stage": 5
+      },
+      {
+        "stage": 6
+      }
+    ],
+    "lure:32": [
+      {
+        "stage": 2
+      }
+    ],
+    "lure:33": [
+      {
+        "stage": 2
+      }
+    ],
+    "lure:34": [
+      {
+        "stage": 2
+      },
+      {
+        "stage": 3
+      }
+    ],
+    "lure:42": [
+      {
+        "stage": 2
+      }
+    ],
+    "lure:43": [
+      {
+        "stage": 2
+      },
+      {
+        "stage": 3
+      }
+    ],
+    "lure:06": [
+      {
+        "stage": 2
+      },
+      {
+        "stage": 5
+      }
+    ],
+    "lure:07": [
+      {
+        "stage": 2
+      },
+      {
+        "stage": 4
+      }
+    ],
+    "lure:0A": [
+      {
+        "stage": 2
+      },
+      {
+        "stage": 3
+      },
+      {
+        "stage": 4
+      }
+    ],
+    "lure:0E": [
+      {
+        "stage": 2
+      },
+      {
+        "stage": 4
+      },
+      {
+        "stage": 5
+      }
+    ],
+    "lure:10": [
+      {
+        "stage": 2
+      },
+      {
+        "stage": 6
+      }
+    ],
+    "lure:11": [
+      {
+        "stage": 2
+      },
+      {
+        "stage": 4
+      },
+      {
+        "stage": 5
+      }
+    ],
+    "lure:12": [
+      {
+        "stage": 2
+      },
+      {
+        "stage": 4
+      },
+      {
+        "stage": 5
+      }
+    ],
+    "lure:16": [
+      {
+        "stage": 2
+      },
+      {
+        "stage": 4
+      }
+    ],
+    "lure:17": [
+      {
+        "stage": 2
+      },
+      {
+        "stage": 3
+      },
+      {
+        "stage": 4
+      },
+      {
+        "stage": 5
+      }
+    ],
+    "lure:20": [
+      {
+        "stage": 2
+      },
+      {
+        "stage": 6
+      }
+    ],
+    "lure:24": [
+      {
+        "stage": 2
+      },
+      {
+        "stage": 3
+      }
+    ],
+    "lure:4B": [
+      {
+        "stage": 2
+      }
+    ],
+    "hook:07": [
+      {
+        "stage": 2
+      },
+      {
+        "stage": 6
+      }
+    ],
+    "hook:09": [
+      {
+        "stage": 2
+      },
+      {
+        "stage": 3
+      }
+    ],
+    "float_weight:02": [
+      {
+        "stage": 2
+      },
+      {
+        "stage": 4
+      },
+      {
+        "stage": 5
+      }
+    ],
+    "float_weight:03": [
+      {
+        "stage": 2
+      }
+    ],
+    "bait:15": [
+      {
+        "stage": 2
+      },
+      {
+        "stage": 4
+      },
+      {
+        "stage": 5
+      },
+      {
+        "stage": 6
+      }
+    ],
+    "bait:03": [
+      {
+        "stage": 2
+      }
+    ],
+    "bait:14": [
+      {
+        "stage": 2
+      },
+      {
+        "stage": 4
+      },
+      {
+        "stage": 5
+      },
+      {
+        "stage": 6
+      }
+    ],
+    "fly:02": [
+      {
+        "stage": 2,
+        "shop": "fly_bundle",
+        "bundle": {
+          "slot": 0,
+          "body": "02",
+          "wing": "0A",
+          "tail": "14",
+          "shopPriceYen": 10
+        }
+      }
+    ],
+    "fly:19": [
+      {
+        "stage": 2,
+        "shop": "fly_bundle",
+        "bundle": {
+          "slot": 1,
+          "body": "19",
+          "wing": "20",
+          "tail": "28",
+          "shopPriceYen": 20
+        }
+      }
+    ],
+    "fly:2C": [
+      {
+        "stage": 2,
+        "shop": "fly_bundle",
+        "bundle": {
+          "slot": 2,
+          "body": "2C",
+          "wing": "35",
+          "tail": "00",
+          "shopPriceYen": 20
+        }
+      }
+    ],
+    "fly:3F": [
+      {
+        "stage": 2,
+        "shop": "fly_bundle",
+        "bundle": {
+          "slot": 3,
+          "body": "3F",
+          "wing": "44",
+          "tail": "4A",
+          "shopPriceYen": 7
+        }
+      },
+      {
+        "stage": 6,
+        "shop": "fly_bundle",
+        "bundle": {
+          "slot": 3,
+          "body": "3F",
+          "wing": "48",
+          "tail": "4A",
+          "shopPriceYen": 7
+        }
+      }
+    ],
+    "fly:4C": [
+      {
+        "stage": 2,
+        "shop": "fly_bundle",
+        "bundle": {
+          "slot": 4,
+          "body": "4C",
+          "wing": "51",
+          "tail": "54",
+          "shopPriceYen": 25
+        }
+      }
+    ],
+    "fly:57": [
+      {
+        "stage": 2,
+        "shop": "fly_bundle",
+        "bundle": {
+          "slot": 5,
+          "body": "57",
+          "wing": "5B",
+          "tail": "5F",
+          "shopPriceYen": 35
+        }
+      },
+      {
+        "stage": 5,
+        "shop": "fly_bundle",
+        "bundle": {
+          "slot": 5,
+          "body": "57",
+          "wing": "5C",
+          "tail": "5F",
+          "shopPriceYen": 35
+        }
+      }
+    ],
+    "fly:60": [
+      {
+        "stage": 2,
+        "shop": "fly_bundle",
+        "bundle": {
+          "slot": 6,
+          "body": "60",
+          "wing": "00",
+          "tail": "68",
+          "shopPriceYen": 35
+        }
+      }
+    ],
+    "fly:7F": [
+      {
+        "stage": 2,
+        "shop": "fly_bundle",
+        "bundle": {
+          "slot": 7,
+          "body": "7F",
+          "wing": "00",
+          "tail": "00",
+          "shopPriceYen": 50
+        }
+      }
+    ],
+    "fly_wing:0A": [
+      {
+        "stage": 2,
+        "shop": "fly_bundle",
+        "bundle": {
+          "slot": 0,
+          "body": "02",
+          "wing": "0A",
+          "tail": "14",
+          "shopPriceYen": 10
+        }
+      }
+    ],
+    "fly_wing:20": [
+      {
+        "stage": 2,
+        "shop": "fly_bundle",
+        "bundle": {
+          "slot": 1,
+          "body": "19",
+          "wing": "20",
+          "tail": "28",
+          "shopPriceYen": 20
+        }
+      }
+    ],
+    "fly_wing:35": [
+      {
+        "stage": 2,
+        "shop": "fly_bundle",
+        "bundle": {
+          "slot": 2,
+          "body": "2C",
+          "wing": "35",
+          "tail": "00",
+          "shopPriceYen": 20
+        }
+      }
+    ],
+    "fly_wing:44": [
+      {
+        "stage": 2,
+        "shop": "fly_bundle",
+        "bundle": {
+          "slot": 3,
+          "body": "3F",
+          "wing": "44",
+          "tail": "4A",
+          "shopPriceYen": 7
+        }
+      }
+    ],
+    "fly_wing:51": [
+      {
+        "stage": 2,
+        "shop": "fly_bundle",
+        "bundle": {
+          "slot": 4,
+          "body": "4C",
+          "wing": "51",
+          "tail": "54",
+          "shopPriceYen": 25
+        }
+      },
+      {
+        "stage": 5,
+        "shop": "fly_bundle",
+        "bundle": {
+          "slot": 4,
+          "body": "4E",
+          "wing": "51",
+          "tail": "00",
+          "shopPriceYen": 45
+        }
+      }
+    ],
+    "fly_wing:5B": [
+      {
+        "stage": 2,
+        "shop": "fly_bundle",
+        "bundle": {
+          "slot": 5,
+          "body": "57",
+          "wing": "5B",
+          "tail": "5F",
+          "shopPriceYen": 35
+        }
+      }
+    ],
+    "fly_tail:14": [
+      {
+        "stage": 2,
+        "shop": "fly_bundle",
+        "bundle": {
+          "slot": 0,
+          "body": "02",
+          "wing": "0A",
+          "tail": "14",
+          "shopPriceYen": 10
+        }
+      }
+    ],
+    "fly_tail:28": [
+      {
+        "stage": 2,
+        "shop": "fly_bundle",
+        "bundle": {
+          "slot": 1,
+          "body": "19",
+          "wing": "20",
+          "tail": "28",
+          "shopPriceYen": 20
+        }
+      },
+      {
+        "stage": 4,
+        "shop": "fly_bundle",
+        "bundle": {
+          "slot": 1,
+          "body": "1B",
+          "wing": "22",
+          "tail": "28",
+          "shopPriceYen": 25
+        }
+      }
+    ],
+    "fly_tail:4A": [
+      {
+        "stage": 2,
+        "shop": "fly_bundle",
+        "bundle": {
+          "slot": 3,
+          "body": "3F",
+          "wing": "44",
+          "tail": "4A",
+          "shopPriceYen": 7
+        }
+      },
+      {
+        "stage": 6,
+        "shop": "fly_bundle",
+        "bundle": {
+          "slot": 3,
+          "body": "3F",
+          "wing": "48",
+          "tail": "4A",
+          "shopPriceYen": 7
+        }
+      }
+    ],
+    "fly_tail:54": [
+      {
+        "stage": 2,
+        "shop": "fly_bundle",
+        "bundle": {
+          "slot": 4,
+          "body": "4C",
+          "wing": "51",
+          "tail": "54",
+          "shopPriceYen": 25
+        }
+      },
+      {
+        "stage": 6,
+        "shop": "fly_bundle",
+        "bundle": {
+          "slot": 4,
+          "body": "4F",
+          "wing": "52",
+          "tail": "54",
+          "shopPriceYen": 50
+        }
+      }
+    ],
+    "fly_tail:68": [
+      {
+        "stage": 2,
+        "shop": "fly_bundle",
+        "bundle": {
+          "slot": 6,
+          "body": "60",
+          "wing": "00",
+          "tail": "68",
+          "shopPriceYen": 35
+        }
+      }
+    ],
+    "food:03": [
+      {
+        "stage": 2
+      },
+      {
+        "stage": 5
+      },
+      {
+        "stage": 6
+      }
+    ],
+    "general_tool:08": [
+      {
+        "stage": 2
+      },
+      {
+        "stage": 3
+      },
+      {
+        "stage": 4
+      },
+      {
+        "stage": 5
+      },
+      {
+        "stage": 6
+      }
+    ],
+    "rod:07": [
+      {
+        "stage": 3
+      },
+      {
+        "stage": 5
+      }
+    ],
+    "rod:14": [
+      {
+        "stage": 3
+      },
+      {
+        "stage": 4
+      },
+      {
+        "stage": 6
+      }
+    ],
+    "lure:3A": [
+      {
+        "stage": 3
+      }
+    ],
+    "lure:3B": [
+      {
+        "stage": 3
+      },
+      {
+        "stage": 4
+      }
+    ],
+    "lure:03": [
+      {
+        "stage": 3
+      }
+    ],
+    "lure:4C": [
+      {
+        "stage": 3
+      }
+    ],
+    "lure:4D": [
+      {
+        "stage": 3
+      }
+    ],
+    "lure:18": [
+      {
+        "stage": 3
+      },
+      {
+        "stage": 5
+      }
+    ],
+    "lure:2C": [
+      {
+        "stage": 3
+      },
+      {
+        "stage": 4
+      },
+      {
+        "stage": 5
+      }
+    ],
+    "lure:1B": [
+      {
+        "stage": 3
+      },
+      {
+        "stage": 5
+      }
+    ],
+    "lure:1D": [
+      {
+        "stage": 3
+      },
+      {
+        "stage": 5
+      }
+    ],
+    "lure:1E": [
+      {
+        "stage": 3
+      },
+      {
+        "stage": 5
+      },
+      {
+        "stage": 6
+      }
+    ],
+    "lure:0B": [
+      {
+        "stage": 3
+      },
+      {
+        "stage": 4
+      },
+      {
+        "stage": 5
+      }
+    ],
+    "lure:0C": [
+      {
+        "stage": 3
+      },
+      {
+        "stage": 6
+      }
+    ],
+    "lure:0D": [
+      {
+        "stage": 3
+      },
+      {
+        "stage": 6
+      }
+    ],
+    "hook:0A": [
+      {
+        "stage": 3
+      }
+    ],
+    "float_weight:07": [
+      {
+        "stage": 3
+      },
+      {
+        "stage": 5
+      },
+      {
+        "stage": 6
+      }
+    ],
+    "bait:0C": [
+      {
+        "stage": 3
+      }
+    ],
+    "bait:05": [
+      {
+        "stage": 3
+      },
+      {
+        "stage": 4
+      },
+      {
+        "stage": 5
+      }
+    ],
+    "bait:13": [
+      {
+        "stage": 3
+      },
+      {
+        "stage": 5
+      },
+      {
+        "stage": 6
+      }
+    ],
+    "bait:17": [
+      {
+        "stage": 3,
+        "condition": "sell at least one Ayu before buying; each purchase subtracts 9 from sold-Ayu counter, floored at 0"
+      }
+    ],
+    "fly:03": [
+      {
+        "stage": 3,
+        "shop": "fly_bundle",
+        "bundle": {
+          "slot": 0,
+          "body": "03",
+          "wing": "0B",
+          "tail": "15",
+          "shopPriceYen": 15
+        }
+      }
+    ],
+    "fly:1A": [
+      {
+        "stage": 3,
+        "shop": "fly_bundle",
+        "bundle": {
+          "slot": 1,
+          "body": "1A",
+          "wing": "21",
+          "tail": "27",
+          "shopPriceYen": 22
+        }
+      }
+    ],
+    "fly:2D": [
+      {
+        "stage": 3,
+        "shop": "fly_bundle",
+        "bundle": {
+          "slot": 2,
+          "body": "2D",
+          "wing": "36",
+          "tail": "00",
+          "shopPriceYen": 30
+        }
+      }
+    ],
+    "fly:40": [
+      {
+        "stage": 3,
+        "shop": "fly_bundle",
+        "bundle": {
+          "slot": 3,
+          "body": "40",
+          "wing": "43",
+          "tail": "49",
+          "shopPriceYen": 10
+        }
+      }
+    ],
+    "fly:4D": [
+      {
+        "stage": 3,
+        "shop": "fly_bundle",
+        "bundle": {
+          "slot": 4,
+          "body": "4D",
+          "wing": "52",
+          "tail": "55",
+          "shopPriceYen": 30
+        }
+      }
+    ],
+    "fly:58": [
+      {
+        "stage": 3,
+        "shop": "fly_bundle",
+        "bundle": {
+          "slot": 5,
+          "body": "58",
+          "wing": "5C",
+          "tail": "00",
+          "shopPriceYen": 35
+        }
+      }
+    ],
+    "fly:61": [
+      {
+        "stage": 3,
+        "shop": "fly_bundle",
+        "bundle": {
+          "slot": 6,
+          "body": "61",
+          "wing": "00",
+          "tail": "69",
+          "shopPriceYen": 35
+        }
+      }
+    ],
+    "fly:82": [
+      {
+        "stage": 3,
+        "shop": "fly_bundle",
+        "bundle": {
+          "slot": 7,
+          "body": "82",
+          "wing": "00",
+          "tail": "00",
+          "shopPriceYen": 50
+        }
+      }
+    ],
+    "fly_wing:0B": [
+      {
+        "stage": 3,
+        "shop": "fly_bundle",
+        "bundle": {
+          "slot": 0,
+          "body": "03",
+          "wing": "0B",
+          "tail": "15",
+          "shopPriceYen": 15
+        }
+      }
+    ],
+    "fly_wing:21": [
+      {
+        "stage": 3,
+        "shop": "fly_bundle",
+        "bundle": {
+          "slot": 1,
+          "body": "1A",
+          "wing": "21",
+          "tail": "27",
+          "shopPriceYen": 22
+        }
+      }
+    ],
+    "fly_wing:36": [
+      {
+        "stage": 3,
+        "shop": "fly_bundle",
+        "bundle": {
+          "slot": 2,
+          "body": "2D",
+          "wing": "36",
+          "tail": "00",
+          "shopPriceYen": 30
+        }
+      }
+    ],
+    "fly_wing:52": [
+      {
+        "stage": 3,
+        "shop": "fly_bundle",
+        "bundle": {
+          "slot": 4,
+          "body": "4D",
+          "wing": "52",
+          "tail": "55",
+          "shopPriceYen": 30
+        }
+      },
+      {
+        "stage": 6,
+        "shop": "fly_bundle",
+        "bundle": {
+          "slot": 4,
+          "body": "4F",
+          "wing": "52",
+          "tail": "54",
+          "shopPriceYen": 50
+        }
+      }
+    ],
+    "fly_wing:5C": [
+      {
+        "stage": 3,
+        "shop": "fly_bundle",
+        "bundle": {
+          "slot": 5,
+          "body": "58",
+          "wing": "5C",
+          "tail": "00",
+          "shopPriceYen": 35
+        }
+      },
+      {
+        "stage": 5,
+        "shop": "fly_bundle",
+        "bundle": {
+          "slot": 5,
+          "body": "57",
+          "wing": "5C",
+          "tail": "5F",
+          "shopPriceYen": 35
+        }
+      }
+    ],
+    "fly_tail:15": [
+      {
+        "stage": 3,
+        "shop": "fly_bundle",
+        "bundle": {
+          "slot": 0,
+          "body": "03",
+          "wing": "0B",
+          "tail": "15",
+          "shopPriceYen": 15
+        }
+      }
+    ],
+    "fly_tail:55": [
+      {
+        "stage": 3,
+        "shop": "fly_bundle",
+        "bundle": {
+          "slot": 4,
+          "body": "4D",
+          "wing": "52",
+          "tail": "55",
+          "shopPriceYen": 30
+        }
+      },
+      {
+        "stage": 4,
+        "shop": "fly_bundle",
+        "bundle": {
+          "slot": 4,
+          "body": "4B",
+          "wing": "50",
+          "tail": "55",
+          "shopPriceYen": 20
+        }
+      }
+    ],
+    "fly_tail:69": [
+      {
+        "stage": 3,
+        "shop": "fly_bundle",
+        "bundle": {
+          "slot": 6,
+          "body": "61",
+          "wing": "00",
+          "tail": "69",
+          "shopPriceYen": 35
+        }
+      },
+      {
+        "stage": 6,
+        "shop": "fly_bundle",
+        "bundle": {
+          "slot": 6,
+          "body": "65",
+          "wing": "00",
+          "tail": "69",
+          "shopPriceYen": 50
+        }
+      }
+    ],
+    "food:04": [
+      {
+        "stage": 3
+      }
+    ],
+    "general_tool:04": [
+      {
+        "stage": 3
+      },
+      {
+        "stage": 5
+      }
+    ],
+    "general_tool:0C": [
+      {
+        "stage": 3
+      },
+      {
+        "stage": 4
+      }
+    ],
+    "rod:09": [
+      {
+        "stage": 4
+      },
+      {
+        "stage": 5
+      }
+    ],
+    "rod:15": [
+      {
+        "stage": 4
+      },
+      {
+        "stage": 5
+      },
+      {
+        "stage": 6
+      }
+    ],
+    "lure:39": [
+      {
+        "stage": 4
+      },
+      {
+        "stage": 6
+      }
+    ],
+    "lure:3C": [
+      {
+        "stage": 4
+      }
+    ],
+    "lure:44": [
+      {
+        "stage": 4
+      }
+    ],
+    "lure:45": [
+      {
+        "stage": 4
+      },
+      {
+        "stage": 6
+      }
+    ],
+    "lure:4E": [
+      {
+        "stage": 4
+      }
+    ],
+    "lure:4F": [
+      {
+        "stage": 4
+      }
+    ],
+    "lure:04": [
+      {
+        "stage": 4
+      }
+    ],
+    "lure:01": [
+      {
+        "stage": 4
+      },
+      {
+        "stage": 5
+      }
+    ],
+    "lure:08": [
+      {
+        "stage": 4
+      }
+    ],
+    "lure:0F": [
+      {
+        "stage": 4
+      },
+      {
+        "stage": 5
+      }
+    ],
+    "lure:1F": [
+      {
+        "stage": 4
+      }
+    ],
+    "lure:21": [
+      {
+        "stage": 4
+      }
+    ],
+    "hook:0B": [
+      {
+        "stage": 4
+      },
+      {
+        "stage": 5
+      }
+    ],
+    "hook:04": [
+      {
+        "stage": 4
+      }
+    ],
+    "hook:05": [
+      {
+        "stage": 4
+      },
+      {
+        "stage": 5
+      }
+    ],
+    "float_weight:01": [
+      {
+        "stage": 4
+      }
+    ],
+    "float_weight:09": [
+      {
+        "stage": 4
+      },
+      {
+        "stage": 5
+      },
+      {
+        "stage": 6
+      }
+    ],
+    "bait:0E": [
+      {
+        "stage": 4
+      }
+    ],
+    "bait:11": [
+      {
+        "stage": 4
+      },
+      {
+        "stage": 6
+      }
+    ],
+    "bait:16": [
+      {
+        "stage": 4
+      },
+      {
+        "stage": 5
+      },
+      {
+        "stage": 6
+      }
+    ],
+    "fly:04": [
+      {
+        "stage": 4,
+        "shop": "fly_bundle",
+        "bundle": {
+          "slot": 0,
+          "body": "04",
+          "wing": "0C",
+          "tail": "16",
+          "shopPriceYen": 20
+        }
+      }
+    ],
+    "fly:1B": [
+      {
+        "stage": 4,
+        "shop": "fly_bundle",
+        "bundle": {
+          "slot": 1,
+          "body": "1B",
+          "wing": "22",
+          "tail": "28",
+          "shopPriceYen": 25
+        }
+      }
+    ],
+    "fly:2E": [
+      {
+        "stage": 4,
+        "shop": "fly_bundle",
+        "bundle": {
+          "slot": 2,
+          "body": "2E",
+          "wing": "37",
+          "tail": "3D",
+          "shopPriceYen": 35
+        }
+      }
+    ],
+    "fly:41": [
+      {
+        "stage": 4,
+        "shop": "fly_bundle",
+        "bundle": {
+          "slot": 3,
+          "body": "41",
+          "wing": "45",
+          "tail": "00",
+          "shopPriceYen": 15
+        }
+      }
+    ],
+    "fly:6D": [
+      {
+        "stage": 4,
+        "shop": "fly_bundle",
+        "bundle": {
+          "slot": 6,
+          "body": "6D",
+          "wing": "71",
+          "tail": "75",
+          "shopPriceYen": 25
+        }
+      }
+    ],
+    "fly:2F": [
+      {
+        "stage": 4,
+        "shop": "fly_bundle",
+        "bundle": {
+          "slot": 7,
+          "body": "2F",
+          "wing": "3C",
+          "tail": "00",
+          "shopPriceYen": 35
+        }
+      }
+    ],
+    "fly_wing:0C": [
+      {
+        "stage": 4,
+        "shop": "fly_bundle",
+        "bundle": {
+          "slot": 0,
+          "body": "04",
+          "wing": "0C",
+          "tail": "16",
+          "shopPriceYen": 20
+        }
+      }
+    ],
+    "fly_wing:22": [
+      {
+        "stage": 4,
+        "shop": "fly_bundle",
+        "bundle": {
+          "slot": 1,
+          "body": "1B",
+          "wing": "22",
+          "tail": "28",
+          "shopPriceYen": 25
+        }
+      }
+    ],
+    "fly_wing:37": [
+      {
+        "stage": 4,
+        "shop": "fly_bundle",
+        "bundle": {
+          "slot": 2,
+          "body": "2E",
+          "wing": "37",
+          "tail": "3D",
+          "shopPriceYen": 35
+        }
+      }
+    ],
+    "fly_wing:45": [
+      {
+        "stage": 4,
+        "shop": "fly_bundle",
+        "bundle": {
+          "slot": 3,
+          "body": "41",
+          "wing": "45",
+          "tail": "00",
+          "shopPriceYen": 15
+        }
+      }
+    ],
+    "fly_wing:5D": [
+      {
+        "stage": 4,
+        "shop": "fly_bundle",
+        "bundle": {
+          "slot": 5,
+          "body": "56",
+          "wing": "5D",
+          "tail": "00",
+          "shopPriceYen": 25
+        }
+      }
+    ],
+    "fly_wing:71": [
+      {
+        "stage": 4,
+        "shop": "fly_bundle",
+        "bundle": {
+          "slot": 6,
+          "body": "6D",
+          "wing": "71",
+          "tail": "75",
+          "shopPriceYen": 25
+        }
+      }
+    ],
+    "fly_wing:3C": [
+      {
+        "stage": 4,
+        "shop": "fly_bundle",
+        "bundle": {
+          "slot": 7,
+          "body": "2F",
+          "wing": "3C",
+          "tail": "00",
+          "shopPriceYen": 35
+        }
+      }
+    ],
+    "fly_tail:16": [
+      {
+        "stage": 4,
+        "shop": "fly_bundle",
+        "bundle": {
+          "slot": 0,
+          "body": "04",
+          "wing": "0C",
+          "tail": "16",
+          "shopPriceYen": 20
+        }
+      }
+    ],
+    "fly_tail:3D": [
+      {
+        "stage": 4,
+        "shop": "fly_bundle",
+        "bundle": {
+          "slot": 2,
+          "body": "2E",
+          "wing": "37",
+          "tail": "3D",
+          "shopPriceYen": 35
+        }
+      },
+      {
+        "stage": 6,
+        "shop": "fly_bundle",
+        "bundle": {
+          "slot": 2,
+          "body": "33",
+          "wing": "39",
+          "tail": "3D",
+          "shopPriceYen": 45
+        }
+      }
+    ],
+    "fly_tail:75": [
+      {
+        "stage": 4,
+        "shop": "fly_bundle",
+        "bundle": {
+          "slot": 6,
+          "body": "6D",
+          "wing": "71",
+          "tail": "75",
+          "shopPriceYen": 25
+        }
+      }
+    ],
+    "food:05": [
+      {
+        "stage": 4
+      }
+    ],
+    "general_tool:15": [
+      {
+        "stage": 4
+      }
+    ],
+    "general_tool:16": [
+      {
+        "stage": 4
+      }
+    ],
+    "rod:0D": [
+      {
+        "stage": 4,
+        "shop": "special_rod_shop"
+      }
+    ],
+    "lure:1C": [
+      {
+        "stage": 5
+      }
+    ],
+    "lure:2A": [
+      {
+        "stage": 5
+      },
+      {
+        "stage": 6
+      }
+    ],
+    "lure:3D": [
+      {
+        "stage": 5
+      }
+    ],
+    "lure:3E": [
+      {
+        "stage": 5
+      }
+    ],
+    "hook:03": [
+      {
+        "stage": 5
+      }
+    ],
+    "float_weight:0A": [
+      {
+        "stage": 5
+      },
+      {
+        "stage": 6
+      }
+    ],
+    "bait:0F": [
+      {
+        "stage": 5
+      }
+    ],
+    "bait:10": [
+      {
+        "stage": 5
+      }
+    ],
+    "fly:06": [
+      {
+        "stage": 5,
+        "shop": "fly_bundle",
+        "bundle": {
+          "slot": 0,
+          "body": "06",
+          "wing": "11",
+          "tail": "13",
+          "shopPriceYen": 30
+        }
+      }
+    ],
+    "fly:1D": [
+      {
+        "stage": 5,
+        "shop": "fly_bundle",
+        "bundle": {
+          "slot": 1,
+          "body": "1D",
+          "wing": "24",
+          "tail": "29",
+          "shopPriceYen": 40
+        }
+      }
+    ],
+    "fly:31": [
+      {
+        "stage": 5,
+        "shop": "fly_bundle",
+        "bundle": {
+          "slot": 2,
+          "body": "31",
+          "wing": "38",
+          "tail": "00",
+          "shopPriceYen": 40
+        }
+      }
+    ],
+    "fly:42": [
+      {
+        "stage": 5,
+        "shop": "fly_bundle",
+        "bundle": {
+          "slot": 3,
+          "body": "42",
+          "wing": "47",
+          "tail": "49",
+          "shopPriceYen": 15
+        }
+      }
+    ],
+    "fly:4E": [
+      {
+        "stage": 5,
+        "shop": "fly_bundle",
+        "bundle": {
+          "slot": 4,
+          "body": "4E",
+          "wing": "51",
+          "tail": "00",
+          "shopPriceYen": 45
+        }
+      }
+    ],
+    "fly:64": [
+      {
+        "stage": 5,
+        "shop": "fly_bundle",
+        "bundle": {
+          "slot": 6,
+          "body": "64",
+          "wing": "00",
+          "tail": "6A",
+          "shopPriceYen": 45
+        }
+      }
+    ],
+    "fly:85": [
+      {
+        "stage": 5,
+        "shop": "fly_bundle",
+        "bundle": {
+          "slot": 7,
+          "body": "85",
+          "wing": "00",
+          "tail": "00",
+          "shopPriceYen": 65
+        }
+      }
+    ],
+    "fly_wing:11": [
+      {
+        "stage": 5,
+        "shop": "fly_bundle",
+        "bundle": {
+          "slot": 0,
+          "body": "06",
+          "wing": "11",
+          "tail": "13",
+          "shopPriceYen": 30
+        }
+      }
+    ],
+    "fly_wing:24": [
+      {
+        "stage": 5,
+        "shop": "fly_bundle",
+        "bundle": {
+          "slot": 1,
+          "body": "1D",
+          "wing": "24",
+          "tail": "29",
+          "shopPriceYen": 40
+        }
+      }
+    ],
+    "fly_wing:38": [
+      {
+        "stage": 5,
+        "shop": "fly_bundle",
+        "bundle": {
+          "slot": 2,
+          "body": "31",
+          "wing": "38",
+          "tail": "00",
+          "shopPriceYen": 40
+        }
+      }
+    ],
+    "fly_wing:47": [
+      {
+        "stage": 5,
+        "shop": "fly_bundle",
+        "bundle": {
+          "slot": 3,
+          "body": "42",
+          "wing": "47",
+          "tail": "49",
+          "shopPriceYen": 15
+        }
+      }
+    ],
+    "fly_tail:29": [
+      {
+        "stage": 5,
+        "shop": "fly_bundle",
+        "bundle": {
+          "slot": 1,
+          "body": "1D",
+          "wing": "24",
+          "tail": "29",
+          "shopPriceYen": 40
+        }
+      }
+    ],
+    "fly_tail:6A": [
+      {
+        "stage": 5,
+        "shop": "fly_bundle",
+        "bundle": {
+          "slot": 6,
+          "body": "64",
+          "wing": "00",
+          "tail": "6A",
+          "shopPriceYen": 45
+        }
+      }
+    ],
+    "food:06": [
+      {
+        "stage": 5
+      },
+      {
+        "stage": 6
+      }
+    ],
+    "general_tool:11": [
+      {
+        "stage": 5
+      }
+    ],
+    "general_tool:0D": [
+      {
+        "stage": 5
+      },
+      {
+        "stage": 6
+      }
+    ],
+    "rod:08": [
+      {
+        "stage": 5,
+        "shop": "special_rod_shop"
+      }
+    ],
+    "rod:01": [
+      {
+        "stage": 5,
+        "shop": "special_rod_shop"
+      }
+    ],
+    "lure:05": [
+      {
+        "stage": 6
+      }
+    ],
+    "lure:09": [
+      {
+        "stage": 6
+      }
+    ],
+    "lure:22": [
+      {
+        "stage": 6
+      }
+    ],
+    "lure:28": [
+      {
+        "stage": 6
+      }
+    ],
+    "lure:2D": [
+      {
+        "stage": 6
+      }
+    ],
+    "lure:3F": [
+      {
+        "stage": 6
+      }
+    ],
+    "lure:40": [
+      {
+        "stage": 6
+      }
+    ],
+    "lure:46": [
+      {
+        "stage": 6
+      }
+    ],
+    "lure:47": [
+      {
+        "stage": 6
+      }
+    ],
+    "lure:50": [
+      {
+        "stage": 6
+      }
+    ],
+    "lure:51": [
+      {
+        "stage": 6
+      }
+    ],
+    "hook:01": [
+      {
+        "stage": 6
+      }
+    ],
+    "hook:02": [
+      {
+        "stage": 6
+      }
+    ],
+    "bait:06": [
+      {
+        "stage": 6
+      }
+    ],
+    "fly:08": [
+      {
+        "stage": 6,
+        "shop": "fly_bundle",
+        "bundle": {
+          "slot": 0,
+          "body": "08",
+          "wing": "12",
+          "tail": "17",
+          "shopPriceYen": 45
+        }
+      }
+    ],
+    "fly:1E": [
+      {
+        "stage": 6,
+        "shop": "fly_bundle",
+        "bundle": {
+          "slot": 1,
+          "body": "1E",
+          "wing": "26",
+          "tail": "2A",
+          "shopPriceYen": 50
+        }
+      }
+    ],
+    "fly:33": [
+      {
+        "stage": 6,
+        "shop": "fly_bundle",
+        "bundle": {
+          "slot": 2,
+          "body": "33",
+          "wing": "39",
+          "tail": "3D",
+          "shopPriceYen": 45
+        }
+      }
+    ],
+    "fly:4F": [
+      {
+        "stage": 6,
+        "shop": "fly_bundle",
+        "bundle": {
+          "slot": 4,
+          "body": "4F",
+          "wing": "52",
+          "tail": "54",
+          "shopPriceYen": 50
+        }
+      }
+    ],
+    "fly:59": [
+      {
+        "stage": 6,
+        "shop": "fly_bundle",
+        "bundle": {
+          "slot": 5,
+          "body": "59",
+          "wing": "5E",
+          "tail": "5F",
+          "shopPriceYen": 40
+        }
+      }
+    ],
+    "fly:65": [
+      {
+        "stage": 6,
+        "shop": "fly_bundle",
+        "bundle": {
+          "slot": 6,
+          "body": "65",
+          "wing": "00",
+          "tail": "69",
+          "shopPriceYen": 50
+        }
+      }
+    ],
+    "fly:86": [
+      {
+        "stage": 6,
+        "shop": "fly_bundle",
+        "bundle": {
+          "slot": 7,
+          "body": "86",
+          "wing": "00",
+          "tail": "00",
+          "shopPriceYen": 50
+        }
+      }
+    ],
+    "fly_wing:12": [
+      {
+        "stage": 6,
+        "shop": "fly_bundle",
+        "bundle": {
+          "slot": 0,
+          "body": "08",
+          "wing": "12",
+          "tail": "17",
+          "shopPriceYen": 45
+        }
+      }
+    ],
+    "fly_wing:26": [
+      {
+        "stage": 6,
+        "shop": "fly_bundle",
+        "bundle": {
+          "slot": 1,
+          "body": "1E",
+          "wing": "26",
+          "tail": "2A",
+          "shopPriceYen": 50
+        }
+      }
+    ],
+    "fly_wing:39": [
+      {
+        "stage": 6,
+        "shop": "fly_bundle",
+        "bundle": {
+          "slot": 2,
+          "body": "33",
+          "wing": "39",
+          "tail": "3D",
+          "shopPriceYen": 45
+        }
+      }
+    ],
+    "fly_wing:48": [
+      {
+        "stage": 6,
+        "shop": "fly_bundle",
+        "bundle": {
+          "slot": 3,
+          "body": "3F",
+          "wing": "48",
+          "tail": "4A",
+          "shopPriceYen": 7
+        }
+      }
+    ],
+    "fly_wing:5E": [
+      {
+        "stage": 6,
+        "shop": "fly_bundle",
+        "bundle": {
+          "slot": 5,
+          "body": "59",
+          "wing": "5E",
+          "tail": "5F",
+          "shopPriceYen": 40
+        }
+      }
+    ],
+    "fly_tail:17": [
+      {
+        "stage": 6,
+        "shop": "fly_bundle",
+        "bundle": {
+          "slot": 0,
+          "body": "08",
+          "wing": "12",
+          "tail": "17",
+          "shopPriceYen": 45
+        }
+      }
+    ],
+    "fly_tail:2A": [
+      {
+        "stage": 6,
+        "shop": "fly_bundle",
+        "bundle": {
+          "slot": 1,
+          "body": "1E",
+          "wing": "26",
+          "tail": "2A",
+          "shopPriceYen": 50
+        }
+      }
+    ],
+    "rod:10": [
+      {
+        "stage": 6,
+        "shop": "special_rod_shop"
+      }
+    ]
+  }
+}

@@ -79,10 +79,16 @@ python3 scripts/extract_items.py --rom /path/to/your/Kawa-no-Nushi-Tsuri-2.sfc -
 
 ## 追加調査（2026-10-04）
 
-[日本語の装備ガイド](https://polaminggkub-debug.github.io/kawa-no-nushi-tsuri-2-research/research/index.ja.html)：ルアー2IDでルアー適合38プロフィールのマスク判定を網羅。最安のROM価格欄は17 + 23で50円。販売店・取り込み成功率は未確認。竿+2はファイトの強さではなく、針掛かり前の投げ・照準保持時間上限に訂正した。
+[日本語の装備ガイド](https://polaminggkub-debug.github.io/kawa-no-nushi-tsuri-2-research/research/index.ja.html)：ルアー2IDでルアー適合38プロフィールのマスク判定を網羅。最安のROM価格欄は17 + 23で50円。販売店は全6エリアのROM在庫から確認済み。エリア1では2E＋23を55円、エリア4では17＋23を50円で揃えられる。取り込み成功率の比較は別の研究課題。竿+2はファイトの強さではなく、針掛かり前の投げ・照準保持時間上限に訂正した。
 
 [エサ・フライの判定](docs/fish-acceptance-research.md) · [竿の処理](docs/rod-response-research.md) · [ルアー初期化](docs/lure-response-research.md) · [店頭観察](docs/shop-inventory-research.md)
 
 ## 道具・イベント品
 
 [道具23件の調査](docs/general-tool-research.md)では、移動・探索、寄せエサ、びく容量、絵はがき、イベント品を原作ROMから追跡しています。カタログの用途欄に操作と条件を掲載し、根拠から処理・ゲーム内テキストを確認できます。
+
+## 実用性の見直し
+
+[プレイヤーの疑問とROMの回答](docs/player-value-audit.md)：全6エリアの店舗在庫、竿の照準時間と道具喪失条件、ハリ・ウキ・オモリの選び方、虫メガネでエサを探す地点例、食料とクサフグ、タライとカヌーの移動差。カタログは英語・日本語・タイ語で、操作と結果を先に、アドレスや式を展開可能な根拠に記載する。
+
+[毛バリ部品の調査](docs/fly-practical-research.md)：ボディが対象魚を絞り、ボディとウィングには追加の隠し条件がある。投げ直しでは値が再抽選されず、宿泊で更新される場合がある。店売り毛バリの組み合わせ・価格と、作成屋の部品選択を区別する。

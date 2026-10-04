@@ -12,42 +12,49 @@
       "id": "01",
       "nameJa": "タライ",
       "summary": {
-        "en": "Launch the tub at a usable waterside tile and enter its separate water-travel mode.",
-        "ja": "岸辺でタライを水に浮かべて乗り、水上移動モードに入る。",
-        "th": "ใช้กะละมังที่จุดริมน้ำที่ลงได้ เพื่อให้ลอยน้ำและเข้าโหมดเดินทางทางน้ำ"
+        "en": "Use the tub from a location accepted by the game to enter its water-travel mode.",
+        "ja": "ゲームが使用を認める場所でタライを使い、水上移動モードに入る。",
+        "th": "ใช้กะละมังจากจุดที่เกมอนุญาต เพื่อให้ลอยน้ำและเข้าโหมดเดินทางทางน้ำ"
       },
       "facts": {
         "en": [
-          "Use it from the bank: the game can place it on a valid waterside tile and says that it is floating on the water.",
+          "At an accepted launch location, the game places the tub and displays that it is floating on the water.",
           "It cannot be launched while swimming or from an unusable tile. The tub then enters its own water-travel mode.",
-          "The game will not let you change directly between the tub and canoe while already riding; return to a usable bank first."
+          "You cannot switch directly between the tub and canoe while riding. Get out of the current vehicle before using the other.",
+          "With no current contribution, the canoe movement table gives 14 position steps versus the tub’s 10 in the same cycle (+40%). Current changes the selected speed; this is not a universal 40% advantage."
         ],
         "ja": [
-          "岸辺で使うと、有効な水辺タイルにタライを配置し、水に浮かんだことを表示する。",
+          "使用可能な場所ではタライを配置し、水に浮かんだことを表示する。",
           "泳いでいる間や使用不可のタイルからは乗れない。乗るとタライ専用の水上移動モードに入る。",
-          "乗っている間にタライとカヌーを直接切り替えることはできない。いったん使用可能な岸辺に戻る必要がある。"
+          "乗っている間にタライとカヌーを直接切り替えることはできない。別の乗り物を使う前に降りる。",
+          "流れの寄与がない時、同じ周期でカヌーは14回、タライは10回位置を進める（40%増）。流れで速度が変わるので、全地点で40%速いわけではない。"
         ],
         "th": [
-          "ใช้จากริมฝั่ง ถ้าช่องริมน้ำใช้ได้ เกมจะวางกะละมังและแสดงข้อความว่าลอยอยู่บนผิวน้ำ",
+          "ถ้าจุดนั้นใช้ได้ เกมจะวางกะละมังและแสดงข้อความว่าลอยอยู่บนผิวน้ำ",
           "ขึ้นพาหนะขณะว่ายน้ำหรือจากช่องที่ใช้ไม่ได้ไม่สำเร็จ เมื่อขึ้นได้แล้วจะเข้าโหมดเดินทางทางน้ำของกะละมัง",
-          "ขณะอยู่บนพาหนะสลับกะละมังกับแคนูโดยตรงไม่ได้ ต้องกลับมาที่ริมฝั่งที่ขึ้นได้ก่อน"
+          "ขณะอยู่บนพาหนะสลับกะละมังกับแคนูโดยตรงไม่ได้ ต้องลงจากพาหนะเดิมก่อนใช้ชนิดอื่น",
+          "ในน้ำที่โค้ดไม่มีแรงกระแส แคนูเคลื่อนที่เร็วกว่ากะละมัง: ตารางขยับให้ 14 เทียบกับ 10 ในรอบเดียวกัน (+40%) กระแสน้ำทำให้ความเร็วเปลี่ยน จึงไม่ใช่ +40% ทุกจุด"
         ]
       },
       "evidence": {
         "type": "rom_trace",
         "sources": [
-          "docs/general-tool-actions-research.md"
+          "docs/general-tool-actions-research.md",
+          "docs/boat-movement-research.md"
         ]
       },
       "evidenceNotes": {
         "en": [
-          "The numeric tile class used by the launch test is not assigned a terrain name here. The ROM confirms separate tub and canoe movement paths, but this trace does not claim a wider difference in destinations or speed."
+          "Current-sensitive movement and the different terrain eligibility checks are documented in boat-movement-research.md; no universal destination or speed claim is made.",
+          "The launch predicates are numeric terrain checks; a specific bank/depth classification has not been established."
         ],
         "ja": [
-          "乗り込み判定の数値タイル種別には地形名を付けていない。タライとカヌーが別の移動処理を使うことは確認したが、行き先や速度の違いまでは主張しない。"
+          "流れによる速度選択と地形判定の違いはboat-movement-research.mdに記録。全地点での速度・行き先の優位は主張しない。",
+          "乗る場所は数値の地形条件で判定される。岸・水深の分類は未確認。"
         ],
         "th": [
-          "ยังไม่ตั้งชื่อภูมิประเทศให้ค่าชนิดช่องตัวเลขที่ใช้ตรวจจุดขึ้นเรือ โค้ดยืนยันว่าโหมดกะละมังกับแคนูใช้ชุดเคลื่อนที่ต่างกัน แต่ยังไม่สรุปว่าปลายทางหรือความเร็วต่างกันอย่างไร"
+          "รายละเอียดกระแสน้ำและเงื่อนไขช่องที่ผ่านได้อยู่ใน boat-movement-research.md ไม่สรุปว่าแคนูเร็วกว่าทุกกรณีหรือไปได้ทุกจุด",
+          "เกมตรวจจุดใช้ด้วยค่าประเภทพื้น ยังไม่ได้ยืนยันว่าแต่ละค่าหมายถึงริมฝั่งหรือความลึกเท่าไร"
         ]
       },
       "trace": {
@@ -81,42 +88,53 @@
       "id": "02",
       "nameJa": "カヌー",
       "summary": {
-        "en": "Launch the canoe at a usable waterside tile and enter its separate water-travel mode.",
-        "ja": "岸辺でカヌーを水に浮かべて乗り、水上移動モードに入る。",
-        "th": "ใช้แคนูที่จุดริมน้ำที่ลงได้ เพื่อให้ลอยน้ำและเข้าโหมดเดินทางทางน้ำ"
+        "en": "Use the canoe from a location accepted by the game to enter its water-travel mode.",
+        "ja": "ゲームが使用を認める場所でカヌーを使い、水上移動モードに入る。",
+        "th": "ใช้แคนูจากจุดที่เกมอนุญาต เพื่อให้ลอยน้ำและเข้าโหมดเดินทางทางน้ำ"
       },
       "facts": {
         "en": [
-          "Use it from the bank: the game can place the canoe on a valid waterside tile and says that it is floating on the water.",
+          "At an accepted launch location, the game places the canoe and displays that it is floating on the water.",
           "It cannot be launched while swimming or from an unusable tile. The canoe then enters its own water-travel mode.",
-          "The game will not let you change directly between the canoe and tub while already riding; return to a usable bank first."
+          "You cannot switch directly between the tub and canoe while riding. Get out of the current vehicle before using the other.",
+          "With no current contribution, the canoe movement table gives 14 position steps versus the tub’s 10 in the same cycle (+40%). Current changes the selected speed; this is not a universal 40% advantage.",
+          "If you do not already own a canoe, trade fresh milk to the area-3 canoe maker at X 28, Y 39. Take the town-chest bottle to the cow first; the exchange consumes the milk."
         ],
         "ja": [
-          "岸辺で使うと、有効な水辺タイルにカヌーを配置し、水に浮かんだことを表示する。",
+          "使用可能な場所ではカヌーを配置し、水に浮かんだことを表示する。",
           "泳いでいる間や使用不可のタイルからは乗れない。乗るとカヌー専用の水上移動モードに入る。",
-          "乗っている間にカヌーとタライを直接切り替えることはできない。いったん使用可能な岸辺に戻る必要がある。"
+          "乗っている間にタライとカヌーを直接切り替えることはできない。別の乗り物を使う前に降りる。",
+          "流れの寄与がない時、同じ周期でカヌーは14回、タライは10回位置を進める（40%増）。流れで速度が変わるので、全地点で40%速いわけではない。",
+          "カヌーをまだ持っていない場合、エリア3の職人（X28、Y39）に新鮮な牛乳を渡して交換できる。先に町の宝箱のビンを牛で満たす。交換で牛乳を消費する。"
         ],
         "th": [
-          "ใช้จากริมฝั่ง ถ้าช่องริมน้ำใช้ได้ เกมจะวางแคนูและแสดงข้อความว่าลอยอยู่บนผิวน้ำ",
+          "ถ้าจุดนั้นใช้ได้ เกมจะวางแคนูและแสดงข้อความว่าลอยอยู่บนผิวน้ำ",
           "ขึ้นพาหนะขณะว่ายน้ำหรือจากช่องที่ใช้ไม่ได้ไม่สำเร็จ เมื่อขึ้นได้แล้วจะเข้าโหมดเดินทางทางน้ำของแคนู",
-          "ขณะอยู่บนพาหนะสลับแคนูกับกะละมังโดยตรงไม่ได้ ต้องกลับมาที่ริมฝั่งที่ขึ้นได้ก่อน"
+          "ขณะอยู่บนพาหนะสลับกะละมังกับแคนูโดยตรงไม่ได้ ต้องลงจากพาหนะเดิมก่อนใช้ชนิดอื่น",
+          "ในน้ำที่โค้ดไม่มีแรงกระแส แคนูเคลื่อนที่เร็วกว่ากะละมัง: ตารางขยับให้ 14 เทียบกับ 10 ในรอบเดียวกัน (+40%) กระแสน้ำทำให้ความเร็วเปลี่ยน จึงไม่ใช่ +40% ทุกจุด",
+          "ถ้ายังไม่มีแคนู เอานมสดไปแลกกับช่างทำเรือด่าน 3 ที่ X 28, Y 39 ได้ รับขวดจากหีบในเมืองแล้วเติมนมกับวัวก่อน การแลกใช้ไอเท็มนมไป"
         ]
       },
       "evidence": {
         "type": "rom_trace",
         "sources": [
-          "docs/general-tool-actions-research.md"
+          "docs/general-tool-actions-research.md",
+          "docs/boat-movement-research.md",
+          "docs/quest-tool-use-research.md"
         ]
       },
       "evidenceNotes": {
         "en": [
-          "The numeric tile class used by the launch test is not assigned a terrain name here. The ROM confirms separate tub and canoe movement paths, but this trace does not claim a wider difference in destinations or speed."
+          "Current-sensitive movement and the different terrain eligibility checks are documented in boat-movement-research.md; no universal destination or speed claim is made.",
+          "The launch predicates are numeric terrain checks; a specific bank/depth classification has not been established."
         ],
         "ja": [
-          "乗り込み判定の数値タイル種別には地形名を付けていない。タライとカヌーが別の移動処理を使うことは確認したが、行き先や速度の違いまでは主張しない。"
+          "流れによる速度選択と地形判定の違いはboat-movement-research.mdに記録。全地点での速度・行き先の優位は主張しない。",
+          "乗る場所は数値の地形条件で判定される。岸・水深の分類は未確認。"
         ],
         "th": [
-          "ยังไม่ตั้งชื่อภูมิประเทศให้ค่าชนิดช่องตัวเลขที่ใช้ตรวจจุดขึ้นเรือ โค้ดยืนยันว่าโหมดกะละมังกับแคนูใช้ชุดเคลื่อนที่ต่างกัน แต่ยังไม่สรุปว่าปลายทางหรือความเร็วต่างกันอย่างไร"
+          "รายละเอียดกระแสน้ำและเงื่อนไขช่องที่ผ่านได้อยู่ใน boat-movement-research.md ไม่สรุปว่าแคนูเร็วกว่าทุกกรณีหรือไปได้ทุกจุด",
+          "เกมตรวจจุดใช้ด้วยค่าประเภทพื้น ยังไม่ได้ยืนยันว่าแต่ละค่าหมายถึงริมฝั่งหรือความลึกเท่าไร"
         ]
       },
       "trace": {
@@ -160,28 +178,32 @@
           "In the six main areas, the search can yield worm, maggot, large earthworm, waxworm, insect or bee larva, depending on the ground context. Area 3 also has a potato-bait context.",
           "A coordinate band in town maps yields kneaded bait. The connecting route can yield large earthworm or mushrooms. Poisonous mushrooms are possible; the find message does not distinguish them.",
           "Bait rewards are 1–4 at a time, up to 9 per bait type. Mushrooms need an empty food slot.",
-          "Do not search while standing in shallow water or riding a tub/canoe; those modes reject the magnifier action."
+          "Do not search while standing in shallow water or riding a tub/canoe; those modes reject the magnifier action.",
+          "Open an area map below and walk to a bait icon to search. These are example terrain-context tiles, not the only searchable tiles."
         ],
         "ja": [
           "現在地を調べる。同じタイルで動かずにもう一度使うと何も見つからない。",
           "6つのメインエリアでは、場所によりミミズ、サシ、ドバミミズ、ブドウムシ、昆虫、ハチの子が見つかる。エリア3にはイモが見つかる場所もある。",
           "町の特定の座標帯ではネリエが見つかる。連絡路ではドバミミズやキノコが見つかる。毒キノコもあるが、発見メッセージでは区別されない。",
           "エサは一度に1～4個、種類ごとに最大9個。キノコには食料欄の空きが必要。",
-          "浅瀬に立っている時やタライ・カヌーに乗っている時は虫メガネを使えない。"
+          "浅瀬に立っている時やタライ・カヌーに乗っている時は虫メガネを使えない。",
+          "下の地図でエリアを選び、エサ画像の地点へ歩いて探す。地形分類から抽出した地点例で、探せる場所はほかにもある。"
         ],
         "th": [
           "ค้นหาจุดที่ยืนอยู่ ถ้าไม่ขยับแล้วค้นช่องเดิมซ้ำจะไม่พบอะไร",
           "ใน 6 ด่านหลัก ขุดหาได้ทั้งไส้เดือน หนอนแมลงวัน ไส้เดือนใหญ่ หนอนองุ่น แมลง และตัวอ่อนผึ้ง ตามชนิดจุดที่ยืนอยู่ ด่าน 3 มีจุดที่ให้เหยื่อมันฝรั่งด้วย",
           "ในเขตเมืองมีแถบตำแหน่งที่ให้เหยื่อปั้น ส่วนทางเชื่อมระหว่างด่านอาจได้ไส้เดือนใหญ่หรือเห็ด มีเห็ดพิษด้วย แต่ข้อความตอนพบเห็ดไม่บอกว่าเป็นชนิดไหน",
           "เหยื่อได้ครั้งละ 1–4 ชิ้น สูงสุดชนิดละ 9 ชิ้น ส่วนเห็ดต้องมีช่องอาหารว่าง",
-          "ใช้แว่นขยายไม่ได้ขณะยืนในน้ำตื้นหรืออยู่บนกะละมัง/แคนู"
+          "ใช้แว่นขยายไม่ได้ขณะยืนในน้ำตื้นหรืออยู่บนกะละมัง/แคนู",
+          "เปิดแผนที่ด้านล่าง เลือกด่าน แล้วเดินไปยืนตรงรูปเหยื่อเพื่อค้นหา เป็นตัวอย่างจุดจากชนิดพื้นใน ROM ไม่ใช่จุดหาได้เพียงจุดเดียว"
         ]
       },
       "evidence": {
         "type": "rom_trace",
         "sources": [
           "docs/general-tool-actions-research.md",
-          "data/food-effects-confirmed.json"
+          "data/food-effects-confirmed.json",
+          "docs/forage-location-research.md"
         ]
       },
       "evidenceNotes": {
