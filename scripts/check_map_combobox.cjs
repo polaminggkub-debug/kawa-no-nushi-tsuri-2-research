@@ -27,7 +27,7 @@ for (const locale of ['en', 'th', 'ja']) {
   assert.match(html, /aria-expanded="false"/, `${locale}: expanded state does not start closed`);
   assert.match(html, /id="fish-suggestions"[^>]*role="listbox"/, `${locale}: listbox is missing`);
   assert.match(html, /id="fish-search-help"/, `${locale}: user instructions are missing`);
-  assert.match(html, /maps\.js\?v=player-usefulness-20261004-7/);
+  assert.match(html, /maps\.js\?v=player-usefulness-20261004-8/);
   assert.match(html, /maps\.css\?v=player-usefulness-20261004-7/);
 }
 
@@ -63,6 +63,7 @@ class Element {
     this.attributes = {};
     this.innerHTML = '';
     this.value = '';
+    this.dataset = {};
     this.hidden = false;
     this.style = {};
     this.children = [];
@@ -87,6 +88,7 @@ class Element {
 }
 
 const elements = new Map();
+const languageLinks=['en','th','ja'].map(locale=>{const link=new Element();link.setAttribute('hreflang',locale);link.setAttribute('href','maps'+(locale==='en'?'':'.'+locale)+'.html');return link;});
 const document = {
   activeElement:null,
   documentElement:{dataset:{locale:'en'}},
@@ -94,7 +96,7 @@ const document = {
     if (!elements.has(id)) elements.set(id, new Element(id));
     return elements.get(id);
   },
-  querySelectorAll(){return [];},
+  querySelectorAll(selector){return selector==='.language-links a'?languageLinks:[];},
   querySelector(){return {prepend(){}};},
   createElement(){return new Element();}
 };
@@ -109,7 +111,7 @@ const window = {
 const hook = `
   if (window.__mapTestMode) {
     window.__mapTestHook({
-      buildData, initFromUrl, renderFishList, matchingSuggestions, updateUrl,
+      buildData, initFromUrl, renderFishList, matchingSuggestions, updateUrl, localizeReturn,
       setRender(fn){render=fn;}, setZoom(value){zoom=value;},
       getState(){return {selectedFish,activeStage,activeSection,searchTerm,zoom,suggestionIds:[...suggestionIds],suggestionsHidden:suggestionList.hidden,expanded:searchInput.getAttribute('aria-expanded'),activeDescendant:searchInput.getAttribute('aria-activedescendant')||'',searchValue:searchInput.value,returnPath};},
       searchInput,suggestionList
@@ -128,6 +130,17 @@ api.setZoom(1.7);
 assert.equal(api.getState().activeStage,6,'Harness must begin on Area 6');
 assert.equal(api.getState().selectedFish,'','Typing should begin without an active target');
 assert.equal(api.getState().returnPath,'index.th.html?category=lure&fish=06#catalogue','Return route must parse exactly');
+for(const locale of ['en','th','ja']){
+ const suffix=locale==='en'?'':'.'+locale;
+ const nested='item.th.html?category=bait&id=01&stage=3&fish=06&route=sinker&return='+encodeURIComponent('shops.th.html?stage=3&return='+encodeURIComponent('../research/index.th.html'));
+ let route=api.localizeReturn(nested,locale);
+ for(const basename of ['item','shops','index']){const url=new URL(route,location.href);assert(url.pathname.endsWith('/'+basename+suffix+'.html'),'Map nested return language/'+basename+'/'+locale);route=url.searchParams.get('return');}
+ const bad=api.localizeReturn('item.th.html?return='+encodeURIComponent('https://evil.example/catalogue/maps.html'),locale);
+ assert(!new URL(bad,location.href).searchParams.has('return'),'External nested return must be discarded');
+}
+api.updateUrl();
+for(const link of languageLinks){const locale=link.getAttribute('hreflang'),suffix=locale==='en'?'':'.'+locale;const route=new URL(link.href,location.href).searchParams.get('return');assert.equal(route,'index'+suffix+'.html?category=lure&fish=06#catalogue','Map switch must localize return and retain filters');}
+
 const covered = new Set();
 for (const id of ids) {
   const suggestions = api.matchingSuggestions(id);

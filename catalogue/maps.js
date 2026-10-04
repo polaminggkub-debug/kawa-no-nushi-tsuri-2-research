@@ -19,15 +19,27 @@
   const idNorm = id => String(id).toUpperCase().replace(/^0X/,'').padStart(2,'0');
   const fishName = id => species[id]?.name || c.fishName(id);
   const detailLabel=lang==='th'?'รายละเอียด':lang==='ja'?'詳細':'Details';
-  let returnPath='';
-  try {
-    const raw=new URLSearchParams(location.search).get('return')||'';
-    const base=new URL('.',location.href), target=new URL(raw,base);
-    const allowed=['index','maps','fish','item','shops'].flatMap(name=>['','.th','.ja'].map(suffix=>{const route=`${name}${suffix}.html`;return {route,pathname:new URL(route,base).pathname};}));
-    allowed.push(...['index.html','index.th.html','index.ja.html'].map(file=>{const route=`../research/${file}`;return {route,pathname:new URL(route,base).pathname};}));
-    const match=allowed.find(entry=>entry.pathname===target.pathname);
-    if(raw&&!raw.startsWith('//')&&!raw.includes('\\')&&!/^[a-z][a-z0-9+.-]*:/i.test(raw)&&target.origin===base.origin&&match)returnPath=match.route+target.search+target.hash;
-  }catch{}
+  function safeReturn(raw) {
+    if(!raw||raw.startsWith('//')||raw.includes('\\')||/^[a-z][a-z0-9+.-]*:/i.test(raw))return '';
+    try {
+      const base=new URL('.',location.href),target=new URL(raw,base);
+      const allowed=['index','maps','fish','item','shops'].flatMap(name=>['','.th','.ja'].map(suffix=>{const route=`${name}${suffix}.html`;return {route,pathname:new URL(route,base).pathname};}));
+      allowed.push(...['index.html','index.th.html','index.ja.html'].map(file=>{const route=`../research/${file}`;return {route,pathname:new URL(route,base).pathname};}));
+      const match=allowed.find(entry=>entry.pathname===target.pathname);
+      return target.origin===base.origin&&match?match.route+target.search+target.hash:'';
+    }catch{return '';}
+  }
+  function localizeReturn(raw,toLang,depth=0) {
+    const safe=safeReturn(raw);if(!safe)return '';
+    const base=new URL('.',location.href),url=new URL(safe,base);
+    url.pathname=url.pathname.replace(/(index|maps|fish|item|shops)(?:\.th|\.ja)?\.html$/,`$1${toLang==='en'?'':'.'+toLang}.html`);
+    if(url.searchParams.has('return')){
+      const nested=depth<4?localizeReturn(url.searchParams.get('return'),toLang,depth+1):'';
+      if(nested)url.searchParams.set('return',nested);else url.searchParams.delete('return');
+    }
+    return safeReturn(url.pathname+url.search+url.hash);
+  }
+  let returnPath=safeReturn(new URLSearchParams(location.search).get('return')||'');
   if(returnPath){
     const back=document.createElement('a');back.className='back-link';back.href=returnPath;
     back.textContent=lang==='th'?'← กลับหน้าที่เปิดแผนที่':lang==='ja'?'← 前のページに戻る':'← Back to the page that opened this map';
@@ -87,6 +99,8 @@
       const paramsCopy = new URLSearchParams(params);
       const route = (link.dataset.route || link.getAttribute('href') || '').split('?')[0];
       link.dataset.route = route;
+      const toLang=link.getAttribute('hreflang');
+      if(returnPath&&['en','th','ja'].includes(toLang))paramsCopy.set('return',localizeReturn(returnPath,toLang));
       link.href = `${route}?${paramsCopy.toString()}`;
     });
   }
