@@ -1,0 +1,408 @@
+{
+  "schemaVersion": 1,
+  "provenance": {
+    "type": "original-rom-runtime-screen-capture",
+    "game": "Kawa no Nushi Tsuri 2 (Japanese Super Famicom)",
+    "romSha1": "c2103dd94e2a1a65a495fc02adc2e7d040f31212",
+    "captureMethod": "Snes9x libretro runtime; in-game Fishing Notebook stage overview",
+    "captureSize": {
+      "width": 256,
+      "height": 224
+    },
+    "coordinateNote": {
+      "en": "These are authentic in-game overview screens. Their projection from ROM fish spawn coordinates to screenshot pixels is not yet established, so no fish pins are included.",
+      "ja": "ゲーム内の釣りノートに表示されるエリア概観です。ROMの魚の出現座標から画面上の位置への変換は未確認のため、魚の位置マーカーは含めていません。",
+      "th": "ภาพเหล่านี้เป็นแผนที่ภาพรวมจากสมุดบันทึกในเกม แต่ยังยืนยันวิธีแปลงพิกัดจุดเกิดปลาใน ROM ให้เป็นตำแหน่งบนภาพไม่ได้ จึงยังไม่ใส่หมุดปลา"
+    },
+    "translationNote": {
+      "en": "English and Thai stage names are editorial translations of the Japanese labels visible in the ROM.",
+      "ja": "英語名とタイ語名は、ROM画面に表示される日本語のエリア名を訳したものです。",
+      "th": "ชื่อพื้นที่ภาษาอังกฤษและภาษาไทยแปลจากชื่อภาษาญี่ปุ่นที่แสดงใน ROM"
+    },
+    "fieldMapCoordinateNote": {
+      "en": "Gameplay field maps are reconstructed from the original ROM field loader and decoded SNES VRAM/PPU captures. ROM world coordinates map to 16-pixel tiles; points are placed at tile centers. Moving sprites are omitted.",
+      "ja": "ゲーム内フィールドは、オリジナルROMのフィールド読み込み処理とSNESのVRAM/PPUキャプチャから再構成しました。ROMのワールド座標は16ピクセル単位のタイルに対応し、位置はタイル中央に示します。動くスプライトは含みません。",
+      "th": "แผนที่พื้นที่เล่นสร้างจากตัวโหลดพื้นที่ของ ROM ต้นฉบับและภาพ VRAM/PPU ที่ถอดจากเกม พิกัดโลกใน ROM ตรงกับช่องขนาด 16 พิกเซล โดยวางตำแหน่งไว้กลางช่อง ไม่รวมสไปรต์ที่เคลื่อนไหว"
+    }
+  },
+  "mapSets": {
+    "mapSet01": {
+      "stage": 1,
+      "name": {
+        "en": "Mountain Stream",
+        "ja": "渓流",
+        "th": "ลำธารบนภูเขา"
+      },
+      "image": "rom-map-01.png",
+      "width": 256,
+      "height": 224,
+      "tileWidth": null,
+      "tileHeight": null,
+      "originX": 0,
+      "originY": 0,
+      "worldTilePixels": 16,
+      "worldToMapPixel": null,
+      "sha256": "a40ca4a3d48bc0c149a599fcf4c22c5013dc54cfb22fd8fc0af4a284c6fc18b0",
+      "evidence": {
+        "type": "direct-rom-screen-capture",
+        "labelVisibleInRom": "渓流",
+        "mapRole": "notebook-overview",
+        "coordinateProjection": "unverified"
+      },
+      "fieldMap": {
+        "image": "rom-field-01.png",
+        "width": 256,
+        "height": 4096,
+        "tileWidth": 16,
+        "tileHeight": 256,
+        "worldTilePixels": 16,
+        "worldToMapPixel": {
+          "scaleX": 16,
+          "scaleY": 16,
+          "offsetX": 8,
+          "offsetY": 8
+        },
+        "sha256": "0b99c38d534d2524edc7de4738993d01a511d653c71a3a9f80182a95add5323a",
+        "evidence": {
+          "type": "original-rom-field-runtime-reconstruction",
+          "mapId": 1,
+          "descriptorAddress": "WRAM 7E:2300 after original-ROM field initialization",
+          "descriptorBytes": [
+            1,
+            16
+          ],
+          "dimensionMasksHex": [
+            "0x0F",
+            "0xFF"
+          ],
+          "rowStrideTiles": 16,
+          "dimensionSource": "ROM bank 00 tables 89C5 and 89E7 map descriptor selectors to wrapping masks; field access uses the descriptor row stride",
+          "coordinateGrid": "ROM fish spawn and player world coordinates use 16-pixel tiles. Image origin is world tile (0,0); fish points are rendered at tile centers.",
+          "projectionSource": "ROM tile-to-pixel conversion, field descriptor dimensions, and camera-synchronized stitched captures; each fish point uses the center of its 16-pixel tile.",
+          "captureMethod": "Original ROM area-cycle transition with forced blank/NMI disable, field loader and decoded VRAM/PPU terrain; sprites omitted",
+          "sourceScript": "publication/scripts/extract_rom_field_maps.py",
+          "coverage": "All descriptor-derived field pixels covered by stitched runtime captures.",
+          "sprites": "Omitted from terrain layer.",
+          "romSha1": "c2103dd94e2a1a65a495fc02adc2e7d040f31212",
+          "coreSha256": "8ed333ac04544cc6ab67ceb445d095f7600bb17586d4887d99117fbd1ef776f6",
+          "graphicsInitialization": "ROM area-cycle branch $00:80C4 to $00:8B0C; forced blank and NMI-disabled graphics transfer; stage graphics selected by $00:8734 from pointer table $00:8746."
+        }
+      }
+    },
+    "mapSet02": {
+      "stage": 2,
+      "name": {
+        "en": "Mountain Lake",
+        "ja": "山上湖",
+        "th": "ทะเลสาบบนภูเขา"
+      },
+      "image": "rom-map-02.png",
+      "width": 256,
+      "height": 224,
+      "tileWidth": null,
+      "tileHeight": null,
+      "originX": 0,
+      "originY": 0,
+      "worldTilePixels": 16,
+      "worldToMapPixel": null,
+      "sha256": "a00be6eb3b430f93852d0a8ad86dad6770da39fd12f2266f917a289b944bae02",
+      "evidence": {
+        "type": "direct-rom-screen-capture",
+        "labelVisibleInRom": "山上湖",
+        "mapRole": "notebook-overview",
+        "coordinateProjection": "unverified"
+      },
+      "fieldMap": {
+        "image": "rom-field-02.png",
+        "width": 2048,
+        "height": 512,
+        "tileWidth": 128,
+        "tileHeight": 32,
+        "worldTilePixels": 16,
+        "worldToMapPixel": {
+          "scaleX": 16,
+          "scaleY": 16,
+          "offsetX": 8,
+          "offsetY": 8
+        },
+        "sha256": "ad87dbbec53bac1f29ec67f35f50e4fdcd13eb5c0ece41ccbbe29a22a7d0f458",
+        "evidence": {
+          "type": "original-rom-field-runtime-reconstruction",
+          "mapId": 2,
+          "descriptorAddress": "WRAM 7E:2300 after original-ROM field initialization",
+          "descriptorBytes": [
+            8,
+            2
+          ],
+          "dimensionMasksHex": [
+            "0x7F",
+            "0x1F"
+          ],
+          "rowStrideTiles": 128,
+          "dimensionSource": "ROM bank 00 tables 89C5 and 89E7 map descriptor selectors to wrapping masks; field access uses the descriptor row stride",
+          "coordinateGrid": "ROM fish spawn and player world coordinates use 16-pixel tiles. Image origin is world tile (0,0); fish points are rendered at tile centers.",
+          "projectionSource": "ROM tile-to-pixel conversion, field descriptor dimensions, and camera-synchronized stitched captures; each fish point uses the center of its 16-pixel tile.",
+          "captureMethod": "Original ROM area-cycle transition with forced blank/NMI disable, field loader and decoded VRAM/PPU terrain; sprites omitted",
+          "sourceScript": "publication/scripts/extract_rom_field_maps.py",
+          "coverage": "All descriptor-derived field pixels covered by stitched runtime captures.",
+          "sprites": "Omitted from terrain layer.",
+          "romSha1": "c2103dd94e2a1a65a495fc02adc2e7d040f31212",
+          "coreSha256": "8ed333ac04544cc6ab67ceb445d095f7600bb17586d4887d99117fbd1ef776f6",
+          "graphicsInitialization": "ROM area-cycle branch $00:80C4 to $00:8B0C; forced blank and NMI-disabled graphics transfer; stage graphics selected by $00:8734 from pointer table $00:8746."
+        }
+      }
+    },
+    "mapSet03": {
+      "stage": 3,
+      "name": {
+        "en": "Clear Stream",
+        "ja": "清流",
+        "th": "ลำธารใส"
+      },
+      "image": "rom-map-03.png",
+      "width": 256,
+      "height": 224,
+      "tileWidth": null,
+      "tileHeight": null,
+      "originX": 0,
+      "originY": 0,
+      "worldTilePixels": 16,
+      "worldToMapPixel": null,
+      "sha256": "1218842816a9df31b9e15a281d459dda85cf5c0ee78463b17d6b7fed610e0890",
+      "evidence": {
+        "type": "direct-rom-screen-capture",
+        "labelVisibleInRom": "清流",
+        "mapRole": "notebook-overview",
+        "coordinateProjection": "unverified"
+      },
+      "fieldMap": {
+        "image": "rom-field-03.png",
+        "width": 512,
+        "height": 2048,
+        "tileWidth": 32,
+        "tileHeight": 128,
+        "worldTilePixels": 16,
+        "worldToMapPixel": {
+          "scaleX": 16,
+          "scaleY": 16,
+          "offsetX": 8,
+          "offsetY": 8
+        },
+        "sha256": "e7582237ed926f1bab15e16d2046a865557bf4331a26c6f214143f4deda59220",
+        "evidence": {
+          "type": "original-rom-field-runtime-reconstruction",
+          "mapId": 3,
+          "descriptorAddress": "WRAM 7E:2300 after original-ROM field initialization",
+          "descriptorBytes": [
+            2,
+            8
+          ],
+          "dimensionMasksHex": [
+            "0x1F",
+            "0x7F"
+          ],
+          "rowStrideTiles": 32,
+          "dimensionSource": "ROM bank 00 tables 89C5 and 89E7 map descriptor selectors to wrapping masks; field access uses the descriptor row stride",
+          "coordinateGrid": "ROM fish spawn and player world coordinates use 16-pixel tiles. Image origin is world tile (0,0); fish points are rendered at tile centers.",
+          "projectionSource": "ROM tile-to-pixel conversion, field descriptor dimensions, and camera-synchronized stitched captures; each fish point uses the center of its 16-pixel tile.",
+          "captureMethod": "Original ROM area-cycle transition with forced blank/NMI disable, field loader and decoded VRAM/PPU terrain; sprites omitted",
+          "sourceScript": "publication/scripts/extract_rom_field_maps.py",
+          "coverage": "All descriptor-derived field pixels covered by stitched runtime captures.",
+          "sprites": "Omitted from terrain layer.",
+          "romSha1": "c2103dd94e2a1a65a495fc02adc2e7d040f31212",
+          "coreSha256": "8ed333ac04544cc6ab67ceb445d095f7600bb17586d4887d99117fbd1ef776f6",
+          "graphicsInitialization": "ROM area-cycle branch $00:80C4 to $00:8B0C; forced blank and NMI-disabled graphics transfer; stage graphics selected by $00:8734 from pointer table $00:8746."
+        }
+      }
+    },
+    "mapSet04": {
+      "stage": 4,
+      "name": {
+        "en": "Lake",
+        "ja": "湖",
+        "th": "ทะเลสาบ"
+      },
+      "image": "rom-map-04.png",
+      "width": 256,
+      "height": 224,
+      "tileWidth": null,
+      "tileHeight": null,
+      "originX": 0,
+      "originY": 0,
+      "worldTilePixels": 16,
+      "worldToMapPixel": null,
+      "sha256": "0164c4594eabc8a5624bc445b09adc4f520ae0ba0c20404165520c733c99d074",
+      "evidence": {
+        "type": "direct-rom-screen-capture",
+        "labelVisibleInRom": "湖",
+        "mapRole": "notebook-overview",
+        "coordinateProjection": "unverified"
+      },
+      "fieldMap": {
+        "image": "rom-field-04.png",
+        "width": 1024,
+        "height": 1024,
+        "tileWidth": 64,
+        "tileHeight": 64,
+        "worldTilePixels": 16,
+        "worldToMapPixel": {
+          "scaleX": 16,
+          "scaleY": 16,
+          "offsetX": 8,
+          "offsetY": 8
+        },
+        "sha256": "72c00fa47aa2760e933982e69be718cf1ec5e280196e6170e9b36eccd3b04e30",
+        "evidence": {
+          "type": "original-rom-field-runtime-reconstruction",
+          "mapId": 4,
+          "descriptorAddress": "WRAM 7E:2300 after original-ROM field initialization",
+          "descriptorBytes": [
+            4,
+            4
+          ],
+          "dimensionMasksHex": [
+            "0x3F",
+            "0x3F"
+          ],
+          "rowStrideTiles": 64,
+          "dimensionSource": "ROM bank 00 tables 89C5 and 89E7 map descriptor selectors to wrapping masks; field access uses the descriptor row stride",
+          "coordinateGrid": "ROM fish spawn and player world coordinates use 16-pixel tiles. Image origin is world tile (0,0); fish points are rendered at tile centers.",
+          "projectionSource": "ROM tile-to-pixel conversion, field descriptor dimensions, and camera-synchronized stitched captures; each fish point uses the center of its 16-pixel tile.",
+          "captureMethod": "Original ROM area-cycle transition with forced blank/NMI disable, field loader and decoded VRAM/PPU terrain; sprites omitted",
+          "sourceScript": "publication/scripts/extract_rom_field_maps.py",
+          "coverage": "All descriptor-derived field pixels covered by stitched runtime captures.",
+          "sprites": "Omitted from terrain layer.",
+          "romSha1": "c2103dd94e2a1a65a495fc02adc2e7d040f31212",
+          "coreSha256": "8ed333ac04544cc6ab67ceb445d095f7600bb17586d4887d99117fbd1ef776f6",
+          "graphicsInitialization": "ROM area-cycle branch $00:80C4 to $00:8B0C; forced blank and NMI-disabled graphics transfer; stage graphics selected by $00:8734 from pointer table $00:8746."
+        }
+      }
+    },
+    "mapSet05": {
+      "stage": 5,
+      "name": {
+        "en": "Downstream",
+        "ja": "下流",
+        "th": "แม่น้ำตอนล่าง"
+      },
+      "image": "rom-map-05.png",
+      "width": 256,
+      "height": 224,
+      "tileWidth": null,
+      "tileHeight": null,
+      "originX": 0,
+      "originY": 0,
+      "worldTilePixels": 16,
+      "worldToMapPixel": null,
+      "sha256": "6f40f0f77df3a06014f2ee231778f3b322b3a8dfed25490e175f5bf82c226beb",
+      "evidence": {
+        "type": "direct-rom-screen-capture",
+        "labelVisibleInRom": "下流",
+        "mapRole": "notebook-overview",
+        "coordinateProjection": "unverified"
+      },
+      "fieldMap": {
+        "image": "rom-field-05.png",
+        "width": 2048,
+        "height": 512,
+        "tileWidth": 128,
+        "tileHeight": 32,
+        "worldTilePixels": 16,
+        "worldToMapPixel": {
+          "scaleX": 16,
+          "scaleY": 16,
+          "offsetX": 8,
+          "offsetY": 8
+        },
+        "sha256": "e501dcebe821e2bb11abfbfcf89dc30a432a735193052169e8df7252b81296bf",
+        "evidence": {
+          "type": "original-rom-field-runtime-reconstruction",
+          "mapId": 5,
+          "descriptorAddress": "WRAM 7E:2300 after original-ROM field initialization",
+          "descriptorBytes": [
+            8,
+            2
+          ],
+          "dimensionMasksHex": [
+            "0x7F",
+            "0x1F"
+          ],
+          "rowStrideTiles": 128,
+          "dimensionSource": "ROM bank 00 tables 89C5 and 89E7 map descriptor selectors to wrapping masks; field access uses the descriptor row stride",
+          "coordinateGrid": "ROM fish spawn and player world coordinates use 16-pixel tiles. Image origin is world tile (0,0); fish points are rendered at tile centers.",
+          "projectionSource": "ROM tile-to-pixel conversion, field descriptor dimensions, and camera-synchronized stitched captures; each fish point uses the center of its 16-pixel tile.",
+          "captureMethod": "Original ROM area-cycle transition with forced blank/NMI disable, field loader and decoded VRAM/PPU terrain; sprites omitted",
+          "sourceScript": "publication/scripts/extract_rom_field_maps.py",
+          "coverage": "All descriptor-derived field pixels covered by stitched runtime captures.",
+          "sprites": "Omitted from terrain layer.",
+          "romSha1": "c2103dd94e2a1a65a495fc02adc2e7d040f31212",
+          "coreSha256": "8ed333ac04544cc6ab67ceb445d095f7600bb17586d4887d99117fbd1ef776f6",
+          "graphicsInitialization": "ROM area-cycle branch $00:80C4 to $00:8B0C; forced blank and NMI-disabled graphics transfer; stage graphics selected by $00:8734 from pointer table $00:8746."
+        }
+      }
+    },
+    "mapSet06": {
+      "stage": 6,
+      "name": {
+        "en": "River Mouth",
+        "ja": "河口",
+        "th": "ปากแม่น้ำ"
+      },
+      "image": "rom-map-06.png",
+      "width": 256,
+      "height": 224,
+      "tileWidth": null,
+      "tileHeight": null,
+      "originX": 0,
+      "originY": 0,
+      "worldTilePixels": 16,
+      "worldToMapPixel": null,
+      "sha256": "bfeb276d06a3b22d9c26b0eda7ab6fa036ceeabb2bd87aec08bb874ae935d627",
+      "evidence": {
+        "type": "direct-rom-screen-capture",
+        "labelVisibleInRom": "河口",
+        "mapRole": "notebook-overview",
+        "coordinateProjection": "unverified"
+      },
+      "fieldMap": {
+        "image": "rom-field-06.png",
+        "width": 1024,
+        "height": 1024,
+        "tileWidth": 64,
+        "tileHeight": 64,
+        "worldTilePixels": 16,
+        "worldToMapPixel": {
+          "scaleX": 16,
+          "scaleY": 16,
+          "offsetX": 8,
+          "offsetY": 8
+        },
+        "sha256": "b707cf9221b409d026a18599f99b000c6f5737dda7703e7363b02264bb092e03",
+        "evidence": {
+          "type": "original-rom-field-runtime-reconstruction",
+          "mapId": 6,
+          "descriptorAddress": "WRAM 7E:2300 after original-ROM field initialization",
+          "descriptorBytes": [
+            4,
+            4
+          ],
+          "dimensionMasksHex": [
+            "0x3F",
+            "0x3F"
+          ],
+          "rowStrideTiles": 64,
+          "dimensionSource": "ROM bank 00 tables 89C5 and 89E7 map descriptor selectors to wrapping masks; field access uses the descriptor row stride",
+          "coordinateGrid": "ROM fish spawn and player world coordinates use 16-pixel tiles. Image origin is world tile (0,0); fish points are rendered at tile centers.",
+          "projectionSource": "ROM tile-to-pixel conversion, field descriptor dimensions, and camera-synchronized stitched captures; each fish point uses the center of its 16-pixel tile.",
+          "captureMethod": "Original ROM area-cycle transition with forced blank/NMI disable, field loader and decoded VRAM/PPU terrain; sprites omitted",
+          "sourceScript": "publication/scripts/extract_rom_field_maps.py",
+          "coverage": "All descriptor-derived field pixels covered by stitched runtime captures.",
+          "sprites": "Omitted from terrain layer.",
+          "romSha1": "c2103dd94e2a1a65a495fc02adc2e7d040f31212",
+          "coreSha256": "8ed333ac04544cc6ab67ceb445d095f7600bb17586d4887d99117fbd1ef776f6",
+          "graphicsInitialization": "ROM area-cycle branch $00:80C4 to $00:8B0C; forced blank and NMI-disabled graphics transfer; stage graphics selected by $00:8734 from pointer table $00:8746."
+        }
+      }
+    }
+  }
+}

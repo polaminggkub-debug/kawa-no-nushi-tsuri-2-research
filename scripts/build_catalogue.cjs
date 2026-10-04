@@ -50,6 +50,16 @@ const usePath=path.join(root,'catalogue/item-use.json');
 if(fs.existsSync(usePath)){const use=JSON.parse(fs.readFileSync(usePath,'utf8'));for(const item of data.items)item.playerUse=use.items?.[`${item.category}:${item.id}`]||{};}
 const fishPath=path.join(root,'catalogue/fish-visuals.json');
 if(fs.existsSync(fishPath)){const fish=JSON.parse(fs.readFileSync(fishPath,'utf8'));data.fishVisuals=fish.fish||fish.items||fish;}
+// Current guide evidence comes from the supplied ROM; older guide leads stay in historical credits.
+data.sources=[
+ {titleEn:'Original-ROM equipment code',titleJa:'原作ROMの道具処理',titleTh:'โค้ดอุปกรณ์จาก ROM ต้นฉบับ',url:'https://github.com/polaminggkub-debug/kawa-no-nushi-tsuri-2-research/blob/main/docs/fish-acceptance-research.md',detailEn:'Decoded records and traced consumers establish equipment compatibility. Unknown effects remain unresolved.',detailJa:'復号したレコードと処理追跡で適合を確認。未解読の効果は不明のまま記載。',detailTh:'อ่านระเบียนและตามโค้ดที่ใช้อุปกรณ์เพื่อยืนยันเงื่อนไข ส่วนที่ยังแกะไม่ออกระบุว่ายังไม่ทราบ'},
+ {titleEn:'Original-ROM fish spawns and field maps',titleJa:'原作ROMの魚出現表とフィールド地図',titleTh:'จุดเกิดปลาและฉากแผนที่จาก ROM',url:'https://github.com/polaminggkub-debug/kawa-no-nushi-tsuri-2-research/blob/main/docs/fish-location-research.md',detailEn:'Species/X/Y spawn tables and terrain loaded by the same ROM. Notebook overview artwork is not used for guessed pin placement.',detailJa:'魚種・X・Yの出現表と同じROMが読み込む地形。釣りノートの絵から位置は推測しない。',detailTh:'ชนิดปลาและพิกัด X/Y อ่านจากตารางเกม ส่วนพื้นฉากวาดจาก ROM เดียวกัน ไม่เดาพิกัดลงภาพแผนที่ในสมุด'},
+ {titleEn:'ROM identity',titleJa:'ROM識別情報',titleTh:'ไฟล์เกมที่ใช้แกะข้อมูล',url:'',detailEn:'Owner-supplied original Japanese ROM, 1,572,864 bytes; SHA-1 c2103dd94e2a1a65a495fc02adc2e7d040f31212. English/Thai explanations are website translations.',detailJa:'提供された日本版ROM、1,572,864バイト、SHA-1 c2103dd94e2a1a65a495fc02adc2e7d040f31212。英語・タイ語説明はサイトの翻訳。',detailTh:'ROM ญี่ปุ่นต้นฉบับที่ผู้ใช้ให้มา ขนาด 1,572,864 ไบต์; SHA-1 c2103dd94e2a1a65a495fc02adc2e7d040f31212 ส่วนคำอธิบายไทยและอังกฤษเป็นคำแปลสำหรับเว็บไซต์'}
+];
+for(const item of data.items)for(const key of ['notesEn','notesJa','notesTh'])delete item[key];
+for(const [locale,notes] of Object.entries(data.researchNotes))data.researchNotes[locale]=notes.filter(note=>!/(instruction booklet|SFC説明書|คู่มือ SFC)/.test(note));
+const locationsPath=path.join(root,'catalogue/fish-locations.json');
+if(fs.existsSync(locationsPath)){const locations=JSON.parse(fs.readFileSync(locationsPath,'utf8'));data.fishLocations=locations.fish||{};}
 fs.writeFileSync(path.join(root,'catalogue/gallery-data.json'),JSON.stringify(data,null,2)+'\n');
 async function build(locale, filename) {
   const nodes = {};
@@ -75,7 +85,7 @@ async function build(locale, filename) {
     if(html.includes(start)) {
       html=html.replace(new RegExp(start+'[\\s\\S]*?'+end),()=>start+value+end);
     } else {
-      const re=new RegExp('(<(div|tbody|select|p|span|h2|a)[^>]*id="'+id+'"[^>]*>)[\\s\\S]*?(</\\2>)');
+      const re=new RegExp('(<(div|tbody|select|p|span|h2|a|section)[^>]*id="'+id+'"[^>]*>)[\\s\\S]*?(</\\2>)');
       html=html.replace(re,(_,open,tag,close)=>open+start+value+end+close);
     }
   }

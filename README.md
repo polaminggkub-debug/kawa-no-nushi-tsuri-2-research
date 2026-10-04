@@ -8,7 +8,7 @@ An independent, source-linked study of the Japanese Super Famicom release of **K
 
 **Open the equipment guide:** [ไทย](https://polaminggkub-debug.github.io/kawa-no-nushi-tsuri-2-research/catalogue/index.th.html) · [English](https://polaminggkub-debug.github.io/kawa-no-nushi-tsuri-2-research/catalogue/) · [日本語](https://polaminggkub-debug.github.io/kawa-no-nushi-tsuri-2-research/catalogue/index.ja.html)
 
-The guide starts with equipment categories, then explains each item's use. Bait/lure/fly entries show the fish profiles that pass the documented condition, with sourced game portraits where available. Fish filters, fly-part tabs and rod-style comparisons support equipment selection; raw fields remain inside expandable evidence. Compatibility is not a measured landing rate.
+The guide starts with equipment categories, then explains each item's use. Bait/lure/fly entries show the fish profiles that pass the documented condition, with fish sprites extracted directly from the original ROM. Fish filters, fly-part tabs and rod-style comparisons support equipment selection; raw fields remain inside expandable evidence. Compatibility is not a measured landing rate. Fish locations now use the original ROM’s parallel species/X/Y tables; guide-reported item uses are excluded from the current equipment cards. Historical community material remains credited separately and is not evidence for the ROM location index.
 
 ![Sample research catalogue](examples/catalogue-en.png)
 
@@ -29,6 +29,26 @@ python3 scripts/extract_fish_acceptance.py --rom /path/to/game.sfc --output /tmp
 python3 scripts/extract_rod_response.py --rom /path/to/game.sfc --output /tmp/rod-response.json
 python3 scripts/extract_lure_response_grid.py --rom /path/to/game.sfc --output /tmp/lure-response.json
 ```
+
+## Fish locations from the original ROM
+
+Choose a fish in the catalogue to see its areas, configured spawn tiles on actual terrain, and compatible equipment. All six field maps and all 1,536 spawn-table rows come from the supplied original ROM. The location index covers 72 named fish/creature profiles and 103 fish/area pairs. Some configured slots can be inactive; compatibility and successful landing are separate mechanics.
+
+- [Table locations, loader trace and limits](docs/fish-location-research.md)
+- [Extracted spawn data](data/rom-fish-locations.json)
+- [Map identity and coordinate transforms](catalogue/maps/rom-map-manifest.json)
+- [Fish sprite graphics and normal palettes](docs/rom-fish-sprite-research.md)
+
+To reproduce the maps, supply your own matching ROM, Snes9x libretro core, and outdoor area-1 state:
+
+```sh
+python3 scripts/extract_rom_fish_locations.py /path/to/game.sfc --output /tmp/rom-fish-locations.json
+python3 scripts/extract_rom_field_maps.py --rom /path/to/game.sfc --core /path/to/core --field-state /path/to/outdoor-area-1.state --local-dir /tmp/kawa-field-captures --output-dir catalogue/maps
+python3 scripts/build_fish_locations.py
+node scripts/build_catalogue.cjs
+```
+
+Field rendering needs NumPy/Pillow. Temporary emulator states and dumps stay outside the repository. The script uses the original ROM's area-cycle branch to initialize graphics, rather than changing the ROM. Full maps can show seams from animated water captured at different times. Cropped map sections keep terrain context around the selected fish points, and the overview outlines the displayed section.
 
 ## What is covered
 
@@ -73,9 +93,9 @@ An optional runtime-capture helper is available as `scripts/capture.py`; see the
 
 The research repository contains curated item data, scripts, bilingual findings, and a compact item gallery. It does **not** contain a ROM, patch, emulator/core binary, save state, full manual scans, or gameplay video. External references are linked in the findings so readers can consult their original context.
 
-The separate six-stage fish maps and quest notes are source-guided gameplay references; they are not part of the ROM-confirmed item findings and should not be cited as decoded ROM facts.
+The legacy notes under `data/stages` and `data/fish-guides` are historical source-guided research. The active fish-location guide instead uses `data/rom-fish-locations.json` and ROM-rendered field maps; no legacy placements or quest claims are imported.
 
-## Sources
+## Historical references
 
 - Original SFC instruction manual scan and page references: [『川のぬし釣り2』 manual](https://gamemanual.midnightmeattrain.com/entry/%E5%B7%9D%E3%81%AE%E3%81%AC%E3%81%97%E9%87%A3%E3%82%8A2), especially printed pages 12–29 for equipment and fishing actions.
 - Community item-ID lead, treated as provisional until cross-checked: [SFC 川のぬし釣り2 改造コード](https://roadbikebeginners.com/sfc-kawanonushitsuri2-cheat/).

@@ -1,9 +1,9 @@
 {
   "schema_version": 1,
   "scope": {
-    "en": "Player-facing notes cite ROM traces, controlled runtime observations, player-guide reports, or item labels per item. Fish lists describe only the check named in that item's fishScope.",
-    "ja": "道具ごとにROM追跡・実行時確認・プレイヤーガイド・アイテム名を区別した用途メモ。魚リストの意味は各アイテムのfishScopeを参照。",
-    "th": "คำอธิบายนี้แยกที่มารายชิ้นว่าเป็นการแกะ ROM การทดสอบในเกม คู่มือผู้เล่น หรือแปลจากชื่อไอเท็ม; รายชื่อปลาแสดงเฉพาะเงื่อนไขที่ระบุใน fishScope"
+    "en": "Player-facing notes use ROM traces, controlled observations of the supplied game, and decoded item labels only. Guide-reported uses are excluded. Fish lists describe only the check named in that item's fishScope.",
+    "ja": "ROM追跡・提供されたゲームの実行時確認・復号したアイテム名のみを使用。プレイヤーガイドの用途は除外。魚リストの意味は各アイテムのfishScopeを参照。",
+    "th": "คำอธิบายใช้เฉพาะการแกะ ROM การสังเกตเกมจากไฟล์ที่ให้มา และชื่อไอเท็มที่ถอดได้ โดยตัดการใช้งานจากไกด์ออก; รายชื่อปลาแสดงเฉพาะเงื่อนไขที่ระบุใน fishScope"
   },
   "sources": [
     "data/fish-acceptance.json",
@@ -11581,13 +11581,13 @@
       },
       "evidenceNotes": {
         "en": [
-          "Float IDs 01–08 select the float-equipped bait route; sinker IDs 09–0A select a separate route with an added fish-profile flag check. The manual says sinker weights can help casting distance; the numeric weight/depth effect was not measured."
+          "Float IDs 01–08 select the float-equipped bait route; sinker IDs 09–0A select a separate route with an added fish-profile flag check."
         ],
         "ja": [
-          "ウキID01–08はウキ付きエサ釣り経路、おもりID09–0Aは魚プロフィール追加フラグを確認する別経路。説明書はおもりで飛距離を伸ばすとするが、数値の重さ・深さ効果は未測定。"
+          "ウキID01–08はウキ付きエサ釣り経路、おもりID09–0Aは魚プロフィール追加フラグを確認する別経路。"
         ],
         "th": [
-          "ทุ่น ID 01–08 เข้าชุดเหยื่อติดทุ่น; ตะกั่ว ID 09–0A เข้าเส้นทางแยกที่ตรวจแฟล็กปลาเพิ่ม คู่มือบอกว่าตะกั่วช่วยตีได้ไกลขึ้น แต่ยังไม่ได้วัดผลเชิงตัวเลขเรื่องน้ำหนักหรือความลึก"
+          "ทุ่น ID 01–08 เข้าชุดเหยื่อติดทุ่น; ตะกั่ว ID 09–0A เข้าเส้นทางแยกที่ตรวจแฟล็กปลาเพิ่ม"
         ]
       },
       "fishIds": [
@@ -11702,13 +11702,13 @@
       },
       "evidenceNotes": {
         "en": [
-          "Float IDs 01–08 select the float-equipped bait route; sinker IDs 09–0A select a separate route with an added fish-profile flag check. The manual says sinker weights can help casting distance; the numeric weight/depth effect was not measured."
+          "Float IDs 01–08 select the float-equipped bait route; sinker IDs 09–0A select a separate route with an added fish-profile flag check."
         ],
         "ja": [
-          "ウキID01–08はウキ付きエサ釣り経路、おもりID09–0Aは魚プロフィール追加フラグを確認する別経路。説明書はおもりで飛距離を伸ばすとするが、数値の重さ・深さ効果は未測定。"
+          "ウキID01–08はウキ付きエサ釣り経路、おもりID09–0Aは魚プロフィール追加フラグを確認する別経路。"
         ],
         "th": [
-          "ทุ่น ID 01–08 เข้าชุดเหยื่อติดทุ่น; ตะกั่ว ID 09–0A เข้าเส้นทางแยกที่ตรวจแฟล็กปลาเพิ่ม คู่มือบอกว่าตะกั่วช่วยตีได้ไกลขึ้น แต่ยังไม่ได้วัดผลเชิงตัวเลขเรื่องน้ำหนักหรือความลึก"
+          "ทุ่น ID 01–08 เข้าชุดเหยื่อติดทุ่น; ตะกั่ว ID 09–0A เข้าเส้นทางแยกที่ตรวจแฟล็กปลาเพิ่ม"
         ]
       },
       "fishIds": [
@@ -11823,13 +11823,13 @@
       },
       "evidenceNotes": {
         "en": [
-          "Float IDs 01–08 select the float-equipped bait route; sinker IDs 09–0A select a separate route with an added fish-profile flag check. The manual says sinker weights can help casting distance; the numeric weight/depth effect was not measured."
+          "Float IDs 01–08 select the float-equipped bait route; sinker IDs 09–0A select a separate route with an added fish-profile flag check."
         ],
         "ja": [
-          "ウキID01–08はウキ付きエサ釣り経路、おもりID09–0Aは魚プロフィール追加フラグを確認する別経路。説明書はおもりで飛距離を伸ばすとするが、数値の重さ・深さ効果は未測定。"
+          "ウキID01–08はウキ付きエサ釣り経路、おもりID09–0Aは魚プロフィール追加フラグを確認する別経路。"
         ],
         "th": [
-          "ทุ่น ID 01–08 เข้าชุดเหยื่อติดทุ่น; ตะกั่ว ID 09–0A เข้าเส้นทางแยกที่ตรวจแฟล็กปลาเพิ่ม คู่มือบอกว่าตะกั่วช่วยตีได้ไกลขึ้น แต่ยังไม่ได้วัดผลเชิงตัวเลขเรื่องน้ำหนักหรือความลึก"
+          "ทุ่น ID 01–08 เข้าชุดเหยื่อติดทุ่น; ตะกั่ว ID 09–0A เข้าเส้นทางแยกที่ตรวจแฟล็กปลาเพิ่ม"
         ]
       },
       "fishIds": [
@@ -11944,13 +11944,13 @@
       },
       "evidenceNotes": {
         "en": [
-          "Float IDs 01–08 select the float-equipped bait route; sinker IDs 09–0A select a separate route with an added fish-profile flag check. The manual says sinker weights can help casting distance; the numeric weight/depth effect was not measured."
+          "Float IDs 01–08 select the float-equipped bait route; sinker IDs 09–0A select a separate route with an added fish-profile flag check."
         ],
         "ja": [
-          "ウキID01–08はウキ付きエサ釣り経路、おもりID09–0Aは魚プロフィール追加フラグを確認する別経路。説明書はおもりで飛距離を伸ばすとするが、数値の重さ・深さ効果は未測定。"
+          "ウキID01–08はウキ付きエサ釣り経路、おもりID09–0Aは魚プロフィール追加フラグを確認する別経路。"
         ],
         "th": [
-          "ทุ่น ID 01–08 เข้าชุดเหยื่อติดทุ่น; ตะกั่ว ID 09–0A เข้าเส้นทางแยกที่ตรวจแฟล็กปลาเพิ่ม คู่มือบอกว่าตะกั่วช่วยตีได้ไกลขึ้น แต่ยังไม่ได้วัดผลเชิงตัวเลขเรื่องน้ำหนักหรือความลึก"
+          "ทุ่น ID 01–08 เข้าชุดเหยื่อติดทุ่น; ตะกั่ว ID 09–0A เข้าเส้นทางแยกที่ตรวจแฟล็กปลาเพิ่ม"
         ]
       },
       "fishIds": [
@@ -12065,13 +12065,13 @@
       },
       "evidenceNotes": {
         "en": [
-          "Float IDs 01–08 select the float-equipped bait route; sinker IDs 09–0A select a separate route with an added fish-profile flag check. The manual says sinker weights can help casting distance; the numeric weight/depth effect was not measured."
+          "Float IDs 01–08 select the float-equipped bait route; sinker IDs 09–0A select a separate route with an added fish-profile flag check."
         ],
         "ja": [
-          "ウキID01–08はウキ付きエサ釣り経路、おもりID09–0Aは魚プロフィール追加フラグを確認する別経路。説明書はおもりで飛距離を伸ばすとするが、数値の重さ・深さ効果は未測定。"
+          "ウキID01–08はウキ付きエサ釣り経路、おもりID09–0Aは魚プロフィール追加フラグを確認する別経路。"
         ],
         "th": [
-          "ทุ่น ID 01–08 เข้าชุดเหยื่อติดทุ่น; ตะกั่ว ID 09–0A เข้าเส้นทางแยกที่ตรวจแฟล็กปลาเพิ่ม คู่มือบอกว่าตะกั่วช่วยตีได้ไกลขึ้น แต่ยังไม่ได้วัดผลเชิงตัวเลขเรื่องน้ำหนักหรือความลึก"
+          "ทุ่น ID 01–08 เข้าชุดเหยื่อติดทุ่น; ตะกั่ว ID 09–0A เข้าเส้นทางแยกที่ตรวจแฟล็กปลาเพิ่ม"
         ]
       },
       "fishIds": [
@@ -12186,13 +12186,13 @@
       },
       "evidenceNotes": {
         "en": [
-          "Float IDs 01–08 select the float-equipped bait route; sinker IDs 09–0A select a separate route with an added fish-profile flag check. The manual says sinker weights can help casting distance; the numeric weight/depth effect was not measured."
+          "Float IDs 01–08 select the float-equipped bait route; sinker IDs 09–0A select a separate route with an added fish-profile flag check."
         ],
         "ja": [
-          "ウキID01–08はウキ付きエサ釣り経路、おもりID09–0Aは魚プロフィール追加フラグを確認する別経路。説明書はおもりで飛距離を伸ばすとするが、数値の重さ・深さ効果は未測定。"
+          "ウキID01–08はウキ付きエサ釣り経路、おもりID09–0Aは魚プロフィール追加フラグを確認する別経路。"
         ],
         "th": [
-          "ทุ่น ID 01–08 เข้าชุดเหยื่อติดทุ่น; ตะกั่ว ID 09–0A เข้าเส้นทางแยกที่ตรวจแฟล็กปลาเพิ่ม คู่มือบอกว่าตะกั่วช่วยตีได้ไกลขึ้น แต่ยังไม่ได้วัดผลเชิงตัวเลขเรื่องน้ำหนักหรือความลึก"
+          "ทุ่น ID 01–08 เข้าชุดเหยื่อติดทุ่น; ตะกั่ว ID 09–0A เข้าเส้นทางแยกที่ตรวจแฟล็กปลาเพิ่ม"
         ]
       },
       "fishIds": [
@@ -12307,13 +12307,13 @@
       },
       "evidenceNotes": {
         "en": [
-          "Float IDs 01–08 select the float-equipped bait route; sinker IDs 09–0A select a separate route with an added fish-profile flag check. The manual says sinker weights can help casting distance; the numeric weight/depth effect was not measured."
+          "Float IDs 01–08 select the float-equipped bait route; sinker IDs 09–0A select a separate route with an added fish-profile flag check."
         ],
         "ja": [
-          "ウキID01–08はウキ付きエサ釣り経路、おもりID09–0Aは魚プロフィール追加フラグを確認する別経路。説明書はおもりで飛距離を伸ばすとするが、数値の重さ・深さ効果は未測定。"
+          "ウキID01–08はウキ付きエサ釣り経路、おもりID09–0Aは魚プロフィール追加フラグを確認する別経路。"
         ],
         "th": [
-          "ทุ่น ID 01–08 เข้าชุดเหยื่อติดทุ่น; ตะกั่ว ID 09–0A เข้าเส้นทางแยกที่ตรวจแฟล็กปลาเพิ่ม คู่มือบอกว่าตะกั่วช่วยตีได้ไกลขึ้น แต่ยังไม่ได้วัดผลเชิงตัวเลขเรื่องน้ำหนักหรือความลึก"
+          "ทุ่น ID 01–08 เข้าชุดเหยื่อติดทุ่น; ตะกั่ว ID 09–0A เข้าเส้นทางแยกที่ตรวจแฟล็กปลาเพิ่ม"
         ]
       },
       "fishIds": [
@@ -12431,13 +12431,13 @@
       },
       "evidenceNotes": {
         "en": [
-          "Float IDs 01–08 select the float-equipped bait route; sinker IDs 09–0A select a separate route with an added fish-profile flag check. The manual says sinker weights can help casting distance; the numeric weight/depth effect was not measured."
+          "Float IDs 01–08 select the float-equipped bait route; sinker IDs 09–0A select a separate route with an added fish-profile flag check."
         ],
         "ja": [
-          "ウキID01–08はウキ付きエサ釣り経路、おもりID09–0Aは魚プロフィール追加フラグを確認する別経路。説明書はおもりで飛距離を伸ばすとするが、数値の重さ・深さ効果は未測定。"
+          "ウキID01–08はウキ付きエサ釣り経路、おもりID09–0Aは魚プロフィール追加フラグを確認する別経路。"
         ],
         "th": [
-          "ทุ่น ID 01–08 เข้าชุดเหยื่อติดทุ่น; ตะกั่ว ID 09–0A เข้าเส้นทางแยกที่ตรวจแฟล็กปลาเพิ่ม คู่มือบอกว่าตะกั่วช่วยตีได้ไกลขึ้น แต่ยังไม่ได้วัดผลเชิงตัวเลขเรื่องน้ำหนักหรือความลึก"
+          "ทุ่น ID 01–08 เข้าชุดเหยื่อติดทุ่น; ตะกั่ว ID 09–0A เข้าเส้นทางแยกที่ตรวจแฟล็กปลาเพิ่ม"
         ]
       },
       "fishIds": [
@@ -12552,13 +12552,13 @@
       },
       "evidenceNotes": {
         "en": [
-          "Float IDs 01–08 select the float-equipped bait route; sinker IDs 09–0A select a separate route with an added fish-profile flag check. The manual says sinker weights can help casting distance; the numeric weight/depth effect was not measured."
+          "Float IDs 01–08 select the float-equipped bait route; sinker IDs 09–0A select a separate route with an added fish-profile flag check."
         ],
         "ja": [
-          "ウキID01–08はウキ付きエサ釣り経路、おもりID09–0Aは魚プロフィール追加フラグを確認する別経路。説明書はおもりで飛距離を伸ばすとするが、数値の重さ・深さ効果は未測定。"
+          "ウキID01–08はウキ付きエサ釣り経路、おもりID09–0Aは魚プロフィール追加フラグを確認する別経路。"
         ],
         "th": [
-          "ทุ่น ID 01–08 เข้าชุดเหยื่อติดทุ่น; ตะกั่ว ID 09–0A เข้าเส้นทางแยกที่ตรวจแฟล็กปลาเพิ่ม คู่มือบอกว่าตะกั่วช่วยตีได้ไกลขึ้น แต่ยังไม่ได้วัดผลเชิงตัวเลขเรื่องน้ำหนักหรือความลึก"
+          "ทุ่น ID 01–08 เข้าชุดเหยื่อติดทุ่น; ตะกั่ว ID 09–0A เข้าเส้นทางแยกที่ตรวจแฟล็กปลาเพิ่ม"
         ]
       },
       "fishIds": [
@@ -12631,13 +12631,13 @@
       },
       "evidenceNotes": {
         "en": [
-          "Float IDs 01–08 select the float-equipped bait route; sinker IDs 09–0A select a separate route with an added fish-profile flag check. The manual says sinker weights can help casting distance; the numeric weight/depth effect was not measured."
+          "Float IDs 01–08 select the float-equipped bait route; sinker IDs 09–0A select a separate route with an added fish-profile flag check."
         ],
         "ja": [
-          "ウキID01–08はウキ付きエサ釣り経路、おもりID09–0Aは魚プロフィール追加フラグを確認する別経路。説明書はおもりで飛距離を伸ばすとするが、数値の重さ・深さ効果は未測定。"
+          "ウキID01–08はウキ付きエサ釣り経路、おもりID09–0Aは魚プロフィール追加フラグを確認する別経路。"
         ],
         "th": [
-          "ทุ่น ID 01–08 เข้าชุดเหยื่อติดทุ่น; ตะกั่ว ID 09–0A เข้าเส้นทางแยกที่ตรวจแฟล็กปลาเพิ่ม คู่มือบอกว่าตะกั่วช่วยตีได้ไกลขึ้น แต่ยังไม่ได้วัดผลเชิงตัวเลขเรื่องน้ำหนักหรือความลึก"
+          "ทุ่น ID 01–08 เข้าชุดเหยื่อติดทุ่น; ตะกั่ว ID 09–0A เข้าเส้นทางแยกที่ตรวจแฟล็กปลาเพิ่ม"
         ]
       },
       "fishIds": [
@@ -15303,9 +15303,9 @@
     },
     "general_tool:01": {
       "summary": {
-        "en": "Quest exchange: a Hariyo is traded for this wash tub.",
-        "ja": "クエスト交換用: ハリヨとタライを交換する。",
-        "th": "ของแลกเควสต์: นำปลาฮาริโยะมาแลกกะละมัง"
+        "en": "This item is present in the game; its actual use has not yet been traced in ROM code.",
+        "ja": "ゲーム内のアイテム。用途を決めるROMコードはまだ追跡できていない。",
+        "th": "มีไอเท็มนี้ในเกม แต่ยังไม่ได้ถอดโค้ดที่ยืนยันว่ามันใช้ทำอะไร"
       },
       "facts": {
         "en": [],
@@ -15325,19 +15325,17 @@
         "th": "คำแปลชื่อญี่ปุ่นโดยตรง ไม่ใช่ภาพป้ายจากแพตช์ไทย"
       },
       "evidence": {
-        "type": "player_guide_report",
+        "type": "rom_use_unresolved",
         "sources": [
-          "catalogue/gallery-data.json",
-          "data/stages/stages-2-3.json"
-        ],
-        "displayNameType": "editorial_translation_or_clarification"
+          "data/items-rom.json"
+        ]
       }
     },
     "general_tool:02": {
       "summary": {
-        "en": "Use the canoe to travel on water.",
-        "ja": "水上移動に使うカヌー。",
-        "th": "ใช้เรือแคนูเดินทางทางน้ำ"
+        "en": "This item is present in the game; its actual use has not yet been traced in ROM code.",
+        "ja": "ゲーム内のアイテム。用途を決めるROMコードはまだ追跡できていない。",
+        "th": "มีไอเท็มนี้ในเกม แต่ยังไม่ได้ถอดโค้ดที่ยืนยันว่ามันใช้ทำอะไร"
       },
       "facts": {
         "en": [],
@@ -15357,18 +15355,17 @@
         "th": "คำแปลชื่อญี่ปุ่นโดยตรง ไม่ใช่ภาพป้ายจากแพตช์ไทย"
       },
       "evidence": {
-        "type": "player_guide_report",
+        "type": "rom_use_unresolved",
         "sources": [
-          "catalogue/gallery-data.json"
-        ],
-        "displayNameType": "editorial_translation_or_clarification"
+          "data/items-rom.json"
+        ]
       }
     },
     "general_tool:03": {
       "summary": {
-        "en": "Search cave areas with the magnifying glass; it is linked to finding mushrooms.",
-        "ja": "虫メガネで洞窟を調べ、キノコを見つける。",
-        "th": "ใช้แว่นขยายสำรวจถ้ำ ซึ่งเชื่อมกับการหาเห็ด"
+        "en": "This item is present in the game; its actual use has not yet been traced in ROM code.",
+        "ja": "ゲーム内のアイテム。用途を決めるROMコードはまだ追跡できていない。",
+        "th": "มีไอเท็มนี้ในเกม แต่ยังไม่ได้ถอดโค้ดที่ยืนยันว่ามันใช้ทำอะไร"
       },
       "facts": {
         "en": [],
@@ -15388,11 +15385,10 @@
         "th": "คำแปลชื่อญี่ปุ่นโดยตรง ไม่ใช่ภาพป้ายจากแพตช์ไทย"
       },
       "evidence": {
-        "type": "player_guide_report",
+        "type": "rom_use_unresolved",
         "sources": [
-          "catalogue/gallery-data.json"
-        ],
-        "displayNameType": "editorial_translation_or_clarification"
+          "data/items-rom.json"
+        ]
       }
     },
     "general_tool:04": {
@@ -15428,9 +15424,9 @@
     },
     "general_tool:05": {
       "summary": {
-        "en": "Record caught species in the fishing notebook.",
-        "ja": "釣った魚種を釣りノートに記録する。",
-        "th": "ใช้สมุดจดบันทึกชนิดปลาที่ตกได้"
+        "en": "This item is present in the game; its actual use has not yet been traced in ROM code.",
+        "ja": "ゲーム内のアイテム。用途を決めるROMコードはまだ追跡できていない。",
+        "th": "มีไอเท็มนี้ในเกม แต่ยังไม่ได้ถอดโค้ดที่ยืนยันว่ามันใช้ทำอะไร"
       },
       "facts": {
         "en": [],
@@ -15450,18 +15446,17 @@
         "th": "คำแปลชื่อญี่ปุ่นโดยตรง ไม่ใช่ภาพป้ายจากแพตช์ไทย"
       },
       "evidence": {
-        "type": "player_guide_report",
+        "type": "rom_use_unresolved",
         "sources": [
-          "catalogue/gallery-data.json"
-        ],
-        "displayNameType": "editorial_translation_or_clarification"
+          "data/items-rom.json"
+        ]
       }
     },
     "general_tool:06": {
       "summary": {
-        "en": "A received-postcard event item.",
-        "ja": "届いた絵はがきのイベントアイテム。",
-        "th": "ไปรษณียบัตรที่ได้รับ เป็นไอเท็มเนื้อเรื่อง"
+        "en": "This item is present in the game; its actual use has not yet been traced in ROM code.",
+        "ja": "ゲーム内のアイテム。用途を決めるROMコードはまだ追跡できていない。",
+        "th": "มีไอเท็มนี้ในเกม แต่ยังไม่ได้ถอดโค้ดที่ยืนยันว่ามันใช้ทำอะไร"
       },
       "facts": {
         "en": [],
@@ -15481,18 +15476,17 @@
         "th": "คำแปลชื่อญี่ปุ่นโดยตรง ไม่ใช่ภาพป้ายจากแพตช์ไทย"
       },
       "evidence": {
-        "type": "player_guide_report",
+        "type": "rom_use_unresolved",
         "sources": [
-          "catalogue/gallery-data.json"
-        ],
-        "displayNameType": "editorial_translation_or_clarification"
+          "data/items-rom.json"
+        ]
       }
     },
     "general_tool:07": {
       "summary": {
-        "en": "A postcard used in an event.",
-        "ja": "イベントで使う絵はがき。",
-        "th": "ไปรษณียบัตรที่ใช้ในเหตุการณ์เนื้อเรื่อง"
+        "en": "This item is present in the game; its actual use has not yet been traced in ROM code.",
+        "ja": "ゲーム内のアイテム。用途を決めるROMコードはまだ追跡できていない。",
+        "th": "มีไอเท็มนี้ในเกม แต่ยังไม่ได้ถอดโค้ดที่ยืนยันว่ามันใช้ทำอะไร"
       },
       "facts": {
         "en": [],
@@ -15512,18 +15506,17 @@
         "th": "คำแปลชื่อญี่ปุ่นโดยตรง ไม่ใช่ภาพป้ายจากแพตช์ไทย"
       },
       "evidence": {
-        "type": "player_guide_report",
+        "type": "rom_use_unresolved",
         "sources": [
-          "catalogue/gallery-data.json"
-        ],
-        "displayNameType": "editorial_translation_or_clarification"
+          "data/items-rom.json"
+        ]
       }
     },
     "general_tool:08": {
       "summary": {
-        "en": "Chum / groundbait item.",
-        "ja": "寄せエサ。",
-        "th": "เหยื่อโปรยเรียกปลา"
+        "en": "Named groundbait in the ROM; its effect on fish has not yet been traced.",
+        "ja": "ROM名は寄せエサ。魚への効果は未追跡。",
+        "th": "ชื่อใน ROM คือเหยื่อโปรย; ยังไม่ได้ถอดโค้ดผลต่อปลา"
       },
       "facts": {
         "en": [
@@ -15558,9 +15551,9 @@
     },
     "general_tool:09": {
       "summary": {
-        "en": "Chum / groundbait item.",
-        "ja": "寄せエサ。",
-        "th": "เหยื่อโปรยเรียกปลา"
+        "en": "Named groundbait in the ROM; its effect on fish has not yet been traced.",
+        "ja": "ROM名は寄せエサ。魚への効果は未追跡。",
+        "th": "ชื่อใน ROM คือเหยื่อโปรย; ยังไม่ได้ถอดโค้ดผลต่อปลา"
       },
       "facts": {
         "en": [
@@ -15595,9 +15588,9 @@
     },
     "general_tool:0A": {
       "summary": {
-        "en": "Chum / groundbait item.",
-        "ja": "寄せエサ。",
-        "th": "เหยื่อโปรยเรียกปลา"
+        "en": "Named groundbait in the ROM; its effect on fish has not yet been traced.",
+        "ja": "ROM名は寄せエサ。魚への効果は未追跡。",
+        "th": "ชื่อใน ROM คือเหยื่อโปรย; ยังไม่ได้ถอดโค้ดผลต่อปลา"
       },
       "facts": {
         "en": [
@@ -15632,9 +15625,9 @@
     },
     "general_tool:0B": {
       "summary": {
-        "en": "Keep caught fish in this basket; its printed capacity is 10 fish.",
-        "ja": "釣った魚を入れるびく。表示容量は10匹。",
-        "th": "ใช้เก็บปลาที่ตกได้; ความจุตามชื่อคือ 10 ตัว"
+        "en": "The ROM label specifies a 10-fish basket; its capacity check has not yet been traced.",
+        "ja": "ROM名は10匹用のびく。容量判定は未追跡。",
+        "th": "ชื่อใน ROM ระบุว่าเป็นกระชัง 10 ตัว; ยังไม่ได้ถอดโค้ดตรวจความจุ"
       },
       "facts": {
         "en": [],
@@ -15663,9 +15656,9 @@
     },
     "general_tool:0C": {
       "summary": {
-        "en": "Keep caught fish in this basket; its printed capacity is 20 fish.",
-        "ja": "釣った魚を入れるびく。表示容量は20匹。",
-        "th": "ใช้เก็บปลาที่ตกได้; ความจุตามชื่อคือ 20 ตัว"
+        "en": "The ROM label specifies a 20-fish basket; its capacity check has not yet been traced.",
+        "ja": "ROM名は20匹用のびく。容量判定は未追跡。",
+        "th": "ชื่อใน ROM ระบุว่าเป็นกระชัง 20 ตัว; ยังไม่ได้ถอดโค้ดตรวจความจุ"
       },
       "facts": {
         "en": [],
@@ -15694,9 +15687,9 @@
     },
     "general_tool:0D": {
       "summary": {
-        "en": "Keep caught fish in this basket; its printed capacity is 30 fish.",
-        "ja": "釣った魚を入れるびく。表示容量は30匹。",
-        "th": "ใช้เก็บปลาที่ตกได้; ความจุตามชื่อคือ 30 ตัว"
+        "en": "The ROM label specifies a 30-fish basket; its capacity check has not yet been traced.",
+        "ja": "ROM名は30匹用のびく。容量判定は未追跡。",
+        "th": "ชื่อใน ROM ระบุว่าเป็นกระชัง 30 ตัว; ยังไม่ได้ถอดโค้ดตรวจความจุ"
       },
       "facts": {
         "en": [],
@@ -15756,9 +15749,9 @@
     },
     "general_tool:0F": {
       "summary": {
-        "en": "Milk-bottle quest item.",
-        "ja": "牛乳ビンのクエストアイテム。",
-        "th": "ขวดนมสำหรับเควสต์"
+        "en": "This item is present in the game; its actual use has not yet been traced in ROM code.",
+        "ja": "ゲーム内のアイテム。用途を決めるROMコードはまだ追跡できていない。",
+        "th": "มีไอเท็มนี้ในเกม แต่ยังไม่ได้ถอดโค้ดที่ยืนยันว่ามันใช้ทำอะไร"
       },
       "facts": {
         "en": [],
@@ -15778,18 +15771,17 @@
         "th": "คำแปลชื่อญี่ปุ่นโดยตรง ไม่ใช่ภาพป้ายจากแพตช์ไทย"
       },
       "evidence": {
-        "type": "player_guide_report",
+        "type": "rom_use_unresolved",
         "sources": [
-          "catalogue/gallery-data.json"
-        ],
-        "displayNameType": "editorial_translation_or_clarification"
+          "data/items-rom.json"
+        ]
       }
     },
     "general_tool:10": {
       "summary": {
-        "en": "Milk quest item.",
-        "ja": "牛乳のクエストアイテム。",
-        "th": "นมสำหรับเควสต์"
+        "en": "This item is present in the game; its actual use has not yet been traced in ROM code.",
+        "ja": "ゲーム内のアイテム。用途を決めるROMコードはまだ追跡できていない。",
+        "th": "มีไอเท็มนี้ในเกม แต่ยังไม่ได้ถอดโค้ดที่ยืนยันว่ามันใช้ทำอะไร"
       },
       "facts": {
         "en": [],
@@ -15809,11 +15801,10 @@
         "th": "คำแปลชื่อญี่ปุ่นโดยตรง ไม่ใช่ภาพป้ายจากแพตช์ไทย"
       },
       "evidence": {
-        "type": "player_guide_report",
+        "type": "rom_use_unresolved",
         "sources": [
-          "catalogue/gallery-data.json"
-        ],
-        "displayNameType": "editorial_translation_or_clarification"
+          "data/items-rom.json"
+        ]
       }
     },
     "general_tool:11": {
@@ -15849,9 +15840,9 @@
     },
     "general_tool:12": {
       "summary": {
-        "en": "Candle event item.",
-        "ja": "ロウソクのイベントアイテム。",
-        "th": "เทียนสำหรับเหตุการณ์เนื้อเรื่อง"
+        "en": "This item is present in the game; its actual use has not yet been traced in ROM code.",
+        "ja": "ゲーム内のアイテム。用途を決めるROMコードはまだ追跡できていない。",
+        "th": "มีไอเท็มนี้ในเกม แต่ยังไม่ได้ถอดโค้ดที่ยืนยันว่ามันใช้ทำอะไร"
       },
       "facts": {
         "en": [],
@@ -15871,18 +15862,17 @@
         "th": "คำแปลชื่อญี่ปุ่นโดยตรง ไม่ใช่ภาพป้ายจากแพตช์ไทย"
       },
       "evidence": {
-        "type": "player_guide_report",
+        "type": "rom_use_unresolved",
         "sources": [
-          "catalogue/gallery-data.json"
-        ],
-        "displayNameType": "editorial_translation_or_clarification"
+          "data/items-rom.json"
+        ]
       }
     },
     "general_tool:13": {
       "summary": {
-        "en": "Stereo sound setting; not fishing tackle.",
-        "ja": "ステレオ音声設定。釣り道具ではない。",
-        "th": "ตั้งค่าเสียงสเตอริโอ ไม่ใช่อุปกรณ์ตกปลา"
+        "en": "Menu label: stereo. The setting handler has not yet been traced.",
+        "ja": "メニュー名はステレオ。設定処理は未追跡。",
+        "th": "ชื่อเมนูคือสเตอริโอ; ยังไม่ได้ถอดโค้ดการตั้งค่า"
       },
       "facts": {
         "en": [],
@@ -15911,9 +15901,9 @@
     },
     "general_tool:14": {
       "summary": {
-        "en": "Monaural sound setting; not fishing tackle.",
-        "ja": "モノラル音声設定。釣り道具ではない。",
-        "th": "ตั้งค่าเสียงโมโน ไม่ใช่อุปกรณ์ตกปลา"
+        "en": "Menu label: monaural. The setting handler has not yet been traced.",
+        "ja": "メニュー名はモノラル。設定処理は未追跡。",
+        "th": "ชื่อเมนูคือโมโน; ยังไม่ได้ถอดโค้ดการตั้งค่า"
       },
       "facts": {
         "en": [],
@@ -15942,9 +15932,9 @@
     },
     "general_tool:15": {
       "summary": {
-        "en": "Fried-tofu event item.",
-        "ja": "油揚げのイベントアイテム。",
-        "th": "เต้าหู้ทอดสำหรับเหตุการณ์เนื้อเรื่อง"
+        "en": "This item is present in the game; its actual use has not yet been traced in ROM code.",
+        "ja": "ゲーム内のアイテム。用途を決めるROMコードはまだ追跡できていない。",
+        "th": "มีไอเท็มนี้ในเกม แต่ยังไม่ได้ถอดโค้ดที่ยืนยันว่ามันใช้ทำอะไร"
       },
       "facts": {
         "en": [],
@@ -15964,18 +15954,17 @@
         "th": "คำแปลชื่อญี่ปุ่นโดยตรง ไม่ใช่ภาพป้ายจากแพตช์ไทย"
       },
       "evidence": {
-        "type": "player_guide_report",
+        "type": "rom_use_unresolved",
         "sources": [
-          "catalogue/gallery-data.json"
-        ],
-        "displayNameType": "editorial_translation_or_clarification"
+          "data/items-rom.json"
+        ]
       }
     },
     "general_tool:16": {
       "summary": {
-        "en": "Fireworks event item.",
-        "ja": "花火のイベントアイテム。",
-        "th": "ดอกไม้ไฟสำหรับเหตุการณ์เนื้อเรื่อง"
+        "en": "This item is present in the game; its actual use has not yet been traced in ROM code.",
+        "ja": "ゲーム内のアイテム。用途を決めるROMコードはまだ追跡できていない。",
+        "th": "มีไอเท็มนี้ในเกม แต่ยังไม่ได้ถอดโค้ดที่ยืนยันว่ามันใช้ทำอะไร"
       },
       "facts": {
         "en": [],
@@ -15995,18 +15984,17 @@
         "th": "คำแปลชื่อญี่ปุ่นโดยตรง ไม่ใช่ภาพป้ายจากแพตช์ไทย"
       },
       "evidence": {
-        "type": "player_guide_report",
+        "type": "rom_use_unresolved",
         "sources": [
-          "catalogue/gallery-data.json"
-        ],
-        "displayNameType": "editorial_translation_or_clarification"
+          "data/items-rom.json"
+        ]
       }
     },
     "general_tool:17": {
       "summary": {
-        "en": "Key item; its use depends on the event.",
-        "ja": "カギのアイテム。使う場面はイベントによる。",
-        "th": "ไอเท็มกุญแจ; ใช้ตามเหตุการณ์ในเกม"
+        "en": "This item is present in the game; its actual use has not yet been traced in ROM code.",
+        "ja": "ゲーム内のアイテム。用途を決めるROMコードはまだ追跡できていない。",
+        "th": "มีไอเท็มนี้ในเกม แต่ยังไม่ได้ถอดโค้ดที่ยืนยันว่ามันใช้ทำอะไร"
       },
       "facts": {
         "en": [],
@@ -16026,11 +16014,10 @@
         "th": "คำแปลชื่อญี่ปุ่นโดยตรง ไม่ใช่ภาพป้ายจากแพตช์ไทย"
       },
       "evidence": {
-        "type": "player_guide_report",
+        "type": "rom_use_unresolved",
         "sources": [
-          "catalogue/gallery-data.json"
-        ],
-        "displayNameType": "editorial_translation_or_clarification"
+          "data/items-rom.json"
+        ]
       }
     },
     "fly_wing:09": {

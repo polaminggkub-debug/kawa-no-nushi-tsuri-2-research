@@ -89,6 +89,9 @@
   }[lang];
   const groups=['rod','lure','flymaker','bait','hook','float_weight','food','general_tool'];
   let fishVisuals={};
+  let fishLocations={};
+  let locationStage='';
+  let locationMapIndex=0;
   let flyPart='fly';
   let baitRoute='float';
   const groupOf=item=>item.category.startsWith('fly')?'flymaker':item.category;
@@ -110,7 +113,7 @@
     const sourceInfo=evidence.type?`<p>${esc(lang==='th'?'ที่มาของคำอธิบาย':lang==='ja'?'説明の根拠':'Explanation source')}: ${esc(evidence.type)}</p>${(evidence.sources||[]).map(s=>`<p><code>${esc(s)}</code></p>`).join('')}`:'';
     const bytes=item.recordBytesHex?`<p><b>${esc(copy.offset)}:</b> <code>${esc(item.fileOffset||'—')}</code></p><p><b>${esc(copy.bytes)}:</b> <code>${esc(item.recordBytesHex)}</code></p>`:`<p>${esc(copy.none)}</p>`;
     const decoded=Object.entries(item.decodedFields||{}).filter(([key])=>!['nameJapanese','nameEnglish','condition'].includes(key)).map(([key,value])=>`<dt>${esc(copy.fieldNames[key]||key)}</dt><dd>${esc(typeof value==='object'?JSON.stringify(value):value)}</dd>`).join('');
-    return `<details class="record-details"><summary>${esc(player.evidence)}</summary>${sourceInfo}<ul class="stat-list">${[...itemNotes(item),...(useOf(item).evidenceNotes?.[lang]||[])].map(n=>`<li>${esc(n)}</li>`).join('')}</ul>${lang==='th'&&!item.nameTh&&useOf(item).displayName?.th?'<p>ชื่อไทย: คำแปลชื่อภาษาญี่ปุ่นสำหรับคู่มือนี้</p>':''}${bytes}${decoded?`<h4>${esc(copy.decoded)}</h4><dl>${decoded}</dl>`:''}<a class="frame-link" href="${esc(item.frame)}" target="_blank" rel="noopener">${esc(copy.openFrame)}</a></details>`;
+    return `<details class="record-details"><summary>${esc(player.evidence)}</summary>${sourceInfo}<ul class="stat-list">${(useOf(item).evidenceNotes?.[lang]||[]).map(n=>`<li>${esc(n)}</li>`).join('')}</ul>${lang==='th'&&!item.nameTh&&useOf(item).displayName?.th?'<p>ชื่อไทย: คำแปลชื่อภาษาญี่ปุ่นสำหรับคู่มือนี้</p>':''}${bytes}${decoded?`<h4>${esc(copy.decoded)}</h4><dl>${decoded}</dl>`:''}<a class="frame-link" href="${esc(item.frame)}" target="_blank" rel="noopener">${esc(copy.openFrame)}</a></details>`;
   }
   function thaiLabel(item) {
     return lang==='th'&&item.labelImageTh?`<img class="thai-rom-label" loading="lazy" src="${esc(item.labelImageTh)}" alt="${esc(item.nameTh||'ชื่อในเกมไทย')}">`:'';
@@ -119,9 +122,40 @@
     const use=useOf(item),ids=fishIdsFor(item);
     const targets=use.targetMatches?(Array.isArray(use.targetMatches)?use.targetMatches:[use.targetMatches]):[];
     if(!ids.length&&!targets.length)return '';
-    const chip=id=>{id=String(id).replace(/^0x/i,'').toUpperCase().padStart(2,'0');const f=fishVisuals[id]||{};return `<span class="fish-chip">${f.image?`<img loading="lazy" src="${esc(f.image)}" alt="">`:''}<span>${esc(fishName(id))}</span></span>`;};
+    const chip=id=>{id=String(id).replace(/^0x/i,'').toUpperCase().padStart(2,'0');const f=fishVisuals[id]||{};return `<a class="fish-chip" data-fish="${esc(id)}" href="?category=${document.getElementById('category-filter').value}&amp;fish=${esc(id)}#fish-location-panel" aria-label="${esc(fishName(id))} — ${lang==='th'?'ดูจุดตก':lang==='ja'?'釣り場を見る':'See locations'}">${f.image?`<img loading="lazy" src="${esc(f.image)}" alt="">`:''}<span>${esc(fishName(id))}</span><small>${lang==='th'?'ดูจุดตก ↗':lang==='ja'?'釣り場 ↗':'Locations ↗'}</small></a>`;};
     if(!ids.length)return `<div class="compatible-fish"><h4>${lang==='th'?'มีการตอบสนองเฉพาะกับปลา':lang==='ja'?'魚ID別の応答':'Fish-specific response'}</h4><p class="fish-scope">${esc(local(use.targetMatchScope)||(lang==='th'?'เกมมีการตอบสนองเฉพาะกับปลานี้ แต่ยังสรุปไม่ได้ว่าจับง่ายขึ้นหรือดีที่สุด':lang==='ja'?'魚別の処理は確認済みですが、釣りやすさの優位は未確認です。':'A fish-specific response is confirmed; a catch advantage is not established.'))}</p><div class="fish-chips">${targets.map(t=>chip(t.fishId)).join('')}</div></div>`;
     return `<div class="compatible-fish"><h4>${esc(player.compatible)} · ${ids.length}</h4><p class="fish-scope">${esc(item.category==='bait'?(lang==='th'?`สำหรับ${baitRoute==='float'?'ชุดทุ่น':'ชุดตะกั่ว'} — ผ่านเงื่อนไขรับเหยื่อ ยังต้องวางเหยื่อให้เจอปลาและดึงขึ้นสำเร็จ`:lang==='ja'?`${baitRoute==='float'?'ウキ':'オモリ'}仕掛けのエサ判定に適合。位置・タイミング・取り込みも必要。`:`${baitRoute==='float'?'Float':'Sinker'} rig: passes bait-acceptance conditions; position, timing and landing still matter.`):local(use.fishScope))}</p><div class="fish-chips">${ids.slice(0,6).map(chip).join('')}</div>${ids.length>6?`<details class="more-fish"><summary>${esc(player.more)} (${ids.length})</summary><div class="fish-chips">${ids.slice(6).map(chip).join('')}</div></details>`:''}</div>`;
+  }
+  function renderFishLocation(id) {
+    const box=document.getElementById('fish-location-panel');
+    const title=lang==='th'?'ปลาตัวนี้อยู่ที่ไหน':lang==='ja'?'この魚はどこにいる？':'Where to find this fish';
+    if(!id){box.innerHTML=`<h2>${title}</h2><p>${lang==='th'?'เลือกปลาในช่องด้านบน หรือกดรูปปลาบนการ์ดเหยื่อ เพื่อดูด่าน แผนที่ และจุดตก':lang==='ja'?'上の魚選択欄、またはエサの魚画像を押すと、エリア・地図・釣り場が見られます。':'Choose a fish above or click a fish portrait on a bait card to see its area, map and fishing spots.'}</p>`;return;}
+    const fish=fishVisuals[id]||{},entry=fishLocations[id]||{},locations=entry.locations||[];
+    if(!locations.some(l=>String(l.stage)===locationStage))locationStage=String(locations[0]?.stage||'');
+    const chosen=locations.find(l=>String(l.stage)===locationStage);
+    const stageWord=lang==='th'?'ด่าน':lang==='ja'?'エリア':'Area';
+    const openMap=lang==='th'?'เปิดแผนที่ขนาดเต็ม':lang==='ja'?'地図を原寸で開く':'Open full-size map';
+    const sourceWord=lang==='th'?'แผนที่ต้นฉบับ / ที่มา':lang==='ja'?'元の地図・出典':'Original map / source';
+    const unknown=lang==='th'?'ยังไม่มีตำแหน่งที่ตรวจสอบได้สำหรับปลานี้ จะไม่เดาตำแหน่งจากรายชื่อเหยื่อ':lang==='ja'?'この魚の釣り場はまだ確認できていません。エサの適合表から場所は推測しません。':'No verified location is available yet. Bait compatibility does not establish a habitat.';
+    const mapChoices=chosen?.maps||[];
+    if(locationMapIndex>=mapChoices.length)locationMapIndex=0;
+    const overview=chosen?.overview,viewBox=mapChoices[locationMapIndex]?.overviewBox;
+    const overviewHtml=overview&&viewBox?`<figure class="area-overview"><figcaption>${lang==='th'?'ภาพรวมทั้งด่าน · กรอบแสดงส่วนที่เปิดอยู่':lang==='ja'?'エリア全体 · 枠は下の拡大範囲':'Full area · outline marks the view below'}${overview.rotated?` · ${lang==='th'?'ด้านบนของฉากอยู่ทางซ้าย':lang==='ja'?'元の画面の上方向は左':'Original top is on the left'}`:''}</figcaption><div style="aspect-ratio:${overview.width}/${overview.height};max-width:${Math.min(900,overview.width/overview.height*400)}px"><img src="${esc(overview.image)}" alt="${esc(local(chosen.stageName))}"><span style="left:${viewBox.x*100}%;top:${viewBox.y*100}%;width:${viewBox.width*100}%;height:${viewBox.height*100}%"></span></div></figure>`:'';
+    const mapMenu=mapChoices.length>1?`<label class="location-map-select">${lang==='th'?'เลือกส่วนของแผนที่':lang==='ja'?'地図の部分を選ぶ':'Map section'}<select id="location-map-select">${mapChoices.map((m,i)=>`<option value="${i}" ${i===locationMapIndex?'selected':''}>${esc(local(m.name))} · ${m.pins?.length||0} ${lang==='th'?'จุด':lang==='ja'?'地点':'points'}</option>`).join('')}</select></label>`:'';
+    const maps=mapChoices.filter((m,i)=>i===locationMapIndex).map((map,index)=>{
+      const pins=map.pins||[];
+      const mapTitle=local(map.name)||`${lang==='th'?'แผนที่':lang==='ja'?'地図':'Map'} ${index+1}`;
+      const pinNote=lang==='th'?'รูปปลาและหมายเลขชี้บริเวณที่ควรลองตก พิกัดจุดเกิดที่กำหนดใน ROM; บางจุดอาจไม่มีปลาในรอบที่เกมสร้างปลา':lang==='ja'?'魚画像と番号は狙う目安です。ROMの地図データから抽出した座標です。魚の生成状態によって無効な地点があります。':'Fish portraits and numbers mark places to try. Coordinates are extracted from ROM map data; some configured points can be inactive in a generated game state.';
+      return `<article class="location-map"><h4>${esc(mapTitle)}</h4>${map.tileBounds?`<p class="fish-scope">X ${map.tileBounds.xMin}–${map.tileBounds.xMax} · Y ${map.tileBounds.yMin}–${map.tileBounds.yMax}</p>`:''}${map.image?`<div class="map-scroll"><div class="map-canvas" style="aspect-ratio:${Number(map.width)||1}/${Number(map.height)||1}"><img class="map-background" loading="lazy" src="${esc(map.image)}" alt="${esc(mapTitle)}">${pins.map((pin,i)=>`<span class="map-pin" style="left:${Number(pin.x)*100}%;top:${Number(pin.y)*100}%" title="${esc(fishName(id))} · X ${pin.tileX}, Y ${pin.tileY}">${fish.image?`<img src="${esc(fish.image)}" alt="${esc(fishName(id))}">`:''}<b>${i+1}</b></span>`).join('')}</div></div><p class="fish-scope">${esc(pinNote)}</p><a href="${esc(map.image)}" target="_blank" rel="noopener">${openMap} ↗</a>${map.fullImage?` · <a href="${esc(map.fullImage)}" target="_blank" rel="noopener">${lang==='th'?'ดูแผนที่ทั้งด่าน':lang==='ja'?'全体地図':'Full area map'} ↗</a>`:''}`:`<p>${esc(unknown)}</p>`}${map.sourceUrl?` · <a href="${esc(map.sourceUrl)}" target="_blank" rel="noopener">${sourceWord} ↗</a>`:''}${map.note?`<p>${esc(local(map.note))}</p>`:''}</article>`;
+    }).join('');
+    box.innerHTML=`<div class="location-heading">${fish.image?`<img src="${esc(fish.image)}" alt="">`:''}<div><h2>${esc(title)} — ${esc(fishName(id))}</h2><p>${lang==='th'?'ดูจุดตก แล้วเลือกเหยื่อจากรายการด้านล่าง':lang==='ja'?'釣り場を確認してから、下の対応エサを選びます。':'Find a fishing spot, then choose compatible tackle below.'}</p></div></div>${locations.length?`<nav class="part-menu location-stages" aria-label="${stageWord}">${locations.map(l=>`<button type="button" data-location-stage="${l.stage}" aria-pressed="${String(l.stage)===locationStage}">${stageWord} ${l.stage} · ${esc(local(l.stageName))}</button>`).join('')}</nav><h3>${stageWord} ${chosen.stage} · ${esc(local(chosen.stageName))}</h3><p>${esc(local(chosen.description))}</p>${chosen.accessNote?`<p class="location-access">${esc(local(chosen.accessNote))}</p>`:''}${overviewHtml}${mapMenu}<div class="location-maps">${maps}</div>${!maps?`<p>${lang==='th'?'พบพิกัดใน ROM แล้ว อยู่ระหว่างถอดภาพแผนที่':lang==='ja'?'ROM座標を抽出済み。地図画像を復号中。':'ROM coordinates extracted; map rendering is in progress.'}</p>`:''}<details class="spawn-coordinates"><summary>${lang==='th'?'ดูพิกัดจุดเกิดจากเกม':lang==='ja'?'出現座標':'Spawn coordinates'}</summary><p>${(chosen.points||[]).map(p=>`(${p.x}, ${p.y})`).join(' · ')}</p></details><p class="location-provenance">${lang==='th'?'ตำแหน่งและชนิดปลาถอดจาก ROM; เปิดรายละเอียดเพื่อดูตารางและโค้ดที่ใช้ตรวจสอบ':lang==='ja'?'場所と魚種はROMから抽出。根拠の表とコードは調査詳細を参照。':'Locations and species are extracted from ROM; research notes identify the source tables and code.'}</p>`:`<p>${esc(unknown)}</p>`}`;
+  }
+  function selectFish(id) {
+    document.getElementById('fish-filter').value=id;
+    const category=document.getElementById('category-filter').value;
+    if(id&&!['all','bait','lure','float_weight'].includes(category)&&!(category==='flymaker'&&flyPart==='fly'))document.getElementById('category-filter').value='all';
+    locationStage='';locationMapIndex=0;renderCards();
+    if(typeof history!=='undefined')history.replaceState(null,'',`?category=${document.getElementById('category-filter').value}${id?'&fish='+encodeURIComponent(id):''}#fish-location-panel`);
   }
   function renderComparison(items,category) {
     const box=document.getElementById('rod-comparison');
@@ -149,13 +183,14 @@
     set('#category-description',player.desc[category]||player.lead);
     set('#fish-status',fish&&!fishApplicable?player.noFish:fish?player.fishOnly:'');
     document.querySelectorAll('[data-category]').forEach(n=>n.setAttribute('aria-current',n.dataset.category===category?'true':'false'));
+    renderFishLocation(fish);
     renderComparison(shown,category);
     const box=document.getElementById('cards');
     if(!shown.length){box.innerHTML=`<p class="empty-state">${esc(copy.empty)}</p>`;return;}
     box.innerHTML=shown.map(item=>{const use=useOf(item);const facts=use.facts?.[lang]||use.facts?.en||[];return `<article class="item-card ${item.category==='food'&&item.id==='0A'?'poison-food':''}" id="item-${item.category}-${item.id}"><div class="card-main"><figure class="sprite"><img loading="lazy" src="${esc(item.image)}" alt="${esc(itemName(item))}"></figure><div class="card-text"><span class="category-tag">${esc(categoryNames[item.category])}</span><h3>${esc(itemName(item))}</h3>${thaiLabel(item)}${itemName(item)!==item.nameJa?`<p class="jp-name" lang="ja">${esc(item.nameJa)}</p>`:''}<div class="price-row">${item.priceYen>0?`<span class="price-badge">${esc(formatYen(item))}</span>`:''}<span class="item-id">ID ${esc(item.id)}</span></div></div></div><div class="use-block"><h4>${esc(player.use)}</h4><p class="use-summary">${esc(local(use.summary)||player.desc[groupOf(item)])}</p>${use.evidence?.type==='player_guide_report'?`<p class="fish-scope">${lang==='th'?'คำอธิบายการใช้จากคู่มือผู้เล่น ยังไม่ได้ยืนยันจากโค้ดเกม':lang==='ja'?'用途はプレイヤーガイドによる報告。ゲームコードでは未確認。':'Use reported by a player guide; not yet confirmed in game code.'}</p>`:''}${facts.length?`<ul class="use-facts">${facts.map(n=>`<li>${esc(n)}</li>`).join('')}</ul>`:''}${use.comparison?`<p class="use-comparison">${esc(local(use.comparison))}</p>`:''}</div>${fishList(item)}${detailedFields(item)}</article>`;}).join('');
   }
-  fetch('gallery-data.json?v=player-guide-20261004').then(r=>{if(!r.ok)throw new Error('catalogue unavailable');return r.json();}).then(data=>{
-    allItems=data.items;fishVisuals=data.fishVisuals||{};
+  fetch('gallery-data.json?v=fish-locations-20261004').then(r=>{if(!r.ok)throw new Error('catalogue unavailable');return r.json();}).then(data=>{
+    allItems=data.items;fishVisuals=data.fishVisuals||{};fishLocations=data.fishLocations||{};
     for(const item of allItems)categoryNames[item.category]=lang==='th'?item.categoryTh:lang==='ja'?item.categoryJa:item.categoryEn;
     set('#entry-count',copy.entries(allItems.length));
     set('[data-t="title"]',player.title);set('[data-t="lead"]',player.lead);
@@ -163,11 +198,16 @@
     set('#kit-title',player.kit);set('#kit-copy',player.kitText);set('#kit-link',player.kitLink);
     renderSamples();renderFrames(data);renderNotes(data);renderFilters();
     let chosen='rod';if(typeof URLSearchParams!=='undefined'&&typeof location!=='undefined'){const q=new URLSearchParams(location.search).get('category');if(groups.includes(q)||q==='all')chosen=q;}
-    document.getElementById('category-filter').value=chosen;renderCards();
+    document.getElementById('category-filter').value=chosen;
+    if(typeof URLSearchParams!=='undefined'&&typeof location!=='undefined'){const f=new URLSearchParams(location.search).get('fish');if(fishVisuals[f])document.getElementById('fish-filter').value=f;}
+    renderCards();
     document.getElementById('category-menu').addEventListener('click',event=>{const a=event.target.closest('[data-category]');if(!a)return;event.preventDefault();document.getElementById('category-filter').value=a.dataset.category;document.getElementById('fish-filter').value='';document.getElementById('search').value='';document.getElementById('style-filter').value='';renderCards();if(typeof history!=='undefined')history.replaceState(null,'',`?category=${a.dataset.category}#catalogue`);document.getElementById('catalogue').scrollIntoView({behavior:'smooth',block:'start'});});
     document.getElementById('bait-route-menu').addEventListener('click',event=>{const b=event.target.closest('[data-route]');if(!b)return;baitRoute=b.dataset.route;renderCards();});
     document.getElementById('fly-part-menu').addEventListener('click',event=>{if(event.target.closest('[data-guide]')){event.preventDefault();const guide=document.getElementById('fly-instructions');guide.open=true;guide.scrollIntoView({behavior:'smooth'});return;}const b=event.target.closest('[data-part]');if(!b)return;flyPart=b.dataset.part;renderCards();});
-    document.getElementById('fish-filter').addEventListener('change',()=>{const c=document.getElementById('category-filter').value;if(document.getElementById('fish-filter').value&&!['all','bait','lure','float_weight'].includes(c)&&!(c==='flymaker'&&flyPart==='fly'))document.getElementById('category-filter').value='all';renderCards();});
+    document.getElementById('fish-filter').addEventListener('change',()=>selectFish(document.getElementById('fish-filter').value));
+    document.getElementById('cards').addEventListener('click',event=>{const a=event.target.closest('[data-fish]');if(!a)return;event.preventDefault();selectFish(a.dataset.fish);document.getElementById('fish-location-panel').scrollIntoView({behavior:'smooth',block:'start'});});
+    document.getElementById('fish-location-panel').addEventListener('click',event=>{const b=event.target.closest('[data-location-stage]');if(!b)return;locationStage=b.dataset.locationStage;locationMapIndex=0;renderFishLocation(document.getElementById('fish-filter').value);});
+    document.getElementById('fish-location-panel').addEventListener('change',event=>{if(event.target.id!=='location-map-select')return;locationMapIndex=Number(event.target.value);renderFishLocation(document.getElementById('fish-filter').value);});
     for(const id of ['search','category-filter','sort-filter','style-filter'])document.getElementById(id).addEventListener(id==='search'?'input':'change',renderCards);
   }).catch(error=>{console.error(error);});
 })();

@@ -66,29 +66,17 @@ STYLE = {
 
 
 GENERAL_TOOL_COPY = {
-    "01": (loc("Quest exchange: a Hariyo is traded for this wash tub.", "クエスト交換用: ハリヨとタライを交換する。", "ของแลกเควสต์: นำปลาฮาริโยะมาแลกกะละมัง"), []),
-    "02": (loc("Use the canoe to travel on water.", "水上移動に使うカヌー。", "ใช้เรือแคนูเดินทางทางน้ำ"), []),
-    "03": (loc("Search cave areas with the magnifying glass; it is linked to finding mushrooms.", "虫メガネで洞窟を調べ、キノコを見つける。", "ใช้แว่นขยายสำรวจถ้ำ ซึ่งเชื่อมกับการหาเห็ด"), []),
     "04": (loc("A net item; its field action has not been identified.", "網の道具。フィールドでの使い方は未特定。", "อุปกรณ์ตาข่าย; ยังไม่พบวิธีใช้ในฉาก"), []),
-    "05": (loc("Record caught species in the fishing notebook.", "釣った魚種を釣りノートに記録する。", "ใช้สมุดจดบันทึกชนิดปลาที่ตกได้"), []),
-    "06": (loc("A received-postcard event item.", "届いた絵はがきのイベントアイテム。", "ไปรษณียบัตรที่ได้รับ เป็นไอเท็มเนื้อเรื่อง"), []),
-    "07": (loc("A postcard used in an event.", "イベントで使う絵はがき。", "ไปรษณียบัตรที่ใช้ในเหตุการณ์เนื้อเรื่อง"), []),
-    "08": (loc("Chum / groundbait item.", "寄せエサ。", "เหยื่อโปรยเรียกปลา"), [loc("The three IDs share the same Japanese label; their differences are not decoded.", "3つのIDは同じ日本語名で、違いは未解明。", "ทั้งสาม ID ใช้ชื่อญี่ปุ่นเดียวกัน; ยังไม่พบความต่างด้านการใช้งาน")]),
-    "09": (loc("Chum / groundbait item.", "寄せエサ。", "เหยื่อโปรยเรียกปลา"), [loc("The three IDs share the same Japanese label; their differences are not decoded.", "3つのIDは同じ日本語名で、違いは未解明。", "ทั้งสาม ID ใช้ชื่อญี่ปุ่นเดียวกัน; ยังไม่พบความต่างด้านการใช้งาน")]),
-    "0A": (loc("Chum / groundbait item.", "寄せエサ。", "เหยื่อโปรยเรียกปลา"), [loc("The three IDs share the same Japanese label; their differences are not decoded.", "3つのIDは同じ日本語名で、違いは未解明。", "ทั้งสาม ID ใช้ชื่อญี่ปุ่นเดียวกัน; ยังไม่พบความต่างด้านการใช้งาน")]),
-    "0B": (loc("Keep caught fish in this basket; its printed capacity is 10 fish.", "釣った魚を入れるびく。表示容量は10匹。", "ใช้เก็บปลาที่ตกได้; ความจุตามชื่อคือ 10 ตัว"), []),
-    "0C": (loc("Keep caught fish in this basket; its printed capacity is 20 fish.", "釣った魚を入れるびく。表示容量は20匹。", "ใช้เก็บปลาที่ตกได้; ความจุตามชื่อคือ 20 ตัว"), []),
-    "0D": (loc("Keep caught fish in this basket; its printed capacity is 30 fish.", "釣った魚を入れるびく。表示容量は30匹。", "ใช้เก็บปลาที่ตกได้; ความจุตามชื่อคือ 30 ตัว"), []),
+    "08": (loc("Named groundbait in the ROM; its effect on fish has not yet been traced.", "ROM名は寄せエサ。魚への効果は未追跡。", "ชื่อใน ROM คือเหยื่อโปรย; ยังไม่ได้ถอดโค้ดผลต่อปลา"), [loc("The three IDs share the same Japanese label; their differences are not decoded.", "3つのIDは同じ日本語名で、違いは未解明。", "ทั้งสาม ID ใช้ชื่อญี่ปุ่นเดียวกัน; ยังไม่พบความต่างด้านการใช้งาน")]),
+    "09": (loc("Named groundbait in the ROM; its effect on fish has not yet been traced.", "ROM名は寄せエサ。魚への効果は未追跡。", "ชื่อใน ROM คือเหยื่อโปรย; ยังไม่ได้ถอดโค้ดผลต่อปลา"), [loc("The three IDs share the same Japanese label; their differences are not decoded.", "3つのIDは同じ日本語名で、違いは未解明。", "ทั้งสาม ID ใช้ชื่อญี่ปุ่นเดียวกัน; ยังไม่พบความต่างด้านการใช้งาน")]),
+    "0A": (loc("Named groundbait in the ROM; its effect on fish has not yet been traced.", "ROM名は寄せエサ。魚への効果は未追跡。", "ชื่อใน ROM คือเหยื่อโปรย; ยังไม่ได้ถอดโค้ดผลต่อปลา"), [loc("The three IDs share the same Japanese label; their differences are not decoded.", "3つのIDは同じ日本語名で、違いは未解明。", "ทั้งสาม ID ใช้ชื่อญี่ปุ่นเดียวกัน; ยังไม่พบความต่างด้านการใช้งาน")]),
+    "0B": (loc("The ROM label specifies a 10-fish basket; its capacity check has not yet been traced.", "ROM名は10匹用のびく。容量判定は未追跡。", "ชื่อใน ROM ระบุว่าเป็นกระชัง 10 ตัว; ยังไม่ได้ถอดโค้ดตรวจความจุ"), []),
+    "0C": (loc("The ROM label specifies a 20-fish basket; its capacity check has not yet been traced.", "ROM名は20匹用のびく。容量判定は未追跡。", "ชื่อใน ROM ระบุว่าเป็นกระชัง 20 ตัว; ยังไม่ได้ถอดโค้ดตรวจความจุ"), []),
+    "0D": (loc("The ROM label specifies a 30-fish basket; its capacity check has not yet been traced.", "ROM名は30匹用のびく。容量判定は未追跡。", "ชื่อใน ROM ระบุว่าเป็นกระชัง 30 ตัว; ยังไม่ได้ถอดโค้ดตรวจความจุ"), []),
     "0E": (loc("A magnet inventory item.", "磁石のアイテム。", "ไอเท็มแม่เหล็ก"), []),
-    "0F": (loc("Milk-bottle quest item.", "牛乳ビンのクエストアイテム。", "ขวดนมสำหรับเควสต์"), []),
-    "10": (loc("Milk quest item.", "牛乳のクエストアイテム。", "นมสำหรับเควสต์"), []),
     "11": (loc("Lottery ticket; the prize result is not decoded.", "富くじ。賞品の内容は未解明。", "สลาก; ยังไม่พบผลรางวัล"), []),
-    "12": (loc("Candle event item.", "ロウソクのイベントアイテム。", "เทียนสำหรับเหตุการณ์เนื้อเรื่อง"), []),
-    "13": (loc("Stereo sound setting; not fishing tackle.", "ステレオ音声設定。釣り道具ではない。", "ตั้งค่าเสียงสเตอริโอ ไม่ใช่อุปกรณ์ตกปลา"), []),
-    "14": (loc("Monaural sound setting; not fishing tackle.", "モノラル音声設定。釣り道具ではない。", "ตั้งค่าเสียงโมโน ไม่ใช่อุปกรณ์ตกปลา"), []),
-    "15": (loc("Fried-tofu event item.", "油揚げのイベントアイテム。", "เต้าหู้ทอดสำหรับเหตุการณ์เนื้อเรื่อง"), []),
-    "16": (loc("Fireworks event item.", "花火のイベントアイテム。", "ดอกไม้ไฟสำหรับเหตุการณ์เนื้อเรื่อง"), []),
-    "17": (loc("Key item; its use depends on the event.", "カギのアイテム。使う場面はイベントによる。", "ไอเท็มกุญแจ; ใช้ตามเหตุการณ์ในเกม"), []),
+    "13": (loc("Menu label: stereo. The setting handler has not yet been traced.", "メニュー名はステレオ。設定処理は未追跡。", "ชื่อเมนูคือสเตอริโอ; ยังไม่ได้ถอดโค้ดการตั้งค่า"), []),
+    "14": (loc("Menu label: monaural. The setting handler has not yet been traced.", "メニュー名はモノラル。設定処理は未追跡。", "ชื่อเมนูคือโมโน; ยังไม่ได้ถอดโค้ดการตั้งค่า"), []),
 }
 
 
@@ -471,9 +459,9 @@ def build():
                 entry["facts"]["ja"].append("ROMは毛バリ準備時にも固定の目印ID08を読み込む。")
                 entry["facts"]["th"].append("ROM ยังโหลดเครื่องหมาย ID 08 นี้เป็นเครื่องหมายประจำตอนเตรียมฟลายด้วย")
             entry["evidenceNotes"] = loc_lists(
-                ["Float IDs 01–08 select the float-equipped bait route; sinker IDs 09–0A select a separate route with an added fish-profile flag check. The manual says sinker weights can help casting distance; the numeric weight/depth effect was not measured."],
-                ["ウキID01–08はウキ付きエサ釣り経路、おもりID09–0Aは魚プロフィール追加フラグを確認する別経路。説明書はおもりで飛距離を伸ばすとするが、数値の重さ・深さ効果は未測定。"],
-                ["ทุ่น ID 01–08 เข้าชุดเหยื่อติดทุ่น; ตะกั่ว ID 09–0A เข้าเส้นทางแยกที่ตรวจแฟล็กปลาเพิ่ม คู่มือบอกว่าตะกั่วช่วยตีได้ไกลขึ้น แต่ยังไม่ได้วัดผลเชิงตัวเลขเรื่องน้ำหนักหรือความลึก"],
+                ["Float IDs 01–08 select the float-equipped bait route; sinker IDs 09–0A select a separate route with an added fish-profile flag check."],
+                ["ウキID01–08はウキ付きエサ釣り経路、おもりID09–0Aは魚プロフィール追加フラグを確認する別経路。"],
+                ["ทุ่น ID 01–08 เข้าชุดเหยื่อติดทุ่น; ตะกั่ว ID 09–0A เข้าเส้นทางแยกที่ตรวจแฟล็กปลาเพิ่ม"],
             )
 
         elif category == "food":
@@ -519,7 +507,7 @@ def build():
                 )
 
         elif category == "general_tool":
-            summary, facts = GENERAL_TOOL_COPY[item_id]
+            summary, facts = GENERAL_TOOL_COPY.get(item_id, (loc("This item is present in the game; its actual use has not yet been traced in ROM code.", "ゲーム内のアイテム。用途を決めるROMコードはまだ未解読。", "มีไอเท็มนี้ในเกม แต่ยังไม่ได้ถอดโค้ดที่ยืนยันว่ามันใช้ทำอะไร"), []))
             entry["summary"] = summary
             entry["facts"] = {lang: [fact[lang] for fact in facts] for lang in ("en", "ja", "th")}
 
@@ -564,13 +552,12 @@ def build():
         elif category == "food":
             entry["evidence"] = {"type": "controlled_runtime_observation", "sources": ["data/food-effects-confirmed.json"]}
         elif category == "general_tool":
-            guide_ids = {"01", "02", "03", "05", "07", "0F", "10", "15", "16", "17"}
+            unresolved_ids = {"01", "02", "03", "05", "07", "0F", "10", "15", "16", "17"}
             event_ids = {"06", "12", "15", "16", "17"}
-            if item_id in guide_ids:
-                kind = "player_guide_report"
-                sources = ["catalogue/gallery-data.json", "data/stages/stages-2-3.json"] if item_id == "01" else ["catalogue/gallery-data.json"]
+            if item_id in unresolved_ids:
+                kind, sources = "rom_use_unresolved", ["data/items-rom.json"]
             elif item_id in event_ids:
-                kind, sources = "player_guide_report", ["catalogue/gallery-data.json"]
+                kind, sources = "rom_use_unresolved", ["data/items-rom.json"]
             elif item_id in {"0B", "0C", "0D", "13", "14"}:
                 kind, sources = "in_game_label_or_menu_name", ["catalogue/gallery-data.json"]
             else:
@@ -582,14 +569,25 @@ def build():
         if entry.get("displayNameSource"):
             entry["evidence"]["displayNameType"] = "editorial_translation_or_clarification"
 
+        # The owner's ROM-only requirement excludes guide-reported item purposes.
+        if entry.get("evidence", {}).get("type") in {"player_guide_report", "rom_use_unresolved"}:
+            entry["summary"] = loc(
+                "This item is present in the game; its actual use has not yet been traced in ROM code.",
+                "ゲーム内のアイテム。用途を決めるROMコードはまだ追跡できていない。",
+                "มีไอเท็มนี้ในเกม แต่ยังไม่ได้ถอดโค้ดที่ยืนยันว่ามันใช้ทำอะไร",
+            )
+            entry["facts"] = loc_lists()
+            entry["evidenceNotes"] = loc_lists()
+            entry["evidence"] = {"type": "rom_use_unresolved", "sources": ["data/items-rom.json"]}
+
         item_data[key(category, item_id)] = entry
 
     output = {
         "schema_version": 1,
         "scope": loc(
-            "Player-facing notes cite ROM traces, controlled runtime observations, player-guide reports, or item labels per item. Fish lists describe only the check named in that item's fishScope.",
-            "道具ごとにROM追跡・実行時確認・プレイヤーガイド・アイテム名を区別した用途メモ。魚リストの意味は各アイテムのfishScopeを参照。",
-            "คำอธิบายนี้แยกที่มารายชิ้นว่าเป็นการแกะ ROM การทดสอบในเกม คู่มือผู้เล่น หรือแปลจากชื่อไอเท็ม; รายชื่อปลาแสดงเฉพาะเงื่อนไขที่ระบุใน fishScope",
+            "Player-facing notes use ROM traces, controlled observations of the supplied game, and decoded item labels only. Guide-reported uses are excluded. Fish lists describe only the check named in that item's fishScope.",
+            "ROM追跡・提供されたゲームの実行時確認・復号したアイテム名のみを使用。プレイヤーガイドの用途は除外。魚リストの意味は各アイテムのfishScopeを参照。",
+            "คำอธิบายใช้เฉพาะการแกะ ROM การสังเกตเกมจากไฟล์ที่ให้มา และชื่อไอเท็มที่ถอดได้ โดยตัดการใช้งานจากไกด์ออก; รายชื่อปลาแสดงเฉพาะเงื่อนไขที่ระบุใน fishScope",
         ),
         "sources": [
             "data/fish-acceptance.json",

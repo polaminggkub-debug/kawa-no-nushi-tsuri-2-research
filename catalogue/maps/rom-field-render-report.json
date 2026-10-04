@@ -1,0 +1,97 @@
+{
+  "romSha1": "c2103dd94e2a1a65a495fc02adc2e7d040f31212",
+  "coreSha256": "8ed333ac04544cc6ab67ceb445d095f7600bb17586d4887d99117fbd1ef776f6",
+  "method": "Original ROM area-cycle transition with forced blank/NMI disable, field loader and decoded VRAM/PPU terrain; sprites omitted",
+  "maps": [
+    {
+      "stage": 1,
+      "image": "rom-field-01.png",
+      "width": 256,
+      "height": 4096,
+      "tileWidth": 16,
+      "tileHeight": 256,
+      "sha256": "0b99c38d534d2524edc7de4738993d01a511d653c71a3a9f80182a95add5323a",
+      "projection": {
+        "scaleX": 16,
+        "scaleY": 16,
+        "offsetX": 8,
+        "offsetY": 8
+      }
+    },
+    {
+      "stage": 2,
+      "image": "rom-field-02.png",
+      "width": 2048,
+      "height": 512,
+      "tileWidth": 128,
+      "tileHeight": 32,
+      "sha256": "ad87dbbec53bac1f29ec67f35f50e4fdcd13eb5c0ece41ccbbe29a22a7d0f458",
+      "projection": {
+        "scaleX": 16,
+        "scaleY": 16,
+        "offsetX": 8,
+        "offsetY": 8
+      }
+    },
+    {
+      "stage": 3,
+      "image": "rom-field-03.png",
+      "width": 512,
+      "height": 2048,
+      "tileWidth": 32,
+      "tileHeight": 128,
+      "sha256": "e7582237ed926f1bab15e16d2046a865557bf4331a26c6f214143f4deda59220",
+      "projection": {
+        "scaleX": 16,
+        "scaleY": 16,
+        "offsetX": 8,
+        "offsetY": 8
+      }
+    },
+    {
+      "stage": 4,
+      "image": "rom-field-04.png",
+      "width": 1024,
+      "height": 1024,
+      "tileWidth": 64,
+      "tileHeight": 64,
+      "sha256": "72c00fa47aa2760e933982e69be718cf1ec5e280196e6170e9b36eccd3b04e30",
+      "projection": {
+        "scaleX": 16,
+        "scaleY": 16,
+        "offsetX": 8,
+        "offsetY": 8
+      }
+    },
+    {
+      "stage": 5,
+      "image": "rom-field-05.png",
+      "width": 2048,
+      "height": 512,
+      "tileWidth": 128,
+      "tileHeight": 32,
+      "sha256": "e501dcebe821e2bb11abfbfcf89dc30a432a735193052169e8df7252b81296bf",
+      "projection": {
+        "scaleX": 16,
+        "scaleY": 16,
+        "offsetX": 8,
+        "offsetY": 8
+      }
+    },
+    {
+      "stage": 6,
+      "image": "rom-field-06.png",
+      "width": 1024,
+      "height": 1024,
+      "tileWidth": 64,
+      "tileHeight": 64,
+      "sha256": "b707cf9221b409d026a18599f99b000c6f5737dda7703e7363b02264bb092e03",
+      "projection": {
+        "scaleX": 16,
+        "scaleY": 16,
+        "offsetX": 8,
+        "offsetY": 8
+      }
+    }
+  ]
+}

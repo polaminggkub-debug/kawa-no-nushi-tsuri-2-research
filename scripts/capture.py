@@ -94,9 +94,19 @@ for step in req.get('steps',[]):
   vals=value if isinstance(value,list) else [value]
   for j,v in enumerate(vals):ram[int(str(address),0)+j]=v
  buttons=set(step.get('buttons',[]))
- for i in range(step.get('frames',1)):core.retro_run()
+ condition=step.get('until')
+ limit=int(condition.get('maxFrames',240)) if condition else int(step.get('frames',1))
+ reached=False
+ for i in range(limit):
+  core.retro_run()
+  if condition:
+   address=int(str(condition['address']),0);width=int(condition.get('size',2))
+   if int.from_bytes(bytes(ram[address:address+width]),'little')==int(condition['equals']):
+    reached=True;break
+ if condition and not reached:raise RuntimeError(f'WRAM condition not reached after {limit} frames: {condition}')
  if step.get('image') and latest:latest.save(output_path(step['image']))
-buttons=set();core.retro_run()
+buttons=set()
+if not req.get("freezeAfterSteps",False):core.retro_run()
 size=core.retro_serialize_size();buf=C.create_string_buffer(size);assert core.retro_serialize(buf,size);state.write_bytes(buf.raw)
 (HERE/'wram.bin').write_bytes(bytes(ram))
 if req.get('image') and latest:latest.save(output_path(req['image']))

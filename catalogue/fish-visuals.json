@@ -4,8 +4,8 @@
     "sha1": "c2103dd94e2a1a65a495fc02adc2e7d040f31212",
     "sizeBytes": 1572864
   },
-  "scope": "All 73 ROM fish-profile rows keyed by profile ID: 72 rows with decoded Japanese names and one unresolved 0x0C glyph row. Image matches use exact Japanese-name equality between ROM profiles and existing project capture provenance.",
-  "imageNote": "The included images are crops of fish pictures shown in gameplay captures, not graphics extracted from the ROM. Each non-null image links to its source video/post, local source frame, and crop rectangle.",
+  "scope": "The ROM contains 73 fish-profile IDs. Sprite assets are extracted directly from the original Japanese ROM for the 72 profiles with a decoded species name; profile 0x43 remains unassigned because its ROM name glyph is unresolved.",
+  "imageNote": "Each image is the first native 128x64 sprite frame decoded from the original Japanese ROM's per-profile graphics, using its normal 16-color BGR555 palette. These are sprite extractions, not screenshots or exact reproductions of the fish-record page.",
   "fish": {
     "01": {
       "nameJa": "イワナ",
@@ -14,19 +14,47 @@
       "nameLatinVariants": [],
       "nameTh": "อิวานะ",
       "nameThVariants": [],
-      "image": "fish/01.png",
+      "image": "fish/rom-01.png",
       "imageSource": {
-        "sourceUrl": "https://www.youtube.com/watch?v=Y8JKlgIV91c&t=29s",
-        "sourceFrame": "references/all-fish-frames/frame-0030.png",
-        "cropPx": [
-          584,
-          110,
-          1020,
-          350
-        ],
-        "sourceCropFile": "guides-real/fish/fish-030.png",
-        "description": "Crop of the in-game fish picture shown in a player gameplay/catch-record capture; this is not a sprite extracted directly from the ROM.",
-        "videoFrameNumber": 30
+        "type": "rom_extracted_sprite",
+        "romSha1": "c2103dd94e2a1a65a495fc02adc2e7d040f31212",
+        "profileId": "01",
+        "graphicsTable": {
+          "cpuAddress": "04:BB0C",
+          "fileOffset": "0x023B0C",
+          "rowFileOffset": "0x023B0C",
+          "rowStrideBytes": 8,
+          "startPointer": "14:9F9F",
+          "startFileOffset": "0x0A1F9F",
+          "secondPointer": "14:A95D",
+          "secondPointerFileOffset": "0x0A295D",
+          "firstStreamBoundary": {
+            "fileOffset": "0x0A295D",
+            "meaning": "second animation stream pointer; exclusive input bound for decoding the first stream"
+          },
+          "firstStreamBytesConsumed": 2494,
+          "firstStreamCompressedEndFileOffset": "0x0A295D"
+        },
+        "decodedFrame": {
+          "frameIndex": 0,
+          "frameSizePixels": [
+            128,
+            64
+          ],
+          "sourceFrameCount": 2,
+          "format": "SNES 4bpp planar 8x8 tiles; 16 columns by 8 rows",
+          "orientation": "native ROM sprite orientation; no horizontal flip",
+          "transparentColorIndex": 0
+        },
+        "palette": {
+          "cpuAddress": "07:E200",
+          "fileOffset": "0x03E200",
+          "bytesPerProfile": 64,
+          "format": "BGR555",
+          "selectedColors": "first 16 colors (normal sprite path)",
+          "transparentColorIndex": 0
+        },
+        "description": "First 128x64 sprite frame decoded from this fish profile's original-ROM graphics. This is a sprite extraction, not a screenshot or a reconstruction of the fish-record page."
       },
       "noImageReason": null,
       "nameSource": {
@@ -45,19 +73,47 @@
       "nameLatinVariants": [],
       "nameTh": "ปลาอาเมะมาสุ",
       "nameThVariants": [],
-      "image": "fish/02.png",
+      "image": "fish/rom-02.png",
       "imageSource": {
-        "sourceUrl": "https://www.youtube.com/watch?v=Y8JKlgIV91c&t=59s",
-        "sourceFrame": "references/all-fish-frames/frame-0060.png",
-        "cropPx": [
-          584,
-          110,
-          1020,
-          350
-        ],
-        "sourceCropFile": "guides-real/fish/fish-060.png",
-        "description": "Crop of the in-game fish picture shown in a player gameplay/catch-record capture; this is not a sprite extracted directly from the ROM.",
-        "videoFrameNumber": 60
+        "type": "rom_extracted_sprite",
+        "romSha1": "c2103dd94e2a1a65a495fc02adc2e7d040f31212",
+        "profileId": "02",
+        "graphicsTable": {
+          "cpuAddress": "04:BB0C",
+          "fileOffset": "0x023B0C",
+          "rowFileOffset": "0x023B14",
+          "rowStrideBytes": 8,
+          "startPointer": "14:AE19",
+          "startFileOffset": "0x0A2E19",
+          "secondPointer": "14:BAFE",
+          "secondPointerFileOffset": "0x0A3AFE",
+          "firstStreamBoundary": {
+            "fileOffset": "0x0A3AFE",
+            "meaning": "second animation stream pointer; exclusive input bound for decoding the first stream"
+          },
+          "firstStreamBytesConsumed": 3301,
+          "firstStreamCompressedEndFileOffset": "0x0A3AFE"
+        },
+        "decodedFrame": {
+          "frameIndex": 0,
+          "frameSizePixels": [
+            128,
+            64
+          ],
+          "sourceFrameCount": 2,
+          "format": "SNES 4bpp planar 8x8 tiles; 16 columns by 8 rows",
+          "orientation": "native ROM sprite orientation; no horizontal flip",
+          "transparentColorIndex": 0
+        },
+        "palette": {
+          "cpuAddress": "07:E240",
+          "fileOffset": "0x03E240",
+          "bytesPerProfile": 64,
+          "format": "BGR555",
+          "selectedColors": "first 16 colors (normal sprite path)",
+          "transparentColorIndex": 0
+        },
+        "description": "First 128x64 sprite frame decoded from this fish profile's original-ROM graphics. This is a sprite extraction, not a screenshot or a reconstruction of the fish-record page."
       },
       "noImageReason": null,
       "nameSource": {
@@ -76,19 +132,47 @@
       "nameLatinVariants": [],
       "nameTh": "ยามาเมะ",
       "nameThVariants": [],
-      "image": "fish/03.png",
+      "image": "fish/rom-03.png",
       "imageSource": {
-        "sourceUrl": "https://www.youtube.com/watch?v=Y8JKlgIV91c&t=33s",
-        "sourceFrame": "references/all-fish-frames/frame-0034.png",
-        "cropPx": [
-          584,
-          110,
-          1020,
-          350
-        ],
-        "sourceCropFile": "guides-real/fish/fish-034.png",
-        "description": "Crop of the in-game fish picture shown in a player gameplay/catch-record capture; this is not a sprite extracted directly from the ROM.",
-        "videoFrameNumber": 34
+        "type": "rom_extracted_sprite",
+        "romSha1": "c2103dd94e2a1a65a495fc02adc2e7d040f31212",
+        "profileId": "03",
+        "graphicsTable": {
+          "cpuAddress": "04:BB0C",
+          "fileOffset": "0x023B0C",
+          "rowFileOffset": "0x023B1C",
+          "rowStrideBytes": 8,
+          "startPointer": "14:C109",
+          "startFileOffset": "0x0A4109",
+          "secondPointer": "14:CB3E",
+          "secondPointerFileOffset": "0x0A4B3E",
+          "firstStreamBoundary": {
+            "fileOffset": "0x0A4B3E",
+            "meaning": "second animation stream pointer; exclusive input bound for decoding the first stream"
+          },
+          "firstStreamBytesConsumed": 2613,
+          "firstStreamCompressedEndFileOffset": "0x0A4B3E"
+        },
+        "decodedFrame": {
+          "frameIndex": 0,
+          "frameSizePixels": [
+            128,
+            64
+          ],
+          "sourceFrameCount": 2,
+          "format": "SNES 4bpp planar 8x8 tiles; 16 columns by 8 rows",
+          "orientation": "native ROM sprite orientation; no horizontal flip",
+          "transparentColorIndex": 0
+        },
+        "palette": {
+          "cpuAddress": "07:E280",
+          "fileOffset": "0x03E280",
+          "bytesPerProfile": 64,
+          "format": "BGR555",
+          "selectedColors": "first 16 colors (normal sprite path)",
+          "transparentColorIndex": 0
+        },
+        "description": "First 128x64 sprite frame decoded from this fish profile's original-ROM graphics. This is a sprite extraction, not a screenshot or a reconstruction of the fish-record page."
       },
       "noImageReason": null,
       "nameSource": {
@@ -107,19 +191,47 @@
       "nameLatinVariants": [],
       "nameTh": "อามาโกะ",
       "nameThVariants": [],
-      "image": "fish/04.png",
+      "image": "fish/rom-04.png",
       "imageSource": {
-        "sourceUrl": "https://www.youtube.com/watch?v=Y8JKlgIV91c&t=39s",
-        "sourceFrame": "references/all-fish-frames/frame-0040.png",
-        "cropPx": [
-          584,
-          110,
-          1020,
-          350
-        ],
-        "sourceCropFile": "guides-real/fish/fish-040.png",
-        "description": "Crop of the in-game fish picture shown in a player gameplay/catch-record capture; this is not a sprite extracted directly from the ROM.",
-        "videoFrameNumber": 40
+        "type": "rom_extracted_sprite",
+        "romSha1": "c2103dd94e2a1a65a495fc02adc2e7d040f31212",
+        "profileId": "04",
+        "graphicsTable": {
+          "cpuAddress": "04:BB0C",
+          "fileOffset": "0x023B0C",
+          "rowFileOffset": "0x023B24",
+          "rowStrideBytes": 8,
+          "startPointer": "14:D009",
+          "startFileOffset": "0x0A5009",
+          "secondPointer": "14:D8C2",
+          "secondPointerFileOffset": "0x0A58C2",
+          "firstStreamBoundary": {
+            "fileOffset": "0x0A58C2",
+            "meaning": "second animation stream pointer; exclusive input bound for decoding the first stream"
+          },
+          "firstStreamBytesConsumed": 2233,
+          "firstStreamCompressedEndFileOffset": "0x0A58C2"
+        },
+        "decodedFrame": {
+          "frameIndex": 0,
+          "frameSizePixels": [
+            128,
+            64
+          ],
+          "sourceFrameCount": 2,
+          "format": "SNES 4bpp planar 8x8 tiles; 16 columns by 8 rows",
+          "orientation": "native ROM sprite orientation; no horizontal flip",
+          "transparentColorIndex": 0
+        },
+        "palette": {
+          "cpuAddress": "07:E2C0",
+          "fileOffset": "0x03E2C0",
+          "bytesPerProfile": 64,
+          "format": "BGR555",
+          "selectedColors": "first 16 colors (normal sprite path)",
+          "transparentColorIndex": 0
+        },
+        "description": "First 128x64 sprite frame decoded from this fish profile's original-ROM graphics. This is a sprite extraction, not a screenshot or a reconstruction of the fish-record page."
       },
       "noImageReason": null,
       "nameSource": {
@@ -138,19 +250,47 @@
       "nameLatinVariants": [],
       "nameTh": "ปลาคาจิกะ",
       "nameThVariants": [],
-      "image": "fish/05.png",
+      "image": "fish/rom-05.png",
       "imageSource": {
-        "sourceUrl": "https://www.youtube.com/watch?v=Y8JKlgIV91c&t=97s",
-        "sourceFrame": "references/all-fish-frames/frame-0098.png",
-        "cropPx": [
-          584,
-          110,
-          1020,
-          350
-        ],
-        "sourceCropFile": "guides-real/fish/fish-098.png",
-        "description": "Crop of the in-game fish picture shown in a player gameplay/catch-record capture; this is not a sprite extracted directly from the ROM.",
-        "videoFrameNumber": 98
+        "type": "rom_extracted_sprite",
+        "romSha1": "c2103dd94e2a1a65a495fc02adc2e7d040f31212",
+        "profileId": "05",
+        "graphicsTable": {
+          "cpuAddress": "04:BB0C",
+          "fileOffset": "0x023B0C",
+          "rowFileOffset": "0x023B2C",
+          "rowStrideBytes": 8,
+          "startPointer": "14:DCFD",
+          "startFileOffset": "0x0A5CFD",
+          "secondPointer": "14:E5F6",
+          "secondPointerFileOffset": "0x0A65F6",
+          "firstStreamBoundary": {
+            "fileOffset": "0x0A65F6",
+            "meaning": "second animation stream pointer; exclusive input bound for decoding the first stream"
+          },
+          "firstStreamBytesConsumed": 2297,
+          "firstStreamCompressedEndFileOffset": "0x0A65F6"
+        },
+        "decodedFrame": {
+          "frameIndex": 0,
+          "frameSizePixels": [
+            128,
+            64
+          ],
+          "sourceFrameCount": 2,
+          "format": "SNES 4bpp planar 8x8 tiles; 16 columns by 8 rows",
+          "orientation": "native ROM sprite orientation; no horizontal flip",
+          "transparentColorIndex": 0
+        },
+        "palette": {
+          "cpuAddress": "07:E300",
+          "fileOffset": "0x03E300",
+          "bytesPerProfile": 64,
+          "format": "BGR555",
+          "selectedColors": "first 16 colors (normal sprite path)",
+          "transparentColorIndex": 0
+        },
+        "description": "First 128x64 sprite frame decoded from this fish profile's original-ROM graphics. This is a sprite extraction, not a screenshot or a reconstruction of the fish-record page."
       },
       "noImageReason": null,
       "nameSource": {
@@ -175,19 +315,47 @@
         "นิจิมาสุ",
         "ปลาเรนโบว์เทราต์"
       ],
-      "image": "fish/06.png",
+      "image": "fish/rom-06.png",
       "imageSource": {
-        "sourceUrl": "https://www.youtube.com/watch?v=Y8JKlgIV91c&t=74s",
-        "sourceFrame": "references/all-fish-frames/frame-0075.png",
-        "cropPx": [
-          584,
-          110,
-          1020,
-          350
-        ],
-        "sourceCropFile": "guides-real/fish/fish-075.png",
-        "description": "Crop of the in-game fish picture shown in a player gameplay/catch-record capture; this is not a sprite extracted directly from the ROM.",
-        "videoFrameNumber": 75
+        "type": "rom_extracted_sprite",
+        "romSha1": "c2103dd94e2a1a65a495fc02adc2e7d040f31212",
+        "profileId": "06",
+        "graphicsTable": {
+          "cpuAddress": "04:BB0C",
+          "fileOffset": "0x023B0C",
+          "rowFileOffset": "0x023B34",
+          "rowStrideBytes": 8,
+          "startPointer": "14:EA95",
+          "startFileOffset": "0x0A6A95",
+          "secondPointer": "14:F7EA",
+          "secondPointerFileOffset": "0x0A77EA",
+          "firstStreamBoundary": {
+            "fileOffset": "0x0A77EA",
+            "meaning": "second animation stream pointer; exclusive input bound for decoding the first stream"
+          },
+          "firstStreamBytesConsumed": 3413,
+          "firstStreamCompressedEndFileOffset": "0x0A77EA"
+        },
+        "decodedFrame": {
+          "frameIndex": 0,
+          "frameSizePixels": [
+            128,
+            64
+          ],
+          "sourceFrameCount": 2,
+          "format": "SNES 4bpp planar 8x8 tiles; 16 columns by 8 rows",
+          "orientation": "native ROM sprite orientation; no horizontal flip",
+          "transparentColorIndex": 0
+        },
+        "palette": {
+          "cpuAddress": "07:E340",
+          "fileOffset": "0x03E340",
+          "bytesPerProfile": 64,
+          "format": "BGR555",
+          "selectedColors": "first 16 colors (normal sprite path)",
+          "transparentColorIndex": 0
+        },
+        "description": "First 128x64 sprite frame decoded from this fish profile's original-ROM graphics. This is a sprite extraction, not a screenshot or a reconstruction of the fish-record page."
       },
       "noImageReason": null,
       "nameSource": {
@@ -207,19 +375,47 @@
       "nameLatinVariants": [],
       "nameTh": "ปลาฮิเมะมาสุ",
       "nameThVariants": [],
-      "image": "fish/07.png",
+      "image": "fish/rom-07.png",
       "imageSource": {
-        "sourceUrl": "https://www.youtube.com/watch?v=Y8JKlgIV91c&t=62s",
-        "sourceFrame": "references/all-fish-frames/frame-0063.png",
-        "cropPx": [
-          584,
-          110,
-          1020,
-          350
-        ],
-        "sourceCropFile": "guides-real/fish/fish-063.png",
-        "description": "Crop of the in-game fish picture shown in a player gameplay/catch-record capture; this is not a sprite extracted directly from the ROM.",
-        "videoFrameNumber": 63
+        "type": "rom_extracted_sprite",
+        "romSha1": "c2103dd94e2a1a65a495fc02adc2e7d040f31212",
+        "profileId": "07",
+        "graphicsTable": {
+          "cpuAddress": "04:BB0C",
+          "fileOffset": "0x023B0C",
+          "rowFileOffset": "0x023B3C",
+          "rowStrideBytes": 8,
+          "startPointer": "14:FD61",
+          "startFileOffset": "0x0A7D61",
+          "secondPointer": "15:8646",
+          "secondPointerFileOffset": "0x0A8646",
+          "firstStreamBoundary": {
+            "fileOffset": "0x0A8646",
+            "meaning": "second animation stream pointer; exclusive input bound for decoding the first stream"
+          },
+          "firstStreamBytesConsumed": 2277,
+          "firstStreamCompressedEndFileOffset": "0x0A8646"
+        },
+        "decodedFrame": {
+          "frameIndex": 0,
+          "frameSizePixels": [
+            128,
+            64
+          ],
+          "sourceFrameCount": 2,
+          "format": "SNES 4bpp planar 8x8 tiles; 16 columns by 8 rows",
+          "orientation": "native ROM sprite orientation; no horizontal flip",
+          "transparentColorIndex": 0
+        },
+        "palette": {
+          "cpuAddress": "07:E380",
+          "fileOffset": "0x03E380",
+          "bytesPerProfile": 64,
+          "format": "BGR555",
+          "selectedColors": "first 16 colors (normal sprite path)",
+          "transparentColorIndex": 0
+        },
+        "description": "First 128x64 sprite frame decoded from this fish profile's original-ROM graphics. This is a sprite extraction, not a screenshot or a reconstruction of the fish-record page."
       },
       "noImageReason": null,
       "nameSource": {
@@ -238,19 +434,47 @@
       "nameLatinVariants": [],
       "nameTh": "บราวน์เทราต์",
       "nameThVariants": [],
-      "image": "fish/08.png",
+      "image": "fish/rom-08.png",
       "imageSource": {
-        "sourceUrl": "https://www.youtube.com/watch?v=Y8JKlgIV91c&t=94s",
-        "sourceFrame": "references/all-fish-frames/frame-0095.png",
-        "cropPx": [
-          584,
-          110,
-          1020,
-          350
-        ],
-        "sourceCropFile": "guides-real/fish/fish-095.png",
-        "description": "Crop of the in-game fish picture shown in a player gameplay/catch-record capture; this is not a sprite extracted directly from the ROM.",
-        "videoFrameNumber": 95
+        "type": "rom_extracted_sprite",
+        "romSha1": "c2103dd94e2a1a65a495fc02adc2e7d040f31212",
+        "profileId": "08",
+        "graphicsTable": {
+          "cpuAddress": "04:BB0C",
+          "fileOffset": "0x023B0C",
+          "rowFileOffset": "0x023B44",
+          "rowStrideBytes": 8,
+          "startPointer": "15:8AB3",
+          "startFileOffset": "0x0A8AB3",
+          "secondPointer": "15:9531",
+          "secondPointerFileOffset": "0x0A9531",
+          "firstStreamBoundary": {
+            "fileOffset": "0x0A9531",
+            "meaning": "second animation stream pointer; exclusive input bound for decoding the first stream"
+          },
+          "firstStreamBytesConsumed": 2686,
+          "firstStreamCompressedEndFileOffset": "0x0A9531"
+        },
+        "decodedFrame": {
+          "frameIndex": 0,
+          "frameSizePixels": [
+            128,
+            64
+          ],
+          "sourceFrameCount": 2,
+          "format": "SNES 4bpp planar 8x8 tiles; 16 columns by 8 rows",
+          "orientation": "native ROM sprite orientation; no horizontal flip",
+          "transparentColorIndex": 0
+        },
+        "palette": {
+          "cpuAddress": "07:E3C0",
+          "fileOffset": "0x03E3C0",
+          "bytesPerProfile": 64,
+          "format": "BGR555",
+          "selectedColors": "first 16 colors (normal sprite path)",
+          "transparentColorIndex": 0
+        },
+        "description": "First 128x64 sprite frame decoded from this fish profile's original-ROM graphics. This is a sprite extraction, not a screenshot or a reconstruction of the fish-record page."
       },
       "noImageReason": null,
       "nameSource": {
@@ -272,19 +496,47 @@
         "คาวามาสุ",
         "ปลาคาวะมาสุ"
       ],
-      "image": "fish/09.png",
+      "image": "fish/rom-09.png",
       "imageSource": {
-        "sourceUrl": "https://www.youtube.com/watch?v=Y8JKlgIV91c&t=26s",
-        "sourceFrame": "references/all-fish-frames/frame-0027.png",
-        "cropPx": [
-          584,
-          110,
-          1020,
-          350
-        ],
-        "sourceCropFile": "guides-real/fish/fish-027.png",
-        "description": "Crop of the in-game fish picture shown in a player gameplay/catch-record capture; this is not a sprite extracted directly from the ROM.",
-        "videoFrameNumber": 27
+        "type": "rom_extracted_sprite",
+        "romSha1": "c2103dd94e2a1a65a495fc02adc2e7d040f31212",
+        "profileId": "09",
+        "graphicsTable": {
+          "cpuAddress": "04:BB0C",
+          "fileOffset": "0x023B0C",
+          "rowFileOffset": "0x023B4C",
+          "rowStrideBytes": 8,
+          "startPointer": "15:9A9B",
+          "startFileOffset": "0x0A9A9B",
+          "secondPointer": "15:A672",
+          "secondPointerFileOffset": "0x0AA672",
+          "firstStreamBoundary": {
+            "fileOffset": "0x0AA672",
+            "meaning": "second animation stream pointer; exclusive input bound for decoding the first stream"
+          },
+          "firstStreamBytesConsumed": 3031,
+          "firstStreamCompressedEndFileOffset": "0x0AA672"
+        },
+        "decodedFrame": {
+          "frameIndex": 0,
+          "frameSizePixels": [
+            128,
+            64
+          ],
+          "sourceFrameCount": 2,
+          "format": "SNES 4bpp planar 8x8 tiles; 16 columns by 8 rows",
+          "orientation": "native ROM sprite orientation; no horizontal flip",
+          "transparentColorIndex": 0
+        },
+        "palette": {
+          "cpuAddress": "07:E400",
+          "fileOffset": "0x03E400",
+          "bytesPerProfile": 64,
+          "format": "BGR555",
+          "selectedColors": "first 16 colors (normal sprite path)",
+          "transparentColorIndex": 0
+        },
+        "description": "First 128x64 sprite frame decoded from this fish profile's original-ROM graphics. This is a sprite extraction, not a screenshot or a reconstruction of the fish-record page."
       },
       "noImageReason": null,
       "nameSource": {
@@ -308,19 +560,47 @@
         "วากาซากิ",
         "วากาซางิ"
       ],
-      "image": "fish/0A.png",
+      "image": "fish/rom-0A.png",
       "imageSource": {
-        "sourceUrl": "https://www.youtube.com/watch?v=Y8JKlgIV91c&t=239s",
-        "sourceFrame": "references/all-fish-frames/frame-0240.png",
-        "cropPx": [
-          584,
-          110,
-          1020,
-          350
-        ],
-        "sourceCropFile": "guides-real/fish/fish-240.png",
-        "description": "Crop of the in-game fish picture shown in a player gameplay/catch-record capture; this is not a sprite extracted directly from the ROM.",
-        "videoFrameNumber": 240
+        "type": "rom_extracted_sprite",
+        "romSha1": "c2103dd94e2a1a65a495fc02adc2e7d040f31212",
+        "profileId": "0A",
+        "graphicsTable": {
+          "cpuAddress": "04:BB0C",
+          "fileOffset": "0x023B0C",
+          "rowFileOffset": "0x023B54",
+          "rowStrideBytes": 8,
+          "startPointer": "15:ABDF",
+          "startFileOffset": "0x0AABDF",
+          "secondPointer": "15:B3CA",
+          "secondPointerFileOffset": "0x0AB3CA",
+          "firstStreamBoundary": {
+            "fileOffset": "0x0AB3CA",
+            "meaning": "second animation stream pointer; exclusive input bound for decoding the first stream"
+          },
+          "firstStreamBytesConsumed": 2027,
+          "firstStreamCompressedEndFileOffset": "0x0AB3CA"
+        },
+        "decodedFrame": {
+          "frameIndex": 0,
+          "frameSizePixels": [
+            128,
+            64
+          ],
+          "sourceFrameCount": 2,
+          "format": "SNES 4bpp planar 8x8 tiles; 16 columns by 8 rows",
+          "orientation": "native ROM sprite orientation; no horizontal flip",
+          "transparentColorIndex": 0
+        },
+        "palette": {
+          "cpuAddress": "07:E440",
+          "fileOffset": "0x03E440",
+          "bytesPerProfile": 64,
+          "format": "BGR555",
+          "selectedColors": "first 16 colors (normal sprite path)",
+          "transparentColorIndex": 0
+        },
+        "description": "First 128x64 sprite frame decoded from this fish profile's original-ROM graphics. This is a sprite extraction, not a screenshot or a reconstruction of the fish-record page."
       },
       "noImageReason": null,
       "nameSource": {
@@ -341,19 +621,47 @@
       "nameLatinVariants": [],
       "nameTh": "ปลาแบล็กแบส",
       "nameThVariants": [],
-      "image": "fish/0B.png",
+      "image": "fish/rom-0B.png",
       "imageSource": {
-        "sourceUrl": "https://www.youtube.com/watch?v=Y8JKlgIV91c&t=65s",
-        "sourceFrame": "references/all-fish-frames/frame-0066.png",
-        "cropPx": [
-          584,
-          110,
-          1020,
-          350
-        ],
-        "sourceCropFile": "guides-real/fish/fish-066.png",
-        "description": "Crop of the in-game fish picture shown in a player gameplay/catch-record capture; this is not a sprite extracted directly from the ROM.",
-        "videoFrameNumber": 66
+        "type": "rom_extracted_sprite",
+        "romSha1": "c2103dd94e2a1a65a495fc02adc2e7d040f31212",
+        "profileId": "0B",
+        "graphicsTable": {
+          "cpuAddress": "04:BB0C",
+          "fileOffset": "0x023B0C",
+          "rowFileOffset": "0x023B5C",
+          "rowStrideBytes": 8,
+          "startPointer": "15:B81E",
+          "startFileOffset": "0x0AB81E",
+          "secondPointer": "15:C57C",
+          "secondPointerFileOffset": "0x0AC57C",
+          "firstStreamBoundary": {
+            "fileOffset": "0x0AC57C",
+            "meaning": "second animation stream pointer; exclusive input bound for decoding the first stream"
+          },
+          "firstStreamBytesConsumed": 3422,
+          "firstStreamCompressedEndFileOffset": "0x0AC57C"
+        },
+        "decodedFrame": {
+          "frameIndex": 0,
+          "frameSizePixels": [
+            128,
+            64
+          ],
+          "sourceFrameCount": 2,
+          "format": "SNES 4bpp planar 8x8 tiles; 16 columns by 8 rows",
+          "orientation": "native ROM sprite orientation; no horizontal flip",
+          "transparentColorIndex": 0
+        },
+        "palette": {
+          "cpuAddress": "07:E480",
+          "fileOffset": "0x03E480",
+          "bytesPerProfile": 64,
+          "format": "BGR555",
+          "selectedColors": "first 16 colors (normal sprite path)",
+          "transparentColorIndex": 0
+        },
+        "description": "First 128x64 sprite frame decoded from this fish profile's original-ROM graphics. This is a sprite extraction, not a screenshot or a reconstruction of the fish-record page."
       },
       "noImageReason": null,
       "nameSource": {
@@ -375,19 +683,47 @@
         "ปลาอุไก",
         "อุไก"
       ],
-      "image": "fish/0C.png",
+      "image": "fish/rom-0C.png",
       "imageSource": {
-        "sourceUrl": "https://www.youtube.com/watch?v=Y8JKlgIV91c&t=207s",
-        "sourceFrame": "references/all-fish-frames/frame-0208.png",
-        "cropPx": [
-          584,
-          110,
-          1020,
-          350
-        ],
-        "sourceCropFile": "guides-real/fish/fish-208.png",
-        "description": "Crop of the in-game fish picture shown in a player gameplay/catch-record capture; this is not a sprite extracted directly from the ROM.",
-        "videoFrameNumber": 208
+        "type": "rom_extracted_sprite",
+        "romSha1": "c2103dd94e2a1a65a495fc02adc2e7d040f31212",
+        "profileId": "0C",
+        "graphicsTable": {
+          "cpuAddress": "04:BB0C",
+          "fileOffset": "0x023B0C",
+          "rowFileOffset": "0x023B64",
+          "rowStrideBytes": 8,
+          "startPointer": "15:CBC3",
+          "startFileOffset": "0x0ACBC3",
+          "secondPointer": "15:D4AC",
+          "secondPointerFileOffset": "0x0AD4AC",
+          "firstStreamBoundary": {
+            "fileOffset": "0x0AD4AC",
+            "meaning": "second animation stream pointer; exclusive input bound for decoding the first stream"
+          },
+          "firstStreamBytesConsumed": 2281,
+          "firstStreamCompressedEndFileOffset": "0x0AD4AC"
+        },
+        "decodedFrame": {
+          "frameIndex": 0,
+          "frameSizePixels": [
+            128,
+            64
+          ],
+          "sourceFrameCount": 2,
+          "format": "SNES 4bpp planar 8x8 tiles; 16 columns by 8 rows",
+          "orientation": "native ROM sprite orientation; no horizontal flip",
+          "transparentColorIndex": 0
+        },
+        "palette": {
+          "cpuAddress": "07:E4C0",
+          "fileOffset": "0x03E4C0",
+          "bytesPerProfile": 64,
+          "format": "BGR555",
+          "selectedColors": "first 16 colors (normal sprite path)",
+          "transparentColorIndex": 0
+        },
+        "description": "First 128x64 sprite frame decoded from this fish profile's original-ROM graphics. This is a sprite extraction, not a screenshot or a reconstruction of the fish-record page."
       },
       "noImageReason": null,
       "nameSource": {
@@ -410,19 +746,47 @@
         "ปลาคาร์ป",
         "โคอิ"
       ],
-      "image": "fish/0D.png",
+      "image": "fish/rom-0D.png",
       "imageSource": {
-        "sourceUrl": "https://www.youtube.com/watch?v=Y8JKlgIV91c&t=263s",
-        "sourceFrame": "references/all-fish-frames/frame-0264.png",
-        "cropPx": [
-          584,
-          110,
-          1020,
-          350
-        ],
-        "sourceCropFile": "guides-real/fish/fish-264.png",
-        "description": "Crop of the in-game fish picture shown in a player gameplay/catch-record capture; this is not a sprite extracted directly from the ROM.",
-        "videoFrameNumber": 264
+        "type": "rom_extracted_sprite",
+        "romSha1": "c2103dd94e2a1a65a495fc02adc2e7d040f31212",
+        "profileId": "0D",
+        "graphicsTable": {
+          "cpuAddress": "04:BB0C",
+          "fileOffset": "0x023B0C",
+          "rowFileOffset": "0x023B6C",
+          "rowStrideBytes": 8,
+          "startPointer": "15:D8CD",
+          "startFileOffset": "0x0AD8CD",
+          "secondPointer": "15:E86B",
+          "secondPointerFileOffset": "0x0AE86B",
+          "firstStreamBoundary": {
+            "fileOffset": "0x0AE86B",
+            "meaning": "second animation stream pointer; exclusive input bound for decoding the first stream"
+          },
+          "firstStreamBytesConsumed": 3998,
+          "firstStreamCompressedEndFileOffset": "0x0AE86B"
+        },
+        "decodedFrame": {
+          "frameIndex": 0,
+          "frameSizePixels": [
+            128,
+            64
+          ],
+          "sourceFrameCount": 2,
+          "format": "SNES 4bpp planar 8x8 tiles; 16 columns by 8 rows",
+          "orientation": "native ROM sprite orientation; no horizontal flip",
+          "transparentColorIndex": 0
+        },
+        "palette": {
+          "cpuAddress": "07:E500",
+          "fileOffset": "0x03E500",
+          "bytesPerProfile": 64,
+          "format": "BGR555",
+          "selectedColors": "first 16 colors (normal sprite path)",
+          "transparentColorIndex": 0
+        },
+        "description": "First 128x64 sprite frame decoded from this fish profile's original-ROM graphics. This is a sprite extraction, not a screenshot or a reconstruction of the fish-record page."
       },
       "noImageReason": null,
       "nameSource": {
@@ -442,19 +806,47 @@
       "nameLatinVariants": [],
       "nameTh": "ปลาดงโกะ",
       "nameThVariants": [],
-      "image": "fish/0E.png",
+      "image": "fish/rom-0E.png",
       "imageSource": {
-        "sourceUrl": "https://www.youtube.com/watch?v=Y8JKlgIV91c&t=121s",
-        "sourceFrame": "references/all-fish-frames/frame-0122.png",
-        "cropPx": [
-          584,
-          110,
-          1020,
-          350
-        ],
-        "sourceCropFile": "guides-real/fish/fish-122.png",
-        "description": "Crop of the in-game fish picture shown in a player gameplay/catch-record capture; this is not a sprite extracted directly from the ROM.",
-        "videoFrameNumber": 122
+        "type": "rom_extracted_sprite",
+        "romSha1": "c2103dd94e2a1a65a495fc02adc2e7d040f31212",
+        "profileId": "0E",
+        "graphicsTable": {
+          "cpuAddress": "04:BB0C",
+          "fileOffset": "0x023B0C",
+          "rowFileOffset": "0x023B74",
+          "rowStrideBytes": 8,
+          "startPointer": "15:EF6E",
+          "startFileOffset": "0x0AEF6E",
+          "secondPointer": "15:F934",
+          "secondPointerFileOffset": "0x0AF934",
+          "firstStreamBoundary": {
+            "fileOffset": "0x0AF934",
+            "meaning": "second animation stream pointer; exclusive input bound for decoding the first stream"
+          },
+          "firstStreamBytesConsumed": 2502,
+          "firstStreamCompressedEndFileOffset": "0x0AF934"
+        },
+        "decodedFrame": {
+          "frameIndex": 0,
+          "frameSizePixels": [
+            128,
+            64
+          ],
+          "sourceFrameCount": 2,
+          "format": "SNES 4bpp planar 8x8 tiles; 16 columns by 8 rows",
+          "orientation": "native ROM sprite orientation; no horizontal flip",
+          "transparentColorIndex": 0
+        },
+        "palette": {
+          "cpuAddress": "07:E540",
+          "fileOffset": "0x03E540",
+          "bytesPerProfile": 64,
+          "format": "BGR555",
+          "selectedColors": "first 16 colors (normal sprite path)",
+          "transparentColorIndex": 0
+        },
+        "description": "First 128x64 sprite frame decoded from this fish profile's original-ROM graphics. This is a sprite extraction, not a screenshot or a reconstruction of the fish-record page."
       },
       "noImageReason": null,
       "nameSource": {
@@ -473,19 +865,47 @@
       "nameLatinVariants": [],
       "nameTh": "ปลาโออิคาวะ",
       "nameThVariants": [],
-      "image": "fish/0F.png",
+      "image": "fish/rom-0F.png",
       "imageSource": {
-        "sourceUrl": "https://www.youtube.com/watch?v=Y8JKlgIV91c&t=106s",
-        "sourceFrame": "references/all-fish-frames/frame-0107.png",
-        "cropPx": [
-          584,
-          110,
-          1020,
-          350
-        ],
-        "sourceCropFile": "guides-real/fish/fish-107.png",
-        "description": "Crop of the in-game fish picture shown in a player gameplay/catch-record capture; this is not a sprite extracted directly from the ROM.",
-        "videoFrameNumber": 107
+        "type": "rom_extracted_sprite",
+        "romSha1": "c2103dd94e2a1a65a495fc02adc2e7d040f31212",
+        "profileId": "0F",
+        "graphicsTable": {
+          "cpuAddress": "04:BB0C",
+          "fileOffset": "0x023B0C",
+          "rowFileOffset": "0x023B7C",
+          "rowStrideBytes": 8,
+          "startPointer": "15:FE39",
+          "startFileOffset": "0x0AFE39",
+          "secondPointer": "16:86EB",
+          "secondPointerFileOffset": "0x0B06EB",
+          "firstStreamBoundary": {
+            "fileOffset": "0x0B06EB",
+            "meaning": "second animation stream pointer; exclusive input bound for decoding the first stream"
+          },
+          "firstStreamBytesConsumed": 2226,
+          "firstStreamCompressedEndFileOffset": "0x0B06EB"
+        },
+        "decodedFrame": {
+          "frameIndex": 0,
+          "frameSizePixels": [
+            128,
+            64
+          ],
+          "sourceFrameCount": 2,
+          "format": "SNES 4bpp planar 8x8 tiles; 16 columns by 8 rows",
+          "orientation": "native ROM sprite orientation; no horizontal flip",
+          "transparentColorIndex": 0
+        },
+        "palette": {
+          "cpuAddress": "07:E580",
+          "fileOffset": "0x03E580",
+          "bytesPerProfile": 64,
+          "format": "BGR555",
+          "selectedColors": "first 16 colors (normal sprite path)",
+          "transparentColorIndex": 0
+        },
+        "description": "First 128x64 sprite frame decoded from this fish profile's original-ROM graphics. This is a sprite extraction, not a screenshot or a reconstruction of the fish-record page."
       },
       "noImageReason": null,
       "nameSource": {
@@ -504,19 +924,47 @@
       "nameLatinVariants": [],
       "nameTh": "โมสึโกะ",
       "nameThVariants": [],
-      "image": "fish/10.png",
+      "image": "fish/rom-10.png",
       "imageSource": {
-        "sourceUrl": "https://www.youtube.com/watch?v=Y8JKlgIV91c&t=210s",
-        "sourceFrame": "references/all-fish-frames/frame-0211.png",
-        "cropPx": [
-          584,
-          110,
-          1020,
-          350
-        ],
-        "sourceCropFile": "guides-real/fish/fish-211.png",
-        "description": "Crop of the in-game fish picture shown in a player gameplay/catch-record capture; this is not a sprite extracted directly from the ROM.",
-        "videoFrameNumber": 211
+        "type": "rom_extracted_sprite",
+        "romSha1": "c2103dd94e2a1a65a495fc02adc2e7d040f31212",
+        "profileId": "10",
+        "graphicsTable": {
+          "cpuAddress": "04:BB0C",
+          "fileOffset": "0x023B0C",
+          "rowFileOffset": "0x023B84",
+          "rowStrideBytes": 8,
+          "startPointer": "16:8B2C",
+          "startFileOffset": "0x0B0B2C",
+          "secondPointer": "16:9282",
+          "secondPointerFileOffset": "0x0B1282",
+          "firstStreamBoundary": {
+            "fileOffset": "0x0B1282",
+            "meaning": "second animation stream pointer; exclusive input bound for decoding the first stream"
+          },
+          "firstStreamBytesConsumed": 1878,
+          "firstStreamCompressedEndFileOffset": "0x0B1282"
+        },
+        "decodedFrame": {
+          "frameIndex": 0,
+          "frameSizePixels": [
+            128,
+            64
+          ],
+          "sourceFrameCount": 2,
+          "format": "SNES 4bpp planar 8x8 tiles; 16 columns by 8 rows",
+          "orientation": "native ROM sprite orientation; no horizontal flip",
+          "transparentColorIndex": 0
+        },
+        "palette": {
+          "cpuAddress": "07:E5C0",
+          "fileOffset": "0x03E5C0",
+          "bytesPerProfile": 64,
+          "format": "BGR555",
+          "selectedColors": "first 16 colors (normal sprite path)",
+          "transparentColorIndex": 0
+        },
+        "description": "First 128x64 sprite frame decoded from this fish profile's original-ROM graphics. This is a sprite extraction, not a screenshot or a reconstruction of the fish-record page."
       },
       "noImageReason": null,
       "nameSource": {
@@ -535,19 +983,47 @@
       "nameLatinVariants": [],
       "nameTh": "อิโตะโมะโระโกะ",
       "nameThVariants": [],
-      "image": "fish/11.png",
+      "image": "fish/rom-11.png",
       "imageSource": {
-        "sourceUrl": "https://www.youtube.com/watch?v=Y8JKlgIV91c&t=194s",
-        "sourceFrame": "references/all-fish-frames/frame-0195.png",
-        "cropPx": [
-          584,
-          110,
-          1020,
-          350
-        ],
-        "sourceCropFile": "guides-real/fish/fish-195.png",
-        "description": "Crop of the in-game fish picture shown in a player gameplay/catch-record capture; this is not a sprite extracted directly from the ROM.",
-        "videoFrameNumber": 195
+        "type": "rom_extracted_sprite",
+        "romSha1": "c2103dd94e2a1a65a495fc02adc2e7d040f31212",
+        "profileId": "11",
+        "graphicsTable": {
+          "cpuAddress": "04:BB0C",
+          "fileOffset": "0x023B0C",
+          "rowFileOffset": "0x023B8C",
+          "rowStrideBytes": 8,
+          "startPointer": "16:9626",
+          "startFileOffset": "0x0B1626",
+          "secondPointer": "16:9CFC",
+          "secondPointerFileOffset": "0x0B1CFC",
+          "firstStreamBoundary": {
+            "fileOffset": "0x0B1CFC",
+            "meaning": "second animation stream pointer; exclusive input bound for decoding the first stream"
+          },
+          "firstStreamBytesConsumed": 1750,
+          "firstStreamCompressedEndFileOffset": "0x0B1CFC"
+        },
+        "decodedFrame": {
+          "frameIndex": 0,
+          "frameSizePixels": [
+            128,
+            64
+          ],
+          "sourceFrameCount": 2,
+          "format": "SNES 4bpp planar 8x8 tiles; 16 columns by 8 rows",
+          "orientation": "native ROM sprite orientation; no horizontal flip",
+          "transparentColorIndex": 0
+        },
+        "palette": {
+          "cpuAddress": "07:E600",
+          "fileOffset": "0x03E600",
+          "bytesPerProfile": 64,
+          "format": "BGR555",
+          "selectedColors": "first 16 colors (normal sprite path)",
+          "transparentColorIndex": 0
+        },
+        "description": "First 128x64 sprite frame decoded from this fish profile's original-ROM graphics. This is a sprite extraction, not a screenshot or a reconstruction of the fish-record page."
       },
       "noImageReason": null,
       "nameSource": {
@@ -566,19 +1042,47 @@
       "nameLatinVariants": [],
       "nameTh": "กิกิ",
       "nameThVariants": [],
-      "image": "fish/12.png",
+      "image": "fish/rom-12.png",
       "imageSource": {
-        "sourceUrl": "https://www.youtube.com/watch?v=Y8JKlgIV91c&t=178s",
-        "sourceFrame": "references/all-fish-frames/frame-0179.png",
-        "cropPx": [
-          584,
-          110,
-          1020,
-          350
-        ],
-        "sourceCropFile": "guides-real/fish/fish-179.png",
-        "description": "Crop of the in-game fish picture shown in a player gameplay/catch-record capture; this is not a sprite extracted directly from the ROM.",
-        "videoFrameNumber": 179
+        "type": "rom_extracted_sprite",
+        "romSha1": "c2103dd94e2a1a65a495fc02adc2e7d040f31212",
+        "profileId": "12",
+        "graphicsTable": {
+          "cpuAddress": "04:BB0C",
+          "fileOffset": "0x023B0C",
+          "rowFileOffset": "0x023B94",
+          "rowStrideBytes": 8,
+          "startPointer": "16:A0A9",
+          "startFileOffset": "0x0B20A9",
+          "secondPointer": "16:A97C",
+          "secondPointerFileOffset": "0x0B297C",
+          "firstStreamBoundary": {
+            "fileOffset": "0x0B297C",
+            "meaning": "second animation stream pointer; exclusive input bound for decoding the first stream"
+          },
+          "firstStreamBytesConsumed": 2259,
+          "firstStreamCompressedEndFileOffset": "0x0B297C"
+        },
+        "decodedFrame": {
+          "frameIndex": 0,
+          "frameSizePixels": [
+            128,
+            64
+          ],
+          "sourceFrameCount": 2,
+          "format": "SNES 4bpp planar 8x8 tiles; 16 columns by 8 rows",
+          "orientation": "native ROM sprite orientation; no horizontal flip",
+          "transparentColorIndex": 0
+        },
+        "palette": {
+          "cpuAddress": "07:E640",
+          "fileOffset": "0x03E640",
+          "bytesPerProfile": 64,
+          "format": "BGR555",
+          "selectedColors": "first 16 colors (normal sprite path)",
+          "transparentColorIndex": 0
+        },
+        "description": "First 128x64 sprite frame decoded from this fish profile's original-ROM graphics. This is a sprite extraction, not a screenshot or a reconstruction of the fish-record page."
       },
       "noImageReason": null,
       "nameSource": {
@@ -597,19 +1101,47 @@
       "nameLatinVariants": [],
       "nameTh": "ปลาซากุระมาสุ",
       "nameThVariants": [],
-      "image": "fish/13.png",
+      "image": "fish/rom-13.png",
       "imageSource": {
-        "sourceUrl": "https://www.youtube.com/watch?v=Y8JKlgIV91c&t=52s",
-        "sourceFrame": "references/all-fish-frames/frame-0053.png",
-        "cropPx": [
-          584,
-          110,
-          1020,
-          350
-        ],
-        "sourceCropFile": "guides-real/fish/fish-053.png",
-        "description": "Crop of the in-game fish picture shown in a player gameplay/catch-record capture; this is not a sprite extracted directly from the ROM.",
-        "videoFrameNumber": 53
+        "type": "rom_extracted_sprite",
+        "romSha1": "c2103dd94e2a1a65a495fc02adc2e7d040f31212",
+        "profileId": "13",
+        "graphicsTable": {
+          "cpuAddress": "04:BB0C",
+          "fileOffset": "0x023B0C",
+          "rowFileOffset": "0x023B9C",
+          "rowStrideBytes": 8,
+          "startPointer": "16:ADC6",
+          "startFileOffset": "0x0B2DC6",
+          "secondPointer": "16:BB79",
+          "secondPointerFileOffset": "0x0B3B79",
+          "firstStreamBoundary": {
+            "fileOffset": "0x0B3B79",
+            "meaning": "second animation stream pointer; exclusive input bound for decoding the first stream"
+          },
+          "firstStreamBytesConsumed": 3507,
+          "firstStreamCompressedEndFileOffset": "0x0B3B79"
+        },
+        "decodedFrame": {
+          "frameIndex": 0,
+          "frameSizePixels": [
+            128,
+            64
+          ],
+          "sourceFrameCount": 2,
+          "format": "SNES 4bpp planar 8x8 tiles; 16 columns by 8 rows",
+          "orientation": "native ROM sprite orientation; no horizontal flip",
+          "transparentColorIndex": 0
+        },
+        "palette": {
+          "cpuAddress": "07:E680",
+          "fileOffset": "0x03E680",
+          "bytesPerProfile": 64,
+          "format": "BGR555",
+          "selectedColors": "first 16 colors (normal sprite path)",
+          "transparentColorIndex": 0
+        },
+        "description": "First 128x64 sprite frame decoded from this fish profile's original-ROM graphics. This is a sprite extraction, not a screenshot or a reconstruction of the fish-record page."
       },
       "noImageReason": null,
       "nameSource": {
@@ -628,19 +1160,47 @@
       "nameLatinVariants": [],
       "nameTh": "โคคุเร็น",
       "nameThVariants": [],
-      "image": "fish/14.png",
+      "image": "fish/rom-14.png",
       "imageSource": {
-        "sourceUrl": "https://www.youtube.com/watch?v=Y8JKlgIV91c&t=174s",
-        "sourceFrame": "references/all-fish-frames/frame-0175.png",
-        "cropPx": [
-          584,
-          110,
-          1020,
-          350
-        ],
-        "sourceCropFile": "guides-real/fish/fish-175.png",
-        "description": "Crop of the in-game fish picture shown in a player gameplay/catch-record capture; this is not a sprite extracted directly from the ROM.",
-        "videoFrameNumber": 175
+        "type": "rom_extracted_sprite",
+        "romSha1": "c2103dd94e2a1a65a495fc02adc2e7d040f31212",
+        "profileId": "14",
+        "graphicsTable": {
+          "cpuAddress": "04:BB0C",
+          "fileOffset": "0x023B0C",
+          "rowFileOffset": "0x023BA4",
+          "rowStrideBytes": 8,
+          "startPointer": "16:C1C6",
+          "startFileOffset": "0x0B41C6",
+          "secondPointer": "16:D149",
+          "secondPointerFileOffset": "0x0B5149",
+          "firstStreamBoundary": {
+            "fileOffset": "0x0B5149",
+            "meaning": "second animation stream pointer; exclusive input bound for decoding the first stream"
+          },
+          "firstStreamBytesConsumed": 3971,
+          "firstStreamCompressedEndFileOffset": "0x0B5149"
+        },
+        "decodedFrame": {
+          "frameIndex": 0,
+          "frameSizePixels": [
+            128,
+            64
+          ],
+          "sourceFrameCount": 2,
+          "format": "SNES 4bpp planar 8x8 tiles; 16 columns by 8 rows",
+          "orientation": "native ROM sprite orientation; no horizontal flip",
+          "transparentColorIndex": 0
+        },
+        "palette": {
+          "cpuAddress": "07:E6C0",
+          "fileOffset": "0x03E6C0",
+          "bytesPerProfile": 64,
+          "format": "BGR555",
+          "selectedColors": "first 16 colors (normal sprite path)",
+          "transparentColorIndex": 0
+        },
+        "description": "First 128x64 sprite frame decoded from this fish profile's original-ROM graphics. This is a sprite extraction, not a screenshot or a reconstruction of the fish-record page."
       },
       "noImageReason": null,
       "nameSource": {
@@ -659,19 +1219,47 @@
       "nameLatinVariants": [],
       "nameTh": "ฮักเร็น",
       "nameThVariants": [],
-      "image": "fish/15.png",
+      "image": "fish/rom-15.png",
       "imageSource": {
-        "sourceUrl": "https://www.youtube.com/watch?v=Y8JKlgIV91c&t=159s",
-        "sourceFrame": "references/all-fish-frames/frame-0160.png",
-        "cropPx": [
-          584,
-          110,
-          1020,
-          350
-        ],
-        "sourceCropFile": "guides-real/fish/fish-160.png",
-        "description": "Crop of the in-game fish picture shown in a player gameplay/catch-record capture; this is not a sprite extracted directly from the ROM.",
-        "videoFrameNumber": 160
+        "type": "rom_extracted_sprite",
+        "romSha1": "c2103dd94e2a1a65a495fc02adc2e7d040f31212",
+        "profileId": "15",
+        "graphicsTable": {
+          "cpuAddress": "04:BB0C",
+          "fileOffset": "0x023B0C",
+          "rowFileOffset": "0x023BAC",
+          "rowStrideBytes": 8,
+          "startPointer": "16:D884",
+          "startFileOffset": "0x0B5884",
+          "secondPointer": "16:EA4C",
+          "secondPointerFileOffset": "0x0B6A4C",
+          "firstStreamBoundary": {
+            "fileOffset": "0x0B6A4C",
+            "meaning": "second animation stream pointer; exclusive input bound for decoding the first stream"
+          },
+          "firstStreamBytesConsumed": 4552,
+          "firstStreamCompressedEndFileOffset": "0x0B6A4C"
+        },
+        "decodedFrame": {
+          "frameIndex": 0,
+          "frameSizePixels": [
+            128,
+            64
+          ],
+          "sourceFrameCount": 2,
+          "format": "SNES 4bpp planar 8x8 tiles; 16 columns by 8 rows",
+          "orientation": "native ROM sprite orientation; no horizontal flip",
+          "transparentColorIndex": 0
+        },
+        "palette": {
+          "cpuAddress": "07:E700",
+          "fileOffset": "0x03E700",
+          "bytesPerProfile": 64,
+          "format": "BGR555",
+          "selectedColors": "first 16 colors (normal sprite path)",
+          "transparentColorIndex": 0
+        },
+        "description": "First 128x64 sprite frame decoded from this fish profile's original-ROM graphics. This is a sprite extraction, not a screenshot or a reconstruction of the fish-record page."
       },
       "noImageReason": null,
       "nameSource": {
@@ -690,19 +1278,47 @@
       "nameLatinVariants": [],
       "nameTh": "มุกิสึคุ",
       "nameThVariants": [],
-      "image": "fish/16.png",
+      "image": "fish/rom-16.png",
       "imageSource": {
-        "sourceUrl": "https://www.youtube.com/watch?v=Y8JKlgIV91c&t=219s",
-        "sourceFrame": "references/all-fish-frames/frame-0220.png",
-        "cropPx": [
-          584,
-          110,
-          1020,
-          350
-        ],
-        "sourceCropFile": "guides-real/fish/fish-220.png",
-        "description": "Crop of the in-game fish picture shown in a player gameplay/catch-record capture; this is not a sprite extracted directly from the ROM.",
-        "videoFrameNumber": 220
+        "type": "rom_extracted_sprite",
+        "romSha1": "c2103dd94e2a1a65a495fc02adc2e7d040f31212",
+        "profileId": "16",
+        "graphicsTable": {
+          "cpuAddress": "04:BB0C",
+          "fileOffset": "0x023B0C",
+          "rowFileOffset": "0x023BB4",
+          "rowStrideBytes": 8,
+          "startPointer": "16:F281",
+          "startFileOffset": "0x0B7281",
+          "secondPointer": "16:FAE2",
+          "secondPointerFileOffset": "0x0B7AE2",
+          "firstStreamBoundary": {
+            "fileOffset": "0x0B7AE2",
+            "meaning": "second animation stream pointer; exclusive input bound for decoding the first stream"
+          },
+          "firstStreamBytesConsumed": 2145,
+          "firstStreamCompressedEndFileOffset": "0x0B7AE2"
+        },
+        "decodedFrame": {
+          "frameIndex": 0,
+          "frameSizePixels": [
+            128,
+            64
+          ],
+          "sourceFrameCount": 2,
+          "format": "SNES 4bpp planar 8x8 tiles; 16 columns by 8 rows",
+          "orientation": "native ROM sprite orientation; no horizontal flip",
+          "transparentColorIndex": 0
+        },
+        "palette": {
+          "cpuAddress": "07:E740",
+          "fileOffset": "0x03E740",
+          "bytesPerProfile": 64,
+          "format": "BGR555",
+          "selectedColors": "first 16 colors (normal sprite path)",
+          "transparentColorIndex": 0
+        },
+        "description": "First 128x64 sprite frame decoded from this fish profile's original-ROM graphics. This is a sprite extraction, not a screenshot or a reconstruction of the fish-record page."
       },
       "noImageReason": null,
       "nameSource": {
@@ -721,19 +1337,47 @@
       "nameLatinVariants": [],
       "nameTh": "ฮอนโมโระโกะ",
       "nameThVariants": [],
-      "image": "fish/17.png",
+      "image": "fish/rom-17.png",
       "imageSource": {
-        "sourceUrl": "https://www.youtube.com/watch?v=Y8JKlgIV91c&t=153s",
-        "sourceFrame": "references/all-fish-frames/frame-0154.png",
-        "cropPx": [
-          584,
-          110,
-          1020,
-          350
-        ],
-        "sourceCropFile": "guides-real/fish/fish-154.png",
-        "description": "Crop of the in-game fish picture shown in a player gameplay/catch-record capture; this is not a sprite extracted directly from the ROM.",
-        "videoFrameNumber": 154
+        "type": "rom_extracted_sprite",
+        "romSha1": "c2103dd94e2a1a65a495fc02adc2e7d040f31212",
+        "profileId": "17",
+        "graphicsTable": {
+          "cpuAddress": "04:BB0C",
+          "fileOffset": "0x023B0C",
+          "rowFileOffset": "0x023BBC",
+          "rowStrideBytes": 8,
+          "startPointer": "16:FF5C",
+          "startFileOffset": "0x0B7F5C",
+          "secondPointer": "17:866B",
+          "secondPointerFileOffset": "0x0B866B",
+          "firstStreamBoundary": {
+            "fileOffset": "0x0B866B",
+            "meaning": "second animation stream pointer; exclusive input bound for decoding the first stream"
+          },
+          "firstStreamBytesConsumed": 1807,
+          "firstStreamCompressedEndFileOffset": "0x0B866B"
+        },
+        "decodedFrame": {
+          "frameIndex": 0,
+          "frameSizePixels": [
+            128,
+            64
+          ],
+          "sourceFrameCount": 2,
+          "format": "SNES 4bpp planar 8x8 tiles; 16 columns by 8 rows",
+          "orientation": "native ROM sprite orientation; no horizontal flip",
+          "transparentColorIndex": 0
+        },
+        "palette": {
+          "cpuAddress": "07:E780",
+          "fileOffset": "0x03E780",
+          "bytesPerProfile": 64,
+          "format": "BGR555",
+          "selectedColors": "first 16 colors (normal sprite path)",
+          "transparentColorIndex": 0
+        },
+        "description": "First 128x64 sprite frame decoded from this fish profile's original-ROM graphics. This is a sprite extraction, not a screenshot or a reconstruction of the fish-record page."
       },
       "noImageReason": null,
       "nameSource": {
@@ -752,19 +1396,47 @@
       "nameLatinVariants": [],
       "nameTh": "ปลายามาโนะคามิ",
       "nameThVariants": [],
-      "image": "fish/18.png",
+      "image": "fish/rom-18.png",
       "imageSource": {
-        "sourceUrl": "https://www.youtube.com/watch?v=Y8JKlgIV91c&t=112s",
-        "sourceFrame": "references/all-fish-frames/frame-0113.png",
-        "cropPx": [
-          584,
-          110,
-          1020,
-          350
-        ],
-        "sourceCropFile": "guides-real/fish/fish-113.png",
-        "description": "Crop of the in-game fish picture shown in a player gameplay/catch-record capture; this is not a sprite extracted directly from the ROM.",
-        "videoFrameNumber": 113
+        "type": "rom_extracted_sprite",
+        "romSha1": "c2103dd94e2a1a65a495fc02adc2e7d040f31212",
+        "profileId": "18",
+        "graphicsTable": {
+          "cpuAddress": "04:BB0C",
+          "fileOffset": "0x023B0C",
+          "rowFileOffset": "0x023BC4",
+          "rowStrideBytes": 8,
+          "startPointer": "17:8A12",
+          "startFileOffset": "0x0B8A12",
+          "secondPointer": "17:92FF",
+          "secondPointerFileOffset": "0x0B92FF",
+          "firstStreamBoundary": {
+            "fileOffset": "0x0B92FF",
+            "meaning": "second animation stream pointer; exclusive input bound for decoding the first stream"
+          },
+          "firstStreamBytesConsumed": 2285,
+          "firstStreamCompressedEndFileOffset": "0x0B92FF"
+        },
+        "decodedFrame": {
+          "frameIndex": 0,
+          "frameSizePixels": [
+            128,
+            64
+          ],
+          "sourceFrameCount": 2,
+          "format": "SNES 4bpp planar 8x8 tiles; 16 columns by 8 rows",
+          "orientation": "native ROM sprite orientation; no horizontal flip",
+          "transparentColorIndex": 0
+        },
+        "palette": {
+          "cpuAddress": "07:E7C0",
+          "fileOffset": "0x03E7C0",
+          "bytesPerProfile": 64,
+          "format": "BGR555",
+          "selectedColors": "first 16 colors (normal sprite path)",
+          "transparentColorIndex": 0
+        },
+        "description": "First 128x64 sprite frame decoded from this fish profile's original-ROM graphics. This is a sprite extraction, not a screenshot or a reconstruction of the fish-record page."
       },
       "noImageReason": null,
       "nameSource": {
@@ -783,19 +1455,47 @@
       "nameLatinVariants": [],
       "nameTh": "โดโจ",
       "nameThVariants": [],
-      "image": "fish/19.png",
+      "image": "fish/rom-19.png",
       "imageSource": {
-        "sourceUrl": "https://www.youtube.com/watch?v=Y8JKlgIV91c&t=222s",
-        "sourceFrame": "references/all-fish-frames/frame-0223.png",
-        "cropPx": [
-          584,
-          110,
-          1020,
-          350
-        ],
-        "sourceCropFile": "guides-real/fish/fish-223.png",
-        "description": "Crop of the in-game fish picture shown in a player gameplay/catch-record capture; this is not a sprite extracted directly from the ROM.",
-        "videoFrameNumber": 223
+        "type": "rom_extracted_sprite",
+        "romSha1": "c2103dd94e2a1a65a495fc02adc2e7d040f31212",
+        "profileId": "19",
+        "graphicsTable": {
+          "cpuAddress": "04:BB0C",
+          "fileOffset": "0x023B0C",
+          "rowFileOffset": "0x023BCC",
+          "rowStrideBytes": 8,
+          "startPointer": "17:978C",
+          "startFileOffset": "0x0B978C",
+          "secondPointer": "17:9E82",
+          "secondPointerFileOffset": "0x0B9E82",
+          "firstStreamBoundary": {
+            "fileOffset": "0x0B9E82",
+            "meaning": "second animation stream pointer; exclusive input bound for decoding the first stream"
+          },
+          "firstStreamBytesConsumed": 1782,
+          "firstStreamCompressedEndFileOffset": "0x0B9E82"
+        },
+        "decodedFrame": {
+          "frameIndex": 0,
+          "frameSizePixels": [
+            128,
+            64
+          ],
+          "sourceFrameCount": 2,
+          "format": "SNES 4bpp planar 8x8 tiles; 16 columns by 8 rows",
+          "orientation": "native ROM sprite orientation; no horizontal flip",
+          "transparentColorIndex": 0
+        },
+        "palette": {
+          "cpuAddress": "07:E800",
+          "fileOffset": "0x03E800",
+          "bytesPerProfile": 64,
+          "format": "BGR555",
+          "selectedColors": "first 16 colors (normal sprite path)",
+          "transparentColorIndex": 0
+        },
+        "description": "First 128x64 sprite frame decoded from this fish profile's original-ROM graphics. This is a sprite extraction, not a screenshot or a reconstruction of the fish-record page."
       },
       "noImageReason": null,
       "nameSource": {
@@ -814,19 +1514,47 @@
       "nameLatinVariants": [],
       "nameTh": "ทาโมะโระโกะ",
       "nameThVariants": [],
-      "image": "fish/1A.png",
+      "image": "fish/rom-1A.png",
       "imageSource": {
-        "sourceUrl": "https://www.youtube.com/watch?v=Y8JKlgIV91c&t=162s",
-        "sourceFrame": "references/all-fish-frames/frame-0163.png",
-        "cropPx": [
-          584,
-          110,
-          1020,
-          350
-        ],
-        "sourceCropFile": "guides-real/fish/fish-163.png",
-        "description": "Crop of the in-game fish picture shown in a player gameplay/catch-record capture; this is not a sprite extracted directly from the ROM.",
-        "videoFrameNumber": 163
+        "type": "rom_extracted_sprite",
+        "romSha1": "c2103dd94e2a1a65a495fc02adc2e7d040f31212",
+        "profileId": "1A",
+        "graphicsTable": {
+          "cpuAddress": "04:BB0C",
+          "fileOffset": "0x023B0C",
+          "rowFileOffset": "0x023BD4",
+          "rowStrideBytes": 8,
+          "startPointer": "17:A237",
+          "startFileOffset": "0x0BA237",
+          "secondPointer": "17:A972",
+          "secondPointerFileOffset": "0x0BA972",
+          "firstStreamBoundary": {
+            "fileOffset": "0x0BA972",
+            "meaning": "second animation stream pointer; exclusive input bound for decoding the first stream"
+          },
+          "firstStreamBytesConsumed": 1851,
+          "firstStreamCompressedEndFileOffset": "0x0BA972"
+        },
+        "decodedFrame": {
+          "frameIndex": 0,
+          "frameSizePixels": [
+            128,
+            64
+          ],
+          "sourceFrameCount": 2,
+          "format": "SNES 4bpp planar 8x8 tiles; 16 columns by 8 rows",
+          "orientation": "native ROM sprite orientation; no horizontal flip",
+          "transparentColorIndex": 0
+        },
+        "palette": {
+          "cpuAddress": "07:E840",
+          "fileOffset": "0x03E840",
+          "bytesPerProfile": 64,
+          "format": "BGR555",
+          "selectedColors": "first 16 colors (normal sprite path)",
+          "transparentColorIndex": 0
+        },
+        "description": "First 128x64 sprite frame decoded from this fish profile's original-ROM graphics. This is a sprite extraction, not a screenshot or a reconstruction of the fish-record page."
       },
       "noImageReason": null,
       "nameSource": {
@@ -845,19 +1573,47 @@
       "nameLatinVariants": [],
       "nameTh": "ปลาคาวะมุสึ",
       "nameThVariants": [],
-      "image": "fish/1B.png",
+      "image": "fish/rom-1B.png",
       "imageSource": {
-        "sourceUrl": "https://www.youtube.com/watch?v=Y8JKlgIV91c&t=115s",
-        "sourceFrame": "references/all-fish-frames/frame-0116.png",
-        "cropPx": [
-          584,
-          110,
-          1020,
-          350
-        ],
-        "sourceCropFile": "guides-real/fish/fish-116.png",
-        "description": "Crop of the in-game fish picture shown in a player gameplay/catch-record capture; this is not a sprite extracted directly from the ROM.",
-        "videoFrameNumber": 116
+        "type": "rom_extracted_sprite",
+        "romSha1": "c2103dd94e2a1a65a495fc02adc2e7d040f31212",
+        "profileId": "1B",
+        "graphicsTable": {
+          "cpuAddress": "04:BB0C",
+          "fileOffset": "0x023B0C",
+          "rowFileOffset": "0x023BDC",
+          "rowStrideBytes": 8,
+          "startPointer": "17:AD3E",
+          "startFileOffset": "0x0BAD3E",
+          "secondPointer": "17:B60C",
+          "secondPointerFileOffset": "0x0BB60C",
+          "firstStreamBoundary": {
+            "fileOffset": "0x0BB60C",
+            "meaning": "second animation stream pointer; exclusive input bound for decoding the first stream"
+          },
+          "firstStreamBytesConsumed": 2254,
+          "firstStreamCompressedEndFileOffset": "0x0BB60C"
+        },
+        "decodedFrame": {
+          "frameIndex": 0,
+          "frameSizePixels": [
+            128,
+            64
+          ],
+          "sourceFrameCount": 2,
+          "format": "SNES 4bpp planar 8x8 tiles; 16 columns by 8 rows",
+          "orientation": "native ROM sprite orientation; no horizontal flip",
+          "transparentColorIndex": 0
+        },
+        "palette": {
+          "cpuAddress": "07:E880",
+          "fileOffset": "0x03E880",
+          "bytesPerProfile": 64,
+          "format": "BGR555",
+          "selectedColors": "first 16 colors (normal sprite path)",
+          "transparentColorIndex": 0
+        },
+        "description": "First 128x64 sprite frame decoded from this fish profile's original-ROM graphics. This is a sprite extraction, not a screenshot or a reconstruction of the fish-record page."
       },
       "noImageReason": null,
       "nameSource": {
@@ -876,19 +1632,47 @@
       "nameLatinVariants": [],
       "nameTh": "คินบุนะ",
       "nameThVariants": [],
-      "image": "fish/1C.png",
+      "image": "fish/rom-1C.png",
       "imageSource": {
-        "sourceUrl": "https://www.youtube.com/watch?v=Y8JKlgIV91c&t=201s",
-        "sourceFrame": "references/all-fish-frames/frame-0202.png",
-        "cropPx": [
-          584,
-          110,
-          1020,
-          350
-        ],
-        "sourceCropFile": "guides-real/fish/fish-202.png",
-        "description": "Crop of the in-game fish picture shown in a player gameplay/catch-record capture; this is not a sprite extracted directly from the ROM.",
-        "videoFrameNumber": 202
+        "type": "rom_extracted_sprite",
+        "romSha1": "c2103dd94e2a1a65a495fc02adc2e7d040f31212",
+        "profileId": "1C",
+        "graphicsTable": {
+          "cpuAddress": "04:BB0C",
+          "fileOffset": "0x023B0C",
+          "rowFileOffset": "0x023BE4",
+          "rowStrideBytes": 8,
+          "startPointer": "17:BA4F",
+          "startFileOffset": "0x0BBA4F",
+          "secondPointer": "17:C305",
+          "secondPointerFileOffset": "0x0BC305",
+          "firstStreamBoundary": {
+            "fileOffset": "0x0BC305",
+            "meaning": "second animation stream pointer; exclusive input bound for decoding the first stream"
+          },
+          "firstStreamBytesConsumed": 2230,
+          "firstStreamCompressedEndFileOffset": "0x0BC305"
+        },
+        "decodedFrame": {
+          "frameIndex": 0,
+          "frameSizePixels": [
+            128,
+            64
+          ],
+          "sourceFrameCount": 2,
+          "format": "SNES 4bpp planar 8x8 tiles; 16 columns by 8 rows",
+          "orientation": "native ROM sprite orientation; no horizontal flip",
+          "transparentColorIndex": 0
+        },
+        "palette": {
+          "cpuAddress": "07:E8C0",
+          "fileOffset": "0x03E8C0",
+          "bytesPerProfile": 64,
+          "format": "BGR555",
+          "selectedColors": "first 16 colors (normal sprite path)",
+          "transparentColorIndex": 0
+        },
+        "description": "First 128x64 sprite frame decoded from this fish profile's original-ROM graphics. This is a sprite extraction, not a screenshot or a reconstruction of the fish-record page."
       },
       "noImageReason": null,
       "nameSource": {
@@ -907,19 +1691,47 @@
       "nameLatinVariants": [],
       "nameTh": "มาบุนะ",
       "nameThVariants": [],
-      "image": "fish/1D.png",
+      "image": "fish/rom-1D.png",
       "imageSource": {
-        "sourceUrl": "https://www.youtube.com/watch?v=Y8JKlgIV91c&t=171s",
-        "sourceFrame": "references/all-fish-frames/frame-0172.png",
-        "cropPx": [
-          584,
-          110,
-          1020,
-          350
-        ],
-        "sourceCropFile": "guides-real/fish/fish-172.png",
-        "description": "Crop of the in-game fish picture shown in a player gameplay/catch-record capture; this is not a sprite extracted directly from the ROM.",
-        "videoFrameNumber": 172
+        "type": "rom_extracted_sprite",
+        "romSha1": "c2103dd94e2a1a65a495fc02adc2e7d040f31212",
+        "profileId": "1D",
+        "graphicsTable": {
+          "cpuAddress": "04:BB0C",
+          "fileOffset": "0x023B0C",
+          "rowFileOffset": "0x023BEC",
+          "rowStrideBytes": 8,
+          "startPointer": "17:C709",
+          "startFileOffset": "0x0BC709",
+          "secondPointer": "17:D19A",
+          "secondPointerFileOffset": "0x0BD19A",
+          "firstStreamBoundary": {
+            "fileOffset": "0x0BD19A",
+            "meaning": "second animation stream pointer; exclusive input bound for decoding the first stream"
+          },
+          "firstStreamBytesConsumed": 2705,
+          "firstStreamCompressedEndFileOffset": "0x0BD19A"
+        },
+        "decodedFrame": {
+          "frameIndex": 0,
+          "frameSizePixels": [
+            128,
+            64
+          ],
+          "sourceFrameCount": 2,
+          "format": "SNES 4bpp planar 8x8 tiles; 16 columns by 8 rows",
+          "orientation": "native ROM sprite orientation; no horizontal flip",
+          "transparentColorIndex": 0
+        },
+        "palette": {
+          "cpuAddress": "07:E900",
+          "fileOffset": "0x03E900",
+          "bytesPerProfile": 64,
+          "format": "BGR555",
+          "selectedColors": "first 16 colors (normal sprite path)",
+          "transparentColorIndex": 0
+        },
+        "description": "First 128x64 sprite frame decoded from this fish profile's original-ROM graphics. This is a sprite extraction, not a screenshot or a reconstruction of the fish-record page."
       },
       "noImageReason": null,
       "nameSource": {
@@ -941,19 +1753,47 @@
         "อาคาซะ",
         "ปลาอาคาซะ"
       ],
-      "image": "fish/1E.png",
+      "image": "fish/rom-1E.png",
       "imageSource": {
-        "sourceUrl": "https://www.youtube.com/watch?v=Y8JKlgIV91c&t=36s",
-        "sourceFrame": "references/all-fish-frames/frame-0037.png",
-        "cropPx": [
-          584,
-          110,
-          1020,
-          350
-        ],
-        "sourceCropFile": "guides-real/fish/fish-037.png",
-        "description": "Crop of the in-game fish picture shown in a player gameplay/catch-record capture; this is not a sprite extracted directly from the ROM.",
-        "videoFrameNumber": 37
+        "type": "rom_extracted_sprite",
+        "romSha1": "c2103dd94e2a1a65a495fc02adc2e7d040f31212",
+        "profileId": "1E",
+        "graphicsTable": {
+          "cpuAddress": "04:BB0C",
+          "fileOffset": "0x023B0C",
+          "rowFileOffset": "0x023BF4",
+          "rowStrideBytes": 8,
+          "startPointer": "17:D6E9",
+          "startFileOffset": "0x0BD6E9",
+          "secondPointer": "17:DE06",
+          "secondPointerFileOffset": "0x0BDE06",
+          "firstStreamBoundary": {
+            "fileOffset": "0x0BDE06",
+            "meaning": "second animation stream pointer; exclusive input bound for decoding the first stream"
+          },
+          "firstStreamBytesConsumed": 1821,
+          "firstStreamCompressedEndFileOffset": "0x0BDE06"
+        },
+        "decodedFrame": {
+          "frameIndex": 0,
+          "frameSizePixels": [
+            128,
+            64
+          ],
+          "sourceFrameCount": 2,
+          "format": "SNES 4bpp planar 8x8 tiles; 16 columns by 8 rows",
+          "orientation": "native ROM sprite orientation; no horizontal flip",
+          "transparentColorIndex": 0
+        },
+        "palette": {
+          "cpuAddress": "07:E940",
+          "fileOffset": "0x03E940",
+          "bytesPerProfile": 64,
+          "format": "BGR555",
+          "selectedColors": "first 16 colors (normal sprite path)",
+          "transparentColorIndex": 0
+        },
+        "description": "First 128x64 sprite frame decoded from this fish profile's original-ROM graphics. This is a sprite extraction, not a screenshot or a reconstruction of the fish-record page."
       },
       "noImageReason": null,
       "nameSource": {
@@ -973,19 +1813,47 @@
       "nameLatinVariants": [],
       "nameTh": "เมดากะ",
       "nameThVariants": [],
-      "image": "fish/1F.png",
+      "image": "fish/rom-1F.png",
       "imageSource": {
-        "sourceUrl": "https://www.youtube.com/watch?v=Y8JKlgIV91c&t=216s",
-        "sourceFrame": "references/all-fish-frames/frame-0217.png",
-        "cropPx": [
-          584,
-          110,
-          1020,
-          350
-        ],
-        "sourceCropFile": "guides-real/fish/fish-217.png",
-        "description": "Crop of the in-game fish picture shown in a player gameplay/catch-record capture; this is not a sprite extracted directly from the ROM.",
-        "videoFrameNumber": 217
+        "type": "rom_extracted_sprite",
+        "romSha1": "c2103dd94e2a1a65a495fc02adc2e7d040f31212",
+        "profileId": "1F",
+        "graphicsTable": {
+          "cpuAddress": "04:BB0C",
+          "fileOffset": "0x023B0C",
+          "rowFileOffset": "0x023BFC",
+          "rowStrideBytes": 8,
+          "startPointer": "17:E1CE",
+          "startFileOffset": "0x0BE1CE",
+          "secondPointer": "17:E7AF",
+          "secondPointerFileOffset": "0x0BE7AF",
+          "firstStreamBoundary": {
+            "fileOffset": "0x0BE7AF",
+            "meaning": "second animation stream pointer; exclusive input bound for decoding the first stream"
+          },
+          "firstStreamBytesConsumed": 1505,
+          "firstStreamCompressedEndFileOffset": "0x0BE7AF"
+        },
+        "decodedFrame": {
+          "frameIndex": 0,
+          "frameSizePixels": [
+            128,
+            64
+          ],
+          "sourceFrameCount": 2,
+          "format": "SNES 4bpp planar 8x8 tiles; 16 columns by 8 rows",
+          "orientation": "native ROM sprite orientation; no horizontal flip",
+          "transparentColorIndex": 0
+        },
+        "palette": {
+          "cpuAddress": "07:E980",
+          "fileOffset": "0x03E980",
+          "bytesPerProfile": 64,
+          "format": "BGR555",
+          "selectedColors": "first 16 colors (normal sprite path)",
+          "transparentColorIndex": 0
+        },
+        "description": "First 128x64 sprite frame decoded from this fish profile's original-ROM graphics. This is a sprite extraction, not a screenshot or a reconstruction of the fish-record page."
       },
       "noImageReason": null,
       "nameSource": {
@@ -1004,19 +1872,47 @@
       "nameLatinVariants": [],
       "nameTh": "ปลาบลูกิล",
       "nameThVariants": [],
-      "image": "fish/20.png",
+      "image": "fish/rom-20.png",
       "imageSource": {
-        "sourceUrl": "https://www.youtube.com/watch?v=Y8JKlgIV91c&t=55s",
-        "sourceFrame": "references/all-fish-frames/frame-0056.png",
-        "cropPx": [
-          584,
-          110,
-          1020,
-          350
-        ],
-        "sourceCropFile": "guides-real/fish/fish-056.png",
-        "description": "Crop of the in-game fish picture shown in a player gameplay/catch-record capture; this is not a sprite extracted directly from the ROM.",
-        "videoFrameNumber": 56
+        "type": "rom_extracted_sprite",
+        "romSha1": "c2103dd94e2a1a65a495fc02adc2e7d040f31212",
+        "profileId": "20",
+        "graphicsTable": {
+          "cpuAddress": "04:BB0C",
+          "fileOffset": "0x023B0C",
+          "rowFileOffset": "0x023C04",
+          "rowStrideBytes": 8,
+          "startPointer": "17:EAC3",
+          "startFileOffset": "0x0BEAC3",
+          "secondPointer": "17:F870",
+          "secondPointerFileOffset": "0x0BF870",
+          "firstStreamBoundary": {
+            "fileOffset": "0x0BF870",
+            "meaning": "second animation stream pointer; exclusive input bound for decoding the first stream"
+          },
+          "firstStreamBytesConsumed": 3501,
+          "firstStreamCompressedEndFileOffset": "0x0BF870"
+        },
+        "decodedFrame": {
+          "frameIndex": 0,
+          "frameSizePixels": [
+            128,
+            64
+          ],
+          "sourceFrameCount": 2,
+          "format": "SNES 4bpp planar 8x8 tiles; 16 columns by 8 rows",
+          "orientation": "native ROM sprite orientation; no horizontal flip",
+          "transparentColorIndex": 0
+        },
+        "palette": {
+          "cpuAddress": "07:E9C0",
+          "fileOffset": "0x03E9C0",
+          "bytesPerProfile": 64,
+          "format": "BGR555",
+          "selectedColors": "first 16 colors (normal sprite path)",
+          "transparentColorIndex": 0
+        },
+        "description": "First 128x64 sprite frame decoded from this fish profile's original-ROM graphics. This is a sprite extraction, not a screenshot or a reconstruction of the fish-record page."
       },
       "noImageReason": null,
       "nameSource": {
@@ -1035,19 +1931,47 @@
       "nameLatinVariants": [],
       "nameTh": "โอยะนิรามิ",
       "nameThVariants": [],
-      "image": "fish/21.png",
+      "image": "fish/rom-21.png",
       "imageSource": {
-        "sourceUrl": "https://www.youtube.com/watch?v=Y8JKlgIV91c&t=198s",
-        "sourceFrame": "references/all-fish-frames/frame-0199.png",
-        "cropPx": [
-          584,
-          110,
-          1020,
-          350
-        ],
-        "sourceCropFile": "guides-real/fish/fish-199.png",
-        "description": "Crop of the in-game fish picture shown in a player gameplay/catch-record capture; this is not a sprite extracted directly from the ROM.",
-        "videoFrameNumber": 199
+        "type": "rom_extracted_sprite",
+        "romSha1": "c2103dd94e2a1a65a495fc02adc2e7d040f31212",
+        "profileId": "21",
+        "graphicsTable": {
+          "cpuAddress": "04:BB0C",
+          "fileOffset": "0x023B0C",
+          "rowFileOffset": "0x023C0C",
+          "rowStrideBytes": 8,
+          "startPointer": "17:FE4F",
+          "startFileOffset": "0x0BFE4F",
+          "secondPointer": "18:8980",
+          "secondPointerFileOffset": "0x0C0980",
+          "firstStreamBoundary": {
+            "fileOffset": "0x0C0980",
+            "meaning": "second animation stream pointer; exclusive input bound for decoding the first stream"
+          },
+          "firstStreamBytesConsumed": 2865,
+          "firstStreamCompressedEndFileOffset": "0x0C0980"
+        },
+        "decodedFrame": {
+          "frameIndex": 0,
+          "frameSizePixels": [
+            128,
+            64
+          ],
+          "sourceFrameCount": 2,
+          "format": "SNES 4bpp planar 8x8 tiles; 16 columns by 8 rows",
+          "orientation": "native ROM sprite orientation; no horizontal flip",
+          "transparentColorIndex": 0
+        },
+        "palette": {
+          "cpuAddress": "07:EA00",
+          "fileOffset": "0x03EA00",
+          "bytesPerProfile": 64,
+          "format": "BGR555",
+          "selectedColors": "first 16 colors (normal sprite path)",
+          "transparentColorIndex": 0
+        },
+        "description": "First 128x64 sprite frame decoded from this fish profile's original-ROM graphics. This is a sprite extraction, not a screenshot or a reconstruction of the fish-record page."
       },
       "noImageReason": null,
       "nameSource": {
@@ -1066,19 +1990,47 @@
       "nameLatinVariants": [],
       "nameTh": "ปลาฮาริโยะ",
       "nameThVariants": [],
-      "image": "fish/22.png",
+      "image": "fish/rom-22.png",
       "imageSource": {
-        "sourceUrl": "https://www.youtube.com/watch?v=Y8JKlgIV91c&t=71s",
-        "sourceFrame": "references/all-fish-frames/frame-0072.png",
-        "cropPx": [
-          584,
-          110,
-          1020,
-          350
-        ],
-        "sourceCropFile": "guides-real/fish/fish-072.png",
-        "description": "Crop of the in-game fish picture shown in a player gameplay/catch-record capture; this is not a sprite extracted directly from the ROM.",
-        "videoFrameNumber": 72
+        "type": "rom_extracted_sprite",
+        "romSha1": "c2103dd94e2a1a65a495fc02adc2e7d040f31212",
+        "profileId": "22",
+        "graphicsTable": {
+          "cpuAddress": "04:BB0C",
+          "fileOffset": "0x023B0C",
+          "rowFileOffset": "0x023C14",
+          "rowStrideBytes": 8,
+          "startPointer": "18:8EDA",
+          "startFileOffset": "0x0C0EDA",
+          "secondPointer": "18:957B",
+          "secondPointerFileOffset": "0x0C157B",
+          "firstStreamBoundary": {
+            "fileOffset": "0x0C157B",
+            "meaning": "second animation stream pointer; exclusive input bound for decoding the first stream"
+          },
+          "firstStreamBytesConsumed": 1697,
+          "firstStreamCompressedEndFileOffset": "0x0C157B"
+        },
+        "decodedFrame": {
+          "frameIndex": 0,
+          "frameSizePixels": [
+            128,
+            64
+          ],
+          "sourceFrameCount": 2,
+          "format": "SNES 4bpp planar 8x8 tiles; 16 columns by 8 rows",
+          "orientation": "native ROM sprite orientation; no horizontal flip",
+          "transparentColorIndex": 0
+        },
+        "palette": {
+          "cpuAddress": "07:EA40",
+          "fileOffset": "0x03EA40",
+          "bytesPerProfile": 64,
+          "format": "BGR555",
+          "selectedColors": "first 16 colors (normal sprite path)",
+          "transparentColorIndex": 0
+        },
+        "description": "First 128x64 sprite frame decoded from this fish profile's original-ROM graphics. This is a sprite extraction, not a screenshot or a reconstruction of the fish-record page."
       },
       "noImageReason": null,
       "nameSource": {
@@ -1097,19 +2049,47 @@
       "nameLatinVariants": [],
       "nameTh": "โทมิโยะ",
       "nameThVariants": [],
-      "image": "fish/23.png",
+      "image": "fish/rom-23.png",
       "imageSource": {
-        "sourceUrl": "https://www.youtube.com/watch?v=Y8JKlgIV91c&t=204s",
-        "sourceFrame": "references/all-fish-frames/frame-0205.png",
-        "cropPx": [
-          584,
-          110,
-          1020,
-          350
-        ],
-        "sourceCropFile": "guides-real/fish/fish-205.png",
-        "description": "Crop of the in-game fish picture shown in a player gameplay/catch-record capture; this is not a sprite extracted directly from the ROM.",
-        "videoFrameNumber": 205
+        "type": "rom_extracted_sprite",
+        "romSha1": "c2103dd94e2a1a65a495fc02adc2e7d040f31212",
+        "profileId": "23",
+        "graphicsTable": {
+          "cpuAddress": "04:BB0C",
+          "fileOffset": "0x023B0C",
+          "rowFileOffset": "0x023C1C",
+          "rowStrideBytes": 8,
+          "startPointer": "18:98FB",
+          "startFileOffset": "0x0C18FB",
+          "secondPointer": "18:9FD1",
+          "secondPointerFileOffset": "0x0C1FD1",
+          "firstStreamBoundary": {
+            "fileOffset": "0x0C1FD1",
+            "meaning": "second animation stream pointer; exclusive input bound for decoding the first stream"
+          },
+          "firstStreamBytesConsumed": 1750,
+          "firstStreamCompressedEndFileOffset": "0x0C1FD1"
+        },
+        "decodedFrame": {
+          "frameIndex": 0,
+          "frameSizePixels": [
+            128,
+            64
+          ],
+          "sourceFrameCount": 2,
+          "format": "SNES 4bpp planar 8x8 tiles; 16 columns by 8 rows",
+          "orientation": "native ROM sprite orientation; no horizontal flip",
+          "transparentColorIndex": 0
+        },
+        "palette": {
+          "cpuAddress": "07:EA80",
+          "fileOffset": "0x03EA80",
+          "bytesPerProfile": 64,
+          "format": "BGR555",
+          "selectedColors": "first 16 colors (normal sprite path)",
+          "transparentColorIndex": 0
+        },
+        "description": "First 128x64 sprite frame decoded from this fish profile's original-ROM graphics. This is a sprite extraction, not a screenshot or a reconstruction of the fish-record page."
       },
       "noImageReason": null,
       "nameSource": {
@@ -1128,19 +2108,47 @@
       "nameLatinVariants": [],
       "nameTh": "ไรเกียว / ปลาช่อน",
       "nameThVariants": [],
-      "image": "fish/24.png",
+      "image": "fish/rom-24.png",
       "imageSource": {
-        "sourceUrl": "https://www.youtube.com/watch?v=Y8JKlgIV91c&t=144s",
-        "sourceFrame": "references/all-fish-frames/frame-0145.png",
-        "cropPx": [
-          584,
-          110,
-          1020,
-          350
-        ],
-        "sourceCropFile": "guides-real/fish/fish-145.png",
-        "description": "Crop of the in-game fish picture shown in a player gameplay/catch-record capture; this is not a sprite extracted directly from the ROM.",
-        "videoFrameNumber": 145
+        "type": "rom_extracted_sprite",
+        "romSha1": "c2103dd94e2a1a65a495fc02adc2e7d040f31212",
+        "profileId": "24",
+        "graphicsTable": {
+          "cpuAddress": "04:BB0C",
+          "fileOffset": "0x023B0C",
+          "rowFileOffset": "0x023C24",
+          "rowStrideBytes": 8,
+          "startPointer": "18:A356",
+          "startFileOffset": "0x0C2356",
+          "secondPointer": "18:B25D",
+          "secondPointerFileOffset": "0x0C325D",
+          "firstStreamBoundary": {
+            "fileOffset": "0x0C325D",
+            "meaning": "second animation stream pointer; exclusive input bound for decoding the first stream"
+          },
+          "firstStreamBytesConsumed": 3847,
+          "firstStreamCompressedEndFileOffset": "0x0C325D"
+        },
+        "decodedFrame": {
+          "frameIndex": 0,
+          "frameSizePixels": [
+            128,
+            64
+          ],
+          "sourceFrameCount": 2,
+          "format": "SNES 4bpp planar 8x8 tiles; 16 columns by 8 rows",
+          "orientation": "native ROM sprite orientation; no horizontal flip",
+          "transparentColorIndex": 0
+        },
+        "palette": {
+          "cpuAddress": "07:EAC0",
+          "fileOffset": "0x03EAC0",
+          "bytesPerProfile": 64,
+          "format": "BGR555",
+          "selectedColors": "first 16 colors (normal sprite path)",
+          "transparentColorIndex": 0
+        },
+        "description": "First 128x64 sprite frame decoded from this fish profile's original-ROM graphics. This is a sprite extraction, not a screenshot or a reconstruction of the fish-record page."
       },
       "noImageReason": null,
       "nameSource": {
@@ -1159,19 +2167,47 @@
       "nameLatinVariants": [],
       "nameTh": "เฮระบูนะ",
       "nameThVariants": [],
-      "image": "fish/25.png",
+      "image": "fish/rom-25.png",
       "imageSource": {
-        "sourceUrl": "https://www.youtube.com/watch?v=Y8JKlgIV91c&t=150s",
-        "sourceFrame": "references/all-fish-frames/frame-0151.png",
-        "cropPx": [
-          584,
-          110,
-          1020,
-          350
-        ],
-        "sourceCropFile": "guides-real/fish/fish-151.png",
-        "description": "Crop of the in-game fish picture shown in a player gameplay/catch-record capture; this is not a sprite extracted directly from the ROM.",
-        "videoFrameNumber": 151
+        "type": "rom_extracted_sprite",
+        "romSha1": "c2103dd94e2a1a65a495fc02adc2e7d040f31212",
+        "profileId": "25",
+        "graphicsTable": {
+          "cpuAddress": "04:BB0C",
+          "fileOffset": "0x023B0C",
+          "rowFileOffset": "0x023C2C",
+          "rowStrideBytes": 8,
+          "startPointer": "18:B917",
+          "startFileOffset": "0x0C3917",
+          "secondPointer": "18:C7EE",
+          "secondPointerFileOffset": "0x0C47EE",
+          "firstStreamBoundary": {
+            "fileOffset": "0x0C47EE",
+            "meaning": "second animation stream pointer; exclusive input bound for decoding the first stream"
+          },
+          "firstStreamBytesConsumed": 3799,
+          "firstStreamCompressedEndFileOffset": "0x0C47EE"
+        },
+        "decodedFrame": {
+          "frameIndex": 0,
+          "frameSizePixels": [
+            128,
+            64
+          ],
+          "sourceFrameCount": 2,
+          "format": "SNES 4bpp planar 8x8 tiles; 16 columns by 8 rows",
+          "orientation": "native ROM sprite orientation; no horizontal flip",
+          "transparentColorIndex": 0
+        },
+        "palette": {
+          "cpuAddress": "07:EB00",
+          "fileOffset": "0x03EB00",
+          "bytesPerProfile": 64,
+          "format": "BGR555",
+          "selectedColors": "first 16 colors (normal sprite path)",
+          "transparentColorIndex": 0
+        },
+        "description": "First 128x64 sprite frame decoded from this fish profile's original-ROM graphics. This is a sprite extraction, not a screenshot or a reconstruction of the fish-record page."
       },
       "noImageReason": null,
       "nameSource": {
@@ -1190,19 +2226,47 @@
       "nameLatinVariants": [],
       "nameTh": "นามาซุ / ปลาดุก",
       "nameThVariants": [],
-      "image": "fish/26.png",
+      "image": "fish/rom-26.png",
       "imageSource": {
-        "sourceUrl": "https://www.youtube.com/watch?v=Y8JKlgIV91c&t=168s",
-        "sourceFrame": "references/all-fish-frames/frame-0169.png",
-        "cropPx": [
-          584,
-          110,
-          1020,
-          350
-        ],
-        "sourceCropFile": "guides-real/fish/fish-169.png",
-        "description": "Crop of the in-game fish picture shown in a player gameplay/catch-record capture; this is not a sprite extracted directly from the ROM.",
-        "videoFrameNumber": 169
+        "type": "rom_extracted_sprite",
+        "romSha1": "c2103dd94e2a1a65a495fc02adc2e7d040f31212",
+        "profileId": "26",
+        "graphicsTable": {
+          "cpuAddress": "04:BB0C",
+          "fileOffset": "0x023B0C",
+          "rowFileOffset": "0x023C34",
+          "rowStrideBytes": 8,
+          "startPointer": "18:CE69",
+          "startFileOffset": "0x0C4E69",
+          "secondPointer": "18:DCC7",
+          "secondPointerFileOffset": "0x0C5CC7",
+          "firstStreamBoundary": {
+            "fileOffset": "0x0C5CC7",
+            "meaning": "second animation stream pointer; exclusive input bound for decoding the first stream"
+          },
+          "firstStreamBytesConsumed": 3678,
+          "firstStreamCompressedEndFileOffset": "0x0C5CC7"
+        },
+        "decodedFrame": {
+          "frameIndex": 0,
+          "frameSizePixels": [
+            128,
+            64
+          ],
+          "sourceFrameCount": 2,
+          "format": "SNES 4bpp planar 8x8 tiles; 16 columns by 8 rows",
+          "orientation": "native ROM sprite orientation; no horizontal flip",
+          "transparentColorIndex": 0
+        },
+        "palette": {
+          "cpuAddress": "07:EB40",
+          "fileOffset": "0x03EB40",
+          "bytesPerProfile": 64,
+          "format": "BGR555",
+          "selectedColors": "first 16 colors (normal sprite path)",
+          "transparentColorIndex": 0
+        },
+        "description": "First 128x64 sprite frame decoded from this fish profile's original-ROM graphics. This is a sprite extraction, not a screenshot or a reconstruction of the fish-record page."
       },
       "noImageReason": null,
       "nameSource": {
@@ -1221,19 +2285,47 @@
       "nameLatinVariants": [],
       "nameTh": "ซาโยริ",
       "nameThVariants": [],
-      "image": "fish/27.png",
+      "image": "fish/rom-27.png",
       "imageSource": {
-        "sourceUrl": "https://www.youtube.com/watch?v=Y8JKlgIV91c&t=275s",
-        "sourceFrame": "references/all-fish-frames/frame-0276.png",
-        "cropPx": [
-          584,
-          110,
-          1020,
-          350
-        ],
-        "sourceCropFile": "guides-real/fish/fish-276.png",
-        "description": "Crop of the in-game fish picture shown in a player gameplay/catch-record capture; this is not a sprite extracted directly from the ROM.",
-        "videoFrameNumber": 276
+        "type": "rom_extracted_sprite",
+        "romSha1": "c2103dd94e2a1a65a495fc02adc2e7d040f31212",
+        "profileId": "27",
+        "graphicsTable": {
+          "cpuAddress": "04:BB0C",
+          "fileOffset": "0x023B0C",
+          "rowFileOffset": "0x023C3C",
+          "rowStrideBytes": 8,
+          "startPointer": "18:E30E",
+          "startFileOffset": "0x0C630E",
+          "secondPointer": "18:EA18",
+          "secondPointerFileOffset": "0x0C6A18",
+          "firstStreamBoundary": {
+            "fileOffset": "0x0C6A18",
+            "meaning": "second animation stream pointer; exclusive input bound for decoding the first stream"
+          },
+          "firstStreamBytesConsumed": 1802,
+          "firstStreamCompressedEndFileOffset": "0x0C6A18"
+        },
+        "decodedFrame": {
+          "frameIndex": 0,
+          "frameSizePixels": [
+            128,
+            64
+          ],
+          "sourceFrameCount": 2,
+          "format": "SNES 4bpp planar 8x8 tiles; 16 columns by 8 rows",
+          "orientation": "native ROM sprite orientation; no horizontal flip",
+          "transparentColorIndex": 0
+        },
+        "palette": {
+          "cpuAddress": "07:EB80",
+          "fileOffset": "0x03EB80",
+          "bytesPerProfile": 64,
+          "format": "BGR555",
+          "selectedColors": "first 16 colors (normal sprite path)",
+          "transparentColorIndex": 0
+        },
+        "description": "First 128x64 sprite frame decoded from this fish profile's original-ROM graphics. This is a sprite extraction, not a screenshot or a reconstruction of the fish-record page."
       },
       "noImageReason": null,
       "nameSource": {
@@ -1255,19 +2347,47 @@
         "ปลาฮาสุ",
         "ฮาสุ"
       ],
-      "image": "fish/28.png",
+      "image": "fish/rom-28.png",
       "imageSource": {
-        "sourceUrl": "https://www.youtube.com/watch?v=Y8JKlgIV91c&t=103s",
-        "sourceFrame": "references/all-fish-frames/frame-0104.png",
-        "cropPx": [
-          584,
-          110,
-          1020,
-          350
-        ],
-        "sourceCropFile": "guides-real/fish/fish-104.png",
-        "description": "Crop of the in-game fish picture shown in a player gameplay/catch-record capture; this is not a sprite extracted directly from the ROM.",
-        "videoFrameNumber": 104
+        "type": "rom_extracted_sprite",
+        "romSha1": "c2103dd94e2a1a65a495fc02adc2e7d040f31212",
+        "profileId": "28",
+        "graphicsTable": {
+          "cpuAddress": "04:BB0C",
+          "fileOffset": "0x023B0C",
+          "rowFileOffset": "0x023C44",
+          "rowStrideBytes": 8,
+          "startPointer": "18:EDF4",
+          "startFileOffset": "0x0C6DF4",
+          "secondPointer": "18:F8E7",
+          "secondPointerFileOffset": "0x0C78E7",
+          "firstStreamBoundary": {
+            "fileOffset": "0x0C78E7",
+            "meaning": "second animation stream pointer; exclusive input bound for decoding the first stream"
+          },
+          "firstStreamBytesConsumed": 2803,
+          "firstStreamCompressedEndFileOffset": "0x0C78E7"
+        },
+        "decodedFrame": {
+          "frameIndex": 0,
+          "frameSizePixels": [
+            128,
+            64
+          ],
+          "sourceFrameCount": 2,
+          "format": "SNES 4bpp planar 8x8 tiles; 16 columns by 8 rows",
+          "orientation": "native ROM sprite orientation; no horizontal flip",
+          "transparentColorIndex": 0
+        },
+        "palette": {
+          "cpuAddress": "07:EBC0",
+          "fileOffset": "0x03EBC0",
+          "bytesPerProfile": 64,
+          "format": "BGR555",
+          "selectedColors": "first 16 colors (normal sprite path)",
+          "transparentColorIndex": 0
+        },
+        "description": "First 128x64 sprite frame decoded from this fish profile's original-ROM graphics. This is a sprite extraction, not a screenshot or a reconstruction of the fish-record page."
       },
       "noImageReason": null,
       "nameSource": {
@@ -1287,19 +2407,47 @@
       "nameLatinVariants": [],
       "nameTh": "วาตากะ",
       "nameThVariants": [],
-      "image": "fish/29.png",
+      "image": "fish/rom-29.png",
       "imageSource": {
-        "sourceUrl": "https://www.youtube.com/watch?v=Y8JKlgIV91c&t=147s",
-        "sourceFrame": "references/all-fish-frames/frame-0148.png",
-        "cropPx": [
-          584,
-          110,
-          1020,
-          350
-        ],
-        "sourceCropFile": "guides-real/fish/fish-148.png",
-        "description": "Crop of the in-game fish picture shown in a player gameplay/catch-record capture; this is not a sprite extracted directly from the ROM.",
-        "videoFrameNumber": 148
+        "type": "rom_extracted_sprite",
+        "romSha1": "c2103dd94e2a1a65a495fc02adc2e7d040f31212",
+        "profileId": "29",
+        "graphicsTable": {
+          "cpuAddress": "04:BB0C",
+          "fileOffset": "0x023B0C",
+          "rowFileOffset": "0x023C4C",
+          "rowStrideBytes": 8,
+          "startPointer": "18:FE1A",
+          "startFileOffset": "0x0C7E1A",
+          "secondPointer": "19:87B5",
+          "secondPointerFileOffset": "0x0C87B5",
+          "firstStreamBoundary": {
+            "fileOffset": "0x0C87B5",
+            "meaning": "second animation stream pointer; exclusive input bound for decoding the first stream"
+          },
+          "firstStreamBytesConsumed": 2459,
+          "firstStreamCompressedEndFileOffset": "0x0C87B5"
+        },
+        "decodedFrame": {
+          "frameIndex": 0,
+          "frameSizePixels": [
+            128,
+            64
+          ],
+          "sourceFrameCount": 2,
+          "format": "SNES 4bpp planar 8x8 tiles; 16 columns by 8 rows",
+          "orientation": "native ROM sprite orientation; no horizontal flip",
+          "transparentColorIndex": 0
+        },
+        "palette": {
+          "cpuAddress": "07:EC00",
+          "fileOffset": "0x03EC00",
+          "bytesPerProfile": 64,
+          "format": "BGR555",
+          "selectedColors": "first 16 colors (normal sprite path)",
+          "transparentColorIndex": 0
+        },
+        "description": "First 128x64 sprite frame decoded from this fish profile's original-ROM graphics. This is a sprite extraction, not a screenshot or a reconstruction of the fish-record page."
       },
       "noImageReason": null,
       "nameSource": {
@@ -1321,19 +2469,47 @@
         "ปลาคามะสึกะ",
         "คามัตสึกะ"
       ],
-      "image": "fish/2A.png",
+      "image": "fish/rom-2A.png",
       "imageSource": {
-        "sourceUrl": "https://www.youtube.com/watch?v=Y8JKlgIV91c&t=88s",
-        "sourceFrame": "references/all-fish-frames/frame-0089.png",
-        "cropPx": [
-          584,
-          110,
-          1020,
-          350
-        ],
-        "sourceCropFile": "guides-real/fish/fish-089.png",
-        "description": "Crop of the in-game fish picture shown in a player gameplay/catch-record capture; this is not a sprite extracted directly from the ROM.",
-        "videoFrameNumber": 89
+        "type": "rom_extracted_sprite",
+        "romSha1": "c2103dd94e2a1a65a495fc02adc2e7d040f31212",
+        "profileId": "2A",
+        "graphicsTable": {
+          "cpuAddress": "04:BB0C",
+          "fileOffset": "0x023B0C",
+          "rowFileOffset": "0x023C54",
+          "rowStrideBytes": 8,
+          "startPointer": "19:8C8A",
+          "startFileOffset": "0x0C8C8A",
+          "secondPointer": "19:95B7",
+          "secondPointerFileOffset": "0x0C95B7",
+          "firstStreamBoundary": {
+            "fileOffset": "0x0C95B7",
+            "meaning": "second animation stream pointer; exclusive input bound for decoding the first stream"
+          },
+          "firstStreamBytesConsumed": 2349,
+          "firstStreamCompressedEndFileOffset": "0x0C95B7"
+        },
+        "decodedFrame": {
+          "frameIndex": 0,
+          "frameSizePixels": [
+            128,
+            64
+          ],
+          "sourceFrameCount": 2,
+          "format": "SNES 4bpp planar 8x8 tiles; 16 columns by 8 rows",
+          "orientation": "native ROM sprite orientation; no horizontal flip",
+          "transparentColorIndex": 0
+        },
+        "palette": {
+          "cpuAddress": "07:EC40",
+          "fileOffset": "0x03EC40",
+          "bytesPerProfile": 64,
+          "format": "BGR555",
+          "selectedColors": "first 16 colors (normal sprite path)",
+          "transparentColorIndex": 0
+        },
+        "description": "First 128x64 sprite frame decoded from this fish profile's original-ROM graphics. This is a sprite extraction, not a screenshot or a reconstruction of the fish-record page."
       },
       "noImageReason": null,
       "nameSource": {
@@ -1353,19 +2529,47 @@
       "nameLatinVariants": [],
       "nameTh": "สึจิฟุกิ",
       "nameThVariants": [],
-      "image": "fish/2B.png",
+      "image": "fish/rom-2B.png",
       "imageSource": {
-        "sourceUrl": "https://www.youtube.com/watch?v=Y8JKlgIV91c&t=191s",
-        "sourceFrame": "references/all-fish-frames/frame-0192.png",
-        "cropPx": [
-          584,
-          110,
-          1020,
-          350
-        ],
-        "sourceCropFile": "guides-real/fish/fish-192.png",
-        "description": "Crop of the in-game fish picture shown in a player gameplay/catch-record capture; this is not a sprite extracted directly from the ROM.",
-        "videoFrameNumber": 192
+        "type": "rom_extracted_sprite",
+        "romSha1": "c2103dd94e2a1a65a495fc02adc2e7d040f31212",
+        "profileId": "2B",
+        "graphicsTable": {
+          "cpuAddress": "04:BB0C",
+          "fileOffset": "0x023B0C",
+          "rowFileOffset": "0x023C5C",
+          "rowStrideBytes": 8,
+          "startPointer": "19:9A12",
+          "startFileOffset": "0x0C9A12",
+          "secondPointer": "19:A1CF",
+          "secondPointerFileOffset": "0x0CA1CF",
+          "firstStreamBoundary": {
+            "fileOffset": "0x0CA1CF",
+            "meaning": "second animation stream pointer; exclusive input bound for decoding the first stream"
+          },
+          "firstStreamBytesConsumed": 1981,
+          "firstStreamCompressedEndFileOffset": "0x0CA1CF"
+        },
+        "decodedFrame": {
+          "frameIndex": 0,
+          "frameSizePixels": [
+            128,
+            64
+          ],
+          "sourceFrameCount": 2,
+          "format": "SNES 4bpp planar 8x8 tiles; 16 columns by 8 rows",
+          "orientation": "native ROM sprite orientation; no horizontal flip",
+          "transparentColorIndex": 0
+        },
+        "palette": {
+          "cpuAddress": "07:EC80",
+          "fileOffset": "0x03EC80",
+          "bytesPerProfile": 64,
+          "format": "BGR555",
+          "selectedColors": "first 16 colors (normal sprite path)",
+          "transparentColorIndex": 0
+        },
+        "description": "First 128x64 sprite frame decoded from this fish profile's original-ROM graphics. This is a sprite extraction, not a screenshot or a reconstruction of the fish-record page."
       },
       "noImageReason": null,
       "nameSource": {
@@ -1390,19 +2594,47 @@
         "ปลาชิมะโดโจ",
         "ชิมะโดโจ"
       ],
-      "image": "fish/2C.png",
+      "image": "fish/rom-2C.png",
       "imageSource": {
-        "sourceUrl": "https://www.youtube.com/watch?v=Y8JKlgIV91c&t=100s",
-        "sourceFrame": "references/all-fish-frames/frame-0101.png",
-        "cropPx": [
-          584,
-          110,
-          1020,
-          350
-        ],
-        "sourceCropFile": "guides-real/fish/fish-101.png",
-        "description": "Crop of the in-game fish picture shown in a player gameplay/catch-record capture; this is not a sprite extracted directly from the ROM.",
-        "videoFrameNumber": 101
+        "type": "rom_extracted_sprite",
+        "romSha1": "c2103dd94e2a1a65a495fc02adc2e7d040f31212",
+        "profileId": "2C",
+        "graphicsTable": {
+          "cpuAddress": "04:BB0C",
+          "fileOffset": "0x023B0C",
+          "rowFileOffset": "0x023C64",
+          "rowStrideBytes": 8,
+          "startPointer": "19:A5C2",
+          "startFileOffset": "0x0CA5C2",
+          "secondPointer": "19:ACE5",
+          "secondPointerFileOffset": "0x0CACE5",
+          "firstStreamBoundary": {
+            "fileOffset": "0x0CACE5",
+            "meaning": "second animation stream pointer; exclusive input bound for decoding the first stream"
+          },
+          "firstStreamBytesConsumed": 1827,
+          "firstStreamCompressedEndFileOffset": "0x0CACE5"
+        },
+        "decodedFrame": {
+          "frameIndex": 0,
+          "frameSizePixels": [
+            128,
+            64
+          ],
+          "sourceFrameCount": 2,
+          "format": "SNES 4bpp planar 8x8 tiles; 16 columns by 8 rows",
+          "orientation": "native ROM sprite orientation; no horizontal flip",
+          "transparentColorIndex": 0
+        },
+        "palette": {
+          "cpuAddress": "07:ECC0",
+          "fileOffset": "0x03ECC0",
+          "bytesPerProfile": 64,
+          "format": "BGR555",
+          "selectedColors": "first 16 colors (normal sprite path)",
+          "transparentColorIndex": 0
+        },
+        "description": "First 128x64 sprite frame decoded from this fish profile's original-ROM graphics. This is a sprite extraction, not a screenshot or a reconstruction of the fish-record page."
       },
       "noImageReason": null,
       "nameSource": {
@@ -1422,19 +2654,47 @@
       "nameLatinVariants": [],
       "nameTh": "คามุรุจิ",
       "nameThVariants": [],
-      "image": "fish/2D.png",
+      "image": "fish/rom-2D.png",
       "imageSource": {
-        "sourceUrl": "https://www.youtube.com/watch?v=Y8JKlgIV91c&t=138s",
-        "sourceFrame": "references/all-fish-frames/frame-0139.png",
-        "cropPx": [
-          584,
-          110,
-          1020,
-          350
-        ],
-        "sourceCropFile": "guides-real/fish/fish-139.png",
-        "description": "Crop of the in-game fish picture shown in a player gameplay/catch-record capture; this is not a sprite extracted directly from the ROM.",
-        "videoFrameNumber": 139
+        "type": "rom_extracted_sprite",
+        "romSha1": "c2103dd94e2a1a65a495fc02adc2e7d040f31212",
+        "profileId": "2D",
+        "graphicsTable": {
+          "cpuAddress": "04:BB0C",
+          "fileOffset": "0x023B0C",
+          "rowFileOffset": "0x023C6C",
+          "rowStrideBytes": 8,
+          "startPointer": "19:B081",
+          "startFileOffset": "0x0CB081",
+          "secondPointer": "19:BE33",
+          "secondPointerFileOffset": "0x0CBE33",
+          "firstStreamBoundary": {
+            "fileOffset": "0x0CBE33",
+            "meaning": "second animation stream pointer; exclusive input bound for decoding the first stream"
+          },
+          "firstStreamBytesConsumed": 3506,
+          "firstStreamCompressedEndFileOffset": "0x0CBE33"
+        },
+        "decodedFrame": {
+          "frameIndex": 0,
+          "frameSizePixels": [
+            128,
+            64
+          ],
+          "sourceFrameCount": 2,
+          "format": "SNES 4bpp planar 8x8 tiles; 16 columns by 8 rows",
+          "orientation": "native ROM sprite orientation; no horizontal flip",
+          "transparentColorIndex": 0
+        },
+        "palette": {
+          "cpuAddress": "07:ED00",
+          "fileOffset": "0x03ED00",
+          "bytesPerProfile": 64,
+          "format": "BGR555",
+          "selectedColors": "first 16 colors (normal sprite path)",
+          "transparentColorIndex": 0
+        },
+        "description": "First 128x64 sprite frame decoded from this fish profile's original-ROM graphics. This is a sprite extraction, not a screenshot or a reconstruction of the fish-record page."
       },
       "noImageReason": null,
       "nameSource": {
@@ -1453,19 +2713,47 @@
       "nameLatinVariants": [],
       "nameTh": "ฮิไก",
       "nameThVariants": [],
-      "image": "fish/2E.png",
+      "image": "fish/rom-2E.png",
       "imageSource": {
-        "sourceUrl": "https://www.youtube.com/watch?v=Y8JKlgIV91c&t=135s",
-        "sourceFrame": "references/all-fish-frames/frame-0136.png",
-        "cropPx": [
-          584,
-          110,
-          1020,
-          350
-        ],
-        "sourceCropFile": "guides-real/fish/fish-136.png",
-        "description": "Crop of the in-game fish picture shown in a player gameplay/catch-record capture; this is not a sprite extracted directly from the ROM.",
-        "videoFrameNumber": 136
+        "type": "rom_extracted_sprite",
+        "romSha1": "c2103dd94e2a1a65a495fc02adc2e7d040f31212",
+        "profileId": "2E",
+        "graphicsTable": {
+          "cpuAddress": "04:BB0C",
+          "fileOffset": "0x023B0C",
+          "rowFileOffset": "0x023C74",
+          "rowStrideBytes": 8,
+          "startPointer": "19:C476",
+          "startFileOffset": "0x0CC476",
+          "secondPointer": "19:CDE9",
+          "secondPointerFileOffset": "0x0CCDE9",
+          "firstStreamBoundary": {
+            "fileOffset": "0x0CCDE9",
+            "meaning": "second animation stream pointer; exclusive input bound for decoding the first stream"
+          },
+          "firstStreamBytesConsumed": 2419,
+          "firstStreamCompressedEndFileOffset": "0x0CCDE9"
+        },
+        "decodedFrame": {
+          "frameIndex": 0,
+          "frameSizePixels": [
+            128,
+            64
+          ],
+          "sourceFrameCount": 2,
+          "format": "SNES 4bpp planar 8x8 tiles; 16 columns by 8 rows",
+          "orientation": "native ROM sprite orientation; no horizontal flip",
+          "transparentColorIndex": 0
+        },
+        "palette": {
+          "cpuAddress": "07:ED40",
+          "fileOffset": "0x03ED40",
+          "bytesPerProfile": 64,
+          "format": "BGR555",
+          "selectedColors": "first 16 colors (normal sprite path)",
+          "transparentColorIndex": 0
+        },
+        "description": "First 128x64 sprite frame decoded from this fish profile's original-ROM graphics. This is a sprite extraction, not a screenshot or a reconstruction of the fish-record page."
       },
       "noImageReason": null,
       "nameSource": {
@@ -1484,19 +2772,47 @@
       "nameLatinVariants": [],
       "nameTh": "โซเกียว",
       "nameThVariants": [],
-      "image": "fish/2F.png",
+      "image": "fish/rom-2F.png",
       "imageSource": {
-        "sourceUrl": "https://www.youtube.com/watch?v=Y8JKlgIV91c&t=156s",
-        "sourceFrame": "references/all-fish-frames/frame-0157.png",
-        "cropPx": [
-          584,
-          110,
-          1020,
-          350
-        ],
-        "sourceCropFile": "guides-real/fish/fish-157.png",
-        "description": "Crop of the in-game fish picture shown in a player gameplay/catch-record capture; this is not a sprite extracted directly from the ROM.",
-        "videoFrameNumber": 157
+        "type": "rom_extracted_sprite",
+        "romSha1": "c2103dd94e2a1a65a495fc02adc2e7d040f31212",
+        "profileId": "2F",
+        "graphicsTable": {
+          "cpuAddress": "04:BB0C",
+          "fileOffset": "0x023B0C",
+          "rowFileOffset": "0x023C7C",
+          "rowStrideBytes": 8,
+          "startPointer": "19:D2D8",
+          "startFileOffset": "0x0CD2D8",
+          "secondPointer": "19:E419",
+          "secondPointerFileOffset": "0x0CE419",
+          "firstStreamBoundary": {
+            "fileOffset": "0x0CE419",
+            "meaning": "second animation stream pointer; exclusive input bound for decoding the first stream"
+          },
+          "firstStreamBytesConsumed": 4417,
+          "firstStreamCompressedEndFileOffset": "0x0CE419"
+        },
+        "decodedFrame": {
+          "frameIndex": 0,
+          "frameSizePixels": [
+            128,
+            64
+          ],
+          "sourceFrameCount": 2,
+          "format": "SNES 4bpp planar 8x8 tiles; 16 columns by 8 rows",
+          "orientation": "native ROM sprite orientation; no horizontal flip",
+          "transparentColorIndex": 0
+        },
+        "palette": {
+          "cpuAddress": "07:ED80",
+          "fileOffset": "0x03ED80",
+          "bytesPerProfile": 64,
+          "format": "BGR555",
+          "selectedColors": "first 16 colors (normal sprite path)",
+          "transparentColorIndex": 0
+        },
+        "description": "First 128x64 sprite frame decoded from this fish profile's original-ROM graphics. This is a sprite extraction, not a screenshot or a reconstruction of the fish-record page."
       },
       "noImageReason": null,
       "nameSource": {
@@ -1515,19 +2831,47 @@
       "nameLatinVariants": [],
       "nameTh": "อาโอะอุโอะ",
       "nameThVariants": [],
-      "image": "fish/30.png",
+      "image": "fish/rom-30.png",
       "imageSource": {
-        "sourceUrl": "https://www.youtube.com/watch?v=Y8JKlgIV91c&t=165s",
-        "sourceFrame": "references/all-fish-frames/frame-0166.png",
-        "cropPx": [
-          584,
-          110,
-          1020,
-          350
-        ],
-        "sourceCropFile": "guides-real/fish/fish-166.png",
-        "description": "Crop of the in-game fish picture shown in a player gameplay/catch-record capture; this is not a sprite extracted directly from the ROM.",
-        "videoFrameNumber": 166
+        "type": "rom_extracted_sprite",
+        "romSha1": "c2103dd94e2a1a65a495fc02adc2e7d040f31212",
+        "profileId": "30",
+        "graphicsTable": {
+          "cpuAddress": "04:BB0C",
+          "fileOffset": "0x023B0C",
+          "rowFileOffset": "0x023C84",
+          "rowStrideBytes": 8,
+          "startPointer": "19:EB8F",
+          "startFileOffset": "0x0CEB8F",
+          "secondPointer": "19:FBAC",
+          "secondPointerFileOffset": "0x0CFBAC",
+          "firstStreamBoundary": {
+            "fileOffset": "0x0CFBAC",
+            "meaning": "second animation stream pointer; exclusive input bound for decoding the first stream"
+          },
+          "firstStreamBytesConsumed": 4125,
+          "firstStreamCompressedEndFileOffset": "0x0CFBAC"
+        },
+        "decodedFrame": {
+          "frameIndex": 0,
+          "frameSizePixels": [
+            128,
+            64
+          ],
+          "sourceFrameCount": 2,
+          "format": "SNES 4bpp planar 8x8 tiles; 16 columns by 8 rows",
+          "orientation": "native ROM sprite orientation; no horizontal flip",
+          "transparentColorIndex": 0
+        },
+        "palette": {
+          "cpuAddress": "07:EDC0",
+          "fileOffset": "0x03EDC0",
+          "bytesPerProfile": 64,
+          "format": "BGR555",
+          "selectedColors": "first 16 colors (normal sprite path)",
+          "transparentColorIndex": 0
+        },
+        "description": "First 128x64 sprite frame decoded from this fish profile's original-ROM graphics. This is a sprite extraction, not a screenshot or a reconstruction of the fish-record page."
       },
       "noImageReason": null,
       "nameSource": {
@@ -1550,19 +2894,47 @@
         "นิโกอิ",
         "นิโงอิ"
       ],
-      "image": "fish/31.png",
+      "image": "fish/rom-31.png",
       "imageSource": {
-        "sourceUrl": "https://www.youtube.com/watch?v=Y8JKlgIV91c&t=118s",
-        "sourceFrame": "references/all-fish-frames/frame-0119.png",
-        "cropPx": [
-          584,
-          110,
-          1020,
-          350
-        ],
-        "sourceCropFile": "guides-real/fish/fish-119.png",
-        "description": "Crop of the in-game fish picture shown in a player gameplay/catch-record capture; this is not a sprite extracted directly from the ROM.",
-        "videoFrameNumber": 119
+        "type": "rom_extracted_sprite",
+        "romSha1": "c2103dd94e2a1a65a495fc02adc2e7d040f31212",
+        "profileId": "31",
+        "graphicsTable": {
+          "cpuAddress": "04:BB0C",
+          "fileOffset": "0x023B0C",
+          "rowFileOffset": "0x023C8C",
+          "rowStrideBytes": 8,
+          "startPointer": "1A:82D2",
+          "startFileOffset": "0x0D02D2",
+          "secondPointer": "1A:8DFD",
+          "secondPointerFileOffset": "0x0D0DFD",
+          "firstStreamBoundary": {
+            "fileOffset": "0x0D0DFD",
+            "meaning": "second animation stream pointer; exclusive input bound for decoding the first stream"
+          },
+          "firstStreamBytesConsumed": 2859,
+          "firstStreamCompressedEndFileOffset": "0x0D0DFD"
+        },
+        "decodedFrame": {
+          "frameIndex": 0,
+          "frameSizePixels": [
+            128,
+            64
+          ],
+          "sourceFrameCount": 2,
+          "format": "SNES 4bpp planar 8x8 tiles; 16 columns by 8 rows",
+          "orientation": "native ROM sprite orientation; no horizontal flip",
+          "transparentColorIndex": 0
+        },
+        "palette": {
+          "cpuAddress": "07:EE00",
+          "fileOffset": "0x03EE00",
+          "bytesPerProfile": 64,
+          "format": "BGR555",
+          "selectedColors": "first 16 colors (normal sprite path)",
+          "transparentColorIndex": 0
+        },
+        "description": "First 128x64 sprite frame decoded from this fish profile's original-ROM graphics. This is a sprite extraction, not a screenshot or a reconstruction of the fish-record page."
       },
       "noImageReason": null,
       "nameSource": {
@@ -1583,19 +2955,47 @@
       "nameLatinVariants": [],
       "nameTh": "เมโกจิ",
       "nameThVariants": [],
-      "image": "fish/32.png",
+      "image": "fish/rom-32.png",
       "imageSource": {
-        "sourceUrl": "https://www.youtube.com/watch?v=Y8JKlgIV91c&t=269s",
-        "sourceFrame": "references/all-fish-frames/frame-0270.png",
-        "cropPx": [
-          584,
-          110,
-          1020,
-          350
-        ],
-        "sourceCropFile": "guides-real/fish/fish-270.png",
-        "description": "Crop of the in-game fish picture shown in a player gameplay/catch-record capture; this is not a sprite extracted directly from the ROM.",
-        "videoFrameNumber": 270
+        "type": "rom_extracted_sprite",
+        "romSha1": "c2103dd94e2a1a65a495fc02adc2e7d040f31212",
+        "profileId": "32",
+        "graphicsTable": {
+          "cpuAddress": "04:BB0C",
+          "fileOffset": "0x023B0C",
+          "rowFileOffset": "0x023C94",
+          "rowStrideBytes": 8,
+          "startPointer": "1A:9326",
+          "startFileOffset": "0x0D1326",
+          "secondPointer": "1A:9B94",
+          "secondPointerFileOffset": "0x0D1B94",
+          "firstStreamBoundary": {
+            "fileOffset": "0x0D1B94",
+            "meaning": "second animation stream pointer; exclusive input bound for decoding the first stream"
+          },
+          "firstStreamBytesConsumed": 2158,
+          "firstStreamCompressedEndFileOffset": "0x0D1B94"
+        },
+        "decodedFrame": {
+          "frameIndex": 0,
+          "frameSizePixels": [
+            128,
+            64
+          ],
+          "sourceFrameCount": 2,
+          "format": "SNES 4bpp planar 8x8 tiles; 16 columns by 8 rows",
+          "orientation": "native ROM sprite orientation; no horizontal flip",
+          "transparentColorIndex": 0
+        },
+        "palette": {
+          "cpuAddress": "07:EE40",
+          "fileOffset": "0x03EE40",
+          "bytesPerProfile": 64,
+          "format": "BGR555",
+          "selectedColors": "first 16 colors (normal sprite path)",
+          "transparentColorIndex": 0
+        },
+        "description": "First 128x64 sprite frame decoded from this fish profile's original-ROM graphics. This is a sprite extraction, not a screenshot or a reconstruction of the fish-record page."
       },
       "noImageReason": null,
       "nameSource": {
@@ -1614,19 +3014,47 @@
       "nameLatinVariants": [],
       "nameTh": "มารุตะ",
       "nameThVariants": [],
-      "image": "fish/33.png",
+      "image": "fish/rom-33.png",
       "imageSource": {
-        "sourceUrl": "https://www.youtube.com/watch?v=Y8JKlgIV91c&t=245s",
-        "sourceFrame": "references/all-fish-frames/frame-0246.png",
-        "cropPx": [
-          584,
-          110,
-          1020,
-          350
-        ],
-        "sourceCropFile": "guides-real/fish/fish-246.png",
-        "description": "Crop of the in-game fish picture shown in a player gameplay/catch-record capture; this is not a sprite extracted directly from the ROM.",
-        "videoFrameNumber": 246
+        "type": "rom_extracted_sprite",
+        "romSha1": "c2103dd94e2a1a65a495fc02adc2e7d040f31212",
+        "profileId": "33",
+        "graphicsTable": {
+          "cpuAddress": "04:BB0C",
+          "fileOffset": "0x023B0C",
+          "rowFileOffset": "0x023C9C",
+          "rowStrideBytes": 8,
+          "startPointer": "1A:9F9D",
+          "startFileOffset": "0x0D1F9D",
+          "secondPointer": "1A:ABCB",
+          "secondPointerFileOffset": "0x0D2BCB",
+          "firstStreamBoundary": {
+            "fileOffset": "0x0D2BCB",
+            "meaning": "second animation stream pointer; exclusive input bound for decoding the first stream"
+          },
+          "firstStreamBytesConsumed": 3118,
+          "firstStreamCompressedEndFileOffset": "0x0D2BCB"
+        },
+        "decodedFrame": {
+          "frameIndex": 0,
+          "frameSizePixels": [
+            128,
+            64
+          ],
+          "sourceFrameCount": 2,
+          "format": "SNES 4bpp planar 8x8 tiles; 16 columns by 8 rows",
+          "orientation": "native ROM sprite orientation; no horizontal flip",
+          "transparentColorIndex": 0
+        },
+        "palette": {
+          "cpuAddress": "07:EE80",
+          "fileOffset": "0x03EE80",
+          "bytesPerProfile": 64,
+          "format": "BGR555",
+          "selectedColors": "first 16 colors (normal sprite path)",
+          "transparentColorIndex": 0
+        },
+        "description": "First 128x64 sprite frame decoded from this fish profile's original-ROM graphics. This is a sprite extraction, not a screenshot or a reconstruction of the fish-record page."
       },
       "noImageReason": null,
       "nameSource": {
@@ -1645,19 +3073,47 @@
       "nameLatinVariants": [],
       "nameTh": "ฮาเซะ",
       "nameThVariants": [],
-      "image": "fish/34.png",
+      "image": "fish/rom-34.png",
       "imageSource": {
-        "sourceUrl": "https://www.youtube.com/watch?v=Y8JKlgIV91c&t=278s",
-        "sourceFrame": "references/all-fish-frames/frame-0279.png",
-        "cropPx": [
-          584,
-          110,
-          1020,
-          350
-        ],
-        "sourceCropFile": "guides-real/fish/fish-279.png",
-        "description": "Crop of the in-game fish picture shown in a player gameplay/catch-record capture; this is not a sprite extracted directly from the ROM.",
-        "videoFrameNumber": 279
+        "type": "rom_extracted_sprite",
+        "romSha1": "c2103dd94e2a1a65a495fc02adc2e7d040f31212",
+        "profileId": "34",
+        "graphicsTable": {
+          "cpuAddress": "04:BB0C",
+          "fileOffset": "0x023B0C",
+          "rowFileOffset": "0x023CA4",
+          "rowStrideBytes": 8,
+          "startPointer": "1A:B1E9",
+          "startFileOffset": "0x0D31E9",
+          "secondPointer": "1A:BA37",
+          "secondPointerFileOffset": "0x0D3A37",
+          "firstStreamBoundary": {
+            "fileOffset": "0x0D3A37",
+            "meaning": "second animation stream pointer; exclusive input bound for decoding the first stream"
+          },
+          "firstStreamBytesConsumed": 2126,
+          "firstStreamCompressedEndFileOffset": "0x0D3A37"
+        },
+        "decodedFrame": {
+          "frameIndex": 0,
+          "frameSizePixels": [
+            128,
+            64
+          ],
+          "sourceFrameCount": 2,
+          "format": "SNES 4bpp planar 8x8 tiles; 16 columns by 8 rows",
+          "orientation": "native ROM sprite orientation; no horizontal flip",
+          "transparentColorIndex": 0
+        },
+        "palette": {
+          "cpuAddress": "07:EEC0",
+          "fileOffset": "0x03EEC0",
+          "bytesPerProfile": 64,
+          "format": "BGR555",
+          "selectedColors": "first 16 colors (normal sprite path)",
+          "transparentColorIndex": 0
+        },
+        "description": "First 128x64 sprite frame decoded from this fish profile's original-ROM graphics. This is a sprite extraction, not a screenshot or a reconstruction of the fish-record page."
       },
       "noImageReason": null,
       "nameSource": {
@@ -1676,19 +3132,47 @@
       "nameLatinVariants": [],
       "nameTh": "โบระ",
       "nameThVariants": [],
-      "image": "fish/35.png",
+      "image": "fish/rom-35.png",
       "imageSource": {
-        "sourceUrl": "https://www.youtube.com/watch?v=Y8JKlgIV91c&t=251s",
-        "sourceFrame": "references/all-fish-frames/frame-0252.png",
-        "cropPx": [
-          584,
-          110,
-          1020,
-          350
-        ],
-        "sourceCropFile": "guides-real/fish/fish-252.png",
-        "description": "Crop of the in-game fish picture shown in a player gameplay/catch-record capture; this is not a sprite extracted directly from the ROM.",
-        "videoFrameNumber": 252
+        "type": "rom_extracted_sprite",
+        "romSha1": "c2103dd94e2a1a65a495fc02adc2e7d040f31212",
+        "profileId": "35",
+        "graphicsTable": {
+          "cpuAddress": "04:BB0C",
+          "fileOffset": "0x023B0C",
+          "rowFileOffset": "0x023CAC",
+          "rowStrideBytes": 8,
+          "startPointer": "1A:BEBC",
+          "startFileOffset": "0x0D3EBC",
+          "secondPointer": "1A:CBEA",
+          "secondPointerFileOffset": "0x0D4BEA",
+          "firstStreamBoundary": {
+            "fileOffset": "0x0D4BEA",
+            "meaning": "second animation stream pointer; exclusive input bound for decoding the first stream"
+          },
+          "firstStreamBytesConsumed": 3374,
+          "firstStreamCompressedEndFileOffset": "0x0D4BEA"
+        },
+        "decodedFrame": {
+          "frameIndex": 0,
+          "frameSizePixels": [
+            128,
+            64
+          ],
+          "sourceFrameCount": 2,
+          "format": "SNES 4bpp planar 8x8 tiles; 16 columns by 8 rows",
+          "orientation": "native ROM sprite orientation; no horizontal flip",
+          "transparentColorIndex": 0
+        },
+        "palette": {
+          "cpuAddress": "07:EF00",
+          "fileOffset": "0x03EF00",
+          "bytesPerProfile": 64,
+          "format": "BGR555",
+          "selectedColors": "first 16 colors (normal sprite path)",
+          "transparentColorIndex": 0
+        },
+        "description": "First 128x64 sprite frame decoded from this fish profile's original-ROM graphics. This is a sprite extraction, not a screenshot or a reconstruction of the fish-record page."
       },
       "noImageReason": null,
       "nameSource": {
@@ -1707,19 +3191,47 @@
       "nameLatinVariants": [],
       "nameTh": "ซึซึกิ",
       "nameThVariants": [],
-      "image": "fish/36.png",
+      "image": "fish/rom-36.png",
       "imageSource": {
-        "sourceUrl": "https://www.youtube.com/watch?v=Y8JKlgIV91c&t=257s",
-        "sourceFrame": "references/all-fish-frames/frame-0258.png",
-        "cropPx": [
-          584,
-          110,
-          1020,
-          350
-        ],
-        "sourceCropFile": "guides-real/fish/fish-258.png",
-        "description": "Crop of the in-game fish picture shown in a player gameplay/catch-record capture; this is not a sprite extracted directly from the ROM.",
-        "videoFrameNumber": 258
+        "type": "rom_extracted_sprite",
+        "romSha1": "c2103dd94e2a1a65a495fc02adc2e7d040f31212",
+        "profileId": "36",
+        "graphicsTable": {
+          "cpuAddress": "04:BB0C",
+          "fileOffset": "0x023B0C",
+          "rowFileOffset": "0x023CB4",
+          "rowStrideBytes": 8,
+          "startPointer": "1A:D268",
+          "startFileOffset": "0x0D5268",
+          "secondPointer": "1A:E144",
+          "secondPointerFileOffset": "0x0D6144",
+          "firstStreamBoundary": {
+            "fileOffset": "0x0D6144",
+            "meaning": "second animation stream pointer; exclusive input bound for decoding the first stream"
+          },
+          "firstStreamBytesConsumed": 3804,
+          "firstStreamCompressedEndFileOffset": "0x0D6144"
+        },
+        "decodedFrame": {
+          "frameIndex": 0,
+          "frameSizePixels": [
+            128,
+            64
+          ],
+          "sourceFrameCount": 2,
+          "format": "SNES 4bpp planar 8x8 tiles; 16 columns by 8 rows",
+          "orientation": "native ROM sprite orientation; no horizontal flip",
+          "transparentColorIndex": 0
+        },
+        "palette": {
+          "cpuAddress": "07:EF40",
+          "fileOffset": "0x03EF40",
+          "bytesPerProfile": 64,
+          "format": "BGR555",
+          "selectedColors": "first 16 colors (normal sprite path)",
+          "transparentColorIndex": 0
+        },
+        "description": "First 128x64 sprite frame decoded from this fish profile's original-ROM graphics. This is a sprite extraction, not a screenshot or a reconstruction of the fish-record page."
       },
       "noImageReason": null,
       "nameSource": {
@@ -1738,19 +3250,47 @@
       "nameLatinVariants": [],
       "nameTh": "อาคาเมะ",
       "nameThVariants": [],
-      "image": "fish/37.png",
+      "image": "fish/rom-37.png",
       "imageSource": {
-        "sourceUrl": "https://www.youtube.com/watch?v=Y8JKlgIV91c&t=254s",
-        "sourceFrame": "references/all-fish-frames/frame-0255.png",
-        "cropPx": [
-          584,
-          110,
-          1020,
-          350
-        ],
-        "sourceCropFile": "guides-real/fish/fish-255.png",
-        "description": "Crop of the in-game fish picture shown in a player gameplay/catch-record capture; this is not a sprite extracted directly from the ROM.",
-        "videoFrameNumber": 255
+        "type": "rom_extracted_sprite",
+        "romSha1": "c2103dd94e2a1a65a495fc02adc2e7d040f31212",
+        "profileId": "37",
+        "graphicsTable": {
+          "cpuAddress": "04:BB0C",
+          "fileOffset": "0x023B0C",
+          "rowFileOffset": "0x023CBC",
+          "rowStrideBytes": 8,
+          "startPointer": "1A:E8A9",
+          "startFileOffset": "0x0D68A9",
+          "secondPointer": "1A:FC2F",
+          "secondPointerFileOffset": "0x0D7C2F",
+          "firstStreamBoundary": {
+            "fileOffset": "0x0D7C2F",
+            "meaning": "second animation stream pointer; exclusive input bound for decoding the first stream"
+          },
+          "firstStreamBytesConsumed": 4998,
+          "firstStreamCompressedEndFileOffset": "0x0D7C2F"
+        },
+        "decodedFrame": {
+          "frameIndex": 0,
+          "frameSizePixels": [
+            128,
+            64
+          ],
+          "sourceFrameCount": 2,
+          "format": "SNES 4bpp planar 8x8 tiles; 16 columns by 8 rows",
+          "orientation": "native ROM sprite orientation; no horizontal flip",
+          "transparentColorIndex": 0
+        },
+        "palette": {
+          "cpuAddress": "07:EF80",
+          "fileOffset": "0x03EF80",
+          "bytesPerProfile": 64,
+          "format": "BGR555",
+          "selectedColors": "first 16 colors (normal sprite path)",
+          "transparentColorIndex": 0
+        },
+        "description": "First 128x64 sprite frame decoded from this fish profile's original-ROM graphics. This is a sprite extraction, not a screenshot or a reconstruction of the fish-record page."
       },
       "noImageReason": null,
       "nameSource": {
@@ -1769,19 +3309,47 @@
       "nameLatinVariants": [],
       "nameTh": "ปลาอายุ",
       "nameThVariants": [],
-      "image": "fish/38.png",
+      "image": "fish/rom-38.png",
       "imageSource": {
-        "sourceUrl": "https://www.youtube.com/watch?v=Y8JKlgIV91c&t=109s",
-        "sourceFrame": "references/all-fish-frames/frame-0110.png",
-        "cropPx": [
-          584,
-          110,
-          1020,
-          350
-        ],
-        "sourceCropFile": "guides-real/fish/fish-110.png",
-        "description": "Crop of the in-game fish picture shown in a player gameplay/catch-record capture; this is not a sprite extracted directly from the ROM.",
-        "videoFrameNumber": 110
+        "type": "rom_extracted_sprite",
+        "romSha1": "c2103dd94e2a1a65a495fc02adc2e7d040f31212",
+        "profileId": "38",
+        "graphicsTable": {
+          "cpuAddress": "04:BB0C",
+          "fileOffset": "0x023B0C",
+          "rowFileOffset": "0x023CC4",
+          "rowStrideBytes": 8,
+          "startPointer": "1B:840D",
+          "startFileOffset": "0x0D840D",
+          "secondPointer": "1B:8E6F",
+          "secondPointerFileOffset": "0x0D8E6F",
+          "firstStreamBoundary": {
+            "fileOffset": "0x0D8E6F",
+            "meaning": "second animation stream pointer; exclusive input bound for decoding the first stream"
+          },
+          "firstStreamBytesConsumed": 2658,
+          "firstStreamCompressedEndFileOffset": "0x0D8E6F"
+        },
+        "decodedFrame": {
+          "frameIndex": 0,
+          "frameSizePixels": [
+            128,
+            64
+          ],
+          "sourceFrameCount": 2,
+          "format": "SNES 4bpp planar 8x8 tiles; 16 columns by 8 rows",
+          "orientation": "native ROM sprite orientation; no horizontal flip",
+          "transparentColorIndex": 0
+        },
+        "palette": {
+          "cpuAddress": "07:EFC0",
+          "fileOffset": "0x03EFC0",
+          "bytesPerProfile": 64,
+          "format": "BGR555",
+          "selectedColors": "first 16 colors (normal sprite path)",
+          "transparentColorIndex": 0
+        },
+        "description": "First 128x64 sprite frame decoded from this fish profile's original-ROM graphics. This is a sprite extraction, not a screenshot or a reconstruction of the fish-record page."
       },
       "noImageReason": null,
       "nameSource": {
@@ -1800,19 +3368,47 @@
       "nameLatinVariants": [],
       "nameTh": "ทานาโกะ",
       "nameThVariants": [],
-      "image": "fish/39.png",
+      "image": "fish/rom-39.png",
       "imageSource": {
-        "sourceUrl": "https://www.youtube.com/watch?v=Y8JKlgIV91c&t=141s",
-        "sourceFrame": "references/all-fish-frames/frame-0142.png",
-        "cropPx": [
-          584,
-          110,
-          1020,
-          350
-        ],
-        "sourceCropFile": "guides-real/fish/fish-142.png",
-        "description": "Crop of the in-game fish picture shown in a player gameplay/catch-record capture; this is not a sprite extracted directly from the ROM.",
-        "videoFrameNumber": 142
+        "type": "rom_extracted_sprite",
+        "romSha1": "c2103dd94e2a1a65a495fc02adc2e7d040f31212",
+        "profileId": "39",
+        "graphicsTable": {
+          "cpuAddress": "04:BB0C",
+          "fileOffset": "0x023B0C",
+          "rowFileOffset": "0x023CCC",
+          "rowStrideBytes": 8,
+          "startPointer": "1B:9395",
+          "startFileOffset": "0x0D9395",
+          "secondPointer": "1B:9BAF",
+          "secondPointerFileOffset": "0x0D9BAF",
+          "firstStreamBoundary": {
+            "fileOffset": "0x0D9BAF",
+            "meaning": "second animation stream pointer; exclusive input bound for decoding the first stream"
+          },
+          "firstStreamBytesConsumed": 2074,
+          "firstStreamCompressedEndFileOffset": "0x0D9BAF"
+        },
+        "decodedFrame": {
+          "frameIndex": 0,
+          "frameSizePixels": [
+            128,
+            64
+          ],
+          "sourceFrameCount": 2,
+          "format": "SNES 4bpp planar 8x8 tiles; 16 columns by 8 rows",
+          "orientation": "native ROM sprite orientation; no horizontal flip",
+          "transparentColorIndex": 0
+        },
+        "palette": {
+          "cpuAddress": "07:F000",
+          "fileOffset": "0x03F000",
+          "bytesPerProfile": 64,
+          "format": "BGR555",
+          "selectedColors": "first 16 colors (normal sprite path)",
+          "transparentColorIndex": 0
+        },
+        "description": "First 128x64 sprite frame decoded from this fish profile's original-ROM graphics. This is a sprite extraction, not a screenshot or a reconstruction of the fish-record page."
       },
       "noImageReason": null,
       "nameSource": {
@@ -1834,19 +3430,47 @@
         "อูนางิ / ปลาไหลญี่ปุ่น",
         "อูนางิ"
       ],
-      "image": "fish/3A.png",
+      "image": "fish/rom-3A.png",
       "imageSource": {
-        "sourceUrl": "https://www.youtube.com/watch?v=Y8JKlgIV91c&t=248s",
-        "sourceFrame": "references/all-fish-frames/frame-0249.png",
-        "cropPx": [
-          584,
-          110,
-          1020,
-          350
-        ],
-        "sourceCropFile": "guides-real/fish/fish-249.png",
-        "description": "Crop of the in-game fish picture shown in a player gameplay/catch-record capture; this is not a sprite extracted directly from the ROM.",
-        "videoFrameNumber": 249
+        "type": "rom_extracted_sprite",
+        "romSha1": "c2103dd94e2a1a65a495fc02adc2e7d040f31212",
+        "profileId": "3A",
+        "graphicsTable": {
+          "cpuAddress": "04:BB0C",
+          "fileOffset": "0x023B0C",
+          "rowFileOffset": "0x023CD4",
+          "rowStrideBytes": 8,
+          "startPointer": "1B:9FD7",
+          "startFileOffset": "0x0D9FD7",
+          "secondPointer": "1B:A901",
+          "secondPointerFileOffset": "0x0DA901",
+          "firstStreamBoundary": {
+            "fileOffset": "0x0DA901",
+            "meaning": "second animation stream pointer; exclusive input bound for decoding the first stream"
+          },
+          "firstStreamBytesConsumed": 2346,
+          "firstStreamCompressedEndFileOffset": "0x0DA901"
+        },
+        "decodedFrame": {
+          "frameIndex": 0,
+          "frameSizePixels": [
+            128,
+            64
+          ],
+          "sourceFrameCount": 2,
+          "format": "SNES 4bpp planar 8x8 tiles; 16 columns by 8 rows",
+          "orientation": "native ROM sprite orientation; no horizontal flip",
+          "transparentColorIndex": 0
+        },
+        "palette": {
+          "cpuAddress": "07:F040",
+          "fileOffset": "0x03F040",
+          "bytesPerProfile": 64,
+          "format": "BGR555",
+          "selectedColors": "first 16 colors (normal sprite path)",
+          "transparentColorIndex": 0
+        },
+        "description": "First 128x64 sprite frame decoded from this fish profile's original-ROM graphics. This is a sprite extraction, not a screenshot or a reconstruction of the fish-record page."
       },
       "noImageReason": null,
       "nameSource": {
@@ -1866,19 +3490,47 @@
       "nameLatinVariants": [],
       "nameTh": "โออูนางิ / ปลาไหลยักษ์",
       "nameThVariants": [],
-      "image": "fish/3B.png",
+      "image": "fish/rom-3B.png",
       "imageSource": {
-        "sourceUrl": "https://www.youtube.com/watch?v=Y8JKlgIV91c&t=242s",
-        "sourceFrame": "references/all-fish-frames/frame-0243.png",
-        "cropPx": [
-          584,
-          110,
-          1020,
-          350
-        ],
-        "sourceCropFile": "guides-real/fish/fish-243.png",
-        "description": "Crop of the in-game fish picture shown in a player gameplay/catch-record capture; this is not a sprite extracted directly from the ROM.",
-        "videoFrameNumber": 243
+        "type": "rom_extracted_sprite",
+        "romSha1": "c2103dd94e2a1a65a495fc02adc2e7d040f31212",
+        "profileId": "3B",
+        "graphicsTable": {
+          "cpuAddress": "04:BB0C",
+          "fileOffset": "0x023B0C",
+          "rowFileOffset": "0x023CDC",
+          "rowStrideBytes": 8,
+          "startPointer": "1B:ADEF",
+          "startFileOffset": "0x0DADEF",
+          "secondPointer": "1B:BAC2",
+          "secondPointerFileOffset": "0x0DBAC2",
+          "firstStreamBoundary": {
+            "fileOffset": "0x0DBAC2",
+            "meaning": "second animation stream pointer; exclusive input bound for decoding the first stream"
+          },
+          "firstStreamBytesConsumed": 3283,
+          "firstStreamCompressedEndFileOffset": "0x0DBAC2"
+        },
+        "decodedFrame": {
+          "frameIndex": 0,
+          "frameSizePixels": [
+            128,
+            64
+          ],
+          "sourceFrameCount": 2,
+          "format": "SNES 4bpp planar 8x8 tiles; 16 columns by 8 rows",
+          "orientation": "native ROM sprite orientation; no horizontal flip",
+          "transparentColorIndex": 0
+        },
+        "palette": {
+          "cpuAddress": "07:F080",
+          "fileOffset": "0x03F080",
+          "bytesPerProfile": 64,
+          "format": "BGR555",
+          "selectedColors": "first 16 colors (normal sprite path)",
+          "transparentColorIndex": 0
+        },
+        "description": "First 128x64 sprite frame decoded from this fish profile's original-ROM graphics. This is a sprite extraction, not a screenshot or a reconstruction of the fish-record page."
       },
       "noImageReason": null,
       "nameSource": {
@@ -1897,19 +3549,47 @@
       "nameLatinVariants": [],
       "nameTh": "ปลาอาบุระฮายะ",
       "nameThVariants": [],
-      "image": "fish/3C.png",
+      "image": "fish/rom-3C.png",
       "imageSource": {
-        "sourceUrl": "https://www.youtube.com/watch?v=Y8JKlgIV91c&t=68s",
-        "sourceFrame": "references/all-fish-frames/frame-0069.png",
-        "cropPx": [
-          584,
-          110,
-          1020,
-          350
-        ],
-        "sourceCropFile": "guides-real/fish/fish-069.png",
-        "description": "Crop of the in-game fish picture shown in a player gameplay/catch-record capture; this is not a sprite extracted directly from the ROM.",
-        "videoFrameNumber": 69
+        "type": "rom_extracted_sprite",
+        "romSha1": "c2103dd94e2a1a65a495fc02adc2e7d040f31212",
+        "profileId": "3C",
+        "graphicsTable": {
+          "cpuAddress": "04:BB0C",
+          "fileOffset": "0x023B0C",
+          "rowFileOffset": "0x023CE4",
+          "rowStrideBytes": 8,
+          "startPointer": "1B:C161",
+          "startFileOffset": "0x0DC161",
+          "secondPointer": "1B:C8DB",
+          "secondPointerFileOffset": "0x0DC8DB",
+          "firstStreamBoundary": {
+            "fileOffset": "0x0DC8DB",
+            "meaning": "second animation stream pointer; exclusive input bound for decoding the first stream"
+          },
+          "firstStreamBytesConsumed": 1914,
+          "firstStreamCompressedEndFileOffset": "0x0DC8DB"
+        },
+        "decodedFrame": {
+          "frameIndex": 0,
+          "frameSizePixels": [
+            128,
+            64
+          ],
+          "sourceFrameCount": 2,
+          "format": "SNES 4bpp planar 8x8 tiles; 16 columns by 8 rows",
+          "orientation": "native ROM sprite orientation; no horizontal flip",
+          "transparentColorIndex": 0
+        },
+        "palette": {
+          "cpuAddress": "07:F0C0",
+          "fileOffset": "0x03F0C0",
+          "bytesPerProfile": 64,
+          "format": "BGR555",
+          "selectedColors": "first 16 colors (normal sprite path)",
+          "transparentColorIndex": 0
+        },
+        "description": "First 128x64 sprite frame decoded from this fish profile's original-ROM graphics. This is a sprite extraction, not a screenshot or a reconstruction of the fish-record page."
       },
       "noImageReason": null,
       "nameSource": {
@@ -1928,19 +3608,47 @@
       "nameLatinVariants": [],
       "nameTh": "คุโรได",
       "nameThVariants": [],
-      "image": "fish/3D.png",
+      "image": "fish/rom-3D.png",
       "imageSource": {
-        "sourceUrl": "https://www.youtube.com/watch?v=Y8JKlgIV91c&t=260s",
-        "sourceFrame": "references/all-fish-frames/frame-0261.png",
-        "cropPx": [
-          584,
-          110,
-          1020,
-          350
-        ],
-        "sourceCropFile": "guides-real/fish/fish-261.png",
-        "description": "Crop of the in-game fish picture shown in a player gameplay/catch-record capture; this is not a sprite extracted directly from the ROM.",
-        "videoFrameNumber": 261
+        "type": "rom_extracted_sprite",
+        "romSha1": "c2103dd94e2a1a65a495fc02adc2e7d040f31212",
+        "profileId": "3D",
+        "graphicsTable": {
+          "cpuAddress": "04:BB0C",
+          "fileOffset": "0x023B0C",
+          "rowFileOffset": "0x023CEC",
+          "rowStrideBytes": 8,
+          "startPointer": "1B:CCA5",
+          "startFileOffset": "0x0DCCA5",
+          "secondPointer": "1B:DDB1",
+          "secondPointerFileOffset": "0x0DDDB1",
+          "firstStreamBoundary": {
+            "fileOffset": "0x0DDDB1",
+            "meaning": "second animation stream pointer; exclusive input bound for decoding the first stream"
+          },
+          "firstStreamBytesConsumed": 4364,
+          "firstStreamCompressedEndFileOffset": "0x0DDDB1"
+        },
+        "decodedFrame": {
+          "frameIndex": 0,
+          "frameSizePixels": [
+            128,
+            64
+          ],
+          "sourceFrameCount": 2,
+          "format": "SNES 4bpp planar 8x8 tiles; 16 columns by 8 rows",
+          "orientation": "native ROM sprite orientation; no horizontal flip",
+          "transparentColorIndex": 0
+        },
+        "palette": {
+          "cpuAddress": "07:F100",
+          "fileOffset": "0x03F100",
+          "bytesPerProfile": 64,
+          "format": "BGR555",
+          "selectedColors": "first 16 colors (normal sprite path)",
+          "transparentColorIndex": 0
+        },
+        "description": "First 128x64 sprite frame decoded from this fish profile's original-ROM graphics. This is a sprite extraction, not a screenshot or a reconstruction of the fish-record page."
       },
       "noImageReason": null,
       "nameSource": {
@@ -1959,19 +3667,47 @@
       "nameLatinVariants": [],
       "nameTh": "นุมะกาเรย์",
       "nameThVariants": [],
-      "image": "fish/3E.png",
+      "image": "fish/rom-3E.png",
       "imageSource": {
-        "sourceUrl": "https://www.youtube.com/watch?v=Y8JKlgIV91c&t=272s",
-        "sourceFrame": "references/all-fish-frames/frame-0273.png",
-        "cropPx": [
-          584,
-          110,
-          1020,
-          350
-        ],
-        "sourceCropFile": "guides-real/fish/fish-273.png",
-        "description": "Crop of the in-game fish picture shown in a player gameplay/catch-record capture; this is not a sprite extracted directly from the ROM.",
-        "videoFrameNumber": 273
+        "type": "rom_extracted_sprite",
+        "romSha1": "c2103dd94e2a1a65a495fc02adc2e7d040f31212",
+        "profileId": "3E",
+        "graphicsTable": {
+          "cpuAddress": "04:BB0C",
+          "fileOffset": "0x023B0C",
+          "rowFileOffset": "0x023CF4",
+          "rowStrideBytes": 8,
+          "startPointer": "1B:E597",
+          "startFileOffset": "0x0DE597",
+          "secondPointer": "1B:F32F",
+          "secondPointerFileOffset": "0x0DF32F",
+          "firstStreamBoundary": {
+            "fileOffset": "0x0DF32F",
+            "meaning": "second animation stream pointer; exclusive input bound for decoding the first stream"
+          },
+          "firstStreamBytesConsumed": 3480,
+          "firstStreamCompressedEndFileOffset": "0x0DF32F"
+        },
+        "decodedFrame": {
+          "frameIndex": 0,
+          "frameSizePixels": [
+            128,
+            64
+          ],
+          "sourceFrameCount": 2,
+          "format": "SNES 4bpp planar 8x8 tiles; 16 columns by 8 rows",
+          "orientation": "native ROM sprite orientation; no horizontal flip",
+          "transparentColorIndex": 0
+        },
+        "palette": {
+          "cpuAddress": "07:F140",
+          "fileOffset": "0x03F140",
+          "bytesPerProfile": 64,
+          "format": "BGR555",
+          "selectedColors": "first 16 colors (normal sprite path)",
+          "transparentColorIndex": 0
+        },
+        "description": "First 128x64 sprite frame decoded from this fish profile's original-ROM graphics. This is a sprite extraction, not a screenshot or a reconstruction of the fish-record page."
       },
       "noImageReason": null,
       "nameSource": {
@@ -1990,19 +3726,47 @@
       "nameLatinVariants": [],
       "nameTh": "คุซะฟุกุ",
       "nameThVariants": [],
-      "image": "fish/3F.png",
+      "image": "fish/rom-3F.png",
       "imageSource": {
-        "sourceUrl": "https://www.youtube.com/watch?v=Y8JKlgIV91c&t=266s",
-        "sourceFrame": "references/all-fish-frames/frame-0267.png",
-        "cropPx": [
-          584,
-          110,
-          1020,
-          350
-        ],
-        "sourceCropFile": "guides-real/fish/fish-267.png",
-        "description": "Crop of the in-game fish picture shown in a player gameplay/catch-record capture; this is not a sprite extracted directly from the ROM.",
-        "videoFrameNumber": 267
+        "type": "rom_extracted_sprite",
+        "romSha1": "c2103dd94e2a1a65a495fc02adc2e7d040f31212",
+        "profileId": "3F",
+        "graphicsTable": {
+          "cpuAddress": "04:BB0C",
+          "fileOffset": "0x023B0C",
+          "rowFileOffset": "0x023CFC",
+          "rowStrideBytes": 8,
+          "startPointer": "1B:FA6E",
+          "startFileOffset": "0x0DFA6E",
+          "secondPointer": "1C:8331",
+          "secondPointerFileOffset": "0x0E0331",
+          "firstStreamBoundary": {
+            "fileOffset": "0x0E0331",
+            "meaning": "second animation stream pointer; exclusive input bound for decoding the first stream"
+          },
+          "firstStreamBytesConsumed": 2243,
+          "firstStreamCompressedEndFileOffset": "0x0E0331"
+        },
+        "decodedFrame": {
+          "frameIndex": 0,
+          "frameSizePixels": [
+            128,
+            64
+          ],
+          "sourceFrameCount": 2,
+          "format": "SNES 4bpp planar 8x8 tiles; 16 columns by 8 rows",
+          "orientation": "native ROM sprite orientation; no horizontal flip",
+          "transparentColorIndex": 0
+        },
+        "palette": {
+          "cpuAddress": "07:F180",
+          "fileOffset": "0x03F180",
+          "bytesPerProfile": 64,
+          "format": "BGR555",
+          "selectedColors": "first 16 colors (normal sprite path)",
+          "transparentColorIndex": 0
+        },
+        "description": "First 128x64 sprite frame decoded from this fish profile's original-ROM graphics. This is a sprite extraction, not a screenshot or a reconstruction of the fish-record page."
       },
       "noImageReason": null,
       "nameSource": {
@@ -2021,19 +3785,47 @@
       "nameLatinVariants": [],
       "nameTh": "โทเกียว",
       "nameThVariants": [],
-      "image": "fish/40.png",
+      "image": "fish/rom-40.png",
       "imageSource": {
-        "sourceUrl": "https://www.youtube.com/watch?v=Y8JKlgIV91c&t=213s",
-        "sourceFrame": "references/all-fish-frames/frame-0214.png",
-        "cropPx": [
-          584,
-          110,
-          1020,
-          350
-        ],
-        "sourceCropFile": "guides-real/fish/fish-214.png",
-        "description": "Crop of the in-game fish picture shown in a player gameplay/catch-record capture; this is not a sprite extracted directly from the ROM.",
-        "videoFrameNumber": 214
+        "type": "rom_extracted_sprite",
+        "romSha1": "c2103dd94e2a1a65a495fc02adc2e7d040f31212",
+        "profileId": "40",
+        "graphicsTable": {
+          "cpuAddress": "04:BB0C",
+          "fileOffset": "0x023B0C",
+          "rowFileOffset": "0x023D04",
+          "rowStrideBytes": 8,
+          "startPointer": "1C:8787",
+          "startFileOffset": "0x0E0787",
+          "secondPointer": "1C:8F3A",
+          "secondPointerFileOffset": "0x0E0F3A",
+          "firstStreamBoundary": {
+            "fileOffset": "0x0E0F3A",
+            "meaning": "second animation stream pointer; exclusive input bound for decoding the first stream"
+          },
+          "firstStreamBytesConsumed": 1971,
+          "firstStreamCompressedEndFileOffset": "0x0E0F3A"
+        },
+        "decodedFrame": {
+          "frameIndex": 0,
+          "frameSizePixels": [
+            128,
+            64
+          ],
+          "sourceFrameCount": 2,
+          "format": "SNES 4bpp planar 8x8 tiles; 16 columns by 8 rows",
+          "orientation": "native ROM sprite orientation; no horizontal flip",
+          "transparentColorIndex": 0
+        },
+        "palette": {
+          "cpuAddress": "07:F1C0",
+          "fileOffset": "0x03F1C0",
+          "bytesPerProfile": 64,
+          "format": "BGR555",
+          "selectedColors": "first 16 colors (normal sprite path)",
+          "transparentColorIndex": 0
+        },
+        "description": "First 128x64 sprite frame decoded from this fish profile's original-ROM graphics. This is a sprite extraction, not a screenshot or a reconstruction of the fish-record page."
       },
       "noImageReason": null,
       "nameSource": {
@@ -2052,19 +3844,47 @@
       "nameLatinVariants": [],
       "nameTh": "กุ้งเทนากะ",
       "nameThVariants": [],
-      "image": "fish/41.png",
+      "image": "fish/rom-41.png",
       "imageSource": {
-        "sourceUrl": "https://www.youtube.com/watch?v=Y8JKlgIV91c&t=225s",
-        "sourceFrame": "references/all-fish-frames/frame-0226.png",
-        "cropPx": [
-          584,
-          110,
-          1020,
-          350
-        ],
-        "sourceCropFile": "guides-real/fish/fish-226.png",
-        "description": "Crop of the in-game fish picture shown in a player gameplay/catch-record capture; this is not a sprite extracted directly from the ROM.",
-        "videoFrameNumber": 226
+        "type": "rom_extracted_sprite",
+        "romSha1": "c2103dd94e2a1a65a495fc02adc2e7d040f31212",
+        "profileId": "41",
+        "graphicsTable": {
+          "cpuAddress": "04:BB0C",
+          "fileOffset": "0x023B0C",
+          "rowFileOffset": "0x023D0C",
+          "rowStrideBytes": 8,
+          "startPointer": "1C:9301",
+          "startFileOffset": "0x0E1301",
+          "secondPointer": "1C:9B03",
+          "secondPointerFileOffset": "0x0E1B03",
+          "firstStreamBoundary": {
+            "fileOffset": "0x0E1B03",
+            "meaning": "second animation stream pointer; exclusive input bound for decoding the first stream"
+          },
+          "firstStreamBytesConsumed": 2050,
+          "firstStreamCompressedEndFileOffset": "0x0E1B03"
+        },
+        "decodedFrame": {
+          "frameIndex": 0,
+          "frameSizePixels": [
+            128,
+            64
+          ],
+          "sourceFrameCount": 2,
+          "format": "SNES 4bpp planar 8x8 tiles; 16 columns by 8 rows",
+          "orientation": "native ROM sprite orientation; no horizontal flip",
+          "transparentColorIndex": 0
+        },
+        "palette": {
+          "cpuAddress": "07:F200",
+          "fileOffset": "0x03F200",
+          "bytesPerProfile": 64,
+          "format": "BGR555",
+          "selectedColors": "first 16 colors (normal sprite path)",
+          "transparentColorIndex": 0
+        },
+        "description": "First 128x64 sprite frame decoded from this fish profile's original-ROM graphics. This is a sprite extraction, not a screenshot or a reconstruction of the fish-record page."
       },
       "noImageReason": null,
       "nameSource": {
@@ -2086,19 +3906,47 @@
         "ปลาซัตสึกิมาสุ",
         "ซัทสึกิมาสึ"
       ],
-      "image": "fish/42.png",
+      "image": "fish/rom-42.png",
       "imageSource": {
-        "sourceUrl": "https://www.youtube.com/watch?v=Y8JKlgIV91c&t=91s",
-        "sourceFrame": "references/all-fish-frames/frame-0092.png",
-        "cropPx": [
-          584,
-          110,
-          1020,
-          350
-        ],
-        "sourceCropFile": "guides-real/fish/fish-092.png",
-        "description": "Crop of the in-game fish picture shown in a player gameplay/catch-record capture; this is not a sprite extracted directly from the ROM.",
-        "videoFrameNumber": 92
+        "type": "rom_extracted_sprite",
+        "romSha1": "c2103dd94e2a1a65a495fc02adc2e7d040f31212",
+        "profileId": "42",
+        "graphicsTable": {
+          "cpuAddress": "04:BB0C",
+          "fileOffset": "0x023B0C",
+          "rowFileOffset": "0x023D14",
+          "rowStrideBytes": 8,
+          "startPointer": "1C:9F24",
+          "startFileOffset": "0x0E1F24",
+          "secondPointer": "1C:AB77",
+          "secondPointerFileOffset": "0x0E2B77",
+          "firstStreamBoundary": {
+            "fileOffset": "0x0E2B77",
+            "meaning": "second animation stream pointer; exclusive input bound for decoding the first stream"
+          },
+          "firstStreamBytesConsumed": 3155,
+          "firstStreamCompressedEndFileOffset": "0x0E2B77"
+        },
+        "decodedFrame": {
+          "frameIndex": 0,
+          "frameSizePixels": [
+            128,
+            64
+          ],
+          "sourceFrameCount": 2,
+          "format": "SNES 4bpp planar 8x8 tiles; 16 columns by 8 rows",
+          "orientation": "native ROM sprite orientation; no horizontal flip",
+          "transparentColorIndex": 0
+        },
+        "palette": {
+          "cpuAddress": "07:F240",
+          "fileOffset": "0x03F240",
+          "bytesPerProfile": 64,
+          "format": "BGR555",
+          "selectedColors": "first 16 colors (normal sprite path)",
+          "transparentColorIndex": 0
+        },
+        "description": "First 128x64 sprite frame decoded from this fish profile's original-ROM graphics. This is a sprite extraction, not a screenshot or a reconstruction of the fish-record page."
       },
       "noImageReason": null,
       "nameSource": {
@@ -2120,7 +3968,7 @@
       "nameThVariants": [],
       "image": null,
       "imageSource": null,
-      "noImageReason": "The ROM name entry contains an unmapped 0x0C control glyph, so no species name or image is assigned.",
+      "noImageReason": "This profile has no sprite pointer, and its ROM species-name glyph is unresolved, so no image is assigned.",
       "nameSource": {
         "romProfileFileOffset": "0x028606",
         "romSha1": "c2103dd94e2a1a65a495fc02adc2e7d040f31212",
@@ -2136,9 +3984,49 @@
       "nameLatinVariants": [],
       "nameTh": "อิโมริ (นิวต์)",
       "nameThVariants": [],
-      "image": null,
-      "imageSource": null,
-      "noImageReason": "No matching verified in-game image is present in the existing project capture sources; the ROM Japanese name is retained.",
+      "image": "fish/rom-44.png",
+      "imageSource": {
+        "type": "rom_extracted_sprite",
+        "romSha1": "c2103dd94e2a1a65a495fc02adc2e7d040f31212",
+        "profileId": "44",
+        "graphicsTable": {
+          "cpuAddress": "04:BB0C",
+          "fileOffset": "0x023B0C",
+          "rowFileOffset": "0x023D24",
+          "rowStrideBytes": 8,
+          "startPointer": "1C:B14E",
+          "startFileOffset": "0x0E314E",
+          "secondPointer": "1C:B856",
+          "secondPointerFileOffset": "0x0E3856",
+          "firstStreamBoundary": {
+            "fileOffset": "0x0E3856",
+            "meaning": "second animation stream pointer; exclusive input bound for decoding the first stream"
+          },
+          "firstStreamBytesConsumed": 1800,
+          "firstStreamCompressedEndFileOffset": "0x0E3856"
+        },
+        "decodedFrame": {
+          "frameIndex": 0,
+          "frameSizePixels": [
+            128,
+            64
+          ],
+          "sourceFrameCount": 2,
+          "format": "SNES 4bpp planar 8x8 tiles; 16 columns by 8 rows",
+          "orientation": "native ROM sprite orientation; no horizontal flip",
+          "transparentColorIndex": 0
+        },
+        "palette": {
+          "cpuAddress": "07:F2C0",
+          "fileOffset": "0x03F2C0",
+          "bytesPerProfile": 64,
+          "format": "BGR555",
+          "selectedColors": "first 16 colors (normal sprite path)",
+          "transparentColorIndex": 0
+        },
+        "description": "First 128x64 sprite frame decoded from this fish profile's original-ROM graphics. This is a sprite extraction, not a screenshot or a reconstruction of the fish-record page."
+      },
+      "noImageReason": null,
       "nameSource": {
         "romProfileFileOffset": "0x02861D",
         "romSha1": "c2103dd94e2a1a65a495fc02adc2e7d040f31212",
@@ -2155,9 +4043,49 @@
       "nameLatinVariants": [],
       "nameTh": "กบ",
       "nameThVariants": [],
-      "image": null,
-      "imageSource": null,
-      "noImageReason": "No matching verified in-game image is present in the existing project capture sources; the ROM Japanese name is retained.",
+      "image": "fish/rom-45.png",
+      "imageSource": {
+        "type": "rom_extracted_sprite",
+        "romSha1": "c2103dd94e2a1a65a495fc02adc2e7d040f31212",
+        "profileId": "45",
+        "graphicsTable": {
+          "cpuAddress": "04:BB0C",
+          "fileOffset": "0x023B0C",
+          "rowFileOffset": "0x023D2C",
+          "rowStrideBytes": 8,
+          "startPointer": "1C:BBDC",
+          "startFileOffset": "0x0E3BDC",
+          "secondPointer": "1C:C41D",
+          "secondPointerFileOffset": "0x0E441D",
+          "firstStreamBoundary": {
+            "fileOffset": "0x0E441D",
+            "meaning": "second animation stream pointer; exclusive input bound for decoding the first stream"
+          },
+          "firstStreamBytesConsumed": 2113,
+          "firstStreamCompressedEndFileOffset": "0x0E441D"
+        },
+        "decodedFrame": {
+          "frameIndex": 0,
+          "frameSizePixels": [
+            128,
+            64
+          ],
+          "sourceFrameCount": 2,
+          "format": "SNES 4bpp planar 8x8 tiles; 16 columns by 8 rows",
+          "orientation": "native ROM sprite orientation; no horizontal flip",
+          "transparentColorIndex": 0
+        },
+        "palette": {
+          "cpuAddress": "07:F300",
+          "fileOffset": "0x03F300",
+          "bytesPerProfile": 64,
+          "format": "BGR555",
+          "selectedColors": "first 16 colors (normal sprite path)",
+          "transparentColorIndex": 0
+        },
+        "description": "First 128x64 sprite frame decoded from this fish profile's original-ROM graphics. This is a sprite extraction, not a screenshot or a reconstruction of the fish-record page."
+      },
+      "noImageReason": null,
       "nameSource": {
         "romProfileFileOffset": "0x028634",
         "romSha1": "c2103dd94e2a1a65a495fc02adc2e7d040f31212",
@@ -2174,18 +4102,47 @@
       "nameLatinVariants": [],
       "nameTh": "กุ้งเครย์ฟิชญี่ปุ่น (ซาริกานิ)",
       "nameThVariants": [],
-      "image": "fish/46.png",
+      "image": "fish/rom-46.png",
       "imageSource": {
-        "sourceUrl": "https://note.com/holy_heron2678/n/nf6dccee118e2",
-        "sourceFrame": "references/real-fish-early/zarigani-gameplay.png",
-        "cropPx": [
-          300,
-          125,
-          625,
-          295
-        ],
-        "sourceCropFile": "guides-real/fish/extra-zarigani-gameplay.png",
-        "description": "Crop of the in-game fish picture shown in a player gameplay/catch-record capture; this is not a sprite extracted directly from the ROM."
+        "type": "rom_extracted_sprite",
+        "romSha1": "c2103dd94e2a1a65a495fc02adc2e7d040f31212",
+        "profileId": "46",
+        "graphicsTable": {
+          "cpuAddress": "04:BB0C",
+          "fileOffset": "0x023B0C",
+          "rowFileOffset": "0x023D34",
+          "rowStrideBytes": 8,
+          "startPointer": "1C:C7FE",
+          "startFileOffset": "0x0E47FE",
+          "secondPointer": "1C:D0EE",
+          "secondPointerFileOffset": "0x0E50EE",
+          "firstStreamBoundary": {
+            "fileOffset": "0x0E50EE",
+            "meaning": "second animation stream pointer; exclusive input bound for decoding the first stream"
+          },
+          "firstStreamBytesConsumed": 2288,
+          "firstStreamCompressedEndFileOffset": "0x0E50EE"
+        },
+        "decodedFrame": {
+          "frameIndex": 0,
+          "frameSizePixels": [
+            128,
+            64
+          ],
+          "sourceFrameCount": 2,
+          "format": "SNES 4bpp planar 8x8 tiles; 16 columns by 8 rows",
+          "orientation": "native ROM sprite orientation; no horizontal flip",
+          "transparentColorIndex": 0
+        },
+        "palette": {
+          "cpuAddress": "07:F340",
+          "fileOffset": "0x03F340",
+          "bytesPerProfile": 64,
+          "format": "BGR555",
+          "selectedColors": "first 16 colors (normal sprite path)",
+          "transparentColorIndex": 0
+        },
+        "description": "First 128x64 sprite frame decoded from this fish profile's original-ROM graphics. This is a sprite extraction, not a screenshot or a reconstruction of the fish-record page."
       },
       "noImageReason": null,
       "nameSource": {
@@ -2204,18 +4161,47 @@
       "nameLatinVariants": [],
       "nameTh": "เต่าน้ำจืด",
       "nameThVariants": [],
-      "image": "fish/47.png",
+      "image": "fish/rom-47.png",
       "imageSource": {
-        "sourceUrl": "https://www.youtube.com/watch?v=cU4RVrJVB4U&t=1077s",
-        "sourceFrame": "references/real-fish-middle/stage4/kame-catch-frame.jpg",
-        "cropPx": [
-          185,
-          332,
-          395,
-          455
-        ],
-        "sourceCropFile": "guides-real/fish/extra-kame-in-game.png",
-        "description": "Crop of the in-game fish picture shown in a player gameplay/catch-record capture; this is not a sprite extracted directly from the ROM."
+        "type": "rom_extracted_sprite",
+        "romSha1": "c2103dd94e2a1a65a495fc02adc2e7d040f31212",
+        "profileId": "47",
+        "graphicsTable": {
+          "cpuAddress": "04:BB0C",
+          "fileOffset": "0x023B0C",
+          "rowFileOffset": "0x023D3C",
+          "rowStrideBytes": 8,
+          "startPointer": "1C:D553",
+          "startFileOffset": "0x0E5553",
+          "secondPointer": "1C:E141",
+          "secondPointerFileOffset": "0x0E6141",
+          "firstStreamBoundary": {
+            "fileOffset": "0x0E6141",
+            "meaning": "second animation stream pointer; exclusive input bound for decoding the first stream"
+          },
+          "firstStreamBytesConsumed": 3054,
+          "firstStreamCompressedEndFileOffset": "0x0E6141"
+        },
+        "decodedFrame": {
+          "frameIndex": 0,
+          "frameSizePixels": [
+            128,
+            64
+          ],
+          "sourceFrameCount": 2,
+          "format": "SNES 4bpp planar 8x8 tiles; 16 columns by 8 rows",
+          "orientation": "native ROM sprite orientation; no horizontal flip",
+          "transparentColorIndex": 0
+        },
+        "palette": {
+          "cpuAddress": "07:F380",
+          "fileOffset": "0x03F380",
+          "bytesPerProfile": 64,
+          "format": "BGR555",
+          "selectedColors": "first 16 colors (normal sprite path)",
+          "transparentColorIndex": 0
+        },
+        "description": "First 128x64 sprite frame decoded from this fish profile's original-ROM graphics. This is a sprite extraction, not a screenshot or a reconstruction of the fish-record page."
       },
       "noImageReason": null,
       "nameSource": {
@@ -2234,18 +4220,47 @@
       "nameLatinVariants": [],
       "nameTh": "ตะพาบน้ำ",
       "nameThVariants": [],
-      "image": "fish/48.png",
+      "image": "fish/rom-48.png",
       "imageSource": {
-        "sourceUrl": "https://www.youtube.com/watch?v=livy1PWWRIo&t=369s",
-        "sourceFrame": "references/real-fish-middle/stage5/suppon-catch-frame.jpg",
-        "cropPx": [
-          252,
-          127,
-          388,
-          327
-        ],
-        "sourceCropFile": "guides-real/fish/extra-suppon-in-game.png",
-        "description": "Crop of the in-game fish picture shown in a player gameplay/catch-record capture; this is not a sprite extracted directly from the ROM."
+        "type": "rom_extracted_sprite",
+        "romSha1": "c2103dd94e2a1a65a495fc02adc2e7d040f31212",
+        "profileId": "48",
+        "graphicsTable": {
+          "cpuAddress": "04:BB0C",
+          "fileOffset": "0x023B0C",
+          "rowFileOffset": "0x023D44",
+          "rowStrideBytes": 8,
+          "startPointer": "1C:E7AA",
+          "startFileOffset": "0x0E67AA",
+          "secondPointer": "1C:F497",
+          "secondPointerFileOffset": "0x0E7497",
+          "firstStreamBoundary": {
+            "fileOffset": "0x0E7497",
+            "meaning": "second animation stream pointer; exclusive input bound for decoding the first stream"
+          },
+          "firstStreamBytesConsumed": 3309,
+          "firstStreamCompressedEndFileOffset": "0x0E7497"
+        },
+        "decodedFrame": {
+          "frameIndex": 0,
+          "frameSizePixels": [
+            128,
+            64
+          ],
+          "sourceFrameCount": 2,
+          "format": "SNES 4bpp planar 8x8 tiles; 16 columns by 8 rows",
+          "orientation": "native ROM sprite orientation; no horizontal flip",
+          "transparentColorIndex": 0
+        },
+        "palette": {
+          "cpuAddress": "07:F3C0",
+          "fileOffset": "0x03F3C0",
+          "bytesPerProfile": 64,
+          "format": "BGR555",
+          "selectedColors": "first 16 colors (normal sprite path)",
+          "transparentColorIndex": 0
+        },
+        "description": "First 128x64 sprite frame decoded from this fish profile's original-ROM graphics. This is a sprite extraction, not a screenshot or a reconstruction of the fish-record page."
       },
       "noImageReason": null,
       "nameSource": {
@@ -2264,9 +4279,49 @@
       "nameLatinVariants": [],
       "nameTh": "ปู",
       "nameThVariants": [],
-      "image": null,
-      "imageSource": null,
-      "noImageReason": "No matching verified in-game image is present in the existing project capture sources; the ROM Japanese name is retained.",
+      "image": "fish/rom-49.png",
+      "imageSource": {
+        "type": "rom_extracted_sprite",
+        "romSha1": "c2103dd94e2a1a65a495fc02adc2e7d040f31212",
+        "profileId": "49",
+        "graphicsTable": {
+          "cpuAddress": "04:BB0C",
+          "fileOffset": "0x023B0C",
+          "rowFileOffset": "0x023D4C",
+          "rowStrideBytes": 8,
+          "startPointer": "1C:FB3D",
+          "startFileOffset": "0x0E7B3D",
+          "secondPointer": "1D:843D",
+          "secondPointerFileOffset": "0x0E843D",
+          "firstStreamBoundary": {
+            "fileOffset": "0x0E843D",
+            "meaning": "second animation stream pointer; exclusive input bound for decoding the first stream"
+          },
+          "firstStreamBytesConsumed": 2304,
+          "firstStreamCompressedEndFileOffset": "0x0E843D"
+        },
+        "decodedFrame": {
+          "frameIndex": 0,
+          "frameSizePixels": [
+            128,
+            64
+          ],
+          "sourceFrameCount": 2,
+          "format": "SNES 4bpp planar 8x8 tiles; 16 columns by 8 rows",
+          "orientation": "native ROM sprite orientation; no horizontal flip",
+          "transparentColorIndex": 0
+        },
+        "palette": {
+          "cpuAddress": "07:F400",
+          "fileOffset": "0x03F400",
+          "bytesPerProfile": 64,
+          "format": "BGR555",
+          "selectedColors": "first 16 colors (normal sprite path)",
+          "transparentColorIndex": 0
+        },
+        "description": "First 128x64 sprite frame decoded from this fish profile's original-ROM graphics. This is a sprite extraction, not a screenshot or a reconstruction of the fish-record page."
+      },
+      "noImageReason": null,
       "nameSource": {
         "romProfileFileOffset": "0x028690",
         "romSha1": "c2103dd94e2a1a65a495fc02adc2e7d040f31212",
@@ -2276,5 +4331,47 @@
         "thaiNamesAreGuideTranscriptionsNotVerifiedThaiPatchStrings": true
       }
     }
+  },
+  "imageExtraction": {
+    "rom": {
+      "sizeBytes": 1572864,
+      "sha1": "c2103dd94e2a1a65a495fc02adc2e7d040f31212"
+    },
+    "graphicsTable": {
+      "cpuAddress": "04:BB0C",
+      "fileOffset": "0x023B0C",
+      "rowStrideBytes": 8,
+      "profileCount": 73,
+      "rowFormat": "24-bit first-animation pointer, padding byte, 24-bit second-animation pointer, padding byte",
+      "pointerUse": "The second pointer starts a separate animation stream; it is used as the exclusive input bound while decoding the first stream."
+    },
+    "decompression": {
+      "cpuAddress": "00:E5C2",
+      "format": "16-bit little-endian decoded size, then LSB-first literal/back-reference flags",
+      "backReference": "length=(second byte & 0x0F)+3; 12-bit rolling-window reference; overlapping copy",
+      "zeroDistance": "not observed in the 72 named profiles; rejected by the extractor",
+      "decodedBytesPerProfile": 8192
+    },
+    "frame": {
+      "selectedIndex": 0,
+      "sizePixels": [
+        128,
+        64
+      ],
+      "bytes": 4096,
+      "format": "4bpp planar SNES 8x8 tiles, arranged 16 by 8",
+      "orientation": "native ROM sprite orientation; no horizontal flip",
+      "transparentColorIndex": 0
+    },
+    "normalPalette": {
+      "cpuAddress": "07:E200",
+      "fileOffset": "0x03E200",
+      "strideBytes": 64,
+      "selectedBytesPerProfile": 32,
+      "format": "16 BGR555 colors; color index 0 is transparent",
+      "conditionalVariant": "The ROM has a second 16-color half used only by a conditional branch. The exact selector semantics are unresolved; catalogue assets use the first 16-color normal palette."
+    },
+    "assetCount": 72,
+    "unassignedProfileId": "43"
   }
 }

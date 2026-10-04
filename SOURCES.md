@@ -53,4 +53,14 @@ Primary traces: [acceptance](docs/fish-acceptance-research.md), [rod consumers](
 
 ## Fish portraits in the equipment guide
 
-The equipment guide reuses existing local gameplay/catch-record image crops matched by exact Japanese ROM name. [fish-visuals.json](catalogue/fish-visuals.json) records the original source URL, video timestamp or frame and crop coordinates for each image. These are sourced in-game portraits, not direct ROM sprite extraction. Unavailable images remain blank. Thai guide aliases are separate from verified Thai-patch item labels.
+The active catalogue uses fish sprite frames decoded directly from the supplied original ROM. [fish-visuals.json](catalogue/fish-visuals.json) records the species ID, compressed-graphics pointer, normal palette pointer, frame selection and ROM identity. The graphics table at `$04:BB0C` maps fish IDs to compressed images; the normal BGR15 palette is at `$07:E200 + 0x40*(ID-1)`. Frame 0 retains native orientation and transparent color index 0. See [the sprite trace](docs/rom-fish-sprite-research.md) and [extractor](scripts/extract_rom_fish_portraits.py).
+
+Earlier portraits were cropped from player videos; those are historical material and are not used in the active guide. Thai/Latin aliases remain editorial name translations or transcriptions, not verified Thai-patch fish labels and not evidence for fish mechanics.
+
+## ROM-only player guide — 2026-10-04
+
+The active catalogue's gameplay explanations and fish-location pins use the supplied ROM's records, code consumers, and controlled rendering only. Older guide-reported item purposes and inventory limits are excluded from the delivered catalogue payload. The external references above preserve the project's research history; they are not evidence for the new compatibility/location claims. Translations are editorial wording unless a Thai-patch label capture is explicitly identified.
+
+Fish spawn IDs and X/Y coordinates come from the parallel original-ROM tables documented in [fish-location-research.md](docs/fish-location-research.md). Terrain maps are reconstructed through the original game's field loader, then decoded from its temporary VRAM/PPU state. Background layers, palette, main/subscreen composition and tile flips come from that state. Sprites are omitted to keep terrain visible. No outside map or drawn terrain is used. The separate Fishing Notebook overview screenshots have no proven coordinate projection and are not used to place fish pins.
+
+Reproduction: [spawn extractor](scripts/extract_rom_fish_locations.py), [field renderer](scripts/render_field_snapshot.py), [field-map capture/reconstruction](scripts/extract_rom_field_maps.py), and [catalogue location builder](scripts/build_fish_locations.py). Emulator state and memory dumps stay outside this repository. The Snes9x [snapshot definitions](https://github.com/snes9xgit/snes9x/blob/master/snapshot.cpp), [PPU structure](https://github.com/snes9xgit/snes9x/blob/master/ppu.h), and [renderer](https://github.com/snes9xgit/snes9x/blob/master/gfx.cpp) are technical format references, not game guides.
