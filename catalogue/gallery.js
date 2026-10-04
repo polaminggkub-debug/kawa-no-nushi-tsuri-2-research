@@ -400,7 +400,7 @@
     document.getElementById('fish-search').value=document.getElementById('fish-filter').value?fishName(document.getElementById('fish-filter').value):'';
     setupFishPicker();
     renderCards();
-    if(window.location.hash==='#category-decisions')document.getElementById('category-decisions')?.scrollIntoView({block:'start'});
+    if(typeof window!=='undefined'&&window.location.hash==='#category-decisions')document.getElementById('category-decisions')?.scrollIntoView({block:'start'});
     document.getElementById('category-menu').addEventListener('click',event=>{const a=event.target.closest('[data-category]');if(!a)return;event.preventDefault();document.getElementById('category-filter').value=a.dataset.category;document.getElementById('search').value='';document.getElementById('style-filter').value='';renderCards();if(typeof history!=='undefined')history.replaceState(null,'',`?category=${a.dataset.category}${document.getElementById('fish-filter').value?'&fish='+document.getElementById('fish-filter').value:''}#catalogue`);document.getElementById('catalogue').scrollIntoView({behavior:'smooth',block:'start'});});
     document.getElementById('bait-route-menu').addEventListener('click',event=>{const b=event.target.closest('[data-route]');if(!b)return;baitRoute=b.dataset.route;renderCards();});
     document.getElementById('fly-part-menu').addEventListener('click',event=>{if(event.target.closest('[data-guide]')){event.preventDefault();const guide=document.getElementById('fly-instructions');guide.open=true;guide.scrollIntoView({behavior:'smooth'});return;}const b=event.target.closest('[data-part]');if(!b)return;flyPart=b.dataset.part;renderCards();});
