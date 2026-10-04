@@ -125,12 +125,14 @@ function renderDecisionSection(
     : ''
   const heading = decision ? rodDecisionTitle(ctx, item) : ctx.copy.use
   const body = summary || ctx.copy.noFish
-  const targetAdvice = targetAdviceSection(ctx, item, allItems, fishVisuals)
+  const targetAdvice = targetAdviceSection(ctx, item, allItems, fishVisuals, fishLocations)
   const general = `${verdict}<p>${ctx.esc(body)}</p>`
   const next = ctx.gearNextActions(item, fishVisuals, fishLocations, allItems)
   const maker = ctx.flyMakerLink(item)
   const note = imageNote ? `<p class="muted">${ctx.esc(imageNote)}</p>` : ''
-  const reasons = (targetAdvice ? general : '') + factList + decisionFacts(ctx, item, allItems)
+  const isFly = ['fly', 'fly_wing', 'fly_tail'].includes(item.category)
+  const reasons =
+    (targetAdvice && !isFly ? general : '') + factList + decisionFacts(ctx, item, allItems)
   const supporting =
     decision && reasons
       ? `<details class="decision-reasons"><summary>${ctx.esc(decisionReasonTitle(ctx, true))}</summary>${reasons}</details>`

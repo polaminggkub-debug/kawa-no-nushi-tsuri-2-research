@@ -19,3 +19,5 @@ await import('./catalogue-cards.mjs').then(({ runCatalogueCards }) => runCatalog
 console.log(
   `PASS: ${stats.renders} localized detail renders; ${stats.links} local links/assets and IDs checked. All 315 items and ${fishIds.size} fish profiles covered. Browser click checks are separate.`,
 )
+
+await import('./selected-fly-advice.mjs')

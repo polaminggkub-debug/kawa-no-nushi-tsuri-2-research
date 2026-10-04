@@ -1060,8 +1060,43 @@
     return runtime;
   }
 
+  // src/pages/item/fly-target-advice.js
+  function local(ctx, values) {
+    return values[ctx.lang] || values.en;
+  }
+  function bodyDecision(ctx, item, fish) {
+    const accepted = (item.playerUse?.fishIds || []).includes(ctx.selectedFish);
+    return local(ctx, {
+      th: accepted ? `บอดี้นี้ผ่านเงื่อนไขโปรไฟล์ของ${fish} ใช้เป็นตัวเลือกประกอบฟลายได้ แต่ยังต้องให้ปลาเจอเหยื่อและดึงขึ้นสำเร็จ` : `บอดี้นี้ไม่ผ่านเงื่อนไขโปรไฟล์ของ${fish} เลือกบอดี้ที่ใช้กับปลานี้ได้จากชุดเริ่มต้นด้านล่าง`,
+      ja: accepted ? `このボディは${fish}のプロフィール判定を通ります。自作候補にできますが、魚との接触と取り込みも必要です。` : `このボディは${fish}のプロフィール判定を通りません。下の開始用セットから適合するボディを選んでください。`,
+      en: accepted ? `This body passes the profile check for ${fish}. It is a custom-fly candidate; contact with the fish and successful landing still matter.` : `This body does not pass the profile check for ${fish}. Choose a compatible body from the starter sets below.`
+    });
+  }
+  function partDecision(ctx, fish) {
+    return local(ctx, {
+      th: `จะตก${fish} ให้เลือกบอดี้ตามปลาก่อน ปีกหรือหางชิ้นนี้อย่างเดียวไม่ได้ยืนยันว่าใช้ตกปลานี้ได้ ถ้าจะเริ่มตกทันที ให้ดูชุดฟลายสำเร็จรูปที่ผ่านเงื่อนไขบอดี้จากปุ่มด้านล่าง`,
+      ja: `${fish}を狙うなら、先に魚に合うボディを選びます。このウィング・テール単体では適合を確認できません。すぐ始めるなら、下のボタンからボディ判定を通る完成セットを確認してください。`,
+      en: `For ${fish}, choose the body first. This wing or tail alone does not establish fish compatibility. To start fishing, use the button below to find ready-made sets whose bodies pass the check.`
+    });
+  }
+  function flyTargetAdvice(ctx, item, fishVisuals, fishLocations) {
+    if (!ctx.selectedFish || !["fly", "fly_wing", "fly_tail"].includes(item.category)) return "";
+    if (!fishVisuals[ctx.selectedFish]) return "";
+    const fish = ctx.fishName(ctx.selectedFish, fishVisuals);
+    const decision = item.category === "fly" ? bodyDecision(ctx, item, fish) : partDecision(ctx, fish);
+    const label = local(ctx, {
+      th: `เลือกชุดฟลายเริ่มต้นสำหรับ${fish}`,
+      ja: `${fish}の開始用フライセットを選ぶ`,
+      en: `Choose a starter fly set for ${fish}`
+    });
+    const href = ctx.fishProfileLink(ctx.selectedFish, fishLocations) + "#starter-fly";
+    return `<div data-fly-target-advice="${ctx.esc(ctx.selectedFish)}"><p>${ctx.esc(decision)}</p><a class="route-button" data-fly-starter-link href="${ctx.esc(href)}">${ctx.esc(label)} ↗</a></div>`;
+  }
+
   // src/pages/item/target-advice.js
-  function targetAdviceSection(ctx, item, allItems, fishVisuals) {
+  function targetAdviceSection(ctx, item, allItems, fishVisuals, fishLocations) {
+    const fly = flyTargetAdvice(ctx, item, fishVisuals, fishLocations);
+    if (fly) return fly;
     const adapter = {
       lang: ctx.lang,
       esc: ctx.esc,
@@ -1147,12 +1182,13 @@
     const dataAttribute = decision ? `${isRod ? "data-rod-decision" : item.baitLureDecision ? "data-bait-lure-decision" : "data-gear-decision"}="${ctx.esc(item.id)}"` : "";
     const heading = decision ? rodDecisionTitle(ctx, item) : ctx.copy.use;
     const body = summary || ctx.copy.noFish;
-    const targetAdvice2 = targetAdviceSection(ctx, item, allItems, fishVisuals);
+    const targetAdvice2 = targetAdviceSection(ctx, item, allItems, fishVisuals, fishLocations);
     const general = `${verdict}<p>${ctx.esc(body)}</p>`;
     const next = ctx.gearNextActions(item, fishVisuals, fishLocations, allItems);
     const maker = ctx.flyMakerLink(item);
     const note = imageNote ? `<p class="muted">${ctx.esc(imageNote)}</p>` : "";
-    const reasons = (targetAdvice2 ? general : "") + factList + decisionFacts(ctx, item, allItems);
+    const isFly = ["fly", "fly_wing", "fly_tail"].includes(item.category);
+    const reasons = (targetAdvice2 && !isFly ? general : "") + factList + decisionFacts(ctx, item, allItems);
     const supporting = decision && reasons ? `<details class="decision-reasons"><summary>${ctx.esc(decisionReasonTitle(ctx, true))}</summary>${reasons}</details>` : reasons;
     return `<section id="what-to-do" class="decision-panel ${decision ? "rod-decision" : ""}" ${dataAttribute}><h2>${ctx.esc(heading)}</h2>${targetAdvice2 || general}${supporting}${next}${maker}${note}</section>`;
   }
@@ -1237,7 +1273,7 @@
   function loadCatalogue(ctx) {
     ctx.flyMakerLink = (item) => item.category.startsWith("fly") ? `<p><a class="route-button" data-fly-maker href="${ctx.esc(ctx.currentCategoryLink().split("#")[0] + "#fly-instructions")}">${ctx.lang === "th" ? "ดูขั้นตอนประกอบฟลายเองและตรวจราคาในเกม" : ctx.lang === "ja" ? "自作フライの手順とゲーム内見積額を確認" : "See custom fly steps and check the in-game quote"} ↗</a></p>` : "";
     ctx.setNavigation();
-    fetch("gallery-data.json?v=compendium-20261005-04").then((response) => {
+    fetch("gallery-data.json?v=compendium-20261005-05").then((response) => {
       if (!response.ok) throw new Error("catalogue data unavailable");
       return response.json();
     }).then((data) => {

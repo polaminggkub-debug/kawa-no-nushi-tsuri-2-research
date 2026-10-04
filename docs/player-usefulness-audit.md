@@ -234,3 +234,9 @@ The static maker worker and catalogue-label worker completed their first bounded
 This batch also corrects all 47 wing decisions: the maker supplies parts, so players do not need to bring an owned wing. Selected-fish result labels now distinguish body-profile acceptance from component sale compatibility. Card decision reasons render once. Historical picture counts remain in research with an explicit unresolved mismatch, rather than becoming confirmed menu counts.
 
 Next dispatch when the controller slot is free: Area 6 magnet prerequisite/use research. After the access/navigation reports, implement only evidence-supported route instructions and navigation repairs, then conduct the final category/profile/shop/map audit. The net and magnifying glass remain deferred by owner direction.
+
+## Selected-fish fly profile action (2026-10-05)
+
+Body, wing and tail profiles now replace the generic no-target purchase paragraph with advice for the selected fish. Bodies state whether their decoded profile check passes; wings/tails direct players to a compatible body and complete starter sets without claiming standalone compatibility. The starter action keeps the localized target, chooses an actually recorded fish area, and returns to the exact item profile. Existing decision reasons, component stock and technical evidence remain available.
+
+The new guard renders 27 locale/category/target cases, checks localized starter anchors and exact item return, and verifies no-target profiles retain their existing advice. Actual local Thai wing09/Rainbow/area1 click opens the expanded 5-yen starter fly set; its return preserves wing09, fish06 and area1. The full local gate passes. This does not establish all maker palette positions or finish the map-return/access tasks.
