@@ -6,7 +6,9 @@ An independent, source-linked study of the Japanese Super Famicom release of **K
 
 **Languages:** [ไทย — item catalogue](https://polaminggkub-debug.github.io/kawa-no-nushi-tsuri-2-research/catalogue/index.th.html) · [日本語](README.ja.md) · [Findings (English)](docs/findings.en.md) · [調査結果（日本語）](docs/findings.ja.md) · [English item catalogue](catalogue/index.html) · [日本語アイテムカタログ](catalogue/index.ja.html)
 
-**Open the searchable gallery:** [English](https://polaminggkub-debug.github.io/kawa-no-nushi-tsuri-2-research/catalogue/) · [日本語](https://polaminggkub-debug.github.io/kawa-no-nushi-tsuri-2-research/catalogue/index.ja.html) · [ไทย](https://polaminggkub-debug.github.io/kawa-no-nushi-tsuri-2-research/catalogue/index.th.html)
+**Open the equipment guide:** [ไทย](https://polaminggkub-debug.github.io/kawa-no-nushi-tsuri-2-research/catalogue/index.th.html) · [English](https://polaminggkub-debug.github.io/kawa-no-nushi-tsuri-2-research/catalogue/) · [日本語](https://polaminggkub-debug.github.io/kawa-no-nushi-tsuri-2-research/catalogue/index.ja.html)
+
+The guide starts with equipment categories, then explains each item's use. Bait/lure/fly entries show the fish profiles that pass the documented condition, with sourced game portraits where available. Fish filters, fly-part tabs and rod-style comparisons support equipment selection; raw fields remain inside expandable evidence. Compatibility is not a measured landing rate.
 
 ![Sample research catalogue](examples/catalogue-en.png)
 

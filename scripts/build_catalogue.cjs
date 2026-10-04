@@ -45,6 +45,12 @@ for(const file of ['thai-rod-transcriptions.json','thai-lure-transcriptions.json
 for(const item of data.items){if(!item.labelImageTh)continue;const imagePath=path.resolve(root,'catalogue',item.labelImageTh);if(fs.existsSync(imagePath)){const key=crypto.createHash('sha256').update(fs.readFileSync(imagePath)).digest('hex');if(verifiedNamesByImage.has(key))item.nameTh=verifiedNamesByImage.get(key);}}
 const fishFood=data.items.find(item=>item.category==='food'&&item.id==='08');if(fishFood&&fishFood.labelImageTh)fishFood.labelContextTh='ตัวอย่างชื่อปลาที่ถือ: เรนโบว์เทราต์ (รหัสชนิด06 ขนาดดิบ30) ชื่อนี้เปลี่ยนตามปลาที่ถือ ไม่ใช่ชื่ออาหารตายตัว';
 fs.writeFileSync(path.join(root,'catalogue/gallery-data.json'),JSON.stringify(data,null,2)+'\n');
+// Merge player-facing explanations and verified fish art into the delivered payload.
+const usePath=path.join(root,'catalogue/item-use.json');
+if(fs.existsSync(usePath)){const use=JSON.parse(fs.readFileSync(usePath,'utf8'));for(const item of data.items)item.playerUse=use.items?.[`${item.category}:${item.id}`]||{};}
+const fishPath=path.join(root,'catalogue/fish-visuals.json');
+if(fs.existsSync(fishPath)){const fish=JSON.parse(fs.readFileSync(fishPath,'utf8'));data.fishVisuals=fish.fish||fish.items||fish;}
+fs.writeFileSync(path.join(root,'catalogue/gallery-data.json'),JSON.stringify(data,null,2)+'\n');
 async function build(locale, filename) {
   const nodes = {};
   function node(id) {
@@ -57,11 +63,11 @@ async function build(locale, filename) {
     getElementById:node,
   };
   const context={document,console,fetch:async()=>({ok:true,json:async()=>data})};
-  vm.runInNewContext(source.replace('  const esc =', '  globalThis.catalogueCopy = copy;\n  const esc ='), context);
+  vm.runInNewContext(source.replace('  const groups=', '  globalThis.playerCopy = player;\n  const groups=').replace('  const esc =', '  globalThis.catalogueCopy = copy;\n  const esc ='), context);
   await new Promise(resolve=>setImmediate(resolve));
   const file=path.join(root,'catalogue',filename);
   let html=fs.readFileSync(file,'utf8');
-  html=html.replace(/(<([a-z0-9]+)[^>]*data-t="([^"]+)"[^>]*>)[^<]*(<\/\2>)/g, (whole,open,tag,key,close)=>{const camel=({'th-item':'item','th-rom':'rom','th-price':'price','search-label':'search','category-label':'category','sort-label':'sort','readme-link':'readme'})[key]||key.replace(/-([a-z])/g,(_,c)=>c.toUpperCase());const value=context.catalogueCopy[key]??context.catalogueCopy[camel];return typeof value==='string'?open+value+close:whole;});
+  html=html.replace(/(<([a-z0-9]+)[^>]*data-t="([^"]+)"[^>]*>)[^<]*(<\/\2>)/g, (whole,open,tag,key,close)=>{const camel=({'th-item':'item','th-rom':'rom','th-price':'price','search-label':'search','category-label':'category','sort-label':'sort','readme-link':'readme'})[key]||key.replace(/-([a-z])/g,(_,c)=>c.toUpperCase());const value=(camel==='title'||camel==='lead'?context.playerCopy?.[camel]:undefined)??context.catalogueCopy[key]??context.catalogueCopy[camel];return typeof value==='string'?open+value+close:whole;});
   for (const [id,n] of Object.entries(nodes)) {
     const value=n.innerHTML || n.textContent;
     if(!value)continue;
@@ -69,7 +75,7 @@ async function build(locale, filename) {
     if(html.includes(start)) {
       html=html.replace(new RegExp(start+'[\\s\\S]*?'+end),()=>start+value+end);
     } else {
-      const re=new RegExp('(<(div|tbody|select|p|span)[^>]*id="'+id+'"[^>]*>)[\\s\\S]*?(</\\2>)');
+      const re=new RegExp('(<(div|tbody|select|p|span|h2|a)[^>]*id="'+id+'"[^>]*>)[\\s\\S]*?(</\\2>)');
       html=html.replace(re,(_,open,tag,close)=>open+start+value+end+close);
     }
   }

@@ -1,0 +1,657 @@
+{
+  "schema_version": 1,
+  "rom_sha1": "c2103dd94e2a1a65a495fc02adc2e7d040f31212",
+  "items": {
+    "hook:01": {
+      "summary": {
+        "th": "ถ้าจะตกปลาอาคะเมะ ให้เลือกตะขอนี้เป็นตัวเต็ง: ID ปลาตรงกับแขนงตั้งค่าการสู้เฉพาะใน ROM",
+        "en": "Target Akame (アカメ): this is the ROM fish-ID-matched hook candidate for initial fight setup.",
+        "ja": "アカメ狙いの候補。魚IDが一致すると、ROMの専用ファイト初期化分岐に入る。"
+      },
+      "facts": {
+        "th": [
+          "ID ปลาเป้าหมาย 0x37: ปลาอาคะเมะ (アカメ); โค้ดตรวจ ID นี้ตรงกับปลาที่กำลังสู้",
+          "เมื่อ ID ตรงกัน ROM ใช้ H(x)=floor(x/2) กับค่าตอบสนองตั้งต้น และข้ามการแปลงตามขนาดของตะขอรหัส +0",
+          "แขนงเดียวกันตรวจฟิลด์ปลาเฉพาะของเหยื่อที่ 7E:1214 แยกต่างหาก; การตรงกันของฟิลด์เหยื่อก็เรียกการแปลง H ได้",
+          "คัน/ตะขอถูกโหลดในเส้นทางเหยื่อที่ใช้ทุ่น (IDs 01–08) และเส้นทางที่ใช้ตะกั่ว (IDs 09–0A); โหมดลัวร์และฟลายล้างค่าตะขอ",
+          "นี่พิสูจน์แขนงการตั้งค่าช่วงสู้ปลา ไม่ได้พิสูจน์ว่าปลากินง่ายขึ้น จับสำเร็จง่ายขึ้น หรือใช้ได้เฉพาะปลาชนิดนี้"
+        ],
+        "en": [
+          "Target fish ID 0x37: Akame (アカメ); the code compares this ID with the active fish.",
+          "On a match, the ROM applies H(x)=floor(x/2) to the initial response value and skips this hook’s later size-response transform selected by byte +0.",
+          "The same setup also checks bait field 7E:1214 independently; a match there can invoke H even without a hook-field match.",
+          "Hooks load in the float-equipped bait route (IDs 01–08) and sinker-equipped bait route (IDs 09–0A); lure and fly setup clear the hook fields.",
+          "This proves an initial-fight setup branch, not a bite-rate or catch-success bonus, and not fish exclusivity."
+        ],
+        "ja": [
+          "対象魚ID 0x37: アカメ。コードはこのIDを現在の魚IDと比較する。",
+          "一致時は初期応答値に H(x)=floor(x/2) を適用し、この針の+0で選ばれる後段のサイズ応答変換を飛ばす。",
+          "同じ設定処理ではエサの魚IDフィールド7E:1214も別に確認する。こちらが一致した場合も、針IDが一致しなくてもHを呼び出す。",
+          "針はウキ装備のエサ釣り経路（ID 01–08）とオモリ装備のエサ釣り経路（ID 09–0A）で読み込まれる。ルアーとフライでは針フィールドがクリアされる。",
+          "確認できたのはファイト初期化分岐。食いつき率・釣果率の上昇や、この魚専用であることは証明していない。"
+        ]
+      }
+    },
+    "hook:02": {
+      "summary": {
+        "th": "ถ้าจะตกปลาไหลยักษ์ ให้เลือกตะขอนี้เป็นตัวเต็ง: ID ปลาตรงกับแขนงตั้งค่าการสู้เฉพาะใน ROM",
+        "en": "Target giant eel (Oounagi) (オオウナギ): this is the ROM fish-ID-matched hook candidate for initial fight setup.",
+        "ja": "オオウナギ狙いの候補。魚IDが一致すると、ROMの専用ファイト初期化分岐に入る。"
+      },
+      "facts": {
+        "th": [
+          "ID ปลาเป้าหมาย 0x3B: ปลาไหลยักษ์ (オオウナギ); โค้ดตรวจ ID นี้ตรงกับปลาที่กำลังสู้",
+          "เมื่อ ID ตรงกัน ROM ใช้ H(x)=floor(x/2) กับค่าตอบสนองตั้งต้น และข้ามการแปลงตามขนาดของตะขอรหัส +0",
+          "แขนงเดียวกันตรวจฟิลด์ปลาเฉพาะของเหยื่อที่ 7E:1214 แยกต่างหาก; การตรงกันของฟิลด์เหยื่อก็เรียกการแปลง H ได้",
+          "คัน/ตะขอถูกโหลดในเส้นทางเหยื่อที่ใช้ทุ่น (IDs 01–08) และเส้นทางที่ใช้ตะกั่ว (IDs 09–0A); โหมดลัวร์และฟลายล้างค่าตะขอ",
+          "นี่พิสูจน์แขนงการตั้งค่าช่วงสู้ปลา ไม่ได้พิสูจน์ว่าปลากินง่ายขึ้น จับสำเร็จง่ายขึ้น หรือใช้ได้เฉพาะปลาชนิดนี้"
+        ],
+        "en": [
+          "Target fish ID 0x3B: giant eel (Oounagi) (オオウナギ); the code compares this ID with the active fish.",
+          "On a match, the ROM applies H(x)=floor(x/2) to the initial response value and skips this hook’s later size-response transform selected by byte +0.",
+          "The same setup also checks bait field 7E:1214 independently; a match there can invoke H even without a hook-field match.",
+          "Hooks load in the float-equipped bait route (IDs 01–08) and sinker-equipped bait route (IDs 09–0A); lure and fly setup clear the hook fields.",
+          "This proves an initial-fight setup branch, not a bite-rate or catch-success bonus, and not fish exclusivity."
+        ],
+        "ja": [
+          "対象魚ID 0x3B: オオウナギ。コードはこのIDを現在の魚IDと比較する。",
+          "一致時は初期応答値に H(x)=floor(x/2) を適用し、この針の+0で選ばれる後段のサイズ応答変換を飛ばす。",
+          "同じ設定処理ではエサの魚IDフィールド7E:1214も別に確認する。こちらが一致した場合も、針IDが一致しなくてもHを呼び出す。",
+          "針はウキ装備のエサ釣り経路（ID 01–08）とオモリ装備のエサ釣り経路（ID 09–0A）で読み込まれる。ルアーとフライでは針フィールドがクリアされる。",
+          "確認できたのはファイト初期化分岐。食いつき率・釣果率の上昇や、この魚専用であることは証明していない。"
+        ]
+      }
+    },
+    "hook:03": {
+      "summary": {
+        "th": "ถ้าจะตกปลากะพงญี่ปุ่น ให้เลือกตะขอนี้เป็นตัวเต็ง: ID ปลาตรงกับแขนงตั้งค่าการสู้เฉพาะใน ROM",
+        "en": "Target Japanese sea bass (Suzuki) (スズキ): this is the ROM fish-ID-matched hook candidate for initial fight setup.",
+        "ja": "スズキ狙いの候補。魚IDが一致すると、ROMの専用ファイト初期化分岐に入る。"
+      },
+      "facts": {
+        "th": [
+          "ID ปลาเป้าหมาย 0x36: ปลากะพงญี่ปุ่น (スズキ); โค้ดตรวจ ID นี้ตรงกับปลาที่กำลังสู้",
+          "เมื่อ ID ตรงกัน ROM ใช้ H(x)=floor(x/2) กับค่าตอบสนองตั้งต้น และข้ามการแปลงตามขนาดของตะขอรหัส +0",
+          "แขนงเดียวกันตรวจฟิลด์ปลาเฉพาะของเหยื่อที่ 7E:1214 แยกต่างหาก; การตรงกันของฟิลด์เหยื่อก็เรียกการแปลง H ได้",
+          "คัน/ตะขอถูกโหลดในเส้นทางเหยื่อที่ใช้ทุ่น (IDs 01–08) และเส้นทางที่ใช้ตะกั่ว (IDs 09–0A); โหมดลัวร์และฟลายล้างค่าตะขอ",
+          "นี่พิสูจน์แขนงการตั้งค่าช่วงสู้ปลา ไม่ได้พิสูจน์ว่าปลากินง่ายขึ้น จับสำเร็จง่ายขึ้น หรือใช้ได้เฉพาะปลาชนิดนี้"
+        ],
+        "en": [
+          "Target fish ID 0x36: Japanese sea bass (Suzuki) (スズキ); the code compares this ID with the active fish.",
+          "On a match, the ROM applies H(x)=floor(x/2) to the initial response value and skips this hook’s later size-response transform selected by byte +0.",
+          "The same setup also checks bait field 7E:1214 independently; a match there can invoke H even without a hook-field match.",
+          "Hooks load in the float-equipped bait route (IDs 01–08) and sinker-equipped bait route (IDs 09–0A); lure and fly setup clear the hook fields.",
+          "This proves an initial-fight setup branch, not a bite-rate or catch-success bonus, and not fish exclusivity."
+        ],
+        "ja": [
+          "対象魚ID 0x36: スズキ。コードはこのIDを現在の魚IDと比較する。",
+          "一致時は初期応答値に H(x)=floor(x/2) を適用し、この針の+0で選ばれる後段のサイズ応答変換を飛ばす。",
+          "同じ設定処理ではエサの魚IDフィールド7E:1214も別に確認する。こちらが一致した場合も、針IDが一致しなくてもHを呼び出す。",
+          "針はウキ装備のエサ釣り経路（ID 01–08）とオモリ装備のエサ釣り経路（ID 09–0A）で読み込まれる。ルアーとフライでは針フィールドがクリアされる。",
+          "確認できたのはファイト初期化分岐。食いつき率・釣果率の上昇や、この魚専用であることは証明していない。"
+        ]
+      }
+    },
+    "hook:04": {
+      "summary": {
+        "th": "ถ้าจะตกปลาคาร์ป ให้เลือกตะขอนี้เป็นตัวเต็ง: ID ปลาตรงกับแขนงตั้งค่าการสู้เฉพาะใน ROM",
+        "en": "Target carp (Koi) (コイ): this is the ROM fish-ID-matched hook candidate for initial fight setup.",
+        "ja": "コイ狙いの候補。魚IDが一致すると、ROMの専用ファイト初期化分岐に入る。"
+      },
+      "facts": {
+        "th": [
+          "ID ปลาเป้าหมาย 0x0D: ปลาคาร์ป (コイ); โค้ดตรวจ ID นี้ตรงกับปลาที่กำลังสู้",
+          "เมื่อ ID ตรงกัน ROM ใช้ H(x)=floor(x/2) กับค่าตอบสนองตั้งต้น และข้ามการแปลงตามขนาดของตะขอรหัส +0",
+          "แขนงเดียวกันตรวจฟิลด์ปลาเฉพาะของเหยื่อที่ 7E:1214 แยกต่างหาก; การตรงกันของฟิลด์เหยื่อก็เรียกการแปลง H ได้",
+          "คัน/ตะขอถูกโหลดในเส้นทางเหยื่อที่ใช้ทุ่น (IDs 01–08) และเส้นทางที่ใช้ตะกั่ว (IDs 09–0A); โหมดลัวร์และฟลายล้างค่าตะขอ",
+          "นี่พิสูจน์แขนงการตั้งค่าช่วงสู้ปลา ไม่ได้พิสูจน์ว่าปลากินง่ายขึ้น จับสำเร็จง่ายขึ้น หรือใช้ได้เฉพาะปลาชนิดนี้"
+        ],
+        "en": [
+          "Target fish ID 0x0D: carp (Koi) (コイ); the code compares this ID with the active fish.",
+          "On a match, the ROM applies H(x)=floor(x/2) to the initial response value and skips this hook’s later size-response transform selected by byte +0.",
+          "The same setup also checks bait field 7E:1214 independently; a match there can invoke H even without a hook-field match.",
+          "Hooks load in the float-equipped bait route (IDs 01–08) and sinker-equipped bait route (IDs 09–0A); lure and fly setup clear the hook fields.",
+          "This proves an initial-fight setup branch, not a bite-rate or catch-success bonus, and not fish exclusivity."
+        ],
+        "ja": [
+          "対象魚ID 0x0D: コイ。コードはこのIDを現在の魚IDと比較する。",
+          "一致時は初期応答値に H(x)=floor(x/2) を適用し、この針の+0で選ばれる後段のサイズ応答変換を飛ばす。",
+          "同じ設定処理ではエサの魚IDフィールド7E:1214も別に確認する。こちらが一致した場合も、針IDが一致しなくてもHを呼び出す。",
+          "針はウキ装備のエサ釣り経路（ID 01–08）とオモリ装備のエサ釣り経路（ID 09–0A）で読み込まれる。ルアーとフライでは針フィールドがクリアされる。",
+          "確認できたのはファイト初期化分岐。食いつき率・釣果率の上昇や、この魚専用であることは証明していない。"
+        ]
+      }
+    },
+    "hook:05": {
+      "summary": {
+        "th": "ถ้าจะตกปลาเฮระบุนะ ให้เลือกตะขอนี้เป็นตัวเต็ง: ID ปลาตรงกับแขนงตั้งค่าการสู้เฉพาะใน ROM",
+        "en": "Target Herabuna (crucian carp) (ヘラブナ): this is the ROM fish-ID-matched hook candidate for initial fight setup.",
+        "ja": "ヘラブナ狙いの候補。魚IDが一致すると、ROMの専用ファイト初期化分岐に入る。"
+      },
+      "facts": {
+        "th": [
+          "ID ปลาเป้าหมาย 0x25: ปลาเฮระบุนะ (ヘラブナ); โค้ดตรวจ ID นี้ตรงกับปลาที่กำลังสู้",
+          "เมื่อ ID ตรงกัน ROM ใช้ H(x)=floor(x/2) กับค่าตอบสนองตั้งต้น และข้ามการแปลงตามขนาดของตะขอรหัส +0",
+          "แขนงเดียวกันตรวจฟิลด์ปลาเฉพาะของเหยื่อที่ 7E:1214 แยกต่างหาก; การตรงกันของฟิลด์เหยื่อก็เรียกการแปลง H ได้",
+          "คัน/ตะขอถูกโหลดในเส้นทางเหยื่อที่ใช้ทุ่น (IDs 01–08) และเส้นทางที่ใช้ตะกั่ว (IDs 09–0A); โหมดลัวร์และฟลายล้างค่าตะขอ",
+          "นี่พิสูจน์แขนงการตั้งค่าช่วงสู้ปลา ไม่ได้พิสูจน์ว่าปลากินง่ายขึ้น จับสำเร็จง่ายขึ้น หรือใช้ได้เฉพาะปลาชนิดนี้"
+        ],
+        "en": [
+          "Target fish ID 0x25: Herabuna (crucian carp) (ヘラブナ); the code compares this ID with the active fish.",
+          "On a match, the ROM applies H(x)=floor(x/2) to the initial response value and skips this hook’s later size-response transform selected by byte +0.",
+          "The same setup also checks bait field 7E:1214 independently; a match there can invoke H even without a hook-field match.",
+          "Hooks load in the float-equipped bait route (IDs 01–08) and sinker-equipped bait route (IDs 09–0A); lure and fly setup clear the hook fields.",
+          "This proves an initial-fight setup branch, not a bite-rate or catch-success bonus, and not fish exclusivity."
+        ],
+        "ja": [
+          "対象魚ID 0x25: ヘラブナ。コードはこのIDを現在の魚IDと比較する。",
+          "一致時は初期応答値に H(x)=floor(x/2) を適用し、この針の+0で選ばれる後段のサイズ応答変換を飛ばす。",
+          "同じ設定処理ではエサの魚IDフィールド7E:1214も別に確認する。こちらが一致した場合も、針IDが一致しなくてもHを呼び出す。",
+          "針はウキ装備のエサ釣り経路（ID 01–08）とオモリ装備のエサ釣り経路（ID 09–0A）で読み込まれる。ルアーとフライでは針フィールドがクリアされる。",
+          "確認できたのはファイト初期化分岐。食いつき率・釣果率の上昇や、この魚専用であることは証明していない。"
+        ]
+      }
+    },
+    "hook:0A": {
+      "summary": {
+        "th": "ถ้าจะตกปลา Ayu ให้เลือกตะขอนี้เป็นตัวเต็ง: ID ปลาตรงกับแขนงตั้งค่าการสู้เฉพาะใน ROM",
+        "en": "Target Ayu (sweetfish) (アユ): this is the ROM fish-ID-matched hook candidate for initial fight setup.",
+        "ja": "アユ狙いの候補。魚IDが一致すると、ROMの専用ファイト初期化分岐に入る。"
+      },
+      "facts": {
+        "th": [
+          "ID ปลาเป้าหมาย 0x38: ปลา Ayu (アユ); โค้ดตรวจ ID นี้ตรงกับปลาที่กำลังสู้",
+          "เมื่อ ID ตรงกัน ROM ใช้ H(x)=floor(x/2) กับค่าตอบสนองตั้งต้น และข้ามการแปลงตามขนาดของตะขอรหัส +0",
+          "แขนงเดียวกันตรวจฟิลด์ปลาเฉพาะของเหยื่อที่ 7E:1214 แยกต่างหาก; การตรงกันของฟิลด์เหยื่อก็เรียกการแปลง H ได้",
+          "คัน/ตะขอถูกโหลดในเส้นทางเหยื่อที่ใช้ทุ่น (IDs 01–08) และเส้นทางที่ใช้ตะกั่ว (IDs 09–0A); โหมดลัวร์และฟลายล้างค่าตะขอ",
+          "นี่พิสูจน์แขนงการตั้งค่าช่วงสู้ปลา ไม่ได้พิสูจน์ว่าปลากินง่ายขึ้น จับสำเร็จง่ายขึ้น หรือใช้ได้เฉพาะปลาชนิดนี้"
+        ],
+        "en": [
+          "Target fish ID 0x38: Ayu (sweetfish) (アユ); the code compares this ID with the active fish.",
+          "On a match, the ROM applies H(x)=floor(x/2) to the initial response value and skips this hook’s later size-response transform selected by byte +0.",
+          "The same setup also checks bait field 7E:1214 independently; a match there can invoke H even without a hook-field match.",
+          "Hooks load in the float-equipped bait route (IDs 01–08) and sinker-equipped bait route (IDs 09–0A); lure and fly setup clear the hook fields.",
+          "This proves an initial-fight setup branch, not a bite-rate or catch-success bonus, and not fish exclusivity."
+        ],
+        "ja": [
+          "対象魚ID 0x38: アユ。コードはこのIDを現在の魚IDと比較する。",
+          "一致時は初期応答値に H(x)=floor(x/2) を適用し、この針の+0で選ばれる後段のサイズ応答変換を飛ばす。",
+          "同じ設定処理ではエサの魚IDフィールド7E:1214も別に確認する。こちらが一致した場合も、針IDが一致しなくてもHを呼び出す。",
+          "針はウキ装備のエサ釣り経路（ID 01–08）とオモリ装備のエサ釣り経路（ID 09–0A）で読み込まれる。ルアーとフライでは針フィールドがクリアされる。",
+          "確認できたのはファイト初期化分岐。食いつき率・釣果率の上昇や、この魚専用であることは証明していない。"
+        ]
+      }
+    },
+    "hook:0B": {
+      "summary": {
+        "th": "ถ้าจะตกปลาทานาโกะ ให้เลือกตะขอนี้เป็นตัวเต็ง: ID ปลาตรงกับแขนงตั้งค่าการสู้เฉพาะใน ROM",
+        "en": "Target bitterling (Tanago) (タナゴ): this is the ROM fish-ID-matched hook candidate for initial fight setup.",
+        "ja": "タナゴ狙いの候補。魚IDが一致すると、ROMの専用ファイト初期化分岐に入る。"
+      },
+      "facts": {
+        "th": [
+          "ID ปลาเป้าหมาย 0x39: ปลาทานาโกะ (タナゴ); โค้ดตรวจ ID นี้ตรงกับปลาที่กำลังสู้",
+          "เมื่อ ID ตรงกัน ROM ใช้ H(x)=floor(x/2) กับค่าตอบสนองตั้งต้น และข้ามการแปลงตามขนาดของตะขอรหัส +0",
+          "แขนงเดียวกันตรวจฟิลด์ปลาเฉพาะของเหยื่อที่ 7E:1214 แยกต่างหาก; การตรงกันของฟิลด์เหยื่อก็เรียกการแปลง H ได้",
+          "คัน/ตะขอถูกโหลดในเส้นทางเหยื่อที่ใช้ทุ่น (IDs 01–08) และเส้นทางที่ใช้ตะกั่ว (IDs 09–0A); โหมดลัวร์และฟลายล้างค่าตะขอ",
+          "นี่พิสูจน์แขนงการตั้งค่าช่วงสู้ปลา ไม่ได้พิสูจน์ว่าปลากินง่ายขึ้น จับสำเร็จง่ายขึ้น หรือใช้ได้เฉพาะปลาชนิดนี้"
+        ],
+        "en": [
+          "Target fish ID 0x39: bitterling (Tanago) (タナゴ); the code compares this ID with the active fish.",
+          "On a match, the ROM applies H(x)=floor(x/2) to the initial response value and skips this hook’s later size-response transform selected by byte +0.",
+          "The same setup also checks bait field 7E:1214 independently; a match there can invoke H even without a hook-field match.",
+          "Hooks load in the float-equipped bait route (IDs 01–08) and sinker-equipped bait route (IDs 09–0A); lure and fly setup clear the hook fields.",
+          "This proves an initial-fight setup branch, not a bite-rate or catch-success bonus, and not fish exclusivity."
+        ],
+        "ja": [
+          "対象魚ID 0x39: タナゴ。コードはこのIDを現在の魚IDと比較する。",
+          "一致時は初期応答値に H(x)=floor(x/2) を適用し、この針の+0で選ばれる後段のサイズ応答変換を飛ばす。",
+          "同じ設定処理ではエサの魚IDフィールド7E:1214も別に確認する。こちらが一致した場合も、針IDが一致しなくてもHを呼び出す。",
+          "針はウキ装備のエサ釣り経路（ID 01–08）とオモリ装備のエサ釣り経路（ID 09–0A）で読み込まれる。ルアーとフライでは針フィールドがクリアされる。",
+          "確認できたのはファイト初期化分岐。食いつき率・釣果率の上昇や、この魚専用であることは証明していない。"
+        ]
+      }
+    },
+    "hook:0C": {
+      "summary": {
+        "th": "ถ้าจะตกปลาอิวานะ ให้เลือกตะขอนี้เป็นตัวเต็ง: ID ปลาตรงกับแขนงตั้งค่าการสู้เฉพาะใน ROM",
+        "en": "Target Iwana (char) (イワナ): this is the ROM fish-ID-matched hook candidate for initial fight setup.",
+        "ja": "イワナ狙いの候補。魚IDが一致すると、ROMの専用ファイト初期化分岐に入る。"
+      },
+      "facts": {
+        "th": [
+          "ID ปลาเป้าหมาย 0x01: ปลาอิวานะ (イワナ); โค้ดตรวจ ID นี้ตรงกับปลาที่กำลังสู้",
+          "เมื่อ ID ตรงกัน ROM ใช้ H(x)=floor(x/2) กับค่าตอบสนองตั้งต้น และข้ามการแปลงตามขนาดของตะขอรหัส +0",
+          "แขนงเดียวกันตรวจฟิลด์ปลาเฉพาะของเหยื่อที่ 7E:1214 แยกต่างหาก; การตรงกันของฟิลด์เหยื่อก็เรียกการแปลง H ได้",
+          "คัน/ตะขอถูกโหลดในเส้นทางเหยื่อที่ใช้ทุ่น (IDs 01–08) และเส้นทางที่ใช้ตะกั่ว (IDs 09–0A); โหมดลัวร์และฟลายล้างค่าตะขอ",
+          "นี่พิสูจน์แขนงการตั้งค่าช่วงสู้ปลา ไม่ได้พิสูจน์ว่าปลากินง่ายขึ้น จับสำเร็จง่ายขึ้น หรือใช้ได้เฉพาะปลาชนิดนี้"
+        ],
+        "en": [
+          "Target fish ID 0x01: Iwana (char) (イワナ); the code compares this ID with the active fish.",
+          "On a match, the ROM applies H(x)=floor(x/2) to the initial response value and skips this hook’s later size-response transform selected by byte +0.",
+          "The same setup also checks bait field 7E:1214 independently; a match there can invoke H even without a hook-field match.",
+          "Hooks load in the float-equipped bait route (IDs 01–08) and sinker-equipped bait route (IDs 09–0A); lure and fly setup clear the hook fields.",
+          "This proves an initial-fight setup branch, not a bite-rate or catch-success bonus, and not fish exclusivity."
+        ],
+        "ja": [
+          "対象魚ID 0x01: イワナ。コードはこのIDを現在の魚IDと比較する。",
+          "一致時は初期応答値に H(x)=floor(x/2) を適用し、この針の+0で選ばれる後段のサイズ応答変換を飛ばす。",
+          "同じ設定処理ではエサの魚IDフィールド7E:1214も別に確認する。こちらが一致した場合も、針IDが一致しなくてもHを呼び出す。",
+          "針はウキ装備のエサ釣り経路（ID 01–08）とオモリ装備のエサ釣り経路（ID 09–0A）で読み込まれる。ルアーとフライでは針フィールドがクリアされる。",
+          "確認できたのはファイト初期化分岐。食いつき率・釣果率の上昇や、この魚専用であることは証明していない。"
+        ]
+      }
+    },
+    "hook:0D": {
+      "summary": {
+        "th": "ถ้าจะตกปลายามาเมะ ให้เลือกตะขอนี้เป็นตัวเต็ง: ID ปลาตรงกับแขนงตั้งค่าการสู้เฉพาะใน ROM",
+        "en": "Target Yamame trout (ヤマメ): this is the ROM fish-ID-matched hook candidate for initial fight setup.",
+        "ja": "ヤマメ狙いの候補。魚IDが一致すると、ROMの専用ファイト初期化分岐に入る。"
+      },
+      "facts": {
+        "th": [
+          "ID ปลาเป้าหมาย 0x03: ปลายามาเมะ (ヤマメ); โค้ดตรวจ ID นี้ตรงกับปลาที่กำลังสู้",
+          "เมื่อ ID ตรงกัน ROM ใช้ H(x)=floor(x/2) กับค่าตอบสนองตั้งต้น และข้ามการแปลงตามขนาดของตะขอรหัส +0",
+          "แขนงเดียวกันตรวจฟิลด์ปลาเฉพาะของเหยื่อที่ 7E:1214 แยกต่างหาก; การตรงกันของฟิลด์เหยื่อก็เรียกการแปลง H ได้",
+          "คัน/ตะขอถูกโหลดในเส้นทางเหยื่อที่ใช้ทุ่น (IDs 01–08) และเส้นทางที่ใช้ตะกั่ว (IDs 09–0A); โหมดลัวร์และฟลายล้างค่าตะขอ",
+          "นี่พิสูจน์แขนงการตั้งค่าช่วงสู้ปลา ไม่ได้พิสูจน์ว่าปลากินง่ายขึ้น จับสำเร็จง่ายขึ้น หรือใช้ได้เฉพาะปลาชนิดนี้"
+        ],
+        "en": [
+          "Target fish ID 0x03: Yamame trout (ヤマメ); the code compares this ID with the active fish.",
+          "On a match, the ROM applies H(x)=floor(x/2) to the initial response value and skips this hook’s later size-response transform selected by byte +0.",
+          "The same setup also checks bait field 7E:1214 independently; a match there can invoke H even without a hook-field match.",
+          "Hooks load in the float-equipped bait route (IDs 01–08) and sinker-equipped bait route (IDs 09–0A); lure and fly setup clear the hook fields.",
+          "This proves an initial-fight setup branch, not a bite-rate or catch-success bonus, and not fish exclusivity."
+        ],
+        "ja": [
+          "対象魚ID 0x03: ヤマメ。コードはこのIDを現在の魚IDと比較する。",
+          "一致時は初期応答値に H(x)=floor(x/2) を適用し、この針の+0で選ばれる後段のサイズ応答変換を飛ばす。",
+          "同じ設定処理ではエサの魚IDフィールド7E:1214も別に確認する。こちらが一致した場合も、針IDが一致しなくてもHを呼び出す。",
+          "針はウキ装備のエサ釣り経路（ID 01–08）とオモリ装備のエサ釣り経路（ID 09–0A）で読み込まれる。ルアーとフライでは針フィールドがクリアされる。",
+          "確認できたのはファイト初期化分岐。食いつき率・釣果率の上昇や、この魚専用であることは証明していない。"
+        ]
+      }
+    },
+    "hook:06": {
+      "summary": {
+        "th": "ROM ไม่ระบุ ID ปลาเป้าหมายเฉพาะให้ตะขอนี้; อย่าคาดว่ามีโบนัสเฉพาะชนิดปลา",
+        "en": "No species target is encoded for this hook; the ROM uses its ordinary response path.",
+        "ja": "この針に魚IDの対象指定はない。ROMでは通常の応答分岐を使う。"
+      },
+      "facts": {
+        "th": [
+          "ชื่อใน ROM: ハリ; ค่า ID ปลาในไบต์ +1 เป็น 0x00 จึงไม่เข้าแขนงตะขอที่จับคู่ ID ปลา",
+          "ใช้รหัสตอบสนอง +0 = 01 ในเส้นทางปกติ; รหัสนี้เป็นตัวเลือกรูปแบบ ไม่ใช่ค่าความแข็งแรง",
+          "ใช้ได้ในเส้นทางเหยื่อที่มีทุ่น/ตะกั่ว; โหมดลัวร์และฟลายล้างค่าตะขอ",
+          "ROM ไม่ยืนยันอัตรากินเหยื่อหรืออัตราจับที่ดีกว่าจากชื่อหรือราคา"
+        ],
+        "en": [
+          "ROM name: ハリ; hook byte +1 is 0x00, so it does not enter a fish-ID-matched hook branch.",
+          "Its ordinary route uses response selector +0 = 01; this is a branch selector, not a strength score.",
+          "It loads in float-equipped and sinker-equipped bait routes; lure and fly setup clear the hook fields.",
+          "The ROM does not establish a better bite or catch rate from the name or price."
+        ],
+        "ja": [
+          "ROM内の名前: ハリ。針の+1は0x00で、魚ID一致の針分岐には入らない。",
+          "通常経路では応答選択値+0 = 01を使う。強さの数値ではなく分岐選択値。",
+          "ウキ装備・オモリ装備のエサ釣り経路で読み込まれる。ルアーとフライでは針フィールドがクリアされる。",
+          "名前や価格から食いつき率・釣果率の優位性は確認できない。"
+        ]
+      }
+    },
+    "hook:07": {
+      "summary": {
+        "th": "ROM ไม่ระบุ ID ปลาเป้าหมายเฉพาะให้ตะขอนี้; อย่าคาดว่ามีโบนัสเฉพาะชนิดปลา",
+        "en": "No species target is encoded for this hook; the ROM uses its ordinary response path.",
+        "ja": "この針に魚IDの対象指定はない。ROMでは通常の応答分岐を使う。"
+      },
+      "facts": {
+        "th": [
+          "ชื่อใน ROM: 袖ヒガイ; ค่า ID ปลาในไบต์ +1 เป็น 0x00 จึงไม่เข้าแขนงตะขอที่จับคู่ ID ปลา",
+          "ใช้รหัสตอบสนอง +0 = 00 ในเส้นทางปกติ; รหัสนี้เป็นตัวเลือกรูปแบบ ไม่ใช่ค่าความแข็งแรง",
+          "ใช้ได้ในเส้นทางเหยื่อที่มีทุ่น/ตะกั่ว; โหมดลัวร์และฟลายล้างค่าตะขอ",
+          "ROM ไม่ยืนยันอัตรากินเหยื่อหรืออัตราจับที่ดีกว่าจากชื่อหรือราคา"
+        ],
+        "en": [
+          "ROM name: 袖ヒガイ; hook byte +1 is 0x00, so it does not enter a fish-ID-matched hook branch.",
+          "Its ordinary route uses response selector +0 = 00; this is a branch selector, not a strength score.",
+          "It loads in float-equipped and sinker-equipped bait routes; lure and fly setup clear the hook fields.",
+          "The ROM does not establish a better bite or catch rate from the name or price."
+        ],
+        "ja": [
+          "ROM内の名前: 袖ヒガイ。針の+1は0x00で、魚ID一致の針分岐には入らない。",
+          "通常経路では応答選択値+0 = 00を使う。強さの数値ではなく分岐選択値。",
+          "ウキ装備・オモリ装備のエサ釣り経路で読み込まれる。ルアーとフライでは針フィールドがクリアされる。",
+          "名前や価格から食いつき率・釣果率の優位性は確認できない。"
+        ]
+      }
+    },
+    "hook:08": {
+      "summary": {
+        "th": "ROM ไม่ระบุ ID ปลาเป้าหมายเฉพาะให้ตะขอนี้; อย่าคาดว่ามีโบนัสเฉพาะชนิดปลา",
+        "en": "No species target is encoded for this hook; the ROM uses its ordinary response path.",
+        "ja": "この針に魚IDの対象指定はない。ROMでは通常の応答分岐を使う。"
+      },
+      "facts": {
+        "th": [
+          "ชื่อใน ROM: ハヤ・ヤマベ; ค่า ID ปลาในไบต์ +1 เป็น 0x00 จึงไม่เข้าแขนงตะขอที่จับคู่ ID ปลา",
+          "ใช้รหัสตอบสนอง +0 = 00 ในเส้นทางปกติ; รหัสนี้เป็นตัวเลือกรูปแบบ ไม่ใช่ค่าความแข็งแรง",
+          "ใช้ได้ในเส้นทางเหยื่อที่มีทุ่น/ตะกั่ว; โหมดลัวร์และฟลายล้างค่าตะขอ",
+          "ROM ไม่ยืนยันอัตรากินเหยื่อหรืออัตราจับที่ดีกว่าจากชื่อหรือราคา"
+        ],
+        "en": [
+          "ROM name: ハヤ・ヤマベ; hook byte +1 is 0x00, so it does not enter a fish-ID-matched hook branch.",
+          "Its ordinary route uses response selector +0 = 00; this is a branch selector, not a strength score.",
+          "It loads in float-equipped and sinker-equipped bait routes; lure and fly setup clear the hook fields.",
+          "The ROM does not establish a better bite or catch rate from the name or price."
+        ],
+        "ja": [
+          "ROM内の名前: ハヤ・ヤマベ。針の+1は0x00で、魚ID一致の針分岐には入らない。",
+          "通常経路では応答選択値+0 = 00を使う。強さの数値ではなく分岐選択値。",
+          "ウキ装備・オモリ装備のエサ釣り経路で読み込まれる。ルアーとフライでは針フィールドがクリアされる。",
+          "名前や価格から食いつき率・釣果率の優位性は確認できない。"
+        ]
+      }
+    },
+    "hook:09": {
+      "summary": {
+        "th": "ROM ไม่ระบุ ID ปลาเป้าหมายเฉพาะให้ตะขอนี้; อย่าคาดว่ามีโบนัสเฉพาะชนิดปลา",
+        "en": "No species target is encoded for this hook; the ROM uses its ordinary response path.",
+        "ja": "この針に魚IDの対象指定はない。ROMでは通常の応答分岐を使う。"
+      },
+      "facts": {
+        "th": [
+          "ชื่อใน ROM: マスバリ; ค่า ID ปลาในไบต์ +1 เป็น 0x00 จึงไม่เข้าแขนงตะขอที่จับคู่ ID ปลา",
+          "ใช้รหัสตอบสนอง +0 = 01 ในเส้นทางปกติ; รหัสนี้เป็นตัวเลือกรูปแบบ ไม่ใช่ค่าความแข็งแรง",
+          "ใช้ได้ในเส้นทางเหยื่อที่มีทุ่น/ตะกั่ว; โหมดลัวร์และฟลายล้างค่าตะขอ",
+          "ROM ไม่ยืนยันอัตรากินเหยื่อหรืออัตราจับที่ดีกว่าจากชื่อหรือราคา"
+        ],
+        "en": [
+          "ROM name: マスバリ; hook byte +1 is 0x00, so it does not enter a fish-ID-matched hook branch.",
+          "Its ordinary route uses response selector +0 = 01; this is a branch selector, not a strength score.",
+          "It loads in float-equipped and sinker-equipped bait routes; lure and fly setup clear the hook fields.",
+          "The ROM does not establish a better bite or catch rate from the name or price."
+        ],
+        "ja": [
+          "ROM内の名前: マスバリ。針の+1は0x00で、魚ID一致の針分岐には入らない。",
+          "通常経路では応答選択値+0 = 01を使う。強さの数値ではなく分岐選択値。",
+          "ウキ装備・オモリ装備のエサ釣り経路で読み込まれる。ルアーとフライでは針フィールドがクリアされる。",
+          "名前や価格から食いつき率・釣果率の優位性は確認できない。"
+        ]
+      }
+    },
+    "float_sinker:01": {
+      "summary": {
+        "th": "ヘラウキ: ใช้ในเส้นทางติดตั้งทุ่น (IDs 01–08; selector 0); ROM ยืนยันเส้นทางและรูปแบบสถานะ แต่ไม่ยืนยันโบนัสการกินหรือความลึก",
+        "en": "Hera float: used in the float-equipped bait route (IDs 01–08; selector 0); the ROM confirms its route/state family, not a bite or depth bonus.",
+        "ja": "ヘラウキ：ウキ装備のエサ釣り経路（ID 01–08、selector 0）で使われる。ROMが確認するのは経路と状態分岐で、食いつき・深さのボーナスではない。"
+      },
+      "facts": {
+        "th": [
+          "ในรายการอุปกรณ์ ID 01 อยู่ในเส้นทางติดตั้งทุ่น (IDs 01–08; selector 0)",
+          "ฟิลด์ +0 = 1: แขนงสถานะ/การวาดของทุ่นกลุ่มนี้ (IDs 01, 04–07 และ 0A); โค้ดใช้เลือกเส้นทางสถานะ/การวาด ไม่ใช่คะแนนความแรง",
+          "ไม่พบหลักฐานที่ยืนยันว่าเลขใน record กำหนดความลึก ความไวทุ่น การเลือกชนิดปลา หรือโอกาสจับ",
+          "ใช้ตารางเหยื่อที่ปลายอมรับเพื่อตรวจว่าอะไรทำให้ปลากิน; ค่าทุ่น/ตะกั่วนี้ไม่แทนเงื่อนไขเหยื่อ"
+        ],
+        "en": [
+          "Equipment selection puts ID 01 in the float-equipped bait route (IDs 01–08; selector 0).",
+          "Record +0 = 1: Float-model state-and-drawing path (IDs 01, 04–07, and 0A); code uses it to select a state/drawing path, not a strength rating.",
+          "No traced ROM evidence confirms that this record sets fishing depth, float sensitivity, fish preference, or catch chance.",
+          "Use the bait-acceptance table to identify fish/bait compatibility; this float/sinker record does not replace the bait gate."
+        ],
+        "ja": [
+          "装備選択ではID 01がウキ装備のエサ釣り経路（ID 01–08、selector 0）に入る。",
+          "レコード+0 = 1：ウキ型モデルの状態・描画分岐（ID 01、04–07、0A）。状態・描画経路の選択値で、強さの数値ではない。",
+          "このレコードが水深、ウキの感度、魚の好み、釣果率を決めるという確認済みのROM証拠はない。",
+          "魚とエサの適合はエサ適合表で確認する。このウキ／オモリのレコードはエサ判定の代わりにならない。"
+        ]
+      }
+    },
+    "float_sinker:02": {
+      "summary": {
+        "th": "ชิโมริทรงกลม: ใช้ในเส้นทางติดตั้งทุ่น (IDs 01–08; selector 0); ROM ยืนยันเส้นทางและรูปแบบสถานะ แต่ไม่ยืนยันโบนัสการกินหรือความลึก",
+        "en": "Round shimori float: used in the float-equipped bait route (IDs 01–08; selector 0); the ROM confirms its route/state family, not a bite or depth bonus.",
+        "ja": "丸型シモリ：ウキ装備のエサ釣り経路（ID 01–08、selector 0）で使われる。ROMが確認するのは経路と状態分岐で、食いつき・深さのボーナスではない。"
+      },
+      "facts": {
+        "th": [
+          "ในรายการอุปกรณ์ ID 02 อยู่ในเส้นทางติดตั้งทุ่น (IDs 01–08; selector 0)",
+          "ฟิลด์ +0 = 0: แขนงสถานะ/การวาดของชิโมริ (IDs 02–03); โค้ดใช้เลือกเส้นทางสถานะ/การวาด ไม่ใช่คะแนนความแรง",
+          "ไม่พบหลักฐานที่ยืนยันว่าเลขใน record กำหนดความลึก ความไวทุ่น การเลือกชนิดปลา หรือโอกาสจับ",
+          "ใช้ตารางเหยื่อที่ปลายอมรับเพื่อตรวจว่าอะไรทำให้ปลากิน; ค่าทุ่น/ตะกั่วนี้ไม่แทนเงื่อนไขเหยื่อ"
+        ],
+        "en": [
+          "Equipment selection puts ID 02 in the float-equipped bait route (IDs 01–08; selector 0).",
+          "Record +0 = 0: Round/streamlined shimori state-and-drawing path (IDs 02–03); code uses it to select a state/drawing path, not a strength rating.",
+          "No traced ROM evidence confirms that this record sets fishing depth, float sensitivity, fish preference, or catch chance.",
+          "Use the bait-acceptance table to identify fish/bait compatibility; this float/sinker record does not replace the bait gate."
+        ],
+        "ja": [
+          "装備選択ではID 02がウキ装備のエサ釣り経路（ID 01–08、selector 0）に入る。",
+          "レコード+0 = 0：丸型・流線型シモリの状態・描画分岐（ID 02–03）。状態・描画経路の選択値で、強さの数値ではない。",
+          "このレコードが水深、ウキの感度、魚の好み、釣果率を決めるという確認済みのROM証拠はない。",
+          "魚とエサの適合はエサ適合表で確認する。このウキ／オモリのレコードはエサ判定の代わりにならない。"
+        ]
+      }
+    },
+    "float_sinker:03": {
+      "summary": {
+        "th": "ชิโมริทรงเพรียว: ใช้ในเส้นทางติดตั้งทุ่น (IDs 01–08; selector 0); ROM ยืนยันเส้นทางและรูปแบบสถานะ แต่ไม่ยืนยันโบนัสการกินหรือความลึก",
+        "en": "Streamlined shimori float: used in the float-equipped bait route (IDs 01–08; selector 0); the ROM confirms its route/state family, not a bite or depth bonus.",
+        "ja": "流線シモリ：ウキ装備のエサ釣り経路（ID 01–08、selector 0）で使われる。ROMが確認するのは経路と状態分岐で、食いつき・深さのボーナスではない。"
+      },
+      "facts": {
+        "th": [
+          "ในรายการอุปกรณ์ ID 03 อยู่ในเส้นทางติดตั้งทุ่น (IDs 01–08; selector 0)",
+          "ฟิลด์ +0 = 0: แขนงสถานะ/การวาดของชิโมริ (IDs 02–03); โค้ดใช้เลือกเส้นทางสถานะ/การวาด ไม่ใช่คะแนนความแรง",
+          "ไม่พบหลักฐานที่ยืนยันว่าเลขใน record กำหนดความลึก ความไวทุ่น การเลือกชนิดปลา หรือโอกาสจับ",
+          "ใช้ตารางเหยื่อที่ปลายอมรับเพื่อตรวจว่าอะไรทำให้ปลากิน; ค่าทุ่น/ตะกั่วนี้ไม่แทนเงื่อนไขเหยื่อ"
+        ],
+        "en": [
+          "Equipment selection puts ID 03 in the float-equipped bait route (IDs 01–08; selector 0).",
+          "Record +0 = 0: Round/streamlined shimori state-and-drawing path (IDs 02–03); code uses it to select a state/drawing path, not a strength rating.",
+          "No traced ROM evidence confirms that this record sets fishing depth, float sensitivity, fish preference, or catch chance.",
+          "Use the bait-acceptance table to identify fish/bait compatibility; this float/sinker record does not replace the bait gate."
+        ],
+        "ja": [
+          "装備選択ではID 03がウキ装備のエサ釣り経路（ID 01–08、selector 0）に入る。",
+          "レコード+0 = 0：丸型・流線型シモリの状態・描画分岐（ID 02–03）。状態・描画経路の選択値で、強さの数値ではない。",
+          "このレコードが水深、ウキの感度、魚の好み、釣果率を決めるという確認済みのROM証拠はない。",
+          "魚とエサの適合はエサ適合表で確認する。このウキ／オモリのレコードはエサ判定の代わりにならない。"
+        ]
+      }
+    },
+    "float_sinker:04": {
+      "summary": {
+        "th": "ทุ่นลูกกลม: ใช้ในเส้นทางติดตั้งทุ่น (IDs 01–08; selector 0); ROM ยืนยันเส้นทางและรูปแบบสถานะ แต่ไม่ยืนยันโบนัสการกินหรือความลึก",
+        "en": "Ball float: used in the float-equipped bait route (IDs 01–08; selector 0); the ROM confirms its route/state family, not a bite or depth bonus.",
+        "ja": "玉ウキ：ウキ装備のエサ釣り経路（ID 01–08、selector 0）で使われる。ROMが確認するのは経路と状態分岐で、食いつき・深さのボーナスではない。"
+      },
+      "facts": {
+        "th": [
+          "ในรายการอุปกรณ์ ID 04 อยู่ในเส้นทางติดตั้งทุ่น (IDs 01–08; selector 0)",
+          "ฟิลด์ +0 = 1: แขนงสถานะ/การวาดของทุ่นกลุ่มนี้ (IDs 01, 04–07 และ 0A); โค้ดใช้เลือกเส้นทางสถานะ/การวาด ไม่ใช่คะแนนความแรง",
+          "ไม่พบหลักฐานที่ยืนยันว่าเลขใน record กำหนดความลึก ความไวทุ่น การเลือกชนิดปลา หรือโอกาสจับ",
+          "ใช้ตารางเหยื่อที่ปลายอมรับเพื่อตรวจว่าอะไรทำให้ปลากิน; ค่าทุ่น/ตะกั่วนี้ไม่แทนเงื่อนไขเหยื่อ"
+        ],
+        "en": [
+          "Equipment selection puts ID 04 in the float-equipped bait route (IDs 01–08; selector 0).",
+          "Record +0 = 1: Float-model state-and-drawing path (IDs 01, 04–07, and 0A); code uses it to select a state/drawing path, not a strength rating.",
+          "No traced ROM evidence confirms that this record sets fishing depth, float sensitivity, fish preference, or catch chance.",
+          "Use the bait-acceptance table to identify fish/bait compatibility; this float/sinker record does not replace the bait gate."
+        ],
+        "ja": [
+          "装備選択ではID 04がウキ装備のエサ釣り経路（ID 01–08、selector 0）に入る。",
+          "レコード+0 = 1：ウキ型モデルの状態・描画分岐（ID 01、04–07、0A）。状態・描画経路の選択値で、強さの数値ではない。",
+          "このレコードが水深、ウキの感度、魚の好み、釣果率を決めるという確認済みのROM証拠はない。",
+          "魚とエサの適合はエサ適合表で確認する。このウキ／オモリのレコードはエサ判定の代わりにならない。"
+        ]
+      }
+    },
+    "float_sinker:05": {
+      "summary": {
+        "th": "ทุ่นแท่ง: ใช้ในเส้นทางติดตั้งทุ่น (IDs 01–08; selector 0); ROM ยืนยันเส้นทางและรูปแบบสถานะ แต่ไม่ยืนยันโบนัสการกินหรือความลึก",
+        "en": "Stick float: used in the float-equipped bait route (IDs 01–08; selector 0); the ROM confirms its route/state family, not a bite or depth bonus.",
+        "ja": "棒ウキ：ウキ装備のエサ釣り経路（ID 01–08、selector 0）で使われる。ROMが確認するのは経路と状態分岐で、食いつき・深さのボーナスではない。"
+      },
+      "facts": {
+        "th": [
+          "ในรายการอุปกรณ์ ID 05 อยู่ในเส้นทางติดตั้งทุ่น (IDs 01–08; selector 0)",
+          "ฟิลด์ +0 = 1: แขนงสถานะ/การวาดของทุ่นกลุ่มนี้ (IDs 01, 04–07 และ 0A); โค้ดใช้เลือกเส้นทางสถานะ/การวาด ไม่ใช่คะแนนความแรง",
+          "ไม่พบหลักฐานที่ยืนยันว่าเลขใน record กำหนดความลึก ความไวทุ่น การเลือกชนิดปลา หรือโอกาสจับ",
+          "ใช้ตารางเหยื่อที่ปลายอมรับเพื่อตรวจว่าอะไรทำให้ปลากิน; ค่าทุ่น/ตะกั่วนี้ไม่แทนเงื่อนไขเหยื่อ"
+        ],
+        "en": [
+          "Equipment selection puts ID 05 in the float-equipped bait route (IDs 01–08; selector 0).",
+          "Record +0 = 1: Float-model state-and-drawing path (IDs 01, 04–07, and 0A); code uses it to select a state/drawing path, not a strength rating.",
+          "No traced ROM evidence confirms that this record sets fishing depth, float sensitivity, fish preference, or catch chance.",
+          "Use the bait-acceptance table to identify fish/bait compatibility; this float/sinker record does not replace the bait gate."
+        ],
+        "ja": [
+          "装備選択ではID 05がウキ装備のエサ釣り経路（ID 01–08、selector 0）に入る。",
+          "レコード+0 = 1：ウキ型モデルの状態・描画分岐（ID 01、04–07、0A）。状態・描画経路の選択値で、強さの数値ではない。",
+          "このレコードが水深、ウキの感度、魚の好み、釣果率を決めるという確認済みのROM証拠はない。",
+          "魚とエサの適合はエサ適合表で確認する。このウキ／オモリのレコードはエサ判定の代わりにならない。"
+        ]
+      }
+    },
+    "float_sinker:06": {
+      "summary": {
+        "th": "ทุ่นทรงลูกโอ๊ก: ใช้ในเส้นทางติดตั้งทุ่น (IDs 01–08; selector 0); ROM ยืนยันเส้นทางและรูปแบบสถานะ แต่ไม่ยืนยันโบนัสการกินหรือความลึก",
+        "en": "Acorn float: used in the float-equipped bait route (IDs 01–08; selector 0); the ROM confirms its route/state family, not a bite or depth bonus.",
+        "ja": "どんぐりウキ：ウキ装備のエサ釣り経路（ID 01–08、selector 0）で使われる。ROMが確認するのは経路と状態分岐で、食いつき・深さのボーナスではない。"
+      },
+      "facts": {
+        "th": [
+          "ในรายการอุปกรณ์ ID 06 อยู่ในเส้นทางติดตั้งทุ่น (IDs 01–08; selector 0)",
+          "ฟิลด์ +0 = 1: แขนงสถานะ/การวาดของทุ่นกลุ่มนี้ (IDs 01, 04–07 และ 0A); โค้ดใช้เลือกเส้นทางสถานะ/การวาด ไม่ใช่คะแนนความแรง",
+          "ไม่พบหลักฐานที่ยืนยันว่าเลขใน record กำหนดความลึก ความไวทุ่น การเลือกชนิดปลา หรือโอกาสจับ",
+          "ใช้ตารางเหยื่อที่ปลายอมรับเพื่อตรวจว่าอะไรทำให้ปลากิน; ค่าทุ่น/ตะกั่วนี้ไม่แทนเงื่อนไขเหยื่อ"
+        ],
+        "en": [
+          "Equipment selection puts ID 06 in the float-equipped bait route (IDs 01–08; selector 0).",
+          "Record +0 = 1: Float-model state-and-drawing path (IDs 01, 04–07, and 0A); code uses it to select a state/drawing path, not a strength rating.",
+          "No traced ROM evidence confirms that this record sets fishing depth, float sensitivity, fish preference, or catch chance.",
+          "Use the bait-acceptance table to identify fish/bait compatibility; this float/sinker record does not replace the bait gate."
+        ],
+        "ja": [
+          "装備選択ではID 06がウキ装備のエサ釣り経路（ID 01–08、selector 0）に入る。",
+          "レコード+0 = 1：ウキ型モデルの状態・描画分岐（ID 01、04–07、0A）。状態・描画経路の選択値で、強さの数値ではない。",
+          "このレコードが水深、ウキの感度、魚の好み、釣果率を決めるという確認済みのROM証拠はない。",
+          "魚とエサの適合はエサ適合表で確認する。このウキ／オモリのレコードはエサ判定の代わりにならない。"
+        ]
+      }
+    },
+    "float_sinker:07": {
+      "summary": {
+        "th": "ทุ่นพริก: ใช้ในเส้นทางติดตั้งทุ่น (IDs 01–08; selector 0); ROM ยืนยันเส้นทางและรูปแบบสถานะ แต่ไม่ยืนยันโบนัสการกินหรือความลึก",
+        "en": "Chili float: used in the float-equipped bait route (IDs 01–08; selector 0); the ROM confirms its route/state family, not a bite or depth bonus.",
+        "ja": "トウガラシウキ：ウキ装備のエサ釣り経路（ID 01–08、selector 0）で使われる。ROMが確認するのは経路と状態分岐で、食いつき・深さのボーナスではない。"
+      },
+      "facts": {
+        "th": [
+          "ในรายการอุปกรณ์ ID 07 อยู่ในเส้นทางติดตั้งทุ่น (IDs 01–08; selector 0)",
+          "ฟิลด์ +0 = 1: แขนงสถานะ/การวาดของทุ่นกลุ่มนี้ (IDs 01, 04–07 และ 0A); โค้ดใช้เลือกเส้นทางสถานะ/การวาด ไม่ใช่คะแนนความแรง",
+          "ไม่พบหลักฐานที่ยืนยันว่าเลขใน record กำหนดความลึก ความไวทุ่น การเลือกชนิดปลา หรือโอกาสจับ",
+          "ใช้ตารางเหยื่อที่ปลายอมรับเพื่อตรวจว่าอะไรทำให้ปลากิน; ค่าทุ่น/ตะกั่วนี้ไม่แทนเงื่อนไขเหยื่อ"
+        ],
+        "en": [
+          "Equipment selection puts ID 07 in the float-equipped bait route (IDs 01–08; selector 0).",
+          "Record +0 = 1: Float-model state-and-drawing path (IDs 01, 04–07, and 0A); code uses it to select a state/drawing path, not a strength rating.",
+          "No traced ROM evidence confirms that this record sets fishing depth, float sensitivity, fish preference, or catch chance.",
+          "Use the bait-acceptance table to identify fish/bait compatibility; this float/sinker record does not replace the bait gate."
+        ],
+        "ja": [
+          "装備選択ではID 07がウキ装備のエサ釣り経路（ID 01–08、selector 0）に入る。",
+          "レコード+0 = 1：ウキ型モデルの状態・描画分岐（ID 01、04–07、0A）。状態・描画経路の選択値で、強さの数値ではない。",
+          "このレコードが水深、ウキの感度、魚の好み、釣果率を決めるという確認済みのROM証拠はない。",
+          "魚とエサの適合はエサ適合表で確認する。このウキ／オモリのレコードはエサ判定の代わりにならない。"
+        ]
+      }
+    },
+    "float_sinker:08": {
+      "summary": {
+        "th": "มาร์กเกอร์: ใช้ในเส้นทางติดตั้งทุ่น (IDs 01–08; selector 0); ROM ยืนยันเส้นทางและรูปแบบสถานะ แต่ไม่ยืนยันโบนัสการกินหรือความลึก",
+        "en": "Marker: used in the float-equipped bait route (IDs 01–08; selector 0); the ROM confirms its route/state family, not a bite or depth bonus.",
+        "ja": "目印：ウキ装備のエサ釣り経路（ID 01–08、selector 0）で使われる。ROMが確認するのは経路と状態分岐で、食いつき・深さのボーナスではない。"
+      },
+      "facts": {
+        "th": [
+          "ในรายการอุปกรณ์ ID 08 อยู่ในเส้นทางติดตั้งทุ่น (IDs 01–08; selector 0)",
+          "ฟิลด์ +0 = 2: แขนงสถานะ/การวาดของมาร์กเกอร์และตะกั่วทรงรี (IDs 08–09); โค้ดใช้เลือกเส้นทางสถานะ/การวาด ไม่ใช่คะแนนความแรง",
+          "ไม่พบหลักฐานที่ยืนยันว่าเลขใน record กำหนดความลึก ความไวทุ่น การเลือกชนิดปลา หรือโอกาสจับ",
+          "ใช้ตารางเหยื่อที่ปลายอมรับเพื่อตรวจว่าอะไรทำให้ปลากิน; ค่าทุ่น/ตะกั่วนี้ไม่แทนเงื่อนไขเหยื่อ",
+          "ข้อยกเว้นที่ใช้ได้จริง: โหมดฟลายโหลด ID 08 (目印) เป็นมาร์กเกอร์ให้อัตโนมัติ แม้กำลังเตรียมชุดฟลาย"
+        ],
+        "en": [
+          "Equipment selection puts ID 08 in the float-equipped bait route (IDs 01–08; selector 0).",
+          "Record +0 = 2: Marker/oval-sinker state-and-drawing path (IDs 08–09); code uses it to select a state/drawing path, not a strength rating.",
+          "No traced ROM evidence confirms that this record sets fishing depth, float sensitivity, fish preference, or catch chance.",
+          "Use the bait-acceptance table to identify fish/bait compatibility; this float/sinker record does not replace the bait gate.",
+          "Practical exception: fly setup automatically loads ID 08 (目印) as its marker, even while preparing a fly rig."
+        ],
+        "ja": [
+          "装備選択ではID 08がウキ装備のエサ釣り経路（ID 01–08、selector 0）に入る。",
+          "レコード+0 = 2：目印・小判型オモリの状態・描画分岐（ID 08–09）。状態・描画経路の選択値で、強さの数値ではない。",
+          "このレコードが水深、ウキの感度、魚の好み、釣果率を決めるという確認済みのROM証拠はない。",
+          "魚とエサの適合はエサ適合表で確認する。このウキ／オモリのレコードはエサ判定の代わりにならない。",
+          "実用上の例外：フライ設定ではID 08（目印）がマーカーとして自動ロードされる。"
+        ]
+      }
+    },
+    "float_sinker:09": {
+      "summary": {
+        "th": "ตะกั่วทรงรี: ใช้ในเส้นทางติดตั้งตะกั่ว (IDs 09–0A; selector 1); ROM ยืนยันเส้นทางและรูปแบบสถานะ แต่ไม่ยืนยันโบนัสการกินหรือความลึก",
+        "en": "Oval sinker: used in the sinker-equipped bait route (IDs 09–0A; selector 1); the ROM confirms its route/state family, not a bite or depth bonus.",
+        "ja": "小判型おもり：オモリ装備のエサ釣り経路（ID 09–0A、selector 1）で使われる。ROMが確認するのは経路と状態分岐で、食いつき・深さのボーナスではない。"
+      },
+      "facts": {
+        "th": [
+          "ในรายการอุปกรณ์ ID 09 อยู่ในเส้นทางติดตั้งตะกั่ว (IDs 09–0A; selector 1)",
+          "ฟิลด์ +0 = 2: แขนงสถานะ/การวาดของมาร์กเกอร์และตะกั่วทรงรี (IDs 08–09); โค้ดใช้เลือกเส้นทางสถานะ/การวาด ไม่ใช่คะแนนความแรง",
+          "ไม่พบหลักฐานที่ยืนยันว่าเลขใน record กำหนดความลึก ความไวทุ่น การเลือกชนิดปลา หรือโอกาสจับ",
+          "ใช้ตารางเหยื่อที่ปลายอมรับเพื่อตรวจว่าอะไรทำให้ปลากิน; ค่าทุ่น/ตะกั่วนี้ไม่แทนเงื่อนไขเหยื่อ"
+        ],
+        "en": [
+          "Equipment selection puts ID 09 in the sinker-equipped bait route (IDs 09–0A; selector 1).",
+          "Record +0 = 2: Marker/oval-sinker state-and-drawing path (IDs 08–09); code uses it to select a state/drawing path, not a strength rating.",
+          "No traced ROM evidence confirms that this record sets fishing depth, float sensitivity, fish preference, or catch chance.",
+          "Use the bait-acceptance table to identify fish/bait compatibility; this float/sinker record does not replace the bait gate."
+        ],
+        "ja": [
+          "装備選択ではID 09がオモリ装備のエサ釣り経路（ID 09–0A、selector 1）に入る。",
+          "レコード+0 = 2：目印・小判型オモリの状態・描画分岐（ID 08–09）。状態・描画経路の選択値で、強さの数値ではない。",
+          "このレコードが水深、ウキの感度、魚の好み、釣果率を決めるという確認済みのROM証拠はない。",
+          "魚とエサの適合はエサ適合表で確認する。このウキ／オモリのレコードはエサ判定の代わりにならない。"
+        ]
+      }
+    },
+    "float_sinker:0A": {
+      "summary": {
+        "th": "ตะกั่วทรงนัตสึเมะ: ใช้ในเส้นทางติดตั้งตะกั่ว (IDs 09–0A; selector 1); ROM ยืนยันเส้นทางและรูปแบบสถานะ แต่ไม่ยืนยันโบนัสการกินหรือความลึก",
+        "en": "Natsume-shaped sinker: used in the sinker-equipped bait route (IDs 09–0A; selector 1); the ROM confirms its route/state family, not a bite or depth bonus.",
+        "ja": "ナツメ型おもり：オモリ装備のエサ釣り経路（ID 09–0A、selector 1）で使われる。ROMが確認するのは経路と状態分岐で、食いつき・深さのボーナスではない。"
+      },
+      "facts": {
+        "th": [
+          "ในรายการอุปกรณ์ ID 0A อยู่ในเส้นทางติดตั้งตะกั่ว (IDs 09–0A; selector 1)",
+          "ฟิลด์ +0 = 1: แขนงสถานะ/การวาดของทุ่นกลุ่มนี้ (IDs 01, 04–07 และ 0A); โค้ดใช้เลือกเส้นทางสถานะ/การวาด ไม่ใช่คะแนนความแรง",
+          "ไม่พบหลักฐานที่ยืนยันว่าเลขใน record กำหนดความลึก ความไวทุ่น การเลือกชนิดปลา หรือโอกาสจับ",
+          "ใช้ตารางเหยื่อที่ปลายอมรับเพื่อตรวจว่าอะไรทำให้ปลากิน; ค่าทุ่น/ตะกั่วนี้ไม่แทนเงื่อนไขเหยื่อ"
+        ],
+        "en": [
+          "Equipment selection puts ID 0A in the sinker-equipped bait route (IDs 09–0A; selector 1).",
+          "Record +0 = 1: Float-model state-and-drawing path (IDs 01, 04–07, and 0A); code uses it to select a state/drawing path, not a strength rating.",
+          "No traced ROM evidence confirms that this record sets fishing depth, float sensitivity, fish preference, or catch chance.",
+          "Use the bait-acceptance table to identify fish/bait compatibility; this float/sinker record does not replace the bait gate."
+        ],
+        "ja": [
+          "装備選択ではID 0Aがオモリ装備のエサ釣り経路（ID 09–0A、selector 1）に入る。",
+          "レコード+0 = 1：ウキ型モデルの状態・描画分岐（ID 01、04–07、0A）。状態・描画経路の選択値で、強さの数値ではない。",
+          "このレコードが水深、ウキの感度、魚の好み、釣果率を決めるという確認済みのROM証拠はない。",
+          "魚とエサの適合はエサ適合表で確認する。このウキ／オモリのレコードはエサ判定の代わりにならない。"
+        ]
+      }
+    }
+  }
+}

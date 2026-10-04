@@ -74,6 +74,7 @@ def extract(rom):
             'name_pointer_cpu': f'05:{word(rom, pos + 10):04X}',
             'base_price_yen': word(rom, pos + 8),
             'fish_ids_passing_mask_gate': accepted,
+            'mode0_fish_ids_with_nonzero_random_threshold': [item['id_hex'] for item in fish if item['id_hex'] in accepted and int(item['random_threshold_byte_+3_hex'],16)>0],
             'mode1_fish_ids_passing_profile_byte_+13_gate': [
                 item['id_hex'] for item in fish
                 if item['id_hex'] in accepted
@@ -231,6 +232,10 @@ def extract(rom):
         },
         'runtime_code_evidence': {
             'mode_dispatcher_cpu': '04:C0A5..C145',
+            'mode0_caller_cpu': '04:C0E2 calls 04:E524',
+            'mode0_bait_gate_cpu': '04:E573..E579',
+            'mode0_candidate_cpu': '04:E803..E8DC',
+            'mode0_other_conditions': 'The candidate must match coordinates and pass a random comparison against fish profile +3. This route does not apply the mode1 profile +13 bit08 check. At the timed event, 121E & 1208 must be nonzero to set 1F7B=2 and16A8=14.',
             'mode1_caller_cpu': '04:C106 calls 04:E9AB',
             'mode3_caller_cpu': '04:C142 calls 04:E685',
             'mode1_bait_gate_cpu': '04:EA02..EB11',

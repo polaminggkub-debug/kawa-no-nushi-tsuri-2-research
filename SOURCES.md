@@ -50,3 +50,7 @@ Per-item label provenance and unavailable captures are recorded in `data/thai-ro
 New compatibility findings are derived from the owner-supplied original ROM identified above, not from an external recommendation guide. Fish names are decoded from the ROM's custom katakana strings; profile ID43 is a zero-field placeholder. Reproduction scripts validate the exact dump identity. The lure-coverage extractor reads all 73 profile rows and 81 lures. The restricted fight-setup interpreter executes selected 16-bit instructions and documents its scope; it does not emulate a complete catch. Rod timer phase identification is a static trace, not a landing-rate trial. Shop observations cover only the displayed rod menu headed 渓流.
 
 Primary traces: [acceptance](docs/fish-acceptance-research.md), [rod consumers](docs/rod-response-research.md), [lure setup](docs/lure-response-research.md), [shop observations](docs/shop-inventory-research.md).
+
+## Fish portraits in the equipment guide
+
+The equipment guide reuses existing local gameplay/catch-record image crops matched by exact Japanese ROM name. [fish-visuals.json](catalogue/fish-visuals.json) records the original source URL, video timestamp or frame and crop coordinates for each image. These are sourced in-game portraits, not direct ROM sprite extraction. Unavailable images remain blank. Thai guide aliases are separate from verified Thai-patch item labels.

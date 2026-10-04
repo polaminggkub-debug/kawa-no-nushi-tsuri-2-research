@@ -14,7 +14,13 @@ The profile-mask criterion is therefore:
 
 The 73-row block includes ID `43`, whose name byte is unmapped (`0C`) and whose mask is zero. It cannot pass a mask comparison; retaining the row is not evidence that the game normally spawns it. Counts below exclude that placeholder where a profile count is given: 72 ordinary rows remain.
 
-## Bait path and its other checks
+## Mode 0: bait fishing with a float
+
+The dispatcher calls `04:E524` at `04:C0E2` when mode 0 is in phase 3. Its candidate-selection route `04:E803..E8DC` compares fish coordinates with the current target and compares a random value against fish profile byte +3 (`11F0`). Unlike mode 1, it does not require profile +13 bit08. At the timed event, `04:E573..E579` reads `121E & 1208`; a nonzero result sets `1F7B=2`, `16A8=14` and calls `EDD2`. A zero result clears the candidate/event state.
+
+All 72 ordinary profile rows have a nonzero +3 random threshold, so the bait mask sets below are also the profile sets that can pass this necessary mode-0 mask condition. This does not eliminate the position, random, timing or landing requirements. The smaller mode-1 sets must not be substituted for ordinary mode-0 bait compatibility.
+
+## Mode 1: bait fishing with a sinker and its extra checks
 
 The mode dispatcher at `$04:C0A5` sends mode 1 to `$04:E9AB` (`0x024106`). That route first requires a bait profile in `$7E:1210`, checks the in-water candidate's coordinates and loads its fish profile. It then applies two checks before the mask: fish profile byte `+13` must have bit `08` set (`$7E:1204 & 08`), and a random value must be below profile byte `+3` (`$7E:11F0`). Only after those checks does `$04:EB0B..EB11` test `$7E:121E & $7E:1208` and proceed on a nonzero result.
 
@@ -57,3 +63,7 @@ The live fly path adds another filter. `$04:D4AF` initializes `$7E:1FA7` to `00F
 ## Limits
 
 Mask compatibility is not proof of attraction, a bite, a hook-up, or landing the fish. Position, timing, random comparisons, style-specific state, rod/hook response, and other checks remain active. The full fish→lure mask matrix is included in the JSON and aligns with the separate lure analysis; the lure route also has its own `$7E:1348 & 8080` condition before its mask at `$04:EBFD..EC03`.
+
+## Selecting float versus sinker
+
+The equipment selector `03:B33E..B362` classifies float/sinker table IDs below 9 as the float-equipped route (slot `0880`, mode0), and IDs9/10 as the sinker-equipped route (slot `0886`, mode1). Both load the same float/sinker record table. Slot0886 must not be labeled an Ayu decoy merely from sharing a bait-style rod. This explains why a bait's mode0-compatible profile set can be larger than the mode1 set. See [the equipment consumers](hook-float-use.md).

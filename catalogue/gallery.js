@@ -49,7 +49,7 @@
   }[lang];
   if (typeof copy.entries === 'string') { const template=copy.entries; copy.entries=n=>template.replace('{n}',n); }
   if (typeof copy.results === 'string') { const template=copy.results; copy.results=n=>template.replace('{n}',n); }
-  const itemName=item=>lang==='th'?(item.nameTh||item.nameJa):lang==='ja'?item.nameJa:item.nameEn;
+  const itemName=item=>lang==='th'?(item.nameTh||item.playerUse?.displayName?.th||item.nameJa):lang==='ja'?item.nameJa:item.nameEn;
   const itemNotes=item=>lang==='th'?(item.notesTh||item.notesEn):lang==='ja'?item.notesJa:item.notesEn;
   const esc = value => String(value ?? '').replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
   const set = (selector, text) => { const node = document.querySelector(selector); if (node) node.textContent = text; };
@@ -82,48 +82,92 @@
     document.getElementById('research-notes').innerHTML=list.map(text=>`<p>${esc(text)}</p>`).join('');
     document.getElementById('sources').innerHTML=data.sources.map(src=>`<p>${src.url?`<a href="${esc(src.url)}" target="_blank" rel="noopener">${esc(lang==='th'?src.titleTh:lang==='ja'?src.titleJa:src.titleEn)} ↗</a>`:`<strong>${esc(lang==='th'?src.titleTh:lang==='ja'?src.titleJa:src.titleEn)}</strong>`}<br><span>${esc(lang==='th'?src.detailTh:lang==='ja'?src.detailJa:src.detailEn)}</span></p>`).join('');
   }
+  const player = {
+    th:{title:'คู่มือเลือกอุปกรณ์ตกปลา',lead:'เลือกหมวดอุปกรณ์ หรือเลือกปลาที่อยากตก เพื่อดูของที่ใช้ด้วยกันได้และผลที่รู้แล้วจากเกม',menu:'เลือกหมวดอุปกรณ์',all:'ทุกหมวด',fish:'อยากตกปลาอะไร',allFish:'ยังไม่ได้เลือกปลา',use:'ใช้ทำอะไร',compatible:'ปลาที่ใช้ด้วยได้',more:'ดูรายชื่อทั้งหมด',evidence:'หลักฐานและรายละเอียดการวิจัย',compare:'เทียบคันในรูปแบบเดียวกัน',aim:'เวลาเล็ง',reach:'ขอบเขตระยะ',style:'รูปแบบการตก',titleByCategory:'อุปกรณ์ในหมวดนี้',noFish:'หมวดนี้ไม่ได้เลือกตามชนิดปลา',fishOnly:'แสดงเหยื่อที่ผ่านเงื่อนไขของปลาที่เลือก',basePrice:'ราคาพื้นฐาน',kit:'ชุดเหยื่อที่ครอบคลุมชนิดปลา',kitText:'จมน้ำ 17 + ยางหนอน 23 ครอบคลุมเงื่อนไขรับลัวร์ 38 โปรไฟล์ หรือใช้สปูน 2E แทนจมน้ำได้',kitLink:'ดูชุดพร้อมภาพและตารางปลา',guide:'วิธีประกอบฟลายในเกม',research:'รายละเอียดและที่มาของข้อมูล',cat:{rod:'คันเบ็ด',lure:'เหยื่อปลอม',flymaker:'ประกอบฟลาย',bait:'เหยื่อจริง',hook:'ตะขอ / ห่วงปลาอายุ',float_weight:'ทุ่น / เครื่องหมาย / ตะกั่ว',food:'อาหาร / ฟื้น HP',general_tool:'อุปกรณ์และของเควสต์'},desc:{rod:'เลือกวิธีตกก่อน แล้วเทียบเวลาเล็ง ระยะภายใน และเงื่อนไขเฉพาะปลา',lure:'เลือกปลาที่อยากตก เพื่อกรองเหยื่อที่ผ่านเงื่อนไขรับลัวร์',flymaker:'ดูบอดี้ ปีก และหาง พร้อมเงื่อนไขที่มีผลต่อการติดเบ็ด',bait:'เลือกปลาเพื่อดูเหยื่อที่ผ่านเงื่อนไขของการตกด้วยเหยื่อจริง',hook:'ดูตะขอและห่วงที่ใช้กับรูปแบบการตกต่างกัน',float_weight:'ดูอุปกรณ์ทุ่น เครื่องหมายบนสาย และตะกั่ว',food:'ดูผลฟื้น HP และอาหารที่ทำให้ HP หมด',general_tool:'ดูอุปกรณ์และสิ่งของที่แสดงในเกม'}},
+    en:{title:'Choose your fishing equipment',lead:'Choose an equipment category or a target fish to see compatible items and the effects established from the game.',menu:'Equipment categories',all:'All categories',fish:'Target fish',allFish:'Any fish',use:'What it does',compatible:'Compatible fish',more:'Show all fish',evidence:'Evidence and research details',compare:'Compare rods within a fishing style',aim:'Aim window',reach:'Reach boundary',style:'Fishing style',titleByCategory:'Equipment in this category',noFish:'This category is not filtered by fish species',fishOnly:'Showing baits that pass the selected fish’s conditions',basePrice:'Base price',kit:'A lure set covering the compatible species',kitText:'Sinking 17 + Soft worm 23 cover 38 lure-compatible profiles. Spoon 2E can replace Sinking 17.',kitLink:'See the illustrated set and fish table',guide:'Make a fly in the game',research:'Research details and sources',cat:{rod:'Rods',lure:'Lures',flymaker:'Fly maker',bait:'Baits',hook:'Hooks / Ayu rings',float_weight:'Floats / markers / sinkers',food:'Food / HP recovery',general_tool:'Tools / quest items'},desc:{rod:'Choose a fishing style, then compare the aim window, internal reach and fish-specific branches.',lure:'Choose a target fish to filter lures by the hook-acceptance condition.',flymaker:'Browse bodies, wings and tails, with conditions that affect hooking.',bait:'Choose a fish to see baits that pass the bait-mode conditions.',hook:'Hooks and rings used by different fishing styles.',float_weight:'Floats, line markers and sinkers.',food:'Measured recovery and food that drains HP.',general_tool:'Equipment and other objects displayed in the game.'}},
+    ja:{title:'釣り道具を選ぶ',lead:'装備の種類や釣りたい魚を選び、対応する道具とゲームから確認できた効果を見る。',menu:'装備メニュー',all:'全種類',fish:'釣りたい魚',allFish:'指定なし',use:'用途',compatible:'対応する魚',more:'全魚名を見る',evidence:'根拠と調査詳細',compare:'釣り方別に竿を比較',aim:'照準時間',reach:'距離境界',style:'釣り方',titleByCategory:'この種類の装備',noFish:'この種類は魚種では絞り込まない',fishOnly:'選んだ魚の条件に合うエサを表示',basePrice:'基本価格',kit:'対応魚を網羅するルアー構成',kitText:'シンキング17とソフト・ワーム23でルアー適合38プロフィールを網羅。17の代わりにスプーン2Eも使える。',kitLink:'画像付き構成と魚別表',guide:'ゲーム内でフライを作る',research:'調査詳細と出典',cat:{rod:'竿',lure:'ルアー',flymaker:'フライ作成',bait:'エサ',hook:'ハリ / アユ鼻カン',float_weight:'ウキ / 目印 / オモリ',food:'食べ物 / HP回復',general_tool:'道具 / イベント品'},desc:{rod:'釣り方を選び、照準時間・内部距離・魚ID分岐を比較。',lure:'魚を選んでルアー針掛かり条件で絞り込む。',flymaker:'ボディ・ウイング・テールと針掛かり条件。',bait:'魚を選んでエサ釣り条件に合うエサを見る。',hook:'釣り方別のハリ・鼻カン。',float_weight:'ウキ・目印・オモリ。',food:'確認済みのHP回復とHPが0になる食べ物。',general_tool:'ゲームに表示される道具・イベント品。'}}
+  }[lang];
+  const groups=['rod','lure','flymaker','bait','hook','float_weight','food','general_tool'];
+  let fishVisuals={};
+  let flyPart='fly';
+  let baitRoute='float';
+  const groupOf=item=>item.category.startsWith('fly')?'flymaker':item.category;
+  const local=value=>typeof value==='string'?value:value?.[lang]||value?.en||'';
+  const useOf=item=>item.playerUse||{};
+  const fishName=id=>{const f=fishVisuals[id]||{};const latin=f.nameLatin||(f.nameLatinVariants||[]).slice().sort((a,b)=>b.length-a.length)[0];return lang==='th'?(f.nameTh||(f.nameThVariants||[]).join(' / ')||latin||f.nameJa||id):lang==='en'?(f.nameEn||latin||f.nameJa||id):(f.nameJa||id);};
+  const fishIdsFor=item=>item.category==='bait'?(useOf(item).fishIdsByRoute?.[baitRoute]||useOf(item).fishIds||[]):(useOf(item).fishIds||[]);
+  const matchCategory=(item,category)=>category==='all'||(category==='flymaker'?item.category.startsWith('fly'):item.category===category);
   function renderFilters() {
-    const cats=[...new Set(allItems.map(x=>x.category))];
-    const select=document.getElementById('category-filter');
-    select.innerHTML=`<option value="all">${esc(copy.all)}</option>`+cats.map(c=>`<option value="${esc(c)}">${esc(categoryNames[c])}</option>`).join('');
+    document.getElementById('category-filter').innerHTML=`<option value="all">${esc(player.all)}</option>`+groups.map(c=>`<option value="${c}">${esc(player.cat[c])}</option>`).join('');
+    document.getElementById('style-filter').innerHTML=`<option value="">${esc(player.all)}</option>`+Object.entries(lang==='th'?{1:'ทุ่น / อายุ',2:'ตีเหยื่อ',4:'ลัวร์',8:'ฟลาย'}:lang==='ja'?{1:'ウキ・アユ',2:'投げ',4:'ルアー',8:'フライ'}:{1:'Float / Ayu',2:'Casting',4:'Lure',8:'Fly'}).map(([k,v])=>`<option value="${k}">${esc(v)}</option>`).join('');
+    set('#style-filter-label',player.style);
     document.getElementById('sort-filter').innerHTML=`<option value="id">${esc(copy.sortId)}</option><option value="name">${esc(copy.sortName)}</option><option value="price">${esc(copy.sortPrice)}</option>`;
+    document.getElementById('fish-filter').innerHTML=`<option value="">${esc(player.allFish)}</option>`+Object.keys(fishVisuals).filter(id=>id!=='43').sort((a,b)=>fishName(a).localeCompare(fishName(b),lang)).map(id=>`<option value="${esc(id)}">${esc(fishName(id))}</option>`).join('');
+    document.getElementById('category-menu').innerHTML=groups.map(c=>{const i=allItems.find(i=>groupOf(i)===c);return `<a class="category-button" href="?category=${c}#catalogue" data-category="${c}"><img src="${esc(i?.image)}" alt=""><span><strong>${esc(player.cat[c])}</strong><small>${allItems.filter(i=>groupOf(i)===c).length}</small></span></a>`;}).join('');
   }
   function detailedFields(item) {
+    const evidence=useOf(item).evidence||{};
+    const sourceInfo=evidence.type?`<p>${esc(lang==='th'?'ที่มาของคำอธิบาย':lang==='ja'?'説明の根拠':'Explanation source')}: ${esc(evidence.type)}</p>${(evidence.sources||[]).map(s=>`<p><code>${esc(s)}</code></p>`).join('')}`:'';
     const bytes=item.recordBytesHex?`<p><b>${esc(copy.offset)}:</b> <code>${esc(item.fileOffset||'—')}</code></p><p><b>${esc(copy.bytes)}:</b> <code>${esc(item.recordBytesHex)}</code></p>`:`<p>${esc(copy.none)}</p>`;
     const decoded=Object.entries(item.decodedFields||{}).filter(([key])=>!['nameJapanese','nameEnglish','condition'].includes(key)).map(([key,value])=>`<dt>${esc(copy.fieldNames[key]||key)}</dt><dd>${esc(typeof value==='object'?JSON.stringify(value):value)}</dd>`).join('');
-    const raw=Object.entries(item.rawFields||{}).map(([key,value])=>`<dt>${esc(key)}</dt><dd>${Number(value).toString(16).toUpperCase().padStart(2,'0')} <span class="decimal">(${esc(value)})</span></dd>`).join('');
-    return `<details class="record-details"><summary>${esc(copy.details)}</summary>${bytes}${decoded?`<h4>${esc(copy.decoded)}</h4><dl>${decoded}</dl>`:''}${raw?`<h4>${esc(copy.bytes)}</h4><dl>${raw}</dl>`:''}</details>`;
+    return `<details class="record-details"><summary>${esc(player.evidence)}</summary>${sourceInfo}<ul class="stat-list">${[...itemNotes(item),...(useOf(item).evidenceNotes?.[lang]||[])].map(n=>`<li>${esc(n)}</li>`).join('')}</ul>${lang==='th'&&!item.nameTh&&useOf(item).displayName?.th?'<p>ชื่อไทย: คำแปลชื่อภาษาญี่ปุ่นสำหรับคู่มือนี้</p>':''}${bytes}${decoded?`<h4>${esc(copy.decoded)}</h4><dl>${decoded}</dl>`:''}<a class="frame-link" href="${esc(item.frame)}" target="_blank" rel="noopener">${esc(copy.openFrame)}</a></details>`;
   }
   function thaiLabel(item) {
-    return lang==='th'&&item.labelImageTh?`<a href="${esc(item.labelImageTh)}" target="_blank" rel="noopener"><img class="thai-rom-label" loading="lazy" src="${esc(item.labelImageTh)}" alt="${esc(item.nameTh||'ชื่อไอเท็มจาก ROM ไทย · ID '+item.id)}"></a><span class="thai-label-note">${esc(item.labelContextTh||'ภาพชื่อจากแพตช์ไทย V1.2')}</span>`:'';
+    return lang==='th'&&item.labelImageTh?`<img class="thai-rom-label" loading="lazy" src="${esc(item.labelImageTh)}" alt="${esc(item.nameTh||'ชื่อในเกมไทย')}">`:'';
+  }
+  function fishList(item) {
+    const use=useOf(item),ids=fishIdsFor(item);
+    const targets=use.targetMatches?(Array.isArray(use.targetMatches)?use.targetMatches:[use.targetMatches]):[];
+    if(!ids.length&&!targets.length)return '';
+    const chip=id=>{id=String(id).replace(/^0x/i,'').toUpperCase().padStart(2,'0');const f=fishVisuals[id]||{};return `<span class="fish-chip">${f.image?`<img loading="lazy" src="${esc(f.image)}" alt="">`:''}<span>${esc(fishName(id))}</span></span>`;};
+    if(!ids.length)return `<div class="compatible-fish"><h4>${lang==='th'?'มีการตอบสนองเฉพาะกับปลา':lang==='ja'?'魚ID別の応答':'Fish-specific response'}</h4><p class="fish-scope">${esc(local(use.targetMatchScope)||(lang==='th'?'เกมมีการตอบสนองเฉพาะกับปลานี้ แต่ยังสรุปไม่ได้ว่าจับง่ายขึ้นหรือดีที่สุด':lang==='ja'?'魚別の処理は確認済みですが、釣りやすさの優位は未確認です。':'A fish-specific response is confirmed; a catch advantage is not established.'))}</p><div class="fish-chips">${targets.map(t=>chip(t.fishId)).join('')}</div></div>`;
+    return `<div class="compatible-fish"><h4>${esc(player.compatible)} · ${ids.length}</h4><p class="fish-scope">${esc(item.category==='bait'?(lang==='th'?`สำหรับ${baitRoute==='float'?'ชุดทุ่น':'ชุดตะกั่ว'} — ผ่านเงื่อนไขรับเหยื่อ ยังต้องวางเหยื่อให้เจอปลาและดึงขึ้นสำเร็จ`:lang==='ja'?`${baitRoute==='float'?'ウキ':'オモリ'}仕掛けのエサ判定に適合。位置・タイミング・取り込みも必要。`:`${baitRoute==='float'?'Float':'Sinker'} rig: passes bait-acceptance conditions; position, timing and landing still matter.`):local(use.fishScope))}</p><div class="fish-chips">${ids.slice(0,6).map(chip).join('')}</div>${ids.length>6?`<details class="more-fish"><summary>${esc(player.more)} (${ids.length})</summary><div class="fish-chips">${ids.slice(6).map(chip).join('')}</div></details>`:''}</div>`;
+  }
+  function renderComparison(items,category) {
+    const box=document.getElementById('rod-comparison');
+    if(category!=='rod'){box.innerHTML='';return;}
+    const styles=lang==='th'?{1:'ทุ่น / อายุ',2:'ตีเหยื่อ',4:'ลัวร์',8:'ฟลาย'}:lang==='ja'?{1:'ウキ・アユ',2:'投げ',4:'ルアー',8:'フライ'}:{1:'Float / Ayu',2:'Casting',4:'Lure',8:'Fly'};
+    box.innerHTML=`<details class="comparison"><summary>${esc(player.compare)}</summary><p>${lang==='th'?'ตัวนับเวลาเล็งสูง = มีเวลาก่อนปล่อยอัตโนมัติมากขึ้น; ระยะเป็นขอบเขตภายในเกม ยังไม่ใช่คะแนนพลังหรืออันดับจับสำเร็จ':lang==='ja'?'照準時間が大きいと自動遷移までの時間が長い。内部距離は強さや成功率の順位ではない。':'A larger aim cutoff allows more time before automatic advance. Internal reach is not a strength or landing-rate ranking.'}</p><div class="table-wrap"><table><thead><tr><th>${esc(copy.item)}</th><th>${esc(player.style)}</th><th>${esc(player.aim)}</th><th>${esc(player.reach)}</th><th>${esc(player.basePrice)}</th></tr></thead><tbody>${items.slice().sort((a,b)=>a.decodedFields.styleCode-b.decodedFields.styleCode||b.decodedFields.rangeMultiplier-a.decodedFields.rangeMultiplier).map(i=>`<tr><td><a href="#item-${i.category}-${i.id}">${esc(itemName(i))}</a></td><td>${esc(styles[i.decodedFields.styleCode])}</td><td>${i.decodedFields.castAimHoldCutoffInternal}</td><td>${i.decodedFields.rangeMultiplier}</td><td>${esc(formatYen(i))}</td></tr>`).join('')}</tbody></table></div></details>`;
   }
   function renderCards() {
     const term=document.getElementById('search').value.trim().toLocaleLowerCase();
     const category=document.getElementById('category-filter').value;
+    const fish=document.getElementById('fish-filter').value;
     const order=document.getElementById('sort-filter').value;
-    let shown=allItems.filter(item=>(category==='all'||item.category===category)&&(!term||item.search.toLocaleLowerCase().includes(term)||item.notesEn.join(' ').toLocaleLowerCase().includes(term)||item.notesJa.join(' ').toLocaleLowerCase().includes(term)||(item.nameTh||'').toLocaleLowerCase().includes(term)||(item.notesTh||[]).join(' ').toLocaleLowerCase().includes(term)));
-    if(order==='name') shown.sort((a,b)=>itemName(a).localeCompare(itemName(b),lang)||a.id.localeCompare(b.id));
-    else if(order==='price') shown.sort((a,b)=>(a.priceYen??Infinity)-(b.priceYen??Infinity)||a.category.localeCompare(b.category)||a.id.localeCompare(b.id));
-    else shown.sort((a,b)=>a.category.localeCompare(b.category)||a.id.localeCompare(b.id));
+    const fishApplicable=['all','bait','lure','float_weight'].includes(category)||(category==='flymaker'&&flyPart==='fly');
+    const style=document.getElementById('style-filter').value;
+    const routes=lang==='th'?{float:'ชุดทุ่น',sinker:'ชุดตะกั่ว / หน้าดิน'}:lang==='ja'?{float:'ウキ仕掛け',sinker:'オモリ仕掛け'}:{float:'Float rig',sinker:'Sinker rig'};
+    document.getElementById('bait-route-menu').innerHTML=['bait','all'].includes(category)?Object.entries(routes).map(([k,v])=>`<button type="button" data-route="${k}" aria-pressed="${baitRoute===k}">${v}</button>`).join(''):'';
+    document.getElementById('style-label').hidden=category!=='rod';
+    const parts=lang==='th'?{fly:'บอดี้',fly_wing:'ปีก',fly_tail:'หาง'}:lang==='ja'?{fly:'ボディ',fly_wing:'ウイング',fly_tail:'テール'}:{fly:'Body',fly_wing:'Wing',fly_tail:'Tail'};
+    document.getElementById('fly-part-menu').innerHTML=category==='flymaker'?Object.entries(parts).map(([k,v])=>`<button type="button" data-part="${k}" aria-pressed="${flyPart===k}">${v}</button>`).join('')+`<a href="#fly-instructions" data-guide> ${lang==='th'?'ดูขั้นตอนประกอบ':lang==='ja'?'作成手順':'Assembly steps'} ↗</a>`:'';
+    let shown=allItems.filter(item=>matchCategory(item,category)&&(category!=='bait'||baitRoute!=='sinker'||fishIdsFor(item).length>0)&&(category!=='flymaker'||item.category===flyPart)&&(category!=='rod'||!style||String(item.decodedFields.styleCode)===style)&&(!fish||!fishApplicable||fishIdsFor(item).includes(fish))&&(!term||[item.search,itemName(item),local(useOf(item).summary),...fishIdsFor(item).map(fishName)].join(' ').toLocaleLowerCase().includes(term)));
+    if(order==='name')shown.sort((a,b)=>itemName(a).localeCompare(itemName(b),lang)||a.id.localeCompare(b.id));
+    else if(order==='price')shown.sort((a,b)=>(a.priceYen??Infinity)-(b.priceYen??Infinity)||a.id.localeCompare(b.id));
     set('#result-count',copy.results(shown.length));
+    set('#category-title',player.cat[category]||player.all);
+    set('#category-description',player.desc[category]||player.lead);
+    set('#fish-status',fish&&!fishApplicable?player.noFish:fish?player.fishOnly:'');
+    document.querySelectorAll('[data-category]').forEach(n=>n.setAttribute('aria-current',n.dataset.category===category?'true':'false'));
+    renderComparison(shown,category);
     const box=document.getElementById('cards');
     if(!shown.length){box.innerHTML=`<p class="empty-state">${esc(copy.empty)}</p>`;return;}
-    box.innerHTML=shown.map(item=>{
-      const name=itemName(item);
-      const notes=itemNotes(item);
-      const confidence=lang==='th'?item.confidenceLabelTh:lang==='ja'?item.confidenceLabelJa:item.confidenceLabelEn;
-      return `<article class="item-card"><div class="card-main"><figure class="sprite"><img loading="lazy" src="${esc(item.image)}" alt="${esc(name)}"><figcaption>${esc(imageText(item))}</figcaption></figure><div class="card-text"><div class="card-topline"><span class="category-tag">${esc(lang==='th'?item.categoryTh:lang==='ja'?item.categoryJa:item.categoryEn)}</span><span class="item-id">ID ${esc(item.id)}</span></div><h3>${esc(name)}</h3>${thaiLabel(item)}<p class="jp-name" lang="ja">${esc(item.nameJa)}</p><div class="price-row"><span class="price-badge">${esc(formatYen(item))}</span><span class="confidence">${esc(confidence)}</span></div></div></div><ul class="stat-list">${notes.map(note=>`<li>${esc(note)}</li>`).join('')}</ul><div class="card-actions"><a class="frame-link" href="${esc(item.frame)}" target="_blank" rel="noopener">${esc(copy.openFrame)}</a></div>${detailedFields(item)}</article>`;
-    }).join('');
+    box.innerHTML=shown.map(item=>{const use=useOf(item);const facts=use.facts?.[lang]||use.facts?.en||[];return `<article class="item-card ${item.category==='food'&&item.id==='0A'?'poison-food':''}" id="item-${item.category}-${item.id}"><div class="card-main"><figure class="sprite"><img loading="lazy" src="${esc(item.image)}" alt="${esc(itemName(item))}"></figure><div class="card-text"><span class="category-tag">${esc(categoryNames[item.category])}</span><h3>${esc(itemName(item))}</h3>${thaiLabel(item)}${itemName(item)!==item.nameJa?`<p class="jp-name" lang="ja">${esc(item.nameJa)}</p>`:''}<div class="price-row">${item.priceYen>0?`<span class="price-badge">${esc(formatYen(item))}</span>`:''}<span class="item-id">ID ${esc(item.id)}</span></div></div></div><div class="use-block"><h4>${esc(player.use)}</h4><p class="use-summary">${esc(local(use.summary)||player.desc[groupOf(item)])}</p>${use.evidence?.type==='player_guide_report'?`<p class="fish-scope">${lang==='th'?'คำอธิบายการใช้จากคู่มือผู้เล่น ยังไม่ได้ยืนยันจากโค้ดเกม':lang==='ja'?'用途はプレイヤーガイドによる報告。ゲームコードでは未確認。':'Use reported by a player guide; not yet confirmed in game code.'}</p>`:''}${facts.length?`<ul class="use-facts">${facts.map(n=>`<li>${esc(n)}</li>`).join('')}</ul>`:''}${use.comparison?`<p class="use-comparison">${esc(local(use.comparison))}</p>`:''}</div>${fishList(item)}${detailedFields(item)}</article>`;}).join('');
   }
-  fetch('gallery-data.json?v=equipment-20261004').then(response=>{if(!response.ok)throw new Error('catalogue unavailable');return response.json();}).then(data=>{
-    allItems=data.items;
-    for (const item of allItems) categoryNames[item.category]=lang==='th'?item.categoryTh:lang==='ja'?item.categoryJa:item.categoryEn;
+  fetch('gallery-data.json?v=player-guide-20261004').then(r=>{if(!r.ok)throw new Error('catalogue unavailable');return r.json();}).then(data=>{
+    allItems=data.items;fishVisuals=data.fishVisuals||{};
+    for(const item of allItems)categoryNames[item.category]=lang==='th'?item.categoryTh:lang==='ja'?item.categoryJa:item.categoryEn;
     set('#entry-count',copy.entries(allItems.length));
-    renderSamples();renderFrames(data);renderNotes(data);renderFilters();renderCards();
-    document.getElementById('search').addEventListener('input',renderCards);
-    document.getElementById('category-filter').addEventListener('change',renderCards);
-    document.getElementById('sort-filter').addEventListener('change',renderCards);
-  }).catch(()=>{
-    /* Keep the pre-rendered catalogue visible if interactive loading fails. */
-  });
+    set('[data-t="title"]',player.title);set('[data-t="lead"]',player.lead);
+    set('#category-menu-title',player.menu);set('#fish-filter-label',player.fish);
+    set('#kit-title',player.kit);set('#kit-copy',player.kitText);set('#kit-link',player.kitLink);
+    renderSamples();renderFrames(data);renderNotes(data);renderFilters();
+    let chosen='rod';if(typeof URLSearchParams!=='undefined'&&typeof location!=='undefined'){const q=new URLSearchParams(location.search).get('category');if(groups.includes(q)||q==='all')chosen=q;}
+    document.getElementById('category-filter').value=chosen;renderCards();
+    document.getElementById('category-menu').addEventListener('click',event=>{const a=event.target.closest('[data-category]');if(!a)return;event.preventDefault();document.getElementById('category-filter').value=a.dataset.category;document.getElementById('fish-filter').value='';document.getElementById('search').value='';document.getElementById('style-filter').value='';renderCards();if(typeof history!=='undefined')history.replaceState(null,'',`?category=${a.dataset.category}#catalogue`);document.getElementById('catalogue').scrollIntoView({behavior:'smooth',block:'start'});});
+    document.getElementById('bait-route-menu').addEventListener('click',event=>{const b=event.target.closest('[data-route]');if(!b)return;baitRoute=b.dataset.route;renderCards();});
+    document.getElementById('fly-part-menu').addEventListener('click',event=>{if(event.target.closest('[data-guide]')){event.preventDefault();const guide=document.getElementById('fly-instructions');guide.open=true;guide.scrollIntoView({behavior:'smooth'});return;}const b=event.target.closest('[data-part]');if(!b)return;flyPart=b.dataset.part;renderCards();});
+    document.getElementById('fish-filter').addEventListener('change',()=>{const c=document.getElementById('category-filter').value;if(document.getElementById('fish-filter').value&&!['all','bait','lure','float_weight'].includes(c)&&!(c==='flymaker'&&flyPart==='fly'))document.getElementById('category-filter').value='all';renderCards();});
+    for(const id of ['search','category-filter','sort-filter','style-filter'])document.getElementById(id).addEventListener(id==='search'?'input':'change',renderCards);
+  }).catch(error=>{console.error(error);});
 })();

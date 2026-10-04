@@ -1,0 +1,2280 @@
+{
+  "schemaVersion": 1,
+  "rom": {
+    "sha1": "c2103dd94e2a1a65a495fc02adc2e7d040f31212",
+    "sizeBytes": 1572864
+  },
+  "scope": "All 73 ROM fish-profile rows keyed by profile ID: 72 rows with decoded Japanese names and one unresolved 0x0C glyph row. Image matches use exact Japanese-name equality between ROM profiles and existing project capture provenance.",
+  "imageNote": "The included images are crops of fish pictures shown in gameplay captures, not graphics extracted from the ROM. Each non-null image links to its source video/post, local source frame, and crop rectangle.",
+  "fish": {
+    "01": {
+      "nameJa": "イワナ",
+      "nameEn": null,
+      "nameLatin": "Iwana",
+      "nameLatinVariants": [],
+      "nameTh": "อิวานะ",
+      "nameThVariants": [],
+      "image": "fish/01.png",
+      "imageSource": {
+        "sourceUrl": "https://www.youtube.com/watch?v=Y8JKlgIV91c&t=29s",
+        "sourceFrame": "references/all-fish-frames/frame-0030.png",
+        "cropPx": [
+          584,
+          110,
+          1020,
+          350
+        ],
+        "sourceCropFile": "guides-real/fish/fish-030.png",
+        "description": "Crop of the in-game fish picture shown in a player gameplay/catch-record capture; this is not a sprite extracted directly from the ROM.",
+        "videoFrameNumber": 30
+      },
+      "noImageReason": null,
+      "nameSource": {
+        "romProfileFileOffset": "0x028018",
+        "romSha1": "c2103dd94e2a1a65a495fc02adc2e7d040f31212",
+        "thaiAndLatinGuideFiles": [
+          "data/stages/stage-1.json"
+        ],
+        "thaiNamesAreGuideTranscriptionsNotVerifiedThaiPatchStrings": true
+      }
+    },
+    "02": {
+      "nameJa": "アメマス",
+      "nameEn": null,
+      "nameLatin": "Amemasu",
+      "nameLatinVariants": [],
+      "nameTh": "ปลาอาเมะมาสุ",
+      "nameThVariants": [],
+      "image": "fish/02.png",
+      "imageSource": {
+        "sourceUrl": "https://www.youtube.com/watch?v=Y8JKlgIV91c&t=59s",
+        "sourceFrame": "references/all-fish-frames/frame-0060.png",
+        "cropPx": [
+          584,
+          110,
+          1020,
+          350
+        ],
+        "sourceCropFile": "guides-real/fish/fish-060.png",
+        "description": "Crop of the in-game fish picture shown in a player gameplay/catch-record capture; this is not a sprite extracted directly from the ROM.",
+        "videoFrameNumber": 60
+      },
+      "noImageReason": null,
+      "nameSource": {
+        "romProfileFileOffset": "0x02802F",
+        "romSha1": "c2103dd94e2a1a65a495fc02adc2e7d040f31212",
+        "thaiAndLatinGuideFiles": [
+          "data/stages/stages-2-3.json"
+        ],
+        "thaiNamesAreGuideTranscriptionsNotVerifiedThaiPatchStrings": true
+      }
+    },
+    "03": {
+      "nameJa": "ヤマメ",
+      "nameEn": null,
+      "nameLatin": "Yamame",
+      "nameLatinVariants": [],
+      "nameTh": "ยามาเมะ",
+      "nameThVariants": [],
+      "image": "fish/03.png",
+      "imageSource": {
+        "sourceUrl": "https://www.youtube.com/watch?v=Y8JKlgIV91c&t=33s",
+        "sourceFrame": "references/all-fish-frames/frame-0034.png",
+        "cropPx": [
+          584,
+          110,
+          1020,
+          350
+        ],
+        "sourceCropFile": "guides-real/fish/fish-034.png",
+        "description": "Crop of the in-game fish picture shown in a player gameplay/catch-record capture; this is not a sprite extracted directly from the ROM.",
+        "videoFrameNumber": 34
+      },
+      "noImageReason": null,
+      "nameSource": {
+        "romProfileFileOffset": "0x028046",
+        "romSha1": "c2103dd94e2a1a65a495fc02adc2e7d040f31212",
+        "thaiAndLatinGuideFiles": [
+          "data/stages/stage-1.json"
+        ],
+        "thaiNamesAreGuideTranscriptionsNotVerifiedThaiPatchStrings": true
+      }
+    },
+    "04": {
+      "nameJa": "アマゴ",
+      "nameEn": null,
+      "nameLatin": "Amago",
+      "nameLatinVariants": [],
+      "nameTh": "อามาโกะ",
+      "nameThVariants": [],
+      "image": "fish/04.png",
+      "imageSource": {
+        "sourceUrl": "https://www.youtube.com/watch?v=Y8JKlgIV91c&t=39s",
+        "sourceFrame": "references/all-fish-frames/frame-0040.png",
+        "cropPx": [
+          584,
+          110,
+          1020,
+          350
+        ],
+        "sourceCropFile": "guides-real/fish/fish-040.png",
+        "description": "Crop of the in-game fish picture shown in a player gameplay/catch-record capture; this is not a sprite extracted directly from the ROM.",
+        "videoFrameNumber": 40
+      },
+      "noImageReason": null,
+      "nameSource": {
+        "romProfileFileOffset": "0x02805D",
+        "romSha1": "c2103dd94e2a1a65a495fc02adc2e7d040f31212",
+        "thaiAndLatinGuideFiles": [
+          "data/stages/stage-1.json"
+        ],
+        "thaiNamesAreGuideTranscriptionsNotVerifiedThaiPatchStrings": true
+      }
+    },
+    "05": {
+      "nameJa": "カジカ",
+      "nameEn": null,
+      "nameLatin": "Kajika",
+      "nameLatinVariants": [],
+      "nameTh": "ปลาคาจิกะ",
+      "nameThVariants": [],
+      "image": "fish/05.png",
+      "imageSource": {
+        "sourceUrl": "https://www.youtube.com/watch?v=Y8JKlgIV91c&t=97s",
+        "sourceFrame": "references/all-fish-frames/frame-0098.png",
+        "cropPx": [
+          584,
+          110,
+          1020,
+          350
+        ],
+        "sourceCropFile": "guides-real/fish/fish-098.png",
+        "description": "Crop of the in-game fish picture shown in a player gameplay/catch-record capture; this is not a sprite extracted directly from the ROM.",
+        "videoFrameNumber": 98
+      },
+      "noImageReason": null,
+      "nameSource": {
+        "romProfileFileOffset": "0x028074",
+        "romSha1": "c2103dd94e2a1a65a495fc02adc2e7d040f31212",
+        "thaiAndLatinGuideFiles": [
+          "data/stages/stages-2-3.json"
+        ],
+        "thaiNamesAreGuideTranscriptionsNotVerifiedThaiPatchStrings": true
+      }
+    },
+    "06": {
+      "nameJa": "ニジマス",
+      "nameEn": null,
+      "nameLatin": null,
+      "nameLatinVariants": [
+        "Nijimasu",
+        "Nijimasu (rainbow trout)"
+      ],
+      "nameTh": null,
+      "nameThVariants": [
+        "นิจิมาสุ",
+        "ปลาเรนโบว์เทราต์"
+      ],
+      "image": "fish/06.png",
+      "imageSource": {
+        "sourceUrl": "https://www.youtube.com/watch?v=Y8JKlgIV91c&t=74s",
+        "sourceFrame": "references/all-fish-frames/frame-0075.png",
+        "cropPx": [
+          584,
+          110,
+          1020,
+          350
+        ],
+        "sourceCropFile": "guides-real/fish/fish-075.png",
+        "description": "Crop of the in-game fish picture shown in a player gameplay/catch-record capture; this is not a sprite extracted directly from the ROM.",
+        "videoFrameNumber": 75
+      },
+      "noImageReason": null,
+      "nameSource": {
+        "romProfileFileOffset": "0x02808B",
+        "romSha1": "c2103dd94e2a1a65a495fc02adc2e7d040f31212",
+        "thaiAndLatinGuideFiles": [
+          "data/stages/stage-1.json",
+          "data/stages/stages-2-3.json"
+        ],
+        "thaiNamesAreGuideTranscriptionsNotVerifiedThaiPatchStrings": true
+      }
+    },
+    "07": {
+      "nameJa": "ヒメマス",
+      "nameEn": null,
+      "nameLatin": "Himemasu",
+      "nameLatinVariants": [],
+      "nameTh": "ปลาฮิเมะมาสุ",
+      "nameThVariants": [],
+      "image": "fish/07.png",
+      "imageSource": {
+        "sourceUrl": "https://www.youtube.com/watch?v=Y8JKlgIV91c&t=62s",
+        "sourceFrame": "references/all-fish-frames/frame-0063.png",
+        "cropPx": [
+          584,
+          110,
+          1020,
+          350
+        ],
+        "sourceCropFile": "guides-real/fish/fish-063.png",
+        "description": "Crop of the in-game fish picture shown in a player gameplay/catch-record capture; this is not a sprite extracted directly from the ROM.",
+        "videoFrameNumber": 63
+      },
+      "noImageReason": null,
+      "nameSource": {
+        "romProfileFileOffset": "0x0280A2",
+        "romSha1": "c2103dd94e2a1a65a495fc02adc2e7d040f31212",
+        "thaiAndLatinGuideFiles": [
+          "data/stages/stages-2-3.json"
+        ],
+        "thaiNamesAreGuideTranscriptionsNotVerifiedThaiPatchStrings": true
+      }
+    },
+    "08": {
+      "nameJa": "ブラウントラウト",
+      "nameEn": null,
+      "nameLatin": "Brown trout",
+      "nameLatinVariants": [],
+      "nameTh": "บราวน์เทราต์",
+      "nameThVariants": [],
+      "image": "fish/08.png",
+      "imageSource": {
+        "sourceUrl": "https://www.youtube.com/watch?v=Y8JKlgIV91c&t=94s",
+        "sourceFrame": "references/all-fish-frames/frame-0095.png",
+        "cropPx": [
+          584,
+          110,
+          1020,
+          350
+        ],
+        "sourceCropFile": "guides-real/fish/fish-095.png",
+        "description": "Crop of the in-game fish picture shown in a player gameplay/catch-record capture; this is not a sprite extracted directly from the ROM.",
+        "videoFrameNumber": 95
+      },
+      "noImageReason": null,
+      "nameSource": {
+        "romProfileFileOffset": "0x0280B9",
+        "romSha1": "c2103dd94e2a1a65a495fc02adc2e7d040f31212",
+        "thaiAndLatinGuideFiles": [
+          "data/stages/stages-2-3.json"
+        ],
+        "thaiNamesAreGuideTranscriptionsNotVerifiedThaiPatchStrings": true
+      }
+    },
+    "09": {
+      "nameJa": "カワマス",
+      "nameEn": null,
+      "nameLatin": "Kawamasu",
+      "nameLatinVariants": [],
+      "nameTh": null,
+      "nameThVariants": [
+        "คาวามาสุ",
+        "ปลาคาวะมาสุ"
+      ],
+      "image": "fish/09.png",
+      "imageSource": {
+        "sourceUrl": "https://www.youtube.com/watch?v=Y8JKlgIV91c&t=26s",
+        "sourceFrame": "references/all-fish-frames/frame-0027.png",
+        "cropPx": [
+          584,
+          110,
+          1020,
+          350
+        ],
+        "sourceCropFile": "guides-real/fish/fish-027.png",
+        "description": "Crop of the in-game fish picture shown in a player gameplay/catch-record capture; this is not a sprite extracted directly from the ROM.",
+        "videoFrameNumber": 27
+      },
+      "noImageReason": null,
+      "nameSource": {
+        "romProfileFileOffset": "0x0280D0",
+        "romSha1": "c2103dd94e2a1a65a495fc02adc2e7d040f31212",
+        "thaiAndLatinGuideFiles": [
+          "data/stages/stage-1.json",
+          "data/stages/stages-2-3.json"
+        ],
+        "thaiNamesAreGuideTranscriptionsNotVerifiedThaiPatchStrings": true
+      }
+    },
+    "0A": {
+      "nameJa": "ワカサギ",
+      "nameEn": null,
+      "nameLatin": "Wakasagi",
+      "nameLatinVariants": [],
+      "nameTh": null,
+      "nameThVariants": [
+        "ปลาวากาซากิ",
+        "วากาซากิ",
+        "วากาซางิ"
+      ],
+      "image": "fish/0A.png",
+      "imageSource": {
+        "sourceUrl": "https://www.youtube.com/watch?v=Y8JKlgIV91c&t=239s",
+        "sourceFrame": "references/all-fish-frames/frame-0240.png",
+        "cropPx": [
+          584,
+          110,
+          1020,
+          350
+        ],
+        "sourceCropFile": "guides-real/fish/fish-240.png",
+        "description": "Crop of the in-game fish picture shown in a player gameplay/catch-record capture; this is not a sprite extracted directly from the ROM.",
+        "videoFrameNumber": 240
+      },
+      "noImageReason": null,
+      "nameSource": {
+        "romProfileFileOffset": "0x0280E7",
+        "romSha1": "c2103dd94e2a1a65a495fc02adc2e7d040f31212",
+        "thaiAndLatinGuideFiles": [
+          "data/stages/stages-2-3.json",
+          "data/stages/stages-4-5.json",
+          "data/stages/stage-6.json"
+        ],
+        "thaiNamesAreGuideTranscriptionsNotVerifiedThaiPatchStrings": true
+      }
+    },
+    "0B": {
+      "nameJa": "ブラックバス",
+      "nameEn": null,
+      "nameLatin": "Black bass",
+      "nameLatinVariants": [],
+      "nameTh": "ปลาแบล็กแบส",
+      "nameThVariants": [],
+      "image": "fish/0B.png",
+      "imageSource": {
+        "sourceUrl": "https://www.youtube.com/watch?v=Y8JKlgIV91c&t=65s",
+        "sourceFrame": "references/all-fish-frames/frame-0066.png",
+        "cropPx": [
+          584,
+          110,
+          1020,
+          350
+        ],
+        "sourceCropFile": "guides-real/fish/fish-066.png",
+        "description": "Crop of the in-game fish picture shown in a player gameplay/catch-record capture; this is not a sprite extracted directly from the ROM.",
+        "videoFrameNumber": 66
+      },
+      "noImageReason": null,
+      "nameSource": {
+        "romProfileFileOffset": "0x0280FE",
+        "romSha1": "c2103dd94e2a1a65a495fc02adc2e7d040f31212",
+        "thaiAndLatinGuideFiles": [
+          "data/stages/stages-2-3.json"
+        ],
+        "thaiNamesAreGuideTranscriptionsNotVerifiedThaiPatchStrings": true
+      }
+    },
+    "0C": {
+      "nameJa": "ウグイ",
+      "nameEn": null,
+      "nameLatin": "Ugui",
+      "nameLatinVariants": [],
+      "nameTh": null,
+      "nameThVariants": [
+        "ปลาอุไก",
+        "อุไก"
+      ],
+      "image": "fish/0C.png",
+      "imageSource": {
+        "sourceUrl": "https://www.youtube.com/watch?v=Y8JKlgIV91c&t=207s",
+        "sourceFrame": "references/all-fish-frames/frame-0208.png",
+        "cropPx": [
+          584,
+          110,
+          1020,
+          350
+        ],
+        "sourceCropFile": "guides-real/fish/fish-208.png",
+        "description": "Crop of the in-game fish picture shown in a player gameplay/catch-record capture; this is not a sprite extracted directly from the ROM.",
+        "videoFrameNumber": 208
+      },
+      "noImageReason": null,
+      "nameSource": {
+        "romProfileFileOffset": "0x028115",
+        "romSha1": "c2103dd94e2a1a65a495fc02adc2e7d040f31212",
+        "thaiAndLatinGuideFiles": [
+          "data/stages/stages-2-3.json",
+          "data/stages/stages-4-5.json"
+        ],
+        "thaiNamesAreGuideTranscriptionsNotVerifiedThaiPatchStrings": true
+      }
+    },
+    "0D": {
+      "nameJa": "コイ",
+      "nameEn": null,
+      "nameLatin": "Koi",
+      "nameLatinVariants": [],
+      "nameTh": null,
+      "nameThVariants": [
+        "ปลาคาร์ป",
+        "โคอิ"
+      ],
+      "image": "fish/0D.png",
+      "imageSource": {
+        "sourceUrl": "https://www.youtube.com/watch?v=Y8JKlgIV91c&t=263s",
+        "sourceFrame": "references/all-fish-frames/frame-0264.png",
+        "cropPx": [
+          584,
+          110,
+          1020,
+          350
+        ],
+        "sourceCropFile": "guides-real/fish/fish-264.png",
+        "description": "Crop of the in-game fish picture shown in a player gameplay/catch-record capture; this is not a sprite extracted directly from the ROM.",
+        "videoFrameNumber": 264
+      },
+      "noImageReason": null,
+      "nameSource": {
+        "romProfileFileOffset": "0x02812C",
+        "romSha1": "c2103dd94e2a1a65a495fc02adc2e7d040f31212",
+        "thaiAndLatinGuideFiles": [
+          "data/stages/stages-4-5.json",
+          "data/stages/stage-6.json"
+        ],
+        "thaiNamesAreGuideTranscriptionsNotVerifiedThaiPatchStrings": true
+      }
+    },
+    "0E": {
+      "nameJa": "ドンコ",
+      "nameEn": null,
+      "nameLatin": "Donko",
+      "nameLatinVariants": [],
+      "nameTh": "ปลาดงโกะ",
+      "nameThVariants": [],
+      "image": "fish/0E.png",
+      "imageSource": {
+        "sourceUrl": "https://www.youtube.com/watch?v=Y8JKlgIV91c&t=121s",
+        "sourceFrame": "references/all-fish-frames/frame-0122.png",
+        "cropPx": [
+          584,
+          110,
+          1020,
+          350
+        ],
+        "sourceCropFile": "guides-real/fish/fish-122.png",
+        "description": "Crop of the in-game fish picture shown in a player gameplay/catch-record capture; this is not a sprite extracted directly from the ROM.",
+        "videoFrameNumber": 122
+      },
+      "noImageReason": null,
+      "nameSource": {
+        "romProfileFileOffset": "0x028143",
+        "romSha1": "c2103dd94e2a1a65a495fc02adc2e7d040f31212",
+        "thaiAndLatinGuideFiles": [
+          "data/stages/stages-2-3.json"
+        ],
+        "thaiNamesAreGuideTranscriptionsNotVerifiedThaiPatchStrings": true
+      }
+    },
+    "0F": {
+      "nameJa": "オイカワ",
+      "nameEn": null,
+      "nameLatin": "Oikawa",
+      "nameLatinVariants": [],
+      "nameTh": "ปลาโออิคาวะ",
+      "nameThVariants": [],
+      "image": "fish/0F.png",
+      "imageSource": {
+        "sourceUrl": "https://www.youtube.com/watch?v=Y8JKlgIV91c&t=106s",
+        "sourceFrame": "references/all-fish-frames/frame-0107.png",
+        "cropPx": [
+          584,
+          110,
+          1020,
+          350
+        ],
+        "sourceCropFile": "guides-real/fish/fish-107.png",
+        "description": "Crop of the in-game fish picture shown in a player gameplay/catch-record capture; this is not a sprite extracted directly from the ROM.",
+        "videoFrameNumber": 107
+      },
+      "noImageReason": null,
+      "nameSource": {
+        "romProfileFileOffset": "0x02815A",
+        "romSha1": "c2103dd94e2a1a65a495fc02adc2e7d040f31212",
+        "thaiAndLatinGuideFiles": [
+          "data/stages/stages-2-3.json"
+        ],
+        "thaiNamesAreGuideTranscriptionsNotVerifiedThaiPatchStrings": true
+      }
+    },
+    "10": {
+      "nameJa": "モツゴ",
+      "nameEn": null,
+      "nameLatin": "Motsugo",
+      "nameLatinVariants": [],
+      "nameTh": "โมสึโกะ",
+      "nameThVariants": [],
+      "image": "fish/10.png",
+      "imageSource": {
+        "sourceUrl": "https://www.youtube.com/watch?v=Y8JKlgIV91c&t=210s",
+        "sourceFrame": "references/all-fish-frames/frame-0211.png",
+        "cropPx": [
+          584,
+          110,
+          1020,
+          350
+        ],
+        "sourceCropFile": "guides-real/fish/fish-211.png",
+        "description": "Crop of the in-game fish picture shown in a player gameplay/catch-record capture; this is not a sprite extracted directly from the ROM.",
+        "videoFrameNumber": 211
+      },
+      "noImageReason": null,
+      "nameSource": {
+        "romProfileFileOffset": "0x028171",
+        "romSha1": "c2103dd94e2a1a65a495fc02adc2e7d040f31212",
+        "thaiAndLatinGuideFiles": [
+          "data/stages/stages-4-5.json"
+        ],
+        "thaiNamesAreGuideTranscriptionsNotVerifiedThaiPatchStrings": true
+      }
+    },
+    "11": {
+      "nameJa": "イトモロコ",
+      "nameEn": null,
+      "nameLatin": "Itomoroko",
+      "nameLatinVariants": [],
+      "nameTh": "อิโตะโมะโระโกะ",
+      "nameThVariants": [],
+      "image": "fish/11.png",
+      "imageSource": {
+        "sourceUrl": "https://www.youtube.com/watch?v=Y8JKlgIV91c&t=194s",
+        "sourceFrame": "references/all-fish-frames/frame-0195.png",
+        "cropPx": [
+          584,
+          110,
+          1020,
+          350
+        ],
+        "sourceCropFile": "guides-real/fish/fish-195.png",
+        "description": "Crop of the in-game fish picture shown in a player gameplay/catch-record capture; this is not a sprite extracted directly from the ROM.",
+        "videoFrameNumber": 195
+      },
+      "noImageReason": null,
+      "nameSource": {
+        "romProfileFileOffset": "0x028188",
+        "romSha1": "c2103dd94e2a1a65a495fc02adc2e7d040f31212",
+        "thaiAndLatinGuideFiles": [
+          "data/stages/stages-4-5.json"
+        ],
+        "thaiNamesAreGuideTranscriptionsNotVerifiedThaiPatchStrings": true
+      }
+    },
+    "12": {
+      "nameJa": "ギギ",
+      "nameEn": null,
+      "nameLatin": "Gigi",
+      "nameLatinVariants": [],
+      "nameTh": "กิกิ",
+      "nameThVariants": [],
+      "image": "fish/12.png",
+      "imageSource": {
+        "sourceUrl": "https://www.youtube.com/watch?v=Y8JKlgIV91c&t=178s",
+        "sourceFrame": "references/all-fish-frames/frame-0179.png",
+        "cropPx": [
+          584,
+          110,
+          1020,
+          350
+        ],
+        "sourceCropFile": "guides-real/fish/fish-179.png",
+        "description": "Crop of the in-game fish picture shown in a player gameplay/catch-record capture; this is not a sprite extracted directly from the ROM.",
+        "videoFrameNumber": 179
+      },
+      "noImageReason": null,
+      "nameSource": {
+        "romProfileFileOffset": "0x02819F",
+        "romSha1": "c2103dd94e2a1a65a495fc02adc2e7d040f31212",
+        "thaiAndLatinGuideFiles": [
+          "data/stages/stages-4-5.json"
+        ],
+        "thaiNamesAreGuideTranscriptionsNotVerifiedThaiPatchStrings": true
+      }
+    },
+    "13": {
+      "nameJa": "サクラマス",
+      "nameEn": null,
+      "nameLatin": "Sakuramasu",
+      "nameLatinVariants": [],
+      "nameTh": "ปลาซากุระมาสุ",
+      "nameThVariants": [],
+      "image": "fish/13.png",
+      "imageSource": {
+        "sourceUrl": "https://www.youtube.com/watch?v=Y8JKlgIV91c&t=52s",
+        "sourceFrame": "references/all-fish-frames/frame-0053.png",
+        "cropPx": [
+          584,
+          110,
+          1020,
+          350
+        ],
+        "sourceCropFile": "guides-real/fish/fish-053.png",
+        "description": "Crop of the in-game fish picture shown in a player gameplay/catch-record capture; this is not a sprite extracted directly from the ROM.",
+        "videoFrameNumber": 53
+      },
+      "noImageReason": null,
+      "nameSource": {
+        "romProfileFileOffset": "0x0281B6",
+        "romSha1": "c2103dd94e2a1a65a495fc02adc2e7d040f31212",
+        "thaiAndLatinGuideFiles": [
+          "data/stages/stages-2-3.json"
+        ],
+        "thaiNamesAreGuideTranscriptionsNotVerifiedThaiPatchStrings": true
+      }
+    },
+    "14": {
+      "nameJa": "コクレン",
+      "nameEn": null,
+      "nameLatin": "Kokuren",
+      "nameLatinVariants": [],
+      "nameTh": "โคคุเร็น",
+      "nameThVariants": [],
+      "image": "fish/14.png",
+      "imageSource": {
+        "sourceUrl": "https://www.youtube.com/watch?v=Y8JKlgIV91c&t=174s",
+        "sourceFrame": "references/all-fish-frames/frame-0175.png",
+        "cropPx": [
+          584,
+          110,
+          1020,
+          350
+        ],
+        "sourceCropFile": "guides-real/fish/fish-175.png",
+        "description": "Crop of the in-game fish picture shown in a player gameplay/catch-record capture; this is not a sprite extracted directly from the ROM.",
+        "videoFrameNumber": 175
+      },
+      "noImageReason": null,
+      "nameSource": {
+        "romProfileFileOffset": "0x0281CD",
+        "romSha1": "c2103dd94e2a1a65a495fc02adc2e7d040f31212",
+        "thaiAndLatinGuideFiles": [
+          "data/stages/stages-4-5.json"
+        ],
+        "thaiNamesAreGuideTranscriptionsNotVerifiedThaiPatchStrings": true
+      }
+    },
+    "15": {
+      "nameJa": "ハクレン",
+      "nameEn": null,
+      "nameLatin": "Hakuren",
+      "nameLatinVariants": [],
+      "nameTh": "ฮักเร็น",
+      "nameThVariants": [],
+      "image": "fish/15.png",
+      "imageSource": {
+        "sourceUrl": "https://www.youtube.com/watch?v=Y8JKlgIV91c&t=159s",
+        "sourceFrame": "references/all-fish-frames/frame-0160.png",
+        "cropPx": [
+          584,
+          110,
+          1020,
+          350
+        ],
+        "sourceCropFile": "guides-real/fish/fish-160.png",
+        "description": "Crop of the in-game fish picture shown in a player gameplay/catch-record capture; this is not a sprite extracted directly from the ROM.",
+        "videoFrameNumber": 160
+      },
+      "noImageReason": null,
+      "nameSource": {
+        "romProfileFileOffset": "0x0281E4",
+        "romSha1": "c2103dd94e2a1a65a495fc02adc2e7d040f31212",
+        "thaiAndLatinGuideFiles": [
+          "data/stages/stages-4-5.json"
+        ],
+        "thaiNamesAreGuideTranscriptionsNotVerifiedThaiPatchStrings": true
+      }
+    },
+    "16": {
+      "nameJa": "ムギツク",
+      "nameEn": null,
+      "nameLatin": "Mugitsuku",
+      "nameLatinVariants": [],
+      "nameTh": "มุกิสึคุ",
+      "nameThVariants": [],
+      "image": "fish/16.png",
+      "imageSource": {
+        "sourceUrl": "https://www.youtube.com/watch?v=Y8JKlgIV91c&t=219s",
+        "sourceFrame": "references/all-fish-frames/frame-0220.png",
+        "cropPx": [
+          584,
+          110,
+          1020,
+          350
+        ],
+        "sourceCropFile": "guides-real/fish/fish-220.png",
+        "description": "Crop of the in-game fish picture shown in a player gameplay/catch-record capture; this is not a sprite extracted directly from the ROM.",
+        "videoFrameNumber": 220
+      },
+      "noImageReason": null,
+      "nameSource": {
+        "romProfileFileOffset": "0x0281FB",
+        "romSha1": "c2103dd94e2a1a65a495fc02adc2e7d040f31212",
+        "thaiAndLatinGuideFiles": [
+          "data/stages/stages-4-5.json"
+        ],
+        "thaiNamesAreGuideTranscriptionsNotVerifiedThaiPatchStrings": true
+      }
+    },
+    "17": {
+      "nameJa": "ホンモロコ",
+      "nameEn": null,
+      "nameLatin": "Honmoroko",
+      "nameLatinVariants": [],
+      "nameTh": "ฮอนโมโระโกะ",
+      "nameThVariants": [],
+      "image": "fish/17.png",
+      "imageSource": {
+        "sourceUrl": "https://www.youtube.com/watch?v=Y8JKlgIV91c&t=153s",
+        "sourceFrame": "references/all-fish-frames/frame-0154.png",
+        "cropPx": [
+          584,
+          110,
+          1020,
+          350
+        ],
+        "sourceCropFile": "guides-real/fish/fish-154.png",
+        "description": "Crop of the in-game fish picture shown in a player gameplay/catch-record capture; this is not a sprite extracted directly from the ROM.",
+        "videoFrameNumber": 154
+      },
+      "noImageReason": null,
+      "nameSource": {
+        "romProfileFileOffset": "0x028212",
+        "romSha1": "c2103dd94e2a1a65a495fc02adc2e7d040f31212",
+        "thaiAndLatinGuideFiles": [
+          "data/stages/stages-4-5.json"
+        ],
+        "thaiNamesAreGuideTranscriptionsNotVerifiedThaiPatchStrings": true
+      }
+    },
+    "18": {
+      "nameJa": "ヤマノカミ",
+      "nameEn": null,
+      "nameLatin": "Yamanokami",
+      "nameLatinVariants": [],
+      "nameTh": "ปลายามาโนะคามิ",
+      "nameThVariants": [],
+      "image": "fish/18.png",
+      "imageSource": {
+        "sourceUrl": "https://www.youtube.com/watch?v=Y8JKlgIV91c&t=112s",
+        "sourceFrame": "references/all-fish-frames/frame-0113.png",
+        "cropPx": [
+          584,
+          110,
+          1020,
+          350
+        ],
+        "sourceCropFile": "guides-real/fish/fish-113.png",
+        "description": "Crop of the in-game fish picture shown in a player gameplay/catch-record capture; this is not a sprite extracted directly from the ROM.",
+        "videoFrameNumber": 113
+      },
+      "noImageReason": null,
+      "nameSource": {
+        "romProfileFileOffset": "0x028229",
+        "romSha1": "c2103dd94e2a1a65a495fc02adc2e7d040f31212",
+        "thaiAndLatinGuideFiles": [
+          "data/stages/stages-2-3.json"
+        ],
+        "thaiNamesAreGuideTranscriptionsNotVerifiedThaiPatchStrings": true
+      }
+    },
+    "19": {
+      "nameJa": "ドジョウ",
+      "nameEn": null,
+      "nameLatin": "Dojou",
+      "nameLatinVariants": [],
+      "nameTh": "โดโจ",
+      "nameThVariants": [],
+      "image": "fish/19.png",
+      "imageSource": {
+        "sourceUrl": "https://www.youtube.com/watch?v=Y8JKlgIV91c&t=222s",
+        "sourceFrame": "references/all-fish-frames/frame-0223.png",
+        "cropPx": [
+          584,
+          110,
+          1020,
+          350
+        ],
+        "sourceCropFile": "guides-real/fish/fish-223.png",
+        "description": "Crop of the in-game fish picture shown in a player gameplay/catch-record capture; this is not a sprite extracted directly from the ROM.",
+        "videoFrameNumber": 223
+      },
+      "noImageReason": null,
+      "nameSource": {
+        "romProfileFileOffset": "0x028240",
+        "romSha1": "c2103dd94e2a1a65a495fc02adc2e7d040f31212",
+        "thaiAndLatinGuideFiles": [
+          "data/stages/stages-4-5.json"
+        ],
+        "thaiNamesAreGuideTranscriptionsNotVerifiedThaiPatchStrings": true
+      }
+    },
+    "1A": {
+      "nameJa": "タモロコ",
+      "nameEn": null,
+      "nameLatin": "Tamoroko",
+      "nameLatinVariants": [],
+      "nameTh": "ทาโมะโระโกะ",
+      "nameThVariants": [],
+      "image": "fish/1A.png",
+      "imageSource": {
+        "sourceUrl": "https://www.youtube.com/watch?v=Y8JKlgIV91c&t=162s",
+        "sourceFrame": "references/all-fish-frames/frame-0163.png",
+        "cropPx": [
+          584,
+          110,
+          1020,
+          350
+        ],
+        "sourceCropFile": "guides-real/fish/fish-163.png",
+        "description": "Crop of the in-game fish picture shown in a player gameplay/catch-record capture; this is not a sprite extracted directly from the ROM.",
+        "videoFrameNumber": 163
+      },
+      "noImageReason": null,
+      "nameSource": {
+        "romProfileFileOffset": "0x028257",
+        "romSha1": "c2103dd94e2a1a65a495fc02adc2e7d040f31212",
+        "thaiAndLatinGuideFiles": [
+          "data/stages/stages-4-5.json"
+        ],
+        "thaiNamesAreGuideTranscriptionsNotVerifiedThaiPatchStrings": true
+      }
+    },
+    "1B": {
+      "nameJa": "カワムツ",
+      "nameEn": null,
+      "nameLatin": "Kawamutsu",
+      "nameLatinVariants": [],
+      "nameTh": "ปลาคาวะมุสึ",
+      "nameThVariants": [],
+      "image": "fish/1B.png",
+      "imageSource": {
+        "sourceUrl": "https://www.youtube.com/watch?v=Y8JKlgIV91c&t=115s",
+        "sourceFrame": "references/all-fish-frames/frame-0116.png",
+        "cropPx": [
+          584,
+          110,
+          1020,
+          350
+        ],
+        "sourceCropFile": "guides-real/fish/fish-116.png",
+        "description": "Crop of the in-game fish picture shown in a player gameplay/catch-record capture; this is not a sprite extracted directly from the ROM.",
+        "videoFrameNumber": 116
+      },
+      "noImageReason": null,
+      "nameSource": {
+        "romProfileFileOffset": "0x02826E",
+        "romSha1": "c2103dd94e2a1a65a495fc02adc2e7d040f31212",
+        "thaiAndLatinGuideFiles": [
+          "data/stages/stages-2-3.json"
+        ],
+        "thaiNamesAreGuideTranscriptionsNotVerifiedThaiPatchStrings": true
+      }
+    },
+    "1C": {
+      "nameJa": "キンブナ",
+      "nameEn": null,
+      "nameLatin": "Kinbuna",
+      "nameLatinVariants": [],
+      "nameTh": "คินบุนะ",
+      "nameThVariants": [],
+      "image": "fish/1C.png",
+      "imageSource": {
+        "sourceUrl": "https://www.youtube.com/watch?v=Y8JKlgIV91c&t=201s",
+        "sourceFrame": "references/all-fish-frames/frame-0202.png",
+        "cropPx": [
+          584,
+          110,
+          1020,
+          350
+        ],
+        "sourceCropFile": "guides-real/fish/fish-202.png",
+        "description": "Crop of the in-game fish picture shown in a player gameplay/catch-record capture; this is not a sprite extracted directly from the ROM.",
+        "videoFrameNumber": 202
+      },
+      "noImageReason": null,
+      "nameSource": {
+        "romProfileFileOffset": "0x028285",
+        "romSha1": "c2103dd94e2a1a65a495fc02adc2e7d040f31212",
+        "thaiAndLatinGuideFiles": [
+          "data/stages/stages-4-5.json"
+        ],
+        "thaiNamesAreGuideTranscriptionsNotVerifiedThaiPatchStrings": true
+      }
+    },
+    "1D": {
+      "nameJa": "マブナ",
+      "nameEn": null,
+      "nameLatin": "Mabuna",
+      "nameLatinVariants": [],
+      "nameTh": "มาบุนะ",
+      "nameThVariants": [],
+      "image": "fish/1D.png",
+      "imageSource": {
+        "sourceUrl": "https://www.youtube.com/watch?v=Y8JKlgIV91c&t=171s",
+        "sourceFrame": "references/all-fish-frames/frame-0172.png",
+        "cropPx": [
+          584,
+          110,
+          1020,
+          350
+        ],
+        "sourceCropFile": "guides-real/fish/fish-172.png",
+        "description": "Crop of the in-game fish picture shown in a player gameplay/catch-record capture; this is not a sprite extracted directly from the ROM.",
+        "videoFrameNumber": 172
+      },
+      "noImageReason": null,
+      "nameSource": {
+        "romProfileFileOffset": "0x02829C",
+        "romSha1": "c2103dd94e2a1a65a495fc02adc2e7d040f31212",
+        "thaiAndLatinGuideFiles": [
+          "data/stages/stages-4-5.json"
+        ],
+        "thaiNamesAreGuideTranscriptionsNotVerifiedThaiPatchStrings": true
+      }
+    },
+    "1E": {
+      "nameJa": "アカザ",
+      "nameEn": null,
+      "nameLatin": "Akaza",
+      "nameLatinVariants": [],
+      "nameTh": null,
+      "nameThVariants": [
+        "อาคาซะ",
+        "ปลาอาคาซะ"
+      ],
+      "image": "fish/1E.png",
+      "imageSource": {
+        "sourceUrl": "https://www.youtube.com/watch?v=Y8JKlgIV91c&t=36s",
+        "sourceFrame": "references/all-fish-frames/frame-0037.png",
+        "cropPx": [
+          584,
+          110,
+          1020,
+          350
+        ],
+        "sourceCropFile": "guides-real/fish/fish-037.png",
+        "description": "Crop of the in-game fish picture shown in a player gameplay/catch-record capture; this is not a sprite extracted directly from the ROM.",
+        "videoFrameNumber": 37
+      },
+      "noImageReason": null,
+      "nameSource": {
+        "romProfileFileOffset": "0x0282B3",
+        "romSha1": "c2103dd94e2a1a65a495fc02adc2e7d040f31212",
+        "thaiAndLatinGuideFiles": [
+          "data/stages/stage-1.json",
+          "data/stages/stages-2-3.json"
+        ],
+        "thaiNamesAreGuideTranscriptionsNotVerifiedThaiPatchStrings": true
+      }
+    },
+    "1F": {
+      "nameJa": "メダカ",
+      "nameEn": null,
+      "nameLatin": "Medaka",
+      "nameLatinVariants": [],
+      "nameTh": "เมดากะ",
+      "nameThVariants": [],
+      "image": "fish/1F.png",
+      "imageSource": {
+        "sourceUrl": "https://www.youtube.com/watch?v=Y8JKlgIV91c&t=216s",
+        "sourceFrame": "references/all-fish-frames/frame-0217.png",
+        "cropPx": [
+          584,
+          110,
+          1020,
+          350
+        ],
+        "sourceCropFile": "guides-real/fish/fish-217.png",
+        "description": "Crop of the in-game fish picture shown in a player gameplay/catch-record capture; this is not a sprite extracted directly from the ROM.",
+        "videoFrameNumber": 217
+      },
+      "noImageReason": null,
+      "nameSource": {
+        "romProfileFileOffset": "0x0282CA",
+        "romSha1": "c2103dd94e2a1a65a495fc02adc2e7d040f31212",
+        "thaiAndLatinGuideFiles": [
+          "data/stages/stages-4-5.json"
+        ],
+        "thaiNamesAreGuideTranscriptionsNotVerifiedThaiPatchStrings": true
+      }
+    },
+    "20": {
+      "nameJa": "ブルーギル",
+      "nameEn": null,
+      "nameLatin": "Bluegill",
+      "nameLatinVariants": [],
+      "nameTh": "ปลาบลูกิล",
+      "nameThVariants": [],
+      "image": "fish/20.png",
+      "imageSource": {
+        "sourceUrl": "https://www.youtube.com/watch?v=Y8JKlgIV91c&t=55s",
+        "sourceFrame": "references/all-fish-frames/frame-0056.png",
+        "cropPx": [
+          584,
+          110,
+          1020,
+          350
+        ],
+        "sourceCropFile": "guides-real/fish/fish-056.png",
+        "description": "Crop of the in-game fish picture shown in a player gameplay/catch-record capture; this is not a sprite extracted directly from the ROM.",
+        "videoFrameNumber": 56
+      },
+      "noImageReason": null,
+      "nameSource": {
+        "romProfileFileOffset": "0x0282E1",
+        "romSha1": "c2103dd94e2a1a65a495fc02adc2e7d040f31212",
+        "thaiAndLatinGuideFiles": [
+          "data/stages/stages-2-3.json"
+        ],
+        "thaiNamesAreGuideTranscriptionsNotVerifiedThaiPatchStrings": true
+      }
+    },
+    "21": {
+      "nameJa": "オヤニラミ",
+      "nameEn": null,
+      "nameLatin": "Oyanirami",
+      "nameLatinVariants": [],
+      "nameTh": "โอยะนิรามิ",
+      "nameThVariants": [],
+      "image": "fish/21.png",
+      "imageSource": {
+        "sourceUrl": "https://www.youtube.com/watch?v=Y8JKlgIV91c&t=198s",
+        "sourceFrame": "references/all-fish-frames/frame-0199.png",
+        "cropPx": [
+          584,
+          110,
+          1020,
+          350
+        ],
+        "sourceCropFile": "guides-real/fish/fish-199.png",
+        "description": "Crop of the in-game fish picture shown in a player gameplay/catch-record capture; this is not a sprite extracted directly from the ROM.",
+        "videoFrameNumber": 199
+      },
+      "noImageReason": null,
+      "nameSource": {
+        "romProfileFileOffset": "0x0282F8",
+        "romSha1": "c2103dd94e2a1a65a495fc02adc2e7d040f31212",
+        "thaiAndLatinGuideFiles": [
+          "data/stages/stages-4-5.json"
+        ],
+        "thaiNamesAreGuideTranscriptionsNotVerifiedThaiPatchStrings": true
+      }
+    },
+    "22": {
+      "nameJa": "ハリヨ",
+      "nameEn": null,
+      "nameLatin": "Hariyo",
+      "nameLatinVariants": [],
+      "nameTh": "ปลาฮาริโยะ",
+      "nameThVariants": [],
+      "image": "fish/22.png",
+      "imageSource": {
+        "sourceUrl": "https://www.youtube.com/watch?v=Y8JKlgIV91c&t=71s",
+        "sourceFrame": "references/all-fish-frames/frame-0072.png",
+        "cropPx": [
+          584,
+          110,
+          1020,
+          350
+        ],
+        "sourceCropFile": "guides-real/fish/fish-072.png",
+        "description": "Crop of the in-game fish picture shown in a player gameplay/catch-record capture; this is not a sprite extracted directly from the ROM.",
+        "videoFrameNumber": 72
+      },
+      "noImageReason": null,
+      "nameSource": {
+        "romProfileFileOffset": "0x02830F",
+        "romSha1": "c2103dd94e2a1a65a495fc02adc2e7d040f31212",
+        "thaiAndLatinGuideFiles": [
+          "data/stages/stages-2-3.json"
+        ],
+        "thaiNamesAreGuideTranscriptionsNotVerifiedThaiPatchStrings": true
+      }
+    },
+    "23": {
+      "nameJa": "トミヨ",
+      "nameEn": null,
+      "nameLatin": "Tomiyo",
+      "nameLatinVariants": [],
+      "nameTh": "โทมิโยะ",
+      "nameThVariants": [],
+      "image": "fish/23.png",
+      "imageSource": {
+        "sourceUrl": "https://www.youtube.com/watch?v=Y8JKlgIV91c&t=204s",
+        "sourceFrame": "references/all-fish-frames/frame-0205.png",
+        "cropPx": [
+          584,
+          110,
+          1020,
+          350
+        ],
+        "sourceCropFile": "guides-real/fish/fish-205.png",
+        "description": "Crop of the in-game fish picture shown in a player gameplay/catch-record capture; this is not a sprite extracted directly from the ROM.",
+        "videoFrameNumber": 205
+      },
+      "noImageReason": null,
+      "nameSource": {
+        "romProfileFileOffset": "0x028326",
+        "romSha1": "c2103dd94e2a1a65a495fc02adc2e7d040f31212",
+        "thaiAndLatinGuideFiles": [
+          "data/stages/stages-4-5.json"
+        ],
+        "thaiNamesAreGuideTranscriptionsNotVerifiedThaiPatchStrings": true
+      }
+    },
+    "24": {
+      "nameJa": "ライギョ",
+      "nameEn": null,
+      "nameLatin": "Raigyo",
+      "nameLatinVariants": [],
+      "nameTh": "ไรเกียว / ปลาช่อน",
+      "nameThVariants": [],
+      "image": "fish/24.png",
+      "imageSource": {
+        "sourceUrl": "https://www.youtube.com/watch?v=Y8JKlgIV91c&t=144s",
+        "sourceFrame": "references/all-fish-frames/frame-0145.png",
+        "cropPx": [
+          584,
+          110,
+          1020,
+          350
+        ],
+        "sourceCropFile": "guides-real/fish/fish-145.png",
+        "description": "Crop of the in-game fish picture shown in a player gameplay/catch-record capture; this is not a sprite extracted directly from the ROM.",
+        "videoFrameNumber": 145
+      },
+      "noImageReason": null,
+      "nameSource": {
+        "romProfileFileOffset": "0x02833D",
+        "romSha1": "c2103dd94e2a1a65a495fc02adc2e7d040f31212",
+        "thaiAndLatinGuideFiles": [
+          "data/stages/stages-4-5.json"
+        ],
+        "thaiNamesAreGuideTranscriptionsNotVerifiedThaiPatchStrings": true
+      }
+    },
+    "25": {
+      "nameJa": "ヘラブナ",
+      "nameEn": null,
+      "nameLatin": "Herabuna",
+      "nameLatinVariants": [],
+      "nameTh": "เฮระบูนะ",
+      "nameThVariants": [],
+      "image": "fish/25.png",
+      "imageSource": {
+        "sourceUrl": "https://www.youtube.com/watch?v=Y8JKlgIV91c&t=150s",
+        "sourceFrame": "references/all-fish-frames/frame-0151.png",
+        "cropPx": [
+          584,
+          110,
+          1020,
+          350
+        ],
+        "sourceCropFile": "guides-real/fish/fish-151.png",
+        "description": "Crop of the in-game fish picture shown in a player gameplay/catch-record capture; this is not a sprite extracted directly from the ROM.",
+        "videoFrameNumber": 151
+      },
+      "noImageReason": null,
+      "nameSource": {
+        "romProfileFileOffset": "0x028354",
+        "romSha1": "c2103dd94e2a1a65a495fc02adc2e7d040f31212",
+        "thaiAndLatinGuideFiles": [
+          "data/stages/stages-4-5.json"
+        ],
+        "thaiNamesAreGuideTranscriptionsNotVerifiedThaiPatchStrings": true
+      }
+    },
+    "26": {
+      "nameJa": "ナマズ",
+      "nameEn": null,
+      "nameLatin": "Namazu",
+      "nameLatinVariants": [],
+      "nameTh": "นามาซุ / ปลาดุก",
+      "nameThVariants": [],
+      "image": "fish/26.png",
+      "imageSource": {
+        "sourceUrl": "https://www.youtube.com/watch?v=Y8JKlgIV91c&t=168s",
+        "sourceFrame": "references/all-fish-frames/frame-0169.png",
+        "cropPx": [
+          584,
+          110,
+          1020,
+          350
+        ],
+        "sourceCropFile": "guides-real/fish/fish-169.png",
+        "description": "Crop of the in-game fish picture shown in a player gameplay/catch-record capture; this is not a sprite extracted directly from the ROM.",
+        "videoFrameNumber": 169
+      },
+      "noImageReason": null,
+      "nameSource": {
+        "romProfileFileOffset": "0x02836B",
+        "romSha1": "c2103dd94e2a1a65a495fc02adc2e7d040f31212",
+        "thaiAndLatinGuideFiles": [
+          "data/stages/stages-4-5.json"
+        ],
+        "thaiNamesAreGuideTranscriptionsNotVerifiedThaiPatchStrings": true
+      }
+    },
+    "27": {
+      "nameJa": "サヨリ",
+      "nameEn": null,
+      "nameLatin": "Sayori",
+      "nameLatinVariants": [],
+      "nameTh": "ซาโยริ",
+      "nameThVariants": [],
+      "image": "fish/27.png",
+      "imageSource": {
+        "sourceUrl": "https://www.youtube.com/watch?v=Y8JKlgIV91c&t=275s",
+        "sourceFrame": "references/all-fish-frames/frame-0276.png",
+        "cropPx": [
+          584,
+          110,
+          1020,
+          350
+        ],
+        "sourceCropFile": "guides-real/fish/fish-276.png",
+        "description": "Crop of the in-game fish picture shown in a player gameplay/catch-record capture; this is not a sprite extracted directly from the ROM.",
+        "videoFrameNumber": 276
+      },
+      "noImageReason": null,
+      "nameSource": {
+        "romProfileFileOffset": "0x028382",
+        "romSha1": "c2103dd94e2a1a65a495fc02adc2e7d040f31212",
+        "thaiAndLatinGuideFiles": [
+          "data/stages/stage-6.json"
+        ],
+        "thaiNamesAreGuideTranscriptionsNotVerifiedThaiPatchStrings": true
+      }
+    },
+    "28": {
+      "nameJa": "ハス",
+      "nameEn": null,
+      "nameLatin": "Hasu",
+      "nameLatinVariants": [],
+      "nameTh": null,
+      "nameThVariants": [
+        "ปลาฮาสุ",
+        "ฮาสุ"
+      ],
+      "image": "fish/28.png",
+      "imageSource": {
+        "sourceUrl": "https://www.youtube.com/watch?v=Y8JKlgIV91c&t=103s",
+        "sourceFrame": "references/all-fish-frames/frame-0104.png",
+        "cropPx": [
+          584,
+          110,
+          1020,
+          350
+        ],
+        "sourceCropFile": "guides-real/fish/fish-104.png",
+        "description": "Crop of the in-game fish picture shown in a player gameplay/catch-record capture; this is not a sprite extracted directly from the ROM.",
+        "videoFrameNumber": 104
+      },
+      "noImageReason": null,
+      "nameSource": {
+        "romProfileFileOffset": "0x028399",
+        "romSha1": "c2103dd94e2a1a65a495fc02adc2e7d040f31212",
+        "thaiAndLatinGuideFiles": [
+          "data/stages/stages-2-3.json",
+          "data/stages/stages-4-5.json"
+        ],
+        "thaiNamesAreGuideTranscriptionsNotVerifiedThaiPatchStrings": true
+      }
+    },
+    "29": {
+      "nameJa": "ワタカ",
+      "nameEn": null,
+      "nameLatin": "Wataka",
+      "nameLatinVariants": [],
+      "nameTh": "วาตากะ",
+      "nameThVariants": [],
+      "image": "fish/29.png",
+      "imageSource": {
+        "sourceUrl": "https://www.youtube.com/watch?v=Y8JKlgIV91c&t=147s",
+        "sourceFrame": "references/all-fish-frames/frame-0148.png",
+        "cropPx": [
+          584,
+          110,
+          1020,
+          350
+        ],
+        "sourceCropFile": "guides-real/fish/fish-148.png",
+        "description": "Crop of the in-game fish picture shown in a player gameplay/catch-record capture; this is not a sprite extracted directly from the ROM.",
+        "videoFrameNumber": 148
+      },
+      "noImageReason": null,
+      "nameSource": {
+        "romProfileFileOffset": "0x0283B0",
+        "romSha1": "c2103dd94e2a1a65a495fc02adc2e7d040f31212",
+        "thaiAndLatinGuideFiles": [
+          "data/stages/stages-4-5.json"
+        ],
+        "thaiNamesAreGuideTranscriptionsNotVerifiedThaiPatchStrings": true
+      }
+    },
+    "2A": {
+      "nameJa": "カマツカ",
+      "nameEn": null,
+      "nameLatin": "Kamatsuka",
+      "nameLatinVariants": [],
+      "nameTh": null,
+      "nameThVariants": [
+        "ปลาคามะสึกะ",
+        "คามัตสึกะ"
+      ],
+      "image": "fish/2A.png",
+      "imageSource": {
+        "sourceUrl": "https://www.youtube.com/watch?v=Y8JKlgIV91c&t=88s",
+        "sourceFrame": "references/all-fish-frames/frame-0089.png",
+        "cropPx": [
+          584,
+          110,
+          1020,
+          350
+        ],
+        "sourceCropFile": "guides-real/fish/fish-089.png",
+        "description": "Crop of the in-game fish picture shown in a player gameplay/catch-record capture; this is not a sprite extracted directly from the ROM.",
+        "videoFrameNumber": 89
+      },
+      "noImageReason": null,
+      "nameSource": {
+        "romProfileFileOffset": "0x0283C7",
+        "romSha1": "c2103dd94e2a1a65a495fc02adc2e7d040f31212",
+        "thaiAndLatinGuideFiles": [
+          "data/stages/stages-2-3.json",
+          "data/stages/stages-4-5.json"
+        ],
+        "thaiNamesAreGuideTranscriptionsNotVerifiedThaiPatchStrings": true
+      }
+    },
+    "2B": {
+      "nameJa": "ツチフキ",
+      "nameEn": null,
+      "nameLatin": "Tsuchifuki",
+      "nameLatinVariants": [],
+      "nameTh": "สึจิฟุกิ",
+      "nameThVariants": [],
+      "image": "fish/2B.png",
+      "imageSource": {
+        "sourceUrl": "https://www.youtube.com/watch?v=Y8JKlgIV91c&t=191s",
+        "sourceFrame": "references/all-fish-frames/frame-0192.png",
+        "cropPx": [
+          584,
+          110,
+          1020,
+          350
+        ],
+        "sourceCropFile": "guides-real/fish/fish-192.png",
+        "description": "Crop of the in-game fish picture shown in a player gameplay/catch-record capture; this is not a sprite extracted directly from the ROM.",
+        "videoFrameNumber": 192
+      },
+      "noImageReason": null,
+      "nameSource": {
+        "romProfileFileOffset": "0x0283DE",
+        "romSha1": "c2103dd94e2a1a65a495fc02adc2e7d040f31212",
+        "thaiAndLatinGuideFiles": [
+          "data/stages/stages-4-5.json"
+        ],
+        "thaiNamesAreGuideTranscriptionsNotVerifiedThaiPatchStrings": true
+      }
+    },
+    "2C": {
+      "nameJa": "シマドジョウ",
+      "nameEn": null,
+      "nameLatin": null,
+      "nameLatinVariants": [
+        "Shimadojo",
+        "Shimadojou"
+      ],
+      "nameTh": null,
+      "nameThVariants": [
+        "ปลาชิมะโดโจ",
+        "ชิมะโดโจ"
+      ],
+      "image": "fish/2C.png",
+      "imageSource": {
+        "sourceUrl": "https://www.youtube.com/watch?v=Y8JKlgIV91c&t=100s",
+        "sourceFrame": "references/all-fish-frames/frame-0101.png",
+        "cropPx": [
+          584,
+          110,
+          1020,
+          350
+        ],
+        "sourceCropFile": "guides-real/fish/fish-101.png",
+        "description": "Crop of the in-game fish picture shown in a player gameplay/catch-record capture; this is not a sprite extracted directly from the ROM.",
+        "videoFrameNumber": 101
+      },
+      "noImageReason": null,
+      "nameSource": {
+        "romProfileFileOffset": "0x0283F5",
+        "romSha1": "c2103dd94e2a1a65a495fc02adc2e7d040f31212",
+        "thaiAndLatinGuideFiles": [
+          "data/stages/stages-2-3.json",
+          "data/stages/stages-4-5.json"
+        ],
+        "thaiNamesAreGuideTranscriptionsNotVerifiedThaiPatchStrings": true
+      }
+    },
+    "2D": {
+      "nameJa": "カムルチー",
+      "nameEn": null,
+      "nameLatin": "Kamuruchi",
+      "nameLatinVariants": [],
+      "nameTh": "คามุรุจิ",
+      "nameThVariants": [],
+      "image": "fish/2D.png",
+      "imageSource": {
+        "sourceUrl": "https://www.youtube.com/watch?v=Y8JKlgIV91c&t=138s",
+        "sourceFrame": "references/all-fish-frames/frame-0139.png",
+        "cropPx": [
+          584,
+          110,
+          1020,
+          350
+        ],
+        "sourceCropFile": "guides-real/fish/fish-139.png",
+        "description": "Crop of the in-game fish picture shown in a player gameplay/catch-record capture; this is not a sprite extracted directly from the ROM.",
+        "videoFrameNumber": 139
+      },
+      "noImageReason": null,
+      "nameSource": {
+        "romProfileFileOffset": "0x02840C",
+        "romSha1": "c2103dd94e2a1a65a495fc02adc2e7d040f31212",
+        "thaiAndLatinGuideFiles": [
+          "data/stages/stages-4-5.json"
+        ],
+        "thaiNamesAreGuideTranscriptionsNotVerifiedThaiPatchStrings": true
+      }
+    },
+    "2E": {
+      "nameJa": "ヒガイ",
+      "nameEn": null,
+      "nameLatin": "Higai",
+      "nameLatinVariants": [],
+      "nameTh": "ฮิไก",
+      "nameThVariants": [],
+      "image": "fish/2E.png",
+      "imageSource": {
+        "sourceUrl": "https://www.youtube.com/watch?v=Y8JKlgIV91c&t=135s",
+        "sourceFrame": "references/all-fish-frames/frame-0136.png",
+        "cropPx": [
+          584,
+          110,
+          1020,
+          350
+        ],
+        "sourceCropFile": "guides-real/fish/fish-136.png",
+        "description": "Crop of the in-game fish picture shown in a player gameplay/catch-record capture; this is not a sprite extracted directly from the ROM.",
+        "videoFrameNumber": 136
+      },
+      "noImageReason": null,
+      "nameSource": {
+        "romProfileFileOffset": "0x028423",
+        "romSha1": "c2103dd94e2a1a65a495fc02adc2e7d040f31212",
+        "thaiAndLatinGuideFiles": [
+          "data/stages/stages-4-5.json"
+        ],
+        "thaiNamesAreGuideTranscriptionsNotVerifiedThaiPatchStrings": true
+      }
+    },
+    "2F": {
+      "nameJa": "ソウギョ",
+      "nameEn": null,
+      "nameLatin": "Sougyo",
+      "nameLatinVariants": [],
+      "nameTh": "โซเกียว",
+      "nameThVariants": [],
+      "image": "fish/2F.png",
+      "imageSource": {
+        "sourceUrl": "https://www.youtube.com/watch?v=Y8JKlgIV91c&t=156s",
+        "sourceFrame": "references/all-fish-frames/frame-0157.png",
+        "cropPx": [
+          584,
+          110,
+          1020,
+          350
+        ],
+        "sourceCropFile": "guides-real/fish/fish-157.png",
+        "description": "Crop of the in-game fish picture shown in a player gameplay/catch-record capture; this is not a sprite extracted directly from the ROM.",
+        "videoFrameNumber": 157
+      },
+      "noImageReason": null,
+      "nameSource": {
+        "romProfileFileOffset": "0x02843A",
+        "romSha1": "c2103dd94e2a1a65a495fc02adc2e7d040f31212",
+        "thaiAndLatinGuideFiles": [
+          "data/stages/stages-4-5.json"
+        ],
+        "thaiNamesAreGuideTranscriptionsNotVerifiedThaiPatchStrings": true
+      }
+    },
+    "30": {
+      "nameJa": "アオウオ",
+      "nameEn": null,
+      "nameLatin": "Aouo",
+      "nameLatinVariants": [],
+      "nameTh": "อาโอะอุโอะ",
+      "nameThVariants": [],
+      "image": "fish/30.png",
+      "imageSource": {
+        "sourceUrl": "https://www.youtube.com/watch?v=Y8JKlgIV91c&t=165s",
+        "sourceFrame": "references/all-fish-frames/frame-0166.png",
+        "cropPx": [
+          584,
+          110,
+          1020,
+          350
+        ],
+        "sourceCropFile": "guides-real/fish/fish-166.png",
+        "description": "Crop of the in-game fish picture shown in a player gameplay/catch-record capture; this is not a sprite extracted directly from the ROM.",
+        "videoFrameNumber": 166
+      },
+      "noImageReason": null,
+      "nameSource": {
+        "romProfileFileOffset": "0x028451",
+        "romSha1": "c2103dd94e2a1a65a495fc02adc2e7d040f31212",
+        "thaiAndLatinGuideFiles": [
+          "data/stages/stages-4-5.json"
+        ],
+        "thaiNamesAreGuideTranscriptionsNotVerifiedThaiPatchStrings": true
+      }
+    },
+    "31": {
+      "nameJa": "ニゴイ",
+      "nameEn": null,
+      "nameLatin": "Nigoi",
+      "nameLatinVariants": [],
+      "nameTh": null,
+      "nameThVariants": [
+        "ปลานิโกอิ",
+        "นิโกอิ",
+        "นิโงอิ"
+      ],
+      "image": "fish/31.png",
+      "imageSource": {
+        "sourceUrl": "https://www.youtube.com/watch?v=Y8JKlgIV91c&t=118s",
+        "sourceFrame": "references/all-fish-frames/frame-0119.png",
+        "cropPx": [
+          584,
+          110,
+          1020,
+          350
+        ],
+        "sourceCropFile": "guides-real/fish/fish-119.png",
+        "description": "Crop of the in-game fish picture shown in a player gameplay/catch-record capture; this is not a sprite extracted directly from the ROM.",
+        "videoFrameNumber": 119
+      },
+      "noImageReason": null,
+      "nameSource": {
+        "romProfileFileOffset": "0x028468",
+        "romSha1": "c2103dd94e2a1a65a495fc02adc2e7d040f31212",
+        "thaiAndLatinGuideFiles": [
+          "data/stages/stages-2-3.json",
+          "data/stages/stages-4-5.json",
+          "data/stages/stage-6.json"
+        ],
+        "thaiNamesAreGuideTranscriptionsNotVerifiedThaiPatchStrings": true
+      }
+    },
+    "32": {
+      "nameJa": "メゴチ",
+      "nameEn": null,
+      "nameLatin": "Megochi",
+      "nameLatinVariants": [],
+      "nameTh": "เมโกจิ",
+      "nameThVariants": [],
+      "image": "fish/32.png",
+      "imageSource": {
+        "sourceUrl": "https://www.youtube.com/watch?v=Y8JKlgIV91c&t=269s",
+        "sourceFrame": "references/all-fish-frames/frame-0270.png",
+        "cropPx": [
+          584,
+          110,
+          1020,
+          350
+        ],
+        "sourceCropFile": "guides-real/fish/fish-270.png",
+        "description": "Crop of the in-game fish picture shown in a player gameplay/catch-record capture; this is not a sprite extracted directly from the ROM.",
+        "videoFrameNumber": 270
+      },
+      "noImageReason": null,
+      "nameSource": {
+        "romProfileFileOffset": "0x02847F",
+        "romSha1": "c2103dd94e2a1a65a495fc02adc2e7d040f31212",
+        "thaiAndLatinGuideFiles": [
+          "data/stages/stage-6.json"
+        ],
+        "thaiNamesAreGuideTranscriptionsNotVerifiedThaiPatchStrings": true
+      }
+    },
+    "33": {
+      "nameJa": "マルタ",
+      "nameEn": null,
+      "nameLatin": "Maruta",
+      "nameLatinVariants": [],
+      "nameTh": "มารุตะ",
+      "nameThVariants": [],
+      "image": "fish/33.png",
+      "imageSource": {
+        "sourceUrl": "https://www.youtube.com/watch?v=Y8JKlgIV91c&t=245s",
+        "sourceFrame": "references/all-fish-frames/frame-0246.png",
+        "cropPx": [
+          584,
+          110,
+          1020,
+          350
+        ],
+        "sourceCropFile": "guides-real/fish/fish-246.png",
+        "description": "Crop of the in-game fish picture shown in a player gameplay/catch-record capture; this is not a sprite extracted directly from the ROM.",
+        "videoFrameNumber": 246
+      },
+      "noImageReason": null,
+      "nameSource": {
+        "romProfileFileOffset": "0x028496",
+        "romSha1": "c2103dd94e2a1a65a495fc02adc2e7d040f31212",
+        "thaiAndLatinGuideFiles": [
+          "data/stages/stage-6.json"
+        ],
+        "thaiNamesAreGuideTranscriptionsNotVerifiedThaiPatchStrings": true
+      }
+    },
+    "34": {
+      "nameJa": "ハゼ",
+      "nameEn": null,
+      "nameLatin": "Haze",
+      "nameLatinVariants": [],
+      "nameTh": "ฮาเซะ",
+      "nameThVariants": [],
+      "image": "fish/34.png",
+      "imageSource": {
+        "sourceUrl": "https://www.youtube.com/watch?v=Y8JKlgIV91c&t=278s",
+        "sourceFrame": "references/all-fish-frames/frame-0279.png",
+        "cropPx": [
+          584,
+          110,
+          1020,
+          350
+        ],
+        "sourceCropFile": "guides-real/fish/fish-279.png",
+        "description": "Crop of the in-game fish picture shown in a player gameplay/catch-record capture; this is not a sprite extracted directly from the ROM.",
+        "videoFrameNumber": 279
+      },
+      "noImageReason": null,
+      "nameSource": {
+        "romProfileFileOffset": "0x0284AD",
+        "romSha1": "c2103dd94e2a1a65a495fc02adc2e7d040f31212",
+        "thaiAndLatinGuideFiles": [
+          "data/stages/stage-6.json"
+        ],
+        "thaiNamesAreGuideTranscriptionsNotVerifiedThaiPatchStrings": true
+      }
+    },
+    "35": {
+      "nameJa": "ボラ",
+      "nameEn": null,
+      "nameLatin": "Bora",
+      "nameLatinVariants": [],
+      "nameTh": "โบระ",
+      "nameThVariants": [],
+      "image": "fish/35.png",
+      "imageSource": {
+        "sourceUrl": "https://www.youtube.com/watch?v=Y8JKlgIV91c&t=251s",
+        "sourceFrame": "references/all-fish-frames/frame-0252.png",
+        "cropPx": [
+          584,
+          110,
+          1020,
+          350
+        ],
+        "sourceCropFile": "guides-real/fish/fish-252.png",
+        "description": "Crop of the in-game fish picture shown in a player gameplay/catch-record capture; this is not a sprite extracted directly from the ROM.",
+        "videoFrameNumber": 252
+      },
+      "noImageReason": null,
+      "nameSource": {
+        "romProfileFileOffset": "0x0284C4",
+        "romSha1": "c2103dd94e2a1a65a495fc02adc2e7d040f31212",
+        "thaiAndLatinGuideFiles": [
+          "data/stages/stage-6.json"
+        ],
+        "thaiNamesAreGuideTranscriptionsNotVerifiedThaiPatchStrings": true
+      }
+    },
+    "36": {
+      "nameJa": "スズキ",
+      "nameEn": null,
+      "nameLatin": "Suzuki",
+      "nameLatinVariants": [],
+      "nameTh": "ซึซึกิ",
+      "nameThVariants": [],
+      "image": "fish/36.png",
+      "imageSource": {
+        "sourceUrl": "https://www.youtube.com/watch?v=Y8JKlgIV91c&t=257s",
+        "sourceFrame": "references/all-fish-frames/frame-0258.png",
+        "cropPx": [
+          584,
+          110,
+          1020,
+          350
+        ],
+        "sourceCropFile": "guides-real/fish/fish-258.png",
+        "description": "Crop of the in-game fish picture shown in a player gameplay/catch-record capture; this is not a sprite extracted directly from the ROM.",
+        "videoFrameNumber": 258
+      },
+      "noImageReason": null,
+      "nameSource": {
+        "romProfileFileOffset": "0x0284DB",
+        "romSha1": "c2103dd94e2a1a65a495fc02adc2e7d040f31212",
+        "thaiAndLatinGuideFiles": [
+          "data/stages/stage-6.json"
+        ],
+        "thaiNamesAreGuideTranscriptionsNotVerifiedThaiPatchStrings": true
+      }
+    },
+    "37": {
+      "nameJa": "アカメ",
+      "nameEn": null,
+      "nameLatin": "Akame",
+      "nameLatinVariants": [],
+      "nameTh": "อาคาเมะ",
+      "nameThVariants": [],
+      "image": "fish/37.png",
+      "imageSource": {
+        "sourceUrl": "https://www.youtube.com/watch?v=Y8JKlgIV91c&t=254s",
+        "sourceFrame": "references/all-fish-frames/frame-0255.png",
+        "cropPx": [
+          584,
+          110,
+          1020,
+          350
+        ],
+        "sourceCropFile": "guides-real/fish/fish-255.png",
+        "description": "Crop of the in-game fish picture shown in a player gameplay/catch-record capture; this is not a sprite extracted directly from the ROM.",
+        "videoFrameNumber": 255
+      },
+      "noImageReason": null,
+      "nameSource": {
+        "romProfileFileOffset": "0x0284F2",
+        "romSha1": "c2103dd94e2a1a65a495fc02adc2e7d040f31212",
+        "thaiAndLatinGuideFiles": [
+          "data/stages/stage-6.json"
+        ],
+        "thaiNamesAreGuideTranscriptionsNotVerifiedThaiPatchStrings": true
+      }
+    },
+    "38": {
+      "nameJa": "アユ",
+      "nameEn": null,
+      "nameLatin": "Ayu",
+      "nameLatinVariants": [],
+      "nameTh": "ปลาอายุ",
+      "nameThVariants": [],
+      "image": "fish/38.png",
+      "imageSource": {
+        "sourceUrl": "https://www.youtube.com/watch?v=Y8JKlgIV91c&t=109s",
+        "sourceFrame": "references/all-fish-frames/frame-0110.png",
+        "cropPx": [
+          584,
+          110,
+          1020,
+          350
+        ],
+        "sourceCropFile": "guides-real/fish/fish-110.png",
+        "description": "Crop of the in-game fish picture shown in a player gameplay/catch-record capture; this is not a sprite extracted directly from the ROM.",
+        "videoFrameNumber": 110
+      },
+      "noImageReason": null,
+      "nameSource": {
+        "romProfileFileOffset": "0x028509",
+        "romSha1": "c2103dd94e2a1a65a495fc02adc2e7d040f31212",
+        "thaiAndLatinGuideFiles": [
+          "data/stages/stages-2-3.json"
+        ],
+        "thaiNamesAreGuideTranscriptionsNotVerifiedThaiPatchStrings": true
+      }
+    },
+    "39": {
+      "nameJa": "タナゴ",
+      "nameEn": null,
+      "nameLatin": "Tanago",
+      "nameLatinVariants": [],
+      "nameTh": "ทานาโกะ",
+      "nameThVariants": [],
+      "image": "fish/39.png",
+      "imageSource": {
+        "sourceUrl": "https://www.youtube.com/watch?v=Y8JKlgIV91c&t=141s",
+        "sourceFrame": "references/all-fish-frames/frame-0142.png",
+        "cropPx": [
+          584,
+          110,
+          1020,
+          350
+        ],
+        "sourceCropFile": "guides-real/fish/fish-142.png",
+        "description": "Crop of the in-game fish picture shown in a player gameplay/catch-record capture; this is not a sprite extracted directly from the ROM.",
+        "videoFrameNumber": 142
+      },
+      "noImageReason": null,
+      "nameSource": {
+        "romProfileFileOffset": "0x028520",
+        "romSha1": "c2103dd94e2a1a65a495fc02adc2e7d040f31212",
+        "thaiAndLatinGuideFiles": [
+          "data/stages/stages-4-5.json"
+        ],
+        "thaiNamesAreGuideTranscriptionsNotVerifiedThaiPatchStrings": true
+      }
+    },
+    "3A": {
+      "nameJa": "ウナギ",
+      "nameEn": null,
+      "nameLatin": "Unagi",
+      "nameLatinVariants": [],
+      "nameTh": null,
+      "nameThVariants": [
+        "อูนางิ / ปลาไหลญี่ปุ่น",
+        "อูนางิ"
+      ],
+      "image": "fish/3A.png",
+      "imageSource": {
+        "sourceUrl": "https://www.youtube.com/watch?v=Y8JKlgIV91c&t=248s",
+        "sourceFrame": "references/all-fish-frames/frame-0249.png",
+        "cropPx": [
+          584,
+          110,
+          1020,
+          350
+        ],
+        "sourceCropFile": "guides-real/fish/fish-249.png",
+        "description": "Crop of the in-game fish picture shown in a player gameplay/catch-record capture; this is not a sprite extracted directly from the ROM.",
+        "videoFrameNumber": 249
+      },
+      "noImageReason": null,
+      "nameSource": {
+        "romProfileFileOffset": "0x028537",
+        "romSha1": "c2103dd94e2a1a65a495fc02adc2e7d040f31212",
+        "thaiAndLatinGuideFiles": [
+          "data/stages/stages-4-5.json",
+          "data/stages/stage-6.json"
+        ],
+        "thaiNamesAreGuideTranscriptionsNotVerifiedThaiPatchStrings": true
+      }
+    },
+    "3B": {
+      "nameJa": "オオウナギ",
+      "nameEn": null,
+      "nameLatin": "Oo-unagi",
+      "nameLatinVariants": [],
+      "nameTh": "โออูนางิ / ปลาไหลยักษ์",
+      "nameThVariants": [],
+      "image": "fish/3B.png",
+      "imageSource": {
+        "sourceUrl": "https://www.youtube.com/watch?v=Y8JKlgIV91c&t=242s",
+        "sourceFrame": "references/all-fish-frames/frame-0243.png",
+        "cropPx": [
+          584,
+          110,
+          1020,
+          350
+        ],
+        "sourceCropFile": "guides-real/fish/fish-243.png",
+        "description": "Crop of the in-game fish picture shown in a player gameplay/catch-record capture; this is not a sprite extracted directly from the ROM.",
+        "videoFrameNumber": 243
+      },
+      "noImageReason": null,
+      "nameSource": {
+        "romProfileFileOffset": "0x02854E",
+        "romSha1": "c2103dd94e2a1a65a495fc02adc2e7d040f31212",
+        "thaiAndLatinGuideFiles": [
+          "data/stages/stages-4-5.json"
+        ],
+        "thaiNamesAreGuideTranscriptionsNotVerifiedThaiPatchStrings": true
+      }
+    },
+    "3C": {
+      "nameJa": "アブラハヤ",
+      "nameEn": null,
+      "nameLatin": "Aburahaya",
+      "nameLatinVariants": [],
+      "nameTh": "ปลาอาบุระฮายะ",
+      "nameThVariants": [],
+      "image": "fish/3C.png",
+      "imageSource": {
+        "sourceUrl": "https://www.youtube.com/watch?v=Y8JKlgIV91c&t=68s",
+        "sourceFrame": "references/all-fish-frames/frame-0069.png",
+        "cropPx": [
+          584,
+          110,
+          1020,
+          350
+        ],
+        "sourceCropFile": "guides-real/fish/fish-069.png",
+        "description": "Crop of the in-game fish picture shown in a player gameplay/catch-record capture; this is not a sprite extracted directly from the ROM.",
+        "videoFrameNumber": 69
+      },
+      "noImageReason": null,
+      "nameSource": {
+        "romProfileFileOffset": "0x028565",
+        "romSha1": "c2103dd94e2a1a65a495fc02adc2e7d040f31212",
+        "thaiAndLatinGuideFiles": [
+          "data/stages/stages-2-3.json"
+        ],
+        "thaiNamesAreGuideTranscriptionsNotVerifiedThaiPatchStrings": true
+      }
+    },
+    "3D": {
+      "nameJa": "クロダイ",
+      "nameEn": null,
+      "nameLatin": "Kurodai",
+      "nameLatinVariants": [],
+      "nameTh": "คุโรได",
+      "nameThVariants": [],
+      "image": "fish/3D.png",
+      "imageSource": {
+        "sourceUrl": "https://www.youtube.com/watch?v=Y8JKlgIV91c&t=260s",
+        "sourceFrame": "references/all-fish-frames/frame-0261.png",
+        "cropPx": [
+          584,
+          110,
+          1020,
+          350
+        ],
+        "sourceCropFile": "guides-real/fish/fish-261.png",
+        "description": "Crop of the in-game fish picture shown in a player gameplay/catch-record capture; this is not a sprite extracted directly from the ROM.",
+        "videoFrameNumber": 261
+      },
+      "noImageReason": null,
+      "nameSource": {
+        "romProfileFileOffset": "0x02857C",
+        "romSha1": "c2103dd94e2a1a65a495fc02adc2e7d040f31212",
+        "thaiAndLatinGuideFiles": [
+          "data/stages/stage-6.json"
+        ],
+        "thaiNamesAreGuideTranscriptionsNotVerifiedThaiPatchStrings": true
+      }
+    },
+    "3E": {
+      "nameJa": "ヌマガレイ",
+      "nameEn": null,
+      "nameLatin": "Numagarei",
+      "nameLatinVariants": [],
+      "nameTh": "นุมะกาเรย์",
+      "nameThVariants": [],
+      "image": "fish/3E.png",
+      "imageSource": {
+        "sourceUrl": "https://www.youtube.com/watch?v=Y8JKlgIV91c&t=272s",
+        "sourceFrame": "references/all-fish-frames/frame-0273.png",
+        "cropPx": [
+          584,
+          110,
+          1020,
+          350
+        ],
+        "sourceCropFile": "guides-real/fish/fish-273.png",
+        "description": "Crop of the in-game fish picture shown in a player gameplay/catch-record capture; this is not a sprite extracted directly from the ROM.",
+        "videoFrameNumber": 273
+      },
+      "noImageReason": null,
+      "nameSource": {
+        "romProfileFileOffset": "0x028593",
+        "romSha1": "c2103dd94e2a1a65a495fc02adc2e7d040f31212",
+        "thaiAndLatinGuideFiles": [
+          "data/stages/stage-6.json"
+        ],
+        "thaiNamesAreGuideTranscriptionsNotVerifiedThaiPatchStrings": true
+      }
+    },
+    "3F": {
+      "nameJa": "クサフグ",
+      "nameEn": null,
+      "nameLatin": "Kusafugu",
+      "nameLatinVariants": [],
+      "nameTh": "คุซะฟุกุ",
+      "nameThVariants": [],
+      "image": "fish/3F.png",
+      "imageSource": {
+        "sourceUrl": "https://www.youtube.com/watch?v=Y8JKlgIV91c&t=266s",
+        "sourceFrame": "references/all-fish-frames/frame-0267.png",
+        "cropPx": [
+          584,
+          110,
+          1020,
+          350
+        ],
+        "sourceCropFile": "guides-real/fish/fish-267.png",
+        "description": "Crop of the in-game fish picture shown in a player gameplay/catch-record capture; this is not a sprite extracted directly from the ROM.",
+        "videoFrameNumber": 267
+      },
+      "noImageReason": null,
+      "nameSource": {
+        "romProfileFileOffset": "0x0285AA",
+        "romSha1": "c2103dd94e2a1a65a495fc02adc2e7d040f31212",
+        "thaiAndLatinGuideFiles": [
+          "data/stages/stage-6.json"
+        ],
+        "thaiNamesAreGuideTranscriptionsNotVerifiedThaiPatchStrings": true
+      }
+    },
+    "40": {
+      "nameJa": "トウギョ",
+      "nameEn": null,
+      "nameLatin": "Tougyo",
+      "nameLatinVariants": [],
+      "nameTh": "โทเกียว",
+      "nameThVariants": [],
+      "image": "fish/40.png",
+      "imageSource": {
+        "sourceUrl": "https://www.youtube.com/watch?v=Y8JKlgIV91c&t=213s",
+        "sourceFrame": "references/all-fish-frames/frame-0214.png",
+        "cropPx": [
+          584,
+          110,
+          1020,
+          350
+        ],
+        "sourceCropFile": "guides-real/fish/fish-214.png",
+        "description": "Crop of the in-game fish picture shown in a player gameplay/catch-record capture; this is not a sprite extracted directly from the ROM.",
+        "videoFrameNumber": 214
+      },
+      "noImageReason": null,
+      "nameSource": {
+        "romProfileFileOffset": "0x0285C1",
+        "romSha1": "c2103dd94e2a1a65a495fc02adc2e7d040f31212",
+        "thaiAndLatinGuideFiles": [
+          "data/stages/stages-4-5.json"
+        ],
+        "thaiNamesAreGuideTranscriptionsNotVerifiedThaiPatchStrings": true
+      }
+    },
+    "41": {
+      "nameJa": "テナガエビ",
+      "nameEn": null,
+      "nameLatin": "Tenagaebi",
+      "nameLatinVariants": [],
+      "nameTh": "กุ้งเทนากะ",
+      "nameThVariants": [],
+      "image": "fish/41.png",
+      "imageSource": {
+        "sourceUrl": "https://www.youtube.com/watch?v=Y8JKlgIV91c&t=225s",
+        "sourceFrame": "references/all-fish-frames/frame-0226.png",
+        "cropPx": [
+          584,
+          110,
+          1020,
+          350
+        ],
+        "sourceCropFile": "guides-real/fish/fish-226.png",
+        "description": "Crop of the in-game fish picture shown in a player gameplay/catch-record capture; this is not a sprite extracted directly from the ROM.",
+        "videoFrameNumber": 226
+      },
+      "noImageReason": null,
+      "nameSource": {
+        "romProfileFileOffset": "0x0285D8",
+        "romSha1": "c2103dd94e2a1a65a495fc02adc2e7d040f31212",
+        "thaiAndLatinGuideFiles": [
+          "data/stages/stages-4-5.json"
+        ],
+        "thaiNamesAreGuideTranscriptionsNotVerifiedThaiPatchStrings": true
+      }
+    },
+    "42": {
+      "nameJa": "サツキマス",
+      "nameEn": null,
+      "nameLatin": "Satsukimasu",
+      "nameLatinVariants": [],
+      "nameTh": null,
+      "nameThVariants": [
+        "ปลาซัตสึกิมาสุ",
+        "ซัทสึกิมาสึ"
+      ],
+      "image": "fish/42.png",
+      "imageSource": {
+        "sourceUrl": "https://www.youtube.com/watch?v=Y8JKlgIV91c&t=91s",
+        "sourceFrame": "references/all-fish-frames/frame-0092.png",
+        "cropPx": [
+          584,
+          110,
+          1020,
+          350
+        ],
+        "sourceCropFile": "guides-real/fish/fish-092.png",
+        "description": "Crop of the in-game fish picture shown in a player gameplay/catch-record capture; this is not a sprite extracted directly from the ROM.",
+        "videoFrameNumber": 92
+      },
+      "noImageReason": null,
+      "nameSource": {
+        "romProfileFileOffset": "0x0285EF",
+        "romSha1": "c2103dd94e2a1a65a495fc02adc2e7d040f31212",
+        "thaiAndLatinGuideFiles": [
+          "data/stages/stages-2-3.json",
+          "data/stages/stages-4-5.json"
+        ],
+        "thaiNamesAreGuideTranscriptionsNotVerifiedThaiPatchStrings": true
+      }
+    },
+    "43": {
+      "nameJa": null,
+      "nameEn": null,
+      "nameLatin": null,
+      "nameLatinVariants": [],
+      "nameTh": null,
+      "nameThVariants": [],
+      "image": null,
+      "imageSource": null,
+      "noImageReason": "The ROM name entry contains an unmapped 0x0C control glyph, so no species name or image is assigned.",
+      "nameSource": {
+        "romProfileFileOffset": "0x028606",
+        "romSha1": "c2103dd94e2a1a65a495fc02adc2e7d040f31212",
+        "thaiAndLatinGuideFiles": [],
+        "thaiNamesAreGuideTranscriptionsNotVerifiedThaiPatchStrings": true
+      },
+      "nameRawRom": "<0C>"
+    },
+    "44": {
+      "nameJa": "イモリ",
+      "nameEn": null,
+      "nameLatin": "Imori",
+      "nameLatinVariants": [],
+      "nameTh": "อิโมริ (นิวต์)",
+      "nameThVariants": [],
+      "image": null,
+      "imageSource": null,
+      "noImageReason": "No matching verified in-game image is present in the existing project capture sources; the ROM Japanese name is retained.",
+      "nameSource": {
+        "romProfileFileOffset": "0x02861D",
+        "romSha1": "c2103dd94e2a1a65a495fc02adc2e7d040f31212",
+        "thaiAndLatinGuideFiles": [
+          "data/stages/stage-1.json"
+        ],
+        "thaiNamesAreGuideTranscriptionsNotVerifiedThaiPatchStrings": true
+      }
+    },
+    "45": {
+      "nameJa": "カエル",
+      "nameEn": null,
+      "nameLatin": "Kaeru",
+      "nameLatinVariants": [],
+      "nameTh": "กบ",
+      "nameThVariants": [],
+      "image": null,
+      "imageSource": null,
+      "noImageReason": "No matching verified in-game image is present in the existing project capture sources; the ROM Japanese name is retained.",
+      "nameSource": {
+        "romProfileFileOffset": "0x028634",
+        "romSha1": "c2103dd94e2a1a65a495fc02adc2e7d040f31212",
+        "thaiAndLatinGuideFiles": [
+          "data/stages/stages-2-3.json"
+        ],
+        "thaiNamesAreGuideTranscriptionsNotVerifiedThaiPatchStrings": true
+      }
+    },
+    "46": {
+      "nameJa": "ザリガニ",
+      "nameEn": null,
+      "nameLatin": "Zarigani (crayfish)",
+      "nameLatinVariants": [],
+      "nameTh": "กุ้งเครย์ฟิชญี่ปุ่น (ซาริกานิ)",
+      "nameThVariants": [],
+      "image": "fish/46.png",
+      "imageSource": {
+        "sourceUrl": "https://note.com/holy_heron2678/n/nf6dccee118e2",
+        "sourceFrame": "references/real-fish-early/zarigani-gameplay.png",
+        "cropPx": [
+          300,
+          125,
+          625,
+          295
+        ],
+        "sourceCropFile": "guides-real/fish/extra-zarigani-gameplay.png",
+        "description": "Crop of the in-game fish picture shown in a player gameplay/catch-record capture; this is not a sprite extracted directly from the ROM."
+      },
+      "noImageReason": null,
+      "nameSource": {
+        "romProfileFileOffset": "0x02864B",
+        "romSha1": "c2103dd94e2a1a65a495fc02adc2e7d040f31212",
+        "thaiAndLatinGuideFiles": [
+          "data/stages/stages-2-3.json"
+        ],
+        "thaiNamesAreGuideTranscriptionsNotVerifiedThaiPatchStrings": true
+      }
+    },
+    "47": {
+      "nameJa": "カメ",
+      "nameEn": null,
+      "nameLatin": "Kame",
+      "nameLatinVariants": [],
+      "nameTh": "เต่าน้ำจืด",
+      "nameThVariants": [],
+      "image": "fish/47.png",
+      "imageSource": {
+        "sourceUrl": "https://www.youtube.com/watch?v=cU4RVrJVB4U&t=1077s",
+        "sourceFrame": "references/real-fish-middle/stage4/kame-catch-frame.jpg",
+        "cropPx": [
+          185,
+          332,
+          395,
+          455
+        ],
+        "sourceCropFile": "guides-real/fish/extra-kame-in-game.png",
+        "description": "Crop of the in-game fish picture shown in a player gameplay/catch-record capture; this is not a sprite extracted directly from the ROM."
+      },
+      "noImageReason": null,
+      "nameSource": {
+        "romProfileFileOffset": "0x028662",
+        "romSha1": "c2103dd94e2a1a65a495fc02adc2e7d040f31212",
+        "thaiAndLatinGuideFiles": [
+          "data/stages/stages-4-5.json"
+        ],
+        "thaiNamesAreGuideTranscriptionsNotVerifiedThaiPatchStrings": true
+      }
+    },
+    "48": {
+      "nameJa": "スッポン",
+      "nameEn": null,
+      "nameLatin": "Suppon",
+      "nameLatinVariants": [],
+      "nameTh": "ตะพาบน้ำ",
+      "nameThVariants": [],
+      "image": "fish/48.png",
+      "imageSource": {
+        "sourceUrl": "https://www.youtube.com/watch?v=livy1PWWRIo&t=369s",
+        "sourceFrame": "references/real-fish-middle/stage5/suppon-catch-frame.jpg",
+        "cropPx": [
+          252,
+          127,
+          388,
+          327
+        ],
+        "sourceCropFile": "guides-real/fish/extra-suppon-in-game.png",
+        "description": "Crop of the in-game fish picture shown in a player gameplay/catch-record capture; this is not a sprite extracted directly from the ROM."
+      },
+      "noImageReason": null,
+      "nameSource": {
+        "romProfileFileOffset": "0x028679",
+        "romSha1": "c2103dd94e2a1a65a495fc02adc2e7d040f31212",
+        "thaiAndLatinGuideFiles": [
+          "data/stages/stages-4-5.json"
+        ],
+        "thaiNamesAreGuideTranscriptionsNotVerifiedThaiPatchStrings": true
+      }
+    },
+    "49": {
+      "nameJa": "カニ",
+      "nameEn": null,
+      "nameLatin": "Kani",
+      "nameLatinVariants": [],
+      "nameTh": "ปู",
+      "nameThVariants": [],
+      "image": null,
+      "imageSource": null,
+      "noImageReason": "No matching verified in-game image is present in the existing project capture sources; the ROM Japanese name is retained.",
+      "nameSource": {
+        "romProfileFileOffset": "0x028690",
+        "romSha1": "c2103dd94e2a1a65a495fc02adc2e7d040f31212",
+        "thaiAndLatinGuideFiles": [
+          "data/stages/stage-6.json"
+        ],
+        "thaiNamesAreGuideTranscriptionsNotVerifiedThaiPatchStrings": true
+      }
+    }
+  }
+}
