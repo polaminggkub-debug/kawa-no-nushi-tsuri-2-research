@@ -113,21 +113,36 @@ export function renderMap(ctx) {
       fishIds: ctx.selectedFish ? pin.fishIds.filter((id) => id === ctx.selectedFish) : pin.fishIds,
     }))
     .filter((pin) => pin.fishIds.length)
-  const { sourceW, sourceH, originX, originY, scale, viewW, viewH } = ctx.mapGeometry(data, section)
+  const geometry = ctx.mapGeometry(data, section, filtered)
+  const {
+    sourceW,
+    sourceH,
+    originX,
+    originY,
+    scale,
+    viewW,
+    viewH,
+    terrainW,
+    terrainH,
+    gutterLeft,
+    gutterTop,
+  } = geometry
   ctx.renderMapSummary(section, filtered)
-  const pins = filtered.map((pin) => ctx.mapPinMarkup(pin, originX, originY, scale)).join('')
+  const pins = filtered
+    .map((pin) => ctx.mapPinMarkup(pin, originX, originY, scale, gutterLeft, gutterTop))
+    .join('')
   ctx.$('map-view').style.width = `${viewW}px`
   ctx.$('map-view').style.height = `${viewH}px`
   ctx.$('map-view').innerHTML =
-    `<img class="map-ground" src="${ctx.esc(data.fullImage)}" alt="${ctx.esc(`${stageTitle} · ${ctx.c.fullMap}`)}" style="width:${Math.round(sourceW * scale)}px;height:${Math.round(sourceH * scale)}px;left:${Math.round(-originX * scale)}px;top:${Math.round(-originY * scale)}px">${pins}`
+    `<div class="map-terrain-window" role="img" aria-label="${ctx.esc(`${stageTitle} · ${ctx.c.fullMap}`)}" style="width:${terrainW}px;height:${terrainH}px;left:${gutterLeft}px;top:${gutterTop}px"><img class="map-ground" src="${ctx.esc(data.fullImage)}" alt="" style="width:${Math.round(sourceW * scale)}px;height:${Math.round(sourceH * scale)}px;left:${Math.round(-originX * scale)}px;top:${Math.round(-originY * scale)}px"></div>${pins}`
   ctx.$('pin-details').hidden = true
   ctx.renderOverview(data, section)
   ctx.renderMapNavigation()
 }
 
-export function mapPinMarkup(ctx, pin, originX, originY, scale) {
-  const px = (pin.x * 16 + 8 - originX) * scale,
-    py = (pin.y * 16 + 8 - originY) * scale
+export function mapPinMarkup(ctx, pin, originX, originY, scale, gutterLeft = 0, gutterTop = 0) {
+  const px = (pin.x * 16 + 8 - originX) * scale + gutterLeft,
+    py = (pin.y * 16 + 8 - originY) * scale + gutterTop
   const names = pin.fishIds.map((id) => ctx.fishName(id)).join(', '),
     imgs = pin.fishIds.map((id) => ctx.species[id].visual.image).filter(Boolean)
   const tag = pin.fishIds.length === 1 ? 'a' : 'button'
@@ -142,7 +157,28 @@ export function mapPinMarkup(ctx, pin, originX, originY, scale) {
       '',
     )}${pin.fishIds.length > 1 ? `<span class="cluster-count">${pin.fishIds.length}</span>` : ''}</${tag}>`
 }
-export function mapGeometry(ctx, data, section) {
+function markerInsets(pins, selectedFish, originX, originY, cellW, cellH, scale) {
+  const insets = { left: 0, right: 0, top: 0, bottom: 0 }
+  for (const pin of pins) {
+    const centerX = pin.x * 16 + 8 - originX
+    const centerY = pin.y * 16 + 8 - originY
+    const shared = pin.fishIds.length > 1
+    const width = selectedFish ? 62 : shared ? 80 : 46
+    const height = selectedFish ? 38 : 36
+    insets.left = Math.max(insets.left, width / 2 + 3 - centerX * scale)
+    insets.right = Math.max(
+      insets.right,
+      width / 2 + (shared ? 8 : 0) + 3 - (cellW - centerX) * scale,
+    )
+    insets.top = Math.max(insets.top, height / 2 + (shared ? 9 : 0) + 3 - centerY * scale)
+    insets.bottom = Math.max(insets.bottom, height / 2 + 3 - (cellH - centerY) * scale)
+  }
+  return Object.fromEntries(
+    Object.entries(insets).map(([side, value]) => [side, Math.max(0, Math.ceil(value))]),
+  )
+}
+
+export function mapGeometry(ctx, data, section, pins = section?.pins || []) {
   const sourceW = data.width,
     sourceH = data.height,
     originX = section.col * 384,
@@ -150,17 +186,48 @@ export function mapGeometry(ctx, data, section) {
   const cellW = Math.max(1, Math.min(384, sourceW - originX)),
     cellH = Math.max(1, Math.min(384, sourceH - originY))
   const panelWidth = ctx.$('map-view').parentElement.clientWidth || window.innerWidth
-  const scale = Math.max(0.6, Math.min(2.2, (panelWidth - 4) / cellW, 620 / cellH)) * ctx.zoom
-  const viewW = Math.round(cellW * scale),
-    viewH = Math.round(cellH * scale)
-  return { sourceW, sourceH, originX, originY, scale, viewW, viewH }
+  const fitScale = Math.min(2.2, (panelWidth - 4) / cellW, 620 / cellH)
+  let scale = Math.max(0.3, fitScale)
+  for (let attempt = 0; attempt < 8; attempt += 1) {
+    const gutter = markerInsets(pins, ctx.selectedFish, originX, originY, cellW, cellH, scale)
+    const widthFit = (panelWidth - 4 - gutter.left - gutter.right) / cellW
+    const heightFit = (620 - gutter.top - gutter.bottom) / cellH
+    const nextScale = Math.max(0.3, Math.min(scale, widthFit, heightFit))
+    if (Math.abs(nextScale - scale) < 0.001) break
+    scale = nextScale
+  }
+  scale *= ctx.zoom
+  const gutter = markerInsets(pins, ctx.selectedFish, originX, originY, cellW, cellH, scale)
+  const terrainW = Math.round(cellW * scale),
+    terrainH = Math.round(cellH * scale),
+    viewW = terrainW + gutter.left + gutter.right,
+    viewH = terrainH + gutter.top + gutter.bottom
+  return {
+    sourceW,
+    sourceH,
+    originX,
+    originY,
+    scale,
+    viewW,
+    viewH,
+    terrainW,
+    terrainH,
+    gutterLeft: gutter.left,
+    gutterTop: gutter.top,
+  }
 }
+function mapZoomHelp(lang) {
+  if (lang === 'th') return 'กด + เพื่อขยายจุดที่อยู่ชิดกัน'
+  if (lang === 'ja') return '近い地点は＋で拡大できます。'
+  return 'Use + to enlarge closely spaced points.'
+}
+
 export function renderMapSummary(ctx, section, filtered) {
   const counts = new Set(filtered.flatMap((pin) => pin.fishIds)).size
   ctx.$('map-summary').textContent =
     `${ctx.c.mapSection(section.col + 1, section.row + 1)} · ${ctx.c.point(filtered.length)} · ${counts} ${ctx.c.species}`
   ctx.$('pin-help').textContent = ctx.selectedFish
-    ? `${ctx.c.selectedTarget} ${ctx.fishName(ctx.selectedFish)}. ${ctx.c.point(filtered.length)}.`
+    ? `${ctx.c.selectedTarget} ${ctx.fishName(ctx.selectedFish)}. ${ctx.c.point(filtered.length)}. ${mapZoomHelp(ctx.lang)}`
     : `${ctx.c.noTarget} ${ctx.lang === 'th' ? 'กดรูปปลาเพื่อดูรายละเอียด หรือกดจุดซ้อนเพื่อเลือกชนิด' : ctx.lang === 'ja' ? '魚画像は詳細へ。重なった地点は魚種を選択。' : 'Fish portraits open details; shared points let you choose a species'}.`
 }
 export function renderMapNavigation(ctx) {

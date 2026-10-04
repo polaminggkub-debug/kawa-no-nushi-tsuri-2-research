@@ -1,14 +1,16 @@
+import { progressMarkup, bindNotebookProgress } from './notebook-progress.js'
+
 const copy = {
   en: {
     title: 'Fish journal · route checklist',
-    intro: () => 'For route coverage, target first-occurrence species before repeats.',
-    recordableLabel: (stage) => `species found in Area ${stage} with a journal slot`,
-    newCount: (count) => `New on the Area 1 → 6 route: ${count}`,
-    repeatedCount: (count) => `Also found earlier: ${count}`,
+    recordableLabel: (stage) => `map species with journal slots in Area ${stage}`,
+    newCount: (count) => `New on the full route: ${count}`,
+    repeatedCount: (count) => `Also occur earlier: ${count}`,
     progress: (stage, count, total) =>
       `Route plan through Area ${stage}: ${count}/${total} unique species · not your save`,
-    areaCountsTitle: 'Species with journal slots by area · some occur in multiple areas',
-    areaCount: (stage, count) => `Area ${stage}: ${count} available`,
+    areaCountsTitle:
+      'Map species with journal slots available by area · some occur in multiple areas',
+    areaCount: (stage, count) => `Area ${stage}: ${count} available here`,
     newTitle: (count) => `Show the ${count} new species to catch here`,
     repeated: (count) => `Also found in an earlier area · ${count}`,
     repeatedNote:
@@ -20,25 +22,26 @@ const copy = {
     equipmentAction: 'Compatible gear',
     actionsFor: (name) => `Next actions for ${name}`,
     id: 'ID',
-    routeNote:
-      'The game groups recorded fish by the area of their largest-size record, so its page counts can differ from this guide. Add all six in-game page counts to check your progress out of 66. If a name is missing here, check the other pages before pursuing it again.',
+    countNoteTitle: 'Why the count in your game journal can differ',
+    countNote: () =>
+      'The game counts species whose largest-size record is assigned to this area. There is no fixed target for each page. Add the six game-page counts to check progress out of 66. Check both fish lists and the other game pages before pursuing a missing species.',
     triggerLimit:
       'The ROM trace confirms the larger-size check, but does not prove which fishing outcomes trigger the journal update.',
     evidence: 'ROM evidence and method',
     evidenceLink: 'Read the notebook record research',
+    spawnNote:
+      'These are the game’s configured area candidates. If a point has no fish in your current run, open the map to check whether this species has other recorded points.',
     empty: 'No new species are listed for this area in the route.',
   },
   ja: {
     title: '魚図鑑 · 全66種ルートチェック',
-    intro: () =>
-      'ルートを埋めるなら、前のエリアにもいる魚より、このエリアで初めて出る魚を先に狙いましょう。',
-    recordableLabel: (stage) => `種がエリア${stage}に出現し、図鑑に記録できます`,
-    newCount: (count) => `1→6エリアルートで初登場: ${count}種`,
-    repeatedCount: (count) => `前のエリアにも登場: ${count}種`,
+    recordableLabel: (stage) => `エリア${stage}に出現地点があり、図鑑に記録できる魚種`,
+    newCount: (count) => `全エリアルートで初登場: ${count}種`,
+    repeatedCount: (count) => `前のエリアにも出現: ${count}種`,
     progress: (stage, count, total) =>
       `エリア${stage}までのルート計画: ${count}/${total}種 · セーブデータの進行状況ではありません`,
-    areaCountsTitle: 'エリア別の図鑑対象種数 · 複数エリアに出現する魚もいます',
-    areaCount: (stage, count) => `エリア${stage}: ${count}種`,
+    areaCountsTitle: 'エリア別・出現地点のある図鑑対象種 · 複数エリアに出現する魚もいます',
+    areaCount: (stage, count) => `エリア${stage}: ${count}種が出現可能`,
     newTitle: (count) => `このエリアで釣る新しい魚 ${count}種を見る`,
     repeated: (count) => `前のエリアにも登場 · ${count}種`,
     repeatedNote:
@@ -50,24 +53,26 @@ const copy = {
     equipmentAction: '使える道具',
     actionsFor: (name) => `${name}の次の操作`,
     id: 'ID',
-    routeNote:
-      'ゲーム内図鑑は最大サイズを記録したエリア別に魚を表示するため、このガイドの出現種数とは異なることがあります。ゲーム内6エリアの数を合計し、全66種に対する進行状況を確認してください。名前が見つからないときは、再度狙う前に他のエリアのページも確認しましょう。',
+    countNoteTitle: 'ゲーム内図鑑の数と異なる理由',
+    countNote: () =>
+      'ゲーム内の数は、最大サイズの記録がこのエリアにある魚種数です。各ページに固定の目標数はありません。6ページの数を合計して全66種の進行を確認し、未記録の魚を探す前に下の両一覧と他のページを確認してください。',
     triggerLimit:
       'ROMコードではサイズ比較を確認しましたが、どの釣果で図鑑更新処理が呼ばれるかは確認できていません。',
     evidence: 'ROMの根拠と調査方法',
     evidenceLink: '魚図鑑の記録に関する調査を読む',
+    spawnNote:
+      'ゲームの設定上、このエリアに出現する魚です。現在のプレイで地点に魚がいないときは、地図を開いて同種の別地点があるか確認してください。',
     empty: 'このエリアにルート上の新しい魚種はありません。',
   },
   th: {
     title: 'สมุดปลา · เส้นทางเก็บครบ 66 ชนิด',
-    intro: () => 'ถ้าจะเก็บครบตามเส้นทาง ให้เก็บปลาที่เพิ่งพบในด่านนี้ก่อนปลาที่ซ้ำกับด่านก่อน',
-    recordableLabel: (stage) => `ชนิดที่พบในด่าน ${stage} และมีช่องในสมุด`,
-    newCount: (count) => `ปลาใหม่ตามเส้นทางด่าน 1 → 6: ${count} ชนิด`,
-    repeatedCount: (count) => `พบในด่านก่อนแล้ว: ${count} ชนิด`,
+    recordableLabel: (stage) => `ชนิดที่มีจุดในแผนที่ด่าน ${stage} และมีช่องในสมุด`,
+    newCount: (count) => `ปลาใหม่ในเส้นทางครบทุกด่าน: ${count} ชนิด`,
+    repeatedCount: (count) => `พบได้ในด่านก่อนด้วย: ${count} ชนิด`,
     progress: (stage, count, total) =>
       `แผนเก็บปลาไม่ซ้ำถึงด่าน ${stage}: ${count}/${total} ชนิด · ไม่ใช่ความคืบหน้าในเซฟ`,
-    areaCountsTitle: 'ปลาที่มีช่องในสมุด แยกตามด่าน · บางชนิดพบได้หลายด่าน',
-    areaCount: (stage, count) => `ด่าน ${stage}: พบได้ ${count} ชนิด`,
+    areaCountsTitle: 'ชนิดปลาที่มีช่องในสมุดและมีจุดตก แยกตามด่าน · บางชนิดพบได้หลายด่าน',
+    areaCount: (stage, count) => `ด่าน ${stage}: มีจุดตกที่บันทึกได้ ${count} ชนิด`,
     newTitle: (count) => `ดูรายชื่อปลาใหม่ ${count} ชนิดที่ควรเก็บในด่านนี้`,
     repeated: (count) => `พบในด่านก่อนหน้าด้วย · ${count} ชนิด`,
     repeatedNote:
@@ -79,12 +84,15 @@ const copy = {
     equipmentAction: 'ดูอุปกรณ์ที่ใช้ได้',
     actionsFor: (name) => `เลือกทำต่อสำหรับ${name}`,
     id: 'ID',
-    routeNote:
-      'เลขในสมุดนับปลาที่บันทึกสถิติขนาดสูงสุดไว้ในด่านนั้น จึงอาจต่างจากจำนวนที่พบได้บนเว็บ เช็กความคืบหน้าโดยบวกเลขทั้ง 6 ด่านในสมุดแล้วเทียบกับ 66 ถ้าชื่อไม่อยู่หน้านี้ ให้เช็กหน้าอื่นก่อนตามหาซ้ำ',
+    countNoteTitle: 'ทำไมเลขในสมุดเกมถึงไม่เท่ากับจำนวนในไกด์',
+    countNote: () =>
+      'เกมนับชนิดปลาที่สถิติขนาดใหญ่สุดอยู่ในด่านนี้ แต่ละหน้าจึงไม่มียอดเป้าหมายตายตัว บวกเลขทั้ง 6 หน้าในเกมเพื่อเช็กว่าครบ 66 หรือยัง ก่อนตามหาปลาเพิ่ม ให้เทียบชื่อจากทั้งสองรายการด้านล่างกับทุกหน้าในสมุด',
     triggerLimit:
       'โค้ด ROM ยืนยันว่าตรวจค่าขนาดที่มากกว่าสถิติเดิม แต่ยังระบุไม่ได้ว่าผลการตกแบบใดเรียกการอัปเดตสมุด',
     evidence: 'หลักฐาน ROM และวิธีตรวจสอบ',
     evidenceLink: 'อ่านบันทึกการแกะระบบสมุดปลา',
+    spawnNote:
+      'รายการนี้คือปลาที่เกมตั้งไว้ในด่าน บางจุดอาจไม่มีปลาในรอบที่เล่น ถ้าจุดที่ไปไม่มีปลา ให้เปิดแผนที่ตรวจว่าปลาชนิดนั้นมีจุดอื่นหรือไม่',
     empty: 'ไม่มีปลาใหม่ตามเส้นทางในด่านนี้',
   },
 }
@@ -186,10 +194,10 @@ function areaCountLinks(ctx, guide, copyText) {
   return `<div class="notebook-area-counts"><p>${ctx.esc(copyText.areaCountsTitle)}</p><nav aria-label="${ctx.esc(copyText.areaCountsTitle)}">${links}</nav></div>`
 }
 
-function evidenceLink(ctx, copyText) {
+function evidenceLink(ctx, copyText, progressText) {
   const href =
     'https://github.com/polaminggkub-debug/kawa-no-nushi-tsuri-2-research/blob/main/docs/notebook-completion-research.md'
-  return `<details class="notebook-evidence"><summary>${ctx.esc(copyText.evidence)}</summary><p>${ctx.esc(copyText.triggerLimit)}</p><p><a href="${href}">${ctx.esc(copyText.evidenceLink)} ↗</a></p></details>`
+  return `<details class="notebook-evidence"><summary>${ctx.esc(copyText.evidence)}</summary><p class="notebook-progress">${ctx.esc(progressText)}</p><p>${ctx.esc(copyText.triggerLimit)}</p><p><a href="${href}">${ctx.esc(copyText.evidenceLink)} ↗</a></p></details>`
 }
 
 export function notebookGuideMarkup(ctx) {
@@ -208,7 +216,7 @@ export function notebookGuideMarkup(ctx) {
   const newTitle = (count) => copyText.newTitle(count)
   const detailsOpen = ctx.openNotebookGuide ? ' open' : ''
   const newList = newIds.length
-    ? `<details class="notebook-new"${detailsOpen}><summary>${ctx.esc(newTitle(newIds.length))}</summary><div class="notebook-fish-list">${fishList(ctx, copyText, newIds)}</div></details>`
+    ? `<details class="notebook-new"${detailsOpen}><summary>${ctx.esc(newTitle(newIds.length))}</summary><p class="notebook-target-note">${ctx.esc(copyText.spawnNote)}</p><div class="notebook-fish-list">${fishList(ctx, copyText, newIds)}</div></details>`
     : `<p class="notebook-empty">${ctx.esc(copyText.empty)}</p>`
   const repeated = detailsList(
     ctx,
@@ -228,7 +236,7 @@ export function notebookGuideMarkup(ctx) {
   )
   const progress = routeProgress(ctx, guide, ctx.activeStage)
   const total = guide.totals.notebookEligibleSpecies
-  return `<div class="notebook-guide-panel" data-stage="${ctx.activeStage}" data-notebook-total="${recordableCount}" data-notebook-new="${newIds.length}" data-notebook-repeated="${repeatedIds.length}"><div class="notebook-guide-heading"><div><p class="notebook-eyebrow">${ctx.esc(copyText.title)}</p><h3>${ctx.esc(ctx.c.area(ctx.activeStage))}</h3></div></div><div class="notebook-count-summary"><p class="notebook-recordable"><strong>${recordableCount}</strong><span>${ctx.esc(copyText.recordableLabel(ctx.activeStage))}</span></p><div class="notebook-count-breakdown"><p>${ctx.esc(copyText.newCount(newIds.length))}</p><p>${ctx.esc(copyText.repeatedCount(repeatedIds.length))}</p></div></div><p class="notebook-intro">${ctx.esc(copyText.intro())}</p><p class="notebook-progress">${ctx.esc(copyText.progress(ctx.activeStage, progress, total))}</p>${areaCountLinks(ctx, guide, copyText)}${newList}${repeated}${excluded}<p class="notebook-route-note">${ctx.esc(copyText.routeNote)}</p>${evidenceLink(ctx, copyText)}</div>`
+  return `<div class="notebook-guide-panel" data-stage="${ctx.activeStage}" data-notebook-total="${recordableCount}" data-notebook-new="${newIds.length}" data-notebook-repeated="${repeatedIds.length}"><div class="notebook-guide-heading"><div><p class="notebook-eyebrow">${ctx.esc(copyText.title)}</p><h3>${ctx.esc(ctx.c.area(ctx.activeStage))}</h3></div></div><div class="notebook-count-summary"><p class="notebook-recordable"><strong>${recordableCount}</strong><span>${ctx.esc(copyText.recordableLabel(ctx.activeStage))}</span></p><div class="notebook-count-breakdown"><p>${ctx.esc(copyText.newCount(newIds.length))}</p><p>${ctx.esc(copyText.repeatedCount(repeatedIds.length))}</p></div></div><section class="notebook-count-explainer"><h4>${ctx.esc(copyText.countNoteTitle)}</h4><p>${ctx.esc(copyText.countNote(ctx.activeStage, recordableCount, newIds.length, repeatedIds.length))}</p></section>${areaCountLinks(ctx, guide, copyText)}${progressMarkup(ctx)}${newList}${repeated}${excluded}${evidenceLink(ctx, copyText, copyText.progress(ctx.activeStage, progress, total))}</div>`
 }
 
 export function renderNotebookGuide(ctx) {
@@ -237,4 +245,5 @@ export function renderNotebookGuide(ctx) {
   const markup = notebookGuideMarkup(ctx)
   mount.innerHTML = markup
   mount.hidden = !markup
+  if (markup) bindNotebookProgress(ctx, mount)
 }

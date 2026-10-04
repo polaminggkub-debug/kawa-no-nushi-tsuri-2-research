@@ -41,7 +41,12 @@ def build(rom: bytes) -> dict[str, object]:
         verify(rom, 1, 0xBFD6, "b9 3c 0c c9 05 00 d0 07 98 9f fa 2a 7f"),
         verify(rom, 1, 0xBFF4, "b9 3c 0c c9 06 00 d0 07 98 9f fa 2a 7f"),
         verify(rom, 1, 0xC258, "a5 06 c5 12 d0 01 60"),
+        verify(rom, 1, 0xCE84, "af 8e 2a 7f 4a 85 3e 22 4a da 00"),
+        verify(rom, 1, 0xCEAB, "af 90 2a 7f 38 ef 8e 2a 7f 4a 85 3e 22 4a da 00"),
         verify(rom, 1, 0xCED7, "af 92 2a 7f 38 ef 90 2a 7f 4a 85 3e 22 4a da 00"),
+        verify(rom, 1, 0xCF03, "af 94 2a 7f 38 ef 92 2a 7f 4a 85 3e 22 4a da 00"),
+        verify(rom, 1, 0xCF2F, "af 96 2a 7f 38 ef 94 2a 7f 4a 85 3e 22 4a da 00"),
+        verify(rom, 1, 0xCF5B, "af 98 2a 7f 38 ef 96 2a 7f 4a 85 3e 22 4a da 00"),
         verify(rom, 1, 0xD300, "ad e8 11 3a 0a aa da bd 4c 0e 85 3e 22 4a da 00"),
         verify(rom, 1, 0xD32D, "da bd c8 0d 85 3e 22 4a da 00"),
     ]
@@ -53,7 +58,7 @@ def build(rom: bytes) -> dict[str, object]:
         "recordSizeArray": {"address": "$7E:0DC8", "entryWidthBytes": 2, "entries": 0x42},
         "callbackCounter": {"address": "$7E:0E4C", "entryWidthBytes": 2, "limit": 0x3E8, "displayRead": "01:D300..D30C (file offset 0x00D300) formats the active profile's value as decimal for a game display; this trace does not identify its player-facing label."},
         "rule": "A profile ID above 0x42 exits before indexing. For IDs 1..0x42, the per-profile callback counter increments, saturating at 0x03E8. Separately, current raw size is compared against that ID's prior best at $0DC8. Equal or smaller sizes leave the best size and recorded area unchanged. A strictly larger size replaces the best and writes the current area to that species' single area slot.",
-        "notebookPages": "The notebook scans all area words and appends the species index for values 1..6. Its six metadata values are cumulative byte endpoints into the shared list; derive each page count as (current endpoint - previous endpoint) / 2. Thus one species appears on at most one area page at a time; a later personal best in another area moves that entry instead of creating a second copy.",
+        "notebookPages": "The notebook scans all area words and appends the species index for values 1..6. Its six metadata values are cumulative byte endpoints into the shared list; derive each page count as (current endpoint - previous endpoint) / 2. The six rendered formulas are area 1: 2A8E/2; area 2: (2A90-2A8E)/2; area 3: (2A92-2A90)/2; area 4: (2A94-2A92)/2; area 5: (2A96-2A94)/2; area 6: (2A98-2A96)/2. Each divides a byte boundary difference by two to get the number of two-byte species entries. Thus one species appears on at most one area page at a time; a later personal best in another area moves that entry instead of creating a second copy. These are current saved-record counts, not the guide route's first-occurrence additions or each area's total available fish.",
         "checks": checks,
     }
 

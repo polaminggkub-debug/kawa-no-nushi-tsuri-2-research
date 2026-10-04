@@ -29,8 +29,16 @@ For Area 3, **15** eligible species occur in the spawn table: **11** first appea
 
 To determine overall completion from the notebook contents page, add its six current page counts. Each recorded species belongs to one area page, so this sum is the current number of distinct recorded species; compare it with 66. Do not add the website's six available-species totals, because they include species shared between areas.
 
+For example, the owner's contents-page photograph shows **3 + 10 + 13 + 17 + 0 + 0 = 43/66** recorded species, leaving **23 distinct species** globally. It does not identify which species are missing. In particular, Area 3's 13 is neither the route's 11 additions nor a fixed required page count. Compare the actual fish names across all six notebook pages with the checklist before deciding what to catch next.
+
 
 Each stage also contains one profile outside the 66 notebook slots: `44..49` respectively. The notebook updater rejects IDs above `42`; these extra profiles do not fill additional notebook slots. Profile `43` is unmapped. The guide retains these fish/creature entries in the general map catalogue and marks their notebook exclusion separately.
+
+## Optional browser checklist
+
+The map guide lets a player manually tick a species after confirming its entry in the game notebook. A tick is keyed by species ID, shared between all areas and languages, and counted once toward a separate **marked by you / 66** total. A filter hides ticked eligible species so the remaining targets can be followed directly to their map points or compatible equipment. Profiles outside the 66 slots have no tick control.
+
+This is a browser convenience, not ROM-derived save progress: the website does not read or alter an emulator save. Marks are stored locally in this browser and do not synchronize to other devices. If storage is blocked, the page reports that marks are temporary. Untick a species to correct a manual entry; a tick does not prove the game recorded it.
 
 ## Evidence and reproducibility
 
@@ -38,6 +46,7 @@ Each stage also contains one profile outside the 66 notebook slots: `44..49` res
 - `01:BF30..C00B` scans 66 area words at `$0C3C`, puts IDs with area 1–6 into the corresponding lists in `$7F:2AFA`, and writes six cumulative byte boundaries at `$7F:2A8E..2A98`.
 - Record updater `01:8B00..8C8F` indexes species by `2*(id-1)`. It compares selected size `$1EB1` against the existing best at `$0DC8+X`, and writes the current area `$085A` to `$0C3C+X` only on a strictly larger record. IDs above `42` are rejected.
 - `01:CED7..CEE4` displays Area 3’s current page count as `($7F:2A92 − $7F:2A90) / 2`; those values are the Area 3 and Area 2 cumulative byte endpoints. This counts unique species assigned to that page, independently of the fish’s update counter at `$0E4C`.
+- The same contents-page rule is verified for every area: `01:CE84` uses `2A8E / 2`; `01:CEAB` uses `(2A90 − 2A8E) / 2`; `01:CF03` uses `(2A94 − 2A92) / 2`; `01:CF2F` uses `(2A96 − 2A94) / 2`; `01:CF5B` uses `(2A98 − 2A96) / 2`. All six send their count to formatter `00:DA4A`. These are save-dependent list lengths, not constants for completion.
 - `01:C258..C2EA` sorts lists using the corresponding values in `$0CC0` and `$0D44`.
 - Six map ID tables start at CPU `0C:C800` (file `0x064800`), each 256 two-byte rows, separated by `0x200`. Duplicated rows count once per species in this guide; they are not additional notebook slots.
 

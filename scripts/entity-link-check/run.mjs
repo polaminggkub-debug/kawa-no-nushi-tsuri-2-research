@@ -55,3 +55,9 @@ await import('./wing-palette.mjs')
 await import('./fly-fallback-route.mjs')
 
 await import('./map-anchor.mjs')
+
+await import('./notebook-progress.mjs')
+
+await import('./notebook-card-action.mjs')
+
+await import('./map-marker-bounds.mjs')

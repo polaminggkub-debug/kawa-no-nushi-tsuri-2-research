@@ -63,6 +63,7 @@ async function checkLocale(lang) {
       `${lang} route total is wrong at Area ${stage.stage}`,
     )
     assert(html.includes('notebook-completion-research.md'))
+    checkCountExplanation(html, lang, stage)
     const newList = html.match(/<details class="notebook-new"[\s\S]*?<\/details>/)?.[0] || ''
     assert.equal((newList.match(/class="notebook-fish"/g) || []).length, stage.firstOccurrenceCount)
     if (stage.repeatedFromEarlierStages.length)
@@ -79,6 +80,21 @@ async function checkLocale(lang) {
   }
 }
 
+function checkCountExplanation(html, lang, stage) {
+  const expected = [6, 12, 15, 22, 27, 15][stage.stage - 1]
+  assert.match(html, new RegExp(`data-notebook-total="${expected}"`))
+  const note = html.indexOf('class="notebook-count-explainer"')
+  assert(note > html.indexOf('class="notebook-count-summary"'))
+  assert(note < html.indexOf('class="notebook-new"'))
+  const statements = {
+    en: 'There is no fixed target for each page.',
+    ja: '各ページに固定の目標数はありません。',
+    th: 'แต่ละหน้าจึงไม่มียอดเป้าหมายตายตัว',
+  }
+  assert(html.includes(statements[lang]))
+  assert(!html.includes('class="notebook-route-note"'))
+}
+
 function makeContext(lang, stage) {
   const suffix = lang === 'en' ? '' : `.${lang}`
   const fishVisuals = data.fishVisuals
@@ -91,7 +107,7 @@ function makeContext(lang, stage) {
       },
     ]),
   )
-  const mount = { innerHTML: '', hidden: true }
+  const mount = { innerHTML: '', hidden: true, querySelector: () => null }
   return {
     lang,
     activeStage: stage,

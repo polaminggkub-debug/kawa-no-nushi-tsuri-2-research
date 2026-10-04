@@ -86,6 +86,38 @@ function fireworksCardAction(ctx, item) {
   return `<div class="card-quest-next-action" data-quest-next-action="fireworks-recovery"><strong>${ctx.esc(text.title)}</strong><p>${ctx.esc(text.body)}</p><p><a data-quest-fireworks-shop href="${ctx.esc(fireworksShopHref(ctx))}">${ctx.esc(text.shop)} ↗</a></p></div>`
 }
 
+function notebookCardAction(ctx, item) {
+  if (!itemMatches(item, '05')) return ''
+  const text = {
+    th: {
+      title: 'อยากเก็บปลาให้ครบสมุด?',
+      body: 'สมุดนับหนึ่งรายการต่อปลาหนึ่งชนิด ดูปลาใหม่กับปลาที่ซ้ำในแต่ละด่าน แล้วติ๊กตามที่เช็กได้ในเกม',
+      link: 'เปิดรายการเช็กสมุดแยกตามด่าน',
+    },
+    ja: {
+      title: '釣りノートを全部埋めたい？',
+      body: 'ノートは魚種ごとに1件です。エリアごとの新規・重複対象を見て、ゲーム内で確認した魚にチェックできます。',
+      link: 'エリア別のノート一覧を開く',
+    },
+    en: {
+      title: 'Want to complete the fishing notebook?',
+      body: 'The notebook keeps one entry per species. See new and repeated fish in each area, then mark what you have checked in the game.',
+      link: 'Open the area-by-area notebook checklist',
+    },
+  }[ctx.lang]
+  const query = new URLSearchParams({ stage: String(ctx.locationStage || 1) })
+  const returnPath = ctx.sourceReturn?.()
+  if (returnPath) query.set('return', returnPath)
+  const href = `${ctx.detailFile('maps')}?${query}#notebook-guide`
+  return `<aside class="card-quest-next-action notebook-card-action" data-notebook-item-action><strong>${ctx.esc(text.title)}</strong><p>${ctx.esc(text.body)}</p><p><a class="notebook-guide-link" href="${ctx.esc(href)}">${ctx.esc(text.link)} ↗</a></p></aside>`
+}
+
 export function questNextActions(ctx, item) {
-  return [candleCardAction(ctx, item), fireworksCardAction(ctx, item)].filter(Boolean).join('')
+  return [
+    candleCardAction(ctx, item),
+    fireworksCardAction(ctx, item),
+    notebookCardAction(ctx, item),
+  ]
+    .filter(Boolean)
+    .join('')
 }

@@ -49,17 +49,154 @@
     updateUrl: () => updateUrl
   });
 
+  // src/pages/maps/notebook-progress.js
+  var storageKey = "kawa-notebook-manual-v1";
+  var text = {
+    en: {
+      title: "Your checklist",
+      count: (n, total) => `Marked by you: ${n}/${total} species`,
+      note: "Tick only after checking the fish in your game journal. Saved in this browser; this does not read or change your game save. The same fish shares one tick across all areas.",
+      mark: "Checked in my game journal",
+      temporary: "Browser storage is unavailable. Ticks last only while this page stays open.",
+      remaining: "Show only unmarked fish",
+      empty: "You have marked every fish in this list. Uncheck the filter to review them."
+    },
+    ja: {
+      title: "自分のチェックリスト",
+      count: (n, total) => `自分で確認済み: ${n}/${total}種`,
+      note: "ゲーム内図鑑を確認してからチェックしてください。このブラウザに保存され、ゲームのセーブは読み書きしません。同じ魚のチェックは全エリアで共通です。",
+      mark: "ゲーム内図鑑で確認済み",
+      temporary: "ブラウザに保存できません。このページを閉じるとチェックは失われます。",
+      remaining: "未チェックの魚だけ表示",
+      empty: "このリストはすべてチェック済みです。フィルターを外すと再確認できます。"
+    },
+    th: {
+      title: "รายการที่คุณเช็กเอง",
+      count: (n, total) => `คุณติ๊กแล้ว ${n}/${total} ชนิด`,
+      note: "ติ๊กหลังเช็กว่าปลาอยู่ในสมุดเกมแล้ว จำไว้เฉพาะเบราว์เซอร์นี้ ไม่ได้อ่านหรือแก้เซฟเกม ปลาชนิดเดียวกันใช้เครื่องหมายเดียวกันทุกด่าน",
+      mark: "เช็กแล้วว่ามีในสมุดเกม",
+      temporary: "เบราว์เซอร์ไม่อนุญาตให้บันทึก เครื่องหมายจะอยู่แค่ขณะที่เปิดหน้านี้",
+      remaining: "แสดงเฉพาะปลาที่ยังไม่ได้ติ๊ก",
+      empty: "ติ๊กครบทุกปลาในรายการนี้แล้ว เอาตัวกรองออกเพื่อดูรายการอีกครั้ง"
+    }
+  };
+  var memory = [];
+  var onlyRemaining = false;
+  function normalizeMarks(value, eligible) {
+    if (!Array.isArray(value)) return [];
+    return [...new Set(value.filter((id) => typeof id === "string" && eligible.has(id)))];
+  }
+  function eligibleNotebookIds(guide) {
+    return new Set(
+      Object.entries(guide.species).filter(([, entry]) => entry.notebookEligible === true).map(([id]) => id)
+    );
+  }
+  function readNotebookMarks(storage, eligible) {
+    try {
+      const parsed = JSON.parse(storage.getItem(storageKey) || "[]");
+      memory = normalizeMarks(parsed, eligible);
+      return { ids: memory, persistent: true };
+    } catch {
+      memory = normalizeMarks(memory, eligible);
+      return { ids: memory, persistent: false };
+    }
+  }
+  function writeNotebookMarks(storage, ids, eligible) {
+    memory = normalizeMarks(ids, eligible);
+    try {
+      storage.setItem(storageKey, JSON.stringify(memory));
+      return true;
+    } catch {
+      return false;
+    }
+  }
+  function progressMarkup(ctx) {
+    const c = text[ctx.lang] || text.en;
+    return `<section class="notebook-manual"><h4>${ctx.esc(c.title)}</h4><p class="notebook-manual-count" role="status" aria-live="polite"></p><p>${ctx.esc(c.note)}</p><label class="notebook-remaining"><input type="checkbox" data-notebook-remaining> ${ctx.esc(c.remaining)}</label></section>`;
+  }
+  function storageAccess() {
+    try {
+      return window.localStorage;
+    } catch {
+      return null;
+    }
+  }
+  function addCheckbox(ctx, card, id, c) {
+    const label = document.createElement("label");
+    label.className = "notebook-mark";
+    const input = document.createElement("input");
+    input.type = "checkbox";
+    input.dataset.notebookMark = id;
+    input.setAttribute("aria-label", `${c.mark}: ${ctx.species[id].name}`);
+    label.append(input, document.createTextNode(` ${c.mark}`));
+    card.append(label);
+  }
+  function updateProgress(mount, eligible, ids, c, persistent) {
+    mount.querySelector(".notebook-manual-count").textContent = c.count(ids.length, eligible.size);
+    mount.querySelectorAll("[data-notebook-mark]").forEach((input) => {
+      input.checked = ids.includes(input.dataset.notebookMark);
+      const card = input.closest("[data-notebook-card]");
+      card.classList.toggle("notebook-marked", input.checked);
+      card.hidden = onlyRemaining && input.checked;
+    });
+    mount.querySelector("[data-notebook-remaining]").checked = onlyRemaining;
+    mount.querySelector(".notebook-excluded")?.toggleAttribute("hidden", onlyRemaining);
+    mount.querySelector(".notebook-manual-warning").textContent = persistent ? "" : c.temporary;
+    mount.querySelectorAll(".notebook-fish-list").forEach((list) => {
+      const eligibleCards = [...list.querySelectorAll("[data-notebook-mark]")];
+      const empty = list.nextElementSibling;
+      if (empty?.classList.contains("notebook-list-complete"))
+        empty.hidden = !eligibleCards.length || eligibleCards.some((input) => !input.checked) || !onlyRemaining;
+    });
+  }
+  function addListMessages(mount, c) {
+    mount.querySelectorAll(".notebook-fish-list").forEach((list) => {
+      if (!list.querySelector("[data-notebook-mark]")) return;
+      const message = document.createElement("p");
+      message.className = "notebook-list-complete";
+      message.textContent = c.empty;
+      message.hidden = true;
+      list.after(message);
+    });
+  }
+  function bindNotebookProgress(ctx, mount) {
+    if (!ctx.notebookCompletion?.species || !mount.querySelector(".notebook-manual")) return;
+    const c = text[ctx.lang] || text.en;
+    const eligible = eligibleNotebookIds(ctx.notebookCompletion);
+    const storage = storageAccess();
+    const state = readNotebookMarks(storage, eligible);
+    mount.querySelectorAll("[data-notebook-card]").forEach((card) => {
+      const id = card.dataset.notebookCard;
+      if (eligible.has(id)) addCheckbox(ctx, card, id, c);
+    });
+    const warning = document.createElement("p");
+    warning.className = "notebook-manual-warning";
+    mount.querySelector(".notebook-manual").append(warning);
+    addListMessages(mount, c);
+    updateProgress(mount, eligible, state.ids, c, state.persistent);
+    mount.onchange = (event) => {
+      const input = event.target;
+      if (input.matches("[data-notebook-remaining]")) onlyRemaining = input.checked;
+      else if (input.matches("[data-notebook-mark]")) {
+        const id = input.dataset.notebookMark;
+        state.ids = readNotebookMarks(storage, eligible).ids;
+        state.ids = input.checked ? [.../* @__PURE__ */ new Set([...state.ids, id])] : state.ids.filter((entry) => entry !== id);
+        state.persistent = writeNotebookMarks(storage, state.ids, eligible);
+      } else return;
+      updateProgress(mount, eligible, state.ids, c, state.persistent);
+    };
+  }
+
   // src/pages/maps/notebook-guide.js
   var copy = {
     en: {
       title: "Fish journal · route checklist",
-      intro: () => "For route coverage, target first-occurrence species before repeats.",
-      recordableLabel: (stage) => `species found in Area ${stage} with a journal slot`,
-      newCount: (count) => `New on the Area 1 → 6 route: ${count}`,
-      repeatedCount: (count) => `Also found earlier: ${count}`,
+      recordableLabel: (stage) => `map species with journal slots in Area ${stage}`,
+      newCount: (count) => `New on the full route: ${count}`,
+      repeatedCount: (count) => `Also occur earlier: ${count}`,
       progress: (stage, count, total) => `Route plan through Area ${stage}: ${count}/${total} unique species · not your save`,
-      areaCountsTitle: "Species with journal slots by area · some occur in multiple areas",
-      areaCount: (stage, count) => `Area ${stage}: ${count} available`,
+      areaCountsTitle: "Map species with journal slots available by area · some occur in multiple areas",
+      areaCount: (stage, count) => `Area ${stage}: ${count} available here`,
       newTitle: (count) => `Show the ${count} new species to catch here`,
       repeated: (count) => `Also found in an earlier area · ${count}`,
       repeatedNote: "These species already have one journal slot. An equal or smaller size leaves the record unchanged; when the game records a larger size here, the existing entry moves to this area.",
@@ -70,21 +207,22 @@
       equipmentAction: "Compatible gear",
       actionsFor: (name) => `Next actions for ${name}`,
       id: "ID",
-      routeNote: "The game groups recorded fish by the area of their largest-size record, so its page counts can differ from this guide. Add all six in-game page counts to check your progress out of 66. If a name is missing here, check the other pages before pursuing it again.",
+      countNoteTitle: "Why the count in your game journal can differ",
+      countNote: () => "The game counts species whose largest-size record is assigned to this area. There is no fixed target for each page. Add the six game-page counts to check progress out of 66. Check both fish lists and the other game pages before pursuing a missing species.",
       triggerLimit: "The ROM trace confirms the larger-size check, but does not prove which fishing outcomes trigger the journal update.",
       evidence: "ROM evidence and method",
       evidenceLink: "Read the notebook record research",
+      spawnNote: "These are the game’s configured area candidates. If a point has no fish in your current run, open the map to check whether this species has other recorded points.",
       empty: "No new species are listed for this area in the route."
     },
     ja: {
       title: "魚図鑑 · 全66種ルートチェック",
-      intro: () => "ルートを埋めるなら、前のエリアにもいる魚より、このエリアで初めて出る魚を先に狙いましょう。",
-      recordableLabel: (stage) => `種がエリア${stage}に出現し、図鑑に記録できます`,
-      newCount: (count) => `1→6エリアルートで初登場: ${count}種`,
-      repeatedCount: (count) => `前のエリアにも登場: ${count}種`,
+      recordableLabel: (stage) => `エリア${stage}に出現地点があり、図鑑に記録できる魚種`,
+      newCount: (count) => `全エリアルートで初登場: ${count}種`,
+      repeatedCount: (count) => `前のエリアにも出現: ${count}種`,
       progress: (stage, count, total) => `エリア${stage}までのルート計画: ${count}/${total}種 · セーブデータの進行状況ではありません`,
-      areaCountsTitle: "エリア別の図鑑対象種数 · 複数エリアに出現する魚もいます",
-      areaCount: (stage, count) => `エリア${stage}: ${count}種`,
+      areaCountsTitle: "エリア別・出現地点のある図鑑対象種 · 複数エリアに出現する魚もいます",
+      areaCount: (stage, count) => `エリア${stage}: ${count}種が出現可能`,
       newTitle: (count) => `このエリアで釣る新しい魚 ${count}種を見る`,
       repeated: (count) => `前のエリアにも登場 · ${count}種`,
       repeatedNote: "この魚種の図鑑枠は1つです。同じか小さいサイズでは記録は変わらず、別エリアでより大きいサイズが記録されると、このエリアへ移ります。",
@@ -95,21 +233,22 @@
       equipmentAction: "使える道具",
       actionsFor: (name) => `${name}の次の操作`,
       id: "ID",
-      routeNote: "ゲーム内図鑑は最大サイズを記録したエリア別に魚を表示するため、このガイドの出現種数とは異なることがあります。ゲーム内6エリアの数を合計し、全66種に対する進行状況を確認してください。名前が見つからないときは、再度狙う前に他のエリアのページも確認しましょう。",
+      countNoteTitle: "ゲーム内図鑑の数と異なる理由",
+      countNote: () => "ゲーム内の数は、最大サイズの記録がこのエリアにある魚種数です。各ページに固定の目標数はありません。6ページの数を合計して全66種の進行を確認し、未記録の魚を探す前に下の両一覧と他のページを確認してください。",
       triggerLimit: "ROMコードではサイズ比較を確認しましたが、どの釣果で図鑑更新処理が呼ばれるかは確認できていません。",
       evidence: "ROMの根拠と調査方法",
       evidenceLink: "魚図鑑の記録に関する調査を読む",
+      spawnNote: "ゲームの設定上、このエリアに出現する魚です。現在のプレイで地点に魚がいないときは、地図を開いて同種の別地点があるか確認してください。",
       empty: "このエリアにルート上の新しい魚種はありません。"
     },
     th: {
       title: "สมุดปลา · เส้นทางเก็บครบ 66 ชนิด",
-      intro: () => "ถ้าจะเก็บครบตามเส้นทาง ให้เก็บปลาที่เพิ่งพบในด่านนี้ก่อนปลาที่ซ้ำกับด่านก่อน",
-      recordableLabel: (stage) => `ชนิดที่พบในด่าน ${stage} และมีช่องในสมุด`,
-      newCount: (count) => `ปลาใหม่ตามเส้นทางด่าน 1 → 6: ${count} ชนิด`,
-      repeatedCount: (count) => `พบในด่านก่อนแล้ว: ${count} ชนิด`,
+      recordableLabel: (stage) => `ชนิดที่มีจุดในแผนที่ด่าน ${stage} และมีช่องในสมุด`,
+      newCount: (count) => `ปลาใหม่ในเส้นทางครบทุกด่าน: ${count} ชนิด`,
+      repeatedCount: (count) => `พบได้ในด่านก่อนด้วย: ${count} ชนิด`,
       progress: (stage, count, total) => `แผนเก็บปลาไม่ซ้ำถึงด่าน ${stage}: ${count}/${total} ชนิด · ไม่ใช่ความคืบหน้าในเซฟ`,
-      areaCountsTitle: "ปลาที่มีช่องในสมุด แยกตามด่าน · บางชนิดพบได้หลายด่าน",
-      areaCount: (stage, count) => `ด่าน ${stage}: พบได้ ${count} ชนิด`,
+      areaCountsTitle: "ชนิดปลาที่มีช่องในสมุดและมีจุดตก แยกตามด่าน · บางชนิดพบได้หลายด่าน",
+      areaCount: (stage, count) => `ด่าน ${stage}: มีจุดตกที่บันทึกได้ ${count} ชนิด`,
       newTitle: (count) => `ดูรายชื่อปลาใหม่ ${count} ชนิดที่ควรเก็บในด่านนี้`,
       repeated: (count) => `พบในด่านก่อนหน้าด้วย · ${count} ชนิด`,
       repeatedNote: "ปลากลุ่มนี้ใช้ช่องสมุดเดิม ขนาดเท่าหรือเล็กกว่าสถิติเดิมจะไม่เปลี่ยนรายการ เมื่อเกมบันทึกขนาดที่ใหญ่กว่าในด่านนี้ ช่องเดิมจะย้ายมาด่านนี้",
@@ -120,10 +259,12 @@
       equipmentAction: "ดูอุปกรณ์ที่ใช้ได้",
       actionsFor: (name) => `เลือกทำต่อสำหรับ${name}`,
       id: "ID",
-      routeNote: "เลขในสมุดนับปลาที่บันทึกสถิติขนาดสูงสุดไว้ในด่านนั้น จึงอาจต่างจากจำนวนที่พบได้บนเว็บ เช็กความคืบหน้าโดยบวกเลขทั้ง 6 ด่านในสมุดแล้วเทียบกับ 66 ถ้าชื่อไม่อยู่หน้านี้ ให้เช็กหน้าอื่นก่อนตามหาซ้ำ",
+      countNoteTitle: "ทำไมเลขในสมุดเกมถึงไม่เท่ากับจำนวนในไกด์",
+      countNote: () => "เกมนับชนิดปลาที่สถิติขนาดใหญ่สุดอยู่ในด่านนี้ แต่ละหน้าจึงไม่มียอดเป้าหมายตายตัว บวกเลขทั้ง 6 หน้าในเกมเพื่อเช็กว่าครบ 66 หรือยัง ก่อนตามหาปลาเพิ่ม ให้เทียบชื่อจากทั้งสองรายการด้านล่างกับทุกหน้าในสมุด",
       triggerLimit: "โค้ด ROM ยืนยันว่าตรวจค่าขนาดที่มากกว่าสถิติเดิม แต่ยังระบุไม่ได้ว่าผลการตกแบบใดเรียกการอัปเดตสมุด",
       evidence: "หลักฐาน ROM และวิธีตรวจสอบ",
       evidenceLink: "อ่านบันทึกการแกะระบบสมุดปลา",
+      spawnNote: "รายการนี้คือปลาที่เกมตั้งไว้ในด่าน บางจุดอาจไม่มีปลาในรอบที่เล่น ถ้าจุดที่ไปไม่มีปลา ให้เปิดแผนที่ตรวจว่าปลาชนิดนั้นมีจุดอื่นหรือไม่",
       empty: "ไม่มีปลาใหม่ตามเส้นทางในด่านนี้"
     }
   };
@@ -204,9 +345,9 @@
     }).join("");
     return `<div class="notebook-area-counts"><p>${ctx.esc(copyText.areaCountsTitle)}</p><nav aria-label="${ctx.esc(copyText.areaCountsTitle)}">${links}</nav></div>`;
   }
-  function evidenceLink(ctx, copyText) {
+  function evidenceLink(ctx, copyText, progressText) {
     const href = "https://github.com/polaminggkub-debug/kawa-no-nushi-tsuri-2-research/blob/main/docs/notebook-completion-research.md";
-    return `<details class="notebook-evidence"><summary>${ctx.esc(copyText.evidence)}</summary><p>${ctx.esc(copyText.triggerLimit)}</p><p><a href="${href}">${ctx.esc(copyText.evidenceLink)} ↗</a></p></details>`;
+    return `<details class="notebook-evidence"><summary>${ctx.esc(copyText.evidence)}</summary><p class="notebook-progress">${ctx.esc(progressText)}</p><p>${ctx.esc(copyText.triggerLimit)}</p><p><a href="${href}">${ctx.esc(copyText.evidenceLink)} ↗</a></p></details>`;
   }
   function notebookGuideMarkup(ctx) {
     const guide = ctx.notebookCompletion;
@@ -223,7 +364,7 @@
     ).length;
     const newTitle = (count) => copyText.newTitle(count);
     const detailsOpen = ctx.openNotebookGuide ? " open" : "";
-    const newList = newIds.length ? `<details class="notebook-new"${detailsOpen}><summary>${ctx.esc(newTitle(newIds.length))}</summary><div class="notebook-fish-list">${fishList(ctx, copyText, newIds)}</div></details>` : `<p class="notebook-empty">${ctx.esc(copyText.empty)}</p>`;
+    const newList = newIds.length ? `<details class="notebook-new"${detailsOpen}><summary>${ctx.esc(newTitle(newIds.length))}</summary><p class="notebook-target-note">${ctx.esc(copyText.spawnNote)}</p><div class="notebook-fish-list">${fishList(ctx, copyText, newIds)}</div></details>` : `<p class="notebook-empty">${ctx.esc(copyText.empty)}</p>`;
     const repeated = detailsList(
       ctx,
       "repeated",
@@ -242,7 +383,7 @@
     );
     const progress = routeProgress(ctx, guide, ctx.activeStage);
     const total = guide.totals.notebookEligibleSpecies;
-    return `<div class="notebook-guide-panel" data-stage="${ctx.activeStage}" data-notebook-total="${recordableCount}" data-notebook-new="${newIds.length}" data-notebook-repeated="${repeatedIds.length}"><div class="notebook-guide-heading"><div><p class="notebook-eyebrow">${ctx.esc(copyText.title)}</p><h3>${ctx.esc(ctx.c.area(ctx.activeStage))}</h3></div></div><div class="notebook-count-summary"><p class="notebook-recordable"><strong>${recordableCount}</strong><span>${ctx.esc(copyText.recordableLabel(ctx.activeStage))}</span></p><div class="notebook-count-breakdown"><p>${ctx.esc(copyText.newCount(newIds.length))}</p><p>${ctx.esc(copyText.repeatedCount(repeatedIds.length))}</p></div></div><p class="notebook-intro">${ctx.esc(copyText.intro())}</p><p class="notebook-progress">${ctx.esc(copyText.progress(ctx.activeStage, progress, total))}</p>${areaCountLinks(ctx, guide, copyText)}${newList}${repeated}${excluded}<p class="notebook-route-note">${ctx.esc(copyText.routeNote)}</p>${evidenceLink(ctx, copyText)}</div>`;
+    return `<div class="notebook-guide-panel" data-stage="${ctx.activeStage}" data-notebook-total="${recordableCount}" data-notebook-new="${newIds.length}" data-notebook-repeated="${repeatedIds.length}"><div class="notebook-guide-heading"><div><p class="notebook-eyebrow">${ctx.esc(copyText.title)}</p><h3>${ctx.esc(ctx.c.area(ctx.activeStage))}</h3></div></div><div class="notebook-count-summary"><p class="notebook-recordable"><strong>${recordableCount}</strong><span>${ctx.esc(copyText.recordableLabel(ctx.activeStage))}</span></p><div class="notebook-count-breakdown"><p>${ctx.esc(copyText.newCount(newIds.length))}</p><p>${ctx.esc(copyText.repeatedCount(repeatedIds.length))}</p></div></div><section class="notebook-count-explainer"><h4>${ctx.esc(copyText.countNoteTitle)}</h4><p>${ctx.esc(copyText.countNote(ctx.activeStage, recordableCount, newIds.length, repeatedIds.length))}</p></section>${areaCountLinks(ctx, guide, copyText)}${progressMarkup(ctx)}${newList}${repeated}${excluded}${evidenceLink(ctx, copyText, copyText.progress(ctx.activeStage, progress, total))}</div>`;
   }
   function renderNotebookGuide(ctx) {
     const mount = ctx.$("notebook-guide");
@@ -250,6 +391,7 @@
     const markup = notebookGuideMarkup(ctx);
     mount.innerHTML = markup;
     mount.hidden = !markup;
+    if (markup) bindNotebookProgress(ctx, mount);
   }
 
   // src/pages/maps/water-icons.js
@@ -681,18 +823,31 @@
       ...pin,
       fishIds: ctx.selectedFish ? pin.fishIds.filter((id) => id === ctx.selectedFish) : pin.fishIds
     })).filter((pin) => pin.fishIds.length);
-    const { sourceW, sourceH, originX, originY, scale, viewW, viewH } = ctx.mapGeometry(data, section);
+    const geometry = ctx.mapGeometry(data, section, filtered);
+    const {
+      sourceW,
+      sourceH,
+      originX,
+      originY,
+      scale,
+      viewW,
+      viewH,
+      terrainW,
+      terrainH,
+      gutterLeft,
+      gutterTop
+    } = geometry;
     ctx.renderMapSummary(section, filtered);
-    const pins = filtered.map((pin) => ctx.mapPinMarkup(pin, originX, originY, scale)).join("");
+    const pins = filtered.map((pin) => ctx.mapPinMarkup(pin, originX, originY, scale, gutterLeft, gutterTop)).join("");
     ctx.$("map-view").style.width = `${viewW}px`;
     ctx.$("map-view").style.height = `${viewH}px`;
-    ctx.$("map-view").innerHTML = `<img class="map-ground" src="${ctx.esc(data.fullImage)}" alt="${ctx.esc(`${stageTitle} · ${ctx.c.fullMap}`)}" style="width:${Math.round(sourceW * scale)}px;height:${Math.round(sourceH * scale)}px;left:${Math.round(-originX * scale)}px;top:${Math.round(-originY * scale)}px">${pins}`;
+    ctx.$("map-view").innerHTML = `<div class="map-terrain-window" role="img" aria-label="${ctx.esc(`${stageTitle} · ${ctx.c.fullMap}`)}" style="width:${terrainW}px;height:${terrainH}px;left:${gutterLeft}px;top:${gutterTop}px"><img class="map-ground" src="${ctx.esc(data.fullImage)}" alt="" style="width:${Math.round(sourceW * scale)}px;height:${Math.round(sourceH * scale)}px;left:${Math.round(-originX * scale)}px;top:${Math.round(-originY * scale)}px"></div>${pins}`;
     ctx.$("pin-details").hidden = true;
     ctx.renderOverview(data, section);
     ctx.renderMapNavigation();
   }
-  function mapPinMarkup(ctx, pin, originX, originY, scale) {
-    const px = (pin.x * 16 + 8 - originX) * scale, py = (pin.y * 16 + 8 - originY) * scale;
+  function mapPinMarkup(ctx, pin, originX, originY, scale, gutterLeft = 0, gutterTop = 0) {
+    const px = (pin.x * 16 + 8 - originX) * scale + gutterLeft, py = (pin.y * 16 + 8 - originY) * scale + gutterTop;
     const names = pin.fishIds.map((id) => ctx.fishName(id)).join(", "), imgs = pin.fishIds.map((id) => ctx.species[id].visual.image).filter(Boolean);
     const tag = pin.fishIds.length === 1 ? "a" : "button";
     const action = tag === "a" ? `href="${ctx.esc(ctx.fishHref(pin.fishIds[0]))}"` : `type="button" data-pin="${pin.fishIds.join(",")}"`;
@@ -700,18 +855,66 @@
       ""
     )}${pin.fishIds.length > 1 ? `<span class="cluster-count">${pin.fishIds.length}</span>` : ""}</${tag}>`;
   }
-  function mapGeometry(ctx, data, section) {
+  function markerInsets(pins, selectedFish, originX, originY, cellW, cellH, scale) {
+    const insets = { left: 0, right: 0, top: 0, bottom: 0 };
+    for (const pin of pins) {
+      const centerX = pin.x * 16 + 8 - originX;
+      const centerY = pin.y * 16 + 8 - originY;
+      const shared = pin.fishIds.length > 1;
+      const width = selectedFish ? 62 : shared ? 80 : 46;
+      const height = selectedFish ? 38 : 36;
+      insets.left = Math.max(insets.left, width / 2 + 3 - centerX * scale);
+      insets.right = Math.max(
+        insets.right,
+        width / 2 + (shared ? 8 : 0) + 3 - (cellW - centerX) * scale
+      );
+      insets.top = Math.max(insets.top, height / 2 + (shared ? 9 : 0) + 3 - centerY * scale);
+      insets.bottom = Math.max(insets.bottom, height / 2 + 3 - (cellH - centerY) * scale);
+    }
+    return Object.fromEntries(
+      Object.entries(insets).map(([side, value]) => [side, Math.max(0, Math.ceil(value))])
+    );
+  }
+  function mapGeometry(ctx, data, section, pins = section?.pins || []) {
     const sourceW = data.width, sourceH = data.height, originX = section.col * 384, originY = section.row * 384;
     const cellW = Math.max(1, Math.min(384, sourceW - originX)), cellH = Math.max(1, Math.min(384, sourceH - originY));
     const panelWidth = ctx.$("map-view").parentElement.clientWidth || window.innerWidth;
-    const scale = Math.max(0.6, Math.min(2.2, (panelWidth - 4) / cellW, 620 / cellH)) * ctx.zoom;
-    const viewW = Math.round(cellW * scale), viewH = Math.round(cellH * scale);
-    return { sourceW, sourceH, originX, originY, scale, viewW, viewH };
+    const fitScale = Math.min(2.2, (panelWidth - 4) / cellW, 620 / cellH);
+    let scale = Math.max(0.3, fitScale);
+    for (let attempt = 0; attempt < 8; attempt += 1) {
+      const gutter2 = markerInsets(pins, ctx.selectedFish, originX, originY, cellW, cellH, scale);
+      const widthFit = (panelWidth - 4 - gutter2.left - gutter2.right) / cellW;
+      const heightFit = (620 - gutter2.top - gutter2.bottom) / cellH;
+      const nextScale = Math.max(0.3, Math.min(scale, widthFit, heightFit));
+      if (Math.abs(nextScale - scale) < 1e-3) break;
+      scale = nextScale;
+    }
+    scale *= ctx.zoom;
+    const gutter = markerInsets(pins, ctx.selectedFish, originX, originY, cellW, cellH, scale);
+    const terrainW = Math.round(cellW * scale), terrainH = Math.round(cellH * scale), viewW = terrainW + gutter.left + gutter.right, viewH = terrainH + gutter.top + gutter.bottom;
+    return {
+      sourceW,
+      sourceH,
+      originX,
+      originY,
+      scale,
+      viewW,
+      viewH,
+      terrainW,
+      terrainH,
+      gutterLeft: gutter.left,
+      gutterTop: gutter.top
+    };
+  }
+  function mapZoomHelp(lang) {
+    if (lang === "th") return "กด + เพื่อขยายจุดที่อยู่ชิดกัน";
+    if (lang === "ja") return "近い地点は＋で拡大できます。";
+    return "Use + to enlarge closely spaced points.";
   }
   function renderMapSummary(ctx, section, filtered) {
     const counts = new Set(filtered.flatMap((pin) => pin.fishIds)).size;
     ctx.$("map-summary").textContent = `${ctx.c.mapSection(section.col + 1, section.row + 1)} · ${ctx.c.point(filtered.length)} · ${counts} ${ctx.c.species}`;
-    ctx.$("pin-help").textContent = ctx.selectedFish ? `${ctx.c.selectedTarget} ${ctx.fishName(ctx.selectedFish)}. ${ctx.c.point(filtered.length)}.` : `${ctx.c.noTarget} ${ctx.lang === "th" ? "กดรูปปลาเพื่อดูรายละเอียด หรือกดจุดซ้อนเพื่อเลือกชนิด" : ctx.lang === "ja" ? "魚画像は詳細へ。重なった地点は魚種を選択。" : "Fish portraits open details; shared points let you choose a species"}.`;
+    ctx.$("pin-help").textContent = ctx.selectedFish ? `${ctx.c.selectedTarget} ${ctx.fishName(ctx.selectedFish)}. ${ctx.c.point(filtered.length)}. ${mapZoomHelp(ctx.lang)}` : `${ctx.c.noTarget} ${ctx.lang === "th" ? "กดรูปปลาเพื่อดูรายละเอียด หรือกดจุดซ้อนเพื่อเลือกชนิด" : ctx.lang === "ja" ? "魚画像は詳細へ。重なった地点は魚種を選択。" : "Fish portraits open details; shared points let you choose a species"}.`;
   }
   function renderMapNavigation(ctx) {
     ctx.$("zoom-fit").textContent = ctx.lang === "th" ? "พอดีจอ" : ctx.lang === "ja" ? "全体表示" : "Fit view";
@@ -1099,7 +1302,7 @@
         if (!r.ok) throw Error("fish locations");
         return r.json();
       }),
-      fetch("gallery-data.json?v=compendium-20261005-17").then((r) => {
+      fetch("gallery-data.json?v=compendium-20261005-18").then((r) => {
         if (!r.ok) throw Error("fish sprites");
         return r.json();
       })

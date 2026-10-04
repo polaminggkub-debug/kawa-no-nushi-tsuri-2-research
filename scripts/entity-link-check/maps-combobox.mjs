@@ -76,6 +76,10 @@ class Element {
     this.dispatch('focus')
   }
 
+  querySelector() {
+    return null
+  }
+
   querySelectorAll(selector) {
     if (selector !== '[role="option"]') return []
     return [...this.innerHTML.matchAll(/<div id="(fish-suggestion-[^"]+)"[^>]*role="option"/g)].map(

@@ -1,0 +1,151 @@
+const storageKey = 'kawa-notebook-manual-v1'
+const text = {
+  en: {
+    title: 'Your checklist',
+    count: (n, total) => `Marked by you: ${n}/${total} species`,
+    note: 'Tick only after checking the fish in your game journal. Saved in this browser; this does not read or change your game save. The same fish shares one tick across all areas.',
+    mark: 'Checked in my game journal',
+    temporary: 'Browser storage is unavailable. Ticks last only while this page stays open.',
+    remaining: 'Show only unmarked fish',
+    empty: 'You have marked every fish in this list. Uncheck the filter to review them.',
+  },
+  ja: {
+    title: '自分のチェックリスト',
+    count: (n, total) => `自分で確認済み: ${n}/${total}種`,
+    note: 'ゲーム内図鑑を確認してからチェックしてください。このブラウザに保存され、ゲームのセーブは読み書きしません。同じ魚のチェックは全エリアで共通です。',
+    mark: 'ゲーム内図鑑で確認済み',
+    temporary: 'ブラウザに保存できません。このページを閉じるとチェックは失われます。',
+    remaining: '未チェックの魚だけ表示',
+    empty: 'このリストはすべてチェック済みです。フィルターを外すと再確認できます。',
+  },
+  th: {
+    title: 'รายการที่คุณเช็กเอง',
+    count: (n, total) => `คุณติ๊กแล้ว ${n}/${total} ชนิด`,
+    note: 'ติ๊กหลังเช็กว่าปลาอยู่ในสมุดเกมแล้ว จำไว้เฉพาะเบราว์เซอร์นี้ ไม่ได้อ่านหรือแก้เซฟเกม ปลาชนิดเดียวกันใช้เครื่องหมายเดียวกันทุกด่าน',
+    mark: 'เช็กแล้วว่ามีในสมุดเกม',
+    temporary: 'เบราว์เซอร์ไม่อนุญาตให้บันทึก เครื่องหมายจะอยู่แค่ขณะที่เปิดหน้านี้',
+    remaining: 'แสดงเฉพาะปลาที่ยังไม่ได้ติ๊ก',
+    empty: 'ติ๊กครบทุกปลาในรายการนี้แล้ว เอาตัวกรองออกเพื่อดูรายการอีกครั้ง',
+  },
+}
+let memory = []
+let onlyRemaining = false
+
+export function normalizeMarks(value, eligible) {
+  if (!Array.isArray(value)) return []
+  return [...new Set(value.filter((id) => typeof id === 'string' && eligible.has(id)))]
+}
+
+export function eligibleNotebookIds(guide) {
+  return new Set(
+    Object.entries(guide.species)
+      .filter(([, entry]) => entry.notebookEligible === true)
+      .map(([id]) => id),
+  )
+}
+
+export function readNotebookMarks(storage, eligible) {
+  try {
+    const parsed = JSON.parse(storage.getItem(storageKey) || '[]')
+    memory = normalizeMarks(parsed, eligible)
+    return { ids: memory, persistent: true }
+  } catch {
+    memory = normalizeMarks(memory, eligible)
+    return { ids: memory, persistent: false }
+  }
+}
+
+export function writeNotebookMarks(storage, ids, eligible) {
+  memory = normalizeMarks(ids, eligible)
+  try {
+    storage.setItem(storageKey, JSON.stringify(memory))
+    return true
+  } catch {
+    return false
+  }
+}
+
+export function progressMarkup(ctx) {
+  const c = text[ctx.lang] || text.en
+  return `<section class="notebook-manual"><h4>${ctx.esc(c.title)}</h4><p class="notebook-manual-count" role="status" aria-live="polite"></p><p>${ctx.esc(c.note)}</p><label class="notebook-remaining"><input type="checkbox" data-notebook-remaining> ${ctx.esc(c.remaining)}</label></section>`
+}
+
+function storageAccess() {
+  try {
+    return window.localStorage
+  } catch {
+    return null
+  }
+}
+
+function addCheckbox(ctx, card, id, c) {
+  const label = document.createElement('label')
+  label.className = 'notebook-mark'
+  const input = document.createElement('input')
+  input.type = 'checkbox'
+  input.dataset.notebookMark = id
+  input.setAttribute('aria-label', `${c.mark}: ${ctx.species[id].name}`)
+  label.append(input, document.createTextNode(` ${c.mark}`))
+  card.append(label)
+}
+
+function updateProgress(mount, eligible, ids, c, persistent) {
+  mount.querySelector('.notebook-manual-count').textContent = c.count(ids.length, eligible.size)
+  mount.querySelectorAll('[data-notebook-mark]').forEach((input) => {
+    input.checked = ids.includes(input.dataset.notebookMark)
+    const card = input.closest('[data-notebook-card]')
+    card.classList.toggle('notebook-marked', input.checked)
+    card.hidden = onlyRemaining && input.checked
+  })
+  mount.querySelector('[data-notebook-remaining]').checked = onlyRemaining
+  mount.querySelector('.notebook-excluded')?.toggleAttribute('hidden', onlyRemaining)
+  mount.querySelector('.notebook-manual-warning').textContent = persistent ? '' : c.temporary
+  mount.querySelectorAll('.notebook-fish-list').forEach((list) => {
+    const eligibleCards = [...list.querySelectorAll('[data-notebook-mark]')]
+    const empty = list.nextElementSibling
+    if (empty?.classList.contains('notebook-list-complete'))
+      empty.hidden =
+        !eligibleCards.length || eligibleCards.some((input) => !input.checked) || !onlyRemaining
+  })
+}
+
+function addListMessages(mount, c) {
+  mount.querySelectorAll('.notebook-fish-list').forEach((list) => {
+    if (!list.querySelector('[data-notebook-mark]')) return
+    const message = document.createElement('p')
+    message.className = 'notebook-list-complete'
+    message.textContent = c.empty
+    message.hidden = true
+    list.after(message)
+  })
+}
+
+export function bindNotebookProgress(ctx, mount) {
+  if (!ctx.notebookCompletion?.species || !mount.querySelector('.notebook-manual')) return
+  const c = text[ctx.lang] || text.en
+  const eligible = eligibleNotebookIds(ctx.notebookCompletion)
+  const storage = storageAccess()
+  const state = readNotebookMarks(storage, eligible)
+  mount.querySelectorAll('[data-notebook-card]').forEach((card) => {
+    const id = card.dataset.notebookCard
+    if (eligible.has(id)) addCheckbox(ctx, card, id, c)
+  })
+  const warning = document.createElement('p')
+  warning.className = 'notebook-manual-warning'
+  mount.querySelector('.notebook-manual').append(warning)
+  addListMessages(mount, c)
+  updateProgress(mount, eligible, state.ids, c, state.persistent)
+  mount.onchange = (event) => {
+    const input = event.target
+    if (input.matches('[data-notebook-remaining]')) onlyRemaining = input.checked
+    else if (input.matches('[data-notebook-mark]')) {
+      const id = input.dataset.notebookMark
+      state.ids = readNotebookMarks(storage, eligible).ids
+      state.ids = input.checked
+        ? [...new Set([...state.ids, id])]
+        : state.ids.filter((entry) => entry !== id)
+      state.persistent = writeNotebookMarks(storage, state.ids, eligible)
+    } else return
+    updateProgress(mount, eligible, state.ids, c, state.persistent)
+  }
+}

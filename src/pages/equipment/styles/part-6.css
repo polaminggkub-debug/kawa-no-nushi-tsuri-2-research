@@ -55,3 +55,39 @@
   min-width: 260px;
   max-width: 360px;
 }
+
+.card-quest-next-action {
+  margin-top: 16px;
+  padding: 14px 16px;
+  border: 1px solid #c4d3bd;
+  border-radius: 10px;
+  background: var(--soft);
+}
+
+.card-quest-next-action > strong {
+  display: block;
+  color: var(--deep);
+}
+
+.card-quest-next-action p {
+  margin: 6px 0 0;
+}
+
+.notebook-guide-link {
+  display: inline-flex;
+  min-height: 44px;
+  align-items: center;
+  margin-top: 4px;
+  padding: 8px 12px;
+  border-radius: 8px;
+  background: var(--deep);
+  color: white;
+  font-weight: 700;
+  text-decoration: none;
+}
+
+.notebook-guide-link:hover,
+.notebook-guide-link:focus-visible {
+  background: var(--green);
+  color: white;
+}

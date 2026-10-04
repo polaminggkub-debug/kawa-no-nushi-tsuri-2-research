@@ -416,3 +416,9 @@ main {
   background: #18342f;
   image-rendering: pixelated;
 }
+.map-terrain-window {
+  position: absolute;
+  z-index: 0;
+  overflow: hidden;
+  pointer-events: none;
+}

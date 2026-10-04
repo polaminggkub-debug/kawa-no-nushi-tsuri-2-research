@@ -372,12 +372,19 @@ main {
   background: #18342f;
   image-rendering: pixelated;
 }
+.map-terrain-window {
+  position: absolute;
+  z-index: 0;
+  overflow: hidden;
+  pointer-events: none;
+}
 
 /* src/pages/maps/styles/part-2.css */
 .map-ground {
   position: absolute;
   display: block;
   max-width: none;
+  pointer-events: none;
   image-rendering: pixelated;
 }
 .fish-pin {
@@ -1234,6 +1241,70 @@ footer p {
     flex-basis: calc(50% - 3px);
     font-size: 12px;
   }
+}
+.notebook-manual {
+  margin: 12px 0;
+  padding: 12px;
+  border: 1px solid #cbd8c8;
+  border-radius: 9px;
+  background: #fffefa;
+}
+.notebook-manual p {
+  margin: 6px 0;
+  font-size: 13px;
+  line-height: 1.5;
+}
+.notebook-manual-count {
+  color: var(--deep);
+  font-weight: 750;
+}
+.notebook-mark,
+.notebook-remaining {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  min-height: 40px;
+  font-size: 12px;
+  font-weight: 650;
+  cursor: pointer;
+}
+.notebook-mark input,
+.notebook-remaining input {
+  flex: 0 0 20px;
+  width: 20px;
+  height: 20px;
+  accent-color: var(--green);
+}
+.notebook-marked {
+  border-color: #668f71;
+}
+.notebook-fish[hidden] {
+  display: none;
+}
+.notebook-manual-warning:empty {
+  display: none;
+}
+.notebook-target-note {
+  margin: 8px 0;
+  color: #526459;
+  font-size: 13px;
+  line-height: 1.5;
+}
+.notebook-count-explainer {
+  margin: 14px 0;
+  padding: 12px 14px;
+  border-left: 3px solid var(--green);
+  background: #eaf0e7;
+  border-radius: 0 8px 8px 0;
+}
+.notebook-count-explainer h4 {
+  margin: 0 0 6px;
+  font-size: 14px;
+}
+.notebook-count-explainer p {
+  margin: 0;
+  font-size: 13px;
+  line-height: 1.6;
 }
 
 /* src/pages/maps/index.css */

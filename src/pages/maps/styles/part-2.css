@@ -2,6 +2,7 @@
   position: absolute;
   display: block;
   max-width: none;
+  pointer-events: none;
   image-rendering: pixelated;
 }
 
