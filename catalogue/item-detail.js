@@ -1079,23 +1079,38 @@
       en: `For ${fish}, choose the body first. This wing or tail alone does not establish fish compatibility. To start fishing, use the button below to find ready-made sets whose bodies pass the check.`
     });
   }
-  function flyTargetAdvice(ctx, item, fishVisuals, fishLocations) {
+  function noFlyDecision(ctx, fish) {
+    return local(ctx, {
+      th: `ยังไม่มีบอดี้ฟลายที่ผ่านเงื่อนไขโปรไฟล์ของ${fish}ในข้อมูลที่ถอดได้ อย่าซื้อชุดฟลายเพื่อปลานี้จากคำแนะนำนี้ เปิดหน้าปลาเพื่อดูวิธีตกอื่นที่ยืนยันแล้ว`,
+      ja: `${fish}の判定を通るフライボディは解析データにありません。この案内からフライを購入せず、魚ページで確認済みの別の釣法を見てください。`,
+      en: `No decoded fly body passes the profile check for ${fish}. Do not buy a fly set for this target from this advice. Open the fish page for other verified methods.`
+    });
+  }
+  function flyTargetAdvice(ctx, item, fishVisuals, fishLocations, allItems) {
     if (!ctx.selectedFish || !["fly", "fly_wing", "fly_tail"].includes(item.category)) return "";
     if (!fishVisuals[ctx.selectedFish]) return "";
     const fish = ctx.fishName(ctx.selectedFish, fishVisuals);
-    const decision = item.category === "fly" ? bodyDecision(ctx, item, fish) : partDecision(ctx, fish);
+    const available = allItems.some(
+      (entry) => entry.category === "fly" && (entry.playerUse?.fishIds || []).includes(ctx.selectedFish)
+    );
+    const decision = !available ? noFlyDecision(ctx, fish) : item.category === "fly" ? bodyDecision(ctx, item, fish) : partDecision(ctx, fish);
     const label = local(ctx, {
       th: `เลือกชุดฟลายเริ่มต้นสำหรับ${fish}`,
       ja: `${fish}の開始用フライセットを選ぶ`,
       en: `Choose a starter fly set for ${fish}`
     });
-    const href = ctx.fishProfileLink(ctx.selectedFish, fishLocations) + "#starter-fly";
-    return `<div data-fly-target-advice="${ctx.esc(ctx.selectedFish)}"><p>${ctx.esc(decision)}</p><a class="route-button" data-fly-starter-link href="${ctx.esc(href)}">${ctx.esc(label)} ↗</a></div>`;
+    const action = available ? label : local(ctx, {
+      th: `ดูวิธีตกอื่นสำหรับ${fish}`,
+      ja: `${fish}の別の釣法を見る`,
+      en: `See other methods for ${fish}`
+    });
+    const href = ctx.fishProfileLink(ctx.selectedFish, fishLocations) + (available ? "#starter-fly" : "");
+    return `<div data-fly-target-advice="${ctx.esc(ctx.selectedFish)}"><p>${ctx.esc(decision)}</p><a class="route-button" data-fly-starter-link href="${ctx.esc(href)}">${ctx.esc(action)} ↗</a></div>`;
   }
 
   // src/pages/item/target-advice.js
   function targetAdviceSection(ctx, item, allItems, fishVisuals, fishLocations) {
-    const fly = flyTargetAdvice(ctx, item, fishVisuals, fishLocations);
+    const fly = flyTargetAdvice(ctx, item, fishVisuals, fishLocations, allItems);
     if (fly) return fly;
     const adapter = {
       lang: ctx.lang,
@@ -1273,7 +1288,7 @@
   function loadCatalogue(ctx) {
     ctx.flyMakerLink = (item) => item.category.startsWith("fly") ? `<p><a class="route-button" data-fly-maker href="${ctx.esc(ctx.currentCategoryLink().split("#")[0] + "#fly-instructions")}">${ctx.lang === "th" ? "ดูขั้นตอนประกอบฟลายเองและตรวจราคาในเกม" : ctx.lang === "ja" ? "自作フライの手順とゲーム内見積額を確認" : "See custom fly steps and check the in-game quote"} ↗</a></p>` : "";
     ctx.setNavigation();
-    fetch("gallery-data.json?v=compendium-20261005-05").then((response) => {
+    fetch("gallery-data.json?v=compendium-20261005-06").then((response) => {
       if (!response.ok) throw new Error("catalogue data unavailable");
       return response.json();
     }).then((data) => {

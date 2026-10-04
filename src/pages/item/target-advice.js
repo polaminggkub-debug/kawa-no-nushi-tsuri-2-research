@@ -2,7 +2,7 @@ import { renderTargetAdvice } from '../../shared/lib/index.js'
 import { flyTargetAdvice } from './fly-target-advice.js'
 
 export function targetAdviceSection(ctx, item, allItems, fishVisuals, fishLocations) {
-  const fly = flyTargetAdvice(ctx, item, fishVisuals, fishLocations)
+  const fly = flyTargetAdvice(ctx, item, fishVisuals, fishLocations, allItems)
   if (fly) return fly
   const adapter = {
     lang: ctx.lang,

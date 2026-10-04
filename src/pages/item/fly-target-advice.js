@@ -25,16 +25,40 @@ function partDecision(ctx, fish) {
   })
 }
 
-export function flyTargetAdvice(ctx, item, fishVisuals, fishLocations) {
+function noFlyDecision(ctx, fish) {
+  return local(ctx, {
+    th: `ยังไม่มีบอดี้ฟลายที่ผ่านเงื่อนไขโปรไฟล์ของ${fish}ในข้อมูลที่ถอดได้ อย่าซื้อชุดฟลายเพื่อปลานี้จากคำแนะนำนี้ เปิดหน้าปลาเพื่อดูวิธีตกอื่นที่ยืนยันแล้ว`,
+    ja: `${fish}の判定を通るフライボディは解析データにありません。この案内からフライを購入せず、魚ページで確認済みの別の釣法を見てください。`,
+    en: `No decoded fly body passes the profile check for ${fish}. Do not buy a fly set for this target from this advice. Open the fish page for other verified methods.`,
+  })
+}
+
+export function flyTargetAdvice(ctx, item, fishVisuals, fishLocations, allItems) {
   if (!ctx.selectedFish || !['fly', 'fly_wing', 'fly_tail'].includes(item.category)) return ''
   if (!fishVisuals[ctx.selectedFish]) return ''
   const fish = ctx.fishName(ctx.selectedFish, fishVisuals)
-  const decision = item.category === 'fly' ? bodyDecision(ctx, item, fish) : partDecision(ctx, fish)
+  const available = allItems.some(
+    (entry) =>
+      entry.category === 'fly' && (entry.playerUse?.fishIds || []).includes(ctx.selectedFish),
+  )
+  const decision = !available
+    ? noFlyDecision(ctx, fish)
+    : item.category === 'fly'
+      ? bodyDecision(ctx, item, fish)
+      : partDecision(ctx, fish)
   const label = local(ctx, {
     th: `เลือกชุดฟลายเริ่มต้นสำหรับ${fish}`,
     ja: `${fish}の開始用フライセットを選ぶ`,
     en: `Choose a starter fly set for ${fish}`,
   })
-  const href = ctx.fishProfileLink(ctx.selectedFish, fishLocations) + '#starter-fly'
-  return `<div data-fly-target-advice="${ctx.esc(ctx.selectedFish)}"><p>${ctx.esc(decision)}</p><a class="route-button" data-fly-starter-link href="${ctx.esc(href)}">${ctx.esc(label)} ↗</a></div>`
+  const action = available
+    ? label
+    : local(ctx, {
+        th: `ดูวิธีตกอื่นสำหรับ${fish}`,
+        ja: `${fish}の別の釣法を見る`,
+        en: `See other methods for ${fish}`,
+      })
+  const href =
+    ctx.fishProfileLink(ctx.selectedFish, fishLocations) + (available ? '#starter-fly' : '')
+  return `<div data-fly-target-advice="${ctx.esc(ctx.selectedFish)}"><p>${ctx.esc(decision)}</p><a class="route-button" data-fly-starter-link href="${ctx.esc(href)}">${ctx.esc(action)} ↗</a></div>`
 }

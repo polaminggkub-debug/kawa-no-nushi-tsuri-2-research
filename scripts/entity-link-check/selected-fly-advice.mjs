@@ -18,7 +18,20 @@ for (const lang of ['en', 'ja', 'th']) {
       assert(link, 'Missing selected-fish starter action')
       const url = new URL(link[1], result.url)
       assert.equal(url.searchParams.get('id'), fish)
-      assert.equal(url.hash, '#starter-fly')
+      const available = data.items.some(
+        (entry) => entry.category === 'fly' && entry.playerUse?.fishIds?.includes(fish),
+      )
+      assert.equal(url.hash, available ? '#starter-fly' : '')
+      if (!available)
+        assert(
+          panel.includes(
+            lang === 'th'
+              ? 'ยังไม่มีบอดี้ฟลาย'
+              : lang === 'ja'
+                ? '解析データにありません'
+                : 'No decoded fly body',
+          ),
+        )
       const recorded = locations.fish[fish].locations
       const expected = recorded.find((entry) => Number(entry.stage) === 1) || recorded[0]
       if (expected) assert.equal(url.searchParams.get('stage'), String(expected.stage))
