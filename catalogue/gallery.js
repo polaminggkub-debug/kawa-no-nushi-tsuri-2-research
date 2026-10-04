@@ -122,7 +122,7 @@
     input.addEventListener('focus',showFishSuggestions);
     input.addEventListener('blur',()=>{input.value=document.getElementById('fish-filter').value?fishName(document.getElementById('fish-filter').value):'';closeFishSuggestions();});
     input.addEventListener('keydown',event=>{
-      if(event.key==='Escape'){closeFishSuggestions();return;}
+      if(event.key==='Escape'){input.value=document.getElementById('fish-filter').value?fishName(document.getElementById('fish-filter').value):'';closeFishSuggestions();return;}
       if(event.key==='ArrowDown'||event.key==='ArrowUp'){
         event.preventDefault();if(box.hidden)showFishSuggestions();if(!suggestionIds.length)return;
         activeSuggestion=event.key==='ArrowDown'?(activeSuggestion+1)%suggestionIds.length:(activeSuggestion<0?suggestionIds.length-1:(activeSuggestion-1+suggestionIds.length)%suggestionIds.length);
@@ -142,7 +142,7 @@
     const select=document.getElementById('category-filter'),current=select.value;
     select.innerHTML=`<option value="all">${esc(player.all)}</option>`+available.map(c=>`<option value="${c}">${esc(player.cat[c])}</option>`).join('');
     select.value=(!fish||fishCategories.includes(current))?current:'all';
-    document.getElementById('category-menu').innerHTML=available.map(c=>{const item=allItems.find(i=>groupOf(i)===c);return `<a class="category-button" href="?category=${c}${fish?'&fish='+fish:''}#catalogue" data-category="${c}"><img src="${esc(item?.image)}" alt=""><span><strong>${esc(player.cat[c])}</strong><small>${allItems.filter(i=>groupOf(i)===c&&(!fish||fishIdsFor(i).includes(fish))).length}</small></span></a>`;}).join('');
+    document.getElementById('category-menu').innerHTML=available.map(c=>{const item=allItems.find(i=>groupOf(i)===c);return `<a class="category-button" href="?category=${c}${fish?'&fish='+fish:''}#catalogue" data-category="${c}"><img src="${esc(item?.image)}" alt=""><span><strong>${esc(player.cat[c])}</strong><small>${allItems.filter(i=>groupOf(i)===c&&(!fish||fishIdsFor(i).includes(fish)||(['fly_wing','fly_tail'].includes(i.category)&&flyBundlePartFor(i,fish)))).length}</small></span></a>`;}).join('');
   }
   const groupOf=item=>item.category.startsWith('fly')?'flymaker':item.category;
   const local=value=>typeof value==='string'?value:value?.[lang]||value?.en||'';
@@ -326,7 +326,7 @@
     if(!shown.length){box.innerHTML=`<p class="empty-state">${esc(fish?(lang==='th'?'ไม่มีรายการที่ยืนยันว่าใช้กับปลานี้ได้ในหมวดและคำค้นที่เลือก ลองหมวดอื่น หรือกด × เพื่อล้างปลาเป้าหมาย':lang==='ja'?'選択した種類・検索条件では、この魚に対応する確認済みアイテムがありません。別の種類、または×で魚の指定を解除。':'No verified compatible item matches this category and search. Try another category, or clear the target with ×.'):copy.empty)}</p>`;return;}
     box.innerHTML=shown.map(item=>{const use=useOf(item);const {summary,facts}=visibleUse(item);return `<article class="item-card ${item.category==='food'&&item.id==='0A'?'poison-food':''}" id="item-${item.category}-${item.id}"><div class="card-main"><figure class="sprite"><img loading="lazy" src="${esc(item.image)}" alt="${esc(itemName(item))}"></figure><div class="card-text"><span class="category-tag">${esc(categoryNames[item.category])}</span><h3>${esc(itemName(item))}</h3>${thaiLabel(item)}${itemName(item)!==item.nameJa?`<p class="jp-name" lang="ja">${esc(item.nameJa)}</p>`:''}<div class="price-row">${item.priceYen>0&&use.shops?.length&&!item.category.startsWith('fly')?`<span class="price-badge">${esc(formatYen(item))}</span>`:''}<span class="item-id">ID ${esc(item.id)}</span></div></div></div><div class="use-block"><h4>${esc(player.use)}</h4><p class="use-summary">${esc(summary)}</p>${use.evidence?.type==='player_guide_report'?`<p class="fish-scope">${lang==='th'?'คำอธิบายการใช้จากคู่มือผู้เล่น ยังไม่ได้ยืนยันจากโค้ดเกม':lang==='ja'?'用途はプレイヤーガイドによる報告。ゲームコードでは未確認。':'Use reported by a player guide; not yet confirmed in game code.'}</p>`:''}${facts.length?`<ul class="use-facts">${facts.map(n=>`<li>${esc(n)}</li>`).join('')}</ul>`:''}</div>${shopLocations(item)}${toolUseLocations(item)}${fishList(item)}${detailedFields(item)}</article>`;}).join('');
   }
-  fetch('gallery-data.json?v=fish-combobox-20261004-1').then(r=>{if(!r.ok)throw new Error('catalogue unavailable');return r.json();}).then(data=>{
+  fetch('gallery-data.json?v=fish-combobox-20261004-2').then(r=>{if(!r.ok)throw new Error('catalogue unavailable');return r.json();}).then(data=>{
     allItems=data.items;decisions=data.playerDecisions?.sections||[];fishVisuals=data.fishVisuals||{};fishLocations=data.fishLocations||{};
     for(const item of allItems)categoryNames[item.category]=lang==='th'?item.categoryTh:lang==='ja'?item.categoryJa:item.categoryEn;
     set('#entry-count',copy.entries(allItems.length));
