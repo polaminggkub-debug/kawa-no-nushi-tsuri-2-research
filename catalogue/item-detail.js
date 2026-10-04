@@ -53,7 +53,7 @@
     return Number.parseInt(raw.replace(/^0x/i,''),16).toString(16).toUpperCase().padStart(2,'0');
   };
   const requestedId = normalizeId(params.get('id'));
-  const selectedFish = normalizeId(params.get('fish'));
+  let selectedFish = normalizeId(params.get('fish'));
   const selectedStage = /^[1-6]$/.test(params.get('stage')||'') ? Number(params.get('stage')) : 0;
   const selectedRoute = ['float','sinker'].includes(params.get('route')) ? params.get('route') : '';
   const baseDir = location.pathname.slice(0, location.pathname.lastIndexOf('/') + 1);
@@ -71,8 +71,9 @@
   }
   function fallbackBack() {
     const p = new URLSearchParams();
-    if (category) p.set('category',category);
-    if (selectedFish) p.set('fish',selectedFish);
+    if (category) p.set('category',['fly','fly_wing','fly_tail'].includes(category)?'flymaker':category);
+    if (['fly','fly_wing','fly_tail'].includes(category))p.set('part',category);
+    if (selectedFish&&['bait','lure','fly','fly_wing','fly_tail','float_weight'].includes(category)) p.set('fish',selectedFish);
     if (selectedStage) p.set('stage',String(selectedStage));
     return `${cataloguePage[lang]}${p.size ? `?${p}` : ''}#catalogue`;
   }
@@ -111,7 +112,14 @@
     if(lang==='ja')return fish.nameJa || `魚 ${id}`;
     return fish.nameEn || fish.nameLatin || fish.nameLatinVariants?.slice().sort((a,b)=>b.length-a.length)[0] || fish.nameJa || `Fish ${id}`;
   }
-  function currentCategoryLink() { const p=new URLSearchParams();p.set('category',category||'all');p.set('id',requestedId);const target=selectedFish;if(target)p.set('fish',target);if(selectedStage)p.set('stage',String(selectedStage));return `${cataloguePage[lang]}?${p}#catalogue`; }
+  function currentCategoryLink() {
+    const p=new URLSearchParams(), fly=['fly','fly_wing','fly_tail'].includes(category);
+    p.set('category',fly?'flymaker':category||'all');
+    if(fly)p.set('part',category);
+    if(selectedFish&&['bait','lure','fly','fly_wing','fly_tail','float_weight'].includes(category))p.set('fish',selectedFish);
+    if(selectedStage)p.set('stage',String(selectedStage));
+    return `${cataloguePage[lang]}?${p}#catalogue`;
+  }
   function detailItemLink(item, returnRoute=currentLocalRoute()) {
     const p=new URLSearchParams();p.set('category',item.category);p.set('id',item.id);
     if(selectedFish)p.set('fish',selectedFish);if(selectedStage)p.set('stage',String(selectedStage));
@@ -150,6 +158,7 @@
   }
   function componentLink(item, label='') {
     if(!item)return '';
+    if(item.category===category&&item.id===requestedId)return `<div class="entity-link" aria-current="true"><img loading="lazy" src="${esc(item.image)}" alt=""><span>${esc(label||imageName(item))}<small>${lang==='th'?'ชิ้นที่กำลังดู':lang==='ja'?'表示中の部品':'Part currently shown'}</small></span></div>`;
     return `<a class="entity-link" href="${esc(detailItemLink(item))}"><img loading="lazy" src="${esc(item.image)}" alt=""><span>${esc(label||imageName(item))}<small>ID ${esc(item.id)} · ${esc(copy.component)}</small></span></a>`;
   }
   function flyAssemblies(item, allItems) {
@@ -182,18 +191,23 @@
       return `<article class="detail-section"><h3>${esc(stageName(stage,fishLocations))}</h3><p>${esc(seller)}${item.priceYen!=null?` · ${esc(copy.price(item.priceYen))}`:''}</p>${stageButton(stage,fishLocations)}</article>`;
     }).join('')}</div><p class="muted">${esc(copy.mapNote)}</p></section>`;
   }
+  function buyingDecision(item, allItems, decisions) {
+    const rodPaths={1:'float_rod_path',2:'casting_rod_path',4:'lure_rod_path',8:'fly_rod_path'};
+    const path=item.category==='rod'?rodPaths[item.decodedFields?.styleCode]:item.category==='hook'?'hook_purchase_caution':'';
+    const sections=decisions.filter(section=>path?section.id===path:!selectedFish&&['lure','food'].includes(item.category)&&(section.items||[]).some(ref=>ref.category===item.category&&ref.id===item.id));
+    if(!sections.length)return '';
+    return `<section class="detail-section buying-decision"><h2>${lang==='th'?'ควรซื้อหรือเปลี่ยนมาใช้อันนี้ไหม?':lang==='ja'?'買う・替えるべき？':'Should I buy or switch to this?'}</h2>${sections.map(section=>{
+      const refs=(section.items||[]).filter(ref=>ref.category===item.category&&ref.id!==item.id).map(ref=>allItems.find(i=>i.category===ref.category&&i.id===ref.id)).filter(Boolean);
+      return `<h3>${esc(local(section.title))}</h3><p>${esc(local(section.recommendation))}</p>${refs.length?`<div class="detail-grid">${refs.map(ref=>componentLink(ref)).join('')}</div>`:''}<p class="muted">${esc(local(section.scope))}</p>`;
+    }).join('')}</section>`;
+  }
+
   function visibleUsage(item) {
     const use=item.playerUse||{};
-    if(item.category==='hook')return {summary:lang==='th'?'ถ้ามีเบ็ดใช้อยู่แล้ว อย่าเปลี่ยนเพียงเพราะชื่อเบ็ดตรงกับปลา เลือกเหยื่อที่ปลารับได้ก่อน ยังไม่มีหลักฐานว่าซื้อเบ็ดชื่อนี้แล้วจับง่ายขึ้น':lang==='ja'?'ハリを持っているなら、魚と同じ名前だけを理由に買い替えない。まず対応するエサを選ぶ。この名前のハリで取り込みやすくなる根拠はない。':'If you already have a hook, do not replace it solely because its name matches the fish. Choose compatible bait first; a matched name is not an established catch advantage.',facts:[]};
+    if(item.category==='hook')return {summary:local(use.summary),facts:use.facts?.[lang]||[]};
     if(item.category==='fly_wing')return {summary:lang==='th'?'ประกอบเองให้เริ่มจากปีกที่มีอยู่และตรวจราคาเสนอก่อนจ่าย ไม่ต้องซื้อปีกแพงเพื่อหวังโบนัสจับปลา เพราะยังไม่มีหลักฐานรองรับ':lang==='ja'?'作成するなら手持ちのウィングから始め、確定前に見積額を確認する。釣果ボーナスを期待して高価なウィングを買う根拠はない。':'For a custom fly, start with a wing you have and check the quote before paying. There is no established catch bonus that justifies buying an expensive wing.',facts:use.facts?.[lang]||[]};
     if(item.category==='fly_tail')return {summary:lang==='th'?'เลือกหางนี้ถ้าชอบรูปและยอมรับราคาเสนอ หรือเลือก “ไม่มี” ในเมนูประกอบที่มีตัวเลือกนั้น ยังไม่มีหลักฐานว่าหางนี้เพิ่มโอกาสจับปลา':lang==='ja'?'見た目と見積額で選ぶ。「無し」がある作成画面では省略できる。このテールの釣果ボーナスは確認していない。':'Choose this tail for its appearance and quoted price, or choose “None” where the maker offers it. A catch advantage from this tail is not established.',facts:[]};
-    if(item.category==='float_weight') {
-      let summary='';
-      if(lang==='th') summary=item.id==='08'?'ตกฟลายไม่ต้องซื้อเครื่องหมายนี้เพื่อหวังโบนัส เกมใส่เครื่องหมายนี้ให้ตอนเตรียมฟลายอยู่แล้ว':Number.parseInt(item.id,16)<9?'ถ้ามีทุ่นใช้อยู่แล้ว ยังไม่จำเป็นต้องเปลี่ยนรุ่นเพื่อหวังให้ปลากัดมากขึ้น เลือกเหยื่อที่ตรงกับปลาเป็นอันดับแรก':'ใช้ตะกั่วเมื่อปลาที่เลือกอยู่ในรายชื่อด้านล่างและเหยื่อก็ใช้ได้ ถ้าต้องการรายชื่อปลาที่ผ่านเงื่อนไขกว้างกว่า ให้ดูชุดทุ่น';
-      else if(lang==='ja') summary=item.id==='08'?'毛バリ準備時にゲームが自動でこの目印を設定する。ボーナスを期待した購入は不要。':Number.parseInt(item.id,16)<9?'ウキを持っているなら、食いつき率を期待してモデルを替える根拠はない。まず魚に合うエサを選ぶ。':'対象魚とエサの両方が合う時にオモリを使う。より広い対象一覧ならウキ仕掛けを確認する。';
-      else summary=item.id==='08'?'Fly setup supplies this marker automatically; do not buy it for an expected fly bonus.':Number.parseInt(item.id,16)<9?'Keep your existing float unless you want a different indicator. Choose compatible bait first; a model swap has no established bite-rate bonus.':'Use a sinker when both its fish list and your bait include the target. Check float rigs for broader compatible-fish coverage.';
-      return {summary,facts:[]};
-    }
+    if(item.category==='float_weight')return {summary:local(use.summary),facts:use.facts?.[lang]||[]};
     if(item.category==='food'&&item.id==='08')return {summary:lang==='th'?'ตรวจชื่อปลาที่เมนูแสดงก่อนกิน เพราะเกมกินตัวแรกในข้อง ถ้าเป็นคุซะฟุกุอย่ากิน: HP จะเหลือ 0':lang==='ja'?'食べる前に表示された魚名を確認する。びくの先頭を食べる。クサフグなら食べない：HPが0になる。':'Check the displayed fish name before eating: the game eats the first keepnet fish. Do not eat Kusafugu; it sets HP to zero.',facts:use.facts?.[lang]||[]};
     const facts=use.specialResponseTarget?[]:(use.facts?.[lang]||use.facts?.en||[]);
     return {summary:local(use.summary)||'',facts};
@@ -209,6 +223,10 @@
   }
   function fishSection(item, fishVisuals, fishLocations) {
     const use=item.playerUse||{}, routes=use.fishIdsByRoute||{};
+    const steering=item.category==='general_tool'&&['08','09','0A'].includes(item.id);
+    const steeringCopy={th:{title:'ปลาและสัตว์ที่ชี้ทิศให้เข้าหาจุดโปรยได้',yes:'โปรไฟล์นี้อยู่ในรายชื่อที่หันทิศเข้าหาจุดโปรยได้',no:'โปรไฟล์นี้ไม่อยู่ในรายชื่อที่หันทิศเข้าหาจุดโปรยได้'},en:{title:'Creatures whose movement can be steered toward chum',yes:'This profile is in the movement-steering list.',no:'This profile is not in the movement-steering list.'},ja:{title:'寄せエサの地点へ進行方向を向けられる魚・生き物',yes:'このプロフィールは進行方向の誘導リストに含まれる。',no:'このプロフィールは進行方向の誘導リストに含まれない。'}}[lang];
+    const heading=steering?steeringCopy.title:copy.fish;
+
     const routeKeys=Object.keys(routes).filter(route=>Array.isArray(routes[route])&&routes[route].length);
     const ids=Array.isArray(use.fishIds)?[...new Set(use.fishIds.map(x=>String(x).toUpperCase().padStart(2,'0')))]:[];
     const supportedCategories=['lure','fly','bait','float_weight','general_tool'];
@@ -216,10 +234,10 @@
     if(!hasCompatibility)return selectedFish?`<section class="detail-section"><h2>${esc(copy.fish)}</h2><p class="muted">${esc(copy.noFish)}</p></section>`:'';
     const routeGroup=(key,routeIds)=>`<div id="rig-${esc(key)}" class="detail-section" ${selectedRoute===key?'data-active="true"':''}><h3>${esc(key==='float'?copy.routeFloat:copy.routeSinker)} · ${new Set(routeIds).size}</h3><div class="detail-grid">${[...new Set(routeIds.map(x=>String(x).toUpperCase().padStart(2,'0')))].map(id=>fishTile(id,fishVisuals,fishLocations,selectedStage)).join('')}</div></div>`;
     const groups=routeKeys.length?routeKeys.map(key=>routeGroup(key,routes[key])).join(''):`<div class="detail-grid">${ids.map(id=>fishTile(id,fishVisuals,fishLocations,selectedStage)).join('')}</div>`;
-    const targetStatus=selectedFish?(ids.includes(selectedFish)||routeKeys.some(k=>(routes[k]||[]).map(x=>String(x).toUpperCase().padStart(2,'0')).includes(selectedFish))?copy.targetYes:copy.targetNo):'';
+    const targetStatus=selectedFish?(ids.includes(selectedFish)||routeKeys.some(k=>(routes[k]||[]).map(x=>String(x).toUpperCase().padStart(2,'0')).includes(selectedFish))?(steering?steeringCopy.yes:copy.targetYes):(steering?steeringCopy.no:copy.targetNo)):'';
     const fishTarget=selectedFish?`<p class="play-target"><strong>${esc(copy.target)} · ${esc(fishName(selectedFish,fishVisuals))} (${esc(selectedFish)})</strong><br>${esc(targetStatus)}</p>`:'';
     const scope=local(use.fishScope)||copy.fishScope;
-    return `<section class="detail-section"><h2>${esc(copy.fish)} · ${ids.length||Object.values(routes).flat().length}</h2>${fishTarget}<p>${esc(scope)}</p>${groups}<p class="muted">${esc(copy.fishScope)}</p></section>`;
+    return `<section class="detail-section"><h2>${esc(heading)} · ${ids.length||Object.values(routes).flat().length}</h2>${fishTarget}<p>${esc(scope)}</p>${groups}<p class="muted">${esc(steering?(lang==='th'?'รายชื่อนี้บอกผลต่อทิศการเคลื่อนที่ ไม่ใช่เหยื่อที่กินหรือโบนัสโอกาสกัด':lang==='ja'?'進行方向の効果であり、食べられるエサや食いつき率のボーナスを示さない。':'This list describes movement steering, not edible bait or a bite-rate bonus.'):copy.fishScope)}</p></section>`;
   }
   function technicalSection(item) {
     const use=item.playerUse||{}, sources=use.evidence?.sources||[];
@@ -232,12 +250,20 @@
     const notes=noteArray.map(note=>`<li>${esc(note)}</li>`).join('');
     return `<details class="evidence"><summary>${esc(copy.tech)}</summary><div class="detail-content"><p><strong>${esc(copy.itemPrice)}:</strong> ${item.priceYen==null?'—':`¥${esc(item.priceYen)}`}</p><p><strong>${esc(copy.offset)}:</strong> <code>${esc(item.fileOffset||'—')}</code></p><p><strong>${esc(copy.bytes)}:</strong> <code>${esc(item.recordBytesHex||'—')}</code></p>${techTargets}${renderedDecoded?`<h3>${esc(copy.fields)}</h3><dl>${renderedDecoded}</dl>`:''}${rawFields?`<h3>${esc(copy.raw)}</h3><dl>${rawFields}</dl>`:''}${notes?`<h3>${esc(copy.evidenceNotes)}</h3><ul>${notes}</ul>`:''}${sources.length?`<h3>${esc(copy.source)}</h3><ul>${sourceLinks}</ul>`:''}<a href="${esc(item.frame||item.image)}" target="_blank" rel="noopener">${esc(copy.openFrame)}</a></div></details>`;
   }
-  function useLocationSection(item, fishLocations) {
+  function useLocationSection(item, fishLocations, allItems) {
     const locations=item.playerUse?.useLocations||[];
     if(!locations.length)return '';
-    return `<section class="detail-section"><h2>${esc(copy.useLocations)}</h2><div class="detail-grid">${locations.map(loc=>{const stage=Number(loc.stage)||0;return `<article class="detail-section"><h3>${esc(stage?stageName(stage,fishLocations):'')}</h3><p>${esc(local(loc.description)||local(loc.name)||'')}</p>${stage?stageButton(stage,fishLocations):''}</article>`;}).join('')}</div></section>`;
+    const text={th:{pin:'รูปไอเท็มชี้ตำแหน่งที่ต้องไป',forage:'รูปเหยื่อชี้ช่องตัวอย่างที่ค้นหาได้ ถ้ามีสองรูปคือผลลัพธ์ทางเลือก ไม่ได้รับทั้งคู่ ขยับช่องก่อนค้นซ้ำ',open:'เปิดภาพบริเวณนี้เต็ม',full:'เปิดภาพฉากทั้งด่าน',window:'ยืนใช้ไอเท็มในช่วง'},en:{pin:'The item portrait marks where to go.',forage:'Bait portraits mark an example search tile. Two portraits mean alternative results, not both at once. Move to another tile before searching again.',open:'Open this location image',full:'Open full area terrain',window:'Stand and use the item within'},ja:{pin:'道具画像が目的の場所を示す。',forage:'エサ画像は探索できるタイル例。2枚なら結果の候補で、両方同時ではない。再探索前に別タイルへ移動する。',open:'この場所の画像を開く',full:'エリア全体の地形を開く',window:'この範囲で道具を使う'}}[lang];
+    return `<section class="detail-section"><h2>${esc(copy.useLocations)}</h2><div class="detail-grid tool-location-grid">${locations.map(loc=>{
+      const stage=Number(loc.stage)||0, refs=loc.markerItems||(loc.markerItem?[loc.markerItem]:[{category:item.category,id:item.id}]);
+      const markers=refs.map(ref=>allItems.find(i=>i.category===ref.category&&i.id===ref.id)).filter(Boolean);
+      const visual=loc.image&&loc.pin?`<div class="tool-use-map" style="aspect-ratio:${Number(loc.width)||1}/${Number(loc.height)||1}"><img class="tool-use-ground" src="${esc(loc.image)}" alt="${esc(local(loc.name))}"><span class="tool-use-pin" style="left:${Number(loc.pin.x)*100}%;top:${Number(loc.pin.y)*100}%">${markers.map(marker=>`<a href="${esc(marker.category===item.category&&marker.id===item.id?loc.image:detailItemLink(marker))}" ${marker.category===item.category&&marker.id===item.id?'target="_blank" rel="noopener"':''} aria-label="${esc(marker.category===item.category&&marker.id===item.id?text.open:imageName(marker))}"><img src="${esc(marker.image)}" alt="${esc(imageName(marker))}"></a>`).join('')}</span></div><p class="muted">${esc(loc.forage?text.forage:text.pin)}</p>`:'';
+      const window=loc.useWindow?`<p>${esc(text.window)} X ${loc.useWindow.xMin}–${loc.useWindow.xMax}, Y ${loc.useWindow.yMin}–${loc.useWindow.yMax}</p>`:'';
+      return `<article class="detail-section"><h3>${esc(stage?copy.area(stage)+' · '+stageName(stage,fishLocations):'')}</h3><p>${esc(local(loc.description)||local(loc.name)||'')}</p>${visual}<p>X ${esc(loc.tileX)}, Y ${esc(loc.tileY)}</p>${window}${loc.image?`<a href="${esc(loc.image)}" target="_blank" rel="noopener">${esc(text.open)} ↗</a>`:''}${loc.fullImage?` · <a href="${esc(loc.fullImage)}" target="_blank" rel="noopener">${esc(text.full)} ↗</a>`:''}</article>`;
+    }).join('')}</div></section>`;
   }
-  function render(item, allItems, fishVisuals, fishLocations) {
+
+  function render(item, allItems, fishVisuals, fishLocations, decisions) {
     setNavigation();
     const name=imageName(item), categoryText=categoryLabel(item), usage=visibleUsage(item), summary=usage.summary||local(item.playerUse?.summary)||'';
     const facts=usage.facts||[];
@@ -252,7 +278,7 @@
     const categoryHref=currentCategoryLink();
     const intro=`<nav class="detail-breadcrumb"><a href="${esc(categoryHref)}">${esc(copy.allItems)} · ${esc(categoryText)}</a></nav>`;
     const moreLink=`<p class="detail-back-to-list"><a class="route-button" href="${esc(categoryHref)}">${esc(copy.allItems)} · ${esc(categoryText)} ↗</a></p>`;
-    $('detail-root').innerHTML=`${intro}<section class="detail-hero">${image}${identity}</section>${targetContext}${actionSection}${shopSection(item,allItems,fishLocations)}${useLocationSection(item,fishLocations)}${fishSection(item,fishVisuals,fishLocations)}${moreLink}${technicalSection(item)}<p class="muted">${esc(copy.sourced)}</p>`;
+    $('detail-root').innerHTML=`${intro}<section class="detail-hero">${image}${identity}</section>${targetContext}${actionSection}${buyingDecision(item,allItems,decisions)}${shopSection(item,allItems,fishLocations)}${useLocationSection(item,fishLocations,allItems)}${fishSection(item,fishVisuals,fishLocations)}${moreLink}${technicalSection(item)}<p class="muted">${esc(copy.sourced)}</p>`;
     if(selectedRoute&&item.category==='bait')document.getElementById(`rig-${selectedRoute}`)?.scrollIntoView({block:'center'});
     document.title=`${name} · ${categoryText} · ${lang==='th'?'ตกปลาทาโร่ 2':lang==='ja'?'川のぬし釣り2':'Kawa no Nushi Tsuri 2'}`;
   }
@@ -261,8 +287,9 @@
     $('detail-root').innerHTML=`<section class="empty-state"><h1>${esc(copy.invalidTitle)}</h1><p>${esc(copy.invalidBody)}</p><a class="route-button" href="${esc(fallbackBack())}">${esc(copy.allItems)} ↗</a></section>`;
   }
   fetch('gallery-data.json').then(response=>{if(!response.ok)throw new Error('catalogue data unavailable');return response.json();}).then(data=>{
+    if(selectedFish&&!data.fishVisuals?.[selectedFish])selectedFish='';
     const item=(data.items||[]).find(candidate=>candidate.category===category&&candidate.id===requestedId)||null;
     if(!item){emptyState();return;}
-    render(item,data.items||[],data.fishVisuals||{},data.fishLocations||{});
+    render(item,data.items||[],data.fishVisuals||{},data.fishLocations||{},data.playerDecisions?.sections||[]);
   }).catch(()=>emptyState());
 })();

@@ -20,8 +20,10 @@
   try {
     const raw=new URLSearchParams(location.search).get('return')||'';
     const base=new URL('.',location.href), target=new URL(raw,base);
-    const allowed=['index','maps','fish','item'].flatMap(name=>['','.th','.ja'].map(suffix=>new URL(`${name}${suffix}.html`,base).pathname));
-    if(raw&&!raw.startsWith('//')&&!raw.includes('\\')&&!/^[a-z][a-z0-9+.-]*:/i.test(raw)&&target.origin===base.origin&&allowed.includes(target.pathname))returnPath=target.pathname.split('/').pop()+target.search+target.hash;
+    const allowed=['index','maps','fish','item'].flatMap(name=>['','.th','.ja'].map(suffix=>{const route=`${name}${suffix}.html`;return {route,pathname:new URL(route,base).pathname};}));
+    allowed.push(...['index.html','index.th.html','index.ja.html'].map(file=>{const route=`../research/${file}`;return {route,pathname:new URL(route,base).pathname};}));
+    const match=allowed.find(entry=>entry.pathname===target.pathname);
+    if(raw&&!raw.startsWith('//')&&!raw.includes('\\')&&!/^[a-z][a-z0-9+.-]*:/i.test(raw)&&target.origin===base.origin&&match)returnPath=match.route+target.search+target.hash;
   }catch{}
   if(returnPath){
     const back=document.createElement('a');back.className='back-link';back.href=returnPath;
@@ -138,6 +140,22 @@
       return `<option value="${section.key}" ${section.key===activeSection?'selected':''}>${esc(label)}</option>`;
     }).join('');
     stageSelect.disabled = !sections.length;
+    renderTargetSectionLinks(data, sections);
+  }
+  function renderTargetSectionLinks(data, targetSections) {
+    const summary=$('target-section-summary'), shortcuts=$('other-sections');
+    if (!selectedFish || !data) {
+      summary.hidden=true; summary.textContent=''; shortcuts.hidden=true; shortcuts.innerHTML=''; return;
+    }
+    const total=[...data.pins.values()].filter(pin=>pin.fishIds.includes(selectedFish)).length;
+    const sections=targetSections.map(section=>({section,count:section.pins.filter(pin=>pin.fishIds.includes(selectedFish)).length})).filter(entry=>entry.count>0);
+    const current=sections.find(entry=>entry.section.key===activeSection)?.count||0;
+    const elsewhere=Math.max(0,total-current);
+    summary.hidden=false;
+    summary.textContent=lang==='th'?`ส่วนนี้ ${current} จาก ${total} จุด · อีก ${elsewhere} จุดอยู่ในส่วนอื่น`:lang==='ja'?`この範囲 ${current}/${total} 地点 · 他の範囲に ${elsewhere} 地点`:`This section: ${current} of ${total} points · ${elsewhere} elsewhere`;
+    const other=sections.filter(entry=>entry.section.key!==activeSection);
+    shortcuts.hidden=!other.length;
+    shortcuts.innerHTML=other.map(({section,count})=>`<button type="button" data-other-section="${section.key}">${esc(c.mapSection(section.col+1,section.row+1))} · ${esc(c.point(count))}</button>`).join('');
   }
   function setFish(id) {
     const next = selectedFish === id ? '' : id;
@@ -231,6 +249,7 @@
   $('pin-details').addEventListener('click',event=>{const button=event.target.closest('[data-fish]');if(button&&button.dataset.fish!==selectedFish)setFish(button.dataset.fish);});
   $('map-view').addEventListener('click',event=>{const pin=event.target.closest('[data-pin]');if(!pin)return;const ids=pin.dataset.pin.split(',');if(ids.length===1&&ids[0]!==selectedFish)setFish(ids[0]);else showPinDetails(ids,pin.dataset.x,pin.dataset.y);});
   stageSelect.addEventListener('change',()=>{activeSection=stageSelect.value;render();});
+  $('other-sections').addEventListener('click',event=>{const button=event.target.closest('[data-other-section]');if(button){activeSection=button.dataset.otherSection;render();}});
   $('fish-scope').addEventListener('click',event=>{const button=event.target.closest('[data-scope]');if(!button)return;listScope=button.dataset.scope;searchTerm='';searchInput.value='';render();});
   $('area-overview').addEventListener('click',event=>{const button=event.target.closest('[data-section]');if(button){activeSection=button.dataset.section;render();}});
   $('zoom-out').addEventListener('click',()=>{zoom=Math.max(.6,zoom/1.3);renderMap();});

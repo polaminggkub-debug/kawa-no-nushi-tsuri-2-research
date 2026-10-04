@@ -26,7 +26,7 @@ function validate(html,base, allowInvalidIdentity=false){
 async function render(kind,lang,query,prefix='/kawa-no-nushi-tsuri-2-research'){
  const suffix=lang==='en'?'':'.'+lang;
  const url=new URL(`https://example.test${prefix}/catalogue/${kind}${suffix}.html?${query}`);
- const nodes={};const node=id=>nodes[id]||=( {innerHTML:'',textContent:'',href:'',dataset:{},setAttribute(){},removeAttribute(){},getAttribute(){return null},scrollIntoView(){this.scrolled=true}} );
+ const nodes={};const node=id=>nodes[id]||=( {innerHTML:'',textContent:'',href:'',dataset:{},setAttribute(){},removeAttribute(){},getAttribute(){return null},addEventListener(){},scrollIntoView(){this.scrolled=true}} );
  const languages=['en','th','ja'].map(code=>({...node(`language-${code}`),getAttribute:key=>key==='hreflang'?code:null}));
  const document={documentElement:{dataset:{locale:lang}},getElementById:node,querySelectorAll:()=>languages};
  const location={href:url.href,origin:url.origin,pathname:url.pathname,search:url.search,hash:url.hash};
@@ -49,6 +49,17 @@ async function render(kind,lang,query,prefix='/kawa-no-nushi-tsuri-2-research'){
    const result=await render('item',lang,new URLSearchParams({category:item.category,id:item.id,return:`index${suffix}.html?category=${item.category}#catalogue`}));
    assert(!result.html.includes('Item not found')&&!result.html.includes('ไม่พบไอเท็ม')&&!result.html.includes('道具が見つかりません'),`Item render failed ${item.category}:${item.id}`);
    assert(result.html.includes('class="evidence"'),`No collapsed evidence ${item.category}:${item.id}`);
+   const visible=result.html.split('<details class="evidence"')[0];
+   const breadcrumb=unescape(visible.match(/<nav class="detail-breadcrumb"><a href="([^"]+)"/)?.[1]||'');
+   const browse=new URL(breadcrumb,result.url),flyPart=['fly','fly_wing','fly_tail'].includes(item.category);
+   assert.equal(browse.searchParams.get('category'),flyPart?'flymaker':item.category,'Item category breadcrumb mismatch');
+   if(flyPart)assert.equal(browse.searchParams.get('part'),item.category,'Fly part breadcrumb lost');
+
+   if(['hook','float_weight'].includes(item.category))for(const fact of item.playerUse?.facts?.[lang]||[])assert(unescape(visible).includes(fact),`Confirmed practical fact hidden: ${item.category}:${item.id}`);
+   if(item.category==='rod')assert(visible.includes('buying-decision'),`Rod purchase decision missing ${item.id}`);
+   if(item.category==='general_tool'&&['08','09','0A'].includes(item.id))assert(visible.includes(lang==='en'?'movement can be steered':lang==='th'?'ชี้ทิศ':'進行方向'),`Chum steering list mislabeled ${item.id}`);
+   for(const loc of item.playerUse?.useLocations||[])if(loc.image)assert(visible.includes(`src="${loc.image}"`),`Use map hidden ${item.id}/${loc.stage}`);
+
    assert(result.nodes['detail-back'].href.includes(`#catalogue`),'Lost item return context');
   }
   for(const id of fishIds){
@@ -61,6 +72,27 @@ async function render(kind,lang,query,prefix='/kawa-no-nushi-tsuri-2-research'){
    const result=await render(kind,lang,bad);
    assert(result.html.includes('empty-state'),`Invalid entity lacks recovery ${kind} ${bad}`);
   }
+  for(const [fishId,record] of Object.entries(locations.fish))for(const area of record.locations||[]){
+   const stage=String(area.stage), result=await render('fish',lang,new URLSearchParams({id:fishId,stage}));
+   const offered=[...result.html.matchAll(/class="detail-section starter-offer" data-method="([^"]+)" data-item="([^"]+)" data-price="(\d+)"/g)];
+   for(const method of ['float','sinker','lure','fly']){
+    const candidates=[];
+    for(const item of data.items){
+     const accepted=method==='float'||method==='sinker'?item.category==='bait'&&(item.playerUse?.fishIdsByRoute?.[method]||[]).includes(fishId):item.category===method&&(item.playerUse?.fishIds||[]).includes(fishId);
+     if(!accepted)continue;
+     for(const shop of item.playerUse?.shops||[]){
+      if(String(shop.stage)!==stage||shop.condition)continue;
+      const price=method==='fly'?shop.bundle?.shopPriceYen:item.priceYen;
+      if(Number.isFinite(price)&&price>=0)candidates.push({key:`${item.category}:${item.id}`,price});
+     }
+    }
+    const card=offered.find(x=>x[1]===method);
+    assert.equal(Boolean(card),Boolean(candidates.length),`Missing/extra starter method ${fishId}/${stage}/${method}`);
+    if(card){const minimum=Math.min(...candidates.map(x=>x.price));assert.equal(Number(card[3]),minimum,'Starter price is not lowest eligible offer');assert(candidates.some(x=>x.key===card[2]&&x.price===minimum),'Starter item is incompatible or not stocked');}
+   }
+  }
+  const invalidTarget=await render('item',lang,new URLSearchParams({category:'lure',id:'2E',fish:'FF',stage:'999'}));
+  assert(invalidTarget.html.includes('class="detail-hero"')&&!invalidTarget.html.includes('play-target'),'Invalid fish target breaks a valid item');
   for(const route of ['float','sinker']){
    const result=await render('item',lang,new URLSearchParams({category:'bait',id:'01',fish:'06',route}));
    assert(result.html.includes(`id="rig-${route}"`)&&result.nodes[`rig-${route}`].scrolled,`Rig route did not focus ${route}`);

@@ -38,7 +38,7 @@ python3 scripts/build_equipment_guide.py
 node scripts/check_entity_links.cjs
 ```
 
-Result: **PASS — 1,208 localized detail renders and 133,074 local link/asset checks**. These counts include repeated references, not distinct pages or manual clicks.
+Result: **PASS — 1,520 localized detail renders and 195,131 local link/asset checks**. These counts include repeated references, not distinct pages or manual clicks.
 
 Coverage:
 

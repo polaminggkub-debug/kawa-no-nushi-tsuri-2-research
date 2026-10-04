@@ -48,7 +48,7 @@
   const params = new URLSearchParams(window.location.search);
   const originalReturn = params.get('return') || '';
   const id = normalizeId(params.get('id'));
-  const requestedStage = validStage(params.get('stage'));
+  let requestedStage = validStage(params.get('stage'));
   const localReturn = safeLocalReturn(originalReturn);
 
   function normalizeId(value) {
@@ -166,6 +166,44 @@
     return `<article class="entity-link">${image}<a class="entity-link-name" href="${escapeHtml(itemHref)}"><strong>${escapeHtml(localizedItemName(item))}</strong><span class="muted">ID ${escapeHtml(item.id)}</span></a>${routeLinks}</article>`;
   }
 
+  const shoppingCopy={
+    th:{title:'เริ่มซื้ออะไรสำหรับปลานี้?',area:'เลือกด่านที่จะตก',intro:'ถ้าต้องซื้อใหม่ เลือกตัวเลือกที่ราคาต่ำสุดและมีขายในด่านนี้ โดยผ่านเงื่อนไขของปลานี้แล้ว ถ้ามีเหยื่อที่ผ่านเงื่อนไขอยู่แล้ว ใช้ต่อได้ ไม่ต้องซื้อซ้ำ',scope:'ราคาถูกสุดในแต่ละวิธีตก ไม่ใช่อันดับโอกาสกัดหรือดึงขึ้นสำเร็จ รายการที่ต้องปลดล็อกร้านก่อนยังไม่รวมในชุดเริ่มต้นนี้',fly:'ฟลาย: ราคานี้เป็นชุดสำเร็จรูปตามส่วนประกอบในรายละเอียด บางชุดไม่มีปีกหรือหาง ยังมีเงื่อนไขบอดี้/ปีกที่ซ่อนอยู่ซึ่งอาจทำให้ไม่กินเหยื่อ',none:'ไม่มีของที่ผ่านเงื่อนไขและมีขายแบบไม่ต้องปลดล็อกในด่านนี้ เลือกจากรายการเหยื่อทั้งหมดด้านล่าง แล้วเปิดรายละเอียดเพื่อดูด่านที่ขายหรือวิธีหา',cost:'ราคา',bundle:'ชุดฟลายสำเร็จรูป',all:'เหยื่อทั้งหมดที่ใช้ด้วยได้',buy:'เปิดวิธีใช้และร้าน'},
+    en:{title:'What should I buy for this fish?',area:'Choose your fishing area',intro:'If buying new tackle, start with the lowest-priced stocked option for each method below. Each passes this fish’s recorded check. Keep compatible tackle you already own; there is no need to buy a duplicate.',scope:'Lowest price within each method, not a bite or landing-success ranking. Offers requiring a shop unlock are excluded from these starter choices.',fly:'Fly: this price is for the ready-made set and its recorded parts; some sets omit a wing or tail. Hidden body/wing conditions may still prevent a bite.',none:'No compatible offer without an unlock is recorded here. Choose from all compatible tackle below, then open its details for purchase areas or acquisition instructions.',cost:'Price',bundle:'Ready-made fly set',all:'All compatible tackle',buy:'Open use and shop details'},
+    ja:{title:'この魚には何を買う？',area:'釣るエリアを選ぶ',intro:'新しく買うなら、下の釣り方ごとに店頭在庫がある最安の候補から選べる。各候補はこの魚の判定を通る。対応する道具を持っているなら、同じものを買い直す必要はない。',scope:'各釣り方の最安価格であり、食いつき・取り込み成功率の順位ではない。店の解放が必要な販売は最初の候補から除いている。',fly:'フライの表示額は詳細にある店売りセット全体。ウィングやテールを含まないセットもある。隠れた本体・ウィング条件で食いつかない場合もある。',none:'このエリアでは、解放不要で販売される対応道具を確認できない。下の対応道具一覧から選び、詳細で販売エリアや入手方法を確認する。',cost:'価格',bundle:'店売りフライセット',all:'対応道具の全一覧',buy:'使い方と店の詳細を見る'}
+  }[locale];
+
+  function starterOffers(entries, stage) {
+    const methods=[['float',copy.float],['sinker',copy.sinker],['lure',copy.lure],['fly',copy.fly]];
+    return methods.flatMap(([method,label])=>{
+      const candidates=[];
+      for(const entry of entries){
+        const item=entry.item;
+        if(method==='float'||method==='sinker'){if(item.category!=='bait'||!entry.routes.includes(method))continue;}
+        else if(item.category!==method)continue;
+        for(const shop of item.playerUse?.shops||[]){
+          if(String(shop.stage)!==stage||shop.condition)continue;
+          const price=method==='fly'?shop.bundle?.shopPriceYen:item.priceYen;
+          if(!Number.isFinite(price)||price<0)continue;
+          candidates.push({entry,method,label,price,bundle:shop.bundle||null});
+        }
+      }
+      candidates.sort((a,b)=>a.price-b.price||a.entry.item.id.localeCompare(b.entry.item.id));
+      return candidates.length?[candidates[0]]:[];
+    });
+  }
+
+  function renderShopping(entries, locations, stage) {
+    if(!locations.length)return '';
+    const offers=starterOffers(entries,stage), text=shoppingCopy;
+    const cards=offers.map(offer=>{
+      const query=new URLSearchParams({category:offer.entry.item.category,id:offer.entry.item.id,fish:id,stage,return:currentFishPath(stage)});
+      if(['float','sinker'].includes(offer.method))query.set('route',offer.method);
+      const link=`${itemPath()}?${query}`;
+      return `<article class="detail-section starter-offer" data-method="${offer.method}" data-item="${offer.entry.item.category}:${offer.entry.item.id}" data-price="${offer.price}"><h3>${escapeHtml(offer.label)}</h3><a class="entity-link" href="${escapeHtml(link)}"><img src="${escapeHtml(offer.entry.item.image)}" alt=""><span><strong>${escapeHtml(localizedItemName(offer.entry.item))}</strong><small>${escapeHtml(text.cost)} ¥${offer.price}${offer.bundle?` · ${escapeHtml(text.bundle)}`:''}</small></span></a>${offer.bundle?`<p class="muted">${escapeHtml(text.fly)}</p>`:''}<a class="route-button" href="${escapeHtml(link)}">${escapeHtml(text.buy)} ↗</a></article>`;
+    }).join('');
+    return `<section class="detail-section shopping-plan"><h2>${escapeHtml(text.title)}</h2><label for="shopping-area">${escapeHtml(text.area)}</label><select id="shopping-area">${locations.map(loc=>`<option value="${loc.stage}" ${String(loc.stage)===stage?'selected':''}>${escapeHtml(copy.stage(loc.stage))} · ${escapeHtml(loc.stageName?.[locale]||loc.stageName?.en||'')}</option>`).join('')}</select><p>${escapeHtml(text.intro)}</p>${offers.length?`<div class="detail-grid">${cards}</div>`:`<p>${escapeHtml(text.none)}</p>`}<p class="muted">${escapeHtml(text.scope)}</p><a href="#all-compatible">${escapeHtml(text.all)} ↓</a></section>`;
+  }
+
   function renderCompatibility(entries, stage) {
     const byCategory = {
       bait: entries.filter(entry => entry.item.category === 'bait'),
@@ -177,7 +215,7 @@
     ].map(([category, title]) => {
       const group = byCategory[category];
       if (!group.length) return '';
-      return `<details class="detail-section" ${category === 'bait' ? 'open' : ''}><summary><span class="detail-section-title" role="heading" aria-level="2">${escapeHtml(title)}</span><span class="muted">${group.length}</span></summary><div class="detail-grid">${group.map(entry => itemLink(entry, stage)).join('')}</div></details>`;
+      return `<details class="detail-section" ><summary><span class="detail-section-title" role="heading" aria-level="2">${escapeHtml(title)}</span><span class="muted">${group.length}</span></summary><div class="detail-grid">${group.map(entry => itemLink(entry, stage)).join('')}</div></details>`;
     }).join('');
     return groups || `<p class="empty-state">${escapeHtml(copy.noCompatibility)}</p>`;
   }
@@ -238,10 +276,17 @@
     const headline = unlabelled ? copy.unknownFish(id) : name;
 
     page.innerHTML = `<div class="detail-hero">${sprite}<div><p class="muted">${escapeHtml(copy.pageTitle)} · ID ${escapeHtml(id)}</p><h1>${escapeHtml(headline)}</h1>${altNames.length ? `<p class="muted"><span>${escapeHtml(copy.legacyName)}:</span> ${altNames.map(escapeHtml).join(' · ')}</p>` : ''}</div></div>
+      ${renderShopping(matches, locations, activeStage)}
       <section class="detail-section"><h2>${escapeHtml(copy.areas)}</h2>${renderAreas(locations, activeStage)}</section>
-      <section class="detail-section"><h2>${escapeHtml(copy.compatible)}</h2><p class="muted">${escapeHtml(copy.compatibilityNote)}</p>${renderCompatibility(matches, activeStage)}</section>
+      <section id="all-compatible" class="detail-section"><h2>${escapeHtml(copy.compatible)}</h2><p class="muted">${escapeHtml(copy.compatibilityNote)}</p><p>${locale==='th'?'รายการด้านล่างเป็นทางเลือก ไม่จำเป็นต้องซื้อทั้งหมด ทุกชิ้นผ่านเงื่อนไขของปลาที่กำลังดู กดรายละเอียดเพื่อเปรียบเทียบวิธีใช้และด่านที่ขาย':locale==='ja'?'以下は代替候補で、全部買う必要はない。各項目は表示中の魚の判定を通る。詳細で使い方と販売エリアを比較できる。':'The lists below are alternatives; you do not need to buy every entry. Each passes the shown fish’s check. Open details to compare use and purchase areas.'}</p>${renderCompatibility(matches, activeStage)}</section>
       ${renderEvidence(fish, locations, matches)}`;
 
+    const chooser=document.getElementById('shopping-area');
+    if(locations.length)chooser.addEventListener('change',()=>{
+      requestedStage=validStage(chooser.value);
+      if(typeof history!=='undefined')history.replaceState(null,'',currentFishPath(requestedStage));
+      render(fishData,locationData);
+    });
     document.title = `${headline} — ${copy.pageTitle} | Kawa no Nushi Tsuri 2`;
   }
 

@@ -36,3 +36,7 @@ A “carry this and finish everything” claim requires the downstream fight out
 ## Target-fish browsing
 
 The fish picker accepts typed Thai, English/Latin, Japanese names and profile IDs, with sprite suggestions and keyboard selection. Selecting a target switches browsing to confirmed bait/lure/fly-body/float-sinker compatibility and that fish's map. Generic shopping, food/HP, hooks and quest items are excluded from the target view; clear the fish to return to general categories. Wings/tails appear only as parts of sold bundles with qualifying bodies, not as independently fish-compatible gear.
+
+## Continued usefulness audit
+
+The [active full-site usefulness audit](player-usefulness-audit.md) records the next publication cycle: area-specific low-price fish shopping choices, restored tool-location maps, per-rod buying advice, per-hook/float facts, and chum movement labels. It separates completed checks from unresolved full-goal requirements.

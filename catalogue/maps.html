@@ -13,7 +13,7 @@
   <meta property="og:type" content="website">
   <meta property="og:title" content="Fish Locations by Area — Kawa no Nushi Tsuri 2">
   <meta property="og:description" content="Browse fish configured spawn locations on maps decoded from the original Japanese SFC ROM.">
-  <link rel="stylesheet" href="maps.css?v=entity-details-20261004-1">
+  <link rel="stylesheet" href="maps.css?v=player-usefulness-20261004-4">
 </head>
 <body>
   <header class="hero"><div class="hero-inner">
@@ -24,7 +24,7 @@
   </div></header>
   <main>
     <section class="map-browser" aria-labelledby="browse-title">
-      <div class="section-heading"><div><p class="eyebrow dark">ROM MAP INDEX</p><h2 id="browse-title">Where do you want to fish?</h2><p class="section-copy">Pick an area, then pick a fish. You can also search by Thai, English, Japanese, or fish ID.</p></div></div>
+      <div class="section-heading"><div><p class="eyebrow dark">ROM MAP INDEX</p><h2 id="browse-title">Where do you want to fish?</h2><p class="section-copy">Pick an area, then pick a fish. Search the fish names in this catalogue, Japanese names, or fish IDs.</p></div></div>
       <nav id="area-list" class="area-list" aria-label="Areas"></nav>
       <div class="browse-grid">
         <section class="fish-browser" aria-labelledby="fish-title">
@@ -38,6 +38,8 @@
           <div class="map-panel-heading"><div><h3 id="map-title">Area map</h3><p id="map-summary" class="muted"></p></div></div>
           <label class="section-select-label" for="section-select">Map section</label>
           <select id="section-select" disabled></select>
+          <p id="target-section-summary" class="target-section-summary" aria-live="polite" hidden></p>
+          <nav id="other-sections" class="other-sections" aria-label="Other sections with this fish" hidden></nav>
           <p id="pin-help" class="pin-help" aria-live="polite">Loading fish and map data…</p>
           <div id="area-overview" class="map-overview"></div><div class="map-zoom"><button id="zoom-out" type="button" aria-label="Zoom out">−</button><button id="zoom-fit" type="button">Fit</button><button id="zoom-in" type="button" aria-label="Zoom in">+</button></div><div class="map-scroll"><div id="map-view" class="map-view"></div></div>
           <div id="pin-details" class="pin-details" hidden></div>
@@ -49,6 +51,6 @@
     </section>
   </main>
   <footer><p>Independent fan research · no ROM file is included.</p><a href="../research/index.html">Research notes</a></footer>
-  <script src="maps.js?v=entity-details-20261004-1" defer></script>
+  <script src="maps.js?v=player-usefulness-20261004-4" defer></script>
 </body>
 </html>
