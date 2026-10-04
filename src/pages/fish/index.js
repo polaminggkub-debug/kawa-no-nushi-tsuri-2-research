@@ -6,6 +6,7 @@ export * from './fishing-setup.js'
 export * from './maps.js'
 export * from './evidence.js'
 export * from './shopping.js'
+export * from './water-icons.js'
 export * from './render.js'
 
 import { loadCopy } from './load-copy.js'

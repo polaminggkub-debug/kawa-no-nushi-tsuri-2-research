@@ -1,3 +1,4 @@
+export { renderWaterKey } from './water-icons.js'
 export {
   safeReturn,
   localizeReturn,

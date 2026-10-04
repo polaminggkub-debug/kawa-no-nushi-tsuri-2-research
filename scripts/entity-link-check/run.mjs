@@ -34,3 +34,8 @@ await import('./strategy-actions.mjs')
 await import('./canoe-boarding.mjs')
 
 await import('./fish-no-local-stock.mjs')
+
+await import('./fish-map-sections.mjs')
+
+await import('./water-icons.mjs')
+await import('./water-map-key.mjs')

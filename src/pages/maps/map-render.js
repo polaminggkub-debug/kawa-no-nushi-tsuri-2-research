@@ -251,6 +251,7 @@ export function render(ctx) {
   ctx.renderSectionSelect()
   ctx.renderFishList()
   ctx.renderMap()
+  ctx.renderWaterKey()
 }
 
 export function enableControls(ctx) {

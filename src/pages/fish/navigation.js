@@ -119,9 +119,10 @@ export function itemPath(ctx) {
   return ctx.locale === 'th' ? 'item.th.html' : ctx.locale === 'ja' ? 'item.ja.html' : 'item.html'
 }
 
-export function fishMapLink(ctx, stage) {
+export function fishMapLink(ctx, stage, section = '') {
   const query = new URLSearchParams({ fish: ctx.id })
   if (stage) query.set('stage', String(stage))
+  if (/^s[1-6]-c\d+-r\d+$/.test(section)) query.set('section', section)
   query.set('return', ctx.currentFishPath(stage))
   return `${ctx.mapPath()}?${query.toString()}`
 }

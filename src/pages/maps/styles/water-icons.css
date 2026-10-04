@@ -1,0 +1,31 @@
+.water-icon-key {
+  padding: 1rem;
+  margin-block: 1rem;
+  background: var(--surface, #f0f3e9);
+  border-radius: 0.75rem;
+}
+.water-icon-key h4 {
+  margin: 0 0 0.75rem;
+}
+.water-icon-key ul {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  padding: 0;
+  list-style: none;
+}
+.water-icon-key li {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+}
+.water-icon-key img {
+  width: 72px;
+  height: 72px;
+  object-fit: contain;
+  image-rendering: pixelated;
+}
+.water-icon-key p {
+  font-size: 0.9rem;
+  line-height: 1.6;
+}

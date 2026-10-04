@@ -6,9 +6,22 @@ export function slotCount(ctx, location) {
   return (location.points || []).reduce((sum, point) => sum + (point.slotIndices?.length || 1), 0)
 }
 
+function mapSectionKey(stage, map) {
+  const keys = (map.pins || []).map((pin) => {
+    const x = Number(pin.tileX),
+      y = Number(pin.tileY)
+    if (!Number.isFinite(x) || !Number.isFinite(y)) return ''
+    const column = Math.floor((x * 16 + 8) / 384) + 1
+    const row = Math.floor((y * 16 + 8) / 384) + 1
+    return `s${stage}-c${column}-r${row}`
+  })
+  return keys.length && keys[0] && keys.every((key) => key === keys[0]) ? keys[0] : ''
+}
+
 export function renderAreaMap(ctx, map, location, fish) {
   if (!map?.image) return ''
   const stage = String(location.stage),
+    section = mapSectionKey(stage, map),
     pins = (map.pins || []).filter(
       (pin) => Number.isFinite(Number(pin.x)) && Number.isFinite(Number(pin.y)),
     )
@@ -20,7 +33,8 @@ export function renderAreaMap(ctx, map, location, fish) {
     .join('')
   const mapName = map.name?.[ctx.locale] || map.name?.en || `${ctx.copy.stage(stage)}`
   const label = `${ctx.copy.stage(stage)} · ${mapName} · ${ctx.copy.configuredPoints(pins.length)}`
-  return `<a class="area-map-preview" href="${ctx.escapeHtml(ctx.fishMapLink(stage))}" aria-label="${ctx.escapeHtml(label)}"><span class="area-map-canvas"><img class="area-map-ground" loading="lazy" src="${ctx.escapeHtml(map.image)}" alt=""><span aria-hidden="true">${markers}</span></span><span class="area-map-caption"><strong>${ctx.escapeHtml(mapName)}</strong><small>${ctx.escapeHtml(ctx.copy.configuredPoints(pins.length))}</small></span></a>`
+  const href = ctx.fishMapLink(stage, section)
+  return `<a class="area-map-preview" data-map-section="${ctx.escapeHtml(section)}" href="${ctx.escapeHtml(href)}" aria-label="${ctx.escapeHtml(label)}"><span class="area-map-canvas"><img class="area-map-ground" loading="lazy" src="${ctx.escapeHtml(map.image)}" alt=""><span aria-hidden="true">${markers}</span></span><span class="area-map-caption"><strong>${ctx.escapeHtml(mapName)}</strong><small>${ctx.escapeHtml(ctx.copy.configuredPoints(pins.length))}</small></span></a>`
 }
 
 export function renderAreas(ctx, locations, activeStage, fish) {

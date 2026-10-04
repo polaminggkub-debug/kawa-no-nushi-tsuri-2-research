@@ -1025,5 +1025,18 @@ button:focus-visible {
 }
 
 /* src/shared/detail/index.css */
+.water-icon-guide .water-icon-card > img {
+  width: 96px;
+  height: 96px;
+  flex-basis: 96px;
+  object-fit: contain;
+}
+@media (max-width: 760px) {
+  .water-icon-guide .water-icon-card > img {
+    width: 72px;
+    height: 72px;
+    flex-basis: 72px;
+  }
+}
 
 /* src/app/detail.css */

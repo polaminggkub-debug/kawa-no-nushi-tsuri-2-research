@@ -3,7 +3,7 @@ import { data, render, unescapeHtml } from './shared.mjs'
 
 const fishId = '34'
 const neighboringStockedFishId = '33'
-const returnRoute = 'maps.th.html?stage=6&fish=34&section=s6-c2'
+const returnRoute = 'maps.th.html?stage=6&fish=34&section=s6-c1-r1'
 
 for (const locale of ['en', 'ja', 'th']) {
   await checkNoLocalLure(locale)
@@ -121,7 +121,7 @@ function assertReturnContext(target, base, locale) {
   assert(outer.pathname.endsWith('/maps.th.html'))
   assert.equal(outer.searchParams.get('stage'), '6')
   assert.equal(outer.searchParams.get('fish'), fishId)
-  assert.equal(outer.searchParams.get('section'), 's6-c2')
+  assert.equal(outer.searchParams.get('section'), 's6-c1-r1')
 }
 
 console.log(
