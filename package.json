@@ -1,0 +1,30 @@
+{
+  "name": "kawa-no-nushi-tsuri-2-research",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "build:frontend": "node scripts/build_frontend.mjs",
+    "format": "prettier --write src scripts/code-quality scripts/entity-link-check scripts/check_entity_links.cjs scripts/check_map_combobox.cjs scripts/check_shop_conditions.cjs scripts/build_frontend.mjs prettier.config.mjs tsconfig.quality.json package.json",
+    "format:check": "prettier --check src scripts/code-quality scripts/entity-link-check scripts/check_entity_links.cjs scripts/check_map_combobox.cjs scripts/check_shop_conditions.cjs scripts/build_frontend.mjs prettier.config.mjs tsconfig.quality.json package.json",
+    "check:quality": "node scripts/code-quality/check.mjs",
+    "check:publication": "node scripts/code-quality/check-publication.mjs",
+    "check:generated": "node scripts/code-quality/check_generated.mjs",
+    "check:entities": "node scripts/check_entity_links.cjs",
+    "check:shops": "node scripts/check_shops.cjs && node scripts/check_shop_conditions.cjs",
+    "check:maps": "node scripts/check_map_combobox.cjs",
+    "check:search": "node scripts/check_research_search.cjs",
+    "check": "npm run format:check && npm run check:quality && npm run check:publication && npm run check:generated && npm run check:entities && npm run check:shops && npm run check:maps && npm run check:search"
+  },
+  "devDependencies": {
+    "@eslint/js": "10.0.1",
+    "@types/node": "22.20.5",
+    "esbuild": "0.28.2",
+    "eslint": "10.12.0",
+    "globals": "17.13.0",
+    "postcss": "8.5.28",
+    "prettier": "3.9.9",
+    "typescript": "6.0.3",
+    "typescript-eslint": "8.71.0"
+  }
+}

@@ -1,0 +1,416 @@
+.intro-section {
+  grid-template-columns: 1fr;
+  gap: 24px;
+}
+
+.intro-section .section-copy {
+  max-width: 850px;
+}
+
+.sample-table {
+  min-width: 760px;
+  font-size: 14px;
+}
+
+.sample-item {
+  min-width: 290px;
+  gap: 18px;
+}
+
+.sample-item img {
+  width: 128px;
+  height: 128px;
+  flex: 0 0 128px;
+  padding: 8px;
+}
+
+.sample-item strong {
+  font-size: 16px;
+}
+
+.sample-item small {
+  font-size: 12px;
+}
+
+.custom-grid {
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 20px;
+}
+
+.custom-frame figcaption {
+  padding: 14px;
+  font-size: 14px;
+}
+
+.cards {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 20px;
+}
+
+.item-card {
+  padding: 20px;
+}
+
+.card-main {
+  grid-template-columns: 208px minmax(0, 1fr);
+  gap: 20px;
+}
+
+.sprite {
+  padding: 12px 8px;
+  min-height: 260px;
+}
+
+.sprite img {
+  width: 192px;
+  height: 224px;
+  max-width: 100%;
+}
+
+.sprite figcaption {
+  font-size: 11px;
+  margin-top: 10px;
+}
+
+.card-text {
+  min-width: 0;
+}
+
+.card-text h3 {
+  font-size: 22px;
+  overflow-wrap: anywhere;
+}
+
+.jp-name {
+  font-size: 14px;
+  overflow-wrap: anywhere;
+}
+
+.stat-list {
+  gap: 8px;
+  padding-top: 14px;
+}
+
+.stat-list li {
+  font-size: 13px;
+}
+
+.category-tag,
+.confidence,
+.frame-link {
+  font-size: 12px;
+}
+
+.thai-rom-label {
+  width: 100%;
+}
+
+.thai-label-note {
+  display: block;
+  font-size: 12px;
+}
+
+.hero-layout {
+  grid-template-columns: minmax(0, 1fr) 512px;
+  gap: 36px;
+}
+
+@media (max-width: 1050px) {
+  .hero-layout {
+    grid-template-columns: 1fr;
+  }
+  .title-screen {
+    width: min(100%, 512px);
+    justify-self: center;
+  }
+  .card-main {
+    grid-template-columns: 1fr;
+    gap: 16px;
+  }
+  .sprite img {
+    width: 256px;
+    height: 224px;
+  }
+}
+
+@media (max-width: 650px) {
+  .cards,
+  .custom-grid {
+    grid-template-columns: 1fr;
+  }
+  .item-card {
+    padding: 16px;
+  }
+  .sample-item img {
+    width: 112px;
+    height: 112px;
+    flex-basis: 112px;
+  }
+  .card-text h3 {
+    font-size: 23px;
+  }
+  .custom-frame figcaption {
+    font-size: 14px;
+  }
+}
+
+/* Equipment-first guide. */
+
+.hero {
+  padding: 32px 24px;
+}
+
+.hero-layout {
+  grid-template-columns: minmax(0, 1fr) 320px;
+}
+
+.hero-copy h1 {
+  font-size: clamp(32px, 4vw, 48px);
+}
+
+.equipment-menu {
+  padding: 30px 0;
+}
+
+.equipment-menu h2 {
+  margin: 0 0 18px;
+  font-size: 28px;
+  color: var(--deep);
+}
+
+.category-menu {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 12px;
+}
+
+.category-button {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+  border: 2px solid var(--line);
+  padding: 14px;
+  background: var(--card);
+  border-radius: 12px;
+  text-decoration: none;
+}
+
+.category-button img {
+  width: 64px;
+  height: 72px;
+  object-fit: contain;
+  image-rendering: pixelated;
+}
+
+.category-button strong {
+  display: block;
+  font-size: 17px;
+}
+
+.category-button small {
+  display: block;
+  color: var(--muted);
+  font-size: 12px;
+}
+
+.category-button:hover,
+.category-button[aria-current='true'] {
+  border-color: var(--green);
+  background: #e5f0df;
+}
+
+.category-button:focus-visible {
+  outline: 3px solid var(--gold);
+  outline-offset: 3px;
+}
+
+.kit-section {
+  display: flex;
+  align-items: center;
+  gap: 24px;
+  justify-content: space-between;
+  padding: 20px 24px;
+  border: 1px solid #b2c9a8;
+  border-radius: 14px;
+  background: #e8efdc;
+}
+
+.kit-section h2 {
+  font-size: 22px;
+  margin: 0 0 6px;
+}
+
+.kit-section p {
+  margin: 0;
+  max-width: 760px;
+}
+
+.kit-section a {
+  font-weight: 700;
+  flex: 0 0 160px;
+}
+
+.filters {
+  grid-template-columns: 1.1fr 1.4fr 0.8fr 0.7fr;
+}
+
+.filters label {
+  font-size: 13px;
+}
+
+.filters input,
+.filters select {
+  height: 48px;
+  font-size: 15px;
+}
+
+.catalogue-section {
+  padding-top: 32px;
+}
+
+.cards {
+  align-items: start;
+}
+
+.sprite img {
+  width: 192px;
+  height: 192px;
+}
+
+.sprite {
+  min-height: 210px;
+}
+
+.use-block {
+  border-top: 1px solid var(--line);
+  margin-top: 18px;
+  padding-top: 16px;
+}
+
+.use-block h4,
+.compatible-fish h4 {
+  margin: 0 0 8px;
+  font-size: 15px;
+  color: var(--green);
+}
+
+.use-summary {
+  font-size: 17px;
+  line-height: 1.6;
+  margin: 0 0 10px;
+  color: var(--ink);
+}
+
+.use-facts {
+  padding-left: 20px;
+  margin: 0;
+  display: grid;
+  gap: 8px;
+  font-size: 15px;
+}
+
+.use-comparison {
+  padding: 12px;
+  background: var(--soft);
+  border-radius: 8px;
+  font-size: 14px;
+}
+
+.compatible-fish {
+  margin-top: 20px;
+}
+
+.fish-scope {
+  font-size: 13px;
+  color: var(--muted);
+  margin: 6px 0 12px;
+}
+
+.fish-chips {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 8px;
+}
+
+.fish-chip {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  min-width: 0;
+  padding: 8px;
+  background: #edf1e6;
+  border-radius: 8px;
+  font-size: 14px;
+}
+
+.fish-chip img {
+  width: 96px;
+  height: 64px;
+  object-fit: contain;
+  image-rendering: pixelated;
+}
+
+.fish-chip span {
+  overflow-wrap: anywhere;
+}
+
+.more-fish summary {
+  cursor: pointer;
+  font-size: 14px;
+  margin: 12px 0;
+  color: var(--green);
+  font-weight: 700;
+}
+
+.record-details summary {
+  font-size: 13px;
+}
+
+.record-details .stat-list {
+  border: 0;
+}
+
+.record-details {
+  margin-top: 20px;
+}
+
+.comparison {
+  margin: 18px 0;
+  background: var(--card);
+  padding: 18px;
+  border: 1px solid var(--line);
+  border-radius: 12px;
+}
+
+.comparison summary {
+  font-size: 17px;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.comparison p {
+  font-size: 14px;
+  max-width: 850px;
+}
+
+.comparison table {
+  width: 100%;
+  border-collapse: collapse;
+  min-width: 700px;
+  font-size: 14px;
+}
+
+.comparison td,
+.comparison th {
+  padding: 12px;
+  text-align: left;
+  border-bottom: 1px solid var(--line);
+}
+
+.guide-details {
+  margin: 28px 0;
+  border: 1px solid var(--line);
+  background: var(--card);
+  border-radius: 12px;
+  padding: 18px;
+}

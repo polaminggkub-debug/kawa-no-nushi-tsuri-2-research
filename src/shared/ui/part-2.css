@@ -1,0 +1,440 @@
+.decision-item {
+  font-size: 14px;
+}
+
+.play-tip {
+  padding: 12px 16px;
+}
+
+.play-tip p {
+  font-size: 13px;
+  color: var(--muted);
+}
+
+.kit-section {
+  padding: 16px;
+  border: 1px solid var(--line);
+  border-radius: 10px;
+}
+
+.kit-section h2 {
+  font-size: 20px;
+}
+
+.catalogue-section {
+  padding: 0;
+  border-bottom: 0;
+}
+
+.catalogue-heading {
+  margin: 12px 0 16px;
+  align-items: center;
+}
+
+.catalogue-heading h2 {
+  font-size: 28px;
+  margin: 0;
+}
+
+.catalogue-heading .eyebrow {
+  margin: 0 0 4px;
+  font-size: 10px;
+}
+
+.catalogue-heading .section-copy {
+  font-size: 14px;
+  line-height: 1.6;
+}
+
+.filters {
+  display: grid;
+  grid-template-columns: 1fr 1.25fr 1.4fr 1fr 0.7fr;
+  gap: 12px;
+  padding: 16px;
+  background: #fff;
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  align-items: start;
+}
+
+.filters .search-label {
+  grid-column: auto;
+}
+
+.filters label,
+.filters .fish-picker > label {
+  font-size: 12px;
+  font-weight: 700;
+  color: #4f6758;
+  margin: 0;
+}
+
+.filters label > span {
+  font-size: 12px;
+}
+
+.filters input,
+.filters select {
+  font-size: 16px;
+  height: 46px;
+  border: 1px solid #b9cbb6;
+  border-radius: 8px;
+  padding: 8px 11px;
+  width: 100%;
+  min-width: 0;
+  background: #fff;
+}
+
+.filters select {
+  appearance: auto;
+}
+
+.fish-input-row {
+  border-radius: 8px;
+}
+
+.filters .fish-input-row input {
+  height: 44px;
+  border: 0;
+}
+
+.fish-picker > label {
+  padding-bottom: 5px;
+}
+
+.fish-suggestions {
+  z-index: 70;
+  box-shadow: 0 10px 30px #173e3126;
+}
+
+.fish-suggestions img {
+  width: 74px;
+  height: 46px;
+}
+
+.fish-suggestions [role='option'] {
+  min-height: 60px;
+}
+
+.fish-search-status {
+  font-size: 12px;
+}
+
+.translation-provenance {
+  margin: 8px 0;
+  font-size: 12px;
+  color: var(--muted);
+}
+
+.translation-provenance > summary {
+  padding: 7px 0;
+}
+
+.translation-note {
+  font-size: 13px;
+  margin: 8px 0;
+  max-width: 85ch;
+}
+
+.part-menu {
+  margin: 12px 0;
+}
+
+.part-menu a,
+.part-menu button {
+  min-height: 42px;
+}
+
+.category-decisions {
+  margin: 12px 0;
+}
+
+.overview-disclosure,
+.comparison {
+  padding: 0;
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  background: white;
+}
+
+.overview-disclosure > summary,
+.comparison > summary {
+  padding: 13px 16px;
+  font-size: 15px;
+  color: var(--green);
+  font-weight: 700;
+}
+
+.overview-disclosure[open] > .decision-grid,
+.overview-disclosure[open] > div,
+.comparison[open] > .table-wrap {
+  margin: 0 16px 16px;
+}
+
+.comparison p {
+  padding: 0 16px;
+  font-size: 14px;
+}
+
+.result-count {
+  font: 600 13px system-ui;
+  margin: 18px 0 12px;
+  color: var(--muted);
+}
+
+.cards {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 16px;
+  align-items: start;
+}
+
+.item-card {
+  padding: 18px;
+  box-shadow: var(--shadow);
+  border-radius: 14px;
+  overflow-wrap: anywhere;
+}
+
+.card-main {
+  grid-template-columns: 112px minmax(0, 1fr);
+  gap: 14px;
+  min-height: 112px;
+}
+
+.sprite {
+  min-height: 112px;
+  padding: 7px;
+  background: #f0f3eb;
+  border-radius: 10px;
+}
+
+.sprite img {
+  width: 100px;
+  height: 92px;
+  object-fit: contain;
+}
+
+.sprite figcaption {
+  font-size: 10px;
+}
+
+.card-text h3 {
+  font-size: 18px;
+  margin: 8px 0 4px;
+  line-height: 1.4;
+}
+
+.jp-name {
+  font-size: 12px;
+  overflow-wrap: anywhere;
+}
+
+.category-tag {
+  font-size: 11px;
+}
+
+.price-badge {
+  font-size: 13px;
+  padding: 4px 9px;
+}
+
+.item-id {
+  font-size: 11px;
+}
+
+.card-detail-link {
+  display: block;
+  background: var(--deep);
+  color: white !important;
+  border-radius: 8px;
+  padding: 10px 13px;
+  margin: 14px 0 0;
+  text-align: center;
+  text-decoration: none;
+  font-size: 14px;
+  font-weight: 650;
+  min-height: 44px;
+}
+
+.card-detail-link:hover {
+  background: #2d6b50;
+}
+
+.item-card details[class$='-disclosure'] {
+  margin-top: 12px;
+  border-top: 1px solid var(--line);
+  padding-top: 7px;
+}
+
+.item-card details[class$='-disclosure'] > summary {
+  font-size: 13px;
+  color: var(--green);
+  font-weight: 650;
+  padding: 6px 0;
+}
+
+.item-card .stat-list {
+  font-size: 14px;
+}
+
+.item-card .stat-list li {
+  font-size: 14px;
+  line-height: 1.7;
+}
+
+.item-card .rod-verdict,
+.item-card .gear-verdict {
+  font-size: 14px;
+  line-height: 1.6;
+  padding: 9px 11px;
+  background: #eaf1e4;
+  border: 0;
+  border-left: 3px solid #7b9b69;
+  border-radius: 0 7px 7px 0;
+}
+
+.item-card h4 {
+  font-size: 15px;
+  line-height: 1.4;
+}
+
+.item-card .player-use,
+.item-card .rod-recommendation {
+  font-size: 14px;
+}
+
+.record-details summary {
+  font-size: 13px;
+}
+
+.record-details p,
+.record-details code,
+.record-details dl {
+  font-size: 13px;
+}
+
+.record-details h4 {
+  font-size: 12px;
+}
+
+.frame-link {
+  font-size: 14px;
+}
+
+.shop-locations {
+  font-size: 14px;
+}
+
+.cards > .item-card:only-child {
+  max-width: 700px;
+}
+
+.fish-chips {
+  gap: 8px;
+}
+
+.fish-chip {
+  font-size: 13px;
+}
+
+.guide-details {
+  margin: 22px 0;
+  background: white;
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  padding: 16px;
+}
+
+.guide-details > summary {
+  font-size: 16px;
+  font-weight: 700;
+  color: var(--green);
+}
+
+.guide-details .intro-section,
+.guide-details .customizer-section,
+.guide-details .methods-section {
+  padding: 22px 0;
+  border: 0;
+}
+
+.guide-details .section-copy {
+  font-size: 15px;
+}
+
+.custom-grid {
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+
+.custom-frame figcaption {
+  font-size: 13px;
+}
+
+.table-wrap table {
+  font-size: 14px;
+}
+
+.table-wrap th {
+  font-size: 13px;
+}
+
+.notes-grid p {
+  font-size: 14px;
+}
+
+.research-details code {
+  overflow-wrap: anywhere;
+}
+
+/* Maps: persistent area choice, clear fish selector, large original terrain. */
+
+.map-browser {
+  padding: 0;
+  background: transparent;
+  border: 0;
+  box-shadow: none;
+}
+
+.map-browser > .section-heading {
+  margin-bottom: 12px;
+}
+
+.map-browser > .section-heading h2 {
+  font-size: 24px;
+}
+
+.area-list {
+  margin: 14px 0 20px;
+}
+
+.area-button {
+  min-height: 62px;
+  border-width: 1px;
+  padding: 10px 12px;
+}
+
+.area-button strong {
+  font-size: 16px;
+}
+
+.fish-location-links,
+.fish-area-links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin: 12px 0;
+}
+.fish-area-link,
+.fish-profile-link {
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  padding: 8px 12px;
+  background: white;
+  min-height: 44px;
+}
+.fish-location-details > summary {
+  font-weight: 650;
+  color: var(--green);
+  padding: 10px 0;
+}

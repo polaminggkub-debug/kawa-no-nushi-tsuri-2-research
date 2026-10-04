@@ -1,0 +1,417 @@
+.guide-details > summary {
+  font-size: 18px;
+  font-weight: 700;
+  color: var(--green);
+  cursor: pointer;
+}
+
+.guide-details section {
+  padding: 24px 0;
+}
+
+.hero-meta {
+  margin-top: 20px;
+}
+
+@media (max-width: 1050px) {
+  .hero-layout {
+    grid-template-columns: 1fr;
+  }
+  .title-screen {
+    width: 320px;
+  }
+  .category-menu {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+  .filters {
+    grid-template-columns: 1fr 1fr;
+  }
+  .fish-chips {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+  .fish-chip img {
+    width: 80px;
+    height: 56px;
+  }
+}
+
+@media (max-width: 650px) {
+  .hero {
+    padding: 24px 16px;
+  }
+  .category-button {
+    padding: 10px;
+    gap: 8px;
+  }
+  .category-button img {
+    width: 48px;
+    height: 56px;
+  }
+  .category-button strong {
+    font-size: 15px;
+  }
+  .kit-section {
+    display: block;
+    padding: 18px;
+  }
+  .kit-section a {
+    display: block;
+    margin-top: 12px;
+  }
+  .filters {
+    grid-template-columns: 1fr;
+  }
+  .filters .search-label {
+    grid-column: auto;
+  }
+  .card-main {
+    grid-template-columns: 1fr;
+  }
+  .sprite img {
+    width: 256px;
+    height: 224px;
+  }
+  .fish-chip img {
+    width: 88px;
+    height: 64px;
+  }
+  .fish-chips {
+    grid-template-columns: 1fr 1fr;
+  }
+  .fish-chip {
+    flex-direction: column;
+    text-align: center;
+  }
+  .use-summary {
+    font-size: 18px;
+  }
+  .guide-details {
+    padding: 14px;
+  }
+  .title-screen {
+    width: min(100%, 320px);
+  }
+}
+
+[hidden] {
+  display: none !important;
+}
+
+.part-menu {
+  display: flex;
+  gap: 10px;
+  margin: 18px 0;
+}
+
+.part-menu:empty {
+  display: none;
+}
+
+.part-menu button {
+  font: inherit;
+  font-weight: 700;
+  padding: 12px 24px;
+  cursor: pointer;
+  background: var(--card);
+  border: 2px solid var(--line);
+  border-radius: 8px;
+  color: var(--green);
+}
+
+.part-menu button[aria-pressed='true'] {
+  background: var(--green);
+  border-color: var(--green);
+  color: white;
+}
+
+.filters {
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+
+.filters .search-label {
+  grid-column: span 2;
+}
+
+@media (max-width: 650px) {
+  .filters {
+    grid-template-columns: 1fr;
+  }
+  .filters .search-label {
+    grid-column: auto;
+  }
+  .part-menu button {
+    flex: 1;
+    padding: 12px;
+  }
+}
+
+.fish-chip img {
+  width: 128px;
+  height: 88px;
+  flex: 0 0 128px;
+}
+
+.fish-chip span {
+  min-width: 0;
+}
+
+@media (max-width: 1050px) {
+  .fish-chip {
+    flex-direction: column;
+    text-align: center;
+  }
+  .fish-chip img {
+    flex: 0 0 88px;
+    width: 128px;
+    height: 88px;
+  }
+}
+
+@media (max-width: 650px) {
+  .fish-chip img {
+    width: min(100%, 144px);
+    height: 96px;
+    flex: 0 0 96px;
+  }
+}
+
+.poison-food .use-summary {
+  color: #9a211f;
+  font-weight: 700;
+}
+
+.poison-food .use-block {
+  border-top-color: #e0a29c;
+}
+
+.poison-food {
+  border-color: #dfaaa4;
+}
+
+.part-menu {
+  flex-wrap: wrap;
+  align-items: center;
+}
+
+.part-menu a {
+  font-weight: 700;
+  padding: 12px;
+}
+
+/* ROM fish locations connected to equipment selection. */
+
+.fish-chip {
+  text-decoration: none;
+  color: var(--ink);
+  border: 2px solid transparent;
+  position: relative;
+}
+
+.fish-chip:hover {
+  border-color: var(--green);
+}
+
+.fish-chip:focus-visible {
+  outline: 3px solid var(--gold);
+}
+
+.fish-chip small {
+  font-size: 11px;
+  color: var(--green);
+}
+
+.fish-location-panel {
+  margin: 24px 0;
+  padding: 24px;
+  border: 2px solid #b2c9a8;
+  background: #f0f4e9;
+  border-radius: 16px;
+  scroll-margin-top: 20px;
+}
+
+.fish-location-panel h2 {
+  font-size: 25px;
+  margin: 0 0 8px;
+}
+
+.location-heading {
+  display: flex;
+  gap: 20px;
+  align-items: center;
+}
+
+.location-heading > img {
+  width: 160px;
+  height: 100px;
+  object-fit: contain;
+  image-rendering: pixelated;
+}
+
+.location-heading p {
+  margin: 0;
+}
+
+.location-maps {
+  display: grid;
+  gap: 24px;
+}
+
+.location-map {
+  padding: 16px;
+  background: var(--card);
+  border: 1px solid var(--line);
+  border-radius: 12px;
+}
+
+.location-map h4 {
+  font-size: 20px;
+  margin: 0 0 12px;
+}
+
+.map-scroll {
+  overflow: auto;
+  max-height: 780px;
+  border: 1px solid #b2c9a8;
+}
+
+.map-canvas {
+  position: relative;
+  min-width: 640px;
+  width: 100%;
+  background: #18342f;
+}
+
+.map-background {
+  width: 100%;
+  height: auto;
+  display: block;
+  image-rendering: pixelated;
+}
+
+.map-pin {
+  position: absolute;
+  transform: translate(-50%, -100%);
+  display: flex;
+  align-items: center;
+  background: white;
+  border: 3px solid #173f33;
+  box-shadow: 0 2px 7px #0009;
+  border-radius: 7px;
+  padding: 3px;
+  pointer-events: none;
+}
+
+.map-pin:after {
+  content: '';
+  position: absolute;
+  bottom: -11px;
+  left: 50%;
+  transform: translateX(-50%);
+  border-left: 7px solid transparent;
+  border-right: 7px solid transparent;
+  border-top: 10px solid #173f33;
+}
+
+.map-pin img {
+  width: 68px;
+  height: 40px;
+  object-fit: contain;
+  image-rendering: pixelated;
+}
+
+.map-pin b {
+  font-size: 13px;
+  padding: 0 5px;
+}
+
+.location-access {
+  font-weight: 700;
+}
+
+.location-provenance {
+  font-size: 13px;
+  color: var(--muted);
+  margin-top: 18px;
+}
+
+@media (max-width: 650px) {
+  .fish-location-panel {
+    padding: 16px;
+  }
+  .location-heading {
+    align-items: start;
+    gap: 10px;
+  }
+  .location-heading > img {
+    width: 100px;
+    height: 72px;
+  }
+  .fish-location-panel h2 {
+    font-size: 22px;
+  }
+  .location-map {
+    padding: 10px;
+  }
+  .map-canvas {
+    min-width: 560px;
+  }
+  .location-stages button {
+    flex-basis: 45%;
+  }
+  .fish-chip small {
+    display: block;
+  }
+}
+
+.location-map-select {
+  display: block;
+  max-width: 620px;
+  margin: 16px 0;
+  font-weight: 700;
+}
+
+.location-map-select select {
+  display: block;
+  width: 100%;
+  font: inherit;
+  padding: 12px;
+  margin-top: 8px;
+  background: white;
+  border: 1px solid #9bb799;
+  border-radius: 8px;
+}
+
+.spawn-coordinates {
+  margin-top: 16px;
+  font-size: 13px;
+}
+
+.spawn-coordinates p {
+  line-height: 1.8;
+  overflow-wrap: anywhere;
+}
+
+.map-pin img {
+  width: 56px;
+  height: 36px;
+}
+
+.map-pin {
+  padding: 2px;
+  border-width: 2px;
+}
+
+.map-pin b {
+  font-size: 12px;
+  padding: 0 4px;
+}
+
+.map-canvas {
+  min-width: 640px;
+}
+
+/* Align the pointer tip with the ROM coordinate. */
+
+.map-pin {
+  margin-top: -11px;
+}

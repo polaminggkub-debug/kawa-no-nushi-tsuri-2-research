@@ -240,13 +240,14 @@
         "type": "rom_trace",
         "sources": [
           "docs/food-practical-research.md",
-          "data/food-effects-confirmed.json"
+          "data/food-effects-confirmed.json",
+          "docs/magnifier-mushroom-research.md"
         ]
       },
       "summary": {
-        "en": "If you cannot identify which mushroom you have, use shop food for HP recovery instead. The tested menu gives the healing and poison mushrooms the same name; the poison one sets HP to zero.",
-        "th": "ถ้าแยกไม่ออกว่าเห็ดในกระเป๋าเป็นชนิดไหน ให้ใช้อาหารจากร้านฟื้น HP แทน เมนูที่ทดสอบแสดงชื่อเห็ดฟื้นพลังกับเห็ดพิษเหมือนกัน และเห็ดพิษทำให้ HP เหลือ 0",
-        "ja": "持っているキノコの種類を識別できなければ、HP回復には店売りの食料を使ってください。確認したメニューでは回復用と毒キノコが同じ名前で表示され、毒の方はHPを0にします。"
+        "en": "If you cannot identify which mushroom you have, use shop food for HP recovery instead. The tested menu gives the healing and poison mushrooms the same name; the poison one sets HP to zero. Revisiting a search location does not guarantee the safe type: the magnifier selects it from the game’s shared sequence.",
+        "th": "ถ้าแยกไม่ออกว่าเห็ดในกระเป๋าเป็นชนิดไหน ให้ใช้อาหารจากร้านฟื้น HP แทน เมนูที่ทดสอบแสดงชื่อเห็ดฟื้นพลังกับเห็ดพิษเหมือนกัน และเห็ดพิษทำให้ HP เหลือ 0 การกลับไปหาเห็ดที่จุดเดิมไม่ได้รับประกันชนิดปลอดภัย: โค้ดแว่นขยายเลือกชนิดจากลำดับสุ่มร่วมของเกม",
+        "ja": "持っているキノコの種類を識別できなければ、HP回復には店売りの食料を使ってください。確認したメニューでは回復用と毒キノコが同じ名前で表示され、毒の方はHPを0にします。 同じ探索地点へ戻っても安全な種類は確定しません。虫メガネはゲーム共通の乱数列で種類を選びます。"
       }
     },
     "food:0A": {
@@ -254,13 +255,14 @@
         "type": "rom_trace",
         "sources": [
           "docs/food-practical-research.md",
-          "data/food-effects-confirmed.json"
+          "data/food-effects-confirmed.json",
+          "docs/magnifier-mushroom-research.md"
         ]
       },
       "summary": {
-        "en": "If you cannot identify which mushroom you have, use shop food for HP recovery instead. The tested menu gives the healing and poison mushrooms the same name; the poison one sets HP to zero.",
-        "th": "ถ้าแยกไม่ออกว่าเห็ดในกระเป๋าเป็นชนิดไหน ให้ใช้อาหารจากร้านฟื้น HP แทน เมนูที่ทดสอบแสดงชื่อเห็ดฟื้นพลังกับเห็ดพิษเหมือนกัน และเห็ดพิษทำให้ HP เหลือ 0",
-        "ja": "持っているキノコの種類を識別できなければ、HP回復には店売りの食料を使ってください。確認したメニューでは回復用と毒キノコが同じ名前で表示され、毒の方はHPを0にします。"
+        "en": "If you cannot identify which mushroom you have, use shop food for HP recovery instead. The tested menu gives the healing and poison mushrooms the same name; the poison one sets HP to zero. Revisiting a search location does not guarantee the safe type: the magnifier selects it from the game’s shared sequence.",
+        "th": "ถ้าแยกไม่ออกว่าเห็ดในกระเป๋าเป็นชนิดไหน ให้ใช้อาหารจากร้านฟื้น HP แทน เมนูที่ทดสอบแสดงชื่อเห็ดฟื้นพลังกับเห็ดพิษเหมือนกัน และเห็ดพิษทำให้ HP เหลือ 0 การกลับไปหาเห็ดที่จุดเดิมไม่ได้รับประกันชนิดปลอดภัย: โค้ดแว่นขยายเลือกชนิดจากลำดับสุ่มร่วมของเกม",
+        "ja": "持っているキノコの種類を識別できなければ、HP回復には店売りの食料を使ってください。確認したメニューでは回復用と毒キノコが同じ名前で表示され、毒の方はHPを0にします。 同じ探索地点へ戻っても安全な種類は確定しません。虫メガネはゲーム共通の乱数列で種類を選びます。"
       }
     }
   }

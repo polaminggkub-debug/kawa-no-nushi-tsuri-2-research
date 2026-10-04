@@ -179,7 +179,8 @@
           "A coordinate band in town maps yields kneaded bait. The connecting route can yield large earthworm or mushrooms. Poisonous mushrooms are possible; the find message does not distinguish them.",
           "Bait rewards are 1–4 at a time, up to 9 per bait type. Mushrooms need an empty food slot.",
           "Do not search while standing in shallow water or riding a tub/canoe; those modes reject the magnifier action.",
-          "Open an area map below and walk to a bait icon to search. These are example terrain-context tiles, not the only searchable tiles."
+          "Open an area map below and walk to a bait icon to search. These are example terrain-context tiles, not the only searchable tiles.",
+          "Do not treat a search tile as guaranteeing a healing mushroom: this branch selects the type from a shared sequence, not the tile. The discovery message also covers poison mushrooms. If you cannot identify it, recover HP with shop food instead."
         ],
         "ja": [
           "現在地を調べる。同じタイルで動かずにもう一度使うと何も見つからない。",
@@ -187,7 +188,8 @@
           "町の特定の座標帯ではネリエが見つかる。連絡路ではドバミミズやキノコが見つかる。毒キノコもあるが、発見メッセージでは区別されない。",
           "エサは一度に1～4個、種類ごとに最大9個。キノコには食料欄の空きが必要。",
           "浅瀬に立っている時やタライ・カヌーに乗っている時は虫メガネを使えない。",
-          "下の地図でエリアを選び、エサ画像の地点へ歩いて探す。地形分類から抽出した地点例で、探せる場所はほかにもある。"
+          "下の地図でエリアを選び、エサ画像の地点へ歩いて探す。地形分類から抽出した地点例で、探せる場所はほかにもある。",
+          "探索地点を回復キノコの確定地点と考えないでください。この分岐は地点ではなく共通の乱数列で種類を選び、毒キノコにも同じ発見文を表示します。識別できなければHP回復には店の食料を使ってください。"
         ],
         "th": [
           "ค้นหาจุดที่ยืนอยู่ ถ้าไม่ขยับแล้วค้นช่องเดิมซ้ำจะไม่พบอะไร",
@@ -195,7 +197,8 @@
           "ในเขตเมืองมีแถบตำแหน่งที่ให้เหยื่อปั้น ส่วนทางเชื่อมระหว่างด่านอาจได้ไส้เดือนใหญ่หรือเห็ด มีเห็ดพิษด้วย แต่ข้อความตอนพบเห็ดไม่บอกว่าเป็นชนิดไหน",
           "เหยื่อได้ครั้งละ 1–4 ชิ้น สูงสุดชนิดละ 9 ชิ้น ส่วนเห็ดต้องมีช่องอาหารว่าง",
           "ใช้แว่นขยายไม่ได้ขณะยืนในน้ำตื้นหรืออยู่บนกะละมัง/แคนู",
-          "เปิดแผนที่ด้านล่าง เลือกด่าน แล้วเดินไปยืนตรงรูปเหยื่อเพื่อค้นหา เป็นตัวอย่างจุดจากชนิดพื้นใน ROM ไม่ใช่จุดหาได้เพียงจุดเดียว"
+          "เปิดแผนที่ด้านล่าง เลือกด่าน แล้วเดินไปยืนตรงรูปเหยื่อเพื่อค้นหา เป็นตัวอย่างจุดจากชนิดพื้นใน ROM ไม่ใช่จุดหาได้เพียงจุดเดียว",
+          "ไม่มีพิกัดที่รับประกันเห็ดฟื้นพลังในแขนงที่ตรวจ: เกมสุ่มชนิดเห็ดจากลำดับร่วม ไม่ได้กำหนดตามช่องที่ยืน ข้อความพบเห็ดไม่แยกเห็ดพิษ ถ้าแยกชนิดไม่ได้ ใช้อาหารจากร้านเติม HP แทน"
         ]
       },
       "evidence": {
@@ -203,7 +206,8 @@
         "sources": [
           "docs/general-tool-actions-research.md",
           "data/food-effects-confirmed.json",
-          "docs/forage-location-research.md"
+          "docs/forage-location-research.md",
+          "docs/magnifier-mushroom-research.md"
         ]
       },
       "evidenceNotes": {
@@ -242,7 +246,14 @@
           "03:BDBD..BF29",
           "03:BFBC..C049",
           "03:D451..D506"
-        ]
+        ],
+        "mushroomSelection": {
+          "areaPredicate": "$085A > 12",
+          "typeDraw": "03:BEE2; JSL 00:DA92; AND 1; low bit = 1 -> food09, low bit = 0 -> food0A",
+          "sharedSource": "00:DA92 -> 00:EDE9; increments $16AE and indexes 256-byte permutation at 00:EDFA",
+          "proof": "scripts/verify_magnifier_mushrooms.py",
+          "limit": "No coordinate-specific safe mushroom guarantee or natural route is established; no fixed visit percentage is inferred."
+        }
       }
     },
     "04": {

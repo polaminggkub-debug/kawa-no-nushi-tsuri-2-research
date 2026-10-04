@@ -22,3 +22,4 @@ __pycache__/
 *.zip
 *.7z
 .DS_Store
+node_modules/

@@ -132,3 +132,11 @@ Browse the six areas, real ROM terrain sections, and a unique species list in th
 Fish portraits open a fish profile with confirmed areas and compatible bait, lure and fly bodies. Equipment portraits and names open an item profile with its use, confirmed shop areas, related fly components and compatible fish. Map species buttons say “Focus on map”; portrait links say “Details”. Shared map pins open a species chooser. Return links retain the source page’s filters and map section. All routes are available in Thai, English and Japanese.
 
 See [click-path audit](docs/click-path-audit.md) for the checked routes and reproduction command.
+
+## Frontend development and publishing gate
+
+The public site is generated from the authored modules, CSS and templates under `src/`. Edit those source files, rather than the generated files under `catalogue/` or `research/`. Install the pinned tools with `npm ci`, rebuild intentionally with `npm run build:frontend`, then run `npm run check`.
+
+The aggregate check must pass before committing a release or publishing. It checks the FSD import boundaries and public APIs, import cycles, formatting, physical file/function limits, lint, publication contents, reproducible generated output, and existing navigation/data regressions. Application source is limited to 500 physical lines per file and 50 per function, including callbacks. Generated bundles and preserved research data are inspected separately rather than shortened to fit source limits.
+
+An automated pass must also be followed by a desktop and mobile browser review of the affected workflows. See [the redesign checks and browser evidence](docs/redesign-qa.md) for the exact scope and unresolved research limits.

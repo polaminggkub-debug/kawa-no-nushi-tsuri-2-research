@@ -169,7 +169,7 @@ async function build(locale, filename) {
     addEventListener(){},
   };
   const context={document,console,URL,URLSearchParams,fetch:async()=>({ok:true,json:async()=>data})};
-  vm.runInNewContext(source.replace('  const groups=', '  globalThis.playerCopy = player;\n  const groups=').replace('  const esc =', '  globalThis.catalogueCopy = copy;\n  const esc ='), context);
+  vm.runInNewContext(source.slice(0, source.lastIndexOf('})();')) + 'globalThis.playerCopy = runtimeContext.player; globalThis.catalogueCopy = runtimeContext.copy;\n' + source.slice(source.lastIndexOf('})();')), context);
   await new Promise(resolve=>setImmediate(resolve));
   const file=path.join(root,'catalogue',filename);
   let html=fs.readFileSync(file,'utf8');

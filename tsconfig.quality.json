@@ -1,0 +1,23 @@
+{
+  "compilerOptions": {
+    "allowJs": true,
+    "checkJs": false,
+    "lib": ["ES2022", "DOM"],
+    "module": "NodeNext",
+    "moduleResolution": "NodeNext",
+    "noEmit": true,
+    "skipLibCheck": true,
+    "strict": false,
+    "target": "ES2022",
+    "types": ["node"]
+  },
+  "include": [
+    "src/**/*.js",
+    "scripts/build_frontend.mjs",
+    "scripts/check_entity_links.cjs",
+    "scripts/check_map_combobox.cjs",
+    "scripts/check_shop_conditions.cjs",
+    "scripts/code-quality/**/*.mjs",
+    "scripts/entity-link-check/**/*.mjs"
+  ]
+}

@@ -1,0 +1,38 @@
+export function updateNavigation(_ctx) {
+  const current = new URL(location.href),
+    isFish = /\/fish(?:\.[a-z]+)?\.html$/.test(current.pathname)
+  const activeRoute = document.querySelector('[data-route][aria-pressed="true"]')
+  if (activeRoute) current.searchParams.set('route', activeRoute.dataset.route)
+  const activeArea = document.querySelector('[data-location-stage][aria-pressed="true"]')
+  if (activeArea) current.searchParams.set('stage', activeArea.dataset.locationStage)
+  const fish = current.searchParams.get('fish') || (isFish ? current.searchParams.get('id') : '')
+  const returnTo = current.pathname.split('/').pop() + current.search + current.hash
+  document.querySelectorAll('[data-compendium-destination]').forEach((link) => {
+    link.dataset.baseHref = link.dataset.baseHref || link.getAttribute('href')
+    const dest = Number(link.dataset.compendiumDestination),
+      url = new URL(link.dataset.baseHref, location.href)
+    if (dest === 3) return
+    for (const key of ['stage', 'route'])
+      if (current.searchParams.has(key)) url.searchParams.set(key, current.searchParams.get(key))
+    if (fish) url.searchParams.set('fish', fish)
+    if (dest === 0 && current.searchParams.has('category'))
+      url.searchParams.set('category', current.searchParams.get('category'))
+    if (dest === 1 && current.searchParams.has('map'))
+      url.searchParams.set('map', current.searchParams.get('map'))
+    if (!current.pathname.includes('/research/')) url.searchParams.set('return', returnTo)
+    link.href = url.pathname + url.search + url.hash
+  })
+}
+
+export function openAnchor(_ctx) {
+  if (!location.hash) return
+  let target
+  try {
+    target = document.getElementById(decodeURIComponent(location.hash.slice(1)))
+  } catch {
+    return
+  }
+  if (!target) return
+  for (let node = target; node; node = node.parentElement)
+    if (node.tagName === 'DETAILS') node.open = true
+}

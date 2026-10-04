@@ -1,0 +1,321 @@
+.browse-grid {
+  grid-template-columns: 310px minmax(0, 1fr);
+  gap: 18px;
+}
+
+.fish-browser,
+.map-browser-panel {
+  border-radius: 12px;
+  padding: 18px;
+  box-shadow: var(--shadow);
+}
+
+.fish-list {
+  max-height: 520px;
+}
+
+.fish-choice {
+  min-height: 66px;
+  border-width: 1px;
+}
+
+.fish-choice img {
+  width: 94px;
+  height: 56px;
+  flex-basis: 94px;
+}
+
+.fish-choice span {
+  font-size: 15px;
+}
+
+.fish-choice small {
+  font-size: 12px;
+}
+
+.map-panel-heading h3,
+.fish-list-heading h3 {
+  font-size: 20px;
+}
+
+.map-scroll {
+  max-height: 600px;
+}
+
+.source-details {
+  margin-top: 22px;
+  font-size: 14px;
+  padding: 16px;
+  background: white;
+  border: 1px solid var(--line);
+  border-radius: 12px;
+}
+
+.source-details > summary {
+  font-weight: 650;
+}
+
+.map-note,
+.search-help {
+  font-size: 13px;
+}
+
+.map-overview {
+  max-height: 175px;
+  overflow: auto;
+}
+
+.search-row input {
+  font-size: 16px;
+}
+
+.map-note code,
+.source-details code {
+  overflow-wrap: anywhere;
+}
+
+.fish-pin {
+  min-width: 36px;
+  min-height: 36px;
+}
+
+.map-zoom button {
+  min-height: 44px;
+  min-width: 44px;
+}
+
+.fish-scope-menu button {
+  min-height: 44px;
+}
+
+/* Shops and standalone details use the same navigation and surface tokens. */
+
+.site-header,
+.detail-nav {
+  max-width: 1240px;
+  margin: 0 auto;
+  padding: 12px 24px;
+  background: transparent;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+.detail-nav a,
+.site-nav a,
+.language-nav a {
+  font-size: 13px;
+  min-height: 40px;
+  padding: 7px 11px;
+  border: 1px solid var(--line);
+  background: #fff;
+  border-radius: 7px;
+  text-decoration: none;
+}
+
+.site-header + main > h1 {
+  margin-top: 14px;
+  font-size: 34px;
+}
+
+.site-header + main > .lead {
+  color: var(--muted);
+  font-size: 16px;
+  max-width: 85ch;
+}
+
+.site-header + main .filters {
+  grid-template-columns: 0.7fr 1.4fr 1fr 1.1fr auto;
+  align-items: end;
+}
+
+.place-toggle {
+  padding: 0 10px;
+  border-color: var(--line);
+  font-size: 13px;
+  min-width: 0;
+}
+
+.place-toggle label {
+  font-size: 13px;
+}
+
+.place-toggle input {
+  height: auto;
+  width: auto;
+}
+
+.place-toggle legend {
+  font-size: 12px;
+}
+
+.site-header + main .filter-field label {
+  font-size: 12px;
+}
+
+.site-header + main .filters button {
+  font-size: 13px;
+  min-height: 46px;
+}
+
+.location-section,
+.stock-section {
+  border-radius: 12px;
+  padding: 20px;
+  background: white;
+  border: 1px solid var(--line);
+  margin: 18px 0;
+}
+
+.location-section h2,
+.stock-section h2 {
+  font-size: 24px;
+}
+
+.location-visuals {
+  gap: 14px;
+}
+
+.shop-results {
+  gap: 14px;
+}
+
+.evidence-note {
+  padding: 16px;
+  background: #fff;
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  font-size: 14px;
+}
+
+.detail-shell {
+  padding-top: 20px;
+}
+
+.detail-nav nav {
+  display: flex;
+  gap: 5px;
+  flex-wrap: wrap;
+}
+
+.detail-nav .language-links {
+  margin-left: 0;
+}
+
+.detail-hero .detail-art {
+  max-height: 300px;
+}
+
+.detail-hero h1 {
+  font-size: clamp(28px, 3.3vw, 42px);
+}
+
+.detail-shell details > summary {
+  min-height: 44px;
+}
+
+.detail-shell .record-details {
+  padding: 16px;
+  background: #fff;
+  border: 1px solid var(--line);
+  border-radius: 12px;
+}
+
+.detail-shell .record-details summary {
+  font-size: 16px;
+}
+
+.detail-shell .record-details code {
+  font-size: 13px;
+}
+
+/* Strategy page keeps every original table and evidence link in its own layer. */
+
+body:has(.kit-grid) main {
+  max-width: 1240px;
+}
+
+body:has(.kit-grid) main > nav {
+  font-size: 14px;
+  gap: 10px;
+  padding: 8px 0;
+}
+
+body:has(.kit-grid) main > h1 {
+  font-size: 34px;
+  max-width: 900px;
+}
+
+body:has(.kit-grid) main > section {
+  margin: 24px 0;
+}
+
+.kit-card,
+.rod-card {
+  box-shadow: var(--shadow);
+  border: 1px solid var(--line);
+}
+
+.kit-card p,
+.rod-card p {
+  font-size: 15px;
+}
+
+.kit-grid,
+.rod-grid {
+  gap: 16px;
+}
+
+.kit-card h3,
+.rod-card h3 {
+  font-size: 20px;
+}
+
+body:has(.kit-grid) main > details {
+  margin: 24px 0;
+}
+
+body:has(.kit-grid) main > details > summary {
+  font-size: 17px;
+}
+
+body:has(.kit-grid) main > details code {
+  overflow-wrap: anywhere;
+}
+
+@media (min-width: 1500px) {
+  .cards {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 1000px) {
+  .compendium-nav {
+    gap: 15px;
+    padding-inline: 20px;
+  }
+  .compendium-links a {
+    padding: 10px;
+    font-size: 13px;
+  }
+  .cards {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+  .filters {
+    grid-template-columns: 1fr 1fr 1fr;
+  }
+  .filters .search-label {
+    grid-column: auto;
+  }
+  .browse-grid {
+    grid-template-columns: 270px minmax(0, 1fr);
+  }
+  .site-header + main .filters {
+    grid-template-columns: 1fr 1fr;
+  }
+  .site-header + main .filters .search-field {
+    grid-column: auto;
+  }
+}
