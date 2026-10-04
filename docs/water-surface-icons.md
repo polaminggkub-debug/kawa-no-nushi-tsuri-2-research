@@ -37,10 +37,14 @@ New size is `B + (R % B)`, where `B = floor(profile[0] / 2)`. `$00:DA96` calls t
 
 ## Image provenance and reproduction
 
-[Image manifest](../data/water-icon-images.json) records SHA-256 hashes and native 24×24 crop coordinates. These are original rendered game pixels from controlled fish-object fixtures with injected selector/class and coordinates. They were not redrawn or recolored. The fixture establishes the appearance of each class; it does not establish natural spawn frequency. The river background is retained.
+[Image manifest](../data/water-icon-images.json) now records native, transparent sprite extraction. The previous crops at `(12,116)..(36,140)` showed terrain rather than the intended fish object; they are **superseded**, and their hashes/full frames remain in the manifest for audit. They must not be used as evidence of icon appearance.
+
+The replacement uses the loaded original-ROM OBJ graphics from a controlled Snes9x state: register `$2101=03`, VRAM OBJ base `$C000`, 4bpp tiles `6B` (small horizontal, 8×8), `6E` (large horizontal, 16×16), and `7B` (bubble animation, 8×8). These are the renderer's direction/animation variants documented above. Palette 7 uses CGRAM indices 240–255. Color index zero is transparent; the native pixels are centered on a transparent 24×24 canvas without redraw, rotation, or color changes. Website CSS supplies the plain dark backdrop to make the shapes readable. This is loaded-graphics extraction, not an ordinary-play screenshot or frequency measurement.
+
+[Reproduction script](../scripts/extract_water_sprites.py) requires a matching locally supplied ROM and Snes9x version-14 state; neither is distributed. The manifest records state/VRAM hashes, output hashes, native dimensions and opaque pixel counts. Checks reject opaque terrain crops and verify the extracted glyph colors and pixel counts.
 
 [Extracted profile/map data](../data/rom-water-icons.json) and [extractor](../scripts/derive_water_icons.py) preserve the per-profile possible classes and map placements. Run the extractor with an independently supplied matching ROM; no ROM or runtime state is distributed.
 
 Unresolved: empirical frequency during ordinary play, and whether another object rebuilding event can change the cached mark before capture. No gameplay advantage is attributed to the visual class itself.
 
-Original full-frame fixtures: [small](../catalogue/images/water-icons/water-small-frame.png), [large](../catalogue/images/water-icons/water-large-frame.png), [bubble](../catalogue/images/water-icons/water-bubble-frame.png). The mark is near the lower-left river edge; crop coordinates are in the manifest.
+Original full-frame fixtures: [small](../catalogue/images/water-icons/water-small-frame.png), [large](../catalogue/images/water-icons/water-large-frame.png), [bubble](../catalogue/images/water-icons/water-bubble-frame.png). These older frames are retained as superseded capture evidence; the former lower-left terrain crops were incorrect.

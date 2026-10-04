@@ -87,7 +87,7 @@ function iconFact(copy, iconClass) {
 
 function iconCard(ctx, copy, waterIcons, profile, iconClass, stage) {
   const label = copy[iconClass]
-  const image = ctx.escapeHtml(imageFor(waterIcons, iconClass))
+  const image = ctx.escapeHtml(imageFor(waterIcons, iconClass) + '?v=native-20261005')
   const fact = ctx.escapeHtml(iconFact(copy, iconClass))
   const bubbleAction =
     iconClass === 'bubble' && profile.bubble === true

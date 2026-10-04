@@ -181,6 +181,7 @@
   var copy2 = {
     th: {
       title: "สัญลักษณ์บนผิวน้ำในเกม",
+      imageNote: "ขยายกราฟิกไอคอนต้นฉบับจากเกมบนพื้นเรียบเพื่อให้เห็นชัด ภาพในเกมมีหลายทิศและหลายเฟรม",
       small: "ปลาเล็ก: ต่ำกว่า 50 ซม.",
       large: "ปลาใหญ่: ตั้งแต่ 50 ซม.",
       bubble: "ฟอง: บางชนิดใช้ภาพนี้ทุกขนาด",
@@ -189,6 +190,7 @@
     },
     en: {
       title: "Water marks in the game",
+      imageNote: "Original game icon pixels enlarged on a plain backdrop for clarity. Other directions and animation frames appear in play.",
       small: "Small: under 50 cm",
       large: "Large: at least 50 cm",
       bubble: "Bubbles: certain species, any size",
@@ -197,6 +199,7 @@
     },
     ja: {
       title: "ゲーム内の水面マーク",
+      imageNote: "原作のマークを単色背景で拡大しています。ゲームでは方向やアニメーションにより形が変わります。",
       small: "小魚影：50cm未満",
       large: "大魚影：50cm以上",
       bubble: "泡：特定の魚種、サイズ不問",
@@ -212,10 +215,10 @@
     const profile = data.profiles?.[ctx.selectedFish];
     const classes = profile?.possibleClasses || ["small", "large", "bubble"];
     const cards = classes.filter((key) => data.classes[key]?.image).map(
-      (key) => `<li><img src="${ctx.esc(data.classes[key].image)}" alt=""><span>${ctx.esc(c[key])}</span></li>`
+      (key) => `<li><img src="${ctx.esc(data.classes[key].image + "?v=native-20261005")}" alt=""><span>${ctx.esc(c[key])}</span></li>`
     ).join("");
     const link = profile ? `<a href="${ctx.esc(ctx.fishHref(ctx.selectedFish))}#water-icons">${ctx.esc(c.detail)} ↗</a>` : "";
-    node.innerHTML = `<h4>${ctx.esc(c.title)}</h4><ul>${cards}</ul><p>${ctx.esc(c.note)}</p>${link}`;
+    node.innerHTML = `<h4>${ctx.esc(c.title)}</h4><ul>${cards}</ul><p class="water-icon-image-note">${ctx.esc(c.imageNote)}</p><p>${ctx.esc(c.note)}</p>${link}`;
     node.hidden = !cards;
   }
 
@@ -1024,7 +1027,7 @@
         if (!r.ok) throw Error("fish locations");
         return r.json();
       }),
-      fetch("gallery-data.json?v=compendium-20261005-15").then((r) => {
+      fetch("gallery-data.json?v=compendium-20261005-16").then((r) => {
         if (!r.ok) throw Error("fish sprites");
         return r.json();
       })

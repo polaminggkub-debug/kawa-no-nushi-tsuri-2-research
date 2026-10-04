@@ -31,6 +31,7 @@ def main():
              ROOT / 'scripts/verify_magnet_story_gate.py',
              ROOT / 'scripts/trace_fly_maker_menu.py',
              ROOT / 'scripts/derive_water_icons.py',
+             ROOT / 'scripts/extract_water_sprites.py',
              ROOT / 'scripts/derive_notebook_completion.py',
              ROOT / 'scripts/verify_notebook_records.py']
     paths += sorted((ROOT / 'scripts/magnet-story-gate').rglob('*.py'))

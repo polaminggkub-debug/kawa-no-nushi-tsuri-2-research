@@ -904,7 +904,7 @@
   }
   function iconCard(ctx, copy, waterIcons, profile, iconClass, stage) {
     const label = copy[iconClass];
-    const image = ctx.escapeHtml(imageFor(waterIcons, iconClass));
+    const image = ctx.escapeHtml(imageFor(waterIcons, iconClass) + "?v=native-20261005");
     const fact = ctx.escapeHtml(iconFact(copy, iconClass));
     const bubbleAction = iconClass === "bubble" && profile.bubble === true ? `<a class="route-button" data-water-bait-link href="${ctx.escapeHtml(potatoBaitLink(ctx, stage))}">${ctx.escapeHtml(copy.baitAction)} ↗</a>` : "";
     return `<article class="entity-link water-icon-card" data-water-icon="${iconClass}"><img loading="lazy" src="${image}" alt="${ctx.escapeHtml(label)}"><span><strong>${ctx.escapeHtml(label)}</strong><small>${fact}</small></span>${bubbleAction}</article>`;
@@ -1225,7 +1225,7 @@
     });
   }
   function loadGallery() {
-    return fetch("gallery-data.json?v=compendium-20261005-15").then((response) => {
+    return fetch("gallery-data.json?v=compendium-20261005-16").then((response) => {
       if (!response.ok) throw new Error("gallery data unavailable");
       return response.json();
     });

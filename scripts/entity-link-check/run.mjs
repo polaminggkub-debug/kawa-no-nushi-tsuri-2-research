@@ -45,3 +45,5 @@ await import('./area6-walk.mjs')
 await import('./quest-next-actions.mjs')
 
 await import('./bottle-capacity.mjs')
+
+await import('./water-sprite-assets.mjs')
