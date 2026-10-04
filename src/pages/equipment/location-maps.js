@@ -1,3 +1,4 @@
+import { mapReturnMarkup } from './return-action.js'
 function itemLocationMarkers(ctx, item, location) {
   const refs =
     location.markerItems ||
@@ -374,7 +375,8 @@ export function renderFishLocation(ctx, id) {
     panel.querySelector?.('details.fish-location-details')?.open
   panel.hidden = false
   panel.dataset && (panel.dataset.fishId = String(id))
-  panel.innerHTML = renderFishLocationContent(ctx, id, fish, chosen, locations, labels)
+  panel.innerHTML =
+    mapReturnMarkup(ctx) + renderFishLocationContent(ctx, id, fish, chosen, locations, labels)
   const disclosure = panel.querySelector?.('details.fish-location-details')
   if (keepMapOpen && disclosure) disclosure.open = true
 }

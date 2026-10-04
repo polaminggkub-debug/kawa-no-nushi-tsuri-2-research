@@ -629,6 +629,103 @@
     return "";
   }
 
+  // src/pages/equipment/return-action.js
+  var pageRoots = ["index", "maps", "fish", "item", "shops"];
+  var locales = ["en", "th", "ja"];
+  function routeForTarget(target, base) {
+    if (target.pathname.startsWith(base.pathname))
+      return target.pathname.slice(base.pathname.length) + target.search + target.hash;
+    return `../research/${target.pathname.split("/").pop()}${target.search}${target.hash}`;
+  }
+  function safeLocalReturn(raw, baseHref) {
+    if (!raw || raw.startsWith("//") || raw.includes("\\") || /^[a-z][a-z0-9+.-]*:/i.test(raw))
+      return "";
+    try {
+      const base = new URL(".", baseHref);
+      const target = new URL(raw, base);
+      if (target.origin !== base.origin) return "";
+      const allowed = pageRoots.flatMap(
+        (root) => locales.map(
+          (locale) => new URL(`${root}${locale === "en" ? "" : `.${locale}`}.html`, base).pathname
+        )
+      );
+      allowed.push(
+        ...locales.map(
+          (locale) => new URL(`../research/index${locale === "en" ? "" : `.${locale}`}.html`, base).pathname
+        )
+      );
+      return allowed.includes(target.pathname) ? routeForTarget(target, base) : "";
+    } catch {
+      return "";
+    }
+  }
+  function localizeSafeReturn(raw, targetLocale, baseHref, depth = 0) {
+    if (!locales.includes(targetLocale)) return "";
+    const safe = safeLocalReturn(raw, baseHref);
+    if (!safe) return "";
+    const base = new URL(".", baseHref);
+    const target = new URL(safe, base);
+    const root = target.pathname.split("/").pop().match(/^(index|maps|fish|item|shops)(?:\.(?:th|ja))?\.html$/)?.[1];
+    if (root) {
+      const directory = target.pathname.slice(0, target.pathname.lastIndexOf("/") + 1);
+      target.pathname = `${directory}${root}${targetLocale === "en" ? "" : `.${targetLocale}`}.html`;
+    }
+    const nested = target.searchParams.get("return");
+    if (nested) {
+      const localized = depth < 4 ? localizeSafeReturn(nested, targetLocale, baseHref, depth + 1) : "";
+      if (localized) target.searchParams.set("return", localized);
+      else target.searchParams.delete("return");
+    }
+    return safeLocalReturn(routeForTarget(target, base), baseHref);
+  }
+  function isMapRoute(raw, baseHref) {
+    const safe = safeLocalReturn(raw, baseHref);
+    if (!safe) return false;
+    return /^maps(?:\.(?:th|ja))?\.html(?:[?#]|$)/.test(safe);
+  }
+  function backLabel(locale) {
+    return locale === "th" ? "← กลับไปแผนที่ปลา" : locale === "ja" ? "← 魚マップに戻る" : "← Back to fish map";
+  }
+  function updateLanguageLinks(rawReturn, baseHref) {
+    const current = new URL(baseHref);
+    document.querySelectorAll(".language-links a").forEach((link) => {
+      const locale = link.getAttribute("hreflang");
+      if (!locales.includes(locale)) return;
+      const route = link.dataset.route || link.getAttribute("href").split(/[?#]/)[0];
+      link.dataset.route = route;
+      const query = new URLSearchParams(current.search);
+      query.set("return", localizeSafeReturn(rawReturn, locale, baseHref));
+      link.href = `${route}?${query}${current.hash}`;
+    });
+  }
+  function mapReturnAction(rawReturn, locale, baseHref) {
+    const safe = localizeSafeReturn(rawReturn, locale, baseHref);
+    if (!safe || !isMapRoute(safe, baseHref)) return null;
+    return { href: safe, label: backLabel(locale) };
+  }
+  function setupReturnAction(ctx) {
+    if (typeof window === "undefined" || typeof document === "undefined") return;
+    const rawReturn = new URLSearchParams(window.location.search).get("return") || "";
+    const action = mapReturnAction(rawReturn, ctx.lang, window.location.href);
+    if (!action) return;
+    const nav = document.querySelector(".hero-meta");
+    if (nav && !document.querySelector("[data-map-return]")) {
+      const link = document.createElement("a");
+      link.className = "back-link map-return-link";
+      link.dataset.mapReturn = "true";
+      link.href = action.href;
+      link.textContent = action.label;
+      nav.prepend(link);
+    }
+    updateLanguageLinks(action.href, window.location.href);
+  }
+  function mapReturnMarkup(ctx) {
+    if (typeof window === "undefined") return "";
+    const raw = new URLSearchParams(window.location.search).get("return") || "";
+    const action = mapReturnAction(raw, ctx.lang, window.location.href);
+    return action ? `<p><a class="route-button" data-map-panel-return href="${ctx.esc(action.href)}">${ctx.esc(action.label)}</a></p>` : "";
+  }
+
   // src/pages/equipment/location-maps.js
   function itemLocationMarkers(ctx, item, location2) {
     const refs = location2.markerItems || (location2.markerItem ? [location2.markerItem] : [{ category: item.category, id: item.id }]);
@@ -818,7 +915,7 @@
     const keepMapOpen = panel.dataset?.fishId === String(id) && panel.querySelector?.("details.fish-location-details")?.open;
     panel.hidden = false;
     panel.dataset && (panel.dataset.fishId = String(id));
-    panel.innerHTML = renderFishLocationContent(ctx, id, fish, chosen, locations, labels);
+    panel.innerHTML = mapReturnMarkup(ctx) + renderFishLocationContent(ctx, id, fish, chosen, locations, labels);
     const disclosure = panel.querySelector?.("details.fish-location-details");
     if (keepMapOpen && disclosure) disclosure.open = true;
   }
@@ -1296,7 +1393,7 @@
     price: "ROM price field",
     flyKicker: "THE CUSTOM FLY MAKER",
     flyTitle: "Body, wing, tail… and a real price quote",
-    flyCopy: "These are direct captures of the original Japanese game. In the first-stage shop, we followed the full Mayfly sequence and checked one order against the money counter.",
+    flyCopy: "Original Japanese game captures show the verified ¥25 default recipe and ¥17 no-tail example. Choose a body for your target fish first; these examples explain menu input and price, not which fly catches best.",
     flyFact: "Check the final quote before paying. The recorded first-body + first-wing + first-tail Mayfly order cost ¥25. Choosing “None” changes the recipe, so read its quote separately. Other recipes do not share a fixed ¥25 price.",
     catalogueKicker: "THE FULL INDEX",
     catalogueTitle: "Browse all 315 listed entries",
@@ -1375,7 +1472,7 @@
     price: "ช่องราคาใน ROM",
     flyKicker: "เมนูประกอบฟลาย",
     flyTitle: "เลือกบอดี้ ปีก หาง พร้อมตรวจราคาจริง",
-    flyCopy: "ภาพเหล่านี้จับจากเกมญี่ปุ่นต้นฉบับโดยตรง เราตามขั้นตอนเมนูประกอบฟลายในร้านด่านแรกจนจบ และตรวจสอบราคาหนึ่งรายการกับเงินที่ลดลง",
+    flyCopy: "ภาพเกมญี่ปุ่นจริง แสดงชุดเริ่มต้น ¥25 และตัวอย่างไม่มีหาง ¥17 เลือกบอดี้ตามปลาเป้าหมายก่อน ตัวอย่างนี้สอนปุ่มและราคา ไม่ใช่คำแนะนำว่าชุดไหนจับปลาดีที่สุด",
     flyFact: "ตรวจราคาสุทธิก่อนจ่าย ชุดเมย์ฟลายบอดี้แรก + ปีกแรก + หางแรกที่ทดลองคิด ¥25 ถ้าเลือก “ไม่มี” แทนหาง ชุดจะเปลี่ยน ให้ดูราคาของชุดนั้นแยกต่างหาก ไม่ใช่ว่าทุกชุดราคา ¥25",
     catalogueKicker: "รายการไอเท็มทั้งหมด",
     catalogueTitle: "ค้นหาข้อมูลทั้ง 315 รายการ",
@@ -1485,7 +1582,7 @@
     price: "ROM価格欄",
     flyKicker: "毛バリ作成NPC",
     flyTitle: "ボディ、ウィング、テール、そして見積もり",
-    flyCopy: "日本版ゲームを直接撮影した画面です。ステージ1の店でメイフライ作成を最後まで進め、所持金の変化で一例の価格を確認しました。",
+    flyCopy: "日本版の実画面で25円の初期構成と17円のテール無し例を確認。先に対象魚に合うボディを選んでください。この例は操作と価格の説明で、最強フライの推薦ではありません。",
     flyFact: "支払前に最終見積額を確認する。記録したメイフライの最初のボディ・ウィング・テールは25円。「無し」にすると組み合わせが変わるため、その見積額を別に確認する。全組み合わせが25円ではない。",
     catalogueKicker: "全アイテム一覧",
     catalogueTitle: "掲載315件を検索",
@@ -1874,6 +1971,7 @@
       return `${ctx.detailFile("item")}?${q}`;
     };
     ctx.fishHref = (id) => `${ctx.detailFile("fish")}?id=${encodeURIComponent(id)}${ctx.locationStage ? "&stage=" + ctx.locationStage : ""}&return=${encodeURIComponent(ctx.sourceReturn())}`;
+    setupReturnAction(ctx);
   }
 
   // src/pages/equipment/setup-card-links.js
@@ -2046,7 +2144,7 @@
     renderInitialCatalogue(ctx);
   }
   function loadCatalogue(ctx) {
-    fetch("gallery-data.json?v=compendium-20261005-04").then((response) => {
+    fetch("gallery-data.json?v=compendium-20261005-07").then((response) => {
       if (!response.ok) throw new Error("catalogue unavailable");
       return response.json();
     }).then((data) => initializeLoadedCatalogue(ctx, data)).catch((error) => console.error(error));

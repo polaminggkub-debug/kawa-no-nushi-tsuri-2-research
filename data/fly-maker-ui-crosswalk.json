@@ -1,0 +1,114 @@
+{
+  "romSha256": "e0594921a5a2ef1a2613b9d2e29fed066569e3793393c591bf4c4968a54c0b49",
+  "coreSha256": "8ed333ac04544cc6ab67ceb445d095f7600bb17586d4887d99117fbd1ef776f6",
+  "scope": "Mayfly-family first body/wing/tail choices, body 02, wing 0A and 0D, no-tail selection, quotes, and completed-fly inventory writes. This is not a full palette crosswalk.",
+  "method": "Controller-only menu selections from an existing Area 1 shop state; no memory or ROM writes. This does not establish new-game progression.",
+  "menuCrosswalk": {
+    "body": [
+      {
+        "input_from_default": "A",
+        "cursor_byte_offset": 0,
+        "screen_position": "top row, first column",
+        "stored_component_id_hex": "01",
+        "watch": "$1D35"
+      },
+      {
+        "input_from_default": "Down, A",
+        "cursor_byte_offset": 2,
+        "screen_position": "second row, first column",
+        "stored_component_id_hex": "02",
+        "watch": "$1D35"
+      },
+      {
+        "input_from_default": "Right, A",
+        "cursor_byte_offset": 8,
+        "stored_component_id_hex": "05",
+        "watch": "$1D35"
+      }
+    ],
+    "wing": [
+      {
+        "input_from_default": "A",
+        "cursor_byte_offset": 0,
+        "screen_position": "top row, first column",
+        "stored_component_id_hex": "09",
+        "watch": "$1D37"
+      },
+      {
+        "input_from_default": "Down, A",
+        "cursor_byte_offset": 2,
+        "screen_position": "second row, first column",
+        "stored_component_id_hex": "0A",
+        "watch": "$1D37"
+      },
+      {
+        "input_from_default": "Right, A",
+        "cursor_byte_offset": 8,
+        "stored_component_id_hex": "0D",
+        "watch": "$1D37"
+      }
+    ],
+    "tail": [
+      {
+        "input_from_default": "A",
+        "cursor_byte_offset": 0,
+        "stored_component_id_hex": "13",
+        "watch": "$1D39"
+      },
+      {
+        "input_from_default": "Down, Right, Right, A",
+        "cursor_byte_offset": 18,
+        "visible_choice": "無し",
+        "stored_component_id_hex": "00",
+        "watch": "$1D39"
+      }
+    ]
+  },
+  "recipes": [
+    {
+      "recipe_hex": {
+        "body": "01",
+        "wing": "09",
+        "tail": "13"
+      },
+      "displayed_quote_yen": 25,
+      "purchase_confirmed": true,
+      "funds_before_yen": 100,
+      "funds_after_yen": 75,
+      "completed_fly_arrays": {
+        "body_at_095E": "01",
+        "wing_at_09CE": "09",
+        "tail_at_0A3E": "13"
+      }
+    },
+    {
+      "recipe_hex": {
+        "body": "01",
+        "wing": "0A",
+        "tail": "00"
+      },
+      "displayed_quote_yen": 12,
+      "purchase_confirmed": false,
+      "funds_before_yen": 100,
+      "funds_after_yen": 100,
+      "completed_fly_arrays": null,
+      "note": "Quote-only preview; no purchase step was issued in this branch."
+    },
+    {
+      "recipe_hex": {
+        "body": "02",
+        "wing": "0A",
+        "tail": "00"
+      },
+      "displayed_quote_yen": 17,
+      "purchase_confirmed": true,
+      "funds_before_yen": 100,
+      "funds_after_yen": 83,
+      "completed_fly_arrays": {
+        "body_at_095E": "02",
+        "wing_at_09CE": "0A",
+        "tail_at_0A3E": "00"
+      }
+    }
+  ]
+}

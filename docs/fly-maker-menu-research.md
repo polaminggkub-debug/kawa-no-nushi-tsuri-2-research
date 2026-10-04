@@ -54,7 +54,7 @@ The records establish the family/part filter and ROM order, but they do **not** 
 3. The Area 1 component display/selection setup is screen IDs `13..15` through the `$02:9FC8` renderer. That routine's loops at `$02:9FDF..9FEC` and `$02:A03B..A05F` process at most 16 word entries. Its first 16 populated entries are copied from `$1BD5` to selectable IDs `$1B6D`; for the full Mayfly wing filter this reaches only through `24`.
 4. The existing runtime evidence reports 20 Mayfly wing pictures, which conflicts with this static list/render bound. The exact screen-to-record sprite sequence, any page/scroll behavior, and whether those pictures include non-selectable decorations remain unresolved. Do not claim IDs `25` or `26` (or the 20-picture count) are selectable until runtime input and WRAM capture resolves this.
 
-The first records `01`/`09`/`13` are the first list entries by the code's ascending scan, but their correspondence to the first displayed sprites still needs the runtime crosswalk. Keep that qualification with any recipe recommendation.
+The first records `01`/`09`/`13` match the default menu choices in the controller replay below. This resolves those positions only; other positions still require individual verification.
 
 ## ROM evidence index
 
@@ -87,3 +87,9 @@ ROM内の候補順だけでは画面上の位置を断定できません。特�
 The coordinator independently replayed the default Mayfly order from the verified maker-body menu state: A selects body `01`, A selects wing `09`, and A selects tail `13`. The game displays a 25-yen quote. Advancing the prompt and accepting Yes reduces money from 100 to 75 and stores `01 / 09 / 13` in the first completed-fly slot. The replay used controller input only, with no memory writes. It starts from an existing menu state and does not establish acquisition or new-game progression. ROM and core fingerprints match the identities above.
 
 Private request, result, screenshots and final state are retained under the workspace analysis directory; ROM, core, save states and WRAM are excluded from publication. This narrow replay establishes the first recipe, not every picture's identity or the full number of selectable parts.
+
+## Verified Mayfly menu actions
+
+The [bounded runtime crosswalk](../data/fly-maker-ui-crosswalk.json) records the successfully selected positions. Each part starts with its default cursor: body Down+A selects02, Right+A selects05; wing Down+A selects0A, Right+A selects0D; tail Down, Right, Right, A selects visible「無し」and stores00. These actions do not establish a complete palette count.
+
+The coordinator independently reran body02 + wing0A + no-tail from the verified body02 menu branch, using controller input only: the quote is17 yen, money100→83, stored composition02/0A/00. The01/0A/no-tail branch was a12-yen quote preview only. These are reproducible recipe examples, not evidence that either catches fish better. Original cursor and17-yen prompt screenshots are included in the player guide.

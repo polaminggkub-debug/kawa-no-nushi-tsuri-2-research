@@ -1,6 +1,6 @@
 {
   "romSha256": "e0594921a5a2ef1a2613b9d2e29fed066569e3793393c591bf4c4968a54c0b49",
-  "scope": "Observed Area 1 Mayfly creation sequence; menu positions and component identities require separate code/runtime evidence.",
+  "scope": "Verified Area 1 Mayfly default25 and no-tail17 examples; tested positions only, not a full palette crosswalk.",
   "source": "data/fly-customization.json",
   "frames": [
     {
@@ -17,21 +17,21 @@
     },
     {
       "src": "custom/mayfly-body-choices.png",
-      "captionEn": "Choose the first body picture for the recorded ¥25 example, then confirm with A. Use the body's fish list when choosing a different recipe.",
-      "captionJa": "記録した25円の例では最初のボディ画像を選び、Aで決定する。別の組み合わせを選ぶ場合はボディの適合魚一覧を確認する。",
-      "captionTh": "ตัวอย่างราคา ¥25 ใช้รูปบอดี้แรก แล้วกด A ยืนยัน ถ้าเลือกชุดอื่นให้ดูรายชื่อปลาที่บอดี้ใช้ด้วยได้"
+      "captionEn": "At the default body cursor (top left), A selects body01 for the ¥25 example. Down once then A selects body02; Right once then A selects body05. Other positions are not mapped here.",
+      "captionJa": "初期カーソル（左上）でAならボディ01。下1回＋Aは02、右1回＋Aは05。この案内では他の位置は未対応。",
+      "captionTh": "ตัวอย่าง ¥25: เคอร์เซอร์เริ่มที่ซ้ายบน กด A ได้บอดี้ 01 ถ้ากดลงหนึ่งครั้งแล้ว A ได้ 02; ขวาหนึ่งครั้งแล้ว A ได้ 05 ตำแหน่งอื่นยังไม่ได้เทียบในไกด์นี้"
     },
     {
       "src": "custom/after-body-select.png",
-      "captionEn": "Choose the first wing picture and confirm with A to continue the recorded example.",
-      "captionJa": "記録した例では最初のウィング画像を選び、Aで決定する。",
-      "captionTh": "ทำตามชุดตัวอย่างให้เลือกรูปปีกแรก แล้วกด A ยืนยัน"
+      "captionEn": "At the default wing cursor, A selects09 for this example. Down once then A selects0A; Right once then A selects0D.",
+      "captionJa": "初期位置でAならウィング09。下1回＋Aは0A、右1回＋Aは0D。",
+      "captionTh": "ปีกแรก: กด A ได้ 09 สำหรับชุดนี้; ลงหนึ่งครั้งแล้ว A ได้ 0A; ขวาหนึ่งครั้งแล้ว A ได้ 0D"
     },
     {
       "src": "custom/after-wing-select.png",
-      "captionEn": "Choose the first tail picture for the ¥25 example. You can instead choose None (無し); check that recipe's quote before paying.",
-      "captionJa": "25円の例では最初のテール画像を選ぶ。「無し」も選べるが、その組み合わせの見積額を支払前に確認する。",
-      "captionTh": "ชุดตัวอย่าง ¥25 ใช้รูปหางแรก จะเลือก “ไม่มี” (無し) แทนก็ได้ แต่ให้ตรวจราคาของชุดนั้นก่อนจ่าย"
+      "captionEn": "A at the default tail cursor selects13 for the ¥25 example. To omit the tail, from the default position press Down once, Right twice, then A on None (無し). Check the final quote.",
+      "captionJa": "初期位置でAならテール13。省略するなら初期位置から下1回、右2回、「無し」でA。最終見積額を確認する。",
+      "captionTh": "ชุด ¥25: หางแรกกด A ได้ 13 ถ้าไม่ใส่หาง เริ่มจากตำแหน่งแรก กดลงหนึ่งครั้ง ขวาสองครั้ง แล้ว A ที่ “ไม่มี” (無し) ตรวจราคาสุทธิก่อนจ่าย"
     },
     {
       "src": "custom/after-tail-select.png",
@@ -44,6 +44,19 @@
       "captionEn": "Choose Yes (はい) to pay and create the fly. In this recorded order, money falls from ¥100 to ¥75.",
       "captionJa": "「はい」で支払い、毛バリを作る。記録した注文では所持金が100円から75円になる。",
       "captionTh": "เลือก “ใช่” (はい) เพื่อจ่ายเงินและสร้างฟลาย ชุดที่ตรวจนี้เงินลดจาก ¥100 เหลือ ¥75"
+    },
+    {
+      "src": "custom/B02-tail-none-cursor.png",
+      "captionEn": "Another tested recipe: body02 (Down once, A), wing0A (Down once, A), then tail None (Down once, Right twice, A). Each part starts from its default cursor. This is an example recipe, not a best-fly recommendation.",
+      "captionJa": "別の検証例：各部品の初期位置からボディ02（下1回＋A）、ウィング0A（下1回＋A）、テール無し（下1回、右2回＋A）。最強構成の推薦ではありません。",
+      "captionTh": "ตัวอย่างอีกชุด: แต่ละเมนูเริ่มจากเคอร์เซอร์แรก เลือกบอดี้ 02 ด้วยลงหนึ่งครั้งแล้ว A; ปีก 0A ด้วยลงหนึ่งครั้งแล้ว A; หาง “ไม่มี” ด้วยลงหนึ่งครั้ง ขวาสองครั้ง แล้ว A เป็นชุดตัวอย่าง ไม่ใช่ข้อสรุปว่าดีที่สุด"
+    },
+    {
+      "src": "custom/B02-W0A-none-quote.png",
+      "captionEn": "This02/0A/no-tail recipe is quoted at ¥17. Accepting Yes stores the completed fly and changes money100→83. The01/0A/no-tail preview quotes ¥12, but that preview was not purchased.",
+      "captionJa": "02・0A・無しの見積額は17円。はいで完成フライを保存し、所持金100→83。01・0A・無しは12円の見積を確認したが、その例では購入していない。",
+      "captionTh": "ชุด 02 + 0A + ไม่มีหาง คิด ¥17 กดตกลงแล้วได้ฟลายสำเร็จรูป เงิน 100 → 83 ส่วนชุด 01 + 0A + ไม่มีหาง ตรวจราคาเสนอได้ ¥12 แต่ชุดหลังยังไม่ได้กดซื้อในการตรวจนั้น"
     }
-  ]
+  ],
+  "crosswalkSource": "data/fly-maker-ui-crosswalk.json"
 }

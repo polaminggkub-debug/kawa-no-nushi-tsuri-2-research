@@ -21,3 +21,5 @@ console.log(
 )
 
 await import('./selected-fly-advice.mjs')
+
+await import('./map-catalogue-return.mjs')

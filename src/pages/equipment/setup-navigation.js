@@ -1,3 +1,5 @@
+import { setupReturnAction } from './return-action.js'
+
 export function setupNavigation(ctx) {
   ctx.sourceReturn = () => {
     if (typeof location === 'undefined')
@@ -38,4 +40,5 @@ export function setupNavigation(ctx) {
   }
   ctx.fishHref = (id) =>
     `${ctx.detailFile('fish')}?id=${encodeURIComponent(id)}${ctx.locationStage ? '&stage=' + ctx.locationStage : ''}&return=${encodeURIComponent(ctx.sourceReturn())}`
+  setupReturnAction(ctx)
 }

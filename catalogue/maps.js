@@ -484,7 +484,14 @@
     }
     const catalogue = ctx.$("catalogue-fish-link");
     catalogue.textContent = ctx.selectedFish ? ctx.c.tackle : ctx.lang === "th" ? "กลับไปเลือกอุปกรณ์ตกปลา ↗" : ctx.lang === "ja" ? "道具カタログへ ↗" : "Browse the equipment catalogue ↗";
-    catalogue.href = `${ctx.lang === "th" ? "index.th.html" : ctx.lang === "ja" ? "index.ja.html" : "index.html"}${ctx.selectedFish ? `?category=all&fish=${ctx.selectedFish}&stage=${ctx.activeStage}#fish-location-panel` : ""}`;
+    const query = new URLSearchParams({ return: ctx.sourceReturn() });
+    if (ctx.selectedFish) {
+      query.set("category", "all");
+      query.set("fish", ctx.selectedFish);
+      query.set("stage", String(ctx.activeStage));
+    }
+    const catalogueFile = ctx.lang === "th" ? "index.th.html" : ctx.lang === "ja" ? "index.ja.html" : "index.html";
+    catalogue.href = `${catalogueFile}?${query}${ctx.selectedFish ? "#fish-location-panel" : "#catalogue"}`;
   }
   function renderOverview(ctx, data, section) {
     const overview = data.overview, box = ctx.$("area-overview");

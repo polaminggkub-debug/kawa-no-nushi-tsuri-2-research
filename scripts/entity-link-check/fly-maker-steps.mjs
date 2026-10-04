@@ -8,8 +8,20 @@ const steps = JSON.parse(
 )
 const evidence = JSON.parse(fs.readFileSync(path.join(root, steps.source), 'utf8'))
 assert.equal(steps.romSha256, evidence.capture_provenance.rom_sha256)
+const crosswalk = JSON.parse(fs.readFileSync(path.join(root, steps.crosswalkSource), 'utf8'))
+assert.equal(crosswalk.romSha256, steps.romSha256)
+assert.equal(crosswalk.menuCrosswalk.tail[1].stored_component_id_hex, '00')
+for (const recipe of crosswalk.recipes) {
+  if (recipe.purchase_confirmed) {
+    assert.equal(recipe.funds_before_yen - recipe.funds_after_yen, recipe.displayed_quote_yen)
+    assert.equal(recipe.completed_fly_arrays.body_at_095E, recipe.recipe_hex.body)
+    assert.equal(recipe.completed_fly_arrays.wing_at_09CE, recipe.recipe_hex.wing)
+    assert.equal(recipe.completed_fly_arrays.tail_at_0A3E, recipe.recipe_hex.tail)
+  }
+}
+assert.equal(crosswalk.recipes[2].displayed_quote_yen, 17)
 assert.deepEqual(data.customizerFrames, steps.frames)
-assert.equal(steps.frames.length, 7)
+assert.equal(steps.frames.length, 9)
 assert.equal(steps.frames[0].src, 'custom/rear-npc-dialogue-5.png')
 
 for (const frame of steps.frames) {
@@ -27,8 +39,10 @@ for (const locale of ['en', 'ja', 'th']) {
   assert.equal((html.match(/class="custom-frame"/g) || []).length, steps.frames.length)
   assert(html.includes('rear-npc-dialogue-5.png'), 'Maker entry step missing from guide')
   assert(html.includes('25'), 'Observed order quote missing')
+  assert(html.includes('17'), 'No-tail recipe quote missing')
+  assert(html.includes('B02-tail-none-cursor.png'), 'Original None cursor capture missing')
   validate(html, url)
 }
 console.log(
-  'PASS: seven actionable maker steps in three languages; original game captures preserved.',
+  'PASS: nine actionable maker steps in three languages; original game captures preserved.',
 )

@@ -240,3 +240,11 @@ Next dispatch when the controller slot is free: Area 6 magnet prerequisite/use r
 Body, wing and tail profiles now replace the generic no-target purchase paragraph with advice for the selected fish. Bodies state whether their decoded profile check passes; wings/tails direct players to a compatible body and complete starter sets without claiming standalone compatibility. The starter action keeps the localized target, chooses an actually recorded fish area, and returns to the exact item profile. Existing decision reasons, component stock and technical evidence remain available.
 
 The new guard renders 27 locale/category/target cases, checks localized starter anchors and exact item return, and verifies no-target profiles retain their existing advice. Actual local Thai wing09/Rainbow/area1 click opens the expanded 5-yen starter fly set; its return preserves wing09, fish06 and area1. The full local gate passes. This does not establish all maker palette positions or finish the map-return/access tasks.
+
+## Maker crosswalk and exact map return (2026-10-05)
+
+The maker guide now includes nine authentic frames: tested directional selections for body01/02/05, wing09/0A/0D, first tail13 and visible None→stored00, plus the independently replayed 17-yen no-tail order. The12-yen branch is explicitly quote-only; full palette mapping remains unfinished. Original captures and technical evidence are retained, and no recipe is promoted as a best-catch choice.
+
+Map equipment actions now carry the current fish, area, map section and nested return. The catalogue shows an exact map return both in its header and at the selected-fish landing panel. Language switches recursively localize supported returns and reject external destinations. Actual local Thai map area1/section s1-c1-r6/Iwana→equipment→nearby return reached the same map; switching to English before returning reached maps.html with the same area, section and fish.
+
+The full local gate passes. Runtime recipe probes establish bounded menu operations; automated link checks and these browser paths do not finish Area6 shop access, magnet triggers or the whole-site usefulness audit.

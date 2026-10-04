@@ -13,7 +13,7 @@ export const copy_en = {
   flyKicker: 'THE CUSTOM FLY MAKER',
   flyTitle: 'Body, wing, tail… and a real price quote',
   flyCopy:
-    'These are direct captures of the original Japanese game. In the first-stage shop, we followed the full Mayfly sequence and checked one order against the money counter.',
+    'Original Japanese game captures show the verified ¥25 default recipe and ¥17 no-tail example. Choose a body for your target fish first; these examples explain menu input and price, not which fly catches best.',
   flyFact:
     'Check the final quote before paying. The recorded first-body + first-wing + first-tail Mayfly order cost ¥25. Choosing “None” changes the recipe, so read its quote separately. Other recipes do not share a fixed ¥25 price.',
   catalogueKicker: 'THE FULL INDEX',
