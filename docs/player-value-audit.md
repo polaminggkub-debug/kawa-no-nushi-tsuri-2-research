@@ -32,3 +32,7 @@ A pictured fish passes the particular check documented for that card. It is not 
 ## Research still needed for a universal equipment recommendation
 
 A “carry this and finish everything” claim requires the downstream fight outcomes, target-fish/size behavior, location/activity conditions and matched outcome comparisons together. The new purchase guide and effect descriptions answer narrower practical choices now. They do not justify inventing an overall catch-success ranking. Hidden fly-selection conditions and equipment-specific fight branches are documented separately instead of being presented as player-readable stats.
+
+## Target-fish browsing
+
+The fish picker accepts typed Thai, English/Latin, Japanese names and profile IDs, with sprite suggestions and keyboard selection. Selecting a target switches browsing to confirmed bait/lure/fly-body/float-sinker compatibility and that fish's map. Generic shopping, food/HP, hooks and quest items are excluded from the target view; clear the fish to return to general categories. Wings/tails appear only as parts of sold bundles with qualifying bodies, not as independently fish-compatible gear.

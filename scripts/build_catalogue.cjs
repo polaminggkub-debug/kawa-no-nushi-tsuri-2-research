@@ -68,13 +68,14 @@ fs.writeFileSync(path.join(root,'catalogue/gallery-data.json'),JSON.stringify(da
 async function build(locale, filename) {
   const nodes = {};
   function node(id) {
-    return nodes[id] ||= {innerHTML:'',textContent:'',value:id==='category-filter'?'all':id==='sort-filter'?'id':'',addEventListener(){}};
+    return nodes[id] ||= {innerHTML:'',textContent:'',value:id==='category-filter'?'all':id==='sort-filter'?'id':'',addEventListener(){},setAttribute(){},removeAttribute(){}};
   }
   const document = {
     documentElement:{dataset:{locale}},
     querySelector(selector){return selector.startsWith('#') ? node(selector.slice(1)) : null;},
     querySelectorAll(){return [];},
     getElementById:node,
+    addEventListener(){},
   };
   const context={document,console,fetch:async()=>({ok:true,json:async()=>data})};
   vm.runInNewContext(source.replace('  const groups=', '  globalThis.playerCopy = player;\n  const groups=').replace('  const esc =', '  globalThis.catalogueCopy = copy;\n  const esc ='), context);
