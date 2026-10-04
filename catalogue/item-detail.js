@@ -81,7 +81,7 @@
     return `${cataloguePage[lang]}${p.size ? `?${p}` : ''}#catalogue`;
   }
   function currentLocalRoute() { return `${location.pathname}${location.search}${location.hash}`; }
-  function localizeReturn(raw, toLang) {
+  function localizeReturn(raw, toLang, depth=0) {
     const route = safeLocalRoute(raw);
     if (!route) return '';
     const url = new URL(route, location.href);
@@ -90,6 +90,10 @@
     if (['index','maps','fish','item','shops'].includes(root)) {
       const directory = url.pathname.slice(0,url.pathname.lastIndexOf('/')+1);
       url.pathname = `${directory}${root}${toLang==='en'?'':`.${toLang}`}.html`;
+    }
+    if(url.searchParams.has('return')){
+      const nested=depth<4?localizeReturn(url.searchParams.get('return'),toLang,depth+1):'';
+      if(nested)url.searchParams.set('return',nested);else url.searchParams.delete('return');
     }
     return `${url.pathname}${url.search}${url.hash}`;
   }
@@ -124,10 +128,13 @@
     if(selectedRoute&&category==='bait')p.set('route',selectedRoute);
     return `${cataloguePage[lang]}?${p}#catalogue`;
   }
+  function fishingContext(item) {
+    return ['rod','bait','lure','hook','float_weight','fly','fly_wing','fly_tail'].includes(item.category)||item.category==='general_tool'&&['03','04','08','09','0A','0E'].includes(item.id);
+  }
   function detailItemLink(item, returnRoute=currentLocalRoute()) {
     const p=new URLSearchParams();p.set('category',item.category);p.set('id',item.id);
-    if(selectedFish)p.set('fish',selectedFish);if(selectedStage)p.set('stage',String(selectedStage));
-    if(selectedRoute&&item.category==='bait')p.set('route',selectedRoute);
+    if(fishingContext(item)&&selectedFish)p.set('fish',selectedFish);if(selectedStage)p.set('stage',String(selectedStage));
+    if(fishingContext(item)&&selectedRoute)p.set('route',selectedRoute);
     const safe=safeLocalRoute(returnRoute);if(safe)p.set('return',safe);
     return `item${lang==='en'?'':`.${lang}`}.html?${p}`;
   }
@@ -159,7 +166,9 @@
   }
   function stageButton(stage, fishLocations, label=copy.shopMap) {
     const name=stageName(stage,fishLocations), p=new URLSearchParams({stage:String(stage),place:'town',category,id:requestedId});
-    if(selectedFish)p.set('fish',selectedFish);
+    const context=fishingContext({category,id:requestedId});
+    if(context&&selectedFish)p.set('fish',selectedFish);
+    if(context&&selectedRoute)p.set('route',selectedRoute);
     const returned=safeLocalRoute(currentLocalRoute());if(returned)p.set('return',returned);
     const shops=`shops${lang==='en'?'':`.${lang}`}.html?${p}`;
     return `<a class="route-button" href="${esc(shops)}">${esc(label)} · ${esc(name)} ↗</a>`;
@@ -409,7 +418,7 @@
     setNavigation();
     $('detail-root').innerHTML=`<section class="empty-state"><h1>${esc(copy.invalidTitle)}</h1><p>${esc(copy.invalidBody)}</p><a class="route-button" href="${esc(fallbackBack())}">${esc(copy.allItems)} ↗</a></section>`;
   }
-  fetch('gallery-data.json?v=player-usefulness-20261004-18').then(response=>{if(!response.ok)throw new Error('catalogue data unavailable');return response.json();}).then(data=>{
+  fetch('gallery-data.json?v=player-usefulness-20261004-19').then(response=>{if(!response.ok)throw new Error('catalogue data unavailable');return response.json();}).then(data=>{
     if(selectedFish&&!data.fishVisuals?.[selectedFish])selectedFish='';
     const item=(data.items||[]).find(candidate=>candidate.category===category&&candidate.id===requestedId)||null;
     if(!item){emptyState();return;}

@@ -194,6 +194,13 @@ async function render(kind,lang,query,prefix='/kawa-no-nushi-tsuri-2-research'){
    gathered.forEach((match,index)=>{const url=new URL(unescape(match[1]),result.url);assert.equal(url.searchParams.get('stage'),String(index+1),'Net bait link lost its area');assert.equal(url.searchParams.get('fish'),'06');assert.equal(url.searchParams.get('route'),'sinker');});
    const marker=result.html.match(/class="tool-use-pin"[\s\S]*?href="([^"]+)"/);assert(marker);const url=new URL(unescape(marker[1]),result.url);assert.equal(url.searchParams.get('stage'),'1');assert.equal(url.searchParams.get('id'),'07');assert.equal(url.searchParams.get('fish'),'06');assert.equal(url.searchParams.get('route'),'sinker');
   }
+  for(const item of data.items.filter(i=>i.playerUse?.shops?.length)){
+   const result=await render('item',lang,new URLSearchParams({category:item.category,id:item.id,stage:'3',fish:'06',route:'sinker'}));
+   const relevant=['rod','bait','lure','hook','float_weight','fly','fly_wing','fly_tail'].includes(item.category)||item.category==='general_tool'&&['03','04','08','09','0A','0E'].includes(item.id);
+   const shopLinks=[...result.html.matchAll(/href="([^"]*shops(?:\.th|\.ja)?\.html[^"]*)"/g)];
+   assert(shopLinks.length,'Recorded item has no seller action/'+item.category+':'+item.id);
+   for(const match of shopLinks){const next=new URL(unescape(match[1]),result.url);assert.equal(next.searchParams.get('fish'),relevant?'06':null,'Seller fish context/'+item.category+':'+item.id);assert.equal(next.searchParams.get('route'),relevant?'sinker':null,'Seller rig context/'+item.category+':'+item.id);const back=new URL(next.searchParams.get('return'),result.url);assert.equal(back.searchParams.get('fish'),'06');assert.equal(back.searchParams.get('route'),'sinker');assert.equal(back.searchParams.get('stage'),'3');}
+  }
   for(const item of data.items){
    const result=await render('item',lang,new URLSearchParams({category:item.category,id:item.id,return:`index${suffix}.html?category=${item.category}#catalogue`}));
    assert(result.html.includes('class="detail-hero"')&&!result.html.includes('class="empty-state"'),`Item render failed ${item.category}:${item.id}`);
@@ -273,6 +280,16 @@ async function render(kind,lang,query,prefix='/kawa-no-nushi-tsuri-2-research'){
    }
   }
   const nestedReturn=`item${suffix}.html?category=food&id=07&return=${encodeURIComponent('maps'+suffix+'.html?stage=3&fish=18')}`;
+  const itemMapOrigin=`maps${suffix}.html?stage=3&fish=01`;
+  const itemFishOrigin=`fish${suffix}.html?id=01&stage=3&return=${encodeURIComponent(itemMapOrigin)}`;
+  const itemShopOrigin=`shops${suffix}.html?stage=3&fish=01&route=sinker&return=${encodeURIComponent(itemFishOrigin)}`;
+  const nestedItem=await render('item',lang,new URLSearchParams({category:'bait',id:'01',stage:'3',fish:'01',route:'sinker',return:itemShopOrigin}));
+  for(const targetLang of ['en','th','ja']){
+   const targetSuffix=targetLang==='en'?'':'.'+targetLang;
+   const languageLink=nestedItem.languages.find(link=>link.getAttribute('hreflang')===targetLang);
+   let route=new URL(languageLink.href,nestedItem.url).searchParams.get('return');
+   for(const basename of ['shops','fish','maps']){const next=new URL(route,nestedItem.url);assert(next.pathname.endsWith('/'+basename+targetSuffix+'.html'),'Nested item return loses language/'+basename+'/'+targetLang);assert.equal(next.searchParams.get('stage'),'3');assert.equal(next.searchParams.get('fish')||next.searchParams.get('id'),'01');route=next.searchParams.get('return');}
+  }
   const nestedResult=await render('fish',lang,new URLSearchParams({id:'18',stage:'3',return:nestedReturn}));
   for(const targetLang of ['en','th','ja']){
    const targetSuffix=targetLang==='en'?'':'.'+targetLang;

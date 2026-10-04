@@ -111,9 +111,41 @@ async function main() {
   assert.ok(itemLinkMatch, 'offer card links to its item detail');
   const itemUrl=new URL(itemLinkMatch[1].replaceAll('&amp;','&'),special.location.href);
   assert.match(itemUrl.searchParams.get('return')||'',/\/catalogue\/shops\.html\?stage=4&place=town&category=rod&id=0D/, 'item detail keeps the shop view as its return path');
+  assert.equal(itemUrl.searchParams.get('stage'),'4','Item detail loses the current shop area');
+  assert.equal(itemUrl.searchParams.get('fish'),'38','Equipment detail loses selected fish');
+  assert.equal(itemUrl.searchParams.get('route'),'float','Equipment detail loses selected bait rig');
   assert.match(special.elements['language-th'].href,/stage=4.*place=town.*category=rod.*id=0D/, 'language switch keeps area, seller view, and target item');
   assert.match(special.elements['language-th'].href,/item\.th\.html/, 'language switch localizes the saved item return route');
   assert.match(special.elements['language-th'].href,/fish=38.*route=float/, 'language switch preserves the selected fish and rig');
+  for(const locale of ['en','th','ja'])for(const stage of [1,2,3,4,5,6]){
+    const result=await renderPage({locale,stage,query:`stage=${stage}&place=town&fish=06&route=sinker`,place:'town'});
+    const itemLinks=[...result.elements['shop-results'].innerHTML.matchAll(/href="(item(?:\.th|\.ja)?\.html\?[^"]+)"/g)];
+    assert(itemLinks.length,'Missing stock-detail actions');
+    for(const match of itemLinks){
+      const next=new URL(match[1].replaceAll('&amp;','&'),result.location.href),category=next.searchParams.get('category'),id=next.searchParams.get('id');
+      const fishRelevant=['rod','bait','lure','hook','float_weight','fly','fly_wing','fly_tail'].includes(category)||category==='general_tool'&&['03','04','08','09','0A','0E'].includes(id);
+      assert.equal(next.searchParams.get('stage'),String(stage),'Shop offer loses area/'+locale+'/'+category+':'+id);
+      assert.equal(next.searchParams.get('fish'),fishRelevant?'06':null,'Selected fish relevance mismatch/'+category+':'+id);
+      assert.equal(next.searchParams.get('route'),fishRelevant?'sinker':null,'Selected rig relevance mismatch/'+category+':'+id);
+      const back=new URL(next.searchParams.get('return'),result.location.href);
+      assert.equal(back.searchParams.get('stage'),String(stage));assert.equal(back.searchParams.get('fish'),'06');assert.equal(back.searchParams.get('route'),'sinker');
+    }
+  }
+  const mapOrigin='maps.th.html?stage=3&fish=06&return='+encodeURIComponent('../research/index.th.html');
+  const itemOrigin='item.th.html?category=bait&id=01&stage=3&fish=06&return='+encodeURIComponent(mapOrigin);
+  const nested=await renderPage({locale:'th',stage:3,query:new URLSearchParams({stage:'3',fish:'06',route:'sinker',return:itemOrigin}).toString()});
+  for(const locale of ['en','th','ja']){
+    const suffix=locale==='en'?'':'.'+locale;
+    let route=new URL(nested.elements['language-'+locale].href,nested.location.href).searchParams.get('return');
+    for(const basename of ['item','maps','index']){
+      const next=new URL(route,nested.location.href);
+      assert(next.pathname.endsWith('/'+basename+suffix+'.html'),'Nested shop return loses language/'+basename+'/'+locale);
+      route=next.searchParams.get('return');
+    }
+  }
+  const badNested=await renderPage({locale:'en',query:new URLSearchParams({return:'item.html?category=bait&id=01&return='+encodeURIComponent('https://evil.example/catalogue/maps.html')}).toString()});
+  const safeNested=new URL(new URL(badNested.elements['language-th'].href,badNested.location.href).searchParams.get('return'),badNested.location.href);
+  assert(!safeNested.searchParams.has('return'),'Nested external return must be removed');
 
   const regular=await renderPage({locale:'en',query:'stage=1&place=town&category=rod&id=03',category:'rod',stage:1,place:'town'});
   assert.match(regular.elements['location-visuals'].innerHTML,/Regular equipment shop/, 'ordinary rod target points to the regular equipment shop');

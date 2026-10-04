@@ -166,7 +166,7 @@
   let targetCategory = startCategory;
   let targetId = startId;
   let focusedEntrance = /^(?:0|[1-4])$/.test(params.get('entrance')||'') ? Number(params.get('entrance')) : null;
-  const allowedReturn = /^\/(?:[^/]+\/)?catalogue\/(?:index|maps|fish|item|shops)(?:\.th|\.ja)?\.html$/;
+  const allowedReturn = /^\/(?:[^/]+\/)?(?:catalogue\/(?:index|maps|fish|item|shops)|research\/index)(?:\.th|\.ja)?\.html$/;
   function safeReturn(raw) {
     if (!raw) return '';
     try {
@@ -175,13 +175,17 @@
         ? `${url.pathname}${url.search}${url.hash}` : '';
     } catch { return ''; }
   }
-  function localizeRoute(raw, locale) {
+  function localizeRoute(raw, locale, depth=0) {
     const safe = safeReturn(raw);
     if (!safe) return '';
     const url = new URL(safe, location.origin);
-    const match = url.pathname.match(/\/catalogue\/(index|maps|fish|item|shops)(?:\.th|\.ja)?\.html$/);
+    const match = url.pathname.match(/\/(?:catalogue|research)\/(index|maps|fish|item|shops)(?:\.th|\.ja)?\.html$/);
     if (!match) return '';
     url.pathname = url.pathname.replace(/(index|maps|fish|item|shops)(?:\.th|\.ja)?\.html$/, pages[match[1]][locale]);
+    if(url.searchParams.has('return')){
+      const nested=depth<4?localizeRoute(url.searchParams.get('return'),locale,depth+1):'';
+      if(nested)url.searchParams.set('return',nested);else url.searchParams.delete('return');
+    }
     return `${url.pathname}${url.search}${url.hash}`;
   }
   let returnRoute = safeReturn(params.get('return'));
@@ -212,6 +216,10 @@
   }
   function itemHref(item) {
     const query = new URLSearchParams({category:item.category, id:item.id, return:targetReturn()});
+    query.set('stage',stateParams().get('stage'));
+    const fishRelevant=['rod','bait','lure','hook','float_weight','fly','fly_wing','fly_tail'].includes(item.category)||item.category==='general_tool'&&['03','04','08','09','0A','0E'].includes(item.id);
+    if(fishRelevant&&selectedFish)query.set('fish',selectedFish);
+    if(fishRelevant&&selectedRig)query.set('route',selectedRig);
     return `${pages.item[lang]}?${query}`;
   }
   function fishHref(id) {
