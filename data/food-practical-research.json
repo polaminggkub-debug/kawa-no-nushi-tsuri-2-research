@@ -25,6 +25,11 @@
           "กินแล้วอาหารหนึ่งชิ้นหมดไป",
           "อาหารร้านทั้ง 6 แบบมีราคา 1 เยนต่อ HP เท่ากัน เลือกปริมาณที่ใกล้ HP ที่ขาด เพราะส่วนที่เกิน HP สูงสุดจะไม่ได้เพิ่มให้"
         ]
+      },
+      "summary": {
+        "th": "ขาด HP ใกล้ 5 และต้องซื้ออาหารใหม่? ชิ้นนี้ฟื้น 5 HP ราคา ¥5 ถ้ามีอาหารอยู่แล้วใช้ของเดิมก่อน ไม่ต้องซื้อซ้ำ ชิ้นนี้ฟื้นน้อยที่สุดในอาหารร้าน เหมาะเติมทีละน้อย",
+        "en": "Missing about 5 HP and need to buy food? This restores 5 HP for ¥5. Use food you already own before buying more. This is the smallest shop-food recovery, suitable for small top-ups.",
+        "ja": "5HPほど不足し、食料を買う必要があるときに選ぶ。5円で5HP回復。手持ちの食料があれば先に使い、買い足さない。店の食料で最小の回復量。少量の補充に向く。"
       }
     },
     "food:02": {
@@ -51,6 +56,11 @@
           "กินแล้วอาหารหนึ่งชิ้นหมดไป",
           "อาหารร้านทั้ง 6 แบบมีราคา 1 เยนต่อ HP เท่ากัน เลือกปริมาณที่ใกล้ HP ที่ขาด เพราะส่วนที่เกิน HP สูงสุดจะไม่ได้เพิ่มให้"
         ]
+      },
+      "summary": {
+        "th": "ขาด HP ใกล้ 10 และต้องซื้ออาหารใหม่? ชิ้นนี้ฟื้น 10 HP ราคา ¥10 ถ้ามีอาหารอยู่แล้วใช้ของเดิมก่อน ไม่ต้องซื้อซ้ำ ถ้าขาดน้อยกว่า 10 HP ให้เทียบอาหารชิ้นเล็กที่ร้านมี เพื่อลดส่วนที่ฟื้นเกินค่าสูงสุด",
+        "en": "Missing about 10 HP and need to buy food? This restores 10 HP for ¥10. Use food you already own before buying more. If you need less than 10 HP, compare smaller foods sold there to reduce recovery wasted above your maximum.",
+        "ja": "10HPほど不足し、食料を買う必要があるときに選ぶ。10円で10HP回復。手持ちの食料があれば先に使い、買い足さない。不足が10HP未満なら、その店の小さい食料と比較し、最大HPを超える無駄を減らす。"
       }
     },
     "food:03": {
@@ -77,6 +87,11 @@
           "กินแล้วอาหารหนึ่งชิ้นหมดไป",
           "อาหารร้านทั้ง 6 แบบมีราคา 1 เยนต่อ HP เท่ากัน เลือกปริมาณที่ใกล้ HP ที่ขาด เพราะส่วนที่เกิน HP สูงสุดจะไม่ได้เพิ่มให้"
         ]
+      },
+      "summary": {
+        "th": "ขาด HP ใกล้ 15 และต้องซื้ออาหารใหม่? ชิ้นนี้ฟื้น 15 HP ราคา ¥15 ถ้ามีอาหารอยู่แล้วใช้ของเดิมก่อน ไม่ต้องซื้อซ้ำ ถ้าขาดน้อยกว่า 15 HP ให้เทียบอาหารชิ้นเล็กที่ร้านมี เพื่อลดส่วนที่ฟื้นเกินค่าสูงสุด",
+        "en": "Missing about 15 HP and need to buy food? This restores 15 HP for ¥15. Use food you already own before buying more. If you need less than 15 HP, compare smaller foods sold there to reduce recovery wasted above your maximum.",
+        "ja": "15HPほど不足し、食料を買う必要があるときに選ぶ。15円で15HP回復。手持ちの食料があれば先に使い、買い足さない。不足が15HP未満なら、その店の小さい食料と比較し、最大HPを超える無駄を減らす。"
       }
     },
     "food:04": {
@@ -103,6 +118,11 @@
           "กินแล้วอาหารหนึ่งชิ้นหมดไป",
           "อาหารร้านทั้ง 6 แบบมีราคา 1 เยนต่อ HP เท่ากัน เลือกปริมาณที่ใกล้ HP ที่ขาด เพราะส่วนที่เกิน HP สูงสุดจะไม่ได้เพิ่มให้"
         ]
+      },
+      "summary": {
+        "th": "ขาด HP ใกล้ 20 และต้องซื้ออาหารใหม่? ชิ้นนี้ฟื้น 20 HP ราคา ¥20 ถ้ามีอาหารอยู่แล้วใช้ของเดิมก่อน ไม่ต้องซื้อซ้ำ ถ้าขาดน้อยกว่า 20 HP ให้เทียบอาหารชิ้นเล็กที่ร้านมี เพื่อลดส่วนที่ฟื้นเกินค่าสูงสุด",
+        "en": "Missing about 20 HP and need to buy food? This restores 20 HP for ¥20. Use food you already own before buying more. If you need less than 20 HP, compare smaller foods sold there to reduce recovery wasted above your maximum.",
+        "ja": "20HPほど不足し、食料を買う必要があるときに選ぶ。20円で20HP回復。手持ちの食料があれば先に使い、買い足さない。不足が20HP未満なら、その店の小さい食料と比較し、最大HPを超える無駄を減らす。"
       }
     },
     "food:05": {
@@ -129,6 +149,11 @@
           "กินแล้วอาหารหนึ่งชิ้นหมดไป",
           "อาหารร้านทั้ง 6 แบบมีราคา 1 เยนต่อ HP เท่ากัน เลือกปริมาณที่ใกล้ HP ที่ขาด เพราะส่วนที่เกิน HP สูงสุดจะไม่ได้เพิ่มให้"
         ]
+      },
+      "summary": {
+        "th": "ขาด HP ใกล้ 30 และต้องซื้ออาหารใหม่? ชิ้นนี้ฟื้น 30 HP ราคา ¥30 ถ้ามีอาหารอยู่แล้วใช้ของเดิมก่อน ไม่ต้องซื้อซ้ำ ถ้าขาดน้อยกว่า 30 HP ให้เทียบอาหารชิ้นเล็กที่ร้านมี เพื่อลดส่วนที่ฟื้นเกินค่าสูงสุด",
+        "en": "Missing about 30 HP and need to buy food? This restores 30 HP for ¥30. Use food you already own before buying more. If you need less than 30 HP, compare smaller foods sold there to reduce recovery wasted above your maximum.",
+        "ja": "30HPほど不足し、食料を買う必要があるときに選ぶ。30円で30HP回復。手持ちの食料があれば先に使い、買い足さない。不足が30HP未満なら、その店の小さい食料と比較し、最大HPを超える無駄を減らす。"
       }
     },
     "food:06": {
@@ -155,6 +180,11 @@
           "กินแล้วอาหารหนึ่งชิ้นหมดไป",
           "อาหารร้านทั้ง 6 แบบมีราคา 1 เยนต่อ HP เท่ากัน เลือกปริมาณที่ใกล้ HP ที่ขาด เพราะส่วนที่เกิน HP สูงสุดจะไม่ได้เพิ่มให้"
         ]
+      },
+      "summary": {
+        "th": "ขาด HP ใกล้ 40 และต้องซื้ออาหารใหม่? ชิ้นนี้ฟื้น 40 HP ราคา ¥40 ถ้ามีอาหารอยู่แล้วใช้ของเดิมก่อน ไม่ต้องซื้อซ้ำ ถ้าขาดน้อยกว่า 40 HP ให้เทียบอาหารชิ้นเล็กที่ร้านมี เพื่อลดส่วนที่ฟื้นเกินค่าสูงสุด",
+        "en": "Missing about 40 HP and need to buy food? This restores 40 HP for ¥40. Use food you already own before buying more. If you need less than 40 HP, compare smaller foods sold there to reduce recovery wasted above your maximum.",
+        "ja": "40HPほど不足し、食料を買う必要があるときに選ぶ。40円で40HP回復。手持ちの食料があれば先に使い、買い足さない。不足が40HP未満なら、その店の小さい食料と比較し、最大HPを超える無駄を減らす。"
       }
     },
     "food:07": {

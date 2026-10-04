@@ -182,3 +182,11 @@ The scoped food/chum/hook source review found no additional material food-action
 - The new source report and verifier follow both magnifier draws, the food-slot gate, identical discovery message and the shared counter-driven byte source. Main independently ran the verifier against the supplied ROM hashes and exact fingerprints. A mushroom type is not assigned by the coordinate in this branch; balanced table parity is not turned into a visit probability.
 - Magnifier03 and both mushroom records now explain that no fixed safe mushroom tile is established and offer recorded shop food for HP recovery when the mushroom cannot be identified. Original runtime evidence remains responsible for food09 +10 HP / food0A HP-zero; this new trace establishes selection, not an extra healing experiment.
 - Full goal remains active: ordinary boat boarding points, Area6 seller traversal and the exact magnet event/menu action still need stronger evidence; the natural net route has not yet reached the candidate.
+
+## Follow-up: make every shop-food choice actionable (2026-10-04)
+
+The six ordinary shop foods now state when to use/buy the item in terms of missing HP, its verified recovery and price, using owned food first, and avoiding excess recovery above maximum HP. These are decisions derived from the existing original-ROM traces and isolated recovery measurements; no new bite or catch bonus is inferred.
+
+Food profiles show alternative foods recorded for the selected area first. The full cross-area HP/food guide and its item links remain in a closed disclosure instead of repeating a long global recommendation and unavailable-area alternatives in the main view. The guard checks all six foods against runtime-confirmed recovery and the one-yen-per-HP prices, then renders 108 food/area/language combinations and requires exactly the locally stocked alternatives with retained area links. The full aggregate passes. Actual browser clicks: area5 lunch06 → Dango03 retains area5; the 390px layout remains readable.
+
+The whole-site goal remains active while natural boat boarding/access and the named Area6 magnet prerequisite are being researched. Passing these food checks does not resolve those gameplay evidence gaps.

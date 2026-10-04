@@ -1,3 +1,5 @@
+import { foodChoicePanel } from './food-choice.js'
+
 export function flyAssemblies(ctx, item, allItems) {
   const id = item.id,
     parts = []
@@ -98,6 +100,7 @@ export function buyingDecision(ctx, item, allItems, decisions) {
         (section.items || []).some((ref) => ref.category === item.category && ref.id === item.id),
   )
   if (!sections.length) return ''
+  if (item.category === 'food') return foodChoicePanel(ctx, item, allItems, sections)
   return `<section class="detail-section buying-decision"><h2>${ctx.lang === 'th' ? 'ควรซื้อหรือเปลี่ยนมาใช้อันนี้ไหม?' : ctx.lang === 'ja' ? '買う・替えるべき？' : 'Should I buy or switch to this?'}</h2>${sections
     .map((section) => {
       const refs = (section.items || [])

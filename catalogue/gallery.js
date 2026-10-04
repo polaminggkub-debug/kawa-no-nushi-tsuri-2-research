@@ -1829,7 +1829,7 @@
     renderInitialCatalogue(ctx);
   }
   function loadCatalogue(ctx) {
-    fetch("gallery-data.json?v=compendium-20261004-22").then((response) => {
+    fetch("gallery-data.json?v=compendium-20261004-23").then((response) => {
       if (!response.ok) throw new Error("catalogue unavailable");
       return response.json();
     }).then((data) => initializeLoadedCatalogue(ctx, data)).catch((error) => console.error(error));

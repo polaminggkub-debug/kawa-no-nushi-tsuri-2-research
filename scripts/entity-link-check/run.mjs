@@ -1,6 +1,7 @@
 import { fishIds, stats } from './shared.mjs'
 
 await import('./data-guards.mjs')
+await import('./food-decisions.mjs')
 await import('./navigation.mjs')
 await import('./bait-routes.mjs')
 await import('./forage.mjs')

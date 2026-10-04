@@ -251,6 +251,39 @@
     return `<article class="entity-link">${main}${map}</article>`;
   }
 
+  // src/pages/item/food-choice.js
+  function foodCopy(ctx) {
+    return {
+      th: [
+        "อาหารอื่นที่ซื้อได้ในด่านนี้",
+        "เทียบอาหารร้านทั้งหมดและเหตุผลที่ควรเติม HP",
+        "ถ้ามีอาหารเหลืออยู่ ใช้ของเดิมก่อนซื้อเพิ่ม"
+      ],
+      ja: [
+        "このエリアで買える他の食料",
+        "店の食料全体とHP補充の理由を比較",
+        "食料が残っていれば、買い足す前に使う。"
+      ],
+      en: [
+        "Other foods sold in this area",
+        "Compare all shop foods and why to restore HP",
+        "Use remaining food before buying more."
+      ]
+    }[ctx.lang];
+  }
+  function foodChoicePanel(ctx, item, allItems, sections) {
+    const copy = foodCopy(ctx);
+    const alternatives = allItems.filter(
+      (other) => other.category === "food" && other.id !== item.id && other.priceYen > 0 && other.playerUse?.shops?.some((shop) => Number(shop.stage) === ctx.selectedStage)
+    );
+    const nearby = ctx.selectedStage ? `<h3>${ctx.esc(copy[0])} · ${ctx.selectedStage}</h3><div class="detail-grid" data-local-food-options>${alternatives.map((other) => `<article>${ctx.componentLink(other)}<p>${ctx.esc(ctx.copy.price(other.priceYen))}</p></article>`).join("")}</div>` : "";
+    const catalogueLinks = allItems.filter((other) => other.category === "food" && other.priceYen > 0 && other.id !== item.id).map((other) => ctx.componentLink(other)).join("");
+    const full = sections.map(
+      (section) => `<h3>${ctx.esc(ctx.local(section.title))}</h3><p>${ctx.esc(ctx.local(section.recommendation))}</p><p class="muted">${ctx.esc(ctx.local(section.scope))}</p>`
+    ).join("");
+    return `<section class="detail-section buying-decision" data-food-choice><p>${ctx.esc(copy[2])}</p>${nearby}<details><summary>${ctx.esc(copy[1])}</summary>${full}<div class="detail-grid">${catalogueLinks}</div></details></section>`;
+  }
+
   // src/pages/item/purchases.js
   function flyAssemblies(ctx, item, allItems) {
     const id = item.id, parts = [];
@@ -312,6 +345,7 @@
       (section) => path ? section.id === path : !ctx.selectedFish && section.category === item.category && ["lure", "food"].includes(item.category) && (section.items || []).some((ref) => ref.category === item.category && ref.id === item.id)
     );
     if (!sections.length) return "";
+    if (item.category === "food") return foodChoicePanel(ctx, item, allItems, sections);
     return `<section class="detail-section buying-decision"><h2>${ctx.lang === "th" ? "ควรซื้อหรือเปลี่ยนมาใช้อันนี้ไหม?" : ctx.lang === "ja" ? "買う・替えるべき？" : "Should I buy or switch to this?"}</h2>${sections.map((section) => {
       const refs = (section.items || []).filter((ref) => ref.category === item.category && ref.id !== item.id).map((ref) => allItems.find((i) => i.category === ref.category && i.id === ref.id)).filter(Boolean);
       return `<h3>${ctx.esc(ctx.local(section.title))}</h3><p>${ctx.esc(ctx.local(section.recommendation))}</p>${refs.length ? `<div class="detail-grid">${refs.map((ref) => ctx.componentLink(ref)).join("")}</div>` : ""}<p class="muted">${ctx.esc(ctx.local(section.scope))}</p>`;
@@ -969,7 +1003,7 @@
   function loadCatalogue(ctx) {
     ctx.flyMakerLink = (item) => item.category.startsWith("fly") ? `<p><a class="route-button" data-fly-maker href="${ctx.esc(ctx.currentCategoryLink().split("#")[0] + "#fly-instructions")}">${ctx.lang === "th" ? "ดูขั้นตอนประกอบฟลายเองและตรวจราคาในเกม" : ctx.lang === "ja" ? "自作フライの手順とゲーム内見積額を確認" : "See custom fly steps and check the in-game quote"} ↗</a></p>` : "";
     ctx.setNavigation();
-    fetch("gallery-data.json?v=compendium-20261004-22").then((response) => {
+    fetch("gallery-data.json?v=compendium-20261004-23").then((response) => {
       if (!response.ok) throw new Error("catalogue data unavailable");
       return response.json();
     }).then((data) => {
