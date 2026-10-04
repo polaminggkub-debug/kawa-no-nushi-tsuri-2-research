@@ -55,7 +55,7 @@
     "images": [
       {
         "class": "small",
-        "image": "images/water-icons/water-small.png",
+        "image": "images/water-icons/superseded-water-small-crop.png",
         "sha256": "fedecc149dc4c680d50a84e46c7144e183e88625018b760d2e45a5bffd0c5724",
         "fullFrameSha256": "b212d9b5e78abf71babd2e663a3539dc5d7d650c22bd04073053bf4e129ac17d",
         "cropPixels": [
@@ -69,7 +69,7 @@
       },
       {
         "class": "large",
-        "image": "images/water-icons/water-large.png",
+        "image": "images/water-icons/superseded-water-large-crop.png",
         "sha256": "94c28f0639ea1098b7b2489b1bf04acbb982ea927009ceb40679408696be7ff3",
         "fullFrameSha256": "a29d5df7ee4595991341d2a8a9ff016e7cd0e94bd715a33b3aa9d08c31f5a36a",
         "cropPixels": [
@@ -83,7 +83,7 @@
       },
       {
         "class": "bubble",
-        "image": "images/water-icons/water-bubble.png",
+        "image": "images/water-icons/superseded-water-bubble-crop.png",
         "sha256": "2c8c612f00c403dd1e2331d13f1d798407e0ebd257af0fabdebea764974ace62",
         "fullFrameSha256": "9ceb41ccd2c3b4c844c4ead8cb68d6caa753fcd6203888484da144419d23d3c2",
         "cropPixels": [

@@ -17,6 +17,10 @@ for (const entry of manifest.images) {
   const colors = new Set(opaque.map((pixel) => pixel.slice(0, 3).join(',')))
   assert.deepEqual([...colors], [entry.class === 'bubble' ? '246,246,246' : '156,157,139'])
 }
+for (const entry of manifest.supersededEvidence.images) {
+  const bytes = fs.readFileSync(new URL(`catalogue/${entry.image}`, root))
+  assert.equal(crypto.createHash('sha256').update(bytes).digest('hex'), entry.sha256)
+}
 assert(manifest.supersededEvidence.reason.includes('terrain'))
 console.log(
   'Water sprite assets PASS: exact native glyph hashes, transparent backgrounds, distinct sizes and original palette colors',
