@@ -160,9 +160,9 @@
         "ja": "今持っている針を使い続けてください。この魚名付きの針に替えても食いつきや取り込みが改善する根拠はありません。まず対象魚に合うエサを選びます。コイを狙うなら魚ページで適合エサと場所を確認してください。この針はエサ釣り用です。"
       },
       "reason": {
-        "en": "A fish-name match in the item record is not evidence of more bites or easier landing, so it is not a reason to pay for an upgrade.",
-        "th": "ชื่อปลาที่ตรงในระเบียนไอเท็มไม่ได้ยืนยันว่าปลากินหรือดึงขึ้นง่ายกว่า จึงไม่ใช่เหตุให้จ่ายซื้อเปลี่ยน",
-        "ja": "道具レコードの魚名一致は、食いつきや取り込みやすさの証明ではありません。買い替えの理由にはなりません。"
+        "en": "A fish-name match in the item record is not evidence of more bites or easier landing, so it is not a reason to pay for an upgrade. For Koi, the compatible fish-matched baits are linked below: its fish match runs the same opening-fight branch before the hook check. Do not buy this hook just to trigger that branch again. This does not prove equal landing results for the whole setup or rule out other hook effects.",
+        "th": "ชื่อปลาที่ตรงในระเบียนไอเท็มไม่ได้ยืนยันว่าปลากินหรือดึงขึ้นง่ายกว่า จึงไม่ใช่เหตุให้จ่ายซื้อเปลี่ยน สำหรับปลาคาร์ป ถ้าใช้เหยื่อที่ตรงกับปลาในลิงก์ด้านล่างอยู่แล้ว ไม่ต้องซื้อเบ็ดนี้เพื่อหวังเพิ่มผลเฉพาะปลานี้ซ้ำ เพราะเกมใช้ผลนั้นจากเหยื่อก่อนตรวจเบ็ด ข้อนี้ไม่ได้พิสูจน์ว่าชุดตกทั้งหมดดึงปลาขึ้นง่ายเท่ากัน หรือเบ็ดไม่มีผลด้านอื่น",
+        "ja": "道具レコードの魚名一致は、食いつきや取り込みやすさの証明ではありません。買い替えの理由にはなりません。コイ向けの魚別エサは下のリンクです。適合するエサ側の魚ID一致により、針の判定より先に同じファイト開始分岐が実行されます。その分岐をもう一度起こすためだけにこの針を買う必要はありません。釣り全体の取り込み結果が同じ、または針に他の効果がないと証明するものではありません。"
       },
       "targetFish": [
         "0D"
@@ -173,6 +173,16 @@
         "data/hook-practical-research.json",
         "data/fish-acceptance.json",
         "data/player-decisions.json"
+      ],
+      "alternatives": [
+        {
+          "category": "bait",
+          "id": "0F"
+        },
+        {
+          "category": "bait",
+          "id": "11"
+        }
       ]
     },
     "hook:05": {
@@ -187,9 +197,9 @@
         "ja": "今持っている針を使い続けてください。この魚名付きの針に替えても食いつきや取り込みが改善する根拠はありません。まず対象魚に合うエサを選びます。ヘラブナを狙うなら魚ページで適合エサと場所を確認してください。この針はエサ釣り用です。"
       },
       "reason": {
-        "en": "A fish-name match in the item record is not evidence of more bites or easier landing, so it is not a reason to pay for an upgrade.",
-        "th": "ชื่อปลาที่ตรงในระเบียนไอเท็มไม่ได้ยืนยันว่าปลากินหรือดึงขึ้นง่ายกว่า จึงไม่ใช่เหตุให้จ่ายซื้อเปลี่ยน",
-        "ja": "道具レコードの魚名一致は、食いつきや取り込みやすさの証明ではありません。買い替えの理由にはなりません。"
+        "en": "A fish-name match in the item record is not evidence of more bites or easier landing, so it is not a reason to pay for an upgrade. For Herabuna, the compatible fish-matched bait is linked below: its fish match runs the same opening-fight branch before the hook check. Do not buy this hook just to trigger that branch again. This does not prove equal landing results for the whole setup or rule out other hook effects.",
+        "th": "ชื่อปลาที่ตรงในระเบียนไอเท็มไม่ได้ยืนยันว่าปลากินหรือดึงขึ้นง่ายกว่า จึงไม่ใช่เหตุให้จ่ายซื้อเปลี่ยน สำหรับปลาเฮระบูนะ ถ้าใช้เหยื่อที่ตรงกับปลาในลิงก์ด้านล่างอยู่แล้ว ไม่ต้องซื้อเบ็ดนี้เพื่อหวังเพิ่มผลเฉพาะปลานี้ซ้ำ เพราะเกมใช้ผลนั้นจากเหยื่อก่อนตรวจเบ็ด ข้อนี้ไม่ได้พิสูจน์ว่าชุดตกทั้งหมดดึงปลาขึ้นง่ายเท่ากัน หรือเบ็ดไม่มีผลด้านอื่น",
+        "ja": "道具レコードの魚名一致は、食いつきや取り込みやすさの証明ではありません。買い替えの理由にはなりません。ヘラブナ向けの魚別エサは下のリンクです。適合するエサ側の魚ID一致により、針の判定より先に同じファイト開始分岐が実行されます。その分岐をもう一度起こすためだけにこの針を買う必要はありません。釣り全体の取り込み結果が同じ、または針に他の効果がないと証明するものではありません。"
       },
       "targetFish": [
         "25"
@@ -200,6 +210,12 @@
         "data/hook-practical-research.json",
         "data/fish-acceptance.json",
         "data/player-decisions.json"
+      ],
+      "alternatives": [
+        {
+          "category": "bait",
+          "id": "0E"
+        }
       ]
     },
     "hook:06": {
@@ -310,9 +326,9 @@
         "ja": "今持っている針を使い続けてください。この魚名付きの針に替えても食いつきや取り込みが改善する根拠はありません。まず対象魚に合うエサを選びます。アユを狙うなら魚ページで適合エサと場所を確認してください。この針はエサ釣り用です。"
       },
       "reason": {
-        "en": "A fish-name match in the item record is not evidence of more bites or easier landing, so it is not a reason to pay for an upgrade.",
-        "th": "ชื่อปลาที่ตรงในระเบียนไอเท็มไม่ได้ยืนยันว่าปลากินหรือดึงขึ้นง่ายกว่า จึงไม่ใช่เหตุให้จ่ายซื้อเปลี่ยน",
-        "ja": "道具レコードの魚名一致は、食いつきや取り込みやすさの証明ではありません。買い替えの理由にはなりません。"
+        "en": "A fish-name match in the item record is not evidence of more bites or easier landing, so it is not a reason to pay for an upgrade. For Ayu, the compatible fish-matched bait is linked below: its fish match runs the same opening-fight branch before the hook check. Do not buy this hook just to trigger that branch again. This does not prove equal landing results for the whole setup or rule out other hook effects.",
+        "th": "ชื่อปลาที่ตรงในระเบียนไอเท็มไม่ได้ยืนยันว่าปลากินหรือดึงขึ้นง่ายกว่า จึงไม่ใช่เหตุให้จ่ายซื้อเปลี่ยน สำหรับปลาอายุ ถ้าใช้เหยื่อที่ตรงกับปลาในลิงก์ด้านล่างอยู่แล้ว ไม่ต้องซื้อเบ็ดนี้เพื่อหวังเพิ่มผลเฉพาะปลานี้ซ้ำ เพราะเกมใช้ผลนั้นจากเหยื่อก่อนตรวจเบ็ด ข้อนี้ไม่ได้พิสูจน์ว่าชุดตกทั้งหมดดึงปลาขึ้นง่ายเท่ากัน หรือเบ็ดไม่มีผลด้านอื่น",
+        "ja": "道具レコードの魚名一致は、食いつきや取り込みやすさの証明ではありません。買い替えの理由にはなりません。アユ向けの魚別エサは下のリンクです。適合するエサ側の魚ID一致により、針の判定より先に同じファイト開始分岐が実行されます。その分岐をもう一度起こすためだけにこの針を買う必要はありません。釣り全体の取り込み結果が同じ、または針に他の効果がないと証明するものではありません。"
       },
       "targetFish": [
         "38"
@@ -323,6 +339,12 @@
         "data/hook-practical-research.json",
         "data/fish-acceptance.json",
         "data/player-decisions.json"
+      ],
+      "alternatives": [
+        {
+          "category": "bait",
+          "id": "17"
+        }
       ]
     },
     "hook:0B": {
@@ -337,9 +359,9 @@
         "ja": "今持っている針を使い続けてください。この魚名付きの針に替えても食いつきや取り込みが改善する根拠はありません。まず対象魚に合うエサを選びます。タナゴを狙うなら魚ページで適合エサと場所を確認してください。この針はエサ釣り用です。"
       },
       "reason": {
-        "en": "A fish-name match in the item record is not evidence of more bites or easier landing, so it is not a reason to pay for an upgrade.",
-        "th": "ชื่อปลาที่ตรงในระเบียนไอเท็มไม่ได้ยืนยันว่าปลากินหรือดึงขึ้นง่ายกว่า จึงไม่ใช่เหตุให้จ่ายซื้อเปลี่ยน",
-        "ja": "道具レコードの魚名一致は、食いつきや取り込みやすさの証明ではありません。買い替えの理由にはなりません。"
+        "en": "A fish-name match in the item record is not evidence of more bites or easier landing, so it is not a reason to pay for an upgrade. For Tanago, the compatible fish-matched bait is linked below: its fish match runs the same opening-fight branch before the hook check. Do not buy this hook just to trigger that branch again. This does not prove equal landing results for the whole setup or rule out other hook effects.",
+        "th": "ชื่อปลาที่ตรงในระเบียนไอเท็มไม่ได้ยืนยันว่าปลากินหรือดึงขึ้นง่ายกว่า จึงไม่ใช่เหตุให้จ่ายซื้อเปลี่ยน สำหรับปลาทานาโกะ ถ้าใช้เหยื่อที่ตรงกับปลาในลิงก์ด้านล่างอยู่แล้ว ไม่ต้องซื้อเบ็ดนี้เพื่อหวังเพิ่มผลเฉพาะปลานี้ซ้ำ เพราะเกมใช้ผลนั้นจากเหยื่อก่อนตรวจเบ็ด ข้อนี้ไม่ได้พิสูจน์ว่าชุดตกทั้งหมดดึงปลาขึ้นง่ายเท่ากัน หรือเบ็ดไม่มีผลด้านอื่น",
+        "ja": "道具レコードの魚名一致は、食いつきや取り込みやすさの証明ではありません。買い替えの理由にはなりません。タナゴ向けの魚別エサは下のリンクです。適合するエサ側の魚ID一致により、針の判定より先に同じファイト開始分岐が実行されます。その分岐をもう一度起こすためだけにこの針を買う必要はありません。釣り全体の取り込み結果が同じ、または針に他の効果がないと証明するものではありません。"
       },
       "targetFish": [
         "39"
@@ -350,6 +372,12 @@
         "data/hook-practical-research.json",
         "data/fish-acceptance.json",
         "data/player-decisions.json"
+      ],
+      "alternatives": [
+        {
+          "category": "bait",
+          "id": "10"
+        }
       ]
     },
     "hook:0C": {

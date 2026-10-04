@@ -161,9 +161,9 @@
       },
       "rodDecision": {
         "label": {
-          "en": "Skip buying: 04 costs the same and improves both effects",
-          "th": "ไม่แนะนำซื้อ: 04 ราคาเท่ากันและดีกว่าทั้งสองด้าน",
-          "ja": "購入見送り：同額の04が両効果で上"
+          "en": "Skip buying: 04 costs the same, with longer aim and a farther loss boundary",
+          "th": "ไม่แนะนำซื้อ: 04 ราคาเท่ากัน เล็งนานกว่าและปลามีพื้นที่ก่อนเสียอุปกรณ์มากกว่า",
+          "ja": "購入は04へ：同額で照準時間と道具喪失までの境界が上"
         },
         "recommendation": {
           "en": "Do not buy this for a longer aim window or more room before the traced hook-loss branch. In area 5, the Clear-stream carbon rod (04) is also listed for the same full ¥500 and improves both measured values: cutoff 50 and multiplier ×7, versus 10 and ×3 here. Use 01 if you already own it; buying 04 is a full-price replacement, not a trade-in.",
@@ -325,9 +325,9 @@
       },
       "rodDecision": {
         "label": {
-          "en": "Keep it: buying 04 would reduce both effects",
-          "th": "มีแล้วใช้ต่อ: ซื้อ 04 จะลดค่าทั้งสองด้าน",
-          "ja": "所持中なら継続：04では両効果が下がる"
+          "en": "Keep it: 04 shortens aim and reduces the loss boundary",
+          "th": "มีแล้วใช้ต่อ: 04 เล็งสั้นกว่าและปลามีพื้นที่ก่อนเสียอุปกรณ์น้อยกว่า",
+          "ja": "継続：04では照準時間と道具喪失までの境界が下がる"
         },
         "recommendation": {
           "en": "If you own 02 and its aim time is enough, keep it. Do not buy 04 as an upgrade: 04 gives less aim time (50 versus 60) and a lower fish-position boundary (×7 versus ×8). No seller for 02 appears in the six extracted shop lists. If you do not own it, buy stocked 04 in area 1; in area 3 compare 14 when you want to improve both effects.",
@@ -335,9 +335,9 @@
           "ja": "02を持っていて照準時間が十分なら、そのまま使います。04は照準50対60、魚位置境界×7対×8と両方下がるため、強化として買いません。全6エリアの在庫に02の販売記録はありません。未所持ならエリア1の店頭04を選び、エリア3で両効果を伸ばしたい場合は14を比較します。"
         },
         "reason": {
-          "en": "The record describes a usable mid-to-high float rod, but its ROM record alone does not prove that a shop sells it. The listed 04 is slightly lower on both measured effects and has a confirmed shop listing.",
-          "th": "ระเบียนมีค่าคันสายทุ่นระดับกลางค่อนสูง แต่ระเบียน ROM อย่างเดียวไม่ได้พิสูจน์ว่าร้านขาย คัน 04 ต่ำกว่าทั้งสองค่าที่ตามโค้ดได้เล็กน้อยและมีรายการขายยืนยัน",
-          "ja": "レコード上はウキ竿の中上位ですが、竿レコードだけでは店頭販売を確認できません。販売記録のある04は、確認済みの2効果が少し低い選択肢です。"
+          "en": "02 is tied third of 11 on float aim time and sixth of 11 on the fish-position boundary. Keep it over 04 for both effects; shop-listed 14 from area 3 improves both over 02.",
+          "th": "คัน 02 เล็งได้นานเป็นอันดับร่วม 3 จาก 11 และขอบเขตตำแหน่งปลาอันดับ 6 จาก 11 ในสายทุ่น จึงยังมีเหตุผลให้ใช้ต่อ: ดีกว่า 04 ทั้งสองด้าน แต่คัน 14 ที่ซื้อได้ตั้งแต่ด่าน 3 เพิ่มทั้งเวลาเล็งและพื้นที่ก่อนเสียอุปกรณ์จาก 02",
+          "ja": "02はウキ竿11本で照準時間が同率3位、魚位置境界が6位です。両効果で04より上なので継続する理由があります。エリア3以降の店頭14は02の両効果を上回ります。"
         },
         "alternatives": [
           {
@@ -666,9 +666,9 @@
       },
       "rodDecision": {
         "label": {
-          "en": "Area-1 first choice for both effects; 03 is cheaper",
-          "th": "ด่าน 1 เลือก 04 เพื่อสองผลที่สูงสุด; งบน้อยเลือก 03",
-          "ja": "エリア1の両効果重視は04、節約は03"
+          "en": "Area 1: choose for longer aim and a farther loss boundary; 03 for lower cost",
+          "th": "ด่าน 1: เล็งนานและปลามีพื้นที่ก่อนเสียอุปกรณ์มากสุดในร้าน; งบน้อยเลือก 03",
+          "ja": "エリア1の店では照準時間・道具喪失境界が最大、節約なら03"
         },
         "recommendation": {
           "en": "In area 1, choose 04 for ¥500 if the extra aim time and threshold over 03 matter: cutoff 50/×7 versus 30/×5, a ¥150 difference between full new-purchase prices. It also beats 05 on both values while costing ¥250 less. At area 5 it is the same full price as 01 and improves both effects.",
@@ -845,9 +845,9 @@
       },
       "rodDecision": {
         "label": {
-          "en": "Skip buying: 04 is cheaper and improves both effects",
-          "th": "ไม่แนะนำซื้อ: 04 ถูกกว่าและดีกว่าทั้งสองด้าน",
-          "ja": "購入見送り：04が安く両効果で上"
+          "en": "Skip buying: 04 is cheaper, with longer aim and a farther loss boundary",
+          "th": "ไม่แนะนำซื้อ: 04 ถูกกว่า เล็งนานกว่าและปลามีพื้นที่ก่อนเสียอุปกรณ์มากกว่า",
+          "ja": "購入は04へ：安く、照準時間と道具喪失境界が上"
         },
         "recommendation": {
           "en": "Skip 05 if buying for the decoded aim and threshold effects. In areas 1 and 2, 04 is listed for full ¥500 while 05 costs full ¥750; 04 also gives cutoff 50/×7 instead of 40/×6. If you already own 05, no special catch benefit is established; buy 04 only if those two measured improvements are worth its full price.",
@@ -1020,14 +1020,14 @@
           "ja": "照準が間に合うなら継続、購入は03か04"
         },
         "recommendation": {
-          "en": "Use 06 only if you already have it: no purchase location appears in the six extracted area-shop lists. When shopping for a float rod, listed rod 03 gives cutoff 30/×5 and rod 04 gives 50/×7, versus 20/×4 on 06.",
-          "th": "ใช้คัน 06 เฉพาะเมื่อมีอยู่แล้ว เพราะไม่พบจุดขายในรายการร้านทั้ง 6 ด่านที่ถอดไว้ ถ้าจะซื้อคันสายทุ่น คัน 03 ที่มีขายให้ค่า 30/×5 และคัน 04 ให้ 50/×7 เทียบกับ 20/×4 ของคัน 06",
-          "ja": "06はすでに持っている場合だけ使ってください。抽出した全6エリアの店頭一覧に販売場所がありません。ウキ竿を買うなら、販売記録のある03は30・×5、04は50・×7で、06の20・×4を上回ります。"
+          "th": "มีคัน 06 แล้วเล็งทันให้ใช้ต่อ ไม่พบร้านขายคันนี้ในสต็อก 6 ด่าน ถ้าต้องการซื้อคันใหม่: ด่าน 1/2/6 งบน้อยเลือก 03 ราคา ¥350; ถ้าจ่าย ¥500 ได้เลือก 04 เพื่อเล็งนานกว่าและปลามีพื้นที่ก่อนเสียอุปกรณ์มากกว่า ด่าน 4 มี 03 ส่วนด่าน 3/5 มี 04",
+          "en": "Keep 06 if its aim time is sufficient; none of the six area stocks sells it. For a new purchase in areas 1/2/6, choose 03 at ¥350 on a tight budget, or 04 at ¥500 for longer aim and a farther traced tackle-loss boundary. Area 4 stocks 03; areas 3/5 stock 04.",
+          "ja": "06の照準時間で足りるなら継続します。全6エリアの店頭在庫に販売記録はありません。エリア1・2・6で新品を買うなら、節約は03の350円、照準時間と道具喪失境界を増やすなら04の500円です。エリア4は03、3・5は04を販売します。"
         },
         "reason": {
-          "en": "A ROM record price is not a shop offer. The extracted stocks identify no seller for 06, while they list 03 and 04 in several areas.",
-          "th": "ราคาที่อยู่ในระเบียน ROM ไม่ได้แปลว่ามีร้านขาย รายการร้านที่ถอดได้ไม่ระบุผู้ขายคัน 06 แต่มีคัน 03 และ 04 ในหลายด่าน",
-          "ja": "ROMレコード内の価格だけでは店頭販売を示しません。抽出した在庫には06の販売先がなく、03と04は複数エリアにあります。"
+          "th": "คัน 03 เพิ่มเวลาเล็งและขอบเขตจาก 20/×4 ของคัน 06 เป็น 30/×5; คัน 04 เพิ่มเป็น 50/×7 ราคาเต็มซื้อใหม่ของ 04 สูงกว่า 03 ¥150 แต่ถ้ามีคันอยู่แล้วต้องจ่ายราคาเต็มของคันที่จะซื้อ",
+          "en": "03 improves 06’s 20/×4 to 30/×5; 04 improves it to 50/×7. A new 04 costs ¥150 more than a new 03. Owning a rod does not reduce the full price of the replacement.",
+          "ja": "03は06の20・×4を30・×5に、04は50・×7に上げます。新品04は新品03より150円高く、手持ちの竿があっても買い替え先の全額が必要です。"
         },
         "alternatives": [
           {
@@ -1992,9 +1992,9 @@
       },
       "rodDecision": {
         "label": {
-          "en": "Keep if sufficient; buy stocked 0C for both improvements",
-          "th": "มีแล้วใช้ต่อถ้าพอ; ซื้อใหม่เลือก 0C ที่เพิ่มทั้งสองด้าน",
-          "ja": "十分なら継続、購入は両効果が上の店頭0C"
+          "en": "Keep if enough; buy stocked 0C for longer aim and a farther loss boundary",
+          "th": "มีแล้วใช้ต่อถ้าพอ; ซื้อ 0C เพื่อเล็งนานและปลามีพื้นที่ก่อนเสียอุปกรณ์มากขึ้น",
+          "ja": "十分なら継続、購入は照準時間・道具喪失境界が上の0C"
         },
         "recommendation": {
           "en": "Use 0B only if you already have it; no purchase location appears in the six extracted area-shop lists. If buying a lure rod, 0C is listed in area 1 and gives a longer cutoff (100 vs 80) and a higher multiplier (×21 vs ×18).",
@@ -2163,9 +2163,9 @@
       },
       "rodDecision": {
         "label": {
-          "en": "Area 1: choose for both improvements over 0A; area 4: compare 0D",
-          "th": "ด่าน 1 ซื้อเพื่อเพิ่มสองด้านจาก 0A; ด่าน 4 เทียบ 0D ก่อนซื้อ",
-          "ja": "エリア1は0Aの両効果改善、エリア4は0Dと比較"
+          "en": "Area 1: more aim and boundary than 0A; area 4: compare 0D",
+          "th": "ด่าน 1: เล็งนานและปลามีพื้นที่ก่อนเสียอุปกรณ์มากกว่า 0A; ด่าน 4 เทียบ 0D",
+          "ja": "エリア1では0Aより照準時間・道具喪失境界が上、4では0Dと比較"
         },
         "recommendation": {
           "en": "In area 1, choose 0C at full ¥600 if you want more aim time and threshold than 0A: cutoff 100/×21 versus 70/×15, a ¥100 difference between new-purchase quotes. In area 4, 0D costs full ¥650 and raises those values to 120/×24; that is ¥50 more between new quotes, but buying it while you own 0C still costs the full ¥650.",
@@ -2339,9 +2339,9 @@
       },
       "rodDecision": {
         "label": {
-          "en": "Area 4: new lure purchase with the highest two effects",
-          "th": "ด่าน 4: ซื้อใหม่สายลัวร์เพื่อสองค่าสูงสุด",
-          "ja": "エリア4：ルアー竿の両効果最大を新品購入"
+          "en": "Area 4: longest lure aim and farthest traced tackle-loss boundary",
+          "th": "ด่าน 4: ลัวร์ที่เล็งนานสุดและปลามีพื้นที่ก่อนเสียอุปกรณ์มากสุด",
+          "ja": "エリア4：ルアーの最長照準・最大道具喪失境界"
         },
         "recommendation": {
           "en": "Area 4 lists 0D for a full ¥650. It has the lure group's largest aim cutoff (120) and threshold multiplier (×24). Compared with a new 0C at full ¥600, that is +20 aim units and +3 multiplier for ¥50 more between new-purchase quotes; if you already own 0C, 0D still costs ¥650, not ¥50.",
@@ -2854,9 +2854,9 @@
       },
       "rodDecision": {
         "label": {
-          "en": "Area 6: buy only when both improvements justify ¥1,500",
-          "th": "ด่าน 6: ซื้อเมื่อสองค่าที่เพิ่มคุ้มกับ ¥1,500",
-          "ja": "エリア6：両効果の向上に1,500円を払うなら購入"
+          "en": "Area 6: buy for longer aim and a farther loss boundary; keep 0F if enough",
+          "th": "ด่าน 6: ซื้อเพื่อเล็งนานและปลามีพื้นที่ก่อนเสียอุปกรณ์มากขึ้น; 0F พอแล้วใช้ต่อ",
+          "ja": "エリア6：照準時間・道具喪失境界を増やすなら購入、0Fで十分なら継続"
         },
         "recommendation": {
           "en": "Area 6 lists 10 for full ¥1,500. It has the casting group's largest aim cutoff (120) and threshold multiplier (×24). Compared with 0F at full ¥600, it adds 20 aim units and ×3 for ¥900 more between new-purchase quotes. Buy it for those effects only; already owning 0F does not lower its full purchase price.",
@@ -3006,19 +3006,19 @@
       },
       "rodDecision": {
         "label": {
-          "en": "Keep if sufficient; buy stocked 12 or 13 for both improvements",
-          "th": "มีแล้วใช้ต่อถ้าพอ; ซื้อใหม่เลือก 12 หรือ 13",
-          "ja": "十分なら継続、購入は両効果が上の12か13"
+          "en": "Keep if enough; buy 12 or 13 for longer aim and a farther loss boundary",
+          "th": "มีแล้วใช้ต่อถ้าพอ; ซื้อ 12 หรือ 13 เพื่อเล็งนานและปลามีพื้นที่ก่อนเสียอุปกรณ์มากขึ้น",
+          "ja": "十分なら継続、照準時間・道具喪失境界を増やすなら12か13"
         },
         "recommendation": {
-          "en": "Use 11 only if you already have it; no purchase location appears in the six extracted area-shop lists. For a shop-listed fly rod, 12 is available in areas 1–3 and 5, while 13 is available in areas 1–4 and gives a longer recorded cutoff and higher multiplier than 11.",
-          "th": "ใช้คัน 11 เฉพาะเมื่อมีอยู่แล้ว เพราะไม่พบจุดขายในรายการร้านทั้ง 6 ด่านที่ถอดไว้ ถ้าจะซื้อคันฟลาย คัน 12 มีขายในด่าน 1–3 และ 5 ส่วนคัน 13 มีขายในด่าน 1–4 และให้ช่วงเล็งกับตัวคูณสูงกว่าคัน 11",
-          "ja": "11はすでに持っている場合だけ使ってください。抽出した全6エリアの店頭一覧に販売場所がありません。店で買うなら、12はエリア1〜3・5、13はエリア1〜4で販売され、13は11より記録上の照準上限と倍率が高いです。"
+          "th": "มีคัน 11 แล้วเล็งทันให้ใช้ต่อ ไม่พบร้านขายคันนี้ในสต็อก 6 ด่าน ถ้าซื้อใหม่ที่ด่าน 1–3 และมี ¥450 เลือก 13 เพื่อเล็งนานกว่าและปลามีพื้นที่ก่อนเสียอุปกรณ์มากกว่า; งบมีเพียง ¥400 เลือก 12 ด่าน 4 มีขาย 13 ส่วนด่าน 5 มีขาย 12",
+          "en": "Keep 11 if its aim time is sufficient; none of the six area stocks sells it. Buying new in areas 1–3 with ¥450, choose 13 for longer recorded aim and a farther traced tackle-loss boundary; with only ¥400, choose 12. Area 4 sells 13; area 5 sells 12.",
+          "ja": "11の照準時間で足りるなら継続します。全6エリアの店頭在庫に販売記録はありません。エリア1〜3で新品を買い450円出せるなら、記録上の照準時間と道具喪失境界が上の13を選びます。予算400円なら12。エリア4は13、5は12を販売します。"
         },
         "reason": {
-          "en": "The extracted stocks contain no offer for 11. The shop-listed 12 and 13 give higher recorded values on both compared effects.",
-          "th": "ไม่พบคัน 11 ในรายการร้านที่ถอดไว้ ส่วนคัน 12 และ 13 ที่มีรายการขายให้ค่าที่บันทึกไว้สูงกว่าทั้งสองด้าน",
-          "ja": "抽出した在庫に11の販売記録はありません。販売記録のある12と13は、比較した2効果の記録値が高いです。"
+          "th": "คัน 12 ให้เวลาเล็ง/ขอบเขต 60/×18 และคัน 13 ให้ 70/×21 ทั้งคู่สูงกว่า 50/×15 ของคัน 11 คัน 13 ราคาใหม่สูงกว่า 12 ¥50 แต่ถ้ามีคันอยู่แล้วต้องจ่ายราคาเต็ม ¥450 เพื่อซื้อ 13",
+          "en": "12 gives aim/boundary 60/×18 and 13 gives 70/×21, both above 11’s 50/×15. A new 13 costs ¥50 more than a new 12; buying 13 while already owning a rod still costs its full ¥450.",
+          "ja": "12は照準・境界が60・×18、13は70・×21で、どちらも11の50・×15を上回ります。新品13は新品12より50円高く、すでに竿を持っていても13の購入には全額450円が必要です。"
         },
         "alternatives": [
           {
@@ -3344,9 +3344,9 @@
       },
       "rodDecision": {
         "label": {
-          "en": "Areas 1–4: choose for the highest two recorded fly effects",
-          "th": "ด่าน 1–4: เลือกเพื่อสองค่าสูงสุดสายฟลาย",
-          "ja": "エリア1〜4：フライ竿の記録済み両効果最大"
+          "en": "Areas 1–4: longest recorded fly aim and farthest traced tackle-loss boundary",
+          "th": "ด่าน 1–4: ฟลายที่เล็งนานสุดและปลามีพื้นที่ก่อนเสียอุปกรณ์มากสุด",
+          "ja": "エリア1〜4：フライの記録上最長照準・最大道具喪失境界"
         },
         "recommendation": {
           "en": "Choose 13 when buying a fly rod in areas 1–4 if you want the longest recorded fly aim cutoff and largest main threshold in that style. In areas 1–3, it costs a full ¥450—¥50 more than 12—and changes the values from 60/×18 to 70/×21. Area 5 does not list 13; its recorded fly rod is 12.",
@@ -30656,9 +30656,9 @@
           "ja": "今持っている針を使い続けてください。この魚名付きの針に替えても食いつきや取り込みが改善する根拠はありません。まず対象魚に合うエサを選びます。コイを狙うなら魚ページで適合エサと場所を確認してください。この針はエサ釣り用です。"
         },
         "reason": {
-          "en": "A fish-name match in the item record is not evidence of more bites or easier landing, so it is not a reason to pay for an upgrade.",
-          "th": "ชื่อปลาที่ตรงในระเบียนไอเท็มไม่ได้ยืนยันว่าปลากินหรือดึงขึ้นง่ายกว่า จึงไม่ใช่เหตุให้จ่ายซื้อเปลี่ยน",
-          "ja": "道具レコードの魚名一致は、食いつきや取り込みやすさの証明ではありません。買い替えの理由にはなりません。"
+          "en": "A fish-name match in the item record is not evidence of more bites or easier landing, so it is not a reason to pay for an upgrade. For Koi, the compatible fish-matched baits are linked below: its fish match runs the same opening-fight branch before the hook check. Do not buy this hook just to trigger that branch again. This does not prove equal landing results for the whole setup or rule out other hook effects.",
+          "th": "ชื่อปลาที่ตรงในระเบียนไอเท็มไม่ได้ยืนยันว่าปลากินหรือดึงขึ้นง่ายกว่า จึงไม่ใช่เหตุให้จ่ายซื้อเปลี่ยน สำหรับปลาคาร์ป ถ้าใช้เหยื่อที่ตรงกับปลาในลิงก์ด้านล่างอยู่แล้ว ไม่ต้องซื้อเบ็ดนี้เพื่อหวังเพิ่มผลเฉพาะปลานี้ซ้ำ เพราะเกมใช้ผลนั้นจากเหยื่อก่อนตรวจเบ็ด ข้อนี้ไม่ได้พิสูจน์ว่าชุดตกทั้งหมดดึงปลาขึ้นง่ายเท่ากัน หรือเบ็ดไม่มีผลด้านอื่น",
+          "ja": "道具レコードの魚名一致は、食いつきや取り込みやすさの証明ではありません。買い替えの理由にはなりません。コイ向けの魚別エサは下のリンクです。適合するエサ側の魚ID一致により、針の判定より先に同じファイト開始分岐が実行されます。その分岐をもう一度起こすためだけにこの針を買う必要はありません。釣り全体の取り込み結果が同じ、または針に他の効果がないと証明するものではありません。"
         },
         "targetFish": [
           "0D"
@@ -30669,6 +30669,16 @@
           "data/hook-practical-research.json",
           "data/fish-acceptance.json",
           "data/player-decisions.json"
+        ],
+        "alternatives": [
+          {
+            "category": "bait",
+            "id": "0F"
+          },
+          {
+            "category": "bait",
+            "id": "11"
+          }
         ]
       },
       "nameTh": null,
@@ -30803,9 +30813,9 @@
           "ja": "今持っている針を使い続けてください。この魚名付きの針に替えても食いつきや取り込みが改善する根拠はありません。まず対象魚に合うエサを選びます。ヘラブナを狙うなら魚ページで適合エサと場所を確認してください。この針はエサ釣り用です。"
         },
         "reason": {
-          "en": "A fish-name match in the item record is not evidence of more bites or easier landing, so it is not a reason to pay for an upgrade.",
-          "th": "ชื่อปลาที่ตรงในระเบียนไอเท็มไม่ได้ยืนยันว่าปลากินหรือดึงขึ้นง่ายกว่า จึงไม่ใช่เหตุให้จ่ายซื้อเปลี่ยน",
-          "ja": "道具レコードの魚名一致は、食いつきや取り込みやすさの証明ではありません。買い替えの理由にはなりません。"
+          "en": "A fish-name match in the item record is not evidence of more bites or easier landing, so it is not a reason to pay for an upgrade. For Herabuna, the compatible fish-matched bait is linked below: its fish match runs the same opening-fight branch before the hook check. Do not buy this hook just to trigger that branch again. This does not prove equal landing results for the whole setup or rule out other hook effects.",
+          "th": "ชื่อปลาที่ตรงในระเบียนไอเท็มไม่ได้ยืนยันว่าปลากินหรือดึงขึ้นง่ายกว่า จึงไม่ใช่เหตุให้จ่ายซื้อเปลี่ยน สำหรับปลาเฮระบูนะ ถ้าใช้เหยื่อที่ตรงกับปลาในลิงก์ด้านล่างอยู่แล้ว ไม่ต้องซื้อเบ็ดนี้เพื่อหวังเพิ่มผลเฉพาะปลานี้ซ้ำ เพราะเกมใช้ผลนั้นจากเหยื่อก่อนตรวจเบ็ด ข้อนี้ไม่ได้พิสูจน์ว่าชุดตกทั้งหมดดึงปลาขึ้นง่ายเท่ากัน หรือเบ็ดไม่มีผลด้านอื่น",
+          "ja": "道具レコードの魚名一致は、食いつきや取り込みやすさの証明ではありません。買い替えの理由にはなりません。ヘラブナ向けの魚別エサは下のリンクです。適合するエサ側の魚ID一致により、針の判定より先に同じファイト開始分岐が実行されます。その分岐をもう一度起こすためだけにこの針を買う必要はありません。釣り全体の取り込み結果が同じ、または針に他の効果がないと証明するものではありません。"
         },
         "targetFish": [
           "25"
@@ -30816,6 +30826,12 @@
           "data/hook-practical-research.json",
           "data/fish-acceptance.json",
           "data/player-decisions.json"
+        ],
+        "alternatives": [
+          {
+            "category": "bait",
+            "id": "0E"
+          }
         ]
       },
       "nameTh": null,
@@ -31480,9 +31496,9 @@
           "ja": "今持っている針を使い続けてください。この魚名付きの針に替えても食いつきや取り込みが改善する根拠はありません。まず対象魚に合うエサを選びます。アユを狙うなら魚ページで適合エサと場所を確認してください。この針はエサ釣り用です。"
         },
         "reason": {
-          "en": "A fish-name match in the item record is not evidence of more bites or easier landing, so it is not a reason to pay for an upgrade.",
-          "th": "ชื่อปลาที่ตรงในระเบียนไอเท็มไม่ได้ยืนยันว่าปลากินหรือดึงขึ้นง่ายกว่า จึงไม่ใช่เหตุให้จ่ายซื้อเปลี่ยน",
-          "ja": "道具レコードの魚名一致は、食いつきや取り込みやすさの証明ではありません。買い替えの理由にはなりません。"
+          "en": "A fish-name match in the item record is not evidence of more bites or easier landing, so it is not a reason to pay for an upgrade. For Ayu, the compatible fish-matched bait is linked below: its fish match runs the same opening-fight branch before the hook check. Do not buy this hook just to trigger that branch again. This does not prove equal landing results for the whole setup or rule out other hook effects.",
+          "th": "ชื่อปลาที่ตรงในระเบียนไอเท็มไม่ได้ยืนยันว่าปลากินหรือดึงขึ้นง่ายกว่า จึงไม่ใช่เหตุให้จ่ายซื้อเปลี่ยน สำหรับปลาอายุ ถ้าใช้เหยื่อที่ตรงกับปลาในลิงก์ด้านล่างอยู่แล้ว ไม่ต้องซื้อเบ็ดนี้เพื่อหวังเพิ่มผลเฉพาะปลานี้ซ้ำ เพราะเกมใช้ผลนั้นจากเหยื่อก่อนตรวจเบ็ด ข้อนี้ไม่ได้พิสูจน์ว่าชุดตกทั้งหมดดึงปลาขึ้นง่ายเท่ากัน หรือเบ็ดไม่มีผลด้านอื่น",
+          "ja": "道具レコードの魚名一致は、食いつきや取り込みやすさの証明ではありません。買い替えの理由にはなりません。アユ向けの魚別エサは下のリンクです。適合するエサ側の魚ID一致により、針の判定より先に同じファイト開始分岐が実行されます。その分岐をもう一度起こすためだけにこの針を買う必要はありません。釣り全体の取り込み結果が同じ、または針に他の効果がないと証明するものではありません。"
         },
         "targetFish": [
           "38"
@@ -31493,6 +31509,12 @@
           "data/hook-practical-research.json",
           "data/fish-acceptance.json",
           "data/player-decisions.json"
+        ],
+        "alternatives": [
+          {
+            "category": "bait",
+            "id": "17"
+          }
         ]
       },
       "nameTh": null,
@@ -31627,9 +31649,9 @@
           "ja": "今持っている針を使い続けてください。この魚名付きの針に替えても食いつきや取り込みが改善する根拠はありません。まず対象魚に合うエサを選びます。タナゴを狙うなら魚ページで適合エサと場所を確認してください。この針はエサ釣り用です。"
         },
         "reason": {
-          "en": "A fish-name match in the item record is not evidence of more bites or easier landing, so it is not a reason to pay for an upgrade.",
-          "th": "ชื่อปลาที่ตรงในระเบียนไอเท็มไม่ได้ยืนยันว่าปลากินหรือดึงขึ้นง่ายกว่า จึงไม่ใช่เหตุให้จ่ายซื้อเปลี่ยน",
-          "ja": "道具レコードの魚名一致は、食いつきや取り込みやすさの証明ではありません。買い替えの理由にはなりません。"
+          "en": "A fish-name match in the item record is not evidence of more bites or easier landing, so it is not a reason to pay for an upgrade. For Tanago, the compatible fish-matched bait is linked below: its fish match runs the same opening-fight branch before the hook check. Do not buy this hook just to trigger that branch again. This does not prove equal landing results for the whole setup or rule out other hook effects.",
+          "th": "ชื่อปลาที่ตรงในระเบียนไอเท็มไม่ได้ยืนยันว่าปลากินหรือดึงขึ้นง่ายกว่า จึงไม่ใช่เหตุให้จ่ายซื้อเปลี่ยน สำหรับปลาทานาโกะ ถ้าใช้เหยื่อที่ตรงกับปลาในลิงก์ด้านล่างอยู่แล้ว ไม่ต้องซื้อเบ็ดนี้เพื่อหวังเพิ่มผลเฉพาะปลานี้ซ้ำ เพราะเกมใช้ผลนั้นจากเหยื่อก่อนตรวจเบ็ด ข้อนี้ไม่ได้พิสูจน์ว่าชุดตกทั้งหมดดึงปลาขึ้นง่ายเท่ากัน หรือเบ็ดไม่มีผลด้านอื่น",
+          "ja": "道具レコードの魚名一致は、食いつきや取り込みやすさの証明ではありません。買い替えの理由にはなりません。タナゴ向けの魚別エサは下のリンクです。適合するエサ側の魚ID一致により、針の判定より先に同じファイト開始分岐が実行されます。その分岐をもう一度起こすためだけにこの針を買う必要はありません。釣り全体の取り込み結果が同じ、または針に他の効果がないと証明するものではありません。"
         },
         "targetFish": [
           "39"
@@ -31640,6 +31662,12 @@
           "data/hook-practical-research.json",
           "data/fish-acceptance.json",
           "data/player-decisions.json"
+        ],
+        "alternatives": [
+          {
+            "category": "bait",
+            "id": "10"
+          }
         ]
       },
       "nameTh": null,

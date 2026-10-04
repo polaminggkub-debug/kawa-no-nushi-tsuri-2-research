@@ -315,7 +315,7 @@ async function render(kind,lang,query,prefix='/kawa-no-nushi-tsuri-2-research'){
     await new Promise(r=>setImmediate(r));
     const rodTable=rodNode('rod-comparison').innerHTML;
     assert.equal((rodTable.match(/class="rod-table-advice"/g)||[]).length,21,'All rods have comparison advice '+lang);
-    for(const rod of data.items.filter(i=>i.category==='rod'))assert(unescape(rodTable).includes(rod.rodDecision.label[lang]),'Missing table decision '+rod.id+'/'+lang);
+    for(const rod of data.items.filter(i=>i.category==='rod')){assert(unescape(rodTable).includes(rod.rodDecision.label[lang]),'Missing table decision '+rod.id+'/'+lang);assert(unescape(rodTable).includes(rod.rodDecision.reason[lang]),'Missing table decision reason '+rod.id+'/'+lang);}
     assert.equal((rodTable.match(new RegExp('<td>'+(lang==='th'?'ไม่พบในร้าน':lang==='ja'?'店頭在庫なし':'No recorded shop stock')+'</td>','g'))||[]).length,4,'Do not present raw prices as shop offers');
     const cards=node('cards').innerHTML;
     assert.equal((cards.match(/class="item-card/g)||[]).length,315,'Catalogue all-items renderer');
