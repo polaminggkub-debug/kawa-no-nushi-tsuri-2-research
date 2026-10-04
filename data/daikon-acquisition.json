@@ -1,0 +1,66 @@
+{
+  "romSha1": "c2103dd94e2a1a65a495fc02adc2e7d040f31212",
+  "scope": "Original-ROM trace of the Stage 3 Yamanokami-for-Daikon NPC exchange. Runtime prerequisites were injected into private emulator WRAM; this does not establish how to obtain the fish naturally.",
+  "fish": {
+    "idHex": "18",
+    "nameJa": "ヤマノカミ",
+    "nameEn": "Yamanokami",
+    "source": "../data/fish-acceptance.json"
+  },
+  "npc": {
+    "stage": 3,
+    "map": "outdoor field",
+    "objectSlotHex": "22",
+    "tile": { "x": 21, "y": 82 },
+    "romObjectRecord": {
+      "pointerTableCpu": "00:BD76",
+      "stage3PointerCpu": "00:BEB2",
+      "slotRecordCpu": "00:BEE6",
+      "slotRecordFileOffset": "0x003EE6"
+    }
+  },
+  "exchange": {
+    "repeatable": false,
+    "condition": "Stage 3 exchange flag 7E:0C1A bit 6 is clear and the keepnet contains fish ID 18.",
+    "fishConsumed": true,
+    "rewardItemIdHex": "07",
+    "rewardNameJa": "ダイコン",
+    "rewardNameEn": "Daikon",
+    "mealSlotsWritten": 16,
+    "mealSlotsRange": "7E:0B3A..7E:0B59",
+    "mealInventoryBehavior": "The handler writes ID 07 to every one of the 16 meal slots. It does not search for an empty slot or preserve existing meal items; a full inventory is overwritten.",
+    "successFlag": "7E:0C1A bit 6"
+  },
+  "codeEvidence": [
+    {
+      "cpu": "00:C940..C980",
+      "file": "0x004940..0x004980",
+      "finding": "NPC slot 22 handler checks story bit 6, requests fish ID 18 through 7E:11E8, calls the keepnet remover, sets story bit 6, then stores food ID 07 in all 16 meal slots."
+    },
+    {
+      "cpu": "00:C641..C67E",
+      "file": "0x004641..0x00467E",
+      "finding": "Scans keepnet fish IDs at 7E:0B7A..0x0BB3 in two-byte steps. On a match, shifts later fish IDs and sizes down and clears the final slot; returns failure if no matching fish is found."
+    },
+    {
+      "cpu": "00:BD76",
+      "file": "0x003D76",
+      "finding": "Stage 3 object pointer resolves to 00:BEB2; object slot 22's coordinate record is 00:BEE6 and encodes tile (21,82)."
+    }
+  ],
+  "runtimeChecks": [
+    {
+      "case": "success with a populated meal inventory",
+      "preconditions": "Private Stage 3 emulator state; fish ID 18 and size 0x20 injected in keepnet slot 0; all 16 meal slots prefilled with IDs 01 through 10; story bit 6 clear; player placed at tile (21,82).",
+      "action": "Use the talk/action input at the Stage 3 object.",
+      "observed": "The fish entry was removed, 7E:0C1A became 0x40, and all 16 meal slots became ID 07. This confirms overwrite behavior even when every slot is occupied."
+    },
+    {
+      "case": "failure control without Yamanokami",
+      "preconditions": "Private Stage 3 emulator state at tile (21,82), empty keepnet, story bit 6 clear, and existing meal slots containing IDs 01 and 02.",
+      "action": "Use the talk/action input at the same object.",
+      "observed": "Story bit 6 remained clear and the meal inventory remained unchanged."
+    }
+  ],
+  "evidenceLimit": "The runtime probes directly injected the required fish and meal contents into WRAM. They verify the exchange handler, not a natural catch route or a natural save's starting inventory."
+}

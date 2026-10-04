@@ -31894,22 +31894,25 @@
       "capture": "individual patched-ROM label crop; food ID injected into WRAM; held fish species 06, size 30 for the food-name display",
       "playerUse": {
         "summary": {
-          "en": "Eat it to restore 40 HP.",
-          "ja": "食べるとHPを40回復。",
-          "th": "กินแล้วฟื้น HP 40 หน่วย"
+          "th": "ต้องการอาหารฟื้น 40 HP จำนวนมาก? นำปลายามาโนะคามิ (18) ในข้องไปแลกที่ NPC ด่าน 3 (21,82) ได้หัวไชเท้า 16 ชิ้นครั้งเดียว แต่ทับอาหารเดิมทุกช่อง ใช้อาหารเดิมที่ต้องการก่อนแลก; ถ้าไม่อยากเสียอาหารเดิม ให้ข้ามการแลกนี้",
+          "en": "Want a supply of 40-HP food? Trade a kept Yamanokami (18) to the area-3 NPC at (21,82) for 16 Daikon, once per save. The exchange overwrites every existing food slot: use wanted food first, or skip the exchange if you want to keep it.",
+          "ja": "40HP回復の食料をまとめて得たいなら、びくのヤマノカミ18をエリア3（21,82）の人物に渡すと、大根16個を一度だけ入手できる。ただし既存の食料を全枠上書きする。必要な食料は先に使い、残したいなら交換を見送る。"
         },
         "facts": {
           "en": [
             "Recovers 40 HP, up to your maximum. At full HP, the food menu refuses to eat and keeps the item.",
-            "Eating consumes one food item."
+            "Eating consumes one food item.",
+            "Consumes one kept Yamanokami and is available once per save. No empty food slot is required: all 16 slots are replaced, not just empty slots."
           ],
           "ja": [
             "HPを40回復する。最大HPが上限。満タンでは食べず、アイテムも残る。",
-            "食べると食料を1個消費する。"
+            "食べると食料を1個消費する。",
+            "びくのヤマノカミ1匹を消費し、セーブごとに一度だけ交換できる。空き枠は不要で、空き枠だけでなく食料全16枠が大根に置き換わる。"
           ],
           "th": [
             "ฟื้น 40 HP แต่ไม่เกินค่าสูงสุด ถ้า HP เต็ม เมนูอาหารจะไม่ให้กินและไม่เสียไอเท็ม",
-            "กินแล้วอาหารหนึ่งชิ้นหมดไป"
+            "กินแล้วอาหารหนึ่งชิ้นหมดไป",
+            "การแลกใช้ปลายามาโนะคามิหนึ่งตัวจากข้อง และทำได้ครั้งเดียวต่อเซฟ ไม่ต้องเว้นช่องอาหาร: อาหารเดิมทั้ง 16 ช่องถูกแทนที่ ไม่ใช่เพิ่มหัวไชเท้าเฉพาะช่องว่าง"
           ]
         },
         "evidenceNotes": {
@@ -31925,11 +31928,50 @@
           "type": "rom_trace",
           "sources": [
             "docs/food-practical-research.md",
-            "data/food-effects-confirmed.json"
+            "data/food-effects-confirmed.json",
+            "data/daikon-acquisition.json",
+            "docs/daikon-acquisition-research.md"
           ]
         },
-        "shops": []
+        "shops": [],
+        "useLocations": [
+          {
+            "stage": 3,
+            "tileX": 21,
+            "tileY": 82,
+            "image": "maps/food-daikon-exchange.png",
+            "fullImage": "maps/rom-field-03.png",
+            "width": 384,
+            "height": 384,
+            "pin": {
+              "x": 0.5625,
+              "y": 0.5
+            },
+            "name": {
+              "en": "Daikon exchange: bring a Yamanokami",
+              "ja": "大根の交換：ヤマノカミを持参",
+              "th": "จุดแลกหัวไชเท้า: นำปลายามาโนะคามิมา"
+            },
+            "source": {
+              "data": "data/daikon-acquisition.json",
+              "consumer": "00:C940..C980"
+            }
+          }
+        ]
       },
+      "daikonExchange": {
+        "repeatable": false,
+        "condition": "Stage 3 exchange flag 7E:0C1A bit 6 is clear and the keepnet contains fish ID 18.",
+        "fishConsumed": true,
+        "rewardItemIdHex": "07",
+        "rewardNameJa": "大根",
+        "rewardNameEn": "Daikon",
+        "mealSlotsWritten": 16,
+        "mealSlotsRange": "7E:0B3A..7E:0B59",
+        "mealInventoryBehavior": "The handler writes ID 07 to every one of the 16 meal slots. It does not search for an empty slot or preserve existing meal items; a full inventory is overwritten.",
+        "successFlag": "7E:0C1A bit 6"
+      },
+      "exchangeFishId": "18",
       "nameTh": "หัวไชเท้า",
       "labelImageTh": "thai-labels/food-07.png"
     },
@@ -84303,9 +84345,9 @@
           "ja": "宝箱は報酬ごとに所持欄の空きを確認します。抽選所では券が消費され、はずれ分岐もあるため、追加購入の前に宝箱の券を使ってください。"
         },
         "scope": {
-          "th": "เพิ่มค่าเกณฑ์จากอาหารที่ถวายได้ แต่ยังไม่สรุปเป็นเปอร์เซ็นต์หรือกำไรคาดหวัง; หัวไชเท้า 07 เพิ่ม 40 เช่นกันเมื่อมีอยู่แล้ว แต่หน้านี้ยังไม่ได้ยืนยันแหล่งที่มา",
-          "en": "Food offerings raise the recorded threshold, but the ROM trace does not establish a percentage or expected payout. Daikon 07 also adds 40 if you already have it; this page does not establish where to obtain it.",
-          "ja": "食べ物を供えると記録上のしきい値は上がりますが、当選確率や期待払い戻し率は算出していません。大根07も所持していれば40加算しますが、このページでは入手方法を確認していません。"
+          "th": "อาหารเพิ่มค่าเกณฑ์ แต่ยังไม่ใช่เปอร์เซ็นต์หรือกำไรคาดหวัง; หัวไชเท้า 07 เพิ่ม 40 เช่นกัน รับจากการแลกปลายามาโนคามิด่าน 3 โดยทับอาหารเดิมทั้ง 16 ช่อง อ่านหน้าหัวไชเท้าก่อนแลก",
+          "en": "Food raises the threshold, not a verified percentage or expected payout. Daikon 07 also adds 40; obtain it through the area-3 Yamanokami trade, which overwrites all 16 food slots. Read its item page before trading.",
+          "ja": "食料は判定値を上げるが、確率や期待払い戻し率ではない。大根07も40加算する。エリア3のヤマノカミ交換で入手できるが、食料全16枠を上書きするため、先にアイテムページを確認する。"
         },
         "items": [
           {
@@ -84315,6 +84357,10 @@
           {
             "category": "general_tool",
             "id": "11"
+          },
+          {
+            "category": "food",
+            "id": "07"
           }
         ]
       },

@@ -207,7 +207,7 @@
   function buyingDecision(item, allItems, decisions) {
     const rodPaths={1:'float_rod_path',2:'casting_rod_path',4:'lure_rod_path',8:'fly_rod_path'};
     const path=item.category==='rod'?rodPaths[item.decodedFields?.styleCode]:item.category==='hook'?'hook_purchase_caution':'';
-    const sections=decisions.filter(section=>path?section.id===path:!selectedFish&&['lure','food'].includes(item.category)&&(section.items||[]).some(ref=>ref.category===item.category&&ref.id===item.id));
+    const sections=decisions.filter(section=>path?section.id===path:!selectedFish&&section.category===item.category&&['lure','food'].includes(item.category)&&(section.items||[]).some(ref=>ref.category===item.category&&ref.id===item.id));
     if(!sections.length)return '';
     return `<section class="detail-section buying-decision"><h2>${lang==='th'?'ควรซื้อหรือเปลี่ยนมาใช้อันนี้ไหม?':lang==='ja'?'買う・替えるべき？':'Should I buy or switch to this?'}</h2>${sections.map(section=>{
       const refs=(section.items||[]).filter(ref=>ref.category===item.category&&ref.id!==item.id).map(ref=>allItems.find(i=>i.category===ref.category&&i.id===ref.id)).filter(Boolean);
@@ -246,7 +246,7 @@
     const ids=Array.isArray(use.fishIds)?[...new Set(use.fishIds.map(x=>String(x).toUpperCase().padStart(2,'0')))]:[];
     const supportedCategories=['lure','fly','bait','float_weight','general_tool'];
     const hasCompatibility=supportedCategories.includes(item.category)&&(ids.length>0||routeKeys.length>0);
-    if(!hasCompatibility)return selectedFish?`<section class="detail-section"><h2>${esc(copy.fish)}</h2><p class="muted">${esc(copy.noFish)}</p></section>`:'';
+    if(!hasCompatibility)return '';
     const routeGroup=(key,routeIds)=>`<div id="rig-${esc(key)}" class="detail-section" ${selectedRoute===key?'data-active="true"':''}><h3>${esc(key==='float'?copy.routeFloat:copy.routeSinker)} · ${new Set(routeIds).size}</h3><div class="detail-grid">${[...new Set(routeIds.map(x=>String(x).toUpperCase().padStart(2,'0')))].map(id=>fishTile(id,fishVisuals,fishLocations,selectedStage)).join('')}</div></div>`;
     const groups=routeKeys.length?routeKeys.map(key=>routeGroup(key,routes[key])).join(''):`<div class="detail-grid">${ids.map(id=>fishTile(id,fishVisuals,fishLocations,selectedStage)).join('')}</div>`;
     const targetStatus=selectedFish?(ids.includes(selectedFish)||routeKeys.some(k=>(routes[k]||[]).map(x=>String(x).toUpperCase().padStart(2,'0')).includes(selectedFish))?(steering?steeringCopy.yes:copy.targetYes):(steering?steeringCopy.no:copy.targetNo)):'';
@@ -315,6 +315,12 @@
     const label=lang==='th'?'ดูวิธีใช้ตาข่ายและจำนวนที่เก็บได้':lang==='ja'?'金アミの使い方と採れる個数を見る':'See net use and gathering amounts';
     return `<aside class="detail-section bait-gather-choice" data-bait-gather-choice><p>${esc(note)}</p><a href="item${lang==='en'?'':'.'+lang}.html?category=general_tool&id=04&stage=${item.netGatherArea}&return=${encodeURIComponent(currentLocalRoute())}">${label} ↗</a></aside>`;
   }
+  function daikonFishChoice(item,fishLocations){
+    if(!item.exchangeFishId)return '';
+    const label=lang==='th'?'ดูปลายามาโนะคามิ: จุดตกและเหยื่อ':lang==='ja'?'ヤマノカミの場所・エサを確認':'See Yamanokami locations and bait';
+    const href=fishProfileLink(item.exchangeFishId,fishLocations);
+    return `<aside class="detail-section daikon-fish-choice" data-daikon-choice><a class="route-button" href="${esc(href)}">${esc(label)} ↗</a></aside>`;
+  }
   function mushroomAlternative(item){
     if(item.category!=='food'||!['09','0A'].includes(item.id))return '';
     return `<p><a class="route-button" data-mushroom-alternative href="item${lang==='en'?'':'.'+lang}.html?category=food&id=01&return=${encodeURIComponent(currentLocalRoute())}">${lang==='th'?'ดูส้ม: ฟื้น 5 HP ราคา ¥5 พร้อมร้านที่ขาย':lang==='ja'?'みかんを見る：5HP回復・5円、販売場所付き':'See oranges: restore 5 HP for ¥5, with shops'} ↗</a></p>`;
@@ -346,7 +352,7 @@
     const categoryHref=currentCategoryLink();
     const intro=`<nav class="detail-breadcrumb"><a href="${esc(categoryHref)}">${esc(copy.allItems)} · ${esc(categoryText)}</a></nav>`;
     const moreLink=`<p class="detail-back-to-list"><a class="route-button" href="${esc(categoryHref)}">${esc(copy.allItems)} · ${esc(categoryText)} ↗</a></p>`;
-    $('detail-root').innerHTML=`${intro}<section class="detail-hero">${image}${identity}</section>${targetContext}${actionSection}${gatheredBaitChoices(item,allItems)}${baitGatherChoice(item)}${mushroomAlternative(item)}${acquisitionChoice(item)}${rodAdvice?'':buyingDecision(item,allItems,decisions)}${shopSection(item,allItems,fishLocations)}${useLocationSection(item,fishLocations,allItems)}${fishSection(item,fishVisuals,fishLocations)}${moreLink}${technicalSection(item)}<p class="muted">${esc(copy.sourced)}</p>`;
+    $('detail-root').innerHTML=`${intro}<section class="detail-hero">${image}${identity}</section>${targetContext}${actionSection}${gatheredBaitChoices(item,allItems)}${baitGatherChoice(item)}${mushroomAlternative(item)}${daikonFishChoice(item,fishLocations)}${acquisitionChoice(item)}${rodAdvice?'':buyingDecision(item,allItems,decisions)}${shopSection(item,allItems,fishLocations)}${useLocationSection(item,fishLocations,allItems)}${fishSection(item,fishVisuals,fishLocations)}${moreLink}${technicalSection(item)}<p class="muted">${esc(copy.sourced)}</p>`;
     if(selectedRoute&&item.category==='bait')document.getElementById(`rig-${selectedRoute}`)?.scrollIntoView({block:'center'});
     if(location.hash==='#use-locations')document.getElementById('use-locations')?.scrollIntoView({block:'start'});
     document.title=`${name} · ${categoryText} · ${lang==='th'?'ตกปลาทาโร่ 2':lang==='ja'?'川のぬし釣り2':'Kawa no Nushi Tsuri 2'}`;
@@ -355,7 +361,7 @@
     setNavigation();
     $('detail-root').innerHTML=`<section class="empty-state"><h1>${esc(copy.invalidTitle)}</h1><p>${esc(copy.invalidBody)}</p><a class="route-button" href="${esc(fallbackBack())}">${esc(copy.allItems)} ↗</a></section>`;
   }
-  fetch('gallery-data.json?v=player-usefulness-20261004-9').then(response=>{if(!response.ok)throw new Error('catalogue data unavailable');return response.json();}).then(data=>{
+  fetch('gallery-data.json?v=player-usefulness-20261004-10').then(response=>{if(!response.ok)throw new Error('catalogue data unavailable');return response.json();}).then(data=>{
     if(selectedFish&&!data.fishVisuals?.[selectedFish])selectedFish='';
     const item=(data.items||[]).find(candidate=>candidate.category===category&&candidate.id===requestedId)||null;
     if(!item){emptyState();return;}

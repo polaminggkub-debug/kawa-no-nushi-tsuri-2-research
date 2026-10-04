@@ -90,6 +90,13 @@ if(!fs.existsSync(gearPath))throw new Error('Missing per-item gear decisions');
     item.gearDecision=choice;
   }
 }
+const daikon=JSON.parse(fs.readFileSync(path.join(root,'data/daikon-acquisition.json'),'utf8'));
+const daikonLocation=JSON.parse(fs.readFileSync(path.join(root,'data/daikon-location.json'),'utf8'));
+if(daikon.romSha1!==daikonLocation.romSha1||daikon.romSha1!=='c2103dd94e2a1a65a495fc02adc2e7d040f31212')throw Error('Daikon ROM mismatch');
+const daikonItem=data.items.find(i=>i.category==='food'&&i.id==='07');
+daikonItem.daikonExchange=daikon.exchange;
+daikonItem.exchangeFishId=daikon.fish.idHex;
+daikonItem.playerUse.useLocations=[daikonLocation.location];
 const toolsSource=JSON.parse(fs.readFileSync(path.join(root,'data/general-tool-actions.json'),'utf8'));
 if(toolsSource.rom?.sha1!=='c2103dd94e2a1a65a495fc02adc2e7d040f31212')throw new Error('Net gathering source ROM mismatch');
 for(const item of data.items)delete item.netGatherArea;

@@ -1,0 +1,25 @@
+{
+  "romSha1": "c2103dd94e2a1a65a495fc02adc2e7d040f31212",
+  "location": {
+    "stage": 3,
+    "tileX": 21,
+    "tileY": 82,
+    "image": "maps/food-daikon-exchange.png",
+    "fullImage": "maps/rom-field-03.png",
+    "width": 384,
+    "height": 384,
+    "pin": {
+      "x": 0.5625,
+      "y": 0.5
+    },
+    "name": {
+      "en": "Daikon exchange: bring a Yamanokami",
+      "ja": "大根の交換：ヤマノカミを持参",
+      "th": "จุดแลกหัวไชเท้า: นำปลายามาโนะคามิมา"
+    },
+    "source": {
+      "data": "data/daikon-acquisition.json",
+      "consumer": "00:C940..C980"
+    }
+  }
+}

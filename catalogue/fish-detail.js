@@ -79,6 +79,37 @@
     return `${relativePath}${target.search}${target.hash}`;
   }
 
+  function localizeReturn(value, targetLocale, depth = 0) {
+    const route = safeLocalReturn(value);
+    if (!route) return '';
+    const catalogueDirectory = new URL('.', window.location.href);
+    let target;
+    try { target = new URL(route, catalogueDirectory); } catch { return ''; }
+
+    const basename = target.pathname.split('/').pop();
+    const root = basename.replace(/(?:\.(?:th|ja))?\.html$/, '');
+    if (['index', 'maps', 'fish', 'item', 'shops'].includes(root)) {
+      const directory = target.pathname.slice(0, target.pathname.lastIndexOf('/') + 1);
+      target.pathname = `${directory}${root}${targetLocale === 'en' ? '' : `.${targetLocale}`}.html`;
+    }
+
+    const nestedReturn = target.searchParams.get('return');
+    if (nestedReturn) {
+      if (depth >= 4) {
+        target.searchParams.delete('return');
+      } else {
+        const localizedNested = localizeReturn(nestedReturn, targetLocale, depth + 1);
+        if (localizedNested) target.searchParams.set('return', localizedNested);
+        else target.searchParams.delete('return');
+      }
+    }
+
+    const relativePath = target.pathname.startsWith(catalogueDirectory.pathname)
+      ? target.pathname.slice(catalogueDirectory.pathname.length)
+      : `../research/${target.pathname.split('/').pop()}`;
+    return `${relativePath}${target.search}${target.hash}`;
+  }
+
   function escapeHtml(value) {
     return String(value ?? '').replace(/[&<>"']/g, ch => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[ch]));
   }
@@ -125,7 +156,8 @@
       const query = new URLSearchParams();
       if (id) query.set('id', id);
       if (stage) query.set('stage', stage);
-      if (localReturn) query.set('return', localReturn);
+      const localizedReturn = localizeReturn(localReturn, lang);
+      if (localizedReturn) query.set('return', localizedReturn);
       link.href = `${href}${query.size ? `?${query.toString()}` : ''}${location.hash||''}`;
     }
   }
@@ -153,7 +185,8 @@
 
   function itemLink(entry, stage) {
     const item = entry.item;
-    const query = new URLSearchParams({ category: item.category, id: item.id, fish: id });
+    const query = new URLSearchParams({ category: item.category, id: item.id });
+    if(!['food','general_tool'].includes(item.category))query.set('fish',id);
     if (stage) query.set('stage', stage);
     query.set('return', currentFishPath(stage));
     const itemHref = `${itemPath()}?${query.toString()}`;
@@ -303,6 +336,14 @@
     return `<details class="evidence"><summary>${escapeHtml(copy.evidence)}</summary><p>${escapeHtml(copy.evidenceIntro)}</p><dl><dt>${escapeHtml(copy.profile)}</dt><dd>${escapeHtml(id)}</dd>${profileOffset ? `<dt>${escapeHtml(copy.profileOffset)}</dt><dd>${escapeHtml(profileOffset)}</dd>` : ''}<dt>${escapeHtml(copy.source)}</dt><dd>data/rom-fish-locations.json</dd>${sourceSet.size ? `<dt>${escapeHtml(copy.reference)}</dt><dd>${[...sourceSet].map(escapeHtml).join(' · ')}</dd>` : ''}</dl>${locationDetails ? `<h3>${escapeHtml(copy.coords)}</h3><ul>${locationDetails}</ul>` : ''}</details>`;
   }
 
+  function renderExchange(items,stage){
+    const rewards=items.filter(item=>item.exchangeFishId===id);
+    if(!rewards.length)return '';
+    const title=locale==='th'?'เก็บปลานี้ไว้แลกของไหม?':locale==='ja'?'この魚を交換用に残す？':'Keep this fish for an exchange?';
+    const text=locale==='th'?'ถ้ายังไม่เคยแลกและต้องการหัวไชเท้า 16 ชิ้น เก็บปลายามาโนะคามิหนึ่งตัวในข้องไว้ให้ NPC ด่าน 3 (21,82) ก่อนกินหรือขาย แต่การแลกทับอาหารเดิมทุกช่อง: ใช้อาหารเดิมที่ต้องการก่อน หรือข้ามการแลกถ้าต้องการเก็บอาหารไว้':locale==='ja'?'まだ交換しておらず大根16個が欲しいなら、食べたり売ったりする前にヤマノカミ1匹をびくに残し、エリア3（21,82）の人物へ。ただし食料全枠を上書きする。必要な食料は先に使い、残したいなら交換を見送る。':'If you have not traded yet and want 16 Daikon, keep one Yamanokami for the area-3 NPC at (21,82) before eating or selling it. The trade replaces every food slot: use wanted food first, or skip the trade to keep it.';
+    return `<section class="detail-section" data-fish-exchange><h2>${escapeHtml(title)}</h2><p>${escapeHtml(text)}</p>${rewards.map(item=>itemLink({item,routes:[]},stage)).join('')}</section>`;
+  }
+
   function render(fishData, locationData) {
     const visualTable = fishData.fishVisuals || {};
     const fish = visualTable[id];
@@ -328,6 +369,7 @@
     const headline = unlabelled ? copy.unknownFish(id) : name;
 
     page.innerHTML = `<div class="detail-hero">${sprite}<div><p class="muted">${escapeHtml(copy.pageTitle)} · ID ${escapeHtml(id)}</p><h1>${escapeHtml(headline)}</h1>${altNames.length ? `<p class="muted"><span>${escapeHtml(copy.legacyName)}:</span> ${altNames.map(escapeHtml).join(' · ')}</p>` : ''}</div></div>
+      ${renderExchange(fishData.items || [],activeStage)}
       ${renderShopping(matches, locations, activeStage, fishData.items || [], fishData.flyBackupChoices)}
       <section class="detail-section"><h2>${escapeHtml(copy.areas)}</h2>${renderAreas(locations, activeStage)}</section>
       <section id="all-compatible" class="detail-section"><h2>${escapeHtml(copy.compatible)}</h2><p class="muted">${escapeHtml(copy.compatibilityNote)}</p><p>${locale==='th'?'รายการด้านล่างเป็นทางเลือก ไม่จำเป็นต้องซื้อทั้งหมด ทุกชิ้นผ่านเงื่อนไขของปลาที่กำลังดู กดรายละเอียดเพื่อเปรียบเทียบวิธีใช้และด่านที่ขาย':locale==='ja'?'以下は代替候補で、全部買う必要はない。各項目は表示中の魚の判定を通る。詳細で使い方と販売エリアを比較できる。':'The lists below are alternatives; you do not need to buy every entry. Each passes the shown fish’s check. Open details to compare use and purchase areas.'}</p>${renderCompatibility(matches, activeStage)}</section>
@@ -344,7 +386,7 @@
   }
 
   Promise.all([
-    fetch('gallery-data.json').then(response => { if (!response.ok) throw new Error('gallery data unavailable'); return response.json(); }),
+    fetch('gallery-data.json?v=player-usefulness-20261004-10').then(response => { if (!response.ok) throw new Error('gallery data unavailable'); return response.json(); }),
     fetch('fish-locations.json').then(response => { if (!response.ok) throw new Error('location data unavailable'); return response.json(); })
   ]).then(([fishData, locationData]) => render(fishData, locationData)).catch(() => {
     page.innerHTML = `<h1>${escapeHtml(copy.pageTitle)}</h1><p class="empty-state">${escapeHtml(copy.recovery)}</p><p><a class="route-button" href="${escapeHtml(cataloguePath())}">${escapeHtml(copy.catalogue)}</a></p>`;

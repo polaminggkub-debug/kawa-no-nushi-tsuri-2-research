@@ -350,9 +350,9 @@
         "ja": "宝箱は報酬ごとに所持欄の空きを確認します。抽選所では券が消費され、はずれ分岐もあるため、追加購入の前に宝箱の券を使ってください。"
       },
       "scope": {
-        "th": "เพิ่มค่าเกณฑ์จากอาหารที่ถวายได้ แต่ยังไม่สรุปเป็นเปอร์เซ็นต์หรือกำไรคาดหวัง; หัวไชเท้า 07 เพิ่ม 40 เช่นกันเมื่อมีอยู่แล้ว แต่หน้านี้ยังไม่ได้ยืนยันแหล่งที่มา",
-        "en": "Food offerings raise the recorded threshold, but the ROM trace does not establish a percentage or expected payout. Daikon 07 also adds 40 if you already have it; this page does not establish where to obtain it.",
-        "ja": "食べ物を供えると記録上のしきい値は上がりますが、当選確率や期待払い戻し率は算出していません。大根07も所持していれば40加算しますが、このページでは入手方法を確認していません。"
+        "th": "อาหารเพิ่มค่าเกณฑ์ แต่ยังไม่ใช่เปอร์เซ็นต์หรือกำไรคาดหวัง; หัวไชเท้า 07 เพิ่ม 40 เช่นกัน รับจากการแลกปลายามาโนคามิด่าน 3 โดยทับอาหารเดิมทั้ง 16 ช่อง อ่านหน้าหัวไชเท้าก่อนแลก",
+        "en": "Food raises the threshold, not a verified percentage or expected payout. Daikon 07 also adds 40; obtain it through the area-3 Yamanokami trade, which overwrites all 16 food slots. Read its item page before trading.",
+        "ja": "食料は判定値を上げるが、確率や期待払い戻し率ではない。大根07も40加算する。エリア3のヤマノカミ交換で入手できるが、食料全16枠を上書きするため、先にアイテムページを確認する。"
       },
       "items": [
         {
@@ -362,6 +362,10 @@
         {
           "category": "general_tool",
           "id": "11"
+        },
+        {
+          "category": "food",
+          "id": "07"
         }
       ]
     },

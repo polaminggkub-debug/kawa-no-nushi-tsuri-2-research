@@ -18472,22 +18472,25 @@
     },
     "food:07": {
       "summary": {
-        "en": "Eat it to restore 40 HP.",
-        "ja": "食べるとHPを40回復。",
-        "th": "กินแล้วฟื้น HP 40 หน่วย"
+        "th": "ต้องการอาหารฟื้น 40 HP จำนวนมาก? นำปลายามาโนะคามิ (18) ในข้องไปแลกที่ NPC ด่าน 3 (21,82) ได้หัวไชเท้า 16 ชิ้นครั้งเดียว แต่ทับอาหารเดิมทุกช่อง ใช้อาหารเดิมที่ต้องการก่อนแลก; ถ้าไม่อยากเสียอาหารเดิม ให้ข้ามการแลกนี้",
+        "en": "Want a supply of 40-HP food? Trade a kept Yamanokami (18) to the area-3 NPC at (21,82) for 16 Daikon, once per save. The exchange overwrites every existing food slot: use wanted food first, or skip the exchange if you want to keep it.",
+        "ja": "40HP回復の食料をまとめて得たいなら、びくのヤマノカミ18をエリア3（21,82）の人物に渡すと、大根16個を一度だけ入手できる。ただし既存の食料を全枠上書きする。必要な食料は先に使い、残したいなら交換を見送る。"
       },
       "facts": {
         "en": [
           "Recovers 40 HP, up to your maximum. At full HP, the food menu refuses to eat and keeps the item.",
-          "Eating consumes one food item."
+          "Eating consumes one food item.",
+          "Consumes one kept Yamanokami and is available once per save. No empty food slot is required: all 16 slots are replaced, not just empty slots."
         ],
         "ja": [
           "HPを40回復する。最大HPが上限。満タンでは食べず、アイテムも残る。",
-          "食べると食料を1個消費する。"
+          "食べると食料を1個消費する。",
+          "びくのヤマノカミ1匹を消費し、セーブごとに一度だけ交換できる。空き枠は不要で、空き枠だけでなく食料全16枠が大根に置き換わる。"
         ],
         "th": [
           "ฟื้น 40 HP แต่ไม่เกินค่าสูงสุด ถ้า HP เต็ม เมนูอาหารจะไม่ให้กินและไม่เสียไอเท็ม",
-          "กินแล้วอาหารหนึ่งชิ้นหมดไป"
+          "กินแล้วอาหารหนึ่งชิ้นหมดไป",
+          "การแลกใช้ปลายามาโนะคามิหนึ่งตัวจากข้อง และทำได้ครั้งเดียวต่อเซฟ ไม่ต้องเว้นช่องอาหาร: อาหารเดิมทั้ง 16 ช่องถูกแทนที่ ไม่ใช่เพิ่มหัวไชเท้าเฉพาะช่องว่าง"
         ]
       },
       "evidenceNotes": {
@@ -18503,7 +18506,9 @@
         "type": "rom_trace",
         "sources": [
           "docs/food-practical-research.md",
-          "data/food-effects-confirmed.json"
+          "data/food-effects-confirmed.json",
+          "data/daikon-acquisition.json",
+          "docs/daikon-acquisition-research.md"
         ]
       },
       "shops": []

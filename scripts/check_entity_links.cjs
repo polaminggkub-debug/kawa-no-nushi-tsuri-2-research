@@ -2,7 +2,7 @@
 // Exhaustive source-render checks; browser checks are recorded separately.
 const fs=require('node:fs'),path=require('node:path'),vm=require('node:vm'),assert=require('node:assert/strict');
 const root=path.resolve(__dirname,'..');
-for(const [script,pages] of [['gallery.js',['index.html','index.ja.html','index.th.html']],['item-detail.js',['item.html','item.ja.html','item.th.html']]]){
+for(const [script,pages] of [['gallery.js',['index.html','index.ja.html','index.th.html']],['item-detail.js',['item.html','item.ja.html','item.th.html']],['fish-detail.js',['fish.html','fish.ja.html','fish.th.html']]]){
  const source=fs.readFileSync(path.join(root,'catalogue',script),'utf8');
  const version=source.match(/fetch\('gallery-data\.json\?v=([^']+)'\)/)?.[1];
  assert(version,'Catalogue data must have a cache revision: '+script);
@@ -27,6 +27,13 @@ const netSource=JSON.parse(fs.readFileSync(path.join(root,'data/general-tool-act
 assert.deepEqual(data.items.find(i=>i.category==='general_tool'&&i.id==='04').gatheredBaitByArea,netSource.items['04'].trace.perAreaBaitIds);
 assert.equal(data.items.filter(i=>i.netGatherArea).length,6);
 for(const [stage,id] of Object.entries(netSource.items['04'].trace.perAreaBaitIds))assert.equal(data.items.find(i=>i.category==='bait'&&i.id===id).netGatherArea,Number(stage));
+const daikonSource=JSON.parse(fs.readFileSync(path.join(root,'data/daikon-acquisition.json'),'utf8'));
+const daikon=data.items.find(i=>i.category==='food'&&i.id==='07');
+assert.equal(daikon.exchangeFishId,daikonSource.fish.idHex);
+assert.equal(daikon.daikonExchange.mealSlotsWritten,16);
+assert.equal(daikon.daikonExchange.fishConsumed,true);
+assert.equal(daikon.daikonExchange.repeatable,false);
+assert(daikon.playerUse.useLocations.some(l=>l.stage===3&&l.tileX===21&&l.tileY===82&&l.image));
 let linkCount=0,renderCount=0;
 const unescape=s=>s.replace(/&amp;/g,'&').replace(/&quot;/g,'"').replace(/&#39;/g,"'").replace(/&lt;/g,'<').replace(/&gt;/g,'>');
 function validate(html,base, allowInvalidIdentity=false){
@@ -56,6 +63,8 @@ async function render(kind,lang,query,prefix='/kawa-no-nushi-tsuri-2-research'){
  vm.runInNewContext(source,context);
  await new Promise(r=>setImmediate(r));
  const html=node(kind==='fish'?'fish-detail':'detail-root').innerHTML;
+ if(kind==='fish')assert.equal(html.includes('data-fish-exchange'),url.searchParams.get('id')==='18','Quest action attached to wrong fish');
+ if(kind==='item'&&url.searchParams.get('category')==='food'&&url.searchParams.get('id')==='07'){assert(html.includes('data-daikon-choice'));assert(!html.includes('buying-decision'),'Daikon must not repeat unrelated key overview');assert(html.includes('id=18'));}
  assert(html&&!html.includes('กำลังโหลด'),`No render ${kind} ${query}`);
  validate(html,url);
  for(const n of Object.values(nodes))if(n.href)validate(`<a href="${n.href}"></a>`,url,true);
@@ -106,7 +115,26 @@ async function render(kind,lang,query,prefix='/kawa-no-nushi-tsuri-2-research'){
    const result=await render('fish',lang,new URLSearchParams({id,stage:'3',return:`maps${suffix}.html?stage=3&fish=${id}`}));
    assert(result.html.includes('class="detail-hero"'),`Fish render failed ${id}`);
    assert(result.nodes['fish-back'].href.includes(`fish=${id}`),'Lost fish return context');
+   for(const targetLang of ['en','th','ja']){
+    const target=result.nodes['language-'+targetLang];
+    const targetSuffix=targetLang==='en'?'':'.'+targetLang;
+    const switched=new URL(target.href,result.url),back=switched.searchParams.get('return');
+    assert(back&&new URL(back,result.url).pathname.endsWith('maps'+targetSuffix+'.html'),'Fish language switch loses return language');
+   }
+
    if(id==='43')assert(!/class="route-button"[^>]*maps[^>]*>/.test(result.html),'Unconfirmed profile 43 spawn route');
+  }
+  const nestedReturn=`item${suffix}.html?category=food&id=07&return=${encodeURIComponent('maps'+suffix+'.html?stage=3&fish=18')}`;
+  const nestedResult=await render('fish',lang,new URLSearchParams({id:'18',stage:'3',return:nestedReturn}));
+  for(const targetLang of ['en','th','ja']){
+   const targetSuffix=targetLang==='en'?'':'.'+targetLang;
+   const switched=new URL(nestedResult.nodes['language-'+targetLang].href,nestedResult.url);
+   const firstBack=new URL(switched.searchParams.get('return'),nestedResult.url);
+   const secondBack=new URL(firstBack.searchParams.get('return'),nestedResult.url);
+   assert(firstBack.pathname.endsWith('item'+targetSuffix+'.html'));
+   assert(secondBack.pathname.endsWith('maps'+targetSuffix+'.html'));
+   assert.equal(firstBack.searchParams.get('category'),'food');assert.equal(firstBack.searchParams.get('id'),'07');
+   assert.equal(secondBack.searchParams.get('fish'),'18');assert.equal(secondBack.searchParams.get('stage'),'3');
   }
   for(const kind of ['fish','item'])for(const bad of ['','id=GG','id=FF&category=lure']){
    const result=await render(kind,lang,bad);

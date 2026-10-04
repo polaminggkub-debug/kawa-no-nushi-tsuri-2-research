@@ -77,3 +77,11 @@ Run `node scripts/check_entity_links.cjs`, `node scripts/check_shop_conditions.c
 - Catalogue comparison alternatives omit the currently displayed item, preventing a comparison link from looping to the same profile.
 - Local browser checks: rod 0A's chest action scrolls to the authentic town crop; mushroom09 → orange01 retains the mushroom return; net04 → salmon roe09 retains area3 and the net return. The all-record renderer requires acquisition/gathering/food-alternative actions.
 - The area-6 normal-shop walk and daikon acquisition remain research work. The whole-site goal is still active.
+
+## Daikon exchange decision
+
+The formerly unlocated food 07 now gives a concrete choice: bring kept fish 18 to the area-3 NPC at (21,82) for sixteen 40-HP foods once per save, or skip if the existing food must be kept. Static event code and a controlled WRAM-precondition probe independently establish the complete sixteen-slot overwrite. This probe does not establish a natural catch; the linked fish profile retains the existing ROM spawn/acceptance evidence.
+
+The food page/card links to fish 18, and fish 18 has a reciprocal keep-before-eating/selling action. The original-ROM terrain crop is reproduced by `scripts/build_daikon_location.py` from the hashed map manifest. Quest reward links omit bait-target context so food does not acquire a meaningless fish-compatibility section. Local browser: food07 -> fish18 -> reward07, return path and stage3 preserved. Source render coverage: 1,527 localized detail renders, 210,522 local references (not manual click counts). Exact net shallow-water spots and area-6 seller traversal remain research work.
+
+Fish language switches now localize nested return routes while retaining entity IDs, area and safe local routing. Dedicated assertions exercise all 73 fish profiles plus nested item07 -> map3 returns in each language. Browser clicks are recorded separately.
