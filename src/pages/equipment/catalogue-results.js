@@ -137,9 +137,9 @@ function sortCatalogueItems(ctx, items, order) {
 
 function categoryTitle(ctx, category, fish) {
   if (!fish || category !== 'all') return ctx.player.cat[category] || ctx.player.all
-  if (ctx.lang === 'th') return `เหยื่อและชุดตกสำหรับ${ctx.fishName(fish)}`
-  if (ctx.lang === 'ja') return `${ctx.fishName(fish)}に対応するエサ・仕掛け`
-  return `Baits and rigs for ${ctx.fishName(fish)}`
+  if (ctx.lang === 'th') return `รายการที่ผ่านเงื่อนไขของ${ctx.fishName(fish)}`
+  if (ctx.lang === 'ja') return `${ctx.fishName(fish)}の条件に合うアイテム`
+  return `Items compatible with ${ctx.fishName(fish)}`
 }
 
 function categoryDescription(ctx, category, fish) {
@@ -151,12 +151,26 @@ function categoryDescription(ctx, category, fish) {
 
 function fishStatus(ctx, filters) {
   if (!filters.fish) return ''
-  if (filters.category !== 'flymaker' || ctx.flyPart === 'fly') return ctx.player.fishOnly
+  if (filters.category === 'bait') return ctx.player.fishOnly
+  if (filters.category === 'flymaker' && ctx.flyPart !== 'fly') {
+    if (ctx.lang === 'th')
+      return 'แสดงชิ้นส่วนที่ร้านขายพร้อมบอดี้ซึ่งผ่านเงื่อนไขปลานี้ ไม่ได้ยืนยันว่าปีกหรือหางเพิ่มโอกาสกิน'
+    if (ctx.lang === 'ja')
+      return 'この魚の条件を通るボディと一緒に販売される部品です。ウイング・テールの食いつき向上は未確認。'
+    return 'Showing parts sold with a body that passes this fish’s compatibility check; a wing or tail bite bonus is not established.'
+  }
+  if (filters.category === 'flymaker' && ctx.flyPart === 'fly') {
+    if (ctx.lang === 'th')
+      return 'แสดงบอดี้ฟลายที่ผ่านเงื่อนไขโปรไฟล์ของปลานี้ ไม่ได้รับประกันว่าปลากินหรือตกขึ้นได้'
+    if (ctx.lang === 'ja')
+      return 'この魚のボディプロフィール判定を通るフライボディです。食いつき・釣り上げは保証されません。'
+    return 'Showing fly bodies whose body-profile check passes for this fish; a bite or catch is not guaranteed.'
+  }
   if (ctx.lang === 'th')
-    return 'ชิ้นส่วนในชุดที่ร้านขายพร้อมบอดี้ซึ่งผ่านเงื่อนไขปลานี้ ไม่ได้ยืนยันว่าปีกหรือหางเพิ่มโอกาสกิน'
+    return 'แสดงรายการในหมวดนี้ที่ผ่านเงื่อนไขจาก ROM ของปลาที่เลือก แต่ไม่ได้ยืนยันว่าปลากินหรือตกขึ้นได้'
   if (ctx.lang === 'ja')
-    return '対応ボディと一緒に販売される構成部品。ウイング・テールの食いつき向上は未確認。'
-  return 'Parts sold with a body that passes this fish’s compatibility check; a wing or tail bite bonus is not established.'
+    return '選択した魚のROM条件を通るカテゴリー内アイテムです。食いつき・釣り上げは保証されません。'
+  return 'Showing items in this category that pass the selected fish’s ROM compatibility check; a bite or catch is not guaranteed.'
 }
 
 function updateCatalogueHeadings(ctx, filters) {

@@ -3,6 +3,7 @@ import { fishIds, stats } from './shared.mjs'
 await import('./data-guards.mjs')
 await import('./target-advice.mjs')
 await import('./fly-maker-steps.mjs')
+await import('./selected-fish-labels.mjs')
 await import('./food-decisions.mjs')
 await import('./tub-boarding.mjs')
 await import('./navigation.mjs')

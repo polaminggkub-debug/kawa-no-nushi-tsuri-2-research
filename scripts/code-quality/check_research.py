@@ -28,7 +28,8 @@ def adversarial_probes():
 def main():
     adversarial_probes()
     paths = [Path(__file__), ROOT / 'scripts/verify_tub_boarding.py',
-             ROOT / 'scripts/verify_magnet_story_gate.py']
+             ROOT / 'scripts/verify_magnet_story_gate.py',
+             ROOT / 'scripts/trace_fly_maker_menu.py']
     paths += sorted((ROOT / 'scripts/magnet-story-gate').rglob('*.py'))
     errors = []
     for path in paths:

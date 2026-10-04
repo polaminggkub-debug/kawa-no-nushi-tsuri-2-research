@@ -1,0 +1,179 @@
+{
+  "rom": {
+    "description": "Supplied original Japanese headerless SFC dump",
+    "sizeBytes": 1572864,
+    "sha1": "c2103dd94e2a1a65a495fc02adc2e7d040f31212",
+    "sha256": "e0594921a5a2ef1a2613b9d2e29fed066569e3793393c591bf4c4968a54c0b49"
+  },
+  "area1FamilyChoice": {
+    "areaParityInput": "$085A & 1 = 1",
+    "cursorAddress": "$1D33",
+    "resolvedFamilyAddress": "$1D3B",
+    "code": "$03:9581..95FF",
+    "choices": [
+      {
+        "cursor": 0,
+        "familyKey": "00",
+        "runtimeLabelJapanese": "メイフライ",
+        "runtimeLabelEnglish": "Mayfly"
+      },
+      {
+        "cursor": 1,
+        "familyKey": "01",
+        "runtimeLabelJapanese": "カディス",
+        "runtimeLabelEnglish": "Caddis"
+      },
+      {
+        "cursor": 2,
+        "familyKey": "04",
+        "runtimeLabelJapanese": "テレストリアル",
+        "runtimeLabelEnglish": "Terrestrial"
+      }
+    ]
+  },
+  "componentTable": {
+    "pointerAddress": "$05:800C",
+    "recordBase": "$05:AA52",
+    "fileOffset": "0x02AA52",
+    "strideBytes": 11,
+    "recordIDs": "01..86",
+    "familyFieldOffset": 0,
+    "partFieldOffset": 1,
+    "priceFieldOffset": 9,
+    "priceFieldWidth": 2,
+    "priceEncoding": "little-endian yen",
+    "lookupRoutine": "$03:D3D9..D3F6",
+    "selectionRoutine": "$03:974D..97D7",
+    "listBuilder": "$03:97D8..9843",
+    "scanOrder": "ascending ROM record ID"
+  },
+  "parts": {
+    "0": {
+      "name": "body",
+      "selectedField": "$1D35",
+      "family00IDs": [
+        "01",
+        "02",
+        "03",
+        "04",
+        "05",
+        "06",
+        "07",
+        "08",
+        "18",
+        "19",
+        "1A",
+        "1B",
+        "1C",
+        "1D",
+        "1E"
+      ],
+      "count": 15
+    },
+    "1": {
+      "name": "wing",
+      "selectedField": "$1D37",
+      "family00IDs": [
+        "09",
+        "0A",
+        "0B",
+        "0C",
+        "0D",
+        "0E",
+        "0F",
+        "10",
+        "11",
+        "12",
+        "1F",
+        "20",
+        "21",
+        "22",
+        "23",
+        "24",
+        "25",
+        "26"
+      ],
+      "count": 18
+    },
+    "2": {
+      "name": "tail",
+      "selectedField": "$1D39",
+      "family00IDs": [
+        "13",
+        "14",
+        "15",
+        "16",
+        "17",
+        "27",
+        "28",
+        "29",
+        "2A"
+      ],
+      "count": 9
+    }
+  },
+  "noneSentinel": {
+    "id": "87",
+    "tableRecord": false,
+    "appendedForNonBodyPartsWhenListHasRoom": true,
+    "selectionBehavior": "does not write a component ID and does not add component price",
+    "evidence": "$03:97D8..9843; $03:974D..97AC"
+  },
+  "defaultFirstMayflyCombination": {
+    "ids": {
+      "body": "01",
+      "wing": "09",
+      "tail": "13"
+    },
+    "componentYen": {
+      "body": 5,
+      "wing": 5,
+      "tail": 15
+    },
+    "calculatedQuoteYen": 25,
+    "quoteAccumulator": "$1D3F",
+    "quoteDisplay": "$1A7B",
+    "amountCapYen": 10000,
+    "evidence": "$03:9600..968E; $03:974D..97AC; record rows at $05:AA52 + (ID-1)*11"
+  },
+  "creation": {
+    "noOwnedPartCheckBeforeSelection": true,
+    "freeCompletedFlySlotCheck": "$09CC != 0 means no free slot",
+    "moneyAddress": "$0866",
+    "priceCompareAndDeduct": "$03:96B3..96D2",
+    "completedFlyArrays": {
+      "body": "$095E",
+      "wing": "$09CE",
+      "tail": "$0A3E"
+    },
+    "firstFreeBodySlotScanAndThreeWrites": "$03:96E5..9700",
+    "meaning": "select components from ROM-backed menus, pay the computed quote, and save one finished combination; no separate owned component stock is consumed"
+  },
+  "menuCapacityDiscrepancy": {
+    "family00WingROMRecords": 18,
+    "listBuilderMaximumWrittenMatches": 17,
+    "rendererMaximumWordEntries": 16,
+    "renderer": "$02:9FC8..A067; called for screen IDs 13, 14, 15",
+    "first16ROMOrderedWingIDs": [
+      "09",
+      "0A",
+      "0B",
+      "0C",
+      "0D",
+      "0E",
+      "0F",
+      "10",
+      "11",
+      "12",
+      "1F",
+      "20",
+      "21",
+      "22",
+      "23",
+      "24"
+    ],
+    "runtimeReportedPictureCount": 20,
+    "resolved": false,
+    "warning": "Do not equate table-record order to visible sprite order; runtime screenshot count conflicts with static buffer/render bounds."
+  }
+}

@@ -20,6 +20,8 @@ The original-ROM runtime capture shows the following sequence at the rear NPC in
 
 The captured first-stage palettes displayed 15 Mayfly bodies, 14 Caddis bodies, 16 Terrestrial bodies, 20 Mayfly wings, and 9 Mayfly tails plus `無し`. The game screen does not display internal component IDs, so those counts alone do not identify each menu sprite by its ROM ID.
 
+Follow-up (2026-10-05): the maker's ROM scan filters family and part, and its Mayfly wing records total 18. The traced buffer/renderer limits also conflict with the old screenshot count of 20. The quoted counts above remain a historical visual observation, not confirmed selectable totals. See [maker menu research](fly-maker-menu-research.md). The maker supplies selected components; no separately owned component stock is consumed. Keep a free completed-fly slot and enough money for the displayed quote.
+
 ## Body choices from the supplied ROM
 
 | Body group | Body IDs | Fish profiles passing the body-selected check | What that means in play |

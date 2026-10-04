@@ -15,7 +15,7 @@ export const copy_en = {
   flyCopy:
     'These are direct captures of the original Japanese game. In the first-stage shop, we followed the full Mayfly sequence and checked one order against the money counter.',
   flyFact:
-    'Observed Mayfly palette: 20 wing choices; 9 tail sprites plus a separate “None”. One first-body + first-wing + first-tail order cost ¥25 (¥5 + ¥5 + ¥15). That is one measured combination, not a universal price.',
+    'Check the final quote before paying. The recorded first-body + first-wing + first-tail Mayfly order cost ¥25. Choosing “None” changes the recipe, so read its quote separately. Other recipes do not share a fixed ¥25 price.',
   catalogueKicker: 'THE FULL INDEX',
   catalogueTitle: 'Browse all 315 listed entries',
   catalogueCopy:

@@ -376,11 +376,11 @@
   function decisionAdvice(ctx, decision) {
     return {
       summary: ctx.local(decision.recommendation),
-      facts: [ctx.local(decision.reason)].filter(Boolean)
+      facts: []
     };
   }
   function flyWingAdvice(ctx) {
-    const summary = ctx.lang === "th" ? "ประกอบเองให้เริ่มจากปีกที่มีอยู่และตรวจราคาเสนอก่อนจ่าย ไม่ต้องซื้อปีกแพงเพื่อหวังโบนัสจับปลา เพราะยังไม่มีหลักฐานรองรับ" : ctx.lang === "ja" ? "作成するなら手持ちのウィングから始め、確定前に見積額を確認する。釣果ボーナスを期待して高価なウィングを買う根拠はない。" : "For a custom fly, start with a wing you have and check the quote before paying. There is no established catch bonus that justifies buying an expensive wing.";
+    const summary = ctx.lang === "th" ? "ประกอบเองให้เลือกจากรูปปีกที่ร้านเสนอ ไม่ต้องเตรียมชิ้นส่วนไปเอง ตรวจราคาสุทธิก่อนจ่าย ยังไม่มีหลักฐานว่าปีกแพงเพิ่มโอกาสจับปลา" : ctx.lang === "ja" ? "自作するなら店のウィング画像から選ぶ。部品の持参は不要。支払前に最終見積額を確認する。高価なウィングの釣果優位は未確認。" : "Choose from the maker’s wing pictures; you do not need to bring components. Check the final quote before paying. An expensive wing has no established catch advantage.";
     const fact = ctx.lang === "th" ? "เกมมีเงื่อนไขซ่อนที่ตรวจบอดี้กับปีก ถ้าปลาไม่กิน การตีชุดเดิมซ้ำไม่ได้สุ่มเงื่อนไขนี้ใหม่ รายละเอียดอยู่ในหลักฐาน" : ctx.lang === "ja" ? "隠しボディ・ウィング条件は同じ構成の投げ直しでは再抽選されない。詳細は根拠を参照。" : "Recasting the same setup does not reroll the hidden body/wing condition; details are in the evidence.";
     return { summary, facts: [fact] };
   }
@@ -1203,9 +1203,9 @@
   }
   function categoryTitle(ctx, category, fish) {
     if (!fish || category !== "all") return ctx.player.cat[category] || ctx.player.all;
-    if (ctx.lang === "th") return `เหยื่อและชุดตกสำหรับ${ctx.fishName(fish)}`;
-    if (ctx.lang === "ja") return `${ctx.fishName(fish)}に対応するエサ・仕掛け`;
-    return `Baits and rigs for ${ctx.fishName(fish)}`;
+    if (ctx.lang === "th") return `รายการที่ผ่านเงื่อนไขของ${ctx.fishName(fish)}`;
+    if (ctx.lang === "ja") return `${ctx.fishName(fish)}の条件に合うアイテム`;
+    return `Items compatible with ${ctx.fishName(fish)}`;
   }
   function categoryDescription(ctx, category, fish) {
     if (!fish || category !== "all") return ctx.player.desc[category] || ctx.player.lead;
@@ -1215,12 +1215,26 @@
   }
   function fishStatus(ctx, filters) {
     if (!filters.fish) return "";
-    if (filters.category !== "flymaker" || ctx.flyPart === "fly") return ctx.player.fishOnly;
+    if (filters.category === "bait") return ctx.player.fishOnly;
+    if (filters.category === "flymaker" && ctx.flyPart !== "fly") {
+      if (ctx.lang === "th")
+        return "แสดงชิ้นส่วนที่ร้านขายพร้อมบอดี้ซึ่งผ่านเงื่อนไขปลานี้ ไม่ได้ยืนยันว่าปีกหรือหางเพิ่มโอกาสกิน";
+      if (ctx.lang === "ja")
+        return "この魚の条件を通るボディと一緒に販売される部品です。ウイング・テールの食いつき向上は未確認。";
+      return "Showing parts sold with a body that passes this fish’s compatibility check; a wing or tail bite bonus is not established.";
+    }
+    if (filters.category === "flymaker" && ctx.flyPart === "fly") {
+      if (ctx.lang === "th")
+        return "แสดงบอดี้ฟลายที่ผ่านเงื่อนไขโปรไฟล์ของปลานี้ ไม่ได้รับประกันว่าปลากินหรือตกขึ้นได้";
+      if (ctx.lang === "ja")
+        return "この魚のボディプロフィール判定を通るフライボディです。食いつき・釣り上げは保証されません。";
+      return "Showing fly bodies whose body-profile check passes for this fish; a bite or catch is not guaranteed.";
+    }
     if (ctx.lang === "th")
-      return "ชิ้นส่วนในชุดที่ร้านขายพร้อมบอดี้ซึ่งผ่านเงื่อนไขปลานี้ ไม่ได้ยืนยันว่าปีกหรือหางเพิ่มโอกาสกิน";
+      return "แสดงรายการในหมวดนี้ที่ผ่านเงื่อนไขจาก ROM ของปลาที่เลือก แต่ไม่ได้ยืนยันว่าปลากินหรือตกขึ้นได้";
     if (ctx.lang === "ja")
-      return "対応ボディと一緒に販売される構成部品。ウイング・テールの食いつき向上は未確認。";
-    return "Parts sold with a body that passes this fish’s compatibility check; a wing or tail bite bonus is not established.";
+      return "選択した魚のROM条件を通るカテゴリー内アイテムです。食いつき・釣り上げは保証されません。";
+    return "Showing items in this category that pass the selected fish’s ROM compatibility check; a bite or catch is not guaranteed.";
   }
   function updateCatalogueHeadings(ctx, filters) {
     ctx.set("#category-title", categoryTitle(ctx, filters.category, filters.fish));
@@ -1283,7 +1297,7 @@
     flyKicker: "THE CUSTOM FLY MAKER",
     flyTitle: "Body, wing, tail… and a real price quote",
     flyCopy: "These are direct captures of the original Japanese game. In the first-stage shop, we followed the full Mayfly sequence and checked one order against the money counter.",
-    flyFact: "Observed Mayfly palette: 20 wing choices; 9 tail sprites plus a separate “None”. One first-body + first-wing + first-tail order cost ¥25 (¥5 + ¥5 + ¥15). That is one measured combination, not a universal price.",
+    flyFact: "Check the final quote before paying. The recorded first-body + first-wing + first-tail Mayfly order cost ¥25. Choosing “None” changes the recipe, so read its quote separately. Other recipes do not share a fixed ¥25 price.",
     catalogueKicker: "THE FULL INDEX",
     catalogueTitle: "Browse all 315 listed entries",
     catalogueCopy: "Search either language, an item ID, or a stat. Open any card for its raw ROM bytes and record offset.",
@@ -1362,7 +1376,7 @@
     flyKicker: "เมนูประกอบฟลาย",
     flyTitle: "เลือกบอดี้ ปีก หาง พร้อมตรวจราคาจริง",
     flyCopy: "ภาพเหล่านี้จับจากเกมญี่ปุ่นต้นฉบับโดยตรง เราตามขั้นตอนเมนูประกอบฟลายในร้านด่านแรกจนจบ และตรวจสอบราคาหนึ่งรายการกับเงินที่ลดลง",
-    flyFact: "จากหน้าจอเมย์ฟลายที่ตรวจ: ปีก 20 แบบ และภาพหาง 9 แบบ พร้อมตัวเลือก “ไม่มี” แยกต่างหาก ชุดบอดี้แรก + ปีกแรก + หางแรก คิดราคา 25 เยน (5 + 5 + 15) เป็นราคาจากชุดที่ทดลองหนึ่งชุด ไม่ใช่ราคาทุกชุด",
+    flyFact: "ตรวจราคาสุทธิก่อนจ่าย ชุดเมย์ฟลายบอดี้แรก + ปีกแรก + หางแรกที่ทดลองคิด ¥25 ถ้าเลือก “ไม่มี” แทนหาง ชุดจะเปลี่ยน ให้ดูราคาของชุดนั้นแยกต่างหาก ไม่ใช่ว่าทุกชุดราคา ¥25",
     catalogueKicker: "รายการไอเท็มทั้งหมด",
     catalogueTitle: "ค้นหาข้อมูลทั้ง 315 รายการ",
     catalogueCopy: "ค้นด้วยชื่อภาษาไทยที่ถอดจากภาพแล้ว ภาษาอังกฤษ ญี่ปุ่น หรือเลข ID ได้ เปิดการ์ดเพื่อดูไบต์ดิบและตำแหน่งระเบียนใน ROM",
@@ -1429,7 +1443,7 @@
       "แสดงระเบียนตารางฟลายทั้ง 134 รายการ แบ่งเป็นบอดี้ 64 ปีก 47 และหาง 23 โดยตัด ID 87 ซึ่งเป็นรหัสว่าไม่มีไอเท็มออก",
       "ช่องราคาใน ROM ไม่ได้ยืนยันว่าร้านใดมีไอเท็มขาย และช่องราคา 0 ก็ไม่ได้ยืนยันว่าได้มาฟรี ค่าราคาของชิ้นส่วนฟลายเป็นราคาของชิ้นส่วน ไม่ใช่ราคาขายปลีกของฟลายที่ประกอบเสร็จแล้ว",
       "คู่มือ SFC ภาษาญี่ปุ่นอธิบายประเภทคันเบ็ด ทุ่น เครื่องหมายบนสาย ตะกั่ว ตะขอ เหยื่อ และตระกูลฟลาย ชื่อภาษาอังกฤษในรายการเป็นคำแปล ส่วนชื่อญี่ปุ่นคงข้อความที่พบในเกม",
-      "ตรวจเมนูช่างประกอบฟลายในร้านด่านแรกโดยตรง: เลือกประเภท บอดี้ ปีก หางหรือ “ไม่มี” แล้วจึงยืนยัน หน้าจอเมย์ฟลายที่ตรวจมีปีก 20 แบบ และภาพหาง 9 แบบพร้อมตัวเลือก “ไม่มี” แยกต่างหาก ราคาหนึ่งชุดที่วัดได้คือ 25 เยน (5 + 5 + 15) ไม่ใช่ราคากลางของทุกชุด",
+      "ตรวจเมนูช่างประกอบฟลายในร้านด่านแรกโดยตรง: เลือกประเภท บอดี้ ปีก หางหรือ “ไม่มี” แล้วจึงยืนยัน ชุดเริ่มต้นที่ตรวจราคา 25 เยน (5 + 5 + 15) ไม่ใช่ราคากลางของทุกชุด จำนวนภาพปีกที่เคยนับยังไม่ตรงกับรายการ ROM จึงไม่ใช้เป็นจำนวนตัวเลือกที่ยืนยันแล้ว",
       "ภาพจับจาก ROM ญี่ปุ่นที่ผู้ใช้ให้มา ซึ่งไม่ได้ดัดแปลง ในการจำลอง Snes9x แบบแยกสำหรับไอเท็มที่ซ่อนอยู่ เราเขียน ID ของไอเท็มที่ถูกต้องลง WRAM ชั่วคราวเพื่อให้ตัวเกมเป็นผู้วาดภาพ ไม่ได้ใช้ภาพที่สร้างด้วย AI",
       "ชื่อไทยที่มีภาพประกอบใต้ชื่อไอเท็ม จับจากแพตช์ไทย V1.2 โดยตรง หากยังอ่านตัวสะกดจากภาพไม่ชัด จะคงชื่อญี่ปุ่นไว้ให้เทียบกับภาพ ชื่อปลาที่ถือในเมนูอาหารเปลี่ยนตามปลาตัวนั้น ส่วนคำอธิบายค่าต่าง ๆ เป็นคำแปลสำหรับเว็บไซต์จากผลวิจัย ROM ญี่ปุ่นต้นฉบับ"
     ],
@@ -1472,7 +1486,7 @@
     flyKicker: "毛バリ作成NPC",
     flyTitle: "ボディ、ウィング、テール、そして見積もり",
     flyCopy: "日本版ゲームを直接撮影した画面です。ステージ1の店でメイフライ作成を最後まで進め、所持金の変化で一例の価格を確認しました。",
-    flyFact: "確認したメイフライ画面: ウィング20種、テール画像9種と別枠の「無し」。最初のボディ+最初のウィング+最初のテールは25円（5+5+15円）。これは実測した一例で、全組み合わせ共通ではありません。",
+    flyFact: "支払前に最終見積額を確認する。記録したメイフライの最初のボディ・ウィング・テールは25円。「無し」にすると組み合わせが変わるため、その見積額を別に確認する。全組み合わせが25円ではない。",
     catalogueKicker: "全アイテム一覧",
     catalogueTitle: "掲載315件を検索",
     catalogueCopy: "英語・日本語、アイテムID、数値で検索できます。各カードを開くとROM生データとファイル位置を確認できます。",
@@ -2032,7 +2046,7 @@
     renderInitialCatalogue(ctx);
   }
   function loadCatalogue(ctx) {
-    fetch("gallery-data.json?v=compendium-20261005-03").then((response) => {
+    fetch("gallery-data.json?v=compendium-20261005-04").then((response) => {
       if (!response.ok) throw new Error("catalogue unavailable");
       return response.json();
     }).then((data) => initializeLoadedCatalogue(ctx, data)).catch((error) => console.error(error));

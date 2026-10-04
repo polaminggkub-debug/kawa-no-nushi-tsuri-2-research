@@ -19,17 +19,17 @@ function fishMealAdvice(ctx) {
 function decisionAdvice(ctx, decision) {
   return {
     summary: ctx.local(decision.recommendation),
-    facts: [ctx.local(decision.reason)].filter(Boolean),
+    facts: [],
   }
 }
 
 function flyWingAdvice(ctx) {
   const summary =
     ctx.lang === 'th'
-      ? 'ประกอบเองให้เริ่มจากปีกที่มีอยู่และตรวจราคาเสนอก่อนจ่าย ไม่ต้องซื้อปีกแพงเพื่อหวังโบนัสจับปลา เพราะยังไม่มีหลักฐานรองรับ'
+      ? 'ประกอบเองให้เลือกจากรูปปีกที่ร้านเสนอ ไม่ต้องเตรียมชิ้นส่วนไปเอง ตรวจราคาสุทธิก่อนจ่าย ยังไม่มีหลักฐานว่าปีกแพงเพิ่มโอกาสจับปลา'
       : ctx.lang === 'ja'
-        ? '作成するなら手持ちのウィングから始め、確定前に見積額を確認する。釣果ボーナスを期待して高価なウィングを買う根拠はない。'
-        : 'For a custom fly, start with a wing you have and check the quote before paying. There is no established catch bonus that justifies buying an expensive wing.'
+        ? '自作するなら店のウィング画像から選ぶ。部品の持参は不要。支払前に最終見積額を確認する。高価なウィングの釣果優位は未確認。'
+        : 'Choose from the maker’s wing pictures; you do not need to bring components. Check the final quote before paying. An expensive wing has no established catch advantage.'
   const fact =
     ctx.lang === 'th'
       ? 'เกมมีเงื่อนไขซ่อนที่ตรวจบอดี้กับปีก ถ้าปลาไม่กิน การตีชุดเดิมซ้ำไม่ได้สุ่มเงื่อนไขนี้ใหม่ รายละเอียดอยู่ในหลักฐาน'

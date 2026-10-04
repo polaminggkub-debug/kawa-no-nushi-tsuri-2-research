@@ -226,3 +226,11 @@ When workers finish, dispatch the next independent batch: Area 6 ordinary shop a
 Final audit still covers every catalogue category, fish/maps, shops, item/fish details and research navigation in all three languages. Every visible gameplay claim needs a concrete next action or decision supported by original-ROM evidence; unresolved selectors belong in technical evidence. Automated checks cover the recorded data and link invariants, while actual browser interaction and visual review cover usability. This queue records known gaps, not a claim that every other requirement is complete.
 
 The first maker UI change replaces descriptive screen captions with seven player steps, including starting the rear-NPC interaction and checking the observed ¥25 quote. Original screenshots remain byte-identical. The picture-to-record crosswalk is a separate pending requirement, so this change does not complete DIY fly advice.
+
+### Active follow-up queue
+
+The static maker worker and catalogue-label worker completed their first bounded tasks and moved to Area 6 ordinary shop access and fish/map navigation respectively. The controller worker is finishing verified Mayfly selections and None pricing. The coordinator independently confirmed the default 01/09/13 recipe, 25-yen quote, 100-to-75 money change and completed-fly inventory write.
+
+This batch also corrects all 47 wing decisions: the maker supplies parts, so players do not need to bring an owned wing. Selected-fish result labels now distinguish body-profile acceptance from component sale compatibility. Card decision reasons render once. Historical picture counts remain in research with an explicit unresolved mismatch, rather than becoming confirmed menu counts.
+
+Next dispatch when the controller slot is free: Area 6 magnet prerequisite/use research. After the access/navigation reports, implement only evidence-supported route instructions and navigation repairs, then conduct the final category/profile/shop/map audit. The net and magnifying glass remain deferred by owner direction.

@@ -73,3 +73,10 @@ Local browser: Rainbow 06/Area 1/Sinking 17 shows no local stock and links Spinn
 The maker guide now includes the original rear-NPC interaction and seven action captions in EN/JA/TH. Its guard compares published PNG bytes against existing authentic reference captures and checks all seven steps in the runtime renderer. This proves the stated observed sequence, not any new component-ID mapping or universal recipe price.
 
 Browser inspection found that smooth scrolling across the long catalogue could stop before the guide. Maker entry now opens the disclosure and scrolls immediately to it. At 390×844, creator frames use one column so the game menu is large enough to inspect; the old two-column shared style overrode the equipment stylesheet. Mobile guide opening and original game images were inspected visually. The full-site acceptance audit remains open.
+
+## 2026-10-05 parallel clarity batch
+
+- Original-ROM static scan confirms the maker supplies components and totals their price fields. Coordinator controller-only replay independently confirms the default Mayfly 01/09/13 quote25, money100→75 and stored completed-fly IDs. This replay starts at the maker menu and does not establish new-game progression or all component positions.
+- All47 wing decisions now avoid requiring an owned component. Prominent maker copy instructs players to check the final quote; unresolved historical picture counts remain in research. Selected-fish labels distinguish body acceptance from offered parts, and decision reasons render once in cards.
+- Full local `npm run check` passes: 174 authored files, 1565 functions, 9 bounded Python sources, publication safety, 31 generated artifacts, localized entity/shops/maps/search checks.
+- Actual local browser: selected Rainbow wing list → wing09 detail → maker steps → back preserves fish06, partwing and area1. At390px the detail and its actions remain readable; the long inherited bundle paragraph is still a follow-up content issue, recorded for the next selected-fish advice task. Desktop1280px results retain the corrected labels. These checks establish this bounded change, not whole-site acceptance.
