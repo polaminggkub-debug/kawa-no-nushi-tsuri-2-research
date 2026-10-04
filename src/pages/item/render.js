@@ -1,3 +1,4 @@
+import { targetAdviceSection } from './target-advice.js'
 function renderFishTarget(ctx, fishVisuals, fishLocations) {
   if (!ctx.selectedFish) return ''
   const fish = fishVisuals[ctx.selectedFish]
@@ -124,15 +125,17 @@ function renderDecisionSection(
     : ''
   const heading = decision ? rodDecisionTitle(ctx, item) : ctx.copy.use
   const body = summary || ctx.copy.noFish
+  const targetAdvice = targetAdviceSection(ctx, item, allItems, fishVisuals)
+  const general = `${verdict}<p>${ctx.esc(body)}</p>`
   const next = ctx.gearNextActions(item, fishVisuals, fishLocations, allItems)
   const maker = ctx.flyMakerLink(item)
   const note = imageNote ? `<p class="muted">${ctx.esc(imageNote)}</p>` : ''
-  const reasons = factList + decisionFacts(ctx, item, allItems)
+  const reasons = (targetAdvice ? general : '') + factList + decisionFacts(ctx, item, allItems)
   const supporting =
     decision && reasons
       ? `<details class="decision-reasons"><summary>${ctx.esc(decisionReasonTitle(ctx, true))}</summary>${reasons}</details>`
       : reasons
-  return `<section id="what-to-do" class="decision-panel ${decision ? 'rod-decision' : ''}" ${dataAttribute}><h2>${ctx.esc(heading)}</h2>${verdict}<p>${ctx.esc(body)}</p>${supporting}${next}${maker}${note}</section>`
+  return `<section id="what-to-do" class="decision-panel ${decision ? 'rod-decision' : ''}" ${dataAttribute}><h2>${ctx.esc(heading)}</h2>${targetAdvice || general}${supporting}${next}${maker}${note}</section>`
 }
 
 function renderQuickOptions(ctx, item, allItems) {

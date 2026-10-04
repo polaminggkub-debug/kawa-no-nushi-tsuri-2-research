@@ -6,3 +6,5 @@ export function createPageRuntime(api) {
   }
   return runtime
 }
+
+export { targetAdvice, renderTargetAdvice } from './target-advice.js'

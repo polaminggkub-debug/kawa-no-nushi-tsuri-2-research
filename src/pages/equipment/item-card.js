@@ -1,3 +1,5 @@
+import { renderTargetAdvice } from '../../shared/lib/index.js'
+
 function itemAdvice(item) {
   return item.rodDecision || item.baitLureDecision || item.gearDecision
 }
@@ -58,6 +60,8 @@ function guideEvidenceNote(ctx, use) {
 }
 
 function renderCardGuidance(ctx, item, use, summary, facts, advice) {
+  const fish = document.getElementById('fish-filter')?.value || ''
+  const targetAdvice = renderTargetAdvice(ctx, item, fish)
   const label = advice ? ctx.local(advice.label) : summary
   const factList = facts.length
     ? `<ul class="use-facts">${facts.map((fact) => `<li>${ctx.esc(fact)}</li>`).join('')}</ul>`
@@ -78,10 +82,19 @@ function renderCardGuidance(ctx, item, use, summary, facts, advice) {
     details,
     advice ? 'card-decision-disclosure' : 'card-use-disclosure',
   )
-  const actionTitle = cardActionTitle(ctx, item, advice)
+  const actionTitle = targetAdvice
+    ? ctx.lang === 'th'
+      ? 'คำแนะนำสำหรับปลาที่เลือก'
+      : ctx.lang === 'ja'
+        ? '選んだ魚への案内'
+        : 'Advice for your selected fish'
+    : cardActionTitle(ctx, item, advice)
   const dataDecision = cardDecisionAttribute(ctx, item, advice)
   const summaryClass = advice ? 'card-verdict' : 'card-effect'
-  return `<div class="use-block" ${dataDecision}><h4>${ctx.esc(actionTitle)}</h4><p class="use-summary ${summaryClass}">${ctx.esc(label)}</p><div class="card-more-content">${disclosure}</div></div>`
+  const visibleAdvice = targetAdvice
+    ? targetAdvice
+    : `<p class="use-summary ${summaryClass}">${ctx.esc(label)}</p>`
+  return `<div class="use-block" ${dataDecision}><h4>${ctx.esc(actionTitle)}</h4>${visibleAdvice}<div class="card-more-content">${disclosure}</div></div>`
 }
 
 function renderCardAcquisition(ctx, item) {

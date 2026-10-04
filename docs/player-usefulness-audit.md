@@ -198,3 +198,14 @@ A continuous original-ROM probe from a naturally reached Area1 `(4,183)` positio
 The tub profile now has an owned-tub action leading directly to an original-terrain crop at the example tile and the tested menu/directional steps. The existing Hariyo exchange location remains present. All three languages preserve the example limitation and evidence links; the guard checks the profile action, anchor, location and clean runtime screenshot fingerprint. Source evidence is in `docs/tub-boarding-research.md` and `data/tub-boarding.json`; private ROM/core/save-state files remain unpublished.
 
 Follow-up: an independent input-only walk from the verified Area 1 house exit (8,183), four tiles left to (4,183), succeeded without memory writes. Walking and boarding were separate recorded probes; this does not claim a single continuous acquisition-to-boarding replay.
+
+## Completion audit follow-up (2026-10-05)
+
+The full player-usefulness goal is still unproven. A fresh review of the current evidence identifies these remaining action gaps, beyond the selected-fish catalogue verdict change:
+
+- **Gold Net:** Area 1 has a controlled-use point, but an input-only route from the house/entrance has not been established. Areas 2–6 have decoded rewards without confirmed reachable use points. Next evidence: ordinary walking route, shallow-water position, normal menu use, and bait inventory delta, keeping any owned-tool setup explicit.
+- **Area 6 shop:** a known seller coordinate does not prove a route from the entrance. Next evidence: walk from a naturally reached entrance and open the shop normally.
+- **DIY flies:** ready-made bundles are actionable; maker pictures still need a verified picture-to-record mapping before players can reliably apply body/wing choices to that menu. Next evidence: selection index, original picture and component record, with the actual quoted combination price.
+- **Area 6 magnet:** the bounded static trace establishes record-slot and prerequisite flags. The natural encounter/result trigger remains unverified; no catch recipe is inferred from it.
+
+These are research tasks with direct player outcomes, not reasons to expand raw-number summaries. Passing source guards does not establish their completion.

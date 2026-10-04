@@ -61,3 +61,9 @@ The food guard additionally renders every six-shop-food/area/language combinatio
 The publication gate also checks the new bounded Python ROM verifiers: at most 500 physical lines per file and 50 per function, with adversarial over-limit probes. Historical analysis utilities remain outside this frontend/research-tool source budget.
 
 Actual local browser follow-up: float 01 with target fish 06 opens that fish's accepted-bait section with Area 1 retained; bait 17 shows the Area 3 Ayu-sale condition beside its price; the tub detail shows house-exit walking directions and a linked ROM-map crop. Mobile 390×844 retained readable cards and navigation; viewport reset after review.
+
+## Selected-fish decisions (2026-10-05)
+
+The new decision guard derives eligibility independently from recorded bait-route or lure profile lists and shop stock. It checks every recorded fish, both bait rig selections, all six areas, and all bait/lure records. Conditional offers remain separate from unrestricted price minima. Localized runtime cards must keep original recommendation/reason and technical evidence disclosures, and alternative links must preserve the target fish, area, and rig. Actual browser review remains a separate release step; metadata checks do not prove bite odds, landing success, shop unlock state, or ordinary map access.
+
+Local browser: Rainbow 06/Area 1/Sinking 17 shows no local stock and links Spinner 48 at ¥20; clicking opens 48 with fish, area, route and exact return intact. Item detail uses the same decision model. Desktop 1280×800 and mobile 390×844 reviewed; mobile document width equals viewport width (390), without horizontal overflow. Viewport override reset.
