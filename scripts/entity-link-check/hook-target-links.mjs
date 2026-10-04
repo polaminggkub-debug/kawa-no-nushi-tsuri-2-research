@@ -1,7 +1,10 @@
 import assert from 'node:assert/strict'
+import { readFileSync } from 'node:fs'
+import postcss from 'postcss'
 import { data, renderCatalogue, unescapeHtml } from './shared.mjs'
 import { hookTargetLinks } from '../../src/pages/equipment/hook-target-links.js'
 
+checkHookLinkStyles()
 const targetHooks = data.items.filter(
   (item) => item.category === 'hook' && item.playerUse?.targetMatches,
 )
@@ -100,4 +103,25 @@ function assertNoUnsupportedClaims(html, lang, itemId) {
 function normalizeTargets(value) {
   const targets = Array.isArray(value) ? value : [value]
   return targets.map((target) => String(target.fishId).toUpperCase())
+}
+
+function checkHookLinkStyles() {
+  const file = new URL('../../src/pages/equipment/styles/part-6.css', import.meta.url)
+  const root = postcss.parse(readFileSync(file, 'utf8'), { from: file.pathname })
+  const button = root.nodes.find(
+    (node) => node.type === 'rule' && node.selector === '.item-card .route-button',
+  )
+  const label = root.nodes.find(
+    (node) => node.type === 'rule' && node.selector === '.hook-target-links > span',
+  )
+  assert(button, 'Missing scoped item-card route-button hit-target rule')
+  assert.equal(declaration(button, 'display'), 'inline-flex')
+  assert.equal(declaration(button, 'min-height'), '44px')
+  assert.equal(declaration(button, 'max-width'), '100%')
+  assert(label, 'Missing block label rule for hook target links')
+  assert.equal(declaration(label, 'display'), 'block')
+}
+
+function declaration(rule, property) {
+  return rule.nodes.find((node) => node.type === 'decl' && node.prop === property)?.value
 }

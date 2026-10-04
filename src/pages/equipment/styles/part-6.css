@@ -91,3 +91,32 @@
   background: var(--green);
   color: white;
 }
+
+.item-card .route-button {
+  display: inline-flex;
+  align-items: center;
+  min-height: 44px;
+  max-width: 100%;
+  padding: 8px 12px;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  background: var(--soft);
+  color: var(--deep);
+  font-weight: 700;
+  text-decoration: none;
+}
+
+.item-card .route-button:hover,
+.item-card .route-button:focus-visible {
+  border-color: var(--green);
+  background: var(--paper);
+}
+
+.hook-target-links {
+  margin-top: 12px;
+}
+
+.hook-target-links > span {
+  display: block;
+  margin-bottom: 8px;
+}

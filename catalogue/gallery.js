@@ -2389,7 +2389,7 @@
   }
   function loadCatalogue(ctx) {
     showCatalogueLoading(ctx);
-    fetch("gallery-data.json?v=compendium-20261005-19").then((response) => {
+    fetch("gallery-data.json?v=compendium-20261005-20").then((response) => {
       if (!response.ok) throw new Error("catalogue unavailable");
       return response.json();
     }).then((data) => initializeLoadedCatalogue(ctx, data)).catch((error) => {
