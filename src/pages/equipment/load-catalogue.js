@@ -1,3 +1,5 @@
+import { showCatalogueLoading, showCatalogueError } from './catalogue-load-state.js'
+
 function installCatalogueData(ctx, data) {
   ctx.allItems = data.items
   ctx.decisions = data.playerDecisions?.sections || []
@@ -178,11 +180,15 @@ function initializeLoadedCatalogue(ctx, data) {
 }
 
 export function loadCatalogue(ctx) {
-  fetch('gallery-data.json?v=compendium-20261005-07')
+  showCatalogueLoading(ctx)
+  fetch('gallery-data.json?v=compendium-20261005-08')
     .then((response) => {
       if (!response.ok) throw new Error('catalogue unavailable')
       return response.json()
     })
     .then((data) => initializeLoadedCatalogue(ctx, data))
-    .catch((error) => console.error(error))
+    .catch((error) => {
+      console.error(error)
+      showCatalogueError(ctx)
+    })
 }

@@ -302,9 +302,9 @@
     const none = ctx.lang === "th" ? "ไม่พบในสต็อกด่านนี้" : ctx.lang === "ja" ? "店頭記録なし" : "No recorded stock";
     const choice = (kind, stage) => {
       const row = ctx.gearPriceGuide[kind]?.[stage];
-      if (!row) return none;
+      if (!row) return `${none} · ${firstStockLink(ctx, kind)}`;
       const item = ctx.allItems.find((i) => i.category === row.category && i.id === row.id);
-      return `<a href="${ctx.esc(ctx.itemHref(item))}">${ctx.esc(ctx.itemName(item))} (${row.id}) · ¥${row.priceYen}</a>`;
+      return `<a href="${ctx.esc(ctx.areaItemLink(item, stage))}">${ctx.esc(ctx.itemName(item))} (${row.id}) · ¥${row.priceYen}</a>`;
     };
     return `<section class="decision-card" id="float-price-guide"><h3>${title}</h3><p>${note}</p><div class="table-wrap"><table><thead><tr><th>${ctx.lang === "th" ? "ด่าน" : ctx.lang === "ja" ? "エリア" : "Area"}</th><th>${ctx.lang === "th" ? "ทุ่น" : ctx.lang === "ja" ? "ウキ" : "Float"}</th><th>${ctx.lang === "th" ? "ตะกั่ว" : ctx.lang === "ja" ? "オモリ" : "Sinker"}</th></tr></thead><tbody>${[1, 2, 3, 4, 5, 6].map((stage) => `<tr><td>${stage}</td><td>${choice("float", stage)}</td><td>${choice("sinker", stage)}</td></tr>`).join("")}</tbody></table></div></section>`;
   }
@@ -362,6 +362,15 @@
     box.innerHTML = `<details id="rod-comparison-details" class="overview-disclosure comparison"${wasOpen ? " open" : ""}><summary>${ctx.esc(ctx.player.compare)} · ${rods.length}</summary><p>${ctx.lang === "th" ? "เวลาเล็งสูง = ขยับจุดเป้าหมายได้นานขึ้น; ขอบเขตสูง = ปลาออกไปไกลกว่าเดิมก่อนเข้าเงื่อนไขหนีและเสียอุปกรณ์ที่แกะได้ ตัวเลขเป็นหน่วยเปรียบเทียบภายใน ไม่ใช่เมตรหรือคะแนนพลัง และปลาอาจหนีด้วยเงื่อนไขอื่น" : ctx.lang === "ja" ? "照準時間が大きいほど狙いを動かせる時間が長い。魚位置の境界が大きいほど、追跡した道具喪失分岐に入るまで魚が遠くに行ける。内部比較値であり、メートル・強さではない。別条件の逃げもある。" : "More aim time lets you move the target longer. A higher fish-position limit allows the fish farther out before the traced tackle-loss escape condition. Values are internal comparisons, not metres or power. Other escape conditions still apply."}</p><div class="table-wrap"><table><thead><tr><th>${ctx.esc(ctx.copy.item)}</th><th>${ctx.esc(ctx.player.style)}</th><th>${ctx.esc(ctx.player.aim)}</th><th>${ctx.esc(ctx.player.reach)}</th><th>${ctx.lang === "th" ? "ราคาซื้อ" : ctx.lang === "ja" ? "購入価格" : "Purchase price"}</th><th>${ctx.lang === "th" ? "คำแนะนำ" : ctx.lang === "ja" ? "選び方" : "Recommendation"}</th></tr></thead><tbody>${rods.slice().sort(
       (a, b) => a.decodedFields.styleCode - b.decodedFields.styleCode || b.decodedFields.rangeMultiplier - a.decodedFields.rangeMultiplier
     ).map((item) => rodComparisonRow(ctx, item, styles)).join("")}</tbody></table></div></details>`;
+  }
+  function firstStockLink(ctx, kind) {
+    const first = Object.entries(ctx.gearPriceGuide[kind] || {}).filter(([, row2]) => row2).sort(([a], [b]) => Number(a) - Number(b))[0];
+    if (!first) return "";
+    const [stage, row] = first;
+    const item = ctx.allItems.find((entry) => entry.category === row.category && entry.id === row.id);
+    if (!item) return "";
+    const label = ctx.lang === "th" ? `ดูสต็อกแรก: ด่าน ${stage}` : ctx.lang === "ja" ? `最初の在庫：エリア${stage}` : `First stock: area ${stage}`;
+    return `<a data-first-stock="${kind}" href="${ctx.esc(ctx.areaItemLink(item, stage))}">${ctx.esc(label)} · ¥${row.priceYen}</a>`;
   }
 
   // src/pages/equipment/item-use.js
@@ -514,7 +523,7 @@
     ].map(
       (group) => `<p><strong>${area} ${group.stages.join(" / ")}</strong> · ${group.refs.map((ref) => {
         const other = ctx.allItems.find((i) => i.category === ref.category && i.id === ref.id);
-        return other ? `<a href="${ctx.esc(ctx.itemHref(other))}">${ctx.esc(ctx.itemName(other))} (${ctx.esc(other.id)}) · ¥${ctx.esc(ref.priceYen)} ↗</a>` : "";
+        return other ? `<a href="${ctx.esc(ctx.areaItemLink(other, group.stages.includes(String(ctx.locationStage)) ? ctx.locationStage : group.stages[0]))}">${ctx.esc(ctx.itemName(other))} (${ctx.esc(other.id)}) · ¥${ctx.esc(ref.priceYen)} ↗</a>` : "";
       }).join(" / ")}</p>`
     ).join("")}</aside>`;
   }
@@ -1989,6 +1998,37 @@
     ctx.flyMakerLink = (item) => item.category.startsWith("fly") ? `<p><a class="route-button" data-fly-maker href="${ctx.esc(ctx.sourceReturn().split("#")[0] + "#fly-instructions")}">${ctx.lang === "th" ? "ดูขั้นตอนประกอบฟลายเองและตรวจราคาในเกม" : ctx.lang === "ja" ? "自作フライの手順とゲーム内見積額を確認" : "See custom fly steps and check the in-game quote"} ↗</a></p>` : "";
   }
 
+  // src/pages/equipment/catalogue-load-state.js
+  function local(ctx, values) {
+    return values[ctx.lang] || values.en;
+  }
+  function showCatalogueLoading(ctx) {
+    const message = local(ctx, {
+      th: "กำลังโหลดรายการและคำแนะนำตามตัวเลือกของคุณ…",
+      ja: "選択条件に合うアイテムと案内を読み込み中…",
+      en: "Loading items and advice for your selection…"
+    });
+    for (const id of ["category-description", "category-decisions", "rod-comparison"])
+      document.getElementById(id).innerHTML = "";
+    document.getElementById("category-title").textContent = local(ctx, {
+      th: "รายการตามตัวเลือกของคุณ",
+      ja: "選択条件の一覧",
+      en: "Your selected items"
+    });
+    document.getElementById("cards").innerHTML = `<p role="status">${ctx.esc(message)}</p>`;
+    document.getElementById("result-count").textContent = "";
+  }
+  function showCatalogueError(ctx) {
+    const message = local(ctx, {
+      th: "โหลดรายการไม่สำเร็จ ยังแสดงคำแนะนำตามปลาหรือตัวเลือกของคุณไม่ได้ ลองโหลดหน้าใหม่ หรือเลือกหน้าอื่นจากเมนูด้านบน",
+      ja: "一覧を読み込めず、選択した魚・条件の案内を表示できません。再読み込みするか、上のメニューから別のページを選んでください。",
+      en: "The catalogue could not load, so advice for your fish or filters is unavailable. Reload this page, or choose another page from the navigation above."
+    });
+    const retry = local(ctx, { th: "โหลดหน้าใหม่", ja: "再読み込み", en: "Reload page" });
+    document.getElementById("cards").innerHTML = `<div role="alert" class="empty-state"><p>${ctx.esc(message)}</p><a class="route-button" href="${ctx.esc(location.href)}">${ctx.esc(retry)} ↻</a></div>`;
+    document.getElementById("result-count").textContent = "";
+  }
+
   // src/pages/equipment/load-catalogue.js
   function installCatalogueData(ctx, data) {
     ctx.allItems = data.items;
@@ -2144,10 +2184,14 @@
     renderInitialCatalogue(ctx);
   }
   function loadCatalogue(ctx) {
-    fetch("gallery-data.json?v=compendium-20261005-07").then((response) => {
+    showCatalogueLoading(ctx);
+    fetch("gallery-data.json?v=compendium-20261005-08").then((response) => {
       if (!response.ok) throw new Error("catalogue unavailable");
       return response.json();
-    }).then((data) => initializeLoadedCatalogue(ctx, data)).catch((error) => console.error(error));
+    }).then((data) => initializeLoadedCatalogue(ctx, data)).catch((error) => {
+      console.error(error);
+      showCatalogueError(ctx);
+    });
   }
 
   // src/pages/equipment/index.js

@@ -145,12 +145,15 @@ function vmContext(document, location, loading) {
     setTimeout,
     clearTimeout,
     queueMicrotask,
-    fetch: loading
-      ? () => new Promise(() => {})
-      : async (file) => ({
-          ok: true,
-          json: async () => (file.includes('fish-locations') ? locations : data),
-        }),
+    fetch:
+      loading === 'failure'
+        ? async () => ({ ok: false })
+        : loading
+          ? () => new Promise(() => {})
+          : async (file) => ({
+              ok: true,
+              json: async () => (file.includes('fish-locations') ? locations : data),
+            }),
   }
 }
 
@@ -223,11 +226,11 @@ export async function galleryForage(lang) {
   }
 }
 
-export async function renderCatalogue(lang, search = '') {
+export async function renderCatalogue(lang, search = '', loading = false) {
   const suffix = lang === 'en' ? '' : `.${lang}`
   const location = new URL(`https://example.test/catalogue/index${suffix}.html${search}`)
   const { document, nodes } = createDocument(lang, { 'sort-filter': 'id' })
-  const context = vmContext(document, location, false)
+  const context = vmContext(document, location, loading)
   vm.runInNewContext(sourceBundle('gallery'), context)
   await new Promise((resolve) => setImmediate(resolve))
   assert(context.__testRuntimeContext, 'Catalogue bundle lacks page runtime')

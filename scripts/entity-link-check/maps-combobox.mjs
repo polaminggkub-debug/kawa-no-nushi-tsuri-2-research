@@ -120,9 +120,10 @@ function makeLanguageLinks() {
   })
 }
 
-function makeLocation() {
+function makeLocation(query = '') {
   const url = new URL(
-    'https://example.test/catalogue/maps.html?stage=6&return=index.th.html%3Fcategory%3Dlure%26fish%3D06%23catalogue',
+    'https://example.test/catalogue/maps.html?' +
+      (query || 'stage=6&return=index.th.html%3Fcategory%3Dlure%26fish%3D06%23catalogue'),
   )
   return { href: url.href, pathname: url.pathname, search: url.search }
 }
@@ -145,10 +146,10 @@ function exposeRuntime(bundle) {
   return bundle.replace(/\}\)\(\);\s*$/, `globalThis.__mapRuntime=${contextName};\n})();`)
 }
 
-async function runMapPage(outputs, locale) {
+async function runMapPage(outputs, locale, pending = false, query = '') {
   const links = makeLanguageLinks()
   const { document, nodes } = createHarnessDocument(locale, links)
-  const location = makeLocation()
+  const location = makeLocation(query)
   const history = makeHistory(location)
   const errors = []
   const context = {
@@ -162,10 +163,13 @@ async function runMapPage(outputs, locale) {
     setTimeout,
     clearTimeout,
     queueMicrotask,
-    fetch: async (file) => ({
-      ok: true,
-      json: async () => (String(file).includes('fish-locations') ? locations : data),
-    }),
+    fetch: async (file) => {
+      if (pending) return new Promise(() => {})
+      return {
+        ok: true,
+        json: async () => (String(file).includes('fish-locations') ? locations : data),
+      }
+    },
   }
   vm.runInNewContext(exposeRuntime(outputs.get('catalogue/maps.js')), context)
   await new Promise((resolve) => setImmediate(resolve))
@@ -279,6 +283,7 @@ async function main() {
   const outputs = await renderFrontendOutputs()
   for (const locale of ['en', 'th', 'ja']) {
     const { runtime, nodes, links, location, history } = await runMapPage(outputs, locale)
+    await checkPendingNavigation(outputs, locale)
     checkProfiles(runtime)
     checkLocaleReturns(runtime, links, location)
     checkSearchAndKeyboard(runtime, nodes, history)
@@ -290,3 +295,19 @@ async function main() {
 }
 
 await main()
+
+async function checkPendingNavigation(outputs, locale) {
+  const query = 'stage=2&section=s2-c1-r6&fish=06&return=fish.th.html%3Fid%3D06%26stage%3D2'
+  const { runtime, nodes, location } = await runMapPage(outputs, locale, true, query)
+  assert.equal(Object.keys(runtime.species).length, 0, 'Pending test accidentally loaded map data')
+  const equipment = new URL(nodes.get('catalogue-fish-link').href, location.href)
+  assert.equal(equipment.searchParams.get('fish'), '06')
+  assert.equal(equipment.searchParams.get('stage'), '2')
+  const returned = new URL(equipment.searchParams.get('return'), location.href)
+  assert.equal(returned.searchParams.get('section'), 's2-c1-r6')
+  assert.equal(returned.searchParams.get('return'), 'fish.th.html?id=06&stage=2')
+  const shop = new URL(nodes.get('shop-browser-link').href, location.href)
+  assert.equal(shop.searchParams.get('stage'), '2')
+  assert.equal(shop.searchParams.get('fish'), '06')
+  assert.equal(shop.searchParams.get('return'), equipment.searchParams.get('return'))
+}

@@ -126,9 +126,9 @@ export function floatPriceGuide(ctx) {
         : 'No recorded stock'
   const choice = (kind, stage) => {
     const row = ctx.gearPriceGuide[kind]?.[stage]
-    if (!row) return none
+    if (!row) return `${none} · ${firstStockLink(ctx, kind)}`
     const item = ctx.allItems.find((i) => i.category === row.category && i.id === row.id)
-    return `<a href="${ctx.esc(ctx.itemHref(item))}">${ctx.esc(ctx.itemName(item))} (${row.id}) · ¥${row.priceYen}</a>`
+    return `<a href="${ctx.esc(ctx.areaItemLink(item, stage))}">${ctx.esc(ctx.itemName(item))} (${row.id}) · ¥${row.priceYen}</a>`
   }
   return `<section class="decision-card" id="float-price-guide"><h3>${title}</h3><p>${note}</p><div class="table-wrap"><table><thead><tr><th>${ctx.lang === 'th' ? 'ด่าน' : ctx.lang === 'ja' ? 'エリア' : 'Area'}</th><th>${ctx.lang === 'th' ? 'ทุ่น' : ctx.lang === 'ja' ? 'ウキ' : 'Float'}</th><th>${ctx.lang === 'th' ? 'ตะกั่ว' : ctx.lang === 'ja' ? 'オモリ' : 'Sinker'}</th></tr></thead><tbody>${[1, 2, 3, 4, 5, 6].map((stage) => `<tr><td>${stage}</td><td>${choice('float', stage)}</td><td>${choice('sinker', stage)}</td></tr>`).join('')}</tbody></table></div></section>`
 }
@@ -239,4 +239,21 @@ export function renderComparison(ctx, category) {
     )
     .map((item) => rodComparisonRow(ctx, item, styles))
     .join('')}</tbody></table></div></details>`
+}
+
+function firstStockLink(ctx, kind) {
+  const first = Object.entries(ctx.gearPriceGuide[kind] || {})
+    .filter(([, row]) => row)
+    .sort(([a], [b]) => Number(a) - Number(b))[0]
+  if (!first) return ''
+  const [stage, row] = first
+  const item = ctx.allItems.find((entry) => entry.category === row.category && entry.id === row.id)
+  if (!item) return ''
+  const label =
+    ctx.lang === 'th'
+      ? `ดูสต็อกแรก: ด่าน ${stage}`
+      : ctx.lang === 'ja'
+        ? `最初の在庫：エリア${stage}`
+        : `First stock: area ${stage}`
+  return `<a data-first-stock="${kind}" href="${ctx.esc(ctx.areaItemLink(item, stage))}">${ctx.esc(label)} · ¥${row.priceYen}</a>`
 }

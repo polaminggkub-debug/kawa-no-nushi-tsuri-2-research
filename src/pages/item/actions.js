@@ -206,16 +206,23 @@ function priceChoiceTitle(ctx) {
 
 function priceChoiceGroup(ctx, group, items) {
   const area = ctx.copy.area(group.stages.join(' / '))
-  const refs = group.refs.map((ref) => priceChoiceItem(ctx, ref, items)).join(' / ')
+  const selectedStage = Number(ctx.selectedStage)
+  const linkStage = group.stages.some((stage) => Number(stage) === selectedStage)
+    ? selectedStage
+    : Number(group.stages[0])
+  const refs = group.refs.map((ref) => priceChoiceItem(ctx, ref, items, linkStage)).join(' / ')
   return `<p><strong>${ctx.esc(area)}</strong> · ${refs}</p>`
 }
 
-function priceChoiceItem(ctx, ref, items) {
+function priceChoiceItem(ctx, ref, items, stage) {
   const item = items.find(
     (candidate) => candidate.category === ref.category && candidate.id === ref.id,
   )
   if (!item) return ''
-  return `<a href="${ctx.esc(ctx.detailItemLink(item))}">${ctx.esc(ctx.imageName(item))} (${ctx.esc(item.id)}) · ¥${ctx.esc(ref.priceYen)} ↗</a>`
+  const [page, query] = ctx.detailItemLink(item).split('?')
+  const params = new URLSearchParams(query)
+  params.set('stage', String(stage))
+  return `<a href="${ctx.esc(`${page}?${params}`)}">${ctx.esc(ctx.imageName(item))} (${ctx.esc(item.id)}) · ¥${ctx.esc(ref.priceYen)} ↗</a>`
 }
 
 export function baitLurePriceChoices(ctx, item, items) {

@@ -23,7 +23,7 @@ export function baitLurePriceChoices(ctx, item) {
           .map((ref) => {
             const other = ctx.allItems.find((i) => i.category === ref.category && i.id === ref.id)
             return other
-              ? `<a href="${ctx.esc(ctx.itemHref(other))}">${ctx.esc(ctx.itemName(other))} (${ctx.esc(other.id)}) · ¥${ctx.esc(ref.priceYen)} ↗</a>`
+              ? `<a href="${ctx.esc(ctx.areaItemLink(other, group.stages.includes(String(ctx.locationStage)) ? ctx.locationStage : group.stages[0]))}">${ctx.esc(ctx.itemName(other))} (${ctx.esc(other.id)}) · ¥${ctx.esc(ref.priceYen)} ↗</a>`
               : ''
           })
           .join(' / ')}</p>`,

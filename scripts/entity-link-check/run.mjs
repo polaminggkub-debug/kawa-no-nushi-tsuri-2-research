@@ -23,3 +23,8 @@ console.log(
 await import('./selected-fly-advice.mjs')
 
 await import('./map-catalogue-return.mjs')
+
+await import('./catalogue-loading.mjs')
+await import('./float-price-links.mjs')
+
+await import('./cheaper-price-links.mjs')

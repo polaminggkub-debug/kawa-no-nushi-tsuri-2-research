@@ -816,15 +816,20 @@
   }
   function priceChoiceGroup(ctx, group, items) {
     const area = ctx.copy.area(group.stages.join(" / "));
-    const refs = group.refs.map((ref) => priceChoiceItem(ctx, ref, items)).join(" / ");
+    const selectedStage = Number(ctx.selectedStage);
+    const linkStage = group.stages.some((stage) => Number(stage) === selectedStage) ? selectedStage : Number(group.stages[0]);
+    const refs = group.refs.map((ref) => priceChoiceItem(ctx, ref, items, linkStage)).join(" / ");
     return `<p><strong>${ctx.esc(area)}</strong> · ${refs}</p>`;
   }
-  function priceChoiceItem(ctx, ref, items) {
+  function priceChoiceItem(ctx, ref, items, stage) {
     const item = items.find(
       (candidate) => candidate.category === ref.category && candidate.id === ref.id
     );
     if (!item) return "";
-    return `<a href="${ctx.esc(ctx.detailItemLink(item))}">${ctx.esc(ctx.imageName(item))} (${ctx.esc(item.id)}) · ¥${ctx.esc(ref.priceYen)} ↗</a>`;
+    const [page, query] = ctx.detailItemLink(item).split("?");
+    const params = new URLSearchParams(query);
+    params.set("stage", String(stage));
+    return `<a href="${ctx.esc(`${page}?${params}`)}">${ctx.esc(ctx.imageName(item))} (${ctx.esc(item.id)}) · ¥${ctx.esc(ref.priceYen)} ↗</a>`;
   }
   function baitLurePriceChoices(ctx, item, items) {
     const rows = Object.entries(item.baitLureDecision?.cheaperByStage || {});
@@ -1288,7 +1293,7 @@
   function loadCatalogue(ctx) {
     ctx.flyMakerLink = (item) => item.category.startsWith("fly") ? `<p><a class="route-button" data-fly-maker href="${ctx.esc(ctx.currentCategoryLink().split("#")[0] + "#fly-instructions")}">${ctx.lang === "th" ? "ดูขั้นตอนประกอบฟลายเองและตรวจราคาในเกม" : ctx.lang === "ja" ? "自作フライの手順とゲーム内見積額を確認" : "See custom fly steps and check the in-game quote"} ↗</a></p>` : "";
     ctx.setNavigation();
-    fetch("gallery-data.json?v=compendium-20261005-07").then((response) => {
+    fetch("gallery-data.json?v=compendium-20261005-08").then((response) => {
       if (!response.ok) throw new Error("catalogue data unavailable");
       return response.json();
     }).then((data) => {
