@@ -1,0 +1,17 @@
+.shop-walk {
+  margin-block: 1rem;
+  padding: 1rem;
+  background: #edf2e8;
+  border-radius: 0.75rem;
+}
+.shop-walk h4 {
+  margin: 0 0 0.6rem;
+}
+.shop-walk li {
+  margin-block: 0.6rem;
+  line-height: 1.6;
+}
+.shop-walk img {
+  width: min(100%, 512px);
+  image-rendering: pixelated;
+}

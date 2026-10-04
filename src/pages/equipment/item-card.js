@@ -1,4 +1,5 @@
 import { renderTargetAdvice } from '../../shared/lib/index.js'
+import { questNextActions } from './quest-next-actions.js'
 
 function itemAdvice(item) {
   return item.rodDecision || item.baitLureDecision || item.gearDecision
@@ -132,5 +133,5 @@ export function renderItemCard(ctx, item) {
   const guidance = renderCardGuidance(ctx, item, use, summary, facts, advice)
   const details = renderCardAcquisition(ctx, item)
   const poison = item.category === 'food' && item.id === '0A' ? 'poison-food' : ''
-  return `<article class="item-card item-card-compact ${poison}" id="item-${item.category}-${item.id}">${identity}${guidance}${details}</article>`
+  return `<article class="item-card item-card-compact ${poison}" id="item-${item.category}-${item.id}">${identity}${guidance}${questNextActions(ctx, item)}${details}</article>`
 }

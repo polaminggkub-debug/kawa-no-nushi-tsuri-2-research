@@ -1,0 +1,365 @@
+{
+  "romSha1": "c2103dd94e2a1a65a495fc02adc2e7d040f31212",
+  "startingFixtureSha256": "95fe550cb5f253b1d8fc70d1482c78f3de1240cfaed832926e092a4e644cd0d5",
+  "startingFixtureScope": "Debug field fixture in Area6 at8,8. No proof of natural progression from newgame.",
+  "controllerOnlySteps": 33,
+  "independentReplayMatchedPriorScreenshot": true,
+  "image": "../catalogue/images/shop-routes/area6-regular-shop.png",
+  "imageSha256": "48f39a4450939cabf298f689d8c7ccac6ef90c10ffa2115eb6293bdfb768304e",
+  "entrance": {
+    "ordinal": 1,
+    "humanNumber": 2,
+    "fieldTile": [
+      2,
+      49
+    ],
+    "townArrival": [
+      7,
+      29
+    ]
+  },
+  "shop": {
+    "townMap": 12,
+    "slot": "08",
+    "counterTile": [
+      8,
+      23
+    ],
+    "playerApproachTile": [
+      8,
+      24
+    ]
+  },
+  "routeSteps": [
+    {
+      "step": 0,
+      "sourceRequest": "field6-down32.json",
+      "mapTile": [
+        6,
+        8,
+        10
+      ],
+      "controllerOnly": true
+    },
+    {
+      "step": 1,
+      "sourceRequest": "field6-down160.json",
+      "mapTile": [
+        6,
+        8,
+        19
+      ],
+      "controllerOnly": true
+    },
+    {
+      "step": 2,
+      "sourceRequest": "field6-down320.json",
+      "mapTile": [
+        6,
+        8,
+        35
+      ],
+      "controllerOnly": true
+    },
+    {
+      "step": 3,
+      "sourceRequest": "field6-left96.json",
+      "mapTile": [
+        6,
+        2,
+        35
+      ],
+      "controllerOnly": true
+    },
+    {
+      "step": 4,
+      "sourceRequest": "field6-right64.json",
+      "mapTile": [
+        6,
+        4,
+        35
+      ],
+      "controllerOnly": true
+    },
+    {
+      "step": 5,
+      "sourceRequest": "field6-right64-down128.json",
+      "mapTile": [
+        6,
+        4,
+        35
+      ],
+      "controllerOnly": true
+    },
+    {
+      "step": 6,
+      "sourceRequest": "field6-encounter-a.json",
+      "mapTile": [
+        6,
+        4,
+        35
+      ],
+      "controllerOnly": true
+    },
+    {
+      "step": 7,
+      "sourceRequest": "field6-encounter-b.json",
+      "mapTile": [
+        6,
+        4,
+        35
+      ],
+      "controllerOnly": true
+    },
+    {
+      "step": 8,
+      "sourceRequest": "field6-encounter-clear.json",
+      "mapTile": [
+        6,
+        4,
+        35
+      ],
+      "controllerOnly": true
+    },
+    {
+      "step": 9,
+      "sourceRequest": "field6-encounter-advance2.json",
+      "mapTile": [
+        6,
+        4,
+        35
+      ],
+      "controllerOnly": true
+    },
+    {
+      "step": 10,
+      "sourceRequest": "field6-encounter-advance3.json",
+      "mapTile": [
+        6,
+        4,
+        35
+      ],
+      "controllerOnly": true
+    },
+    {
+      "step": 11,
+      "sourceRequest": "field6-encounter-nav2.json",
+      "mapTile": [
+        6,
+        4,
+        35
+      ],
+      "controllerOnly": true
+    },
+    {
+      "step": 12,
+      "sourceRequest": "field6-encounter-flee.json",
+      "mapTile": [
+        6,
+        4,
+        35
+      ],
+      "controllerOnly": true
+    },
+    {
+      "step": 13,
+      "sourceRequest": "field6-after-flee.json",
+      "mapTile": [
+        6,
+        4,
+        35
+      ],
+      "controllerOnly": true
+    },
+    {
+      "step": 14,
+      "sourceRequest": "field6-return-field.json",
+      "mapTile": [
+        6,
+        4,
+        35
+      ],
+      "controllerOnly": true
+    },
+    {
+      "step": 15,
+      "sourceRequest": "field6-return-field2.json",
+      "mapTile": [
+        6,
+        4,
+        35
+      ],
+      "controllerOnly": true
+    },
+    {
+      "step": 16,
+      "sourceRequest": "field6-down-from4-128.json",
+      "mapTile": [
+        6,
+        4,
+        42
+      ],
+      "controllerOnly": true
+    },
+    {
+      "step": 17,
+      "sourceRequest": "field6-down-from4-next128.json",
+      "mapTile": [
+        6,
+        4,
+        47
+      ],
+      "controllerOnly": true
+    },
+    {
+      "step": 18,
+      "sourceRequest": "field6-left-from4-64.json",
+      "mapTile": [
+        6,
+        0,
+        47
+      ],
+      "controllerOnly": true
+    },
+    {
+      "step": 19,
+      "sourceRequest": "field6-access-down-to-x0-y49.json",
+      "mapTile": [
+        6,
+        0,
+        49
+      ],
+      "controllerOnly": true
+    },
+    {
+      "step": 20,
+      "sourceRequest": "field6-access-right-to-x2-y49.json",
+      "mapTile": [
+        6,
+        2,
+        49
+      ],
+      "controllerOnly": true
+    },
+    {
+      "step": 21,
+      "sourceRequest": "field6-access-enter-town12.json",
+      "mapTile": [
+        12,
+        7,
+        29
+      ],
+      "controllerOnly": true
+    },
+    {
+      "step": 22,
+      "sourceRequest": "town12-replay-arrival-settled.json",
+      "mapTile": [
+        12,
+        7,
+        29
+      ],
+      "controllerOnly": true
+    },
+    {
+      "step": 23,
+      "sourceRequest": "town12-replay-up96.json",
+      "mapTile": [
+        12,
+        7,
+        26
+      ],
+      "controllerOnly": true
+    },
+    {
+      "step": 24,
+      "sourceRequest": "town12-replay-right32.json",
+      "mapTile": [
+        12,
+        9,
+        26
+      ],
+      "controllerOnly": true
+    },
+    {
+      "step": 25,
+      "sourceRequest": "town12-replay-up48.json",
+      "mapTile": [
+        12,
+        9,
+        23
+      ],
+      "controllerOnly": true
+    },
+    {
+      "step": 26,
+      "sourceRequest": "town12-replay-down16.json",
+      "mapTile": [
+        12,
+        9,
+        24
+      ],
+      "controllerOnly": true
+    },
+    {
+      "step": 27,
+      "sourceRequest": "town12-replay-left16.json",
+      "mapTile": [
+        12,
+        8,
+        24
+      ],
+      "controllerOnly": true
+    },
+    {
+      "step": 28,
+      "sourceRequest": "town12-replay-up16.json",
+      "mapTile": [
+        12,
+        8,
+        24
+      ],
+      "controllerOnly": true
+    },
+    {
+      "step": 29,
+      "sourceRequest": "town12-replay-approach-settled.json",
+      "mapTile": [
+        12,
+        8,
+        24
+      ],
+      "controllerOnly": true
+    },
+    {
+      "step": 30,
+      "sourceRequest": "town12-replay-shop-a1.json",
+      "mapTile": [
+        12,
+        8,
+        24
+      ],
+      "controllerOnly": true
+    },
+    {
+      "step": 31,
+      "sourceRequest": "town12-replay-shop-wait1.json",
+      "mapTile": [
+        12,
+        8,
+        24
+      ],
+      "controllerOnly": true
+    },
+    {
+      "step": 32,
+      "sourceRequest": "town12-replay-shop-a2.json",
+      "mapTile": [
+        12,
+        8,
+        24
+      ],
+      "controllerOnly": true
+    }
+  ]
+}

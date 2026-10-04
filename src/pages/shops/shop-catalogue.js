@@ -1,3 +1,4 @@
+import { area6Walk } from './area6-walk.js'
 export function renderLocations(ctx, locations, mapManifest, stage, place, items) {
   const area = locations?.areas?.find((a) => Number(a.outdoorArea) === stage)
   const visuals = ctx.$('location-visuals')
@@ -183,7 +184,7 @@ export function sellerLocationCard(ctx, view, node, access, targetItem) {
       [ctx.text.testedInputs]: tested,
       result: access?.probe?.result,
     },
-    extra: actions,
+    extra: actions + area6Walk(ctx, view, node),
   })
 }
 export function sellerStockActions(ctx, node, targetItem, linkedEntrance, fieldHref) {

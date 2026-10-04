@@ -41,3 +41,7 @@ await import('./water-icons.mjs')
 await import('./water-map-key.mjs')
 await import('./notebook-guide.mjs')
 await import('./notebook-item-action.mjs')
+await import('./area6-walk.mjs')
+await import('./quest-next-actions.mjs')
+
+await import('./bottle-capacity.mjs')

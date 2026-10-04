@@ -4,7 +4,7 @@ export function loadCatalogue(ctx) {
       ? `<p><a class="route-button" data-fly-maker href="${ctx.esc(ctx.currentCategoryLink().split('#')[0] + '#fly-instructions')}">${ctx.lang === 'th' ? 'ดูขั้นตอนประกอบฟลายเองและตรวจราคาในเกม' : ctx.lang === 'ja' ? '自作フライの手順とゲーム内見積額を確認' : 'See custom fly steps and check the in-game quote'} ↗</a></p>`
       : ''
   ctx.setNavigation()
-  fetch('gallery-data.json?v=compendium-20261005-14')
+  fetch('gallery-data.json?v=compendium-20261005-15')
     .then((response) => {
       if (!response.ok) throw new Error('catalogue data unavailable')
       return response.json()

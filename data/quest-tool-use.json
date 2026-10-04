@@ -165,19 +165,22 @@
         "basePriceYen": 0
       },
       "summary": {
-        "en": "Take the empty bottle to the cow in area 3 (6,103) to get milk. First obtain the bottle from the town chest. Selecting the bottle alone only shows its description.",
-        "ja": "エリア3の町の宝箱でビンを入手し、牛（6,103）へ持っていくと牛乳になる。ビンをメニューで使うだけでは説明が出る。",
-        "th": "เอาขวดเปล่าไปหาวัวในด่าน 3 (6,103) เพื่อเติมนม โดยรับขวดจากหีบในเมืองก่อน ถ้าเลือกใช้ขวดจากเมนูอย่างเดียวจะขึ้นแค่คำอธิบาย"
+        "en": "Before opening the area-3 town chest at (6,4), leave one space in the general-tool inventory; a full inventory rejects the bottle. Take it to the cow at (6,103) to get milk. Selecting the bottle alone only shows its description.",
+        "ja": "エリア3の町の宝箱（6,4）を開ける前に、道具欄に空きを1つ作る。満杯だとビンを受け取れない。入手したビンを牛（6,103）へ持っていくと牛乳になる。ビンをメニューで使うだけでは説明が出る。",
+        "th": "ก่อนเปิดหีบในเมืองด่าน 3 พิกัด (6,4) ให้เว้นช่องว่างในช่องเก็บของทั่วไป 1 ช่อง ถ้าช่องเก็บของเต็ม เกมจะไม่ให้ขวด จากนั้นเอาขวดไปหาวัวที่ (6,103) เพื่อแลกเป็นนม ถ้าเลือกใช้ขวดจากเมนูอย่างเดียวจะขึ้นแค่คำอธิบาย"
       },
       "facts": {
         "en": [
-          "The town chest for area 3 at (6,4) grants the empty bottle and enables the cow interaction. The cow replaces the bottle with milk."
+          "The town chest for area 3 at (6,4) grants the empty bottle and enables the cow interaction. The cow replaces the bottle with milk.",
+          "Leave one free space in the general-tool inventory before taking the bottle; a full inventory cannot receive it."
         ],
         "ja": [
-          "エリア3の町の宝箱（6,4）で空きビンを入手し、牛との交換イベントが使えるようになる。牛はビンを牛乳に置き換える。"
+          "エリア3の町の宝箱（6,4）で空きビンを入手し、牛との交換イベントが使えるようになる。牛はビンを牛乳に置き換える。",
+          "ビンを受け取る前に道具欄に空きを1つ作る。満杯だと受け取れない。"
         ],
         "th": [
-          "หีบในเมืองของพื้นที่ 3 พิกัด (6,4) ให้ขวดเปล่าและเปิดทางให้แลกกับวัว วัวเปลี่ยนขวดเป็นนม"
+          "หีบในเมืองของพื้นที่ 3 พิกัด (6,4) ให้ขวดเปล่าและเปิดทางให้แลกกับวัว วัวเปลี่ยนขวดเป็นนม",
+          "ก่อนรับขวด ให้เว้นช่องในช่องเก็บของทั่วไป 1 ช่อง ถ้าช่องเต็มจะรับขวดไม่ได้"
         ]
       },
       "evidence": {
@@ -189,13 +192,13 @@
       },
       "evidenceNotes": {
         "en": [
-          "The direct-use handler 03:C4D9 only displays message 0168. The town chest branch at 00:D0EA..D113 grants ID 0F and sets 7E:0C1A bit 0. In area 3, NPC slot 0C at (6,103), 00:C804 checks that flag and ID 0F, then writes ID 10 into the found inventory slot."
+          "The direct-use handler 03:C4D9 only displays message 0168. The town chest branch at 00:D0EA..D113 grants ID 0F through 00:D1D4..D207, then sets 7E:0C1A bit 0 only if the grant succeeds. The shared grant routine checks the final general-tool slot at 7E:0B78; when occupied, it displays message 0196 and returns status 1, and the chest caller exits before setting the flag. The trace does not establish persistence or retry behavior after a full-inventory attempt. In area 3, NPC slot 0C at (6,103), 00:C804 checks that flag and ID 0F, then writes ID 10 into the found inventory slot."
         ],
         "ja": [
-          "直接使用処理03:C4D9はメッセージ0168のみを表示する。町の宝箱処理00:D0EA..D113はID0Fを与え、7E:0C1Aのbit0を設定する。エリア3のNPCスロット0C（6,103）、00:C804はそのフラグとID0Fを確認して、見つかった所持欄をID10に置き換える。"
+          "直接使用処理03:C4D9はメッセージ0168のみを表示する。町の宝箱処理00:D0EA..D113は00:D1D4..D207の付与処理でID0Fを渡し、付与成功時に限り7E:0C1Aのbit0を設定する。共通付与処理は最後の道具欄7E:0B78を確認し、埋まっている場合はメッセージ0196を表示して状態1で戻るため、宝箱処理はフラグ設定前に終了する。満杯状態で試した後の保存・再試行動作はこの追跡では確認していない。エリア3のNPCスロット0C（6,103）、00:C804はそのフラグとID0Fを確認して、見つかった所持欄をID10に置き換える。"
         ],
         "th": [
-          "ตัวใช้โดยตรง 03:C4D9 แสดงข้อความ 0168 เท่านั้น ทางหีบเมือง 00:D0EA..D113 ให้ ID 0F และตั้งบิต 0 ของ 7E:0C1A ส่วน NPC ช่อง 0C ในพื้นที่ 3 (6,103) ที่ 00:C804 ตรวจธงนี้กับ ID 0F แล้วเขียน ID 10 ทับช่องไอเท็มที่พบ"
+          "ตัวใช้โดยตรง 03:C4D9 แสดงข้อความ 0168 เท่านั้น ทางหีบเมือง 00:D0EA..D113 ส่ง ID 0F ผ่านฟังก์ชันให้ของ 00:D1D4..D207 แล้วตั้งบิต 0 ของ 7E:0C1A เฉพาะเมื่อให้ของสำเร็จ ฟังก์ชันกลางตรวจช่องของทั่วไปช่องสุดท้ายที่ 7E:0B78; หากมีของอยู่จะแสดงข้อความ 0196 แล้วคืนสถานะ 1 ทำให้ตัวเปิดหีบจบก่อนตั้งธง โค้ดที่ตรวจยังไม่ยืนยันว่าหลังโหลดเซฟใหม่จะเกิดอะไรขึ้นกับความพยายามตอนช่องเต็ม ส่วน NPC ช่อง 0C ในพื้นที่ 3 (6,103) ที่ 00:C804 ตรวจธงนี้กับ ID 0F แล้วเขียน ID 10 ทับช่องไอเท็มที่พบ"
         ]
       },
       "rawTrace": {

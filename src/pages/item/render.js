@@ -1,4 +1,5 @@
 import { notebookAction } from './notebook.js'
+import { questNextActions } from './quest-next-actions.js'
 import { targetAdviceSection } from './target-advice.js'
 function renderFishTarget(ctx, fishVisuals, fishLocations) {
   if (!ctx.selectedFish) return ''
@@ -141,9 +142,10 @@ function renderDecisionSection(
   return `<section id="what-to-do" class="decision-panel ${decision ? 'rod-decision' : ''}" ${dataAttribute}><h2>${ctx.esc(heading)}</h2>${targetAdvice || general}${supporting}${next}${maker}${note}</section>`
 }
 
-function renderQuickOptions(ctx, item, allItems) {
+function renderQuickOptions(ctx, item, allItems, fishLocations) {
   const options = [
     notebookAction(ctx, item),
+    questNextActions(ctx, item, fishLocations),
     ctx.boatBoardingChoice(item),
     ctx.acquisitionChoice(item),
     ctx.baitGatherChoice(item),
@@ -185,7 +187,7 @@ function renderItemSections(ctx, item, allItems, fishVisuals, fishLocations, dec
     fishVisuals,
     fishLocations,
   )
-  const extras = renderQuickOptions(ctx, item, allItems)
+  const extras = renderQuickOptions(ctx, item, allItems, fishLocations)
   const rodAdvice = item.rodDecision || item.gearDecision || item.baitLureDecision
   const buying = rodAdvice ? '' : ctx.buyingDecision(item, allItems, decisions)
   const more = renderMoreOptions(ctx, item, allItems, fishLocations)

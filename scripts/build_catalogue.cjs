@@ -59,6 +59,10 @@ fs.writeFileSync(path.join(root,'catalogue/gallery-data.json'),JSON.stringify(da
 // Merge player-facing explanations and verified fish art into the delivered payload.
 const usePath=path.join(root,'catalogue/item-use.json');
 if(fs.existsSync(usePath)){const use=JSON.parse(fs.readFileSync(usePath,'utf8'));for(const item of data.items)item.playerUse=use.items?.[`${item.category}:${item.id}`]||{};}
+// Apply the current bottle prerequisite without rebuilding unrelated item annotations.
+const bottleFinding=JSON.parse(fs.readFileSync(path.join(root,'data/quest-tool-use.json'),'utf8')).items['0F'];
+const bottleEntry=data.items.find(item=>item.category==='general_tool'&&item.id==='0F');
+for(const field of ['summary','facts','evidenceNotes'])bottleEntry.playerUse[field]=bottleFinding[field];
 const fishPath=path.join(root,'catalogue/fish-visuals.json');
 if(fs.existsSync(fishPath)){const fish=JSON.parse(fs.readFileSync(fishPath,'utf8'));data.fishVisuals=fish.fish||fish.items||fish;}
 // Current guide evidence comes from the supplied ROM; older guide leads stay in historical credits.
