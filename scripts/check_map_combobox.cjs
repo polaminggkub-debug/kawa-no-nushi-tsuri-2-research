@@ -27,7 +27,7 @@ for (const locale of ['en', 'th', 'ja']) {
   assert.match(html, /aria-expanded="false"/, `${locale}: expanded state does not start closed`);
   assert.match(html, /id="fish-suggestions"[^>]*role="listbox"/, `${locale}: listbox is missing`);
   assert.match(html, /id="fish-search-help"/, `${locale}: user instructions are missing`);
-  assert.match(html, /maps\.js\?v=player-usefulness-20261004-8/);
+  assert.match(html, /maps\.js\?v=player-usefulness-20261004-9/);
   assert.match(html, /maps\.css\?v=player-usefulness-20261004-7/);
 }
 
@@ -123,6 +123,8 @@ const instrumented = script.replace('  Promise.all([fetch(', `${hook}  Promise.a
 assert.notEqual(instrumented, script, 'Functional harness could not locate map startup boundary');
 vm.runInNewContext(instrumented, {document,window,location,history,URL,URLSearchParams,console});
 assert(api, 'Map combobox did not expose its functional harness');
+for(const link of languageLinks){const locale=link.getAttribute('hreflang'),suffix=locale==='en'?'':'.'+locale;const next=new URL(link.href,location.href);assert.equal(next.searchParams.get('stage'),'6','Map language switch loses area while data is loading');assert.equal(next.searchParams.get('return'),'index'+suffix+'.html?category=lure&fish=06#catalogue','Map language switch loses localized return before data initialization');}
+
 api.buildData(locations,gallery);
 api.initFromUrl();
 api.setRender(()=>{api.updateUrl();api.renderFishList();});

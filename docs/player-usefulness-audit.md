@@ -162,3 +162,5 @@ The scoped food/chum/hook source review found no additional material food-action
 
 - Published shop navigation release `6f40f33` was confirmed built by GitHub Pages and checked through Thai bait → shop → bait, then English switch → shop back → initial item back, with Iwana/sinker intact.
 - The same audit found map language switches kept the return page in its original language. Map language links now localize the supported nested return chain, retain item/fish/stage/rig filters, and discard external nested destinations. The map harness covers all three target languages, an item → shop → research chain, and the external-return rejection. Local actual clicks: Thai bait → fish map → English → back reaches English bait01 with Iwana/sinker rejection intact.
+
+- Early navigation regression: before the map data promise resolves, language links now carry the incoming area/fish/section and localized return route. The functional harness asserts this before calling map initialization; users need not wait for fish data to retain their selection when switching language. Published post-load map language/back clicks also preserved the bait01/Iwana/sinker choice.

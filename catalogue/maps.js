@@ -95,6 +95,9 @@
     if (selectedFish) params.set('fish', selectedFish);
     if(listScope==='section')params.set('scope','section');
     history.replaceState(null, '', `${location.pathname}?${params.toString()}`);
+    updateLanguageLinks(params);
+  }
+  function updateLanguageLinks(params) {
     document.querySelectorAll('.language-links a').forEach(link => {
       const paramsCopy = new URLSearchParams(params);
       const route = (link.dataset.route || link.getAttribute('href') || '').split('?')[0];
@@ -357,5 +360,8 @@
   $('clear-search').addEventListener('click',()=>{searchInput.value='';searchTerm='';selectedFish='';closeSuggestions(true);render();searchInput.focus();});
   $('show-all').addEventListener('click',()=>{selectedFish='';searchInput.value='';searchTerm='';closeSuggestions(true);activeSection=chooseSection(activeStage);render();});
   window.addEventListener('resize',()=>renderMap());
+  const loadingParams=new URLSearchParams(location.search);
+  if(returnPath)loadingParams.set('return',returnPath);else loadingParams.delete('return');
+  updateLanguageLinks(loadingParams);
   Promise.all([fetch('fish-locations.json').then(r=>{if(!r.ok)throw Error('fish locations');return r.json();}),fetch('gallery-data.json').then(r=>{if(!r.ok)throw Error('fish sprites');return r.json();})]).then(([locations,gallery])=>{buildData(locations,gallery);initFromUrl();enableControls();render();}).catch(error=>{console.error(error);$('pin-help').textContent=lang==='th'?'โหลดข้อมูลปลาไม่สำเร็จ กรุณาโหลดหน้าใหม่':lang==='ja'?'魚データを読み込めません。ページを再読み込みしてください。':'Could not load fish map data. Please reload the page.';});
 })();
