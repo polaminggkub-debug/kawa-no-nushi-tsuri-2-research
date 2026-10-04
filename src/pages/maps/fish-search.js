@@ -130,16 +130,17 @@ export function indexMapSections(ctx) {
 
 export function updateUrl(ctx) {
   const params = new URLSearchParams()
+  const anchor = ctx.openNotebookGuide
+    ? '#notebook-guide'
+    : location.hash === '#map-view'
+      ? '#map-view'
+      : ''
   params.set('stage', String(ctx.activeStage))
   if (ctx.returnPath) params.set('return', ctx.returnPath)
   if (ctx.activeSection) params.set('section', ctx.activeSection)
   if (ctx.selectedFish) params.set('fish', ctx.selectedFish)
   if (ctx.listScope === 'section') params.set('scope', 'section')
-  history.replaceState(
-    null,
-    '',
-    `${location.pathname}?${params.toString()}${ctx.openNotebookGuide ? '#notebook-guide' : ''}`,
-  )
+  history.replaceState(null, '', `${location.pathname}?${params.toString()}${anchor}`)
   ctx.updateLanguageLinks(params)
 }
 
@@ -151,7 +152,7 @@ export function updateLanguageLinks(ctx, params) {
     const toLang = link.getAttribute('hreflang')
     if (ctx.returnPath && ['en', 'th', 'ja'].includes(toLang))
       paramsCopy.set('return', ctx.localizeReturn(ctx.returnPath, toLang))
-    link.href = `${route}?${paramsCopy.toString()}`
+    link.href = `${route}?${paramsCopy.toString()}${location.hash === '#notebook-guide' || location.hash === '#map-view' ? location.hash : ''}`
   })
 }
 

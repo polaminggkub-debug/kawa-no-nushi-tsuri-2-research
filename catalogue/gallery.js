@@ -49,6 +49,60 @@
     visibleUse: () => visibleUse
   });
 
+  // src/pages/equipment/wing-palette.js
+  function itemDisplayName(ctx, item) {
+    return item.playerUse?.displayName?.[ctx.lang] || ctx.itemName(item);
+  }
+  function findWingItem(ctx, wingId) {
+    const item = ctx.allItems.find((entry) => entry.category === "fly_wing" && entry.id === wingId);
+    if (!item) throw new Error(`Missing catalogue record for Mayfly wing ${wingId}`);
+    return item;
+  }
+  function wingItemHref(ctx, item) {
+    const target = new URL(ctx.itemHref(item), "https://example.invalid/catalogue/");
+    const returned = target.searchParams.get("return");
+    if (returned) target.searchParams.set("return", `${returned.split("#")[0]}#wing-palette-title`);
+    return `${target.pathname.split("/").pop()}${target.search}${target.hash}`;
+  }
+  function renderColumnHeaders(ctx, palette, copy) {
+    const columns = Array.from({ length: palette.menu.columns }, (_, index) => index + 1);
+    return columns.map((column) => `<th scope="col">${ctx.esc(copy.column)} ${column}</th>`).join("");
+  }
+  function renderChoice(ctx, position, copy) {
+    const item = findWingItem(ctx, position.wingId);
+    const name = itemDisplayName(ctx, item);
+    const location2 = `${copy.column} ${position.column}, ${copy.row} ${position.row}`;
+    const label = `${copy.openItem}: ${name}, ID ${position.wingId}; ${location2}`;
+    return `<td data-wing-cell="${position.wingId}"><a class="wing-palette__choice" data-wing-choice="${position.wingId}" data-wing-row="${position.row}" data-wing-column="${position.column}" href="${ctx.esc(wingItemHref(ctx, item))}" aria-label="${ctx.esc(label)}"><img loading="lazy" src="${ctx.esc(item.image)}" alt=""><span class="wing-palette__choice-id">${ctx.esc(position.wingId)}</span><span class="wing-palette__choice-name">${ctx.esc(name)}</span><span class="wing-palette__choice-open"><span class="wing-palette__choice-open-label">${ctx.esc(copy.openItem)}</span> ↗</span></a></td>`;
+  }
+  function renderRow(ctx, palette, row, copy) {
+    const cells = Array.from({ length: palette.menu.columns }, (_, index) => {
+      const column = index + 1;
+      const position = palette.positions.find((entry) => entry.column === column && entry.row === row);
+      if (!position) throw new Error(`Missing verified Mayfly wing at row ${row}, column ${column}`);
+      return renderChoice(ctx, position, copy);
+    });
+    return `<tr><th scope="row">${ctx.esc(copy.row)} ${row}</th>${cells.join("")}</tr>`;
+  }
+  function renderGrid(ctx, palette, copy) {
+    const rows = Array.from({ length: palette.menu.rows }, (_, index) => index + 1);
+    return `<div class="wing-palette__table-wrap"><table class="wing-palette__table"><caption>${ctx.esc(copy.gridCaption)}</caption><thead><tr><th scope="col" class="wing-palette__corner"></th>${renderColumnHeaders(ctx, palette, copy)}</tr></thead><tbody>${rows.map((row) => renderRow(ctx, palette, row, copy)).join("")}</tbody></table></div>`;
+  }
+  function renderScreenshot(ctx, palette, copy) {
+    const shot = palette.screenshot;
+    return `<figure class="wing-palette__screenshot"><a href="${ctx.esc(shot.path)}" target="_blank" rel="noopener"><img loading="lazy" src="${ctx.esc(shot.path)}" alt="${ctx.esc(copy.screenshotTitle)}"></a><figcaption>${ctx.esc(shot.caption[ctx.lang] || shot.caption.en)}</figcaption></figure>`;
+  }
+  function renderTechnicalEvidence(ctx, palette, copy) {
+    const evidenceLink = `<p><a href="${ctx.esc(palette.evidenceHref)}" target="_blank" rel="noopener">${ctx.esc(copy.evidenceLink)} ↗</a></p>`;
+    return `<details class="wing-palette__technical"><summary>${ctx.esc(copy.technicalTitle)}</summary><div><p>${ctx.esc(copy.rightEdge)}</p><p>${ctx.esc(copy.noRanking)}</p><p>${ctx.esc(copy.evidence)}</p>${evidenceLink}</div></details>`;
+  }
+  function wingPaletteMarkup(ctx, palette) {
+    if (!palette?.positions?.length || !ctx.allItems?.length || !ctx.itemHref) return "";
+    const copy = palette.copy[ctx.lang] || palette.copy.en;
+    const titleId = "wing-palette-title";
+    return `<section class="wing-palette" data-wing-palette aria-labelledby="${titleId}"><header class="wing-palette__header"><p class="wing-palette__eyebrow">${ctx.esc(copy.eyebrow)}</p><h3 id="${titleId}">${ctx.esc(copy.title)}</h3><p class="wing-palette__intro">${ctx.esc(copy.intro)}</p><p class="wing-palette__controls" id="wing-palette-controls">${ctx.esc(copy.controls)}</p></header><div class="wing-palette__layout">${renderScreenshot(ctx, palette, copy)}${renderGrid(ctx, palette, copy)}</div>${renderTechnicalEvidence(ctx, palette, copy)}</section>`;
+  }
+
   // src/pages/equipment/evidence-display.js
   function renderSamples(ctx) {
     const tbody = document.getElementById("sample-rows");
@@ -62,7 +116,7 @@
     const box = document.getElementById("customizer-frames");
     box.innerHTML = data.customizerFrames.map(
       (frame, index) => `<figure class="custom-frame"><a href="${ctx.esc(frame.src)}" target="_blank" rel="noopener"><img loading="lazy" src="${ctx.esc(frame.src)}" alt="${ctx.esc(ctx.lang === "th" ? frame.captionTh : ctx.lang === "ja" ? frame.captionJa : frame.captionEn)}"></a><figcaption><span>${String(index + 1).padStart(2, "0")}</span>${ctx.esc(ctx.lang === "th" ? frame.captionTh : ctx.lang === "ja" ? frame.captionJa : frame.captionEn)}</figcaption></figure>`
-    ).join("");
+    ).join("") + wingPaletteMarkup(ctx, data.flyMakerWingPalette);
   }
   function renderNotes(ctx, data) {
     const list = data.researchNotes[ctx.lang] || data.researchNotes.en;
@@ -315,8 +369,11 @@
     const sameArea = offers.filter((o) => o.stage === stage);
     return { offer: (sameArea.length ? sameArea : offers)[0], sameArea };
   }
-  function noReadyFlyCard(ctx) {
-    return `<article class="decision-card"><h3>${ctx.lang === "th" ? "ปลานี้ควรใช้อะไร" : ctx.lang === "ja" ? "この魚には何を使うか" : "What to use for this fish"}</h3><p>${ctx.lang === "th" ? "ยังไม่มีชุดฟลายสำเร็จรูปที่ผ่านเงื่อนไขบอดี้ให้แนะนำ ลองเลือกหมวดเหยื่อจริงหรือลัวร์สำหรับปลานี้" : ctx.lang === "ja" ? "ボディ判定に合う店売り毛バリは案内できない。この魚のエサ・ルアーを選ぶ。" : "No qualifying ready-made fly is listed. Switch to bait or lure for this target."}</p></article>`;
+  function noReadyFlyCard(ctx, fish) {
+    const title = ctx.lang === "th" ? "ปลานี้ควรใช้อะไร" : ctx.lang === "ja" ? "この魚には何を使うか" : "What to use for this fish";
+    const note = ctx.lang === "th" ? "ยังไม่มีชุดฟลายสำเร็จรูปที่ผ่านเงื่อนไขให้แนะนำ เปิดหน้าปลาเพื่อเลือกวิธีตกและอุปกรณ์ที่รองรับ" : ctx.lang === "ja" ? "条件に合う店売り毛バリは案内できません。魚のページで対応する釣り方と道具を選んでください。" : "No qualifying ready-made fly is listed. Open this fish’s guide to choose a supported method and setup.";
+    const action = ctx.lang === "th" ? "เลือกชุดตกสำหรับปลานี้" : ctx.lang === "ja" ? "対応する釣り方と道具を見る" : "Choose a setup for this fish";
+    return `<article class="decision-card"><h3>${ctx.esc(title)}</h3><p>${ctx.esc(note)}</p><a class="route-button" data-fly-fallback="${ctx.esc(fish)}" href="${ctx.esc(ctx.fishHref(fish))}">${ctx.esc(action)} ↗</a></article>`;
   }
   function flyDecisionCopy(ctx, fish, offer, sameArea) {
     const b = offer.bundle, refs = [
@@ -340,7 +397,7 @@
     if (!["flymaker", "all"].includes(category) || !fish) return "";
     const stage = Number(ctx.locationStage || (ctx.fishLocations[fish]?.locations || [])[0]?.stage);
     const { offer, sameArea } = findFlyOffer(ctx, fish, stage);
-    return offer ? ctx.decisionCard(flyDecisionCopy(ctx, fish, offer, sameArea)) : noReadyFlyCard(ctx);
+    return offer ? ctx.decisionCard(flyDecisionCopy(ctx, fish, offer, sameArea)) : noReadyFlyCard(ctx, fish);
   }
   function rodTableAdvice(ctx, item) {
     const linkLabel = ctx.lang === "th" ? "ดูเงื่อนไขซื้อและคันที่เทียบ" : ctx.lang === "ja" ? "購入条件・比較候補を見る" : "See purchase conditions and alternatives";
@@ -2132,7 +2189,6 @@
     ctx.set("#kit-copy", ctx.player.kitText);
     ctx.set("#kit-link", ctx.player.kitLink);
     ctx.renderSamples();
-    ctx.renderFrames(data);
     ctx.renderNotes(data);
     ctx.renderFilters();
   }
@@ -2176,11 +2232,13 @@
     document.getElementById("fish-search").value = fish ? ctx.fishName(fish) : "";
   }
   function openFlyGuideFromHash() {
-    if (typeof window === "undefined" || window.location.hash !== "#fly-instructions") return;
+    if (typeof window === "undefined" || !["#fly-instructions", "#wing-palette-title"].includes(window.location.hash))
+      return;
     const guide = document.getElementById("fly-instructions");
     if (!guide) return;
     guide.open = true;
-    guide.scrollIntoView({ behavior: "instant", block: "start" });
+    const target = window.location.hash === "#wing-palette-title" ? document.getElementById("wing-palette-title") : guide;
+    target?.scrollIntoView({ behavior: "instant", block: "start" });
   }
   function scrollCategoryAdviceFromHash() {
     if (typeof window === "undefined" || window.location.hash !== "#category-decisions") return;
@@ -2189,6 +2247,8 @@
   function openInitialContext() {
     openFlyGuideFromHash();
     scrollCategoryAdviceFromHash();
+    if (typeof window !== "undefined" && window.location.hash === "#fish-location-panel")
+      document.getElementById("fish-location-panel")?.scrollIntoView({ block: "start" });
   }
   function handleCategoryClick(ctx, event) {
     const link = event.target.closest("[data-category]");
@@ -2265,11 +2325,12 @@
   function initializeLoadedCatalogue(ctx, data) {
     installCatalogueData(ctx, data);
     restoreInitialFilters(ctx);
+    ctx.renderFrames(data);
     renderInitialCatalogue(ctx);
   }
   function loadCatalogue(ctx) {
     showCatalogueLoading(ctx);
-    fetch("gallery-data.json?v=compendium-20261005-16").then((response) => {
+    fetch("gallery-data.json?v=compendium-20261005-17").then((response) => {
       if (!response.ok) throw new Error("catalogue unavailable");
       return response.json();
     }).then((data) => initializeLoadedCatalogue(ctx, data)).catch((error) => {

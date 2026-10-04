@@ -101837,5 +101837,212 @@
       ],
       "unmappedNotebookIds": []
     }
+  },
+  "flyMakerWingPalette": {
+    "schemaVersion": 1,
+    "scope": "Area 1 Mayfly wing selection menu; controller-verified visible positions only",
+    "rom": {
+      "edition": "Original Japanese SFC release supplied for this research",
+      "sha1": "c2103dd94e2a1a65a495fc02adc2e7d040f31212",
+      "coreSha256": "8ed333ac04544cc6ab67ceb445d095f7600bb17586d4887d99117fbd1ef776f6"
+    },
+    "romSha256": "e0594921a5a2ef1a2613b9d2e29fed066569e3793393c591bf4c4968a54c0b49",
+    "menu": {
+      "columns": 4,
+      "rows": 4,
+      "selectionField": "$1D37",
+      "initialCursor": "top-left",
+      "controls": {
+        "right": "Move one column right",
+        "down": "Move one row down",
+        "confirm": "A"
+      },
+      "controllerButtonIds": {
+        "right": 7,
+        "down": 5,
+        "confirmA": 8
+      }
+    },
+    "positions": [
+      {
+        "column": 1,
+        "row": 1,
+        "wingId": "09",
+        "controllerVerified": true
+      },
+      {
+        "column": 1,
+        "row": 2,
+        "wingId": "0A",
+        "controllerVerified": true
+      },
+      {
+        "column": 1,
+        "row": 3,
+        "wingId": "0B",
+        "controllerVerified": true
+      },
+      {
+        "column": 1,
+        "row": 4,
+        "wingId": "0C",
+        "controllerVerified": true
+      },
+      {
+        "column": 2,
+        "row": 1,
+        "wingId": "0D",
+        "controllerVerified": true
+      },
+      {
+        "column": 2,
+        "row": 2,
+        "wingId": "0E",
+        "controllerVerified": true
+      },
+      {
+        "column": 2,
+        "row": 3,
+        "wingId": "0F",
+        "controllerVerified": true
+      },
+      {
+        "column": 2,
+        "row": 4,
+        "wingId": "10",
+        "controllerVerified": true
+      },
+      {
+        "column": 3,
+        "row": 1,
+        "wingId": "11",
+        "controllerVerified": true
+      },
+      {
+        "column": 3,
+        "row": 2,
+        "wingId": "12",
+        "controllerVerified": true
+      },
+      {
+        "column": 3,
+        "row": 3,
+        "wingId": "1F",
+        "controllerVerified": true
+      },
+      {
+        "column": 3,
+        "row": 4,
+        "wingId": "20",
+        "controllerVerified": true
+      },
+      {
+        "column": 4,
+        "row": 1,
+        "wingId": "21",
+        "controllerVerified": true
+      },
+      {
+        "column": 4,
+        "row": 2,
+        "wingId": "22",
+        "controllerVerified": true
+      },
+      {
+        "column": 4,
+        "row": 3,
+        "wingId": "23",
+        "controllerVerified": true
+      },
+      {
+        "column": 4,
+        "row": 4,
+        "wingId": "24",
+        "controllerVerified": true
+      }
+    ],
+    "rightEdgeProbe": {
+      "extraRightPresses": 4,
+      "observedRepeatedColumn": 4,
+      "observedIdsByRow": [
+        "21",
+        "22",
+        "23",
+        "24"
+      ],
+      "scope": "No fifth distinct choice appeared in this tested Area 1 Mayfly menu. This does not prove global inaccessibility of other ROM records."
+    },
+    "screenshot": {
+      "path": "custom/mayfly-wing-palette-area1.png",
+      "sha256": "30859d8aaa694659ae2957cbbcc2dbfbbc36abc3a4ea2dc462368913ac8f4180",
+      "width": 256,
+      "height": 224,
+      "caption": {
+        "en": "Original Snes9x frame with the Area 1 Mayfly wing menu open and its cursor at the top-left.",
+        "ja": "エリア1のメイフライ・ウィング選択画面。カーソルは左上。Snes9xの元画像。",
+        "th": "ภาพจาก Snes9x ขณะเปิดเมนูเลือกปีกเมย์ฟลายในด่าน 1 โดยเคอร์เซอร์อยู่ซ้ายบน"
+      }
+    },
+    "evidenceHref": "../docs/fly-maker-wing-palette-research.md",
+    "provenance": {
+      "method": "Restore the existing body-confirmed Mayfly maker state, navigate the wing menu with controller input only, confirm each position, and read the selected ID at WRAM $1D37. An independent replay compared all 16 cursor-frame hashes and selected IDs with the first probe.",
+      "seedState": "rom-analysis/fly-maker-ui-crosswalk/runs/body-first-confirm.state",
+      "seedStateSha256": "b60fb817fa033d77e3492e054115c24e17d9f6c679034d4a40e9492a470851b5",
+      "firstProbeState": "rom-analysis/fly-maker-palette-root-r2/wing-c1-r1.state",
+      "firstProbeStateSha256": "e722255a84daa57463afd4afbe61017a1f5c903f9cfe195060b40a299ddedcd0",
+      "independentReplay": "rom-analysis/fly-maker-palette-independent-r3/verification.json",
+      "selectionField": "$1D37",
+      "scopeLimit": "This is a controlled menu replay rooted in an existing state. It does not establish new-game progression, item stock outside this menu, other fly families, or a fishing-performance ranking."
+    },
+    "copy": {
+      "en": {
+        "eyebrow": "AREA 1 · MAYFLY · GAME MENU",
+        "title": "Find a wing by its menu position",
+        "intro": "Find a wing by row and column; select its tile to open the item record.",
+        "controls": "Start at the top-left. Press Right column − 1 times, Down row − 1 times, then A to select.",
+        "gridCaption": "Wing IDs at each tested row and column",
+        "technicalTitle": "Technical evidence and limits",
+        "evidenceLink": "Read the full research notes",
+        "column": "Column",
+        "row": "Row",
+        "openItem": "Open item details",
+        "screenshotTitle": "Game screen at the starting cursor position",
+        "rightEdge": "In four extra right-edge checks, pressing Right past column 4 left the cursor on the same column-4 ID for that row. This only describes this tested menu. ROM records 25 and 26 exist; their availability elsewhere is not settled here.",
+        "noRanking": "The menu position identifies the component ID only. No wing-specific bite or landing advantage is established.",
+        "evidence": "Evidence: original Japanese ROM; controller-only selection; selected wing ID read from WRAM $1D37; independent replay matched all 16 positions."
+      },
+      "ja": {
+        "eyebrow": "エリア1 · メイフライ · ゲーム画面",
+        "title": "メニュー位置からウィングを探す",
+        "intro": "行と列でウィングを探し、タイルを選んでアイテム詳細を開きます。",
+        "controls": "左上から開始。右を「列−1」回、下を「行−1」回押し、Aで決定します。",
+        "gridCaption": "各行・列で選択できたウィングID",
+        "technicalTitle": "技術的根拠と確認範囲",
+        "evidenceLink": "調査記録を読む",
+        "column": "列",
+        "row": "行",
+        "openItem": "アイテム詳細を見る",
+        "screenshotTitle": "開始位置（左上）のゲーム画面",
+        "rightEdge": "右端で4回追加確認したところ、4列目の右を押しても各行で列4と同じIDが選択されました。これは確認したメニュー内の結果です。ROMにはID 25・26の記録もありますが、他の状況で選べるかは未確定です。",
+        "noRanking": "位置から分かるのは部品IDです。ウィング別の食いつき・取り込み効果は確認されていません。",
+        "evidence": "根拠：日本版ROM、コントローラー入力のみで選択、WRAM $1D37のIDを確認。独立再生でも16位置すべて一致。"
+      },
+      "th": {
+        "eyebrow": "ด่าน 1 · เมย์ฟลาย · เมนูในเกม",
+        "title": "หาปีกจากตำแหน่งในเมนู",
+        "intro": "ดูแถวกับคอลัมน์เพื่อหาปีก แล้วแตะช่องไอคอนเพื่อเปิดรายละเอียดไอเท็ม",
+        "controls": "เริ่มจากซ้ายบน กดขวาเท่ากับจำนวนคอลัมน์ลบ 1 กดลงเท่ากับจำนวนแถวลบ 1 แล้วกด A เพื่อเลือก",
+        "gridCaption": "รหัสปีกที่เลือกได้ในแต่ละแถวและคอลัมน์ที่ตรวจ",
+        "technicalTitle": "หลักฐานทางเทคนิคและขอบเขตข้อมูล",
+        "evidenceLink": "อ่านบันทึกการวิจัยฉบับเต็ม",
+        "column": "คอลัมน์",
+        "row": "แถว",
+        "openItem": "เปิดรายละเอียดไอเท็ม",
+        "screenshotTitle": "หน้าจอเกม ณ ตำแหน่งเคอร์เซอร์เริ่มต้นซ้ายบน",
+        "rightEdge": "เมื่อกดขวาต่อจากคอลัมน์ 4 ในการทดสอบเพิ่ม รหัสของแถวเดิมยังเป็นรหัสในคอลัมน์ 4 ผลนี้ยืนยันเฉพาะเมนูที่ตรวจนี้ ระเบียน ROM ยังมีรหัส 25 และ 26 แต่การทดสอบนี้ไม่ได้ยืนยันว่าเลือกจากเมนูอื่นได้หรือไม่ได้",
+        "noRanking": "ตำแหน่งในเมนูบอกได้แค่รหัสชิ้นส่วน ยังไม่มีหลักฐานว่าปีกแต่ละอันช่วยให้ปลากินหรือตกขึ้นง่ายกว่า",
+        "evidence": "หลักฐาน: ROM ญี่ปุ่นต้นฉบับ เลือกด้วยคอนโทรลเลอร์อย่างเดียว แล้วอ่านรหัสปีกที่ WRAM $1D37; ทดลองซ้ำอิสระได้ผลตรงกันครบ 16 ตำแหน่ง"
+      }
+    }
   }
 }

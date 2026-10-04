@@ -47,3 +47,11 @@ await import('./quest-next-actions.mjs')
 await import('./bottle-capacity.mjs')
 
 await import('./water-sprite-assets.mjs')
+
+await import('./notebook-actions.mjs')
+
+await import('./wing-palette.mjs')
+
+await import('./fly-fallback-route.mjs')
+
+await import('./map-anchor.mjs')

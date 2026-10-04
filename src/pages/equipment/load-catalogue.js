@@ -19,7 +19,6 @@ function installCatalogueData(ctx, data) {
   ctx.set('#kit-copy', ctx.player.kitText)
   ctx.set('#kit-link', ctx.player.kitLink)
   ctx.renderSamples()
-  ctx.renderFrames(data)
   ctx.renderNotes(data)
   ctx.renderFilters()
 }
@@ -70,11 +69,19 @@ function syncFishSearchText(ctx) {
 }
 
 function openFlyGuideFromHash() {
-  if (typeof window === 'undefined' || window.location.hash !== '#fly-instructions') return
+  if (
+    typeof window === 'undefined' ||
+    !['#fly-instructions', '#wing-palette-title'].includes(window.location.hash)
+  )
+    return
   const guide = document.getElementById('fly-instructions')
   if (!guide) return
   guide.open = true
-  guide.scrollIntoView({ behavior: 'instant', block: 'start' })
+  const target =
+    window.location.hash === '#wing-palette-title'
+      ? document.getElementById('wing-palette-title')
+      : guide
+  target?.scrollIntoView({ behavior: 'instant', block: 'start' })
 }
 
 function scrollCategoryAdviceFromHash() {
@@ -85,6 +92,8 @@ function scrollCategoryAdviceFromHash() {
 function openInitialContext() {
   openFlyGuideFromHash()
   scrollCategoryAdviceFromHash()
+  if (typeof window !== 'undefined' && window.location.hash === '#fish-location-panel')
+    document.getElementById('fish-location-panel')?.scrollIntoView({ block: 'start' })
 }
 
 function handleCategoryClick(ctx, event) {
@@ -176,12 +185,13 @@ function renderInitialCatalogue(ctx) {
 function initializeLoadedCatalogue(ctx, data) {
   installCatalogueData(ctx, data)
   restoreInitialFilters(ctx)
+  ctx.renderFrames(data)
   renderInitialCatalogue(ctx)
 }
 
 export function loadCatalogue(ctx) {
   showCatalogueLoading(ctx)
-  fetch('gallery-data.json?v=compendium-20261005-16')
+  fetch('gallery-data.json?v=compendium-20261005-17')
     .then((response) => {
       if (!response.ok) throw new Error('catalogue unavailable')
       return response.json()

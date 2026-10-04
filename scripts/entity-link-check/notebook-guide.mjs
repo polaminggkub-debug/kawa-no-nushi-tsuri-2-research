@@ -22,6 +22,10 @@ function checkDataset() {
   assert.equal(guide.totals.notebookEligibleSpecies, 66)
   assert.equal(guide.stages.length, 6)
   assert.deepEqual(
+    guide.stages.map((stage) => stage.recordableSpeciesCount),
+    [6, 12, 15, 22, 27, 15],
+  )
+  assert.deepEqual(
     guide.stages.map((stage) => stage.firstOccurrenceCount),
     firstCounts,
   )
@@ -63,10 +67,10 @@ async function checkLocale(lang) {
     assert.equal((newList.match(/class="notebook-fish"/g) || []).length, stage.firstOccurrenceCount)
     if (stage.repeatedFromEarlierStages.length)
       assert(
-        html.includes('notebook-repeated'),
+        html.includes('class="notebook-repeated"'),
         `${lang} repeats are not rendered in Area ${stage.stage}`,
       )
-    else assert(!html.includes('notebook-repeated'))
+    else assert(!html.includes('class="notebook-repeated"'))
     validate(
       html,
       new URL(`https://example.test/catalogue/maps${lang === 'en' ? '' : `.${lang}`}.html`),
@@ -98,6 +102,7 @@ function makeContext(lang, stage) {
       area: (number) => `${lang === 'th' ? 'ด่าน' : lang === 'ja' ? 'エリア' : 'Area'} ${number}`,
     },
     idNorm: (id) => String(id).toUpperCase().padStart(2, '0'),
+    sourceReturn: () => `maps${suffix}.html?stage=${stage}`,
     fishHref: (id) =>
       `fish${suffix}.html?id=${id}&stage=${stage}&return=${encodeURIComponent(`maps${suffix}.html?stage=${stage}`)}`,
     $: (id) => (id === 'notebook-guide' ? mount : null),

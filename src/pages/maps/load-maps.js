@@ -4,7 +4,7 @@ export function loadMaps(ctx) {
       if (!r.ok) throw Error('fish locations')
       return r.json()
     }),
-    fetch('gallery-data.json?v=compendium-20261005-16').then((r) => {
+    fetch('gallery-data.json?v=compendium-20261005-17').then((r) => {
       if (!r.ok) throw Error('fish sprites')
       return r.json()
     }),
@@ -17,6 +17,7 @@ export function loadMaps(ctx) {
       ctx.enableControls()
       ctx.render()
       if (ctx.openNotebookGuide) ctx.$('notebook-guide')?.scrollIntoView({ block: 'start' })
+      else if (location.hash === '#map-view') ctx.$('map-view')?.scrollIntoView({ block: 'start' })
     })
     .catch((error) => {
       console.error(error)

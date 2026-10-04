@@ -41,6 +41,7 @@ def build(rom: bytes) -> dict[str, object]:
         verify(rom, 1, 0xBFD6, "b9 3c 0c c9 05 00 d0 07 98 9f fa 2a 7f"),
         verify(rom, 1, 0xBFF4, "b9 3c 0c c9 06 00 d0 07 98 9f fa 2a 7f"),
         verify(rom, 1, 0xC258, "a5 06 c5 12 d0 01 60"),
+        verify(rom, 1, 0xCED7, "af 92 2a 7f 38 ef 90 2a 7f 4a 85 3e 22 4a da 00"),
         verify(rom, 1, 0xD300, "ad e8 11 3a 0a aa da bd 4c 0e 85 3e 22 4a da 00"),
         verify(rom, 1, 0xD32D, "da bd c8 0d 85 3e 22 4a da 00"),
     ]

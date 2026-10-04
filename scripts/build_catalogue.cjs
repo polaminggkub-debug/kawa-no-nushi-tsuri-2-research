@@ -32,6 +32,8 @@ if(fs.existsSync(thaiCopyPath)&&fs.existsSync(thaiItemsPath)) {
 const flySteps=JSON.parse(fs.readFileSync(path.join(root,'data/fly-maker-player-steps.json'),'utf8'));
 if(flySteps.romSha256!=='e0594921a5a2ef1a2613b9d2e29fed066569e3793393c591bf4c4968a54c0b49')throw new Error('Fly steps use a different ROM');
 data.customizerFrames=flySteps.frames;
+data.flyMakerWingPalette=JSON.parse(fs.readFileSync(path.join(root,'data/fly-maker-wing-palette.json'),'utf8'));
+if(data.flyMakerWingPalette.romSha256!==flySteps.romSha256)throw new Error('Wing palette uses a different ROM');
 for(const item of data.items){delete item.nameTh;delete item.labelImageTh;}
 for(const file of ['thai-rom-names.json','thai-other-captures.json']) {
   const namesPath=path.join(root,'data',file);

@@ -115,7 +115,12 @@ function createDocument(lang, initialValues = {}) {
   for (const id of Object.keys(initialValues)) node(id)
   const languages = ['en', 'th', 'ja'].map((code) => {
     const target = node(`language-${code}`)
-    target.getAttribute = (key) => (key === 'hreflang' ? code : null)
+    target.getAttribute = (key) =>
+      key === 'hreflang'
+        ? code
+        : key === 'href'
+          ? `index${code === 'en' ? '' : `.${code}`}.html`
+          : null
     return target
   })
   const document = {

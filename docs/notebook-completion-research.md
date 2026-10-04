@@ -23,6 +23,13 @@ This route assigns every species to the first numbered stage in which its spawn 
 
 If you already recorded a species through another route, skip it when collecting new species. You can still pursue it for a larger-size record. The website guide does not read the emulator save or claim to know your actual progress.
 
+### Why the in-game area count differs from the route count
+
+For Area 3, **15** eligible species occur in the spawn table: **11** first appear at this stage on the suggested route and **4** also occur earlier. These are guide classifications, not the current save's area-page count. If the in-game page displays **13**, that means 13 species currently have their notebook area word set to Area 3. A species can be recorded on another area's page even though it is also available here.
+
+To determine overall completion from the notebook contents page, add its six current page counts. Each recorded species belongs to one area page, so this sum is the current number of distinct recorded species; compare it with 66. Do not add the website's six available-species totals, because they include species shared between areas.
+
+
 Each stage also contains one profile outside the 66 notebook slots: `44..49` respectively. The notebook updater rejects IDs above `42`; these extra profiles do not fill additional notebook slots. Profile `43` is unmapped. The guide retains these fish/creature entries in the general map catalogue and marks their notebook exclusion separately.
 
 ## Evidence and reproducibility
@@ -30,6 +37,7 @@ Each stage also contains one profile outside the 66 notebook slots: `44..49` res
 - Item `05` (`釣りノート`) opens notebook state 8 via `03:C05C..C071`; state dispatch calls `01:9738`, then list builder `01:BF30`.
 - `01:BF30..C00B` scans 66 area words at `$0C3C`, puts IDs with area 1–6 into the corresponding lists in `$7F:2AFA`, and writes six cumulative byte boundaries at `$7F:2A8E..2A98`.
 - Record updater `01:8B00..8C8F` indexes species by `2*(id-1)`. It compares selected size `$1EB1` against the existing best at `$0DC8+X`, and writes the current area `$085A` to `$0C3C+X` only on a strictly larger record. IDs above `42` are rejected.
+- `01:CED7..CEE4` displays Area 3’s current page count as `($7F:2A92 − $7F:2A90) / 2`; those values are the Area 3 and Area 2 cumulative byte endpoints. This counts unique species assigned to that page, independently of the fish’s update counter at `$0E4C`.
 - `01:C258..C2EA` sorts lists using the corresponding values in `$0CC0` and `$0D44`.
 - Six map ID tables start at CPU `0C:C800` (file `0x064800`), each 256 two-byte rows, separated by `0x200`. Duplicated rows count once per species in this guide; they are not additional notebook slots.
 

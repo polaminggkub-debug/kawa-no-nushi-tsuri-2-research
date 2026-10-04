@@ -1,3 +1,5 @@
+import { wingPaletteMarkup } from './wing-palette.js'
+
 export function renderSamples(ctx) {
   const tbody = document.getElementById('sample-rows')
   const selected = ctx.exampleIds
@@ -13,12 +15,13 @@ export function renderSamples(ctx) {
 
 export function renderFrames(ctx, data) {
   const box = document.getElementById('customizer-frames')
-  box.innerHTML = data.customizerFrames
-    .map(
-      (frame, index) =>
-        `<figure class="custom-frame"><a href="${ctx.esc(frame.src)}" target="_blank" rel="noopener"><img loading="lazy" src="${ctx.esc(frame.src)}" alt="${ctx.esc(ctx.lang === 'th' ? frame.captionTh : ctx.lang === 'ja' ? frame.captionJa : frame.captionEn)}"></a><figcaption><span>${String(index + 1).padStart(2, '0')}</span>${ctx.esc(ctx.lang === 'th' ? frame.captionTh : ctx.lang === 'ja' ? frame.captionJa : frame.captionEn)}</figcaption></figure>`,
-    )
-    .join('')
+  box.innerHTML =
+    data.customizerFrames
+      .map(
+        (frame, index) =>
+          `<figure class="custom-frame"><a href="${ctx.esc(frame.src)}" target="_blank" rel="noopener"><img loading="lazy" src="${ctx.esc(frame.src)}" alt="${ctx.esc(ctx.lang === 'th' ? frame.captionTh : ctx.lang === 'ja' ? frame.captionJa : frame.captionEn)}"></a><figcaption><span>${String(index + 1).padStart(2, '0')}</span>${ctx.esc(ctx.lang === 'th' ? frame.captionTh : ctx.lang === 'ja' ? frame.captionJa : frame.captionEn)}</figcaption></figure>`,
+      )
+      .join('') + wingPaletteMarkup(ctx, data.flyMakerWingPalette)
 }
 
 export function renderNotes(ctx, data) {

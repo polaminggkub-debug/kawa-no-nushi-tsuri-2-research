@@ -144,8 +144,26 @@ function findFlyOffer(ctx, fish, stage) {
   return { offer: (sameArea.length ? sameArea : offers)[0], sameArea }
 }
 
-function noReadyFlyCard(ctx) {
-  return `<article class="decision-card"><h3>${ctx.lang === 'th' ? 'ปลานี้ควรใช้อะไร' : ctx.lang === 'ja' ? 'この魚には何を使うか' : 'What to use for this fish'}</h3><p>${ctx.lang === 'th' ? 'ยังไม่มีชุดฟลายสำเร็จรูปที่ผ่านเงื่อนไขบอดี้ให้แนะนำ ลองเลือกหมวดเหยื่อจริงหรือลัวร์สำหรับปลานี้' : ctx.lang === 'ja' ? 'ボディ判定に合う店売り毛バリは案内できない。この魚のエサ・ルアーを選ぶ。' : 'No qualifying ready-made fly is listed. Switch to bait or lure for this target.'}</p></article>`
+function noReadyFlyCard(ctx, fish) {
+  const title =
+    ctx.lang === 'th'
+      ? 'ปลานี้ควรใช้อะไร'
+      : ctx.lang === 'ja'
+        ? 'この魚には何を使うか'
+        : 'What to use for this fish'
+  const note =
+    ctx.lang === 'th'
+      ? 'ยังไม่มีชุดฟลายสำเร็จรูปที่ผ่านเงื่อนไขให้แนะนำ เปิดหน้าปลาเพื่อเลือกวิธีตกและอุปกรณ์ที่รองรับ'
+      : ctx.lang === 'ja'
+        ? '条件に合う店売り毛バリは案内できません。魚のページで対応する釣り方と道具を選んでください。'
+        : 'No qualifying ready-made fly is listed. Open this fish’s guide to choose a supported method and setup.'
+  const action =
+    ctx.lang === 'th'
+      ? 'เลือกชุดตกสำหรับปลานี้'
+      : ctx.lang === 'ja'
+        ? '対応する釣り方と道具を見る'
+        : 'Choose a setup for this fish'
+  return `<article class="decision-card"><h3>${ctx.esc(title)}</h3><p>${ctx.esc(note)}</p><a class="route-button" data-fly-fallback="${ctx.esc(fish)}" href="${ctx.esc(ctx.fishHref(fish))}">${ctx.esc(action)} ↗</a></article>`
 }
 
 function flyDecisionCopy(ctx, fish, offer, sameArea) {
@@ -192,7 +210,9 @@ export function flyDecision(ctx, category) {
   if (!['flymaker', 'all'].includes(category) || !fish) return ''
   const stage = Number(ctx.locationStage || (ctx.fishLocations[fish]?.locations || [])[0]?.stage)
   const { offer, sameArea } = findFlyOffer(ctx, fish, stage)
-  return offer ? ctx.decisionCard(flyDecisionCopy(ctx, fish, offer, sameArea)) : noReadyFlyCard(ctx)
+  return offer
+    ? ctx.decisionCard(flyDecisionCopy(ctx, fish, offer, sameArea))
+    : noReadyFlyCard(ctx, fish)
 }
 
 function rodTableAdvice(ctx, item) {

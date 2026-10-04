@@ -83,6 +83,11 @@
       "bytes": "a5 06 c5 12 d0 01 60"
     },
     {
+      "cpu": "01:CED7",
+      "fileOffset": "0x00CED7",
+      "bytes": "af 92 2a 7f 38 ef 90 2a 7f 4a 85 3e 22 4a da 00"
+    },
+    {
       "cpu": "01:D300",
       "fileOffset": "0x00D300",
       "bytes": "ad e8 11 3a 0a aa da bd 4c 0e 85 3e 22 4a da 00"

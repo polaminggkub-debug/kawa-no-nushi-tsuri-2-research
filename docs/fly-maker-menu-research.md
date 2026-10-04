@@ -45,16 +45,24 @@ After confirmation, `$03:96A0..96C9` first checks `$09CC`, the last body slot in
 
 These parallel arrays store one finished combination per slot. The write path does not consume or decrement a separate stock of owned body, wing, or tail parts. Thus the user-facing instruction should be to choose the maker pictures and check the displayed quote, rather than to bring a wing already owned.
 
-## Unresolved menu-count / sprite crosswalk
+## Area 1 Mayfly wing palette: verified crosswalk
 
-The records establish the family/part filter and ROM order, but they do **not** yet establish a complete sprite-to-ID crosswalk. There is also a concrete count mismatch to resolve before publishing exact total palette choices:
+The ROM has 18 family-00 wing records (`09–12`, `1F–26`). Record membership alone does not establish that every row is selectable in the maker.
 
-1. Family `00` has 18 wing rows in the ROM (`09–12`, `1F–26`).
-2. `$03:97D8..9843` has a 32-byte indexed ID-list buffer and can write at most 17 matching word IDs; because it has room for 17, an 18th match is omitted. With this ascending data, the buffer can contain only through ID `25`.
-3. The Area 1 component display/selection setup is screen IDs `13..15` through the `$02:9FC8` renderer. That routine's loops at `$02:9FDF..9FEC` and `$02:A03B..A05F` process at most 16 word entries. Its first 16 populated entries are copied from `$1BD5` to selectable IDs `$1B6D`; for the full Mayfly wing filter this reaches only through `24`.
-4. The existing runtime evidence reports 20 Mayfly wing pictures, which conflicts with this static list/render bound. The exact screen-to-record sprite sequence, any page/scroll behavior, and whether those pictures include non-selectable decorations remain unresolved. Do not claim IDs `25` or `26` (or the 20-picture count) are selectable until runtime input and WRAM capture resolves this.
+The Area 1 Mayfly menu was checked from the same body-confirmed state using controller inputs only. Sixteen positions selected these IDs in `$1D37`:
 
-The first records `01`/`09`/`13` match the default menu choices in the controller replay below. This resolves those positions only; other positions still require individual verification.
+| Row ↓ / column → | 1 | 2 | 3 | 4 |
+| --- | --- | --- | --- | --- |
+| 1 | `09` | `0D` | `11` | `21` |
+| 2 | `0A` | `0E` | `12` | `22` |
+| 3 | `0B` | `0F` | `1F` | `23` |
+| 4 | `0C` | `10` | `20` | `24` |
+
+From the initial top-left cursor, press Right `column − 1` times, Down `row − 1` times, then A. Four additional trials pressing Right four times selected the same last-column IDs; they did not reveal a fifth column. This establishes this menu's 16 positions, not global availability of IDs `25` or `26`, and not a catch-rate ranking.
+
+The earlier visual count of 20 Mayfly wing pictures is superseded as an unverified selectable-choice count. The observed 16-position result matches the static bounds: `$03:97D8..9843` can populate at most 17 matching word IDs; `$02:9FC8` copies/renders at most 16 entries from `$1BD5` into `$1B6D`, reaching ID `24` for this filter.
+
+The original top-left menu image and the bounded player crosswalk are preserved in [`fly-maker-wing-palette.json`](../data/fly-maker-wing-palette.json). Full provenance and remaining limits are in [the wing-palette research](fly-maker-wing-palette-research.md). Body and tail defaults remain `01` and `13`; other families and part palettes require their own verification.
 
 ## ROM evidence index
 
