@@ -276,6 +276,20 @@
     return '<details id="fly-backup" class="detail-section fly-fallback" data-total="'+total+'"><summary>'+escapeHtml(title)+'</summary><p>'+escapeHtml(intro)+'</p><p><strong>'+escapeHtml(action)+'</strong></p><div class="detail-grid">'+cards+'</div><p class="muted">'+escapeHtml(scope)+'</p><a href="https://github.com/polaminggkub-debug/kawa-no-nushi-tsuri-2-research/blob/main/docs/fly-selection-practical-research.md">'+escapeHtml(copy.evidence)+' ↗</a></details>';
   }
 
+  function renderRodForMethod(method,stage,items){
+    const style={float:1,sinker:2,lure:4,fly:8}[method];
+    const rods=items.filter(item=>item.category==='rod'&&item.decodedFields?.styleCode===style);
+    const stocked=rod=>rod.playerUse?.shops?.some(shop=>String(shop.stage)===String(stage)&&!shop.condition);
+    const priced=rods.filter(rod=>Number.isFinite(rod.priceYen)&&rod.playerUse?.shops?.length).sort((a,b)=>a.priceYen-b.priceYen||a.id.localeCompare(b.id));
+    const here=priced.filter(stocked),choice=here[0]||priced[0];
+    if(!choice)return '';
+    const title=locale==='th'?'คันสำหรับวิธีนี้':locale==='ja'?'この釣り方の竿':'Rod for this method';
+    const owned=locale==='th'?'ถ้ามีคันของวิธีนี้อยู่แล้ว ใช้ต่อได้ ไม่ต้องซื้อซ้ำ':locale==='ja'?'この釣り方の竿を持っているなら、そのまま使い、買い直す必要はない。':'Keep a rod for this method if you already own one; there is no need to buy another.';
+    const decision=here.length?(locale==='th'?'ถ้าต้องซื้อใหม่แบบประหยัด คันนี้ถูกที่สุดในสต็อกของวิธีนี้ที่ด่าน '+stage+' ราคาเต็ม ¥'+choice.priceYen:locale==='ja'?'安く始めるなら、エリア'+stage+'のこの釣り方の竿で最安。新規購入は全額'+choice.priceYen+'円。':'For a budget start, this is the cheapest recorded rod for this method stocked in area '+stage+', at a full ¥'+choice.priceYen+'.'):(locale==='th'?'ด่านนี้ไม่มีคันของวิธีนี้ในสต็อกที่ตรวจ ใช้คันที่มีอยู่ หรือเปิดรายการนี้เพื่อดูด่านที่ขายก่อนเดินทาง; ไม่ต้องซื้อคันต่างสายมาแทน':locale==='ja'?'このエリアにこの釣り方の竿の在庫は記録されていない。手持ちを使うか、移動前にこの竿の販売エリアを確認する。別の釣り方の竿で代用しない。':'No rod for this method is recorded in this area’s stock. Use one you own, or check this rod’s sale areas before travelling; do not buy a different rod style as a substitute.');
+
+    return `<section class="method-rod" data-method-rod="${method}" data-rod="${choice.id}" data-rod-local="${Boolean(here.length)}"><h4>${escapeHtml(title)}</h4><p>${escapeHtml(owned)}</p><p>${escapeHtml(decision)}</p>${itemLink({item:choice,routes:[]},stage)}</section>`;
+  }
+
   function renderShopping(entries, locations, stage, allItems, flyChoices) {
     if(!locations.length)return '';
     const offers=starterOffers(entries,stage), text=shoppingCopy;
@@ -284,7 +298,7 @@
       if(['float','sinker'].includes(offer.method))query.set('route',offer.method);
       const link=`${itemPath()}?${query}`;
       const aimTip=offer.method==='lure'?`<p class="aim-tip">${escapeHtml(locale==='th'?'ก่อนใช้คันลัวร์ เติม HP ให้ถึง 100 เพื่อให้ได้เวลาเล็งเต็มของคันนั้น ไม่ใช่โบนัสโอกาสปลากิน':locale==='ja'?'ルアー竿を使う前にHPを100まで回復すると、竿本来の照準時間になります。食いつき率のボーナスではありません。':'Restore HP to 100 before lure fishing to get the rod’s full aim window. This does not add a bite-rate bonus.')}</p>`:'';
-      return `<article class="detail-section starter-offer" data-method="${offer.method}" data-item="${offer.entry.item.category}:${offer.entry.item.id}" data-price="${offer.price}"><h3>${escapeHtml(offer.label)}</h3><a class="entity-link" href="${escapeHtml(link)}"><img src="${escapeHtml(offer.entry.item.image)}" alt=""><span><strong>${escapeHtml(localizedItemName(offer.entry.item))}</strong><small>${escapeHtml(text.cost)} ¥${offer.price}${offer.bundle?` · ${escapeHtml(text.bundle)}`:''}</small></span></a>${aimTip}${offer.bundle?`<p class="muted">${escapeHtml(text.fly)}</p>`:''}<a class="route-button" href="${escapeHtml(link)}">${escapeHtml(text.buy)} ↗</a></article>`;
+      return `<article class="detail-section starter-offer" data-method="${offer.method}" data-item="${offer.entry.item.category}:${offer.entry.item.id}" data-price="${offer.price}"><h3>${escapeHtml(offer.label)}</h3><a class="entity-link" href="${escapeHtml(link)}"><img src="${escapeHtml(offer.entry.item.image)}" alt=""><span><strong>${escapeHtml(localizedItemName(offer.entry.item))}</strong><small>${escapeHtml(text.cost)} ¥${offer.price}${offer.bundle?` · ${escapeHtml(text.bundle)}`:''}</small></span></a>${renderRodForMethod(offer.method,stage,allItems)}${aimTip}${offer.bundle?`<p class="muted">${escapeHtml(text.fly)}</p>`:''}<a class="route-button" href="${escapeHtml(link)}">${escapeHtml(text.buy)} ↗</a></article>`;
     }).join('');
     return `<section class="detail-section shopping-plan"><h2>${escapeHtml(text.title)}</h2><label for="shopping-area">${escapeHtml(text.area)}</label><select id="shopping-area">${locations.map(loc=>`<option value="${loc.stage}" ${String(loc.stage)===stage?'selected':''}>${escapeHtml(copy.stage(loc.stage))} · ${escapeHtml(loc.stageName?.[locale]||loc.stageName?.en||'')}</option>`).join('')}</select><p>${escapeHtml(text.intro)}</p>${offers.length?`<div class="detail-grid">${cards}</div>`:`<p>${escapeHtml(text.none)}</p>`}<p class="muted">${escapeHtml(text.scope)}</p><a href="#all-compatible">${escapeHtml(text.all)} ↓</a>${renderReusableKit(allItems,stage)}${renderFlyFallback(allItems,stage,flyChoices)}</section>`;
   }
@@ -386,7 +400,7 @@
   }
 
   Promise.all([
-    fetch('gallery-data.json?v=player-usefulness-20261004-10').then(response => { if (!response.ok) throw new Error('gallery data unavailable'); return response.json(); }),
+    fetch('gallery-data.json?v=player-usefulness-20261004-11').then(response => { if (!response.ok) throw new Error('gallery data unavailable'); return response.json(); }),
     fetch('fish-locations.json').then(response => { if (!response.ok) throw new Error('location data unavailable'); return response.json(); })
   ]).then(([fishData, locationData]) => render(fishData, locationData)).catch(() => {
     page.innerHTML = `<h1>${escapeHtml(copy.pageTitle)}</h1><p class="empty-state">${escapeHtml(copy.recovery)}</p><p><a class="route-button" href="${escapeHtml(cataloguePath())}">${escapeHtml(copy.catalogue)}</a></p>`;

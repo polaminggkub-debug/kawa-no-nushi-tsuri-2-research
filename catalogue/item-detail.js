@@ -321,6 +321,14 @@
     const href=fishProfileLink(item.exchangeFishId,fishLocations);
     return `<aside class="detail-section daikon-fish-choice" data-daikon-choice><a class="route-button" href="${esc(href)}">${esc(label)} ↗</a></aside>`;
   }
+  function keepnetAlternatives(item,items){
+    if(!item.keepnetCapacity)return '';
+    const quest=items.find(candidate=>candidate.category==='food'&&candidate.id==='07');
+    const questLabel=lang==='th'?'จะเก็บยามาโนะคามิแลกหัวไชเท้า? อ่านผลต่ออาหารก่อน':lang==='ja'?'ヤマノカミを大根交換用に残す？ 食料への影響を先に確認':'Keeping Yamanokami for Daikon? Read the food-inventory effect first';
+    const questLink=quest?`<p><a href="${esc(detailItemLink(quest))}">${esc(questLabel)} ↗</a></p>`:'';
+    const title=lang==='th'?'เทียบข้องขนาดอื่น':lang==='ja'?'他のびくと比較':'Compare keepnet sizes';
+    return `<aside class="detail-section keepnet-alternatives" data-keepnet-choice><h3>${esc(title)}</h3>${items.filter(candidate=>candidate.keepnetCapacity&&candidate.id!==item.id).map(candidate=>`<p><a href="${esc(detailItemLink(candidate))}">${esc(imageName(candidate))} · ${candidate.keepnetCapacity} ${lang==='th'?'ตัว':lang==='ja'?'匹':'fish'} · ¥${candidate.priceYen} ↗</a></p>`).join('')}${questLink}</aside>`;
+  }
   function mushroomAlternative(item){
     if(item.category!=='food'||!['09','0A'].includes(item.id))return '';
     return `<p><a class="route-button" data-mushroom-alternative href="item${lang==='en'?'':'.'+lang}.html?category=food&id=01&return=${encodeURIComponent(currentLocalRoute())}">${lang==='th'?'ดูส้ม: ฟื้น 5 HP ราคา ¥5 พร้อมร้านที่ขาย':lang==='ja'?'みかんを見る：5HP回復・5円、販売場所付き':'See oranges: restore 5 HP for ¥5, with shops'} ↗</a></p>`;
@@ -352,7 +360,7 @@
     const categoryHref=currentCategoryLink();
     const intro=`<nav class="detail-breadcrumb"><a href="${esc(categoryHref)}">${esc(copy.allItems)} · ${esc(categoryText)}</a></nav>`;
     const moreLink=`<p class="detail-back-to-list"><a class="route-button" href="${esc(categoryHref)}">${esc(copy.allItems)} · ${esc(categoryText)} ↗</a></p>`;
-    $('detail-root').innerHTML=`${intro}<section class="detail-hero">${image}${identity}</section>${targetContext}${actionSection}${gatheredBaitChoices(item,allItems)}${baitGatherChoice(item)}${mushroomAlternative(item)}${daikonFishChoice(item,fishLocations)}${acquisitionChoice(item)}${rodAdvice?'':buyingDecision(item,allItems,decisions)}${shopSection(item,allItems,fishLocations)}${useLocationSection(item,fishLocations,allItems)}${fishSection(item,fishVisuals,fishLocations)}${moreLink}${technicalSection(item)}<p class="muted">${esc(copy.sourced)}</p>`;
+    $('detail-root').innerHTML=`${intro}<section class="detail-hero">${image}${identity}</section>${targetContext}${actionSection}${gatheredBaitChoices(item,allItems)}${baitGatherChoice(item)}${mushroomAlternative(item)}${keepnetAlternatives(item,allItems)}${daikonFishChoice(item,fishLocations)}${acquisitionChoice(item)}${rodAdvice?'':buyingDecision(item,allItems,decisions)}${shopSection(item,allItems,fishLocations)}${useLocationSection(item,fishLocations,allItems)}${fishSection(item,fishVisuals,fishLocations)}${moreLink}${technicalSection(item)}<p class="muted">${esc(copy.sourced)}</p>`;
     if(selectedRoute&&item.category==='bait')document.getElementById(`rig-${selectedRoute}`)?.scrollIntoView({block:'center'});
     if(location.hash==='#use-locations')document.getElementById('use-locations')?.scrollIntoView({block:'start'});
     document.title=`${name} · ${categoryText} · ${lang==='th'?'ตกปลาทาโร่ 2':lang==='ja'?'川のぬし釣り2':'Kawa no Nushi Tsuri 2'}`;
@@ -361,7 +369,7 @@
     setNavigation();
     $('detail-root').innerHTML=`<section class="empty-state"><h1>${esc(copy.invalidTitle)}</h1><p>${esc(copy.invalidBody)}</p><a class="route-button" href="${esc(fallbackBack())}">${esc(copy.allItems)} ↗</a></section>`;
   }
-  fetch('gallery-data.json?v=player-usefulness-20261004-10').then(response=>{if(!response.ok)throw new Error('catalogue data unavailable');return response.json();}).then(data=>{
+  fetch('gallery-data.json?v=player-usefulness-20261004-11').then(response=>{if(!response.ok)throw new Error('catalogue data unavailable');return response.json();}).then(data=>{
     if(selectedFish&&!data.fishVisuals?.[selectedFish])selectedFish='';
     const item=(data.items||[]).find(candidate=>candidate.category===category&&candidate.id===requestedId)||null;
     if(!item){emptyState();return;}

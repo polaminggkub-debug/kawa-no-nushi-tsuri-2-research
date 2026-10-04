@@ -85,3 +85,11 @@ The formerly unlocated food 07 now gives a concrete choice: bring kept fish 18 t
 The food page/card links to fish 18, and fish 18 has a reciprocal keep-before-eating/selling action. The original-ROM terrain crop is reproduced by `scripts/build_daikon_location.py` from the hashed map manifest. Quest reward links omit bait-target context so food does not acquire a meaningless fish-compatibility section. Local browser: food07 -> fish18 -> reward07, return path and stage3 preserved. Source render coverage: 1,527 localized detail renders, 210,522 local references (not manual click counts). Exact net shallow-water spots and area-6 seller traversal remain research work.
 
 Fish language switches now localize nested return routes while retaining entity IDs, area and safe local routing. Dedicated assertions exercise all 73 fish profiles plus nested item07 -> map3 returns in each language. Browser clicks are recorded separately.
+
+## Fish-method rods and keepnet purchase choices
+
+Each stocked fish-method starter offer now identifies the matching rod style and links the lowest-price recorded rod in the selected area. The choice is explicitly for a budget start; an owned rod of that style can be kept. If that area stocks no matching rod, the page directs the player to an existing rod or the linked rod's sale areas. No catch-success rank is inferred. Source checks enumerate every recorded fish/area/method to verify rod style, local stock availability and the minimum price. This is a rod-and-bait selection step, not proof of a fully assembled rig or a walking route.
+
+Keepnet 0B/0C/0D cards and details compare capacity, shop areas and full purchase costs, link the other sizes, and link the Daikon exchange effect for a kept quest fish. The same/smaller purchase rejection and ability to buy a larger size directly are traced in the existing shop handler. The all-record renderer checks capacity against the traced source and front-facing comparison links. Local browser: fish18/area3 -> float rod04 -> matching fish18/area3 return.
+
+Full-goal work remains: confirm field access/traversal and actual shallow-water net positions; audit the remaining lure/bait decisions; verify wider rendered flows rather than treating source coverage as site acceptance.

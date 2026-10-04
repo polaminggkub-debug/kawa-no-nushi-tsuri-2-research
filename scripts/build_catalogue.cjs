@@ -97,6 +97,11 @@ const daikonItem=data.items.find(i=>i.category==='food'&&i.id==='07');
 daikonItem.daikonExchange=daikon.exchange;
 daikonItem.exchangeFishId=daikon.fish.idHex;
 daikonItem.playerUse.useLocations=[daikonLocation.location];
+const keepnetSource=JSON.parse(fs.readFileSync(path.join(root,'data/chum-basket-use.json'),'utf8'));
+if(keepnetSource.rom.sha1!=='c2103dd94e2a1a65a495fc02adc2e7d040f31212')throw Error('Keepnet ROM mismatch');
+for(const [id,capacity] of Object.entries(keepnetSource.raw_evidence.basket_purchase.capacity_by_item_id)){
+ const item=data.items.find(i=>i.category==='general_tool'&&i.id===id);item.keepnetCapacity=capacity;
+}
 const toolsSource=JSON.parse(fs.readFileSync(path.join(root,'data/general-tool-actions.json'),'utf8'));
 if(toolsSource.rom?.sha1!=='c2103dd94e2a1a65a495fc02adc2e7d040f31212')throw new Error('Net gathering source ROM mismatch');
 for(const item of data.items)delete item.netGatherArea;

@@ -27,6 +27,8 @@ const netSource=JSON.parse(fs.readFileSync(path.join(root,'data/general-tool-act
 assert.deepEqual(data.items.find(i=>i.category==='general_tool'&&i.id==='04').gatheredBaitByArea,netSource.items['04'].trace.perAreaBaitIds);
 assert.equal(data.items.filter(i=>i.netGatherArea).length,6);
 for(const [stage,id] of Object.entries(netSource.items['04'].trace.perAreaBaitIds))assert.equal(data.items.find(i=>i.category==='bait'&&i.id===id).netGatherArea,Number(stage));
+const keepnetSource=JSON.parse(fs.readFileSync(path.join(root,'data/chum-basket-use.json'),'utf8'));
+for(const [id,capacity] of Object.entries(keepnetSource.raw_evidence.basket_purchase.capacity_by_item_id))assert.equal(data.items.find(i=>i.category==='general_tool'&&i.id===id).keepnetCapacity,capacity);
 const daikonSource=JSON.parse(fs.readFileSync(path.join(root,'data/daikon-acquisition.json'),'utf8'));
 const daikon=data.items.find(i=>i.category==='food'&&i.id==='07');
 assert.equal(daikon.exchangeFishId,daikonSource.fish.idHex);
@@ -106,6 +108,7 @@ async function render(kind,lang,query,prefix='/kawa-no-nushi-tsuri-2-research'){
    if(item.category==='rod')assert(visible.includes('buying-decision'),`Rod purchase decision missing ${item.id}`);
    if(item.category==='rod'){assert(item.rodDecision,'Missing rod decision '+item.id);for(const field of ['label','recommendation','reason'])assert(unescape(visible).includes(item.rodDecision[field][lang]),'Rod advice hidden '+item.id+'/'+field+'/'+lang);assert(visible.includes('data-rod-decision="'+item.id+'"'),'Per-rod decision missing');assert(!visible.includes('fightResponseCode'),'Branch code leaked above technical evidence');}
    if(item.category==='general_tool'&&['08','09','0A'].includes(item.id))assert(visible.includes(lang==='en'?'movement can be steered':lang==='th'?'ชี้ทิศ':'進行方向'),`Chum steering list mislabeled ${item.id}`);
+   if(item.keepnetCapacity)assert(visible.includes('data-keepnet-choice'),'Keepnet comparison missing '+item.id);
    for(const loc of item.playerUse?.useLocations||[])if(loc.image)assert(visible.includes(`src="${loc.image}"`),`Use map hidden ${item.id}/${loc.stage}`);
    for(const loc of item.playerUse?.useLocations||[])if(loc.context==='town'){assert.equal(loc.mapId,loc.stage+6);assert.equal(loc.fullImage,`maps/rom-town-${String(loc.mapId).padStart(2,'0')}.png`);assert(Number.isInteger(loc.townEntranceOrdinal),'Missing paired town room');assert(visible.includes(lang==='th'?'ในเมือง':lang==='ja'?'町内':'In town'),'Town location context hidden');if(loc.rewardItem&&!(loc.rewardItem.category===item.category&&loc.rewardItem.id===item.id))assert(visible.includes(`category=${loc.rewardItem.category}&amp;id=${loc.rewardItem.id}`),'Chest reward link missing');}
 
@@ -185,6 +188,16 @@ async function render(kind,lang,query,prefix='/kawa-no-nushi-tsuri-2-research'){
     }
     const card=offered.find(x=>x[1]===method);
     assert.equal(Boolean(card),Boolean(candidates.length),`Missing/extra starter method ${fishId}/${stage}/${method}`);
+    const rodCard=[...result.html.matchAll(/data-method-rod="([^"]+)" data-rod="([^"]+)" data-rod-local="(true|false)"/g)].find(row=>row[1]===method);
+    assert.equal(Boolean(rodCard),Boolean(card),'Missing method-matched rod');
+    if(rodCard){
+     const style={float:1,sinker:2,lure:4,fly:8}[method];
+     const available=data.items.filter(item=>item.category==='rod'&&item.decodedFields.styleCode===style&&item.playerUse.shops.length);
+     const local=available.filter(item=>item.playerUse.shops.some(shop=>String(shop.stage)===stage&&!shop.condition));
+     const chosen=available.find(item=>item.id===rodCard[2]);assert(chosen,'Wrong rod style');
+     assert.equal(rodCard[3],String(Boolean(local.length)));
+     assert.equal(chosen.priceYen,Math.min(...(local.length?local:available).map(item=>item.priceYen)));
+    }
     if(card){const minimum=Math.min(...candidates.map(x=>x.price));assert.equal(Number(card[3]),minimum,'Starter price is not lowest eligible offer');assert(candidates.some(x=>x.key===card[2]&&x.price===minimum),'Starter item is incompatible or not stocked');}
    }
   }
