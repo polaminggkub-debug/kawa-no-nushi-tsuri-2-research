@@ -164,3 +164,11 @@ The scoped food/chum/hook source review found no additional material food-action
 - The same audit found map language switches kept the return page in its original language. Map language links now localize the supported nested return chain, retain item/fish/stage/rig filters, and discard external nested destinations. The map harness covers all three target languages, an item → shop → research chain, and the external-return rejection. Local actual clicks: Thai bait → fish map → English → back reaches English bait01 with Iwana/sinker rejection intact.
 
 - Early navigation regression: before the map data promise resolves, language links now carry the incoming area/fish/section and localized return route. The functional harness asserts this before calling map initialization; users need not wait for fish data to retain their selection when switching language. Published post-load map language/back clicks also preserved the bait01/Iwana/sinker choice.
+
+
+## Follow-up: profile navigation during pending data (2026-10-04)
+
+- Item and fish profiles now establish their language and back links synchronously, before their catalogue/location requests resolve. The loaded render still validates identities and refreshes navigation normally.
+- The entity harness holds both requests pending and checks all six locale/profile combinations before any profile body can render: selected item/fish, stage, bait rig, and recursively localized return are retained. The shop harness independently holds data pending and verifies all three locale variants keep area6, target, rig and localized item return; shop initialization already established those links before its requests.
+- Local browser: Thai bait01/Iwana/sinker → Japanese retains target and rig; its fish-profile action → Thai retains the nested item and map return. Iwana's fish profile selects its recorded area1 rather than inventing an area3 spawn.
+- This addresses the observed early-language-navigation defect; it does not certify all gameplay findings or every website state. The full player-usefulness goal remains active.

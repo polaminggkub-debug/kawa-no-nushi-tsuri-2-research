@@ -121,18 +121,19 @@ function validate(html,base, allowInvalidIdentity=false){
   linkCount++;
  }
 }
-async function render(kind,lang,query,prefix='/kawa-no-nushi-tsuri-2-research'){
+async function render(kind,lang,query,prefix='/kawa-no-nushi-tsuri-2-research',loading=false){
  const suffix=lang==='en'?'':'.'+lang;
  const url=new URL(`https://example.test${prefix}/catalogue/${kind}${suffix}.html?${query}`);
  const nodes={};const node=id=>nodes[id]||=( {innerHTML:'',textContent:'',href:'',dataset:{},setAttribute(){},removeAttribute(){},getAttribute(){return null},addEventListener(){},scrollIntoView(){this.scrolled=true}} );
  const languages=['en','th','ja'].map(code=>({...node(`language-${code}`),getAttribute:key=>key==='hreflang'?code:null}));
  const document={documentElement:{dataset:{locale:lang}},getElementById:node,querySelectorAll:()=>languages};
  const location={href:url.href,origin:url.origin,pathname:url.pathname,search:url.search,hash:url.hash};
- const context={document,location,window:{location},URL,URLSearchParams,console,fetch:async file=>({ok:true,json:async()=>file==='fish-locations.json'?locations:data})};
+ const context={document,location,window:{location},URL,URLSearchParams,console,fetch:loading?()=>new Promise(()=>{}):async file=>({ok:true,json:async()=>file==='fish-locations.json'?locations:data})};
  const source=fs.readFileSync(path.join(root,`catalogue/${kind}-detail.js`),'utf8');
  vm.runInNewContext(source,context);
  await new Promise(r=>setImmediate(r));
  const html=node(kind==='fish'?'fish-detail':'detail-root').innerHTML;
+ if(loading)return {html,nodes,languages,url};
  if(kind==='fish')assert.equal(html.includes('data-fish-exchange'),['18','22'].includes(url.searchParams.get('id')),'Quest action attached to wrong fish');
  if(kind==='item'&&url.searchParams.get('category')==='food'&&url.searchParams.get('id')==='07'){assert(html.includes('data-daikon-choice'));assert(!html.includes('buying-decision'),'Daikon must not repeat unrelated key overview');assert(html.includes('id=18'));}
  assert(html&&!html.includes('กำลังโหลด'),`No render ${kind} ${query}`);
@@ -147,6 +148,19 @@ async function render(kind,lang,query,prefix='/kawa-no-nushi-tsuri-2-research'){
  for(const itemId of ['0F','17','12']){const item=data.items.find(i=>i.category==='general_tool'&&i.id===itemId),towns=(item.playerUse.useLocations||[]).filter(loc=>loc.context==='town');const expected=itemId==='17'?quest.items['17'].rawTrace.chests:itemId==='0F'?[quest.items['0F'].rawTrace.acquisition]:quest.items['17'].rawTrace.chests.filter(chest=>chest.mapId===12);assert.equal(towns.length,expected.length,'Missing town acquisition/use points');for(const chest of expected){const loc=towns.find(point=>point.mapId===chest.mapId);assert(loc);assert.deepEqual([loc.tileX,loc.tileY],chest.xy);assert(loc.approach,'Town chest has no entrance image');assert(loc.approach.fullImage.includes('rom-field-'+String(chest.visibleArea).padStart(2,'0')));}}
  for(const lang of ['en','th','ja']){
   const suffix=lang==='en'?'':'.'+lang;
+  for(const kind of ['item','fish']){
+   const query=new URLSearchParams(kind==='item'?{category:'bait',id:'01',fish:'01',stage:'3',route:'sinker',return:'maps'+suffix+'.html?stage=3&fish=01'}:{id:'01',stage:'3',return:'item'+suffix+'.html?category=bait&id=01&fish=01&stage=3&route=sinker'});
+   const pending=await render(kind,lang,query,undefined,true);
+   assert.equal(pending.html,'','Pending data must not masquerade as a rendered profile');
+   for(const targetLang of ['en','th','ja']){
+    const targetSuffix=targetLang==='en'?'':'.'+targetLang;
+    const link=kind==='item'?pending.languages.find(link=>link.getAttribute('hreflang')===targetLang):pending.nodes['language-'+targetLang];
+    const next=new URL(link.href,pending.url);assert(next.pathname.endsWith('/'+kind+targetSuffix+'.html'));assert.equal(next.searchParams.get('id'),'01');assert.equal(next.searchParams.get('stage'),'3');
+    if(kind==='item'){assert.equal(next.searchParams.get('fish'),'01');assert.equal(next.searchParams.get('route'),'sinker');}
+    const back=new URL(next.searchParams.get('return'),pending.url);assert(back.pathname.endsWith('/'+(kind==='item'?'maps':'item')+targetSuffix+'.html'),'Loading profile loses localized return');
+   }
+   assert(pending.nodes[kind==='item'?'detail-back':'fish-back'].href,'Loading profile must keep a back route');
+  }
   // Area switching is one item view: its back link must not grow a self-return chain.
   for(const entry of [`maps${suffix}.html?stage=2&fish=06`, '']){
    let query=new URLSearchParams({category:'general_tool',id:'0E',stage:'2',fish:'06',route:'sinker'});

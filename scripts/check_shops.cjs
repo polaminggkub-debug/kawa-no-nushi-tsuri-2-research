@@ -28,7 +28,7 @@ class Element {
   removeAttribute(name) { delete this.attributes[name]; }
 }
 
-async function renderPage({locale='en', query='', category='all', search='', stage=1, place='town', locationData=locations} = {}) {
+async function renderPage({locale='en', query='', category='all', search='', stage=1, place='town', locationData=locations, loading=false} = {}) {
   const ids = [
     'stage-select','category-select','item-search','clear-filters','page-status','shop-results',
     'target-status','offer-count','location-section','location-area','location-map-id','location-heading',
@@ -65,7 +65,7 @@ async function renderPage({locale='en', query='', category='all', search='', sta
   };
   const context = {
     document, location, history, window:{}, URL, URLSearchParams,
-    fetch:async url => ({ok:Object.hasOwn(responses,url),json:async()=>responses[url]}),
+    fetch:loading?()=>new Promise(()=>{}):async url => ({ok:Object.hasOwn(responses,url),json:async()=>responses[url]}),
     Image:class {}, console
   };
   vm.runInNewContext(js, context, {filename:'shops.js'});
@@ -79,6 +79,18 @@ function itemInStock(stage, category, id) {
 
 async function main() {
   assert.equal(stock.areas.length, 6, 'six area stock sets are present');
+  for(const locale of ['en','th','ja']){
+    const suffix=locale==='en'?'':'.'+locale;
+    const result=await renderPage({locale,loading:true,query:new URLSearchParams({stage:'6',place:'town',category:'bait',id:'01',fish:'06',route:'sinker',return:'item'+suffix+'.html?category=bait&id=01&stage=6&fish=06&route=sinker'}).toString()});
+    assert.equal(result.elements['shop-results'].innerHTML,'','Shop data is held pending');
+    for(const targetLang of ['en','th','ja']){
+      const targetSuffix=targetLang==='en'?'':'.'+targetLang,next=new URL(result.elements['language-'+targetLang].href,result.location.href);
+      assert.equal(next.searchParams.get('stage'),'6');assert.equal(next.searchParams.get('fish'),'06');assert.equal(next.searchParams.get('route'),'sinker');assert.equal(next.searchParams.get('id'),'01');
+      assert(new URL(next.searchParams.get('return'),result.location.href).pathname.endsWith('/item'+targetSuffix+'.html'),'Shop loading language loses return');
+    }
+    assert(result.elements['back-link'].href.includes('item'+suffix+'.html'),'Loading shop must keep back route');
+  }
+
   assert.equal(locations.areas.length, 6, 'six area location maps are present');
   for (const area of locations.areas) {
     assert.ok(area.entrances.every(entry => entry.fieldTile && entry.townArrival), `area ${area.outdoorArea} has paired endpoints`);
