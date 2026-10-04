@@ -1,0 +1,42 @@
+{
+  "schemaVersion": 1,
+  "romSha1": "c2103dd94e2a1a65a495fc02adc2e7d040f31212",
+  "location": {
+    "stage": 2,
+    "mapId": 2,
+    "tileX": 87,
+    "tileY": 27,
+    "image": "maps/tool-tub-exchange.png",
+    "fullImage": "maps/rom-field-02.png",
+    "width": 384,
+    "height": 384,
+    "pin": {
+      "x": 0.5,
+      "y": 0.8125
+    },
+    "name": {
+      "en": "Tub exchange: bring Hariyo (22); leave one general-tool slot free",
+      "ja": "タライ交換：ハリヨ（22）を持参し、道具欄を1枠空ける",
+      "th": "จุดแลกกะละมัง: นำฮาริโยะ (22) มา และเว้นช่องอุปกรณ์ทั่วไป 1 ช่อง"
+    },
+    "requiredFish": {
+      "id": "22",
+      "nameJa": "ハリヨ"
+    },
+    "rewardItem": {
+      "category": "general_tool",
+      "id": "01",
+      "nameJa": "タライ"
+    },
+    "source": {
+      "data": "data/tub-acquisition.json",
+      "consumer": "00:C7B2..C7FF",
+      "objectSlotHex": "22",
+      "coordinateRecordFileOffsets": [
+        "0x003E72",
+        "0x003E74"
+      ],
+      "grantConsumer": "00:D1D4..D207"
+    }
+  }
+}

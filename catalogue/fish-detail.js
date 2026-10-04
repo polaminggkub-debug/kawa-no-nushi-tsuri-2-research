@@ -355,7 +355,7 @@
     if(!rewards.length)return '';
     const title=locale==='th'?'เก็บปลานี้ไว้แลกของไหม?':locale==='ja'?'この魚を交換用に残す？':'Keep this fish for an exchange?';
     const text=locale==='th'?'ถ้ายังไม่เคยแลกและต้องการหัวไชเท้า 16 ชิ้น เก็บปลายามาโนะคามิหนึ่งตัวในข้องไว้ให้ NPC ด่าน 3 (21,82) ก่อนกินหรือขาย แต่การแลกทับอาหารเดิมทุกช่อง: ใช้อาหารเดิมที่ต้องการก่อน หรือข้ามการแลกถ้าต้องการเก็บอาหารไว้':locale==='ja'?'まだ交換しておらず大根16個が欲しいなら、食べたり売ったりする前にヤマノカミ1匹をびくに残し、エリア3（21,82）の人物へ。ただし食料全枠を上書きする。必要な食料は先に使い、残したいなら交換を見送る。':'If you have not traded yet and want 16 Daikon, keep one Yamanokami for the area-3 NPC at (21,82) before eating or selling it. The trade replaces every food slot: use wanted food first, or skip the trade to keep it.';
-    return `<section class="detail-section" data-fish-exchange><h2>${escapeHtml(title)}</h2><p>${escapeHtml(text)}</p>${rewards.map(item=>itemLink({item,routes:[]},stage)).join('')}</section>`;
+    return `<section class="detail-section" data-fish-exchange><h2>${escapeHtml(title)}</h2>${rewards.map(item=>`<p>${escapeHtml(item.exchangeFishAction?.[locale]||item.exchangeFishAction?.en||text)}</p>${itemLink({item,routes:[]},stage)}`).join('')}</section>`;
   }
 
   function render(fishData, locationData) {
@@ -400,7 +400,7 @@
   }
 
   Promise.all([
-    fetch('gallery-data.json?v=player-usefulness-20261004-11').then(response => { if (!response.ok) throw new Error('gallery data unavailable'); return response.json(); }),
+    fetch('gallery-data.json?v=player-usefulness-20261004-12').then(response => { if (!response.ok) throw new Error('gallery data unavailable'); return response.json(); }),
     fetch('fish-locations.json').then(response => { if (!response.ok) throw new Error('location data unavailable'); return response.json(); })
   ]).then(([fishData, locationData]) => render(fishData, locationData)).catch(() => {
     page.innerHTML = `<h1>${escapeHtml(copy.pageTitle)}</h1><p class="empty-state">${escapeHtml(copy.recovery)}</p><p><a class="route-button" href="${escapeHtml(cataloguePath())}">${escapeHtml(copy.catalogue)}</a></p>`;

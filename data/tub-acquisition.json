@@ -1,0 +1,152 @@
+{
+  "schemaVersion": 1,
+  "romSha1": "c2103dd94e2a1a65a495fc02adc2e7d040f31212",
+  "romSizeBytes": 1572864,
+  "scope": "Original-ROM trace of the Area 2 Hariyo-for-tub exchange. Runtime checks used private emulator states with fish inventory injected; they verify the exchange handler, not a natural fishing session.",
+  "playerSummary": {
+    "en": "Use the tub for water travel where the game permits launching it. Bring Hariyo (22) to the tub maker in Area 2 at (87,27). Leave one general-tool slot free before talking. This is a one-time trade; if you already own the tub, skip the trade and use it.",
+    "ja": "使用可能な場所から水上を移動するためのタライ。エリア2（87,27）のタライ作りのじいにハリヨ（22）を渡す。話しかける前に道具欄を1枠空ける。交換は1回限り。すでにタライを持っているなら魚を渡さず、手持ちを使う。",
+    "th": "ใช้กะละมังเป็นพาหนะเดินทางทางน้ำในช่องที่เกมอนุญาตให้ขึ้นได้ นำฮาริโยะ (ID 22) ไปให้ชายชราผู้ทำกะละมังที่ด่าน 2 พิกัด (87,27) เว้นช่องอุปกรณ์ทั่วไป 1 ช่องก่อนคุย แลกได้ครั้งเดียว; ถ้ามีกะละมังอยู่แล้วให้ใช้ของเดิมและอย่าเอาปลาไปแลก"
+  },
+  "playerFacts": {
+    "en": [
+      "Tub ID 01 is absent from the decoded stock lists for all six area shops.",
+      "The exchange consumes Hariyo before it tries to grant the tub. With a full general-tool inventory, the game displays its full message, gives no new tub, and leaves the trade flag unset.",
+      "If you already own Tub 01 and the inventory is not full, the grant routine skips a duplicate copy but the exchange still consumes Hariyo and completes. Skip the trade to save your fish.",
+      "At an accepted launch location, the game places the tub and displays that it is floating on the water.",
+      "It cannot be launched while swimming or from an unusable tile. The tub then enters its own water-travel mode.",
+      "You cannot switch directly between the tub and canoe while riding. Get out of the current vehicle before using the other."
+    ],
+    "ja": [
+      "タライ01は、ROMから確認した全6エリアの店頭在庫にありません。",
+      "交換処理はタライを追加する前にハリヨを消費します。道具欄が満杯だと満杯メッセージが出て、新しいタライは追加されず、交換フラグも立ちません。",
+      "タライ01をすでに持っていて道具欄に空きがある場合、2個目は追加されませんが、ハリヨは消費されて交換済みになります。魚を残すには交換を避けてください。",
+      "使用可能な場所ではタライを配置し、水に浮かんだことを表示する。",
+      "泳いでいる間や使用不可のタイルからは乗れない。乗るとタライ専用の水上移動モードに入る。",
+      "乗っている間にタライとカヌーを直接切り替えることはできない。別の乗り物を使う前に降りる。"
+    ],
+    "th": [
+      "กะละมัง ID 01 ไม่อยู่ในสต็อกร้านทั้งหกด่านที่ถอดจาก ROM",
+      "เกมใช้ฮาริโยะก่อนพยายามเพิ่มกะละมัง หากช่องอุปกรณ์ทั่วไปเต็ม เกมจะแสดงข้อความของเต็ม ไม่เพิ่มกะละมัง และไม่ตั้งธงว่าแลกสำเร็จ",
+      "ถ้ามีกะละมัง ID 01 อยู่แล้วและช่องยังไม่เต็ม เกมจะไม่เพิ่มใบที่สอง แต่จะใช้ปลาและตั้งธงว่าแลกแล้ว ถ้าต้องการเก็บปลาไว้ ให้ข้ามการแลก",
+      "ถ้าจุดนั้นใช้ได้ เกมจะวางกะละมังและแสดงข้อความว่าลอยอยู่บนผิวน้ำ",
+      "ขึ้นพาหนะขณะว่ายน้ำหรือจากช่องที่ใช้ไม่ได้ไม่สำเร็จ เมื่อขึ้นได้แล้วจะเข้าโหมดเดินทางทางน้ำของกะละมัง",
+      "ขณะอยู่บนพาหนะสลับกะละมังกับแคนูโดยตรงไม่ได้ ต้องลงจากพาหนะเดิมก่อนใช้ชนิดอื่น"
+    ]
+  },
+  "playerFishAction": {
+    "en": "If you want the tub, keep one Hariyo (22) in the keepnet instead of selling or eating it. Free one general-tool slot, then talk to the tub maker in Area 2 at (87,27). If you already own Tub 01, skip the trade and use it so you keep the fish.",
+    "ja": "タライが欲しければ、ハリヨ（22）を売ったり食べたりせず、びくに残す。道具欄を1枠空け、エリア2（87,27）のタライ作りのじいに話しかける。タライ01をすでに持っているなら魚を渡さず、手持ちを使う。",
+    "th": "ถ้าต้องการกะละมัง ให้เก็บฮาริโยะ (ID 22) ไว้ในข้อง อย่าเพิ่งขายหรือกิน เว้นช่องอุปกรณ์ทั่วไป 1 ช่องแล้วไปคุยกับชายชราผู้ทำกะละมังที่ด่าน 2 พิกัด (87,27) ถ้ามีกะละมัง ID 01 อยู่แล้ว ให้ข้ามการแลกและใช้ของเดิมเพื่อเก็บปลาไว้"
+  },
+  "fish": {
+    "idHex": "22",
+    "nameJa": "ハリヨ",
+    "nameEn": "Hariyo (ROM name ハリヨ)",
+    "profileFileOffset": "0x02830F",
+    "profileSource": "data/fish-acceptance.json",
+    "spawnSource": "data/rom-fish-locations.json",
+    "spawnMapSet": "02",
+    "spawnEntryCount": 19,
+    "matchingBaitIds": [
+      "07",
+      "08"
+    ],
+    "spawnAndBaitLimit": "The ROM location and acceptance tables identify where Hariyo profiles occur and which bait profile gates accept them. This probe did not test a natural catch or catch rate."
+  },
+  "npc": {
+    "stage": 2,
+    "mapId": 2,
+    "mapName": {
+      "en": "Mountain Lake",
+      "ja": "山上湖",
+      "th": "ทะเลสาบบนภูเขา"
+    },
+    "map": "outdoor field",
+    "objectSlotHex": "22",
+    "tile": {
+      "x": 87,
+      "y": 27
+    },
+    "name": {
+      "en": "Tub maker",
+      "ja": "タライ作りのじい",
+      "th": "ชายชราผู้ทำกะละมัง"
+    },
+    "romObjectRecord": {
+      "pointerTableCpu": "00:BD76",
+      "stage2PointerTableFileOffset": "0x003D78",
+      "stage2PointerCpu": "00:BE3E",
+      "xSlotCpu": "00:BE72",
+      "ySlotCpu": "00:BE74",
+      "xSlotFileOffset": "0x003E72",
+      "ySlotFileOffset": "0x003E74"
+    }
+  },
+  "exchange": {
+    "repeatable": false,
+    "condition": "Story flag 7E:0C1A bit 4 is clear, the keepnet contains fish ID 22, and the general-tool grant can be accepted.",
+    "fishConsumed": true,
+    "rewardItemIdHex": "01",
+    "rewardNameJa": "タライ",
+    "rewardNameEn": "Tub",
+    "rewardCategory": "general_tool",
+    "inventorySlots": "7E:0B5A..7E:0B78 (16 two-byte slots)",
+    "freeSlotWarning": "Leave at least one general-tool slot free before trading. The handler removes fish 22 before calling the tool-grant routine. A full-inventory controlled probe removed the fish, granted no tub, and left the story flag clear.",
+    "existingTubBehavior": "After the full-slot precheck passes, the tool-grant routine returns duplicate status 2 if ID 01 is already present. The caller treats status 2 as success for the one-time story flag and completion message, without inserting another copy. A completely full inventory exits at the earlier full-slot check.",
+    "successFlag": "7E:0C1A bit 4 (mask 0x10)",
+    "messageIds": {
+      "request": "0x02A0",
+      "success": "0x02A2",
+      "alreadyComplete": "0x02A4",
+      "fullGeneralToolInventory": "0x0196"
+    }
+  },
+  "codeEvidence": [
+    {
+      "cpu": "00:C7B2..C7FF",
+      "file": "0x0047B2..0x0047FF",
+      "finding": "The object-slot-22 handler checks story mask 0x10, requests fish ID 0x22 through 7E:11E8, and calls the keepnet remover at 00:C641. After removal it requests general-tool ID 0x01 through 7E:1294 and calls the grant routine at 00:D1D4. Only a non-full grant result sets the story bit and shows completion message 0x02A2; a full-inventory result exits before that flag write."
+    },
+    {
+      "cpu": "00:C641..C67E",
+      "file": "0x004641..0x00467E",
+      "finding": "Scans fish IDs at 7E:0B7A..7E:0BB3 in two-byte steps. On a match, shifts later fish IDs and sizes down, clears the final fish slot and returns success; returns failure when the requested fish is absent."
+    },
+    {
+      "cpu": "00:D1D4..D207",
+      "file": "0x0051D4..0x005207",
+      "finding": "The general-tool grant checks the final slot 7E:0B78 first. If nonzero, it displays 0x0196 and returns full status 1. Otherwise it scans 7E:0B5A..0B78, stores selected ID 01 in the first empty slot, and returns 0; an existing copy returns duplicate status 2."
+    },
+    {
+      "cpu": "00:BD76..00:BD79",
+      "file": "0x003D76..0x003D79",
+      "finding": "The Stage 2 pointer-table entry at file 0x003D78 resolves to object-coordinate table 00:BE3E. Slot 22 reads X=87 from 00:BE72; the following slot 23 word reads Y=27 from 00:BE74."
+    },
+    {
+      "file": "0x02830F",
+      "finding": "The fish profile used by the trade is ID 22 with ROM name ハリヨ. The ROM-derived fish location table has 19 spawn entries in map set 02; the acceptance table lists bait IDs 07 and 08 for this fish profile."
+    }
+  ],
+  "runtimeChecks": [
+    {
+      "case": "success with an injected fish and a free tool slot",
+      "preconditions": "Private original-ROM Area 2 runtime state at object slot 22, tile (87,27); fish ID 22 and size 0x20 injected in keepnet slot 0; the starting tool inventory had free slots; story mask 0x10 clear.",
+      "action": "Press the talk/action input at the object.",
+      "observed": "ROM displayed the success dialogue; fish slot 7E:0B7A was cleared; general-tool slot 7E:0B5E became ID 01; and 7E:0C1A became 0x10."
+    },
+    {
+      "case": "control without fish ID 22",
+      "preconditions": "Private original-ROM Area 2 runtime state at the same object, empty keepnet, story mask 0x10 clear.",
+      "action": "Press the talk/action input at the object.",
+      "observed": "The request dialogue appeared; the tool inventory and story flag stayed unchanged."
+    },
+    {
+      "case": "full general-tool inventory with injected fish ID 22",
+      "preconditions": "Private original-ROM Area 2 runtime state at the same object; fish ID 22 and size 0x20 injected in keepnet slot 0; all 16 general-tool slots filled with IDs 02 through 11 (no tub ID 01 present); story mask 0x10 clear.",
+      "action": "Press the talk/action input at the object.",
+      "observed": "ROM displayed the full-inventory message; the fish slot was cleared, no new tub was granted, and 7E:0C1A remained 0. This confirms the free-slot warning for this controlled full-inventory case."
+    }
+  ],
+  "evidenceLimit": "All runtime trade checks used synthetic WRAM preconditions, including the required fish. They verify the NPC handler, item grant, and full-inventory ordering; they do not prove a natural catch route or a catch rate. ROM-derived fish spawn and bait-acceptance records are linked separately above."
+}

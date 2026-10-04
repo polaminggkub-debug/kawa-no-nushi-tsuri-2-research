@@ -80,6 +80,14 @@ if(!fs.existsSync(rodDecisionsPath))throw new Error('Missing per-rod decisions s
   fs.writeFileSync(path.join(root,'catalogue/gallery-data.json'),JSON.stringify(data,null,2)+'\n');
 }
 const gearPath=path.join(root,'data/gear-item-decisions.json');
+const baitLureSource=JSON.parse(fs.readFileSync(path.join(root,'data/bait-lure-player-choices.json'),'utf8'));
+if(baitLureSource.rom?.sha1!=='c2103dd94e2a1a65a495fc02adc2e7d040f31212')throw new Error('Bait/lure decisions use a different ROM');
+for(const item of data.items.filter(i=>['bait','lure'].includes(i.category))){
+ const choice=baitLureSource.items[item.category+':'+item.id];
+ if(!choice)throw new Error('Missing bait/lure choice '+item.category+':'+item.id);
+ item.baitLureDecision=Object.fromEntries(['label','recommendation','reason','alternatives','cheaperByStage'].map(key=>[key,choice[key]]));
+ item.baitLureDecision.sources=[...new Set([...(choice.sources||[]),'data/bait-lure-player-choices.json','docs/bait-lure-player-choices.md'])];
+}
 if(!fs.existsSync(gearPath))throw new Error('Missing per-item gear decisions');
 {
   const gear=JSON.parse(fs.readFileSync(gearPath,'utf8'));
@@ -97,6 +105,16 @@ const daikonItem=data.items.find(i=>i.category==='food'&&i.id==='07');
 daikonItem.daikonExchange=daikon.exchange;
 daikonItem.exchangeFishId=daikon.fish.idHex;
 daikonItem.playerUse.useLocations=[daikonLocation.location];
+const tub=JSON.parse(fs.readFileSync(path.join(root,'data/tub-acquisition.json'),'utf8'));
+const tubLocation=JSON.parse(fs.readFileSync(path.join(root,'data/tub-location.json'),'utf8'));
+if(tub.romSha1!==tubLocation.romSha1||tub.romSha1!=='c2103dd94e2a1a65a495fc02adc2e7d040f31212')throw Error('Tub ROM mismatch');
+const tubItem=data.items.find(i=>i.category==='general_tool'&&i.id==='01');
+tubItem.tubExchange=tub.exchange;tubItem.exchangeFishId=tub.fish.idHex;
+tubItem.exchangeFishAction=tub.playerFishAction;
+tubItem.playerUse.summary=tub.playerSummary;
+tubItem.playerUse.facts=tub.playerFacts;
+tubItem.playerUse.useLocations=[tubLocation.location];
+tubItem.playerUse.evidence.sources=[...new Set([...(tubItem.playerUse.evidence.sources||[]),'data/tub-acquisition.json','docs/tub-acquisition-research.md'])];
 const keepnetSource=JSON.parse(fs.readFileSync(path.join(root,'data/chum-basket-use.json'),'utf8'));
 if(keepnetSource.rom.sha1!=='c2103dd94e2a1a65a495fc02adc2e7d040f31212')throw Error('Keepnet ROM mismatch');
 for(const [id,capacity] of Object.entries(keepnetSource.raw_evidence.basket_purchase.capacity_by_item_id)){

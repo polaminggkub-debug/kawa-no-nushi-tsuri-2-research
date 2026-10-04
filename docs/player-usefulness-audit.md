@@ -93,3 +93,19 @@ Each stocked fish-method starter offer now identifies the matching rod style and
 Keepnet 0B/0C/0D cards and details compare capacity, shop areas and full purchase costs, link the other sizes, and link the Daikon exchange effect for a kept quest fish. The same/smaller purchase rejection and ability to buy a larger size directly are traced in the existing shop handler. The all-record renderer checks capacity against the traced source and front-facing comparison links. Local browser: fish18/area3 -> float rod04 -> matching fish18/area3 return.
 
 Full-goal work remains: confirm field access/traversal and actual shallow-water net positions; audit the remaining lure/bait decisions; verify wider rendered flows rather than treating source coverage as site acceptance.
+
+## Bait/lure decisions, rig-specific actions, and the tub exchange
+
+All 23 bait and 81 lure cards/profiles now have purchase/use copy and bounded comparison links. Lower-price choices preserve the full compatibility set (both float and sinker routes for baits), use actual decoded stock, and compare full purchase prices. They are not rankings of bite rate or fight/landing success. The per-area links retain target fish, stage, bait rig, and return route. Same-gate peers and price alternatives are reproducible with `scripts/build_bait_lure_choices.cjs`; source guards independently check every peer, every available area alternative, prices, and rendered localized advice.
+
+Fixed a concrete false-positive: bait compatibility previously accepted a target if either rig passed, even when a sinker URL was selected. The status now uses the selected rig. A rejected rig gets a front-facing do-not-buy instruction and, when the same bait passes the other rig, a direct switch link. The page starts at that action rather than scrolling below it to the long fish list. Local browser checks: Worm01/Iwana01/sinker rejects -> switch float accepts; Aquatic insect07/Hariyo22/area2/float -> lower-price08 retains fish, area, rig and return -> Hariyo profile displays the tub quest.
+
+The tub's original-ROM NPC trade is now linked from tool01 and fish22. Bring Hariyo to area2 (87,27), leave a general-tool slot free, and skip the trade if a tub is already owned. Controlled original-ROM probes used injected fish: success removed Hariyo and granted tub01; an empty keepnet did nothing; a full tool inventory removed the fish without granting the tub and left the event flag clear. This verifies transaction ordering, not natural catching or entrance-to-NPC traversal. The crop is original terrain, checked against the hashed map manifest and exact ROM coordinate records. Launch-use facts remain visible as well as acquisition guidance.
+
+Full-goal work remains: actual shallow-water net use positions, area6 seller access, field access/traversal, downstream fight/hidden conditions where they prevent a player decision, and broader browser state coverage. Source render checks and representative clicks do not establish whole-site acceptance.
+
+## Rod-card decision wording follow-up
+
+All 21 rod verdicts now lead with an action and a comparison or use condition in EN/TH/JA. The same verdict is used on the catalogue card, item profile and comparison table. Rod 02 explicitly says to retain an owned rod rather than buy 04 as an upgrade, because both decoded effects would fall; its next two-effect improvement is linked to stocked rod 14 in area 3. The verdicts distinguish owned-item use from a full-price new purchase and retain stage-specific exceptions. Unresolved species response and branch selectors remain inside collapsed evidence.
+
+Verification: all five existing source checks passed; actual Thai browser inspection showed all 21 card decisions and the expanded recommendation column. The 02 comparison link opened 14 with a working catalogue return. This establishes this rod-card change, not acceptance of every screen or an overall landing-success ranking.
