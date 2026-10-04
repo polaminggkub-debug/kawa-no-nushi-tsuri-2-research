@@ -51,6 +51,11 @@ def build():
                         y0=max(0,int(min(py for point,px,py in placed))-80)
                         x1=min(width,int(max(px for point,px,py in placed))+81)
                         y1=min(height,int(max(py for point,px,py in placed))+81)
+                        # Isolated points need enough surrounding terrain to navigate.
+                        center_x=(x0+x1)/2;center_y=(y0+y1)/2
+                        crop_width=min(width,max(384,x1-x0));crop_height=min(height,max(384,y1-y0))
+                        x0=max(0,min(width-crop_width,int(center_x-crop_width/2)));x1=x0+crop_width
+                        y0=max(0,min(height-crop_height,int(center_y-crop_height/2)));y1=y0+crop_height
                         name=f'maps/map-{map_id}-fish-{fish_id}-part-{cx+1}-{cy+1}.png';target=CAT/name;target.parent.mkdir(exist_ok=True,parents=True)
                         image.crop((x0,y0,x1,y1)).save(target)
                         assets.append({'image':name,'fullImage':src,'name':loc(f'Map {stage} · column {cx+1}, row {cy+1}',f'地図{stage} · 列{cx+1}・行{cy+1}',f'แผนที่ {stage} · ส่วนคอลัมน์ {cx+1} แถว {cy+1}'),'width':x1-x0,'height':y1-y0,'overviewBox':({'x':y0/height,'y':(width-x1)/width,'width':(y1-y0)/height,'height':(x1-x0)/width} if rotated else {'x':x0/width,'y':y0/height,'width':(x1-x0)/width,'height':(y1-y0)/height}),'tileBounds':{'xMin':min(point['x'] for point,px,py in placed),'xMax':max(point['x'] for point,px,py in placed),'yMin':min(point['y'] for point,px,py in placed),'yMax':max(point['y'] for point,px,py in placed)},'pins':[{'x':(px-x0)/(x1-x0),'y':(py-y0)/(y1-y0),'tileX':point['x'],'tileY':point['y'],'slotIndices':point['slotIndices']} for point,px,py in placed]})
