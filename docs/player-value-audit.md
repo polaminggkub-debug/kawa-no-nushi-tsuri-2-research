@@ -2,6 +2,8 @@
 
 Reviewed 2026-10-04 after the owner asked whether the decoded information actually helps someone play. Evidence comes from the owner-supplied original Japanese ROM, its code/text/data/graphics, and controlled execution of that ROM. No external guide supplies the gameplay claims below.
 
+The follow-up [player decision layer](player-decisions.md) turns those findings into buying, carrying and preparation choices. Rod ordinals and fish-specific response labels are folded into technical evidence; unproven response species are no longer pictured as recommended targets. Fly suggestions use the cheapest stocked bundle with a qualifying body in the selected fishing area, with the hidden body/wing condition stated separately.
+
 The catalogue has 315 records. The audit question is: **what decision or action can a player make from this card?** A price, selector, response formula or hexadecimal ID alone does not answer that question. Addresses and formulas belong in expandable evidence; the visible explanation must connect them to an action or an outcome.
 
 ## Questions and answers

@@ -7,6 +7,8 @@ const vm = require('node:vm');
 const crypto = require('node:crypto');
 const root = path.resolve(__dirname, '..');
 const data = JSON.parse(fs.readFileSync(path.join(root, 'catalogue/gallery-data.json'), 'utf8'));
+const decisionsPath=path.join(root,'data/player-decisions.json');
+if(fs.existsSync(decisionsPath))data.playerDecisions=JSON.parse(fs.readFileSync(decisionsPath,'utf8'));
 let source = fs.readFileSync(path.join(root, 'catalogue/gallery.js'), 'utf8');
 const thaiCopyPath=path.join(root,'catalogue/thai-copy.json');
 const thaiItemsPath=path.join(root,'catalogue/thai-items.json');
@@ -79,6 +81,8 @@ async function build(locale, filename) {
   await new Promise(resolve=>setImmediate(resolve));
   const file=path.join(root,'catalogue',filename);
   let html=fs.readFileSync(file,'utf8');
+  if(!html.includes('id="player-decisions"'))html=html.replace('<main>','<main>\n<section id="player-decisions" class="decision-hub"></section>');
+  if(!html.includes('id="category-decisions"'))html=html.replace('<div id="rod-comparison"','<div id="category-decisions" class="category-decisions"></div><div id="rod-comparison"');
   html=html.replace(/(<([a-z0-9]+)[^>]*data-t="([^"]+)"[^>]*>)[^<]*(<\/\2>)/g, (whole,open,tag,key,close)=>{const camel=({'th-item':'item','th-rom':'rom','th-price':'price','search-label':'search','category-label':'category','sort-label':'sort','readme-link':'readme'})[key]||key.replace(/-([a-z])/g,(_,c)=>c.toUpperCase());const value=(camel==='title'||camel==='lead'?context.playerCopy?.[camel]:undefined)??context.catalogueCopy[key]??context.catalogueCopy[camel];return typeof value==='string'?open+value+close:whole;});
   for (const [id,n] of Object.entries(nodes)) {
     const value=n.innerHTML || n.textContent;

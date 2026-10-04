@@ -14,6 +14,8 @@ The guide starts with equipment categories, then explains each item's use. Bait/
 
 ## Practical questions answered from the ROM
 
+[Player decisions: what to buy, carry and do](docs/player-decisions.md). The guide leads with purchase recommendations and their reasons. A selected fish also produces a low-cost ready-made fly suggestion from that area's decoded stock when one is listed; this is a spending choice based on body compatibility, not a landing-rate ranking. Raw fields, ordinal rod rankings and unproven fish-specific advantages are kept inside technical evidence.
+
 [Player-value audit: questions, answers and remaining limits](docs/player-value-audit.md).
 
 - [Rod and lure choices](docs/rod-lure-practical-research.md): aiming control, HP scaling, and the equipment-loss condition.
