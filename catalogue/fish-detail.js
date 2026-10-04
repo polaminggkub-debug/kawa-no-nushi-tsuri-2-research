@@ -126,7 +126,7 @@
       if (id) query.set('id', id);
       if (stage) query.set('stage', stage);
       if (localReturn) query.set('return', localReturn);
-      link.href = `${href}${query.size ? `?${query.toString()}` : ''}`;
+      link.href = `${href}${query.size ? `?${query.toString()}` : ''}${location.hash||''}`;
     }
   }
 
@@ -240,7 +240,7 @@
       const parts=[['fly',def.body],['fly_wing',def.wing],['fly_tail',def.tail]].filter(([,id])=>id!=='00').map(([category,id])=>items.find(item=>item.category===category&&item.id===id)).filter(Boolean);
       return '<article class="detail-section fly-backup" data-bundle="'+def.body+'/'+def.wing+'/'+def.tail+'" data-price="'+bundle.shopPriceYen+'"><h4>'+escapeHtml(location)+' · ¥'+bundle.shopPriceYen+'</h4><p>'+escapeHtml(locale==='th'?'รูปด้านล่างคือชิ้นส่วนในชุดสำเร็จรูปนี้ ซื้อเป็นชุดตามรายการร้านด้านบน ไม่ใช่ซื้อแต่ละชิ้นแยกกัน':locale==='ja'?'下の画像はこの完成セットの構成品です。上記の店頭項目でセットとして買い、部品を個別購入する意味ではありません。':'The images below are parts of this ready-made set. Buy the listed shop bundle, not these parts separately.')+'</p>'+parts.map(item=>itemLink({item,routes:[]},stage)).join('')+'<a class="route-button" href="'+escapeHtml(buyLink)+'">'+escapeHtml(buyLabel)+' ↗</a></article>';
     }).join('');
-    return '<details class="detail-section fly-fallback" data-total="'+total+'"><summary>'+escapeHtml(title)+'</summary><p>'+escapeHtml(intro)+'</p><p><strong>'+escapeHtml(action)+'</strong></p><div class="detail-grid">'+cards+'</div><p class="muted">'+escapeHtml(scope)+'</p><a href="https://github.com/polaminggkub-debug/kawa-no-nushi-tsuri-2-research/blob/main/docs/fly-selection-practical-research.md">'+escapeHtml(copy.evidence)+' ↗</a></details>';
+    return '<details id="fly-backup" class="detail-section fly-fallback" data-total="'+total+'"><summary>'+escapeHtml(title)+'</summary><p>'+escapeHtml(intro)+'</p><p><strong>'+escapeHtml(action)+'</strong></p><div class="detail-grid">'+cards+'</div><p class="muted">'+escapeHtml(scope)+'</p><a href="https://github.com/polaminggkub-debug/kawa-no-nushi-tsuri-2-research/blob/main/docs/fly-selection-practical-research.md">'+escapeHtml(copy.evidence)+' ↗</a></details>';
   }
 
   function renderShopping(entries, locations, stage, allItems, flyChoices) {
@@ -333,6 +333,7 @@
       <section id="all-compatible" class="detail-section"><h2>${escapeHtml(copy.compatible)}</h2><p class="muted">${escapeHtml(copy.compatibilityNote)}</p><p>${locale==='th'?'รายการด้านล่างเป็นทางเลือก ไม่จำเป็นต้องซื้อทั้งหมด ทุกชิ้นผ่านเงื่อนไขของปลาที่กำลังดู กดรายละเอียดเพื่อเปรียบเทียบวิธีใช้และด่านที่ขาย':locale==='ja'?'以下は代替候補で、全部買う必要はない。各項目は表示中の魚の判定を通る。詳細で使い方と販売エリアを比較できる。':'The lists below are alternatives; you do not need to buy every entry. Each passes the shown fish’s check. Open details to compare use and purchase areas.'}</p>${renderCompatibility(matches, activeStage)}</section>
       ${renderEvidence(fish, locations, matches)}`;
 
+    if(location.hash==='#fly-backup'){const backup=document.getElementById('fly-backup');backup?.setAttribute('open','');backup?.scrollIntoView({block:'start'});}
     const chooser=document.getElementById('shopping-area');
     if(locations.length)chooser.addEventListener('change',()=>{
       requestedStage=validStage(chooser.value);

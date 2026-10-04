@@ -13,7 +13,7 @@
   <meta property="og:type" content="website">
   <meta property="og:title" content="魚のエリア別釣り場マップ — 川のぬし釣り2">
   <meta property="og:description" content="エリアと魚を選んで、日本版SFC ROMから抽出した魚の出現位置をマップで確認できます。">
-  <link rel="stylesheet" href="maps.css?v=player-usefulness-20261004-6">
+  <link rel="stylesheet" href="maps.css?v=player-usefulness-20261004-7">
 </head>
 <body>
   <header class="hero"><div class="hero-inner">
@@ -30,7 +30,11 @@
         <section class="fish-browser" aria-labelledby="fish-title">
           <div class="fish-list-heading"><div><h3 id="fish-title">このエリアの魚</h3><p id="area-summary" class="muted"></p></div><button id="show-all" class="clear-button" type="button" disabled>魚をすべて表示</button></div>
           <label class="fish-search-label" for="fish-search">魚を検索</label>
-          <div class="search-row"><input id="fish-search" type="search" autocomplete="off" placeholder="魚名、日本語名、ID 例: 06" disabled><button id="clear-search" type="button" aria-label="検索をクリア" disabled>×</button></div>
+          <p id="fish-search-help" class="search-help">タイ語、日本語、ローマ字名またはIDを入力すると候補を表示します。魚を選ぶとROMに設定された地点でマップを絞り込みます。</p>
+          <div class="fish-search-combobox">
+            <div class="search-row"><input id="fish-search" type="search" role="combobox" aria-autocomplete="list" aria-haspopup="listbox" aria-controls="fish-suggestions" aria-expanded="false" aria-describedby="fish-search-help search-count" autocomplete="off" placeholder="魚名、日本語名、ID 例: 06" disabled><button id="clear-search" type="button" aria-label="検索をクリア" disabled>×</button></div>
+            <div id="fish-suggestions" class="fish-suggestions" role="listbox" aria-label="魚の候補" hidden></div>
+          </div>
           <p id="search-count" class="search-count" aria-live="polite"></p>
           <div id="fish-scope" class="fish-scope-menu"></div><div id="fish-list" class="fish-list"></div>
         </section>
@@ -51,6 +55,6 @@
     </section>
   </main>
   <footer><p>ファンによる独立調査 · ROM本体は含まれていません。</p><a href="../research/index.ja.html">調査ノート</a></footer>
-  <script src="maps.js?v=player-usefulness-20261004-6" defer></script>
+  <script src="maps.js?v=player-usefulness-20261004-7" defer></script>
 </body>
 </html>

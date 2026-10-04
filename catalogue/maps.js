@@ -9,8 +9,11 @@
   const fishList = document.getElementById('fish-list');
   const stageSelect = document.getElementById('section-select');
   const searchInput = document.getElementById('fish-search');
+  const suggestionList = document.getElementById('fish-suggestions');
   const $ = id => document.getElementById(id);
   let fishData = {}, visuals = {}, species = {}, stages = {}, selectedFish = '', activeStage = 1, activeSection = '', searchTerm = '', listScope='area', zoom=1;
+  let suggestionIds = [], activeSuggestion = -1, suggestionsDismissed = false;
+  const suggestionLimit = 10;
   const esc = value => String(value ?? '').replace(/[&<>"']/g, ch => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[ch]));
   const local = obj => obj?.[lang] || obj?.en || obj?.ja || obj?.th || '';
   const idNorm = id => String(id).toUpperCase().replace(/^0X/,'').padStart(2,'0');
@@ -108,16 +111,82 @@
     }).join('');
   }
   function searchable(id) { return species[id].aliases.join(' · '); }
+  function normalizedSearch(value) { return String(value ?? '').normalize('NFKC').trim().toLocaleLowerCase(); }
+  function matchingSuggestions(term) {
+    const query = normalizedSearch(term);
+    if (!query) return [];
+    return Object.keys(species).filter(id => species[id].stages.length && normalizedSearch(searchable(id)).includes(query)).sort((a,b) => {
+      const rank = id => {
+        const record = species[id];
+        if (normalizedSearch(id) === query || record.aliases.some(alias => normalizedSearch(alias) === query)) return 0;
+        if (record.aliases.some(alias => normalizedSearch(alias).startsWith(query))) return 1;
+        return 2;
+      };
+      return rank(a) - rank(b) || fishName(a).localeCompare(fishName(b),lang) || a.localeCompare(b);
+    });
+  }
+  function setSuggestionsExpanded(expanded) {
+    searchInput.setAttribute('aria-expanded', String(Boolean(expanded)));
+    if (!expanded) searchInput.removeAttribute('aria-activedescendant');
+  }
+  function closeSuggestions(dismiss=true) {
+    if (dismiss) suggestionsDismissed = true;
+    activeSuggestion = -1;
+    suggestionList.hidden = true;
+    fishList.hidden = false;
+    setSuggestionsExpanded(false);
+  }
+  function renderSuggestions() {
+    const matches = matchingSuggestions(searchInput.value);
+    suggestionIds = matches.slice(0,suggestionLimit);
+    activeSuggestion = -1;
+    const open = Boolean(searchInput.value.trim()) && !suggestionsDismissed && document.activeElement === searchInput && suggestionIds.length > 0;
+    const areaLabel = lang==='th'?'พื้นที่':lang==='ja'?'エリア':'Areas';
+    suggestionList.innerHTML = suggestionIds.map((id,index) => {
+      const item=species[id], image=item.visual.image||'';
+      const areaBadges=item.stages.map(stage=>`<span class="suggestion-area-badge">${esc(c.area(stage))}</span>`).join('');
+      const secondary=lang==='ja'?(item.visual.nameLatin||item.visual.nameTh||''):(item.visual.nameJa||'');
+      const targetClass=selectedFish===id?' is-map-target':'';
+      return `<div id="fish-suggestion-${id}" class="fish-suggestion${targetClass}" role="option" aria-selected="false" aria-posinset="${index+1}" aria-setsize="${matches.length}" data-suggestion="${id}">${image?`<img src="${esc(image)}" alt="">`:'<span class="suggestion-no-image" aria-hidden="true"></span>'}<span class="suggestion-copy"><strong>${esc(item.name)}</strong>${secondary&&secondary!==item.name?`<small class="suggestion-alias">${esc(secondary)}</small>`:''}<span class="suggestion-meta"><code>ID ${esc(id)}</code><span class="suggestion-area-label">${areaLabel}</span><span class="suggestion-areas">${areaBadges}</span></span></span></div>`;
+    }).join('');
+    suggestionList.hidden = !open;
+    fishList.hidden = open;
+    setSuggestionsExpanded(open);
+  }
+  function setActiveSuggestion(index) {
+    if (!suggestionIds.length) return;
+    activeSuggestion = (index + suggestionIds.length) % suggestionIds.length;
+    const options = suggestionList.querySelectorAll('[role="option"]');
+    options.forEach((option,optionIndex) => option.setAttribute('aria-selected',String(optionIndex===activeSuggestion)));
+    const id=suggestionIds[activeSuggestion], option=document.getElementById(`fish-suggestion-${id}`);
+    if (option) {
+      searchInput.setAttribute('aria-activedescendant',option.id);
+      option.scrollIntoView?.({block:'nearest'});
+    }
+  }
+  function chooseSuggestion(id) {
+    if (!species[id]?.stages?.length) return;
+    const visual=species[id].visual;
+    const localeAliases=lang==='th'?[visual.nameTh,...(visual.nameThVariants||[]),visual.nameLatin,...(visual.nameLatinVariants||[]),visual.nameJa,id]
+      :lang==='ja'?[visual.nameJa,visual.nameLatin,...(visual.nameLatinVariants||[]),visual.nameTh,...(visual.nameThVariants||[]),id]
+      :[visual.nameEn,visual.nameLatin,...(visual.nameLatinVariants||[]),visual.nameJa,visual.nameTh,...(visual.nameThVariants||[]),id];
+    searchInput.value=localeAliases.find(alias=>alias&&species[id].aliases.some(value=>normalizedSearch(value)===normalizedSearch(alias)))||id;
+    searchTerm=searchInput.value;
+    closeSuggestions(true);
+    setFish(id,{toggle:false});
+  }
   function renderFishList() {
-    const term = searchTerm.trim().toLocaleLowerCase();
+    const term = normalizedSearch(searchTerm);
     const sectionIds=new Set(stages[activeStage]?.sections.get(activeSection)?.pins.flatMap(pin=>pin.fishIds)||[]);
-    const ids = Object.keys(species).filter(id => term ? searchable(id).includes(term) : listScope==='section'?sectionIds.has(id):fishInStage(id, activeStage)).sort((a,b)=>fishName(a).localeCompare(fishName(b),lang));
+    const ids = Object.keys(species).filter(id => term ? normalizedSearch(searchable(id)).includes(term) : listScope==='section'?sectionIds.has(id):fishInStage(id, activeStage)).sort((a,b)=>fishName(a).localeCompare(fishName(b),lang));
     const header = $('fish-title');
     header.textContent = term ? c.searchResults : listScope==='section'?(lang==='th'?'ปลาในส่วนแผนที่นี้':lang==='ja'?'この地図範囲の魚':'Fish in this map section'):c.fishIn;
     $('fish-scope').innerHTML=[['area',lang==='th'?'ทั้งด่าน':lang==='ja'?'エリア全体':'Whole area'],['section',lang==='th'?'ส่วนที่กำลังดู':lang==='ja'?'表示範囲':'Current section']].map(([value,label])=>`<button type="button" data-scope="${value}" aria-pressed="${listScope===value}">${label}</button>`).join('');
     $('area-summary').textContent = term ? `${ids.length} ${c.fish} · ${c.areas} ${lang==='ja'?'で出現':lang==='th'?'ที่พบ':'with configured points'}` : `${c.area(activeStage)} · ${ids.length} ${c.fish}`;
     $('search-count').textContent = `${ids.length} ${c.fish}`;
     $('show-all').textContent = c.showAll;
+    fishList.hidden = false;
+    renderSuggestions();
     if (!ids.length) { fishList.innerHTML = `<div class="empty-list">${esc(c.noFish)}</div>`; return; }
     fishList.innerHTML = ids.map(id => {
       const item = species[id], img = item.visual.image || '';
@@ -157,11 +226,14 @@
     shortcuts.hidden=!other.length;
     shortcuts.innerHTML=other.map(({section,count})=>`<button type="button" data-other-section="${section.key}">${esc(c.mapSection(section.col+1,section.row+1))} · ${esc(c.point(count))}</button>`).join('');
   }
-  function setFish(id) {
-    const next = selectedFish === id ? '' : id;
+  function setFish(id,{toggle=true}={}) {
+    if(!species[id]?.stages?.length)return;
+    const next = toggle && selectedFish === id ? '' : id;
+    const previousSection=activeSection;
     selectedFish = next;
     if (selectedFish && !fishInStage(selectedFish,activeStage)) activeStage = species[selectedFish].stages[0] || activeStage;
-    activeSection = chooseSection(activeStage, selectedFish ? '' : activeSection);
+    const targetInCurrentSection=selectedFish&&stages[activeStage]?.sections.get(previousSection)?.pins.some(pin=>pin.fishIds.includes(selectedFish));
+    activeSection = chooseSection(activeStage, selectedFish ? (targetInCurrentSection?previousSection:'') : previousSection);
     render();
   }
   function showPinDetails(ids, x, y) {
@@ -257,9 +329,19 @@
   $('zoom-out').addEventListener('click',()=>{zoom=Math.max(.6,zoom/1.3);renderMap();});
   $('zoom-in').addEventListener('click',()=>{zoom=Math.min(3,zoom*1.3);renderMap();});
   $('zoom-fit').addEventListener('click',()=>{zoom=1;renderMap();});
-  searchInput.addEventListener('input',()=>{searchTerm=searchInput.value;renderFishList();});
-  $('clear-search').addEventListener('click',()=>{searchInput.value='';searchTerm='';renderFishList();searchInput.focus();});
-  $('show-all').addEventListener('click',()=>{selectedFish='';searchInput.value='';searchTerm='';activeSection=chooseSection(activeStage);render();});
+  searchInput.addEventListener('input',()=>{searchTerm=searchInput.value;suggestionsDismissed=false;renderFishList();});
+  searchInput.addEventListener('focus',()=>{suggestionsDismissed=false;renderSuggestions();});
+  searchInput.addEventListener('blur',()=>closeSuggestions(false));
+  searchInput.addEventListener('keydown',event=>{
+    if(event.key==='ArrowDown'&&suggestionIds.length){event.preventDefault();if(suggestionList.hidden){suggestionsDismissed=false;renderSuggestions();}setActiveSuggestion(activeSuggestion<0?0:activeSuggestion+1);}
+    else if(event.key==='ArrowUp'&&suggestionIds.length){event.preventDefault();if(suggestionList.hidden){suggestionsDismissed=false;renderSuggestions();}setActiveSuggestion(activeSuggestion<0?suggestionIds.length-1:activeSuggestion-1);}
+    else if(event.key==='Enter'&&!suggestionList.hidden&&suggestionIds.length){event.preventDefault();chooseSuggestion(suggestionIds[activeSuggestion<0?0:activeSuggestion]);}
+    else if(event.key==='Escape'&&!suggestionList.hidden){event.preventDefault();closeSuggestions(true);}
+  });
+  suggestionList.addEventListener('pointerdown',event=>{if(event.target.closest('[data-suggestion]'))event.preventDefault();});
+  suggestionList.addEventListener('click',event=>{const option=event.target.closest('[data-suggestion]');if(option)chooseSuggestion(option.dataset.suggestion);});
+  $('clear-search').addEventListener('click',()=>{searchInput.value='';searchTerm='';selectedFish='';closeSuggestions(true);render();searchInput.focus();});
+  $('show-all').addEventListener('click',()=>{selectedFish='';searchInput.value='';searchTerm='';closeSuggestions(true);activeSection=chooseSection(activeStage);render();});
   window.addEventListener('resize',()=>renderMap());
   Promise.all([fetch('fish-locations.json').then(r=>{if(!r.ok)throw Error('fish locations');return r.json();}),fetch('gallery-data.json').then(r=>{if(!r.ok)throw Error('fish sprites');return r.json();})]).then(([locations,gallery])=>{buildData(locations,gallery);initFromUrl();enableControls();render();}).catch(error=>{console.error(error);$('pin-help').textContent=lang==='th'?'โหลดข้อมูลปลาไม่สำเร็จ กรุณาโหลดหน้าใหม่':lang==='ja'?'魚データを読み込めません。ページを再読み込みしてください。':'Could not load fish map data. Please reload the page.';});
 })();

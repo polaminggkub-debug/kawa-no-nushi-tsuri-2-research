@@ -7,6 +7,16 @@ const locations=JSON.parse(fs.readFileSync(path.join(root,'catalogue/fish-locati
 const itemKeys=new Set(data.items.map(i=>`${i.category}:${i.id}`));
 const fishIds=new Set(Object.keys(data.fishVisuals));
 assert.equal(data.items.filter(i=>i.category==='rod'&&i.rodDecision).length,21,'All 21 rods require decisions');
+assert.equal(data.items.filter(i=>i.gearDecision).length,157,'All hook/float/fly parts require individual action advice');
+for(const item of data.items.filter(i=>i.category==='hook'))assert.deepEqual((item.gearDecision.targetFish||[]).slice().sort(),[item.playerUse.targetMatches||[]].flat().map(t=>t.fishId).sort(),'Hook next action must use ROM named-fish field');
+const acquisitions=JSON.parse(fs.readFileSync(path.join(root,'data/town-item-acquisition.json'),'utf8'));
+assert.equal(Object.keys(acquisitions.items).length,6,'All six known town rewards require acquisition instructions');
+for(const [key,entries] of Object.entries(acquisitions.items)){const item=data.items.find(i=>i.category+':'+i.id===key);assert(item);for(const entry of entries)assert(item.playerUse.useLocations.some(loc=>loc.context==='town'&&loc.mapId===entry.mapId&&loc.action?.en===entry.action.en),'Missing actionable acquisition '+key);}
+for(const kind of ['float','sinker'])for(const [stage,row] of Object.entries(data.gearPriceGuide[kind])){
+ const candidates=data.items.filter(i=>i.category==='float_weight'&&(kind==='float'?parseInt(i.id,16)<8:['09','0A'].includes(i.id))&&i.playerUse.shops.some(shop=>String(shop.stage)===stage));
+ assert.equal(row.priceYen,Math.min(...candidates.map(i=>i.priceYen)),'Not minimum stocked '+kind+'/'+stage);
+ assert(candidates.some(i=>i.id===row.id&&i.priceYen===row.priceYen));
+}
 let linkCount=0,renderCount=0;
 const unescape=s=>s.replace(/&amp;/g,'&').replace(/&quot;/g,'"').replace(/&#39;/g,"'").replace(/&lt;/g,'<').replace(/&gt;/g,'>');
 function validate(html,base, allowInvalidIdentity=false){
@@ -50,7 +60,7 @@ async function render(kind,lang,query,prefix='/kawa-no-nushi-tsuri-2-research'){
   const suffix=lang==='en'?'':'.'+lang;
   for(const item of data.items){
    const result=await render('item',lang,new URLSearchParams({category:item.category,id:item.id,return:`index${suffix}.html?category=${item.category}#catalogue`}));
-   assert(!result.html.includes('Item not found')&&!result.html.includes('ไม่พบไอเท็ม')&&!result.html.includes('道具が見つかりません'),`Item render failed ${item.category}:${item.id}`);
+   assert(result.html.includes('class="detail-hero"')&&!result.html.includes('class="empty-state"'),`Item render failed ${item.category}:${item.id}`);
    assert(result.html.includes('class="evidence"'),`No collapsed evidence ${item.category}:${item.id}`);
    const visible=result.html.split('<details class="evidence"')[0];
    const breadcrumb=unescape(visible.match(/<nav class="detail-breadcrumb"><a href="([^"]+)"/)?.[1]||'');
@@ -63,7 +73,14 @@ async function render(kind,lang,query,prefix='/kawa-no-nushi-tsuri-2-research'){
    assert.deepEqual([...new Set(shopRoutes.map(route=>route.searchParams.get('stage')))].sort(),[...expectedShopStages].sort(),'Missing seller navigation for '+item.category+':'+item.id);
    for(const route of shopRoutes){assert.equal(route.searchParams.get('place'),'town');assert.equal(route.searchParams.get('category'),item.category);assert.equal(route.searchParams.get('id'),item.id);const back=new URL(route.searchParams.get('return'),result.url);assert.equal(back.searchParams.get('id'),item.id);}
 
-   if(['hook','float_weight'].includes(item.category))for(const fact of item.playerUse?.facts?.[lang]||[])assert(unescape(visible).includes(fact),`Confirmed practical fact hidden: ${item.category}:${item.id}`);
+   if(['hook','float_weight'].includes(item.category)&&!item.gearDecision)for(const fact of item.playerUse?.facts?.[lang]||[])assert(unescape(visible).includes(fact),`Confirmed practical fact hidden: ${item.category}:${item.id}`);
+   if(item.gearDecision){
+    for(const field of ['label','recommendation','reason'])assert(unescape(visible).includes(item.gearDecision[field][lang]),'Gear advice hidden '+item.category+':'+item.id+'/'+field+'/'+lang);
+    for(const id of item.gearDecision.targetFish||[])assert(visible.includes('id='+id),'Named hook fish has no next action');
+    if(item.category.startsWith('fly')&&item.category!=='fly')assert(visible.includes('data-fly-next'),'Fly part advice has no next action');
+    for(const fact of item.playerUse.facts?.[lang]||[])assert(unescape(result.html).includes(fact),'Original gear evidence lost');
+   }
+   for(const loc of item.playerUse.useLocations||[])if(loc.action)assert(unescape(visible).includes(loc.action[lang]),'Acquisition preparations hidden '+item.category+':'+item.id);
    if(item.category==='rod')assert(visible.includes('buying-decision'),`Rod purchase decision missing ${item.id}`);
    if(item.category==='rod'){assert(item.rodDecision,'Missing rod decision '+item.id);for(const field of ['label','recommendation','reason'])assert(unescape(visible).includes(item.rodDecision[field][lang]),'Rod advice hidden '+item.id+'/'+field+'/'+lang);assert(visible.includes('data-rod-decision="'+item.id+'"'),'Per-rod decision missing');assert(!visible.includes('fightResponseCode'),'Branch code leaked above technical evidence');}
    if(item.category==='general_tool'&&['08','09','0A'].includes(item.id))assert(visible.includes(lang==='en'?'movement can be steered':lang==='th'?'ชี้ทิศ':'進行方向'),`Chum steering list mislabeled ${item.id}`);

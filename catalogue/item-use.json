@@ -20721,13 +20721,14 @@
       },
       "useLocations": [
         {
+          "kind": "town_chest",
           "stage": 3,
           "mapId": 9,
           "context": "town",
           "name": {
-            "en": "Town chest: take the empty bottle before visiting the cow",
-            "ja": "町の宝箱：牛を訪ねる前に空きビンを取る",
-            "th": "หีบในเมือง: รับขวดเปล่าก่อนไปเติมนมกับวัว"
+            "en": "Town chest: empty bottle",
+            "ja": "町の宝箱：空きビン",
+            "th": "หีบในเมือง: ขวดเปล่า"
           },
           "tileX": 6,
           "tileY": 4,
@@ -20739,10 +20740,21 @@
             "x": 0.40625,
             "y": 0.1875
           },
+          "action": {
+            "en": "Take the empty bottle, then bring it to the area-3 cow at (6,103).",
+            "ja": "空きビンを取り、エリア3の牛（6,103）へ持っていく。",
+            "th": "รับขวดเปล่า แล้วนำไปหาวัวในพื้นที่ 3 พิกัด (6,103)"
+          },
           "source": {
             "objectSlotHex": "0E",
             "coordinateFileOffset": "0x0040E8",
-            "consumer": "00:D0EA..D113"
+            "consumer": "00:D0EA..D113",
+            "acquisitionCpu": "00:D0EA..D113"
+          },
+          "requiresKey": false,
+          "rewardItem": {
+            "category": "general_tool",
+            "id": "0F"
           },
           "townEntranceOrdinal": 0,
           "approach": {
@@ -20978,6 +20990,56 @@
             "category": "food",
             "id": "07"
           }
+        },
+        {
+          "kind": "town_chest",
+          "stage": 5,
+          "mapId": 11,
+          "context": "town",
+          "name": {
+            "en": "Town chest: lottery ticket",
+            "ja": "町の宝箱：富くじ",
+            "th": "หีบในเมือง: สลาก"
+          },
+          "tileX": 4,
+          "tileY": 6,
+          "image": "maps/tool-use-town-chest-11.png",
+          "fullImage": "maps/rom-town-11.png",
+          "width": 256,
+          "height": 384,
+          "pin": {
+            "x": 0.28125,
+            "y": 0.2708333333333333
+          },
+          "action": {
+            "en": "Take the ticket; this chest does not require the key.",
+            "ja": "カギは不要。この宝箱から富くじを取る。",
+            "th": "รับสลากจากหีบนี้ได้เลย ไม่ต้องใช้กุญแจ"
+          },
+          "source": {
+            "objectSlotHex": "0E",
+            "coordinateFileOffset": "0x004118",
+            "consumer": "00:D158..D181",
+            "acquisitionCpu": "00:D158..D181"
+          },
+          "requiresKey": false,
+          "rewardItem": {
+            "category": "general_tool",
+            "id": "11"
+          },
+          "townEntranceOrdinal": 0,
+          "approach": {
+            "image": "maps/tool-entry-town-chest-11.png",
+            "fullImage": "maps/rom-field-05.png",
+            "width": 384,
+            "height": 384,
+            "tileX": 59,
+            "tileY": 27,
+            "pin": {
+              "x": 0.5,
+              "y": 0.8125
+            }
+          }
         }
       ],
       "shops": [
@@ -21031,13 +21093,14 @@
       },
       "useLocations": [
         {
+          "kind": "town_chest",
           "stage": 6,
           "mapId": 12,
           "context": "town",
           "name": {
-            "en": "Town chest: bring the key and leave room for the reward",
-            "ja": "町の宝箱：カギを持参し、報酬用の空きを用意する",
-            "th": "หีบในเมือง: พกกุญแจและเว้นช่องสำหรับรางวัลก่อนเปิด"
+            "en": "Locked town chest: candle",
+            "ja": "施錠された町の宝箱：ロウソク",
+            "th": "หีบล็อกในเมือง: เทียน"
           },
           "tileX": 4,
           "tileY": 6,
@@ -21049,11 +21112,28 @@
             "x": 0.28125,
             "y": 0.2708333333333333
           },
+          "action": {
+            "en": "Bring key 17 and leave a free general-tool slot before opening this chest.",
+            "ja": "カギ17を持ち、道具欄を1つ空けてから開ける。",
+            "th": "พกกุญแจ 17 และเว้นช่องอุปกรณ์ทั่วไปให้ว่างก่อนเปิดหีบ"
+          },
           "source": {
             "objectSlotHex": "0E",
             "coordinateFileOffset": "0x004130",
-            "consumer": "00:CFB1..D059"
+            "consumer": "00:CFB1..D059",
+            "acquisitionCpu": "00:CFB1..D059"
           },
+          "requiresKey": true,
+          "rewardItem": {
+            "category": "general_tool",
+            "id": "12"
+          },
+          "requiredItem": {
+            "category": "general_tool",
+            "id": "17"
+          },
+          "capacityCheck": "general-tool inventory",
+          "keyConsumed": false,
           "townEntranceOrdinal": 0,
           "approach": {
             "image": "maps/tool-entry-town-chest-12.png",
@@ -21066,14 +21146,6 @@
               "x": 0.3958333333333333,
               "y": 0.5
             }
-          },
-          "rewardItem": {
-            "category": "general_tool",
-            "id": "12"
-          },
-          "requiredItem": {
-            "category": "general_tool",
-            "id": "17"
           }
         },
         {
@@ -21425,13 +21497,14 @@
       },
       "useLocations": [
         {
+          "kind": "town_chest",
           "stage": 1,
           "mapId": 7,
           "context": "town",
           "name": {
-            "en": "Town chest: bring the key and leave room for the reward",
-            "ja": "町の宝箱：カギを持参し、報酬用の空きを用意する",
-            "th": "หีบในเมือง: พกกุญแจและเว้นช่องสำหรับรางวัลก่อนเปิด"
+            "en": "Locked town chest: potato bait",
+            "ja": "施錠された町の宝箱：イモエサ",
+            "th": "หีบล็อกในเมือง: เหยื่อมันฝรั่ง"
           },
           "tileX": 5,
           "tileY": 68,
@@ -21443,11 +21516,28 @@
             "x": 0.34375,
             "y": 0.5208333333333334
           },
+          "action": {
+            "en": "Bring key 17 and leave a free bait slot before opening this chest.",
+            "ja": "カギ17を持ち、エサ欄を1つ空けてから開ける。",
+            "th": "พกกุญแจ 17 และเว้นช่องเหยื่อให้ว่างก่อนเปิดหีบ"
+          },
           "source": {
             "objectSlotHex": "0E",
             "coordinateFileOffset": "0x00408E",
-            "consumer": "00:CFB1..D059"
+            "consumer": "00:CFB1..D059",
+            "acquisitionCpu": "00:CFB1..D059"
           },
+          "requiresKey": true,
+          "rewardItem": {
+            "category": "bait",
+            "id": "11"
+          },
+          "requiredItem": {
+            "category": "general_tool",
+            "id": "17"
+          },
+          "capacityCheck": "7E:0B36",
+          "keyConsumed": false,
           "townEntranceOrdinal": 4,
           "approach": {
             "image": "maps/tool-entry-town-chest-07.png",
@@ -21460,24 +21550,17 @@
               "x": 0.78125,
               "y": 0.5
             }
-          },
-          "rewardItem": {
-            "category": "bait",
-            "id": "11"
-          },
-          "requiredItem": {
-            "category": "general_tool",
-            "id": "17"
           }
         },
         {
+          "kind": "town_chest",
           "stage": 2,
           "mapId": 8,
           "context": "town",
           "name": {
-            "en": "Town chest: bring the key and leave room for the reward",
-            "ja": "町の宝箱：カギを持参し、報酬用の空きを用意する",
-            "th": "หีบในเมือง: พกกุญแจและเว้นช่องสำหรับรางวัลก่อนเปิด"
+            "en": "Locked town chest: waxworm bait",
+            "ja": "施錠された町の宝箱：ブドウムシ",
+            "th": "หีบล็อกในเมือง: หนอนองุ่น"
           },
           "tileX": 4,
           "tileY": 6,
@@ -21489,11 +21572,28 @@
             "x": 0.28125,
             "y": 0.2708333333333333
           },
+          "action": {
+            "en": "Bring key 17 and leave a free bait slot before opening this chest.",
+            "ja": "カギ17を持ち、エサ欄を1つ空けてから開ける。",
+            "th": "พกกุญแจ 17 และเว้นช่องเหยื่อให้ว่างก่อนเปิดหีบ"
+          },
           "source": {
             "objectSlotHex": "0E",
             "coordinateFileOffset": "0x0040D0",
-            "consumer": "00:CFB1..D059"
+            "consumer": "00:CFB1..D059",
+            "acquisitionCpu": "00:CFB1..D059"
           },
+          "requiresKey": true,
+          "rewardItem": {
+            "category": "bait",
+            "id": "0B"
+          },
+          "requiredItem": {
+            "category": "general_tool",
+            "id": "17"
+          },
+          "capacityCheck": "7E:0B36",
+          "keyConsumed": false,
           "townEntranceOrdinal": 0,
           "approach": {
             "image": "maps/tool-entry-town-chest-08.png",
@@ -21506,24 +21606,17 @@
               "x": 0.5,
               "y": 0.8541666666666666
             }
-          },
-          "rewardItem": {
-            "category": "bait",
-            "id": "0B"
-          },
-          "requiredItem": {
-            "category": "general_tool",
-            "id": "17"
           }
         },
         {
+          "kind": "town_chest",
           "stage": 4,
           "mapId": 10,
           "context": "town",
           "name": {
-            "en": "Town chest: bring the key and leave room for the reward",
-            "ja": "町の宝箱：カギを持参し、報酬用の空きを用意する",
-            "th": "หีบในเมือง: พกกุญแจและเว้นช่องสำหรับรางวัลก่อนเปิด"
+            "en": "Locked town chest: small lure rod",
+            "ja": "施錠された町の宝箱：ルアーロッド小",
+            "th": "หีบล็อกในเมือง: คันลัวร์เล็ก"
           },
           "tileX": 4,
           "tileY": 6,
@@ -21535,11 +21628,28 @@
             "x": 0.28125,
             "y": 0.2708333333333333
           },
+          "action": {
+            "en": "Bring key 17 and leave a free rod slot before opening this chest.",
+            "ja": "カギ17を持ち、竿欄を1つ空けてから開ける。",
+            "th": "พกกุญแจ 17 และเว้นช่องคันเบ็ดให้ว่างก่อนเปิดหีบ"
+          },
           "source": {
             "objectSlotHex": "0E",
             "coordinateFileOffset": "0x004100",
-            "consumer": "00:CFB1..D059"
+            "consumer": "00:CFB1..D059",
+            "acquisitionCpu": "00:CFB1..D059"
           },
+          "requiresKey": true,
+          "rewardItem": {
+            "category": "rod",
+            "id": "0A"
+          },
+          "requiredItem": {
+            "category": "general_tool",
+            "id": "17"
+          },
+          "capacityCheck": "7E:0B06",
+          "keyConsumed": false,
           "townEntranceOrdinal": 0,
           "approach": {
             "image": "maps/tool-entry-town-chest-10.png",
@@ -21552,24 +21662,17 @@
               "x": 0.8958333333333334,
               "y": 0.5
             }
-          },
-          "rewardItem": {
-            "category": "rod",
-            "id": "0A"
-          },
-          "requiredItem": {
-            "category": "general_tool",
-            "id": "17"
           }
         },
         {
+          "kind": "town_chest",
           "stage": 6,
           "mapId": 12,
           "context": "town",
           "name": {
-            "en": "Town chest: bring the key and leave room for the reward",
-            "ja": "町の宝箱：カギを持参し、報酬用の空きを用意する",
-            "th": "หีบในเมือง: พกกุญแจและเว้นช่องสำหรับรางวัลก่อนเปิด"
+            "en": "Locked town chest: candle",
+            "ja": "施錠された町の宝箱：ロウソク",
+            "th": "หีบล็อกในเมือง: เทียน"
           },
           "tileX": 4,
           "tileY": 6,
@@ -21581,11 +21684,28 @@
             "x": 0.28125,
             "y": 0.2708333333333333
           },
+          "action": {
+            "en": "Bring key 17 and leave a free general-tool slot before opening this chest.",
+            "ja": "カギ17を持ち、道具欄を1つ空けてから開ける。",
+            "th": "พกกุญแจ 17 และเว้นช่องอุปกรณ์ทั่วไปให้ว่างก่อนเปิดหีบ"
+          },
           "source": {
             "objectSlotHex": "0E",
             "coordinateFileOffset": "0x004130",
-            "consumer": "00:CFB1..D059"
+            "consumer": "00:CFB1..D059",
+            "acquisitionCpu": "00:CFB1..D059"
           },
+          "requiresKey": true,
+          "rewardItem": {
+            "category": "general_tool",
+            "id": "12"
+          },
+          "requiredItem": {
+            "category": "general_tool",
+            "id": "17"
+          },
+          "capacityCheck": "general-tool inventory",
+          "keyConsumed": false,
           "townEntranceOrdinal": 0,
           "approach": {
             "image": "maps/tool-entry-town-chest-12.png",
@@ -21598,14 +21718,6 @@
               "x": 0.3958333333333333,
               "y": 0.5
             }
-          },
-          "rewardItem": {
-            "category": "general_tool",
-            "id": "12"
-          },
-          "requiredItem": {
-            "category": "general_tool",
-            "id": "17"
           }
         }
       ],

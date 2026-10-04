@@ -82,3 +82,7 @@ Individual references were checked exhaustively by the source checker. Browser c
 Local browser checks: special rod 0D → area-4 seller → paired outdoor entrance #5 → town → matching special stock → rod profile → shop return; EN/JA switching retains stage/place/entrance; 390px shop crops fit the page. Fish 01's fly-backup purchase opens the matching bundle shop and returns to the fish profile. Bottle/key/candle chest cards show acquisition maps, entrance disclosures, reward profiles and key requirements.
 
 Rod 01 → alternative 04 → return to 01 works. All 21 cards render their own decision in Thai; the comparison disclosure includes a recommendation column and suppresses purchase quotes for four rods without recorded stock. Mobile rod advice and alternative portrait links wrap at 390px without horizontal page overflow. Automated rendering additionally covers every rod in all three locales.
+
+## Gear and acquisition follow-up
+
+Added individual decisions for 157 gear records, fish starter/backup deep links, a linked six-area float/sinker price table, six chest acquisition routes, and map autocomplete. Current source render: 1,524 localized detail renders / 209,808 local references. Browser checks are separately recorded in `player-usefulness-audit.md`; this count does not assert all references were clicked by a human/browser.

@@ -13,7 +13,7 @@
   <meta property="og:type" content="website">
   <meta property="og:title" content="แผนที่จุดตกปลา — ตกปลาทาโร่ 2">
   <meta property="og:description" content="เลือกด่าน ค้นหาปลา แล้วดูตำแหน่งที่ถอดจาก ROM บนแผนที่พร้อมรูปปลาจริงในเกม">
-  <link rel="stylesheet" href="maps.css?v=player-usefulness-20261004-6">
+  <link rel="stylesheet" href="maps.css?v=player-usefulness-20261004-7">
 </head>
 <body>
   <header class="hero"><div class="hero-inner">
@@ -30,7 +30,11 @@
         <section class="fish-browser" aria-labelledby="fish-title">
           <div class="fish-list-heading"><div><h3 id="fish-title">ปลาในด่านนี้</h3><p id="area-summary" class="muted"></p></div><button id="show-all" class="clear-button" type="button" disabled>แสดงปลาทั้งหมด</button></div>
           <label class="fish-search-label" for="fish-search">ค้นหาปลา</label>
-          <div class="search-row"><input id="fish-search" type="search" autocomplete="off" placeholder="ชื่อปลา ชื่อญี่ปุ่น หรือ ID เช่น 06" disabled><button id="clear-search" type="button" aria-label="ล้างคำค้น" disabled>×</button></div>
+          <p id="fish-search-help" class="search-help">พิมพ์ชื่อไทย ชื่อญี่ปุ่น คำอ่าน หรือ ID เพื่อดูคำแนะนำ เลือกปลาแล้วแผนที่จะกรองตามจุดที่ ROM กำหนด</p>
+          <div class="fish-search-combobox">
+            <div class="search-row"><input id="fish-search" type="search" role="combobox" aria-autocomplete="list" aria-haspopup="listbox" aria-controls="fish-suggestions" aria-expanded="false" aria-describedby="fish-search-help search-count" autocomplete="off" placeholder="ชื่อปลา ชื่อญี่ปุ่น หรือ ID เช่น 06" disabled><button id="clear-search" type="button" aria-label="ล้างคำค้น" disabled>×</button></div>
+            <div id="fish-suggestions" class="fish-suggestions" role="listbox" aria-label="คำแนะนำปลา" hidden></div>
+          </div>
           <p id="search-count" class="search-count" aria-live="polite"></p>
           <div id="fish-scope" class="fish-scope-menu"></div><div id="fish-list" class="fish-list"></div>
         </section>
@@ -51,6 +55,6 @@
     </section>
   </main>
   <footer><p>งานวิจัยแฟนเกม · ไม่มีไฟล์ ROM รวมอยู่ในเว็บ</p><a href="../research/index.th.html">บันทึกการวิจัย</a></footer>
-  <script src="maps.js?v=player-usefulness-20261004-6" defer></script>
+  <script src="maps.js?v=player-usefulness-20261004-7" defer></script>
 </body>
 </html>

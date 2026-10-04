@@ -79,6 +79,31 @@ if(!fs.existsSync(rodDecisionsPath))throw new Error('Missing per-rod decisions s
   data.rodDecisionScope=rodDecisions.scope;
   fs.writeFileSync(path.join(root,'catalogue/gallery-data.json'),JSON.stringify(data,null,2)+'\n');
 }
+const gearPath=path.join(root,'data/gear-item-decisions.json');
+if(!fs.existsSync(gearPath))throw new Error('Missing per-item gear decisions');
+{
+  const gear=JSON.parse(fs.readFileSync(gearPath,'utf8'));
+  data.gearPriceGuide={float:gear.floatCheapestRecordedStockByArea,sinker:gear.sinkerCheapestRecordedStockByArea};
+  if(gear.rom?.sha1!=='c2103dd94e2a1a65a495fc02adc2e7d040f31212')throw new Error('Gear decisions ROM mismatch');
+  for(const item of data.items.filter(i=>['hook','float_weight','fly','fly_wing','fly_tail'].includes(i.category))){
+    const choice=gear.items[item.category+':'+item.id];if(!choice)throw new Error('Missing gear decision '+item.category+':'+item.id);
+    item.gearDecision=choice;
+  }
+}
+const acquisitionPath=path.join(root,'data/town-item-acquisition.json');
+if(!fs.existsSync(acquisitionPath))throw new Error('Missing town acquisition data');
+{
+  const acquisitions=JSON.parse(fs.readFileSync(acquisitionPath,'utf8'));
+  if(acquisitions.rom?.sha1!=='c2103dd94e2a1a65a495fc02adc2e7d040f31212')throw new Error('Acquisition ROM mismatch');
+  for(const [key,entries] of Object.entries(acquisitions.items||{})){
+    const item=data.items.find(i=>i.category+':'+i.id===key);if(!item)throw new Error('Acquisition missing item '+key);
+    item.playerUse.evidence||={type:'rom_trace',sources:[]};
+    item.playerUse.evidence.sources=[...new Set([...(item.playerUse.evidence.sources||[]),'docs/town-item-acquisition-research.md','data/town-item-acquisition.json'])];
+    const previous=item.playerUse.useLocations||[];
+    item.playerUse.useLocations=[...entries,...previous.filter(loc=>!entries.some(entry=>entry.context===loc.context&&entry.mapId===loc.mapId&&entry.tileX===loc.tileX&&entry.tileY===loc.tileY))];
+  }
+}
+fs.writeFileSync(path.join(root,'catalogue/gallery-data.json'),JSON.stringify(data,null,2)+'\n');
 async function build(locale, filename) {
   const nodes = {};
   function node(id) {
