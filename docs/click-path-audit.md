@@ -90,3 +90,5 @@ Added individual decisions for 157 gear records, fish starter/backup deep links,
 ## Acquisition and practical-choice follow-up
 
 Current source render: 1,524 localized detail renders / 209,937 local references. Added six front-facing chest choices, net-to-bait and bait-to-net links, mushroom-to-orange alternatives, refillable-milk advice, and key/ticket overview links. Local browser clicks verified bait 09 -> gold net 04 with area 3 and return context retained; canoe 02 visibly offers the milk exchange route and no shop purchase. Source-render counts are not manual click counts.
+
+Public verification exposed a cached gallery-data request: the HTML/script revision advanced but the data URL did not. Both catalogue and item-detail now request the same data revision as their script; the source checker rejects mismatched revisions.

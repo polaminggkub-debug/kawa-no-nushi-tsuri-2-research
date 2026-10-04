@@ -2,6 +2,12 @@
 // Exhaustive source-render checks; browser checks are recorded separately.
 const fs=require('node:fs'),path=require('node:path'),vm=require('node:vm'),assert=require('node:assert/strict');
 const root=path.resolve(__dirname,'..');
+for(const [script,pages] of [['gallery.js',['index.html','index.ja.html','index.th.html']],['item-detail.js',['item.html','item.ja.html','item.th.html']]]){
+ const source=fs.readFileSync(path.join(root,'catalogue',script),'utf8');
+ const version=source.match(/fetch\('gallery-data\.json\?v=([^']+)'\)/)?.[1];
+ assert(version,'Catalogue data must have a cache revision: '+script);
+ for(const page of pages)assert(fs.readFileSync(path.join(root,'catalogue',page),'utf8').includes(script+'?v='+version),'Script/data cache revision mismatch: '+page);
+}
 const data=JSON.parse(fs.readFileSync(path.join(root,'catalogue/gallery-data.json'),'utf8'));
 const locations=JSON.parse(fs.readFileSync(path.join(root,'catalogue/fish-locations.json'),'utf8'));
 const itemKeys=new Set(data.items.map(i=>`${i.category}:${i.id}`));
