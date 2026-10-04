@@ -301,7 +301,9 @@
     if(item.category==='float_weight')return `<p><a class="route-button" data-float-price-guide href="index${lang==='en'?'':'.'+lang}.html?category=float_weight#category-decisions">${lang==='th'?'ดูทุ่นและตะกั่วราคาต่ำสุดแยกทั้งหกด่าน':lang==='ja'?'6エリアの最安ウキ・オモリを見る':'See the cheapest float and sinker in each of six areas'} ↗</a></p>`;
 
     const ids=(item.gearDecision.targetFish||[]).filter(id=>fishVisuals[id]);
-    if(item.category==='hook'&&ids.length)return `<p>${lang==='th'?'ดูเหยื่อและจุดตกของปลาที่ชื่อเบ็ดอ้างถึง (ไม่ได้แนะนำให้ใช้เบ็ดนี้จับง่ายกว่า)':lang==='ja'?'ハリ名が参照する魚のエサ・場所を確認（このハリの優位性を示すものではありません）':'See bait and locations for the fish named by this hook (not a claim this hook lands it more easily)'}</p>${ids.map(id=>`<a class="route-button" href="${esc(fishProfileLink(id,fishLocations))}">${esc(fishName(id,fishVisuals))} ↗</a>`).join('')}`;
+    const hookBudget=item.category==='hook'?`<p><a class="route-button" data-hook-price-guide href="index${lang==='en'?'':'.'+lang}.html?category=hook#category-decisions">${lang==='th'?'เบ็ดหายหรือยังไม่มี? ดูเบ็ดทั่วไปที่ถูกสุดทั้งหกด่าน':lang==='ja'?'針を失った・持っていない？6エリアの最安汎用針を見る':'Lost your hook or have none? See the cheapest generic hook in each area'} ↗</a></p>`:'';
+    if(item.category==='hook'&&!ids.length)return hookBudget;
+    if(item.category==='hook'&&ids.length)return hookBudget+`<p>${lang==='th'?'ดูเหยื่อและจุดตกของปลาที่ชื่อเบ็ดอ้างถึง (ไม่ได้แนะนำให้ใช้เบ็ดนี้จับง่ายกว่า)':lang==='ja'?'ハリ名が参照する魚のエサ・場所を確認（このハリの優位性を示すものではありません）':'See bait and locations for the fish named by this hook (not a claim this hook lands it more easily)'}</p>${ids.map(id=>`<a class="route-button" href="${esc(fishProfileLink(id,fishLocations))}">${esc(fishName(id,fishVisuals))} ↗</a>`).join('')}`;
     if(item.category.startsWith('fly')){
       const target=selectedFish&&fishVisuals[selectedFish]?selectedFish:'';
       if(target){const supported=allItems.some(candidate=>candidate.category==='fly'&&candidate.playerUse?.fishIds?.includes(target));return `<p><a class="route-button" data-fly-next href="${esc(fishProfileLink(target,fishLocations))}${supported?'#fly-backup':''}">${supported?(lang==='th'?'ดูชุดฟลายเริ่มต้นและชุดสำรองสำหรับปลาที่เลือก':lang==='ja'?'選んだ魚の最初の毛バリと予備を見る':'See starter and backup flies for the selected fish'):(lang==='th'?'ปลานี้ไม่ผ่านเงื่อนไขฟลาย: ดูเหยื่อและวิธีอื่น':lang==='ja'?'この魚はフライ判定に不適合：他のエサ・釣法を見る':'This fish fails the fly profile check: see other bait and methods')} ↗</a></p>`;}
@@ -407,7 +409,7 @@
     setNavigation();
     $('detail-root').innerHTML=`<section class="empty-state"><h1>${esc(copy.invalidTitle)}</h1><p>${esc(copy.invalidBody)}</p><a class="route-button" href="${esc(fallbackBack())}">${esc(copy.allItems)} ↗</a></section>`;
   }
-  fetch('gallery-data.json?v=player-usefulness-20261004-17').then(response=>{if(!response.ok)throw new Error('catalogue data unavailable');return response.json();}).then(data=>{
+  fetch('gallery-data.json?v=player-usefulness-20261004-18').then(response=>{if(!response.ok)throw new Error('catalogue data unavailable');return response.json();}).then(data=>{
     if(selectedFish&&!data.fishVisuals?.[selectedFish])selectedFish='';
     const item=(data.items||[]).find(candidate=>candidate.category===category&&candidate.id===requestedId)||null;
     if(!item){emptyState();return;}

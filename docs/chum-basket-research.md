@@ -17,7 +17,7 @@ When a landed catch fills the keepnet exactly, the game stores the fish first an
 
 ## Groundbait: the exact effect and its limits
 
-IDs `08`, `09`, and `0A` all have the Japanese ROM name `寄せエサ` and all reach the same use handler at `03:C24A`. On successful placement, the game stores the selected coordinate pair in `7E:1D41/1D43` and sets active marker `7E:1D45` to `12`. A later successful placement advances the inventory ID `08→09→0A`; successful use of `0A` removes that entry from the tools list. Invalid placement or an already-active target returns before the inventory charge transition.
+IDs `08`, `09`, and `0A` all have the Japanese ROM name `寄せエサ` and all reach the same use handler at `03:C24A`. On successful placement, the game stores the selected coordinate pair in `7E:1D41/1D43` and sets active marker `7E:1D45` to `12`. A later successful placement advances the inventory ID `08→09→0A`; successful use of `0A` removes that entry from the tools list. Invalid placement or an already-active target returns before the inventory charge transition. So if the game says chum was scattered already, the attempt is rejected without spending a use; place a new point after the marker clears, after moving the old target outside the active coordinate window, or after changing area.
 
 The decoded ROM messages make the basic action clear:
 
@@ -27,7 +27,7 @@ The decoded ROM messages make the basic action clear:
 
 The active marker is **not a real-time timer**. `04:C020..C02B` decrements it once when the fishing state enters phase 3. That path is reached after the aim/input state is complete and the target resolver returns nonzero (`04:BF61..BF8F`, following `04:D056`). A zero target result uses the other phase and does not decrement the marker there. Starting at `12`, the code reaches zero after 12 qualifying phase-3 transitions. The exact number of casts during which the effect is visible on screen has not been measured, so this note does not translate that counter into seconds or promise exactly 12 successful catches.
 
-Moving outside the active coordinate window also clears the marker. The fish-update routine calls the `03:8056` helper, which checks the saved point against the current area bounds through `03:C2DE..C30F`. Scene/area update paths at `00:9F37` and `00:9FB1` clear it as well.
+Moving until the saved target leaves the current active coordinate window also clears the marker. The fish-update routine calls the `03:8056` helper, which checks the saved point against the inclusive current window X=`value($0200)..value($0200)+16` and Y=`value($0202)..value($0202)+14` through `03:C2DE..C30F`. These bounds use coordinate values read dynamically from `$0200` and `$0202`, not fixed world coordinates. Scene/area update paths at `00:9F37` and `00:9FB1` clear it as well. In player terms: to place at a new point, let the marker wear off through fishing progress, move until the old target leaves the tracked fishing area, or change area. The counter is not real time, and the visible number of casts was not measured.
 
 Fish movement has a specific ROM condition. The game first tries an equipped-bait direction branch. If that branch does not take precedence, fish profiles whose `+15` word intersects mask `0x5180` enter the groundbait-direction branch when `7E:1D45` is nonzero. The direction code compares the fish's current coordinates with the saved chum coordinate and writes a direction toward it (`00:D5F0..D61A`, `00:D7D2..D81E`). This is evidence for **movement toward the marked point**. It is not evidence that chum raises the chance of a bite, makes a fish accept a particular lure/bait, or improves the odds of landing it.
 
@@ -67,4 +67,4 @@ So the ROM does not discard the fish that brings the count exactly to capacity. 
 
 The three groundbait messages and the two keepnet messages were decoded directly from the original ROM's message table and font with [render_rom_messages.py](../scripts/render_rom_messages.py). Message offsets are `0104`, `0106`, `0108`, `0198`, `019A`, `0092`, and `00A2`.
 
-The marker remains within inclusive coordinates X=`[0200]..[0200]+16`, Y=`[0202]..[0202]+14` in the fishing viewport. `00:A0E0..A12F` calls `00:D4C3`, then `03:8056` → `03:C2DE`, during fish updates; this is not only a repeated-use check. Moving the saved marker outside that window clears `1D45`.
+The marker remains while its saved target is within the inclusive current coordinate window X=`value($0200)..value($0200)+16`, Y=`value($0202)..value($0202)+14` in the fishing viewport. `00:A0E0..A12F` calls `00:D4C3`, then `03:8056` → `03:C2DE`, during fish updates; this is not only a repeated-use check. Moving the saved marker outside that dynamic window clears `1D45`.

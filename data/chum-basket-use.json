@@ -70,7 +70,9 @@
       "success_message_table_offset": "0104",
       "already_active_message_table_offset": "0106",
       "invalid_location_message_table_offset": "0108",
-      "item_charge_transition_cpu": "03:C29C..C2C8",
+      "item_charge_transition_call_cpu": "03:C29B..C29E",
+      "item_charge_transition_call_bytes": "22 8A DA 00",
+      "item_charge_transition_cpu": "03:C29F..C2C7",
       "item_charge_transition_bytes": "ae cf 1b bd d5 1b c9 0a 00 d0 1a ae cf 1b e0 1e 00 b0 0a bd d7 1b 9d d5 1b e8 e8 80 f1 a9 00 00 9d d5 1b 80 04 1a 9d d5 1b",
       "item_charge_meaning": "On successful placement, increment selected item ID 08 to 09 or 09 to 0A. On using 0A, shift later inventory entries left and clear the last slot. Invalid-location and already-active paths return before this sequence.",
       "old_target_area_check_cpu": "03:C2DE..C30F",
@@ -101,7 +103,7 @@
         "03:C30F"
       ],
       "limit": "This direction branch does not establish increased bite probability, catch success, or that chum overrides the earlier bait-direction branch.",
-      "area_clear_call_path": "00:A0E0..A12F calls 00:D4C3 during the fishing update. 00:D4C3 calls the 03:8056 function-table entry, which calls 03:C2DE; C2DE checks the saved target against the inclusive current coordinate window X=$0200..$0210 and Y=$0202..$0210, then clears 7E:1D45 at 03:C30F when outside. Area/stage update paths at 00:9F37 and 00:9FB1 also clear the marker."
+      "area_clear_call_path": "00:A0E0..A12F calls 00:D4C3 during the fishing update. 00:D4C3 calls the 03:8056 function-table entry, which calls 03:C2DE; C2DE checks the saved target against the inclusive current coordinate window X=value($0200)..value($0200)+0x10 and Y=value($0202)..value($0202)+0x0E, then clears 7E:1D45 at 03:C30F when outside. The base values are read dynamically from $0200 and $0202. Area/stage update paths at 00:9F37 and 00:9FB1 also clear the marker."
     },
     "basket_purchase": {
       "purchase_handler_cpu": "03:9450..94D3",
@@ -165,17 +167,20 @@
         "en": [
           "Three uses. After the first successful placement, two remain.",
           "Place the marker where you want eligible fish to move toward. It wears off as fishing progresses or when you leave its active area.",
-          "This changes fish movement; it does not establish a bite-rate or catch-success bonus."
+          "This changes fish movement; it does not establish a bite-rate or catch-success bonus.",
+          "If the game says chum was scattered already, the rejected try does not use a charge. To place a new point, let the marker clear through fishing progress, move until the old target leaves the tracked fishing area, or change area."
         ],
         "ja": [
           "3回使える。1回目の設置成功後は残り2回。",
           "魚に向かわせたい場所へ置く。釣りの進行で作動値が減り、誘導点が現在のエリア範囲外になると解除される。",
-          "変わるのは魚の移動方向。食いつき率や釣果率の上昇は確認できない。"
+          "変わるのは魚の移動方向。食いつき率や釣果率の上昇は確認できない。",
+          "「さっきまいたのでまだ必要ありません」と表示された場合、その試行では回数は減りません。置き直すには、釣りの進行で現在の誘導点が消えるのを待つか、古い目標が釣り中の範囲外になるまで移動するか、エリアを移動してください。"
         ],
         "th": [
           "ใช้ได้ 3 ครั้ง; โปรยสำเร็จครั้งแรกแล้วเหลือ 2 ครั้ง",
           "วางจุดไว้ตรงที่อยากให้ปลาเข้าหา; ผลจะลดลงตามความคืบหน้าการตกปลา และหยุดเมื่อจุดออกนอกพื้นที่ที่ยังทำงานอยู่",
-          "โค้ดยืนยันว่าหันทิศการเคลื่อนที่ของปลา แต่ไม่ได้ยืนยันว่าเพิ่มอัตรากัดหรือโอกาสตกสำเร็จ"
+          "โค้ดยืนยันว่าหันทิศการเคลื่อนที่ของปลา แต่ไม่ได้ยืนยันว่าเพิ่มอัตรากัดหรือโอกาสตกสำเร็จ",
+          "ถ้าเกมบอกว่าโปรยไปแล้ว การลองซ้ำจะไม่เสียจำนวนครั้งที่เหลือ ถ้าจะวางจุดใหม่ ให้ตกต่อจนจุดเดิมหมดผล ขยับจนจุดเดิมพ้นขอบเขตที่เกมติดตามระหว่างตกปลา หรือเปลี่ยนด่าน"
         ]
       },
       "fishIds": [
@@ -273,15 +278,18 @@
       "facts": {
         "en": [
           "Two uses remain. After the next successful placement, one remains.",
-          "The same marker, eligible-profile movement rule, and area/casting-progress limits apply as ID 08."
+          "The same marker, eligible-profile movement rule, and area/casting-progress limits apply as ID 08.",
+          "If the game says chum was scattered already, the rejected try does not use a charge. To place a new point, let the marker clear through fishing progress, move until the old target leaves the tracked fishing area, or change area."
         ],
         "ja": [
           "残り2回。次の設置成功後は残り1回。",
-          "誘導点・対象プロフィール・フェーズ進行とエリア範囲による解除はID 08と同じ。"
+          "誘導点・対象プロフィール・フェーズ進行とエリア範囲による解除はID 08と同じ。",
+          "「さっきまいたのでまだ必要ありません」と表示された場合、その試行では回数は減りません。置き直すには、釣りの進行で現在の誘導点が消えるのを待つか、古い目標が釣り中の範囲外になるまで移動するか、エリアを移動してください。"
         ],
         "th": [
           "เหลือ 2 ครั้ง; โปรยสำเร็จครั้งถัดไปแล้วจะเหลือ 1 ครั้ง",
-          "ตั้งจุดและหันทิศปลาตามเงื่อนไขเดียวกับ ID 08; หมดผลจากความคืบหน้าการตกปลาหรือย้ายออกจากขอบเขตพื้นที่"
+          "ตั้งจุดและหันทิศปลาตามเงื่อนไขเดียวกับ ID 08; หมดผลจากความคืบหน้าการตกปลาหรือย้ายออกจากขอบเขตพื้นที่",
+          "ถ้าเกมบอกว่าโปรยไปแล้ว การลองซ้ำจะไม่เสียจำนวนครั้งที่เหลือ ถ้าจะวางจุดใหม่ ให้ตกต่อจนจุดเดิมหมดผล ขยับจนจุดเดิมพ้นขอบเขตที่เกมติดตามระหว่างตกปลา หรือเปลี่ยนด่าน"
         ]
       },
       "evidence": {
@@ -294,13 +302,13 @@
       },
       "evidenceNotes": {
         "en": [
-          "Same shared handler and fish-direction/countdown routines documented for ID 08. The ROM record uses the same Japanese label and a zero price field; inventory transition is at 03:C29C..C2C8."
+          "Same shared handler and fish-direction/countdown routines documented for ID 08. The ROM record uses the same Japanese label and a zero price field; the transition call is at 03:C29B..C29E and its byte window is 03:C29F..C2C7."
         ],
         "ja": [
-          "ID 08と同じ共通処理・魚の方向・カウンター処理。ROMレコード名は同じ寄せエサで、価格欄は0。所持IDの移行は03:C29C..C2C8。"
+          "ID 08と同じ共通処理・魚の方向・カウンター処理。ROMレコード名は同じ寄せエサで、価格欄は0。移行処理への呼び出しは03:C29B..C29E、処理バイト列は03:C29F..C2C7。"
         ],
         "th": [
-          "ใช้ handler และโค้ดหันทิศ/ตัวนับร่วมกับ ID 08; ระเบียน ROM ใช้ชื่อญี่ปุ่นเดียวกันและช่องราคาของ ID 09 เป็น 0; โค้ดเปลี่ยน ID อยู่ที่ 03:C29C..C2C8"
+          "ใช้ handler และโค้ดหันทิศ/ตัวนับร่วมกับ ID 08; ระเบียน ROM ใช้ชื่อญี่ปุ่นเดียวกันและช่องราคาของ ID 09 เป็น 0; จุดเรียกโค้ดเปลี่ยนไอเท็มอยู่ที่ 03:C29B..C29E และช่วงไบต์ของการเปลี่ยนอยู่ที่ 03:C29F..C2C7"
         ]
       },
       "fishIds": [
@@ -372,15 +380,18 @@
       "facts": {
         "en": [
           "One use remains. A successful placement consumes it.",
-          "The same marker, eligible-profile movement rule, and area/casting-progress limits apply as ID 08."
+          "The same marker, eligible-profile movement rule, and area/casting-progress limits apply as ID 08.",
+          "If the game says chum was scattered already, the rejected try does not use a charge. To place a new point, let the marker clear through fishing progress, move until the old target leaves the tracked fishing area, or change area."
         ],
         "ja": [
           "残り1回。設置成功時に消費される。",
-          "誘導点・対象プロフィール・フェーズ進行とエリア範囲による解除はID 08と同じ。"
+          "誘導点・対象プロフィール・フェーズ進行とエリア範囲による解除はID 08と同じ。",
+          "「さっきまいたのでまだ必要ありません」と表示された場合、その試行では回数は減りません。置き直すには、釣りの進行で現在の誘導点が消えるのを待つか、古い目標が釣り中の範囲外になるまで移動するか、エリアを移動してください。"
         ],
         "th": [
           "เหลือ 1 ครั้ง; โปรยสำเร็จแล้วไอเท็มจะถูกใช้หมด",
-          "ตั้งจุดและหันทิศปลาตามเงื่อนไขเดียวกับ ID 08; หมดผลจากความคืบหน้าการตกปลาหรือย้ายออกจากขอบเขตพื้นที่"
+          "ตั้งจุดและหันทิศปลาตามเงื่อนไขเดียวกับ ID 08; หมดผลจากความคืบหน้าการตกปลาหรือย้ายออกจากขอบเขตพื้นที่",
+          "ถ้าเกมบอกว่าโปรยไปแล้ว การลองซ้ำจะไม่เสียจำนวนครั้งที่เหลือ ถ้าจะวางจุดใหม่ ให้ตกต่อจนจุดเดิมหมดผล ขยับจนจุดเดิมพ้นขอบเขตที่เกมติดตามระหว่างตกปลา หรือเปลี่ยนด่าน"
         ]
       },
       "evidence": {

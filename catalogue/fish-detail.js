@@ -380,6 +380,12 @@
     return `<section class="detail-section" data-fish-exchange><h2>${escapeHtml(title)}</h2>${rewards.map(item=>`<p>${escapeHtml(item.exchangeFishAction?.[locale]||item.exchangeFishAction?.en||text)}</p>${itemLink({item,routes:[]},stage)}`).join('')}</section>`;
   }
 
+  function unconfirmedProfileAction() {
+    const title=locale==='th'?'ไม่ต้องจัดชุดตกสำหรับรายการ 43':locale==='ja'?'プロフィール43用の仕掛けを買う必要はありません':'Do not buy a fishing setup for profile 43';
+    const text=locale==='th'?'เลือกปลาที่มีชื่อและจุดตกยืนยันแล้วแทน รายการนี้ไม่มีจุดเกิดที่ยืนยันในตารางที่ถอด และไม่มีเหยื่อจริง ลัวร์ หรือตัวฟลายผ่านเงื่อนไขของมัน การมีระเบียนใน ROM ไม่ได้ยืนยันว่าเป็นปลาที่พบและตกได้ตามปกติ':locale==='ja'?'名前と確認済みの釣り場がある魚を選んでください。この項目には抽出した出現表の確認済み地点がなく、エサ・ルアー・フライ本体の判定を通る候補もありません。ROMに行があるだけでは、通常出現して釣れる魚とは確認できません。':'Choose a named fish with confirmed fishing spots instead. This entry has no confirmed point in the extracted spawn table, and no bait, lure or fly body passes its recorded check. A row in the ROM does not establish that it normally appears and can be caught.';
+    return `<section class="detail-section" data-unconfirmed-profile-action><h2>${escapeHtml(title)}</h2><p>${escapeHtml(text)}</p><a class="route-button" href="${escapeHtml(cataloguePath())}?category=all#catalogue">${locale==='th'?'เลือกปลาอื่นจากช่องค้นหา':locale==='ja'?'検索欄で別の魚を選ぶ':'Choose another fish in the search field'} ↗</a></section>`;
+  }
+
   function render(fishData, locationData) {
     const visualTable = fishData.fishVisuals || {};
     const fish = visualTable[id];
@@ -404,6 +410,12 @@
     const unlabelled = !fish.nameJa && !fish.nameEn && !fish.nameLatin && !(fish.nameThVariants || []).length;
     const headline = unlabelled ? copy.unknownFish(id) : name;
 
+    if(id==='43'){
+      page.innerHTML=`<div class="detail-hero"><div><p class="muted">${escapeHtml(copy.pageTitle)} · ID 43</p><h1>${escapeHtml(headline)}</h1></div></div>${unconfirmedProfileAction()}${renderEvidence(fish,locations,matches).replace('</details>','<p><a href="../docs/fish-acceptance-research.md">Fish acceptance research · profile 43 ↗</a></p></details>')}`;
+      document.title=`${headline} — ${copy.pageTitle} | Kawa no Nushi Tsuri 2`;
+      return;
+    }
+
     page.innerHTML = `<div class="detail-hero">${sprite}<div><p class="muted">${escapeHtml(copy.pageTitle)} · ID ${escapeHtml(id)}</p><h1>${escapeHtml(headline)}</h1>${altNames.length ? `<p class="muted"><span>${escapeHtml(copy.legacyName)}:</span> ${altNames.map(escapeHtml).join(' · ')}</p>` : ''}</div></div>
       ${renderExchange(fishData.items || [],activeStage)}
       ${renderShopping(matches, locations, activeStage, fishData.items || [], fishData.flyBackupChoices)}
@@ -422,7 +434,7 @@
   }
 
   Promise.all([
-    fetch('gallery-data.json?v=player-usefulness-20261004-17').then(response => { if (!response.ok) throw new Error('gallery data unavailable'); return response.json(); }),
+    fetch('gallery-data.json?v=player-usefulness-20261004-18').then(response => { if (!response.ok) throw new Error('gallery data unavailable'); return response.json(); }),
     fetch('fish-locations.json').then(response => { if (!response.ok) throw new Error('location data unavailable'); return response.json(); })
   ]).then(([fishData, locationData]) => render(fishData, locationData)).catch(() => {
     page.innerHTML = `<h1>${escapeHtml(copy.pageTitle)}</h1><p class="empty-state">${escapeHtml(copy.recovery)}</p><p><a class="route-button" href="${escapeHtml(cataloguePath())}">${escapeHtml(copy.catalogue)}</a></p>`;

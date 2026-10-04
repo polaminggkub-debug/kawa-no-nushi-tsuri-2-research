@@ -12,6 +12,10 @@ const data=JSON.parse(fs.readFileSync(path.join(root,'catalogue/gallery-data.jso
 const locations=JSON.parse(fs.readFileSync(path.join(root,'catalogue/fish-locations.json'),'utf8'));
 const itemKeys=new Set(data.items.map(i=>`${i.category}:${i.id}`));
 const fishIds=new Set(Object.keys(data.fishVisuals));
+const placeholder43=JSON.parse(fs.readFileSync(path.join(root,'data/fish-acceptance.json'),'utf8')).fish_profiles.find(f=>f.id_hex==='43');
+assert.equal(placeholder43.acceptance_mask_hex,'0x0000','Profile43 advice requires its zero acceptance mask');
+for(const key of ['matching_bait_ids','matching_lure_ids','matching_fly_body_ids'])assert.deepEqual(placeholder43[key],[],'Profile43 advice must not hide a usable setup');
+assert(!locations.fish['43']?.locations?.length,'Profile43 advice must change if a spawn location is found');
 assert.equal(data.items.filter(i=>i.category==='rod'&&i.rodDecision).length,21,'All 21 rods require decisions');
 assert.equal(data.items.filter(i=>i.gearDecision).length,157,'All hook/float/fly parts require individual action advice');
 assert.equal(data.items.filter(i=>i.baitLureDecision).length,104,'All 23 bait and 81 lure entries require buy/use choices');
@@ -48,6 +52,12 @@ for(const kind of ['float','sinker'])for(const [stage,row] of Object.entries(dat
  const candidates=data.items.filter(i=>i.category==='float_weight'&&(kind==='float'?parseInt(i.id,16)<8:['09','0A'].includes(i.id))&&i.playerUse.shops.some(shop=>String(shop.stage)===stage));
  assert.equal(row.priceYen,Math.min(...candidates.map(i=>i.priceYen)),'Not minimum stocked '+kind+'/'+stage);
  assert(candidates.some(i=>i.id===row.id&&i.priceYen===row.priceYen));
+}
+for(const stage of [1,2,3,4,5,6]){
+ const row=data.gearPriceGuide.hook[stage];
+ const eligible=data.items.filter(i=>i.category==='hook'&&i.rawFields['+1']===0&&i.playerUse.shops.some(shop=>Number(shop.stage)===stage&&!shop.condition));
+ assert.equal(row.priceYen,Math.min(...eligible.map(i=>i.priceYen)),'Not minimum stocked generic hook/'+stage);
+ assert(eligible.some(i=>i.id===row.id&&i.priceYen===row.priceYen),'Hook guide lost zero fish-ID criterion');
 }
 const netSource=JSON.parse(fs.readFileSync(path.join(root,'data/general-tool-actions.json'),'utf8'));
 assert.deepEqual(data.items.find(i=>i.category==='general_tool'&&i.id==='04').gatheredBaitByArea,netSource.items['04'].trace.perAreaBaitIds);
@@ -209,6 +219,7 @@ async function render(kind,lang,query,prefix='/kawa-no-nushi-tsuri-2-research'){
    if(item.category==='food'&&['09','0A'].includes(item.id))assert(visible.includes('data-mushroom-alternative'),'Missing practical mushroom alternative');
    if(['hook','float_weight'].includes(item.category)&&!item.gearDecision)for(const fact of item.playerUse?.facts?.[lang]||[])assert(unescape(visible).includes(fact),`Confirmed practical fact hidden: ${item.category}:${item.id}`);
    if(item.gearDecision){
+    if(item.category==='hook')assert(visible.includes('data-hook-price-guide'),'Hook profile needs a missing-hook purchase action');
     for(const field of ['label','recommendation','reason'])assert(unescape(visible).includes(item.gearDecision[field][lang]),'Gear advice hidden '+item.category+':'+item.id+'/'+field+'/'+lang);
     for(const id of item.gearDecision.targetFish||[])assert(visible.includes('id='+id),'Named hook fish has no next action');
     if(item.category.startsWith('fly')&&item.category!=='fly')assert(visible.includes('data-fly-next'),'Fly part advice has no next action');
@@ -221,6 +232,11 @@ async function render(kind,lang,query,prefix='/kawa-no-nushi-tsuri-2-research'){
     const links=[...visible.matchAll(/data-compass-location href="([^"]+)"/g)];assert.equal(links.length,5);
     links.forEach((match,index)=>{const url=new URL(unescape(match[1]),result.url);assert.equal(url.searchParams.get('stage'),String(index+1));assert.equal(url.hash,'#compass-exit-'+(index+1));assert(visible.includes('id="compass-exit-'+(index+1)+'"'),'Missing compass destination anchor');});
     for(const loc of compassItem.playerUse.useLocations)assert(unescape(visible).includes(loc.description[lang]),'Compass route limitation hidden');
+   }
+   if(item.category==='general_tool'&&['08','09','0A'].includes(item.id)){
+    const facts=keepnetSource.items[item.id].facts[lang];
+    assert(facts.some(f=>f.includes(lang==='th'?'ไม่เสียจำนวนครั้ง':lang==='ja'?'回数は減りません':'does not use a charge')),'Chum rejection must explain no charge loss');
+    for(const fact of facts)assert(unescape(visible).includes(fact),'Chum action hidden from player/'+item.id+'/'+lang);
    }
 
 
@@ -247,7 +263,14 @@ async function render(kind,lang,query,prefix='/kawa-no-nushi-tsuri-2-research'){
     assert(back&&new URL(back,result.url).pathname.endsWith('maps'+targetSuffix+'.html'),'Fish language switch loses return language');
    }
 
-   if(id==='43')assert(!/class="route-button"[^>]*maps[^>]*>/.test(result.html),'Unconfirmed profile 43 spawn route');
+   if(id==='43'){
+    assert(!/class="route-button"[^>]*maps[^>]*>/.test(result.html),'Unconfirmed profile 43 spawn route');
+    assert(result.html.includes('data-unconfirmed-profile-action'),'Unconfirmed profile needs a next action');
+    assert(!result.html.includes('id="all-compatible"'),'Placeholder must not masquerade as a fishing guide');
+    assert(result.html.includes('fish-acceptance-research.md'),'Placeholder evidence must remain accessible');
+    const next=new URL(unescape(result.html.match(/class="route-button" href="([^"]+)"/)?.[1]),result.url);
+    assert.equal(next.searchParams.get('fish'),null,'Choose-another-fish action retained unusable target');
+   }
   }
   const nestedReturn=`item${suffix}.html?category=food&id=07&return=${encodeURIComponent('maps'+suffix+'.html?stage=3&fish=18')}`;
   const nestedResult=await render('fish',lang,new URLSearchParams({id:'18',stage:'3',return:nestedReturn}));
@@ -377,6 +400,15 @@ async function render(kind,lang,query,prefix='/kawa-no-nushi-tsuri-2-research'){
     assert.equal((rodTable.match(/class="rod-table-advice"/g)||[]).length,21,'All rods have comparison advice '+lang);
     for(const rod of data.items.filter(i=>i.category==='rod')){assert(unescape(rodTable).includes(rod.rodDecision.label[lang]),'Missing table decision '+rod.id+'/'+lang);assert(unescape(rodTable).includes(rod.rodDecision.reason[lang]),'Missing table decision reason '+rod.id+'/'+lang);}
     assert.equal((rodTable.match(new RegExp('<td>'+(lang==='th'?'ไม่พบในร้าน':lang==='ja'?'店頭在庫なし':'No recorded shop stock')+'</td>','g'))||[]).length,4,'Do not present raw prices as shop offers');
+    const hookNodes={};const hookNode=id=>hookNodes[id]||=({innerHTML:'',textContent:'',value:id==='category-filter'?'hook':id==='sort-filter'?'id':'',addEventListener(){},setAttribute(){},removeAttribute(){}});
+    const hookDocument={documentElement:{dataset:{locale:lang}},querySelector:selector=>selector.startsWith('#')?hookNode(selector.slice(1)):null,querySelectorAll:()=>[],getElementById:hookNode,addEventListener(){}};
+    vm.runInNewContext(fs.readFileSync(path.join(root,'catalogue/gallery.js'),'utf8').replace("let chosen='rod'","let chosen='hook'"),{document:hookDocument,console,URL,URLSearchParams,fetch:async()=>({ok:true,json:async()=>data})});
+    await new Promise(r=>setImmediate(r));
+    const hookTable=hookNode('category-decisions').innerHTML;
+    const hookLinks=[...hookTable.matchAll(/data-hook-budget-stage="([1-6])" href="([^"]+)"/g)];
+    assert.equal(hookLinks.length,6,'Missing hook replacement area choice/'+lang);
+    for(const match of hookLinks){const next=new URL(unescape(match[2]),'https://example.test/catalogue/index'+suffix+'.html'),row=data.gearPriceGuide.hook[match[1]];assert.equal(next.searchParams.get('id'),row.id);assert.equal(next.searchParams.get('stage'),match[1]);}
+    validate(hookTable,new URL(`https://example.test/catalogue/index${suffix}.html`));
     const cards=node('cards').innerHTML;
     assert.equal((cards.match(/class="item-card/g)||[]).length,315,'Catalogue all-items renderer');
     validate(cards,new URL(`https://example.test/catalogue/index${suffix}.html`));

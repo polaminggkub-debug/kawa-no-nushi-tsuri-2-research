@@ -92,6 +92,11 @@ if(!fs.existsSync(gearPath))throw new Error('Missing per-item gear decisions');
 {
   const gear=JSON.parse(fs.readFileSync(gearPath,'utf8'));
   data.gearPriceGuide={float:gear.floatCheapestRecordedStockByArea,sinker:gear.sinkerCheapestRecordedStockByArea};
+  data.gearPriceGuide.hook=Object.fromEntries([1,2,3,4,5,6].map(stage=>{
+    const choices=data.items.filter(item=>item.category==='hook'&&item.rawFields['+1']===0&&item.playerUse.shops?.some(shop=>Number(shop.stage)===stage&&!shop.condition)).sort((a,b)=>a.priceYen-b.priceYen||a.id.localeCompare(b.id));
+    const item=choices[0];if(!item)throw Error('Missing generic hook stock in area '+stage);
+    return [stage,{category:'hook',id:item.id,priceYen:item.priceYen}];
+  }));
   if(gear.rom?.sha1!=='c2103dd94e2a1a65a495fc02adc2e7d040f31212')throw new Error('Gear decisions ROM mismatch');
   for(const item of data.items.filter(i=>['hook','float_weight','fly','fly_wing','fly_tail'].includes(i.category))){
     const choice=gear.items[item.category+':'+item.id];if(!choice)throw new Error('Missing gear decision '+item.category+':'+item.id);
