@@ -23,14 +23,14 @@
           "ja": "金アミを持ってこの浅瀬に到達したら、道具メニューで金アミを選び、カワムシ07を採ります。再使用前に別の使用可能な浅瀬へ移動します。9個所持しているなら追加採集は不要です。"
         },
         "description": {
-          "th": "รูปเหยื่อชี้ช่องที่ทดลองใช้สำเร็จ ได้แมลงน้ำ 3 ชิ้นในสองรอบควบคุม จำนวนปกติอยู่ที่ 1–4 ชิ้น ไม่ได้คงที่ 3 การทดสอบใส่ตาข่ายในกระเป๋าเพื่อทดลอง; ยังไม่ยืนยันเส้นทางเดินจากทางเข้า จึงยังใช้ภาพนี้เป็นคู่มือเดินไปถึงไม่ได้",
-          "en": "The bait portrait marks a successful use tile. Two controlled runs gathered three pieces; normal amounts are 1–4, not a fixed three. The test inserted the net into inventory. A walking route from the entrance remains unconfirmed, so this is not yet a route guide.",
-          "ja": "エサ画像は使用に成功したタイルを示します。管理下の2回で3個採れましたが通常個数は1〜4で、3個固定ではありません。テストでは金アミを所持欄に設定しました。入口からの歩行経路は未確認のため、到達経路の案内にはまだ使えません。"
+          "th": "ใช้ภาพนี้ระบุช่องเก็บแมลงน้ำเมื่อไปถึงบริเวณนี้แล้ว เส้นทางเดินจากทางเข้ายังไม่ยืนยัน จึงยังใช้เป็นคู่มือเดินไปถึงไม่ได้",
+          "en": "Use this image to identify the aquatic-insect gathering tile once you reach this area. The walking route from the entrance remains unconfirmed, so this is not yet a route guide.",
+          "ja": "この場所に到達したら、画像でカワムシの採集タイルを確認できます。入口からの歩行経路は未確認のため、到達経路の案内にはまだ使えません。"
         },
         "name": {
           "en": "Confirmed shallow-water net spot",
           "ja": "浅瀬でアミを使えた地点",
-          "th": "จุดน้ำตื้นที่ยืนยันว่าใช้สวิงได้"
+          "th": "จุดน้ำตื้นที่ยืนยันว่าใช้ตาข่ายได้"
         },
         "image": "maps/tool-net-area1.png",
         "fullImage": "maps/rom-field-01.png",

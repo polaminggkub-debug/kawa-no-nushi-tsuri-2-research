@@ -79,6 +79,23 @@ for(const lang of ['en','ja','th'])assert.equal(tub.playerUse.summary[lang],tubS
 assert(daikon.playerUse.useLocations.some(l=>l.stage===3&&l.tileX===21&&l.tileY===82&&l.image));
 let linkCount=0,renderCount=0;
 const unescape=s=>s.replace(/&amp;/g,'&').replace(/&quot;/g,'"').replace(/&#39;/g,"'").replace(/&lt;/g,'<').replace(/&gt;/g,'>');
+for(const lang of ['en','ja','th']){
+ const file=lang==='en'?'index.html':'index.'+lang+'.html';
+ const html=fs.readFileSync(path.join(root,'catalogue',file),'utf8');
+ for(const rod of data.items.filter(i=>i.category==='rod')){
+  const start=html.indexOf('id="item-rod-'+rod.id+'"');assert(start>=0,'Missing prerendered rod '+file+'/'+rod.id);
+  const end=html.indexOf('<details class="record-details"',start);assert(end>start);
+  const front=unescape(html.slice(start,end));
+  for(const field of ['label','recommendation','reason'])assert(front.includes(rod.rodDecision[field][lang]),'Static crawler HTML has stale rod advice '+file+'/'+rod.id+'/'+field);
+ }
+}
+const compassSource=JSON.parse(fs.readFileSync(path.join(root,'data/compass-locations.json'),'utf8'));
+const compassItem=data.items.find(i=>i.category==='general_tool'&&i.id==='0E');
+assert.deepEqual(compassItem.playerUse.useLocations,compassSource.items['general_tool:0E']);
+assert.deepEqual(compassItem.playerUse.useLocations.map(l=>l.stage),[1,2,3,4,5]);
+assert.deepEqual(compassItem.playerUse.summary,compassSource.playerSummary);
+for(const loc of compassItem.playerUse.useLocations){assert.deepEqual([loc.tileX,loc.tileY],netSource.items['0E'].trace.area1to6Targets[String(loc.stage)]);assert.equal(loc.kind,'compass_exit');}
+
 function validate(html,base, allowInvalidIdentity=false){
  for(const match of html.matchAll(/(?:href|src)="([^"]+)"/g)){
   const url=new URL(unescape(match[1]),base);
@@ -180,6 +197,13 @@ async function render(kind,lang,query,prefix='/kawa-no-nushi-tsuri-2-research'){
    }
    if(item.netGatherArea){assert(visible.includes('data-bait-gather-choice')&&unescape(visible).includes('category=general_tool&id=04'),'Missing net gathering alternative');}
    if(item.category==='general_tool'&&item.id==='04'){assert(visible.includes('data-net-location-choice'),'Missing net map next action');for(const loc of netLocations)assert(unescape(visible).includes(loc.description[lang]),'Net route limitation hidden');}
+   if(item.category==='general_tool'&&item.id==='0E'){
+    assert(visible.includes('data-compass-exit-choice'),'Missing compass navigation action');
+    const links=[...visible.matchAll(/data-compass-location href="([^"]+)"/g)];assert.equal(links.length,5);
+    links.forEach((match,index)=>{const url=new URL(unescape(match[1]),result.url);assert.equal(url.searchParams.get('stage'),String(index+1));assert.equal(url.hash,'#compass-exit-'+(index+1));assert(visible.includes('id="compass-exit-'+(index+1)+'"'),'Missing compass destination anchor');});
+    for(const loc of compassItem.playerUse.useLocations)assert(unescape(visible).includes(loc.description[lang]),'Compass route limitation hidden');
+   }
+
 
    if(item.acquisitionOptions?.length){assert(visible.includes('data-acquisition-choice'),'Missing front acquisition action');assert(visible.indexOf('data-acquisition-choice')<visible.indexOf('id="use-locations"'),'Acquisition must precede full map details');}
    for(const loc of item.playerUse.useLocations||[])if(loc.action)assert(unescape(visible).includes(loc.action[lang]),'Acquisition preparations hidden '+item.category+':'+item.id);

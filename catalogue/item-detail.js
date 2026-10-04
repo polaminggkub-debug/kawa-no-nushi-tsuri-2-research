@@ -275,10 +275,10 @@
     const locations=item.playerUse?.useLocations||[];
     if(!locations.length)return '';
     const text={th:{pin:'รูปไอเท็มชี้ตำแหน่งที่ต้องไป',forage:'รูปเหยื่อชี้ช่องตัวอย่างที่ค้นหาได้ ถ้ามีสองรูปคือผลลัพธ์ทางเลือก ไม่ได้รับทั้งคู่ ขยับช่องก่อนค้นซ้ำ',open:'เปิดภาพบริเวณนี้เต็ม',full:'เปิดภาพฉากทั้งด่าน',window:'ยืนใช้ไอเท็มในช่วง'},en:{pin:'The item portrait marks where to go.',forage:'Bait portraits mark an example search tile. Two portraits mean alternative results, not both at once. Move to another tile before searching again.',open:'Open this location image',full:'Open full area terrain',window:'Stand and use the item within'},ja:{pin:'道具画像が目的の場所を示す。',forage:'エサ画像は探索できるタイル例。2枚なら結果の候補で、両方同時ではない。再探索前に別タイルへ移動する。',open:'この場所の画像を開く',full:'エリア全体の地形を開く',window:'この範囲で道具を使う'}}[lang];
-    return `<section class="detail-section" id="use-locations"><h2>${esc(copy.useLocations)}</h2><div class="detail-grid tool-location-grid">${locations.map(loc=>{
+    return `<section class="detail-section" id="use-locations"><h2>${esc(copy.useLocations)}</h2><div class="detail-grid tool-location-grid ${locations.length===1?'single-location':''}">${locations.map(loc=>{
       const stage=Number(loc.stage)||0, refs=loc.markerItems||(loc.markerItem?[loc.markerItem]:[{category:item.category,id:item.id}]);
       const markers=refs.map(ref=>allItems.find(i=>i.category===ref.category&&i.id===ref.id)).filter(Boolean);
-      const visual=loc.image&&loc.pin?`<div class="tool-use-map" style="aspect-ratio:${Number(loc.width)||1}/${Number(loc.height)||1}"><img class="tool-use-ground" src="${esc(loc.image)}" alt="${esc(local(loc.name))}"><span class="tool-use-pin" style="left:${Number(loc.pin.x)*100}%;top:${Number(loc.pin.y)*100}%">${markers.map(marker=>`<a href="${esc(marker.category===item.category&&marker.id===item.id?loc.image:loc.kind==='runtime_net_use'?netContextLink(marker,stage):detailItemLink(marker))}" ${marker.category===item.category&&marker.id===item.id?'target="_blank" rel="noopener"':''} aria-label="${esc(marker.category===item.category&&marker.id===item.id?text.open:imageName(marker))}"><img src="${esc(marker.image)}" alt="${esc(imageName(marker))}"></a>`).join('')}</span></div><p class="muted">${esc(loc.kind==='runtime_net_use'?(lang==='th'?'รูปแมลงน้ำชี้ช่องที่ทดลองใช้ตาข่ายสำเร็จ':lang==='ja'?'カワムシ画像はアミ使用に成功したタイルを示す。':'The aquatic insect portrait marks the successfully tested net tile.'):loc.forage?text.forage:text.pin)}</p>`:'';
+      const visual=loc.image&&loc.pin?`<div class="tool-use-map" style="aspect-ratio:${Number(loc.width)||1}/${Number(loc.height)||1}"><img class="tool-use-ground" src="${esc(loc.image)}" alt="${esc(local(loc.name))}"><span class="tool-use-pin" style="left:${Number(loc.pin.x)*100}%;top:${Number(loc.pin.y)*100}%">${markers.map(marker=>`<a href="${esc(marker.category===item.category&&marker.id===item.id?loc.image:loc.kind==='runtime_net_use'?areaItemLink(marker,stage):detailItemLink(marker))}" ${marker.category===item.category&&marker.id===item.id?'target="_blank" rel="noopener"':''} aria-label="${esc(marker.category===item.category&&marker.id===item.id?text.open:imageName(marker))}"><img src="${esc(marker.image)}" alt="${esc(imageName(marker))}"></a>`).join('')}</span></div><p class="muted">${esc(loc.kind==='runtime_net_use'?(lang==='th'?'รูปแมลงน้ำชี้ช่องที่ทดลองใช้ตาข่ายสำเร็จ':lang==='ja'?'カワムシ画像はアミ使用に成功したタイルを示す。':'The aquatic insect portrait marks the successfully tested net tile.'):loc.forage?text.forage:text.pin)}</p>`:'';
       const entranceInfo=loc.approach;
       const entranceTitle=lang==='th'?'เริ่มจากทางเข้าเมืองนี้บนแผนที่ด่าน':lang==='ja'?'屋外ではこの町入口から入る':'Start at this town entrance on the outdoor map';
       const entranceGuide=entranceInfo?`<details class="town-approach"><summary>${esc(entranceTitle)}</summary><p>${esc(lang==='th'?'เข้าประตูที่รูปไอเท็มชี้ แล้วไปหีบในห้องที่แสดงด้านบน':lang==='ja'?'道具画像が示す入口に入り、上の部屋画像の宝箱へ進みます。':'Enter through the door marked by the item portrait, then find the chest in the room shown above.')}</p><div class="tool-use-map" style="aspect-ratio:${entranceInfo.width}/${entranceInfo.height}"><img class="tool-use-ground" src="${esc(entranceInfo.image)}" alt="${esc(entranceTitle)}"><span class="tool-use-pin" style="left:${entranceInfo.pin.x*100}%;top:${entranceInfo.pin.y*100}%"><a href="${esc(entranceInfo.image)}" target="_blank" rel="noopener"><img src="${esc(item.image)}" alt="${esc(imageName(item))}"></a></span></div><p>X ${entranceInfo.tileX}, Y ${entranceInfo.tileY}</p><a href="${esc(entranceInfo.fullImage)}" target="_blank" rel="noopener">${esc(text.full)} ↗</a></details>`:'';
@@ -290,7 +290,7 @@
       const entrance=Number.isInteger(loc.townEntranceOrdinal)?`<p>${esc(lang==='th'?'ห้องของทางเข้าเมืองที่ '+(loc.townEntranceOrdinal+1):lang==='ja'?'町入口'+(loc.townEntranceOrdinal+1)+'につながる部屋':'Room reached from town entrance '+(loc.townEntranceOrdinal+1))}</p>`:'';
       const fullLabel=loc.context==='town'?(lang==='th'?'เปิดภาพในเมืองทั้งห้าห้อง':lang==='ja'?'町内の5部屋の画像を開く':'Open all five town rooms'):text.full;
       const window=loc.useWindow?`<p>${esc(text.window)} X ${loc.useWindow.xMin}–${loc.useWindow.xMax}, Y ${loc.useWindow.yMin}–${loc.useWindow.yMax}</p>`:'';
-      return `<article class="detail-section"><h3>${esc(stage?copy.area(stage)+' · '+stageName(stage,fishLocations):'')+townLabel}</h3>${entrance}${requirement}${rewardAction}${loc.action?`<p class="acquisition-action">${esc(local(loc.action))}</p>`:''}<p>${esc(local(loc.description)||local(loc.name)||'')}</p>${visual}<p>X ${esc(loc.tileX)}, Y ${esc(loc.tileY)}</p>${window}${loc.image?`<a href="${esc(loc.image)}" target="_blank" rel="noopener">${esc(text.open)} ↗</a>`:''}${loc.fullImage?` · <a href="${esc(loc.fullImage)}" target="_blank" rel="noopener">${esc(fullLabel)} ↗</a>`:''}${entranceGuide}</article>`;
+      return `<article class="detail-section" ${loc.kind==='compass_exit'?'id="compass-exit-'+stage+'"':''}><h3>${esc(stage?copy.area(stage)+' · '+stageName(stage,fishLocations):'')+townLabel}</h3>${entrance}${requirement}${rewardAction}${loc.action?`<p class="acquisition-action">${esc(local(loc.action))}</p>`:''}<p>${esc(local(loc.description)||local(loc.name)||'')}</p>${visual}<p>X ${esc(loc.tileX)}, Y ${esc(loc.tileY)}</p>${window}${loc.image?`<a href="${esc(loc.image)}" target="_blank" rel="noopener">${esc(text.open)} ↗</a>`:''}${loc.fullImage?` · <a href="${esc(loc.fullImage)}" target="_blank" rel="noopener">${esc(fullLabel)} ↗</a>`:''}${entranceGuide}</article>`;
     }).join('')}</div></section>`;
   }
 
@@ -311,22 +311,28 @@
     }
     return '';
   }
-  function netContextLink(item,stage,hash='') {
+  function areaItemLink(item,stage,hash='') {
     const [page,query]=detailItemLink(item).split('?');
     const params=new URLSearchParams(query);params.set('stage',String(stage));
     if(selectedRoute)params.set('route',selectedRoute);
     return page+'?'+params+hash;
   }
+  function compassUseChoice(item) {
+    if(item.category!=='general_tool'||item.id!=='0E')return '';
+    const locations=item.playerUse?.useLocations||[];if(!locations.length)return '';
+    const label=lang==='th'?'หลงทาง? ดูจุดออกของด่านที่อยู่':lang==='ja'?'迷ったら現在エリアの出口地点を見る':'Lost? See the exit point for your current area';
+    return `<aside class="detail-section compass-exit-choice" data-compass-exit-choice><h3>${label}</h3><p>${lang==='th'?'เลือกด่าน แล้วดูรูปแม่เหล็กที่ชี้จุดทางเชื่อม เข็มจะหยุดเมื่อถึงช่องเป้าหมาย แต่คำบอกทิศไม่ใช่เส้นทางหลบสิ่งกีดขวาง':lang==='ja'?'エリアを選び、磁石画像が示す連絡路の地点を確認します。目標タイルで針が止まりますが、方角表示は障害物を避ける経路案内ではありません。':'Choose an area and find the connecting-route point marked by the magnet portrait. The needle stops at its target tile; the heading does not supply a route around obstacles.'}</p>${locations.map(loc=>`<p><a data-compass-location href="${esc(areaItemLink(item,loc.stage,'#compass-exit-'+loc.stage))}">${lang==='th'?'ด่าน':lang==='ja'?'エリア':'Area'} ${loc.stage} · ${lang==='th'?'ดูจุดที่เข็มหยุด':lang==='ja'?'針が止まる地点を見る':'See where the needle stops'} ↗</a></p>`).join('')}</aside>`;
+  }
   function gatheredBaitChoices(item,allItems){
     if(!item.gatheredBaitByArea)return '';
     const title=lang==='th'?'เหยื่อที่ตาข่ายหาได้: เลือกดูว่าใช้ตกปลาอะไร':lang==='ja'?'金アミで採れるエサ：対応魚を見る':'Baits gathered with the net: see which fish accept them';
-    return `<section class="detail-section gathered-bait"><h3>${title}</h3>${item.playerUse?.useLocations?.some(l=>l.kind==='runtime_net_use')?`<p class="net-location-choice" data-net-location-choice><a href="${esc(netContextLink(item,1,'#use-locations'))}">${lang==='th'?'ด่าน 1: ดูภาพช่องน้ำตื้นที่ทดลองใช้ตาข่ายสำเร็จ':lang==='ja'?'エリア1：アミ使用に成功した浅瀬を見る':'Area 1: see the shallow tile where net use succeeded'} ↗</a><br>${lang==='th'?'ยังไม่ยืนยันเส้นทางเดินจากทางเข้า; หากไปถึงช่องนี้แล้วจึงใช้ตำแหน่งนี้ได้':lang==='ja'?'入口からの経路は未確認。このタイルに到達した場合の使用地点です。':'The walking route from the entrance remains unconfirmed; use this location if you reach the tile.'}</p>`:''}${Object.entries(item.gatheredBaitByArea).map(([stage,id])=>{const bait=allItems.find(i=>i.category==='bait'&&i.id===id);return `<p>${lang==='th'?'ด่าน':lang==='ja'?'エリア':'Area'} ${stage} · <a data-gathered-bait href="${esc(netContextLink(bait,stage))}">${esc(imageName(bait))} (${id}) ↗</a></p>`;}).join('')}</section>`;
+    return `<section class="detail-section gathered-bait"><h3>${title}</h3>${item.playerUse?.useLocations?.some(l=>l.kind==='runtime_net_use')?`<p class="net-location-choice" data-net-location-choice><a href="${esc(areaItemLink(item,1,'#use-locations'))}">${lang==='th'?'ด่าน 1: ดูภาพช่องน้ำตื้นที่ทดลองใช้ตาข่ายสำเร็จ':lang==='ja'?'エリア1：アミ使用に成功した浅瀬を見る':'Area 1: see the shallow tile where net use succeeded'} ↗</a><br>${lang==='th'?'ยังไม่ยืนยันเส้นทางเดินจากทางเข้า; หากไปถึงช่องนี้แล้วจึงใช้ตำแหน่งนี้ได้':lang==='ja'?'入口からの経路は未確認。このタイルに到達した場合の使用地点です。':'The walking route from the entrance remains unconfirmed; use this location if you reach the tile.'}</p>`:''}${Object.entries(item.gatheredBaitByArea).map(([stage,id])=>{const bait=allItems.find(i=>i.category==='bait'&&i.id===id);return `<p>${lang==='th'?'ด่าน':lang==='ja'?'エリア':'Area'} ${stage} · <a data-gathered-bait href="${esc(areaItemLink(bait,stage))}">${esc(imageName(bait))} (${id}) ↗</a></p>`;}).join('')}</section>`;
   }
   function baitGatherChoice(item){
     if(!item.netGatherArea)return '';
     const note=lang==='th'?`ถ้ามีตาข่ายสีทองอยู่แล้ว หาเหยื่อนี้ได้ในด่าน ${item.netGatherArea}: ยืนในน้ำตื้น ใช้ตาข่าย แล้วขยับช่องก่อนใช้ซ้ำ แทนการซื้อเหยื่อเพิ่ม` :lang==='ja'?`金アミを持っているならエリア${item.netGatherArea}の浅瀬でこのエサを採れます。浅瀬に立って使い、次は別のタイルへ移動してください。追加購入の代わりになります。`:`If you already own the gold net, gather this bait in area ${item.netGatherArea} instead of buying more: stand in shallow water, use the net, then move to a new tile before using it again.`;
     const label=lang==='th'?'ดูวิธีใช้ตาข่ายและจำนวนที่เก็บได้':lang==='ja'?'金アミの使い方と採れる個数を見る':'See net use and gathering amounts';
-    return `<aside class="detail-section bait-gather-choice" data-bait-gather-choice><p>${esc(note)}</p><a href="${esc(netContextLink({category:'general_tool',id:'04'},item.netGatherArea,item.netGatherArea===1?'#use-locations':''))}">${label} ↗</a></aside>`;
+    return `<aside class="detail-section bait-gather-choice" data-bait-gather-choice><p>${esc(note)}</p><a href="${esc(areaItemLink({category:'general_tool',id:'04'},item.netGatherArea,item.netGatherArea===1?'#use-locations':''))}">${label} ↗</a></aside>`;
   }
   function daikonFishChoice(item,fishLocations){
     if(!item.exchangeFishId)return '';
@@ -389,7 +395,8 @@
     const categoryHref=currentCategoryLink();
     const intro=`<nav class="detail-breadcrumb"><a href="${esc(categoryHref)}">${esc(copy.allItems)} · ${esc(categoryText)}</a></nav>`;
     const moreLink=`<p class="detail-back-to-list"><a class="route-button" href="${esc(categoryHref)}">${esc(copy.allItems)} · ${esc(categoryText)} ↗</a></p>`;
-    $('detail-root').innerHTML=`${intro}<section class="detail-hero">${image}${identity}</section>${targetContext}${baitTargetAction}${actionSection}${baitLurePriceChoices(item,allItems)}${gatheredBaitChoices(item,allItems)}${baitGatherChoice(item)}${mushroomAlternative(item)}${keepnetAlternatives(item,allItems)}${daikonFishChoice(item,fishLocations)}${acquisitionChoice(item)}${rodAdvice?'':buyingDecision(item,allItems,decisions)}${shopSection(item,allItems,fishLocations)}${useLocationSection(item,fishLocations,allItems)}${fishSection(item,fishVisuals,fishLocations)}${moreLink}${technicalSection(item)}<p class="muted">${esc(copy.sourced)}</p>`;
+    $('detail-root').innerHTML=`${intro}<section class="detail-hero">${image}${identity}</section>${targetContext}${baitTargetAction}${actionSection}${baitLurePriceChoices(item,allItems)}${compassUseChoice(item)}${gatheredBaitChoices(item,allItems)}${baitGatherChoice(item)}${mushroomAlternative(item)}${keepnetAlternatives(item,allItems)}${daikonFishChoice(item,fishLocations)}${acquisitionChoice(item)}${rodAdvice?'':buyingDecision(item,allItems,decisions)}${shopSection(item,allItems,fishLocations)}${useLocationSection(item,fishLocations,allItems)}${fishSection(item,fishVisuals,fishLocations)}${moreLink}${technicalSection(item)}<p class="muted">${esc(copy.sourced)}</p>`;
+    if(location.hash.startsWith('#compass-exit-'))document.getElementById(location.hash.slice(1))?.scrollIntoView({block:'start'});
     if(location.hash==='#use-locations')document.getElementById('use-locations')?.scrollIntoView({block:'start'});
     document.title=`${name} · ${categoryText} · ${lang==='th'?'ตกปลาทาโร่ 2':lang==='ja'?'川のぬし釣り2':'Kawa no Nushi Tsuri 2'}`;
   }
@@ -397,7 +404,7 @@
     setNavigation();
     $('detail-root').innerHTML=`<section class="empty-state"><h1>${esc(copy.invalidTitle)}</h1><p>${esc(copy.invalidBody)}</p><a class="route-button" href="${esc(fallbackBack())}">${esc(copy.allItems)} ↗</a></section>`;
   }
-  fetch('gallery-data.json?v=player-usefulness-20261004-15').then(response=>{if(!response.ok)throw new Error('catalogue data unavailable');return response.json();}).then(data=>{
+  fetch('gallery-data.json?v=player-usefulness-20261004-16').then(response=>{if(!response.ok)throw new Error('catalogue data unavailable');return response.json();}).then(data=>{
     if(selectedFish&&!data.fishVisuals?.[selectedFish])selectedFish='';
     const item=(data.items||[]).find(candidate=>candidate.category===category&&candidate.id===requestedId)||null;
     if(!item){emptyState();return;}

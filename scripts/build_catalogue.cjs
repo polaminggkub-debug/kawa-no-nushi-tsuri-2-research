@@ -129,6 +129,12 @@ const netLocations=JSON.parse(fs.readFileSync(path.join(root,'data/gold-net-loca
 if(netLocations.rom?.sha1!==toolsSource.rom.sha1)throw Error('Net location ROM mismatch');
 netItem.playerUse.useLocations=netLocations.items['general_tool:04'];
 netItem.playerUse.evidence.sources=[...new Set([...netItem.playerUse.evidence.sources,'data/gold-net-location.json','docs/gold-net-location-research.md'])];
+const compassLocations=JSON.parse(fs.readFileSync(path.join(root,'data/compass-locations.json'),'utf8'));
+if(compassLocations.rom?.sha1!==toolsSource.rom.sha1)throw Error('Compass locations ROM mismatch');
+const compassItem=data.items.find(i=>i.category==='general_tool'&&i.id==='0E');
+compassItem.playerUse.useLocations=compassLocations.items['general_tool:0E'];
+compassItem.playerUse.summary=compassLocations.playerSummary;
+compassItem.playerUse.evidence.sources=[...new Set([...compassItem.playerUse.evidence.sources,'data/compass-locations.json','docs/compass-location-research.md'])];
 for(const [stage,id] of Object.entries(netItem.gatheredBaitByArea)){const bait=data.items.find(i=>i.category==='bait'&&i.id===id);bait.netGatherArea=Number(stage);bait.playerUse.evidence.sources=[...new Set([...(bait.playerUse.evidence.sources||[]),'data/general-tool-actions.json','docs/general-tool-actions-research.md'])];}
 const acquisitionPath=path.join(root,'data/town-item-acquisition.json');
 if(!fs.existsSync(acquisitionPath))throw new Error('Missing town acquisition data');

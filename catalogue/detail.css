@@ -11,3 +11,5 @@ article.entity-link .fish-profile-link{display:flex;align-items:center;gap:12px;
 .aim-tip{padding:12px;border-left:4px solid #245b4a;background:#edf5e7;font-size:16px}
 
 .rod-verdict{display:inline-block;margin:6px 0;padding:6px 10px;border:1px solid #b2c7a5;border-radius:8px;background:#e5efdd;font-weight:750}.rod-alternatives{margin-top:14px}.rod-alternatives .decision-item{margin:8px 0}.rod-table-advice{min-width:190px;max-width:280px}.rod-table-advice strong{display:block;line-height:1.55}
+
+.tool-location-grid.single-location{grid-template-columns:minmax(0,1fr)}.tool-location-grid.single-location .tool-use-map{max-width:640px;margin-inline:auto}

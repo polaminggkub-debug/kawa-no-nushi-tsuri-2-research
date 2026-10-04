@@ -422,7 +422,7 @@
   }
 
   Promise.all([
-    fetch('gallery-data.json?v=player-usefulness-20261004-15').then(response => { if (!response.ok) throw new Error('gallery data unavailable'); return response.json(); }),
+    fetch('gallery-data.json?v=player-usefulness-20261004-16').then(response => { if (!response.ok) throw new Error('gallery data unavailable'); return response.json(); }),
     fetch('fish-locations.json').then(response => { if (!response.ok) throw new Error('location data unavailable'); return response.json(); })
   ]).then(([fishData, locationData]) => render(fishData, locationData)).catch(() => {
     page.innerHTML = `<h1>${escapeHtml(copy.pageTitle)}</h1><p class="empty-state">${escapeHtml(copy.recovery)}</p><p><a class="route-button" href="${escapeHtml(cataloguePath())}">${escapeHtml(copy.catalogue)}</a></p>`;

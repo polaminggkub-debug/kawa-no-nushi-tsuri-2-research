@@ -41357,14 +41357,14 @@
               "ja": "金アミを持ってこの浅瀬に到達したら、道具メニューで金アミを選び、カワムシ07を採ります。再使用前に別の使用可能な浅瀬へ移動します。9個所持しているなら追加採集は不要です。"
             },
             "description": {
-              "th": "รูปเหยื่อชี้ช่องที่ทดลองใช้สำเร็จ ได้แมลงน้ำ 3 ชิ้นในสองรอบควบคุม จำนวนปกติอยู่ที่ 1–4 ชิ้น ไม่ได้คงที่ 3 การทดสอบใส่ตาข่ายในกระเป๋าเพื่อทดลอง; ยังไม่ยืนยันเส้นทางเดินจากทางเข้า จึงยังใช้ภาพนี้เป็นคู่มือเดินไปถึงไม่ได้",
-              "en": "The bait portrait marks a successful use tile. Two controlled runs gathered three pieces; normal amounts are 1–4, not a fixed three. The test inserted the net into inventory. A walking route from the entrance remains unconfirmed, so this is not yet a route guide.",
-              "ja": "エサ画像は使用に成功したタイルを示します。管理下の2回で3個採れましたが通常個数は1〜4で、3個固定ではありません。テストでは金アミを所持欄に設定しました。入口からの歩行経路は未確認のため、到達経路の案内にはまだ使えません。"
+              "th": "ใช้ภาพนี้ระบุช่องเก็บแมลงน้ำเมื่อไปถึงบริเวณนี้แล้ว เส้นทางเดินจากทางเข้ายังไม่ยืนยัน จึงยังใช้เป็นคู่มือเดินไปถึงไม่ได้",
+              "en": "Use this image to identify the aquatic-insect gathering tile once you reach this area. The walking route from the entrance remains unconfirmed, so this is not yet a route guide.",
+              "ja": "この場所に到達したら、画像でカワムシの採集タイルを確認できます。入口からの歩行経路は未確認のため、到達経路の案内にはまだ使えません。"
             },
             "name": {
               "en": "Confirmed shallow-water net spot",
               "ja": "浅瀬でアミを使えた地点",
-              "th": "จุดน้ำตื้นที่ยืนยันว่าใช้สวิงได้"
+              "th": "จุดน้ำตื้นที่ยืนยันว่าใช้ตาข่ายได้"
             },
             "image": "maps/tool-net-area1.png",
             "fullImage": "maps/rom-field-01.png",
@@ -42547,9 +42547,9 @@
       "renderSha256": "ad44f5a7c44671c158bcfde77c2529683cd9e2baa75d3683f699c0ca89a3d3a1",
       "playerUse": {
         "summary": {
-          "en": "Use the magnet as a compass toward the area's exit/connecting route; it also reports your current area and subregion.",
-          "ja": "磁石でエリア出口・連絡路の方向を調べ、現在のエリアと区画を確認する。",
-          "th": "ใช้แม่เหล็กดูทิศไปทางทางออกหรือทางเชื่อมของพื้นที่ พร้อมดูพื้นที่และช่วงที่ยืนอยู่"
+          "en": "If you use these maps, you do not need to buy the magnet just to learn the fixed exit coordinates for Areas 1–5. Buy Magnet 0E for ¥300 only if you want the game to give a heading from your current position; it is stocked in Areas 1, 2, 3 and 6. Area 6 has no fixed map pin here: before its story condition is met, the magnet reports your area/section without a heading.",
+          "ja": "この地図を使うなら、エリア1～5の固定出口座標を知るためだけに磁石を買う必要はありません。現在地からゲーム内の方角表示を使いたい場合だけ、磁石0E（300円）を購入してください。エリア1・2・3・6で販売されています。エリア6には固定マーカーを載せていません。物語条件が満たされる前は、磁石はエリア／区画のみを表示し、方角は出ません。",
+          "th": "ถ้าใช้แผนที่นี้ ไม่ต้องซื้อแม่เหล็กเพื่อรู้พิกัดทางออกคงที่ของด่าน 1–5 ซื้อแม่เหล็ก 0E ราคา ¥300 เฉพาะเมื่อต้องการให้เกมบอกทิศจากตำแหน่งปัจจุบัน มีขายในด่าน 1, 2, 3 และ 6 ด่าน 6 ไม่มีหมุดพิกัดคงที่ในหน้านี้: ก่อนผ่านเงื่อนไขเนื้อเรื่อง แม่เหล็กจะแจ้งพื้นที่/ช่วงที่ยืน แต่ไม่บอกทิศ"
         },
         "facts": {
           "en": [
@@ -42589,7 +42589,9 @@
         "evidence": {
           "type": "rom_trace",
           "sources": [
-            "docs/general-tool-actions-research.md"
+            "docs/general-tool-actions-research.md",
+            "data/compass-locations.json",
+            "docs/compass-location-research.md"
           ]
         },
         "shops": [
@@ -42604,6 +42606,293 @@
           },
           {
             "stage": 6
+          }
+        ],
+        "useLocations": [
+          {
+            "kind": "compass_exit",
+            "stage": 1,
+            "context": "field",
+            "tileX": 13,
+            "tileY": 239,
+            "markerItem": {
+              "category": "general_tool",
+              "id": "0E"
+            },
+            "name": {
+              "en": "Compass stop tile · exit to connector",
+              "ja": "磁石が止まる地点・連絡路の出口",
+              "th": "จุดที่เข็มแม่เหล็กหยุด · ทางออกสู่ทางเชื่อม"
+            },
+            "action": {
+              "en": "Use the magnet outdoors, move in its indicated direction, then use it again to update the heading. The needle stops at the marked exit tile, which leads to the connecting route.",
+              "ja": "屋外で磁石を使い、示された方角へ移動してから再使用し、方角を確認します。針が止まるマーカーの地点が連絡路への出口です。",
+              "th": "ใช้แม่เหล็กกลางแจ้ง เดินตามทิศที่บอกแล้วใช้ซ้ำเพื่อดูทิศใหม่ เข็มจะหยุดตรงช่องที่รูปแม่เหล็กชี้ ซึ่งเป็นจุดออกไปเส้นทางเชื่อม"
+            },
+            "description": {
+              "en": "Find tile (13,239) in Area 1 using the magnet portrait. The map shows the target, not a tested walking route or a path around obstacles.",
+              "ja": "磁石画像でエリア1のタイル（13,239）を確認します。目標地点を示す地図で、歩行経路や障害物を避ける道順は検証していません。",
+              "th": "ดูรูปแม่เหล็กที่ช่อง (13,239) ของด่าน 1 เพื่อหาจุดทางเชื่อม แผนที่นี้แสดงเป้าหมาย ยังไม่ได้ยืนยันขั้นตอนเดินหรือเส้นทางหลบสิ่งกีดขวาง"
+            },
+            "image": "maps/tool-compass-area1.png",
+            "fullImage": "maps/rom-field-01.png",
+            "width": 256,
+            "height": 384,
+            "pin": {
+              "x": 0.84375,
+              "y": 0.5
+            },
+            "source": {
+              "romSha1": "c2103dd94e2a1a65a495fc02adc2e7d040f31212",
+              "targetTableCpuAddress": "00:A065",
+              "targetTableFileOffset": "0x002065",
+              "rowOffsetBytes": 0,
+              "rowTargetBytesHex": "0D 00 EF 00",
+              "compassHandler": "03:C313..C3E8",
+              "transitionConsumer": "00:9D94..9DD8",
+              "transitionMapId": 13,
+              "mapImage": "rom-field-01.png",
+              "mapImageSha256": "0b99c38d534d2524edc7de4738993d01a511d653c71a3a9f80182a95add5323a",
+              "mapProjection": {
+                "scaleX": 16,
+                "scaleY": 16,
+                "offsetX": 8,
+                "offsetY": 8
+              }
+            },
+            "access": {
+              "naturalWalkingRouteConfirmed": false,
+              "route13Linkage": "inferred_from_traced_transition_consumer",
+              "shortestPathConfirmed": false
+            }
+          },
+          {
+            "kind": "compass_exit",
+            "stage": 2,
+            "context": "field",
+            "tileX": 56,
+            "tileY": 17,
+            "markerItem": {
+              "category": "general_tool",
+              "id": "0E"
+            },
+            "name": {
+              "en": "Compass stop tile · exit to connector",
+              "ja": "磁石が止まる地点・連絡路の出口",
+              "th": "จุดที่เข็มแม่เหล็กหยุด · ทางออกสู่ทางเชื่อม"
+            },
+            "action": {
+              "en": "Use the magnet outdoors, move in its indicated direction, then use it again to update the heading. The needle stops at the marked exit tile, which leads to the connecting route.",
+              "ja": "屋外で磁石を使い、示された方角へ移動してから再使用し、方角を確認します。針が止まるマーカーの地点が連絡路への出口です。",
+              "th": "ใช้แม่เหล็กกลางแจ้ง เดินตามทิศที่บอกแล้วใช้ซ้ำเพื่อดูทิศใหม่ เข็มจะหยุดตรงช่องที่รูปแม่เหล็กชี้ ซึ่งเป็นจุดออกไปเส้นทางเชื่อม"
+            },
+            "description": {
+              "en": "Find tile (56,17) in Area 2 using the magnet portrait. The map shows the target, not a tested walking route or a path around obstacles.",
+              "ja": "磁石画像でエリア2のタイル（56,17）を確認します。目標地点を示す地図で、歩行経路や障害物を避ける道順は検証していません。",
+              "th": "ดูรูปแม่เหล็กที่ช่อง (56,17) ของด่าน 2 เพื่อหาจุดทางเชื่อม แผนที่นี้แสดงเป้าหมาย ยังไม่ได้ยืนยันขั้นตอนเดินหรือเส้นทางหลบสิ่งกีดขวาง"
+            },
+            "image": "maps/tool-compass-area2.png",
+            "fullImage": "maps/rom-field-02.png",
+            "width": 384,
+            "height": 384,
+            "pin": {
+              "x": 0.5,
+              "y": 0.5
+            },
+            "source": {
+              "romSha1": "c2103dd94e2a1a65a495fc02adc2e7d040f31212",
+              "targetTableCpuAddress": "00:A065",
+              "targetTableFileOffset": "0x002065",
+              "rowOffsetBytes": 8,
+              "rowTargetBytesHex": "38 00 11 00",
+              "compassHandler": "03:C313..C3E8",
+              "transitionConsumer": "00:9D94..9DD8",
+              "transitionMapId": 13,
+              "mapImage": "rom-field-02.png",
+              "mapImageSha256": "ad87dbbec53bac1f29ec67f35f50e4fdcd13eb5c0ece41ccbbe29a22a7d0f458",
+              "mapProjection": {
+                "scaleX": 16,
+                "scaleY": 16,
+                "offsetX": 8,
+                "offsetY": 8
+              }
+            },
+            "access": {
+              "naturalWalkingRouteConfirmed": false,
+              "route13Linkage": "inferred_from_traced_transition_consumer",
+              "shortestPathConfirmed": false
+            }
+          },
+          {
+            "kind": "compass_exit",
+            "stage": 3,
+            "context": "field",
+            "tileX": 22,
+            "tileY": 5,
+            "markerItem": {
+              "category": "general_tool",
+              "id": "0E"
+            },
+            "name": {
+              "en": "Compass stop tile · exit to connector",
+              "ja": "磁石が止まる地点・連絡路の出口",
+              "th": "จุดที่เข็มแม่เหล็กหยุด · ทางออกสู่ทางเชื่อม"
+            },
+            "action": {
+              "en": "Use the magnet outdoors, move in its indicated direction, then use it again to update the heading. The needle stops at the marked exit tile, which leads to the connecting route.",
+              "ja": "屋外で磁石を使い、示された方角へ移動してから再使用し、方角を確認します。針が止まるマーカーの地点が連絡路への出口です。",
+              "th": "ใช้แม่เหล็กกลางแจ้ง เดินตามทิศที่บอกแล้วใช้ซ้ำเพื่อดูทิศใหม่ เข็มจะหยุดตรงช่องที่รูปแม่เหล็กชี้ ซึ่งเป็นจุดออกไปเส้นทางเชื่อม"
+            },
+            "description": {
+              "en": "Find tile (22,5) in Area 3 using the magnet portrait. The map shows the target, not a tested walking route or a path around obstacles.",
+              "ja": "磁石画像でエリア3のタイル（22,5）を確認します。目標地点を示す地図で、歩行経路や障害物を避ける道順は検証していません。",
+              "th": "ดูรูปแม่เหล็กที่ช่อง (22,5) ของด่าน 3 เพื่อหาจุดทางเชื่อม แผนที่นี้แสดงเป้าหมาย ยังไม่ได้ยืนยันขั้นตอนเดินหรือเส้นทางหลบสิ่งกีดขวาง"
+            },
+            "image": "maps/tool-compass-area3.png",
+            "fullImage": "maps/rom-field-03.png",
+            "width": 384,
+            "height": 384,
+            "pin": {
+              "x": 0.6041666666666666,
+              "y": 0.22916666666666666
+            },
+            "source": {
+              "romSha1": "c2103dd94e2a1a65a495fc02adc2e7d040f31212",
+              "targetTableCpuAddress": "00:A065",
+              "targetTableFileOffset": "0x002065",
+              "rowOffsetBytes": 16,
+              "rowTargetBytesHex": "16 00 05 00",
+              "compassHandler": "03:C313..C3E8",
+              "transitionConsumer": "00:9D94..9DD8",
+              "transitionMapId": 13,
+              "mapImage": "rom-field-03.png",
+              "mapImageSha256": "e7582237ed926f1bab15e16d2046a865557bf4331a26c6f214143f4deda59220",
+              "mapProjection": {
+                "scaleX": 16,
+                "scaleY": 16,
+                "offsetX": 8,
+                "offsetY": 8
+              }
+            },
+            "access": {
+              "naturalWalkingRouteConfirmed": false,
+              "route13Linkage": "inferred_from_traced_transition_consumer",
+              "shortestPathConfirmed": false
+            }
+          },
+          {
+            "kind": "compass_exit",
+            "stage": 4,
+            "context": "field",
+            "tileX": 32,
+            "tileY": 41,
+            "markerItem": {
+              "category": "general_tool",
+              "id": "0E"
+            },
+            "name": {
+              "en": "Compass stop tile · exit to connector",
+              "ja": "磁石が止まる地点・連絡路の出口",
+              "th": "จุดที่เข็มแม่เหล็กหยุด · ทางออกสู่ทางเชื่อม"
+            },
+            "action": {
+              "en": "Use the magnet outdoors, move in its indicated direction, then use it again to update the heading. The needle stops at the marked exit tile, which leads to the connecting route.",
+              "ja": "屋外で磁石を使い、示された方角へ移動してから再使用し、方角を確認します。針が止まるマーカーの地点が連絡路への出口です。",
+              "th": "ใช้แม่เหล็กกลางแจ้ง เดินตามทิศที่บอกแล้วใช้ซ้ำเพื่อดูทิศใหม่ เข็มจะหยุดตรงช่องที่รูปแม่เหล็กชี้ ซึ่งเป็นจุดออกไปเส้นทางเชื่อม"
+            },
+            "description": {
+              "en": "Find tile (32,41) in Area 4 using the magnet portrait. The map shows the target, not a tested walking route or a path around obstacles.",
+              "ja": "磁石画像でエリア4のタイル（32,41）を確認します。目標地点を示す地図で、歩行経路や障害物を避ける道順は検証していません。",
+              "th": "ดูรูปแม่เหล็กที่ช่อง (32,41) ของด่าน 4 เพื่อหาจุดทางเชื่อม แผนที่นี้แสดงเป้าหมาย ยังไม่ได้ยืนยันขั้นตอนเดินหรือเส้นทางหลบสิ่งกีดขวาง"
+            },
+            "image": "maps/tool-compass-area4.png",
+            "fullImage": "maps/rom-field-04.png",
+            "width": 384,
+            "height": 384,
+            "pin": {
+              "x": 0.5,
+              "y": 0.5
+            },
+            "source": {
+              "romSha1": "c2103dd94e2a1a65a495fc02adc2e7d040f31212",
+              "targetTableCpuAddress": "00:A065",
+              "targetTableFileOffset": "0x002065",
+              "rowOffsetBytes": 24,
+              "rowTargetBytesHex": "20 00 29 00",
+              "compassHandler": "03:C313..C3E8",
+              "transitionConsumer": "00:9D94..9DD8",
+              "transitionMapId": 13,
+              "mapImage": "rom-field-04.png",
+              "mapImageSha256": "72c00fa47aa2760e933982e69be718cf1ec5e280196e6170e9b36eccd3b04e30",
+              "mapProjection": {
+                "scaleX": 16,
+                "scaleY": 16,
+                "offsetX": 8,
+                "offsetY": 8
+              }
+            },
+            "access": {
+              "naturalWalkingRouteConfirmed": false,
+              "route13Linkage": "inferred_from_traced_transition_consumer",
+              "shortestPathConfirmed": false
+            }
+          },
+          {
+            "kind": "compass_exit",
+            "stage": 5,
+            "context": "field",
+            "tileX": 22,
+            "tileY": 2,
+            "markerItem": {
+              "category": "general_tool",
+              "id": "0E"
+            },
+            "name": {
+              "en": "Compass stop tile · exit to connector",
+              "ja": "磁石が止まる地点・連絡路の出口",
+              "th": "จุดที่เข็มแม่เหล็กหยุด · ทางออกสู่ทางเชื่อม"
+            },
+            "action": {
+              "en": "Use the magnet outdoors, move in its indicated direction, then use it again to update the heading. The needle stops at the marked exit tile, which leads to the connecting route.",
+              "ja": "屋外で磁石を使い、示された方角へ移動してから再使用し、方角を確認します。針が止まるマーカーの地点が連絡路への出口です。",
+              "th": "ใช้แม่เหล็กกลางแจ้ง เดินตามทิศที่บอกแล้วใช้ซ้ำเพื่อดูทิศใหม่ เข็มจะหยุดตรงช่องที่รูปแม่เหล็กชี้ ซึ่งเป็นจุดออกไปเส้นทางเชื่อม"
+            },
+            "description": {
+              "en": "Find tile (22,2) in Area 5 using the magnet portrait. The map shows the target, not a tested walking route or a path around obstacles.",
+              "ja": "磁石画像でエリア5のタイル（22,2）を確認します。目標地点を示す地図で、歩行経路や障害物を避ける道順は検証していません。",
+              "th": "ดูรูปแม่เหล็กที่ช่อง (22,2) ของด่าน 5 เพื่อหาจุดทางเชื่อม แผนที่นี้แสดงเป้าหมาย ยังไม่ได้ยืนยันขั้นตอนเดินหรือเส้นทางหลบสิ่งกีดขวาง"
+            },
+            "image": "maps/tool-compass-area5.png",
+            "fullImage": "maps/rom-field-05.png",
+            "width": 384,
+            "height": 384,
+            "pin": {
+              "x": 0.5,
+              "y": 0.10416666666666667
+            },
+            "source": {
+              "romSha1": "c2103dd94e2a1a65a495fc02adc2e7d040f31212",
+              "targetTableCpuAddress": "00:A065",
+              "targetTableFileOffset": "0x002065",
+              "rowOffsetBytes": 32,
+              "rowTargetBytesHex": "16 00 02 00",
+              "compassHandler": "03:C313..C3E8",
+              "transitionConsumer": "00:9D94..9DD8",
+              "transitionMapId": 13,
+              "mapImage": "rom-field-05.png",
+              "mapImageSha256": "e501dcebe821e2bb11abfbfcf89dc30a432a735193052169e8df7252b81296bf",
+              "mapProjection": {
+                "scaleX": 16,
+                "scaleY": 16,
+                "offsetX": 8,
+                "offsetY": 8
+              }
+            },
+            "access": {
+              "naturalWalkingRouteConfirmed": false,
+              "route13Linkage": "inferred_from_traced_transition_consumer",
+              "shortestPathConfirmed": false
+            }
           }
         ]
       },

@@ -42,7 +42,7 @@ From the repository root, provide the matching original Japanese ROM image:
 python3 scripts/build_net_location.py --rom /path/to/Kawa-no-Nushi-Tsuri-2-Japan-.sfc
 ```
 
-The builder checks the ROM SHA-1, verifies the existing Area 1 map against its manifest, reclassifies the tile from the original terrain bytes, then regenerates `data/gold-net-location.json` and the marked map crop. It does not run the emulator; the one-use runtime observation remains separately recorded above.
+The builder checks the ROM SHA-1, verifies the existing Area 1 map against its manifest, reclassifies the tile from the original terrain bytes, then regenerates `data/gold-net-location.json` and the marked map crop. It does not run the emulator; the two controlled runtime observations remain separately recorded above.
 
 ---
 
@@ -88,4 +88,4 @@ The builder checks the ROM SHA-1, verifies the existing Area 1 map against its m
 python3 scripts/build_net_location.py --rom /path/to/Kawa-no-Nushi-Tsuri-2-Japan-.sfc
 ```
 
-生成スクリプトはROMのSHA-1と既存エリア1地図のマニフェストを確認し、元の地形データからタイルを再判定して `data/gold-net-location.json` とマーク付き地図を生成します。エミュレーターは実行しません。1回の使用結果は別に記録した実行時観測です。
+生成スクリプトはROMのSHA-1と既存エリア1地図のマニフェストを確認し、元の地形データからタイルを再判定して `data/gold-net-location.json` とマーク付き地図を生成します。エミュレーターは実行しません。2回の管理下の使用結果は別に記録した実行時観測です。
