@@ -137,6 +137,25 @@ async function render(kind,lang,query,prefix='/kawa-no-nushi-tsuri-2-research'){
  for(const itemId of ['0F','17','12']){const item=data.items.find(i=>i.category==='general_tool'&&i.id===itemId),towns=(item.playerUse.useLocations||[]).filter(loc=>loc.context==='town');const expected=itemId==='17'?quest.items['17'].rawTrace.chests:itemId==='0F'?[quest.items['0F'].rawTrace.acquisition]:quest.items['17'].rawTrace.chests.filter(chest=>chest.mapId===12);assert.equal(towns.length,expected.length,'Missing town acquisition/use points');for(const chest of expected){const loc=towns.find(point=>point.mapId===chest.mapId);assert(loc);assert.deepEqual([loc.tileX,loc.tileY],chest.xy);assert(loc.approach,'Town chest has no entrance image');assert(loc.approach.fullImage.includes('rom-field-'+String(chest.visibleArea).padStart(2,'0')));}}
  for(const lang of ['en','th','ja']){
   const suffix=lang==='en'?'':'.'+lang;
+  // Area switching is one item view: its back link must not grow a self-return chain.
+  for(const entry of [`maps${suffix}.html?stage=2&fish=06`, '']){
+   let query=new URLSearchParams({category:'general_tool',id:'0E',stage:'2',fish:'06',route:'sinker'});
+   if(entry)query.set('return',entry);
+   let stableBack;
+   for(const stage of [2,5,1,4]){
+    const result=await render('item',lang,query);
+    const match=[...result.html.matchAll(/data-compass-location href="([^"]+)"/g)].find(m=>new URL(unescape(m[1]),result.url).searchParams.get('stage')===String(stage));
+    assert(match,'Missing area switch action');
+    const next=new URL(unescape(match[1]),result.url);
+    const back=next.searchParams.get('return');
+    if(stableBack===undefined)stableBack=back;
+    assert.equal(back,stableBack,'Area switches must keep the entry-page return');
+    assert(!new URL(back,result.url).searchParams.has('return'),'Area switching created a self-return chain');
+    assert.equal(next.searchParams.get('fish'),'06');
+    assert.equal(next.searchParams.get('route'),'sinker');
+    query=next.searchParams;
+   }
+  }
   for(const bait of data.items.filter(i=>i.category==='bait')){
    const routes=bait.playerUse.fishIdsByRoute||{};
    const fish=(routes.float||[]).find(id=>!(routes.sinker||[]).includes(id));

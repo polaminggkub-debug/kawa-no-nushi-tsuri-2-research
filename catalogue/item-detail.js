@@ -312,10 +312,13 @@
     return '';
   }
   function areaItemLink(item,stage,hash='') {
-    const [page,query]=detailItemLink(item).split('?');
-    const params=new URLSearchParams(query);params.set('stage',String(stage));
-    if(selectedRoute)params.set('route',selectedRoute);
-    return page+'?'+params+hash;
+    // Switching areas of this item keeps the entry page as the back destination.
+    const sameItem=item.category===category&&item.id===requestedId;
+    const returnRoute=sameItem?(safeLocalRoute(params.get('return'))||fallbackBack()):currentLocalRoute();
+    const [page,query]=detailItemLink(item,returnRoute).split('?');
+    const linkParams=new URLSearchParams(query);linkParams.set('stage',String(stage));
+    if(selectedRoute)linkParams.set('route',selectedRoute);
+    return page+'?'+linkParams+hash;
   }
   function compassUseChoice(item) {
     if(item.category!=='general_tool'||item.id!=='0E')return '';
@@ -404,7 +407,7 @@
     setNavigation();
     $('detail-root').innerHTML=`<section class="empty-state"><h1>${esc(copy.invalidTitle)}</h1><p>${esc(copy.invalidBody)}</p><a class="route-button" href="${esc(fallbackBack())}">${esc(copy.allItems)} ↗</a></section>`;
   }
-  fetch('gallery-data.json?v=player-usefulness-20261004-16').then(response=>{if(!response.ok)throw new Error('catalogue data unavailable');return response.json();}).then(data=>{
+  fetch('gallery-data.json?v=player-usefulness-20261004-17').then(response=>{if(!response.ok)throw new Error('catalogue data unavailable');return response.json();}).then(data=>{
     if(selectedFish&&!data.fishVisuals?.[selectedFish])selectedFish='';
     const item=(data.items||[]).find(candidate=>candidate.category===category&&candidate.id===requestedId)||null;
     if(!item){emptyState();return;}

@@ -133,3 +133,9 @@ Magnet0E now resolves a navigation choice: maps show the five fixed outdoor exit
 The generator independently validates the original ROM hash, table row bytes, five exact targets, Area6 sentinel and five source-map hashes. Source guards require the five stage links and matching fragment anchors, localized action/route limits and exclusion of a static Area6 point. Local browser: Thai area2 link -> correct (56,17) section -> Japanese retained stage/fragment -> area5 -> English retained its (22,2) section.
 
 A fresh direct HTTP read of each public EN/TH/JA catalogue HTML response, before JavaScript, showed all 21 per-rod decisions including Tanago01's do-not-buy recommendation. The source checker now requires each published HTML card's verdict, recommendation and reason to match the current data above technical evidence. This protects the crawler-visible content as well as the interactive renderer; it does not guarantee when an external search index refreshes its stored copy.
+
+## Same-item area navigation
+
+The published compass area-2 action opened the correct (56,17) section with both original map and item portrait loaded. This live check exposed another usability defect: each same-item area switch wrapped the current item URL in a new return URL, sending the back action through unnecessary intermediate views. Same-item area links now preserve the original entry page, or the initial category fallback when no entry was supplied. Links to a different item still return to the source item.
+
+Source checks switch through areas 2, 5, 1 and 4 with and without an entry route in all three languages, requiring a stable back destination and retained fish/rig context. Actual local Thai clicks from an area-2 map return through compass areas 5 then 1 preserved the original map/fish return. All five existing source checks passed; these are scoped navigation checks, not whole-site acceptance or evidence of a natural walking route.
