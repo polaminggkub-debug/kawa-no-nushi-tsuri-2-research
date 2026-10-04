@@ -78,6 +78,17 @@ function checkShopActions(item, visible, base) {
         )
     : item.playerUse?.shops || []
   const stages = new Set(offers.map((shop) => String(shop.stage)))
+  if (!flyPart && offers.length && item.priceYen != null) {
+    const stockLabel = {
+      th: 'พบรายการขายในด่านที่แสดงด้านล่าง',
+      en: 'Recorded stock in the areas listed below',
+      ja: '下記エリアの在庫記録',
+    }[base.pathname.includes('.th.') ? 'th' : base.pathname.includes('.ja.') ? 'ja' : 'en']
+    assert(
+      unescapeHtml(visible).includes(stockLabel),
+      `Shop stock label does not refer to listed areas: ${item.category}:${item.id}`,
+    )
+  }
   assert.deepEqual(
     [...new Set(routes.map((route) => route.searchParams.get('stage')))].sort(),
     [...stages].sort(),

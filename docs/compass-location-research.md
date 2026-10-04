@@ -20,7 +20,7 @@ These are target pins, not tested walking directions. No natural walking route, 
 
 ## Area 6 is not a static target
 
-Area 6's table row contains the `0x00FF` sentinel instead of fixed coordinates; the compass reads dynamic words at `$0C:DE02` and `$0C:EA02`. A story-progress flag (`$0C18 & 4`) controls whether the heading appears. Before that condition is met, the magnet reports the current area and section without a heading. The available trace does not tie this flag to a named quest, so this note does not name one or draw a fixed Area 6 pin.
+Area 6's table row contains the `0x00FF` sentinel instead of fixed coordinates; the compass reads dynamic words at `$0C:DE02` and `$0C:EA02`. A story-progress flag (`$0C18 & 4`) controls whether the heading appears. Before that condition is met, the magnet reports the current area and section without a heading. A later [bounded story-gate trace](magnet-story-gate-research.md) connects the flag to the prerequisite return-scene state and 65 distinct nonzero record slots out of 66. The natural encounter/catch trigger remains unproven, so this note does not give a quest-completion instruction or draw a fixed Area 6 pin.
 
 ## Source trace and map projection
 

@@ -1,0 +1,79 @@
+{
+  "schemaVersion": 1,
+  "romSha1": "c2103dd94e2a1a65a495fc02adc2e7d040f31212",
+  "coreSha256": "8ed333ac04544cc6ab67ceb445d095f7600bb17586d4887d99117fbd1ef776f6",
+  "scope": "Original ROM runtime: naturally reached tile; only tub inventory injected. Normal menu use and one Left tap after dismissal. No coordinates, terrain or story values injected.",
+  "location": {
+    "kind": "runtime_tub_boarding",
+    "stage": 1,
+    "context": "field",
+    "tileX": 4,
+    "tileY": 183,
+    "image": "maps/tool-tub-board-area1.png",
+    "fullImage": "maps/rom-field-01.png",
+    "width": 256,
+    "height": 384,
+    "pin": {
+      "x": 0.28125,
+      "y": 0.5
+    },
+    "name": {
+      "th": "ตัวอย่างจุดลงกะละมังที่ทดลองสำเร็จ",
+      "ja": "タライに乗れた地点例",
+      "en": "Tested tub boarding example"
+    },
+    "action": {
+      "th": "มีกะละมังแล้ว? จากทางออกบ้านด่าน 1 (8,183) เดินซ้าย 4 ช่องไปจุดในภาพ (4,183) ใช้กะละมังจากเมนูอุปกรณ์ ปิดข้อความว่าลอยน้ำแล้ว จากนั้นกดซ้ายเพื่อขึ้นกะละมัง",
+      "ja": "タライを持っているなら、エリア1の家の出口（8,183）から左へ4タイル進んで画像の地点（4,183）へ。道具メニューでタライを使い、メッセージを閉じてから左を押して乗る。",
+      "en": "Already own a tub? From the Area 1 house exit (8,183), walk four tiles Left to the pictured tile (4,183). Use the tub from General Tools, dismiss the floating-on-water message, then press Left to board."
+    },
+    "description": {
+      "th": "ตรวจการเดินและการขึ้นเรือแยกกันในสภาพเกมที่บันทึก ไม่ใช่กฎว่ากดซ้ายขึ้นได้ทุกริมฝั่ง การขึ้นแคนูและการได้กะละมังไม่ได้ทดสอบในสองการทดลองนี้",
+      "ja": "記録した状態で歩行と乗船を別々に確認。全岸辺で左を押せば乗れるという意味ではない。この実験ではカヌーの乗船とタライの入手は未検証。",
+      "en": "Walking and boarding were confirmed separately at the recorded positions. This is not a universal Left-to-board rule. Canoe boarding and tub acquisition were not tested in these probes."
+    }
+  },
+  "before": {
+    "stage": 1,
+    "x": 4,
+    "y": 183,
+    "movementMode": 1
+  },
+  "after": {
+    "stage": 1,
+    "x": 3,
+    "y": 187,
+    "movementMode": 3,
+    "fieldState": 2
+  },
+  "injectedSetup": [
+    {
+      "address": "7E:0B5E",
+      "valueHex": "01 00",
+      "purpose": "Isolate owned-tub use; does not prove acquisition"
+    }
+  ],
+  "screenshot": "frames/tub-board-area1.png",
+  "screenshotSha256": "2a418b8f8b44a2ae9ca79b3b8961fe891e5b36c45b4a5944b8cdf097d0b97898",
+  "requestSha256": "fee111881dc8ba684bf576eefe1f8ddeee0b9ce03ad54941079acba7c32ae219",
+  "source": [
+    "docs/tub-boarding-research.md",
+    "docs/boat-movement-research.md"
+  ],
+  "approach": {
+    "start": {
+      "stage": 1,
+      "x": 8,
+      "y": 183
+    },
+    "end": {
+      "stage": 1,
+      "x": 4,
+      "y": 183,
+      "movementMode": 1
+    },
+    "inputs": "64 consecutive Left frames, captured every 8 frames; then 30 neutral frames",
+    "memoryWrites": [],
+    "requestSha256": "883c5e2edb8b2b5b6c52f1a72f43702aa47b89088c05c10a267f6eb961ee0e4e"
+  }
+}

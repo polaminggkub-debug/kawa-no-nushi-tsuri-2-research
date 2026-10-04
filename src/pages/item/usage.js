@@ -136,7 +136,8 @@ function steeringScope(ctx, steering) {
   return 'This list describes movement steering, not edible bait or a bite-rate bonus.'
 }
 
-function compatibilitySummary(ctx, count, steering) {
+function compatibilitySummary(ctx, count, steering, rigRoute) {
+  if (rigRoute) return `${ctx.copy[`${rigRoute}FishSummary`]} · ${count}`
   if (steering) {
     if (ctx.lang === 'th') return `ดูรายชื่อปลาและสัตว์ · ${count}`
     if (ctx.lang === 'ja') return `魚・生き物の一覧を見る · ${count}`
@@ -147,27 +148,59 @@ function compatibilitySummary(ctx, count, steering) {
   return `Compatible fish · ${count}`
 }
 
+function floatSinkerRoute(item) {
+  if (item.category !== 'float_weight') return ''
+  const id = Number.parseInt(item.id, 16)
+  if (id >= 1 && id <= 8) return 'float'
+  if (id === 9 || id === 10) return 'sinker'
+  return ''
+}
+
+function routeTargetStatus(ctx, route, accepted) {
+  const key = `${route}Target${accepted ? 'Yes' : 'No'}`
+  return ctx.copy[key]
+}
+
+function acceptedBaitLink(ctx, fishLocations, route) {
+  if (!route || !ctx.selectedFish) return ''
+  const profile = `${ctx.fishProfileLink(ctx.selectedFish, fishLocations)}#all-compatible`
+  return `<p class="compatibility-next-step"><a class="route-button" data-accepted-bait-link="${ctx.esc(route)}" href="${ctx.esc(profile)}">${ctx.esc(ctx.copy.acceptedBaits)} ↗</a></p>`
+}
+
 export function fishSection(ctx, item, fishVisuals, fishLocations) {
   const use = item.playerUse || {}
   const routes = use.fishIdsByRoute || {}
   const steering = item.category === 'general_tool' && ['08', '09', '0A'].includes(item.id)
+  const rigRoute = floatSinkerRoute(item)
   const routeKeys = compatibilityRoutes(routes)
   const ids = Array.isArray(use.fishIds) ? normalizedFishIds(use.fishIds) : []
   const categories = ['lure', 'fly', 'bait', 'float_weight', 'general_tool']
   if (!categories.includes(item.category) || (!ids.length && !routeKeys.length)) return ''
   const copy = steeringCopy(ctx)
-  const heading = steering ? copy.title : ctx.copy.fish
+  const heading = steering
+    ? copy.title
+    : rigRoute
+      ? ctx.copy[`${rigRoute}FishHeading`]
+      : ctx.copy.fish
   const groups = renderCompatibilityGroups(ctx, routes, routeKeys, ids, fishVisuals, fishLocations)
   const accepted = targetAccepted(ctx, routes, routeKeys, ids)
-  const status = ctx.selectedFish ? targetStatus(ctx, routes, accepted, steering, copy) : ''
+  const status = ctx.selectedFish
+    ? rigRoute
+      ? routeTargetStatus(ctx, rigRoute, accepted)
+      : targetStatus(ctx, routes, accepted, steering, copy)
+    : ''
   const fishTarget = ctx.selectedFish
-    ? `<p class="play-target"><strong>${ctx.esc(ctx.copy.target)} · ${ctx.esc(ctx.fishName(ctx.selectedFish, fishVisuals))} (${ctx.esc(ctx.selectedFish)})</strong><br>${ctx.esc(status)}</p>`
+    ? `<p class="play-target"${rigRoute ? ` data-target-route="${rigRoute}"` : ''}><strong>${ctx.esc(ctx.copy.target)} · ${ctx.esc(ctx.fishName(ctx.selectedFish, fishVisuals))} (${ctx.esc(ctx.selectedFish)})</strong><br>${ctx.esc(status)}</p>${acceptedBaitLink(ctx, fishLocations, rigRoute)}`
     : ''
   const count = routeKeys.length
     ? new Set(Object.values(routes).flatMap(normalizedFishIds)).size
     : ids.length
-  const list = `<details class="compatibility-details"><summary>${ctx.esc(compatibilitySummary(ctx, count, steering))}</summary>${groups}</details>`
-  return `<section class="detail-section compatibility-section"><h2>${ctx.esc(heading)} · ${count}</h2>${fishTarget}<p class="section-lede">${ctx.esc(ctx.local(use.fishScope) || ctx.copy.fishScope)}</p>${list}<p class="muted">${ctx.esc(steeringScope(ctx, steering))}</p></section>`
+  const list = `<details class="compatibility-details"><summary>${ctx.esc(compatibilitySummary(ctx, count, steering, rigRoute))}</summary>${groups}</details>`
+  const scope = rigRoute
+    ? ctx.copy[`${rigRoute}FishScope`]
+    : ctx.local(use.fishScope) || ctx.copy.fishScope
+  const caveat = rigRoute ? '' : `<p class="muted">${ctx.esc(steeringScope(ctx, steering))}</p>`
+  return `<section class="detail-section compatibility-section"${rigRoute ? ` data-compatibility-route="${rigRoute}"` : ''}><h2>${ctx.esc(heading)} · ${count}</h2>${fishTarget}<p class="section-lede">${ctx.esc(scope)}</p>${list}${caveat}</section>`
 }
 
 export function technicalSection(ctx, item) {

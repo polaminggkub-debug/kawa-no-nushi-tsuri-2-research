@@ -48,6 +48,7 @@
     stageButton: () => stageButton,
     stageName: () => stageName,
     technicalSection: () => technicalSection,
+    tubBoardingChoice: () => tubBoardingChoice,
     useLocationSection: () => useLocationSection,
     visibleUsage: () => visibleUsage
   });
@@ -443,7 +444,8 @@
       return "進行方向の効果であり、食べられるエサや食いつき率のボーナスを示さない。";
     return "This list describes movement steering, not edible bait or a bite-rate bonus.";
   }
-  function compatibilitySummary(ctx, count, steering) {
+  function compatibilitySummary(ctx, count, steering, rigRoute) {
+    if (rigRoute) return `${ctx.copy[`${rigRoute}FishSummary`]} · ${count}`;
     if (steering) {
       if (ctx.lang === "th") return `ดูรายชื่อปลาและสัตว์ · ${count}`;
       if (ctx.lang === "ja") return `魚・生き物の一覧を見る · ${count}`;
@@ -453,23 +455,42 @@
     if (ctx.lang === "ja") return `対応する魚 · ${count}`;
     return `Compatible fish · ${count}`;
   }
+  function floatSinkerRoute(item) {
+    if (item.category !== "float_weight") return "";
+    const id = Number.parseInt(item.id, 16);
+    if (id >= 1 && id <= 8) return "float";
+    if (id === 9 || id === 10) return "sinker";
+    return "";
+  }
+  function routeTargetStatus(ctx, route, accepted) {
+    const key = `${route}Target${accepted ? "Yes" : "No"}`;
+    return ctx.copy[key];
+  }
+  function acceptedBaitLink(ctx, fishLocations, route) {
+    if (!route || !ctx.selectedFish) return "";
+    const profile = `${ctx.fishProfileLink(ctx.selectedFish, fishLocations)}#all-compatible`;
+    return `<p class="compatibility-next-step"><a class="route-button" data-accepted-bait-link="${ctx.esc(route)}" href="${ctx.esc(profile)}">${ctx.esc(ctx.copy.acceptedBaits)} ↗</a></p>`;
+  }
   function fishSection(ctx, item, fishVisuals, fishLocations) {
     const use = item.playerUse || {};
     const routes = use.fishIdsByRoute || {};
     const steering = item.category === "general_tool" && ["08", "09", "0A"].includes(item.id);
+    const rigRoute = floatSinkerRoute(item);
     const routeKeys = compatibilityRoutes(routes);
     const ids = Array.isArray(use.fishIds) ? normalizedFishIds(use.fishIds) : [];
     const categories = ["lure", "fly", "bait", "float_weight", "general_tool"];
     if (!categories.includes(item.category) || !ids.length && !routeKeys.length) return "";
     const copy = steeringCopy(ctx);
-    const heading = steering ? copy.title : ctx.copy.fish;
+    const heading = steering ? copy.title : rigRoute ? ctx.copy[`${rigRoute}FishHeading`] : ctx.copy.fish;
     const groups = renderCompatibilityGroups(ctx, routes, routeKeys, ids, fishVisuals, fishLocations);
     const accepted = targetAccepted(ctx, routes, routeKeys, ids);
-    const status = ctx.selectedFish ? targetStatus(ctx, routes, accepted, steering, copy) : "";
-    const fishTarget = ctx.selectedFish ? `<p class="play-target"><strong>${ctx.esc(ctx.copy.target)} · ${ctx.esc(ctx.fishName(ctx.selectedFish, fishVisuals))} (${ctx.esc(ctx.selectedFish)})</strong><br>${ctx.esc(status)}</p>` : "";
+    const status = ctx.selectedFish ? rigRoute ? routeTargetStatus(ctx, rigRoute, accepted) : targetStatus(ctx, routes, accepted, steering, copy) : "";
+    const fishTarget = ctx.selectedFish ? `<p class="play-target"${rigRoute ? ` data-target-route="${rigRoute}"` : ""}><strong>${ctx.esc(ctx.copy.target)} · ${ctx.esc(ctx.fishName(ctx.selectedFish, fishVisuals))} (${ctx.esc(ctx.selectedFish)})</strong><br>${ctx.esc(status)}</p>${acceptedBaitLink(ctx, fishLocations, rigRoute)}` : "";
     const count = routeKeys.length ? new Set(Object.values(routes).flatMap(normalizedFishIds)).size : ids.length;
-    const list = `<details class="compatibility-details"><summary>${ctx.esc(compatibilitySummary(ctx, count, steering))}</summary>${groups}</details>`;
-    return `<section class="detail-section compatibility-section"><h2>${ctx.esc(heading)} · ${count}</h2>${fishTarget}<p class="section-lede">${ctx.esc(ctx.local(use.fishScope) || ctx.copy.fishScope)}</p>${list}<p class="muted">${ctx.esc(steeringScope(ctx, steering))}</p></section>`;
+    const list = `<details class="compatibility-details"><summary>${ctx.esc(compatibilitySummary(ctx, count, steering, rigRoute))}</summary>${groups}</details>`;
+    const scope = rigRoute ? ctx.copy[`${rigRoute}FishScope`] : ctx.local(use.fishScope) || ctx.copy.fishScope;
+    const caveat = rigRoute ? "" : `<p class="muted">${ctx.esc(steeringScope(ctx, steering))}</p>`;
+    return `<section class="detail-section compatibility-section"${rigRoute ? ` data-compatibility-route="${rigRoute}"` : ""}><h2>${ctx.esc(heading)} · ${count}</h2>${fishTarget}<p class="section-lede">${ctx.esc(scope)}</p>${list}${caveat}</section>`;
   }
   function technicalSection(ctx, item) {
     const use = item.playerUse || {}, sources = [
@@ -632,6 +653,7 @@
     return "Open all five town rooms";
   }
   function locationAnchor(loc, stage) {
+    if (loc.kind === "runtime_tub_boarding") return `id="tub-boarding-${stage}"`;
     if (loc.kind === "compass_exit") return `id="compass-exit-${stage}"`;
     if (loc.forage) return `id="forage-stage-${stage}-context-${Number(loc.context)}"`;
     return "";
@@ -679,6 +701,11 @@
   }
 
   // src/pages/item/actions.js
+  function tubBoardingChoice(ctx, item) {
+    if (item.category !== "general_tool" || item.id !== "01") return "";
+    const label = ctx.lang === "th" ? "มีกะละมังแล้ว? ดูจุดวางและวิธีขึ้นที่ทดลองสำเร็จ" : ctx.lang === "ja" ? "タライを持っている？確認した設置・乗船手順を見る" : "Already own a tub? See a tested placement and boarding sequence";
+    return `<p><a class="route-button" data-tub-boarding-choice href="#tub-boarding-1">${ctx.esc(label)} ↓</a></p>`;
+  }
   function gearNextActions(ctx, item, fishVisuals, fishLocations, allItems) {
     if (!item.gearDecision) return "";
     if (item.category === "float_weight")
@@ -925,6 +952,7 @@
   }
   function renderQuickOptions(ctx, item, allItems) {
     const options = [
+      ctx.tubBoardingChoice(item),
       ctx.acquisitionChoice(item),
       ctx.baitGatherChoice(item),
       ctx.forageBaitChoice(item, allItems),
@@ -1003,7 +1031,7 @@
   function loadCatalogue(ctx) {
     ctx.flyMakerLink = (item) => item.category.startsWith("fly") ? `<p><a class="route-button" data-fly-maker href="${ctx.esc(ctx.currentCategoryLink().split("#")[0] + "#fly-instructions")}">${ctx.lang === "th" ? "ดูขั้นตอนประกอบฟลายเองและตรวจราคาในเกม" : ctx.lang === "ja" ? "自作フライの手順とゲーム内見積額を確認" : "See custom fly steps and check the in-game quote"} ↗</a></p>` : "";
     ctx.setNavigation();
-    fetch("gallery-data.json?v=compendium-20261004-23").then((response) => {
+    fetch("gallery-data.json?v=compendium-20261004-24").then((response) => {
       if (!response.ok) throw new Error("catalogue data unavailable");
       return response.json();
     }).then((data) => {
@@ -1042,7 +1070,7 @@
     shopArea: (n) => `Area ${n}`,
     price: (n) => `¥${n}`,
     priceFromRom: "ROM price field",
-    stockAt: "Stock recorded in this area",
+    stockAt: "Recorded stock in the areas listed below",
     bundleAt: (n) => `Ready-made fly sold in area ${n}`,
     noShop: "No shop stock for this item is recorded in the current ROM data.",
     shopMap: "Find this shop",
@@ -1055,6 +1083,17 @@
     fishScope: "Passing this item check does not guarantee a bite or a landed fish.",
     routeFloat: "Float rig",
     routeSinker: "Sinker rig",
+    floatFishHeading: "Fish in the float-rig list",
+    floatFishSummary: "See fish for the float rig",
+    floatTargetYes: "This profile is in the float-rig list. Float models add no fish-specific check; choose a bait this fish accepts.",
+    floatTargetNo: "This profile is not in the recorded float-rig list.",
+    floatFishScope: "Float IDs 01–08 use the same rig check; the model adds no fish-specific bonus or restriction. The list does not guarantee a bite or landed fish.",
+    sinkerFishHeading: "Fish that pass the extra sinker-rig profile check",
+    sinkerFishSummary: "See fish for the sinker rig",
+    sinkerTargetYes: "This profile is in the list that passes the sinker rig’s extra check. The selected bait must also pass for this fish.",
+    sinkerTargetNo: "This profile is not in the recorded sinker-rig pass list.",
+    sinkerFishScope: "Sinker IDs 09–0A share the same extra sinker-rig profile check. This list does not establish that a bait will be eaten or a fish landed.",
+    acceptedBaits: "See bait this fish accepts and other methods",
     fishProfile: "Open fish profile ↗",
     mapFish: "Open this fish on the map ↗",
     noFish: "No fish-specific compatibility list is established for this item.",
@@ -1100,7 +1139,7 @@
     shopArea: (n) => `ด่าน ${n}`,
     price: (n) => `${n} เยน`,
     priceFromRom: "ช่องราคาใน ROM",
-    stockAt: "มีข้อมูลร้านค้าในด่านนี้",
+    stockAt: "พบรายการขายในด่านที่แสดงด้านล่าง",
     bundleAt: (n) => `ชุดฟลายสำเร็จรูปที่ร้านด่าน ${n}`,
     noShop: "ไม่พบข้อมูลว่ามีร้านขายไอเท็มชิ้นนี้ใน ROM ที่ตรวจ",
     shopMap: "ดูร้านที่ขายของนี้",
@@ -1113,6 +1152,17 @@
     fishScope: "การผ่านเงื่อนไขนี้ไม่ได้รับประกันว่าปลาจะกินเหยื่อหรือตกขึ้นมาได้",
     routeFloat: "ชุดทุ่น",
     routeSinker: "ชุดตะกั่ว",
+    floatFishHeading: "รายชื่อปลาสำหรับชุดทุ่น",
+    floatFishSummary: "ดูรายชื่อปลาสำหรับชุดทุ่น",
+    floatTargetYes: "ปลานี้อยู่ในรายชื่อสำหรับชุดทุ่น แต่รุ่นทุ่นไม่ได้เพิ่มเงื่อนไขปลาเฉพาะ ต้องเลือกเหยื่อที่ปลารับได้ด้วย",
+    floatTargetNo: "ปลานี้ไม่อยู่ในรายชื่อที่ตรวจพบสำหรับชุดทุ่น",
+    floatFishScope: "ทุ่น ID 01–08 ไม่ได้ตรวจปลาแยกตามรุ่น และไม่มีหลักฐานว่าเพิ่มโบนัสหรือข้อจำกัดเฉพาะปลา รายชื่อนี้ไม่รับประกันว่าปลาจะกินเหยื่อหรือตกขึ้นได้",
+    sinkerFishHeading: "ปลาในรายชื่อที่ผ่านเงื่อนไขเพิ่มของชุดตะกั่ว",
+    sinkerFishSummary: "ดูรายชื่อปลาสำหรับชุดตะกั่ว",
+    sinkerTargetYes: "ปลานี้อยู่ในรายชื่อที่ผ่านเงื่อนไขเพิ่มของชุดตะกั่ว เหยื่อที่เลือกยังต้องผ่านเงื่อนไขของปลานี้ด้วย",
+    sinkerTargetNo: "ปลานี้ไม่ผ่านเงื่อนไขเพิ่มของชุดตะกั่วที่ตรวจพบ",
+    sinkerFishScope: "ตะกั่ว ID 09–0A ใช้เงื่อนไขปลาเพิ่มเติมชุดเดียวกัน รายชื่อนี้ยังไม่ยืนยันว่าเหยื่อจะถูกกินหรือจะตกปลาขึ้นได้",
+    acceptedBaits: "ดูเหยื่อที่ปลานี้รับและวิธีตกอื่น",
     fishProfile: "เปิดหน้าข้อมูลปลานี้ ↗",
     mapFish: "เปิดแผนที่พร้อมเลือกปลานี้ ↗",
     noFish: "ยังไม่มีรายชื่อความเข้ากันได้กับปลาเฉพาะสำหรับไอเท็มนี้",
@@ -1158,7 +1208,7 @@
     shopArea: (n) => `エリア${n}`,
     price: (n) => `${n}円`,
     priceFromRom: "ROM内の価格欄",
-    stockAt: "このエリアの店頭記録",
+    stockAt: "下記エリアの在庫記録",
     bundleAt: (n) => `エリア${n}の店売り毛バリセット`,
     noShop: "現在のROMデータでは、この道具の店頭在庫を確認できません。",
     shopMap: "販売店を見る",
@@ -1171,6 +1221,17 @@
     fishScope: "この判定を通っても、食いつきや取り込みは保証されません。",
     routeFloat: "ウキ仕掛け",
     routeSinker: "オモリ仕掛け",
+    floatFishHeading: "ウキ釣りの魚プロフィール一覧",
+    floatFishSummary: "ウキ釣りの魚を見る",
+    floatTargetYes: "この魚はウキ釣りの一覧に含まれる。ウキ型ごとの魚判定はないため、この魚が受け付けるエサを選ぶ。",
+    floatTargetNo: "この魚は記録されたウキ釣りの一覧に含まれない。",
+    floatFishScope: "ウキID 01–08は同じウキ釣り判定を使い、型ごとの魚ボーナスや制限はない。一覧は食いつきや釣り上げを保証しない。",
+    sinkerFishHeading: "オモリ釣りの追加プロフィール判定を通る魚",
+    sinkerFishSummary: "オモリ釣りの魚を見る",
+    sinkerTargetYes: "この魚はオモリ釣りの追加判定を通る一覧に含まれる。選んだエサもこの魚の条件を通る必要がある。",
+    sinkerTargetNo: "この魚は記録されたオモリ釣りの通過一覧に含まれない。",
+    sinkerFishScope: "オモリID 09–0Aは同じ追加プロフィール判定を使う。この一覧は食いつきや釣り上げを保証しない。",
+    acceptedBaits: "この魚が受け付けるエサと他の釣り方を見る",
     fishProfile: "魚の詳細を開く ↗",
     mapFish: "この魚をマップで見る ↗",
     noFish: "この道具の魚別適合リストは確認されていません。",

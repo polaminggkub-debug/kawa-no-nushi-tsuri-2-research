@@ -171,6 +171,7 @@ function fullImageLabel(ctx, loc, text) {
 }
 
 function locationAnchor(loc, stage) {
+  if (loc.kind === 'runtime_tub_boarding') return `id="tub-boarding-${stage}"`
   if (loc.kind === 'compass_exit') return `id="compass-exit-${stage}"`
   if (loc.forage) return `id="forage-stage-${stage}-context-${Number(loc.context)}"`
   return ''

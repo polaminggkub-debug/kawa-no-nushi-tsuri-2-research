@@ -837,11 +837,22 @@
     const key = item.rodDecision ? "data-rod-decision" : item.baitLureDecision ? "data-bait-lure-decision" : "data-gear-decision";
     return `${key}="${ctx.esc(item.id)}"`;
   }
+  function conditionalOfferNote(ctx, item, use) {
+    if (item.category !== "bait" || item.id !== "17") return "";
+    const offer = use.shops?.find(
+      (shop) => shop.condition?.includes("sell at least one Ayu before buying")
+    );
+    const stage = Number(offer?.stage);
+    if (!Number.isInteger(stage) || stage < 1 || stage > 6) return "";
+    const note = ctx.lang === "th" ? `ด่าน ${stage}: ต้องขายปลาอายุจากข้องอย่างน้อย 1 ตัวก่อนซื้อ` : ctx.lang === "ja" ? `エリア${stage}：びくのアユを1匹以上売ってから購入` : `Area ${stage}: sell at least one Ayu from your keepnet before buying`;
+    return `<p class="fish-scope conditional-offer-note" data-conditional-offer-note="bait:17" data-offer-stage="${stage}">${ctx.esc(note)}</p>`;
+  }
   function renderCardIdentity(ctx, item, use, detailHref) {
     const image = `<a href="${ctx.esc(detailHref)}" aria-label="${ctx.esc(ctx.itemName(item))} — ${ctx.detailLabel}"><img loading="lazy" src="${ctx.esc(item.image)}" alt="${ctx.esc(ctx.itemName(item))}"></a>`;
     const price = item.priceYen > 0 && use.shops?.length && !item.category.startsWith("fly") ? `<span class="price-badge">${ctx.esc(ctx.formatYen(item))}</span>` : "";
     const japanese = ctx.itemName(item) !== item.nameJa ? `<p class="jp-name" lang="ja">${ctx.esc(item.nameJa)}</p>` : "";
-    return `<div class="card-main"><figure class="sprite">${image}</figure><div class="card-text"><span class="category-tag">${ctx.esc(ctx.categoryNames[item.category])}</span><h3><a class="entity-title" href="${ctx.esc(detailHref)}">${ctx.esc(ctx.itemName(item))}</a></h3>${ctx.thaiLabel(item)}${japanese}<div class="price-row">${price}<span class="item-id">ID ${ctx.esc(item.id)}</span></div><a class="card-detail-link" href="${ctx.esc(detailHref)}">${ctx.esc(ctx.cardUi.details)} ↗</a></div></div>`;
+    const offerNote = conditionalOfferNote(ctx, item, use);
+    return `<div class="card-main"><figure class="sprite">${image}</figure><div class="card-text"><span class="category-tag">${ctx.esc(ctx.categoryNames[item.category])}</span><h3><a class="entity-title" href="${ctx.esc(detailHref)}">${ctx.esc(ctx.itemName(item))}</a></h3>${ctx.thaiLabel(item)}${japanese}<div class="price-row">${price}<span class="item-id">ID ${ctx.esc(item.id)}</span></div>${offerNote}<a class="card-detail-link" href="${ctx.esc(detailHref)}">${ctx.esc(ctx.cardUi.details)} ↗</a></div></div>`;
   }
   function guideEvidenceNote(ctx, use) {
     if (use.evidence?.type !== "player_guide_report") return "";
@@ -1829,7 +1840,7 @@
     renderInitialCatalogue(ctx);
   }
   function loadCatalogue(ctx) {
-    fetch("gallery-data.json?v=compendium-20261004-23").then((response) => {
+    fetch("gallery-data.json?v=compendium-20261004-24").then((response) => {
       if (!response.ok) throw new Error("catalogue unavailable");
       return response.json();
     }).then((data) => initializeLoadedCatalogue(ctx, data)).catch((error) => console.error(error));

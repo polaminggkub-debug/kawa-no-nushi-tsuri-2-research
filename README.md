@@ -140,3 +140,5 @@ The public site is generated from the authored modules, CSS and templates under 
 The aggregate check must pass before committing a release or publishing. It checks the FSD import boundaries and public APIs, import cycles, formatting, physical file/function limits, lint, publication contents, reproducible generated output, and existing navigation/data regressions. Application source is limited to 500 physical lines per file and 50 per function, including callbacks. Generated bundles and preserved research data are inspected separately rather than shortened to fit source limits.
 
 An automated pass must also be followed by a desktop and mobile browser review of the affected workflows. See [the redesign checks and browser evidence](docs/redesign-qa.md) for the exact scope and unresolved research limits.
+
+The publication gate also checks the new bounded Python ROM verifiers: at most 500 physical lines per file and 50 per function, with adversarial over-limit probes. Historical analysis utilities remain outside this frontend/research-tool source budget.

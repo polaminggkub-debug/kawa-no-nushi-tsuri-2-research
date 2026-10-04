@@ -190,3 +190,11 @@ The six ordinary shop foods now state when to use/buy the item in terms of missi
 Food profiles show alternative foods recorded for the selected area first. The full cross-area HP/food guide and its item links remain in a closed disclosure instead of repeating a long global recommendation and unavailable-area alternatives in the main view. The guard checks all six foods against runtime-confirmed recovery and the one-yen-per-HP prices, then renders 108 food/area/language combinations and requires exactly the locally stocked alternatives with retained area links. The full aggregate passes. Actual browser clicks: area5 lunch06 → Dango03 retains area5; the 390px layout remains readable.
 
 The whole-site goal remains active while natural boat boarding/access and the named Area6 magnet prerequisite are being researched. Passing these food checks does not resolve those gameplay evidence gaps.
+
+## Follow-up: turn tub placement into a boarding instruction (2026-10-04)
+
+A continuous original-ROM probe from a naturally reached Area1 `(4,183)` position used the normal General Tools menu, placed a tub, dismissed the message, then tapped Left. It entered tub mode 3 and finished at `(3,187)`. The coordinator reran the probe with the same result. Inventory setup adds only the tub: no coordinate, terrain or story injection. This proves the bounded boarding sequence when a tub is owned, not acquisition or the route from a new-game start, and does not establish canoe boarding.
+
+The tub profile now has an owned-tub action leading directly to an original-terrain crop at the example tile and the tested menu/directional steps. The existing Hariyo exchange location remains present. All three languages preserve the example limitation and evidence links; the guard checks the profile action, anchor, location and clean runtime screenshot fingerprint. Source evidence is in `docs/tub-boarding-research.md` and `data/tub-boarding.json`; private ROM/core/save-state files remain unpublished.
+
+Follow-up: an independent input-only walk from the verified Area 1 house exit (8,183), four tiles left to (4,183), succeeded without memory writes. Walking and boarding were separate recorded probes; this does not claim a single continuous acquisition-to-boarding replay.

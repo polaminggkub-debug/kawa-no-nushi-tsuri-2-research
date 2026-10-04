@@ -11,7 +11,7 @@ export const copy_ja = {
   shopArea: (n) => `エリア${n}`,
   price: (n) => `${n}円`,
   priceFromRom: 'ROM内の価格欄',
-  stockAt: 'このエリアの店頭記録',
+  stockAt: '下記エリアの在庫記録',
   bundleAt: (n) => `エリア${n}の店売り毛バリセット`,
   noShop: '現在のROMデータでは、この道具の店頭在庫を確認できません。',
   shopMap: '販売店を見る',
@@ -26,6 +26,21 @@ export const copy_ja = {
   fishScope: 'この判定を通っても、食いつきや取り込みは保証されません。',
   routeFloat: 'ウキ仕掛け',
   routeSinker: 'オモリ仕掛け',
+  floatFishHeading: 'ウキ釣りの魚プロフィール一覧',
+  floatFishSummary: 'ウキ釣りの魚を見る',
+  floatTargetYes:
+    'この魚はウキ釣りの一覧に含まれる。ウキ型ごとの魚判定はないため、この魚が受け付けるエサを選ぶ。',
+  floatTargetNo: 'この魚は記録されたウキ釣りの一覧に含まれない。',
+  floatFishScope:
+    'ウキID 01–08は同じウキ釣り判定を使い、型ごとの魚ボーナスや制限はない。一覧は食いつきや釣り上げを保証しない。',
+  sinkerFishHeading: 'オモリ釣りの追加プロフィール判定を通る魚',
+  sinkerFishSummary: 'オモリ釣りの魚を見る',
+  sinkerTargetYes:
+    'この魚はオモリ釣りの追加判定を通る一覧に含まれる。選んだエサもこの魚の条件を通る必要がある。',
+  sinkerTargetNo: 'この魚は記録されたオモリ釣りの通過一覧に含まれない。',
+  sinkerFishScope:
+    'オモリID 09–0Aは同じ追加プロフィール判定を使う。この一覧は食いつきや釣り上げを保証しない。',
+  acceptedBaits: 'この魚が受け付けるエサと他の釣り方を見る',
   fishProfile: '魚の詳細を開く ↗',
   mapFish: 'この魚をマップで見る ↗',
   noFish: 'この道具の魚別適合リストは確認されていません。',

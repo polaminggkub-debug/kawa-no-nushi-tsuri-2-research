@@ -53,3 +53,11 @@ The negative Worm `01` + Iwana `01` + sinker route displayed a rejection and a f
 The review found and repaired missing runtime helper exports, duplicate area-selector IDs, an empty fish-location box, long embedded target maps, duplicate comparison reasons, uncollapsed starter/compatibility lists, and a narrow research table that wrapped Japanese names one character at a time. The final layout keeps long alternatives and evidence in named disclosures. Original sprites, maps and the title screen remain in use.
 
 This was a representative interaction and visual review, not a claim that every combination of every control was manually clicked. Automated entity/render checks cover the complete recorded catalogue and all three locales; the browser review establishes the listed user paths separately.
+
+### Follow-up checks
+
+The food guard additionally renders every six-shop-food/area/language combination (108 cases), requires exact local stock alternatives, and checks the advice against measured recovery and recorded prices. The tub guard preserves both acquisition and the bounded boarding example, its direct profile anchor, three-language steps/limits, and gameplay-screenshot fingerprint. The original-ROM boarding probe was independently rerun; its static byte verifier has a separate, narrower scope.
+
+The publication gate also checks the new bounded Python ROM verifiers: at most 500 physical lines per file and 50 per function, with adversarial over-limit probes. Historical analysis utilities remain outside this frontend/research-tool source budget.
+
+Actual local browser follow-up: float 01 with target fish 06 opens that fish's accepted-bait section with Area 1 retained; bait 17 shows the Area 3 Ayu-sale condition beside its price; the tub detail shows house-exit walking directions and a linked ROM-map crop. Mobile 390×844 retained readable cards and navigation; viewport reset after review.

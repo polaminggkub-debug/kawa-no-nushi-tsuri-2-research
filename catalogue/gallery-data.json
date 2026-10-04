@@ -39921,6 +39921,8 @@
           "sources": [
             "docs/general-tool-actions-research.md",
             "docs/boat-movement-research.md",
+            "data/tub-boarding.json",
+            "docs/tub-boarding-research.md",
             "data/tub-acquisition.json",
             "docs/tub-acquisition-research.md"
           ]
@@ -39963,6 +39965,36 @@
                 "0x003E74"
               ],
               "grantConsumer": "00:D1D4..D207"
+            }
+          },
+          {
+            "kind": "runtime_tub_boarding",
+            "stage": 1,
+            "context": "field",
+            "tileX": 4,
+            "tileY": 183,
+            "image": "maps/tool-tub-board-area1.png",
+            "fullImage": "maps/rom-field-01.png",
+            "width": 256,
+            "height": 384,
+            "pin": {
+              "x": 0.28125,
+              "y": 0.5
+            },
+            "name": {
+              "th": "ตัวอย่างจุดลงกะละมังที่ทดลองสำเร็จ",
+              "ja": "タライに乗れた地点例",
+              "en": "Tested tub boarding example"
+            },
+            "action": {
+              "th": "มีกะละมังแล้ว? จากทางออกบ้านด่าน 1 (8,183) เดินซ้าย 4 ช่องไปจุดในภาพ (4,183) ใช้กะละมังจากเมนูอุปกรณ์ ปิดข้อความว่าลอยน้ำแล้ว จากนั้นกดซ้ายเพื่อขึ้นกะละมัง",
+              "ja": "タライを持っているなら、エリア1の家の出口（8,183）から左へ4タイル進んで画像の地点（4,183）へ。道具メニューでタライを使い、メッセージを閉じてから左を押して乗る。",
+              "en": "Already own a tub? From the Area 1 house exit (8,183), walk four tiles Left to the pictured tile (4,183). Use the tub from General Tools, dismiss the floating-on-water message, then press Left to board."
+            },
+            "description": {
+              "th": "ตรวจการเดินและการขึ้นเรือแยกกันในสภาพเกมที่บันทึก ไม่ใช่กฎว่ากดซ้ายขึ้นได้ทุกริมฝั่ง การขึ้นแคนูและการได้กะละมังไม่ได้ทดสอบในสองการทดลองนี้",
+              "ja": "記録した状態で歩行と乗船を別々に確認。全岸辺で左を押せば乗れるという意味ではない。この実験ではカヌーの乗船とタライの入手は未検証。",
+              "en": "Walking and boarding were confirmed separately at the recorded positions. This is not a universal Left-to-board rule. Canoe boarding and tub acquisition were not tested in these probes."
             }
           }
         ]

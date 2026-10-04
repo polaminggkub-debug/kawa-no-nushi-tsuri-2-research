@@ -1,0 +1,467 @@
+{
+  "schemaVersion": 1,
+  "rom": {
+    "sizeBytes": 1572864,
+    "sha1": "c2103dd94e2a1a65a495fc02adc2e7d040f31212"
+  },
+  "scope": "Bounded static trace against the supplied Japanese ROM plus a ROM-derived runtime menu capture. No external guide, ROM, emulator core, save state, or image is bundled.",
+  "characterFishPrerequisites": {
+    "source": "04:E85A loads fish ID from $0C:C800 plus the active $7F:01CE byte offset; callbacks compare that same offset.",
+    "units": "Offsets are bytes; a fish-ID row is two bytes and each map set spans 0x200 bytes.",
+    "anglerMenu": {
+      "promptJa": "誰が釣りにでかけますか？",
+      "promptEn": "Who will go fishing?",
+      "sourceEvidence": "Original-ROM runtime capture at rom-analysis/gold-net-shallow-spots/natural-route/new-game-screen.png; capture manifest new-game.json identifies the supplied ROM. The image is not redistributed.",
+      "choices": [
+        {
+          "slot": 1,
+          "position": "top-left",
+          "roleJa": "兄",
+          "nameJa": "太郎",
+          "nameEn": "Taro",
+          "age": 10
+        },
+        {
+          "slot": 2,
+          "position": "top-right",
+          "roleJa": "妹",
+          "nameJa": "京子",
+          "nameEn": "Kyoko",
+          "age": 6
+        },
+        {
+          "slot": 3,
+          "position": "bottom-left",
+          "roleJa": "父",
+          "nameJa": "雄三",
+          "nameEn": "Yuzo",
+          "age": 38
+        },
+        {
+          "slot": 4,
+          "position": "bottom-right",
+          "roleJa": "母",
+          "nameJa": "紀子",
+          "nameEn": "Noriko",
+          "age": 35
+        }
+      ],
+      "selectorCode": {
+        "entry": "01:9DF7 calls the four-way selector at 01:9EBA",
+        "cursor": "At 01:9EC7, controller mask $0C00 toggles $16BE bit 1; mask $0300 toggles bit 0",
+        "commit": "01:9F17..9F30 stores $0860 = $16BE + 1",
+        "initialPosition": "The new-game capture highlights the top-left choice. Starting at cursor index 0, horizontal/vertical toggles map values 1-4 to the 2x2 positions."
+      },
+      "limit": "Names and ages are transcribed from the ROM-derived menu capture; no menu image is included in the publication."
+    },
+    "rows": [
+      {
+        "characterSlot": 1,
+        "activeFishTableOffset": "0x0A00",
+        "mapSet": 6,
+        "mapNameJa": "河口",
+        "row": 0,
+        "fishId": "0x37",
+        "fishNameJa": "アカメ",
+        "x": 37,
+        "y": 29
+      },
+      {
+        "characterSlot": 2,
+        "activeFishTableOffset": "0x0800",
+        "mapSet": 5,
+        "mapNameJa": "下流",
+        "row": 0,
+        "fishId": "0x39",
+        "fishNameJa": "タナゴ",
+        "x": 17,
+        "y": 16
+      },
+      {
+        "characterSlot": 3,
+        "activeFishTableOffset": "0x0600",
+        "mapSet": 4,
+        "mapNameJa": "湖",
+        "row": 0,
+        "fishId": "0x26",
+        "fishNameJa": "ナマズ",
+        "x": 25,
+        "y": 34
+      },
+      {
+        "characterSlot": 4,
+        "activeFishTableOffset": "0x0802",
+        "mapSet": 5,
+        "mapNameJa": "下流",
+        "row": 1,
+        "fishId": "0x0D",
+        "fishNameJa": "コイ",
+        "x": 22,
+        "y": 15
+      }
+    ],
+    "relatedStoryMessages": {
+      "slot1": [
+        "0364: [CD] tells a story about catching the River Master.",
+        "0366: names Akame and describes red eyes, a silver body, and a large fish."
+      ],
+      "slot2": [
+        "0376: [CD] tells a story about catching the River Master.",
+        "0378: names Tanago and describes a small, flat fish."
+      ],
+      "slot3": [
+        "039A: [CD] tells a story about catching the River Master.",
+        "039C: names Namazu and describes a large, heavy, sticky fish."
+      ],
+      "slot4": [
+        "0388: [CD] says the character cooked and ate the River Master; this line does not name the fish."
+      ],
+      "substitution": "[CD] is the dynamically saved character name placeholder.",
+      "areaNamesJa": {
+        "0072": "湖",
+        "0074": "下流",
+        "0076": "河口"
+      },
+      "source": "Messages rendered from the supplied ROM pointer table and font with publication/scripts/render_rom_messages.py."
+    },
+    "actionabilityLimit": "These four fish rows are ROM-backed associations with selector branches. The static trace does not prove that catching one is a sufficient or necessary player action for the story flag."
+  },
+  "storyGate": {
+    "wram": "$7E:0C18",
+    "headingMask": "0x04",
+    "prerequisiteMask": "0x02",
+    "headingSetter": {
+      "cpu": "01:DEB6..DEBB",
+      "operation": "LDA $0C18; ORA #$0004; STA $0C18",
+      "condition": "prerequisite bit 0x02 set; heading bit 0x04 clear; at least 0x41 nonzero records"
+    },
+    "prerequisiteRoutes": [
+      {
+        "state": "0x0C",
+        "calls": [
+          "00:8259",
+          "02:DF8C",
+          "02:E5F5..E652",
+          "02:E643..E649"
+        ],
+        "effect": "$0C18 |= 0x02",
+        "condition": "$0C18 == 0x0001; destination map 7; destination Y 13",
+        "matchingTransition": {
+          "sourceArea": 1,
+          "source": {
+            "x": 8,
+            "y": 183
+          },
+          "destination": {
+            "mapId": 7,
+            "x": 7,
+            "y": 13
+          }
+        },
+        "sourceExitRows": [
+          {
+            "x": 8,
+            "y": 183
+          },
+          {
+            "x": 12,
+            "y": 182
+          },
+          {
+            "x": 13,
+            "y": 185
+          },
+          {
+            "x": 11,
+            "y": 179
+          },
+          {
+            "x": 12,
+            "y": 189
+          }
+        ],
+        "destinationRows": [
+          {
+            "mapId": 7,
+            "x": 7,
+            "y": 13
+          },
+          {
+            "mapId": 7,
+            "x": 7,
+            "y": 29
+          },
+          {
+            "mapId": 7,
+            "x": 7,
+            "y": 45
+          },
+          {
+            "mapId": 7,
+            "x": 7,
+            "y": 61
+          },
+          {
+            "mapId": 7,
+            "x": 7,
+            "y": 77
+          }
+        ],
+        "limit": "The route and state condition are ROM-backed; this does not establish what natural action queues the prerequisite or whether a fish must be landed."
+      },
+      {
+        "state": "0x0D",
+        "calls": [
+          "00:825E",
+          "02:DF94",
+          "02:EC10..EC42",
+          "02:EC33..EC39"
+        ],
+        "effect": "$0C18 |= 0x02",
+        "condition": "$0C18 == 0x000F; destination map 7; destination Y 77",
+        "matchingTransition": {
+          "sourceArea": 1,
+          "source": {
+            "x": 12,
+            "y": 189
+          },
+          "destination": {
+            "mapId": 7,
+            "x": 7,
+            "y": 77
+          }
+        },
+        "effectOnMagnetHeading": "No new unlock: 0x000F already contains mask 0x04 before this state runs.",
+        "limit": "This is a later flag combination, not a proven named quest."
+      }
+    ],
+    "recordArray": {
+      "start": "$7E:0DC8",
+      "endInclusive": "$7E:0E4A",
+      "entryCount": 66,
+      "entrySizeBytes": 2,
+      "thresholdNonzeroEntries": 65,
+      "IDs": "0x01..0x42",
+      "writer": "01:8B00..8C8F writes a new raw size only when it exceeds the previous per-ID record",
+      "meaning": "65 distinct nonzero per-ID record slots, not 65 catches; the trace does not establish the natural action that fills a slot."
+    },
+    "magnetConsumer": {
+      "cpu": "03:C3C8..C3CF",
+      "condition": "$0C18 & 0x04"
+    },
+    "literalOneWriters": [
+      "01:9123",
+      "01:9137",
+      "01:91B9",
+      "01:91CC"
+    ],
+    "writerContext": {
+      "selectors1and2": "Ordinary update/fishing callback checks active fish ID <= 0x42, selector, and indexed active row offset.",
+      "selectors3and4": "Result callback runs after the record updater and requires its $10 == 1 branch, then checks selector and indexed active row offset.",
+      "selectorMapping": "Slot 1=Akame row; 2=Tanago row; 3=Namazu row; 4=Koi row, as listed in characterFishRows.",
+      "limit": "No callback explicitly tests a landed-catch result. The evidence does not prove bite versus landing, a unique route, or a player action named as a quest."
+    }
+  },
+  "area6MagnetTarget": {
+    "sentinelAt": [
+      "00:A08D",
+      "00:A08F"
+    ],
+    "sentinel": [
+      "0x00FF",
+      "0x00FF"
+    ],
+    "dynamicWords": [
+      "$7E:DE02",
+      "$7E:EA02"
+    ],
+    "sourceFishTableRow": 1,
+    "fishId": "0x3B",
+    "fishNameJa": "オオウナギ",
+    "x": 41,
+    "y": 8,
+    "limit": "The dynamic target equals Area 6 fish-location row 1; this equality alone does not prove a named story objective or normal route."
+  },
+  "sourceFingerprints": [
+    {
+      "cpu": "00:8010",
+      "fileOffset": "0x000010",
+      "bytes": "ad 34 08 0a aa fc 1a 80 80 f0"
+    },
+    {
+      "cpu": "00:8032",
+      "fileOffset": "0x000032",
+      "bytes": "59 82"
+    },
+    {
+      "cpu": "00:8034",
+      "fileOffset": "0x000034",
+      "bytes": "5e 82"
+    },
+    {
+      "cpu": "00:9E09",
+      "fileOffset": "0x001E09",
+      "bytes": "da a9 01 00 85 3e 20 bd ec 20 0c 8b 18 ad 5a 08 69 06 00 8d 5a 08 68 85 3e a9 18 00 85 42 20 08 e4 a6 4a bf 49 a0 00 8d 5c 08 bf 4b a0 00 8d 5e 08"
+    },
+    {
+      "cpu": "00:9FB9",
+      "fileOffset": "0x001FB9",
+      "bytes": "08 00 b7 00 0c 00 b6 00 0d 00 b9 00 0b 00 b3 00 0c 00 bd 00"
+    },
+    {
+      "cpu": "00:9E43",
+      "fileOffset": "0x001E43",
+      "bytes": "ad 18 0c c9 01 00 d0 17 ad 5a 08 c9 07 00 d0 0f ad 5e 08 cf 4b a0 00 d0 06 a9 0c 00 8d 34 08"
+    },
+    {
+      "cpu": "00:9E62",
+      "fileOffset": "0x001E62",
+      "bytes": "ad 18 0c c9 0f 00 d0 17 ad 5a 08 c9 07 00 d0 0f ad 5e 08 cf 5b a0 00 d0 06 a9 0d 00 8d 34 08"
+    },
+    {
+      "cpu": "00:A049",
+      "fileOffset": "0x002049",
+      "bytes": "07 00 0d 00"
+    },
+    {
+      "cpu": "00:A059",
+      "fileOffset": "0x002059",
+      "bytes": "07 00 4d 00"
+    },
+    {
+      "cpu": "01:8008",
+      "fileOffset": "0x008008",
+      "bytes": "20 0c 80 6b"
+    },
+    {
+      "cpu": "01:801C",
+      "fileOffset": "0x00801C",
+      "bytes": "ad c1 1e c9 02 00 d0 12 20 f8 81 ad 34 08 c9 0b 00 d0 05 22 90 bd 04 60 80 0d"
+    },
+    {
+      "cpu": "01:8036",
+      "fileOffset": "0x008036",
+      "bytes": "ad d5 1e f0 05 20 64 80 80 03 20 5c 81"
+    },
+    {
+      "cpu": "01:81F1",
+      "fileOffset": "0x0081F1",
+      "bytes": "20 c4 8f 20 9f 85 60"
+    },
+    {
+      "cpu": "01:859F",
+      "fileOffset": "0x00859F",
+      "bytes": "20 d3 91 20 00 8b 64 10"
+    },
+    {
+      "cpu": "01:85A5",
+      "fileOffset": "0x0085A5",
+      "bytes": "64 10 22 92 da 00 29 1f 00 1a 8d b4 16 22 26 da 00 20 54 95 ad a3 1e c9 10 00 b0 05 a9 01 00 85 10 ad a3 1e c9 60 00 f0 07 90 05 a9 02 00 85 10 ad 64 13 d0 0a ce b4 16 d0 05 a9 02 00 85 10"
+    },
+    {
+      "cpu": "01:8FEC",
+      "fileOffset": "0x008FEC",
+      "bytes": "ad e8 11 c9 42 00 f0 2e 90 2c"
+    },
+    {
+      "cpu": "01:9022",
+      "fileOffset": "0x009022",
+      "bytes": "20 a4 90 b0 73"
+    },
+    {
+      "cpu": "01:90A4",
+      "fileOffset": "0x0090A4",
+      "bytes": "af 8c 01 7f aa bf ce 01 7f aa ad 18 0c f0 13 29 08 00 f0 03 4c 78 91 e0 02 0a f0 03 4c 78 91 4c 61 91 ad 60 08 c9 01 00 d0 0b e0 00 0a f0 03 4c 78 91 4c 09 91 c9 02 00 d0 0b e0 00 08 f0 03 4c 78 91 4c 09 91 c9 03 00 d0 0b e0 00 06 f0 03 4c 78 91 4c 09 91 c9 04 00 d0 0b e0 02 08 f0 03 4c 78 91 4c 09 91"
+    },
+    {
+      "cpu": "01:85E4",
+      "fileOffset": "0x0085E4",
+      "bytes": "a5 10 f0 ca c9 01 00 d0 12 20 7a 91 20 7a 8a 20 fe 8d 20 bf 86 20 13 86"
+    },
+    {
+      "cpu": "01:9F17",
+      "fileOffset": "0x009F17",
+      "bytes": "ad be 16 8f 26 1e 7f e2 20 8f 6c 16 70 c2 20 20 50 b7 af 26 1e 7f 1a 8d 60 08 20 fe bd"
+    },
+    {
+      "cpu": "01:9DF7",
+      "fileOffset": "0x009DF7",
+      "bytes": "af 30 2c 7f c9 20 00 d0 0a 20 ba 9e b0 03 4c 40 9d 80 0b"
+    },
+    {
+      "cpu": "01:9EC7",
+      "fileOffset": "0x009EC7",
+      "bytes": "ad 4a 13 29 00 0c f0 0f a9 1f 00 8d a8 16 ad be 16 49 02 00 8d be 16 ad 4a 13 29 00 03 f0 0f a9 1f 00 8d a8 16 ad be 16 49 01 00 8d be 16 20 9f ab 20 46 ab 22 26 da 00 ad 4a 13 29 80 80 f0 c0"
+    },
+    {
+      "cpu": "01:91A9",
+      "fileOffset": "0x0091A9",
+      "bytes": "ad 60 08 c9 03 00 d0 0e e0 00 06 d0 06 a9 01 00 8d 18 0c 4c d2 91 c9 04 00 d0 0e e0 02 08 d0 06 a9 01 00 8d 18 0c 4c d2 91 60"
+    },
+    {
+      "cpu": "01:9120",
+      "fileOffset": "0x009120",
+      "bytes": "a9 01 00 8d 18 0c"
+    },
+    {
+      "cpu": "01:9134",
+      "fileOffset": "0x009134",
+      "bytes": "a9 01 00 8d 18 0c"
+    },
+    {
+      "cpu": "01:91B6",
+      "fileOffset": "0x0091B6",
+      "bytes": "a9 01 00 8d 18 0c"
+    },
+    {
+      "cpu": "01:91C9",
+      "fileOffset": "0x0091C9",
+      "bytes": "a9 01 00 8d 18 0c"
+    },
+    {
+      "cpu": "04:E85A",
+      "fileOffset": "0x02685A",
+      "bytes": "bf 00 c8 0c 8d e8 11"
+    },
+    {
+      "cpu": "02:DF8C",
+      "fileOffset": "0x015F8C",
+      "bytes": "20 f5 e5 6b"
+    },
+    {
+      "cpu": "02:E643",
+      "fileOffset": "0x016643",
+      "bytes": "ad 18 0c 09 02 00 8d 18 0c"
+    },
+    {
+      "cpu": "02:DF94",
+      "fileOffset": "0x015F94",
+      "bytes": "20 10 ec 6b"
+    },
+    {
+      "cpu": "02:EC33",
+      "fileOffset": "0x016C33",
+      "bytes": "ad 18 0c 09 02 00 8d 18 0c"
+    },
+    {
+      "cpu": "01:DE89",
+      "fileOffset": "0x00DE89",
+      "bytes": "64 06 ad 18 0c 29 02 00 f0 29 ad 18 0c 29 04 00 d0 21 a2 00 00 bd c8 0d f0 02 e6 06 e8 e8 e0 84 00 90 f2 a5 06 c9 41 00 90 09 ad 18 0c 09 04 00 8d 18 0c"
+    },
+    {
+      "cpu": "01:8B00",
+      "fileOffset": "0x008B00",
+      "bytes": "ad e8 11 c9 42 00 f0 03 90 01 60 3a 0a aa bd 4c 0e c9 e8 03 b0 04 1a 9d 4c 0e bd c8 0d cd b1 1e 90 01 60"
+    },
+    {
+      "cpu": "01:8C8A",
+      "fileOffset": "0x008C8A",
+      "bytes": "ad b1 1e 9d c8 0d"
+    },
+    {
+      "cpu": "03:C3C8",
+      "fileOffset": "0x01C3C8",
+      "bytes": "ad 18 0c 29 04 00 d0 08"
+    }
+  ]
+}

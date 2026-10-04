@@ -14,7 +14,8 @@
     "check:shops": "node scripts/check_shops.cjs && node scripts/check_shop_conditions.cjs",
     "check:maps": "node scripts/check_map_combobox.cjs",
     "check:search": "node scripts/check_research_search.cjs",
-    "check": "npm run format:check && npm run check:quality && npm run check:publication && npm run check:generated && npm run check:entities && npm run check:shops && npm run check:maps && npm run check:search"
+    "check": "npm run format:check && npm run check:quality && npm run check:research-source && npm run check:publication && npm run check:generated && npm run check:entities && npm run check:shops && npm run check:maps && npm run check:search",
+    "check:research-source": "python3 scripts/code-quality/check_research.py"
   },
   "devDependencies": {
     "@eslint/js": "10.0.1",

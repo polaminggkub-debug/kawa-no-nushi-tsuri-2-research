@@ -11,7 +11,7 @@ export const copy_en = {
   shopArea: (n) => `Area ${n}`,
   price: (n) => `¥${n}`,
   priceFromRom: 'ROM price field',
-  stockAt: 'Stock recorded in this area',
+  stockAt: 'Recorded stock in the areas listed below',
   bundleAt: (n) => `Ready-made fly sold in area ${n}`,
   noShop: 'No shop stock for this item is recorded in the current ROM data.',
   shopMap: 'Find this shop',
@@ -27,6 +27,21 @@ export const copy_en = {
   fishScope: 'Passing this item check does not guarantee a bite or a landed fish.',
   routeFloat: 'Float rig',
   routeSinker: 'Sinker rig',
+  floatFishHeading: 'Fish in the float-rig list',
+  floatFishSummary: 'See fish for the float rig',
+  floatTargetYes:
+    'This profile is in the float-rig list. Float models add no fish-specific check; choose a bait this fish accepts.',
+  floatTargetNo: 'This profile is not in the recorded float-rig list.',
+  floatFishScope:
+    'Float IDs 01–08 use the same rig check; the model adds no fish-specific bonus or restriction. The list does not guarantee a bite or landed fish.',
+  sinkerFishHeading: 'Fish that pass the extra sinker-rig profile check',
+  sinkerFishSummary: 'See fish for the sinker rig',
+  sinkerTargetYes:
+    'This profile is in the list that passes the sinker rig’s extra check. The selected bait must also pass for this fish.',
+  sinkerTargetNo: 'This profile is not in the recorded sinker-rig pass list.',
+  sinkerFishScope:
+    'Sinker IDs 09–0A share the same extra sinker-rig profile check. This list does not establish that a bait will be eaten or a fish landed.',
+  acceptedBaits: 'See bait this fish accepts and other methods',
   fishProfile: 'Open fish profile ↗',
   mapFish: 'Open this fish on the map ↗',
   noFish: 'No fish-specific compatibility list is established for this item.',

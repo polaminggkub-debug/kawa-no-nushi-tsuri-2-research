@@ -1,3 +1,14 @@
+export function tubBoardingChoice(ctx, item) {
+  if (item.category !== 'general_tool' || item.id !== '01') return ''
+  const label =
+    ctx.lang === 'th'
+      ? 'มีกะละมังแล้ว? ดูจุดวางและวิธีขึ้นที่ทดลองสำเร็จ'
+      : ctx.lang === 'ja'
+        ? 'タライを持っている？確認した設置・乗船手順を見る'
+        : 'Already own a tub? See a tested placement and boarding sequence'
+  return `<p><a class="route-button" data-tub-boarding-choice href="#tub-boarding-1">${ctx.esc(label)} ↓</a></p>`
+}
+
 export function gearNextActions(ctx, item, fishVisuals, fishLocations, allItems) {
   if (!item.gearDecision) return ''
   if (item.category === 'float_weight')
