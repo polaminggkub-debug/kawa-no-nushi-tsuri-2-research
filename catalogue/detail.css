@@ -1023,6 +1023,21 @@ button:focus-visible {
     flex-wrap: wrap;
   }
 }
+.fly-menu-position figure {
+  margin: 12px 0;
+}
+.fly-menu-position img {
+  display: block;
+  width: min(100%, 512px);
+  height: auto;
+  image-rendering: pixelated;
+  border-radius: 6px;
+}
+.fly-menu-position figcaption {
+  margin-top: 8px;
+  color: var(--muted);
+  font-size: 13px;
+}
 
 /* src/shared/detail/index.css */
 .water-icon-guide .water-icon-card > img {

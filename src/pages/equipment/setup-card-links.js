@@ -1,3 +1,13 @@
+function menuPositionLink(ctx, item) {
+  const label =
+    ctx.lang === 'th'
+      ? 'ดูตำแหน่งชิ้นนี้ในเมนูเกม'
+      : ctx.lang === 'ja'
+        ? 'ゲームでこの部品を選ぶ位置を見る'
+        : 'Find this component in the game menu'
+  return `<p><a class="route-button" data-fly-menu-choice href="${ctx.esc(ctx.itemHref(item) + '#fly-menu-position')}">${ctx.esc(label)} ↗</a></p>`
+}
+
 export function setupCardLinks(ctx) {
   ctx.detailLabel =
     ctx.lang === 'th' ? 'ดูรายละเอียด' : ctx.lang === 'ja' ? '詳細を見る' : 'View details'
@@ -30,7 +40,9 @@ export function setupCardLinks(ctx) {
           .join('')}</div>`
       : ''
   ctx.flyMakerLink = (item) =>
-    item.category.startsWith('fly')
-      ? `<p><a class="route-button" data-fly-maker href="${ctx.esc(ctx.sourceReturn().split('#')[0] + '#fly-instructions')}">${ctx.lang === 'th' ? 'ดูขั้นตอนประกอบฟลายเองและตรวจราคาในเกม' : ctx.lang === 'ja' ? '自作フライの手順とゲーム内見積額を確認' : 'See custom fly steps and check the in-game quote'} ↗</a></p>`
-      : ''
+    item.flyMakerMenuChoice
+      ? menuPositionLink(ctx, item)
+      : item.category.startsWith('fly')
+        ? `<p><a class="route-button" data-fly-maker href="${ctx.esc(ctx.sourceReturn().split('#')[0] + '#fly-instructions')}">${ctx.lang === 'th' ? 'ดูขั้นตอนประกอบฟลายเองและตรวจราคาในเกม' : ctx.lang === 'ja' ? '自作フライの手順とゲーム内見積額を確認' : 'See custom fly steps and check the in-game quote'} ↗</a></p>`
+        : ''
 }

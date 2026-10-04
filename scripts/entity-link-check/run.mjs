@@ -61,3 +61,7 @@ await import('./notebook-progress.mjs')
 await import('./notebook-card-action.mjs')
 
 await import('./map-marker-bounds.mjs')
+await import('./map-fish-return.mjs')
+await import('./fly-menu-position.mjs')
+await import('./hook-target-links.mjs')
+await import('./map-focus-action.mjs')

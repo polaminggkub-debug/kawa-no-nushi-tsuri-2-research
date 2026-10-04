@@ -1,5 +1,6 @@
 import { renderTargetAdvice } from '../../shared/lib/index.js'
 import { questNextActions } from './quest-next-actions.js'
+import { hookTargetLinks } from './hook-target-links.js'
 
 function itemAdvice(item) {
   return item.rodDecision || item.baitLureDecision || item.gearDecision
@@ -76,7 +77,7 @@ function renderCardGuidance(ctx, item, use, summary, facts, advice) {
     guideEvidenceNote(ctx, use),
     advice ? ctx.rodAlternatives(item) : '',
     advice ? ctx.gearNextActions(item) : '',
-    advice ? ctx.flyMakerLink(item) : '',
+    advice && !item.flyMakerMenuChoice ? ctx.flyMakerLink(item) : '',
   ].join('')
   const disclosure = ctx.cardDisclosure(
     advice ? ctx.cardUi.decisionDetails : ctx.cardUi.useDetails,
@@ -92,10 +93,12 @@ function renderCardGuidance(ctx, item, use, summary, facts, advice) {
     : cardActionTitle(ctx, item, advice)
   const dataDecision = cardDecisionAttribute(ctx, item, advice)
   const summaryClass = advice ? 'card-verdict' : 'card-effect'
+  const menuAction = item.flyMakerMenuChoice ? ctx.flyMakerLink(item) : ''
+  const hookTargets = hookTargetLinks(ctx, item)
   const visibleAdvice = targetAdvice
     ? targetAdvice
     : `<p class="use-summary ${summaryClass}">${ctx.esc(label)}</p>`
-  return `<div class="use-block" ${dataDecision}><h4>${ctx.esc(actionTitle)}</h4>${visibleAdvice}<div class="card-more-content">${disclosure}</div></div>`
+  return `<div class="use-block" ${dataDecision}><h4>${ctx.esc(actionTitle)}</h4>${visibleAdvice}${hookTargets}${menuAction}<div class="card-more-content">${disclosure}</div></div>`
 }
 
 function renderCardAcquisition(ctx, item) {

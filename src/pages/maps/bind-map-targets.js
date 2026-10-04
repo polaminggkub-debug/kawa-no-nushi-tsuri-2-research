@@ -15,8 +15,15 @@ export function bindMapTargets(ctx) {
     location.pathname.split('/').pop() +
     location.search +
     (ctx.openNotebookGuide ? '#notebook-guide' : location.hash === '#map-view' ? '#map-view' : '')
-  ctx.fishHref = (id) =>
-    `fish${ctx.lang === 'en' ? '' : '.' + ctx.lang}.html?id=${id}&stage=${ctx.activeStage}&return=${encodeURIComponent(ctx.sourceReturn())}`
+  ctx.fishHref = (id) => {
+    const source = ctx.sourceReturn()
+    const returnPath = source.endsWith('#notebook-guide')
+      ? source
+      : `${source.split('#')[0]}#map-view`
+    const page = `fish${ctx.lang === 'en' ? '' : '.' + ctx.lang}.html`
+    const query = `id=${id}&stage=${ctx.activeStage}&return=${encodeURIComponent(returnPath)}`
+    return `${page}?${query}`
+  }
   ctx.areaList.addEventListener('click', (event) => {
     const button = event.target.closest('[data-stage]')
     if (!button || button.disabled) return
@@ -26,7 +33,7 @@ export function bindMapTargets(ctx) {
   })
   ctx.fishList.addEventListener('click', (event) => {
     const button = event.target.closest('[data-fish]')
-    if (button) ctx.setFish(button.dataset.fish)
+    if (button) ctx.setFish(button.dataset.fish, { toggle: false })
   })
   ctx.$('pin-details').addEventListener('click', (event) => {
     const button = event.target.closest('[data-fish]')

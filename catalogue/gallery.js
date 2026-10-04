@@ -1288,6 +1288,30 @@
     ].filter(Boolean).join("");
   }
 
+  // src/pages/equipment/hook-target-links.js
+  function targetRecords(item) {
+    const targets = item.playerUse?.targetMatches;
+    return (Array.isArray(targets) ? targets : targets ? [targets] : []).filter(
+      (target) => /^[\da-f]{2}$/i.test(String(target.fishId || ""))
+    );
+  }
+  function targetLabel(lang) {
+    if (lang === "th") return "ดูเหยื่อและจุดตกของปลาเป้าหมายที่ระบุไว้";
+    if (lang === "ja") return "記載された対象魚のエサ・場所を見る";
+    return "View bait and locations for the listed target fish";
+  }
+  function hookTargetLinks(ctx, item) {
+    if (item.category !== "hook") return "";
+    const targets = targetRecords(item);
+    if (!targets.length) return "";
+    const links = targets.map((target) => {
+      const id = String(target.fishId).toUpperCase();
+      const name = ctx.fishName(id);
+      return `<a class="route-button" data-hook-target-fish="${ctx.esc(id)}" href="${ctx.esc(ctx.fishHref(id))}">${ctx.esc(name)} ↗</a>`;
+    }).join(" ");
+    return `<div class="hook-target-links" data-hook-target-links><span>${ctx.esc(targetLabel(ctx.lang))}</span> ${links}</div>`;
+  }
+
   // src/pages/equipment/item-card.js
   function itemAdvice(item) {
     return item.rodDecision || item.baitLureDecision || item.gearDecision;
@@ -1335,7 +1359,7 @@
       guideEvidenceNote(ctx, use),
       advice ? ctx.rodAlternatives(item) : "",
       advice ? ctx.gearNextActions(item) : "",
-      advice ? ctx.flyMakerLink(item) : ""
+      advice && !item.flyMakerMenuChoice ? ctx.flyMakerLink(item) : ""
     ].join("");
     const disclosure = ctx.cardDisclosure(
       advice ? ctx.cardUi.decisionDetails : ctx.cardUi.useDetails,
@@ -1345,8 +1369,10 @@
     const actionTitle = targetAdvice2 ? ctx.lang === "th" ? "คำแนะนำสำหรับปลาที่เลือก" : ctx.lang === "ja" ? "選んだ魚への案内" : "Advice for your selected fish" : cardActionTitle(ctx, item, advice);
     const dataDecision = cardDecisionAttribute(ctx, item, advice);
     const summaryClass = advice ? "card-verdict" : "card-effect";
+    const menuAction = item.flyMakerMenuChoice ? ctx.flyMakerLink(item) : "";
+    const hookTargets = hookTargetLinks(ctx, item);
     const visibleAdvice = targetAdvice2 ? targetAdvice2 : `<p class="use-summary ${summaryClass}">${ctx.esc(label)}</p>`;
-    return `<div class="use-block" ${dataDecision}><h4>${ctx.esc(actionTitle)}</h4>${visibleAdvice}<div class="card-more-content">${disclosure}</div></div>`;
+    return `<div class="use-block" ${dataDecision}><h4>${ctx.esc(actionTitle)}</h4>${visibleAdvice}${hookTargets}${menuAction}<div class="card-more-content">${disclosure}</div></div>`;
   }
   function renderCardAcquisition(ctx, item) {
     const actions = [
@@ -2154,6 +2180,10 @@
   }
 
   // src/pages/equipment/setup-card-links.js
+  function menuPositionLink(ctx, item) {
+    const label = ctx.lang === "th" ? "ดูตำแหน่งชิ้นนี้ในเมนูเกม" : ctx.lang === "ja" ? "ゲームでこの部品を選ぶ位置を見る" : "Find this component in the game menu";
+    return `<p><a class="route-button" data-fly-menu-choice href="${ctx.esc(ctx.itemHref(item) + "#fly-menu-position")}">${ctx.esc(label)} ↗</a></p>`;
+  }
   function setupCardLinks(ctx) {
     ctx.detailLabel = ctx.lang === "th" ? "ดูรายละเอียด" : ctx.lang === "ja" ? "詳細を見る" : "View details";
     ctx.decisionLink = (ref) => {
@@ -2165,7 +2195,7 @@
     ctx.rodAlternatives = (item) => (item.rodDecision || item.gearDecision || item.baitLureDecision)?.alternatives?.some(
       (ref) => ref.category !== item.category || ref.id !== item.id
     ) ? `<div class="rod-alternatives"><p>${ctx.lang === "th" ? "ตัวเลือกที่นำมาเทียบ:" : ctx.lang === "ja" ? "比較する候補：" : "Compare with:"}</p>${(item.rodDecision || item.gearDecision || item.baitLureDecision).alternatives.filter((ref) => ref.category !== item.category || ref.id !== item.id).map(ctx.decisionLink).join("")}</div>` : "";
-    ctx.flyMakerLink = (item) => item.category.startsWith("fly") ? `<p><a class="route-button" data-fly-maker href="${ctx.esc(ctx.sourceReturn().split("#")[0] + "#fly-instructions")}">${ctx.lang === "th" ? "ดูขั้นตอนประกอบฟลายเองและตรวจราคาในเกม" : ctx.lang === "ja" ? "自作フライの手順とゲーム内見積額を確認" : "See custom fly steps and check the in-game quote"} ↗</a></p>` : "";
+    ctx.flyMakerLink = (item) => item.flyMakerMenuChoice ? menuPositionLink(ctx, item) : item.category.startsWith("fly") ? `<p><a class="route-button" data-fly-maker href="${ctx.esc(ctx.sourceReturn().split("#")[0] + "#fly-instructions")}">${ctx.lang === "th" ? "ดูขั้นตอนประกอบฟลายเองและตรวจราคาในเกม" : ctx.lang === "ja" ? "自作フライの手順とゲーム内見積額を確認" : "See custom fly steps and check the in-game quote"} ↗</a></p>` : "";
   }
 
   // src/pages/equipment/catalogue-load-state.js
@@ -2359,7 +2389,7 @@
   }
   function loadCatalogue(ctx) {
     showCatalogueLoading(ctx);
-    fetch("gallery-data.json?v=compendium-20261005-18").then((response) => {
+    fetch("gallery-data.json?v=compendium-20261005-19").then((response) => {
       if (!response.ok) throw new Error("catalogue unavailable");
       return response.json();
     }).then((data) => initializeLoadedCatalogue(ctx, data)).catch((error) => {

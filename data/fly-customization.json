@@ -46,31 +46,45 @@
         "references/items-images/customization/caddis-body-palette.png",
         "references/items-images/customization/terrestrial-body-palette.png"
       ],
-      "notes": "These are counts of sprites visible in the captured first-stage palettes, not totals for every ROM record or later shop. The current selection label shown below the Mayfly and Caddis palettes is ウェット; the Terrestrial capture shows アント."
+      "notes": "These are counts of sprites visible in the captured first-stage palettes, not totals for every ROM record or later shop. The current selection label shown below the Mayfly and Caddis palettes is ウェット; the Terrestrial capture shows アント.",
+      "palette_count_status": {
+        "メイフライ": "15 selectable body IDs independently controller-verified; data/fly-maker-menu-positions.json",
+        "カディス": "historical visible-sprite estimate; selectable count not controller-verified",
+        "テレストリアル": "historical visible-sprite estimate; selectable count not controller-verified"
+      }
     },
     {
       "step": 4,
-      "action": "Choose a wing sprite.",
-      "observed_palette_count": 20,
-      "observed_palette_layout": {
-        "rows": 5,
-        "columns": 4,
-        "screen_y_rows": [
-          102,
-          114,
-          126,
-          138,
-          150
-        ],
-        "screen_x_columns": [
-          40,
-          72,
-          104,
-          136
-        ]
+      "action": "Choose a wing sprite using the verified Area 1 Mayfly row/column crosswalk.",
+      "verified_selectable_positions": 16,
+      "verified_layout": {
+        "rows": 4,
+        "columns": 4
       },
-      "evidence": "references/items-images/customization/after-body-select.png",
-      "notes": "The captured Mayfly sequence shows 20 choices in a 5-by-4 palette. The final two visible icons are gray and pale yellow at row 5, columns 3 and 4. Their correspondence to the final special wing records (66/67) is based on the decoded ROM component ordering; the UI itself does not display internal IDs."
+      "evidence": "data/fly-maker-wing-palette.json",
+      "scope": "Controller-only position checks from the documented Area 1 Mayfly menu state; does not prove other menu contexts or fishing performance.",
+      "superseded_visual_observation": {
+        "status": "superseded-not-selectable-count",
+        "observed_palette_count": 20,
+        "observed_palette_layout": {
+          "rows": 5,
+          "columns": 4,
+          "screen_y_rows": [
+            102,
+            114,
+            126,
+            138,
+            150
+          ],
+          "screen_x_columns": [
+            40,
+            72,
+            104,
+            136
+          ]
+        },
+        "notes": "The captured Mayfly sequence shows 20 choices in a 5-by-4 palette. The final two visible icons are gray and pale yellow at row 5, columns 3 and 4. Their correspondence to the final special wing records (66/67) is based on the decoded ROM component ordering; the UI itself does not display internal IDs."
+      }
     },
     {
       "step": 5,
@@ -90,7 +104,8 @@
         "none_is_a_sprite": false
       },
       "evidence": "references/items-images/customization/after-wing-select.png",
-      "notes": "This was observed in the same first-stage Mayfly sequence: nine tail sprites across four rows, plus a separate 無し (none) option."
+      "notes": "This was observed in the same first-stage Mayfly sequence: nine tail sprites across four rows, plus a separate 無し (none) option.",
+      "controller_verification": "Nine nonzero tail IDs and None (stored00) independently matched; data/fly-maker-menu-positions.json"
     },
     {
       "step": 6,
@@ -141,5 +156,6 @@
       "type": "Player commentary, secondary evidence",
       "relevant_detail": "The creator says two flies with the same name, メイフライウェット, can perform differently. This supports keeping numeric/stat conclusions separate from the customizer's display."
     }
-  ]
+  ],
+  "evidence_status": "Historical capture log. Current menu-position evidence is maintained in the linked controller-verified crosswalks. Visual sprite counts alone do not prove selectable counts."
 }

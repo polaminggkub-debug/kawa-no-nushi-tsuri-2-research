@@ -19968,6 +19968,19 @@
           "data/shop-stock-rom.json"
         ]
       },
+      "flyMakerMenuChoice": {
+        "category": "fly",
+        "part": "body",
+        "id": "01",
+        "row": 1,
+        "column": 1,
+        "image": "custom/fly-menu-positions/body-c1-r1-cursor.png",
+        "imageSha256": "8468815b13a4768722d49c742311a3913095b88c95a78e64136dba01f026b823",
+        "resultSource": "rom-analysis/fly-maker-body-tail-r4/body-c1-r1.result.json",
+        "area": 1,
+        "familyJa": "メイフライ",
+        "evidenceHref": "../docs/fly-maker-body-tail-palette-research.md"
+      },
       "nameTh": null,
       "labelImageTh": "thai-labels/fly-01.png"
     },
@@ -20140,6 +20153,19 @@
           "data/fish-acceptance.json",
           "data/shop-stock-rom.json"
         ]
+      },
+      "flyMakerMenuChoice": {
+        "category": "fly",
+        "part": "body",
+        "id": "02",
+        "row": 2,
+        "column": 1,
+        "image": "custom/fly-menu-positions/body-c1-r2-cursor.png",
+        "imageSha256": "dc4eee00dadf83d9da563bce341eef6e6a77c4dc41a8cbc999a9a1cf47d37e60",
+        "resultSource": "rom-analysis/fly-maker-body-tail-r4/body-c1-r2.result.json",
+        "area": 1,
+        "familyJa": "メイフライ",
+        "evidenceHref": "../docs/fly-maker-body-tail-palette-research.md"
       },
       "nameTh": null,
       "labelImageTh": "thai-labels/fly-02.png"
@@ -20314,6 +20340,19 @@
           "data/shop-stock-rom.json"
         ]
       },
+      "flyMakerMenuChoice": {
+        "category": "fly",
+        "part": "body",
+        "id": "03",
+        "row": 3,
+        "column": 1,
+        "image": "custom/fly-menu-positions/body-c1-r3-cursor.png",
+        "imageSha256": "67ee02ea4e1ac50ae5786e4fe22acb9a8621654b0dbf0332c36af8516310855f",
+        "resultSource": "rom-analysis/fly-maker-body-tail-r4/body-c1-r3.result.json",
+        "area": 1,
+        "familyJa": "メイフライ",
+        "evidenceHref": "../docs/fly-maker-body-tail-palette-research.md"
+      },
       "nameTh": null,
       "labelImageTh": "thai-labels/fly-03.png"
     },
@@ -20487,6 +20526,19 @@
           "data/shop-stock-rom.json"
         ]
       },
+      "flyMakerMenuChoice": {
+        "category": "fly",
+        "part": "body",
+        "id": "04",
+        "row": 4,
+        "column": 1,
+        "image": "custom/fly-menu-positions/body-c1-r4-cursor.png",
+        "imageSha256": "a7365211a180e0a807fe0492a5ec6b7f2570b703b1e5c8619156090a21d12b91",
+        "resultSource": "rom-analysis/fly-maker-body-tail-r4/body-c1-r4.result.json",
+        "area": 1,
+        "familyJa": "メイフライ",
+        "evidenceHref": "../docs/fly-maker-body-tail-palette-research.md"
+      },
       "nameTh": null,
       "labelImageTh": "thai-labels/fly-04.png"
     },
@@ -20647,6 +20699,19 @@
           "data/fish-acceptance.json",
           "data/shop-stock-rom.json"
         ]
+      },
+      "flyMakerMenuChoice": {
+        "category": "fly",
+        "part": "body",
+        "id": "05",
+        "row": 1,
+        "column": 2,
+        "image": "custom/fly-menu-positions/body-c2-r1-cursor.png",
+        "imageSha256": "baeed7db91266705613e083edcc43c386e1cceb512cfcea30683cf7561049f7b",
+        "resultSource": "rom-analysis/fly-maker-body-tail-r4/body-c2-r1.result.json",
+        "area": 1,
+        "familyJa": "メイフライ",
+        "evidenceHref": "../docs/fly-maker-body-tail-palette-research.md"
       },
       "nameTh": null,
       "labelImageTh": "thai-labels/fly-05.png"
@@ -20821,6 +20886,19 @@
           "data/shop-stock-rom.json"
         ]
       },
+      "flyMakerMenuChoice": {
+        "category": "fly",
+        "part": "body",
+        "id": "06",
+        "row": 2,
+        "column": 2,
+        "image": "custom/fly-menu-positions/body-c2-r2-cursor.png",
+        "imageSha256": "1b77f8dff4585ba4cbe170e2a9e3d73daad02ef4dcb3303f9bb21b905e25d51e",
+        "resultSource": "rom-analysis/fly-maker-body-tail-r4/body-c2-r2.result.json",
+        "area": 1,
+        "familyJa": "メイフライ",
+        "evidenceHref": "../docs/fly-maker-body-tail-palette-research.md"
+      },
       "nameTh": null,
       "labelImageTh": "thai-labels/fly-06.png"
     },
@@ -20981,6 +21059,19 @@
           "data/fish-acceptance.json",
           "data/shop-stock-rom.json"
         ]
+      },
+      "flyMakerMenuChoice": {
+        "category": "fly",
+        "part": "body",
+        "id": "07",
+        "row": 3,
+        "column": 2,
+        "image": "custom/fly-menu-positions/body-c2-r3-cursor.png",
+        "imageSha256": "7d978cc0e50f499cb9a5df70b4ea0101be1685728e361d3a14b89c650f9dbe7b",
+        "resultSource": "rom-analysis/fly-maker-body-tail-r4/body-c2-r3.result.json",
+        "area": 1,
+        "familyJa": "メイフライ",
+        "evidenceHref": "../docs/fly-maker-body-tail-palette-research.md"
       },
       "nameTh": null,
       "labelImageTh": "thai-labels/fly-07.png"
@@ -21155,6 +21246,19 @@
           "data/shop-stock-rom.json"
         ]
       },
+      "flyMakerMenuChoice": {
+        "category": "fly",
+        "part": "body",
+        "id": "08",
+        "row": 4,
+        "column": 2,
+        "image": "custom/fly-menu-positions/body-c2-r4-cursor.png",
+        "imageSha256": "39aa194616150db5b3f8d1469a27075a1ae1c8e28e3aa9215cd763ca517a276e",
+        "resultSource": "rom-analysis/fly-maker-body-tail-r4/body-c2-r4.result.json",
+        "area": 1,
+        "familyJa": "メイフライ",
+        "evidenceHref": "../docs/fly-maker-body-tail-palette-research.md"
+      },
       "nameTh": null,
       "labelImageTh": "thai-labels/fly-08.png"
     },
@@ -21311,6 +21415,19 @@
           "data/fish-acceptance.json",
           "data/shop-stock-rom.json"
         ]
+      },
+      "flyMakerMenuChoice": {
+        "category": "fly",
+        "part": "body",
+        "id": "18",
+        "row": 1,
+        "column": 3,
+        "image": "custom/fly-menu-positions/body-c3-r1-cursor.png",
+        "imageSha256": "385bc9029c5904b0574463c7e05eaa02bdb073d50ea9294a93cf37aea2199d60",
+        "resultSource": "rom-analysis/fly-maker-body-tail-r4/body-c3-r1.result.json",
+        "area": 1,
+        "familyJa": "メイフライ",
+        "evidenceHref": "../docs/fly-maker-body-tail-palette-research.md"
       },
       "nameTh": null,
       "labelImageTh": "thai-labels/fly-18.png"
@@ -21469,6 +21586,19 @@
           "data/shop-stock-rom.json"
         ]
       },
+      "flyMakerMenuChoice": {
+        "category": "fly",
+        "part": "body",
+        "id": "19",
+        "row": 2,
+        "column": 3,
+        "image": "custom/fly-menu-positions/body-c3-r2-cursor.png",
+        "imageSha256": "2c53f090fbc832682bb4018e5214a3af426eebc9c60c752870d79a34cb426dc9",
+        "resultSource": "rom-analysis/fly-maker-body-tail-r4/body-c3-r2.result.json",
+        "area": 1,
+        "familyJa": "メイフライ",
+        "evidenceHref": "../docs/fly-maker-body-tail-palette-research.md"
+      },
       "nameTh": null,
       "labelImageTh": "thai-labels/fly-19.png"
     },
@@ -21625,6 +21755,19 @@
           "data/fish-acceptance.json",
           "data/shop-stock-rom.json"
         ]
+      },
+      "flyMakerMenuChoice": {
+        "category": "fly",
+        "part": "body",
+        "id": "1A",
+        "row": 3,
+        "column": 3,
+        "image": "custom/fly-menu-positions/body-c3-r3-cursor.png",
+        "imageSha256": "b158d80feb4a79a65ea8f0dd436df2793a02ff804d32a8d2ca0ca1bc00ccf66f",
+        "resultSource": "rom-analysis/fly-maker-body-tail-r4/body-c3-r3.result.json",
+        "area": 1,
+        "familyJa": "メイフライ",
+        "evidenceHref": "../docs/fly-maker-body-tail-palette-research.md"
       },
       "nameTh": null,
       "labelImageTh": "thai-labels/fly-1A.png"
@@ -21783,6 +21926,19 @@
           "data/shop-stock-rom.json"
         ]
       },
+      "flyMakerMenuChoice": {
+        "category": "fly",
+        "part": "body",
+        "id": "1B",
+        "row": 4,
+        "column": 3,
+        "image": "custom/fly-menu-positions/body-c3-r4-cursor.png",
+        "imageSha256": "2d20a630c1cfea1b6b73855ab4c065ff89e0e9cf8ae53c49f1a34f2875b8c610",
+        "resultSource": "rom-analysis/fly-maker-body-tail-r4/body-c3-r4.result.json",
+        "area": 1,
+        "familyJa": "メイフライ",
+        "evidenceHref": "../docs/fly-maker-body-tail-palette-research.md"
+      },
       "nameTh": null,
       "labelImageTh": "thai-labels/fly-1B.png"
     },
@@ -21927,6 +22083,19 @@
           "data/fish-acceptance.json",
           "data/shop-stock-rom.json"
         ]
+      },
+      "flyMakerMenuChoice": {
+        "category": "fly",
+        "part": "body",
+        "id": "1C",
+        "row": 1,
+        "column": 4,
+        "image": "custom/fly-menu-positions/body-c4-r1-cursor.png",
+        "imageSha256": "8f316427fb08ef6bf5419e8b8ad74905f2455e8fa19d505fe4cf76808147c43a",
+        "resultSource": "rom-analysis/fly-maker-body-tail-r4/body-c4-r1.result.json",
+        "area": 1,
+        "familyJa": "メイフライ",
+        "evidenceHref": "../docs/fly-maker-body-tail-palette-research.md"
       },
       "nameTh": null,
       "labelImageTh": "thai-labels/fly-1C.png"
@@ -22085,6 +22254,19 @@
           "data/shop-stock-rom.json"
         ]
       },
+      "flyMakerMenuChoice": {
+        "category": "fly",
+        "part": "body",
+        "id": "1D",
+        "row": 2,
+        "column": 4,
+        "image": "custom/fly-menu-positions/body-c4-r2-cursor.png",
+        "imageSha256": "2b6403fe08d3128ee77f8ea27c10b11d0ec472ac50954058683335ee82521b20",
+        "resultSource": "rom-analysis/fly-maker-body-tail-r4/body-c4-r2.result.json",
+        "area": 1,
+        "familyJa": "メイフライ",
+        "evidenceHref": "../docs/fly-maker-body-tail-palette-research.md"
+      },
       "nameTh": null,
       "labelImageTh": "thai-labels/fly-1D.png"
     },
@@ -22241,6 +22423,19 @@
           "data/fish-acceptance.json",
           "data/shop-stock-rom.json"
         ]
+      },
+      "flyMakerMenuChoice": {
+        "category": "fly",
+        "part": "body",
+        "id": "1E",
+        "row": 3,
+        "column": 4,
+        "image": "custom/fly-menu-positions/body-c4-r3-cursor.png",
+        "imageSha256": "2c1c3fe39105b41cfc7c913d4a50f79f1fae77192763a5cb9ffff17e962af394",
+        "resultSource": "rom-analysis/fly-maker-body-tail-r4/body-c4-r3.result.json",
+        "area": 1,
+        "familyJa": "メイフライ",
+        "evidenceHref": "../docs/fly-maker-body-tail-palette-research.md"
       },
       "nameTh": null,
       "labelImageTh": "thai-labels/fly-1E.png"
@@ -44697,6 +44892,19 @@
           "docs/fly-maker-menu-research.md",
           "data/fly-maker-menu-trace.json"
         ]
+      },
+      "flyMakerMenuChoice": {
+        "category": "fly_wing",
+        "part": "wing",
+        "id": "09",
+        "row": 1,
+        "column": 1,
+        "image": "custom/fly-menu-positions/wing-c1-r1-cursor.png",
+        "imageSha256": "30859d8aaa694659ae2957cbbcc2dbfbbc36abc3a4ea2dc462368913ac8f4180",
+        "resultSource": "rom-analysis/fly-maker-palette-root-r2/wing-c1-r1.result.json",
+        "area": 1,
+        "familyJa": "メイフライ",
+        "evidenceHref": "../docs/fly-maker-body-tail-palette-research.md"
       }
     },
     {
@@ -44827,6 +45035,19 @@
           "docs/fly-maker-menu-research.md",
           "data/fly-maker-menu-trace.json"
         ]
+      },
+      "flyMakerMenuChoice": {
+        "category": "fly_wing",
+        "part": "wing",
+        "id": "0A",
+        "row": 2,
+        "column": 1,
+        "image": "custom/fly-menu-positions/wing-c1-r2-cursor.png",
+        "imageSha256": "b6dca3f65b49246e7a24ed3fa4b75cc85be22cbee94ed149b07759d54e2ec068",
+        "resultSource": "rom-analysis/fly-maker-palette-root-r2/wing-c1-r2.result.json",
+        "area": 1,
+        "familyJa": "メイフライ",
+        "evidenceHref": "../docs/fly-maker-body-tail-palette-research.md"
       }
     },
     {
@@ -44957,6 +45178,19 @@
           "docs/fly-maker-menu-research.md",
           "data/fly-maker-menu-trace.json"
         ]
+      },
+      "flyMakerMenuChoice": {
+        "category": "fly_wing",
+        "part": "wing",
+        "id": "0B",
+        "row": 3,
+        "column": 1,
+        "image": "custom/fly-menu-positions/wing-c1-r3-cursor.png",
+        "imageSha256": "d81a758aec810b118c9ccf1e039a72ab7484ab61daf08913c4f90e8dd3cdf9fd",
+        "resultSource": "rom-analysis/fly-maker-palette-root-r2/wing-c1-r3.result.json",
+        "area": 1,
+        "familyJa": "メイフライ",
+        "evidenceHref": "../docs/fly-maker-body-tail-palette-research.md"
       }
     },
     {
@@ -45087,6 +45321,19 @@
           "docs/fly-maker-menu-research.md",
           "data/fly-maker-menu-trace.json"
         ]
+      },
+      "flyMakerMenuChoice": {
+        "category": "fly_wing",
+        "part": "wing",
+        "id": "0C",
+        "row": 4,
+        "column": 1,
+        "image": "custom/fly-menu-positions/wing-c1-r4-cursor.png",
+        "imageSha256": "1c0ebd1885b6f71ea60cab0007a6f75066d0282c4cc695ad8399d88699174e73",
+        "resultSource": "rom-analysis/fly-maker-palette-root-r2/wing-c1-r4.result.json",
+        "area": 1,
+        "familyJa": "メイフライ",
+        "evidenceHref": "../docs/fly-maker-body-tail-palette-research.md"
       }
     },
     {
@@ -45205,6 +45452,19 @@
           "docs/fly-maker-menu-research.md",
           "data/fly-maker-menu-trace.json"
         ]
+      },
+      "flyMakerMenuChoice": {
+        "category": "fly_wing",
+        "part": "wing",
+        "id": "0D",
+        "row": 1,
+        "column": 2,
+        "image": "custom/fly-menu-positions/wing-c2-r1-cursor.png",
+        "imageSha256": "3190ac0f12af169880e25771519cbb51f66151ae7f6814f428e8644d2aa79f34",
+        "resultSource": "rom-analysis/fly-maker-palette-root-r2/wing-c2-r1.result.json",
+        "area": 1,
+        "familyJa": "メイフライ",
+        "evidenceHref": "../docs/fly-maker-body-tail-palette-research.md"
       }
     },
     {
@@ -45323,6 +45583,19 @@
           "docs/fly-maker-menu-research.md",
           "data/fly-maker-menu-trace.json"
         ]
+      },
+      "flyMakerMenuChoice": {
+        "category": "fly_wing",
+        "part": "wing",
+        "id": "0E",
+        "row": 2,
+        "column": 2,
+        "image": "custom/fly-menu-positions/wing-c2-r2-cursor.png",
+        "imageSha256": "f65146f516008905b21b8df3645cb61b72599dc726c4ec83d81b4479a957c601",
+        "resultSource": "rom-analysis/fly-maker-palette-root-r2/wing-c2-r2.result.json",
+        "area": 1,
+        "familyJa": "メイフライ",
+        "evidenceHref": "../docs/fly-maker-body-tail-palette-research.md"
       }
     },
     {
@@ -45441,6 +45714,19 @@
           "docs/fly-maker-menu-research.md",
           "data/fly-maker-menu-trace.json"
         ]
+      },
+      "flyMakerMenuChoice": {
+        "category": "fly_wing",
+        "part": "wing",
+        "id": "0F",
+        "row": 3,
+        "column": 2,
+        "image": "custom/fly-menu-positions/wing-c2-r3-cursor.png",
+        "imageSha256": "10f22bfde14fc0a6a3979b0acfaabcba8f6a9a2e517ce5364425738ad971be86",
+        "resultSource": "rom-analysis/fly-maker-palette-root-r2/wing-c2-r3.result.json",
+        "area": 1,
+        "familyJa": "メイフライ",
+        "evidenceHref": "../docs/fly-maker-body-tail-palette-research.md"
       }
     },
     {
@@ -45559,6 +45845,19 @@
           "docs/fly-maker-menu-research.md",
           "data/fly-maker-menu-trace.json"
         ]
+      },
+      "flyMakerMenuChoice": {
+        "category": "fly_wing",
+        "part": "wing",
+        "id": "10",
+        "row": 4,
+        "column": 2,
+        "image": "custom/fly-menu-positions/wing-c2-r4-cursor.png",
+        "imageSha256": "b8714017f5844aa5e54512d12b466bfe7a1d8cc07642f803ba02f2a1bbca661d",
+        "resultSource": "rom-analysis/fly-maker-palette-root-r2/wing-c2-r4.result.json",
+        "area": 1,
+        "familyJa": "メイフライ",
+        "evidenceHref": "../docs/fly-maker-body-tail-palette-research.md"
       }
     },
     {
@@ -45689,6 +45988,19 @@
           "docs/fly-maker-menu-research.md",
           "data/fly-maker-menu-trace.json"
         ]
+      },
+      "flyMakerMenuChoice": {
+        "category": "fly_wing",
+        "part": "wing",
+        "id": "11",
+        "row": 1,
+        "column": 3,
+        "image": "custom/fly-menu-positions/wing-c3-r1-cursor.png",
+        "imageSha256": "fdc91a1d1a11ca28c2c65c95babb6488f4d25240d7a2cf8f671ed96e55884e9d",
+        "resultSource": "rom-analysis/fly-maker-palette-root-r2/wing-c3-r1.result.json",
+        "area": 1,
+        "familyJa": "メイフライ",
+        "evidenceHref": "../docs/fly-maker-body-tail-palette-research.md"
       }
     },
     {
@@ -45819,6 +46131,19 @@
           "docs/fly-maker-menu-research.md",
           "data/fly-maker-menu-trace.json"
         ]
+      },
+      "flyMakerMenuChoice": {
+        "category": "fly_wing",
+        "part": "wing",
+        "id": "12",
+        "row": 2,
+        "column": 3,
+        "image": "custom/fly-menu-positions/wing-c3-r2-cursor.png",
+        "imageSha256": "5eae1efc53b7718b0c016cf65377bd1405a28a8b7cf8d223ee99bbbe94b7d1b0",
+        "resultSource": "rom-analysis/fly-maker-palette-root-r2/wing-c3-r2.result.json",
+        "area": 1,
+        "familyJa": "メイフライ",
+        "evidenceHref": "../docs/fly-maker-body-tail-palette-research.md"
       }
     },
     {
@@ -45949,6 +46274,19 @@
           "docs/fly-maker-menu-research.md",
           "data/fly-maker-menu-trace.json"
         ]
+      },
+      "flyMakerMenuChoice": {
+        "category": "fly_wing",
+        "part": "wing",
+        "id": "1F",
+        "row": 3,
+        "column": 3,
+        "image": "custom/fly-menu-positions/wing-c3-r3-cursor.png",
+        "imageSha256": "5f3c2be3aac45319d0f1a9566ad169791559f845393951aaa2a6715396f3cf08",
+        "resultSource": "rom-analysis/fly-maker-palette-root-r2/wing-c3-r3.result.json",
+        "area": 1,
+        "familyJa": "メイフライ",
+        "evidenceHref": "../docs/fly-maker-body-tail-palette-research.md"
       }
     },
     {
@@ -46079,6 +46417,19 @@
           "docs/fly-maker-menu-research.md",
           "data/fly-maker-menu-trace.json"
         ]
+      },
+      "flyMakerMenuChoice": {
+        "category": "fly_wing",
+        "part": "wing",
+        "id": "20",
+        "row": 4,
+        "column": 3,
+        "image": "custom/fly-menu-positions/wing-c3-r4-cursor.png",
+        "imageSha256": "9c3ccc2dcfcbe96c54ddf33ce356a66c1f15abfe4537e017cf1ea97df53acf61",
+        "resultSource": "rom-analysis/fly-maker-palette-root-r2/wing-c3-r4.result.json",
+        "area": 1,
+        "familyJa": "メイフライ",
+        "evidenceHref": "../docs/fly-maker-body-tail-palette-research.md"
       }
     },
     {
@@ -46209,6 +46560,19 @@
           "docs/fly-maker-menu-research.md",
           "data/fly-maker-menu-trace.json"
         ]
+      },
+      "flyMakerMenuChoice": {
+        "category": "fly_wing",
+        "part": "wing",
+        "id": "21",
+        "row": 1,
+        "column": 4,
+        "image": "custom/fly-menu-positions/wing-c4-r1-cursor.png",
+        "imageSha256": "1f6120926faa66cbc446fec52c6e5c57055063e5c5ad9b5de5d4030ff11b24a9",
+        "resultSource": "rom-analysis/fly-maker-palette-root-r2/wing-c4-r1.result.json",
+        "area": 1,
+        "familyJa": "メイフライ",
+        "evidenceHref": "../docs/fly-maker-body-tail-palette-research.md"
       }
     },
     {
@@ -46339,6 +46703,19 @@
           "docs/fly-maker-menu-research.md",
           "data/fly-maker-menu-trace.json"
         ]
+      },
+      "flyMakerMenuChoice": {
+        "category": "fly_wing",
+        "part": "wing",
+        "id": "22",
+        "row": 2,
+        "column": 4,
+        "image": "custom/fly-menu-positions/wing-c4-r2-cursor.png",
+        "imageSha256": "a0fee50e89e7b016e8d83875eaf4496a638c3934082b0f5c07fcfe51586e027e",
+        "resultSource": "rom-analysis/fly-maker-palette-root-r2/wing-c4-r2.result.json",
+        "area": 1,
+        "familyJa": "メイフライ",
+        "evidenceHref": "../docs/fly-maker-body-tail-palette-research.md"
       }
     },
     {
@@ -46457,6 +46834,19 @@
           "docs/fly-maker-menu-research.md",
           "data/fly-maker-menu-trace.json"
         ]
+      },
+      "flyMakerMenuChoice": {
+        "category": "fly_wing",
+        "part": "wing",
+        "id": "23",
+        "row": 3,
+        "column": 4,
+        "image": "custom/fly-menu-positions/wing-c4-r3-cursor.png",
+        "imageSha256": "88cd511264cdd57b752a74f56428b1d4f81d0c7dc1da07e6493a2bc4a47d733d",
+        "resultSource": "rom-analysis/fly-maker-palette-root-r2/wing-c4-r3.result.json",
+        "area": 1,
+        "familyJa": "メイフライ",
+        "evidenceHref": "../docs/fly-maker-body-tail-palette-research.md"
       }
     },
     {
@@ -46587,6 +46977,19 @@
           "docs/fly-maker-menu-research.md",
           "data/fly-maker-menu-trace.json"
         ]
+      },
+      "flyMakerMenuChoice": {
+        "category": "fly_wing",
+        "part": "wing",
+        "id": "24",
+        "row": 4,
+        "column": 4,
+        "image": "custom/fly-menu-positions/wing-c4-r4-cursor.png",
+        "imageSha256": "3e1a13ab282b0fd64adb40442febbf9903e63fd322ee9282dc9577ddbd93ff8b",
+        "resultSource": "rom-analysis/fly-maker-palette-root-r2/wing-c4-r4.result.json",
+        "area": 1,
+        "familyJa": "メイフライ",
+        "evidenceHref": "../docs/fly-maker-body-tail-palette-research.md"
       }
     },
     {
@@ -50711,6 +51114,19 @@
           "data/fly-customization.json",
           "data/shop-stock-rom.json"
         ]
+      },
+      "flyMakerMenuChoice": {
+        "category": "fly_tail",
+        "part": "tail",
+        "id": "13",
+        "row": 1,
+        "column": 1,
+        "image": "custom/fly-menu-positions/tail-c1-r1-cursor.png",
+        "imageSha256": "8fa2a785a9560f9c633b99bfc20d4e25e60efebff96f6332853edb74bb25e327",
+        "resultSource": "rom-analysis/fly-maker-body-tail-r4/tail-c1-r1.result.json",
+        "area": 1,
+        "familyJa": "メイフライ",
+        "evidenceHref": "../docs/fly-maker-body-tail-palette-research.md"
       }
     },
     {
@@ -50835,6 +51251,19 @@
           "data/fly-customization.json",
           "data/shop-stock-rom.json"
         ]
+      },
+      "flyMakerMenuChoice": {
+        "category": "fly_tail",
+        "part": "tail",
+        "id": "14",
+        "row": 2,
+        "column": 1,
+        "image": "custom/fly-menu-positions/tail-c1-r2-cursor.png",
+        "imageSha256": "664675b7a43c74907ecad6b5f168e16b57d4928946f08a11b5609f4203a76e70",
+        "resultSource": "rom-analysis/fly-maker-body-tail-r4/tail-c1-r2.result.json",
+        "area": 1,
+        "familyJa": "メイフライ",
+        "evidenceHref": "../docs/fly-maker-body-tail-palette-research.md"
       }
     },
     {
@@ -50959,6 +51388,19 @@
           "data/fly-customization.json",
           "data/shop-stock-rom.json"
         ]
+      },
+      "flyMakerMenuChoice": {
+        "category": "fly_tail",
+        "part": "tail",
+        "id": "15",
+        "row": 3,
+        "column": 1,
+        "image": "custom/fly-menu-positions/tail-c1-r3-cursor.png",
+        "imageSha256": "3ef13ae5c9a07c2628c2586875fc9b146f76806ec5b1a707ae2d676a47118159",
+        "resultSource": "rom-analysis/fly-maker-body-tail-r4/tail-c1-r3.result.json",
+        "area": 1,
+        "familyJa": "メイフライ",
+        "evidenceHref": "../docs/fly-maker-body-tail-palette-research.md"
       }
     },
     {
@@ -51083,6 +51525,19 @@
           "data/fly-customization.json",
           "data/shop-stock-rom.json"
         ]
+      },
+      "flyMakerMenuChoice": {
+        "category": "fly_tail",
+        "part": "tail",
+        "id": "16",
+        "row": 4,
+        "column": 1,
+        "image": "custom/fly-menu-positions/tail-c1-r4-cursor.png",
+        "imageSha256": "7531cb69387ac575ae2b6419035275a9d17fd37612964137c35c31d199f8a94c",
+        "resultSource": "rom-analysis/fly-maker-body-tail-r4/tail-c1-r4.result.json",
+        "area": 1,
+        "familyJa": "メイフライ",
+        "evidenceHref": "../docs/fly-maker-body-tail-palette-research.md"
       }
     },
     {
@@ -51207,6 +51662,19 @@
           "data/fly-customization.json",
           "data/shop-stock-rom.json"
         ]
+      },
+      "flyMakerMenuChoice": {
+        "category": "fly_tail",
+        "part": "tail",
+        "id": "17",
+        "row": 1,
+        "column": 2,
+        "image": "custom/fly-menu-positions/tail-c2-r1-cursor.png",
+        "imageSha256": "de23527a2a087a267de851d0c63e79fe1ebfed15d60ba5d3996cf3b1d62cf808",
+        "resultSource": "rom-analysis/fly-maker-body-tail-r4/tail-c2-r1.result.json",
+        "area": 1,
+        "familyJa": "メイフライ",
+        "evidenceHref": "../docs/fly-maker-body-tail-palette-research.md"
       }
     },
     {
@@ -51342,6 +51810,19 @@
           "data/fly-customization.json",
           "data/shop-stock-rom.json"
         ]
+      },
+      "flyMakerMenuChoice": {
+        "category": "fly_tail",
+        "part": "tail",
+        "id": "27",
+        "row": 2,
+        "column": 2,
+        "image": "custom/fly-menu-positions/tail-c2-r2-cursor.png",
+        "imageSha256": "cd348c4a8a5f7a229bb5ff7f779ebf3b206d607fe03fe492ea64c17379482f43",
+        "resultSource": "rom-analysis/fly-maker-body-tail-r4/tail-c2-r2.result.json",
+        "area": 1,
+        "familyJa": "メイフライ",
+        "evidenceHref": "../docs/fly-maker-body-tail-palette-research.md"
       }
     },
     {
@@ -51477,6 +51958,19 @@
           "data/fly-customization.json",
           "data/shop-stock-rom.json"
         ]
+      },
+      "flyMakerMenuChoice": {
+        "category": "fly_tail",
+        "part": "tail",
+        "id": "28",
+        "row": 3,
+        "column": 2,
+        "image": "custom/fly-menu-positions/tail-c2-r3-cursor.png",
+        "imageSha256": "f212b3253f750f82e33af70d96b22f93208dad42dfe9756314545d54f96f3fe7",
+        "resultSource": "rom-analysis/fly-maker-body-tail-r4/tail-c2-r3.result.json",
+        "area": 1,
+        "familyJa": "メイフライ",
+        "evidenceHref": "../docs/fly-maker-body-tail-palette-research.md"
       }
     },
     {
@@ -51601,6 +52095,19 @@
           "data/fly-customization.json",
           "data/shop-stock-rom.json"
         ]
+      },
+      "flyMakerMenuChoice": {
+        "category": "fly_tail",
+        "part": "tail",
+        "id": "29",
+        "row": 4,
+        "column": 2,
+        "image": "custom/fly-menu-positions/tail-c2-r4-cursor.png",
+        "imageSha256": "e521a9383faa73d2c2827cfe5ea8f506421c6829f662f8d8c478f6305ae353da",
+        "resultSource": "rom-analysis/fly-maker-body-tail-r4/tail-c2-r4.result.json",
+        "area": 1,
+        "familyJa": "メイフライ",
+        "evidenceHref": "../docs/fly-maker-body-tail-palette-research.md"
       }
     },
     {
@@ -51725,6 +52232,19 @@
           "data/fly-customization.json",
           "data/shop-stock-rom.json"
         ]
+      },
+      "flyMakerMenuChoice": {
+        "category": "fly_tail",
+        "part": "tail",
+        "id": "2A",
+        "row": 1,
+        "column": 3,
+        "image": "custom/fly-menu-positions/tail-c3-r1-cursor.png",
+        "imageSha256": "609943dd4e913f13fe32e1f364dd6164f572422128467dda84a8875d72246839",
+        "resultSource": "rom-analysis/fly-maker-body-tail-r4/tail-c3-r1.result.json",
+        "area": 1,
+        "familyJa": "メイフライ",
+        "evidenceHref": "../docs/fly-maker-body-tail-palette-research.md"
       }
     },
     {

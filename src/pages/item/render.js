@@ -1,3 +1,4 @@
+import { flyMenuPosition } from './fly-menu-position.js'
 import { notebookAction } from './notebook.js'
 import { questNextActions } from './quest-next-actions.js'
 import { targetAdviceSection } from './target-advice.js'
@@ -192,10 +193,12 @@ function renderItemSections(ctx, item, allItems, fishVisuals, fishLocations, dec
   const buying = rodAdvice ? '' : ctx.buyingDecision(item, allItems, decisions)
   const more = renderMoreOptions(ctx, item, allItems, fishLocations)
   const back = `<p class="detail-back-to-list"><a class="route-button" href="${ctx.esc(categoryHref)}">${ctx.esc(ctx.copy.allItems)} · ${ctx.esc(categoryText)} ↗</a></p>`
-  return `${intro}${hero}${target}${baitTarget}${action}${extras}${buying}${ctx.shopSection(item, allItems, fishLocations)}${ctx.useLocationSection(item, fishLocations, allItems)}${ctx.fishSection(item, fishVisuals, fishLocations)}${more}${back}${ctx.technicalSection(item)}<p class="muted">${ctx.esc(ctx.copy.sourced)}</p>`
+  return `${intro}${hero}${target}${baitTarget}${action}${flyMenuPosition(ctx, item)}${extras}${buying}${ctx.shopSection(item, allItems, fishLocations)}${ctx.useLocationSection(item, fishLocations, allItems)}${ctx.fishSection(item, fishVisuals, fishLocations)}${more}${back}${ctx.technicalSection(item)}<p class="muted">${ctx.esc(ctx.copy.sourced)}</p>`
 }
 
 function scrollToItemAnchor() {
+  if (location.hash === '#fly-menu-position')
+    document.getElementById('fly-menu-position')?.scrollIntoView({ block: 'start' })
   if (location.hash.startsWith('#compass-exit-'))
     document.getElementById(location.hash.slice(1))?.scrollIntoView({ block: 'start' })
   if (location.hash.startsWith('#forage-stage-'))

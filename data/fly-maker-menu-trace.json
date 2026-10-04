@@ -172,8 +172,13 @@
       "23",
       "24"
     ],
-    "runtimeReportedPictureCount": 20,
-    "resolved": false,
-    "warning": "Do not equate table-record order to visible sprite order; runtime screenshot count conflicts with static buffer/render bounds."
+    "resolved": true,
+    "warning": "Table record count, historical visual estimates, and verified menu choices are different measures. Use the controller-verified crosswalk for the tested menu.",
+    "historicalVisualPictureEstimate": {
+      "count": 20,
+      "status": "superseded; not a verified selectable count"
+    },
+    "resolutionScope": "The tested Area 1 Mayfly wing menu has 16 controller-verified positions. Global availability of records 25 and 26 remains unresolved.",
+    "verifiedPositionSource": "data/fly-maker-wing-palette.json"
   }
 }

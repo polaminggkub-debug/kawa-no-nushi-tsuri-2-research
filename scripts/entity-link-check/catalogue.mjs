@@ -44,7 +44,7 @@ async function checkRenderedCatalogue(lang, base) {
     const card = cardFor(cards, item)
     checkCardLinks(card, item)
     if (itemAdvice(item)) checkCardAdvice(card, item, lang, 'Rendered catalogue')
-    checkCardActions(card, item)
+    checkCardActions(card, item, result.url)
   }
 }
 
@@ -101,15 +101,38 @@ function checkCardLinks(card, item) {
   assert(/<h3><a class="entity-title"/.test(card), `Unlinked item name ${item.category}:${item.id}`)
 }
 
-function checkCardActions(card, item) {
+function checkCardActions(card, item, base) {
   if (item.netGatherArea)
     assert(
       card.includes('data-bait-gather-choice') && card.includes('category=general_tool&amp;id=04'),
     )
   if (item.acquisitionOptions?.length)
     assert(card.includes('data-acquisition-choice') && card.includes('#use-locations'))
-  if (item.category.startsWith('fly'))
+  if (item.flyMakerMenuChoice) {
+    const href = card.match(/data-fly-menu-choice href="([^"]+)"/)?.[1]
+    assert(href, `Missing direct maker-position action ${item.category}:${item.id}`)
+    const target = new URL(unescapeHtml(href), base)
+    const locale = base.pathname.endsWith('.th.html')
+      ? '.th'
+      : base.pathname.endsWith('.ja.html')
+        ? '.ja'
+        : ''
+    assert(target.pathname.endsWith(`/item${locale}.html`))
+    assert.equal(target.searchParams.get('category'), item.category)
+    assert.equal(target.searchParams.get('id'), item.id)
+    assert.equal(target.hash, '#fly-menu-position')
+    const back = new URL(target.searchParams.get('return'), target)
+    assert.equal(back.pathname, base.pathname)
+    assert.equal(back.hash, base.hash)
+    for (const [key, value] of base.searchParams)
+      assert.equal(back.searchParams.get(key), value, `Fly position link lost ${key}`)
+    for (const key of ['fish', 'stage', 'route'])
+      if (base.searchParams.has(key))
+        assert.equal(target.searchParams.get(key), base.searchParams.get(key))
+  } else if (item.category.startsWith('fly')) {
     assert(card.includes('data-fly-maker') && card.includes('#fly-instructions'))
+    assert(!card.includes('data-fly-menu-choice'))
+  }
 }
 
 async function checkRodComparison(lang) {
