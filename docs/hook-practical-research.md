@@ -72,3 +72,20 @@ Two cautions:
 - The sinker route's additional fish filter is documented in [`fish-acceptance-research.md`](fish-acceptance-research.md).
 
 The accompanying [`hook-practical-research.json`](../data/hook-practical-research.json) contains English, Japanese, and Thai card-copy overrides for all 23 hook/float/sinker items.
+
+## Budget equipment on fish profiles
+
+Fish starter offers now identify missing hook and float/sinker purchases for the selected method and area. Keep an owned hook and matching route equipment; the new-purchase choices do not rank landing success. The hook candidate pool is the four records with zero fish-ID field (06–09), avoiding a species-matched branch as the basis for a general starter recommendation. Their ordinary size-response selectors still differ. Float and sinker prices are compared only within the required route. All choices use unconditional recorded shop stock.
+
+| Area | Cheapest non-species-matched hook | Cheapest float | Cheapest sinker |
+| --- | --- | --- | --- |
+| 1 | 08 / ¥15 | 05 / ¥30 | No recorded stock |
+| 2 | 09 / ¥10 | 02 / ¥10 | No recorded stock |
+| 3 | 09 / ¥10 | 06 / ¥50 | No recorded stock |
+| 4 | 06 / ¥25 | 02 / ¥10 | 09 / ¥75 |
+| 5 | 06 / ¥25 | 02 / ¥10 | 0A / ¥30 |
+| 6 | 07 / ¥20 | 05 / ¥30 | 0A / ¥30 |
+
+A four-item price total is displayed only when the selected-area shop records include the rod, compatible bait, hook and route equipment. It is the sum of their full new-purchase quotes, not an upgrade or trade-in cost. Where a sinker is not locally stocked and a compatible float starter offer is recorded, the page links to that float option. No walking route, bite guarantee or end-to-end landing result is inferred. Lure/fly preparation does not require a bait hook; the fly marker is loaded automatically, so it is not added to the purchase list.
+
+Reproduce the selection and context checks with `node scripts/check_entity_links.cjs`; it enumerates recorded fish/area/method combinations in all three locales against the published ROM records. Actual browser click checks are recorded separately.

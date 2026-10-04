@@ -44175,9 +44175,9 @@
           "ja": "まず対象魚がリストに載るボディを選びます。このウィングを持っているなら使えますが、食いつきや取り込み成功率を上げる根拠はROMから確認できていません。自作フライはゲームの最終見積額を確認してください。既製フライは最初に1セットだけ選び、他は必要なら予備にします。対象魚が未定なら、まずウェットボディ01の対象魚リスト（33プロフィール）を確認してください。 エリア1ではボディ01＋ウィング09＋テール13の既製セットが5円で販売されています。"
         },
         "reason": {
-          "en": "The target list belongs to the body; the ROM has not ranked wings by bite or landing success. Existing wings and the final quote are the useful purchase checks.",
-          "th": "รายชื่อปลาเป็นเงื่อนไขของบอดี้ ไม่ใช่ปีก; ROM ยังไม่จัดอันดับปีกตามการกินหรือการตกขึ้น เช็กปีกที่มีและราคาเสนอจริงก่อนจ่าย",
-          "ja": "魚リストはボディ側の判定です。食いつき・釣り上げでウィングの順位は確認されていません。所持品と最終見積額を購入判断に使います。"
+          "en": "The target list belongs to the body; the ROM has not ranked wings by bite or landing success. Existing wings and the final quote are the useful purchase checks. The wing shares a hidden check with the body: recasting the same setup does not reroll it, and changing only the wing may not help. If the fish you are targeting does not respond, open its fish page and try all three complete backup bundles there in the same loaded area. Together, the three guarantee that at least one avoids this one check for the current stored values; they do not guarantee a bite.",
+          "th": "รายชื่อปลาเป็นเงื่อนไขของบอดี้ ไม่ใช่ปีก; ROM ยังไม่จัดอันดับปีกตามการกินหรือการตกขึ้น เช็กปีกที่มีและราคาเสนอจริงก่อนจ่าย ปีกมีส่วนในเงื่อนไขซ่อนร่วมกับบอดี้ การตีชุดเดิมซ้ำไม่สุ่มค่าใหม่ และเปลี่ยนแค่ปีกอาจไม่ช่วย ถ้าปลาที่เล็งไม่ตอบสนอง ให้เปิดหน้าปลาแล้วลองชุดสำรองสำเร็จรูปทั้งสามชุดในฉากที่โหลดอยู่เดียวกัน เมื่อค่าที่เก็บไว้ยังเดิม ทั้งสามชุดจะมีอย่างน้อยหนึ่งชุดที่เลี่ยงเงื่อนไขนี้ได้ แต่ไม่รับประกันว่าปลากิน",
+          "ja": "魚リストはボディ側の判定です。食いつき・釣り上げでウィングの順位は確認されていません。所持品と最終見積額を購入判断に使います。 ウィングはボディと一緒に隠し判定を受けます。同じ組み合わせを投げ直しても保存値は再抽選されず、ウィングだけ替えても解決しないことがあります。狙った魚が反応しない場合は、魚ページの完成予備セット3組を同じ読み込み済みエリアで試してください。保存値が同じなら、3組のうち少なくとも1組がこの判定を回避しますが、食いつきは保証しません。"
         },
         "sources": [
           "docs/fly-practical-research.md",
@@ -44303,9 +44303,9 @@
           "ja": "まず対象魚がリストに載るボディを選びます。このウィングを持っているなら使えますが、食いつきや取り込み成功率を上げる根拠はROMから確認できていません。自作フライはゲームの最終見積額を確認してください。既製フライは最初に1セットだけ選び、他は必要なら予備にします。対象魚が未定なら、まずウェットボディ01の対象魚リスト（33プロフィール）を確認してください。"
         },
         "reason": {
-          "en": "The target list belongs to the body; the ROM has not ranked wings by bite or landing success. Existing wings and the final quote are the useful purchase checks.",
-          "th": "รายชื่อปลาเป็นเงื่อนไขของบอดี้ ไม่ใช่ปีก; ROM ยังไม่จัดอันดับปีกตามการกินหรือการตกขึ้น เช็กปีกที่มีและราคาเสนอจริงก่อนจ่าย",
-          "ja": "魚リストはボディ側の判定です。食いつき・釣り上げでウィングの順位は確認されていません。所持品と最終見積額を購入判断に使います。"
+          "en": "The target list belongs to the body; the ROM has not ranked wings by bite or landing success. Existing wings and the final quote are the useful purchase checks. The wing shares a hidden check with the body: recasting the same setup does not reroll it, and changing only the wing may not help. If the fish you are targeting does not respond, open its fish page and try all three complete backup bundles there in the same loaded area. Together, the three guarantee that at least one avoids this one check for the current stored values; they do not guarantee a bite.",
+          "th": "รายชื่อปลาเป็นเงื่อนไขของบอดี้ ไม่ใช่ปีก; ROM ยังไม่จัดอันดับปีกตามการกินหรือการตกขึ้น เช็กปีกที่มีและราคาเสนอจริงก่อนจ่าย ปีกมีส่วนในเงื่อนไขซ่อนร่วมกับบอดี้ การตีชุดเดิมซ้ำไม่สุ่มค่าใหม่ และเปลี่ยนแค่ปีกอาจไม่ช่วย ถ้าปลาที่เล็งไม่ตอบสนอง ให้เปิดหน้าปลาแล้วลองชุดสำรองสำเร็จรูปทั้งสามชุดในฉากที่โหลดอยู่เดียวกัน เมื่อค่าที่เก็บไว้ยังเดิม ทั้งสามชุดจะมีอย่างน้อยหนึ่งชุดที่เลี่ยงเงื่อนไขนี้ได้ แต่ไม่รับประกันว่าปลากิน",
+          "ja": "魚リストはボディ側の判定です。食いつき・釣り上げでウィングの順位は確認されていません。所持品と最終見積額を購入判断に使います。 ウィングはボディと一緒に隠し判定を受けます。同じ組み合わせを投げ直しても保存値は再抽選されず、ウィングだけ替えても解決しないことがあります。狙った魚が反応しない場合は、魚ページの完成予備セット3組を同じ読み込み済みエリアで試してください。保存値が同じなら、3組のうち少なくとも1組がこの判定を回避しますが、食いつきは保証しません。"
         },
         "sources": [
           "docs/fly-practical-research.md",
@@ -44431,9 +44431,9 @@
           "ja": "まず対象魚がリストに載るボディを選びます。このウィングを持っているなら使えますが、食いつきや取り込み成功率を上げる根拠はROMから確認できていません。自作フライはゲームの最終見積額を確認してください。既製フライは最初に1セットだけ選び、他は必要なら予備にします。対象魚が未定なら、まずウェットボディ01の対象魚リスト（33プロフィール）を確認してください。"
         },
         "reason": {
-          "en": "The target list belongs to the body; the ROM has not ranked wings by bite or landing success. Existing wings and the final quote are the useful purchase checks.",
-          "th": "รายชื่อปลาเป็นเงื่อนไขของบอดี้ ไม่ใช่ปีก; ROM ยังไม่จัดอันดับปีกตามการกินหรือการตกขึ้น เช็กปีกที่มีและราคาเสนอจริงก่อนจ่าย",
-          "ja": "魚リストはボディ側の判定です。食いつき・釣り上げでウィングの順位は確認されていません。所持品と最終見積額を購入判断に使います。"
+          "en": "The target list belongs to the body; the ROM has not ranked wings by bite or landing success. Existing wings and the final quote are the useful purchase checks. The wing shares a hidden check with the body: recasting the same setup does not reroll it, and changing only the wing may not help. If the fish you are targeting does not respond, open its fish page and try all three complete backup bundles there in the same loaded area. Together, the three guarantee that at least one avoids this one check for the current stored values; they do not guarantee a bite.",
+          "th": "รายชื่อปลาเป็นเงื่อนไขของบอดี้ ไม่ใช่ปีก; ROM ยังไม่จัดอันดับปีกตามการกินหรือการตกขึ้น เช็กปีกที่มีและราคาเสนอจริงก่อนจ่าย ปีกมีส่วนในเงื่อนไขซ่อนร่วมกับบอดี้ การตีชุดเดิมซ้ำไม่สุ่มค่าใหม่ และเปลี่ยนแค่ปีกอาจไม่ช่วย ถ้าปลาที่เล็งไม่ตอบสนอง ให้เปิดหน้าปลาแล้วลองชุดสำรองสำเร็จรูปทั้งสามชุดในฉากที่โหลดอยู่เดียวกัน เมื่อค่าที่เก็บไว้ยังเดิม ทั้งสามชุดจะมีอย่างน้อยหนึ่งชุดที่เลี่ยงเงื่อนไขนี้ได้ แต่ไม่รับประกันว่าปลากิน",
+          "ja": "魚リストはボディ側の判定です。食いつき・釣り上げでウィングの順位は確認されていません。所持品と最終見積額を購入判断に使います。 ウィングはボディと一緒に隠し判定を受けます。同じ組み合わせを投げ直しても保存値は再抽選されず、ウィングだけ替えても解決しないことがあります。狙った魚が反応しない場合は、魚ページの完成予備セット3組を同じ読み込み済みエリアで試してください。保存値が同じなら、3組のうち少なくとも1組がこの判定を回避しますが、食いつきは保証しません。"
         },
         "sources": [
           "docs/fly-practical-research.md",
@@ -44559,9 +44559,9 @@
           "ja": "まず対象魚がリストに載るボディを選びます。このウィングを持っているなら使えますが、食いつきや取り込み成功率を上げる根拠はROMから確認できていません。自作フライはゲームの最終見積額を確認してください。既製フライは最初に1セットだけ選び、他は必要なら予備にします。対象魚が未定なら、まずウェットボディ01の対象魚リスト（33プロフィール）を確認してください。"
         },
         "reason": {
-          "en": "The target list belongs to the body; the ROM has not ranked wings by bite or landing success. Existing wings and the final quote are the useful purchase checks.",
-          "th": "รายชื่อปลาเป็นเงื่อนไขของบอดี้ ไม่ใช่ปีก; ROM ยังไม่จัดอันดับปีกตามการกินหรือการตกขึ้น เช็กปีกที่มีและราคาเสนอจริงก่อนจ่าย",
-          "ja": "魚リストはボディ側の判定です。食いつき・釣り上げでウィングの順位は確認されていません。所持品と最終見積額を購入判断に使います。"
+          "en": "The target list belongs to the body; the ROM has not ranked wings by bite or landing success. Existing wings and the final quote are the useful purchase checks. The wing shares a hidden check with the body: recasting the same setup does not reroll it, and changing only the wing may not help. If the fish you are targeting does not respond, open its fish page and try all three complete backup bundles there in the same loaded area. Together, the three guarantee that at least one avoids this one check for the current stored values; they do not guarantee a bite.",
+          "th": "รายชื่อปลาเป็นเงื่อนไขของบอดี้ ไม่ใช่ปีก; ROM ยังไม่จัดอันดับปีกตามการกินหรือการตกขึ้น เช็กปีกที่มีและราคาเสนอจริงก่อนจ่าย ปีกมีส่วนในเงื่อนไขซ่อนร่วมกับบอดี้ การตีชุดเดิมซ้ำไม่สุ่มค่าใหม่ และเปลี่ยนแค่ปีกอาจไม่ช่วย ถ้าปลาที่เล็งไม่ตอบสนอง ให้เปิดหน้าปลาแล้วลองชุดสำรองสำเร็จรูปทั้งสามชุดในฉากที่โหลดอยู่เดียวกัน เมื่อค่าที่เก็บไว้ยังเดิม ทั้งสามชุดจะมีอย่างน้อยหนึ่งชุดที่เลี่ยงเงื่อนไขนี้ได้ แต่ไม่รับประกันว่าปลากิน",
+          "ja": "魚リストはボディ側の判定です。食いつき・釣り上げでウィングの順位は確認されていません。所持品と最終見積額を購入判断に使います。 ウィングはボディと一緒に隠し判定を受けます。同じ組み合わせを投げ直しても保存値は再抽選されず、ウィングだけ替えても解決しないことがあります。狙った魚が反応しない場合は、魚ページの完成予備セット3組を同じ読み込み済みエリアで試してください。保存値が同じなら、3組のうち少なくとも1組がこの判定を回避しますが、食いつきは保証しません。"
         },
         "sources": [
           "docs/fly-practical-research.md",
@@ -44675,9 +44675,9 @@
           "ja": "まず対象魚がリストに載るボディを選びます。このウィングを持っているなら使えますが、食いつきや取り込み成功率を上げる根拠はROMから確認できていません。自作フライはゲームの最終見積額を確認してください。既製フライは最初に1セットだけ選び、他は必要なら予備にします。対象魚が未定なら、まずウェットボディ01の対象魚リスト（33プロフィール）を確認してください。"
         },
         "reason": {
-          "en": "The target list belongs to the body; the ROM has not ranked wings by bite or landing success. Existing wings and the final quote are the useful purchase checks.",
-          "th": "รายชื่อปลาเป็นเงื่อนไขของบอดี้ ไม่ใช่ปีก; ROM ยังไม่จัดอันดับปีกตามการกินหรือการตกขึ้น เช็กปีกที่มีและราคาเสนอจริงก่อนจ่าย",
-          "ja": "魚リストはボディ側の判定です。食いつき・釣り上げでウィングの順位は確認されていません。所持品と最終見積額を購入判断に使います。"
+          "en": "The target list belongs to the body; the ROM has not ranked wings by bite or landing success. Existing wings and the final quote are the useful purchase checks. The wing shares a hidden check with the body: recasting the same setup does not reroll it, and changing only the wing may not help. If the fish you are targeting does not respond, open its fish page and try all three complete backup bundles there in the same loaded area. Together, the three guarantee that at least one avoids this one check for the current stored values; they do not guarantee a bite.",
+          "th": "รายชื่อปลาเป็นเงื่อนไขของบอดี้ ไม่ใช่ปีก; ROM ยังไม่จัดอันดับปีกตามการกินหรือการตกขึ้น เช็กปีกที่มีและราคาเสนอจริงก่อนจ่าย ปีกมีส่วนในเงื่อนไขซ่อนร่วมกับบอดี้ การตีชุดเดิมซ้ำไม่สุ่มค่าใหม่ และเปลี่ยนแค่ปีกอาจไม่ช่วย ถ้าปลาที่เล็งไม่ตอบสนอง ให้เปิดหน้าปลาแล้วลองชุดสำรองสำเร็จรูปทั้งสามชุดในฉากที่โหลดอยู่เดียวกัน เมื่อค่าที่เก็บไว้ยังเดิม ทั้งสามชุดจะมีอย่างน้อยหนึ่งชุดที่เลี่ยงเงื่อนไขนี้ได้ แต่ไม่รับประกันว่าปลากิน",
+          "ja": "魚リストはボディ側の判定です。食いつき・釣り上げでウィングの順位は確認されていません。所持品と最終見積額を購入判断に使います。 ウィングはボディと一緒に隠し判定を受けます。同じ組み合わせを投げ直しても保存値は再抽選されず、ウィングだけ替えても解決しないことがあります。狙った魚が反応しない場合は、魚ページの完成予備セット3組を同じ読み込み済みエリアで試してください。保存値が同じなら、3組のうち少なくとも1組がこの判定を回避しますが、食いつきは保証しません。"
         },
         "sources": [
           "docs/fly-practical-research.md",
@@ -44791,9 +44791,9 @@
           "ja": "まず対象魚がリストに載るボディを選びます。このウィングを持っているなら使えますが、食いつきや取り込み成功率を上げる根拠はROMから確認できていません。自作フライはゲームの最終見積額を確認してください。既製フライは最初に1セットだけ選び、他は必要なら予備にします。対象魚が未定なら、まずウェットボディ01の対象魚リスト（33プロフィール）を確認してください。"
         },
         "reason": {
-          "en": "The target list belongs to the body; the ROM has not ranked wings by bite or landing success. Existing wings and the final quote are the useful purchase checks.",
-          "th": "รายชื่อปลาเป็นเงื่อนไขของบอดี้ ไม่ใช่ปีก; ROM ยังไม่จัดอันดับปีกตามการกินหรือการตกขึ้น เช็กปีกที่มีและราคาเสนอจริงก่อนจ่าย",
-          "ja": "魚リストはボディ側の判定です。食いつき・釣り上げでウィングの順位は確認されていません。所持品と最終見積額を購入判断に使います。"
+          "en": "The target list belongs to the body; the ROM has not ranked wings by bite or landing success. Existing wings and the final quote are the useful purchase checks. The wing shares a hidden check with the body: recasting the same setup does not reroll it, and changing only the wing may not help. If the fish you are targeting does not respond, open its fish page and try all three complete backup bundles there in the same loaded area. Together, the three guarantee that at least one avoids this one check for the current stored values; they do not guarantee a bite.",
+          "th": "รายชื่อปลาเป็นเงื่อนไขของบอดี้ ไม่ใช่ปีก; ROM ยังไม่จัดอันดับปีกตามการกินหรือการตกขึ้น เช็กปีกที่มีและราคาเสนอจริงก่อนจ่าย ปีกมีส่วนในเงื่อนไขซ่อนร่วมกับบอดี้ การตีชุดเดิมซ้ำไม่สุ่มค่าใหม่ และเปลี่ยนแค่ปีกอาจไม่ช่วย ถ้าปลาที่เล็งไม่ตอบสนอง ให้เปิดหน้าปลาแล้วลองชุดสำรองสำเร็จรูปทั้งสามชุดในฉากที่โหลดอยู่เดียวกัน เมื่อค่าที่เก็บไว้ยังเดิม ทั้งสามชุดจะมีอย่างน้อยหนึ่งชุดที่เลี่ยงเงื่อนไขนี้ได้ แต่ไม่รับประกันว่าปลากิน",
+          "ja": "魚リストはボディ側の判定です。食いつき・釣り上げでウィングの順位は確認されていません。所持品と最終見積額を購入判断に使います。 ウィングはボディと一緒に隠し判定を受けます。同じ組み合わせを投げ直しても保存値は再抽選されず、ウィングだけ替えても解決しないことがあります。狙った魚が反応しない場合は、魚ページの完成予備セット3組を同じ読み込み済みエリアで試してください。保存値が同じなら、3組のうち少なくとも1組がこの判定を回避しますが、食いつきは保証しません。"
         },
         "sources": [
           "docs/fly-practical-research.md",
@@ -44907,9 +44907,9 @@
           "ja": "まず対象魚がリストに載るボディを選びます。このウィングを持っているなら使えますが、食いつきや取り込み成功率を上げる根拠はROMから確認できていません。自作フライはゲームの最終見積額を確認してください。既製フライは最初に1セットだけ選び、他は必要なら予備にします。対象魚が未定なら、まずウェットボディ01の対象魚リスト（33プロフィール）を確認してください。"
         },
         "reason": {
-          "en": "The target list belongs to the body; the ROM has not ranked wings by bite or landing success. Existing wings and the final quote are the useful purchase checks.",
-          "th": "รายชื่อปลาเป็นเงื่อนไขของบอดี้ ไม่ใช่ปีก; ROM ยังไม่จัดอันดับปีกตามการกินหรือการตกขึ้น เช็กปีกที่มีและราคาเสนอจริงก่อนจ่าย",
-          "ja": "魚リストはボディ側の判定です。食いつき・釣り上げでウィングの順位は確認されていません。所持品と最終見積額を購入判断に使います。"
+          "en": "The target list belongs to the body; the ROM has not ranked wings by bite or landing success. Existing wings and the final quote are the useful purchase checks. The wing shares a hidden check with the body: recasting the same setup does not reroll it, and changing only the wing may not help. If the fish you are targeting does not respond, open its fish page and try all three complete backup bundles there in the same loaded area. Together, the three guarantee that at least one avoids this one check for the current stored values; they do not guarantee a bite.",
+          "th": "รายชื่อปลาเป็นเงื่อนไขของบอดี้ ไม่ใช่ปีก; ROM ยังไม่จัดอันดับปีกตามการกินหรือการตกขึ้น เช็กปีกที่มีและราคาเสนอจริงก่อนจ่าย ปีกมีส่วนในเงื่อนไขซ่อนร่วมกับบอดี้ การตีชุดเดิมซ้ำไม่สุ่มค่าใหม่ และเปลี่ยนแค่ปีกอาจไม่ช่วย ถ้าปลาที่เล็งไม่ตอบสนอง ให้เปิดหน้าปลาแล้วลองชุดสำรองสำเร็จรูปทั้งสามชุดในฉากที่โหลดอยู่เดียวกัน เมื่อค่าที่เก็บไว้ยังเดิม ทั้งสามชุดจะมีอย่างน้อยหนึ่งชุดที่เลี่ยงเงื่อนไขนี้ได้ แต่ไม่รับประกันว่าปลากิน",
+          "ja": "魚リストはボディ側の判定です。食いつき・釣り上げでウィングの順位は確認されていません。所持品と最終見積額を購入判断に使います。 ウィングはボディと一緒に隠し判定を受けます。同じ組み合わせを投げ直しても保存値は再抽選されず、ウィングだけ替えても解決しないことがあります。狙った魚が反応しない場合は、魚ページの完成予備セット3組を同じ読み込み済みエリアで試してください。保存値が同じなら、3組のうち少なくとも1組がこの判定を回避しますが、食いつきは保証しません。"
         },
         "sources": [
           "docs/fly-practical-research.md",
@@ -45023,9 +45023,9 @@
           "ja": "まず対象魚がリストに載るボディを選びます。このウィングを持っているなら使えますが、食いつきや取り込み成功率を上げる根拠はROMから確認できていません。自作フライはゲームの最終見積額を確認してください。既製フライは最初に1セットだけ選び、他は必要なら予備にします。対象魚が未定なら、まずウェットボディ01の対象魚リスト（33プロフィール）を確認してください。"
         },
         "reason": {
-          "en": "The target list belongs to the body; the ROM has not ranked wings by bite or landing success. Existing wings and the final quote are the useful purchase checks.",
-          "th": "รายชื่อปลาเป็นเงื่อนไขของบอดี้ ไม่ใช่ปีก; ROM ยังไม่จัดอันดับปีกตามการกินหรือการตกขึ้น เช็กปีกที่มีและราคาเสนอจริงก่อนจ่าย",
-          "ja": "魚リストはボディ側の判定です。食いつき・釣り上げでウィングの順位は確認されていません。所持品と最終見積額を購入判断に使います。"
+          "en": "The target list belongs to the body; the ROM has not ranked wings by bite or landing success. Existing wings and the final quote are the useful purchase checks. The wing shares a hidden check with the body: recasting the same setup does not reroll it, and changing only the wing may not help. If the fish you are targeting does not respond, open its fish page and try all three complete backup bundles there in the same loaded area. Together, the three guarantee that at least one avoids this one check for the current stored values; they do not guarantee a bite.",
+          "th": "รายชื่อปลาเป็นเงื่อนไขของบอดี้ ไม่ใช่ปีก; ROM ยังไม่จัดอันดับปีกตามการกินหรือการตกขึ้น เช็กปีกที่มีและราคาเสนอจริงก่อนจ่าย ปีกมีส่วนในเงื่อนไขซ่อนร่วมกับบอดี้ การตีชุดเดิมซ้ำไม่สุ่มค่าใหม่ และเปลี่ยนแค่ปีกอาจไม่ช่วย ถ้าปลาที่เล็งไม่ตอบสนอง ให้เปิดหน้าปลาแล้วลองชุดสำรองสำเร็จรูปทั้งสามชุดในฉากที่โหลดอยู่เดียวกัน เมื่อค่าที่เก็บไว้ยังเดิม ทั้งสามชุดจะมีอย่างน้อยหนึ่งชุดที่เลี่ยงเงื่อนไขนี้ได้ แต่ไม่รับประกันว่าปลากิน",
+          "ja": "魚リストはボディ側の判定です。食いつき・釣り上げでウィングの順位は確認されていません。所持品と最終見積額を購入判断に使います。 ウィングはボディと一緒に隠し判定を受けます。同じ組み合わせを投げ直しても保存値は再抽選されず、ウィングだけ替えても解決しないことがあります。狙った魚が反応しない場合は、魚ページの完成予備セット3組を同じ読み込み済みエリアで試してください。保存値が同じなら、3組のうち少なくとも1組がこの判定を回避しますが、食いつきは保証しません。"
         },
         "sources": [
           "docs/fly-practical-research.md",
@@ -45151,9 +45151,9 @@
           "ja": "まず対象魚がリストに載るボディを選びます。このウィングを持っているなら使えますが、食いつきや取り込み成功率を上げる根拠はROMから確認できていません。自作フライはゲームの最終見積額を確認してください。既製フライは最初に1セットだけ選び、他は必要なら予備にします。対象魚が未定なら、まずウェットボディ01の対象魚リスト（33プロフィール）を確認してください。"
         },
         "reason": {
-          "en": "The target list belongs to the body; the ROM has not ranked wings by bite or landing success. Existing wings and the final quote are the useful purchase checks.",
-          "th": "รายชื่อปลาเป็นเงื่อนไขของบอดี้ ไม่ใช่ปีก; ROM ยังไม่จัดอันดับปีกตามการกินหรือการตกขึ้น เช็กปีกที่มีและราคาเสนอจริงก่อนจ่าย",
-          "ja": "魚リストはボディ側の判定です。食いつき・釣り上げでウィングの順位は確認されていません。所持品と最終見積額を購入判断に使います。"
+          "en": "The target list belongs to the body; the ROM has not ranked wings by bite or landing success. Existing wings and the final quote are the useful purchase checks. The wing shares a hidden check with the body: recasting the same setup does not reroll it, and changing only the wing may not help. If the fish you are targeting does not respond, open its fish page and try all three complete backup bundles there in the same loaded area. Together, the three guarantee that at least one avoids this one check for the current stored values; they do not guarantee a bite.",
+          "th": "รายชื่อปลาเป็นเงื่อนไขของบอดี้ ไม่ใช่ปีก; ROM ยังไม่จัดอันดับปีกตามการกินหรือการตกขึ้น เช็กปีกที่มีและราคาเสนอจริงก่อนจ่าย ปีกมีส่วนในเงื่อนไขซ่อนร่วมกับบอดี้ การตีชุดเดิมซ้ำไม่สุ่มค่าใหม่ และเปลี่ยนแค่ปีกอาจไม่ช่วย ถ้าปลาที่เล็งไม่ตอบสนอง ให้เปิดหน้าปลาแล้วลองชุดสำรองสำเร็จรูปทั้งสามชุดในฉากที่โหลดอยู่เดียวกัน เมื่อค่าที่เก็บไว้ยังเดิม ทั้งสามชุดจะมีอย่างน้อยหนึ่งชุดที่เลี่ยงเงื่อนไขนี้ได้ แต่ไม่รับประกันว่าปลากิน",
+          "ja": "魚リストはボディ側の判定です。食いつき・釣り上げでウィングの順位は確認されていません。所持品と最終見積額を購入判断に使います。 ウィングはボディと一緒に隠し判定を受けます。同じ組み合わせを投げ直しても保存値は再抽選されず、ウィングだけ替えても解決しないことがあります。狙った魚が反応しない場合は、魚ページの完成予備セット3組を同じ読み込み済みエリアで試してください。保存値が同じなら、3組のうち少なくとも1組がこの判定を回避しますが、食いつきは保証しません。"
         },
         "sources": [
           "docs/fly-practical-research.md",
@@ -45279,9 +45279,9 @@
           "ja": "まず対象魚がリストに載るボディを選びます。このウィングを持っているなら使えますが、食いつきや取り込み成功率を上げる根拠はROMから確認できていません。自作フライはゲームの最終見積額を確認してください。既製フライは最初に1セットだけ選び、他は必要なら予備にします。対象魚が未定なら、まずウェットボディ01の対象魚リスト（33プロフィール）を確認してください。"
         },
         "reason": {
-          "en": "The target list belongs to the body; the ROM has not ranked wings by bite or landing success. Existing wings and the final quote are the useful purchase checks.",
-          "th": "รายชื่อปลาเป็นเงื่อนไขของบอดี้ ไม่ใช่ปีก; ROM ยังไม่จัดอันดับปีกตามการกินหรือการตกขึ้น เช็กปีกที่มีและราคาเสนอจริงก่อนจ่าย",
-          "ja": "魚リストはボディ側の判定です。食いつき・釣り上げでウィングの順位は確認されていません。所持品と最終見積額を購入判断に使います。"
+          "en": "The target list belongs to the body; the ROM has not ranked wings by bite or landing success. Existing wings and the final quote are the useful purchase checks. The wing shares a hidden check with the body: recasting the same setup does not reroll it, and changing only the wing may not help. If the fish you are targeting does not respond, open its fish page and try all three complete backup bundles there in the same loaded area. Together, the three guarantee that at least one avoids this one check for the current stored values; they do not guarantee a bite.",
+          "th": "รายชื่อปลาเป็นเงื่อนไขของบอดี้ ไม่ใช่ปีก; ROM ยังไม่จัดอันดับปีกตามการกินหรือการตกขึ้น เช็กปีกที่มีและราคาเสนอจริงก่อนจ่าย ปีกมีส่วนในเงื่อนไขซ่อนร่วมกับบอดี้ การตีชุดเดิมซ้ำไม่สุ่มค่าใหม่ และเปลี่ยนแค่ปีกอาจไม่ช่วย ถ้าปลาที่เล็งไม่ตอบสนอง ให้เปิดหน้าปลาแล้วลองชุดสำรองสำเร็จรูปทั้งสามชุดในฉากที่โหลดอยู่เดียวกัน เมื่อค่าที่เก็บไว้ยังเดิม ทั้งสามชุดจะมีอย่างน้อยหนึ่งชุดที่เลี่ยงเงื่อนไขนี้ได้ แต่ไม่รับประกันว่าปลากิน",
+          "ja": "魚リストはボディ側の判定です。食いつき・釣り上げでウィングの順位は確認されていません。所持品と最終見積額を購入判断に使います。 ウィングはボディと一緒に隠し判定を受けます。同じ組み合わせを投げ直しても保存値は再抽選されず、ウィングだけ替えても解決しないことがあります。狙った魚が反応しない場合は、魚ページの完成予備セット3組を同じ読み込み済みエリアで試してください。保存値が同じなら、3組のうち少なくとも1組がこの判定を回避しますが、食いつきは保証しません。"
         },
         "sources": [
           "docs/fly-practical-research.md",
@@ -45407,9 +45407,9 @@
           "ja": "まず対象魚がリストに載るボディを選びます。このウィングを持っているなら使えますが、食いつきや取り込み成功率を上げる根拠はROMから確認できていません。自作フライはゲームの最終見積額を確認してください。既製フライは最初に1セットだけ選び、他は必要なら予備にします。対象魚が未定なら、まずウェットボディ01の対象魚リスト（33プロフィール）を確認してください。"
         },
         "reason": {
-          "en": "The target list belongs to the body; the ROM has not ranked wings by bite or landing success. Existing wings and the final quote are the useful purchase checks.",
-          "th": "รายชื่อปลาเป็นเงื่อนไขของบอดี้ ไม่ใช่ปีก; ROM ยังไม่จัดอันดับปีกตามการกินหรือการตกขึ้น เช็กปีกที่มีและราคาเสนอจริงก่อนจ่าย",
-          "ja": "魚リストはボディ側の判定です。食いつき・釣り上げでウィングの順位は確認されていません。所持品と最終見積額を購入判断に使います。"
+          "en": "The target list belongs to the body; the ROM has not ranked wings by bite or landing success. Existing wings and the final quote are the useful purchase checks. The wing shares a hidden check with the body: recasting the same setup does not reroll it, and changing only the wing may not help. If the fish you are targeting does not respond, open its fish page and try all three complete backup bundles there in the same loaded area. Together, the three guarantee that at least one avoids this one check for the current stored values; they do not guarantee a bite.",
+          "th": "รายชื่อปลาเป็นเงื่อนไขของบอดี้ ไม่ใช่ปีก; ROM ยังไม่จัดอันดับปีกตามการกินหรือการตกขึ้น เช็กปีกที่มีและราคาเสนอจริงก่อนจ่าย ปีกมีส่วนในเงื่อนไขซ่อนร่วมกับบอดี้ การตีชุดเดิมซ้ำไม่สุ่มค่าใหม่ และเปลี่ยนแค่ปีกอาจไม่ช่วย ถ้าปลาที่เล็งไม่ตอบสนอง ให้เปิดหน้าปลาแล้วลองชุดสำรองสำเร็จรูปทั้งสามชุดในฉากที่โหลดอยู่เดียวกัน เมื่อค่าที่เก็บไว้ยังเดิม ทั้งสามชุดจะมีอย่างน้อยหนึ่งชุดที่เลี่ยงเงื่อนไขนี้ได้ แต่ไม่รับประกันว่าปลากิน",
+          "ja": "魚リストはボディ側の判定です。食いつき・釣り上げでウィングの順位は確認されていません。所持品と最終見積額を購入判断に使います。 ウィングはボディと一緒に隠し判定を受けます。同じ組み合わせを投げ直しても保存値は再抽選されず、ウィングだけ替えても解決しないことがあります。狙った魚が反応しない場合は、魚ページの完成予備セット3組を同じ読み込み済みエリアで試してください。保存値が同じなら、3組のうち少なくとも1組がこの判定を回避しますが、食いつきは保証しません。"
         },
         "sources": [
           "docs/fly-practical-research.md",
@@ -45535,9 +45535,9 @@
           "ja": "まず対象魚がリストに載るボディを選びます。このウィングを持っているなら使えますが、食いつきや取り込み成功率を上げる根拠はROMから確認できていません。自作フライはゲームの最終見積額を確認してください。既製フライは最初に1セットだけ選び、他は必要なら予備にします。対象魚が未定なら、まずウェットボディ01の対象魚リスト（33プロフィール）を確認してください。"
         },
         "reason": {
-          "en": "The target list belongs to the body; the ROM has not ranked wings by bite or landing success. Existing wings and the final quote are the useful purchase checks.",
-          "th": "รายชื่อปลาเป็นเงื่อนไขของบอดี้ ไม่ใช่ปีก; ROM ยังไม่จัดอันดับปีกตามการกินหรือการตกขึ้น เช็กปีกที่มีและราคาเสนอจริงก่อนจ่าย",
-          "ja": "魚リストはボディ側の判定です。食いつき・釣り上げでウィングの順位は確認されていません。所持品と最終見積額を購入判断に使います。"
+          "en": "The target list belongs to the body; the ROM has not ranked wings by bite or landing success. Existing wings and the final quote are the useful purchase checks. The wing shares a hidden check with the body: recasting the same setup does not reroll it, and changing only the wing may not help. If the fish you are targeting does not respond, open its fish page and try all three complete backup bundles there in the same loaded area. Together, the three guarantee that at least one avoids this one check for the current stored values; they do not guarantee a bite.",
+          "th": "รายชื่อปลาเป็นเงื่อนไขของบอดี้ ไม่ใช่ปีก; ROM ยังไม่จัดอันดับปีกตามการกินหรือการตกขึ้น เช็กปีกที่มีและราคาเสนอจริงก่อนจ่าย ปีกมีส่วนในเงื่อนไขซ่อนร่วมกับบอดี้ การตีชุดเดิมซ้ำไม่สุ่มค่าใหม่ และเปลี่ยนแค่ปีกอาจไม่ช่วย ถ้าปลาที่เล็งไม่ตอบสนอง ให้เปิดหน้าปลาแล้วลองชุดสำรองสำเร็จรูปทั้งสามชุดในฉากที่โหลดอยู่เดียวกัน เมื่อค่าที่เก็บไว้ยังเดิม ทั้งสามชุดจะมีอย่างน้อยหนึ่งชุดที่เลี่ยงเงื่อนไขนี้ได้ แต่ไม่รับประกันว่าปลากิน",
+          "ja": "魚リストはボディ側の判定です。食いつき・釣り上げでウィングの順位は確認されていません。所持品と最終見積額を購入判断に使います。 ウィングはボディと一緒に隠し判定を受けます。同じ組み合わせを投げ直しても保存値は再抽選されず、ウィングだけ替えても解決しないことがあります。狙った魚が反応しない場合は、魚ページの完成予備セット3組を同じ読み込み済みエリアで試してください。保存値が同じなら、3組のうち少なくとも1組がこの判定を回避しますが、食いつきは保証しません。"
         },
         "sources": [
           "docs/fly-practical-research.md",
@@ -45663,9 +45663,9 @@
           "ja": "まず対象魚がリストに載るボディを選びます。このウィングを持っているなら使えますが、食いつきや取り込み成功率を上げる根拠はROMから確認できていません。自作フライはゲームの最終見積額を確認してください。既製フライは最初に1セットだけ選び、他は必要なら予備にします。対象魚が未定なら、まずウェットボディ01の対象魚リスト（33プロフィール）を確認してください。"
         },
         "reason": {
-          "en": "The target list belongs to the body; the ROM has not ranked wings by bite or landing success. Existing wings and the final quote are the useful purchase checks.",
-          "th": "รายชื่อปลาเป็นเงื่อนไขของบอดี้ ไม่ใช่ปีก; ROM ยังไม่จัดอันดับปีกตามการกินหรือการตกขึ้น เช็กปีกที่มีและราคาเสนอจริงก่อนจ่าย",
-          "ja": "魚リストはボディ側の判定です。食いつき・釣り上げでウィングの順位は確認されていません。所持品と最終見積額を購入判断に使います。"
+          "en": "The target list belongs to the body; the ROM has not ranked wings by bite or landing success. Existing wings and the final quote are the useful purchase checks. The wing shares a hidden check with the body: recasting the same setup does not reroll it, and changing only the wing may not help. If the fish you are targeting does not respond, open its fish page and try all three complete backup bundles there in the same loaded area. Together, the three guarantee that at least one avoids this one check for the current stored values; they do not guarantee a bite.",
+          "th": "รายชื่อปลาเป็นเงื่อนไขของบอดี้ ไม่ใช่ปีก; ROM ยังไม่จัดอันดับปีกตามการกินหรือการตกขึ้น เช็กปีกที่มีและราคาเสนอจริงก่อนจ่าย ปีกมีส่วนในเงื่อนไขซ่อนร่วมกับบอดี้ การตีชุดเดิมซ้ำไม่สุ่มค่าใหม่ และเปลี่ยนแค่ปีกอาจไม่ช่วย ถ้าปลาที่เล็งไม่ตอบสนอง ให้เปิดหน้าปลาแล้วลองชุดสำรองสำเร็จรูปทั้งสามชุดในฉากที่โหลดอยู่เดียวกัน เมื่อค่าที่เก็บไว้ยังเดิม ทั้งสามชุดจะมีอย่างน้อยหนึ่งชุดที่เลี่ยงเงื่อนไขนี้ได้ แต่ไม่รับประกันว่าปลากิน",
+          "ja": "魚リストはボディ側の判定です。食いつき・釣り上げでウィングの順位は確認されていません。所持品と最終見積額を購入判断に使います。 ウィングはボディと一緒に隠し判定を受けます。同じ組み合わせを投げ直しても保存値は再抽選されず、ウィングだけ替えても解決しないことがあります。狙った魚が反応しない場合は、魚ページの完成予備セット3組を同じ読み込み済みエリアで試してください。保存値が同じなら、3組のうち少なくとも1組がこの判定を回避しますが、食いつきは保証しません。"
         },
         "sources": [
           "docs/fly-practical-research.md",
@@ -45791,9 +45791,9 @@
           "ja": "まず対象魚がリストに載るボディを選びます。このウィングを持っているなら使えますが、食いつきや取り込み成功率を上げる根拠はROMから確認できていません。自作フライはゲームの最終見積額を確認してください。既製フライは最初に1セットだけ選び、他は必要なら予備にします。対象魚が未定なら、まずウェットボディ01の対象魚リスト（33プロフィール）を確認してください。"
         },
         "reason": {
-          "en": "The target list belongs to the body; the ROM has not ranked wings by bite or landing success. Existing wings and the final quote are the useful purchase checks.",
-          "th": "รายชื่อปลาเป็นเงื่อนไขของบอดี้ ไม่ใช่ปีก; ROM ยังไม่จัดอันดับปีกตามการกินหรือการตกขึ้น เช็กปีกที่มีและราคาเสนอจริงก่อนจ่าย",
-          "ja": "魚リストはボディ側の判定です。食いつき・釣り上げでウィングの順位は確認されていません。所持品と最終見積額を購入判断に使います。"
+          "en": "The target list belongs to the body; the ROM has not ranked wings by bite or landing success. Existing wings and the final quote are the useful purchase checks. The wing shares a hidden check with the body: recasting the same setup does not reroll it, and changing only the wing may not help. If the fish you are targeting does not respond, open its fish page and try all three complete backup bundles there in the same loaded area. Together, the three guarantee that at least one avoids this one check for the current stored values; they do not guarantee a bite.",
+          "th": "รายชื่อปลาเป็นเงื่อนไขของบอดี้ ไม่ใช่ปีก; ROM ยังไม่จัดอันดับปีกตามการกินหรือการตกขึ้น เช็กปีกที่มีและราคาเสนอจริงก่อนจ่าย ปีกมีส่วนในเงื่อนไขซ่อนร่วมกับบอดี้ การตีชุดเดิมซ้ำไม่สุ่มค่าใหม่ และเปลี่ยนแค่ปีกอาจไม่ช่วย ถ้าปลาที่เล็งไม่ตอบสนอง ให้เปิดหน้าปลาแล้วลองชุดสำรองสำเร็จรูปทั้งสามชุดในฉากที่โหลดอยู่เดียวกัน เมื่อค่าที่เก็บไว้ยังเดิม ทั้งสามชุดจะมีอย่างน้อยหนึ่งชุดที่เลี่ยงเงื่อนไขนี้ได้ แต่ไม่รับประกันว่าปลากิน",
+          "ja": "魚リストはボディ側の判定です。食いつき・釣り上げでウィングの順位は確認されていません。所持品と最終見積額を購入判断に使います。 ウィングはボディと一緒に隠し判定を受けます。同じ組み合わせを投げ直しても保存値は再抽選されず、ウィングだけ替えても解決しないことがあります。狙った魚が反応しない場合は、魚ページの完成予備セット3組を同じ読み込み済みエリアで試してください。保存値が同じなら、3組のうち少なくとも1組がこの判定を回避しますが、食いつきは保証しません。"
         },
         "sources": [
           "docs/fly-practical-research.md",
@@ -45907,9 +45907,9 @@
           "ja": "まず対象魚がリストに載るボディを選びます。このウィングを持っているなら使えますが、食いつきや取り込み成功率を上げる根拠はROMから確認できていません。自作フライはゲームの最終見積額を確認してください。既製フライは最初に1セットだけ選び、他は必要なら予備にします。対象魚が未定なら、まずウェットボディ01の対象魚リスト（33プロフィール）を確認してください。"
         },
         "reason": {
-          "en": "The target list belongs to the body; the ROM has not ranked wings by bite or landing success. Existing wings and the final quote are the useful purchase checks.",
-          "th": "รายชื่อปลาเป็นเงื่อนไขของบอดี้ ไม่ใช่ปีก; ROM ยังไม่จัดอันดับปีกตามการกินหรือการตกขึ้น เช็กปีกที่มีและราคาเสนอจริงก่อนจ่าย",
-          "ja": "魚リストはボディ側の判定です。食いつき・釣り上げでウィングの順位は確認されていません。所持品と最終見積額を購入判断に使います。"
+          "en": "The target list belongs to the body; the ROM has not ranked wings by bite or landing success. Existing wings and the final quote are the useful purchase checks. The wing shares a hidden check with the body: recasting the same setup does not reroll it, and changing only the wing may not help. If the fish you are targeting does not respond, open its fish page and try all three complete backup bundles there in the same loaded area. Together, the three guarantee that at least one avoids this one check for the current stored values; they do not guarantee a bite.",
+          "th": "รายชื่อปลาเป็นเงื่อนไขของบอดี้ ไม่ใช่ปีก; ROM ยังไม่จัดอันดับปีกตามการกินหรือการตกขึ้น เช็กปีกที่มีและราคาเสนอจริงก่อนจ่าย ปีกมีส่วนในเงื่อนไขซ่อนร่วมกับบอดี้ การตีชุดเดิมซ้ำไม่สุ่มค่าใหม่ และเปลี่ยนแค่ปีกอาจไม่ช่วย ถ้าปลาที่เล็งไม่ตอบสนอง ให้เปิดหน้าปลาแล้วลองชุดสำรองสำเร็จรูปทั้งสามชุดในฉากที่โหลดอยู่เดียวกัน เมื่อค่าที่เก็บไว้ยังเดิม ทั้งสามชุดจะมีอย่างน้อยหนึ่งชุดที่เลี่ยงเงื่อนไขนี้ได้ แต่ไม่รับประกันว่าปลากิน",
+          "ja": "魚リストはボディ側の判定です。食いつき・釣り上げでウィングの順位は確認されていません。所持品と最終見積額を購入判断に使います。 ウィングはボディと一緒に隠し判定を受けます。同じ組み合わせを投げ直しても保存値は再抽選されず、ウィングだけ替えても解決しないことがあります。狙った魚が反応しない場合は、魚ページの完成予備セット3組を同じ読み込み済みエリアで試してください。保存値が同じなら、3組のうち少なくとも1組がこの判定を回避しますが、食いつきは保証しません。"
         },
         "sources": [
           "docs/fly-practical-research.md",
@@ -46035,9 +46035,9 @@
           "ja": "まず対象魚がリストに載るボディを選びます。このウィングを持っているなら使えますが、食いつきや取り込み成功率を上げる根拠はROMから確認できていません。自作フライはゲームの最終見積額を確認してください。既製フライは最初に1セットだけ選び、他は必要なら予備にします。対象魚が未定なら、まずウェットボディ01の対象魚リスト（33プロフィール）を確認してください。"
         },
         "reason": {
-          "en": "The target list belongs to the body; the ROM has not ranked wings by bite or landing success. Existing wings and the final quote are the useful purchase checks.",
-          "th": "รายชื่อปลาเป็นเงื่อนไขของบอดี้ ไม่ใช่ปีก; ROM ยังไม่จัดอันดับปีกตามการกินหรือการตกขึ้น เช็กปีกที่มีและราคาเสนอจริงก่อนจ่าย",
-          "ja": "魚リストはボディ側の判定です。食いつき・釣り上げでウィングの順位は確認されていません。所持品と最終見積額を購入判断に使います。"
+          "en": "The target list belongs to the body; the ROM has not ranked wings by bite or landing success. Existing wings and the final quote are the useful purchase checks. The wing shares a hidden check with the body: recasting the same setup does not reroll it, and changing only the wing may not help. If the fish you are targeting does not respond, open its fish page and try all three complete backup bundles there in the same loaded area. Together, the three guarantee that at least one avoids this one check for the current stored values; they do not guarantee a bite.",
+          "th": "รายชื่อปลาเป็นเงื่อนไขของบอดี้ ไม่ใช่ปีก; ROM ยังไม่จัดอันดับปีกตามการกินหรือการตกขึ้น เช็กปีกที่มีและราคาเสนอจริงก่อนจ่าย ปีกมีส่วนในเงื่อนไขซ่อนร่วมกับบอดี้ การตีชุดเดิมซ้ำไม่สุ่มค่าใหม่ และเปลี่ยนแค่ปีกอาจไม่ช่วย ถ้าปลาที่เล็งไม่ตอบสนอง ให้เปิดหน้าปลาแล้วลองชุดสำรองสำเร็จรูปทั้งสามชุดในฉากที่โหลดอยู่เดียวกัน เมื่อค่าที่เก็บไว้ยังเดิม ทั้งสามชุดจะมีอย่างน้อยหนึ่งชุดที่เลี่ยงเงื่อนไขนี้ได้ แต่ไม่รับประกันว่าปลากิน",
+          "ja": "魚リストはボディ側の判定です。食いつき・釣り上げでウィングの順位は確認されていません。所持品と最終見積額を購入判断に使います。 ウィングはボディと一緒に隠し判定を受けます。同じ組み合わせを投げ直しても保存値は再抽選されず、ウィングだけ替えても解決しないことがあります。狙った魚が反応しない場合は、魚ページの完成予備セット3組を同じ読み込み済みエリアで試してください。保存値が同じなら、3組のうち少なくとも1組がこの判定を回避しますが、食いつきは保証しません。"
         },
         "sources": [
           "docs/fly-practical-research.md",
@@ -46151,9 +46151,9 @@
           "ja": "まず対象魚がリストに載るボディを選びます。このウィングを持っているなら使えますが、食いつきや取り込み成功率を上げる根拠はROMから確認できていません。自作フライはゲームの最終見積額を確認してください。既製フライは最初に1セットだけ選び、他は必要なら予備にします。対象魚が未定なら、まずウェットボディ01の対象魚リスト（33プロフィール）を確認してください。"
         },
         "reason": {
-          "en": "The target list belongs to the body; the ROM has not ranked wings by bite or landing success. Existing wings and the final quote are the useful purchase checks.",
-          "th": "รายชื่อปลาเป็นเงื่อนไขของบอดี้ ไม่ใช่ปีก; ROM ยังไม่จัดอันดับปีกตามการกินหรือการตกขึ้น เช็กปีกที่มีและราคาเสนอจริงก่อนจ่าย",
-          "ja": "魚リストはボディ側の判定です。食いつき・釣り上げでウィングの順位は確認されていません。所持品と最終見積額を購入判断に使います。"
+          "en": "The target list belongs to the body; the ROM has not ranked wings by bite or landing success. Existing wings and the final quote are the useful purchase checks. The wing shares a hidden check with the body: recasting the same setup does not reroll it, and changing only the wing may not help. If the fish you are targeting does not respond, open its fish page and try all three complete backup bundles there in the same loaded area. Together, the three guarantee that at least one avoids this one check for the current stored values; they do not guarantee a bite.",
+          "th": "รายชื่อปลาเป็นเงื่อนไขของบอดี้ ไม่ใช่ปีก; ROM ยังไม่จัดอันดับปีกตามการกินหรือการตกขึ้น เช็กปีกที่มีและราคาเสนอจริงก่อนจ่าย ปีกมีส่วนในเงื่อนไขซ่อนร่วมกับบอดี้ การตีชุดเดิมซ้ำไม่สุ่มค่าใหม่ และเปลี่ยนแค่ปีกอาจไม่ช่วย ถ้าปลาที่เล็งไม่ตอบสนอง ให้เปิดหน้าปลาแล้วลองชุดสำรองสำเร็จรูปทั้งสามชุดในฉากที่โหลดอยู่เดียวกัน เมื่อค่าที่เก็บไว้ยังเดิม ทั้งสามชุดจะมีอย่างน้อยหนึ่งชุดที่เลี่ยงเงื่อนไขนี้ได้ แต่ไม่รับประกันว่าปลากิน",
+          "ja": "魚リストはボディ側の判定です。食いつき・釣り上げでウィングの順位は確認されていません。所持品と最終見積額を購入判断に使います。 ウィングはボディと一緒に隠し判定を受けます。同じ組み合わせを投げ直しても保存値は再抽選されず、ウィングだけ替えても解決しないことがあります。狙った魚が反応しない場合は、魚ページの完成予備セット3組を同じ読み込み済みエリアで試してください。保存値が同じなら、3組のうち少なくとも1組がこの判定を回避しますが、食いつきは保証しません。"
         },
         "sources": [
           "docs/fly-practical-research.md",
@@ -46279,9 +46279,9 @@
           "ja": "まず対象魚がリストに載るボディを選びます。このウィングを持っているなら使えますが、食いつきや取り込み成功率を上げる根拠はROMから確認できていません。自作フライはゲームの最終見積額を確認してください。既製フライは最初に1セットだけ選び、他は必要なら予備にします。対象魚が未定なら、まずウェットボディ01の対象魚リスト（33プロフィール）を確認してください。"
         },
         "reason": {
-          "en": "The target list belongs to the body; the ROM has not ranked wings by bite or landing success. Existing wings and the final quote are the useful purchase checks.",
-          "th": "รายชื่อปลาเป็นเงื่อนไขของบอดี้ ไม่ใช่ปีก; ROM ยังไม่จัดอันดับปีกตามการกินหรือการตกขึ้น เช็กปีกที่มีและราคาเสนอจริงก่อนจ่าย",
-          "ja": "魚リストはボディ側の判定です。食いつき・釣り上げでウィングの順位は確認されていません。所持品と最終見積額を購入判断に使います。"
+          "en": "The target list belongs to the body; the ROM has not ranked wings by bite or landing success. Existing wings and the final quote are the useful purchase checks. The wing shares a hidden check with the body: recasting the same setup does not reroll it, and changing only the wing may not help. If the fish you are targeting does not respond, open its fish page and try all three complete backup bundles there in the same loaded area. Together, the three guarantee that at least one avoids this one check for the current stored values; they do not guarantee a bite.",
+          "th": "รายชื่อปลาเป็นเงื่อนไขของบอดี้ ไม่ใช่ปีก; ROM ยังไม่จัดอันดับปีกตามการกินหรือการตกขึ้น เช็กปีกที่มีและราคาเสนอจริงก่อนจ่าย ปีกมีส่วนในเงื่อนไขซ่อนร่วมกับบอดี้ การตีชุดเดิมซ้ำไม่สุ่มค่าใหม่ และเปลี่ยนแค่ปีกอาจไม่ช่วย ถ้าปลาที่เล็งไม่ตอบสนอง ให้เปิดหน้าปลาแล้วลองชุดสำรองสำเร็จรูปทั้งสามชุดในฉากที่โหลดอยู่เดียวกัน เมื่อค่าที่เก็บไว้ยังเดิม ทั้งสามชุดจะมีอย่างน้อยหนึ่งชุดที่เลี่ยงเงื่อนไขนี้ได้ แต่ไม่รับประกันว่าปลากิน",
+          "ja": "魚リストはボディ側の判定です。食いつき・釣り上げでウィングの順位は確認されていません。所持品と最終見積額を購入判断に使います。 ウィングはボディと一緒に隠し判定を受けます。同じ組み合わせを投げ直しても保存値は再抽選されず、ウィングだけ替えても解決しないことがあります。狙った魚が反応しない場合は、魚ページの完成予備セット3組を同じ読み込み済みエリアで試してください。保存値が同じなら、3組のうち少なくとも1組がこの判定を回避しますが、食いつきは保証しません。"
         },
         "sources": [
           "docs/fly-practical-research.md",
@@ -46407,9 +46407,9 @@
           "ja": "まず対象魚がリストに載るボディを選びます。このウィングを持っているなら使えますが、食いつきや取り込み成功率を上げる根拠はROMから確認できていません。自作フライはゲームの最終見積額を確認してください。既製フライは最初に1セットだけ選び、他は必要なら予備にします。対象魚が未定なら、まずウェットボディ01の対象魚リスト（33プロフィール）を確認してください。"
         },
         "reason": {
-          "en": "The target list belongs to the body; the ROM has not ranked wings by bite or landing success. Existing wings and the final quote are the useful purchase checks.",
-          "th": "รายชื่อปลาเป็นเงื่อนไขของบอดี้ ไม่ใช่ปีก; ROM ยังไม่จัดอันดับปีกตามการกินหรือการตกขึ้น เช็กปีกที่มีและราคาเสนอจริงก่อนจ่าย",
-          "ja": "魚リストはボディ側の判定です。食いつき・釣り上げでウィングの順位は確認されていません。所持品と最終見積額を購入判断に使います。"
+          "en": "The target list belongs to the body; the ROM has not ranked wings by bite or landing success. Existing wings and the final quote are the useful purchase checks. The wing shares a hidden check with the body: recasting the same setup does not reroll it, and changing only the wing may not help. If the fish you are targeting does not respond, open its fish page and try all three complete backup bundles there in the same loaded area. Together, the three guarantee that at least one avoids this one check for the current stored values; they do not guarantee a bite.",
+          "th": "รายชื่อปลาเป็นเงื่อนไขของบอดี้ ไม่ใช่ปีก; ROM ยังไม่จัดอันดับปีกตามการกินหรือการตกขึ้น เช็กปีกที่มีและราคาเสนอจริงก่อนจ่าย ปีกมีส่วนในเงื่อนไขซ่อนร่วมกับบอดี้ การตีชุดเดิมซ้ำไม่สุ่มค่าใหม่ และเปลี่ยนแค่ปีกอาจไม่ช่วย ถ้าปลาที่เล็งไม่ตอบสนอง ให้เปิดหน้าปลาแล้วลองชุดสำรองสำเร็จรูปทั้งสามชุดในฉากที่โหลดอยู่เดียวกัน เมื่อค่าที่เก็บไว้ยังเดิม ทั้งสามชุดจะมีอย่างน้อยหนึ่งชุดที่เลี่ยงเงื่อนไขนี้ได้ แต่ไม่รับประกันว่าปลากิน",
+          "ja": "魚リストはボディ側の判定です。食いつき・釣り上げでウィングの順位は確認されていません。所持品と最終見積額を購入判断に使います。 ウィングはボディと一緒に隠し判定を受けます。同じ組み合わせを投げ直しても保存値は再抽選されず、ウィングだけ替えても解決しないことがあります。狙った魚が反応しない場合は、魚ページの完成予備セット3組を同じ読み込み済みエリアで試してください。保存値が同じなら、3組のうち少なくとも1組がこの判定を回避しますが、食いつきは保証しません。"
         },
         "sources": [
           "docs/fly-practical-research.md",
@@ -46535,9 +46535,9 @@
           "ja": "まず対象魚がリストに載るボディを選びます。このウィングを持っているなら使えますが、食いつきや取り込み成功率を上げる根拠はROMから確認できていません。自作フライはゲームの最終見積額を確認してください。既製フライは最初に1セットだけ選び、他は必要なら予備にします。対象魚が未定なら、まずウェットボディ01の対象魚リスト（33プロフィール）を確認してください。"
         },
         "reason": {
-          "en": "The target list belongs to the body; the ROM has not ranked wings by bite or landing success. Existing wings and the final quote are the useful purchase checks.",
-          "th": "รายชื่อปลาเป็นเงื่อนไขของบอดี้ ไม่ใช่ปีก; ROM ยังไม่จัดอันดับปีกตามการกินหรือการตกขึ้น เช็กปีกที่มีและราคาเสนอจริงก่อนจ่าย",
-          "ja": "魚リストはボディ側の判定です。食いつき・釣り上げでウィングの順位は確認されていません。所持品と最終見積額を購入判断に使います。"
+          "en": "The target list belongs to the body; the ROM has not ranked wings by bite or landing success. Existing wings and the final quote are the useful purchase checks. The wing shares a hidden check with the body: recasting the same setup does not reroll it, and changing only the wing may not help. If the fish you are targeting does not respond, open its fish page and try all three complete backup bundles there in the same loaded area. Together, the three guarantee that at least one avoids this one check for the current stored values; they do not guarantee a bite.",
+          "th": "รายชื่อปลาเป็นเงื่อนไขของบอดี้ ไม่ใช่ปีก; ROM ยังไม่จัดอันดับปีกตามการกินหรือการตกขึ้น เช็กปีกที่มีและราคาเสนอจริงก่อนจ่าย ปีกมีส่วนในเงื่อนไขซ่อนร่วมกับบอดี้ การตีชุดเดิมซ้ำไม่สุ่มค่าใหม่ และเปลี่ยนแค่ปีกอาจไม่ช่วย ถ้าปลาที่เล็งไม่ตอบสนอง ให้เปิดหน้าปลาแล้วลองชุดสำรองสำเร็จรูปทั้งสามชุดในฉากที่โหลดอยู่เดียวกัน เมื่อค่าที่เก็บไว้ยังเดิม ทั้งสามชุดจะมีอย่างน้อยหนึ่งชุดที่เลี่ยงเงื่อนไขนี้ได้ แต่ไม่รับประกันว่าปลากิน",
+          "ja": "魚リストはボディ側の判定です。食いつき・釣り上げでウィングの順位は確認されていません。所持品と最終見積額を購入判断に使います。 ウィングはボディと一緒に隠し判定を受けます。同じ組み合わせを投げ直しても保存値は再抽選されず、ウィングだけ替えても解決しないことがあります。狙った魚が反応しない場合は、魚ページの完成予備セット3組を同じ読み込み済みエリアで試してください。保存値が同じなら、3組のうち少なくとも1組がこの判定を回避しますが、食いつきは保証しません。"
         },
         "sources": [
           "docs/fly-practical-research.md",
@@ -46663,9 +46663,9 @@
           "ja": "まず対象魚がリストに載るボディを選びます。このウィングを持っているなら使えますが、食いつきや取り込み成功率を上げる根拠はROMから確認できていません。自作フライはゲームの最終見積額を確認してください。既製フライは最初に1セットだけ選び、他は必要なら予備にします。対象魚が未定なら、まずウェットボディ01の対象魚リスト（33プロフィール）を確認してください。"
         },
         "reason": {
-          "en": "The target list belongs to the body; the ROM has not ranked wings by bite or landing success. Existing wings and the final quote are the useful purchase checks.",
-          "th": "รายชื่อปลาเป็นเงื่อนไขของบอดี้ ไม่ใช่ปีก; ROM ยังไม่จัดอันดับปีกตามการกินหรือการตกขึ้น เช็กปีกที่มีและราคาเสนอจริงก่อนจ่าย",
-          "ja": "魚リストはボディ側の判定です。食いつき・釣り上げでウィングの順位は確認されていません。所持品と最終見積額を購入判断に使います。"
+          "en": "The target list belongs to the body; the ROM has not ranked wings by bite or landing success. Existing wings and the final quote are the useful purchase checks. The wing shares a hidden check with the body: recasting the same setup does not reroll it, and changing only the wing may not help. If the fish you are targeting does not respond, open its fish page and try all three complete backup bundles there in the same loaded area. Together, the three guarantee that at least one avoids this one check for the current stored values; they do not guarantee a bite.",
+          "th": "รายชื่อปลาเป็นเงื่อนไขของบอดี้ ไม่ใช่ปีก; ROM ยังไม่จัดอันดับปีกตามการกินหรือการตกขึ้น เช็กปีกที่มีและราคาเสนอจริงก่อนจ่าย ปีกมีส่วนในเงื่อนไขซ่อนร่วมกับบอดี้ การตีชุดเดิมซ้ำไม่สุ่มค่าใหม่ และเปลี่ยนแค่ปีกอาจไม่ช่วย ถ้าปลาที่เล็งไม่ตอบสนอง ให้เปิดหน้าปลาแล้วลองชุดสำรองสำเร็จรูปทั้งสามชุดในฉากที่โหลดอยู่เดียวกัน เมื่อค่าที่เก็บไว้ยังเดิม ทั้งสามชุดจะมีอย่างน้อยหนึ่งชุดที่เลี่ยงเงื่อนไขนี้ได้ แต่ไม่รับประกันว่าปลากิน",
+          "ja": "魚リストはボディ側の判定です。食いつき・釣り上げでウィングの順位は確認されていません。所持品と最終見積額を購入判断に使います。 ウィングはボディと一緒に隠し判定を受けます。同じ組み合わせを投げ直しても保存値は再抽選されず、ウィングだけ替えても解決しないことがあります。狙った魚が反応しない場合は、魚ページの完成予備セット3組を同じ読み込み済みエリアで試してください。保存値が同じなら、3組のうち少なくとも1組がこの判定を回避しますが、食いつきは保証しません。"
         },
         "sources": [
           "docs/fly-practical-research.md",
@@ -46791,9 +46791,9 @@
           "ja": "まず対象魚がリストに載るボディを選びます。このウィングを持っているなら使えますが、食いつきや取り込み成功率を上げる根拠はROMから確認できていません。自作フライはゲームの最終見積額を確認してください。既製フライは最初に1セットだけ選び、他は必要なら予備にします。対象魚が未定なら、まずウェットボディ01の対象魚リスト（33プロフィール）を確認してください。"
         },
         "reason": {
-          "en": "The target list belongs to the body; the ROM has not ranked wings by bite or landing success. Existing wings and the final quote are the useful purchase checks.",
-          "th": "รายชื่อปลาเป็นเงื่อนไขของบอดี้ ไม่ใช่ปีก; ROM ยังไม่จัดอันดับปีกตามการกินหรือการตกขึ้น เช็กปีกที่มีและราคาเสนอจริงก่อนจ่าย",
-          "ja": "魚リストはボディ側の判定です。食いつき・釣り上げでウィングの順位は確認されていません。所持品と最終見積額を購入判断に使います。"
+          "en": "The target list belongs to the body; the ROM has not ranked wings by bite or landing success. Existing wings and the final quote are the useful purchase checks. The wing shares a hidden check with the body: recasting the same setup does not reroll it, and changing only the wing may not help. If the fish you are targeting does not respond, open its fish page and try all three complete backup bundles there in the same loaded area. Together, the three guarantee that at least one avoids this one check for the current stored values; they do not guarantee a bite.",
+          "th": "รายชื่อปลาเป็นเงื่อนไขของบอดี้ ไม่ใช่ปีก; ROM ยังไม่จัดอันดับปีกตามการกินหรือการตกขึ้น เช็กปีกที่มีและราคาเสนอจริงก่อนจ่าย ปีกมีส่วนในเงื่อนไขซ่อนร่วมกับบอดี้ การตีชุดเดิมซ้ำไม่สุ่มค่าใหม่ และเปลี่ยนแค่ปีกอาจไม่ช่วย ถ้าปลาที่เล็งไม่ตอบสนอง ให้เปิดหน้าปลาแล้วลองชุดสำรองสำเร็จรูปทั้งสามชุดในฉากที่โหลดอยู่เดียวกัน เมื่อค่าที่เก็บไว้ยังเดิม ทั้งสามชุดจะมีอย่างน้อยหนึ่งชุดที่เลี่ยงเงื่อนไขนี้ได้ แต่ไม่รับประกันว่าปลากิน",
+          "ja": "魚リストはボディ側の判定です。食いつき・釣り上げでウィングの順位は確認されていません。所持品と最終見積額を購入判断に使います。 ウィングはボディと一緒に隠し判定を受けます。同じ組み合わせを投げ直しても保存値は再抽選されず、ウィングだけ替えても解決しないことがあります。狙った魚が反応しない場合は、魚ページの完成予備セット3組を同じ読み込み済みエリアで試してください。保存値が同じなら、3組のうち少なくとも1組がこの判定を回避しますが、食いつきは保証しません。"
         },
         "sources": [
           "docs/fly-practical-research.md",
@@ -46919,9 +46919,9 @@
           "ja": "まず対象魚がリストに載るボディを選びます。このウィングを持っているなら使えますが、食いつきや取り込み成功率を上げる根拠はROMから確認できていません。自作フライはゲームの最終見積額を確認してください。既製フライは最初に1セットだけ選び、他は必要なら予備にします。対象魚が未定なら、まずウェットボディ01の対象魚リスト（33プロフィール）を確認してください。"
         },
         "reason": {
-          "en": "The target list belongs to the body; the ROM has not ranked wings by bite or landing success. Existing wings and the final quote are the useful purchase checks.",
-          "th": "รายชื่อปลาเป็นเงื่อนไขของบอดี้ ไม่ใช่ปีก; ROM ยังไม่จัดอันดับปีกตามการกินหรือการตกขึ้น เช็กปีกที่มีและราคาเสนอจริงก่อนจ่าย",
-          "ja": "魚リストはボディ側の判定です。食いつき・釣り上げでウィングの順位は確認されていません。所持品と最終見積額を購入判断に使います。"
+          "en": "The target list belongs to the body; the ROM has not ranked wings by bite or landing success. Existing wings and the final quote are the useful purchase checks. The wing shares a hidden check with the body: recasting the same setup does not reroll it, and changing only the wing may not help. If the fish you are targeting does not respond, open its fish page and try all three complete backup bundles there in the same loaded area. Together, the three guarantee that at least one avoids this one check for the current stored values; they do not guarantee a bite.",
+          "th": "รายชื่อปลาเป็นเงื่อนไขของบอดี้ ไม่ใช่ปีก; ROM ยังไม่จัดอันดับปีกตามการกินหรือการตกขึ้น เช็กปีกที่มีและราคาเสนอจริงก่อนจ่าย ปีกมีส่วนในเงื่อนไขซ่อนร่วมกับบอดี้ การตีชุดเดิมซ้ำไม่สุ่มค่าใหม่ และเปลี่ยนแค่ปีกอาจไม่ช่วย ถ้าปลาที่เล็งไม่ตอบสนอง ให้เปิดหน้าปลาแล้วลองชุดสำรองสำเร็จรูปทั้งสามชุดในฉากที่โหลดอยู่เดียวกัน เมื่อค่าที่เก็บไว้ยังเดิม ทั้งสามชุดจะมีอย่างน้อยหนึ่งชุดที่เลี่ยงเงื่อนไขนี้ได้ แต่ไม่รับประกันว่าปลากิน",
+          "ja": "魚リストはボディ側の判定です。食いつき・釣り上げでウィングの順位は確認されていません。所持品と最終見積額を購入判断に使います。 ウィングはボディと一緒に隠し判定を受けます。同じ組み合わせを投げ直しても保存値は再抽選されず、ウィングだけ替えても解決しないことがあります。狙った魚が反応しない場合は、魚ページの完成予備セット3組を同じ読み込み済みエリアで試してください。保存値が同じなら、3組のうち少なくとも1組がこの判定を回避しますが、食いつきは保証しません。"
         },
         "sources": [
           "docs/fly-practical-research.md",
@@ -47047,9 +47047,9 @@
           "ja": "まず対象魚がリストに載るボディを選びます。このウィングを持っているなら使えますが、食いつきや取り込み成功率を上げる根拠はROMから確認できていません。自作フライはゲームの最終見積額を確認してください。既製フライは最初に1セットだけ選び、他は必要なら予備にします。対象魚が未定なら、まずウェットボディ01の対象魚リスト（33プロフィール）を確認してください。"
         },
         "reason": {
-          "en": "The target list belongs to the body; the ROM has not ranked wings by bite or landing success. Existing wings and the final quote are the useful purchase checks.",
-          "th": "รายชื่อปลาเป็นเงื่อนไขของบอดี้ ไม่ใช่ปีก; ROM ยังไม่จัดอันดับปีกตามการกินหรือการตกขึ้น เช็กปีกที่มีและราคาเสนอจริงก่อนจ่าย",
-          "ja": "魚リストはボディ側の判定です。食いつき・釣り上げでウィングの順位は確認されていません。所持品と最終見積額を購入判断に使います。"
+          "en": "The target list belongs to the body; the ROM has not ranked wings by bite or landing success. Existing wings and the final quote are the useful purchase checks. The wing shares a hidden check with the body: recasting the same setup does not reroll it, and changing only the wing may not help. If the fish you are targeting does not respond, open its fish page and try all three complete backup bundles there in the same loaded area. Together, the three guarantee that at least one avoids this one check for the current stored values; they do not guarantee a bite.",
+          "th": "รายชื่อปลาเป็นเงื่อนไขของบอดี้ ไม่ใช่ปีก; ROM ยังไม่จัดอันดับปีกตามการกินหรือการตกขึ้น เช็กปีกที่มีและราคาเสนอจริงก่อนจ่าย ปีกมีส่วนในเงื่อนไขซ่อนร่วมกับบอดี้ การตีชุดเดิมซ้ำไม่สุ่มค่าใหม่ และเปลี่ยนแค่ปีกอาจไม่ช่วย ถ้าปลาที่เล็งไม่ตอบสนอง ให้เปิดหน้าปลาแล้วลองชุดสำรองสำเร็จรูปทั้งสามชุดในฉากที่โหลดอยู่เดียวกัน เมื่อค่าที่เก็บไว้ยังเดิม ทั้งสามชุดจะมีอย่างน้อยหนึ่งชุดที่เลี่ยงเงื่อนไขนี้ได้ แต่ไม่รับประกันว่าปลากิน",
+          "ja": "魚リストはボディ側の判定です。食いつき・釣り上げでウィングの順位は確認されていません。所持品と最終見積額を購入判断に使います。 ウィングはボディと一緒に隠し判定を受けます。同じ組み合わせを投げ直しても保存値は再抽選されず、ウィングだけ替えても解決しないことがあります。狙った魚が反応しない場合は、魚ページの完成予備セット3組を同じ読み込み済みエリアで試してください。保存値が同じなら、3組のうち少なくとも1組がこの判定を回避しますが、食いつきは保証しません。"
         },
         "sources": [
           "docs/fly-practical-research.md",
@@ -47163,9 +47163,9 @@
           "ja": "まず対象魚がリストに載るボディを選びます。このウィングを持っているなら使えますが、食いつきや取り込み成功率を上げる根拠はROMから確認できていません。自作フライはゲームの最終見積額を確認してください。既製フライは最初に1セットだけ選び、他は必要なら予備にします。対象魚が未定なら、まずウェットボディ01の対象魚リスト（33プロフィール）を確認してください。"
         },
         "reason": {
-          "en": "The target list belongs to the body; the ROM has not ranked wings by bite or landing success. Existing wings and the final quote are the useful purchase checks.",
-          "th": "รายชื่อปลาเป็นเงื่อนไขของบอดี้ ไม่ใช่ปีก; ROM ยังไม่จัดอันดับปีกตามการกินหรือการตกขึ้น เช็กปีกที่มีและราคาเสนอจริงก่อนจ่าย",
-          "ja": "魚リストはボディ側の判定です。食いつき・釣り上げでウィングの順位は確認されていません。所持品と最終見積額を購入判断に使います。"
+          "en": "The target list belongs to the body; the ROM has not ranked wings by bite or landing success. Existing wings and the final quote are the useful purchase checks. The wing shares a hidden check with the body: recasting the same setup does not reroll it, and changing only the wing may not help. If the fish you are targeting does not respond, open its fish page and try all three complete backup bundles there in the same loaded area. Together, the three guarantee that at least one avoids this one check for the current stored values; they do not guarantee a bite.",
+          "th": "รายชื่อปลาเป็นเงื่อนไขของบอดี้ ไม่ใช่ปีก; ROM ยังไม่จัดอันดับปีกตามการกินหรือการตกขึ้น เช็กปีกที่มีและราคาเสนอจริงก่อนจ่าย ปีกมีส่วนในเงื่อนไขซ่อนร่วมกับบอดี้ การตีชุดเดิมซ้ำไม่สุ่มค่าใหม่ และเปลี่ยนแค่ปีกอาจไม่ช่วย ถ้าปลาที่เล็งไม่ตอบสนอง ให้เปิดหน้าปลาแล้วลองชุดสำรองสำเร็จรูปทั้งสามชุดในฉากที่โหลดอยู่เดียวกัน เมื่อค่าที่เก็บไว้ยังเดิม ทั้งสามชุดจะมีอย่างน้อยหนึ่งชุดที่เลี่ยงเงื่อนไขนี้ได้ แต่ไม่รับประกันว่าปลากิน",
+          "ja": "魚リストはボディ側の判定です。食いつき・釣り上げでウィングの順位は確認されていません。所持品と最終見積額を購入判断に使います。 ウィングはボディと一緒に隠し判定を受けます。同じ組み合わせを投げ直しても保存値は再抽選されず、ウィングだけ替えても解決しないことがあります。狙った魚が反応しない場合は、魚ページの完成予備セット3組を同じ読み込み済みエリアで試してください。保存値が同じなら、3組のうち少なくとも1組がこの判定を回避しますが、食いつきは保証しません。"
         },
         "sources": [
           "docs/fly-practical-research.md",
@@ -47279,9 +47279,9 @@
           "ja": "まず対象魚がリストに載るボディを選びます。このウィングを持っているなら使えますが、食いつきや取り込み成功率を上げる根拠はROMから確認できていません。自作フライはゲームの最終見積額を確認してください。既製フライは最初に1セットだけ選び、他は必要なら予備にします。対象魚が未定なら、まずウェットボディ01の対象魚リスト（33プロフィール）を確認してください。"
         },
         "reason": {
-          "en": "The target list belongs to the body; the ROM has not ranked wings by bite or landing success. Existing wings and the final quote are the useful purchase checks.",
-          "th": "รายชื่อปลาเป็นเงื่อนไขของบอดี้ ไม่ใช่ปีก; ROM ยังไม่จัดอันดับปีกตามการกินหรือการตกขึ้น เช็กปีกที่มีและราคาเสนอจริงก่อนจ่าย",
-          "ja": "魚リストはボディ側の判定です。食いつき・釣り上げでウィングの順位は確認されていません。所持品と最終見積額を購入判断に使います。"
+          "en": "The target list belongs to the body; the ROM has not ranked wings by bite or landing success. Existing wings and the final quote are the useful purchase checks. The wing shares a hidden check with the body: recasting the same setup does not reroll it, and changing only the wing may not help. If the fish you are targeting does not respond, open its fish page and try all three complete backup bundles there in the same loaded area. Together, the three guarantee that at least one avoids this one check for the current stored values; they do not guarantee a bite.",
+          "th": "รายชื่อปลาเป็นเงื่อนไขของบอดี้ ไม่ใช่ปีก; ROM ยังไม่จัดอันดับปีกตามการกินหรือการตกขึ้น เช็กปีกที่มีและราคาเสนอจริงก่อนจ่าย ปีกมีส่วนในเงื่อนไขซ่อนร่วมกับบอดี้ การตีชุดเดิมซ้ำไม่สุ่มค่าใหม่ และเปลี่ยนแค่ปีกอาจไม่ช่วย ถ้าปลาที่เล็งไม่ตอบสนอง ให้เปิดหน้าปลาแล้วลองชุดสำรองสำเร็จรูปทั้งสามชุดในฉากที่โหลดอยู่เดียวกัน เมื่อค่าที่เก็บไว้ยังเดิม ทั้งสามชุดจะมีอย่างน้อยหนึ่งชุดที่เลี่ยงเงื่อนไขนี้ได้ แต่ไม่รับประกันว่าปลากิน",
+          "ja": "魚リストはボディ側の判定です。食いつき・釣り上げでウィングの順位は確認されていません。所持品と最終見積額を購入判断に使います。 ウィングはボディと一緒に隠し判定を受けます。同じ組み合わせを投げ直しても保存値は再抽選されず、ウィングだけ替えても解決しないことがあります。狙った魚が反応しない場合は、魚ページの完成予備セット3組を同じ読み込み済みエリアで試してください。保存値が同じなら、3組のうち少なくとも1組がこの判定を回避しますが、食いつきは保証しません。"
         },
         "sources": [
           "docs/fly-practical-research.md",
@@ -47407,9 +47407,9 @@
           "ja": "まず対象魚がリストに載るボディを選びます。このウィングを持っているなら使えますが、食いつきや取り込み成功率を上げる根拠はROMから確認できていません。自作フライはゲームの最終見積額を確認してください。既製フライは最初に1セットだけ選び、他は必要なら予備にします。対象魚が未定なら、まずウェットボディ01の対象魚リスト（33プロフィール）を確認してください。"
         },
         "reason": {
-          "en": "The target list belongs to the body; the ROM has not ranked wings by bite or landing success. Existing wings and the final quote are the useful purchase checks.",
-          "th": "รายชื่อปลาเป็นเงื่อนไขของบอดี้ ไม่ใช่ปีก; ROM ยังไม่จัดอันดับปีกตามการกินหรือการตกขึ้น เช็กปีกที่มีและราคาเสนอจริงก่อนจ่าย",
-          "ja": "魚リストはボディ側の判定です。食いつき・釣り上げでウィングの順位は確認されていません。所持品と最終見積額を購入判断に使います。"
+          "en": "The target list belongs to the body; the ROM has not ranked wings by bite or landing success. Existing wings and the final quote are the useful purchase checks. The wing shares a hidden check with the body: recasting the same setup does not reroll it, and changing only the wing may not help. If the fish you are targeting does not respond, open its fish page and try all three complete backup bundles there in the same loaded area. Together, the three guarantee that at least one avoids this one check for the current stored values; they do not guarantee a bite.",
+          "th": "รายชื่อปลาเป็นเงื่อนไขของบอดี้ ไม่ใช่ปีก; ROM ยังไม่จัดอันดับปีกตามการกินหรือการตกขึ้น เช็กปีกที่มีและราคาเสนอจริงก่อนจ่าย ปีกมีส่วนในเงื่อนไขซ่อนร่วมกับบอดี้ การตีชุดเดิมซ้ำไม่สุ่มค่าใหม่ และเปลี่ยนแค่ปีกอาจไม่ช่วย ถ้าปลาที่เล็งไม่ตอบสนอง ให้เปิดหน้าปลาแล้วลองชุดสำรองสำเร็จรูปทั้งสามชุดในฉากที่โหลดอยู่เดียวกัน เมื่อค่าที่เก็บไว้ยังเดิม ทั้งสามชุดจะมีอย่างน้อยหนึ่งชุดที่เลี่ยงเงื่อนไขนี้ได้ แต่ไม่รับประกันว่าปลากิน",
+          "ja": "魚リストはボディ側の判定です。食いつき・釣り上げでウィングの順位は確認されていません。所持品と最終見積額を購入判断に使います。 ウィングはボディと一緒に隠し判定を受けます。同じ組み合わせを投げ直しても保存値は再抽選されず、ウィングだけ替えても解決しないことがあります。狙った魚が反応しない場合は、魚ページの完成予備セット3組を同じ読み込み済みエリアで試してください。保存値が同じなら、3組のうち少なくとも1組がこの判定を回避しますが、食いつきは保証しません。"
         },
         "sources": [
           "docs/fly-practical-research.md",
@@ -47546,9 +47546,9 @@
           "ja": "まず対象魚がリストに載るボディを選びます。このウィングを持っているなら使えますが、食いつきや取り込み成功率を上げる根拠はROMから確認できていません。自作フライはゲームの最終見積額を確認してください。既製フライは最初に1セットだけ選び、他は必要なら予備にします。対象魚が未定なら、まずウェットボディ01の対象魚リスト（33プロフィール）を確認してください。"
         },
         "reason": {
-          "en": "The target list belongs to the body; the ROM has not ranked wings by bite or landing success. Existing wings and the final quote are the useful purchase checks.",
-          "th": "รายชื่อปลาเป็นเงื่อนไขของบอดี้ ไม่ใช่ปีก; ROM ยังไม่จัดอันดับปีกตามการกินหรือการตกขึ้น เช็กปีกที่มีและราคาเสนอจริงก่อนจ่าย",
-          "ja": "魚リストはボディ側の判定です。食いつき・釣り上げでウィングの順位は確認されていません。所持品と最終見積額を購入判断に使います。"
+          "en": "The target list belongs to the body; the ROM has not ranked wings by bite or landing success. Existing wings and the final quote are the useful purchase checks. The wing shares a hidden check with the body: recasting the same setup does not reroll it, and changing only the wing may not help. If the fish you are targeting does not respond, open its fish page and try all three complete backup bundles there in the same loaded area. Together, the three guarantee that at least one avoids this one check for the current stored values; they do not guarantee a bite.",
+          "th": "รายชื่อปลาเป็นเงื่อนไขของบอดี้ ไม่ใช่ปีก; ROM ยังไม่จัดอันดับปีกตามการกินหรือการตกขึ้น เช็กปีกที่มีและราคาเสนอจริงก่อนจ่าย ปีกมีส่วนในเงื่อนไขซ่อนร่วมกับบอดี้ การตีชุดเดิมซ้ำไม่สุ่มค่าใหม่ และเปลี่ยนแค่ปีกอาจไม่ช่วย ถ้าปลาที่เล็งไม่ตอบสนอง ให้เปิดหน้าปลาแล้วลองชุดสำรองสำเร็จรูปทั้งสามชุดในฉากที่โหลดอยู่เดียวกัน เมื่อค่าที่เก็บไว้ยังเดิม ทั้งสามชุดจะมีอย่างน้อยหนึ่งชุดที่เลี่ยงเงื่อนไขนี้ได้ แต่ไม่รับประกันว่าปลากิน",
+          "ja": "魚リストはボディ側の判定です。食いつき・釣り上げでウィングの順位は確認されていません。所持品と最終見積額を購入判断に使います。 ウィングはボディと一緒に隠し判定を受けます。同じ組み合わせを投げ直しても保存値は再抽選されず、ウィングだけ替えても解決しないことがあります。狙った魚が反応しない場合は、魚ページの完成予備セット3組を同じ読み込み済みエリアで試してください。保存値が同じなら、3組のうち少なくとも1組がこの判定を回避しますが、食いつきは保証しません。"
         },
         "sources": [
           "docs/fly-practical-research.md",
@@ -47674,9 +47674,9 @@
           "ja": "まず対象魚がリストに載るボディを選びます。このウィングを持っているなら使えますが、食いつきや取り込み成功率を上げる根拠はROMから確認できていません。自作フライはゲームの最終見積額を確認してください。既製フライは最初に1セットだけ選び、他は必要なら予備にします。対象魚が未定なら、まずウェットボディ01の対象魚リスト（33プロフィール）を確認してください。"
         },
         "reason": {
-          "en": "The target list belongs to the body; the ROM has not ranked wings by bite or landing success. Existing wings and the final quote are the useful purchase checks.",
-          "th": "รายชื่อปลาเป็นเงื่อนไขของบอดี้ ไม่ใช่ปีก; ROM ยังไม่จัดอันดับปีกตามการกินหรือการตกขึ้น เช็กปีกที่มีและราคาเสนอจริงก่อนจ่าย",
-          "ja": "魚リストはボディ側の判定です。食いつき・釣り上げでウィングの順位は確認されていません。所持品と最終見積額を購入判断に使います。"
+          "en": "The target list belongs to the body; the ROM has not ranked wings by bite or landing success. Existing wings and the final quote are the useful purchase checks. The wing shares a hidden check with the body: recasting the same setup does not reroll it, and changing only the wing may not help. If the fish you are targeting does not respond, open its fish page and try all three complete backup bundles there in the same loaded area. Together, the three guarantee that at least one avoids this one check for the current stored values; they do not guarantee a bite.",
+          "th": "รายชื่อปลาเป็นเงื่อนไขของบอดี้ ไม่ใช่ปีก; ROM ยังไม่จัดอันดับปีกตามการกินหรือการตกขึ้น เช็กปีกที่มีและราคาเสนอจริงก่อนจ่าย ปีกมีส่วนในเงื่อนไขซ่อนร่วมกับบอดี้ การตีชุดเดิมซ้ำไม่สุ่มค่าใหม่ และเปลี่ยนแค่ปีกอาจไม่ช่วย ถ้าปลาที่เล็งไม่ตอบสนอง ให้เปิดหน้าปลาแล้วลองชุดสำรองสำเร็จรูปทั้งสามชุดในฉากที่โหลดอยู่เดียวกัน เมื่อค่าที่เก็บไว้ยังเดิม ทั้งสามชุดจะมีอย่างน้อยหนึ่งชุดที่เลี่ยงเงื่อนไขนี้ได้ แต่ไม่รับประกันว่าปลากิน",
+          "ja": "魚リストはボディ側の判定です。食いつき・釣り上げでウィングの順位は確認されていません。所持品と最終見積額を購入判断に使います。 ウィングはボディと一緒に隠し判定を受けます。同じ組み合わせを投げ直しても保存値は再抽選されず、ウィングだけ替えても解決しないことがあります。狙った魚が反応しない場合は、魚ページの完成予備セット3組を同じ読み込み済みエリアで試してください。保存値が同じなら、3組のうち少なくとも1組がこの判定を回避しますが、食いつきは保証しません。"
         },
         "sources": [
           "docs/fly-practical-research.md",
@@ -47802,9 +47802,9 @@
           "ja": "まず対象魚がリストに載るボディを選びます。このウィングを持っているなら使えますが、食いつきや取り込み成功率を上げる根拠はROMから確認できていません。自作フライはゲームの最終見積額を確認してください。既製フライは最初に1セットだけ選び、他は必要なら予備にします。対象魚が未定なら、まずウェットボディ01の対象魚リスト（33プロフィール）を確認してください。"
         },
         "reason": {
-          "en": "The target list belongs to the body; the ROM has not ranked wings by bite or landing success. Existing wings and the final quote are the useful purchase checks.",
-          "th": "รายชื่อปลาเป็นเงื่อนไขของบอดี้ ไม่ใช่ปีก; ROM ยังไม่จัดอันดับปีกตามการกินหรือการตกขึ้น เช็กปีกที่มีและราคาเสนอจริงก่อนจ่าย",
-          "ja": "魚リストはボディ側の判定です。食いつき・釣り上げでウィングの順位は確認されていません。所持品と最終見積額を購入判断に使います。"
+          "en": "The target list belongs to the body; the ROM has not ranked wings by bite or landing success. Existing wings and the final quote are the useful purchase checks. The wing shares a hidden check with the body: recasting the same setup does not reroll it, and changing only the wing may not help. If the fish you are targeting does not respond, open its fish page and try all three complete backup bundles there in the same loaded area. Together, the three guarantee that at least one avoids this one check for the current stored values; they do not guarantee a bite.",
+          "th": "รายชื่อปลาเป็นเงื่อนไขของบอดี้ ไม่ใช่ปีก; ROM ยังไม่จัดอันดับปีกตามการกินหรือการตกขึ้น เช็กปีกที่มีและราคาเสนอจริงก่อนจ่าย ปีกมีส่วนในเงื่อนไขซ่อนร่วมกับบอดี้ การตีชุดเดิมซ้ำไม่สุ่มค่าใหม่ และเปลี่ยนแค่ปีกอาจไม่ช่วย ถ้าปลาที่เล็งไม่ตอบสนอง ให้เปิดหน้าปลาแล้วลองชุดสำรองสำเร็จรูปทั้งสามชุดในฉากที่โหลดอยู่เดียวกัน เมื่อค่าที่เก็บไว้ยังเดิม ทั้งสามชุดจะมีอย่างน้อยหนึ่งชุดที่เลี่ยงเงื่อนไขนี้ได้ แต่ไม่รับประกันว่าปลากิน",
+          "ja": "魚リストはボディ側の判定です。食いつき・釣り上げでウィングの順位は確認されていません。所持品と最終見積額を購入判断に使います。 ウィングはボディと一緒に隠し判定を受けます。同じ組み合わせを投げ直しても保存値は再抽選されず、ウィングだけ替えても解決しないことがあります。狙った魚が反応しない場合は、魚ページの完成予備セット3組を同じ読み込み済みエリアで試してください。保存値が同じなら、3組のうち少なくとも1組がこの判定を回避しますが、食いつきは保証しません。"
         },
         "sources": [
           "docs/fly-practical-research.md",
@@ -47918,9 +47918,9 @@
           "ja": "まず対象魚がリストに載るボディを選びます。このウィングを持っているなら使えますが、食いつきや取り込み成功率を上げる根拠はROMから確認できていません。自作フライはゲームの最終見積額を確認してください。既製フライは最初に1セットだけ選び、他は必要なら予備にします。対象魚が未定なら、まずウェットボディ01の対象魚リスト（33プロフィール）を確認してください。"
         },
         "reason": {
-          "en": "The target list belongs to the body; the ROM has not ranked wings by bite or landing success. Existing wings and the final quote are the useful purchase checks.",
-          "th": "รายชื่อปลาเป็นเงื่อนไขของบอดี้ ไม่ใช่ปีก; ROM ยังไม่จัดอันดับปีกตามการกินหรือการตกขึ้น เช็กปีกที่มีและราคาเสนอจริงก่อนจ่าย",
-          "ja": "魚リストはボディ側の判定です。食いつき・釣り上げでウィングの順位は確認されていません。所持品と最終見積額を購入判断に使います。"
+          "en": "The target list belongs to the body; the ROM has not ranked wings by bite or landing success. Existing wings and the final quote are the useful purchase checks. The wing shares a hidden check with the body: recasting the same setup does not reroll it, and changing only the wing may not help. If the fish you are targeting does not respond, open its fish page and try all three complete backup bundles there in the same loaded area. Together, the three guarantee that at least one avoids this one check for the current stored values; they do not guarantee a bite.",
+          "th": "รายชื่อปลาเป็นเงื่อนไขของบอดี้ ไม่ใช่ปีก; ROM ยังไม่จัดอันดับปีกตามการกินหรือการตกขึ้น เช็กปีกที่มีและราคาเสนอจริงก่อนจ่าย ปีกมีส่วนในเงื่อนไขซ่อนร่วมกับบอดี้ การตีชุดเดิมซ้ำไม่สุ่มค่าใหม่ และเปลี่ยนแค่ปีกอาจไม่ช่วย ถ้าปลาที่เล็งไม่ตอบสนอง ให้เปิดหน้าปลาแล้วลองชุดสำรองสำเร็จรูปทั้งสามชุดในฉากที่โหลดอยู่เดียวกัน เมื่อค่าที่เก็บไว้ยังเดิม ทั้งสามชุดจะมีอย่างน้อยหนึ่งชุดที่เลี่ยงเงื่อนไขนี้ได้ แต่ไม่รับประกันว่าปลากิน",
+          "ja": "魚リストはボディ側の判定です。食いつき・釣り上げでウィングの順位は確認されていません。所持品と最終見積額を購入判断に使います。 ウィングはボディと一緒に隠し判定を受けます。同じ組み合わせを投げ直しても保存値は再抽選されず、ウィングだけ替えても解決しないことがあります。狙った魚が反応しない場合は、魚ページの完成予備セット3組を同じ読み込み済みエリアで試してください。保存値が同じなら、3組のうち少なくとも1組がこの判定を回避しますが、食いつきは保証しません。"
         },
         "sources": [
           "docs/fly-practical-research.md",
@@ -48046,9 +48046,9 @@
           "ja": "まず対象魚がリストに載るボディを選びます。このウィングを持っているなら使えますが、食いつきや取り込み成功率を上げる根拠はROMから確認できていません。自作フライはゲームの最終見積額を確認してください。既製フライは最初に1セットだけ選び、他は必要なら予備にします。対象魚が未定なら、まずウェットボディ01の対象魚リスト（33プロフィール）を確認してください。"
         },
         "reason": {
-          "en": "The target list belongs to the body; the ROM has not ranked wings by bite or landing success. Existing wings and the final quote are the useful purchase checks.",
-          "th": "รายชื่อปลาเป็นเงื่อนไขของบอดี้ ไม่ใช่ปีก; ROM ยังไม่จัดอันดับปีกตามการกินหรือการตกขึ้น เช็กปีกที่มีและราคาเสนอจริงก่อนจ่าย",
-          "ja": "魚リストはボディ側の判定です。食いつき・釣り上げでウィングの順位は確認されていません。所持品と最終見積額を購入判断に使います。"
+          "en": "The target list belongs to the body; the ROM has not ranked wings by bite or landing success. Existing wings and the final quote are the useful purchase checks. The wing shares a hidden check with the body: recasting the same setup does not reroll it, and changing only the wing may not help. If the fish you are targeting does not respond, open its fish page and try all three complete backup bundles there in the same loaded area. Together, the three guarantee that at least one avoids this one check for the current stored values; they do not guarantee a bite.",
+          "th": "รายชื่อปลาเป็นเงื่อนไขของบอดี้ ไม่ใช่ปีก; ROM ยังไม่จัดอันดับปีกตามการกินหรือการตกขึ้น เช็กปีกที่มีและราคาเสนอจริงก่อนจ่าย ปีกมีส่วนในเงื่อนไขซ่อนร่วมกับบอดี้ การตีชุดเดิมซ้ำไม่สุ่มค่าใหม่ และเปลี่ยนแค่ปีกอาจไม่ช่วย ถ้าปลาที่เล็งไม่ตอบสนอง ให้เปิดหน้าปลาแล้วลองชุดสำรองสำเร็จรูปทั้งสามชุดในฉากที่โหลดอยู่เดียวกัน เมื่อค่าที่เก็บไว้ยังเดิม ทั้งสามชุดจะมีอย่างน้อยหนึ่งชุดที่เลี่ยงเงื่อนไขนี้ได้ แต่ไม่รับประกันว่าปลากิน",
+          "ja": "魚リストはボディ側の判定です。食いつき・釣り上げでウィングの順位は確認されていません。所持品と最終見積額を購入判断に使います。 ウィングはボディと一緒に隠し判定を受けます。同じ組み合わせを投げ直しても保存値は再抽選されず、ウィングだけ替えても解決しないことがあります。狙った魚が反応しない場合は、魚ページの完成予備セット3組を同じ読み込み済みエリアで試してください。保存値が同じなら、3組のうち少なくとも1組がこの判定を回避しますが、食いつきは保証しません。"
         },
         "sources": [
           "docs/fly-practical-research.md",
@@ -48174,9 +48174,9 @@
           "ja": "まず対象魚がリストに載るボディを選びます。このウィングを持っているなら使えますが、食いつきや取り込み成功率を上げる根拠はROMから確認できていません。自作フライはゲームの最終見積額を確認してください。既製フライは最初に1セットだけ選び、他は必要なら予備にします。対象魚が未定なら、まずウェットボディ01の対象魚リスト（33プロフィール）を確認してください。"
         },
         "reason": {
-          "en": "The target list belongs to the body; the ROM has not ranked wings by bite or landing success. Existing wings and the final quote are the useful purchase checks.",
-          "th": "รายชื่อปลาเป็นเงื่อนไขของบอดี้ ไม่ใช่ปีก; ROM ยังไม่จัดอันดับปีกตามการกินหรือการตกขึ้น เช็กปีกที่มีและราคาเสนอจริงก่อนจ่าย",
-          "ja": "魚リストはボディ側の判定です。食いつき・釣り上げでウィングの順位は確認されていません。所持品と最終見積額を購入判断に使います。"
+          "en": "The target list belongs to the body; the ROM has not ranked wings by bite or landing success. Existing wings and the final quote are the useful purchase checks. The wing shares a hidden check with the body: recasting the same setup does not reroll it, and changing only the wing may not help. If the fish you are targeting does not respond, open its fish page and try all three complete backup bundles there in the same loaded area. Together, the three guarantee that at least one avoids this one check for the current stored values; they do not guarantee a bite.",
+          "th": "รายชื่อปลาเป็นเงื่อนไขของบอดี้ ไม่ใช่ปีก; ROM ยังไม่จัดอันดับปีกตามการกินหรือการตกขึ้น เช็กปีกที่มีและราคาเสนอจริงก่อนจ่าย ปีกมีส่วนในเงื่อนไขซ่อนร่วมกับบอดี้ การตีชุดเดิมซ้ำไม่สุ่มค่าใหม่ และเปลี่ยนแค่ปีกอาจไม่ช่วย ถ้าปลาที่เล็งไม่ตอบสนอง ให้เปิดหน้าปลาแล้วลองชุดสำรองสำเร็จรูปทั้งสามชุดในฉากที่โหลดอยู่เดียวกัน เมื่อค่าที่เก็บไว้ยังเดิม ทั้งสามชุดจะมีอย่างน้อยหนึ่งชุดที่เลี่ยงเงื่อนไขนี้ได้ แต่ไม่รับประกันว่าปลากิน",
+          "ja": "魚リストはボディ側の判定です。食いつき・釣り上げでウィングの順位は確認されていません。所持品と最終見積額を購入判断に使います。 ウィングはボディと一緒に隠し判定を受けます。同じ組み合わせを投げ直しても保存値は再抽選されず、ウィングだけ替えても解決しないことがあります。狙った魚が反応しない場合は、魚ページの完成予備セット3組を同じ読み込み済みエリアで試してください。保存値が同じなら、3組のうち少なくとも1組がこの判定を回避しますが、食いつきは保証しません。"
         },
         "sources": [
           "docs/fly-practical-research.md",
@@ -48313,9 +48313,9 @@
           "ja": "まず対象魚がリストに載るボディを選びます。このウィングを持っているなら使えますが、食いつきや取り込み成功率を上げる根拠はROMから確認できていません。自作フライはゲームの最終見積額を確認してください。既製フライは最初に1セットだけ選び、他は必要なら予備にします。対象魚が未定なら、まずウェットボディ01の対象魚リスト（33プロフィール）を確認してください。"
         },
         "reason": {
-          "en": "The target list belongs to the body; the ROM has not ranked wings by bite or landing success. Existing wings and the final quote are the useful purchase checks.",
-          "th": "รายชื่อปลาเป็นเงื่อนไขของบอดี้ ไม่ใช่ปีก; ROM ยังไม่จัดอันดับปีกตามการกินหรือการตกขึ้น เช็กปีกที่มีและราคาเสนอจริงก่อนจ่าย",
-          "ja": "魚リストはボディ側の判定です。食いつき・釣り上げでウィングの順位は確認されていません。所持品と最終見積額を購入判断に使います。"
+          "en": "The target list belongs to the body; the ROM has not ranked wings by bite or landing success. Existing wings and the final quote are the useful purchase checks. The wing shares a hidden check with the body: recasting the same setup does not reroll it, and changing only the wing may not help. If the fish you are targeting does not respond, open its fish page and try all three complete backup bundles there in the same loaded area. Together, the three guarantee that at least one avoids this one check for the current stored values; they do not guarantee a bite.",
+          "th": "รายชื่อปลาเป็นเงื่อนไขของบอดี้ ไม่ใช่ปีก; ROM ยังไม่จัดอันดับปีกตามการกินหรือการตกขึ้น เช็กปีกที่มีและราคาเสนอจริงก่อนจ่าย ปีกมีส่วนในเงื่อนไขซ่อนร่วมกับบอดี้ การตีชุดเดิมซ้ำไม่สุ่มค่าใหม่ และเปลี่ยนแค่ปีกอาจไม่ช่วย ถ้าปลาที่เล็งไม่ตอบสนอง ให้เปิดหน้าปลาแล้วลองชุดสำรองสำเร็จรูปทั้งสามชุดในฉากที่โหลดอยู่เดียวกัน เมื่อค่าที่เก็บไว้ยังเดิม ทั้งสามชุดจะมีอย่างน้อยหนึ่งชุดที่เลี่ยงเงื่อนไขนี้ได้ แต่ไม่รับประกันว่าปลากิน",
+          "ja": "魚リストはボディ側の判定です。食いつき・釣り上げでウィングの順位は確認されていません。所持品と最終見積額を購入判断に使います。 ウィングはボディと一緒に隠し判定を受けます。同じ組み合わせを投げ直しても保存値は再抽選されず、ウィングだけ替えても解決しないことがあります。狙った魚が反応しない場合は、魚ページの完成予備セット3組を同じ読み込み済みエリアで試してください。保存値が同じなら、3組のうち少なくとも1組がこの判定を回避しますが、食いつきは保証しません。"
         },
         "sources": [
           "docs/fly-practical-research.md",
@@ -48452,9 +48452,9 @@
           "ja": "まず対象魚がリストに載るボディを選びます。このウィングを持っているなら使えますが、食いつきや取り込み成功率を上げる根拠はROMから確認できていません。自作フライはゲームの最終見積額を確認してください。既製フライは最初に1セットだけ選び、他は必要なら予備にします。対象魚が未定なら、まずウェットボディ01の対象魚リスト（33プロフィール）を確認してください。"
         },
         "reason": {
-          "en": "The target list belongs to the body; the ROM has not ranked wings by bite or landing success. Existing wings and the final quote are the useful purchase checks.",
-          "th": "รายชื่อปลาเป็นเงื่อนไขของบอดี้ ไม่ใช่ปีก; ROM ยังไม่จัดอันดับปีกตามการกินหรือการตกขึ้น เช็กปีกที่มีและราคาเสนอจริงก่อนจ่าย",
-          "ja": "魚リストはボディ側の判定です。食いつき・釣り上げでウィングの順位は確認されていません。所持品と最終見積額を購入判断に使います。"
+          "en": "The target list belongs to the body; the ROM has not ranked wings by bite or landing success. Existing wings and the final quote are the useful purchase checks. The wing shares a hidden check with the body: recasting the same setup does not reroll it, and changing only the wing may not help. If the fish you are targeting does not respond, open its fish page and try all three complete backup bundles there in the same loaded area. Together, the three guarantee that at least one avoids this one check for the current stored values; they do not guarantee a bite.",
+          "th": "รายชื่อปลาเป็นเงื่อนไขของบอดี้ ไม่ใช่ปีก; ROM ยังไม่จัดอันดับปีกตามการกินหรือการตกขึ้น เช็กปีกที่มีและราคาเสนอจริงก่อนจ่าย ปีกมีส่วนในเงื่อนไขซ่อนร่วมกับบอดี้ การตีชุดเดิมซ้ำไม่สุ่มค่าใหม่ และเปลี่ยนแค่ปีกอาจไม่ช่วย ถ้าปลาที่เล็งไม่ตอบสนอง ให้เปิดหน้าปลาแล้วลองชุดสำรองสำเร็จรูปทั้งสามชุดในฉากที่โหลดอยู่เดียวกัน เมื่อค่าที่เก็บไว้ยังเดิม ทั้งสามชุดจะมีอย่างน้อยหนึ่งชุดที่เลี่ยงเงื่อนไขนี้ได้ แต่ไม่รับประกันว่าปลากิน",
+          "ja": "魚リストはボディ側の判定です。食いつき・釣り上げでウィングの順位は確認されていません。所持品と最終見積額を購入判断に使います。 ウィングはボディと一緒に隠し判定を受けます。同じ組み合わせを投げ直しても保存値は再抽選されず、ウィングだけ替えても解決しないことがあります。狙った魚が反応しない場合は、魚ページの完成予備セット3組を同じ読み込み済みエリアで試してください。保存値が同じなら、3組のうち少なくとも1組がこの判定を回避しますが、食いつきは保証しません。"
         },
         "sources": [
           "docs/fly-practical-research.md",
@@ -48591,9 +48591,9 @@
           "ja": "まず対象魚がリストに載るボディを選びます。このウィングを持っているなら使えますが、食いつきや取り込み成功率を上げる根拠はROMから確認できていません。自作フライはゲームの最終見積額を確認してください。既製フライは最初に1セットだけ選び、他は必要なら予備にします。対象魚が未定なら、まずウェットボディ01の対象魚リスト（33プロフィール）を確認してください。"
         },
         "reason": {
-          "en": "The target list belongs to the body; the ROM has not ranked wings by bite or landing success. Existing wings and the final quote are the useful purchase checks.",
-          "th": "รายชื่อปลาเป็นเงื่อนไขของบอดี้ ไม่ใช่ปีก; ROM ยังไม่จัดอันดับปีกตามการกินหรือการตกขึ้น เช็กปีกที่มีและราคาเสนอจริงก่อนจ่าย",
-          "ja": "魚リストはボディ側の判定です。食いつき・釣り上げでウィングの順位は確認されていません。所持品と最終見積額を購入判断に使います。"
+          "en": "The target list belongs to the body; the ROM has not ranked wings by bite or landing success. Existing wings and the final quote are the useful purchase checks. The wing shares a hidden check with the body: recasting the same setup does not reroll it, and changing only the wing may not help. If the fish you are targeting does not respond, open its fish page and try all three complete backup bundles there in the same loaded area. Together, the three guarantee that at least one avoids this one check for the current stored values; they do not guarantee a bite.",
+          "th": "รายชื่อปลาเป็นเงื่อนไขของบอดี้ ไม่ใช่ปีก; ROM ยังไม่จัดอันดับปีกตามการกินหรือการตกขึ้น เช็กปีกที่มีและราคาเสนอจริงก่อนจ่าย ปีกมีส่วนในเงื่อนไขซ่อนร่วมกับบอดี้ การตีชุดเดิมซ้ำไม่สุ่มค่าใหม่ และเปลี่ยนแค่ปีกอาจไม่ช่วย ถ้าปลาที่เล็งไม่ตอบสนอง ให้เปิดหน้าปลาแล้วลองชุดสำรองสำเร็จรูปทั้งสามชุดในฉากที่โหลดอยู่เดียวกัน เมื่อค่าที่เก็บไว้ยังเดิม ทั้งสามชุดจะมีอย่างน้อยหนึ่งชุดที่เลี่ยงเงื่อนไขนี้ได้ แต่ไม่รับประกันว่าปลากิน",
+          "ja": "魚リストはボディ側の判定です。食いつき・釣り上げでウィングの順位は確認されていません。所持品と最終見積額を購入判断に使います。 ウィングはボディと一緒に隠し判定を受けます。同じ組み合わせを投げ直しても保存値は再抽選されず、ウィングだけ替えても解決しないことがあります。狙った魚が反応しない場合は、魚ページの完成予備セット3組を同じ読み込み済みエリアで試してください。保存値が同じなら、3組のうち少なくとも1組がこの判定を回避しますが、食いつきは保証しません。"
         },
         "sources": [
           "docs/fly-practical-research.md",
@@ -48719,9 +48719,9 @@
           "ja": "まず対象魚がリストに載るボディを選びます。このウィングを持っているなら使えますが、食いつきや取り込み成功率を上げる根拠はROMから確認できていません。自作フライはゲームの最終見積額を確認してください。既製フライは最初に1セットだけ選び、他は必要なら予備にします。対象魚が未定なら、まずウェットボディ01の対象魚リスト（33プロフィール）を確認してください。"
         },
         "reason": {
-          "en": "The target list belongs to the body; the ROM has not ranked wings by bite or landing success. Existing wings and the final quote are the useful purchase checks.",
-          "th": "รายชื่อปลาเป็นเงื่อนไขของบอดี้ ไม่ใช่ปีก; ROM ยังไม่จัดอันดับปีกตามการกินหรือการตกขึ้น เช็กปีกที่มีและราคาเสนอจริงก่อนจ่าย",
-          "ja": "魚リストはボディ側の判定です。食いつき・釣り上げでウィングの順位は確認されていません。所持品と最終見積額を購入判断に使います。"
+          "en": "The target list belongs to the body; the ROM has not ranked wings by bite or landing success. Existing wings and the final quote are the useful purchase checks. The wing shares a hidden check with the body: recasting the same setup does not reroll it, and changing only the wing may not help. If the fish you are targeting does not respond, open its fish page and try all three complete backup bundles there in the same loaded area. Together, the three guarantee that at least one avoids this one check for the current stored values; they do not guarantee a bite.",
+          "th": "รายชื่อปลาเป็นเงื่อนไขของบอดี้ ไม่ใช่ปีก; ROM ยังไม่จัดอันดับปีกตามการกินหรือการตกขึ้น เช็กปีกที่มีและราคาเสนอจริงก่อนจ่าย ปีกมีส่วนในเงื่อนไขซ่อนร่วมกับบอดี้ การตีชุดเดิมซ้ำไม่สุ่มค่าใหม่ และเปลี่ยนแค่ปีกอาจไม่ช่วย ถ้าปลาที่เล็งไม่ตอบสนอง ให้เปิดหน้าปลาแล้วลองชุดสำรองสำเร็จรูปทั้งสามชุดในฉากที่โหลดอยู่เดียวกัน เมื่อค่าที่เก็บไว้ยังเดิม ทั้งสามชุดจะมีอย่างน้อยหนึ่งชุดที่เลี่ยงเงื่อนไขนี้ได้ แต่ไม่รับประกันว่าปลากิน",
+          "ja": "魚リストはボディ側の判定です。食いつき・釣り上げでウィングの順位は確認されていません。所持品と最終見積額を購入判断に使います。 ウィングはボディと一緒に隠し判定を受けます。同じ組み合わせを投げ直しても保存値は再抽選されず、ウィングだけ替えても解決しないことがあります。狙った魚が反応しない場合は、魚ページの完成予備セット3組を同じ読み込み済みエリアで試してください。保存値が同じなら、3組のうち少なくとも1組がこの判定を回避しますが、食いつきは保証しません。"
         },
         "sources": [
           "docs/fly-practical-research.md",
@@ -48847,9 +48847,9 @@
           "ja": "まず対象魚がリストに載るボディを選びます。このウィングを持っているなら使えますが、食いつきや取り込み成功率を上げる根拠はROMから確認できていません。自作フライはゲームの最終見積額を確認してください。既製フライは最初に1セットだけ選び、他は必要なら予備にします。対象魚が未定なら、まずウェットボディ01の対象魚リスト（33プロフィール）を確認してください。"
         },
         "reason": {
-          "en": "The target list belongs to the body; the ROM has not ranked wings by bite or landing success. Existing wings and the final quote are the useful purchase checks.",
-          "th": "รายชื่อปลาเป็นเงื่อนไขของบอดี้ ไม่ใช่ปีก; ROM ยังไม่จัดอันดับปีกตามการกินหรือการตกขึ้น เช็กปีกที่มีและราคาเสนอจริงก่อนจ่าย",
-          "ja": "魚リストはボディ側の判定です。食いつき・釣り上げでウィングの順位は確認されていません。所持品と最終見積額を購入判断に使います。"
+          "en": "The target list belongs to the body; the ROM has not ranked wings by bite or landing success. Existing wings and the final quote are the useful purchase checks. The wing shares a hidden check with the body: recasting the same setup does not reroll it, and changing only the wing may not help. If the fish you are targeting does not respond, open its fish page and try all three complete backup bundles there in the same loaded area. Together, the three guarantee that at least one avoids this one check for the current stored values; they do not guarantee a bite.",
+          "th": "รายชื่อปลาเป็นเงื่อนไขของบอดี้ ไม่ใช่ปีก; ROM ยังไม่จัดอันดับปีกตามการกินหรือการตกขึ้น เช็กปีกที่มีและราคาเสนอจริงก่อนจ่าย ปีกมีส่วนในเงื่อนไขซ่อนร่วมกับบอดี้ การตีชุดเดิมซ้ำไม่สุ่มค่าใหม่ และเปลี่ยนแค่ปีกอาจไม่ช่วย ถ้าปลาที่เล็งไม่ตอบสนอง ให้เปิดหน้าปลาแล้วลองชุดสำรองสำเร็จรูปทั้งสามชุดในฉากที่โหลดอยู่เดียวกัน เมื่อค่าที่เก็บไว้ยังเดิม ทั้งสามชุดจะมีอย่างน้อยหนึ่งชุดที่เลี่ยงเงื่อนไขนี้ได้ แต่ไม่รับประกันว่าปลากิน",
+          "ja": "魚リストはボディ側の判定です。食いつき・釣り上げでウィングの順位は確認されていません。所持品と最終見積額を購入判断に使います。 ウィングはボディと一緒に隠し判定を受けます。同じ組み合わせを投げ直しても保存値は再抽選されず、ウィングだけ替えても解決しないことがあります。狙った魚が反応しない場合は、魚ページの完成予備セット3組を同じ読み込み済みエリアで試してください。保存値が同じなら、3組のうち少なくとも1組がこの判定を回避しますが、食いつきは保証しません。"
         },
         "sources": [
           "docs/fly-practical-research.md",
@@ -48986,9 +48986,9 @@
           "ja": "まず対象魚がリストに載るボディを選びます。このウィングを持っているなら使えますが、食いつきや取り込み成功率を上げる根拠はROMから確認できていません。自作フライはゲームの最終見積額を確認してください。既製フライは最初に1セットだけ選び、他は必要なら予備にします。対象魚が未定なら、まずウェットボディ01の対象魚リスト（33プロフィール）を確認してください。"
         },
         "reason": {
-          "en": "The target list belongs to the body; the ROM has not ranked wings by bite or landing success. Existing wings and the final quote are the useful purchase checks.",
-          "th": "รายชื่อปลาเป็นเงื่อนไขของบอดี้ ไม่ใช่ปีก; ROM ยังไม่จัดอันดับปีกตามการกินหรือการตกขึ้น เช็กปีกที่มีและราคาเสนอจริงก่อนจ่าย",
-          "ja": "魚リストはボディ側の判定です。食いつき・釣り上げでウィングの順位は確認されていません。所持品と最終見積額を購入判断に使います。"
+          "en": "The target list belongs to the body; the ROM has not ranked wings by bite or landing success. Existing wings and the final quote are the useful purchase checks. The wing shares a hidden check with the body: recasting the same setup does not reroll it, and changing only the wing may not help. If the fish you are targeting does not respond, open its fish page and try all three complete backup bundles there in the same loaded area. Together, the three guarantee that at least one avoids this one check for the current stored values; they do not guarantee a bite.",
+          "th": "รายชื่อปลาเป็นเงื่อนไขของบอดี้ ไม่ใช่ปีก; ROM ยังไม่จัดอันดับปีกตามการกินหรือการตกขึ้น เช็กปีกที่มีและราคาเสนอจริงก่อนจ่าย ปีกมีส่วนในเงื่อนไขซ่อนร่วมกับบอดี้ การตีชุดเดิมซ้ำไม่สุ่มค่าใหม่ และเปลี่ยนแค่ปีกอาจไม่ช่วย ถ้าปลาที่เล็งไม่ตอบสนอง ให้เปิดหน้าปลาแล้วลองชุดสำรองสำเร็จรูปทั้งสามชุดในฉากที่โหลดอยู่เดียวกัน เมื่อค่าที่เก็บไว้ยังเดิม ทั้งสามชุดจะมีอย่างน้อยหนึ่งชุดที่เลี่ยงเงื่อนไขนี้ได้ แต่ไม่รับประกันว่าปลากิน",
+          "ja": "魚リストはボディ側の判定です。食いつき・釣り上げでウィングの順位は確認されていません。所持品と最終見積額を購入判断に使います。 ウィングはボディと一緒に隠し判定を受けます。同じ組み合わせを投げ直しても保存値は再抽選されず、ウィングだけ替えても解決しないことがあります。狙った魚が反応しない場合は、魚ページの完成予備セット3組を同じ読み込み済みエリアで試してください。保存値が同じなら、3組のうち少なくとも1組がこの判定を回避しますが、食いつきは保証しません。"
         },
         "sources": [
           "docs/fly-practical-research.md",
@@ -49114,9 +49114,9 @@
           "ja": "まず対象魚がリストに載るボディを選びます。このウィングを持っているなら使えますが、食いつきや取り込み成功率を上げる根拠はROMから確認できていません。自作フライはゲームの最終見積額を確認してください。既製フライは最初に1セットだけ選び、他は必要なら予備にします。対象魚が未定なら、まずウェットボディ01の対象魚リスト（33プロフィール）を確認してください。"
         },
         "reason": {
-          "en": "The target list belongs to the body; the ROM has not ranked wings by bite or landing success. Existing wings and the final quote are the useful purchase checks.",
-          "th": "รายชื่อปลาเป็นเงื่อนไขของบอดี้ ไม่ใช่ปีก; ROM ยังไม่จัดอันดับปีกตามการกินหรือการตกขึ้น เช็กปีกที่มีและราคาเสนอจริงก่อนจ่าย",
-          "ja": "魚リストはボディ側の判定です。食いつき・釣り上げでウィングの順位は確認されていません。所持品と最終見積額を購入判断に使います。"
+          "en": "The target list belongs to the body; the ROM has not ranked wings by bite or landing success. Existing wings and the final quote are the useful purchase checks. The wing shares a hidden check with the body: recasting the same setup does not reroll it, and changing only the wing may not help. If the fish you are targeting does not respond, open its fish page and try all three complete backup bundles there in the same loaded area. Together, the three guarantee that at least one avoids this one check for the current stored values; they do not guarantee a bite.",
+          "th": "รายชื่อปลาเป็นเงื่อนไขของบอดี้ ไม่ใช่ปีก; ROM ยังไม่จัดอันดับปีกตามการกินหรือการตกขึ้น เช็กปีกที่มีและราคาเสนอจริงก่อนจ่าย ปีกมีส่วนในเงื่อนไขซ่อนร่วมกับบอดี้ การตีชุดเดิมซ้ำไม่สุ่มค่าใหม่ และเปลี่ยนแค่ปีกอาจไม่ช่วย ถ้าปลาที่เล็งไม่ตอบสนอง ให้เปิดหน้าปลาแล้วลองชุดสำรองสำเร็จรูปทั้งสามชุดในฉากที่โหลดอยู่เดียวกัน เมื่อค่าที่เก็บไว้ยังเดิม ทั้งสามชุดจะมีอย่างน้อยหนึ่งชุดที่เลี่ยงเงื่อนไขนี้ได้ แต่ไม่รับประกันว่าปลากิน",
+          "ja": "魚リストはボディ側の判定です。食いつき・釣り上げでウィングの順位は確認されていません。所持品と最終見積額を購入判断に使います。 ウィングはボディと一緒に隠し判定を受けます。同じ組み合わせを投げ直しても保存値は再抽選されず、ウィングだけ替えても解決しないことがあります。狙った魚が反応しない場合は、魚ページの完成予備セット3組を同じ読み込み済みエリアで試してください。保存値が同じなら、3組のうち少なくとも1組がこの判定を回避しますが、食いつきは保証しません。"
         },
         "sources": [
           "docs/fly-practical-research.md",
@@ -49242,9 +49242,9 @@
           "ja": "まず対象魚がリストに載るボディを選びます。このウィングを持っているなら使えますが、食いつきや取り込み成功率を上げる根拠はROMから確認できていません。自作フライはゲームの最終見積額を確認してください。既製フライは最初に1セットだけ選び、他は必要なら予備にします。対象魚が未定なら、まずウェットボディ01の対象魚リスト（33プロフィール）を確認してください。"
         },
         "reason": {
-          "en": "The target list belongs to the body; the ROM has not ranked wings by bite or landing success. Existing wings and the final quote are the useful purchase checks.",
-          "th": "รายชื่อปลาเป็นเงื่อนไขของบอดี้ ไม่ใช่ปีก; ROM ยังไม่จัดอันดับปีกตามการกินหรือการตกขึ้น เช็กปีกที่มีและราคาเสนอจริงก่อนจ่าย",
-          "ja": "魚リストはボディ側の判定です。食いつき・釣り上げでウィングの順位は確認されていません。所持品と最終見積額を購入判断に使います。"
+          "en": "The target list belongs to the body; the ROM has not ranked wings by bite or landing success. Existing wings and the final quote are the useful purchase checks. The wing shares a hidden check with the body: recasting the same setup does not reroll it, and changing only the wing may not help. If the fish you are targeting does not respond, open its fish page and try all three complete backup bundles there in the same loaded area. Together, the three guarantee that at least one avoids this one check for the current stored values; they do not guarantee a bite.",
+          "th": "รายชื่อปลาเป็นเงื่อนไขของบอดี้ ไม่ใช่ปีก; ROM ยังไม่จัดอันดับปีกตามการกินหรือการตกขึ้น เช็กปีกที่มีและราคาเสนอจริงก่อนจ่าย ปีกมีส่วนในเงื่อนไขซ่อนร่วมกับบอดี้ การตีชุดเดิมซ้ำไม่สุ่มค่าใหม่ และเปลี่ยนแค่ปีกอาจไม่ช่วย ถ้าปลาที่เล็งไม่ตอบสนอง ให้เปิดหน้าปลาแล้วลองชุดสำรองสำเร็จรูปทั้งสามชุดในฉากที่โหลดอยู่เดียวกัน เมื่อค่าที่เก็บไว้ยังเดิม ทั้งสามชุดจะมีอย่างน้อยหนึ่งชุดที่เลี่ยงเงื่อนไขนี้ได้ แต่ไม่รับประกันว่าปลากิน",
+          "ja": "魚リストはボディ側の判定です。食いつき・釣り上げでウィングの順位は確認されていません。所持品と最終見積額を購入判断に使います。 ウィングはボディと一緒に隠し判定を受けます。同じ組み合わせを投げ直しても保存値は再抽選されず、ウィングだけ替えても解決しないことがあります。狙った魚が反応しない場合は、魚ページの完成予備セット3組を同じ読み込み済みエリアで試してください。保存値が同じなら、3組のうち少なくとも1組がこの判定を回避しますが、食いつきは保証しません。"
         },
         "sources": [
           "docs/fly-practical-research.md",
@@ -49358,9 +49358,9 @@
           "ja": "まず対象魚がリストに載るボディを選びます。このウィングを持っているなら使えますが、食いつきや取り込み成功率を上げる根拠はROMから確認できていません。自作フライはゲームの最終見積額を確認してください。既製フライは最初に1セットだけ選び、他は必要なら予備にします。対象魚が未定なら、まずウェットボディ01の対象魚リスト（33プロフィール）を確認してください。"
         },
         "reason": {
-          "en": "The target list belongs to the body; the ROM has not ranked wings by bite or landing success. Existing wings and the final quote are the useful purchase checks.",
-          "th": "รายชื่อปลาเป็นเงื่อนไขของบอดี้ ไม่ใช่ปีก; ROM ยังไม่จัดอันดับปีกตามการกินหรือการตกขึ้น เช็กปีกที่มีและราคาเสนอจริงก่อนจ่าย",
-          "ja": "魚リストはボディ側の判定です。食いつき・釣り上げでウィングの順位は確認されていません。所持品と最終見積額を購入判断に使います。"
+          "en": "The target list belongs to the body; the ROM has not ranked wings by bite or landing success. Existing wings and the final quote are the useful purchase checks. The wing shares a hidden check with the body: recasting the same setup does not reroll it, and changing only the wing may not help. If the fish you are targeting does not respond, open its fish page and try all three complete backup bundles there in the same loaded area. Together, the three guarantee that at least one avoids this one check for the current stored values; they do not guarantee a bite.",
+          "th": "รายชื่อปลาเป็นเงื่อนไขของบอดี้ ไม่ใช่ปีก; ROM ยังไม่จัดอันดับปีกตามการกินหรือการตกขึ้น เช็กปีกที่มีและราคาเสนอจริงก่อนจ่าย ปีกมีส่วนในเงื่อนไขซ่อนร่วมกับบอดี้ การตีชุดเดิมซ้ำไม่สุ่มค่าใหม่ และเปลี่ยนแค่ปีกอาจไม่ช่วย ถ้าปลาที่เล็งไม่ตอบสนอง ให้เปิดหน้าปลาแล้วลองชุดสำรองสำเร็จรูปทั้งสามชุดในฉากที่โหลดอยู่เดียวกัน เมื่อค่าที่เก็บไว้ยังเดิม ทั้งสามชุดจะมีอย่างน้อยหนึ่งชุดที่เลี่ยงเงื่อนไขนี้ได้ แต่ไม่รับประกันว่าปลากิน",
+          "ja": "魚リストはボディ側の判定です。食いつき・釣り上げでウィングの順位は確認されていません。所持品と最終見積額を購入判断に使います。 ウィングはボディと一緒に隠し判定を受けます。同じ組み合わせを投げ直しても保存値は再抽選されず、ウィングだけ替えても解決しないことがあります。狙った魚が反応しない場合は、魚ページの完成予備セット3組を同じ読み込み済みエリアで試してください。保存値が同じなら、3組のうち少なくとも1組がこの判定を回避しますが、食いつきは保証しません。"
         },
         "sources": [
           "docs/fly-practical-research.md",
@@ -49474,9 +49474,9 @@
           "ja": "まず対象魚がリストに載るボディを選びます。このウィングを持っているなら使えますが、食いつきや取り込み成功率を上げる根拠はROMから確認できていません。自作フライはゲームの最終見積額を確認してください。既製フライは最初に1セットだけ選び、他は必要なら予備にします。対象魚が未定なら、まずウェットボディ01の対象魚リスト（33プロフィール）を確認してください。"
         },
         "reason": {
-          "en": "The target list belongs to the body; the ROM has not ranked wings by bite or landing success. Existing wings and the final quote are the useful purchase checks.",
-          "th": "รายชื่อปลาเป็นเงื่อนไขของบอดี้ ไม่ใช่ปีก; ROM ยังไม่จัดอันดับปีกตามการกินหรือการตกขึ้น เช็กปีกที่มีและราคาเสนอจริงก่อนจ่าย",
-          "ja": "魚リストはボディ側の判定です。食いつき・釣り上げでウィングの順位は確認されていません。所持品と最終見積額を購入判断に使います。"
+          "en": "The target list belongs to the body; the ROM has not ranked wings by bite or landing success. Existing wings and the final quote are the useful purchase checks. The wing shares a hidden check with the body: recasting the same setup does not reroll it, and changing only the wing may not help. If the fish you are targeting does not respond, open its fish page and try all three complete backup bundles there in the same loaded area. Together, the three guarantee that at least one avoids this one check for the current stored values; they do not guarantee a bite.",
+          "th": "รายชื่อปลาเป็นเงื่อนไขของบอดี้ ไม่ใช่ปีก; ROM ยังไม่จัดอันดับปีกตามการกินหรือการตกขึ้น เช็กปีกที่มีและราคาเสนอจริงก่อนจ่าย ปีกมีส่วนในเงื่อนไขซ่อนร่วมกับบอดี้ การตีชุดเดิมซ้ำไม่สุ่มค่าใหม่ และเปลี่ยนแค่ปีกอาจไม่ช่วย ถ้าปลาที่เล็งไม่ตอบสนอง ให้เปิดหน้าปลาแล้วลองชุดสำรองสำเร็จรูปทั้งสามชุดในฉากที่โหลดอยู่เดียวกัน เมื่อค่าที่เก็บไว้ยังเดิม ทั้งสามชุดจะมีอย่างน้อยหนึ่งชุดที่เลี่ยงเงื่อนไขนี้ได้ แต่ไม่รับประกันว่าปลากิน",
+          "ja": "魚リストはボディ側の判定です。食いつき・釣り上げでウィングの順位は確認されていません。所持品と最終見積額を購入判断に使います。 ウィングはボディと一緒に隠し判定を受けます。同じ組み合わせを投げ直しても保存値は再抽選されず、ウィングだけ替えても解決しないことがあります。狙った魚が反応しない場合は、魚ページの完成予備セット3組を同じ読み込み済みエリアで試してください。保存値が同じなら、3組のうち少なくとも1組がこの判定を回避しますが、食いつきは保証しません。"
         },
         "sources": [
           "docs/fly-practical-research.md",
@@ -49602,9 +49602,9 @@
           "ja": "まず対象魚がリストに載るボディを選びます。このウィングを持っているなら使えますが、食いつきや取り込み成功率を上げる根拠はROMから確認できていません。自作フライはゲームの最終見積額を確認してください。既製フライは最初に1セットだけ選び、他は必要なら予備にします。対象魚が未定なら、まずウェットボディ01の対象魚リスト（33プロフィール）を確認してください。"
         },
         "reason": {
-          "en": "The target list belongs to the body; the ROM has not ranked wings by bite or landing success. Existing wings and the final quote are the useful purchase checks.",
-          "th": "รายชื่อปลาเป็นเงื่อนไขของบอดี้ ไม่ใช่ปีก; ROM ยังไม่จัดอันดับปีกตามการกินหรือการตกขึ้น เช็กปีกที่มีและราคาเสนอจริงก่อนจ่าย",
-          "ja": "魚リストはボディ側の判定です。食いつき・釣り上げでウィングの順位は確認されていません。所持品と最終見積額を購入判断に使います。"
+          "en": "The target list belongs to the body; the ROM has not ranked wings by bite or landing success. Existing wings and the final quote are the useful purchase checks. The wing shares a hidden check with the body: recasting the same setup does not reroll it, and changing only the wing may not help. If the fish you are targeting does not respond, open its fish page and try all three complete backup bundles there in the same loaded area. Together, the three guarantee that at least one avoids this one check for the current stored values; they do not guarantee a bite.",
+          "th": "รายชื่อปลาเป็นเงื่อนไขของบอดี้ ไม่ใช่ปีก; ROM ยังไม่จัดอันดับปีกตามการกินหรือการตกขึ้น เช็กปีกที่มีและราคาเสนอจริงก่อนจ่าย ปีกมีส่วนในเงื่อนไขซ่อนร่วมกับบอดี้ การตีชุดเดิมซ้ำไม่สุ่มค่าใหม่ และเปลี่ยนแค่ปีกอาจไม่ช่วย ถ้าปลาที่เล็งไม่ตอบสนอง ให้เปิดหน้าปลาแล้วลองชุดสำรองสำเร็จรูปทั้งสามชุดในฉากที่โหลดอยู่เดียวกัน เมื่อค่าที่เก็บไว้ยังเดิม ทั้งสามชุดจะมีอย่างน้อยหนึ่งชุดที่เลี่ยงเงื่อนไขนี้ได้ แต่ไม่รับประกันว่าปลากิน",
+          "ja": "魚リストはボディ側の判定です。食いつき・釣り上げでウィングの順位は確認されていません。所持品と最終見積額を購入判断に使います。 ウィングはボディと一緒に隠し判定を受けます。同じ組み合わせを投げ直しても保存値は再抽選されず、ウィングだけ替えても解決しないことがあります。狙った魚が反応しない場合は、魚ページの完成予備セット3組を同じ読み込み済みエリアで試してください。保存値が同じなら、3組のうち少なくとも1組がこの判定を回避しますが、食いつきは保証しません。"
         },
         "sources": [
           "docs/fly-practical-research.md",
@@ -49730,9 +49730,9 @@
           "ja": "まず対象魚がリストに載るボディを選びます。このウィングを持っているなら使えますが、食いつきや取り込み成功率を上げる根拠はROMから確認できていません。自作フライはゲームの最終見積額を確認してください。既製フライは最初に1セットだけ選び、他は必要なら予備にします。対象魚が未定なら、まずウェットボディ01の対象魚リスト（33プロフィール）を確認してください。"
         },
         "reason": {
-          "en": "The target list belongs to the body; the ROM has not ranked wings by bite or landing success. Existing wings and the final quote are the useful purchase checks.",
-          "th": "รายชื่อปลาเป็นเงื่อนไขของบอดี้ ไม่ใช่ปีก; ROM ยังไม่จัดอันดับปีกตามการกินหรือการตกขึ้น เช็กปีกที่มีและราคาเสนอจริงก่อนจ่าย",
-          "ja": "魚リストはボディ側の判定です。食いつき・釣り上げでウィングの順位は確認されていません。所持品と最終見積額を購入判断に使います。"
+          "en": "The target list belongs to the body; the ROM has not ranked wings by bite or landing success. Existing wings and the final quote are the useful purchase checks. The wing shares a hidden check with the body: recasting the same setup does not reroll it, and changing only the wing may not help. If the fish you are targeting does not respond, open its fish page and try all three complete backup bundles there in the same loaded area. Together, the three guarantee that at least one avoids this one check for the current stored values; they do not guarantee a bite.",
+          "th": "รายชื่อปลาเป็นเงื่อนไขของบอดี้ ไม่ใช่ปีก; ROM ยังไม่จัดอันดับปีกตามการกินหรือการตกขึ้น เช็กปีกที่มีและราคาเสนอจริงก่อนจ่าย ปีกมีส่วนในเงื่อนไขซ่อนร่วมกับบอดี้ การตีชุดเดิมซ้ำไม่สุ่มค่าใหม่ และเปลี่ยนแค่ปีกอาจไม่ช่วย ถ้าปลาที่เล็งไม่ตอบสนอง ให้เปิดหน้าปลาแล้วลองชุดสำรองสำเร็จรูปทั้งสามชุดในฉากที่โหลดอยู่เดียวกัน เมื่อค่าที่เก็บไว้ยังเดิม ทั้งสามชุดจะมีอย่างน้อยหนึ่งชุดที่เลี่ยงเงื่อนไขนี้ได้ แต่ไม่รับประกันว่าปลากิน",
+          "ja": "魚リストはボディ側の判定です。食いつき・釣り上げでウィングの順位は確認されていません。所持品と最終見積額を購入判断に使います。 ウィングはボディと一緒に隠し判定を受けます。同じ組み合わせを投げ直しても保存値は再抽選されず、ウィングだけ替えても解決しないことがあります。狙った魚が反応しない場合は、魚ページの完成予備セット3組を同じ読み込み済みエリアで試してください。保存値が同じなら、3組のうち少なくとも1組がこの判定を回避しますが、食いつきは保証しません。"
         },
         "sources": [
           "docs/fly-practical-research.md",
@@ -49846,9 +49846,9 @@
           "ja": "まず対象魚がリストに載るボディを選びます。このウィングを持っているなら使えますが、食いつきや取り込み成功率を上げる根拠はROMから確認できていません。自作フライはゲームの最終見積額を確認してください。既製フライは最初に1セットだけ選び、他は必要なら予備にします。対象魚が未定なら、まずウェットボディ01の対象魚リスト（33プロフィール）を確認してください。"
         },
         "reason": {
-          "en": "The target list belongs to the body; the ROM has not ranked wings by bite or landing success. Existing wings and the final quote are the useful purchase checks.",
-          "th": "รายชื่อปลาเป็นเงื่อนไขของบอดี้ ไม่ใช่ปีก; ROM ยังไม่จัดอันดับปีกตามการกินหรือการตกขึ้น เช็กปีกที่มีและราคาเสนอจริงก่อนจ่าย",
-          "ja": "魚リストはボディ側の判定です。食いつき・釣り上げでウィングの順位は確認されていません。所持品と最終見積額を購入判断に使います。"
+          "en": "The target list belongs to the body; the ROM has not ranked wings by bite or landing success. Existing wings and the final quote are the useful purchase checks. The wing shares a hidden check with the body: recasting the same setup does not reroll it, and changing only the wing may not help. If the fish you are targeting does not respond, open its fish page and try all three complete backup bundles there in the same loaded area. Together, the three guarantee that at least one avoids this one check for the current stored values; they do not guarantee a bite.",
+          "th": "รายชื่อปลาเป็นเงื่อนไขของบอดี้ ไม่ใช่ปีก; ROM ยังไม่จัดอันดับปีกตามการกินหรือการตกขึ้น เช็กปีกที่มีและราคาเสนอจริงก่อนจ่าย ปีกมีส่วนในเงื่อนไขซ่อนร่วมกับบอดี้ การตีชุดเดิมซ้ำไม่สุ่มค่าใหม่ และเปลี่ยนแค่ปีกอาจไม่ช่วย ถ้าปลาที่เล็งไม่ตอบสนอง ให้เปิดหน้าปลาแล้วลองชุดสำรองสำเร็จรูปทั้งสามชุดในฉากที่โหลดอยู่เดียวกัน เมื่อค่าที่เก็บไว้ยังเดิม ทั้งสามชุดจะมีอย่างน้อยหนึ่งชุดที่เลี่ยงเงื่อนไขนี้ได้ แต่ไม่รับประกันว่าปลากิน",
+          "ja": "魚リストはボディ側の判定です。食いつき・釣り上げでウィングの順位は確認されていません。所持品と最終見積額を購入判断に使います。 ウィングはボディと一緒に隠し判定を受けます。同じ組み合わせを投げ直しても保存値は再抽選されず、ウィングだけ替えても解決しないことがあります。狙った魚が反応しない場合は、魚ページの完成予備セット3組を同じ読み込み済みエリアで試してください。保存値が同じなら、3組のうち少なくとも1組がこの判定を回避しますが、食いつきは保証しません。"
         },
         "sources": [
           "docs/fly-practical-research.md",
@@ -49962,9 +49962,9 @@
           "ja": "まず対象魚がリストに載るボディを選びます。このウィングを持っているなら使えますが、食いつきや取り込み成功率を上げる根拠はROMから確認できていません。自作フライはゲームの最終見積額を確認してください。既製フライは最初に1セットだけ選び、他は必要なら予備にします。対象魚が未定なら、まずウェットボディ01の対象魚リスト（33プロフィール）を確認してください。"
         },
         "reason": {
-          "en": "The target list belongs to the body; the ROM has not ranked wings by bite or landing success. Existing wings and the final quote are the useful purchase checks.",
-          "th": "รายชื่อปลาเป็นเงื่อนไขของบอดี้ ไม่ใช่ปีก; ROM ยังไม่จัดอันดับปีกตามการกินหรือการตกขึ้น เช็กปีกที่มีและราคาเสนอจริงก่อนจ่าย",
-          "ja": "魚リストはボディ側の判定です。食いつき・釣り上げでウィングの順位は確認されていません。所持品と最終見積額を購入判断に使います。"
+          "en": "The target list belongs to the body; the ROM has not ranked wings by bite or landing success. Existing wings and the final quote are the useful purchase checks. The wing shares a hidden check with the body: recasting the same setup does not reroll it, and changing only the wing may not help. If the fish you are targeting does not respond, open its fish page and try all three complete backup bundles there in the same loaded area. Together, the three guarantee that at least one avoids this one check for the current stored values; they do not guarantee a bite.",
+          "th": "รายชื่อปลาเป็นเงื่อนไขของบอดี้ ไม่ใช่ปีก; ROM ยังไม่จัดอันดับปีกตามการกินหรือการตกขึ้น เช็กปีกที่มีและราคาเสนอจริงก่อนจ่าย ปีกมีส่วนในเงื่อนไขซ่อนร่วมกับบอดี้ การตีชุดเดิมซ้ำไม่สุ่มค่าใหม่ และเปลี่ยนแค่ปีกอาจไม่ช่วย ถ้าปลาที่เล็งไม่ตอบสนอง ให้เปิดหน้าปลาแล้วลองชุดสำรองสำเร็จรูปทั้งสามชุดในฉากที่โหลดอยู่เดียวกัน เมื่อค่าที่เก็บไว้ยังเดิม ทั้งสามชุดจะมีอย่างน้อยหนึ่งชุดที่เลี่ยงเงื่อนไขนี้ได้ แต่ไม่รับประกันว่าปลากิน",
+          "ja": "魚リストはボディ側の判定です。食いつき・釣り上げでウィングの順位は確認されていません。所持品と最終見積額を購入判断に使います。 ウィングはボディと一緒に隠し判定を受けます。同じ組み合わせを投げ直しても保存値は再抽選されず、ウィングだけ替えても解決しないことがあります。狙った魚が反応しない場合は、魚ページの完成予備セット3組を同じ読み込み済みエリアで試してください。保存値が同じなら、3組のうち少なくとも1組がこの判定を回避しますが、食いつきは保証しません。"
         },
         "sources": [
           "docs/fly-practical-research.md",

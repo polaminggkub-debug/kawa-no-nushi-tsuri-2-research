@@ -36,6 +36,11 @@ for(const item of data.items.filter(i=>i.baitLureDecision)){
  }
 }
 for(const item of data.items.filter(i=>i.category==='hook'))assert.deepEqual((item.gearDecision.targetFish||[]).slice().sort(),[item.playerUse.targetMatches||[]].flat().map(t=>t.fishId).sort(),'Hook next action must use ROM named-fish field');
+for(const item of data.items.filter(i=>i.category==='fly_wing')){
+ assert(item.gearDecision.reason.en.includes('recasting the same setup does not reroll'),'Wing action lost the persistent hidden check');
+ assert(item.gearDecision.reason.en.includes('at least one'),'Wing backup must describe the collective three-set result');
+ assert(item.gearDecision.reason.en.includes('do not guarantee a bite'),'Wing fallback became a catch claim');
+}
 const acquisitions=JSON.parse(fs.readFileSync(path.join(root,'data/town-item-acquisition.json'),'utf8'));
 assert.equal(Object.keys(acquisitions.items).length,6,'All six known town rewards require acquisition instructions');
 for(const [key,entries] of Object.entries(acquisitions.items)){const item=data.items.find(i=>i.category+':'+i.id===key);assert(item);for(const entry of entries)assert(item.playerUse.useLocations.some(loc=>loc.context==='town'&&loc.mapId===entry.mapId&&loc.action?.en===entry.action.en),'Missing actionable acquisition '+key);}
@@ -161,6 +166,7 @@ async function render(kind,lang,query,prefix='/kawa-no-nushi-tsuri-2-research'){
    if(item.netGatherArea){assert(visible.includes('data-bait-gather-choice')&&unescape(visible).includes('category=general_tool&id=04'),'Missing net gathering alternative');}
    if(item.acquisitionOptions?.length){assert(visible.includes('data-acquisition-choice'),'Missing front acquisition action');assert(visible.indexOf('data-acquisition-choice')<visible.indexOf('id="use-locations"'),'Acquisition must precede full map details');}
    for(const loc of item.playerUse.useLocations||[])if(loc.action)assert(unescape(visible).includes(loc.action[lang]),'Acquisition preparations hidden '+item.category+':'+item.id);
+   if(item.category.startsWith('fly'))assert(visible.includes('data-fly-maker')&&visible.includes('#fly-instructions'),'Fly detail has no custom maker action');
    if(item.category==='rod')assert(visible.includes('buying-decision'),`Rod purchase decision missing ${item.id}`);
    if(item.category==='rod'){assert(item.rodDecision,'Missing rod decision '+item.id);for(const field of ['label','recommendation','reason'])assert(unescape(visible).includes(item.rodDecision[field][lang]),'Rod advice hidden '+item.id+'/'+field+'/'+lang);assert(visible.includes('data-rod-decision="'+item.id+'"'),'Per-rod decision missing');assert(!visible.includes('fightResponseCode'),'Branch code leaked above technical evidence');}
    if(item.category==='general_tool'&&['08','09','0A'].includes(item.id))assert(visible.includes(lang==='en'?'movement can be steered':lang==='th'?'ชี้ทิศ':'進行方向'),`Chum steering list mislabeled ${item.id}`);
@@ -230,7 +236,7 @@ async function render(kind,lang,query,prefix='/kawa-no-nushi-tsuri-2-research'){
    }
    const visibleFish=result.html.split('<details class="evidence"')[0];
    assert(!visibleFish.includes('spawn slots in the ROM table')&&!visibleFish.includes('ช่องเกิดปลาในตาราง ROM')&&!visibleFish.includes('ROMテーブルの出現枠'),'Raw spawn-slot count leaked into player area cards');
-   const offered=[...result.html.matchAll(/class="detail-section starter-offer" data-method="([^"]+)" data-item="([^"]+)" data-price="(\d+)"/g)];
+   const offered=[...result.html.matchAll(/class="detail-section starter-offer" id="starter-[^"]+" data-method="([^"]+)" data-item="([^"]+)" data-price="(\d+)"/g)];
    for(const method of ['float','sinker','lure','fly']){
     const candidates=[];
     for(const item of data.items){
@@ -254,7 +260,38 @@ async function render(kind,lang,query,prefix='/kawa-no-nushi-tsuri-2-research'){
      assert.equal(rodCard[3],String(Boolean(local.length)));
      assert.equal(chosen.priceYen,Math.min(...(local.length?local:available).map(item=>item.priceYen)));
     }
-    if(card){const minimum=Math.min(...candidates.map(x=>x.price));assert.equal(Number(card[3]),minimum,'Starter price is not lowest eligible offer');assert(candidates.some(x=>x.key===card[2]&&x.price===minimum),'Starter item is incompatible or not stocked');}
+    if(card){
+     const minimum=Math.min(...candidates.map(x=>x.price));assert.equal(Number(card[3]),minimum,'Starter price is not lowest eligible offer');assert(candidates.some(x=>x.key===card[2]&&x.price===minimum),'Starter item is incompatible or not stocked');
+     const nextOffer=offered.find(row=>row.index>card.index);
+     const offerHtml=result.html.slice(card.index,nextOffer?.index||result.html.length);
+     if(['float','sinker'].includes(method)){
+      assert(offerHtml.includes('data-method-rig="'+method+'"'),'Missing bait rig preparation');
+      assert(offerHtml.includes('docs/hook-practical-research.md'),'Rig selection lacks evidence link');
+      let localSum=Number(card[3]),allLocal=rodCard[3]==='true';
+      localSum+=data.items.find(item=>item.category==='rod'&&item.id===rodCard[2]).priceYen;
+      for(const role of ['hook',method]){
+       const match=[...offerHtml.matchAll(/data-rig-role="([^"]+)" data-rig-item="([^"]+)" data-rig-local="(true|false)"/g)].find(row=>row[1]===role);
+       assert(match,'Missing equipment role '+role);
+       const possible=data.items.filter(item=>Number.isFinite(item.priceYen)&&item.playerUse?.shops?.length&&(role==='hook'?item.category==='hook'&&item.rawFields['+1']===0:item.category==='float_weight'&&(method==='float'?parseInt(item.id,16)<=8:parseInt(item.id,16)>=9)));
+       const local=possible.filter(item=>item.playerUse.shops.some(shop=>String(shop.stage)===stage&&!shop.condition));
+       const chosen=possible.find(item=>item.id===match[2]);assert(chosen,'Wrong equipment role');
+       assert.equal(match[3],String(Boolean(local.length)),'Wrong local rig availability');
+       assert.equal(chosen.priceYen,Math.min(...(local.length?local:possible).map(item=>item.priceYen)),'Rig equipment price not minimum');
+       localSum+=chosen.priceYen;allLocal=allLocal&&match[3]==='true';
+       const p=new URLSearchParams({category:chosen.category,id:chosen.id,fish:fishId,stage,route:method});
+       const hrefs=[...offerHtml.matchAll(/href="([^"]+)"/g)].map(row=>new URL(unescape(row[1]),'https://local.test/catalogue/fish.html'));
+       assert(hrefs.some(url=>[...p].every(([key,value])=>url.searchParams.get(key)===value)&&url.searchParams.get('return')?.endsWith('#starter-'+method)),'Rig item link lost method, fish, area or return section');
+      }
+      const total=offerHtml.match(/data-rig-total="(\d+)"/);
+      assert.equal(Boolean(total),allLocal,'New purchase total implies missing local stock');
+      if(total)assert.equal(Number(total[1]),localSum,'Four-item new purchase total wrong');
+      if(method==='sinker'){
+       const localSinker=data.items.some(item=>item.category==='float_weight'&&parseInt(item.id,16)>=9&&item.playerUse.shops.some(shop=>String(shop.stage)===stage&&!shop.condition));
+       const floatAvailable=offered.some(row=>row[1]==='float');
+       assert.equal(offerHtml.includes('data-rig-fallback="float"'),!localSinker&&floatAvailable,'Missing/incorrect local float alternative');
+      }
+     }else assert(offerHtml.includes('method-equipment-note'),'Missing lure/fly equipment purchase exclusion');
+    }
    }
   }
   const invalidTarget=await render('item',lang,new URLSearchParams({category:'lure',id:'2E',fish:'FF',stage:'999'}));
@@ -288,6 +325,7 @@ async function render(kind,lang,query,prefix='/kawa-no-nushi-tsuri-2-research'){
      assert(card&&card.includes(`category=${item.category}&amp;id=${item.id}`),`Missing catalogue item detail ${item.category}:${item.id}`);
      if(item.netGatherArea){assert(card.includes('data-bait-gather-choice')&&unescape(card).includes('category=general_tool&id=04'),'Missing net gathering alternative');}
    if(item.acquisitionOptions?.length)assert(card.includes('data-acquisition-choice')&&card.includes('#use-locations'),'Acquisition card lacks next action');
+     if(item.category.startsWith('fly'))assert(card.includes('data-fly-maker')&&card.includes('#fly-instructions'),'Fly card has no custom maker action');
      assert(/<figure class="sprite"><a /.test(card),`Unlinked portrait ${item.category}:${item.id}`);
      assert(/<h3><a class="entity-title"/.test(card),`Unlinked name ${item.category}:${item.id}`);
      if(item.category==='rod'){assert(item.rodDecision,'Missing rod decision '+item.id);const front=card.split('<details class="record-details"')[0];for(const field of ['label','recommendation','reason'])assert(unescape(front).includes(item.rodDecision[field][lang]),'Catalogue rod decision hidden '+item.id+'/'+field+'/'+lang);assert(!front.includes('compatible-fish'),'Rod response fish disguised as gameplay suitability');assert(!front.includes('fightResponseCode'),'Branch selector in rod card');}

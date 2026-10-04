@@ -294,6 +294,8 @@
     }).join('')}</div></section>`;
   }
 
+
+  const flyMakerLink=item=>item.category.startsWith('fly')?`<p><a class="route-button" data-fly-maker href="${esc(currentCategoryLink().split('#')[0]+'#fly-instructions')}">${lang==='th'?'ดูขั้นตอนประกอบฟลายเองและตรวจราคาในเกม':lang==='ja'?'自作フライの手順とゲーム内見積額を確認':'See custom fly steps and check the in-game quote'} ↗</a></p>`:'';
   function gearNextActions(item,fishVisuals,fishLocations,allItems){
     if(!item.gearDecision)return '';
     if(item.category==='float_weight')return `<p><a class="route-button" data-float-price-guide href="index${lang==='en'?'':'.'+lang}.html?category=float_weight#category-decisions">${lang==='th'?'ดูทุ่นและตะกั่วราคาต่ำสุดแยกทั้งหกด่าน':lang==='ja'?'6エリアの最安ウキ・オモリを見る':'See the cheapest float and sinker in each of six areas'} ↗</a></p>`;
@@ -377,7 +379,7 @@
     const adviceTitle=lang==='th'?'ควรเลือกคันนี้เมื่อไร?':lang==='ja'?'この竿を選ぶときは？':'When should I choose this rod?';
     const alternatives=rodAdvice?.alternatives?.map(ref=>allItems.find(candidate=>candidate.category===ref.category&&candidate.id===ref.id)).filter(Boolean)||[];
     const compareLinks=alternatives.length?`<div class="detail-grid rod-alternatives">${alternatives.map(other=>componentLink(other)).join('')}</div>`:'';
-    const actionSection=`<section class="detail-section ${rodAdvice?'buying-decision rod-decision':''}" ${rodAdvice?(isRod?'data-rod-decision':item.baitLureDecision?'data-bait-lure-decision':'data-gear-decision')+'="'+esc(item.id)+'"':''}><h2>${esc(rodAdvice?(isRod?adviceTitle:(lang==='th'?'ควรซื้อหรือใช้ชิ้นนี้เมื่อไร?':lang==='ja'?'この道具を買う・使うときは？':'When should I buy or use this?')):copy.use)}</h2>${rodAdvice?`<p class="rod-verdict">${esc(local(rodAdvice.label))}</p>`:''}<p>${esc(summary||copy.noFish)}</p>${factsHtml?`<h3>${esc(rodAdvice?(lang==='th'?'เหตุผลที่เลือกหรือใช้ต่อ':lang==='ja'?'選ぶ・使い続ける理由':'Why choose or keep it'):copy.details)}</h3>${factsHtml}`:''}${compareLinks}${gearNextActions(item,fishVisuals,fishLocations,allItems)}${imageNote?`<p class="muted">${esc(imageNote)}</p>`:''}</section>`;
+    const actionSection=`<section class="detail-section ${rodAdvice?'buying-decision rod-decision':''}" ${rodAdvice?(isRod?'data-rod-decision':item.baitLureDecision?'data-bait-lure-decision':'data-gear-decision')+'="'+esc(item.id)+'"':''}><h2>${esc(rodAdvice?(isRod?adviceTitle:(lang==='th'?'ควรซื้อหรือใช้ชิ้นนี้เมื่อไร?':lang==='ja'?'この道具を買う・使うときは？':'When should I buy or use this?')):copy.use)}</h2>${rodAdvice?`<p class="rod-verdict">${esc(local(rodAdvice.label))}</p>`:''}<p>${esc(summary||copy.noFish)}</p>${factsHtml?`<h3>${esc(rodAdvice?(lang==='th'?'เหตุผลที่เลือกหรือใช้ต่อ':lang==='ja'?'選ぶ・使い続ける理由':'Why choose or keep it'):copy.details)}</h3>${factsHtml}`:''}${compareLinks}${gearNextActions(item,fishVisuals,fishLocations,allItems)}${flyMakerLink(item)}${imageNote?`<p class="muted">${esc(imageNote)}</p>`:''}</section>`;
     const categoryHref=currentCategoryLink();
     const intro=`<nav class="detail-breadcrumb"><a href="${esc(categoryHref)}">${esc(copy.allItems)} · ${esc(categoryText)}</a></nav>`;
     const moreLink=`<p class="detail-back-to-list"><a class="route-button" href="${esc(categoryHref)}">${esc(copy.allItems)} · ${esc(categoryText)} ↗</a></p>`;
@@ -389,7 +391,7 @@
     setNavigation();
     $('detail-root').innerHTML=`<section class="empty-state"><h1>${esc(copy.invalidTitle)}</h1><p>${esc(copy.invalidBody)}</p><a class="route-button" href="${esc(fallbackBack())}">${esc(copy.allItems)} ↗</a></section>`;
   }
-  fetch('gallery-data.json?v=player-usefulness-20261004-12').then(response=>{if(!response.ok)throw new Error('catalogue data unavailable');return response.json();}).then(data=>{
+  fetch('gallery-data.json?v=player-usefulness-20261004-13').then(response=>{if(!response.ok)throw new Error('catalogue data unavailable');return response.json();}).then(data=>{
     if(selectedFish&&!data.fishVisuals?.[selectedFish])selectedFish='';
     const item=(data.items||[]).find(candidate=>candidate.category===category&&candidate.id===requestedId)||null;
     if(!item){emptyState();return;}

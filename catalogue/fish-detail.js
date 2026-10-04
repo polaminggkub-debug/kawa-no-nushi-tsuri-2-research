@@ -290,15 +290,37 @@
     return `<section class="method-rod" data-method-rod="${method}" data-rod="${choice.id}" data-rod-local="${Boolean(here.length)}"><h4>${escapeHtml(title)}</h4><p>${escapeHtml(owned)}</p><p>${escapeHtml(decision)}</p>${itemLink({item:choice,routes:[]},stage)}</section>`;
   }
 
+  function renderRigForMethod(method,stage,items,baitPrice){
+    if(!['float','sinker'].includes(method))return `<p class="method-equipment-note">${escapeHtml(method==='lure'?(locale==='th'?'ลัวร์ไม่ใช้ตะขอและทุ่นของชุดเหยื่อ จึงไม่ต้องซื้อสองหมวดนี้มาเพิ่มให้ชุดลัวร์':locale==='ja'?'ルアーの準備ではエサ釣りの針・ウキを使わないため、このセット用に追加購入しません。':'Lure setup does not use the bait-rig hook or float; do not buy those as additions to this lure set.'):(locale==='th'?'ฟลายไม่ใช้ตะขอของชุดเหยื่อ และเกมโหลดเครื่องหมายให้อัตโนมัติ ไม่ต้องซื้อเครื่องหมายเพื่อเพิ่มประสิทธิภาพชุดนี้':locale==='ja'?'フライではエサ釣りの針を使わず、目印は自動設定されます。性能向上のために目印を追加購入しません。':'Fly setup clears the bait hook and loads its marker automatically. Do not buy a marker expecting to improve this set.'))}</p>`;
+    const stock=item=>item.playerUse?.shops?.some(shop=>String(shop.stage)===String(stage)&&!shop.condition);
+    const ordered=list=>list.filter(item=>Number.isFinite(item.priceYen)&&item.playerUse?.shops?.length).sort((a,b)=>a.priceYen-b.priceYen||a.id.localeCompare(b.id));
+    const roles=[{role:'hook',candidates:ordered(items.filter(item=>item.category==='hook'&&item.rawFields?.['+1']===0))},{role:method,candidates:ordered(items.filter(item=>item.category==='float_weight'&&(method==='float'?parseInt(item.id,16)<=8:parseInt(item.id,16)>=9)))}];
+    const title=locale==='th'?'ตะขอและชุดทุ่น/ตะกั่วที่ต้องเตรียม':locale==='ja'?'準備する針とウキ・オモリ':'Hook and float/sinker to prepare';
+    const owned=locale==='th'?'ใช้ตะขอและทุ่น/ตะกั่วที่มีให้ตรงวิธีนี้ ซื้อเฉพาะของที่ขาด ตัวเลือกตะขอด้านล่างราคาต่ำสุดในรุ่นที่เกมไม่ได้ผูกกับปลาเฉพาะชนิด ไม่ใช่อันดับจับง่าย':locale==='ja'?'手持ちの針と、この釣り方に合うウキ・オモリを使い、不足分だけ買います。針は特定の魚との一致条件がない型の最安候補で、取り込みやすさの順位ではありません。':'Use an owned hook and a float or sinker matching this method; buy only missing equipment. The hook is the cheapest stocked model without a species-specific match, not a landing-success winner.';
+    const cards=roles.map(({role,candidates})=>{
+      const local=candidates.filter(stock),choice=local[0]||candidates[0];if(!choice)return '';
+      const roleName=role==='hook'?(locale==='th'?'ตะขอ':locale==='ja'?'針':'Hook'):role==='float'?copy.float:copy.sinker;
+      const action=local.length?(locale==='th'?'ซื้อใหม่ที่ด่าน '+stage+' ราคาเต็ม ¥'+choice.priceYen:locale==='ja'?'エリア'+stage+'で新規購入、全額'+choice.priceYen+'円。':'Buy new in area '+stage+' at the full ¥'+choice.priceYen+'.'):(locale==='th'?'ด่านนี้ไม่มีสินค้าประเภทนี้ในสต็อกที่ตรวจ ใช้ของที่มี หรือเปิดหน้าชิ้นนี้เพื่อดูด่านที่ขายก่อนเดินทาง':locale==='ja'?'このエリアに在庫の記録がありません。手持ちを使うか、この道具の販売エリアを確認してから移動します。':'No stock of this equipment type is recorded in this area. Use an owned item or open this choice to check sale areas before travelling.');
+      const p=new URLSearchParams({category:choice.category,id:choice.id,fish:id,stage:String(stage),route:method,return:currentFishPath(stage)+'#starter-'+method});
+      return `<div class="method-rig-choice" data-rig-role="${role}" data-rig-item="${choice.id}" data-rig-local="${Boolean(local.length)}"><h5>${escapeHtml(roleName)}</h5><a class="entity-link" href="${escapeHtml(itemPath()+'?'+p)}"><img src="${escapeHtml(choice.image)}" alt=""><span><strong>${escapeHtml(localizedItemName(choice))}</strong><small>${escapeHtml(action)}</small></span></a></div>`;
+    }).join('');
+    const localRod=ordered(items.filter(item=>item.category==='rod'&&item.decodedFields?.styleCode===(method==='float'?1:2))).find(stock);
+    const localParts=roles.map(role=>role.candidates.find(stock));
+    const total=localRod&&localParts.every(Boolean)?localRod.priceYen+baitPrice+localParts.reduce((sum,item)=>sum+item.priceYen,0):null;
+    const totalCopy=total===null?'':`<p class="rig-total" data-rig-total="${total}"><strong>${escapeHtml(locale==='th'?'ซื้อคัน + เหยื่อ + ตะขอ + ทุ่น/ตะกั่วใหม่ทั้งหมด รวม ¥'+total:locale==='ja'?'竿・エサ・針・ウキ／オモリをすべて新規購入：合計'+total+'円。':'Buying the rod, bait, hook and float/sinker all new: ¥'+total+' total.')}</strong></p>`;
+    const floatFallback=method==='sinker'&&!roles[1].candidates.some(stock)&&starterOffers(matchingItems(items),stage).some(offer=>offer.method==='float')?`<p><a class="route-button" data-rig-fallback="float" href="#starter-float">${escapeHtml(locale==='th'?'ยังไม่มีตะกั่ว? เลือกชุดทุ่นที่ปลาเป้าหมายรับได้ในด่านนี้':locale==='ja'?'オモリがない場合、このエリアの対象魚に適合するウキセットを選ぶ':'No sinker yet? Choose the target-compatible float setup in this area')} ↓</a></p>`:'';
+    return `<section class="method-rig" data-method-rig="${method}"><h4>${escapeHtml(title)}</h4><p>${escapeHtml(owned)}</p>${cards}${totalCopy}${floatFallback}<details><summary>${escapeHtml(copy.evidence)}</summary><a href="https://github.com/polaminggkub-debug/kawa-no-nushi-tsuri-2-research/blob/main/docs/hook-practical-research.md">${escapeHtml(locale==='th'?'หลักฐานการใช้ตะขอและทุ่น/ตะกั่ว':locale==='ja'?'針・ウキ・オモリの根拠':'Hook and float/sinker evidence')} ↗</a></details></section>`;
+  }
+
   function renderShopping(entries, locations, stage, allItems, flyChoices) {
     if(!locations.length)return '';
     const offers=starterOffers(entries,stage), text=shoppingCopy;
     const cards=offers.map(offer=>{
-      const query=new URLSearchParams({category:offer.entry.item.category,id:offer.entry.item.id,fish:id,stage,return:currentFishPath(stage)});
+      const query=new URLSearchParams({category:offer.entry.item.category,id:offer.entry.item.id,fish:id,stage,return:currentFishPath(stage)+'#starter-'+offer.method});
       if(['float','sinker'].includes(offer.method))query.set('route',offer.method);
       const link=`${itemPath()}?${query}`;
-      const aimTip=offer.method==='lure'?`<p class="aim-tip">${escapeHtml(locale==='th'?'ก่อนใช้คันลัวร์ เติม HP ให้ถึง 100 เพื่อให้ได้เวลาเล็งเต็มของคันนั้น ไม่ใช่โบนัสโอกาสปลากิน':locale==='ja'?'ルアー竿を使う前にHPを100まで回復すると、竿本来の照準時間になります。食いつき率のボーナスではありません。':'Restore HP to 100 before lure fishing to get the rod’s full aim window. This does not add a bite-rate bonus.')}</p>`:'';
-      return `<article class="detail-section starter-offer" data-method="${offer.method}" data-item="${offer.entry.item.category}:${offer.entry.item.id}" data-price="${offer.price}"><h3>${escapeHtml(offer.label)}</h3><a class="entity-link" href="${escapeHtml(link)}"><img src="${escapeHtml(offer.entry.item.image)}" alt=""><span><strong>${escapeHtml(localizedItemName(offer.entry.item))}</strong><small>${escapeHtml(text.cost)} ¥${offer.price}${offer.bundle?` · ${escapeHtml(text.bundle)}`:''}</small></span></a>${renderRodForMethod(offer.method,stage,allItems)}${aimTip}${offer.bundle?`<p class="muted">${escapeHtml(text.fly)}</p>`:''}<a class="route-button" href="${escapeHtml(link)}">${escapeHtml(text.buy)} ↗</a></article>`;
+      const aimTip=['lure','sinker'].includes(offer.method)?`<p class="aim-tip">${escapeHtml(locale==='th'?'ก่อนใช้คันลัวร์หรือคันหวด เติม HP ให้ถึง 100 เพื่อให้ได้เวลาเล็งเต็มของคันนั้น ไม่ใช่โบนัสโอกาสปลากิน':locale==='ja'?'ルアー竿・投げ竿を使う前にHPを100まで回復すると、竿本来の照準時間になります。食いつき率のボーナスではありません。':'Restore HP to 100 before lure or casting fishing to get the rod’s full aim window. This does not add a bite-rate bonus.')}</p>`:'';
+      return `<article class="detail-section starter-offer" id="starter-${offer.method}" data-method="${offer.method}" data-item="${offer.entry.item.category}:${offer.entry.item.id}" data-price="${offer.price}"><h3>${escapeHtml(offer.label)}</h3><a class="entity-link" href="${escapeHtml(link)}"><img src="${escapeHtml(offer.entry.item.image)}" alt=""><span><strong>${escapeHtml(localizedItemName(offer.entry.item))}</strong><small>${escapeHtml(text.cost)} ¥${offer.price}${offer.bundle?` · ${escapeHtml(text.bundle)}`:''}</small></span></a>${renderRodForMethod(offer.method,stage,allItems)}${renderRigForMethod(offer.method,stage,allItems,offer.price)}${aimTip}${offer.bundle?`<p class="muted">${escapeHtml(text.fly)}</p>`:''}<a class="route-button" href="${escapeHtml(link)}">${escapeHtml(text.buy)} ↗</a></article>`;
     }).join('');
     return `<section class="detail-section shopping-plan"><h2>${escapeHtml(text.title)}</h2><label for="shopping-area">${escapeHtml(text.area)}</label><select id="shopping-area">${locations.map(loc=>`<option value="${loc.stage}" ${String(loc.stage)===stage?'selected':''}>${escapeHtml(copy.stage(loc.stage))} · ${escapeHtml(loc.stageName?.[locale]||loc.stageName?.en||'')}</option>`).join('')}</select><p>${escapeHtml(text.intro)}</p>${offers.length?`<div class="detail-grid">${cards}</div>`:`<p>${escapeHtml(text.none)}</p>`}<p class="muted">${escapeHtml(text.scope)}</p><a href="#all-compatible">${escapeHtml(text.all)} ↓</a>${renderReusableKit(allItems,stage)}${renderFlyFallback(allItems,stage,flyChoices)}</section>`;
   }
@@ -400,7 +422,7 @@
   }
 
   Promise.all([
-    fetch('gallery-data.json?v=player-usefulness-20261004-12').then(response => { if (!response.ok) throw new Error('gallery data unavailable'); return response.json(); }),
+    fetch('gallery-data.json?v=player-usefulness-20261004-13').then(response => { if (!response.ok) throw new Error('gallery data unavailable'); return response.json(); }),
     fetch('fish-locations.json').then(response => { if (!response.ok) throw new Error('location data unavailable'); return response.json(); })
   ]).then(([fishData, locationData]) => render(fishData, locationData)).catch(() => {
     page.innerHTML = `<h1>${escapeHtml(copy.pageTitle)}</h1><p class="empty-state">${escapeHtml(copy.recovery)}</p><p><a class="route-button" href="${escapeHtml(cataloguePath())}">${escapeHtml(copy.catalogue)}</a></p>`;
