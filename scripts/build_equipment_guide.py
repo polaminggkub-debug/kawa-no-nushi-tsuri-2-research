@@ -3,6 +3,7 @@
 """Render three player-first equipment guides from original-ROM research."""
 import html
 import json
+from urllib.parse import urlencode
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -177,6 +178,14 @@ def area_names(category, item_id, lang):
     return areas
 
 
+def entity_href(kind, entity_id, lang, category=None):
+    suffix = '' if lang == 'en' else '.' + lang
+    params = {'id': entity_id, 'return': f'../research/index{suffix}.html'}
+    if category:
+        params['category'] = category
+    return esc(f'../catalogue/{kind}{suffix}.html?' + urlencode(params))
+
+
 def render_lure_cards(lang):
     c = COPY[lang]
     out = []
@@ -191,8 +200,8 @@ def render_lure_cards(lang):
         else:
             shop_text = f"{c['shop']} {area}"
         out.append(
-            f'<article class="kit-card"><img src="../catalogue/{esc(item["image"])}" alt="{esc(name)}">'
-            f'<h3>{esc(name)} <code>{item_id}</code></h3>'
+            f'<article class="kit-card"><a href="{entity_href("item", item_id, lang, "lure")}"><img src="../catalogue/{esc(item["image"])}" alt="{esc(name)}"></a>'
+            f'<h3><a href="{entity_href("item", item_id, lang, "lure")}">{esc(name)} <code>{item_id}</code></a></h3>'
             f'<div class="price">¥{item["priceYen"]}</div><div class="shop">{esc(shop_text)}</div></article>'
         )
     return ''.join(out)
@@ -209,8 +218,8 @@ def render_rod_groups(lang):
             name = item['nameEn'] if lang == 'en' else item['nameJa'] if lang == 'ja' else item.get('nameTh', item['nameJa'])
             offer = area_names('rod', item_id, lang)
             rows.append(
-                f'<div class="rod-item"><img src="../catalogue/{esc(item["image"])}" alt="{esc(name)}">'
-                f'<div><strong>{esc(name)} · <code>{item_id}</code></strong>'
+                f'<div class="rod-item"><a href="{entity_href("item", item_id, lang, "rod")}"><img src="../catalogue/{esc(item["image"])}" alt="{esc(name)}"></a>'
+                f'<div><strong><a href="{entity_href("item", item_id, lang, "rod")}">{esc(name)} · <code>{item_id}</code></a></strong>'
                 f'<div class="price">¥{item["priceYen"]}</div><div class="shop">{esc(offer)}</div>'
                 f'<p>{esc(entry["why"])}</p></div></div>'
             )
@@ -233,7 +242,7 @@ def render_rod_evidence_table(lang):
             offers = {'en':'No offer decoded in six-area stock', 'ja':'6エリアの在庫から販売確認できず', 'th':'ไม่พบรายการขายในข้อมูลร้านหกพื้นที่'}[lang]
         row = [
             c['styleNames'].get(style, style),
-            f'<code>{esc(item_id)}</code> {esc(label)}',
+            f'<a href="{entity_href("item", item_id, lang, "rod")}"><code>{esc(item_id)}</code> {esc(label)}</a>',
             f'¥{item.get("priceYen", "—")}',
             esc(offers),
             esc(fields.get('castAimHoldCutoffInternal', '—')),
@@ -258,7 +267,7 @@ def build(lang):
         for mask in [0x0200, 0x0040, 0x0400, 0x0020, 0x0004]:
             yes = bool(int(fish['acceptance_mask_hex'], 16) & mask)
             cells.append(f'<td class="{"yes" if yes else "no"}" aria-label="{esc(c["yes" if yes else "no"])}">{"✓" if yes else "—"}</td>')
-        rows.append(f'<tr><td><code>{esc(fish["id_hex"])}</code> {esc(fish["name_ja"])}</td>{"".join(cells)}</tr>')
+        rows.append(f'<tr><td><a href="{entity_href("fish", fish["id_hex"], lang)}"><code>{esc(fish["id_hex"])}</code> {esc(fish["name_ja"])}</a></td>{"".join(cells)}</tr>')
 
     evidence = ''.join(
         f'<li><a href="https://github.com/polaminggkub-debug/kawa-no-nushi-tsuri-2-research/blob/main/docs/{esc(name)}">{esc(label)}</a></li>'
@@ -268,19 +277,13 @@ def build(lang):
         f'<link rel="alternate" hreflang="{lang_code}" href="https://polaminggkub-debug.github.io/kawa-no-nushi-tsuri-2-research/research/index{page_suffix}.html">'
         for lang_code, page_suffix in [('en', ''), ('ja', '.ja'), ('th', '.th')]
     )
-    kit_pair = (
-        '<div class="kit-pair"><img src="../catalogue/sprites/lures-046.png" alt="Spoon 2E">'
-        '<span aria-hidden="true">+</span><img src="../catalogue/sprites/lures-035.png" alt="Soft Worm 23"></div>'
-        if lang == 'en' else
-        '<div class="kit-pair"><img src="../catalogue/sprites/lures-046.png" alt="スプーン2E">'
-        '<span aria-hidden="true">+</span><img src="../catalogue/sprites/lures-035.png" alt="ソフトワーム23"></div>'
-        if lang == 'ja' else
-        '<div class="kit-pair"><img src="../catalogue/sprites/lures-046.png" alt="สปูน 2E">'
-        '<span aria-hidden="true">+</span><img src="../catalogue/sprites/lures-035.png" alt="ยางหนอน 23"></div>'
-    )
+    kit_pair = '<div class="kit-pair">' + '<span aria-hidden="true">+</span>'.join(
+        f'<a href="{entity_href("item", item_id, lang, "lure")}"><img src="../catalogue/{esc(ITEMS[("lure", item_id)]["image"])}" alt="{esc(c["kitItems"][item_id])} {item_id}"></a>'
+        for item_id in ['2E', '23']
+    ) + '</div>'
     table = f'''<h3>{esc(c['table'])}</h3><p>{esc(c['tablenote'])}</p><input id="filter" aria-label="{esc(c['search'])}" placeholder="{esc(c['search'])}">
 <div class="scroll"><table><thead><tr><th>{esc(c['fish'])}</th><th>17 / 18<br>2E–31</th><th>23 / 24</th><th>0400<br>73 IDs</th><th>Fly<br>0020</th><th>Fly<br>0004</th></tr></thead><tbody>{''.join(rows)}</tbody></table></div>'''
-    text = f'''<!doctype html><html lang="{lang}"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>{esc(c['title'])}</title><meta name="description" content="{esc(c['intro'])}"><link rel="canonical" href="https://polaminggkub-debug.github.io/kawa-no-nushi-tsuri-2-research/research/index{suffix}.html">{alternates}<style>{CSS}</style></head><body><main>
+    text = f'''<!doctype html><html lang="{lang}"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>{esc(c['title'])}</title><meta name="description" content="{esc(c['intro'])}"><link rel="canonical" href="https://polaminggkub-debug.github.io/kawa-no-nushi-tsuri-2-research/research/index{suffix}.html">{alternates}<style>{CSS} a:focus-visible{{outline:3px solid #a16b1b;outline-offset:3px}} .kit-card h3 a,.rod-item strong a{{color:inherit}}</style></head><body><main>
 <nav><a href="index.html">English</a><a href="index.ja.html">日本語</a><a href="index.th.html">ไทย</a><a href="../catalogue/index{suffix}.html">{esc(c['catalogue'])}</a></nav>
 <h1>{esc(c['title'])}</h1><p class="decision"><strong>{esc(c['intro'])}</strong></p><p class="note">{esc(c['scope'])}</p>
 <section><h2>{esc(c['kit'])}</h2><p class="decision"><strong>{esc(c['starter'])}</strong></p><article class="kit-card">{kit_pair}<h3>{esc(c['starterTitle'])}</h3></article><p>{esc(c['cheapest'])}</p><div class="kit-grid">{render_lure_cards(lang)}</div></section>

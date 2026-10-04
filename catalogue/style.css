@@ -91,3 +91,5 @@
 .page-menu{display:flex;gap:10px;flex-wrap:wrap;margin:22px 0}.page-menu a{font-size:1.1rem;font-weight:700;text-decoration:none;border:2px solid #50755d;border-radius:12px;padding:12px 22px;background:white;color:#254b39}.page-menu a.active{background:#355e47;color:white}
 
 .map-browser-cta{display:inline-block;margin:10px 0 18px;padding:10px 16px;border:1px solid #50755d;border-radius:10px;font-weight:700;background:white;text-decoration:none}
+
+.sprite>a{display:grid;place-items:center;width:100%;height:100%;border-radius:inherit}.entity-title{color:inherit;text-decoration:none}.entity-title:hover{text-decoration:underline}.fish-chip:focus-visible,.sprite>a:focus-visible{outline:3px solid #bd8517;outline-offset:3px}.map-pin a{display:inline-block;pointer-events:auto}.location-heading>a{flex-shrink:0}.location-heading>a>img{width:128px;height:80px;object-fit:contain;image-rendering:pixelated}

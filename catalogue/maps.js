@@ -15,6 +15,21 @@
   const local = obj => obj?.[lang] || obj?.en || obj?.ja || obj?.th || '';
   const idNorm = id => String(id).toUpperCase().replace(/^0X/,'').padStart(2,'0');
   const fishName = id => species[id]?.name || c.fishName(id);
+  const detailLabel=lang==='th'?'รายละเอียด':lang==='ja'?'詳細':'Details';
+  let returnPath='';
+  try {
+    const raw=new URLSearchParams(location.search).get('return')||'';
+    const base=new URL('.',location.href), target=new URL(raw,base);
+    const allowed=['index','maps','fish','item'].flatMap(name=>['','.th','.ja'].map(suffix=>new URL(`${name}${suffix}.html`,base).pathname));
+    if(raw&&!raw.startsWith('//')&&!raw.includes('\\')&&!/^[a-z][a-z0-9+.-]*:/i.test(raw)&&target.origin===base.origin&&allowed.includes(target.pathname))returnPath=target.pathname.split('/').pop()+target.search+target.hash;
+  }catch{}
+  if(returnPath){
+    const back=document.createElement('a');back.className='back-link';back.href=returnPath;
+    back.textContent=lang==='th'?'← กลับหน้าที่เปิดแผนที่':lang==='ja'?'← 前のページに戻る':'← Back to the page that opened this map';
+    document.querySelector('.hero-meta').prepend(back);
+  }
+  const sourceReturn=()=>location.pathname.split('/').pop()+location.search;
+  const fishHref=id=>`fish${lang==='en'?'':'.'+lang}.html?id=${id}&stage=${activeStage}&return=${encodeURIComponent(sourceReturn())}`;
   function buildData(raw, gallery) {
     fishData = raw.fish || {};
     visuals = gallery.fishVisuals || {};
@@ -58,6 +73,7 @@
   function updateUrl() {
     const params = new URLSearchParams();
     params.set('stage', String(activeStage));
+    if(returnPath)params.set('return',returnPath);
     if (activeSection) params.set('section', activeSection);
     if (selectedFish) params.set('fish', selectedFish);
     if(listScope==='section')params.set('scope','section');
@@ -106,7 +122,7 @@
       const availability = item.stages.join(', ');
       const pointCount=[...(stages[activeStage]?.pins.values()||[])].filter(pin=>pin.fishIds.includes(id)&&(listScope!=='section'||sectionIds.has(id)&&stages[activeStage].sections.get(activeSection)?.pins.includes(pin))).length;
       const sub = term ? `${c.areasPrefix} ${availability}` : `${c.point(pointCount)}${item.visual.nameJa && lang!=='ja' ? ` · ${item.visual.nameJa}` : ''}`;
-      return `<button class="fish-choice" type="button" data-fish="${id}" aria-pressed="${selectedFish===id}">${img?`<img loading="lazy" src="${esc(img)}" alt="">`:''}<span>${esc(item.name)}<small>${esc(sub)}</small></span></button>`;
+      return `<div class="fish-choice-row ${selectedFish===id?'selected':''}"><a class="fish-portrait-link" href="${esc(fishHref(id))}" aria-label="${esc(item.name)} — ${detailLabel}">${img?`<img loading="lazy" src="${esc(img)}" alt="${esc(item.name)}">`:''}</a><button class="fish-choice" type="button" data-fish="${id}" aria-pressed="${selectedFish===id}"><span>${esc(item.name)}<small>${esc(sub)}</small><small class="filter-action">${lang==='th'?'เน้นบนแผนที่':lang==='ja'?'地図で絞り込む':'Focus on map'}</small></span></button><a class="fish-details-link" href="${esc(fishHref(id))}">${detailLabel} ↗</a></div>`;
     }).join('');
   }
   function renderSectionSelect() {
@@ -136,7 +152,7 @@
     box.hidden = false;
     box.innerHTML = `<span class="pin-details-label">X ${x}, Y ${y} · ${unique.length} ${c.species}</span>` + unique.map(id=>{
       const f=species[id], img=f.visual.image||'';
-      return `<button class="pin-fish-choice" type="button" data-fish="${id}">${img?`<img src="${esc(img)}" alt="">`:''}<span>${esc(f.name)} · ${id}</span></button>`;
+      return `<div class="pin-fish-row"><a class="pin-fish-details" href="${esc(fishHref(id))}">${img?`<img src="${esc(img)}" alt="">`:''}<span>${esc(f.name)} — ${detailLabel} ↗</span></a><button class="pin-fish-choice" type="button" data-fish="${id}">${lang==='th'?'เน้นบนแผนที่':lang==='ja'?'地図で絞り込む':'Focus on map'}</button></div>`;
     }).join('');
   }
   function renderMap() {
@@ -157,11 +173,13 @@
     const viewW = Math.round(cellW*scale), viewH = Math.round(cellH*scale);
     const counts = new Set(filtered.flatMap(pin=>pin.fishIds)).size;
     $('map-summary').textContent = `${c.mapSection(section.col+1,section.row+1)} · ${c.point(filtered.length)} · ${counts} ${c.species}`;
-    $('pin-help').textContent = selectedFish ? `${c.selectedTarget} ${fishName(selectedFish)}. ${c.point(filtered.reduce((n,p)=>n+1,0))}.` : `${c.noTarget} ${lang==='th'?'กดรูปปลาหรือหมุดซ้อนเพื่อเลือกปลา':lang==='ja'?'魚の画像や重なった地点を選んで魚種を絞り込み':'Select a fish portrait or shared point to focus its locations'}.`;
+    $('pin-help').textContent = selectedFish ? `${c.selectedTarget} ${fishName(selectedFish)}. ${c.point(filtered.reduce((n,p)=>n+1,0))}.` : `${c.noTarget} ${lang==='th'?'กดรูปปลาเพื่อดูรายละเอียด หรือกดจุดซ้อนเพื่อเลือกชนิด':lang==='ja'?'魚画像は詳細へ。重なった地点は魚種を選択。':'Fish portraits open details; shared points let you choose a species'}.`;
     const pins = filtered.map(pin=>{
       const px=(pin.x*16+8-originX)*scale, py=(pin.y*16+8-originY)*scale;
       const names=pin.fishIds.map(id=>fishName(id)).join(', '), imgs=pin.fishIds.map(id=>species[id].visual.image).filter(Boolean);
-      return `<button type="button" class="fish-pin ${selectedFish?'focused':''}" style="left:${px}px;top:${py}px" data-pin="${pin.fishIds.join(',')}" data-x="${pin.x}" data-y="${pin.y}" title="${esc(names)} · X ${pin.x}, Y ${pin.y}" aria-label="${esc(names)} · X ${pin.x}, Y ${pin.y}">${imgs.slice(0,2).map(src=>`<img loading="lazy" src="${esc(src)}" alt="">`).join('')}${pin.fishIds.length>1?`<span class="cluster-count">${pin.fishIds.length}</span>`:''}</button>`;
+      const tag=pin.fishIds.length===1?'a':'button';
+      const action=tag==='a'?`href="${esc(fishHref(pin.fishIds[0]))}"`:`type="button" data-pin="${pin.fishIds.join(',')}"`;
+      return `<${tag} ${action} class="fish-pin ${selectedFish?'focused':''}" style="left:${px}px;top:${py}px" data-x="${pin.x}" data-y="${pin.y}" title="${esc(names)} · X ${pin.x}, Y ${pin.y}" aria-label="${esc(names)} · X ${pin.x}, Y ${pin.y}">${imgs.slice(0,2).map(src=>`<img loading="lazy" src="${esc(src)}" alt="">`).join('')}${pin.fishIds.length>1?`<span class="cluster-count">${pin.fishIds.length}</span>`:''}</${tag}>`;
     }).join('');
     $('map-view').style.width = `${viewW}px`;
     $('map-view').style.height = `${viewH}px`;
@@ -186,7 +204,7 @@
     if (!stages[activeStage]) activeStage = Math.min(...Object.keys(stages).map(Number));
     if (selectedFish && !fishInStage(selectedFish,activeStage)) activeStage = species[selectedFish]?.stages[0] || activeStage;
     if (!stages[activeStage]?.sections.has(activeSection)) activeSection = chooseSection(activeStage);
-    renderAreas(); renderSectionSelect(); renderFishList(); renderMap(); updateUrl();
+    updateUrl(); renderAreas(); renderSectionSelect(); renderFishList(); renderMap();
   }
   function enableControls() {
     $('fish-search').disabled = false;

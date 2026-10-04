@@ -126,3 +126,9 @@ The [23-tool research index](docs/general-tool-research.md) traces travel and ex
 ## Map and fish browser
 
 Browse the six areas, real ROM terrain sections, and a unique species list in the [Map and fish browser](https://polaminggkub-debug.github.io/kawa-no-nushi-tsuri-2-research/catalogue/maps.html) ([ไทย](https://polaminggkub-debug.github.io/kawa-no-nushi-tsuri-2-research/catalogue/maps.th.html), [日本語](https://polaminggkub-debug.github.io/kawa-no-nushi-tsuri-2-research/catalogue/maps.ja.html)). Fish portraits mark configured spawn tiles; repeated spawn slots at the same species/coordinate are combined for display. The source data retains all slots, and a displayed point is not a guarantee that an active fish is present.
+
+## Follow fish and equipment links
+
+Fish portraits open a fish profile with confirmed areas and compatible bait, lure and fly bodies. Equipment portraits and names open an item profile with its use, confirmed shop areas, related fly components and compatible fish. Map species buttons say “Focus on map”; portrait links say “Details”. Shared map pins open a species chooser. Return links retain the source page’s filters and map section. All routes are available in Thai, English and Japanese.
+
+See [click-path audit](docs/click-path-audit.md) for the checked routes and reproduction command.
