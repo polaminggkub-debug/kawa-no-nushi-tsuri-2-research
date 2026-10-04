@@ -78,9 +78,20 @@
     });
   }
 
+  // src/pages/strategy/topic-navigation.js
+  function setupTopicNavigation() {
+    if (typeof location !== "undefined" && location.hash === "#technical-evidence")
+      document.getElementById("technical-evidence").open = true;
+    document.getElementById("strategy-topics")?.addEventListener("click", (event) => {
+      if (event.target.closest("a")?.getAttribute("href") === "#technical-evidence")
+        document.getElementById("technical-evidence").open = true;
+    });
+  }
+
   // src/pages/strategy/index.js
   function initialize(ctx) {
     setupSearch(ctx);
+    setupTopicNavigation();
     loadFishAliases(ctx);
   }
 

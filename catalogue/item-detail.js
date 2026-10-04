@@ -12,6 +12,7 @@
     areaItemLink: () => areaItemLink,
     baitGatherChoice: () => baitGatherChoice,
     baitLurePriceChoices: () => baitLurePriceChoices,
+    boatBoardingChoice: () => boatBoardingChoice,
     buyingDecision: () => buyingDecision,
     categoryLabel: () => categoryLabel,
     categoryName: () => categoryName,
@@ -48,7 +49,6 @@
     stageButton: () => stageButton,
     stageName: () => stageName,
     technicalSection: () => technicalSection,
-    tubBoardingChoice: () => tubBoardingChoice,
     useLocationSection: () => useLocationSection,
     visibleUsage: () => visibleUsage
   });
@@ -654,6 +654,7 @@
   }
   function locationAnchor(loc, stage) {
     if (loc.kind === "runtime_tub_boarding") return `id="tub-boarding-${stage}"`;
+    if (loc.kind === "runtime_canoe_boarding") return `id="canoe-boarding-${stage}"`;
     if (loc.kind === "compass_exit") return `id="compass-exit-${stage}"`;
     if (loc.forage) return `id="forage-stage-${stage}-context-${Number(loc.context)}"`;
     return "";
@@ -667,7 +668,8 @@
   function locationImageLinks(ctx, loc, text2) {
     const image = loc.image ? `<a href="${ctx.esc(loc.image)}" target="_blank" rel="noopener">${ctx.esc(text2.open)} ↗</a>` : "";
     const full = loc.fullImage ? ` · <a href="${ctx.esc(loc.fullImage)}" target="_blank" rel="noopener">${ctx.esc(fullImageLabel(ctx, loc, text2))} ↗</a>` : "";
-    return `${image}${full}`;
+    const capture = loc.runtimeImage ? ` · <a href="${ctx.esc(loc.runtimeImage)}" target="_blank" rel="noopener">${ctx.esc(ctx.local(loc.runtimeCaption))} ↗</a>` : "";
+    return `${image}${full}${capture}`;
   }
   function locationDescription(ctx, loc) {
     return ctx.esc(ctx.local(loc.description) || ctx.local(loc.name) || "");
@@ -701,10 +703,12 @@
   }
 
   // src/pages/item/actions.js
-  function tubBoardingChoice(ctx, item) {
-    if (item.category !== "general_tool" || item.id !== "01") return "";
-    const label = ctx.lang === "th" ? "มีกะละมังแล้ว? ดูจุดวางและวิธีขึ้นที่ทดลองสำเร็จ" : ctx.lang === "ja" ? "タライを持っている？確認した設置・乗船手順を見る" : "Already own a tub? See a tested placement and boarding sequence";
-    return `<p><a class="route-button" data-tub-boarding-choice href="#tub-boarding-1">${ctx.esc(label)} ↓</a></p>`;
+  function boatBoardingChoice(ctx, item) {
+    if (item.category !== "general_tool" || !["01", "02"].includes(item.id)) return "";
+    const canoe = item.id === "02";
+    const kind = canoe ? "canoe" : "tub";
+    const label = ctx.lang === "th" ? `มี${canoe ? "แคนู" : "กะละมัง"}แล้ว? ดูจุดวางและวิธีขึ้นที่ทดลองสำเร็จ` : ctx.lang === "ja" ? `${canoe ? "カヌー" : "タライ"}を持っている？確認した設置・乗船手順を見る` : `Already own a ${kind}? See a tested placement and boarding sequence`;
+    return `<p><a class="route-button" data-${kind}-boarding-choice href="#${kind}-boarding-1">${ctx.esc(label)} ↓</a></p>`;
   }
   function gearNextActions(ctx, item, fishVisuals, fishLocations, allItems) {
     if (!item.gearDecision) return "";
@@ -1214,7 +1218,7 @@
   }
   function renderQuickOptions(ctx, item, allItems) {
     const options = [
-      ctx.tubBoardingChoice(item),
+      ctx.boatBoardingChoice(item),
       ctx.acquisitionChoice(item),
       ctx.baitGatherChoice(item),
       ctx.forageBaitChoice(item, allItems),
@@ -1293,7 +1297,7 @@
   function loadCatalogue(ctx) {
     ctx.flyMakerLink = (item) => item.category.startsWith("fly") ? `<p><a class="route-button" data-fly-maker href="${ctx.esc(ctx.currentCategoryLink().split("#")[0] + "#fly-instructions")}">${ctx.lang === "th" ? "ดูขั้นตอนประกอบฟลายเองและตรวจราคาในเกม" : ctx.lang === "ja" ? "自作フライの手順とゲーム内見積額を確認" : "See custom fly steps and check the in-game quote"} ↗</a></p>` : "";
     ctx.setNavigation();
-    fetch("gallery-data.json?v=compendium-20261005-08").then((response) => {
+    fetch("gallery-data.json?v=compendium-20261005-09").then((response) => {
       if (!response.ok) throw new Error("catalogue data unavailable");
       return response.json();
     }).then((data) => {

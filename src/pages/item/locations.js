@@ -172,6 +172,7 @@ function fullImageLabel(ctx, loc, text) {
 
 function locationAnchor(loc, stage) {
   if (loc.kind === 'runtime_tub_boarding') return `id="tub-boarding-${stage}"`
+  if (loc.kind === 'runtime_canoe_boarding') return `id="canoe-boarding-${stage}"`
   if (loc.kind === 'compass_exit') return `id="compass-exit-${stage}"`
   if (loc.forage) return `id="forage-stage-${stage}-context-${Number(loc.context)}"`
   return ''
@@ -191,7 +192,10 @@ function locationImageLinks(ctx, loc, text) {
   const full = loc.fullImage
     ? ` · <a href="${ctx.esc(loc.fullImage)}" target="_blank" rel="noopener">${ctx.esc(fullImageLabel(ctx, loc, text))} ↗</a>`
     : ''
-  return `${image}${full}`
+  const capture = loc.runtimeImage
+    ? ` · <a href="${ctx.esc(loc.runtimeImage)}" target="_blank" rel="noopener">${ctx.esc(ctx.local(loc.runtimeCaption))} ↗</a>`
+    : ''
+  return `${image}${full}${capture}`
 }
 
 function locationDescription(ctx, loc) {

@@ -65,8 +65,8 @@ p {
 }
 
 .kit-card img {
-  width: 112px;
-  height: 130px;
+  width: min(100%, 200px);
+  height: 180px;
   object-fit: contain;
   image-rendering: pixelated;
 }
@@ -77,9 +77,15 @@ p {
   align-items: center;
 }
 
+.kit-pair a {
+  min-width: 0;
+  flex: 0 1 140px;
+}
+
 .kit-pair img {
-  width: 92px;
-  height: 108px;
+  width: 100%;
+  max-width: 140px;
+  height: 160px;
 }
 
 .rod-card h3 {
@@ -88,7 +94,7 @@ p {
 
 .rod-item {
   display: grid;
-  grid-template-columns: 124px 1fr;
+  grid-template-columns: 124px minmax(0, 1fr);
   gap: 12px;
   padding: 12px 0;
   border-top: 1px solid #dbe3d8;
@@ -174,6 +180,7 @@ details > summary {
 }
 
 footer {
+  overflow-wrap: anywhere;
   margin: 36px 0;
   font-size: 15px;
 }
@@ -190,10 +197,6 @@ footer {
   .rod-grid {
     grid-template-columns: 1fr;
   }
-  .kit-pair img {
-    width: 105px;
-    height: 120px;
-  }
   th,
   td {
     padding: 9px;
@@ -209,4 +212,41 @@ a:focus-visible {
 .kit-card h3 a,
 .rod-item strong a {
   color: inherit;
+}
+
+.strategy-topics {
+  margin: 24px 0;
+  gap: 10px;
+}
+
+.strategy-topics a,
+.shop a {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 44px;
+  min-height: 44px;
+  box-sizing: border-box;
+  padding: 6px 12px;
+  border: 1px solid #b8cbb7;
+  border-radius: 8px;
+  background: white;
+  font-weight: 650;
+}
+
+#lure-kit,
+#rod-choice,
+#technical-evidence {
+  scroll-margin-top: 124px;
+}
+
+@media (min-width: 601px) {
+  .kit-card:has(.kit-pair) {
+    display: flex;
+    align-items: center;
+    gap: 24px;
+  }
+  .kit-pair {
+    flex: 0 0 300px;
+  }
 }

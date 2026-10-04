@@ -27,8 +27,8 @@
       hreflang="th"
       href="https://polaminggkub-debug.github.io/kawa-no-nushi-tsuri-2-research/research/index.th.html"
     />
-    <link rel="stylesheet" href="strategy.css?v=redesign-1" />
-    <link rel="stylesheet" href="../catalogue/compendium.css?v=compendium-20261005-08" />
+    <link rel="stylesheet" href="strategy.css?v=player-usefulness-20261005-1" />
+    <link rel="stylesheet" href="../catalogue/compendium.css?v=compendium-20261005-09" />
     <script src="../catalogue/compendium.js?v=redesign-1" defer></script>
   </head>
   <body>
@@ -46,11 +46,10 @@
       </div>
     </nav>
     <main id="main-content">
-      <nav>
-        <a href="index.html">English</a><a href="index.ja.html">日本語</a
-        ><a href="index.th.html">ไทย</a><a href="../catalogue/index.ja.html">アイテム一覧</a
-        ><a href="../catalogue/maps.ja.html">魚と釣り場マップ</a
-        ><a href="../catalogue/shops.ja.html">店と購入場所</a>
+      <nav class="strategy-languages" aria-label="言語">
+        <a href="index.html" hreflang="en">English</a
+        ><a href="index.ja.html" hreflang="ja" aria-current="page">日本語</a
+        ><a href="index.th.html" hreflang="th">ไทย</a>
       </nav>
       <h1>ROM調査からルアーと竿を選ぶ — 川のぬし釣り2</h1>
       <p class="decision">
@@ -61,7 +60,11 @@
       <p class="note">
         以下のルアーセットは、日本版ROMでルアーの種類判定を通過できる38プロフィールすべてをカバーします。対象には魚と水生生物が含まれます。この判定を通っても、食いつき・針掛かり・取り込みは保証されません。
       </p>
-      <section>
+      <nav id="strategy-topics" class="strategy-topics" aria-label="知りたいことへ">
+        <a href="#lure-kit">持っていくルアー</a><a href="#rod-choice">竿を選ぶ</a
+        ><a href="#technical-evidence">技術的根拠</a>
+      </nav>
+      <section id="lure-kit">
         <h2>実用ルアーセット</h2>
         <p class="decision">
           <strong
@@ -98,7 +101,7 @@
               >
             </h3>
             <div class="price">¥25</div>
-            <div class="shop">エリア1で購入</div>
+            <div class="shop" data-shop-item="lure:2E">エリア1で購入</div>
           </article>
           <article class="kit-card">
             <a
@@ -112,7 +115,7 @@
               >
             </h3>
             <div class="price">¥30</div>
-            <div class="shop">エリア1・4で購入</div>
+            <div class="shop" data-shop-item="lure:23">エリア1・4で購入</div>
           </article>
           <article class="kit-card">
             <a
@@ -126,11 +129,11 @@
               >
             </h3>
             <div class="price">¥20</div>
-            <div class="shop">エリア2・3・4・5で購入</div>
+            <div class="shop" data-shop-item="lure:17">エリア2・3・4・5で購入</div>
           </article>
         </div>
       </section>
-      <section>
+      <section id="rod-choice">
         <h2>どの竿を買う？</h2>
         <p>
           釣り方と欲しい操作上の利点で選びます。投げ先を動かせる時間か、特定の逃走分岐で仕掛けを失うまでの余裕です。食いつきや取り込み確率を示す値ではありません。
@@ -155,7 +158,7 @@
                   ></strong
                 >
                 <div class="price">¥1500</div>
-                <div class="shop">エリア3・4・6</div>
+                <div class="shop" data-shop-item="rod:14">エリア3・4・6</div>
                 <p>
                   この系統で照準時間を最長にしたいなら選択肢です。通常のアユ竿07と同じ価格ですが、ROM上の操作値では照準時間と、この仕掛け損失分岐までの境界が上回ります。エリア3・4・6で販売。
                 </p>
@@ -174,7 +177,7 @@
                   ></strong
                 >
                 <div class="price">¥1500</div>
-                <div class="shop">エリア5の専用竿店</div>
+                <div class="shop" data-shop-item="rod:08">エリア5の専用竿店</div>
                 <p>
                   特定の仕掛け損失分岐までの余裕を優先するなら、このコイ竿は系統内の最高境界と同値です。エリア5で販売。
                 </p>
@@ -193,7 +196,7 @@
                   ></strong
                 >
                 <div class="price">¥2000</div>
-                <div class="shop">エリア4・5・6</div>
+                <div class="shop" data-shop-item="rod:15">エリア4・5・6</div>
                 <p>竿08と同じ最高境界で、照準時間は長いものの500円高価です。エリア4～6で販売。</p>
               </div>
             </div>
@@ -213,7 +216,7 @@
                   ></strong
                 >
                 <div class="price">¥1500</div>
-                <div class="shop">エリア6の専用竿店</div>
+                <div class="shop" data-shop-item="rod:10">エリア6の専用竿店</div>
                 <p>
                   系統内で最長の照準時間と、仕掛け損失分岐までの最大境界を求めるなら両手投げ竿。エリア6の専用竿店で1,500円。これで釣果が増えることはROMから確認されていません。
                 </p>
@@ -235,7 +238,7 @@
                   ></strong
                 >
                 <div class="price">¥650</div>
-                <div class="shop">エリア4の専用竿店</div>
+                <div class="shop" data-shop-item="rod:0D">エリア4の専用竿店</div>
                 <p>
                   系統内で最長の照準時間と、仕掛け損失分岐までの最大境界を持ちます。エリア4の専用竿店で650円。大ルアーロッド0Cより50円高いだけです。この操作上の利点を求めるなら価格差はROM値で説明できますが、釣果向上は未確認。0Cを持っている場合も購入は650円です。
                 </p>
@@ -257,7 +260,7 @@
                   ></strong
                 >
                 <div class="price">¥450</div>
-                <div class="shop">エリア1・2・3・4</div>
+                <div class="shop" data-shop-item="rod:13">エリア1・2・3・4</div>
                 <p>
                   系統内で最長の照準時間と、仕掛け損失分岐までの最大境界を持ちます。エリア1～4で450円、中竿12より50円高いだけです。12を持っている場合も購入は450円で、差額50円ではありません。取り込み率の改善は未確認です。
                 </p>
@@ -266,7 +269,7 @@
           </article>
         </div>
       </section>
-      <details>
+      <details id="technical-evidence">
         <summary>技術的根拠と全適合表</summary>
         <p>
           以下に結論を確認するためのデータを残します。ROM内部のカウンターは秒・メートル・釣果スコアではありません。
@@ -392,6 +395,6 @@
         omitted from the table.
       </footer>
     </main>
-    <script src="search.js?v=player-usefulness-20261004-6" defer></script>
+    <script src="search.js?v=player-usefulness-20261005-1" defer></script>
   </body>
 </html>

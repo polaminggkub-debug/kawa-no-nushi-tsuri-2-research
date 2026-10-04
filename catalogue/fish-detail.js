@@ -271,19 +271,19 @@
     if (ctx.locale === "ja") return "ほかの魚も狙うなら：ルアー2種類のセット";
     return "Fishing for other species too? A two-lure kit";
   }
-  function lureKitIntro(ctx, count, total) {
+  function lureKitIntro(ctx, count, total, hasLocalLureOffer) {
     if (ctx.locale === "th")
-      return `ชุดราคาต่ำสุดด้านบนเลือกเพื่อปลาตัวนี้เท่านั้น ถ้าจะพกลัวร์สำหรับปลาหลายชนิด คู่ด้านล่างครอบคลุม ${count} โปรไฟล์ที่ผ่านเงื่อนไขลัวร์ รวมราคาซื้อใหม่ ¥${total}. ไม่ต้องซื้อทุกตัวเลือก: ถ้ามีคู่สปูนกับยางหนอนอยู่แล้ว ใช้ต่อได้`;
+      return hasLocalLureOffer ? `ชุดราคาต่ำสุดด้านบนเลือกเพื่อปลาตัวนี้เท่านั้น ถ้าจะพกลัวร์สำหรับปลาหลายชนิด คู่ด้านล่างครอบคลุม ${count} โปรไฟล์ที่ผ่านเงื่อนไขลัวร์ รวมราคาซื้อใหม่ ¥${total}. ไม่ต้องซื้อทุกตัวเลือก: ถ้ามีคู่สปูนกับยางหนอนอยู่แล้ว ใช้ต่อได้` : `ถ้าจะพกลัวร์สำหรับปลาหลายชนิด คู่ด้านล่างครอบคลุม ${count} โปรไฟล์ที่ผ่านเงื่อนไขลัวร์ รวมราคาซื้อใหม่ ¥${total}. ไม่ต้องซื้อทุกตัวเลือก: ถ้ามีคู่สปูนกับยางหนอนอยู่แล้ว ใช้ต่อได้`;
     if (ctx.locale === "ja")
-      return `上の最安候補はこの魚だけを狙う選択です。ほかの魚も狙うなら、下の組み合わせでルアー判定を通る${count}プロフィールをカバーでき、新規購入は合計${total}円です。全部買う必要はありません。スプーンとワームの組を持っているなら、そのまま使用できます。`;
-    return `The cheapest choice above is for this fish alone. For a kit to use across species, the pair below covers all ${count} profiles that pass the lure check, for ¥${total} when buying new. Do not buy every alternative: keep the Spoon-and-worm pair if you already own it.`;
+      return hasLocalLureOffer ? `上の最安候補はこの魚だけを狙う選択です。ほかの魚も狙うなら、下の組み合わせでルアー判定を通る${count}プロフィールをカバーでき、新規購入は合計${total}円です。全部買う必要はありません。スプーンとワームの組を持っているなら、そのまま使用できます。` : `複数の魚に使うルアーセットが必要なら、下の組み合わせでルアー判定を通る${count}プロフィールをカバーでき、新規購入は合計${total}円です。全部買う必要はありません。スプーンとワームの組を持っているなら、そのまま使用できます。`;
+    return hasLocalLureOffer ? `The cheapest choice above is for this fish alone. For a kit to use across species, the pair below covers all ${count} profiles that pass the lure check, for ¥${total} when buying new. Do not buy every alternative: keep the Spoon-and-worm pair if you already own it.` : `For a multi-species lure kit, the pair below covers all ${count} profiles that pass the lure check, for ¥${total} when buying new. Do not buy every alternative: keep the Spoon-and-worm pair if you already own it.`;
   }
-  function lureKitAvailability(ctx, localPair) {
+  function lureKitAvailability(ctx, localPair, hasLocalLureOffer) {
     if (ctx.locale === "th")
-      return localPair ? "ซื้อครบคู่นี้ได้ในด่านที่เลือก" : "ด่านที่เลือกขายไม่ครบคู่นี้ ใช้ตัวเลือกสำหรับปลาตัวนี้ด้านบน หรือดูด่านที่ขายแต่ละชิ้นด้านล่าง";
+      return localPair ? "ซื้อครบคู่นี้ได้ในด่านที่เลือก" : hasLocalLureOffer ? "ด่านที่เลือกขายไม่ครบคู่นี้ ใช้ตัวเลือกสำหรับปลาตัวนี้ด้านบน หรือดูด่านที่ขายแต่ละชิ้นด้านล่าง" : "ด่านที่เลือกไม่มีรายการขายปกติของลัวร์สำหรับปลานี้ ใช้ลัวร์ที่ผ่านเงื่อนไขซึ่งมีอยู่แล้ว หรือเปิดด่านขายจากการ์ดด้านบน";
     if (ctx.locale === "ja")
-      return localPair ? "選択中エリアで両方買えます。" : "選択中エリアでは両方は揃いません。上の対象魚用候補を使うか、下の販売エリアを確認してください。";
-    return localPair ? "Both items are stocked in your selected area." : "The selected area does not stock the full pair. Use the single-fish choice above or check each item’s sale areas below.";
+      return localPair ? "選択中エリアで両方買えます。" : hasLocalLureOffer ? "選択中エリアでは両方は揃いません。上の対象魚用候補を使うか、下の販売エリアを確認してください。" : "選択中エリアではこの魚向けの通常ルアー販売記録がありません。対応ルアーを持っていれば使い、上の販売エリアへのリンクを確認してください。";
+    return localPair ? "Both items are stocked in your selected area." : hasLocalLureOffer ? "The selected area does not stock the full pair. Use the single-fish choice above or check each item’s sale areas below." : "No regular lure sale for this fish is recorded in the selected area. Use a compatible lure you already own or open a recorded sale area from the action above.";
   }
   function lureKitTarget(ctx, item) {
     const accepts = (item.playerUse?.fishIds || []).includes(ctx.id);
@@ -322,10 +322,13 @@
     if (!lures.some((item) => (item.playerUse?.fishIds || []).includes(ctx.id))) return "";
     const { pair, localPair } = chooseLurePair(coveringPairs(lures, profileCount), stage);
     if (!pair) return "";
+    const hasLocalLureOffer = lures.some(
+      (item) => (item.playerUse?.fishIds || []).includes(ctx.id) && availableInArea(item, String(stage))
+    );
     const count = profileCount;
     const total = pair.reduce((sum, item) => sum + item.priceYen, 0);
     const cards = pair.map((item) => lureKitCard(ctx, item, stage)).join("");
-    return `<section class="detail-section reusable-kit" data-kit="${pair.map((item) => item.id).join("+")}" data-coverage="${count}" data-total="${total}" data-local="${Boolean(localPair)}"><h3>${ctx.escapeHtml(lureKitTitle(ctx))}</h3><p>${ctx.escapeHtml(lureKitIntro(ctx, count, total))}</p><p><strong>${ctx.escapeHtml(lureKitAvailability(ctx, Boolean(localPair)))}</strong></p><div class="detail-grid">${cards}</div><p class="muted">${ctx.escapeHtml(lureKitScope(ctx))}</p></section>`;
+    return `<section class="detail-section reusable-kit" data-kit="${pair.map((item) => item.id).join("+")}" data-coverage="${count}" data-total="${total}" data-local="${Boolean(localPair)}"><h3>${ctx.escapeHtml(lureKitTitle(ctx))}</h3><p>${ctx.escapeHtml(lureKitIntro(ctx, count, total, hasLocalLureOffer))}</p><p><strong>${ctx.escapeHtml(lureKitAvailability(ctx, Boolean(localPair), hasLocalLureOffer))}</strong></p><div class="detail-grid">${cards}</div><p class="muted">${ctx.escapeHtml(lureKitScope(ctx))}</p></section>`;
   }
 
   // src/pages/fish/fly-backup.js
@@ -685,16 +688,133 @@
     const name = selected.stageName?.[ctx.locale] || selected.stageName?.en || "";
     return `<p class="shopping-area-context"><strong>${ctx.escapeHtml(text.area)}:</strong> ${ctx.escapeHtml(ctx.copy.stage(selected.stage))} · ${ctx.escapeHtml(name)}</p>`;
   }
+  function methodEntries(entries, method) {
+    return entries.filter(
+      (entry) => ["float", "sinker"].includes(method) ? entry.item.category === "bait" && entry.routes.includes(method) : entry.item.category === method
+    );
+  }
+  function shopPage(ctx) {
+    return ctx.locale === "th" ? "shops.th.html" : ctx.locale === "ja" ? "shops.ja.html" : "shops.html";
+  }
+  function offerLink(ctx, method, entry, stage, saleStage, anchor = "#all-compatible") {
+    const item = entry.item;
+    const currentFish = `${ctx.currentFishPath(stage)}${anchor}`;
+    const query = new URLSearchParams({
+      stage: String(saleStage),
+      category: item.category,
+      id: item.id,
+      fish: ctx.id,
+      return: currentFish
+    });
+    if (["float", "sinker"].includes(method)) query.set("route", method);
+    return `${shopPage(ctx)}?${query.toString()}`;
+  }
+  function compatibleItemLink(ctx, method, entry, stage) {
+    const item = entry.item;
+    const query = new URLSearchParams({
+      category: item.category,
+      id: item.id,
+      fish: ctx.id,
+      stage: String(stage),
+      return: `${ctx.currentFishPath(stage)}#all-compatible`
+    });
+    if (["float", "sinker"].includes(method)) query.set("route", method);
+    return `${ctx.itemPath()}?${query.toString()}`;
+  }
+  function recordedSales(entries, method) {
+    return entries.flatMap(
+      (entry) => (entry.item.playerUse?.shops || []).filter((shop) => !shop.condition).map((shop) => ({ entry, shop, method }))
+    ).sort(
+      (a, b) => (salePrice(a) ?? Number.MAX_SAFE_INTEGER) - (salePrice(b) ?? Number.MAX_SAFE_INTEGER) || Number(a.shop.stage) - Number(b.shop.stage) || a.entry.item.id.localeCompare(b.entry.item.id)
+    );
+  }
+  function salePrice(offer) {
+    return offer.entry.item.category === "fly" ? offer.shop.bundle?.shopPriceYen : offer.entry.item.priceYen;
+  }
+  function localConditionalSale(entries, stage) {
+    return entries.flatMap(
+      (entry) => (entry.item.playerUse?.shops || []).filter((shop) => String(shop.stage) === String(stage) && shop.condition).map((shop) => ({ entry, shop }))
+    ).sort((a, b) => a.entry.item.id.localeCompare(b.entry.item.id))[0];
+  }
+  function missingMethodCopy(ctx, method, stage, count) {
+    const label = ctx.copy[method];
+    if (ctx.locale === "th")
+      return {
+        title: `${label}: ไม่มีรายการขายปกติที่บันทึกใน${ctx.copy.stage(stage)}`,
+        owned: `พบ ${count} ไอเท็มที่ผ่านเงื่อนไขชนิดเหยื่อของปลานี้ ถ้ามีอยู่แล้ว ใช้ต่อได้เลย`,
+        sale: (area, item, price) => `ดูรายการขายที่บันทึกในด่าน ${area}: ${item}${price}`,
+        conditional: (item) => `ตรวจรายการขายแบบมีเงื่อนไขในด่านนี้: ${item}`,
+        detail: (item) => `เปิดรายละเอียดเพื่อดูข้อมูลการหา: ${item}`,
+        noSales: "ไม่พบรายการขายที่บันทึกไว้ในร้านของทุกด่าน"
+      };
+    if (ctx.locale === "ja")
+      return {
+        title: `${label}：${ctx.copy.stage(stage)}の通常販売記録なし`,
+        owned: `この魚の判定を通る道具が${count}種類あります。対応する道具を持っているなら、そのまま使えます。`,
+        sale: (area, item, price) => `販売記録のあるエリア${area}を見る：${item}${price}`,
+        conditional: (item) => `このエリアの条件付き販売を確認：${item}`,
+        detail: (item) => `入手情報を見る：${item}`,
+        noSales: "全エリアの店売り記録は見つかりません。"
+      };
+    return {
+      title: `${label}: no regular sale recorded in ${ctx.copy.stage(stage)}`,
+      owned: `${count} compatible item profiles pass this fish’s recorded check. Use one if you already own it.`,
+      sale: (area, item, price) => `See the recorded sale in Area ${area}: ${item}${price}`,
+      conditional: (item) => `Check this area’s conditional offer: ${item}`,
+      detail: (item) => `Open item details for acquisition notes: ${item}`,
+      noSales: "No shop sale record was found in any area."
+    };
+  }
+  function missingMethodAction(ctx, method, entries, stage) {
+    const conditional = localConditionalSale(entries, stage);
+    const sales = recordedSales(entries, method);
+    const fallback = sales[0];
+    const copy = missingMethodCopy(ctx, method, stage, entries.length);
+    const actions = [];
+    if (conditional) {
+      const item = conditional.entry.item;
+      const href = offerLink(ctx, method, conditional.entry, stage, stage);
+      actions.push(
+        `<a class="route-button" data-conditional-sale href="${ctx.escapeHtml(href)}">${ctx.escapeHtml(copy.conditional(ctx.localizedItemName(item)))}</a>`
+      );
+    }
+    if (fallback) {
+      const item = fallback.entry.item;
+      const amount = salePrice(fallback);
+      const price = Number.isFinite(amount) ? ` · ¥${amount}` : "";
+      const href = offerLink(ctx, method, fallback.entry, stage, fallback.shop.stage);
+      actions.push(
+        `<a class="route-button" data-recorded-sale href="${ctx.escapeHtml(href)}">${ctx.escapeHtml(copy.sale(fallback.shop.stage, `${ctx.localizedItemName(item)} (ID ${item.id})`, price))} ↗</a>`
+      );
+    } else if (!conditional) {
+      const entry = entries[0];
+      const href = compatibleItemLink(ctx, method, entry, stage);
+      actions.push(
+        `<a class="route-button" data-acquisition-details href="${ctx.escapeHtml(href)}">${ctx.escapeHtml(copy.detail(`${ctx.localizedItemName(entry.item)} (ID ${entry.item.id})`))} ↗</a>`
+      );
+    }
+    const noSales = !fallback && !conditional ? `<p class="muted">${ctx.escapeHtml(copy.noSales)}</p>` : "";
+    return `<article class="detail-section method-no-local-stock" data-method-no-local="${method}"><h3>${ctx.escapeHtml(copy.title)}</h3><p>${ctx.escapeHtml(copy.owned)}</p>${noSales}<div class="method-stock-actions">${actions.join("")}</div></article>`;
+  }
+  function missingMethodActions(ctx, entries, offers, stage) {
+    const methods = ["float", "sinker", "lure", "fly"];
+    const stocked = new Set(offers.map((offer) => offer.method));
+    return methods.filter((method) => !stocked.has(method)).map((method) => {
+      const supported = methodEntries(entries, method);
+      return supported.length ? missingMethodAction(ctx, method, supported, stage) : "";
+    }).join("");
+  }
   function renderShopping(ctx, entries, locations, stage, allItems, flyChoices) {
     if (!locations.length) return "";
     const text = ctx.shoppingCopy;
     const offers = ctx.starterOffers(entries, stage);
     const cards = starterCards(ctx, offers, stage, allItems, text);
     const noOffer = offers.length ? "" : `<p>${ctx.escapeHtml(text.none)}</p>`;
+    const missingMethods = missingMethodActions(ctx, entries, offers, stage);
     const area = selectedArea(ctx, locations, stage, text);
     const kit = ctx.renderReusableKit(allItems, stage);
     const fallback = ctx.renderFlyFallback(allItems, stage, flyChoices);
-    return `<section class="detail-section shopping-plan"><h2>${ctx.escapeHtml(text.title)}</h2>${area}<p>${ctx.escapeHtml(text.intro)}</p>${offers.length ? `<div class="detail-grid">${cards}</div>` : noOffer}<p class="muted">${ctx.escapeHtml(text.scope)}</p><a href="#all-compatible">${ctx.escapeHtml(text.all)} ↓</a>${kit}${fallback}</section>`;
+    return `<section class="detail-section shopping-plan"><h2>${ctx.escapeHtml(text.title)}</h2>${area}<p>${ctx.escapeHtml(text.intro)}</p>${offers.length ? `<div class="detail-grid">${cards}</div>` : noOffer}${missingMethods ? `<div class="detail-grid missing-method-grid">${missingMethods}</div>` : ""}<p class="muted">${ctx.escapeHtml(text.scope)}</p><a href="#all-compatible">${ctx.escapeHtml(text.all)} ↓</a>${kit}${fallback}</section>`;
   }
 
   // src/pages/fish/render.js
@@ -999,7 +1119,7 @@
     });
   }
   function loadGallery() {
-    return fetch("gallery-data.json?v=compendium-20261005-08").then((response) => {
+    return fetch("gallery-data.json?v=compendium-20261005-09").then((response) => {
       if (!response.ok) throw new Error("gallery data unavailable");
       return response.json();
     });

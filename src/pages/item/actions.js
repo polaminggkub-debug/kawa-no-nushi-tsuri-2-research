@@ -1,12 +1,14 @@
-export function tubBoardingChoice(ctx, item) {
-  if (item.category !== 'general_tool' || item.id !== '01') return ''
+export function boatBoardingChoice(ctx, item) {
+  if (item.category !== 'general_tool' || !['01', '02'].includes(item.id)) return ''
+  const canoe = item.id === '02'
+  const kind = canoe ? 'canoe' : 'tub'
   const label =
     ctx.lang === 'th'
-      ? 'มีกะละมังแล้ว? ดูจุดวางและวิธีขึ้นที่ทดลองสำเร็จ'
+      ? `มี${canoe ? 'แคนู' : 'กะละมัง'}แล้ว? ดูจุดวางและวิธีขึ้นที่ทดลองสำเร็จ`
       : ctx.lang === 'ja'
-        ? 'タライを持っている？確認した設置・乗船手順を見る'
-        : 'Already own a tub? See a tested placement and boarding sequence'
-  return `<p><a class="route-button" data-tub-boarding-choice href="#tub-boarding-1">${ctx.esc(label)} ↓</a></p>`
+        ? `${canoe ? 'カヌー' : 'タライ'}を持っている？確認した設置・乗船手順を見る`
+        : `Already own a ${kind}? See a tested placement and boarding sequence`
+  return `<p><a class="route-button" data-${kind}-boarding-choice href="#${kind}-boarding-1">${ctx.esc(label)} ↓</a></p>`
 }
 
 export function gearNextActions(ctx, item, fishVisuals, fishLocations, allItems) {

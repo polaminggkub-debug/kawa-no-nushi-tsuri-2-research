@@ -28,3 +28,9 @@ await import('./catalogue-loading.mjs')
 await import('./float-price-links.mjs')
 
 await import('./cheaper-price-links.mjs')
+
+await import('./strategy-actions.mjs')
+
+await import('./canoe-boarding.mjs')
+
+await import('./fish-no-local-stock.mjs')

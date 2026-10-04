@@ -37,26 +37,38 @@ function lureKitTitle(ctx) {
   return 'Fishing for other species too? A two-lure kit'
 }
 
-function lureKitIntro(ctx, count, total) {
+function lureKitIntro(ctx, count, total, hasLocalLureOffer) {
   if (ctx.locale === 'th')
-    return `ชุดราคาต่ำสุดด้านบนเลือกเพื่อปลาตัวนี้เท่านั้น ถ้าจะพกลัวร์สำหรับปลาหลายชนิด คู่ด้านล่างครอบคลุม ${count} โปรไฟล์ที่ผ่านเงื่อนไขลัวร์ รวมราคาซื้อใหม่ ¥${total}. ไม่ต้องซื้อทุกตัวเลือก: ถ้ามีคู่สปูนกับยางหนอนอยู่แล้ว ใช้ต่อได้`
+    return hasLocalLureOffer
+      ? `ชุดราคาต่ำสุดด้านบนเลือกเพื่อปลาตัวนี้เท่านั้น ถ้าจะพกลัวร์สำหรับปลาหลายชนิด คู่ด้านล่างครอบคลุม ${count} โปรไฟล์ที่ผ่านเงื่อนไขลัวร์ รวมราคาซื้อใหม่ ¥${total}. ไม่ต้องซื้อทุกตัวเลือก: ถ้ามีคู่สปูนกับยางหนอนอยู่แล้ว ใช้ต่อได้`
+      : `ถ้าจะพกลัวร์สำหรับปลาหลายชนิด คู่ด้านล่างครอบคลุม ${count} โปรไฟล์ที่ผ่านเงื่อนไขลัวร์ รวมราคาซื้อใหม่ ¥${total}. ไม่ต้องซื้อทุกตัวเลือก: ถ้ามีคู่สปูนกับยางหนอนอยู่แล้ว ใช้ต่อได้`
   if (ctx.locale === 'ja')
-    return `上の最安候補はこの魚だけを狙う選択です。ほかの魚も狙うなら、下の組み合わせでルアー判定を通る${count}プロフィールをカバーでき、新規購入は合計${total}円です。全部買う必要はありません。スプーンとワームの組を持っているなら、そのまま使用できます。`
-  return `The cheapest choice above is for this fish alone. For a kit to use across species, the pair below covers all ${count} profiles that pass the lure check, for ¥${total} when buying new. Do not buy every alternative: keep the Spoon-and-worm pair if you already own it.`
+    return hasLocalLureOffer
+      ? `上の最安候補はこの魚だけを狙う選択です。ほかの魚も狙うなら、下の組み合わせでルアー判定を通る${count}プロフィールをカバーでき、新規購入は合計${total}円です。全部買う必要はありません。スプーンとワームの組を持っているなら、そのまま使用できます。`
+      : `複数の魚に使うルアーセットが必要なら、下の組み合わせでルアー判定を通る${count}プロフィールをカバーでき、新規購入は合計${total}円です。全部買う必要はありません。スプーンとワームの組を持っているなら、そのまま使用できます。`
+  return hasLocalLureOffer
+    ? `The cheapest choice above is for this fish alone. For a kit to use across species, the pair below covers all ${count} profiles that pass the lure check, for ¥${total} when buying new. Do not buy every alternative: keep the Spoon-and-worm pair if you already own it.`
+    : `For a multi-species lure kit, the pair below covers all ${count} profiles that pass the lure check, for ¥${total} when buying new. Do not buy every alternative: keep the Spoon-and-worm pair if you already own it.`
 }
 
-function lureKitAvailability(ctx, localPair) {
+function lureKitAvailability(ctx, localPair, hasLocalLureOffer) {
   if (ctx.locale === 'th')
     return localPair
       ? 'ซื้อครบคู่นี้ได้ในด่านที่เลือก'
-      : 'ด่านที่เลือกขายไม่ครบคู่นี้ ใช้ตัวเลือกสำหรับปลาตัวนี้ด้านบน หรือดูด่านที่ขายแต่ละชิ้นด้านล่าง'
+      : hasLocalLureOffer
+        ? 'ด่านที่เลือกขายไม่ครบคู่นี้ ใช้ตัวเลือกสำหรับปลาตัวนี้ด้านบน หรือดูด่านที่ขายแต่ละชิ้นด้านล่าง'
+        : 'ด่านที่เลือกไม่มีรายการขายปกติของลัวร์สำหรับปลานี้ ใช้ลัวร์ที่ผ่านเงื่อนไขซึ่งมีอยู่แล้ว หรือเปิดด่านขายจากการ์ดด้านบน'
   if (ctx.locale === 'ja')
     return localPair
       ? '選択中エリアで両方買えます。'
-      : '選択中エリアでは両方は揃いません。上の対象魚用候補を使うか、下の販売エリアを確認してください。'
+      : hasLocalLureOffer
+        ? '選択中エリアでは両方は揃いません。上の対象魚用候補を使うか、下の販売エリアを確認してください。'
+        : '選択中エリアではこの魚向けの通常ルアー販売記録がありません。対応ルアーを持っていれば使い、上の販売エリアへのリンクを確認してください。'
   return localPair
     ? 'Both items are stocked in your selected area.'
-    : 'The selected area does not stock the full pair. Use the single-fish choice above or check each item’s sale areas below.'
+    : hasLocalLureOffer
+      ? 'The selected area does not stock the full pair. Use the single-fish choice above or check each item’s sale areas below.'
+      : 'No regular lure sale for this fish is recorded in the selected area. Use a compatible lure you already own or open a recorded sale area from the action above.'
 }
 
 function lureKitTarget(ctx, item) {
@@ -99,8 +111,12 @@ export function renderReusableKit(ctx, items, stage) {
   if (!lures.some((item) => (item.playerUse?.fishIds || []).includes(ctx.id))) return ''
   const { pair, localPair } = chooseLurePair(coveringPairs(lures, profileCount), stage)
   if (!pair) return ''
+  const hasLocalLureOffer = lures.some(
+    (item) =>
+      (item.playerUse?.fishIds || []).includes(ctx.id) && availableInArea(item, String(stage)),
+  )
   const count = profileCount
   const total = pair.reduce((sum, item) => sum + item.priceYen, 0)
   const cards = pair.map((item) => lureKitCard(ctx, item, stage)).join('')
-  return `<section class="detail-section reusable-kit" data-kit="${pair.map((item) => item.id).join('+')}" data-coverage="${count}" data-total="${total}" data-local="${Boolean(localPair)}"><h3>${ctx.escapeHtml(lureKitTitle(ctx))}</h3><p>${ctx.escapeHtml(lureKitIntro(ctx, count, total))}</p><p><strong>${ctx.escapeHtml(lureKitAvailability(ctx, Boolean(localPair)))}</strong></p><div class="detail-grid">${cards}</div><p class="muted">${ctx.escapeHtml(lureKitScope(ctx))}</p></section>`
+  return `<section class="detail-section reusable-kit" data-kit="${pair.map((item) => item.id).join('+')}" data-coverage="${count}" data-total="${total}" data-local="${Boolean(localPair)}"><h3>${ctx.escapeHtml(lureKitTitle(ctx))}</h3><p>${ctx.escapeHtml(lureKitIntro(ctx, count, total, hasLocalLureOffer))}</p><p><strong>${ctx.escapeHtml(lureKitAvailability(ctx, Boolean(localPair), hasLocalLureOffer))}</strong></p><div class="detail-grid">${cards}</div><p class="muted">${ctx.escapeHtml(lureKitScope(ctx))}</p></section>`
 }

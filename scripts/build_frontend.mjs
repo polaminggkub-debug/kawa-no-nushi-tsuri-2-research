@@ -45,6 +45,37 @@ function templateFiles(slice) {
     .map((file) => ({ file, source: readFileSync(resolve(directory, file), 'utf8') }))
 }
 
+export function renderStrategyShops(source, file, data) {
+  const suffix = file.includes('.th.') ? '.th' : file.includes('.ja.') ? '.ja' : ''
+  const label =
+    suffix === '.th'
+      ? 'ดูร้านที่ขาย · ด่าน'
+      : suffix === '.ja'
+        ? '販売店を見る：エリア'
+        : 'Find seller · Area'
+  return source.replace(
+    /(<div class="shop" data-shop-item="([a-z_]+):([0-9A-F]+)">)([^<]+)(<\/div>)/g,
+    (_match, open, category, id, text, close) => {
+      const item = data.items.find((entry) => entry.category === category && entry.id === id)
+      if (!item) throw new Error(`Unknown strategy recommendation ${category}:${id}`)
+      const body = text.replace(/[1-6]/g, (stage) => {
+        if (!item.playerUse?.shops?.some((shop) => Number(shop.stage) === Number(stage)))
+          throw new Error(`Unrecorded strategy stock ${category}:${id} in area ${stage}`)
+        const query = new URLSearchParams({
+          stage,
+          place: 'town',
+          category,
+          id,
+          return: `../research/${file}`,
+        })
+        const href = `../catalogue/shops${suffix}.html?${query}`.replace(/&/g, '&amp;')
+        return `<a href="${href}" aria-label="${label} ${stage}">${stage}</a>`
+      })
+      return open + body + close
+    },
+  )
+}
+
 function strategyTables(file, source) {
   const tables = JSON.parse(
     readFileSync(
@@ -52,7 +83,9 @@ function strategyTables(file, source) {
       'utf8',
     ),
   )
-  return source.replace(/<!-- table:([^ ]+) -->/g, (_match, key) => tables[key].join('\n'))
+  const data = JSON.parse(readFileSync(resolve(root, 'catalogue/gallery-data.json'), 'utf8'))
+  const html = source.replace(/<!-- table:([^ ]+) -->/g, (_match, key) => tables[key].join('\n'))
+  return renderStrategyShops(html, file, data)
 }
 
 async function renderEquipment(source, locale, script) {

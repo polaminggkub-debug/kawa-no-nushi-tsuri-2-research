@@ -40118,7 +40118,9 @@
           "sources": [
             "docs/general-tool-actions-research.md",
             "docs/boat-movement-research.md",
-            "docs/quest-tool-use-research.md"
+            "docs/quest-tool-use-research.md",
+            "data/canoe-boarding.json",
+            "docs/boat-movement-research.md"
           ]
         },
         "useLocations": [
@@ -40147,6 +40149,46 @@
             "markerItem": {
               "category": "general_tool",
               "id": "10"
+            }
+          },
+          {
+            "kind": "runtime_canoe_boarding",
+            "stage": 1,
+            "context": "field",
+            "tileX": 4,
+            "tileY": 183,
+            "image": "maps/tool-tub-board-area1.png",
+            "fullImage": "maps/rom-field-01.png",
+            "width": 256,
+            "height": 384,
+            "pin": {
+              "x": 0.28125,
+              "y": 0.5
+            },
+            "name": {
+              "th": "ตัวอย่างจุดวางและขึ้นแคนูที่ทดลองสำเร็จ",
+              "ja": "カヌーを設置して乗れた地点例",
+              "en": "Tested canoe placement and boarding example"
+            },
+            "action": {
+              "th": "มีแคนูแล้ว? จากทางออกบ้านด่าน 1 (8,183) เดินซ้าย 4 ช่องถึงจุดในภาพ (4,183) เปิดเมนูอุปกรณ์ เลือกแคนู ปิดข้อความว่าลอยน้ำแล้ว จากนั้นกดซ้ายเพื่อขึ้นเรือ",
+              "ja": "カヌーを持っているなら、エリア1の家の出口（8,183）から左へ4タイル進み、画像の地点（4,183）へ。道具メニューでカヌーを使い、水に浮かべたメッセージを閉じてから左を押して乗ります。",
+              "en": "Already own a canoe? From the Area 1 house exit (8,183), walk four tiles Left to the pictured tile (4,183). Choose Canoe in General Tools, dismiss the floating-on-water message, then press Left to board."
+            },
+            "description": {
+              "th": "ยืนยันการใช้และขึ้นเรือที่จุดนี้หลังเตรียมให้มีแคนูในกระเป๋า ไม่ได้พิสูจน์การได้รับเรือ และไม่ใช่กฎว่ากดซ้ายขึ้นได้ทุกริมฝั่ง",
+              "ja": "所持品にカヌーを用意した状態で、この地点での使用・乗船を確認。カヌーの入手を検証した実験ではなく、全岸辺で左を押せば乗れるという意味ではありません。",
+              "en": "Use and boarding were confirmed here after preparing owned-canoe inventory. This probe does not establish canoe acquisition or a universal Left-to-board rule."
+            },
+            "markerItem": {
+              "category": "general_tool",
+              "id": "02"
+            },
+            "runtimeImage": "frames/canoe-board-area1.png",
+            "runtimeCaption": {
+              "th": "ดูภาพในเกมหลังขึ้นแคนูและปล่อยให้เรือเคลื่อนที่",
+              "ja": "乗船後に移動したゲーム画面を見る",
+              "en": "See the game capture after boarding and allowing the canoe to move"
             }
           }
         ],

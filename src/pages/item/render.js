@@ -142,7 +142,7 @@ function renderDecisionSection(
 
 function renderQuickOptions(ctx, item, allItems) {
   const options = [
-    ctx.tubBoardingChoice(item),
+    ctx.boatBoardingChoice(item),
     ctx.acquisitionChoice(item),
     ctx.baitGatherChoice(item),
     ctx.forageBaitChoice(item, allItems),

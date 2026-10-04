@@ -27,8 +27,8 @@
       hreflang="th"
       href="https://polaminggkub-debug.github.io/kawa-no-nushi-tsuri-2-research/research/index.th.html"
     />
-    <link rel="stylesheet" href="strategy.css?v=redesign-1" />
-    <link rel="stylesheet" href="../catalogue/compendium.css?v=compendium-20261005-08" />
+    <link rel="stylesheet" href="strategy.css?v=player-usefulness-20261005-1" />
+    <link rel="stylesheet" href="../catalogue/compendium.css?v=compendium-20261005-09" />
     <script src="../catalogue/compendium.js?v=redesign-1" defer></script>
   </head>
   <body>
@@ -48,11 +48,10 @@
       </div>
     </nav>
     <main id="main-content">
-      <nav>
-        <a href="index.html">English</a><a href="index.ja.html">日本語</a
-        ><a href="index.th.html">ไทย</a><a href="../catalogue/index.html">Item catalogue</a
-        ><a href="../catalogue/maps.html">Fish and fishing maps</a
-        ><a href="../catalogue/shops.html">Shops and where to buy</a>
+      <nav class="strategy-languages" aria-label="Language">
+        <a href="index.html" hreflang="en" aria-current="page">English</a
+        ><a href="index.ja.html" hreflang="ja">日本語</a
+        ><a href="index.th.html" hreflang="th">ไทย</a>
       </nav>
       <h1>Choose lures and rods from ROM research — Kawa no Nushi Tsuri 2</h1>
       <p class="decision">
@@ -66,7 +65,11 @@
         fish/creature profiles that at least one lure can pass. Passing this gate does not guarantee
         a bite, hook-up, or landing.
       </p>
-      <section>
+      <nav id="strategy-topics" class="strategy-topics" aria-label="Jump to a topic">
+        <a href="#lure-kit">Lure kit</a><a href="#rod-choice">Choose a rod</a
+        ><a href="#technical-evidence">Technical evidence</a>
+      </nav>
+      <section id="lure-kit">
         <h2>A practical lure kit</h2>
         <p class="decision">
           <strong
@@ -107,7 +110,7 @@
               >
             </h3>
             <div class="price">¥25</div>
-            <div class="shop">Buy in Area 1</div>
+            <div class="shop" data-shop-item="lure:2E">Buy in Area 1</div>
           </article>
           <article class="kit-card">
             <a
@@ -121,7 +124,7 @@
               >
             </h3>
             <div class="price">¥30</div>
-            <div class="shop">Buy in Areas 1 and 4</div>
+            <div class="shop" data-shop-item="lure:23">Buy in Areas 1 and 4</div>
           </article>
           <article class="kit-card">
             <a
@@ -135,11 +138,11 @@
               >
             </h3>
             <div class="price">¥20</div>
-            <div class="shop">Buy in Areas 2, 3, 4 and 5</div>
+            <div class="shop" data-shop-item="lure:17">Buy in Areas 2, 3, 4 and 5</div>
           </article>
         </div>
       </section>
-      <section>
+      <section id="rod-choice">
         <h2>Which rod should I buy?</h2>
         <p>
           Choose by fishing style and the handling benefit you want: more time to move the target
@@ -168,7 +171,7 @@
                   ></strong
                 >
                 <div class="price">¥1500</div>
-                <div class="shop">Areas 3, 4 and 6</div>
+                <div class="shop" data-shop-item="rod:14">Areas 3, 4 and 6</div>
                 <p>
                   For the longest target-adjustment window in this style, choose this rod. It costs
                   the same as the standard Ayu rod 07, while its ROM handling values provide more
@@ -190,7 +193,7 @@
                   ></strong
                 >
                 <div class="price">¥1500</div>
-                <div class="shop">Area 5 special-rod shop</div>
+                <div class="shop" data-shop-item="rod:08">Area 5 special-rod shop</div>
                 <p>
                   If your priority is more room before this specific tackle-loss branch, the Carp
                   rod is tied for the highest limit in this style. Sold in Area 5.
@@ -210,7 +213,7 @@
                   ></strong
                 >
                 <div class="price">¥2000</div>
-                <div class="shop">Areas 4, 5 and 6</div>
+                <div class="shop" data-shop-item="rod:15">Areas 4, 5 and 6</div>
                 <p>
                   Tied with rod 08 for the highest limit, with more aiming time but ¥500 more cost.
                   Sold in Areas 4–6.
@@ -233,7 +236,7 @@
                   ></strong
                 >
                 <div class="price">¥1500</div>
-                <div class="shop">Area 6 special-rod shop</div>
+                <div class="shop" data-shop-item="rod:10">Area 6 special-rod shop</div>
                 <p>
                   Choose this two-handed rod for the longest aim window and the highest limit before
                   this tackle-loss branch in the style. ¥1,500 at the Area 6 special-rod shop. The
@@ -257,7 +260,7 @@
                   ></strong
                 >
                 <div class="price">¥650</div>
-                <div class="shop">Area 4 special-rod shop</div>
+                <div class="shop" data-shop-item="rod:0D">Area 4 special-rod shop</div>
                 <p>
                   The longest aim window and highest limit before this tackle-loss branch in the
                   style. ¥650 at the Area 4 special-rod shop, only ¥50 above the Large Lure Rod 0C.
@@ -283,7 +286,7 @@
                   ></strong
                 >
                 <div class="price">¥450</div>
-                <div class="shop">Areas 1, 2, 3 and 4</div>
+                <div class="shop" data-shop-item="rod:13">Areas 1, 2, 3 and 4</div>
                 <p>
                   The longest aim window and highest limit before this tackle-loss branch in the
                   style. ¥450 in Areas 1–4, only ¥50 above the Medium Fly Rod 12. Choose it for
@@ -295,7 +298,7 @@
           </article>
         </div>
       </section>
-      <details>
+      <details id="technical-evidence">
         <summary>Technical evidence and full compatibility table</summary>
         <p>
           This section keeps the data needed to check the conclusions. Internal ROM counters are not
@@ -432,6 +435,6 @@
         omitted from the table.
       </footer>
     </main>
-    <script src="search.js?v=player-usefulness-20261004-6" defer></script>
+    <script src="search.js?v=player-usefulness-20261005-1" defer></script>
   </body>
 </html>

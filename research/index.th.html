@@ -27,8 +27,8 @@
       hreflang="th"
       href="https://polaminggkub-debug.github.io/kawa-no-nushi-tsuri-2-research/research/index.th.html"
     />
-    <link rel="stylesheet" href="strategy.css?v=redesign-1" />
-    <link rel="stylesheet" href="../catalogue/compendium.css?v=compendium-20261005-08" />
+    <link rel="stylesheet" href="strategy.css?v=player-usefulness-20261005-1" />
+    <link rel="stylesheet" href="../catalogue/compendium.css?v=compendium-20261005-09" />
     <script src="../catalogue/compendium.js?v=redesign-1" defer></script>
   </head>
   <body>
@@ -49,11 +49,10 @@
       </div>
     </nav>
     <main id="main-content">
-      <nav>
-        <a href="index.html">English</a><a href="index.ja.html">日本語</a
-        ><a href="index.th.html">ไทย</a><a href="../catalogue/index.th.html">กลับคลังไอเท็ม</a
-        ><a href="../catalogue/maps.th.html">ปลาและแผนที่จุดตก</a
-        ><a href="../catalogue/shops.th.html">ร้านและจุดซื้อของ</a>
+      <nav class="strategy-languages" aria-label="ภาษา">
+        <a href="index.html" hreflang="en">English</a
+        ><a href="index.ja.html" hreflang="ja">日本語</a
+        ><a href="index.th.html" hreflang="th" aria-current="page">ไทย</a>
       </nav>
       <h1>เลือกเหยื่อและคันเบ็ดจากข้อมูล ROM — ตกปลาทาโร่ 2</h1>
       <p class="decision">
@@ -67,7 +66,11 @@
         โปรไฟล์ที่มีลัวร์อย่างน้อยหนึ่งชนิดผ่านได้ใน ROM ญี่ปุ่นต้นฉบับ
         การผ่านด่านนี้ยังไม่รับประกันว่าปลาจะกิน ติดเบ็ด หรือดึงขึ้นสำเร็จ
       </p>
-      <section>
+      <nav id="strategy-topics" class="strategy-topics" aria-label="เลือกหัวข้อ">
+        <a href="#lure-kit">ชุดลัวร์ที่ควรพก</a><a href="#rod-choice">เลือกคันเบ็ด</a
+        ><a href="#technical-evidence">หลักฐานทางเทคนิค</a>
+      </nav>
+      <section id="lure-kit">
         <h2>เริ่มต้นด้วยชุดนี้</h2>
         <p class="decision">
           <strong
@@ -109,7 +112,7 @@
               >
             </h3>
             <div class="price">¥25</div>
-            <div class="shop">ซื้อได้ที่ พื้นที่ 1</div>
+            <div class="shop" data-shop-item="lure:2E">ซื้อได้ที่ พื้นที่ <a href="../catalogue/shops.th.html?stage=1&amp;place=town&amp;category=lure&amp;id=2E&amp;return=..%2Fresearch%2Findex.th.html" aria-label="ดูร้านที่ขาย · ด่าน 1">1</a></div>
           </article>
           <article class="kit-card">
             <a
@@ -123,7 +126,7 @@
               >
             </h3>
             <div class="price">¥30</div>
-            <div class="shop">ซื้อได้ที่ พื้นที่ 1 และ 4</div>
+            <div class="shop" data-shop-item="lure:23">ซื้อได้ที่ พื้นที่ <a href="../catalogue/shops.th.html?stage=1&amp;place=town&amp;category=lure&amp;id=23&amp;return=..%2Fresearch%2Findex.th.html" aria-label="ดูร้านที่ขาย · ด่าน 1">1</a> และ <a href="../catalogue/shops.th.html?stage=4&amp;place=town&amp;category=lure&amp;id=23&amp;return=..%2Fresearch%2Findex.th.html" aria-label="ดูร้านที่ขาย · ด่าน 4">4</a></div>
           </article>
           <article class="kit-card">
             <a
@@ -137,11 +140,11 @@
               >
             </h3>
             <div class="price">¥20</div>
-            <div class="shop">ซื้อได้ที่ พื้นที่ 2, 3, 4 และ 5</div>
+            <div class="shop" data-shop-item="lure:17">ซื้อได้ที่ พื้นที่ <a href="../catalogue/shops.th.html?stage=2&amp;place=town&amp;category=lure&amp;id=17&amp;return=..%2Fresearch%2Findex.th.html" aria-label="ดูร้านที่ขาย · ด่าน 2">2</a>, <a href="../catalogue/shops.th.html?stage=3&amp;place=town&amp;category=lure&amp;id=17&amp;return=..%2Fresearch%2Findex.th.html" aria-label="ดูร้านที่ขาย · ด่าน 3">3</a>, <a href="../catalogue/shops.th.html?stage=4&amp;place=town&amp;category=lure&amp;id=17&amp;return=..%2Fresearch%2Findex.th.html" aria-label="ดูร้านที่ขาย · ด่าน 4">4</a> และ <a href="../catalogue/shops.th.html?stage=5&amp;place=town&amp;category=lure&amp;id=17&amp;return=..%2Fresearch%2Findex.th.html" aria-label="ดูร้านที่ขาย · ด่าน 5">5</a></div>
           </article>
         </div>
       </section>
-      <section>
+      <section id="rod-choice">
         <h2>แล้วคันไหนควรซื้อ?</h2>
         <p>
           เลือกตามวิธีตกและสิ่งที่อยากให้ดีขึ้น: เวลาขยับช่องเป้าก่อนเกมตรวจจุดตก
@@ -169,7 +172,7 @@
                   ></strong
                 >
                 <div class="price">¥1500</div>
-                <div class="shop">พื้นที่ 3, 4 และ 6</div>
+                <div class="shop" data-shop-item="rod:14">พื้นที่ <a href="../catalogue/shops.th.html?stage=3&amp;place=town&amp;category=rod&amp;id=14&amp;return=..%2Fresearch%2Findex.th.html" aria-label="ดูร้านที่ขาย · ด่าน 3">3</a>, <a href="../catalogue/shops.th.html?stage=4&amp;place=town&amp;category=rod&amp;id=14&amp;return=..%2Fresearch%2Findex.th.html" aria-label="ดูร้านที่ขาย · ด่าน 4">4</a> และ <a href="../catalogue/shops.th.html?stage=6&amp;place=town&amp;category=rod&amp;id=14&amp;return=..%2Fresearch%2Findex.th.html" aria-label="ดูร้านที่ขาย · ด่าน 6">6</a></div>
                 <p>
                   ถ้าอยากได้เวลาปรับเป้านานที่สุดในกลุ่มนี้ เลือกคันนี้ ราคาเท่าคันอายุรุ่นเดิม ID
                   07 แต่ค่าที่ ROM ใช้กับเวลาปรับเป้าและขอบเขตก่อนเส้นทางเสียอุปกรณ์สูงกว่า
@@ -190,7 +193,7 @@
                   ></strong
                 >
                 <div class="price">¥1500</div>
-                <div class="shop">พื้นที่ 5 (ร้านคันเบ็ดพิเศษ)</div>
+                <div class="shop" data-shop-item="rod:08">พื้นที่ <a href="../catalogue/shops.th.html?stage=5&amp;place=town&amp;category=rod&amp;id=08&amp;return=..%2Fresearch%2Findex.th.html" aria-label="ดูร้านที่ขาย · ด่าน 5">5</a> (ร้านคันเบ็ดพิเศษ)</div>
                 <p>
                   ถ้าเป้าหมายคือเพิ่มระยะเผื่อก่อนเส้นทางเสียเบ็ดเฉพาะนี้
                   คันปลาคาร์ปเป็นหนึ่งในคันที่ถึงขอบเขตสูงสุดของกลุ่ม ขายในพื้นที่ 5
@@ -210,7 +213,7 @@
                   ></strong
                 >
                 <div class="price">¥2000</div>
-                <div class="shop">พื้นที่ 4, 5 และ 6</div>
+                <div class="shop" data-shop-item="rod:15">พื้นที่ <a href="../catalogue/shops.th.html?stage=4&amp;place=town&amp;category=rod&amp;id=15&amp;return=..%2Fresearch%2Findex.th.html" aria-label="ดูร้านที่ขาย · ด่าน 4">4</a>, <a href="../catalogue/shops.th.html?stage=5&amp;place=town&amp;category=rod&amp;id=15&amp;return=..%2Fresearch%2Findex.th.html" aria-label="ดูร้านที่ขาย · ด่าน 5">5</a> และ <a href="../catalogue/shops.th.html?stage=6&amp;place=town&amp;category=rod&amp;id=15&amp;return=..%2Fresearch%2Findex.th.html" aria-label="ดูร้านที่ขาย · ด่าน 6">6</a></div>
                 <p>
                   คันนี้มีขอบเขตสูงสุดแบบเดียวกับ ID 08 และให้เวลาปรับเป้ามากกว่า แต่ราคาแพงกว่า
                   ¥500; ขายในพื้นที่ 4–6
@@ -233,7 +236,7 @@
                   ></strong
                 >
                 <div class="price">¥1500</div>
-                <div class="shop">พื้นที่ 6 (ร้านคันเบ็ดพิเศษ)</div>
+                <div class="shop" data-shop-item="rod:10">พื้นที่ <a href="../catalogue/shops.th.html?stage=6&amp;place=town&amp;category=rod&amp;id=10&amp;return=..%2Fresearch%2Findex.th.html" aria-label="ดูร้านที่ขาย · ด่าน 6">6</a> (ร้านคันเบ็ดพิเศษ)</div>
                 <p>
                   ถ้าต้องการเวลาปรับเป้าและขอบเขตก่อนเส้นทางเสียอุปกรณ์สูงสุดในกลุ่ม เลือกคันสองมือ
                   ราคา ¥1,500 ขายในร้านคันเบ็ดพิเศษพื้นที่ 6
@@ -257,7 +260,7 @@
                   ></strong
                 >
                 <div class="price">¥650</div>
-                <div class="shop">พื้นที่ 4 (ร้านคันเบ็ดพิเศษ)</div>
+                <div class="shop" data-shop-item="rod:0D">พื้นที่ <a href="../catalogue/shops.th.html?stage=4&amp;place=town&amp;category=rod&amp;id=0D&amp;return=..%2Fresearch%2Findex.th.html" aria-label="ดูร้านที่ขาย · ด่าน 4">4</a> (ร้านคันเบ็ดพิเศษ)</div>
                 <p>
                   ตัวเลือกที่มีเวลาปรับเป้าและขอบเขตก่อนเส้นทางเสียอุปกรณ์สูงสุดในกลุ่ม ราคา ¥650
                   ขายในร้านคันเบ็ดพิเศษพื้นที่ 4 แพงกว่าคันลัวร์ใหญ่ ID 0C แค่ ¥50;
@@ -282,7 +285,7 @@
                   ></strong
                 >
                 <div class="price">¥450</div>
-                <div class="shop">พื้นที่ 1, 2, 3 และ 4</div>
+                <div class="shop" data-shop-item="rod:13">พื้นที่ <a href="../catalogue/shops.th.html?stage=1&amp;place=town&amp;category=rod&amp;id=13&amp;return=..%2Fresearch%2Findex.th.html" aria-label="ดูร้านที่ขาย · ด่าน 1">1</a>, <a href="../catalogue/shops.th.html?stage=2&amp;place=town&amp;category=rod&amp;id=13&amp;return=..%2Fresearch%2Findex.th.html" aria-label="ดูร้านที่ขาย · ด่าน 2">2</a>, <a href="../catalogue/shops.th.html?stage=3&amp;place=town&amp;category=rod&amp;id=13&amp;return=..%2Fresearch%2Findex.th.html" aria-label="ดูร้านที่ขาย · ด่าน 3">3</a> และ <a href="../catalogue/shops.th.html?stage=4&amp;place=town&amp;category=rod&amp;id=13&amp;return=..%2Fresearch%2Findex.th.html" aria-label="ดูร้านที่ขาย · ด่าน 4">4</a></div>
                 <p>
                   ให้เวลาปรับเป้าและขอบเขตก่อนเส้นทางเสียอุปกรณ์สูงสุดในกลุ่ม ราคา ¥450 ขายในพื้นที่
                   1–4 แพงกว่ารุ่นกลาง ID 12 แค่ ¥50 เมื่ออยากได้สองค่านี้ นี่คือตัวเลือกตามหลักฐาน
@@ -294,7 +297,7 @@
           </article>
         </div>
       </section>
-      <details>
+      <details id="technical-evidence">
         <summary>หลักฐานเทคนิคและตารางเต็ม</summary>
         <p>
           ส่วนนี้เก็บตารางและรายละเอียดที่ใช้ตรวจสอบข้อสรุป ตัวเลขตัวนับภายใน ROM ไม่ใช่วินาที เมตร
@@ -520,6 +523,6 @@
         omitted from the table.
       </footer>
     </main>
-    <script src="search.js?v=player-usefulness-20261004-6" defer></script>
+    <script src="search.js?v=player-usefulness-20261005-1" defer></script>
   </body>
 </html>

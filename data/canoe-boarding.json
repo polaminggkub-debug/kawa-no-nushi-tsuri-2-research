@@ -1,0 +1,182 @@
+{
+  "schemaVersion": 1,
+  "romSha1": "c2103dd94e2a1a65a495fc02adc2e7d040f31212",
+  "coreSha256": "8ed333ac04544cc6ab67ceb445d095f7600bb17586d4887d99117fbd1ef776f6",
+  "scope": "Original Japanese ROM: fresh-game walking baseline, one owned-canoe inventory setup write, then ordinary tools menu and boarding input. Acquisition is not proven by this replay.",
+  "location": {
+    "kind": "runtime_canoe_boarding",
+    "stage": 1,
+    "context": "field",
+    "tileX": 4,
+    "tileY": 183,
+    "image": "maps/tool-tub-board-area1.png",
+    "fullImage": "maps/rom-field-01.png",
+    "width": 256,
+    "height": 384,
+    "pin": {
+      "x": 0.28125,
+      "y": 0.5
+    },
+    "name": {
+      "th": "ตัวอย่างจุดวางและขึ้นแคนูที่ทดลองสำเร็จ",
+      "ja": "カヌーを設置して乗れた地点例",
+      "en": "Tested canoe placement and boarding example"
+    },
+    "action": {
+      "th": "มีแคนูแล้ว? จากทางออกบ้านด่าน 1 (8,183) เดินซ้าย 4 ช่องถึงจุดในภาพ (4,183) เปิดเมนูอุปกรณ์ เลือกแคนู ปิดข้อความว่าลอยน้ำแล้ว จากนั้นกดซ้ายเพื่อขึ้นเรือ",
+      "ja": "カヌーを持っているなら、エリア1の家の出口（8,183）から左へ4タイル進み、画像の地点（4,183）へ。道具メニューでカヌーを使い、水に浮かべたメッセージを閉じてから左を押して乗ります。",
+      "en": "Already own a canoe? From the Area 1 house exit (8,183), walk four tiles Left to the pictured tile (4,183). Choose Canoe in General Tools, dismiss the floating-on-water message, then press Left to board."
+    },
+    "description": {
+      "th": "ยืนยันการใช้และขึ้นเรือที่จุดนี้หลังเตรียมให้มีแคนูในกระเป๋า ไม่ได้พิสูจน์การได้รับเรือ และไม่ใช่กฎว่ากดซ้ายขึ้นได้ทุกริมฝั่ง",
+      "ja": "所持品にカヌーを用意した状態で、この地点での使用・乗船を確認。カヌーの入手を検証した実験ではなく、全岸辺で左を押せば乗れるという意味ではありません。",
+      "en": "Use and boarding were confirmed here after preparing owned-canoe inventory. This probe does not establish canoe acquisition or a universal Left-to-board rule."
+    },
+    "markerItem": {
+      "category": "general_tool",
+      "id": "02"
+    },
+    "runtimeImage": "frames/canoe-board-area1.png",
+    "runtimeCaption": {
+      "th": "ดูภาพในเกมหลังขึ้นแคนูและปล่อยให้เรือเคลื่อนที่",
+      "ja": "乗船後に移動したゲーム画面を見る",
+      "en": "See the game capture after boarding and allowing the canoe to move"
+    }
+  },
+  "before": {
+    "stage": 1,
+    "x": 4,
+    "y": 183,
+    "movementMode": 1
+  },
+  "after": {
+    "stage": 1,
+    "x": 3,
+    "y": 187,
+    "movementMode": 4,
+    "fieldState": 2
+  },
+  "injectedSetup": [
+    {
+      "address": "7E:0B5E",
+      "valueHex": "02 00",
+      "purpose": "Isolate use of an already-owned canoe; does not establish acquisition"
+    }
+  ],
+  "approach": {
+    "start": {
+      "stage": 1,
+      "x": 8,
+      "y": 183
+    },
+    "end": {
+      "stage": 1,
+      "x": 4,
+      "y": 183,
+      "movementMode": 1
+    },
+    "inputs": "64 consecutive Left frames, captured every 8 frames; then 30 neutral frames",
+    "memoryWrites": [],
+    "requestSha256": "883c5e2edb8b2b5b6c52f1a72f43702aa47b89088c05c10a267f6eb961ee0e4e"
+  },
+  "controllerSteps": [
+    {
+      "buttons": [
+        8
+      ],
+      "frames": 1
+    },
+    {
+      "buttons": [],
+      "frames": 10
+    },
+    {
+      "buttons": [
+        6
+      ],
+      "frames": 1
+    },
+    {
+      "buttons": [],
+      "frames": 2
+    },
+    {
+      "buttons": [
+        5
+      ],
+      "frames": 1
+    },
+    {
+      "buttons": [],
+      "frames": 2
+    },
+    {
+      "buttons": [
+        8
+      ],
+      "frames": 1
+    },
+    {
+      "buttons": [],
+      "frames": 20
+    },
+    {
+      "buttons": [
+        5
+      ],
+      "frames": 1
+    },
+    {
+      "buttons": [],
+      "frames": 2
+    },
+    {
+      "buttons": [
+        5
+      ],
+      "frames": 1
+    },
+    {
+      "buttons": [],
+      "frames": 2
+    },
+    {
+      "buttons": [
+        8
+      ],
+      "frames": 1
+    },
+    {
+      "buttons": [],
+      "frames": 60
+    },
+    {
+      "buttons": [
+        8
+      ],
+      "frames": 1
+    },
+    {
+      "buttons": [],
+      "frames": 30
+    },
+    {
+      "buttons": [
+        6
+      ],
+      "frames": 1
+    },
+    {
+      "buttons": [],
+      "frames": 120
+    }
+  ],
+  "screenshot": "frames/canoe-board-area1.png",
+  "screenshotSha256": "28efb4c06512b826caeac1dfedc35b15116ef17888491337e4ed85a6102e90c6",
+  "requestSha256": "8f95b15649ad508d89ca924170a15235e871de0cd0ae9baf2ca3f34669a619cd",
+  "finalStateSha256": "ef9d51cccbcbe064cc553f83d1c86333cf716d169457503e84b03dede71fc088",
+  "sources": [
+    "docs/boat-movement-research.md",
+    "docs/quest-tool-use-research.md"
+  ]
+}

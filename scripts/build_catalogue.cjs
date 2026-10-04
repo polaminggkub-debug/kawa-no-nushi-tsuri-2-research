@@ -127,6 +127,11 @@ if(tubBoarding.romSha1!==tub.romSha1)throw Error('Tub boarding ROM mismatch');
 tubItem.playerUse.useLocations.push(tubBoarding.location);
 tubItem.playerUse.evidence.sources.push('data/tub-boarding.json','docs/tub-boarding-research.md');
 tubItem.playerUse.evidence.sources=[...new Set([...(tubItem.playerUse.evidence.sources||[]),'data/tub-acquisition.json','docs/tub-acquisition-research.md'])];
+const canoeBoarding=JSON.parse(fs.readFileSync(path.join(root,'data/canoe-boarding.json'),'utf8'));
+if(canoeBoarding.romSha1!==tub.romSha1)throw Error('Canoe boarding ROM mismatch');
+const canoeItem=data.items.find(i=>i.category==='general_tool'&&i.id==='02');
+canoeItem.playerUse.useLocations.push(canoeBoarding.location);
+canoeItem.playerUse.evidence.sources.push('data/canoe-boarding.json','docs/boat-movement-research.md');
 const keepnetSource=JSON.parse(fs.readFileSync(path.join(root,'data/chum-basket-use.json'),'utf8'));
 if(keepnetSource.rom.sha1!=='c2103dd94e2a1a65a495fc02adc2e7d040f31212')throw Error('Keepnet ROM mismatch');
 for(const [id,capacity] of Object.entries(keepnetSource.raw_evidence.basket_purchase.capacity_by_item_id)){
