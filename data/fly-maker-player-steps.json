@@ -1,0 +1,49 @@
+{
+  "romSha256": "e0594921a5a2ef1a2613b9d2e29fed066569e3793393c591bf4c4968a54c0b49",
+  "scope": "Observed Area 1 Mayfly creation sequence; menu positions and component identities require separate code/runtime evidence.",
+  "source": "data/fly-customization.json",
+  "frames": [
+    {
+      "src": "custom/rear-npc-dialogue-5.png",
+      "captionEn": "In the Area 1 tackle shop, walk into the person behind the main counter to start fly creation. Advance the dialogue with A.",
+      "captionJa": "エリア1の釣具店で、奥のカウンターの人物に歩いて接触し、毛バリ作成を始める。Aで会話を進める。",
+      "captionTh": "เข้าร้านอุปกรณ์ด่าน 1 เดินเข้าหาคนหลังเคาน์เตอร์เพื่อเริ่มประกอบฟลาย แล้วกด A ผ่านบทสนทนา"
+    },
+    {
+      "src": "custom/fly-family-menu.png",
+      "captionEn": "Choose Mayfly (メイフライ) to follow this example. Confirm with A.",
+      "captionJa": "この例では「メイフライ」を選び、Aで決定する。",
+      "captionTh": "ทำตามตัวอย่างนี้ให้เลือกเมย์ฟลาย (メイフライ) แล้วกด A ยืนยัน"
+    },
+    {
+      "src": "custom/mayfly-body-choices.png",
+      "captionEn": "Choose the first body picture for the recorded ¥25 example, then confirm with A. Use the body's fish list when choosing a different recipe.",
+      "captionJa": "記録した25円の例では最初のボディ画像を選び、Aで決定する。別の組み合わせを選ぶ場合はボディの適合魚一覧を確認する。",
+      "captionTh": "ตัวอย่างราคา ¥25 ใช้รูปบอดี้แรก แล้วกด A ยืนยัน ถ้าเลือกชุดอื่นให้ดูรายชื่อปลาที่บอดี้ใช้ด้วยได้"
+    },
+    {
+      "src": "custom/after-body-select.png",
+      "captionEn": "Choose the first wing picture and confirm with A to continue the recorded example.",
+      "captionJa": "記録した例では最初のウィング画像を選び、Aで決定する。",
+      "captionTh": "ทำตามชุดตัวอย่างให้เลือกรูปปีกแรก แล้วกด A ยืนยัน"
+    },
+    {
+      "src": "custom/after-wing-select.png",
+      "captionEn": "Choose the first tail picture for the ¥25 example. You can instead choose None (無し); check that recipe's quote before paying.",
+      "captionJa": "25円の例では最初のテール画像を選ぶ。「無し」も選べるが、その組み合わせの見積額を支払前に確認する。",
+      "captionTh": "ชุดตัวอย่าง ¥25 ใช้รูปหางแรก จะเลือก “ไม่มี” (無し) แทนก็ได้ แต่ให้ตรวจราคาของชุดนั้นก่อนจ่าย"
+    },
+    {
+      "src": "custom/after-tail-select.png",
+      "captionEn": "Read the quote before confirming. The recorded first body + first wing + first tail order is ¥25; other recipes need their own quote.",
+      "captionJa": "確定前に見積額を読む。最初のボディ・ウィング・テールの記録例は25円。別の組み合わせは個別に見積額を確認する。",
+      "captionTh": "อ่านราคาก่อนยืนยัน บอดี้แรก + ปีกแรก + หางแรกที่ตรวจคิด ¥25 ส่วนชุดอื่นให้ดูราคาที่เกมเสนอ"
+    },
+    {
+      "src": "custom/fly-created-result2.png",
+      "captionEn": "Choose Yes (はい) to pay and create the fly. In this recorded order, money falls from ¥100 to ¥75.",
+      "captionJa": "「はい」で支払い、毛バリを作る。記録した注文では所持金が100円から75円になる。",
+      "captionTh": "เลือก “ใช่” (はい) เพื่อจ่ายเงินและสร้างฟลาย ชุดที่ตรวจนี้เงินลดจาก ¥100 เหลือ ¥75"
+    }
+  ]
+}

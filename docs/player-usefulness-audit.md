@@ -209,3 +209,20 @@ The full player-usefulness goal is still unproven. A fresh review of the current
 - **Area 6 magnet:** the bounded static trace establishes record-slot and prerequisite flags. The natural encounter/result trigger remains unverified; no catch recipe is inferred from it.
 
 These are research tasks with direct player outcomes, not reasons to expand raw-number summaries. Passing source guards does not establish their completion.
+
+## Parallel completion queue (2026-10-05)
+
+The owner redirected work away from the net and magnifying glass. Both are deferred; their existing evidence is retained. The current batch has three independent workers plus the coordinator:
+
+| Stream | Owned work | Required outcome/evidence |
+| --- | --- | --- |
+| Fly ROM trace | Private maker-code notes only | Confirm menu cursor/list to component IDs, quoted price and inventory requirements from the original ROM. |
+| Fly runtime crosswalk | Private controller-input probes only | Match authentic menu pictures and cursor selections to stored body/wing/tail IDs, with money/inventory deltas. Setup injections must be disclosed separately. |
+| Catalogue clarity | Selected-fish status and decision-fact rendering | Correct all/body/bait result labels in EN/JA/TH and remove repeated decision reasons without removing evidence. |
+| Coordinator | Integration, maker guide, release checks | Turn confirmed findings into selectable player instructions; inspect desktop/mobile and run the full publication gate. |
+
+When workers finish, dispatch the next independent batch: Area 6 ordinary shop access, the Area 6 magnet's natural prerequisite/use path, and fish/map navigation review. A decoded coordinate alone does not close either access task. Map review must follow selecting a fish through its actual fishing location and accepted equipment, including return links and filters. Workers must own separate files/directories; generated artifacts, integration and publication remain coordinator-owned.
+
+Final audit still covers every catalogue category, fish/maps, shops, item/fish details and research navigation in all three languages. Every visible gameplay claim needs a concrete next action or decision supported by original-ROM evidence; unresolved selectors belong in technical evidence. Automated checks cover the recorded data and link invariants, while actual browser interaction and visual review cover usability. This queue records known gaps, not a claim that every other requirement is complete.
+
+The first maker UI change replaces descriptive screen captions with seven player steps, including starting the rear-NPC interaction and checking the observed ¥25 quote. Original screenshots remain byte-identical. The picture-to-record crosswalk is a separate pending requirement, so this change does not complete DIY fly advice.

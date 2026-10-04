@@ -1146,7 +1146,7 @@ body:has(.kit-grid) main > details code {
     flex-basis: 70px;
   }
   .custom-grid {
-    grid-template-columns: 1fr 1fr;
+    grid-template-columns: 1fr;
   }
   .intro-section {
     grid-template-columns: 1fr;

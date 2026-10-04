@@ -72,7 +72,7 @@ function openFlyGuideFromHash() {
   const guide = document.getElementById('fly-instructions')
   if (!guide) return
   guide.open = true
-  guide.scrollIntoView({ block: 'start' })
+  guide.scrollIntoView({ behavior: 'instant', block: 'start' })
 }
 
 function scrollCategoryAdviceFromHash() {
@@ -114,7 +114,7 @@ function handleFlyPartClick(ctx, event) {
     event.preventDefault()
     const guide = document.getElementById('fly-instructions')
     guide.open = true
-    guide.scrollIntoView({ behavior: 'smooth' })
+    guide.scrollIntoView({ behavior: 'instant', block: 'start' })
     return
   }
   const button = event.target.closest('[data-part]')
@@ -178,7 +178,7 @@ function initializeLoadedCatalogue(ctx, data) {
 }
 
 export function loadCatalogue(ctx) {
-  fetch('gallery-data.json?v=compendium-20261005-01')
+  fetch('gallery-data.json?v=compendium-20261005-03')
     .then((response) => {
       if (!response.ok) throw new Error('catalogue unavailable')
       return response.json()

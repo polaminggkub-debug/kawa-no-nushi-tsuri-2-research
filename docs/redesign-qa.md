@@ -67,3 +67,9 @@ Actual local browser follow-up: float 01 with target fish 06 opens that fish's a
 The new decision guard derives eligibility independently from recorded bait-route or lure profile lists and shop stock. It checks every recorded fish, both bait rig selections, all six areas, and all bait/lure records. Conditional offers remain separate from unrestricted price minima. Localized runtime cards must keep original recommendation/reason and technical evidence disclosures, and alternative links must preserve the target fish, area, and rig. Actual browser review remains a separate release step; metadata checks do not prove bite odds, landing success, shop unlock state, or ordinary map access.
 
 Local browser: Rainbow 06/Area 1/Sinking 17 shows no local stock and links Spinner 48 at ¥20; clicking opens 48 with fish, area, route and exact return intact. Item detail uses the same decision model. Desktop 1280×800 and mobile 390×844 reviewed; mobile document width equals viewport width (390), without horizontal overflow. Viewport override reset.
+
+## Maker step guide (2026-10-05)
+
+The maker guide now includes the original rear-NPC interaction and seven action captions in EN/JA/TH. Its guard compares published PNG bytes against existing authentic reference captures and checks all seven steps in the runtime renderer. This proves the stated observed sequence, not any new component-ID mapping or universal recipe price.
+
+Browser inspection found that smooth scrolling across the long catalogue could stop before the guide. Maker entry now opens the disclosure and scrolls immediately to it. At 390×844, creator frames use one column so the game menu is large enough to inspect; the old two-column shared style overrode the equipment stylesheet. Mobile guide opening and original game images were inspected visually. The full-site acceptance audit remains open.

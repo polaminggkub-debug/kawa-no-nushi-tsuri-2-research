@@ -1944,7 +1944,7 @@
     const guide = document.getElementById("fly-instructions");
     if (!guide) return;
     guide.open = true;
-    guide.scrollIntoView({ block: "start" });
+    guide.scrollIntoView({ behavior: "instant", block: "start" });
   }
   function scrollCategoryAdviceFromHash() {
     if (typeof window === "undefined" || window.location.hash !== "#category-decisions") return;
@@ -1981,7 +1981,7 @@
       event.preventDefault();
       const guide = document.getElementById("fly-instructions");
       guide.open = true;
-      guide.scrollIntoView({ behavior: "smooth" });
+      guide.scrollIntoView({ behavior: "instant", block: "start" });
       return;
     }
     const button = event.target.closest("[data-part]");
@@ -2032,7 +2032,7 @@
     renderInitialCatalogue(ctx);
   }
   function loadCatalogue(ctx) {
-    fetch("gallery-data.json?v=compendium-20261005-01").then((response) => {
+    fetch("gallery-data.json?v=compendium-20261005-03").then((response) => {
       if (!response.ok) throw new Error("catalogue unavailable");
       return response.json();
     }).then((data) => initializeLoadedCatalogue(ctx, data)).catch((error) => console.error(error));

@@ -25,6 +25,9 @@ if(fs.existsSync(thaiCopyPath)&&fs.existsSync(thaiItemsPath)) {
   source=source.replace(/    \/\/ THAI_COPY_START[\s\S]*?    \/\/ THAI_COPY_END/,()=>`    // THAI_COPY_START\n    th: ${JSON.stringify(thai)},\n    // THAI_COPY_END`);
   fs.writeFileSync(path.join(root,'catalogue/gallery.js'),source);
 }
+const flySteps=JSON.parse(fs.readFileSync(path.join(root,'data/fly-maker-player-steps.json'),'utf8'));
+if(flySteps.romSha256!=='e0594921a5a2ef1a2613b9d2e29fed066569e3793393c591bf4c4968a54c0b49')throw new Error('Fly steps use a different ROM');
+data.customizerFrames=flySteps.frames;
 for(const item of data.items){delete item.nameTh;delete item.labelImageTh;}
 for(const file of ['thai-rom-names.json','thai-other-captures.json']) {
   const namesPath=path.join(root,'data',file);
