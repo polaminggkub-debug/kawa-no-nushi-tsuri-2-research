@@ -278,7 +278,7 @@
     return `<section class="detail-section" id="use-locations"><h2>${esc(copy.useLocations)}</h2><div class="detail-grid tool-location-grid">${locations.map(loc=>{
       const stage=Number(loc.stage)||0, refs=loc.markerItems||(loc.markerItem?[loc.markerItem]:[{category:item.category,id:item.id}]);
       const markers=refs.map(ref=>allItems.find(i=>i.category===ref.category&&i.id===ref.id)).filter(Boolean);
-      const visual=loc.image&&loc.pin?`<div class="tool-use-map" style="aspect-ratio:${Number(loc.width)||1}/${Number(loc.height)||1}"><img class="tool-use-ground" src="${esc(loc.image)}" alt="${esc(local(loc.name))}"><span class="tool-use-pin" style="left:${Number(loc.pin.x)*100}%;top:${Number(loc.pin.y)*100}%">${markers.map(marker=>`<a href="${esc(marker.category===item.category&&marker.id===item.id?loc.image:detailItemLink(marker))}" ${marker.category===item.category&&marker.id===item.id?'target="_blank" rel="noopener"':''} aria-label="${esc(marker.category===item.category&&marker.id===item.id?text.open:imageName(marker))}"><img src="${esc(marker.image)}" alt="${esc(imageName(marker))}"></a>`).join('')}</span></div><p class="muted">${esc(loc.forage?text.forage:text.pin)}</p>`:'';
+      const visual=loc.image&&loc.pin?`<div class="tool-use-map" style="aspect-ratio:${Number(loc.width)||1}/${Number(loc.height)||1}"><img class="tool-use-ground" src="${esc(loc.image)}" alt="${esc(local(loc.name))}"><span class="tool-use-pin" style="left:${Number(loc.pin.x)*100}%;top:${Number(loc.pin.y)*100}%">${markers.map(marker=>`<a href="${esc(marker.category===item.category&&marker.id===item.id?loc.image:loc.kind==='runtime_net_use'?netContextLink(marker,stage):detailItemLink(marker))}" ${marker.category===item.category&&marker.id===item.id?'target="_blank" rel="noopener"':''} aria-label="${esc(marker.category===item.category&&marker.id===item.id?text.open:imageName(marker))}"><img src="${esc(marker.image)}" alt="${esc(imageName(marker))}"></a>`).join('')}</span></div><p class="muted">${esc(loc.kind==='runtime_net_use'?(lang==='th'?'รูปแมลงน้ำชี้ช่องที่ทดลองใช้ตาข่ายสำเร็จ':lang==='ja'?'カワムシ画像はアミ使用に成功したタイルを示す。':'The aquatic insect portrait marks the successfully tested net tile.'):loc.forage?text.forage:text.pin)}</p>`:'';
       const entranceInfo=loc.approach;
       const entranceTitle=lang==='th'?'เริ่มจากทางเข้าเมืองนี้บนแผนที่ด่าน':lang==='ja'?'屋外ではこの町入口から入る':'Start at this town entrance on the outdoor map';
       const entranceGuide=entranceInfo?`<details class="town-approach"><summary>${esc(entranceTitle)}</summary><p>${esc(lang==='th'?'เข้าประตูที่รูปไอเท็มชี้ แล้วไปหีบในห้องที่แสดงด้านบน':lang==='ja'?'道具画像が示す入口に入り、上の部屋画像の宝箱へ進みます。':'Enter through the door marked by the item portrait, then find the chest in the room shown above.')}</p><div class="tool-use-map" style="aspect-ratio:${entranceInfo.width}/${entranceInfo.height}"><img class="tool-use-ground" src="${esc(entranceInfo.image)}" alt="${esc(entranceTitle)}"><span class="tool-use-pin" style="left:${entranceInfo.pin.x*100}%;top:${entranceInfo.pin.y*100}%"><a href="${esc(entranceInfo.image)}" target="_blank" rel="noopener"><img src="${esc(item.image)}" alt="${esc(imageName(item))}"></a></span></div><p>X ${entranceInfo.tileX}, Y ${entranceInfo.tileY}</p><a href="${esc(entranceInfo.fullImage)}" target="_blank" rel="noopener">${esc(text.full)} ↗</a></details>`:'';
@@ -311,16 +311,22 @@
     }
     return '';
   }
+  function netContextLink(item,stage,hash='') {
+    const [page,query]=detailItemLink(item).split('?');
+    const params=new URLSearchParams(query);params.set('stage',String(stage));
+    if(selectedRoute)params.set('route',selectedRoute);
+    return page+'?'+params+hash;
+  }
   function gatheredBaitChoices(item,allItems){
     if(!item.gatheredBaitByArea)return '';
     const title=lang==='th'?'เหยื่อที่ตาข่ายหาได้: เลือกดูว่าใช้ตกปลาอะไร':lang==='ja'?'金アミで採れるエサ：対応魚を見る':'Baits gathered with the net: see which fish accept them';
-    return `<section class="detail-section gathered-bait"><h3>${title}</h3>${Object.entries(item.gatheredBaitByArea).map(([stage,id])=>{const bait=allItems.find(i=>i.category==='bait'&&i.id===id);return `<p>${lang==='th'?'ด่าน':lang==='ja'?'エリア':'Area'} ${stage} · <a data-gathered-bait href="item${lang==='en'?'':'.'+lang}.html?category=bait&id=${esc(id)}&stage=${stage}&return=${encodeURIComponent(currentLocalRoute())}">${esc(imageName(bait))} (${id}) ↗</a></p>`;}).join('')}</section>`;
+    return `<section class="detail-section gathered-bait"><h3>${title}</h3>${item.playerUse?.useLocations?.some(l=>l.kind==='runtime_net_use')?`<p class="net-location-choice" data-net-location-choice><a href="${esc(netContextLink(item,1,'#use-locations'))}">${lang==='th'?'ด่าน 1: ดูภาพช่องน้ำตื้นที่ทดลองใช้ตาข่ายสำเร็จ':lang==='ja'?'エリア1：アミ使用に成功した浅瀬を見る':'Area 1: see the shallow tile where net use succeeded'} ↗</a><br>${lang==='th'?'ยังไม่ยืนยันเส้นทางเดินจากทางเข้า; หากไปถึงช่องนี้แล้วจึงใช้ตำแหน่งนี้ได้':lang==='ja'?'入口からの経路は未確認。このタイルに到達した場合の使用地点です。':'The walking route from the entrance remains unconfirmed; use this location if you reach the tile.'}</p>`:''}${Object.entries(item.gatheredBaitByArea).map(([stage,id])=>{const bait=allItems.find(i=>i.category==='bait'&&i.id===id);return `<p>${lang==='th'?'ด่าน':lang==='ja'?'エリア':'Area'} ${stage} · <a data-gathered-bait href="${esc(netContextLink(bait,stage))}">${esc(imageName(bait))} (${id}) ↗</a></p>`;}).join('')}</section>`;
   }
   function baitGatherChoice(item){
     if(!item.netGatherArea)return '';
     const note=lang==='th'?`ถ้ามีตาข่ายสีทองอยู่แล้ว หาเหยื่อนี้ได้ในด่าน ${item.netGatherArea}: ยืนในน้ำตื้น ใช้ตาข่าย แล้วขยับช่องก่อนใช้ซ้ำ แทนการซื้อเหยื่อเพิ่ม` :lang==='ja'?`金アミを持っているならエリア${item.netGatherArea}の浅瀬でこのエサを採れます。浅瀬に立って使い、次は別のタイルへ移動してください。追加購入の代わりになります。`:`If you already own the gold net, gather this bait in area ${item.netGatherArea} instead of buying more: stand in shallow water, use the net, then move to a new tile before using it again.`;
     const label=lang==='th'?'ดูวิธีใช้ตาข่ายและจำนวนที่เก็บได้':lang==='ja'?'金アミの使い方と採れる個数を見る':'See net use and gathering amounts';
-    return `<aside class="detail-section bait-gather-choice" data-bait-gather-choice><p>${esc(note)}</p><a href="item${lang==='en'?'':'.'+lang}.html?category=general_tool&id=04&stage=${item.netGatherArea}&return=${encodeURIComponent(currentLocalRoute())}">${label} ↗</a></aside>`;
+    return `<aside class="detail-section bait-gather-choice" data-bait-gather-choice><p>${esc(note)}</p><a href="${esc(netContextLink({category:'general_tool',id:'04'},item.netGatherArea,item.netGatherArea===1?'#use-locations':''))}">${label} ↗</a></aside>`;
   }
   function daikonFishChoice(item,fishLocations){
     if(!item.exchangeFishId)return '';
@@ -391,7 +397,7 @@
     setNavigation();
     $('detail-root').innerHTML=`<section class="empty-state"><h1>${esc(copy.invalidTitle)}</h1><p>${esc(copy.invalidBody)}</p><a class="route-button" href="${esc(fallbackBack())}">${esc(copy.allItems)} ↗</a></section>`;
   }
-  fetch('gallery-data.json?v=player-usefulness-20261004-14').then(response=>{if(!response.ok)throw new Error('catalogue data unavailable');return response.json();}).then(data=>{
+  fetch('gallery-data.json?v=player-usefulness-20261004-15').then(response=>{if(!response.ok)throw new Error('catalogue data unavailable');return response.json();}).then(data=>{
     if(selectedFish&&!data.fishVisuals?.[selectedFish])selectedFish='';
     const item=(data.items||[]).find(candidate=>candidate.category===category&&candidate.id===requestedId)||null;
     if(!item){emptyState();return;}

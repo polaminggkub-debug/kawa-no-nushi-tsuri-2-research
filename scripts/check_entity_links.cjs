@@ -52,6 +52,14 @@ for(const kind of ['float','sinker'])for(const [stage,row] of Object.entries(dat
 const netSource=JSON.parse(fs.readFileSync(path.join(root,'data/general-tool-actions.json'),'utf8'));
 assert.deepEqual(data.items.find(i=>i.category==='general_tool'&&i.id==='04').gatheredBaitByArea,netSource.items['04'].trace.perAreaBaitIds);
 assert.equal(data.items.filter(i=>i.netGatherArea).length,6);
+const netLocationSource=JSON.parse(fs.readFileSync(path.join(root,'data/gold-net-location.json'),'utf8'));
+const netLocations=data.items.find(i=>i.category==='general_tool'&&i.id==='04').playerUse.useLocations;
+assert.deepEqual(netLocations,netLocationSource.items['general_tool:04']);
+assert.equal(netLocations.length,1,'Do not publish unconfirmed net candidates');
+assert.equal(netLocations[0].access.naturalWalkingRouteConfirmed,false);
+assert.deepEqual([netLocations[0].stage,netLocations[0].tileX,netLocations[0].tileY],[1,9,105]);
+for(const lang of ['en','th','ja'])assert(netLocations[0].description[lang]&&netLocations[0].action[lang],'Net point must expose action and route limitation');
+
 for(const [stage,id] of Object.entries(netSource.items['04'].trace.perAreaBaitIds))assert.equal(data.items.find(i=>i.category==='bait'&&i.id===id).netGatherArea,Number(stage));
 const keepnetSource=JSON.parse(fs.readFileSync(path.join(root,'data/chum-basket-use.json'),'utf8'));
 for(const [id,capacity] of Object.entries(keepnetSource.raw_evidence.basket_purchase.capacity_by_item_id))assert.equal(data.items.find(i=>i.category==='general_tool'&&i.id===id).keepnetCapacity,capacity);
@@ -133,6 +141,13 @@ async function render(kind,lang,query,prefix='/kawa-no-nushi-tsuri-2-research'){
     }
    }
   }
+  {
+   const result=await render('item',lang,new URLSearchParams({category:'general_tool',id:'04',fish:'06',stage:'3',route:'sinker'}));
+   const gathered=[...result.html.matchAll(/data-gathered-bait href="([^"]+)"/g)];
+   assert.equal(gathered.length,6);
+   gathered.forEach((match,index)=>{const url=new URL(unescape(match[1]),result.url);assert.equal(url.searchParams.get('stage'),String(index+1),'Net bait link lost its area');assert.equal(url.searchParams.get('fish'),'06');assert.equal(url.searchParams.get('route'),'sinker');});
+   const marker=result.html.match(/class="tool-use-pin"[\s\S]*?href="([^"]+)"/);assert(marker);const url=new URL(unescape(marker[1]),result.url);assert.equal(url.searchParams.get('stage'),'1');assert.equal(url.searchParams.get('id'),'07');assert.equal(url.searchParams.get('fish'),'06');assert.equal(url.searchParams.get('route'),'sinker');
+  }
   for(const item of data.items){
    const result=await render('item',lang,new URLSearchParams({category:item.category,id:item.id,return:`index${suffix}.html?category=${item.category}#catalogue`}));
    assert(result.html.includes('class="detail-hero"')&&!result.html.includes('class="empty-state"'),`Item render failed ${item.category}:${item.id}`);
@@ -164,6 +179,8 @@ async function render(kind,lang,query,prefix='/kawa-no-nushi-tsuri-2-research'){
     for(const fact of item.playerUse.facts?.[lang]||[])assert(unescape(result.html).includes(fact),'Original gear evidence lost');
    }
    if(item.netGatherArea){assert(visible.includes('data-bait-gather-choice')&&unescape(visible).includes('category=general_tool&id=04'),'Missing net gathering alternative');}
+   if(item.category==='general_tool'&&item.id==='04'){assert(visible.includes('data-net-location-choice'),'Missing net map next action');for(const loc of netLocations)assert(unescape(visible).includes(loc.description[lang]),'Net route limitation hidden');}
+
    if(item.acquisitionOptions?.length){assert(visible.includes('data-acquisition-choice'),'Missing front acquisition action');assert(visible.indexOf('data-acquisition-choice')<visible.indexOf('id="use-locations"'),'Acquisition must precede full map details');}
    for(const loc of item.playerUse.useLocations||[])if(loc.action)assert(unescape(visible).includes(loc.action[lang]),'Acquisition preparations hidden '+item.category+':'+item.id);
    if(item.category.startsWith('fly'))assert(visible.includes('data-fly-maker')&&visible.includes('#fly-instructions'),'Fly detail has no custom maker action');

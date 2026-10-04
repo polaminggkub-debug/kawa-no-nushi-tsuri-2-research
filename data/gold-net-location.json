@@ -1,0 +1,108 @@
+{
+  "schemaVersion": 1,
+  "rom": {
+    "sha1": "c2103dd94e2a1a65a495fc02adc2e7d040f31212"
+  },
+  "scope": "One runtime-confirmed use of Gold Net (general_tool 04) in Area 1. The location is confirmed for the recorded field state; normal-route access is not established. Two controlled uses from the recorded field tile both increased the existing bait 07 stack from zero to three. The test injected the tool inventory entry and does not establish normal-route access.",
+  "items": {
+    "general_tool:04": [
+      {
+        "kind": "runtime_net_use",
+        "stage": 1,
+        "context": "field",
+        "tileX": 9,
+        "tileY": 105,
+        "status": "runtime_confirmed_controlled_inventory",
+        "markerItem": {
+          "category": "bait",
+          "id": "07"
+        },
+        "action": {
+          "th": "ถ้ามีตาข่ายสีทองและไปถึงช่องน้ำตื้นนี้แล้ว เปิดเมนูอุปกรณ์ เลือกตาข่ายแล้วใช้เพื่อเก็บแมลงน้ำ 07 ขยับไปช่องน้ำตื้นอื่นก่อนใช้ซ้ำ; ถ้าถือเหยื่อนี้ครบ 9 ชิ้นแล้ว ไม่ต้องเก็บเพิ่ม",
+          "en": "If you own the gold net and reach this shallow tile, open General Tools, select the net and use it to gather aquatic insect bait 07. Move to another eligible shallow tile before gathering again; do not gather more if you already carry nine.",
+          "ja": "金アミを持ってこの浅瀬に到達したら、道具メニューで金アミを選び、カワムシ07を採ります。再使用前に別の使用可能な浅瀬へ移動します。9個所持しているなら追加採集は不要です。"
+        },
+        "description": {
+          "th": "รูปเหยื่อชี้ช่องที่ทดลองใช้สำเร็จ ได้แมลงน้ำ 3 ชิ้นในสองรอบควบคุม จำนวนปกติอยู่ที่ 1–4 ชิ้น ไม่ได้คงที่ 3 การทดสอบใส่ตาข่ายในกระเป๋าเพื่อทดลอง; ยังไม่ยืนยันเส้นทางเดินจากทางเข้า จึงยังใช้ภาพนี้เป็นคู่มือเดินไปถึงไม่ได้",
+          "en": "The bait portrait marks a successful use tile. Two controlled runs gathered three pieces; normal amounts are 1–4, not a fixed three. The test inserted the net into inventory. A walking route from the entrance remains unconfirmed, so this is not yet a route guide.",
+          "ja": "エサ画像は使用に成功したタイルを示します。管理下の2回で3個採れましたが通常個数は1〜4で、3個固定ではありません。テストでは金アミを所持欄に設定しました。入口からの歩行経路は未確認のため、到達経路の案内にはまだ使えません。"
+        },
+        "name": {
+          "en": "Confirmed shallow-water net spot",
+          "ja": "浅瀬でアミを使えた地点",
+          "th": "จุดน้ำตื้นที่ยืนยันว่าใช้สวิงได้"
+        },
+        "image": "maps/tool-net-area1.png",
+        "fullImage": "maps/rom-field-01.png",
+        "width": 256,
+        "height": 384,
+        "pin": {
+          "x": 0.59375,
+          "y": 0.5
+        },
+        "terrain": {
+          "groundClass": 5,
+          "waterClass": 12,
+          "depthClass": 0
+        },
+        "runtimeObservation": {
+          "movementMode": 1,
+          "recordedAtTile": {
+            "x": 9,
+            "y": 105
+          }
+        },
+        "observedResult": {
+          "item": {
+            "category": "bait",
+            "id": "07"
+          },
+          "count": 3,
+          "countScope": "same result in two controlled uses; not asserted as a fixed amount",
+          "recordedUses": 2
+        },
+        "source": {
+          "romSha1": "c2103dd94e2a1a65a495fc02adc2e7d040f31212",
+          "terrainClassifier": "00:8F7D..90C3",
+          "groundPlane": "7E:2B02",
+          "waterPlane": "7E:4304",
+          "depthPlane": "7E:5B06",
+          "thresholds": {
+            "ground": "7E:6B4D",
+            "water": "7E:6B63",
+            "depth": "7E:6B7F"
+          },
+          "useDispatch": "03:BC4A",
+          "goldNetHandler": "03:BF2A",
+          "runtimeEvidence": [
+            "rom-analysis/gold-net-shallow-spots/area1-net-use.json",
+            "rom-analysis/gold-net-shallow-spots/root-area1-net-confirm.json"
+          ],
+          "screenshot": "rom-analysis/gold-net-shallow-spots/runs/area1-net-use-after13.png",
+          "coreSha256": "8ed333ac04544cc6ab67ceb445d095f7600bb17586d4887d99117fbd1ef776f6"
+        },
+        "testConditions": {
+          "netItemId": "04",
+          "netInventoryWordInjectedAt": "0B5E",
+          "baitItemIdAlreadyPresentAt": "088C",
+          "baitStackCountAddress": "08B8",
+          "baitStackCountBefore": 0,
+          "baitStackCountAfter": 3,
+          "normalMenuControls": [
+            "A",
+            "Left",
+            "Down",
+            "A",
+            "Down",
+            "Down",
+            "A"
+          ]
+        },
+        "access": {
+          "naturalWalkingRouteConfirmed": false,
+          "note": "Do not treat this marker as proof that the tile is naturally reachable from an area's entrance."
+        }
+      }
+    ]
+  }
+}

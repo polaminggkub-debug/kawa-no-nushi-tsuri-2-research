@@ -125,6 +125,10 @@ if(toolsSource.rom?.sha1!=='c2103dd94e2a1a65a495fc02adc2e7d040f31212')throw new 
 for(const item of data.items)delete item.netGatherArea;
 const netItem=data.items.find(i=>i.category==='general_tool'&&i.id==='04');
 netItem.gatheredBaitByArea=toolsSource.items['04'].trace.perAreaBaitIds;
+const netLocations=JSON.parse(fs.readFileSync(path.join(root,'data/gold-net-location.json'),'utf8'));
+if(netLocations.rom?.sha1!==toolsSource.rom.sha1)throw Error('Net location ROM mismatch');
+netItem.playerUse.useLocations=netLocations.items['general_tool:04'];
+netItem.playerUse.evidence.sources=[...new Set([...netItem.playerUse.evidence.sources,'data/gold-net-location.json','docs/gold-net-location-research.md'])];
 for(const [stage,id] of Object.entries(netItem.gatheredBaitByArea)){const bait=data.items.find(i=>i.category==='bait'&&i.id===id);bait.netGatherArea=Number(stage);bait.playerUse.evidence.sources=[...new Set([...(bait.playerUse.evidence.sources||[]),'data/general-tool-actions.json','docs/general-tool-actions-research.md'])];}
 const acquisitionPath=path.join(root,'data/town-item-acquisition.json');
 if(!fs.existsSync(acquisitionPath))throw new Error('Missing town acquisition data');
