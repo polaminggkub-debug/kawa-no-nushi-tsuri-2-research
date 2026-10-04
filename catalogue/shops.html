@@ -1,0 +1,90 @@
+<!doctype html>
+<html lang="en" data-locale="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Where to buy items — Kawa no Nushi Tsuri 2</title>
+  <meta name="description" content="Browse item stock decoded from the original Kawa no Nushi Tsuri 2 ROM by fishing area, town, seller and item.">
+  <link rel="canonical" href="https://polaminggkub-debug.github.io/kawa-no-nushi-tsuri-2-research/catalogue/shops.html">
+  <link rel="alternate" hreflang="en" href="https://polaminggkub-debug.github.io/kawa-no-nushi-tsuri-2-research/catalogue/shops.html">
+  <link rel="alternate" hreflang="ja" href="https://polaminggkub-debug.github.io/kawa-no-nushi-tsuri-2-research/catalogue/shops.ja.html">
+  <link rel="alternate" hreflang="th" href="https://polaminggkub-debug.github.io/kawa-no-nushi-tsuri-2-research/catalogue/shops.th.html">
+  <link rel="stylesheet" href="shops.css?v=6">
+  <script src="shops.js?v=6" defer></script>
+</head>
+<body>
+  <header class="site-header">
+    <nav class="site-nav" aria-label="Main navigation">
+      <a id="back-link" href="index.html">← Item catalogue</a>
+      <a href="index.html">Item catalogue</a>
+      <a href="maps.html">Fish and fishing maps</a>
+    </nav>
+    <nav class="language-nav" aria-label="Language">
+      <a id="language-en" href="shops.html" lang="en" hreflang="en">English</a>
+      <a id="language-ja" href="shops.ja.html" lang="ja" hreflang="ja">日本語</a>
+      <a id="language-th" href="shops.th.html" lang="th" hreflang="th">ไทย</a>
+    </nav>
+  </header>
+  <main>
+    <h1>Where can I buy it?</h1>
+    <p class="lead">Choose an area to find where an item is sold. Open the verified town seller positions and their paired field entrances on terrain reconstructed from the ROM.</p>
+    <p id="page-status" class="status" role="status" aria-live="polite">Loading verified shop stock…</p>
+
+    <section class="filters" aria-label="Shop and item filters">
+      <div class="filter-field">
+        <label for="stage-select">Fishing area</label>
+        <select id="stage-select">
+          <option value="1">Area 1</option><option value="2">Area 2</option><option value="3">Area 3</option>
+          <option value="4">Area 4</option><option value="5">Area 5</option><option value="6">Area 6</option>
+        </select>
+      </div>
+      <fieldset class="place-toggle">
+        <legend>View location</legend>
+        <label><input type="radio" name="place" value="outdoor"> Field map · town entrances</label>
+        <label><input type="radio" name="place" value="town" checked> Town map · seller locations</label>
+      </fieldset>
+      <div class="filter-field">
+        <label for="category-select">Item type</label>
+        <select id="category-select">
+          <option value="all">All item types</option>
+          <option value="rod">Fishing rods</option><option value="lure">Lures</option>
+          <option value="hook">Hooks</option><option value="float_weight">Floats and sinkers</option>
+          <option value="bait">Bait</option><option value="fly">Ready-made flies</option>
+          <option value="fly_wing">Fly wings in ready-made bundles</option><option value="fly_tail">Fly tails in ready-made bundles</option>
+          <option value="food">Food</option><option value="general_tool">Tools and quest items</option>
+        </select>
+      </div>
+      <div class="filter-field search-field">
+        <label for="item-search">Find an item by name or ID</label>
+        <input id="item-search" type="search" autocomplete="off" placeholder="Try a name or hex ID, such as 2E">
+      </div>
+      <button id="clear-filters" type="button" class="quiet-button">Clear item filters</button>
+    </section>
+
+    <section id="location-section" class="location-section" aria-labelledby="location-heading">
+      <div class="section-heading">
+        <h2 id="location-heading">Where to look</h2>
+        <span id="location-area" class="map-id"></span>
+      </div>
+      <p id="location-summary"></p>
+      <div id="location-visuals" class="location-visuals"></div>
+      <details class="map-evidence"><summary>Map-set IDs</summary><p id="location-map-id"></p></details>
+    </section>
+
+    <section class="stock-section" aria-labelledby="stock-heading">
+      <div class="section-heading">
+        <h2 id="stock-heading">Items sold in this area</h2>
+        <span id="offer-count" class="offer-count"></span>
+      </div>
+      <p id="target-status" class="target-status" role="status" aria-live="polite"></p>
+      <div id="shop-results" class="shop-results"></div>
+    </section>
+
+    <details class="evidence-note">
+      <summary>What this shop list proves</summary>
+      <p>The listed items come from the original Japanese ROM's decoded six-area shop stock and traced menus. A ROM item price alone is not treated as proof of sale. Fly cards represent ready-made bundles at their full quoted bundle price; their body, wing and tail are not being presented as separate purchases. A listed position marks the decoded interaction or transition point; it does not promise a walking route unless the route is explicitly shown as verified.</p>
+    </details>
+  </main>
+  <footer>Original Japanese ROM · SHA-1 <code>c2103dd94e2a1a65a495fc02adc2e7d040f31212</code> · No ROM included.</footer>
+</body>
+</html>

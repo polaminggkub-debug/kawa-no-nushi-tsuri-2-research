@@ -20,7 +20,7 @@
   try {
     const raw=new URLSearchParams(location.search).get('return')||'';
     const base=new URL('.',location.href), target=new URL(raw,base);
-    const allowed=['index','maps','fish','item'].flatMap(name=>['','.th','.ja'].map(suffix=>{const route=`${name}${suffix}.html`;return {route,pathname:new URL(route,base).pathname};}));
+    const allowed=['index','maps','fish','item','shops'].flatMap(name=>['','.th','.ja'].map(suffix=>{const route=`${name}${suffix}.html`;return {route,pathname:new URL(route,base).pathname};}));
     allowed.push(...['index.html','index.th.html','index.ja.html'].map(file=>{const route=`../research/${file}`;return {route,pathname:new URL(route,base).pathname};}));
     const match=allowed.find(entry=>entry.pathname===target.pathname);
     if(raw&&!raw.startsWith('//')&&!raw.includes('\\')&&!/^[a-z][a-z0-9+.-]*:/i.test(raw)&&target.origin===base.origin&&match)returnPath=match.route+target.search+target.hash;
@@ -207,6 +207,8 @@
     $('zoom-fit').textContent=lang==='th'?'พอดีจอ':lang==='ja'?'全体表示':'Fit view';
     $('zoom-out').setAttribute('aria-label',lang==='th'?'ย่อแผนที่':lang==='ja'?'縮小':'Zoom out');
     $('zoom-in').setAttribute('aria-label',lang==='th'?'ขยายแผนที่':lang==='ja'?'拡大':'Zoom in');
+    const shopNav=$('shop-browser-link');
+    if(shopNav){const q=new URLSearchParams({stage:String(activeStage),place:'area',return:sourceReturn()});if(selectedFish)q.set('fish',selectedFish);shopNav.href=`shops${lang==='en'?'':'.'+lang}.html?${q}`;}
     const catalogue = $('catalogue-fish-link');
     catalogue.textContent = selectedFish ? c.tackle : (lang==='th'?'กลับไปเลือกอุปกรณ์ตกปลา ↗':lang==='ja'?'道具カタログへ ↗':'Browse the equipment catalogue ↗');
     catalogue.href = `${lang==='th'?'index.th.html':lang==='ja'?'index.ja.html':'index.html'}${selectedFish?`?category=all&fish=${selectedFish}&stage=${activeStage}#fish-location-panel`:''}`;

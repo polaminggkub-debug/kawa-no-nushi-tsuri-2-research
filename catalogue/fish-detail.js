@@ -66,7 +66,7 @@
     const catalogueDirectory = new URL('.', window.location.href);
     try { target = new URL(value, catalogueDirectory); } catch { return ''; }
     if (target.origin !== window.location.origin) return '';
-    const catalogueNames = ['index.html', 'index.th.html', 'index.ja.html', 'maps.html', 'maps.th.html', 'maps.ja.html', 'fish.html', 'fish.th.html', 'fish.ja.html', 'item.html', 'item.th.html', 'item.ja.html'];
+    const catalogueNames = ['index.html', 'index.th.html', 'index.ja.html', 'maps.html', 'maps.th.html', 'maps.ja.html', 'fish.html', 'fish.th.html', 'fish.ja.html', 'item.html', 'item.th.html', 'item.ja.html', 'shops.html', 'shops.th.html', 'shops.ja.html'];
     const researchNames = ['index.html', 'index.th.html', 'index.ja.html'];
     const allowed = new Set([
       ...catalogueNames.map(name => new URL(name, catalogueDirectory).pathname),
@@ -192,16 +192,68 @@
     });
   }
 
-  function renderShopping(entries, locations, stage) {
+
+  function renderReusableKit(items, stage) {
+    const lures=items.filter(item=>item.category==='lure');
+    const allProfiles=new Set(lures.flatMap(item=>item.playerUse?.fishIds||[]));
+    if(!allProfiles.has(id))return '';
+    const stocked=item=>(item.playerUse?.shops||[]).some(shop=>String(shop.stage)===stage&&!shop.condition);
+    const pairs=[['2E','23'],['17','23']].map(ids=>ids.map(key=>lures.find(item=>item.id===key))).filter(pair=>pair.every(Boolean)&&pair.every(item=>Number.isFinite(item.priceYen))&&new Set(pair.flatMap(item=>item.playerUse?.fishIds||[])).size===allProfiles.size);
+    pairs.sort((a,b)=>Number(b.every(stocked))-Number(a.every(stocked))||a.reduce((sum,item)=>sum+item.priceYen,0)-b.reduce((sum,item)=>sum+item.priceYen,0));
+    const localPair=pairs.find(pair=>pair.every(stocked));
+    const pair=localPair||pairs[0];
+    if(!pair)return '';
+    const title=locale==='th'?'ถ้าจะตกปลาอื่นด้วย: ชุดลัวร์สองชิ้น':locale==='ja'?'ほかの魚も狙うなら：ルアー2種類のセット':'Fishing for other species too? A two-lure kit';
+    const total=pair.reduce((sum,item)=>sum+item.priceYen,0), count=allProfiles.size;
+    const intro=locale==='th'?'ชุดราคาต่ำสุดด้านบนเลือกเพื่อปลาตัวนี้เท่านั้น ถ้าจะพกลัวร์สำหรับปลาหลายชนิด คู่ด้านล่างครอบคลุม '+count+' โปรไฟล์ที่ผ่านเงื่อนไขลัวร์ รวมราคาซื้อใหม่ ¥'+total+'. ไม่ต้องซื้อทุกตัวเลือก: ถ้ามีคู่สปูนกับยางหนอนอยู่แล้ว ใช้ต่อได้':locale==='ja'?'上の最安候補はこの魚だけを狙う選択です。ほかの魚も狙うなら、下の組み合わせでルアー判定を通る'+count+'プロフィールをカバーでき、新規購入は合計'+total+'円です。全部買う必要はありません。スプーンとワームの組を持っているなら、そのまま使用できます。':'The cheapest choice above is for this fish alone. For a kit to use across species, the pair below covers all '+count+' profiles that pass the lure check, for ¥'+total+' when buying new. Do not buy every alternative: keep the Spoon-and-worm pair if you already own it.';
+    const availability=locale==='th'?(localPair?'ซื้อครบคู่นี้ได้ในด่านที่เลือก':'ด่านที่เลือกขายไม่ครบคู่นี้ ใช้ตัวเลือกสำหรับปลาตัวนี้ด้านบน หรือดูด่านที่ขายแต่ละชิ้นด้านล่าง'):locale==='ja'?(localPair?'選択中エリアで両方買えます。':'選択中エリアでは両方は揃いません。上の対象魚用候補を使うか、下の販売エリアを確認してください。'):(localPair?'Both items are stocked in your selected area.':'The selected area does not stock the full pair. Use the single-fish choice above or check each item’s sale areas below.');
+    const cards=pair.map(item=>{
+      const stages=[...new Set((item.playerUse?.shops||[]).filter(shop=>!shop.condition).map(shop=>shop.stage))].sort((a,b)=>a-b);
+      const query=new URLSearchParams({category:'lure',id:item.id,fish:id,stage,return:currentFishPath(stage)});
+      const accepts=(item.playerUse?.fishIds||[]).includes(id);
+      const target=locale==='th'?(accepts?'ใช้กับปลาที่กำลังดูได้':'ชิ้นนี้ไว้ครอบคลุมปลาอื่นในชุด'):locale==='ja'?(accepts?'表示中の魚に対応':'このセットでほかの魚を担当'):(accepts?'Works for the fish you are viewing':'Covers other fish in this kit');
+      return '<article class="detail-section kit-item" data-item="lure:'+item.id+'"><a class="entity-link" href="'+escapeHtml(itemPath()+'?'+query)+'"><img src="'+escapeHtml(item.image)+'" alt=""><span><strong>'+escapeHtml(localizedItemName(item))+'</strong><small>¥'+item.priceYen+' · '+stages.map(n=>escapeHtml(copy.stage(n))).join(' / ')+'</small><small>'+escapeHtml(target)+'</small></span></a></article>';
+    }).join('');
+    return '<section class="detail-section reusable-kit" data-kit="'+pair.map(item=>item.id).join('+')+'" data-coverage="'+count+'" data-total="'+total+'" data-local="'+Boolean(localPair)+'"><h3>'+escapeHtml(title)+'</h3><p>'+escapeHtml(intro)+'</p><p><strong>'+escapeHtml(availability)+'</strong></p><div class="detail-grid">'+cards+'</div><p class="muted">'+escapeHtml(locale==='th'?'ครอบคลุมเงื่อนไขชนิดเหยื่อ ไม่ได้รับประกันว่าปลาจะกินหรือดึงขึ้นสำเร็จ':locale==='ja'?'ルアー種類の判定をカバーするもので、食いつきや取り込みの保証ではありません。':'Coverage is lure-type compatibility, not a guarantee of a bite or landing.')+'</p></section>';
+  }
+
+
+  function renderFlyFallback(items, stage, choices) {
+    const definitions=choices?.profiles?.[id]?.bundles||[];
+    if(definitions.length!==3)return '';
+    const offers=definitions.map(def=>{
+      const body=items.find(item=>item.category==='fly'&&item.id===def.body);
+      const shop=body?.playerUse?.shops?.find(shop=>shop.stage===def.stage&&shop.bundle?.body===def.body&&shop.bundle?.wing===def.wing&&shop.bundle?.tail===def.tail);
+      return {def,body,bundle:shop?.bundle};
+    });
+    if(!offers.every(offer=>offer.body?.playerUse?.fishIds?.includes(id)&&offer.bundle))return '';
+    const total=offers.reduce((sum,offer)=>sum+offer.bundle.shopPriceYen,0);
+    const title=locale==='th'?'ปลาไม่กินฟลาย? ทางเลือกเพื่อผ่านเงื่อนไขซ่อนหนึ่งข้อ':locale==='ja'?'フライに反応しない？ 隠れた判定1つを避ける候補':'No bite on a fly? Alternatives for one hidden check';
+    const intro=locale==='th'?'ถ้าจะเตรียมฟลายสำรอง ชุดด้านล่างมีราคารวมต่ำที่สุดในกลุ่มที่ซื้อชุดสำเร็จรูป 3 ชุดจากร้านทั้ง 6 ด่านแล้วผ่านเงื่อนไขนี้สำหรับปลาตัวนี้ ซื้อใหม่รวม ¥'+total+' และบอดี้ทั้งสามผ่านเงื่อนไขของปลาที่กำลังดู เก็บไว้เป็นชุดสำรอง ไม่จำเป็นต้องซื้อทั้งหมดเพื่อเริ่มตก':locale==='ja'?'予備を用意するなら、この魚の条件を満たす店売り3セットのうち、全6エリアの在庫で合計価格が最安の候補です。新規購入は合計'+total+'円で、3つの本体すべてが表示中の魚の判定を通ります。最初から全部買う必要はありません。':'For backup flies, these are the lowest-total-price three ready-made sets across all six recorded area stocks that satisfy this check for the current fish. They cost ¥'+total+' in total when buying new. All three bodies pass the current fish’s profile check. You do not need to buy all three to start fishing.';
+    const action=locale==='th'?'สลับลองสามชุดในฉากที่โหลดอยู่เดิม โดยไม่พักโรงแรมหรือออกไปโหลดฉากใหม่ ตามโค้ดอย่างน้อยหนึ่งชุดจะไม่ติดเงื่อนไขซ่อนที่บล็อกจากบอดี้หรือปีก เมื่อค่าซ่อนคงเดิม การตีชุดเดิมซ้ำไม่ได้สุ่มค่านี้ใหม่':locale==='ja'?'宿泊やフィールド再生成を挟まず、同じ読み込み済みフィールドで3セットを切り替えます。隠れた値が一定なら、コード上は少なくとも1セットがボディ・ウィングの一致による遮断を避けます。同じセットの投げ直しはこの値を再抽選しません。':'Switch among the three sets in the same loaded field, without an inn stay or field reload. With the stored hidden values unchanged, the code guarantees at least one avoids the body/wing equality block. Recasting the same set does not reroll those values.';
+    const scope=locale==='th'?'นี่ผ่านเงื่อนไขซ่อนเพียงหนึ่งข้อ ไม่รับประกันว่าปลาจะกินหรือตกขึ้นได้ ยังมีตำแหน่ง จังหวะ และเงื่อนไขอื่น เส้นทางสลับชุดนี้เป็นข้อสรุปจากโค้ด ยังไม่มีผลทดลองตกจริงยืนยันชุดนี้':locale==='ja'?'回避するのは隠れた判定1つだけで、食いつき・取り込みの保証ではありません。位置・タイミング・別条件も残ります。この切替手順はコードに基づく結論で、実釣比較は未実施です。':'This avoids only one hidden check. Position, timing and other checks still apply; it does not guarantee a bite or landing. The switching strategy is derived from code and has not been confirmed by a controlled fishing trial.';
+    const cards=offers.map(({def,body,bundle})=>{
+      const location=locale==='th'?'ร้านด่าน '+def.stage+' · รายการฟลายที่ '+(def.slot+1):locale==='ja'?'エリア'+def.stage+'の店・フライ一覧の'+(def.slot+1)+'番目':'Area '+def.stage+' shop · fly entry '+(def.slot+1);
+      const shopParams=new URLSearchParams({stage:String(def.stage),place:'town',category:'fly',id:def.body,fish:id,return:currentFishPath(stage)});
+      const buyLink=`shops${locale==='en'?'':'.'+locale}.html?${shopParams}`;
+      const buyLabel=locale==='th'?'ดูร้านที่ขายชุดนี้':locale==='ja'?'このセットの販売店を見る':'Find the shop for this set';
+      const parts=[['fly',def.body],['fly_wing',def.wing],['fly_tail',def.tail]].filter(([,id])=>id!=='00').map(([category,id])=>items.find(item=>item.category===category&&item.id===id)).filter(Boolean);
+      return '<article class="detail-section fly-backup" data-bundle="'+def.body+'/'+def.wing+'/'+def.tail+'" data-price="'+bundle.shopPriceYen+'"><h4>'+escapeHtml(location)+' · ¥'+bundle.shopPriceYen+'</h4><p>'+escapeHtml(locale==='th'?'รูปด้านล่างคือชิ้นส่วนในชุดสำเร็จรูปนี้ ซื้อเป็นชุดตามรายการร้านด้านบน ไม่ใช่ซื้อแต่ละชิ้นแยกกัน':locale==='ja'?'下の画像はこの完成セットの構成品です。上記の店頭項目でセットとして買い、部品を個別購入する意味ではありません。':'The images below are parts of this ready-made set. Buy the listed shop bundle, not these parts separately.')+'</p>'+parts.map(item=>itemLink({item,routes:[]},stage)).join('')+'<a class="route-button" href="'+escapeHtml(buyLink)+'">'+escapeHtml(buyLabel)+' ↗</a></article>';
+    }).join('');
+    return '<details class="detail-section fly-fallback" data-total="'+total+'"><summary>'+escapeHtml(title)+'</summary><p>'+escapeHtml(intro)+'</p><p><strong>'+escapeHtml(action)+'</strong></p><div class="detail-grid">'+cards+'</div><p class="muted">'+escapeHtml(scope)+'</p><a href="https://github.com/polaminggkub-debug/kawa-no-nushi-tsuri-2-research/blob/main/docs/fly-selection-practical-research.md">'+escapeHtml(copy.evidence)+' ↗</a></details>';
+  }
+
+  function renderShopping(entries, locations, stage, allItems, flyChoices) {
     if(!locations.length)return '';
     const offers=starterOffers(entries,stage), text=shoppingCopy;
     const cards=offers.map(offer=>{
       const query=new URLSearchParams({category:offer.entry.item.category,id:offer.entry.item.id,fish:id,stage,return:currentFishPath(stage)});
       if(['float','sinker'].includes(offer.method))query.set('route',offer.method);
       const link=`${itemPath()}?${query}`;
-      return `<article class="detail-section starter-offer" data-method="${offer.method}" data-item="${offer.entry.item.category}:${offer.entry.item.id}" data-price="${offer.price}"><h3>${escapeHtml(offer.label)}</h3><a class="entity-link" href="${escapeHtml(link)}"><img src="${escapeHtml(offer.entry.item.image)}" alt=""><span><strong>${escapeHtml(localizedItemName(offer.entry.item))}</strong><small>${escapeHtml(text.cost)} ¥${offer.price}${offer.bundle?` · ${escapeHtml(text.bundle)}`:''}</small></span></a>${offer.bundle?`<p class="muted">${escapeHtml(text.fly)}</p>`:''}<a class="route-button" href="${escapeHtml(link)}">${escapeHtml(text.buy)} ↗</a></article>`;
+      const aimTip=offer.method==='lure'?`<p class="aim-tip">${escapeHtml(locale==='th'?'ก่อนใช้คันลัวร์ เติม HP ให้ถึง 100 เพื่อให้ได้เวลาเล็งเต็มของคันนั้น ไม่ใช่โบนัสโอกาสปลากิน':locale==='ja'?'ルアー竿を使う前にHPを100まで回復すると、竿本来の照準時間になります。食いつき率のボーナスではありません。':'Restore HP to 100 before lure fishing to get the rod’s full aim window. This does not add a bite-rate bonus.')}</p>`:'';
+      return `<article class="detail-section starter-offer" data-method="${offer.method}" data-item="${offer.entry.item.category}:${offer.entry.item.id}" data-price="${offer.price}"><h3>${escapeHtml(offer.label)}</h3><a class="entity-link" href="${escapeHtml(link)}"><img src="${escapeHtml(offer.entry.item.image)}" alt=""><span><strong>${escapeHtml(localizedItemName(offer.entry.item))}</strong><small>${escapeHtml(text.cost)} ¥${offer.price}${offer.bundle?` · ${escapeHtml(text.bundle)}`:''}</small></span></a>${aimTip}${offer.bundle?`<p class="muted">${escapeHtml(text.fly)}</p>`:''}<a class="route-button" href="${escapeHtml(link)}">${escapeHtml(text.buy)} ↗</a></article>`;
     }).join('');
-    return `<section class="detail-section shopping-plan"><h2>${escapeHtml(text.title)}</h2><label for="shopping-area">${escapeHtml(text.area)}</label><select id="shopping-area">${locations.map(loc=>`<option value="${loc.stage}" ${String(loc.stage)===stage?'selected':''}>${escapeHtml(copy.stage(loc.stage))} · ${escapeHtml(loc.stageName?.[locale]||loc.stageName?.en||'')}</option>`).join('')}</select><p>${escapeHtml(text.intro)}</p>${offers.length?`<div class="detail-grid">${cards}</div>`:`<p>${escapeHtml(text.none)}</p>`}<p class="muted">${escapeHtml(text.scope)}</p><a href="#all-compatible">${escapeHtml(text.all)} ↓</a></section>`;
+    return `<section class="detail-section shopping-plan"><h2>${escapeHtml(text.title)}</h2><label for="shopping-area">${escapeHtml(text.area)}</label><select id="shopping-area">${locations.map(loc=>`<option value="${loc.stage}" ${String(loc.stage)===stage?'selected':''}>${escapeHtml(copy.stage(loc.stage))} · ${escapeHtml(loc.stageName?.[locale]||loc.stageName?.en||'')}</option>`).join('')}</select><p>${escapeHtml(text.intro)}</p>${offers.length?`<div class="detail-grid">${cards}</div>`:`<p>${escapeHtml(text.none)}</p>`}<p class="muted">${escapeHtml(text.scope)}</p><a href="#all-compatible">${escapeHtml(text.all)} ↓</a>${renderReusableKit(allItems,stage)}${renderFlyFallback(allItems,stage,flyChoices)}</section>`;
   }
 
   function renderCompatibility(entries, stage) {
@@ -232,8 +284,8 @@
       const name = location.stageName?.[locale] || location.stageName?.en || `${copy.stage(stage)}`;
       const query = new URLSearchParams({ fish: id, stage });
       query.set('return', currentFishPath(stage));
-      const points = pointCount(location), slots = slotCount(location);
-      return `<article class="detail-section area-card" ${stage === activeStage ? 'data-active="true"' : ''}><h3>${escapeHtml(copy.stage(stage))} · ${escapeHtml(name)}</h3><p>${escapeHtml(location.description?.[locale] || location.description?.en || '')}</p><p class="muted">${escapeHtml(copy.configuredPoints(points))} · ${escapeHtml(copy.spawnSlots(slots))}</p><a class="route-button" href="${escapeHtml(mapPath())}?${query.toString()}">${escapeHtml(copy.mapAction)} ↗</a></article>`;
+      const points = pointCount(location);
+      return `<article class="detail-section area-card" ${stage === activeStage ? 'data-active="true"' : ''}><h3>${escapeHtml(copy.stage(stage))} · ${escapeHtml(name)}</h3><p>${escapeHtml(copy.configuredPoints(points))}</p><p class="muted">${escapeHtml(locale==='th'?'เปิดแผนที่เพื่อเลือกจุดตก ถ้าจุดหนึ่งไม่มีปลา ให้ลองจุดอื่นที่แสดงไว้ ปลาเคลื่อนที่ได้และจุดเกิดบางแห่งอาจไม่ทำงานในรอบนั้น':locale==='ja'?'マップで釣る場所を選びます。魚がいなければ、表示された別の場所も確認してください。魚は移動し、出現枠が無効の場合もあります。':'Open the map to choose a fishing spot. If a spot is empty, try another marked point: fish move and some spawn slots may be inactive in that state.')}</p><a class="route-button" href="${escapeHtml(mapPath())}?${query.toString()}">${escapeHtml(copy.mapAction)} ↗</a></article>`;
     }).join('')}</div>`;
   }
 
@@ -246,7 +298,7 @@
     const locationDetails = locations.map(location => {
       const stage = String(location.stage);
       const coords = (location.points || []).map(point => `(${point.x}, ${point.y})`).join(' · ');
-      return `<li><strong>${escapeHtml(copy.stage(stage))}:</strong> ${escapeHtml(coords || '—')}</li>`;
+      return `<li><strong>${escapeHtml(copy.stage(stage))}:</strong> ${escapeHtml(copy.configuredPoints(pointCount(location)))} · ${escapeHtml(copy.spawnSlots(slotCount(location)))}<br>${escapeHtml(coords || '—')}</li>`;
     }).join('');
     return `<details class="evidence"><summary>${escapeHtml(copy.evidence)}</summary><p>${escapeHtml(copy.evidenceIntro)}</p><dl><dt>${escapeHtml(copy.profile)}</dt><dd>${escapeHtml(id)}</dd>${profileOffset ? `<dt>${escapeHtml(copy.profileOffset)}</dt><dd>${escapeHtml(profileOffset)}</dd>` : ''}<dt>${escapeHtml(copy.source)}</dt><dd>data/rom-fish-locations.json</dd>${sourceSet.size ? `<dt>${escapeHtml(copy.reference)}</dt><dd>${[...sourceSet].map(escapeHtml).join(' · ')}</dd>` : ''}</dl>${locationDetails ? `<h3>${escapeHtml(copy.coords)}</h3><ul>${locationDetails}</ul>` : ''}</details>`;
   }
@@ -276,7 +328,7 @@
     const headline = unlabelled ? copy.unknownFish(id) : name;
 
     page.innerHTML = `<div class="detail-hero">${sprite}<div><p class="muted">${escapeHtml(copy.pageTitle)} · ID ${escapeHtml(id)}</p><h1>${escapeHtml(headline)}</h1>${altNames.length ? `<p class="muted"><span>${escapeHtml(copy.legacyName)}:</span> ${altNames.map(escapeHtml).join(' · ')}</p>` : ''}</div></div>
-      ${renderShopping(matches, locations, activeStage)}
+      ${renderShopping(matches, locations, activeStage, fishData.items || [], fishData.flyBackupChoices)}
       <section class="detail-section"><h2>${escapeHtml(copy.areas)}</h2>${renderAreas(locations, activeStage)}</section>
       <section id="all-compatible" class="detail-section"><h2>${escapeHtml(copy.compatible)}</h2><p class="muted">${escapeHtml(copy.compatibilityNote)}</p><p>${locale==='th'?'รายการด้านล่างเป็นทางเลือก ไม่จำเป็นต้องซื้อทั้งหมด ทุกชิ้นผ่านเงื่อนไขของปลาที่กำลังดู กดรายละเอียดเพื่อเปรียบเทียบวิธีใช้และด่านที่ขาย':locale==='ja'?'以下は代替候補で、全部買う必要はない。各項目は表示中の魚の判定を通る。詳細で使い方と販売エリアを比較できる。':'The lists below are alternatives; you do not need to buy every entry. Each passes the shown fish’s check. Open details to compare use and purchase areas.'}</p>${renderCompatibility(matches, activeStage)}</section>
       ${renderEvidence(fish, locations, matches)}`;

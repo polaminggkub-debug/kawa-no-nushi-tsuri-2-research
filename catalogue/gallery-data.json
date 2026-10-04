@@ -159,6 +159,35 @@
           }
         ]
       },
+      "rodDecision": {
+        "label": {
+          "en": "Buy 04 instead: same ¥500",
+          "th": "ซื้อ 04 แทน: ราคา ¥500 เท่ากัน",
+          "ja": "同額なら04を選ぶ"
+        },
+        "recommendation": {
+          "en": "Do not buy this for a longer aim window or more room before the traced hook-loss branch. In area 5, the Clear-stream carbon rod (04) is also listed for the same full ¥500 and improves both measured values: cutoff 50 and multiplier ×7, versus 10 and ×3 here. Use 01 if you already own it; buying 04 is a full-price replacement, not a trade-in.",
+          "th": "อย่าซื้อคันนี้ถ้าต้องการช่วงเล็งยาวขึ้นหรือพื้นที่ก่อนเข้าเส้นทางเบ็ดหาย ที่ด่าน 5 มีคันคาร์บอนน้ำใส (04) ขายในราคาเต็ม ¥500 เท่ากัน แต่ได้ค่าที่วัดได้ดีกว่าทั้งคู่: ช่วงเล็ง 50 และตัวคูณ ×7 เทียบกับ 10 และ ×3 ของคันนี้ ใช้คัน 01 ต่อได้ถ้ามีอยู่แล้ว; การซื้อคัน 04 คือจ่ายราคาเต็ม ไม่ใช่แลกอัปเกรด",
+          "ja": "照準時間や、ハリ損失分岐までの余裕を求めて買う竿ではありません。エリア5では清流カーボン竿（04）も全額500円で販売され、照準上限50・倍率×7と、この竿の10・×3より両方上です。すでに01を持っているなら使えますが、04への変更は下取りではなく全額購入です。"
+        },
+        "reason": {
+          "en": "Within the Float/Ayu style, 01 has the lowest recorded aim cutoff and fish-position multiplier. Its fish-named label does not establish a special pairing.",
+          "th": "ในคันสายทุ่น/อายุ ค่าเล็งและตัวคูณตำแหน่งปลาของคัน 01 ต่ำสุด ชื่อคันที่มีชื่อปลาไม่ได้ยืนยันว่าเป็นคู่คันเฉพาะปลา",
+          "ja": "ウキ・アユ竿の中で、01は照準上限と魚位置倍率が最小です。魚名を含む竿名は専用竿の証明ではありません。"
+        },
+        "alternatives": [
+          {
+            "category": "rod",
+            "id": "04"
+          }
+        ],
+        "sources": [
+          "data/rod-response.json",
+          "docs/rod-lure-practical-research.md",
+          "data/shop-stock-rom.json",
+          "docs/shop-stock-research.md"
+        ]
+      },
       "nameTh": "คันทานาโกะ 2m",
       "labelImageTh": "thai-labels/rod-01.png"
     },
@@ -294,6 +323,39 @@
         },
         "shops": []
       },
+      "rodDecision": {
+        "label": {
+          "en": "Keep if owned; no shop listing",
+          "th": "มีอยู่แล้วใช้ต่อ; ไม่พบในร้าน",
+          "ja": "所持中なら継続、店頭記録なし"
+        },
+        "recommendation": {
+          "en": "If you already have it, its Float/Ayu values are a 60-unit aim cutoff and ×8 threshold. No purchase location appears for it in the six extracted area-shop lists, so do not plan a shop purchase from this data. When buying, rod 04 is listed in area 1 and is a nearby option at cutoff 50 and ×7.",
+          "th": "ถ้ามีคันนี้อยู่แล้ว ค่าของสายทุ่น/อายุคือช่วงเล็ง 60 และตัวคูณ ×8 แต่ไม่พบจุดขายในรายการร้านทั้ง 6 ด่านที่ถอดไว้ จึงอย่าวางแผนว่าจะซื้อจากร้านตามข้อมูลชุดนี้ ถ้าจะซื้อ คัน 04 มีขายที่ด่าน 1 และเป็นตัวเลือกใกล้เคียงที่ช่วงเล็ง 50 กับตัวคูณ ×7",
+          "ja": "すでに持っているなら、ウキ・アユ用の照準上限60・倍率×8で使えます。抽出した全6エリアの店頭一覧には販売場所がありません。このデータから店で買えるとは考えないでください。購入するなら、エリア1で販売される04が照準上限50・倍率×7の近い選択肢です。"
+        },
+        "reason": {
+          "en": "The record describes a usable mid-to-high float rod, but its ROM record alone does not prove that a shop sells it. The listed 04 is slightly lower on both measured effects and has a confirmed shop listing.",
+          "th": "ระเบียนมีค่าคันสายทุ่นระดับกลางค่อนสูง แต่ระเบียน ROM อย่างเดียวไม่ได้พิสูจน์ว่าร้านขาย คัน 04 ต่ำกว่าทั้งสองค่าที่ตามโค้ดได้เล็กน้อยและมีรายการขายยืนยัน",
+          "ja": "レコード上はウキ竿の中上位ですが、竿レコードだけでは店頭販売を確認できません。販売記録のある04は、確認済みの2効果が少し低い選択肢です。"
+        },
+        "alternatives": [
+          {
+            "category": "rod",
+            "id": "04"
+          },
+          {
+            "category": "rod",
+            "id": "07"
+          }
+        ],
+        "sources": [
+          "data/rod-response.json",
+          "docs/rod-lure-practical-research.md",
+          "data/shop-stock-rom.json",
+          "docs/shop-stock-research.md"
+        ]
+      },
       "nameTh": "คันคาร์บอนลำธาร 6m",
       "labelImageTh": "thai-labels/rod-02.png"
     },
@@ -428,6 +490,39 @@
           {
             "stage": 6
           }
+        ]
+      },
+      "rodDecision": {
+        "label": {
+          "en": "Budget float start",
+          "th": "เริ่มสายทุ่นแบบประหยัด",
+          "ja": "ウキ竿の安価な出発点"
+        },
+        "recommendation": {
+          "en": "For an area-1 float rod on a budget, choose 03 at its full ¥350 quote: it is the least expensive float rod listed there. If more aim time and threshold room matter, 04 costs a full ¥500, or ¥150 more between the two new-purchase quotes, and raises the values from 30/×5 to 50/×7.",
+          "th": "ถ้าจะเริ่มสายทุ่นที่ด่าน 1 แบบประหยัด เลือกคัน 03 ราคาเต็ม ¥350 ซึ่งถูกสุดในคันสายทุ่นที่ร้านด่านนี้ลงไว้ ถ้าต้องการช่วงเล็งและพื้นที่ตำแหน่งปลามากขึ้น คัน 04 ราคาเต็ม ¥500 ต่างกัน ¥150 ระหว่างราคาซื้อใหม่ และเพิ่มค่าจาก 30/×5 เป็น 50/×7",
+          "ja": "エリア1で安くウキ釣りを始めるなら、店頭のウキ竿で最安の03を全額350円で選びます。照準時間としきい値の余裕が必要なら、04は全額500円で、新品価格の差150円により30・×5から50・×7へ上がります。"
+        },
+        "reason": {
+          "en": "Rod 03 is a genuine low-price entry, not a top-stat choice. Rod 04 is available in the same area and improves both measured Float/Ayu effects; 05 costs more while providing less of both than 04.",
+          "th": "คัน 03 เป็นตัวเริ่มที่ราคาต่ำจริง ไม่ใช่ตัวเด่นด้านค่าสถิติ คัน 04 มีขายในด่านเดียวกันและเพิ่มผลที่วัดได้ทั้งสองด้าน ส่วนคัน 05 แพงกว่าแต่ได้ค่าน้อยกว่า 04 ทั้งคู่",
+          "ja": "03は安く始める選択肢で、数値上の最上位ではありません。同じエリアで買える04は確認済みの両効果が上がります。05は04より高価なのに両方の値が低いです。"
+        },
+        "alternatives": [
+          {
+            "category": "rod",
+            "id": "04"
+          },
+          {
+            "category": "rod",
+            "id": "05"
+          }
+        ],
+        "sources": [
+          "data/rod-response.json",
+          "docs/rod-lure-practical-research.md",
+          "data/shop-stock-rom.json",
+          "docs/shop-stock-research.md"
         ]
       },
       "nameTh": "คันยามาเบะ 3.9m",
@@ -567,6 +662,43 @@
           {
             "stage": 6
           }
+        ]
+      },
+      "rodDecision": {
+        "label": {
+          "en": "Area-1 balanced step",
+          "th": "ตัวเลือกสายทุ่นด่าน 1",
+          "ja": "エリア1のバランス型"
+        },
+        "recommendation": {
+          "en": "In area 1, choose 04 for ¥500 if the extra aim time and threshold over 03 matter: cutoff 50/×7 versus 30/×5, a ¥150 difference between full new-purchase prices. It also beats 05 on both values while costing ¥250 less. At area 5 it is the same full price as 01 and improves both effects.",
+          "th": "ที่ด่าน 1 เลือกคัน 04 ราคา ¥500 ถ้าต้องการช่วงเล็งและเกณฑ์ที่สูงกว่าคัน 03: ค่า 50/×7 เทียบกับ 30/×5 ต่างกัน ¥150 ระหว่างราคาซื้อใหม่เต็มจำนวน และยังได้ค่าทั้งสองด้านดีกว่าคัน 05 ในราคาถูกกว่า ¥250 ที่ด่าน 5 ราคาเต็มเท่าคัน 01 แต่ผลทั้งสองด้านดีกว่า",
+          "ja": "エリア1で03より長い照準時間と高いしきい値が必要なら、04を500円で選びます。30・×5に対して50・×7で、新品全額の差は150円です。05より両方の値が高く、価格は250円安いです。エリア5では01と同じ全額で、確認済みの両効果が上です。"
+        },
+        "reason": {
+          "en": "Among the area-1 Float/Ayu stock, 04 offers the largest aim cutoff and threshold. The comparison describes target adjustment time and one tackle-loss boundary, not catch odds.",
+          "th": "ในสต็อกสายทุ่น/อายุของด่าน 1 คัน 04 มีทั้งช่วงเล็งและเกณฑ์สูงสุด ข้อมูลนี้หมายถึงเวลาขยับเป้ากับขอบเขตของเส้นทางอุปกรณ์หายหนึ่งแบบ ไม่ใช่โอกาสจับปลา",
+          "ja": "エリア1のウキ・アユ在庫では、04の照準上限としきい値が最大です。示しているのは狙いを調整する時間と特定の道具損失境界で、釣果率ではありません。"
+        },
+        "alternatives": [
+          {
+            "category": "rod",
+            "id": "03"
+          },
+          {
+            "category": "rod",
+            "id": "05"
+          },
+          {
+            "category": "rod",
+            "id": "01"
+          }
+        ],
+        "sources": [
+          "data/rod-response.json",
+          "docs/rod-lure-practical-research.md",
+          "data/shop-stock-rom.json",
+          "docs/shop-stock-research.md"
         ]
       },
       "nameTh": "คันคาร์บอนน้ำใส 5.3m",
@@ -711,6 +843,35 @@
           }
         ]
       },
+      "rodDecision": {
+        "label": {
+          "en": "Choose 04 instead",
+          "th": "ซื้อ 04 แทน",
+          "ja": "購入は04を優先"
+        },
+        "recommendation": {
+          "en": "Skip 05 if buying for the decoded aim and threshold effects. In areas 1 and 2, 04 is listed for full ¥500 while 05 costs full ¥750; 04 also gives cutoff 50/×7 instead of 40/×6. If you already own 05, no special catch benefit is established; buy 04 only if those two measured improvements are worth its full price.",
+          "th": "ข้ามคัน 05 ถ้าจะซื้อเพราะผลเรื่องเล็งและเกณฑ์ที่แกะได้ ในด่าน 1 และ 2 คัน 04 ขายราคาเต็ม ¥500 ส่วนคัน 05 ราคาเต็ม ¥750; คัน 04 ยังได้ 50/×7 แทน 40/×6 ถ้ามีคัน 05 อยู่แล้ว ยังไม่มีหลักฐานว่าได้โบนัสจับปลาเฉพาะอย่าง ซื้อ 04 เมื่อการเพิ่มสองค่านี้คุ้มกับราคาเต็ม",
+          "ja": "照準としきい値の確認済み効果を目的に買うなら05は見送り、エリア1・2で全額500円の04を選びます。05は全額750円で、04は40・×6ではなく50・×7です。すでに05を持っていても、特別な釣果効果は確認されていません。2つの効果向上が全額購入に見合う場合だけ04を買います。"
+        },
+        "reason": {
+          "en": "Rod 04 is stocked in the same areas and is strictly better on both traced Float/Ayu values for less money.",
+          "th": "คัน 04 มีขายในด่านเดียวกันและดีกว่าคัน 05 ทั้งสองค่าที่ตามโค้ดได้ ในราคาถูกกว่า",
+          "ja": "04は同じエリアで販売され、追跡済みのウキ・アユ用2効果が05より両方高く、価格も安いです。"
+        },
+        "alternatives": [
+          {
+            "category": "rod",
+            "id": "04"
+          }
+        ],
+        "sources": [
+          "data/rod-response.json",
+          "docs/rod-lure-practical-research.md",
+          "data/shop-stock-rom.json",
+          "docs/shop-stock-research.md"
+        ]
+      },
       "nameTh": "คันยามาเมะ 4.5m",
       "labelImageTh": "thai-labels/rod-05.png"
     },
@@ -851,6 +1012,39 @@
           ]
         },
         "shops": []
+      },
+      "rodDecision": {
+        "label": {
+          "en": "Keep if sufficient; no shop listing",
+          "th": "ถ้าพอใช้ก็เก็บไว้; ไม่พบในร้าน",
+          "ja": "十分なら継続、店頭記録なし"
+        },
+        "recommendation": {
+          "en": "Use 06 only if you already have it: no purchase location appears in the six extracted area-shop lists. When shopping for a float rod, listed rod 03 gives cutoff 30/×5 and rod 04 gives 50/×7, versus 20/×4 on 06.",
+          "th": "ใช้คัน 06 เฉพาะเมื่อมีอยู่แล้ว เพราะไม่พบจุดขายในรายการร้านทั้ง 6 ด่านที่ถอดไว้ ถ้าจะซื้อคันสายทุ่น คัน 03 ที่มีขายให้ค่า 30/×5 และคัน 04 ให้ 50/×7 เทียบกับ 20/×4 ของคัน 06",
+          "ja": "06はすでに持っている場合だけ使ってください。抽出した全6エリアの店頭一覧に販売場所がありません。ウキ竿を買うなら、販売記録のある03は30・×5、04は50・×7で、06の20・×4を上回ります。"
+        },
+        "reason": {
+          "en": "A ROM record price is not a shop offer. The extracted stocks identify no seller for 06, while they list 03 and 04 in several areas.",
+          "th": "ราคาที่อยู่ในระเบียน ROM ไม่ได้แปลว่ามีร้านขาย รายการร้านที่ถอดได้ไม่ระบุผู้ขายคัน 06 แต่มีคัน 03 และ 04 ในหลายด่าน",
+          "ja": "ROMレコード内の価格だけでは店頭販売を示しません。抽出した在庫には06の販売先がなく、03と04は複数エリアにあります。"
+        },
+        "alternatives": [
+          {
+            "category": "rod",
+            "id": "03"
+          },
+          {
+            "category": "rod",
+            "id": "04"
+          }
+        ],
+        "sources": [
+          "data/rod-response.json",
+          "docs/rod-lure-practical-research.md",
+          "data/shop-stock-rom.json",
+          "docs/shop-stock-research.md"
+        ]
       },
       "nameTh": null,
       "labelImageTh": "thai-labels/rod-06.png"
@@ -994,6 +1188,39 @@
           }
         ]
       },
+      "rodDecision": {
+        "label": {
+          "en": "Area 3: 14; area 5: 07/08",
+          "th": "ด่าน 3: 14; ด่าน 5: 07/08",
+          "ja": "エリア3は14、5は07/08"
+        },
+        "recommendation": {
+          "en": "If buying a Float/Ayu rod in area 3, choose 14 over 07: both have the same full ¥1,500 quote, but 14 raises the cutoff from 70 to 80 and the multiplier from ×9 to ×15. Area 5 does not list 14; there, choose 07 for more aim time than rod 08, or 08 for the highest threshold at the same full price.",
+          "th": "ถ้าซื้อคันสายทุ่น/อายุที่ด่าน 3 ให้เลือก 14 แทน 07: ทั้งคู่ราคาเต็ม ¥1,500 เท่ากัน แต่คัน 14 เพิ่มช่วงเล็งจาก 70 เป็น 80 และตัวคูณจาก ×9 เป็น ×15 ด่าน 5 ไม่มีคัน 14; ที่นั่นเลือก 07 ถ้าต้องการช่วงเล็งมากกว่าคัน 08 หรือเลือก 08 ถ้าต้องการเกณฑ์สูงสุดในราคาเต็มเท่ากัน",
+          "ja": "エリア3でウキ・アユ竿を買うなら07より14を選びます。どちらも全額1,500円ですが、14は照準上限が70から80、倍率が×9から×15に上がります。エリア5には14がないため、08より長い照準時間なら07、同じ全額で最大しきい値なら08を選びます。"
+        },
+        "reason": {
+          "en": "At area 3, 14 improves both measured effects for the same new-purchase price. At area 5, the local choice changes to a real aim-versus-threshold tradeoff between 07 and 08.",
+          "th": "ที่ด่าน 3 คัน 14 เพิ่มค่าที่วัดได้ทั้งสองด้านในราคาซื้อใหม่เท่ากัน แต่ตัวเลือกในด่าน 5 เป็นการแลกกันจริงระหว่างช่วงเล็งของ 07 กับเกณฑ์ตำแหน่งปลาของ 08",
+          "ja": "エリア3では同じ新品価格で14の確認済み効果が両方上がります。エリア5では07の照準時間と08の魚位置しきい値を比べる選択に変わります。"
+        },
+        "alternatives": [
+          {
+            "category": "rod",
+            "id": "14"
+          },
+          {
+            "category": "rod",
+            "id": "08"
+          }
+        ],
+        "sources": [
+          "data/rod-response.json",
+          "docs/rod-lure-practical-research.md",
+          "data/shop-stock-rom.json",
+          "docs/shop-stock-research.md"
+        ]
+      },
       "nameTh": "คันอายุ 7m",
       "labelImageTh": "thai-labels/rod-07.png"
     },
@@ -1132,6 +1359,39 @@
             "stage": 5,
             "shop": "special_rod_shop"
           }
+        ]
+      },
+      "rodDecision": {
+        "label": {
+          "en": "Budget max threshold; 15 adds aim",
+          "th": "เกณฑ์สูงสุดแบบประหยัด; 15 เล็งนานกว่า",
+          "ja": "安く最大しきい値、15は照準長め"
+        },
+        "recommendation": {
+          "en": "In area 5, choose 08 at its full ¥1,500 quote when the largest Float/Ayu fish-position threshold matters: its multiplier ×24 is the group maximum. Rod 15 costs full ¥2,000 for the same ×24 plus 20 more aim units (60 vs 40). At the same ¥1,500, rod 07 gives more aim (70) but a lower ×9 threshold.",
+          "th": "ที่ด่าน 5 เลือกคัน 08 ราคาเต็ม ¥1,500 เมื่อให้ความสำคัญกับเกณฑ์ตำแหน่งปลาสูงสุดของสายทุ่น/อายุ: ตัวคูณ ×24 สูงสุดในกลุ่ม คัน 15 ราคาเต็ม ¥2,000 ได้ ×24 เท่ากันแต่ช่วงเล็งมากกว่า 20 หน่วย (60 เทียบกับ 40) ส่วนคัน 07 ราคาเต็มเท่ากันที่ ¥1,500 แต่เล็งได้นานกว่า (70) และมีเกณฑ์ ×9 ต่ำกว่า",
+          "ja": "エリア5でウキ・アユ竿の魚位置しきい値を最大にしたいなら、08を全額1,500円で選びます。倍率×24はグループ最大です。15は全額2,000円で同じ×24に加え、照準上限が20高い（60対40）竿です。同じ全額1,500円の07は照準上限70ですが、しきい値は×9です。"
+        },
+        "reason": {
+          "en": "Rod 08 trades away aim time to reach the float group’s largest threshold at a lower full price than 15. Choose by whether tile adjustment or that single tackle-loss boundary matters more.",
+          "th": "คัน 08 แลกช่วงเล็งที่สั้นกว่าเพื่อให้ถึงเกณฑ์สูงสุดของสายทุ่นในราคาเต็มต่ำกว่าคัน 15 เลือกจากว่าต้องการเวลาปรับช่องเป้าหมายหรือพื้นที่ก่อนเส้นทางอุปกรณ์หายแบบนั้นมากกว่า",
+          "ja": "08は照準時間を抑え、15より低い全額でウキ竿最大のしきい値を得ます。タイル調整時間と、特定の道具損失境界のどちらを重視するかで選んでください。"
+        },
+        "alternatives": [
+          {
+            "category": "rod",
+            "id": "07"
+          },
+          {
+            "category": "rod",
+            "id": "15"
+          }
+        ],
+        "sources": [
+          "data/rod-response.json",
+          "docs/rod-lure-practical-research.md",
+          "data/shop-stock-rom.json",
+          "docs/shop-stock-research.md"
         ]
       },
       "nameTh": "คันคาร์ป 5m",
@@ -1276,6 +1536,39 @@
           }
         ]
       },
+      "rodDecision": {
+        "label": {
+          "en": "Low-cost range tradeoff",
+          "th": "ประหยัดแต่เล็งสั้น",
+          "ja": "低価格の距離重視"
+        },
+        "recommendation": {
+          "en": "In area 4 or 5, choose 09 at its full ¥200 quote when price matters: it is stocked in both and gives cutoff 30/×12. Compared with 04 (stocked in areas 1–3, 5 and 6) at full ¥500, 09 gives less aim time (30 vs 50) but more threshold (×12 vs ×7); the new-purchase quotes differ by ¥300. Choose 04 for aim time; choose 15 only if the group-maximum ×24 threshold is worth its full ¥2,000 price.",
+          "th": "ที่ด่าน 4 หรือ 5 เลือกคัน 09 ราคาเต็ม ¥200 เมื่อต้องการประหยัด: มีขายทั้งสองด่าน ได้ค่า 30/×12 เมื่อเทียบกับคัน 04 (มีขายด่าน 1–3, 5 และ 6) ราคาเต็ม ¥500 คัน 09 เล็งได้น้อยกว่า (30 เทียบกับ 50) แต่เกณฑ์สูงกว่า (×12 เทียบกับ ×7); ราคาซื้อใหม่ต่างกัน ¥300 เลือก 04 หากต้องการเวลาเล็ง; เลือก 15 เมื่อเกณฑ์สูงสุด ×24 คุ้มกับราคาเต็ม ¥2,000",
+          "ja": "エリア4または5で価格を抑えるなら、店頭にある09を全額200円で選びます。値は30・×12です。全額500円の04（エリア1〜3・5・6で販売）と比べると、09は照準時間が短い（30対50）一方、しきい値は高く（×12対×7）、新品価格の差は300円です。照準時間なら04、グループ最大の×24に全額2,000円を払うなら15を選びます。"
+        },
+        "reason": {
+          "en": "The low price buys a better fish-position threshold than 04, not a longer aim window. The two measurements have different practical consequences and should not be collapsed into one score.",
+          "th": "ราคาต่ำแลกกับเกณฑ์ตำแหน่งปลาที่สูงกว่า 04 ไม่ได้ช่วงเล็งยาวกว่า ค่าสองอย่างนี้มีผลคนละแบบ จึงไม่ควรรวมเป็นคะแนนเดียว",
+          "ja": "安価な09が04より高めるのは魚位置しきい値で、照準時間ではありません。2つの測定値は実用上の意味が異なるため、1つの点数にまとめません。"
+        },
+        "alternatives": [
+          {
+            "category": "rod",
+            "id": "04"
+          },
+          {
+            "category": "rod",
+            "id": "15"
+          }
+        ],
+        "sources": [
+          "data/rod-response.json",
+          "docs/rod-lure-practical-research.md",
+          "data/shop-stock-rom.json",
+          "docs/shop-stock-research.md"
+        ]
+      },
       "nameTh": "คันเฮระ 3m",
       "labelImageTh": "thai-labels/rod-09.png"
     },
@@ -1418,6 +1711,35 @@
           }
         ]
       },
+      "rodDecision": {
+        "label": {
+          "en": "Budget lure entry",
+          "th": "คันลัวร์เริ่มต้น",
+          "ja": "ルアー釣りの予算枠"
+        },
+        "recommendation": {
+          "en": "Use 0A when starting lure fishing on a budget: it is listed for full ¥500. In areas where both are stocked, 0C costs a full ¥600 and raises the cutoff from 70 to 100 and the multiplier from ×15 to ×21; the new-purchase quote difference is ¥100. Area 5 lists 0A but not 0C, so 0A is the recorded local lure-rod option there.",
+          "th": "ใช้คัน 0A เมื่อต้องการเริ่มสายลัวร์แบบประหยัด: มีขายราคาเต็ม ¥500 ในด่านที่มีทั้งสองคัน คัน 0C ราคาเต็ม ¥600 เพิ่มช่วงเล็งจาก 70 เป็น 100 และตัวคูณจาก ×15 เป็น ×21 ต่างกัน ¥100 ระหว่างราคาซื้อใหม่ ด่าน 5 มีคัน 0A แต่ไม่มี 0C ดังนั้น 0A เป็นคันลัวร์ที่มีรายการขายในด่านนั้น",
+          "ja": "予算を抑えてルアー釣りを始めるなら、全額500円の0Aを使います。両方が販売されるエリアでは、0Cは全額600円で照準上限70から100、倍率×15から×21へ上がり、新品価格の差は100円です。エリア5には0Aがあり0Cはないため、記録上のルアー竿の選択肢は0Aです。"
+        },
+        "reason": {
+          "en": "Rod 0A is the cheaper listed entry, not the strongest lure rod. Its low aim rank is based on the full-HP cutoff; HP below 100 shortens the lure-rod aim window.",
+          "th": "คัน 0A เป็นตัวเริ่มที่มีราคาต่ำกว่า ไม่ใช่คันลัวร์ที่ค่าสูงสุด อันดับช่วงเล็งเทียบที่ HP เต็ม และ HP ต่ำกว่า 100 จะลดช่วงเล็งของคันลัวร์",
+          "ja": "0Aは安価な販売開始枠で、ルアー竿の最大値ではありません。照準順位はHP満タン時の上限に基づき、HP100未満ではルアー竿の照準時間が短縮されます。"
+        },
+        "alternatives": [
+          {
+            "category": "rod",
+            "id": "0C"
+          }
+        ],
+        "sources": [
+          "data/rod-response.json",
+          "docs/rod-lure-practical-research.md",
+          "data/shop-stock-rom.json",
+          "docs/shop-stock-research.md"
+        ]
+      },
       "nameTh": "คันลัวร์เล็ก",
       "labelImageTh": "thai-labels/rod-10.png"
     },
@@ -1543,6 +1865,35 @@
           ]
         },
         "shops": []
+      },
+      "rodDecision": {
+        "label": {
+          "en": "Keep if sufficient; no shop listing",
+          "th": "ถ้าพอใช้ก็เก็บไว้; ไม่พบในร้าน",
+          "ja": "十分なら継続、店頭記録なし"
+        },
+        "recommendation": {
+          "en": "Use 0B only if you already have it; no purchase location appears in the six extracted area-shop lists. If buying a lure rod, 0C is listed in area 1 and gives a longer cutoff (100 vs 80) and a higher multiplier (×21 vs ×18).",
+          "th": "ใช้คัน 0B เฉพาะเมื่อมีอยู่แล้ว เพราะไม่พบจุดขายในรายการร้านทั้ง 6 ด่านที่ถอดไว้ ถ้าจะซื้อคันลัวร์ คัน 0C มีขายที่ด่าน 1 และให้ช่วงเล็งยาวกว่า (100 เทียบกับ 80) กับตัวคูณสูงกว่า (×21 เทียบกับ ×18)",
+          "ja": "0Bはすでに持っている場合だけ使ってください。抽出した全6エリアの店頭一覧に販売場所がありません。ルアー竿を買うなら、エリア1で販売される0Cは照準上限100（0Bは80）、倍率×21（0Bは×18）です。"
+        },
+        "reason": {
+          "en": "The record's stored price does not prove a shop offer. The listed 0C is the next available higher-stat option in the ROM shop stock.",
+          "th": "ราคาที่เก็บในระเบียนไม่ได้ยืนยันว่าร้านขาย คัน 0C เป็นตัวเลือกที่มีขายและมีค่าสองด้านสูงกว่าในสต็อกร้านที่ถอดจาก ROM",
+          "ja": "レコード内の価格だけでは店頭販売を証明しません。店頭在庫で確認できる0Cは、効果値が高い次の選択肢です。"
+        },
+        "alternatives": [
+          {
+            "category": "rod",
+            "id": "0C"
+          }
+        ],
+        "sources": [
+          "data/rod-response.json",
+          "docs/rod-lure-practical-research.md",
+          "data/shop-stock-rom.json",
+          "docs/shop-stock-research.md"
+        ]
       },
       "nameTh": "คันลัวร์กลาง",
       "labelImageTh": "thai-labels/rod-11.png"
@@ -1684,6 +2035,39 @@
           {
             "stage": 6
           }
+        ]
+      },
+      "rodDecision": {
+        "label": {
+          "en": "Buy 0C for a longer aim window",
+          "th": "ซื้อใหม่: 0C เล็งได้นานกว่า",
+          "ja": "照準時間を伸ばすなら0C"
+        },
+        "recommendation": {
+          "en": "In area 1, choose 0C at full ¥600 if you want more aim time and threshold than 0A: cutoff 100/×21 versus 70/×15, a ¥100 difference between new-purchase quotes. In area 4, 0D costs full ¥650 and raises those values to 120/×24; that is ¥50 more between new quotes, but buying it while you own 0C still costs the full ¥650.",
+          "th": "ที่ด่าน 1 เลือกคัน 0C ราคาเต็ม ¥600 ถ้าต้องการช่วงเล็งและเกณฑ์สูงกว่าคัน 0A: 100/×21 เทียบกับ 70/×15 ต่างกัน ¥100 ระหว่างราคาซื้อใหม่ ที่ด่าน 4 คัน 0D ราคาเต็ม ¥650 เพิ่มเป็น 120/×24 ต่างกัน ¥50 ระหว่างราคาซื้อใหม่ แต่ถ้ามี 0C อยู่แล้ว การซื้อ 0D ก็ยังต้องจ่ายเต็ม ¥650",
+          "ja": "エリア1で0Aより照準時間としきい値を上げたいなら、0Cを全額600円で選びます。70・×15に対して100・×21で、新品価格の差は100円です。エリア4の0Dは全額650円で120・×24になります。新品価格の差は50円ですが、0Cを持っていても0Dの購入は全額650円です。"
+        },
+        "reason": {
+          "en": "Rod 0C is the second-highest lure rod on both traced effects and is widely stocked. The +2 comparison assumes 100 HP; low HP shortens this rod's aim window.",
+          "th": "คัน 0C มีค่าสองอย่างที่ตามโค้ดได้เป็นอันดับรองจากคันลัวร์สูงสุด และมีขายหลายด่าน การเทียบช่วงเล็งใช้ HP 100; HP ต่ำจะลดช่วงเล็งของคันนี้",
+          "ja": "0Cは追跡したルアー竿の2効果で2番目です。複数エリアで販売されます。照準比較はHP100で、HPが低いと照準時間が短縮されます。"
+        },
+        "alternatives": [
+          {
+            "category": "rod",
+            "id": "0A"
+          },
+          {
+            "category": "rod",
+            "id": "0D"
+          }
+        ],
+        "sources": [
+          "data/rod-response.json",
+          "docs/rod-lure-practical-research.md",
+          "data/shop-stock-rom.json",
+          "docs/shop-stock-research.md"
         ]
       },
       "nameTh": "คันลัวร์ใหญ่",
@@ -1829,6 +2213,35 @@
           }
         ]
       },
+      "rodDecision": {
+        "label": {
+          "en": "Lure rod: top values",
+          "th": "ค่าสูงสุดสายลัวร์",
+          "ja": "ルアー竿の最大値"
+        },
+        "recommendation": {
+          "en": "Area 4 lists 0D for a full ¥650. It has the lure group's largest aim cutoff (120) and threshold multiplier (×24). Compared with a new 0C at full ¥600, that is +20 aim units and +3 multiplier for ¥50 more between new-purchase quotes; if you already own 0C, 0D still costs ¥650, not ¥50.",
+          "th": "ด่าน 4 มีคัน 0D ราคาเต็ม ¥650 เป็นคันลัวร์ที่มีช่วงเล็งสูงสุด (120) และตัวคูณเกณฑ์สูงสุด (×24) เมื่อเทียบกับราคาซื้อใหม่ของคัน 0C ที่ ¥600 จะเพิ่มช่วงเล็ง 20 หน่วยและตัวคูณ 3 ในราคาเพิ่ม ¥50 แต่ถ้ามี 0C อยู่แล้ว คัน 0D ยังราคาเต็ม ¥650 ไม่ใช่ ¥50",
+          "ja": "エリア4で0Dは全額650円です。ルアー竿中で照準上限120、しきい値倍率×24が最大です。新品の0C全額600円と比べ、新品価格の差50円で照準が20、倍率が3上がります。すでに0Cを持っていても0Dは650円で、50円の交換費ではありません。"
+        },
+        "reason": {
+          "en": "This is a maximum for the two named code-backed lure effects, not a claim of more bites or an overall best rod. The aim figure assumes 100 HP.",
+          "th": "ค่านี้สูงสุดเฉพาะผลของคันลัวร์สองด้านที่ยืนยันจากโค้ด ไม่ได้แปลว่าปลากินมากขึ้นหรือเป็นคันดีที่สุดโดยรวม ช่วงเล็งเทียบที่ HP 100",
+          "ja": "最大なのはコードで確認したルアー竿の2効果で、食いつき増加や総合最強を意味しません。照準値はHP100時の比較です。"
+        },
+        "alternatives": [
+          {
+            "category": "rod",
+            "id": "0C"
+          }
+        ],
+        "sources": [
+          "data/rod-response.json",
+          "docs/rod-lure-practical-research.md",
+          "data/shop-stock-rom.json",
+          "docs/shop-stock-research.md"
+        ]
+      },
       "nameTh": "คันลัวร์ปลาใหญ่",
       "labelImageTh": "thai-labels/rod-13.png"
     },
@@ -1971,6 +2384,35 @@
           }
         ]
       },
+      "rodDecision": {
+        "label": {
+          "en": "Cheapest casting start",
+          "th": "เริ่มสายหวดถูกสุด",
+          "ja": "投げ竿の最安スタート"
+        },
+        "recommendation": {
+          "en": "For area-1 casting, start with 0E at full ¥250; it is the listed casting rod there. In areas 4–6 both 0E and 0F are stocked: 0F costs a full ¥600 and raises cutoff 70/×18 to 100/×21, a ¥350 difference between new quotes. Choose 0E when the lower price matters more than that extra aim time and threshold.",
+          "th": "ถ้าจะเริ่มสายหวดที่ด่าน 1 เลือกคัน 0E ราคาเต็ม ¥250 ซึ่งเป็นคันหวดที่ลงไว้ในร้านด่านนั้น ที่ด่าน 4–6 มีทั้ง 0E และ 0F; คัน 0F ราคาเต็ม ¥600 เพิ่มค่าจาก 70/×18 เป็น 100/×21 ต่างกัน ¥350 ระหว่างราคาซื้อใหม่ เลือก 0E เมื่อราคาต่ำสำคัญกว่าช่วงเล็งและเกณฑ์ที่เพิ่มขึ้น",
+          "ja": "エリア1で投げ釣りを始めるなら、店頭にある0Eを全額250円で選びます。エリア4〜6には0Eと0Fがあり、0Fは全額600円で70・×18から100・×21に上がります。新品価格の差350円を払うかは、照準時間としきい値の向上が必要かで決めます。"
+        },
+        "reason": {
+          "en": "0E is the lowest-priced casting rod in area 1. The group comparison is at full HP; casting aim cutoffs are shortened below 100 HP.",
+          "th": "คัน 0E เป็นคันหวดราคาต่ำสุดที่ด่าน 1 การเทียบในกลุ่มใช้ HP เต็ม และช่วงเล็งของคันหวดจะสั้นลงเมื่อ HP ต่ำกว่า 100",
+          "ja": "0Eはエリア1の投げ竿で最安です。グループ比較はHP満タン時で、HP100未満では投げ竿の照準時間が短縮されます。"
+        },
+        "alternatives": [
+          {
+            "category": "rod",
+            "id": "0F"
+          }
+        ],
+        "sources": [
+          "data/rod-response.json",
+          "docs/rod-lure-practical-research.md",
+          "data/shop-stock-rom.json",
+          "docs/shop-stock-research.md"
+        ]
+      },
       "nameTh": "คันหวดเล็ก",
       "labelImageTh": "thai-labels/rod-14.png"
     },
@@ -2108,6 +2550,39 @@
           {
             "stage": 6
           }
+        ]
+      },
+      "rodDecision": {
+        "label": {
+          "en": "Middle casting step",
+          "th": "ขั้นกลางสายหวด",
+          "ja": "投げ竿の中間"
+        },
+        "recommendation": {
+          "en": "Area 2 first lists 0F at full ¥600. Where 0E is also stocked, 0F raises cutoff 70/×18 to 100/×21; compare the full quotes, not a presumed trade-in. In area 6, 10 costs full ¥1,500 for 120/×24—another ¥900 between new quotes—so keep 0F if its window is enough.",
+          "th": "ด่าน 2 เป็นด่านแรกที่ลงขายคัน 0F ราคาเต็ม ¥600 ในด่านที่มี 0E ด้วย คัน 0F เพิ่มค่าจาก 70/×18 เป็น 100/×21 ให้เทียบราคาเต็ม ไม่ใช่สมมติว่ามีส่วนลดแลกคันเก่า ที่ด่าน 6 คัน 10 ราคาเต็ม ¥1,500 ได้ 120/×24 ต่างกันอีก ¥900 ระหว่างราคาซื้อใหม่ ใช้ 0F ต่อถ้าช่วงเล็งพอแล้ว",
+          "ja": "エリア2で初めて販売される0Fは全額600円です。0Eもあるエリアでは70・×18から100・×21に上がります。下取りを想定せず全額同士で比較してください。エリア6の10は全額1,500円で120・×24になり、新品価格の差はさらに900円です。0Fで足りるなら使い続けてください。"
+        },
+        "reason": {
+          "en": "0F is the middle of three casting rods: a measurable step above 0E without paying the full quote for the maximum 10.",
+          "th": "คัน 0F อยู่กลางกลุ่มหวดสามคัน เพิ่มผลที่วัดได้จาก 0E โดยยังไม่ต้องจ่ายราคาเต็มของคันสูงสุด 10",
+          "ja": "0Fは投げ竿3本の中間です。10の全額を払わず、0Eから確認済み効果を上げられます。"
+        },
+        "alternatives": [
+          {
+            "category": "rod",
+            "id": "0E"
+          },
+          {
+            "category": "rod",
+            "id": "10"
+          }
+        ],
+        "sources": [
+          "data/rod-response.json",
+          "docs/rod-lure-practical-research.md",
+          "data/shop-stock-rom.json",
+          "docs/shop-stock-research.md"
         ]
       },
       "nameTh": "คันหวดกลาง",
@@ -2253,6 +2728,35 @@
           }
         ]
       },
+      "rodDecision": {
+        "label": {
+          "en": "Casting maximum",
+          "th": "ค่าสูงสุดสายหวด",
+          "ja": "投げ竿の最大"
+        },
+        "recommendation": {
+          "en": "Area 6 lists 10 for full ¥1,500. It has the casting group's largest aim cutoff (120) and threshold multiplier (×24). Compared with 0F at full ¥600, it adds 20 aim units and ×3 for ¥900 more between new-purchase quotes. Buy it for those effects only; already owning 0F does not lower its full purchase price.",
+          "th": "ด่าน 6 มีคัน 10 ราคาเต็ม ¥1,500 เป็นคันหวดที่มีช่วงเล็งสูงสุด (120) และตัวคูณเกณฑ์สูงสุด (×24) เทียบกับคัน 0F ราคาเต็ม ¥600 จะเพิ่มช่วงเล็ง 20 หน่วยและตัวคูณ ×3 ต่างกัน ¥900 ระหว่างราคาซื้อใหม่ ซื้อเพราะสองผลนี้เท่านั้น; การมี 0F อยู่แล้วไม่ได้ลดราคาเต็มของคัน 10",
+          "ja": "エリア6で10は全額1,500円です。投げ竿中で照準上限120、しきい値倍率×24が最大です。全額600円の0Fに対して照準が20、倍率が3上がり、新品価格の差は900円です。この効果を目的に選びます。0Fを持っていても購入額は下がりません。"
+        },
+        "reason": {
+          "en": "The maximum applies to casting aim and the one traced tackle-loss boundary, not catch probability. The aim comparison assumes 100 HP.",
+          "th": "ค่าสูงสุดนี้ใช้กับช่วงเล็งสายหวดและขอบเขตอุปกรณ์หายหนึ่งแบบ ไม่ใช่ความน่าจะเป็นจับปลา การเทียบช่วงเล็งใช้ HP 100",
+          "ja": "最大なのは投げ竿の照準と特定の道具損失境界で、釣れる確率ではありません。照準比較はHP100時です。"
+        },
+        "alternatives": [
+          {
+            "category": "rod",
+            "id": "0F"
+          }
+        ],
+        "sources": [
+          "data/rod-response.json",
+          "docs/rod-lure-practical-research.md",
+          "data/shop-stock-rom.json",
+          "docs/shop-stock-research.md"
+        ]
+      },
       "nameTh": "คันหวดสองมือ",
       "labelImageTh": "thai-labels/rod-16.png"
     },
@@ -2375,6 +2879,39 @@
           ]
         },
         "shops": []
+      },
+      "rodDecision": {
+        "label": {
+          "en": "Keep if sufficient; no shop listing",
+          "th": "ถ้าพอใช้ก็เก็บไว้; ไม่พบในร้าน",
+          "ja": "十分なら継続、店頭記録なし"
+        },
+        "recommendation": {
+          "en": "Use 11 only if you already have it; no purchase location appears in the six extracted area-shop lists. For a shop-listed fly rod, 12 is available in areas 1–3 and 5, while 13 is available in areas 1–4 and gives a longer recorded cutoff and higher multiplier than 11.",
+          "th": "ใช้คัน 11 เฉพาะเมื่อมีอยู่แล้ว เพราะไม่พบจุดขายในรายการร้านทั้ง 6 ด่านที่ถอดไว้ ถ้าจะซื้อคันฟลาย คัน 12 มีขายในด่าน 1–3 และ 5 ส่วนคัน 13 มีขายในด่าน 1–4 และให้ช่วงเล็งกับตัวคูณสูงกว่าคัน 11",
+          "ja": "11はすでに持っている場合だけ使ってください。抽出した全6エリアの店頭一覧に販売場所がありません。店で買うなら、12はエリア1〜3・5、13はエリア1〜4で販売され、13は11より記録上の照準上限と倍率が高いです。"
+        },
+        "reason": {
+          "en": "The extracted stocks contain no offer for 11. The shop-listed 12 and 13 give higher recorded values on both compared effects.",
+          "th": "ไม่พบคัน 11 ในรายการร้านที่ถอดไว้ ส่วนคัน 12 และ 13 ที่มีรายการขายให้ค่าที่บันทึกไว้สูงกว่าทั้งสองด้าน",
+          "ja": "抽出した在庫に11の販売記録はありません。販売記録のある12と13は、比較した2効果の記録値が高いです。"
+        },
+        "alternatives": [
+          {
+            "category": "rod",
+            "id": "12"
+          },
+          {
+            "category": "rod",
+            "id": "13"
+          }
+        ],
+        "sources": [
+          "data/rod-response.json",
+          "docs/rod-lure-practical-research.md",
+          "data/shop-stock-rom.json",
+          "docs/shop-stock-research.md"
+        ]
       },
       "nameTh": "คันฟลายเล็ก",
       "labelImageTh": "thai-labels/rod-17.png"
@@ -2512,6 +3049,39 @@
           }
         ]
       },
+      "rodDecision": {
+        "label": {
+          "en": "Fly middle step",
+          "th": "คันกลางสายฟลาย",
+          "ja": "フライ竿の中間"
+        },
+        "recommendation": {
+          "en": "In area 5, 12 is the fly rod listed in the shop. In areas 1–3, 13 costs a full ¥450 versus 12's full ¥400 and raises the cutoff from 60 to 70 and multiplier from ×18 to ×21; that is ¥50 between new-purchase quotes, not a trade-in upgrade. Keep 12 if those increments are not worth buying 13 at full price.",
+          "th": "ที่ด่าน 5 คัน 12 เป็นคันฟลายที่ลงขายในร้าน ในด่าน 1–3 คัน 13 ราคาเต็ม ¥450 เทียบกับคัน 12 ราคาเต็ม ¥400 และเพิ่มช่วงเล็งจาก 60 เป็น 70 กับตัวคูณจาก ×18 เป็น ×21 ต่างกัน ¥50 ระหว่างราคาซื้อใหม่ ไม่ใช่ค่าแลกอัปเกรด ใช้คัน 12 ต่อถ้าการเพิ่มสองค่านี้ไม่คุ้มกับการซื้อคัน 13 ราคาเต็ม",
+          "ja": "エリア5で店頭にあるフライ竿は12です。エリア1〜3では、13は全額450円、12は全額400円で、照準上限60から70、倍率×18から×21に上がります。新品価格の差50円で、下取り後の強化費用ではありません。その効果が全額購入に見合わないなら12を使い続けます。"
+        },
+        "reason": {
+          "en": "12 is stocked in areas 1–3 and 5. Compared with 13, it saves ¥50 on a new purchase but has cutoff 60/×18 instead of 70/×21; in area 5 it is the recorded fly-rod option.",
+          "th": "คัน 12 มีขายในด่าน 1–3 และ 5 เมื่อเทียบกับคัน 13 ราคาซื้อใหม่ถูกกว่า ¥50 แต่ได้ 60/×18 แทน 70/×21 และที่ด่าน 5 เป็นคันฟลายที่มีรายการขาย",
+          "ja": "12はエリア1〜3・5で販売されています。13より新品価格が50円安い一方、値は60・×18で、13の70・×21を下回ります。エリア5で記録されているフライ竿は12です。"
+        },
+        "alternatives": [
+          {
+            "category": "rod",
+            "id": "11"
+          },
+          {
+            "category": "rod",
+            "id": "13"
+          }
+        ],
+        "sources": [
+          "data/rod-response.json",
+          "docs/rod-lure-practical-research.md",
+          "data/shop-stock-rom.json",
+          "docs/shop-stock-research.md"
+        ]
+      },
       "nameTh": "คันฟลายกลาง",
       "labelImageTh": "thai-labels/rod-18.png"
     },
@@ -2646,6 +3216,35 @@
           {
             "stage": 4
           }
+        ]
+      },
+      "rodDecision": {
+        "label": {
+          "en": "Longest fly aim window",
+          "th": "ช่วงเล็งยาวสุดสายฟลาย",
+          "ja": "フライ竿で最長の照準"
+        },
+        "recommendation": {
+          "en": "Choose 13 when buying a fly rod in areas 1–4 if you want the longest recorded fly aim cutoff and largest main threshold in that style. In areas 1–3, it costs a full ¥450—¥50 more than 12—and changes the values from 60/×18 to 70/×21. Area 5 does not list 13; its recorded fly rod is 12.",
+          "th": "เลือกคัน 13 เมื่อซื้อคันฟลายในด่าน 1–4 หากต้องการช่วงเล็งที่บันทึกไว้ยาวสุดและเกณฑ์หลักสูงสุดในกลุ่ม ด่าน 1–3 ราคาเต็ม ¥450 มากกว่าคัน 12 ¥50 และเปลี่ยนค่าจาก 60/×18 เป็น 70/×21 ด่าน 5 ไม่มีคัน 13; คันฟลายที่ลงขายคือ 12",
+          "ja": "エリア1〜4でフライ竿を買う際、記録上最長の照準上限と最大の主しきい値を求めるなら13を選びます。エリア1〜3では全額450円で、12より50円高く、60・×18から70・×21に上がります。エリア5には13がなく、販売記録のあるフライ竿は12です。"
+        },
+        "reason": {
+          "en": "13 has the fly style’s largest values on these two decoded effects. That is a scoped comparison, not a catch-rate ranking.",
+          "th": "คัน 13 มีค่าสูงสุดของสายฟลายในสองผลที่ถอดความหมายได้ การเปรียบเทียบนี้จำกัดอยู่แค่สองด้าน ไม่ใช่อันดับโอกาสจับปลา",
+          "ja": "13はフライ竿の中で、解読した2効果の値が最大です。この比較は対象を限定したもので、釣果率の順位ではありません。"
+        },
+        "alternatives": [
+          {
+            "category": "rod",
+            "id": "12"
+          }
+        ],
+        "sources": [
+          "data/rod-response.json",
+          "docs/rod-lure-practical-research.md",
+          "data/shop-stock-rom.json",
+          "docs/shop-stock-research.md"
         ]
       },
       "nameTh": "คันฟลายใหญ่",
@@ -2793,6 +3392,39 @@
           }
         ]
       },
+      "rodDecision": {
+        "label": {
+          "en": "Longest float aim window",
+          "th": "เล็งได้นานสุดสายทุ่น",
+          "ja": "ウキ竿で最長の照準"
+        },
+        "recommendation": {
+          "en": "If buying a Float/Ayu rod in area 3, 14 costs the same full ¥1,500 as 07 and improves both measured values: cutoff 80 vs 70 and multiplier ×15 vs ×9. It has the group's longest aim cutoff. Rod 15 trades 20 aim units away for the group's maximum ×24 threshold; choose 15 instead only when that threshold matters more.",
+          "th": "ถ้าซื้อคันสายทุ่น/อายุที่ด่าน 3 คัน 14 ราคาเต็ม ¥1,500 เท่าคัน 07 และเพิ่มค่าที่วัดได้ทั้งคู่: ช่วงเล็ง 80 เทียบกับ 70 และตัวคูณ ×15 เทียบกับ ×9 คัน 14 มีช่วงเล็งยาวสุดในกลุ่ม คัน 15 แลกช่วงเล็งที่น้อยลง 20 หน่วยเพื่อได้เกณฑ์สูงสุด ×24; เลือก 15 เมื่อเกณฑ์นี้สำคัญกว่า",
+          "ja": "エリア3でウキ・アユ竿を買うなら、14は07と同じ全額1,500円で、照準上限80対70、倍率×15対×9と両効果が上がります。14はグループ最長の照準上限です。15は照準を20下げて最大の×24を得る竿で、そのしきい値を重視する場合に選びます。"
+        },
+        "reason": {
+          "en": "Rod 14 leads the Float/Ayu group on aim time, not on the tackle-loss threshold. At areas 4 and 6, compare it with 15 as a real time-versus-threshold tradeoff.",
+          "th": "คัน 14 เด่นสุดในกลุ่มสายทุ่นด้านเวลาเล็ง ไม่ใช่เกณฑ์ก่อนอุปกรณ์หาย ที่ด่าน 4 และ 6 ให้เทียบกับคัน 15 ในฐานะการแลกกันระหว่างเวลาปรับเป้ากับเกณฑ์ตำแหน่งปลา",
+          "ja": "14はウキ・アユ竿の照準時間が最長で、道具損失しきい値が最大ではありません。エリア4・6では15と時間・しきい値のトレードオフを比べてください。"
+        },
+        "alternatives": [
+          {
+            "category": "rod",
+            "id": "07"
+          },
+          {
+            "category": "rod",
+            "id": "15"
+          }
+        ],
+        "sources": [
+          "data/rod-response.json",
+          "docs/rod-lure-practical-research.md",
+          "data/shop-stock-rom.json",
+          "docs/shop-stock-research.md"
+        ]
+      },
       "nameTh": "คันอายุคาร์บอน 10m",
       "labelImageTh": "thai-labels/rod-20.png"
     },
@@ -2936,6 +3568,39 @@
           {
             "stage": 6
           }
+        ]
+      },
+      "rodDecision": {
+        "label": {
+          "en": "Maximum float threshold",
+          "th": "เกณฑ์สูงสุดสายทุ่น",
+          "ja": "ウキ竿で最大しきい値"
+        },
+        "recommendation": {
+          "en": "Choose 15 in areas 4–6 when the Float/Ayu group's largest threshold (×24) matters more than its longest aim window. In areas 4 and 6, 14 costs full ¥1,500 and gives more aim (80 vs 60) but a lower ×15 threshold. In area 5, 08 costs full ¥1,500 with the same ×24 but has cutoff 40; 15 has a full ¥2,000 quote, a ¥500 difference between the two new-purchase prices, for cutoff 60.",
+          "th": "เลือกคัน 15 ในด่าน 4–6 เมื่อให้ความสำคัญกับเกณฑ์สูงสุดของสายทุ่น/อายุ (×24) มากกว่าช่วงเล็งที่ยาวที่สุด ที่ด่าน 4 และ 6 คัน 14 ราคาเต็ม ¥1,500 เล็งได้นานกว่า (80 เทียบกับ 60) แต่มีเกณฑ์ ×15 ต่ำกว่า ที่ด่าน 5 คัน 08 ราคาเต็ม ¥1,500 ได้ ×24 เท่ากันแต่ช่วงเล็ง 40 ส่วนคัน 15 ราคาเต็ม ¥2,000 ต่างกัน ¥500 ระหว่างราคาซื้อใหม่ เพื่อช่วงเล็ง 60",
+          "ja": "エリア4〜6で、ウキ・アユ竿の最大しきい値×24を最長照準より重視するなら15を選びます。エリア4・6で14は全額1,500円、照準上限80（15は60）ですが倍率は×15です。エリア5の08は全額1,500円で同じ×24、照準上限40です。15は全額2,000円で、照準上限60です。新品価格の差は500円です。"
+        },
+        "reason": {
+          "en": "Rod 15 leads the Float/Ayu group on the threshold tied to one tackle-loss escape branch, while 14 leads on aim time. Choose according to which situation you want to improve; neither is an overall best rod.",
+          "th": "คัน 15 เด่นสุดในกลุ่มสายทุ่นด้านเกณฑ์ของเส้นทางหนีที่ทำให้อุปกรณ์หายหนึ่งแบบ ส่วนคัน 14 เด่นด้านเวลาเล็ง เลือกตามสถานการณ์ที่ต้องการปรับปรุง ไม่มีคันใดดีที่สุดโดยรวมจากสองค่านี้",
+          "ja": "15は特定の道具損失逃走分岐に関わるしきい値が最大で、照準時間は14が最長です。改善したい状況で選び、どちらかを総合最強とはしません。"
+        },
+        "alternatives": [
+          {
+            "category": "rod",
+            "id": "08"
+          },
+          {
+            "category": "rod",
+            "id": "14"
+          }
+        ],
+        "sources": [
+          "data/rod-response.json",
+          "docs/rod-lure-practical-research.md",
+          "data/shop-stock-rom.json",
+          "docs/shop-stock-research.md"
         ]
       },
       "nameTh": "คันเฮระคาร์บอน 6.5m",
@@ -31565,6 +32230,44 @@
         "useLocations": [
           {
             "stage": 3,
+            "mapId": 9,
+            "context": "town",
+            "name": {
+              "en": "Town chest: take the empty bottle before visiting the cow",
+              "ja": "町の宝箱：牛を訪ねる前に空きビンを取る",
+              "th": "หีบในเมือง: รับขวดเปล่าก่อนไปเติมนมกับวัว"
+            },
+            "tileX": 6,
+            "tileY": 4,
+            "image": "maps/tool-use-town-chest-09.png",
+            "fullImage": "maps/rom-town-09.png",
+            "width": 256,
+            "height": 384,
+            "pin": {
+              "x": 0.40625,
+              "y": 0.1875
+            },
+            "source": {
+              "objectSlotHex": "0E",
+              "coordinateFileOffset": "0x0040E8",
+              "consumer": "00:D0EA..D113"
+            },
+            "townEntranceOrdinal": 0,
+            "approach": {
+              "image": "maps/tool-entry-town-chest-09.png",
+              "fullImage": "maps/rom-field-03.png",
+              "width": 384,
+              "height": 384,
+              "tileX": 26,
+              "tileY": 39,
+              "pin": {
+                "x": 0.7708333333333334,
+                "y": 0.5
+              }
+            }
+          },
+          {
+            "stage": 3,
             "name": {
               "en": "Cow: refill the empty bottle",
               "ja": "牛：空きビンに牛乳を入れる",
@@ -31952,6 +32655,52 @@
           ]
         },
         "useLocations": [
+          {
+            "stage": 6,
+            "mapId": 12,
+            "context": "town",
+            "name": {
+              "en": "Town chest: bring the key and leave room for the reward",
+              "ja": "町の宝箱：カギを持参し、報酬用の空きを用意する",
+              "th": "หีบในเมือง: พกกุญแจและเว้นช่องสำหรับรางวัลก่อนเปิด"
+            },
+            "tileX": 4,
+            "tileY": 6,
+            "image": "maps/tool-use-town-chest-12.png",
+            "fullImage": "maps/rom-town-12.png",
+            "width": 256,
+            "height": 384,
+            "pin": {
+              "x": 0.28125,
+              "y": 0.2708333333333333
+            },
+            "source": {
+              "objectSlotHex": "0E",
+              "coordinateFileOffset": "0x004130",
+              "consumer": "00:CFB1..D059"
+            },
+            "townEntranceOrdinal": 0,
+            "approach": {
+              "image": "maps/tool-entry-town-chest-12.png",
+              "fullImage": "maps/rom-field-06.png",
+              "width": 384,
+              "height": 384,
+              "tileX": 9,
+              "tileY": 41,
+              "pin": {
+                "x": 0.3958333333333333,
+                "y": 0.5
+              }
+            },
+            "rewardItem": {
+              "category": "general_tool",
+              "id": "12"
+            },
+            "requiredItem": {
+              "category": "general_tool",
+              "id": "17"
+            }
+          },
           {
             "stage": 6,
             "name": {
@@ -32494,6 +33243,192 @@
             "examples/general-tool-rom-messages.png"
           ]
         },
+        "useLocations": [
+          {
+            "stage": 1,
+            "mapId": 7,
+            "context": "town",
+            "name": {
+              "en": "Town chest: bring the key and leave room for the reward",
+              "ja": "町の宝箱：カギを持参し、報酬用の空きを用意する",
+              "th": "หีบในเมือง: พกกุญแจและเว้นช่องสำหรับรางวัลก่อนเปิด"
+            },
+            "tileX": 5,
+            "tileY": 68,
+            "image": "maps/tool-use-town-chest-07.png",
+            "fullImage": "maps/rom-town-07.png",
+            "width": 256,
+            "height": 384,
+            "pin": {
+              "x": 0.34375,
+              "y": 0.5208333333333334
+            },
+            "source": {
+              "objectSlotHex": "0E",
+              "coordinateFileOffset": "0x00408E",
+              "consumer": "00:CFB1..D059"
+            },
+            "townEntranceOrdinal": 4,
+            "approach": {
+              "image": "maps/tool-entry-town-chest-07.png",
+              "fullImage": "maps/rom-field-01.png",
+              "width": 256,
+              "height": 384,
+              "tileX": 12,
+              "tileY": 189,
+              "pin": {
+                "x": 0.78125,
+                "y": 0.5
+              }
+            },
+            "rewardItem": {
+              "category": "bait",
+              "id": "11"
+            },
+            "requiredItem": {
+              "category": "general_tool",
+              "id": "17"
+            }
+          },
+          {
+            "stage": 2,
+            "mapId": 8,
+            "context": "town",
+            "name": {
+              "en": "Town chest: bring the key and leave room for the reward",
+              "ja": "町の宝箱：カギを持参し、報酬用の空きを用意する",
+              "th": "หีบในเมือง: พกกุญแจและเว้นช่องสำหรับรางวัลก่อนเปิด"
+            },
+            "tileX": 4,
+            "tileY": 6,
+            "image": "maps/tool-use-town-chest-08.png",
+            "fullImage": "maps/rom-town-08.png",
+            "width": 256,
+            "height": 384,
+            "pin": {
+              "x": 0.28125,
+              "y": 0.2708333333333333
+            },
+            "source": {
+              "objectSlotHex": "0E",
+              "coordinateFileOffset": "0x0040D0",
+              "consumer": "00:CFB1..D059"
+            },
+            "townEntranceOrdinal": 0,
+            "approach": {
+              "image": "maps/tool-entry-town-chest-08.png",
+              "fullImage": "maps/rom-field-02.png",
+              "width": 384,
+              "height": 384,
+              "tileX": 85,
+              "tileY": 28,
+              "pin": {
+                "x": 0.5,
+                "y": 0.8541666666666666
+              }
+            },
+            "rewardItem": {
+              "category": "bait",
+              "id": "0B"
+            },
+            "requiredItem": {
+              "category": "general_tool",
+              "id": "17"
+            }
+          },
+          {
+            "stage": 4,
+            "mapId": 10,
+            "context": "town",
+            "name": {
+              "en": "Town chest: bring the key and leave room for the reward",
+              "ja": "町の宝箱：カギを持参し、報酬用の空きを用意する",
+              "th": "หีบในเมือง: พกกุญแจและเว้นช่องสำหรับรางวัลก่อนเปิด"
+            },
+            "tileX": 4,
+            "tileY": 6,
+            "image": "maps/tool-use-town-chest-10.png",
+            "fullImage": "maps/rom-town-10.png",
+            "width": 256,
+            "height": 384,
+            "pin": {
+              "x": 0.28125,
+              "y": 0.2708333333333333
+            },
+            "source": {
+              "objectSlotHex": "0E",
+              "coordinateFileOffset": "0x004100",
+              "consumer": "00:CFB1..D059"
+            },
+            "townEntranceOrdinal": 0,
+            "approach": {
+              "image": "maps/tool-entry-town-chest-10.png",
+              "fullImage": "maps/rom-field-04.png",
+              "width": 384,
+              "height": 384,
+              "tileX": 61,
+              "tileY": 21,
+              "pin": {
+                "x": 0.8958333333333334,
+                "y": 0.5
+              }
+            },
+            "rewardItem": {
+              "category": "rod",
+              "id": "0A"
+            },
+            "requiredItem": {
+              "category": "general_tool",
+              "id": "17"
+            }
+          },
+          {
+            "stage": 6,
+            "mapId": 12,
+            "context": "town",
+            "name": {
+              "en": "Town chest: bring the key and leave room for the reward",
+              "ja": "町の宝箱：カギを持参し、報酬用の空きを用意する",
+              "th": "หีบในเมือง: พกกุญแจและเว้นช่องสำหรับรางวัลก่อนเปิด"
+            },
+            "tileX": 4,
+            "tileY": 6,
+            "image": "maps/tool-use-town-chest-12.png",
+            "fullImage": "maps/rom-town-12.png",
+            "width": 256,
+            "height": 384,
+            "pin": {
+              "x": 0.28125,
+              "y": 0.2708333333333333
+            },
+            "source": {
+              "objectSlotHex": "0E",
+              "coordinateFileOffset": "0x004130",
+              "consumer": "00:CFB1..D059"
+            },
+            "townEntranceOrdinal": 0,
+            "approach": {
+              "image": "maps/tool-entry-town-chest-12.png",
+              "fullImage": "maps/rom-field-06.png",
+              "width": 384,
+              "height": 384,
+              "tileX": 9,
+              "tileY": 41,
+              "pin": {
+                "x": 0.3958333333333333,
+                "y": 0.5
+              }
+            },
+            "rewardItem": {
+              "category": "general_tool",
+              "id": "12"
+            },
+            "requiredItem": {
+              "category": "general_tool",
+              "id": "17"
+            }
+          }
+        ],
         "shops": [
           {
             "stage": 1
@@ -78852,5 +79787,1177 @@
         "items": []
       }
     ]
+  },
+  "flyBackupChoices": {
+    "schemaVersion": 1,
+    "romSha1": "c2103dd94e2a1a65a495fc02adc2e7d040f31212",
+    "scope": "Cheapest three ready-made bundles across all six recorded area stocks that each pass the target body profile mask and collectively avoid the body/wing equality block for any unchanged hidden pair. Not bite/landing odds. Two bundles cannot cover all hidden pairs: a hidden body group matching the first and wing group matching the second blocks both.",
+    "sources": [
+      "data/shop-stock-rom.json",
+      "data/fish-acceptance.json",
+      "docs/fly-selection-practical-research.md"
+    ],
+    "profiles": {
+      "11": {
+        "totalYen": 30,
+        "bundles": [
+          {
+            "stage": 1,
+            "slot": 0,
+            "body": "01",
+            "wing": "09",
+            "tail": "13",
+            "priceYen": 5,
+            "bodyGroup": 1,
+            "wingGroup": 1
+          },
+          {
+            "stage": 1,
+            "slot": 2,
+            "body": "2B",
+            "wing": "34",
+            "tail": "00",
+            "priceYen": 15,
+            "bodyGroup": 3,
+            "wingGroup": 0
+          },
+          {
+            "stage": 2,
+            "slot": 0,
+            "body": "02",
+            "wing": "0A",
+            "tail": "14",
+            "priceYen": 10,
+            "bodyGroup": 2,
+            "wingGroup": 2
+          }
+        ]
+      },
+      "12": {
+        "totalYen": 30,
+        "bundles": [
+          {
+            "stage": 1,
+            "slot": 0,
+            "body": "01",
+            "wing": "09",
+            "tail": "13",
+            "priceYen": 5,
+            "bodyGroup": 1,
+            "wingGroup": 1
+          },
+          {
+            "stage": 1,
+            "slot": 2,
+            "body": "2B",
+            "wing": "34",
+            "tail": "00",
+            "priceYen": 15,
+            "bodyGroup": 3,
+            "wingGroup": 0
+          },
+          {
+            "stage": 2,
+            "slot": 0,
+            "body": "02",
+            "wing": "0A",
+            "tail": "14",
+            "priceYen": 10,
+            "bodyGroup": 2,
+            "wingGroup": 2
+          }
+        ]
+      },
+      "13": {
+        "totalYen": 17,
+        "bundles": [
+          {
+            "stage": 1,
+            "slot": 0,
+            "body": "01",
+            "wing": "09",
+            "tail": "13",
+            "priceYen": 5,
+            "bodyGroup": 1,
+            "wingGroup": 1
+          },
+          {
+            "stage": 1,
+            "slot": 3,
+            "body": "3E",
+            "wing": "43",
+            "tail": "49",
+            "priceYen": 5,
+            "bodyGroup": 2,
+            "wingGroup": 3
+          },
+          {
+            "stage": 2,
+            "slot": 3,
+            "body": "3F",
+            "wing": "44",
+            "tail": "4A",
+            "priceYen": 7,
+            "bodyGroup": 3,
+            "wingGroup": 0
+          }
+        ]
+      },
+      "16": {
+        "totalYen": 30,
+        "bundles": [
+          {
+            "stage": 1,
+            "slot": 0,
+            "body": "01",
+            "wing": "09",
+            "tail": "13",
+            "priceYen": 5,
+            "bodyGroup": 1,
+            "wingGroup": 1
+          },
+          {
+            "stage": 1,
+            "slot": 2,
+            "body": "2B",
+            "wing": "34",
+            "tail": "00",
+            "priceYen": 15,
+            "bodyGroup": 3,
+            "wingGroup": 0
+          },
+          {
+            "stage": 2,
+            "slot": 0,
+            "body": "02",
+            "wing": "0A",
+            "tail": "14",
+            "priceYen": 10,
+            "bodyGroup": 2,
+            "wingGroup": 2
+          }
+        ]
+      },
+      "18": {
+        "totalYen": 30,
+        "bundles": [
+          {
+            "stage": 1,
+            "slot": 0,
+            "body": "01",
+            "wing": "09",
+            "tail": "13",
+            "priceYen": 5,
+            "bodyGroup": 1,
+            "wingGroup": 1
+          },
+          {
+            "stage": 1,
+            "slot": 2,
+            "body": "2B",
+            "wing": "34",
+            "tail": "00",
+            "priceYen": 15,
+            "bodyGroup": 3,
+            "wingGroup": 0
+          },
+          {
+            "stage": 2,
+            "slot": 0,
+            "body": "02",
+            "wing": "0A",
+            "tail": "14",
+            "priceYen": 10,
+            "bodyGroup": 2,
+            "wingGroup": 2
+          }
+        ]
+      },
+      "20": {
+        "totalYen": 17,
+        "bundles": [
+          {
+            "stage": 1,
+            "slot": 0,
+            "body": "01",
+            "wing": "09",
+            "tail": "13",
+            "priceYen": 5,
+            "bodyGroup": 1,
+            "wingGroup": 1
+          },
+          {
+            "stage": 1,
+            "slot": 3,
+            "body": "3E",
+            "wing": "43",
+            "tail": "49",
+            "priceYen": 5,
+            "bodyGroup": 2,
+            "wingGroup": 3
+          },
+          {
+            "stage": 2,
+            "slot": 3,
+            "body": "3F",
+            "wing": "44",
+            "tail": "4A",
+            "priceYen": 7,
+            "bodyGroup": 3,
+            "wingGroup": 0
+          }
+        ]
+      },
+      "21": {
+        "totalYen": 17,
+        "bundles": [
+          {
+            "stage": 1,
+            "slot": 0,
+            "body": "01",
+            "wing": "09",
+            "tail": "13",
+            "priceYen": 5,
+            "bodyGroup": 1,
+            "wingGroup": 1
+          },
+          {
+            "stage": 1,
+            "slot": 3,
+            "body": "3E",
+            "wing": "43",
+            "tail": "49",
+            "priceYen": 5,
+            "bodyGroup": 2,
+            "wingGroup": 3
+          },
+          {
+            "stage": 2,
+            "slot": 3,
+            "body": "3F",
+            "wing": "44",
+            "tail": "4A",
+            "priceYen": 7,
+            "bodyGroup": 3,
+            "wingGroup": 0
+          }
+        ]
+      },
+      "22": {
+        "totalYen": 30,
+        "bundles": [
+          {
+            "stage": 1,
+            "slot": 0,
+            "body": "01",
+            "wing": "09",
+            "tail": "13",
+            "priceYen": 5,
+            "bodyGroup": 1,
+            "wingGroup": 1
+          },
+          {
+            "stage": 1,
+            "slot": 2,
+            "body": "2B",
+            "wing": "34",
+            "tail": "00",
+            "priceYen": 15,
+            "bodyGroup": 3,
+            "wingGroup": 0
+          },
+          {
+            "stage": 2,
+            "slot": 0,
+            "body": "02",
+            "wing": "0A",
+            "tail": "14",
+            "priceYen": 10,
+            "bodyGroup": 2,
+            "wingGroup": 2
+          }
+        ]
+      },
+      "30": {
+        "totalYen": 30,
+        "bundles": [
+          {
+            "stage": 1,
+            "slot": 0,
+            "body": "01",
+            "wing": "09",
+            "tail": "13",
+            "priceYen": 5,
+            "bodyGroup": 1,
+            "wingGroup": 1
+          },
+          {
+            "stage": 1,
+            "slot": 2,
+            "body": "2B",
+            "wing": "34",
+            "tail": "00",
+            "priceYen": 15,
+            "bodyGroup": 3,
+            "wingGroup": 0
+          },
+          {
+            "stage": 2,
+            "slot": 0,
+            "body": "02",
+            "wing": "0A",
+            "tail": "14",
+            "priceYen": 10,
+            "bodyGroup": 2,
+            "wingGroup": 2
+          }
+        ]
+      },
+      "31": {
+        "totalYen": 17,
+        "bundles": [
+          {
+            "stage": 1,
+            "slot": 0,
+            "body": "01",
+            "wing": "09",
+            "tail": "13",
+            "priceYen": 5,
+            "bodyGroup": 1,
+            "wingGroup": 1
+          },
+          {
+            "stage": 1,
+            "slot": 3,
+            "body": "3E",
+            "wing": "43",
+            "tail": "49",
+            "priceYen": 5,
+            "bodyGroup": 2,
+            "wingGroup": 3
+          },
+          {
+            "stage": 2,
+            "slot": 3,
+            "body": "3F",
+            "wing": "44",
+            "tail": "4A",
+            "priceYen": 7,
+            "bodyGroup": 3,
+            "wingGroup": 0
+          }
+        ]
+      },
+      "38": {
+        "totalYen": 17,
+        "bundles": [
+          {
+            "stage": 1,
+            "slot": 0,
+            "body": "01",
+            "wing": "09",
+            "tail": "13",
+            "priceYen": 5,
+            "bodyGroup": 1,
+            "wingGroup": 1
+          },
+          {
+            "stage": 1,
+            "slot": 3,
+            "body": "3E",
+            "wing": "43",
+            "tail": "49",
+            "priceYen": 5,
+            "bodyGroup": 2,
+            "wingGroup": 3
+          },
+          {
+            "stage": 2,
+            "slot": 3,
+            "body": "3F",
+            "wing": "44",
+            "tail": "4A",
+            "priceYen": 7,
+            "bodyGroup": 3,
+            "wingGroup": 0
+          }
+        ]
+      },
+      "40": {
+        "totalYen": 30,
+        "bundles": [
+          {
+            "stage": 1,
+            "slot": 0,
+            "body": "01",
+            "wing": "09",
+            "tail": "13",
+            "priceYen": 5,
+            "bodyGroup": 1,
+            "wingGroup": 1
+          },
+          {
+            "stage": 1,
+            "slot": 2,
+            "body": "2B",
+            "wing": "34",
+            "tail": "00",
+            "priceYen": 15,
+            "bodyGroup": 3,
+            "wingGroup": 0
+          },
+          {
+            "stage": 2,
+            "slot": 0,
+            "body": "02",
+            "wing": "0A",
+            "tail": "14",
+            "priceYen": 10,
+            "bodyGroup": 2,
+            "wingGroup": 2
+          }
+        ]
+      },
+      "42": {
+        "totalYen": 17,
+        "bundles": [
+          {
+            "stage": 1,
+            "slot": 0,
+            "body": "01",
+            "wing": "09",
+            "tail": "13",
+            "priceYen": 5,
+            "bodyGroup": 1,
+            "wingGroup": 1
+          },
+          {
+            "stage": 1,
+            "slot": 3,
+            "body": "3E",
+            "wing": "43",
+            "tail": "49",
+            "priceYen": 5,
+            "bodyGroup": 2,
+            "wingGroup": 3
+          },
+          {
+            "stage": 2,
+            "slot": 3,
+            "body": "3F",
+            "wing": "44",
+            "tail": "4A",
+            "priceYen": 7,
+            "bodyGroup": 3,
+            "wingGroup": 0
+          }
+        ]
+      },
+      "44": {
+        "totalYen": 17,
+        "bundles": [
+          {
+            "stage": 1,
+            "slot": 0,
+            "body": "01",
+            "wing": "09",
+            "tail": "13",
+            "priceYen": 5,
+            "bodyGroup": 1,
+            "wingGroup": 1
+          },
+          {
+            "stage": 1,
+            "slot": 3,
+            "body": "3E",
+            "wing": "43",
+            "tail": "49",
+            "priceYen": 5,
+            "bodyGroup": 2,
+            "wingGroup": 3
+          },
+          {
+            "stage": 2,
+            "slot": 3,
+            "body": "3F",
+            "wing": "44",
+            "tail": "4A",
+            "priceYen": 7,
+            "bodyGroup": 3,
+            "wingGroup": 0
+          }
+        ]
+      },
+      "45": {
+        "totalYen": 17,
+        "bundles": [
+          {
+            "stage": 1,
+            "slot": 0,
+            "body": "01",
+            "wing": "09",
+            "tail": "13",
+            "priceYen": 5,
+            "bodyGroup": 1,
+            "wingGroup": 1
+          },
+          {
+            "stage": 1,
+            "slot": 3,
+            "body": "3E",
+            "wing": "43",
+            "tail": "49",
+            "priceYen": 5,
+            "bodyGroup": 2,
+            "wingGroup": 3
+          },
+          {
+            "stage": 2,
+            "slot": 3,
+            "body": "3F",
+            "wing": "44",
+            "tail": "4A",
+            "priceYen": 7,
+            "bodyGroup": 3,
+            "wingGroup": 0
+          }
+        ]
+      },
+      "01": {
+        "totalYen": 17,
+        "bundles": [
+          {
+            "stage": 1,
+            "slot": 0,
+            "body": "01",
+            "wing": "09",
+            "tail": "13",
+            "priceYen": 5,
+            "bodyGroup": 1,
+            "wingGroup": 1
+          },
+          {
+            "stage": 1,
+            "slot": 3,
+            "body": "3E",
+            "wing": "43",
+            "tail": "49",
+            "priceYen": 5,
+            "bodyGroup": 2,
+            "wingGroup": 3
+          },
+          {
+            "stage": 2,
+            "slot": 3,
+            "body": "3F",
+            "wing": "44",
+            "tail": "4A",
+            "priceYen": 7,
+            "bodyGroup": 3,
+            "wingGroup": 0
+          }
+        ]
+      },
+      "02": {
+        "totalYen": 17,
+        "bundles": [
+          {
+            "stage": 1,
+            "slot": 0,
+            "body": "01",
+            "wing": "09",
+            "tail": "13",
+            "priceYen": 5,
+            "bodyGroup": 1,
+            "wingGroup": 1
+          },
+          {
+            "stage": 1,
+            "slot": 3,
+            "body": "3E",
+            "wing": "43",
+            "tail": "49",
+            "priceYen": 5,
+            "bodyGroup": 2,
+            "wingGroup": 3
+          },
+          {
+            "stage": 2,
+            "slot": 3,
+            "body": "3F",
+            "wing": "44",
+            "tail": "4A",
+            "priceYen": 7,
+            "bodyGroup": 3,
+            "wingGroup": 0
+          }
+        ]
+      },
+      "03": {
+        "totalYen": 17,
+        "bundles": [
+          {
+            "stage": 1,
+            "slot": 0,
+            "body": "01",
+            "wing": "09",
+            "tail": "13",
+            "priceYen": 5,
+            "bodyGroup": 1,
+            "wingGroup": 1
+          },
+          {
+            "stage": 1,
+            "slot": 3,
+            "body": "3E",
+            "wing": "43",
+            "tail": "49",
+            "priceYen": 5,
+            "bodyGroup": 2,
+            "wingGroup": 3
+          },
+          {
+            "stage": 2,
+            "slot": 3,
+            "body": "3F",
+            "wing": "44",
+            "tail": "4A",
+            "priceYen": 7,
+            "bodyGroup": 3,
+            "wingGroup": 0
+          }
+        ]
+      },
+      "04": {
+        "totalYen": 17,
+        "bundles": [
+          {
+            "stage": 1,
+            "slot": 0,
+            "body": "01",
+            "wing": "09",
+            "tail": "13",
+            "priceYen": 5,
+            "bodyGroup": 1,
+            "wingGroup": 1
+          },
+          {
+            "stage": 1,
+            "slot": 3,
+            "body": "3E",
+            "wing": "43",
+            "tail": "49",
+            "priceYen": 5,
+            "bodyGroup": 2,
+            "wingGroup": 3
+          },
+          {
+            "stage": 2,
+            "slot": 3,
+            "body": "3F",
+            "wing": "44",
+            "tail": "4A",
+            "priceYen": 7,
+            "bodyGroup": 3,
+            "wingGroup": 0
+          }
+        ]
+      },
+      "05": {
+        "totalYen": 30,
+        "bundles": [
+          {
+            "stage": 1,
+            "slot": 0,
+            "body": "01",
+            "wing": "09",
+            "tail": "13",
+            "priceYen": 5,
+            "bodyGroup": 1,
+            "wingGroup": 1
+          },
+          {
+            "stage": 1,
+            "slot": 2,
+            "body": "2B",
+            "wing": "34",
+            "tail": "00",
+            "priceYen": 15,
+            "bodyGroup": 3,
+            "wingGroup": 0
+          },
+          {
+            "stage": 2,
+            "slot": 0,
+            "body": "02",
+            "wing": "0A",
+            "tail": "14",
+            "priceYen": 10,
+            "bodyGroup": 2,
+            "wingGroup": 2
+          }
+        ]
+      },
+      "06": {
+        "totalYen": 30,
+        "bundles": [
+          {
+            "stage": 1,
+            "slot": 0,
+            "body": "01",
+            "wing": "09",
+            "tail": "13",
+            "priceYen": 5,
+            "bodyGroup": 1,
+            "wingGroup": 1
+          },
+          {
+            "stage": 1,
+            "slot": 2,
+            "body": "2B",
+            "wing": "34",
+            "tail": "00",
+            "priceYen": 15,
+            "bodyGroup": 3,
+            "wingGroup": 0
+          },
+          {
+            "stage": 2,
+            "slot": 0,
+            "body": "02",
+            "wing": "0A",
+            "tail": "14",
+            "priceYen": 10,
+            "bodyGroup": 2,
+            "wingGroup": 2
+          }
+        ]
+      },
+      "08": {
+        "totalYen": 30,
+        "bundles": [
+          {
+            "stage": 1,
+            "slot": 0,
+            "body": "01",
+            "wing": "09",
+            "tail": "13",
+            "priceYen": 5,
+            "bodyGroup": 1,
+            "wingGroup": 1
+          },
+          {
+            "stage": 1,
+            "slot": 2,
+            "body": "2B",
+            "wing": "34",
+            "tail": "00",
+            "priceYen": 15,
+            "bodyGroup": 3,
+            "wingGroup": 0
+          },
+          {
+            "stage": 2,
+            "slot": 0,
+            "body": "02",
+            "wing": "0A",
+            "tail": "14",
+            "priceYen": 10,
+            "bodyGroup": 2,
+            "wingGroup": 2
+          }
+        ]
+      },
+      "09": {
+        "totalYen": 17,
+        "bundles": [
+          {
+            "stage": 1,
+            "slot": 0,
+            "body": "01",
+            "wing": "09",
+            "tail": "13",
+            "priceYen": 5,
+            "bodyGroup": 1,
+            "wingGroup": 1
+          },
+          {
+            "stage": 1,
+            "slot": 3,
+            "body": "3E",
+            "wing": "43",
+            "tail": "49",
+            "priceYen": 5,
+            "bodyGroup": 2,
+            "wingGroup": 3
+          },
+          {
+            "stage": 2,
+            "slot": 3,
+            "body": "3F",
+            "wing": "44",
+            "tail": "4A",
+            "priceYen": 7,
+            "bodyGroup": 3,
+            "wingGroup": 0
+          }
+        ]
+      },
+      "0B": {
+        "totalYen": 17,
+        "bundles": [
+          {
+            "stage": 1,
+            "slot": 0,
+            "body": "01",
+            "wing": "09",
+            "tail": "13",
+            "priceYen": 5,
+            "bodyGroup": 1,
+            "wingGroup": 1
+          },
+          {
+            "stage": 1,
+            "slot": 3,
+            "body": "3E",
+            "wing": "43",
+            "tail": "49",
+            "priceYen": 5,
+            "bodyGroup": 2,
+            "wingGroup": 3
+          },
+          {
+            "stage": 2,
+            "slot": 3,
+            "body": "3F",
+            "wing": "44",
+            "tail": "4A",
+            "priceYen": 7,
+            "bodyGroup": 3,
+            "wingGroup": 0
+          }
+        ]
+      },
+      "0C": {
+        "totalYen": 17,
+        "bundles": [
+          {
+            "stage": 1,
+            "slot": 0,
+            "body": "01",
+            "wing": "09",
+            "tail": "13",
+            "priceYen": 5,
+            "bodyGroup": 1,
+            "wingGroup": 1
+          },
+          {
+            "stage": 1,
+            "slot": 3,
+            "body": "3E",
+            "wing": "43",
+            "tail": "49",
+            "priceYen": 5,
+            "bodyGroup": 2,
+            "wingGroup": 3
+          },
+          {
+            "stage": 2,
+            "slot": 3,
+            "body": "3F",
+            "wing": "44",
+            "tail": "4A",
+            "priceYen": 7,
+            "bodyGroup": 3,
+            "wingGroup": 0
+          }
+        ]
+      },
+      "0E": {
+        "totalYen": 30,
+        "bundles": [
+          {
+            "stage": 1,
+            "slot": 0,
+            "body": "01",
+            "wing": "09",
+            "tail": "13",
+            "priceYen": 5,
+            "bodyGroup": 1,
+            "wingGroup": 1
+          },
+          {
+            "stage": 1,
+            "slot": 2,
+            "body": "2B",
+            "wing": "34",
+            "tail": "00",
+            "priceYen": 15,
+            "bodyGroup": 3,
+            "wingGroup": 0
+          },
+          {
+            "stage": 2,
+            "slot": 0,
+            "body": "02",
+            "wing": "0A",
+            "tail": "14",
+            "priceYen": 10,
+            "bodyGroup": 2,
+            "wingGroup": 2
+          }
+        ]
+      },
+      "0F": {
+        "totalYen": 17,
+        "bundles": [
+          {
+            "stage": 1,
+            "slot": 0,
+            "body": "01",
+            "wing": "09",
+            "tail": "13",
+            "priceYen": 5,
+            "bodyGroup": 1,
+            "wingGroup": 1
+          },
+          {
+            "stage": 1,
+            "slot": 3,
+            "body": "3E",
+            "wing": "43",
+            "tail": "49",
+            "priceYen": 5,
+            "bodyGroup": 2,
+            "wingGroup": 3
+          },
+          {
+            "stage": 2,
+            "slot": 3,
+            "body": "3F",
+            "wing": "44",
+            "tail": "4A",
+            "priceYen": 7,
+            "bodyGroup": 3,
+            "wingGroup": 0
+          }
+        ]
+      },
+      "1B": {
+        "totalYen": 30,
+        "bundles": [
+          {
+            "stage": 1,
+            "slot": 0,
+            "body": "01",
+            "wing": "09",
+            "tail": "13",
+            "priceYen": 5,
+            "bodyGroup": 1,
+            "wingGroup": 1
+          },
+          {
+            "stage": 1,
+            "slot": 2,
+            "body": "2B",
+            "wing": "34",
+            "tail": "00",
+            "priceYen": 15,
+            "bodyGroup": 3,
+            "wingGroup": 0
+          },
+          {
+            "stage": 2,
+            "slot": 0,
+            "body": "02",
+            "wing": "0A",
+            "tail": "14",
+            "priceYen": 10,
+            "bodyGroup": 2,
+            "wingGroup": 2
+          }
+        ]
+      },
+      "1E": {
+        "totalYen": 30,
+        "bundles": [
+          {
+            "stage": 1,
+            "slot": 0,
+            "body": "01",
+            "wing": "09",
+            "tail": "13",
+            "priceYen": 5,
+            "bodyGroup": 1,
+            "wingGroup": 1
+          },
+          {
+            "stage": 1,
+            "slot": 2,
+            "body": "2B",
+            "wing": "34",
+            "tail": "00",
+            "priceYen": 15,
+            "bodyGroup": 3,
+            "wingGroup": 0
+          },
+          {
+            "stage": 2,
+            "slot": 0,
+            "body": "02",
+            "wing": "0A",
+            "tail": "14",
+            "priceYen": 10,
+            "bodyGroup": 2,
+            "wingGroup": 2
+          }
+        ]
+      },
+      "2A": {
+        "totalYen": 30,
+        "bundles": [
+          {
+            "stage": 1,
+            "slot": 0,
+            "body": "01",
+            "wing": "09",
+            "tail": "13",
+            "priceYen": 5,
+            "bodyGroup": 1,
+            "wingGroup": 1
+          },
+          {
+            "stage": 1,
+            "slot": 2,
+            "body": "2B",
+            "wing": "34",
+            "tail": "00",
+            "priceYen": 15,
+            "bodyGroup": 3,
+            "wingGroup": 0
+          },
+          {
+            "stage": 2,
+            "slot": 0,
+            "body": "02",
+            "wing": "0A",
+            "tail": "14",
+            "priceYen": 10,
+            "bodyGroup": 2,
+            "wingGroup": 2
+          }
+        ]
+      },
+      "2B": {
+        "totalYen": 30,
+        "bundles": [
+          {
+            "stage": 1,
+            "slot": 0,
+            "body": "01",
+            "wing": "09",
+            "tail": "13",
+            "priceYen": 5,
+            "bodyGroup": 1,
+            "wingGroup": 1
+          },
+          {
+            "stage": 1,
+            "slot": 2,
+            "body": "2B",
+            "wing": "34",
+            "tail": "00",
+            "priceYen": 15,
+            "bodyGroup": 3,
+            "wingGroup": 0
+          },
+          {
+            "stage": 2,
+            "slot": 0,
+            "body": "02",
+            "wing": "0A",
+            "tail": "14",
+            "priceYen": 10,
+            "bodyGroup": 2,
+            "wingGroup": 2
+          }
+        ]
+      },
+      "2E": {
+        "totalYen": 30,
+        "bundles": [
+          {
+            "stage": 1,
+            "slot": 0,
+            "body": "01",
+            "wing": "09",
+            "tail": "13",
+            "priceYen": 5,
+            "bodyGroup": 1,
+            "wingGroup": 1
+          },
+          {
+            "stage": 1,
+            "slot": 2,
+            "body": "2B",
+            "wing": "34",
+            "tail": "00",
+            "priceYen": 15,
+            "bodyGroup": 3,
+            "wingGroup": 0
+          },
+          {
+            "stage": 2,
+            "slot": 0,
+            "body": "02",
+            "wing": "0A",
+            "tail": "14",
+            "priceYen": 10,
+            "bodyGroup": 2,
+            "wingGroup": 2
+          }
+        ]
+      },
+      "3C": {
+        "totalYen": 17,
+        "bundles": [
+          {
+            "stage": 1,
+            "slot": 0,
+            "body": "01",
+            "wing": "09",
+            "tail": "13",
+            "priceYen": 5,
+            "bodyGroup": 1,
+            "wingGroup": 1
+          },
+          {
+            "stage": 1,
+            "slot": 3,
+            "body": "3E",
+            "wing": "43",
+            "tail": "49",
+            "priceYen": 5,
+            "bodyGroup": 2,
+            "wingGroup": 3
+          },
+          {
+            "stage": 2,
+            "slot": 3,
+            "body": "3F",
+            "wing": "44",
+            "tail": "4A",
+            "priceYen": 7,
+            "bodyGroup": 3,
+            "wingGroup": 0
+          }
+        ]
+      }
+    }
+  },
+  "rodDecisionScope": {
+    "en": "These are purchase/use decisions based only on the rod records, the effects traced in code, and the six ROM-extracted shop lists. The +2 cutoff is time to adjust the target tile before resolution; for lure/casting rods it is scaled below 100 HP, while float/Ayu rods use it directly. Fly rods also set a second half-value threshold whose separate effect is unresolved. The +3 multiplier raises the fish-position threshold before one traced tackle-loss escape branch; it is not a distance in meters and does not prevent other escapes. Prices are full new-purchase quotes, not trade-in upgrade costs. A rod name or picture that includes a fish, plus response codes and fish-ID match fields, does not establish a species pairing or easier catch. No bite-rate or overall catch-success ranking is claimed.",
+    "th": "คำแนะนำนี้ใช้ระเบียนคันเบ็ด ผลที่ตามโค้ดได้ และรายการร้าน 6 ด่านที่ถอดจาก ROM เท่านั้น ค่า +2 คือช่วงที่ขยับช่องเป้าหมายก่อนเกมตรวจจุด; คันลัวร์/คันหวดจะลดค่านี้เมื่อ HP ต่ำกว่า 100 ส่วนคันสายทุ่น/อายุใช้ค่าดิบ คันฟลายยังตั้งค่าครึ่งหนึ่งเพิ่มอีกชุดหนึ่ง แต่ยังระบุผลแยกไม่ได้ ตัวคูณ +3 เพิ่มเกณฑ์ตำแหน่งปลาก่อนเข้าเส้นทางหนีหนึ่งแบบที่ทำให้อุปกรณ์หาย ไม่ใช่ระยะเป็นเมตรและไม่กันปลาหนีทางอื่น ราคาที่บอกคือราคาเต็มสำหรับซื้อใหม่ ไม่ใช่ค่าจ่ายส่วนต่างตอนอัปเกรด ชื่อหรือรูปคันที่มีชื่อปลา รวมทั้งรหัสตอบสนองและรหัสปลา ไม่ได้พิสูจน์ว่าเป็นคันเฉพาะปลาหรือทำให้จับง่ายขึ้น ไม่มีการจัดอันดับโอกาสกินหรือจับสำเร็จโดยรวม",
+    "ja": "購入・使用の判断は、竿レコード、コードで確認した効果、ROMから抽出した全6エリアの店頭在庫だけに基づきます。+2の上限は、判定前に狙うタイルを動かせる時間です。ルアー竿・投げ竿はHP100未満で短縮され、ウキ・アユ竿は記録値をそのまま使います。フライ竿には半分の値を使う別のしきい値もありますが、その効果は未解明です。+3の倍率は、特定の道具損失を伴う逃走分岐までの魚位置しきい値を上げます。メートル換算ではなく、別の逃走も防ぎません。価格は新品を買う場合の全額で、下取り後の強化費用ではありません。魚名の入った竿名や画像、応答コード、魚ID一致欄は、専用竿や釣りやすさの証明ではありません。食いつき率や総合的な釣果の順位は付けていません。"
   }
 }

@@ -18,7 +18,12 @@ Updated 2026-10-04. Gameplay statements retain their existing ROM evidence. This
 | Fish profile float/sinker route action | Item profile, focused on the corresponding rig section |
 | Item profile compatible fish portrait/name | Dedicated fish profile |
 | Item profile explicit fish-map action | Filtered map of a confirmed area |
-| Item profile shop-area action | Area fish map, labelled explicitly; not an invented shop-position pin |
+| Item profile shop-area action | Dedicated shop page focused on that item and area, with separate outdoor entrances and town sellers |
+| Shop stock portrait or name | Dedicated item profile, with shop state retained on Back |
+| Three-fly backup purchase action | Corresponding area shop, with fish profile retained on Back |
+| Town chest reward / required key | Corresponding item profile |
+| Town chest entrance disclosure | Outdoor entrance crop; original full terrain opens from its image action |
+| Shop map crop | Authentic full map image |
 | Ready-made fly components | Individual body/wing/tail profiles |
 | Research equipment portraits/names and fish table names | Item/fish profiles |
 | Title screen, source frames and custom-maker captures | Original full image |
@@ -38,7 +43,7 @@ python3 scripts/build_equipment_guide.py
 node scripts/check_entity_links.cjs
 ```
 
-Result: **PASS — 1,520 localized detail renders and 195,131 local link/asset checks**. These counts include repeated references, not distinct pages or manual clicks.
+Result: **PASS — 1,524 localized detail renders and 208,737 local link/asset checks**. These counts include repeated references, not distinct pages or manual clicks.
 
 Coverage:
 
@@ -71,3 +76,9 @@ Actual local browser clicks passed:
 Catalogue search and filter controls stay disabled until their data and event handlers are ready, preventing early input from being overwritten during initialization.
 
 Individual references were checked exhaustively by the source checker. Browser clicks exercise representative navigation paths; they do not claim a separate manual click of every repeated link.
+
+## Additional shop, town and per-rod paths
+
+Local browser checks: special rod 0D → area-4 seller → paired outdoor entrance #5 → town → matching special stock → rod profile → shop return; EN/JA switching retains stage/place/entrance; 390px shop crops fit the page. Fish 01's fly-backup purchase opens the matching bundle shop and returns to the fish profile. Bottle/key/candle chest cards show acquisition maps, entrance disclosures, reward profiles and key requirements.
+
+Rod 01 → alternative 04 → return to 01 works. All 21 cards render their own decision in Thai; the comparison disclosure includes a recommendation column and suppresses purchase quotes for four rods without recorded stock. Mobile rod advice and alternative portrait links wrap at 390px without horizontal page overflow. Automated rendering additionally covers every rod in all three locales.

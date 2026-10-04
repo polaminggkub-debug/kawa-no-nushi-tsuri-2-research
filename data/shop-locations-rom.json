@@ -1,0 +1,1280 @@
+{
+  "schemaVersion": 1,
+  "rom": {
+    "sha1": "c2103dd94e2a1a65a495fc02adc2e7d040f31212",
+    "sizeBytes": 1572864
+  },
+  "method": "Original-ROM transition/object tables plus Snes9x PPU background captures; no external guide",
+  "coordinateSystems": {
+    "outdoorField": {
+      "mapIds": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6
+      ],
+      "unit": "16-pixel map tile",
+      "origin": "top-left",
+      "sourceTerrain": "catalogue/maps/rom-field-01.png through rom-field-06.png"
+    },
+    "townInterior": {
+      "mapIds": [
+        7,
+        8,
+        9,
+        10,
+        11,
+        12
+      ],
+      "associatedOutdoorMapId": "townMapId - 6",
+      "unit": "16-pixel map tile",
+      "origin": "top-left",
+      "projection": {
+        "pixelX": "tileX * 16 + 8",
+        "pixelY": "tileY * 16 + 8"
+      },
+      "descriptorTiles": {
+        "width": 16,
+        "height": 128
+      },
+      "displayBoundsTiles": {
+        "x": [
+          0,
+          15
+        ],
+        "y": [
+          0,
+          79
+        ]
+      },
+      "displayNote": "The displayed crop covers the five entrance/room bands used by recorded entrances and town objects; it does not claim the entire 128-row loader descriptor is authored town terrain."
+    }
+  },
+  "sources": {
+    "entranceTransitionRoutine": "00:9CC0..9E09",
+    "outdoorEntranceTable": {
+      "cpuAddress": "00:9FB9",
+      "fileOffset": "0x001FB9",
+      "groupStrideBytes": 24
+    },
+    "townArrivalTable": {
+      "cpuAddress": "00:A049",
+      "fileOffset": "0x002049"
+    },
+    "townObjectPointerTable": {
+      "cpuAddress": "00:BD76",
+      "fileOffset": "0x003D76"
+    },
+    "shopDispatcher": "00:CED7..CF28",
+    "normalShopHandler": "03:8634",
+    "specialRodHandler": "03:86E1..8733",
+    "chestHandler": "00:CFB1..D059",
+    "relatedResearch": [
+      "docs/shop-stock-research.md",
+      "docs/quest-tool-use-research.md"
+    ]
+  },
+  "areas": [
+    {
+      "outdoorArea": 1,
+      "outdoorMapId": 1,
+      "outdoorFieldBoundsTiles": {
+        "widthTiles": 16,
+        "heightTiles": 256
+      },
+      "townMapId": 7,
+      "townTerrain": {
+        "image": "maps/rom-town-07.png",
+        "sha256": "b2767fb5c274e5ac9e0293c2c8ed9fad0ec68ddecc1d34578bb362b8bc74d051",
+        "widthPx": 256,
+        "heightPx": 1280,
+        "descriptorTiles": {
+          "width": 16,
+          "height": 128
+        },
+        "displayBoundsTiles": {
+          "x": [
+            0,
+            15
+          ],
+          "y": [
+            0,
+            79
+          ]
+        },
+        "spritesIncluded": false
+      },
+      "entrances": [
+        {
+          "ordinal": 0,
+          "fieldTile": {
+            "x": 8,
+            "y": 183
+          },
+          "townArrival": {
+            "mapId": 7,
+            "x": 7,
+            "y": 13
+          },
+          "source": {
+            "fieldFileOffset": "0x001FB9",
+            "fieldCpuAddress": "00:9FB9",
+            "arrivalFileOffset": "0x002049",
+            "arrivalCpuAddress": "00:A049"
+          }
+        },
+        {
+          "ordinal": 1,
+          "fieldTile": {
+            "x": 12,
+            "y": 182
+          },
+          "townArrival": {
+            "mapId": 7,
+            "x": 7,
+            "y": 29
+          },
+          "source": {
+            "fieldFileOffset": "0x001FBD",
+            "fieldCpuAddress": "00:9FBD",
+            "arrivalFileOffset": "0x00204D",
+            "arrivalCpuAddress": "00:A04D"
+          }
+        },
+        {
+          "ordinal": 2,
+          "fieldTile": {
+            "x": 13,
+            "y": 185
+          },
+          "townArrival": {
+            "mapId": 7,
+            "x": 7,
+            "y": 45
+          },
+          "source": {
+            "fieldFileOffset": "0x001FC1",
+            "fieldCpuAddress": "00:9FC1",
+            "arrivalFileOffset": "0x002051",
+            "arrivalCpuAddress": "00:A051"
+          }
+        },
+        {
+          "ordinal": 3,
+          "fieldTile": {
+            "x": 11,
+            "y": 179
+          },
+          "townArrival": {
+            "mapId": 7,
+            "x": 7,
+            "y": 61
+          },
+          "source": {
+            "fieldFileOffset": "0x001FC5",
+            "fieldCpuAddress": "00:9FC5",
+            "arrivalFileOffset": "0x002055",
+            "arrivalCpuAddress": "00:A055"
+          }
+        },
+        {
+          "ordinal": 4,
+          "fieldTile": {
+            "x": 12,
+            "y": 189
+          },
+          "townArrival": {
+            "mapId": 7,
+            "x": 7,
+            "y": 77
+          },
+          "source": {
+            "fieldFileOffset": "0x001FC9",
+            "fieldCpuAddress": "00:9FC9",
+            "arrivalFileOffset": "0x002059",
+            "arrivalCpuAddress": "00:A059"
+          }
+        }
+      ],
+      "unusedEntranceRecords": [],
+      "interactions": [
+        {
+          "interactionSlotHex": "08",
+          "mode": 2,
+          "kind": "regular-shop",
+          "townTile": {
+            "x": 7,
+            "y": 24
+          },
+          "handler": "03:8634",
+          "source": {
+            "pointerFileOffset": "0x003D82",
+            "pointerValue": "0xC082",
+            "coordinateFileOffset": "0x004082",
+            "dispatcher": "00:CED7..CF28"
+          }
+        },
+        {
+          "interactionSlotHex": "10",
+          "mode": 3,
+          "kind": "unclassified-interaction",
+          "townTile": {
+            "x": 5,
+            "y": 20
+          },
+          "handler": "03:9517",
+          "source": {
+            "pointerFileOffset": "0x003D82",
+            "pointerValue": "0xC082",
+            "coordinateFileOffset": "0x004092",
+            "dispatcher": "00:CED7..CF28"
+          }
+        }
+      ],
+      "townChests": [
+        {
+          "interactionSlotHex": "0E",
+          "townTile": {
+            "x": 5,
+            "y": 68
+          },
+          "handler": "00:CFB1..D059",
+          "reward": {
+            "itemCategory": "bait",
+            "itemId": "11",
+            "requiresKey": true,
+            "itemName": "Potato bait"
+          },
+          "source": {
+            "coordinateFileOffset": "0x00408E"
+          }
+        }
+      ],
+      "verifiedAccess": [
+        {
+          "interactionSlotHex": "08",
+          "entranceOrdinal": 1,
+          "probe": {
+            "townArrival": {
+              "x": 7,
+              "y": 29
+            },
+            "result": "normal shop opened",
+            "observedMode": 2,
+            "observedSlotHex": "08",
+            "runtimeEvidence": "original-ROM Snes9x field state and WRAM after directional input and A",
+            "controls": [
+              "Up×96",
+              "A"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "outdoorArea": 2,
+      "outdoorMapId": 2,
+      "outdoorFieldBoundsTiles": {
+        "widthTiles": 128,
+        "heightTiles": 32
+      },
+      "townMapId": 8,
+      "townTerrain": {
+        "image": "maps/rom-town-08.png",
+        "sha256": "f8d7844ed78be19b505ebfac9abc67581c1eda91a99b7c605bfb3bbdbaad2d46",
+        "widthPx": 256,
+        "heightPx": 1280,
+        "descriptorTiles": {
+          "width": 16,
+          "height": 128
+        },
+        "displayBoundsTiles": {
+          "x": [
+            0,
+            15
+          ],
+          "y": [
+            0,
+            79
+          ]
+        },
+        "spritesIncluded": false
+      },
+      "entrances": [
+        {
+          "ordinal": 0,
+          "fieldTile": {
+            "x": 85,
+            "y": 28
+          },
+          "townArrival": {
+            "mapId": 8,
+            "x": 7,
+            "y": 13
+          },
+          "source": {
+            "fieldFileOffset": "0x001FD1",
+            "fieldCpuAddress": "00:9FD1",
+            "arrivalFileOffset": "0x002049",
+            "arrivalCpuAddress": "00:A049"
+          }
+        },
+        {
+          "ordinal": 1,
+          "fieldTile": {
+            "x": 91,
+            "y": 25
+          },
+          "townArrival": {
+            "mapId": 8,
+            "x": 7,
+            "y": 29
+          },
+          "source": {
+            "fieldFileOffset": "0x001FD5",
+            "fieldCpuAddress": "00:9FD5",
+            "arrivalFileOffset": "0x00204D",
+            "arrivalCpuAddress": "00:A04D"
+          }
+        },
+        {
+          "ordinal": 2,
+          "fieldTile": {
+            "x": 86,
+            "y": 24
+          },
+          "townArrival": {
+            "mapId": 8,
+            "x": 7,
+            "y": 45
+          },
+          "source": {
+            "fieldFileOffset": "0x001FD9",
+            "fieldCpuAddress": "00:9FD9",
+            "arrivalFileOffset": "0x002051",
+            "arrivalCpuAddress": "00:A051"
+          }
+        },
+        {
+          "ordinal": 3,
+          "fieldTile": {
+            "x": 81,
+            "y": 26
+          },
+          "townArrival": {
+            "mapId": 8,
+            "x": 7,
+            "y": 61
+          },
+          "source": {
+            "fieldFileOffset": "0x001FDD",
+            "fieldCpuAddress": "00:9FDD",
+            "arrivalFileOffset": "0x002055",
+            "arrivalCpuAddress": "00:A055"
+          }
+        }
+      ],
+      "unusedEntranceRecords": [
+        {
+          "ordinal": 4,
+          "raw": [
+            255,
+            255
+          ],
+          "reason": "outside ROM-rendered field bounds"
+        }
+      ],
+      "interactions": [
+        {
+          "interactionSlotHex": "08",
+          "mode": 2,
+          "kind": "regular-shop",
+          "townTile": {
+            "x": 7,
+            "y": 23
+          },
+          "handler": "03:8634",
+          "source": {
+            "pointerFileOffset": "0x003D84",
+            "pointerValue": "0xC0C4",
+            "coordinateFileOffset": "0x0040C4",
+            "dispatcher": "00:CED7..CF28"
+          }
+        },
+        {
+          "interactionSlotHex": "10",
+          "mode": 3,
+          "kind": "unclassified-interaction",
+          "townTile": {
+            "x": 5,
+            "y": 24
+          },
+          "handler": "03:9517",
+          "source": {
+            "pointerFileOffset": "0x003D84",
+            "pointerValue": "0xC0C4",
+            "coordinateFileOffset": "0x0040D4",
+            "dispatcher": "00:CED7..CF28"
+          }
+        }
+      ],
+      "townChests": [
+        {
+          "interactionSlotHex": "0E",
+          "townTile": {
+            "x": 4,
+            "y": 6
+          },
+          "handler": "00:CFB1..D059",
+          "reward": {
+            "itemCategory": "bait",
+            "itemId": "0B",
+            "requiresKey": true,
+            "itemName": "Waxworm bait"
+          },
+          "source": {
+            "coordinateFileOffset": "0x0040D0"
+          }
+        }
+      ],
+      "verifiedAccess": [
+        {
+          "interactionSlotHex": "08",
+          "entranceOrdinal": 1,
+          "probe": {
+            "townArrival": {
+              "x": 7,
+              "y": 29
+            },
+            "result": "normal shop opened",
+            "observedMode": 2,
+            "observedSlotHex": "08",
+            "runtimeEvidence": "original-ROM Snes9x field state and WRAM after directional input and A",
+            "controls": [
+              "Up×128",
+              "A"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "outdoorArea": 3,
+      "outdoorMapId": 3,
+      "outdoorFieldBoundsTiles": {
+        "widthTiles": 32,
+        "heightTiles": 128
+      },
+      "townMapId": 9,
+      "townTerrain": {
+        "image": "maps/rom-town-09.png",
+        "sha256": "9ddec99deca451fc7d4af8768e3ecb9a718e78b4f66a9497d8c06d5a409ccfbc",
+        "widthPx": 256,
+        "heightPx": 1280,
+        "descriptorTiles": {
+          "width": 16,
+          "height": 128
+        },
+        "displayBoundsTiles": {
+          "x": [
+            0,
+            15
+          ],
+          "y": [
+            0,
+            79
+          ]
+        },
+        "spritesIncluded": false
+      },
+      "entrances": [
+        {
+          "ordinal": 0,
+          "fieldTile": {
+            "x": 26,
+            "y": 39
+          },
+          "townArrival": {
+            "mapId": 9,
+            "x": 7,
+            "y": 13
+          },
+          "source": {
+            "fieldFileOffset": "0x001FE9",
+            "fieldCpuAddress": "00:9FE9",
+            "arrivalFileOffset": "0x002049",
+            "arrivalCpuAddress": "00:A049"
+          }
+        },
+        {
+          "ordinal": 1,
+          "fieldTile": {
+            "x": 20,
+            "y": 86
+          },
+          "townArrival": {
+            "mapId": 9,
+            "x": 7,
+            "y": 29
+          },
+          "source": {
+            "fieldFileOffset": "0x001FED",
+            "fieldCpuAddress": "00:9FED",
+            "arrivalFileOffset": "0x00204D",
+            "arrivalCpuAddress": "00:A04D"
+          }
+        },
+        {
+          "ordinal": 2,
+          "fieldTile": {
+            "x": 28,
+            "y": 91
+          },
+          "townArrival": {
+            "mapId": 9,
+            "x": 7,
+            "y": 45
+          },
+          "source": {
+            "fieldFileOffset": "0x001FF1",
+            "fieldCpuAddress": "00:9FF1",
+            "arrivalFileOffset": "0x002051",
+            "arrivalCpuAddress": "00:A051"
+          }
+        },
+        {
+          "ordinal": 3,
+          "fieldTile": {
+            "x": 27,
+            "y": 81
+          },
+          "townArrival": {
+            "mapId": 9,
+            "x": 7,
+            "y": 61
+          },
+          "source": {
+            "fieldFileOffset": "0x001FF5",
+            "fieldCpuAddress": "00:9FF5",
+            "arrivalFileOffset": "0x002055",
+            "arrivalCpuAddress": "00:A055"
+          }
+        }
+      ],
+      "unusedEntranceRecords": [
+        {
+          "ordinal": 4,
+          "raw": [
+            255,
+            255
+          ],
+          "reason": "outside ROM-rendered field bounds"
+        }
+      ],
+      "interactions": [
+        {
+          "interactionSlotHex": "08",
+          "mode": 2,
+          "kind": "regular-shop",
+          "townTile": {
+            "x": 7,
+            "y": 24
+          },
+          "handler": "03:8634",
+          "source": {
+            "pointerFileOffset": "0x003D86",
+            "pointerValue": "0xC0DC",
+            "coordinateFileOffset": "0x0040DC",
+            "dispatcher": "00:CED7..CF28"
+          }
+        },
+        {
+          "interactionSlotHex": "10",
+          "mode": 3,
+          "kind": "unclassified-interaction",
+          "townTile": {
+            "x": 10,
+            "y": 22
+          },
+          "handler": "03:9517",
+          "source": {
+            "pointerFileOffset": "0x003D86",
+            "pointerValue": "0xC0DC",
+            "coordinateFileOffset": "0x0040EC",
+            "dispatcher": "00:CED7..CF28"
+          }
+        }
+      ],
+      "townChests": [
+        {
+          "interactionSlotHex": "0E",
+          "townTile": {
+            "x": 6,
+            "y": 4
+          },
+          "handler": "00:CFB1..D059",
+          "reward": {
+            "itemCategory": "general_tool",
+            "itemId": "0F",
+            "requiresKey": false,
+            "itemName": "Empty milk bottle"
+          },
+          "source": {
+            "coordinateFileOffset": "0x0040E8"
+          }
+        }
+      ],
+      "verifiedAccess": [
+        {
+          "interactionSlotHex": "08",
+          "entranceOrdinal": 1,
+          "probe": {
+            "townArrival": {
+              "x": 7,
+              "y": 29
+            },
+            "result": "normal shop opened",
+            "observedMode": 2,
+            "observedSlotHex": "08",
+            "runtimeEvidence": "original-ROM Snes9x field state and WRAM after directional input and A",
+            "controls": [
+              "Up×128",
+              "A"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "outdoorArea": 4,
+      "outdoorMapId": 4,
+      "outdoorFieldBoundsTiles": {
+        "widthTiles": 64,
+        "heightTiles": 64
+      },
+      "townMapId": 10,
+      "townTerrain": {
+        "image": "maps/rom-town-10.png",
+        "sha256": "1fad885b61a4035e119c836464437c7b91b2c6b4b111344bb2d8c44449e2fc80",
+        "widthPx": 256,
+        "heightPx": 1280,
+        "descriptorTiles": {
+          "width": 16,
+          "height": 128
+        },
+        "displayBoundsTiles": {
+          "x": [
+            0,
+            15
+          ],
+          "y": [
+            0,
+            79
+          ]
+        },
+        "spritesIncluded": false
+      },
+      "entrances": [
+        {
+          "ordinal": 0,
+          "fieldTile": {
+            "x": 61,
+            "y": 21
+          },
+          "townArrival": {
+            "mapId": 10,
+            "x": 7,
+            "y": 13
+          },
+          "source": {
+            "fieldFileOffset": "0x002001",
+            "fieldCpuAddress": "00:A001",
+            "arrivalFileOffset": "0x002049",
+            "arrivalCpuAddress": "00:A049"
+          }
+        },
+        {
+          "ordinal": 1,
+          "fieldTile": {
+            "x": 51,
+            "y": 27
+          },
+          "townArrival": {
+            "mapId": 10,
+            "x": 7,
+            "y": 29
+          },
+          "source": {
+            "fieldFileOffset": "0x002005",
+            "fieldCpuAddress": "00:A005",
+            "arrivalFileOffset": "0x00204D",
+            "arrivalCpuAddress": "00:A04D"
+          }
+        },
+        {
+          "ordinal": 2,
+          "fieldTile": {
+            "x": 41,
+            "y": 22
+          },
+          "townArrival": {
+            "mapId": 10,
+            "x": 7,
+            "y": 45
+          },
+          "source": {
+            "fieldFileOffset": "0x002009",
+            "fieldCpuAddress": "00:A009",
+            "arrivalFileOffset": "0x002051",
+            "arrivalCpuAddress": "00:A051"
+          }
+        },
+        {
+          "ordinal": 3,
+          "fieldTile": {
+            "x": 60,
+            "y": 29
+          },
+          "townArrival": {
+            "mapId": 10,
+            "x": 7,
+            "y": 61
+          },
+          "source": {
+            "fieldFileOffset": "0x00200D",
+            "fieldCpuAddress": "00:A00D",
+            "arrivalFileOffset": "0x002055",
+            "arrivalCpuAddress": "00:A055"
+          }
+        },
+        {
+          "ordinal": 4,
+          "fieldTile": {
+            "x": 12,
+            "y": 62
+          },
+          "townArrival": {
+            "mapId": 10,
+            "x": 7,
+            "y": 77
+          },
+          "source": {
+            "fieldFileOffset": "0x002011",
+            "fieldCpuAddress": "00:A011",
+            "arrivalFileOffset": "0x002059",
+            "arrivalCpuAddress": "00:A059"
+          }
+        }
+      ],
+      "unusedEntranceRecords": [],
+      "interactions": [
+        {
+          "interactionSlotHex": "08",
+          "mode": 2,
+          "kind": "regular-shop",
+          "townTile": {
+            "x": 7,
+            "y": 23
+          },
+          "handler": "03:8634",
+          "source": {
+            "pointerFileOffset": "0x003D88",
+            "pointerValue": "0xC0F4",
+            "coordinateFileOffset": "0x0040F4",
+            "dispatcher": "00:CED7..CF28"
+          }
+        },
+        {
+          "interactionSlotHex": "10",
+          "mode": 7,
+          "kind": "special-rod-shop",
+          "townTile": {
+            "x": 8,
+            "y": 74
+          },
+          "handler": "03:86E1",
+          "source": {
+            "pointerFileOffset": "0x003D88",
+            "pointerValue": "0xC0F4",
+            "coordinateFileOffset": "0x004104",
+            "dispatcher": "00:CED7..CF28"
+          }
+        }
+      ],
+      "townChests": [
+        {
+          "interactionSlotHex": "0E",
+          "townTile": {
+            "x": 4,
+            "y": 6
+          },
+          "handler": "00:CFB1..D059",
+          "reward": {
+            "itemCategory": "rod",
+            "itemId": "0A",
+            "requiresKey": true,
+            "itemName": "Small lure rod"
+          },
+          "source": {
+            "coordinateFileOffset": "0x004100"
+          }
+        }
+      ],
+      "verifiedAccess": [
+        {
+          "interactionSlotHex": "08",
+          "entranceOrdinal": 1,
+          "probe": {
+            "townArrival": {
+              "x": 7,
+              "y": 29
+            },
+            "result": "normal shop opened",
+            "observedMode": 2,
+            "observedSlotHex": "08",
+            "runtimeEvidence": "original-ROM Snes9x field state and WRAM after directional input and A",
+            "controls": [
+              "Up×80",
+              "Left×48",
+              "Up×48",
+              "Right×48",
+              "Down×1",
+              "A"
+            ]
+          }
+        },
+        {
+          "interactionSlotHex": "10",
+          "entranceOrdinal": 4,
+          "probe": {
+            "townArrival": {
+              "x": 7,
+              "y": 77
+            },
+            "result": "special rod menu opened",
+            "observedMode": 7,
+            "observedSlotHex": "10",
+            "runtimeEvidence": "original-ROM Snes9x field state and WRAM after directional input and A",
+            "controls": [
+              "Up×64",
+              "Right×16",
+              "A"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "outdoorArea": 5,
+      "outdoorMapId": 5,
+      "outdoorFieldBoundsTiles": {
+        "widthTiles": 128,
+        "heightTiles": 32
+      },
+      "townMapId": 11,
+      "townTerrain": {
+        "image": "maps/rom-town-11.png",
+        "sha256": "a7ec7db936ac267c05d5f47f2635f6d204cce115cd9d6d3f032ea6b06797b994",
+        "widthPx": 256,
+        "heightPx": 1280,
+        "descriptorTiles": {
+          "width": 16,
+          "height": 128
+        },
+        "displayBoundsTiles": {
+          "x": [
+            0,
+            15
+          ],
+          "y": [
+            0,
+            79
+          ]
+        },
+        "spritesIncluded": false
+      },
+      "entrances": [
+        {
+          "ordinal": 0,
+          "fieldTile": {
+            "x": 59,
+            "y": 27
+          },
+          "townArrival": {
+            "mapId": 11,
+            "x": 7,
+            "y": 13
+          },
+          "source": {
+            "fieldFileOffset": "0x002019",
+            "fieldCpuAddress": "00:A019",
+            "arrivalFileOffset": "0x002049",
+            "arrivalCpuAddress": "00:A049"
+          }
+        },
+        {
+          "ordinal": 1,
+          "fieldTile": {
+            "x": 52,
+            "y": 26
+          },
+          "townArrival": {
+            "mapId": 11,
+            "x": 7,
+            "y": 29
+          },
+          "source": {
+            "fieldFileOffset": "0x00201D",
+            "fieldCpuAddress": "00:A01D",
+            "arrivalFileOffset": "0x00204D",
+            "arrivalCpuAddress": "00:A04D"
+          }
+        },
+        {
+          "ordinal": 2,
+          "fieldTile": {
+            "x": 64,
+            "y": 22
+          },
+          "townArrival": {
+            "mapId": 11,
+            "x": 7,
+            "y": 45
+          },
+          "source": {
+            "fieldFileOffset": "0x002021",
+            "fieldCpuAddress": "00:A021",
+            "arrivalFileOffset": "0x002051",
+            "arrivalCpuAddress": "00:A051"
+          }
+        },
+        {
+          "ordinal": 3,
+          "fieldTile": {
+            "x": 59,
+            "y": 21
+          },
+          "townArrival": {
+            "mapId": 11,
+            "x": 7,
+            "y": 61
+          },
+          "source": {
+            "fieldFileOffset": "0x002025",
+            "fieldCpuAddress": "00:A025",
+            "arrivalFileOffset": "0x002055",
+            "arrivalCpuAddress": "00:A055"
+          }
+        },
+        {
+          "ordinal": 4,
+          "fieldTile": {
+            "x": 2,
+            "y": 3
+          },
+          "townArrival": {
+            "mapId": 11,
+            "x": 7,
+            "y": 77
+          },
+          "source": {
+            "fieldFileOffset": "0x002029",
+            "fieldCpuAddress": "00:A029",
+            "arrivalFileOffset": "0x002059",
+            "arrivalCpuAddress": "00:A059"
+          }
+        }
+      ],
+      "unusedEntranceRecords": [],
+      "interactions": [
+        {
+          "interactionSlotHex": "08",
+          "mode": 2,
+          "kind": "regular-shop",
+          "townTile": {
+            "x": 7,
+            "y": 24
+          },
+          "handler": "03:8634",
+          "source": {
+            "pointerFileOffset": "0x003D8A",
+            "pointerValue": "0xC10C",
+            "coordinateFileOffset": "0x00410C",
+            "dispatcher": "00:CED7..CF28"
+          }
+        },
+        {
+          "interactionSlotHex": "10",
+          "mode": 7,
+          "kind": "special-rod-shop",
+          "townTile": {
+            "x": 7,
+            "y": 74
+          },
+          "handler": "03:86E1",
+          "source": {
+            "pointerFileOffset": "0x003D8A",
+            "pointerValue": "0xC10C",
+            "coordinateFileOffset": "0x00411C",
+            "dispatcher": "00:CED7..CF28"
+          }
+        }
+      ],
+      "townChests": [
+        {
+          "interactionSlotHex": "0E",
+          "townTile": {
+            "x": 4,
+            "y": 6
+          },
+          "handler": "00:CFB1..D059",
+          "reward": {
+            "itemCategory": "general_tool",
+            "itemId": "11",
+            "requiresKey": false,
+            "itemName": "Lottery ticket"
+          },
+          "source": {
+            "coordinateFileOffset": "0x004118"
+          }
+        }
+      ],
+      "verifiedAccess": [
+        {
+          "interactionSlotHex": "08",
+          "entranceOrdinal": 1,
+          "probe": {
+            "townArrival": {
+              "x": 7,
+              "y": 29
+            },
+            "result": "normal shop opened",
+            "observedMode": 2,
+            "observedSlotHex": "08",
+            "runtimeEvidence": "original-ROM Snes9x field state and WRAM after directional input and A",
+            "controls": [
+              "Up×128",
+              "A"
+            ]
+          }
+        },
+        {
+          "interactionSlotHex": "10",
+          "entranceOrdinal": 4,
+          "probe": {
+            "townArrival": {
+              "x": 7,
+              "y": 77
+            },
+            "result": "special rod menu opened",
+            "observedMode": 7,
+            "observedSlotHex": "10",
+            "runtimeEvidence": "original-ROM Snes9x field state and WRAM after directional input and A",
+            "controls": [
+              "Up×64",
+              "A"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "outdoorArea": 6,
+      "outdoorMapId": 6,
+      "outdoorFieldBoundsTiles": {
+        "widthTiles": 64,
+        "heightTiles": 64
+      },
+      "townMapId": 12,
+      "townTerrain": {
+        "image": "maps/rom-town-12.png",
+        "sha256": "f6a39ca681d4624a9722832f213241e5fd4adacbd6979f96dc2974275cd03531",
+        "widthPx": 256,
+        "heightPx": 1280,
+        "descriptorTiles": {
+          "width": 16,
+          "height": 128
+        },
+        "displayBoundsTiles": {
+          "x": [
+            0,
+            15
+          ],
+          "y": [
+            0,
+            79
+          ]
+        },
+        "spritesIncluded": false
+      },
+      "entrances": [
+        {
+          "ordinal": 0,
+          "fieldTile": {
+            "x": 9,
+            "y": 41
+          },
+          "townArrival": {
+            "mapId": 12,
+            "x": 7,
+            "y": 13
+          },
+          "source": {
+            "fieldFileOffset": "0x002031",
+            "fieldCpuAddress": "00:A031",
+            "arrivalFileOffset": "0x002049",
+            "arrivalCpuAddress": "00:A049"
+          }
+        },
+        {
+          "ordinal": 1,
+          "fieldTile": {
+            "x": 2,
+            "y": 49
+          },
+          "townArrival": {
+            "mapId": 12,
+            "x": 7,
+            "y": 29
+          },
+          "source": {
+            "fieldFileOffset": "0x002035",
+            "fieldCpuAddress": "00:A035",
+            "arrivalFileOffset": "0x00204D",
+            "arrivalCpuAddress": "00:A04D"
+          }
+        },
+        {
+          "ordinal": 2,
+          "fieldTile": {
+            "x": 20,
+            "y": 42
+          },
+          "townArrival": {
+            "mapId": 12,
+            "x": 7,
+            "y": 45
+          },
+          "source": {
+            "fieldFileOffset": "0x002039",
+            "fieldCpuAddress": "00:A039",
+            "arrivalFileOffset": "0x002051",
+            "arrivalCpuAddress": "00:A051"
+          }
+        },
+        {
+          "ordinal": 3,
+          "fieldTile": {
+            "x": 15,
+            "y": 42
+          },
+          "townArrival": {
+            "mapId": 12,
+            "x": 7,
+            "y": 61
+          },
+          "source": {
+            "fieldFileOffset": "0x00203D",
+            "fieldCpuAddress": "00:A03D",
+            "arrivalFileOffset": "0x002055",
+            "arrivalCpuAddress": "00:A055"
+          }
+        },
+        {
+          "ordinal": 4,
+          "fieldTile": {
+            "x": 58,
+            "y": 31
+          },
+          "townArrival": {
+            "mapId": 12,
+            "x": 7,
+            "y": 77
+          },
+          "source": {
+            "fieldFileOffset": "0x002041",
+            "fieldCpuAddress": "00:A041",
+            "arrivalFileOffset": "0x002059",
+            "arrivalCpuAddress": "00:A059"
+          }
+        }
+      ],
+      "unusedEntranceRecords": [],
+      "interactions": [
+        {
+          "interactionSlotHex": "08",
+          "mode": 2,
+          "kind": "regular-shop",
+          "townTile": {
+            "x": 8,
+            "y": 23
+          },
+          "handler": "03:8634",
+          "source": {
+            "pointerFileOffset": "0x003D8C",
+            "pointerValue": "0xC124",
+            "coordinateFileOffset": "0x004124",
+            "dispatcher": "00:CED7..CF28"
+          }
+        },
+        {
+          "interactionSlotHex": "10",
+          "mode": 7,
+          "kind": "special-rod-shop",
+          "townTile": {
+            "x": 7,
+            "y": 74
+          },
+          "handler": "03:86E1",
+          "source": {
+            "pointerFileOffset": "0x003D8C",
+            "pointerValue": "0xC124",
+            "coordinateFileOffset": "0x004134",
+            "dispatcher": "00:CED7..CF28"
+          }
+        }
+      ],
+      "townChests": [
+        {
+          "interactionSlotHex": "0E",
+          "townTile": {
+            "x": 4,
+            "y": 6
+          },
+          "handler": "00:CFB1..D059",
+          "reward": {
+            "itemCategory": "general_tool",
+            "itemId": "12",
+            "requiresKey": true,
+            "itemName": "Candle"
+          },
+          "source": {
+            "coordinateFileOffset": "0x004130"
+          }
+        }
+      ],
+      "verifiedAccess": [
+        {
+          "interactionSlotHex": "10",
+          "entranceOrdinal": 4,
+          "probe": {
+            "townArrival": {
+              "x": 7,
+              "y": 77
+            },
+            "result": "special rod menu opened",
+            "observedMode": 7,
+            "observedSlotHex": "10",
+            "runtimeEvidence": "original-ROM Snes9x field state and WRAM after directional input and A",
+            "controls": [
+              "Up×64",
+              "A"
+            ]
+          }
+        }
+      ]
+    }
+  ]
+}

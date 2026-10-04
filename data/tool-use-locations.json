@@ -8,6 +8,44 @@
     "0F": [
       {
         "stage": 3,
+        "mapId": 9,
+        "context": "town",
+        "name": {
+          "en": "Town chest: take the empty bottle before visiting the cow",
+          "ja": "町の宝箱：牛を訪ねる前に空きビンを取る",
+          "th": "หีบในเมือง: รับขวดเปล่าก่อนไปเติมนมกับวัว"
+        },
+        "tileX": 6,
+        "tileY": 4,
+        "image": "maps/tool-use-town-chest-09.png",
+        "fullImage": "maps/rom-town-09.png",
+        "width": 256,
+        "height": 384,
+        "pin": {
+          "x": 0.40625,
+          "y": 0.1875
+        },
+        "source": {
+          "objectSlotHex": "0E",
+          "coordinateFileOffset": "0x0040E8",
+          "consumer": "00:D0EA..D113"
+        },
+        "townEntranceOrdinal": 0,
+        "approach": {
+          "image": "maps/tool-entry-town-chest-09.png",
+          "fullImage": "maps/rom-field-03.png",
+          "width": 384,
+          "height": 384,
+          "tileX": 26,
+          "tileY": 39,
+          "pin": {
+            "x": 0.7708333333333334,
+            "y": 0.5
+          }
+        }
+      },
+      {
+        "stage": 3,
         "name": {
           "en": "Cow: refill the empty bottle",
           "ja": "牛：空きビンに牛乳を入れる",
@@ -166,6 +204,52 @@
     "12": [
       {
         "stage": 6,
+        "mapId": 12,
+        "context": "town",
+        "name": {
+          "en": "Town chest: bring the key and leave room for the reward",
+          "ja": "町の宝箱：カギを持参し、報酬用の空きを用意する",
+          "th": "หีบในเมือง: พกกุญแจและเว้นช่องสำหรับรางวัลก่อนเปิด"
+        },
+        "tileX": 4,
+        "tileY": 6,
+        "image": "maps/tool-use-town-chest-12.png",
+        "fullImage": "maps/rom-town-12.png",
+        "width": 256,
+        "height": 384,
+        "pin": {
+          "x": 0.28125,
+          "y": 0.2708333333333333
+        },
+        "source": {
+          "objectSlotHex": "0E",
+          "coordinateFileOffset": "0x004130",
+          "consumer": "00:CFB1..D059"
+        },
+        "townEntranceOrdinal": 0,
+        "approach": {
+          "image": "maps/tool-entry-town-chest-12.png",
+          "fullImage": "maps/rom-field-06.png",
+          "width": 384,
+          "height": 384,
+          "tileX": 9,
+          "tileY": 41,
+          "pin": {
+            "x": 0.3958333333333333,
+            "y": 0.5
+          }
+        },
+        "rewardItem": {
+          "category": "general_tool",
+          "id": "12"
+        },
+        "requiredItem": {
+          "category": "general_tool",
+          "id": "17"
+        }
+      },
+      {
+        "stage": 6,
         "name": {
           "en": "Give the candle for the reunion event",
           "ja": "再会イベントのロウソクを渡す",
@@ -270,6 +354,192 @@
           "objectSlotHex": "1E",
           "coordinateFileOffset": "0x003F52",
           "consumer": "00:CAF6..CB1D"
+        }
+      }
+    ],
+    "17": [
+      {
+        "stage": 1,
+        "mapId": 7,
+        "context": "town",
+        "name": {
+          "en": "Town chest: bring the key and leave room for the reward",
+          "ja": "町の宝箱：カギを持参し、報酬用の空きを用意する",
+          "th": "หีบในเมือง: พกกุญแจและเว้นช่องสำหรับรางวัลก่อนเปิด"
+        },
+        "tileX": 5,
+        "tileY": 68,
+        "image": "maps/tool-use-town-chest-07.png",
+        "fullImage": "maps/rom-town-07.png",
+        "width": 256,
+        "height": 384,
+        "pin": {
+          "x": 0.34375,
+          "y": 0.5208333333333334
+        },
+        "source": {
+          "objectSlotHex": "0E",
+          "coordinateFileOffset": "0x00408E",
+          "consumer": "00:CFB1..D059"
+        },
+        "townEntranceOrdinal": 4,
+        "approach": {
+          "image": "maps/tool-entry-town-chest-07.png",
+          "fullImage": "maps/rom-field-01.png",
+          "width": 256,
+          "height": 384,
+          "tileX": 12,
+          "tileY": 189,
+          "pin": {
+            "x": 0.78125,
+            "y": 0.5
+          }
+        },
+        "rewardItem": {
+          "category": "bait",
+          "id": "11"
+        },
+        "requiredItem": {
+          "category": "general_tool",
+          "id": "17"
+        }
+      },
+      {
+        "stage": 2,
+        "mapId": 8,
+        "context": "town",
+        "name": {
+          "en": "Town chest: bring the key and leave room for the reward",
+          "ja": "町の宝箱：カギを持参し、報酬用の空きを用意する",
+          "th": "หีบในเมือง: พกกุญแจและเว้นช่องสำหรับรางวัลก่อนเปิด"
+        },
+        "tileX": 4,
+        "tileY": 6,
+        "image": "maps/tool-use-town-chest-08.png",
+        "fullImage": "maps/rom-town-08.png",
+        "width": 256,
+        "height": 384,
+        "pin": {
+          "x": 0.28125,
+          "y": 0.2708333333333333
+        },
+        "source": {
+          "objectSlotHex": "0E",
+          "coordinateFileOffset": "0x0040D0",
+          "consumer": "00:CFB1..D059"
+        },
+        "townEntranceOrdinal": 0,
+        "approach": {
+          "image": "maps/tool-entry-town-chest-08.png",
+          "fullImage": "maps/rom-field-02.png",
+          "width": 384,
+          "height": 384,
+          "tileX": 85,
+          "tileY": 28,
+          "pin": {
+            "x": 0.5,
+            "y": 0.8541666666666666
+          }
+        },
+        "rewardItem": {
+          "category": "bait",
+          "id": "0B"
+        },
+        "requiredItem": {
+          "category": "general_tool",
+          "id": "17"
+        }
+      },
+      {
+        "stage": 4,
+        "mapId": 10,
+        "context": "town",
+        "name": {
+          "en": "Town chest: bring the key and leave room for the reward",
+          "ja": "町の宝箱：カギを持参し、報酬用の空きを用意する",
+          "th": "หีบในเมือง: พกกุญแจและเว้นช่องสำหรับรางวัลก่อนเปิด"
+        },
+        "tileX": 4,
+        "tileY": 6,
+        "image": "maps/tool-use-town-chest-10.png",
+        "fullImage": "maps/rom-town-10.png",
+        "width": 256,
+        "height": 384,
+        "pin": {
+          "x": 0.28125,
+          "y": 0.2708333333333333
+        },
+        "source": {
+          "objectSlotHex": "0E",
+          "coordinateFileOffset": "0x004100",
+          "consumer": "00:CFB1..D059"
+        },
+        "townEntranceOrdinal": 0,
+        "approach": {
+          "image": "maps/tool-entry-town-chest-10.png",
+          "fullImage": "maps/rom-field-04.png",
+          "width": 384,
+          "height": 384,
+          "tileX": 61,
+          "tileY": 21,
+          "pin": {
+            "x": 0.8958333333333334,
+            "y": 0.5
+          }
+        },
+        "rewardItem": {
+          "category": "rod",
+          "id": "0A"
+        },
+        "requiredItem": {
+          "category": "general_tool",
+          "id": "17"
+        }
+      },
+      {
+        "stage": 6,
+        "mapId": 12,
+        "context": "town",
+        "name": {
+          "en": "Town chest: bring the key and leave room for the reward",
+          "ja": "町の宝箱：カギを持参し、報酬用の空きを用意する",
+          "th": "หีบในเมือง: พกกุญแจและเว้นช่องสำหรับรางวัลก่อนเปิด"
+        },
+        "tileX": 4,
+        "tileY": 6,
+        "image": "maps/tool-use-town-chest-12.png",
+        "fullImage": "maps/rom-town-12.png",
+        "width": 256,
+        "height": 384,
+        "pin": {
+          "x": 0.28125,
+          "y": 0.2708333333333333
+        },
+        "source": {
+          "objectSlotHex": "0E",
+          "coordinateFileOffset": "0x004130",
+          "consumer": "00:CFB1..D059"
+        },
+        "townEntranceOrdinal": 0,
+        "approach": {
+          "image": "maps/tool-entry-town-chest-12.png",
+          "fullImage": "maps/rom-field-06.png",
+          "width": 384,
+          "height": 384,
+          "tileX": 9,
+          "tileY": 41,
+          "pin": {
+            "x": 0.3958333333333333,
+            "y": 0.5
+          }
+        },
+        "rewardItem": {
+          "category": "general_tool",
+          "id": "12"
+        },
+        "requiredItem": {
+          "category": "general_tool",
+          "id": "17"
         }
       }
     ]

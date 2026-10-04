@@ -93,3 +93,7 @@
 .map-browser-cta{display:inline-block;margin:10px 0 18px;padding:10px 16px;border:1px solid #50755d;border-radius:10px;font-weight:700;background:white;text-decoration:none}
 
 .sprite>a{display:grid;place-items:center;width:100%;height:100%;border-radius:inherit}.entity-title{color:inherit;text-decoration:none}.entity-title:hover{text-decoration:underline}.fish-chip:focus-visible,.sprite>a:focus-visible{outline:3px solid #bd8517;outline-offset:3px}.map-pin a{display:inline-block;pointer-events:auto}.location-heading>a{flex-shrink:0}.location-heading>a>img{width:128px;height:80px;object-fit:contain;image-rendering:pixelated}
+
+.rod-verdict{display:inline-block;margin:6px 0;padding:6px 10px;border:1px solid #b2c7a5;border-radius:8px;background:#e5efdd;font-weight:750}.rod-alternatives{margin-top:14px}.rod-alternatives .decision-item{margin:8px 0}.rod-table-advice{min-width:190px;max-width:280px}.rod-table-advice strong{display:block;line-height:1.55}
+
+.rod-alternatives .decision-item span{min-width:0;overflow-wrap:anywhere}.rod-alternatives .decision-item img{flex:0 0 112px}

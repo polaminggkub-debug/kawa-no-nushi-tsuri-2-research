@@ -1,0 +1,1167 @@
+{
+  "schemaVersion": 1,
+  "romSha1": "c2103dd94e2a1a65a495fc02adc2e7d040f31212",
+  "scope": "Cheapest three ready-made bundles across all six recorded area stocks that each pass the target body profile mask and collectively avoid the body/wing equality block for any unchanged hidden pair. Not bite/landing odds. Two bundles cannot cover all hidden pairs: a hidden body group matching the first and wing group matching the second blocks both.",
+  "sources": [
+    "data/shop-stock-rom.json",
+    "data/fish-acceptance.json",
+    "docs/fly-selection-practical-research.md"
+  ],
+  "profiles": {
+    "11": {
+      "totalYen": 30,
+      "bundles": [
+        {
+          "stage": 1,
+          "slot": 0,
+          "body": "01",
+          "wing": "09",
+          "tail": "13",
+          "priceYen": 5,
+          "bodyGroup": 1,
+          "wingGroup": 1
+        },
+        {
+          "stage": 1,
+          "slot": 2,
+          "body": "2B",
+          "wing": "34",
+          "tail": "00",
+          "priceYen": 15,
+          "bodyGroup": 3,
+          "wingGroup": 0
+        },
+        {
+          "stage": 2,
+          "slot": 0,
+          "body": "02",
+          "wing": "0A",
+          "tail": "14",
+          "priceYen": 10,
+          "bodyGroup": 2,
+          "wingGroup": 2
+        }
+      ]
+    },
+    "12": {
+      "totalYen": 30,
+      "bundles": [
+        {
+          "stage": 1,
+          "slot": 0,
+          "body": "01",
+          "wing": "09",
+          "tail": "13",
+          "priceYen": 5,
+          "bodyGroup": 1,
+          "wingGroup": 1
+        },
+        {
+          "stage": 1,
+          "slot": 2,
+          "body": "2B",
+          "wing": "34",
+          "tail": "00",
+          "priceYen": 15,
+          "bodyGroup": 3,
+          "wingGroup": 0
+        },
+        {
+          "stage": 2,
+          "slot": 0,
+          "body": "02",
+          "wing": "0A",
+          "tail": "14",
+          "priceYen": 10,
+          "bodyGroup": 2,
+          "wingGroup": 2
+        }
+      ]
+    },
+    "13": {
+      "totalYen": 17,
+      "bundles": [
+        {
+          "stage": 1,
+          "slot": 0,
+          "body": "01",
+          "wing": "09",
+          "tail": "13",
+          "priceYen": 5,
+          "bodyGroup": 1,
+          "wingGroup": 1
+        },
+        {
+          "stage": 1,
+          "slot": 3,
+          "body": "3E",
+          "wing": "43",
+          "tail": "49",
+          "priceYen": 5,
+          "bodyGroup": 2,
+          "wingGroup": 3
+        },
+        {
+          "stage": 2,
+          "slot": 3,
+          "body": "3F",
+          "wing": "44",
+          "tail": "4A",
+          "priceYen": 7,
+          "bodyGroup": 3,
+          "wingGroup": 0
+        }
+      ]
+    },
+    "16": {
+      "totalYen": 30,
+      "bundles": [
+        {
+          "stage": 1,
+          "slot": 0,
+          "body": "01",
+          "wing": "09",
+          "tail": "13",
+          "priceYen": 5,
+          "bodyGroup": 1,
+          "wingGroup": 1
+        },
+        {
+          "stage": 1,
+          "slot": 2,
+          "body": "2B",
+          "wing": "34",
+          "tail": "00",
+          "priceYen": 15,
+          "bodyGroup": 3,
+          "wingGroup": 0
+        },
+        {
+          "stage": 2,
+          "slot": 0,
+          "body": "02",
+          "wing": "0A",
+          "tail": "14",
+          "priceYen": 10,
+          "bodyGroup": 2,
+          "wingGroup": 2
+        }
+      ]
+    },
+    "18": {
+      "totalYen": 30,
+      "bundles": [
+        {
+          "stage": 1,
+          "slot": 0,
+          "body": "01",
+          "wing": "09",
+          "tail": "13",
+          "priceYen": 5,
+          "bodyGroup": 1,
+          "wingGroup": 1
+        },
+        {
+          "stage": 1,
+          "slot": 2,
+          "body": "2B",
+          "wing": "34",
+          "tail": "00",
+          "priceYen": 15,
+          "bodyGroup": 3,
+          "wingGroup": 0
+        },
+        {
+          "stage": 2,
+          "slot": 0,
+          "body": "02",
+          "wing": "0A",
+          "tail": "14",
+          "priceYen": 10,
+          "bodyGroup": 2,
+          "wingGroup": 2
+        }
+      ]
+    },
+    "20": {
+      "totalYen": 17,
+      "bundles": [
+        {
+          "stage": 1,
+          "slot": 0,
+          "body": "01",
+          "wing": "09",
+          "tail": "13",
+          "priceYen": 5,
+          "bodyGroup": 1,
+          "wingGroup": 1
+        },
+        {
+          "stage": 1,
+          "slot": 3,
+          "body": "3E",
+          "wing": "43",
+          "tail": "49",
+          "priceYen": 5,
+          "bodyGroup": 2,
+          "wingGroup": 3
+        },
+        {
+          "stage": 2,
+          "slot": 3,
+          "body": "3F",
+          "wing": "44",
+          "tail": "4A",
+          "priceYen": 7,
+          "bodyGroup": 3,
+          "wingGroup": 0
+        }
+      ]
+    },
+    "21": {
+      "totalYen": 17,
+      "bundles": [
+        {
+          "stage": 1,
+          "slot": 0,
+          "body": "01",
+          "wing": "09",
+          "tail": "13",
+          "priceYen": 5,
+          "bodyGroup": 1,
+          "wingGroup": 1
+        },
+        {
+          "stage": 1,
+          "slot": 3,
+          "body": "3E",
+          "wing": "43",
+          "tail": "49",
+          "priceYen": 5,
+          "bodyGroup": 2,
+          "wingGroup": 3
+        },
+        {
+          "stage": 2,
+          "slot": 3,
+          "body": "3F",
+          "wing": "44",
+          "tail": "4A",
+          "priceYen": 7,
+          "bodyGroup": 3,
+          "wingGroup": 0
+        }
+      ]
+    },
+    "22": {
+      "totalYen": 30,
+      "bundles": [
+        {
+          "stage": 1,
+          "slot": 0,
+          "body": "01",
+          "wing": "09",
+          "tail": "13",
+          "priceYen": 5,
+          "bodyGroup": 1,
+          "wingGroup": 1
+        },
+        {
+          "stage": 1,
+          "slot": 2,
+          "body": "2B",
+          "wing": "34",
+          "tail": "00",
+          "priceYen": 15,
+          "bodyGroup": 3,
+          "wingGroup": 0
+        },
+        {
+          "stage": 2,
+          "slot": 0,
+          "body": "02",
+          "wing": "0A",
+          "tail": "14",
+          "priceYen": 10,
+          "bodyGroup": 2,
+          "wingGroup": 2
+        }
+      ]
+    },
+    "30": {
+      "totalYen": 30,
+      "bundles": [
+        {
+          "stage": 1,
+          "slot": 0,
+          "body": "01",
+          "wing": "09",
+          "tail": "13",
+          "priceYen": 5,
+          "bodyGroup": 1,
+          "wingGroup": 1
+        },
+        {
+          "stage": 1,
+          "slot": 2,
+          "body": "2B",
+          "wing": "34",
+          "tail": "00",
+          "priceYen": 15,
+          "bodyGroup": 3,
+          "wingGroup": 0
+        },
+        {
+          "stage": 2,
+          "slot": 0,
+          "body": "02",
+          "wing": "0A",
+          "tail": "14",
+          "priceYen": 10,
+          "bodyGroup": 2,
+          "wingGroup": 2
+        }
+      ]
+    },
+    "31": {
+      "totalYen": 17,
+      "bundles": [
+        {
+          "stage": 1,
+          "slot": 0,
+          "body": "01",
+          "wing": "09",
+          "tail": "13",
+          "priceYen": 5,
+          "bodyGroup": 1,
+          "wingGroup": 1
+        },
+        {
+          "stage": 1,
+          "slot": 3,
+          "body": "3E",
+          "wing": "43",
+          "tail": "49",
+          "priceYen": 5,
+          "bodyGroup": 2,
+          "wingGroup": 3
+        },
+        {
+          "stage": 2,
+          "slot": 3,
+          "body": "3F",
+          "wing": "44",
+          "tail": "4A",
+          "priceYen": 7,
+          "bodyGroup": 3,
+          "wingGroup": 0
+        }
+      ]
+    },
+    "38": {
+      "totalYen": 17,
+      "bundles": [
+        {
+          "stage": 1,
+          "slot": 0,
+          "body": "01",
+          "wing": "09",
+          "tail": "13",
+          "priceYen": 5,
+          "bodyGroup": 1,
+          "wingGroup": 1
+        },
+        {
+          "stage": 1,
+          "slot": 3,
+          "body": "3E",
+          "wing": "43",
+          "tail": "49",
+          "priceYen": 5,
+          "bodyGroup": 2,
+          "wingGroup": 3
+        },
+        {
+          "stage": 2,
+          "slot": 3,
+          "body": "3F",
+          "wing": "44",
+          "tail": "4A",
+          "priceYen": 7,
+          "bodyGroup": 3,
+          "wingGroup": 0
+        }
+      ]
+    },
+    "40": {
+      "totalYen": 30,
+      "bundles": [
+        {
+          "stage": 1,
+          "slot": 0,
+          "body": "01",
+          "wing": "09",
+          "tail": "13",
+          "priceYen": 5,
+          "bodyGroup": 1,
+          "wingGroup": 1
+        },
+        {
+          "stage": 1,
+          "slot": 2,
+          "body": "2B",
+          "wing": "34",
+          "tail": "00",
+          "priceYen": 15,
+          "bodyGroup": 3,
+          "wingGroup": 0
+        },
+        {
+          "stage": 2,
+          "slot": 0,
+          "body": "02",
+          "wing": "0A",
+          "tail": "14",
+          "priceYen": 10,
+          "bodyGroup": 2,
+          "wingGroup": 2
+        }
+      ]
+    },
+    "42": {
+      "totalYen": 17,
+      "bundles": [
+        {
+          "stage": 1,
+          "slot": 0,
+          "body": "01",
+          "wing": "09",
+          "tail": "13",
+          "priceYen": 5,
+          "bodyGroup": 1,
+          "wingGroup": 1
+        },
+        {
+          "stage": 1,
+          "slot": 3,
+          "body": "3E",
+          "wing": "43",
+          "tail": "49",
+          "priceYen": 5,
+          "bodyGroup": 2,
+          "wingGroup": 3
+        },
+        {
+          "stage": 2,
+          "slot": 3,
+          "body": "3F",
+          "wing": "44",
+          "tail": "4A",
+          "priceYen": 7,
+          "bodyGroup": 3,
+          "wingGroup": 0
+        }
+      ]
+    },
+    "44": {
+      "totalYen": 17,
+      "bundles": [
+        {
+          "stage": 1,
+          "slot": 0,
+          "body": "01",
+          "wing": "09",
+          "tail": "13",
+          "priceYen": 5,
+          "bodyGroup": 1,
+          "wingGroup": 1
+        },
+        {
+          "stage": 1,
+          "slot": 3,
+          "body": "3E",
+          "wing": "43",
+          "tail": "49",
+          "priceYen": 5,
+          "bodyGroup": 2,
+          "wingGroup": 3
+        },
+        {
+          "stage": 2,
+          "slot": 3,
+          "body": "3F",
+          "wing": "44",
+          "tail": "4A",
+          "priceYen": 7,
+          "bodyGroup": 3,
+          "wingGroup": 0
+        }
+      ]
+    },
+    "45": {
+      "totalYen": 17,
+      "bundles": [
+        {
+          "stage": 1,
+          "slot": 0,
+          "body": "01",
+          "wing": "09",
+          "tail": "13",
+          "priceYen": 5,
+          "bodyGroup": 1,
+          "wingGroup": 1
+        },
+        {
+          "stage": 1,
+          "slot": 3,
+          "body": "3E",
+          "wing": "43",
+          "tail": "49",
+          "priceYen": 5,
+          "bodyGroup": 2,
+          "wingGroup": 3
+        },
+        {
+          "stage": 2,
+          "slot": 3,
+          "body": "3F",
+          "wing": "44",
+          "tail": "4A",
+          "priceYen": 7,
+          "bodyGroup": 3,
+          "wingGroup": 0
+        }
+      ]
+    },
+    "01": {
+      "totalYen": 17,
+      "bundles": [
+        {
+          "stage": 1,
+          "slot": 0,
+          "body": "01",
+          "wing": "09",
+          "tail": "13",
+          "priceYen": 5,
+          "bodyGroup": 1,
+          "wingGroup": 1
+        },
+        {
+          "stage": 1,
+          "slot": 3,
+          "body": "3E",
+          "wing": "43",
+          "tail": "49",
+          "priceYen": 5,
+          "bodyGroup": 2,
+          "wingGroup": 3
+        },
+        {
+          "stage": 2,
+          "slot": 3,
+          "body": "3F",
+          "wing": "44",
+          "tail": "4A",
+          "priceYen": 7,
+          "bodyGroup": 3,
+          "wingGroup": 0
+        }
+      ]
+    },
+    "02": {
+      "totalYen": 17,
+      "bundles": [
+        {
+          "stage": 1,
+          "slot": 0,
+          "body": "01",
+          "wing": "09",
+          "tail": "13",
+          "priceYen": 5,
+          "bodyGroup": 1,
+          "wingGroup": 1
+        },
+        {
+          "stage": 1,
+          "slot": 3,
+          "body": "3E",
+          "wing": "43",
+          "tail": "49",
+          "priceYen": 5,
+          "bodyGroup": 2,
+          "wingGroup": 3
+        },
+        {
+          "stage": 2,
+          "slot": 3,
+          "body": "3F",
+          "wing": "44",
+          "tail": "4A",
+          "priceYen": 7,
+          "bodyGroup": 3,
+          "wingGroup": 0
+        }
+      ]
+    },
+    "03": {
+      "totalYen": 17,
+      "bundles": [
+        {
+          "stage": 1,
+          "slot": 0,
+          "body": "01",
+          "wing": "09",
+          "tail": "13",
+          "priceYen": 5,
+          "bodyGroup": 1,
+          "wingGroup": 1
+        },
+        {
+          "stage": 1,
+          "slot": 3,
+          "body": "3E",
+          "wing": "43",
+          "tail": "49",
+          "priceYen": 5,
+          "bodyGroup": 2,
+          "wingGroup": 3
+        },
+        {
+          "stage": 2,
+          "slot": 3,
+          "body": "3F",
+          "wing": "44",
+          "tail": "4A",
+          "priceYen": 7,
+          "bodyGroup": 3,
+          "wingGroup": 0
+        }
+      ]
+    },
+    "04": {
+      "totalYen": 17,
+      "bundles": [
+        {
+          "stage": 1,
+          "slot": 0,
+          "body": "01",
+          "wing": "09",
+          "tail": "13",
+          "priceYen": 5,
+          "bodyGroup": 1,
+          "wingGroup": 1
+        },
+        {
+          "stage": 1,
+          "slot": 3,
+          "body": "3E",
+          "wing": "43",
+          "tail": "49",
+          "priceYen": 5,
+          "bodyGroup": 2,
+          "wingGroup": 3
+        },
+        {
+          "stage": 2,
+          "slot": 3,
+          "body": "3F",
+          "wing": "44",
+          "tail": "4A",
+          "priceYen": 7,
+          "bodyGroup": 3,
+          "wingGroup": 0
+        }
+      ]
+    },
+    "05": {
+      "totalYen": 30,
+      "bundles": [
+        {
+          "stage": 1,
+          "slot": 0,
+          "body": "01",
+          "wing": "09",
+          "tail": "13",
+          "priceYen": 5,
+          "bodyGroup": 1,
+          "wingGroup": 1
+        },
+        {
+          "stage": 1,
+          "slot": 2,
+          "body": "2B",
+          "wing": "34",
+          "tail": "00",
+          "priceYen": 15,
+          "bodyGroup": 3,
+          "wingGroup": 0
+        },
+        {
+          "stage": 2,
+          "slot": 0,
+          "body": "02",
+          "wing": "0A",
+          "tail": "14",
+          "priceYen": 10,
+          "bodyGroup": 2,
+          "wingGroup": 2
+        }
+      ]
+    },
+    "06": {
+      "totalYen": 30,
+      "bundles": [
+        {
+          "stage": 1,
+          "slot": 0,
+          "body": "01",
+          "wing": "09",
+          "tail": "13",
+          "priceYen": 5,
+          "bodyGroup": 1,
+          "wingGroup": 1
+        },
+        {
+          "stage": 1,
+          "slot": 2,
+          "body": "2B",
+          "wing": "34",
+          "tail": "00",
+          "priceYen": 15,
+          "bodyGroup": 3,
+          "wingGroup": 0
+        },
+        {
+          "stage": 2,
+          "slot": 0,
+          "body": "02",
+          "wing": "0A",
+          "tail": "14",
+          "priceYen": 10,
+          "bodyGroup": 2,
+          "wingGroup": 2
+        }
+      ]
+    },
+    "08": {
+      "totalYen": 30,
+      "bundles": [
+        {
+          "stage": 1,
+          "slot": 0,
+          "body": "01",
+          "wing": "09",
+          "tail": "13",
+          "priceYen": 5,
+          "bodyGroup": 1,
+          "wingGroup": 1
+        },
+        {
+          "stage": 1,
+          "slot": 2,
+          "body": "2B",
+          "wing": "34",
+          "tail": "00",
+          "priceYen": 15,
+          "bodyGroup": 3,
+          "wingGroup": 0
+        },
+        {
+          "stage": 2,
+          "slot": 0,
+          "body": "02",
+          "wing": "0A",
+          "tail": "14",
+          "priceYen": 10,
+          "bodyGroup": 2,
+          "wingGroup": 2
+        }
+      ]
+    },
+    "09": {
+      "totalYen": 17,
+      "bundles": [
+        {
+          "stage": 1,
+          "slot": 0,
+          "body": "01",
+          "wing": "09",
+          "tail": "13",
+          "priceYen": 5,
+          "bodyGroup": 1,
+          "wingGroup": 1
+        },
+        {
+          "stage": 1,
+          "slot": 3,
+          "body": "3E",
+          "wing": "43",
+          "tail": "49",
+          "priceYen": 5,
+          "bodyGroup": 2,
+          "wingGroup": 3
+        },
+        {
+          "stage": 2,
+          "slot": 3,
+          "body": "3F",
+          "wing": "44",
+          "tail": "4A",
+          "priceYen": 7,
+          "bodyGroup": 3,
+          "wingGroup": 0
+        }
+      ]
+    },
+    "0B": {
+      "totalYen": 17,
+      "bundles": [
+        {
+          "stage": 1,
+          "slot": 0,
+          "body": "01",
+          "wing": "09",
+          "tail": "13",
+          "priceYen": 5,
+          "bodyGroup": 1,
+          "wingGroup": 1
+        },
+        {
+          "stage": 1,
+          "slot": 3,
+          "body": "3E",
+          "wing": "43",
+          "tail": "49",
+          "priceYen": 5,
+          "bodyGroup": 2,
+          "wingGroup": 3
+        },
+        {
+          "stage": 2,
+          "slot": 3,
+          "body": "3F",
+          "wing": "44",
+          "tail": "4A",
+          "priceYen": 7,
+          "bodyGroup": 3,
+          "wingGroup": 0
+        }
+      ]
+    },
+    "0C": {
+      "totalYen": 17,
+      "bundles": [
+        {
+          "stage": 1,
+          "slot": 0,
+          "body": "01",
+          "wing": "09",
+          "tail": "13",
+          "priceYen": 5,
+          "bodyGroup": 1,
+          "wingGroup": 1
+        },
+        {
+          "stage": 1,
+          "slot": 3,
+          "body": "3E",
+          "wing": "43",
+          "tail": "49",
+          "priceYen": 5,
+          "bodyGroup": 2,
+          "wingGroup": 3
+        },
+        {
+          "stage": 2,
+          "slot": 3,
+          "body": "3F",
+          "wing": "44",
+          "tail": "4A",
+          "priceYen": 7,
+          "bodyGroup": 3,
+          "wingGroup": 0
+        }
+      ]
+    },
+    "0E": {
+      "totalYen": 30,
+      "bundles": [
+        {
+          "stage": 1,
+          "slot": 0,
+          "body": "01",
+          "wing": "09",
+          "tail": "13",
+          "priceYen": 5,
+          "bodyGroup": 1,
+          "wingGroup": 1
+        },
+        {
+          "stage": 1,
+          "slot": 2,
+          "body": "2B",
+          "wing": "34",
+          "tail": "00",
+          "priceYen": 15,
+          "bodyGroup": 3,
+          "wingGroup": 0
+        },
+        {
+          "stage": 2,
+          "slot": 0,
+          "body": "02",
+          "wing": "0A",
+          "tail": "14",
+          "priceYen": 10,
+          "bodyGroup": 2,
+          "wingGroup": 2
+        }
+      ]
+    },
+    "0F": {
+      "totalYen": 17,
+      "bundles": [
+        {
+          "stage": 1,
+          "slot": 0,
+          "body": "01",
+          "wing": "09",
+          "tail": "13",
+          "priceYen": 5,
+          "bodyGroup": 1,
+          "wingGroup": 1
+        },
+        {
+          "stage": 1,
+          "slot": 3,
+          "body": "3E",
+          "wing": "43",
+          "tail": "49",
+          "priceYen": 5,
+          "bodyGroup": 2,
+          "wingGroup": 3
+        },
+        {
+          "stage": 2,
+          "slot": 3,
+          "body": "3F",
+          "wing": "44",
+          "tail": "4A",
+          "priceYen": 7,
+          "bodyGroup": 3,
+          "wingGroup": 0
+        }
+      ]
+    },
+    "1B": {
+      "totalYen": 30,
+      "bundles": [
+        {
+          "stage": 1,
+          "slot": 0,
+          "body": "01",
+          "wing": "09",
+          "tail": "13",
+          "priceYen": 5,
+          "bodyGroup": 1,
+          "wingGroup": 1
+        },
+        {
+          "stage": 1,
+          "slot": 2,
+          "body": "2B",
+          "wing": "34",
+          "tail": "00",
+          "priceYen": 15,
+          "bodyGroup": 3,
+          "wingGroup": 0
+        },
+        {
+          "stage": 2,
+          "slot": 0,
+          "body": "02",
+          "wing": "0A",
+          "tail": "14",
+          "priceYen": 10,
+          "bodyGroup": 2,
+          "wingGroup": 2
+        }
+      ]
+    },
+    "1E": {
+      "totalYen": 30,
+      "bundles": [
+        {
+          "stage": 1,
+          "slot": 0,
+          "body": "01",
+          "wing": "09",
+          "tail": "13",
+          "priceYen": 5,
+          "bodyGroup": 1,
+          "wingGroup": 1
+        },
+        {
+          "stage": 1,
+          "slot": 2,
+          "body": "2B",
+          "wing": "34",
+          "tail": "00",
+          "priceYen": 15,
+          "bodyGroup": 3,
+          "wingGroup": 0
+        },
+        {
+          "stage": 2,
+          "slot": 0,
+          "body": "02",
+          "wing": "0A",
+          "tail": "14",
+          "priceYen": 10,
+          "bodyGroup": 2,
+          "wingGroup": 2
+        }
+      ]
+    },
+    "2A": {
+      "totalYen": 30,
+      "bundles": [
+        {
+          "stage": 1,
+          "slot": 0,
+          "body": "01",
+          "wing": "09",
+          "tail": "13",
+          "priceYen": 5,
+          "bodyGroup": 1,
+          "wingGroup": 1
+        },
+        {
+          "stage": 1,
+          "slot": 2,
+          "body": "2B",
+          "wing": "34",
+          "tail": "00",
+          "priceYen": 15,
+          "bodyGroup": 3,
+          "wingGroup": 0
+        },
+        {
+          "stage": 2,
+          "slot": 0,
+          "body": "02",
+          "wing": "0A",
+          "tail": "14",
+          "priceYen": 10,
+          "bodyGroup": 2,
+          "wingGroup": 2
+        }
+      ]
+    },
+    "2B": {
+      "totalYen": 30,
+      "bundles": [
+        {
+          "stage": 1,
+          "slot": 0,
+          "body": "01",
+          "wing": "09",
+          "tail": "13",
+          "priceYen": 5,
+          "bodyGroup": 1,
+          "wingGroup": 1
+        },
+        {
+          "stage": 1,
+          "slot": 2,
+          "body": "2B",
+          "wing": "34",
+          "tail": "00",
+          "priceYen": 15,
+          "bodyGroup": 3,
+          "wingGroup": 0
+        },
+        {
+          "stage": 2,
+          "slot": 0,
+          "body": "02",
+          "wing": "0A",
+          "tail": "14",
+          "priceYen": 10,
+          "bodyGroup": 2,
+          "wingGroup": 2
+        }
+      ]
+    },
+    "2E": {
+      "totalYen": 30,
+      "bundles": [
+        {
+          "stage": 1,
+          "slot": 0,
+          "body": "01",
+          "wing": "09",
+          "tail": "13",
+          "priceYen": 5,
+          "bodyGroup": 1,
+          "wingGroup": 1
+        },
+        {
+          "stage": 1,
+          "slot": 2,
+          "body": "2B",
+          "wing": "34",
+          "tail": "00",
+          "priceYen": 15,
+          "bodyGroup": 3,
+          "wingGroup": 0
+        },
+        {
+          "stage": 2,
+          "slot": 0,
+          "body": "02",
+          "wing": "0A",
+          "tail": "14",
+          "priceYen": 10,
+          "bodyGroup": 2,
+          "wingGroup": 2
+        }
+      ]
+    },
+    "3C": {
+      "totalYen": 17,
+      "bundles": [
+        {
+          "stage": 1,
+          "slot": 0,
+          "body": "01",
+          "wing": "09",
+          "tail": "13",
+          "priceYen": 5,
+          "bodyGroup": 1,
+          "wingGroup": 1
+        },
+        {
+          "stage": 1,
+          "slot": 3,
+          "body": "3E",
+          "wing": "43",
+          "tail": "49",
+          "priceYen": 5,
+          "bodyGroup": 2,
+          "wingGroup": 3
+        },
+        {
+          "stage": 2,
+          "slot": 3,
+          "body": "3F",
+          "wing": "44",
+          "tail": "4A",
+          "priceYen": 7,
+          "bodyGroup": 3,
+          "wingGroup": 0
+        }
+      ]
+    }
+  }
+}

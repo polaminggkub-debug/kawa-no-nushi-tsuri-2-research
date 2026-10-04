@@ -9,6 +9,8 @@ const root = path.resolve(__dirname, '..');
 const data = JSON.parse(fs.readFileSync(path.join(root, 'catalogue/gallery-data.json'), 'utf8'));
 const decisionsPath=path.join(root,'data/player-decisions.json');
 if(fs.existsSync(decisionsPath))data.playerDecisions=JSON.parse(fs.readFileSync(decisionsPath,'utf8'));
+const flyBackupsPath=path.join(root,'data/fly-backup-choices.json');
+if(fs.existsSync(flyBackupsPath))data.flyBackupChoices=JSON.parse(fs.readFileSync(flyBackupsPath,'utf8'));
 let source = fs.readFileSync(path.join(root, 'catalogue/gallery.js'), 'utf8');
 const thaiCopyPath=path.join(root,'catalogue/thai-copy.json');
 const thaiItemsPath=path.join(root,'catalogue/thai-items.json');
@@ -65,6 +67,18 @@ for(const [locale,notes] of Object.entries(data.researchNotes))data.researchNote
 const locationsPath=path.join(root,'catalogue/fish-locations.json');
 if(fs.existsSync(locationsPath)){const locations=JSON.parse(fs.readFileSync(locationsPath,'utf8'));data.fishLocations=locations.fish||{};}
 fs.writeFileSync(path.join(root,'catalogue/gallery-data.json'),JSON.stringify(data,null,2)+'\n');
+const rodDecisionsPath=path.join(root,'data/rod-item-decisions.json');
+if(!fs.existsSync(rodDecisionsPath))throw new Error('Missing per-rod decisions source');
+{
+  const rodDecisions=JSON.parse(fs.readFileSync(rodDecisionsPath,'utf8'));
+  if(rodDecisions.rom?.sha1!=='c2103dd94e2a1a65a495fc02adc2e7d040f31212')throw new Error('Rod decisions use a different ROM');
+  for(const item of data.items.filter(i=>i.category==='rod')){
+    const decision=rodDecisions.items[item.id];if(!decision)throw new Error('Missing rod decision '+item.id);
+    item.rodDecision=decision;
+  }
+  data.rodDecisionScope=rodDecisions.scope;
+  fs.writeFileSync(path.join(root,'catalogue/gallery-data.json'),JSON.stringify(data,null,2)+'\n');
+}
 async function build(locale, filename) {
   const nodes = {};
   function node(id) {
@@ -77,7 +91,7 @@ async function build(locale, filename) {
     getElementById:node,
     addEventListener(){},
   };
-  const context={document,console,fetch:async()=>({ok:true,json:async()=>data})};
+  const context={document,console,URL,URLSearchParams,fetch:async()=>({ok:true,json:async()=>data})};
   vm.runInNewContext(source.replace('  const groups=', '  globalThis.playerCopy = player;\n  const groups=').replace('  const esc =', '  globalThis.catalogueCopy = copy;\n  const esc ='), context);
   await new Promise(resolve=>setImmediate(resolve));
   const file=path.join(root,'catalogue',filename);

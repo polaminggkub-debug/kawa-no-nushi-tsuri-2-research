@@ -1,0 +1,90 @@
+<!doctype html>
+<html lang="ja" data-locale="ja">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>アイテムはどこで買える？ — 川のぬし釣り2</title>
+  <meta name="description" content="オリジナルROMから調べた販売アイテムを、釣りエリアと町に分けて検索できます。">
+  <link rel="canonical" href="https://polaminggkub-debug.github.io/kawa-no-nushi-tsuri-2-research/catalogue/shops.ja.html">
+  <link rel="alternate" hreflang="en" href="https://polaminggkub-debug.github.io/kawa-no-nushi-tsuri-2-research/catalogue/shops.html">
+  <link rel="alternate" hreflang="ja" href="https://polaminggkub-debug.github.io/kawa-no-nushi-tsuri-2-research/catalogue/shops.ja.html">
+  <link rel="alternate" hreflang="th" href="https://polaminggkub-debug.github.io/kawa-no-nushi-tsuri-2-research/catalogue/shops.th.html">
+  <link rel="stylesheet" href="shops.css?v=6">
+  <script src="shops.js?v=6" defer></script>
+</head>
+<body>
+  <header class="site-header">
+    <nav class="site-nav" aria-label="メインナビゲーション">
+      <a id="back-link" href="index.ja.html">← アイテム一覧へ戻る</a>
+      <a href="index.ja.html">アイテム一覧</a>
+      <a href="maps.ja.html">魚と釣り場マップ</a>
+    </nav>
+    <nav class="language-nav" aria-label="言語">
+      <a id="language-en" href="shops.html" lang="en" hreflang="en">English</a>
+      <a id="language-ja" href="shops.ja.html" lang="ja" hreflang="ja">日本語</a>
+      <a id="language-th" href="shops.th.html" lang="th" hreflang="th">ไทย</a>
+    </nav>
+  </header>
+  <main>
+    <h1>アイテムはどこで買える？</h1>
+    <p class="lead">エリアを選んで、アイテムの販売場所を探します。ROMから再構成した地形画像で、確認済みの店と対応するフィールド入口を見られます。</p>
+    <p id="page-status" class="status" role="status" aria-live="polite">ROMで確認した販売品を読み込んでいます…</p>
+
+    <section class="filters" aria-label="店とアイテムの絞り込み">
+      <div class="filter-field">
+        <label for="stage-select">釣りエリア</label>
+        <select id="stage-select">
+          <option value="1">エリア 1</option><option value="2">エリア 2</option><option value="3">エリア 3</option>
+          <option value="4">エリア 4</option><option value="5">エリア 5</option><option value="6">エリア 6</option>
+        </select>
+      </div>
+      <fieldset class="place-toggle">
+        <legend>見る場所</legend>
+        <label><input type="radio" name="place" value="outdoor"> フィールドマップ · 町の入口</label>
+        <label><input type="radio" name="place" value="town" checked> 町のマップ · 店の位置</label>
+      </fieldset>
+      <div class="filter-field">
+        <label for="category-select">アイテム種別</label>
+        <select id="category-select">
+          <option value="all">全種別</option>
+          <option value="rod">釣り竿</option><option value="lure">ルアー</option>
+          <option value="hook">針</option><option value="float_weight">ウキ・オモリ</option>
+          <option value="bait">エサ</option><option value="fly">完成品の毛バリ</option>
+          <option value="fly_wing">完成品セットのウィング</option><option value="fly_tail">完成品セットのテール</option>
+          <option value="food">食料</option><option value="general_tool">道具・クエストアイテム</option>
+        </select>
+      </div>
+      <div class="filter-field search-field">
+        <label for="item-search">名前またはIDで検索</label>
+        <input id="item-search" type="search" autocomplete="off" placeholder="名前または16進ID（例：2E）">
+      </div>
+      <button id="clear-filters" type="button" class="quiet-button">アイテム絞り込みを解除</button>
+    </section>
+
+    <section id="location-section" class="location-section" aria-labelledby="location-heading">
+      <div class="section-heading">
+        <h2 id="location-heading">探す場所</h2>
+        <span id="location-area" class="map-id"></span>
+      </div>
+      <p id="location-summary"></p>
+      <div id="location-visuals" class="location-visuals"></div>
+      <details class="map-evidence"><summary>マップセットID</summary><p id="location-map-id"></p></details>
+    </section>
+
+    <section class="stock-section" aria-labelledby="stock-heading">
+      <div class="section-heading">
+        <h2 id="stock-heading">このエリアで売られるアイテム</h2>
+        <span id="offer-count" class="offer-count"></span>
+      </div>
+      <p id="target-status" class="target-status" role="status" aria-live="polite"></p>
+      <div id="shop-results" class="shop-results"></div>
+    </section>
+
+    <details class="evidence-note">
+      <summary>この販売一覧から確認できること</summary>
+      <p>掲載品はオリジナル日本語ROMの6エリア分の販売データと確認済みメニューに基づきます。アイテムレコードの基本価格だけでは販売を確認したことになりません。毛バリは完成品セットとセット全体の価格を表示し、ボディ・ウィング・テールを別々の販売品として扱いません。地図のマーカーは解析済みの操作位置またはエリア切替位置を示します。検証済みルートの根拠がある場合を除き、徒歩経路は案内しません。</p>
+    </details>
+  </main>
+  <footer>オリジナル日本語ROM · SHA-1 <code>c2103dd94e2a1a65a495fc02adc2e7d040f31212</code> · ROMファイルは含みません。</footer>
+</body>
+</html>
