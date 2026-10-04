@@ -1,0 +1,54 @@
+<!doctype html>
+<html lang="ja" data-locale="ja">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="川のぬし釣り2の6エリアで、ROMに設定された魚の出現地点を地図で確認。魚名を検索し、実ゲームから抽出した魚画像付きで表示します。">
+  <title>魚のエリア別釣り場マップ — 川のぬし釣り2 ROM調査</title>
+  <link rel="canonical" href="https://polaminggkub-debug.github.io/kawa-no-nushi-tsuri-2-research/catalogue/maps.ja.html">
+  <link rel="alternate" hreflang="en" href="https://polaminggkub-debug.github.io/kawa-no-nushi-tsuri-2-research/catalogue/maps.html">
+  <link rel="alternate" hreflang="th" href="https://polaminggkub-debug.github.io/kawa-no-nushi-tsuri-2-research/catalogue/maps.th.html">
+  <link rel="alternate" hreflang="ja" href="https://polaminggkub-debug.github.io/kawa-no-nushi-tsuri-2-research/catalogue/maps.ja.html">
+  <link rel="alternate" hreflang="x-default" href="https://polaminggkub-debug.github.io/kawa-no-nushi-tsuri-2-research/catalogue/maps.html">
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="魚のエリア別釣り場マップ — 川のぬし釣り2">
+  <meta property="og:description" content="エリアと魚を選んで、日本版SFC ROMから抽出した魚の出現位置をマップで確認できます。">
+  <link rel="stylesheet" href="maps.css?v=rom-fish-map-20261004-2">
+</head>
+<body>
+  <header class="hero"><div class="hero-inner">
+    <div class="eyebrow">川のぬし釣り2 · SFC / SNES · 日本版</div>
+    <h1>エリア別の魚マップ</h1>
+    <p class="lead">エリアを選ぶと魚一覧が表示されます。魚名から検索して、その魚の出現地点があるマップへ移動することもできます。</p>
+    <div class="hero-meta"><a class="back-link" href="index.ja.html">← 釣り道具カタログへ</a><nav class="language-links" aria-label="言語"><a href="maps.html" lang="en" hreflang="en">English</a><a href="maps.th.html" lang="th" hreflang="th">ไทย</a><span aria-current="page">日本語</span></nav></div>
+  </div></header>
+  <main>
+    <section class="map-browser" aria-labelledby="browse-title">
+      <div class="section-heading"><div><p class="eyebrow dark">ROMマップ索引</p><h2 id="browse-title">どこで釣りますか？</h2><p class="section-copy">エリアを選んで魚を探すか、タイ語・英語・日本語の名前や魚IDで検索してください。</p></div></div>
+      <nav id="area-list" class="area-list" aria-label="エリア"></nav>
+      <div class="browse-grid">
+        <section class="fish-browser" aria-labelledby="fish-title">
+          <div class="fish-list-heading"><div><h3 id="fish-title">このエリアの魚</h3><p id="area-summary" class="muted"></p></div><button id="show-all" class="clear-button" type="button" disabled>魚をすべて表示</button></div>
+          <label class="fish-search-label" for="fish-search">魚を検索</label>
+          <div class="search-row"><input id="fish-search" type="search" autocomplete="off" placeholder="魚名、日本語名、ID 例: 06" disabled><button id="clear-search" type="button" aria-label="検索をクリア" disabled>×</button></div>
+          <p id="search-count" class="search-count" aria-live="polite"></p>
+          <div id="fish-scope" class="fish-scope-menu"></div><div id="fish-list" class="fish-list"></div>
+        </section>
+        <section class="map-browser-panel" aria-labelledby="map-title">
+          <div class="map-panel-heading"><div><h3 id="map-title">エリアマップ</h3><p id="map-summary" class="muted"></p></div></div>
+          <label class="section-select-label" for="section-select">マップの範囲</label>
+          <select id="section-select" disabled></select>
+          <p id="pin-help" class="pin-help" aria-live="polite">魚・マップデータを読み込み中…</p>
+          <div id="area-overview" class="map-overview"></div><div class="map-zoom"><button id="zoom-out" type="button" aria-label="Zoom out">−</button><button id="zoom-fit" type="button">Fit</button><button id="zoom-in" type="button" aria-label="Zoom in">+</button></div><div class="map-scroll"><div id="map-view" class="map-view"></div></div>
+          <div id="pin-details" class="pin-details" hidden></div>
+          <p class="map-note">マーカーはROMに設定された出現地点です。ゲーム状態によって出現しない地点があり、魚は食いついた後に移動することがあります。</p>
+          <a id="catalogue-fish-link" class="catalogue-fish-link" href="index.ja.html">この魚に使える道具を見る ↗</a>
+        </section>
+      </div>
+      <details class="source-details"><summary>ROMとマップの根拠</summary><p>魚ID・出現タイル座標・地形画像は提供された日本版SFC ROMから抽出しました。マーカーは16ピクセル単位のタイル中心に配置。同じ魚・同じタイルの重複は一つにまとめ、別種の魚が同じタイルにいる場合は一つのクラスターに表示します。</p><p>ROM SHA-1: <code>c2103dd94e2a1a65a495fc02adc2e7d040f31212</code>。ROM本体や外部攻略情報の位置データは掲載していません。</p><p>日本語以外の名前は翻訳・ローマ字の検索ラベルであり、すべてがタイ語パッチで確認済みの文字列ではありません。名前の出典情報はカタログに保持しています。</p></details>
+    </section>
+  </main>
+  <footer><p>ファンによる独立調査 · ROM本体は含まれていません。</p><a href="../research/index.ja.html">調査ノート</a></footer>
+  <script src="maps.js?v=rom-fish-map-20261004-2" defer></script>
+</body>
+</html>

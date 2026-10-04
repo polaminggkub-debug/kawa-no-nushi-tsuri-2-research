@@ -94,3 +94,7 @@ python3 scripts/extract_items.py --rom /path/to/your/Kawa-no-Nushi-Tsuri-2.sfc -
 [プレイヤーの疑問とROMの回答](docs/player-value-audit.md)：全6エリアの店舗在庫、竿の照準時間と道具喪失条件、ハリ・ウキ・オモリの選び方、虫メガネでエサを探す地点例、食料とクサフグ、タライとカヌーの移動差。カタログは英語・日本語・タイ語で、操作と結果を先に、アドレスや式を展開可能な根拠に記載する。
 
 [毛バリ部品の調査](docs/fly-practical-research.md)：ボディが対象魚を絞り、ボディとウィングには追加の隠し条件がある。投げ直しでは値が再抽選されず、宿泊で更新される場合がある。店売り毛バリの組み合わせ・価格と、作成屋の部品選択を区別する。
+
+## 地図と魚
+
+[地図と魚のページ](https://polaminggkub-debug.github.io/kawa-no-nushi-tsuri-2-research/catalogue/maps.ja.html)では全6エリアの地形、魚種一覧、出現座標を閲覧できます。同じ魚・座標の重複は表示だけまとめ、元データの出現枠は保持しています。出現枠が常に有効とは限りません。

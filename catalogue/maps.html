@@ -1,0 +1,54 @@
+<!doctype html>
+<html lang="en" data-locale="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Find every ROM-configured fish spawn in Kawa no Nushi Tsuri 2. Browse six area maps, search fish names, and see their locations with original fish sprites.">
+  <title>Fish Locations by Area — Kawa no Nushi Tsuri 2 ROM Research</title>
+  <link rel="canonical" href="https://polaminggkub-debug.github.io/kawa-no-nushi-tsuri-2-research/catalogue/maps.html">
+  <link rel="alternate" hreflang="en" href="https://polaminggkub-debug.github.io/kawa-no-nushi-tsuri-2-research/catalogue/maps.html">
+  <link rel="alternate" hreflang="th" href="https://polaminggkub-debug.github.io/kawa-no-nushi-tsuri-2-research/catalogue/maps.th.html">
+  <link rel="alternate" hreflang="ja" href="https://polaminggkub-debug.github.io/kawa-no-nushi-tsuri-2-research/catalogue/maps.ja.html">
+  <link rel="alternate" hreflang="x-default" href="https://polaminggkub-debug.github.io/kawa-no-nushi-tsuri-2-research/catalogue/maps.html">
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="Fish Locations by Area — Kawa no Nushi Tsuri 2">
+  <meta property="og:description" content="Browse fish configured spawn locations on maps decoded from the original Japanese SFC ROM.">
+  <link rel="stylesheet" href="maps.css?v=rom-fish-map-20261004-2">
+</head>
+<body>
+  <header class="hero"><div class="hero-inner">
+    <div class="eyebrow">KAWA NO NUSHI TSURI 2 · SFC / SNES · JAPAN VERSION</div>
+    <h1>Fish by area</h1>
+    <p class="lead">Choose an area to see its fish, or search for a fish to jump to a map where it appears. Fish pictures mark positions decoded from the ROM.</p>
+    <div class="hero-meta"><a class="back-link" href="index.html">← Equipment catalogue</a><nav class="language-links" aria-label="Language"><span aria-current="page">English</span><a href="maps.th.html" lang="th" hreflang="th">ไทย</a><a href="maps.ja.html" lang="ja" hreflang="ja">日本語</a></nav></div>
+  </div></header>
+  <main>
+    <section class="map-browser" aria-labelledby="browse-title">
+      <div class="section-heading"><div><p class="eyebrow dark">ROM MAP INDEX</p><h2 id="browse-title">Where do you want to fish?</h2><p class="section-copy">Pick an area, then pick a fish. You can also search by Thai, English, Japanese, or fish ID.</p></div></div>
+      <nav id="area-list" class="area-list" aria-label="Areas"></nav>
+      <div class="browse-grid">
+        <section class="fish-browser" aria-labelledby="fish-title">
+          <div class="fish-list-heading"><div><h3 id="fish-title">Fish in this area</h3><p id="area-summary" class="muted"></p></div><button id="show-all" class="clear-button" type="button" disabled>Show all fish</button></div>
+          <label class="fish-search-label" for="fish-search">Search fish</label>
+          <div class="search-row"><input id="fish-search" type="search" autocomplete="off" placeholder="Name, Japanese name, or ID such as 06" disabled><button id="clear-search" type="button" aria-label="Clear search" disabled>×</button></div>
+          <p id="search-count" class="search-count" aria-live="polite"></p>
+          <div id="fish-scope" class="fish-scope-menu"></div><div id="fish-list" class="fish-list"></div>
+        </section>
+        <section class="map-browser-panel" aria-labelledby="map-title">
+          <div class="map-panel-heading"><div><h3 id="map-title">Area map</h3><p id="map-summary" class="muted"></p></div></div>
+          <label class="section-select-label" for="section-select">Map section</label>
+          <select id="section-select" disabled></select>
+          <p id="pin-help" class="pin-help" aria-live="polite">Loading fish and map data…</p>
+          <div id="area-overview" class="map-overview"></div><div class="map-zoom"><button id="zoom-out" type="button" aria-label="Zoom out">−</button><button id="zoom-fit" type="button">Fit</button><button id="zoom-in" type="button" aria-label="Zoom in">+</button></div><div class="map-scroll"><div id="map-view" class="map-view"></div></div>
+          <div id="pin-details" class="pin-details" hidden></div>
+          <p class="map-note">These are configured spawn positions from the ROM. A point can be inactive in a particular game state, and a fish may move after it bites.</p>
+          <a id="catalogue-fish-link" class="catalogue-fish-link" href="index.html">See this fish’s compatible tackle ↗</a>
+        </section>
+      </div>
+      <details class="source-details"><summary>ROM source and map notes</summary><p>Fish IDs, configured tile coordinates, and terrain images are read from the supplied Japanese SFC ROM. Pins use the map tile centers at 16 source pixels per tile; identical fish-and-tile entries appear once. Different species at the same tile share one pin cluster.</p><p>ROM SHA-1: <code>c2103dd94e2a1a65a495fc02adc2e7d040f31212</code>. No ROM image or external guide placements are included.</p><p>Names outside Japanese are translated or romanized search labels; their name-source metadata is retained in the catalogue. They are not all verified Thai-patch strings.</p></details>
+    </section>
+  </main>
+  <footer><p>Independent fan research · no ROM file is included.</p><a href="../research/index.html">Research notes</a></footer>
+  <script src="maps.js?v=rom-fish-map-20261004-2" defer></script>
+</body>
+</html>

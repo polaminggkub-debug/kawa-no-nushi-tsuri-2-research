@@ -1,0 +1,54 @@
+<!doctype html>
+<html lang="th" data-locale="th">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="ดูตำแหน่งปลาที่กำหนดไว้ใน ROM ของเกมตกปลาทาโร่ 2 บนแผนที่ทั้งหกด่าน ค้นหาชื่อปลาและดูรูปปลาจากเกมจริง">
+  <title>แผนที่จุดตกปลา — ตกปลาทาโร่ 2 / Kawa no Nushi Tsuri 2</title>
+  <link rel="canonical" href="https://polaminggkub-debug.github.io/kawa-no-nushi-tsuri-2-research/catalogue/maps.th.html">
+  <link rel="alternate" hreflang="en" href="https://polaminggkub-debug.github.io/kawa-no-nushi-tsuri-2-research/catalogue/maps.html">
+  <link rel="alternate" hreflang="th" href="https://polaminggkub-debug.github.io/kawa-no-nushi-tsuri-2-research/catalogue/maps.th.html">
+  <link rel="alternate" hreflang="ja" href="https://polaminggkub-debug.github.io/kawa-no-nushi-tsuri-2-research/catalogue/maps.ja.html">
+  <link rel="alternate" hreflang="x-default" href="https://polaminggkub-debug.github.io/kawa-no-nushi-tsuri-2-research/catalogue/maps.html">
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="แผนที่จุดตกปลา — ตกปลาทาโร่ 2">
+  <meta property="og:description" content="เลือกด่าน ค้นหาปลา แล้วดูตำแหน่งที่ถอดจาก ROM บนแผนที่พร้อมรูปปลาจริงในเกม">
+  <link rel="stylesheet" href="maps.css?v=rom-fish-map-20261004-2">
+</head>
+<body>
+  <header class="hero"><div class="hero-inner">
+    <div class="eyebrow">川のぬし釣り2 · SFC / SNES · ฉบับญี่ปุ่น</div>
+    <h1>แผนที่ปลาตามด่าน</h1>
+    <p class="lead">เลือกด่านเพื่อดูรายชื่อปลา หรือค้นหาปลาเพื่อกระโดดไปยังแผนที่ที่พบตำแหน่งของปลานั้น รูปปลาชี้ตำแหน่งที่ถอดจาก ROM</p>
+    <div class="hero-meta"><a class="back-link" href="index.th.html">← กลับไปหน้าคู่มืออุปกรณ์</a><nav class="language-links" aria-label="ภาษา"><a href="maps.html" lang="en" hreflang="en">English</a><span aria-current="page">ไทย</span><a href="maps.ja.html" lang="ja" hreflang="ja">日本語</a></nav></div>
+  </div></header>
+  <main>
+    <section class="map-browser" aria-labelledby="browse-title">
+      <div class="section-heading"><div><p class="eyebrow dark">ดัชนีแผนที่จาก ROM</p><h2 id="browse-title">อยากไปตกปลาที่ไหน?</h2><p class="section-copy">เลือกด่านแล้วเลือกปลา หรือค้นด้วยชื่อภาษาไทย อังกฤษ ญี่ปุ่น หรือเลข ID ปลา</p></div></div>
+      <nav id="area-list" class="area-list" aria-label="เลือกด่าน"></nav>
+      <div class="browse-grid">
+        <section class="fish-browser" aria-labelledby="fish-title">
+          <div class="fish-list-heading"><div><h3 id="fish-title">ปลาในด่านนี้</h3><p id="area-summary" class="muted"></p></div><button id="show-all" class="clear-button" type="button" disabled>แสดงปลาทั้งหมด</button></div>
+          <label class="fish-search-label" for="fish-search">ค้นหาปลา</label>
+          <div class="search-row"><input id="fish-search" type="search" autocomplete="off" placeholder="ชื่อปลา ชื่อญี่ปุ่น หรือ ID เช่น 06" disabled><button id="clear-search" type="button" aria-label="ล้างคำค้น" disabled>×</button></div>
+          <p id="search-count" class="search-count" aria-live="polite"></p>
+          <div id="fish-scope" class="fish-scope-menu"></div><div id="fish-list" class="fish-list"></div>
+        </section>
+        <section class="map-browser-panel" aria-labelledby="map-title">
+          <div class="map-panel-heading"><div><h3 id="map-title">แผนที่ด่าน</h3><p id="map-summary" class="muted"></p></div></div>
+          <label class="section-select-label" for="section-select">เลือกส่วนแผนที่</label>
+          <select id="section-select" disabled></select>
+          <p id="pin-help" class="pin-help" aria-live="polite">กำลังโหลดข้อมูลปลาและแผนที่…</p>
+          <div id="area-overview" class="map-overview"></div><div class="map-zoom"><button id="zoom-out" type="button" aria-label="Zoom out">−</button><button id="zoom-fit" type="button">Fit</button><button id="zoom-in" type="button" aria-label="Zoom in">+</button></div><div class="map-scroll"><div id="map-view" class="map-view"></div></div>
+          <div id="pin-details" class="pin-details" hidden></div>
+          <p class="map-note">จุดเหล่านี้คือจุดเกิดปลาที่ตั้งไว้ใน ROM จุดบางแห่งอาจไม่ทำงานในรอบเกมนั้น และปลาขยับตำแหน่งได้หลังจากกินเหยื่อ</p>
+          <a id="catalogue-fish-link" class="catalogue-fish-link" href="index.th.html">ดูอุปกรณ์ที่ใช้กับปลานี้ ↗</a>
+        </section>
+      </div>
+      <details class="source-details"><summary>ที่มาและหมายเหตุแผนที่จาก ROM</summary><p>เลข ID ปลา พิกัดช่องเกิด และภาพฉากถอดจาก ROM ญี่ปุ่น SFC ที่ให้มา ตำแหน่งหมุดใช้จุดกึ่งกลางช่องแผนที่ โดยหนึ่งช่องเท่ากับ 16 พิกเซลของภาพต้นฉบับ จุดซ้ำของปลา ID เดียวกันจะแสดงครั้งเดียว ส่วนปลาต่างชนิดที่อยู่ช่องเดียวกันจะแสดงเป็นกลุ่มหมุดเดียว</p><p>SHA-1 ของ ROM: <code>c2103dd94e2a1a65a495fc02adc2e7d040f31212</code> ไม่มีการเผยแพร่ไฟล์ ROM หรือพิกัดจากไกด์ภายนอก</p><p>ชื่อไทยและชื่ออักษรละตินใช้คำแปลหรือคำถอดเสียงที่มีอยู่ในแค็ตตาล็อก ไม่ใช่ชื่อที่ยืนยันจากแพตช์ไทยครบทุกชนิด ส่วนชนิดปลา พิกัด และภาพมาจาก ROM โดยตรง</p></details>
+    </section>
+  </main>
+  <footer><p>งานวิจัยแฟนเกม · ไม่มีไฟล์ ROM รวมอยู่ในเว็บ</p><a href="../research/index.th.html">บันทึกการวิจัย</a></footer>
+  <script src="maps.js?v=rom-fish-map-20261004-2" defer></script>
+</body>
+</html>

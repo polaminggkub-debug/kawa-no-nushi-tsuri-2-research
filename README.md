@@ -122,3 +122,7 @@ Research snapshot: **4 October 2026**. Corrections and better-supported interpre
 ## General tools and quest items
 
 The [23-tool research index](docs/general-tool-research.md) traces travel and exploration actions, groundbait, basket capacity, postcards and event items. Catalogue cards explain actions and conditions; evidence links show the code consumers and decoded original-ROM text.
+
+## Map and fish browser
+
+Browse the six areas, real ROM terrain sections, and a unique species list in the [Map and fish browser](https://polaminggkub-debug.github.io/kawa-no-nushi-tsuri-2-research/catalogue/maps.html) ([ไทย](https://polaminggkub-debug.github.io/kawa-no-nushi-tsuri-2-research/catalogue/maps.th.html), [日本語](https://polaminggkub-debug.github.io/kawa-no-nushi-tsuri-2-research/catalogue/maps.ja.html)). Fish portraits mark configured spawn tiles; repeated spawn slots at the same species/coordinate are combined for display. The source data retains all slots, and a displayed point is not a guarantee that an active fish is present.
