@@ -1,0 +1,546 @@
+{
+  "schemaVersion": 1,
+  "rom": {
+    "sha1": "c2103dd94e2a1a65a495fc02adc2e7d040f31212",
+    "sha256": "e0594921a5a2ef1a2613b9d2e29fed066569e3793393c591bf4c4968a54c0b49",
+    "sizeBytes": 1572864,
+    "header": "none"
+  },
+  "scope": "Use effects traced from the original Japanese ROM's selected-item dispatcher, consumers, and literal message records. No external gameplay guides were used.",
+  "items": {
+    "01": {
+      "id": "01",
+      "nameJa": "タライ",
+      "summary": {
+        "en": "Launch the tub at a usable waterside tile and enter its separate water-travel mode.",
+        "ja": "岸辺でタライを水に浮かべて乗り、水上移動モードに入る。",
+        "th": "ใช้กะละมังที่จุดริมน้ำที่ลงได้ เพื่อให้ลอยน้ำและเข้าโหมดเดินทางทางน้ำ"
+      },
+      "facts": {
+        "en": [
+          "Use it from the bank: the game can place it on a valid waterside tile and says that it is floating on the water.",
+          "It cannot be launched while swimming or from an unusable tile. The tub then enters its own water-travel mode.",
+          "The game will not let you change directly between the tub and canoe while already riding; return to a usable bank first."
+        ],
+        "ja": [
+          "岸辺で使うと、有効な水辺タイルにタライを配置し、水に浮かんだことを表示する。",
+          "泳いでいる間や使用不可のタイルからは乗れない。乗るとタライ専用の水上移動モードに入る。",
+          "乗っている間にタライとカヌーを直接切り替えることはできない。いったん使用可能な岸辺に戻る必要がある。"
+        ],
+        "th": [
+          "ใช้จากริมฝั่ง ถ้าช่องริมน้ำใช้ได้ เกมจะวางกะละมังและแสดงข้อความว่าลอยอยู่บนผิวน้ำ",
+          "ขึ้นพาหนะขณะว่ายน้ำหรือจากช่องที่ใช้ไม่ได้ไม่สำเร็จ เมื่อขึ้นได้แล้วจะเข้าโหมดเดินทางทางน้ำของกะละมัง",
+          "ขณะอยู่บนพาหนะสลับกะละมังกับแคนูโดยตรงไม่ได้ ต้องกลับมาที่ริมฝั่งที่ขึ้นได้ก่อน"
+        ]
+      },
+      "evidence": {
+        "type": "rom_trace",
+        "sources": [
+          "docs/general-tool-actions-research.md"
+        ]
+      },
+      "evidenceNotes": {
+        "en": [
+          "The numeric tile class used by the launch test is not assigned a terrain name here. The ROM confirms separate tub and canoe movement paths, but this trace does not claim a wider difference in destinations or speed."
+        ],
+        "ja": [
+          "乗り込み判定の数値タイル種別には地形名を付けていない。タライとカヌーが別の移動処理を使うことは確認したが、行き先や速度の違いまでは主張しない。"
+        ],
+        "th": [
+          "ยังไม่ตั้งชื่อภูมิประเทศให้ค่าชนิดช่องตัวเลขที่ใช้ตรวจจุดขึ้นเรือ โค้ดยืนยันว่าโหมดกะละมังกับแคนูใช้ชุดเคลื่อนที่ต่างกัน แต่ยังไม่สรุปว่าปลายทางหรือความเร็วต่างกันอย่างไร"
+        ]
+      },
+      "trace": {
+        "selectedUseHandler": "03:BD2F",
+        "handlerFileOffset": "0x01BD2F",
+        "handlerBytes": "ad 58 08 c9 04 00 d0 12 a9 1e 00 8d a8 16 a0 54 01 20 0d d3 22 04 80 02 80 2c c9 03 00 d0 12 a9 1e 00 8d a8 16 a0 3c 01 20 0d d3 22 04 80 02 80 15 a9 1c 00 8d a8 16 a9 05 00 8d 34 08 a9 01 00 8d 0e 13 ee 31 1d 60",
+        "entryState": "03:BD2F stores 5 to $0834 and 1 to $130E; main state 5 is $00:8283.",
+        "launchChecks": [
+          "$0858 <= 1 passes; $0858 > 1 prints message 0156",
+          "$0848 == 9 or $084A == 0 prints message 0152",
+          "otherwise $00:82F6..836D places the vehicle and prints message 013A"
+        ],
+        "result": "$00:836E reads $130E==1 and sets $0858=3; input later uses the tub branch at $00:A5F2.",
+        "modeMessages": {
+          "013A": "[D0]が水に浮かんでいる。",
+          "013C": "[D6]は今使っている。",
+          "0152": "[D6]はここでは使えない。",
+          "0154": "[D6]に乗りかえるのは危険だ。",
+          "0156": "泳ぎながら乗ることはできない。"
+        },
+        "relatedCode": [
+          "00:8283..836D",
+          "00:836E..8395",
+          "00:9AC2",
+          "00:A5F2",
+          "00:A73F..A786"
+        ]
+      }
+    },
+    "02": {
+      "id": "02",
+      "nameJa": "カヌー",
+      "summary": {
+        "en": "Launch the canoe at a usable waterside tile and enter its separate water-travel mode.",
+        "ja": "岸辺でカヌーを水に浮かべて乗り、水上移動モードに入る。",
+        "th": "ใช้แคนูที่จุดริมน้ำที่ลงได้ เพื่อให้ลอยน้ำและเข้าโหมดเดินทางทางน้ำ"
+      },
+      "facts": {
+        "en": [
+          "Use it from the bank: the game can place the canoe on a valid waterside tile and says that it is floating on the water.",
+          "It cannot be launched while swimming or from an unusable tile. The canoe then enters its own water-travel mode.",
+          "The game will not let you change directly between the canoe and tub while already riding; return to a usable bank first."
+        ],
+        "ja": [
+          "岸辺で使うと、有効な水辺タイルにカヌーを配置し、水に浮かんだことを表示する。",
+          "泳いでいる間や使用不可のタイルからは乗れない。乗るとカヌー専用の水上移動モードに入る。",
+          "乗っている間にカヌーとタライを直接切り替えることはできない。いったん使用可能な岸辺に戻る必要がある。"
+        ],
+        "th": [
+          "ใช้จากริมฝั่ง ถ้าช่องริมน้ำใช้ได้ เกมจะวางแคนูและแสดงข้อความว่าลอยอยู่บนผิวน้ำ",
+          "ขึ้นพาหนะขณะว่ายน้ำหรือจากช่องที่ใช้ไม่ได้ไม่สำเร็จ เมื่อขึ้นได้แล้วจะเข้าโหมดเดินทางทางน้ำของแคนู",
+          "ขณะอยู่บนพาหนะสลับแคนูกับกะละมังโดยตรงไม่ได้ ต้องกลับมาที่ริมฝั่งที่ขึ้นได้ก่อน"
+        ]
+      },
+      "evidence": {
+        "type": "rom_trace",
+        "sources": [
+          "docs/general-tool-actions-research.md"
+        ]
+      },
+      "evidenceNotes": {
+        "en": [
+          "The numeric tile class used by the launch test is not assigned a terrain name here. The ROM confirms separate tub and canoe movement paths, but this trace does not claim a wider difference in destinations or speed."
+        ],
+        "ja": [
+          "乗り込み判定の数値タイル種別には地形名を付けていない。タライとカヌーが別の移動処理を使うことは確認したが、行き先や速度の違いまでは主張しない。"
+        ],
+        "th": [
+          "ยังไม่ตั้งชื่อภูมิประเทศให้ค่าชนิดช่องตัวเลขที่ใช้ตรวจจุดขึ้นเรือ โค้ดยืนยันว่าโหมดกะละมังกับแคนูใช้ชุดเคลื่อนที่ต่างกัน แต่ยังไม่สรุปว่าปลายทางหรือความเร็วต่างกันอย่างไร"
+        ]
+      },
+      "trace": {
+        "selectedUseHandler": "03:BD76",
+        "handlerFileOffset": "0x01BD76",
+        "handlerBytes": "ad 58 08 c9 03 00 d0 12 a9 1e 00 8d a8 16 a0 54 01 20 0d d3 22 04 80 02 80 2c c9 04 00 d0 12 a9 1e 00 8d a8 16 a0 3c 01 20 0d d3 22 04 80 02 80 15 a9 1c 00 8d a8 16 a9 05 00 8d 34 08 a9 02 00 8d 0e 13 ee 31 1d 60",
+        "entryState": "03:BD76 stores 5 to $0834 and 2 to $130E; main state 5 is $00:8283.",
+        "launchChecks": [
+          "$0858 <= 1 passes; $0858 > 1 prints message 0156",
+          "$0848 == 9 or $084A == 0 prints message 0152",
+          "otherwise $00:82F6..836D places the vehicle and prints message 013A"
+        ],
+        "result": "$00:836E reads $130E!=1 and sets $0858=4; input later uses the canoe branch at $00:A7BB.",
+        "modeMessages": {
+          "013A": "[D0]が水に浮かんでいる。",
+          "013C": "[D6]は今使っている。",
+          "0152": "[D6]はここでは使えない。",
+          "0154": "[D6]に乗りかえるのは危険だ。",
+          "0156": "泳ぎながら乗ることはできない。"
+        },
+        "relatedCode": [
+          "00:8283..836D",
+          "00:836E..8395",
+          "00:9AC2",
+          "00:A7BB..A84E",
+          "00:A73F..A786"
+        ]
+      }
+    },
+    "03": {
+      "id": "03",
+      "nameJa": "虫めがね",
+      "summary": {
+        "en": "Search the current field tile for location-dependent bait; on the connecting route and special maps it can find bait or mushrooms.",
+        "ja": "現在地を調べて場所に応じたエサを探す。連絡路や特別なマップではエサやキノコが見つかることもある。",
+        "th": "ค้นหาจุดปัจจุบันเพื่อหาเหยื่อตามบริบทของตำแหน่ง; บนทางเชื่อมและแผนที่พิเศษอาจพบเหยื่อหรือเห็ด"
+      },
+      "facts": {
+        "en": [
+          "Search the field location you are standing at. Searching the same tile again without moving returns nothing.",
+          "In the six main areas, the search can yield worm, maggot, large earthworm, waxworm, insect or bee larva, depending on the ground context. Area 3 also has a potato-bait context.",
+          "A coordinate band in town maps yields kneaded bait. The connecting route can yield large earthworm or mushrooms. Poisonous mushrooms are possible; the find message does not distinguish them.",
+          "Bait rewards are 1–4 at a time, up to 9 per bait type. Mushrooms need an empty food slot.",
+          "Do not search while standing in shallow water or riding a tub/canoe; those modes reject the magnifier action."
+        ],
+        "ja": [
+          "現在地を調べる。同じタイルで動かずにもう一度使うと何も見つからない。",
+          "6つのメインエリアでは、場所によりミミズ、サシ、ドバミミズ、ブドウムシ、昆虫、ハチの子が見つかる。エリア3にはイモが見つかる場所もある。",
+          "町の特定の座標帯ではネリエが見つかる。連絡路ではドバミミズやキノコが見つかる。毒キノコもあるが、発見メッセージでは区別されない。",
+          "エサは一度に1～4個、種類ごとに最大9個。キノコには食料欄の空きが必要。",
+          "浅瀬に立っている時やタライ・カヌーに乗っている時は虫メガネを使えない。"
+        ],
+        "th": [
+          "ค้นหาจุดที่ยืนอยู่ ถ้าไม่ขยับแล้วค้นช่องเดิมซ้ำจะไม่พบอะไร",
+          "ใน 6 ด่านหลัก ขุดหาได้ทั้งไส้เดือน หนอนแมลงวัน ไส้เดือนใหญ่ หนอนองุ่น แมลง และตัวอ่อนผึ้ง ตามชนิดจุดที่ยืนอยู่ ด่าน 3 มีจุดที่ให้เหยื่อมันฝรั่งด้วย",
+          "ในเขตเมืองมีแถบตำแหน่งที่ให้เหยื่อปั้น ส่วนทางเชื่อมระหว่างด่านอาจได้ไส้เดือนใหญ่หรือเห็ด มีเห็ดพิษด้วย แต่ข้อความตอนพบเห็ดไม่บอกว่าเป็นชนิดไหน",
+          "เหยื่อได้ครั้งละ 1–4 ชิ้น สูงสุดชนิดละ 9 ชิ้น ส่วนเห็ดต้องมีช่องอาหารว่าง",
+          "ใช้แว่นขยายไม่ได้ขณะยืนในน้ำตื้นหรืออยู่บนกะละมัง/แคนู"
+        ]
+      },
+      "evidence": {
+        "type": "rom_trace",
+        "sources": [
+          "docs/general-tool-actions-research.md",
+          "data/food-effects-confirmed.json"
+        ]
+      },
+      "evidenceNotes": {
+        "en": [
+          "The ROM stores the location context as a number; labels such as 'grass' or 'riverbank' are not assigned without an explicit decoded tile label. RNG branches are described by their code conditions, not as fixed percentages."
+        ],
+        "ja": [
+          "ROMは場所コンテキストを数値で保持する。「草地」「川岸」などの名称は、タイル名が明示的に解読できない限り付けない。乱数分岐はコード条件で記述し、確率として断定しない。"
+        ],
+        "th": [
+          "ROM เก็บบริบทตำแหน่งเป็นตัวเลข จึงไม่ตั้งชื่อว่าเป็นหญ้าหรือริมแม่น้ำถ้ายังไม่มีป้ายชนิดช่องที่ถอดได้ และอธิบายผลสุ่มตามเงื่อนไขในโค้ด ไม่สรุปเป็นเปอร์เซ็นต์"
+        ]
+      },
+      "trace": {
+        "selectedUseHandler": "03:BDBD",
+        "handlerFileOffset": "0x01BDBD",
+        "handlerBytes": "ad 34 08 c9 02 00 f0 06 20 85 c6 60 80 18 ad 58 08 c9 03 00 90 04 20 96 c6 60 ad 58 08 c9 01 00 d0 04 20 96 c6 60",
+        "contextWriter": "03:D451..D4CE updates $1E97 from $0842 only in field state 2; clears it for $0842==7. $03:D4CF initializes per-area context state.",
+        "contextsAreas1to6": {
+          "1": "bait 01",
+          "2": "bait 01; area 3 instead gives bait 11",
+          "3": "bait 02",
+          "4": "$1364 negative: bait 0B; otherwise bait 0A",
+          "5": "$1364 negative: bait 04; otherwise bait 0C"
+        },
+        "areas7to12": "If ($085E & 0x00F0)==0x0010, result is bait 0D; otherwise no result.",
+        "areas13plus": "DA92 low bit nonzero selects bait 0A. If zero, $0B58 must be zero; then another DA92 low-bit branch selects food 09 or food 0A and stores it into $0B3A; food 0A is identified as poisonous in food-effects-confirmed.json. No percentage is asserted.",
+        "baitInventory": {
+          "ids": "$088C..$08AE",
+          "counts": "$08B8..$08D4",
+          "grantAmount": "($00:DA92 & 3)+1, capped at 9",
+          "sameTile": "$1D49/$1D4B",
+          "fullMessage": "0158"
+        },
+        "relatedCode": [
+          "03:BDBD..BF29",
+          "03:BFBC..C049",
+          "03:D451..D506"
+        ]
+      }
+    },
+    "04": {
+      "id": "04",
+      "nameJa": "金アミ",
+      "summary": {
+        "en": "Use the gold net on a new shallow-water tile to catch the bait type assigned to that area.",
+        "ja": "浅瀬の新しいタイルで金アミを使い、エリアごとに決まったエサを採る。",
+        "th": "ใช้ตาข่ายสีทองที่ช่องน้ำตื้นช่องใหม่ เพื่อเก็บเหยื่อชนิดที่กำหนดไว้สำหรับพื้นที่นั้น"
+      },
+      "facts": {
+        "en": [
+          "Stand in shallow water and use the net. Move to a new eligible tile before using it again.",
+          "The bait depends on the area: 1 aquatic insect; 2 caddis larva; 3 salmon roe; 4 shelled clam meat; 5 bloodworm; 6 ragworm.",
+          "You get 1–4 pieces, up to 9 of each bait type. Make space in the bait pouch first."
+        ],
+        "ja": [
+          "浅瀬に立って使う。もう一度採るには別の使用可能なタイルへ移動する。",
+          "エリア別のエサ：1カワムシ、2トビケラ、3イクラ、4貝のむきみ、5アカムシ、6ゴカイ。",
+          "一度に1～4個、種類ごとに最大9個。エサ欄に空きを作っておく。"
+        ],
+        "th": [
+          "ยืนในน้ำตื้นแล้วเลือกใช้ตาข่าย ต้องขยับไปช่องใหม่ที่ใช้ได้ก่อนเก็บซ้ำ",
+          "เหยื่อที่ได้ตามด่าน: 1 แมลงน้ำ; 2 ตัวอ่อนแมลงหนอนปลอกน้ำ; 3 ไข่ปลาแซลมอน; 4 เนื้อหอย; 5 หนอนเลือด; 6 หนอนทะเล",
+          "ได้ครั้งละ 1–4 ชิ้น สูงสุดชนิดละ 9 ชิ้น ต้องมีที่ว่างในกระเป๋าเหยื่อ"
+        ]
+      },
+      "evidence": {
+        "type": "rom_trace",
+        "sources": [
+          "docs/general-tool-actions-research.md"
+        ]
+      },
+      "evidenceNotes": {
+        "en": [
+          "The six output names are joined from bait IDs whose Japanese item names are preserved in the ROM item catalogue. The ROM table provides the IDs directly."
+        ],
+        "ja": [
+          "6種類の名称は、ROMのアイテム一覧に記録されたエサIDの日本語名と対応付けた。ROM表自体が返すのはID。"
+        ],
+        "th": [
+          "ชื่อเหยื่อทั้งหกจับคู่จาก ID กับชื่อญี่ปุ่นในรายการไอเท็มที่ถอดจาก ROM ตารางของตาข่ายระบุ ID โดยตรง"
+        ]
+      },
+      "trace": {
+        "selectedUseHandler": "03:BF2A",
+        "handlerFileOffset": "0x01BF2A",
+        "handlerBytes": "ad 34 08 c9 02 00 f0 05 20 85 c6 80 5c ad 58 08 c9 01 00 f0 12 a9 1e 00 8d a8 16 a0 5a 01 20 0d d3 22 04 80 02",
+        "areaTable": {
+          "cpuAddress": "03:C04C",
+          "fileOffset": "0x01C04C",
+          "bytesHex": "02 60 07 00 08 00 09 00 16 00 05 00 06 00 01 00",
+          "indexing": "The handler uses 2*$085A; word zero is sentinel 0x6002 and words 1–6 are bait IDs."
+        },
+        "perAreaBaitIds": {
+          "1": "07",
+          "2": "08",
+          "3": "09",
+          "4": "16",
+          "5": "05",
+          "6": "06"
+        },
+        "baitInventory": {
+          "ids": "$088C..$08AE",
+          "counts": "$08B8..$08D4",
+          "grantAmount": "($00:DA92 & 3)+1, capped at 9",
+          "sameTile": "$1D49/$1D4B",
+          "fullMessage": "0158"
+        },
+        "relatedCode": [
+          "03:BF2A..BF93",
+          "03:BF94..BFBB",
+          "03:BFBC..C049"
+        ]
+      }
+    },
+    "05": {
+      "id": "05",
+      "nameJa": "釣りノート",
+      "summary": {
+        "en": "Open the Fishing Notebook to consult fish records and overview pages for the six areas.",
+        "ja": "釣りノートを開いて、6エリアの魚記録と概要ページを見る。",
+        "th": "เปิดสมุดตกปลาเพื่อดูบันทึกปลาและหน้าภาพรวมของทั้ง 6 ด่าน"
+      },
+      "facts": {
+        "en": [
+          "Open the Fishing Notebook to consult the fish records organized into six area groups and the corresponding area-overview pages.",
+          "The ROM sorts the entries within each group; this item is for looking up records and does not change fishing equipment."
+        ],
+        "ja": [
+          "釣りノートを開くと、魚の記録を6エリア別に整理した一覧と対応するエリア概要を参照できる。",
+          "ROMは各一覧内の記録を並べ替える。記録を調べるための道具で、釣り道具は変更しない。"
+        ],
+        "th": [
+          "เปิดสมุดตกปลาเพื่อดูบันทึกปลาที่จัดเป็นหกพื้นที่ พร้อมหน้าภาพรวมของพื้นที่ตามลำดับ",
+          "เกมเรียงรายการปลาในแต่ละพื้นที่ ไอเท็มนี้ใช้เปิดดูข้อมูล ไม่ได้เปลี่ยนอุปกรณ์ตกปลา"
+        ]
+      },
+      "evidence": {
+        "type": "rom_trace",
+        "sources": [
+          "docs/general-tool-actions-research.md",
+          "docs/fish-location-research.md"
+        ]
+      },
+      "evidenceNotes": {
+        "en": [
+          "The six-page area correspondence is confirmed in the ROM-backed field/notebook render trace. This evidence does not claim that the notebook artwork itself encodes fish spawn coordinates."
+        ],
+        "ja": [
+          "6ページとエリアの対応はROMのフィールド／ノート描画経路で確認した。ノート画像から魚の出現座標が読めるとは主張しない。"
+        ],
+        "th": [
+          "ยืนยันความสัมพันธ์ระหว่างหกหน้ากับพื้นที่จากเส้นทางวาดฉากและสมุดใน ROM แต่ไม่ได้อ้างว่าภาพในสมุดระบุพิกัดเกิดปลาได้"
+        ]
+      },
+      "trace": {
+        "selectedUseHandler": "03:C05C",
+        "handlerFileOffset": "0x01C05C",
+        "handlerBytes": "a9 1c 00 8d a8 16 ad 34 08 8d 36 08 a9 08 00 8d 34 08 ee 31 1d 60",
+        "mainDispatcher": "00:8000..8018; state 8 vector at 00:801A+16 is 00:83A4, which calls 01:9738.",
+        "recordBuilder": "01:BF30..C00B scans 66 word entries of $0C3C for values 1..6 and writes indices to $7F:2AFA; $01:C258 sorts each group by the two byte fields at $0CC0 and $0D44.",
+        "areaPageEvidence": "docs/fish-location-research.md: the ROM notebook shows six overview pages in field-area order; page graphics do not read the fish-spawn coordinate tables.",
+        "relatedCode": [
+          "03:C05C..C071",
+          "00:8000..801A",
+          "00:83A4..83A8",
+          "01:9738..973B",
+          "01:BF30..C2EA"
+        ]
+      }
+    },
+    "0E": {
+      "id": "0E",
+      "nameJa": "磁石",
+      "summary": {
+        "en": "Use the magnet as a compass toward the area's exit/connecting route; it also reports your current area and subregion.",
+        "ja": "磁石でエリア出口・連絡路の方向を調べ、現在のエリアと区画を確認する。",
+        "th": "ใช้แม่เหล็กดูทิศไปทางทางออกหรือทางเชื่อมของพื้นที่ พร้อมดูพื้นที่และช่วงที่ยืนอยู่"
+      },
+      "facts": {
+        "en": [
+          "Use it to read a compass heading toward the area’s exit/connecting route and to see your current area and section.",
+          "At the exit target the needle stops. The message gives a direction and your current location, but does not name the destination.",
+          "In area 6, a story-progress condition controls whether a heading appears; before that, it reports only your location. Town maps use fixed headings rather than the outdoor exit targets."
+        ],
+        "ja": [
+          "使うと出口・連絡路の方角と、現在のエリア／区画を確認できる。",
+          "出口ターゲットに着くと針が止まる。表示は方角と現在地で、目的地名は出ない。",
+          "エリア6の方角表示には物語の進行条件があり、それ以前は現在地だけを表示する。町では屋外の出口座標ではなく固定の方角を使う。"
+        ],
+        "th": [
+          "ใช้ดูทิศไปทางทางออกหรือทางเชื่อม และดูพื้นที่กับช่วงที่ยืนอยู่",
+          "เมื่อถึงจุดเป้าหมาย เข็มจะหยุด ข้อความบอกทิศกับตำแหน่งปัจจุบัน แต่ไม่บอกชื่อปลายทาง",
+          "ด่าน 6 ต้องผ่านเงื่อนไขเนื้อเรื่องก่อนจึงบอกทิศได้ ก่อนหน้านั้นบอกแค่ตำแหน่ง ส่วนในเมืองใช้ทิศที่เกมกำหนดไว้ตายตัว"
+        ]
+      },
+      "evidence": {
+        "type": "rom_trace",
+        "sources": [
+          "docs/general-tool-actions-research.md"
+        ]
+      },
+      "evidenceNotes": {
+        "en": [
+          "Target tiles are ROM coordinates in the game's map coordinate system. The Japanese direction substitutions are preserved from messages 015C–0162; English/Thai direction names are translations. No destination name appears in message 0144."
+        ],
+        "ja": [
+          "ターゲットはゲームのマップ座標系によるROM座標。方角置換はメッセージ015C～0162に基づく。メッセージ0144に目的地名はない。"
+        ],
+        "th": [
+          "พิกัดเป้าหมายเป็นพิกัดแผนที่ภายในเกม คำบอกทิศอ้างจากข้อความ 015C–0162 และข้อความ 0144 ไม่มีชื่อปลายทาง"
+        ]
+      },
+      "trace": {
+        "selectedUseHandler": "03:C313",
+        "handlerFileOffset": "0x01C313",
+        "handlerBytes": "ad 5a 08 c9 06 00 f0 02 b0 39 ad 5c 08 8d 7b 1a ad 5e 08 8d 7d 1a ad 5a 08 3a 0a 0a 0a aa bf 65 a0 00 c9 ff 00 f0 0a 85 06 bf 67 a0 00 85 08",
+        "area1to6Targets": {
+          "1": [
+            13,
+            239
+          ],
+          "2": [
+            56,
+            17
+          ],
+          "3": [
+            22,
+            5
+          ],
+          "4": [
+            32,
+            41
+          ],
+          "5": [
+            22,
+            2
+          ],
+          "6": "table sentinel 0x00FF; dynamic target words $0C:DE02 and $0C:EA02"
+        },
+        "targetTable": {
+          "cpuAddress": "00:A065",
+          "fileOffset": "0x002065",
+          "first48BytesHex": "0d 00 ef 00 4d 00 1b 00 38 00 11 00 01 00 46 00 16 00 05 00 30 00 01 00 20 00 29 00 35 00 13 00 16 00 02 00 3e 00 02 00 ff 00 ff 00 00 00 00 00"
+        },
+        "transitionConsumer": "00:9D94..9DD8 reads matching $00:A065/$00:A067 target coordinates and changes to area 13, placing the player at $00:A099/$00:A09B coordinates.",
+        "messages": {
+          "0144": "磁石の針が [D7]を指した。現在地は[DA]の[D4]だ。",
+          "0146": "針が動かなくなった。",
+          "014A": "現在地は[DA]の[D4]だ。",
+          "015C..0162": "four direction substitutions selected by the target comparison"
+        },
+        "relatedCode": [
+          "03:C313..C3E8",
+          "03:C3E9..C499",
+          "03:C49A..C4D8",
+          "00:9D94..9DD8"
+        ]
+      }
+    },
+    "13": {
+      "id": "13",
+      "nameJa": "ステレオ",
+      "summary": {
+        "en": "Toggle the music to monaural; the item then changes to Monaural.",
+        "ja": "音楽をモノラルに切り替え、所持アイテムをモノラルにする。",
+        "th": "สลับเสียงเพลงเป็นโมโน แล้วเปลี่ยนไอเท็มที่ถือเป็นโมโน"
+      },
+      "facts": {
+        "en": [
+          "Using Stereo changes the music to monaural; the item then changes to Monaural."
+        ],
+        "ja": [
+          "ステレオを使うと音楽がモノラルに切り替わり、アイテムもモノラルに変わる。"
+        ],
+        "th": [
+          "เมื่อใช้สเตอริโอ เพลงจะเปลี่ยนเป็นโมโน และไอเท็มจะเปลี่ยนเป็นโมโนตาม"
+        ]
+      },
+      "evidence": {
+        "type": "rom_trace",
+        "sources": [
+          "docs/general-tool-actions-research.md"
+        ]
+      },
+      "evidenceNotes": {
+        "en": [
+          "The item label names the current mode; using it toggles to the opposite mode. The action is established by the handler's state write, item swap, and literal confirmation message."
+        ],
+        "ja": [
+          "アイテム名は現在のモードを示し、使用すると反対のモードへ切り替わる。処理内容は状態更新、アイテム交換、ROMの確認メッセージで確認した。"
+        ],
+        "th": [
+          "ชื่อไอเท็มบอกโหมดปัจจุบัน เมื่อใช้จะสลับไปอีกโหมด ยืนยันจากการเขียนสถานะ การสลับ ID และข้อความตอบกลับใน ROM"
+        ]
+      },
+      "trace": {
+        "selectedUseHandler": "03:C548",
+        "handlerFileOffset": "0x01C548",
+        "handlerBytes": "a9 1c 00 8d a8 16 e2 20 a9 e3 8d 43 21 c2 20 ae cf 1b a9 14 00 9d d5 1b a9 01 00 8f 28 1e 7f",
+        "result": {
+          "audioFlag": "$7F:1E28=1",
+          "selectedItemSlot": "$1BD5[$1BCF]=0x14",
+          "message": "0166 音楽をモノラルにしました。"
+        },
+        "relatedCode": [
+          "03:C548..C583"
+        ]
+      }
+    },
+    "14": {
+      "id": "14",
+      "nameJa": "モノラル",
+      "summary": {
+        "en": "Toggle the music to stereo; the item then changes to Stereo.",
+        "ja": "音楽をステレオに切り替え、所持アイテムをステレオにする。",
+        "th": "สลับเสียงเพลงเป็นสเตอริโอ แล้วเปลี่ยนไอเท็มที่ถือเป็นสเตอริโอ"
+      },
+      "facts": {
+        "en": [
+          "Using Monaural changes the music to stereo; the item then changes to Stereo."
+        ],
+        "ja": [
+          "モノラルを使うと音楽がステレオに切り替わり、アイテムもステレオに変わる。"
+        ],
+        "th": [
+          "เมื่อใช้โมโน เพลงจะเปลี่ยนเป็นสเตอริโอ และไอเท็มจะเปลี่ยนเป็นสเตอริโอตาม"
+        ]
+      },
+      "evidence": {
+        "type": "rom_trace",
+        "sources": [
+          "docs/general-tool-actions-research.md"
+        ]
+      },
+      "evidenceNotes": {
+        "en": [
+          "The item label names the current mode; using it toggles to the opposite mode. The action is established by the handler's state write, item swap, and literal confirmation message."
+        ],
+        "ja": [
+          "アイテム名は現在のモードを示し、使用すると反対のモードへ切り替わる。処理内容は状態更新、アイテム交換、ROMの確認メッセージで確認した。"
+        ],
+        "th": [
+          "ชื่อไอเท็มบอกโหมดปัจจุบัน เมื่อใช้จะสลับไปอีกโหมด ยืนยันจากการเขียนสถานะ การสลับ ID และข้อความตอบกลับใน ROM"
+        ]
+      },
+      "trace": {
+        "selectedUseHandler": "03:C584",
+        "handlerFileOffset": "0x01C584",
+        "handlerBytes": "a9 1c 00 8d a8 16 e2 20 a9 e4 8d 43 21 c2 20 ae cf 1b a9 13 00 9d d5 1b a9 00 00 8f 28 1e 7f",
+        "result": {
+          "audioFlag": "$7F:1E28=0",
+          "selectedItemSlot": "$1BD5[$1BCF]=0x13",
+          "message": "0164 音楽をステレオにしました。"
+        },
+        "relatedCode": [
+          "03:C584..C5BF"
+        ]
+      }
+    }
+  }
+}

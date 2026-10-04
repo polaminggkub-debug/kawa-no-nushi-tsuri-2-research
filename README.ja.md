@@ -82,3 +82,7 @@ python3 scripts/extract_items.py --rom /path/to/your/Kawa-no-Nushi-Tsuri-2.sfc -
 [日本語の装備ガイド](https://polaminggkub-debug.github.io/kawa-no-nushi-tsuri-2-research/research/index.ja.html)：ルアー2IDでルアー適合38プロフィールのマスク判定を網羅。最安のROM価格欄は17 + 23で50円。販売店・取り込み成功率は未確認。竿+2はファイトの強さではなく、針掛かり前の投げ・照準保持時間上限に訂正した。
 
 [エサ・フライの判定](docs/fish-acceptance-research.md) · [竿の処理](docs/rod-response-research.md) · [ルアー初期化](docs/lure-response-research.md) · [店頭観察](docs/shop-inventory-research.md)
+
+## 道具・イベント品
+
+[道具23件の調査](docs/general-tool-research.md)では、移動・探索、寄せエサ、びく容量、絵はがき、イベント品を原作ROMから追跡しています。カタログの用途欄に操作と条件を掲載し、根拠から処理・ゲーム内テキストを確認できます。

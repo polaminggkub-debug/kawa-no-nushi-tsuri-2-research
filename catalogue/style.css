@@ -72,3 +72,5 @@
 .map-scroll{max-height:none}
 
 .area-overview{margin:22px 0;max-width:900px}.area-overview figcaption{font-weight:700;margin-bottom:12px}.area-overview>div{position:relative;max-width:100%;max-height:400px; width:100%;}.area-overview img{display:block;width:100%;height:100%;image-rendering:pixelated}.area-overview span{position:absolute;box-sizing:border-box;border:3px solid white;box-shadow:0 0 0 2px #172a20,inset 0 0 0 2px #172a20;pointer-events:none}
+
+.tool-use-map{margin-top:20px}.tool-use-map>summary{font-weight:700;cursor:pointer;padding:12px 0}.tool-use-map .location-map{margin-top:16px}.tool-use-map .map-canvas{min-width:0;overflow:visible}.tool-use-map .map-pin img{width:56px;height:48px}.tool-use-map .fish-scope{margin:14px 0 8px}

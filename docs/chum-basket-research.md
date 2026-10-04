@@ -1,0 +1,70 @@
+# Groundbait and keepnet: what these items do
+
+This note traces general-tool IDs `08–0D` in the user-supplied original Japanese SFC ROM. It does not use an outside walkthrough as evidence. The item descriptions, behavior and limits below come from ROM records/code; the one note about eating stored fish cites a controlled run with the same original ROM.
+
+ROM: 1,572,864 bytes; SHA-1 `c2103dd94e2a1a65a495fc02adc2e7d040f31212`.
+
+## Use this in the game
+
+| IDs | Item | What to do / what happens |
+| --- | --- | --- |
+| `08 → 09 → 0A` | Same groundbait, with 3, 2, then 1 use left | Scatter it at the water's edge to mark the current target point. Eligible fish profiles are steered toward that point as you fish. A valid use consumes one charge. |
+| `0B` | Keepnet, capacity 10; 300 yen | Buy it in the shop to set the active capacity to 10 fish. |
+| `0C` | Keepnet, capacity 20; 400 yen | Shop upgrade to 20 fish. The game refuses the same or a smaller capacity. |
+| `0D` | Keepnet, capacity 30; 500 yen | Shop upgrade to 30 fish. It changes the capacity field directly; it is not an item you equip or use from the tool menu. |
+
+When a landed catch fills the keepnet exactly, the game stores the fish first and then says the keepnet has become full. On a later fishing-action capacity check, it displays “The basket is full; you cannot fish.” Fish already stored can be eaten with **Food-category ID `08` (魚)**; this is separate from **Tool-category ID `08` (寄せエサ)** and consumes one stored fish. Controlled original-ROM runs show that food ID `08` restores HP based on stored fish size; see [food-effects-confirmed.json](../data/food-effects-confirmed.json) for the tested values.
+
+## Groundbait: the exact effect and its limits
+
+IDs `08`, `09`, and `0A` all have the Japanese ROM name `寄せエサ` and all reach the same use handler at `03:C24A`. On successful placement, the game stores the selected coordinate pair in `7E:1D41/1D43` and sets active marker `7E:1D45` to `12`. A later successful placement advances the inventory ID `08→09→0A`; successful use of `0A` removes that entry from the tools list. Invalid placement or an already-active target returns before the inventory charge transition.
+
+The decoded ROM messages make the basic action clear:
+
+- `0104`: `寄せエサを まいた。` — chum was scattered.
+- `0106`: `さっき まいたので まだ 必要ありません。` — it was just scattered, so more is not needed yet.
+- `0108`: `水際で、寄せエサを まきましょう。` — scatter chum at the water's edge.
+
+The active marker is **not a real-time timer**. `04:C020..C02B` decrements it once when the fishing state enters phase 3. That path is reached after the aim/input state is complete and the target resolver returns nonzero (`04:BF61..BF8F`, following `04:D056`). A zero target result uses the other phase and does not decrement the marker there. Starting at `12`, the code reaches zero after 12 qualifying phase-3 transitions. The exact number of casts during which the effect is visible on screen has not been measured, so this note does not translate that counter into seconds or promise exactly 12 successful catches.
+
+Moving outside the active coordinate window also clears the marker. The fish-update routine calls the `03:8056` helper, which checks the saved point against the current area bounds through `03:C2DE..C30F`. Scene/area update paths at `00:9F37` and `00:9FB1` clear it as well.
+
+Fish movement has a specific ROM condition. The game first tries an equipped-bait direction branch. If that branch does not take precedence, fish profiles whose `+15` word intersects mask `0x5180` enter the groundbait-direction branch when `7E:1D45` is nonzero. The direction code compares the fish's current coordinates with the saved chum coordinate and writes a direction toward it (`00:D5F0..D61A`, `00:D7D2..D81E`). This is evidence for **movement toward the marked point**. It is not evidence that chum raises the chance of a bite, makes a fish accept a particular lure/bait, or improves the odds of landing it.
+
+The profile-mask branch covers these 47 ROM profile IDs. The list identifies movement-branch profiles, not a list of fish that will bite or can be caught; it also includes non-fish creatures. The earlier bait-direction branch may take precedence.
+
+| IDs and Japanese ROM profile names |
+| --- |
+| `06` ニジマス, `07` ヒメマス, `08` ブラウントラウト, `09` カワマス, `0B` ブラックバス, `0C` ウグイ, `0D` コイ, `0E` ドンコ, `0F` オイカワ, `10` モツゴ, `11` イトモロコ, `12` ギギ |
+| `14` コクレン, `15` ハクレン, `16` ムギツク, `17` ホンモロコ, `18` ヤマノカミ, `1A` タモロコ, `1B` カワムツ, `1C` キンブナ, `1D` マブナ, `20` ブルーギル, `23` トミヨ |
+| `24` ライギョ, `25` ヘラブナ, `26` ナマズ, `28` ハス, `29` ワタカ, `2D` カムルチー, `2F` ソウギョ, `30` アオウオ, `32` メゴチ, `33` マルタ, `34` ハゼ |
+| `36` スズキ, `37` アカメ, `39` タナゴ, `3A` ウナギ, `3B` オオウナギ, `3D` クロダイ, `3E` ヌマガレイ, `3F` クサフグ, `44` イモリ, `46` ザリガニ, `47` カメ, `48` スッポン, `49` カニ |
+
+## Keepnet capacity: where it is read
+
+The shop-selection handler writes `10`, `20`, or `30` to the active capacity field `7E:0C12` for IDs `0B`, `0C`, and `0D` (`03:9450..94D3`). The shop checks that value before a purchase: equal capacity displays message `0198`; a smaller selection displays `019A` (`03:941E..944F`). Those item IDs have no selected-use branch in the tool dispatcher, so the useful action is to buy an upgrade at a shop.
+
+There are two relevant full-keepnet paths, and they describe different moments:
+
+1. **When a landed catch reaches capacity:** `01:8AC3..8AFF` finds the first empty fish slot, stores the fish species at `7E:0B7A+X` and size at `7E:0BB6+X`, then compares the new count with `7E:0C12`. If equal, it shows message `00A2`, `びく が いっぱいに なってしまった。` (“The keepnet has become full”). This catch is already stored.
+2. **On a later fishing action:** `04:D218..D254`, called from `04:BF32`, counts nonzero species IDs across the 30 two-byte slots. If the count is greater than or equal to capacity, it renders message `0092`, `びく が いっぱいで 釣りが できない。` (“The keepnet is full; you cannot fish”), then returns from this capacity handler.
+
+So the ROM does not discard the fish that brings the count exactly to capacity. It signals that the net is full, then blocks a subsequent fishing-action path while the count remains at capacity.
+
+## Evidence and reproduction
+
+[chum-basket-use.json](../data/chum-basket-use.json) contains the addresses, selected raw instruction bytes, fish-profile IDs, localized card copy and source links for all six records. Its important source paths are:
+
+- Item records: `05:B282..B2A5` (ROM table data; six-byte stride).
+- Groundbait dispatch and use/charge behavior: `03:BC4A..BD2E`, `03:C24A..C2DD`.
+- Placement area check: `03:C2DE..C30F`.
+- Fish steering: `00:D5F0..D61A` and `00:D7D2..D81E`.
+- Marker countdown: `04:C020..C02B`, reached from `04:BF61..BF8F` when the resolved target is nonzero.
+- Capacity upgrade and comparison: `03:941E..944F`, `03:9450..94D3`.
+- Pre-action full check: `04:D218..D254`, called at `04:BF32`.
+- Catch insertion and “now full” notification: `01:8AC3..8AFF`.
+- Eating a stored fish: controlled original-ROM observations in [food-effects-confirmed.json](../data/food-effects-confirmed.json).
+
+The three groundbait messages and the two keepnet messages were decoded directly from the original ROM's message table and font with [render_rom_messages.py](../scripts/render_rom_messages.py). Message offsets are `0104`, `0106`, `0108`, `0198`, `019A`, `0092`, and `00A2`.
+
+The marker remains within inclusive coordinates X=`[0200]..[0200]+16`, Y=`[0202]..[0202]+14` in the fishing viewport. `00:A0E0..A12F` calls `00:D4C3`, then `03:8056` → `03:C2DE`, during fish updates; this is not only a repeated-use check. Moving the saved marker outside that window clears `1D45`.

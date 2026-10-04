@@ -1,0 +1,263 @@
+{
+  "schemaVersion": 1,
+  "rom": {
+    "sha1": "c2103dd94e2a1a65a495fc02adc2e7d040f31212",
+    "sizeBytes": 1572864
+  },
+  "dispatcher": {
+    "cpuAddress": "03:BC4A..BD2E",
+    "selectedSlotIndex": "7E:1BCF",
+    "selectedIdArray": "7E:1BD5",
+    "selectedIdWord": "7E:1294"
+  },
+  "scope": "Source index of selected-use dispatch. This does not replace each item’s effect, event, and capacity traces.",
+  "items": {
+    "01": {
+      "id": "01",
+      "recordFileOffset": "0x02B258",
+      "recordBytes": "00 08 00 b3 84 03",
+      "basePriceYen": 900,
+      "selectedUseHandler": {
+        "cpuAddress": "03:BD2F",
+        "dispatchCpuAddress": "03:BC59",
+        "dispatchBytes": "c9 01 00 d0 06 20 2f bd"
+      }
+    },
+    "02": {
+      "id": "02",
+      "recordFileOffset": "0x02B25E",
+      "recordBytes": "02 08 04 b3 ac 0d",
+      "basePriceYen": 3500,
+      "selectedUseHandler": {
+        "cpuAddress": "03:BD76",
+        "dispatchCpuAddress": "03:BC64",
+        "dispatchBytes": "c9 02 00 d0 06 20 76 bd"
+      }
+    },
+    "03": {
+      "id": "03",
+      "recordFileOffset": "0x02B264",
+      "recordBytes": "04 0c 08 b3 c8 00",
+      "basePriceYen": 200,
+      "selectedUseHandler": {
+        "cpuAddress": "03:BDBD",
+        "dispatchCpuAddress": "03:BC6F",
+        "dispatchBytes": "c9 03 00 d0 06 20 bd bd"
+      }
+    },
+    "04": {
+      "id": "04",
+      "recordFileOffset": "0x02B26A",
+      "recordBytes": "06 0a 0e b3 96 00",
+      "basePriceYen": 150,
+      "selectedUseHandler": {
+        "cpuAddress": "03:BF2A",
+        "dispatchCpuAddress": "03:BC7A",
+        "dispatchBytes": "c9 04 00 d0 06 20 2a bf"
+      }
+    },
+    "05": {
+      "id": "05",
+      "recordFileOffset": "0x02B270",
+      "recordBytes": "08 0e 13 b3 32 00",
+      "basePriceYen": 50,
+      "selectedUseHandler": {
+        "cpuAddress": "03:C05C",
+        "dispatchCpuAddress": "03:BC85",
+        "dispatchBytes": "c9 05 00 d0 06 20 5c c0"
+      }
+    },
+    "06": {
+      "id": "06",
+      "recordFileOffset": "0x02B276",
+      "recordBytes": "0a 0e 1a b3 00 00",
+      "basePriceYen": 0,
+      "selectedUseHandler": {
+        "cpuAddress": "03:C072",
+        "dispatchCpuAddress": "03:BC90",
+        "dispatchBytes": "c9 06 00 d0 06 20 72 c0"
+      }
+    },
+    "07": {
+      "id": "07",
+      "recordFileOffset": "0x02B27C",
+      "recordBytes": "0c 0e 24 b3 0a 00",
+      "basePriceYen": 10,
+      "selectedUseHandler": {
+        "cpuAddress": "03:C0E4",
+        "dispatchCpuAddress": "03:BC9B",
+        "dispatchBytes": "c9 07 00 d0 06 20 e4 c0"
+      }
+    },
+    "08": {
+      "id": "08",
+      "recordFileOffset": "0x02B282",
+      "recordBytes": "0e 08 2a b3 32 00",
+      "basePriceYen": 50,
+      "selectedUseHandler": {
+        "cpuAddress": "03:C24A",
+        "dispatchCpuAddress": "03:BCA6",
+        "dispatchBytes": "c9 0a 00 f0 02 b0 06 20 4a c2 4c 2e bd",
+        "note": "After IDs01..07 have been excluded, the <=0A branch covers08,09,0A."
+      }
+    },
+    "09": {
+      "id": "09",
+      "recordFileOffset": "0x02B288",
+      "recordBytes": "10 08 30 b3 00 00",
+      "basePriceYen": 0,
+      "selectedUseHandler": {
+        "cpuAddress": "03:C24A",
+        "dispatchCpuAddress": "03:BCA6",
+        "dispatchBytes": "c9 0a 00 f0 02 b0 06 20 4a c2 4c 2e bd",
+        "note": "After IDs01..07 have been excluded, the <=0A branch covers08,09,0A."
+      }
+    },
+    "0A": {
+      "id": "0A",
+      "recordFileOffset": "0x02B28E",
+      "recordBytes": "12 08 36 b3 00 00",
+      "basePriceYen": 0,
+      "selectedUseHandler": {
+        "cpuAddress": "03:C24A",
+        "dispatchCpuAddress": "03:BCA6",
+        "dispatchBytes": "c9 0a 00 f0 02 b0 06 20 4a c2 4c 2e bd",
+        "note": "After IDs01..07 have been excluded, the <=0A branch covers08,09,0A."
+      }
+    },
+    "0B": {
+      "id": "0B",
+      "recordFileOffset": "0x02B294",
+      "recordBytes": "14 08 3c b3 2c 01",
+      "basePriceYen": 300,
+      "selectedUseHandler": null,
+      "note": "No explicit selected-use branch in this dispatcher. Capacity consumers are separate."
+    },
+    "0C": {
+      "id": "0C",
+      "recordFileOffset": "0x02B29A",
+      "recordBytes": "16 08 46 b3 90 01",
+      "basePriceYen": 400,
+      "selectedUseHandler": null,
+      "note": "No explicit selected-use branch in this dispatcher. Capacity consumers are separate."
+    },
+    "0D": {
+      "id": "0D",
+      "recordFileOffset": "0x02B2A0",
+      "recordBytes": "18 08 50 b3 f4 01",
+      "basePriceYen": 500,
+      "selectedUseHandler": null,
+      "note": "No explicit selected-use branch in this dispatcher. Capacity consumers are separate."
+    },
+    "0E": {
+      "id": "0E",
+      "recordFileOffset": "0x02B2A6",
+      "recordBytes": "1a 0e 5a b3 2c 01",
+      "basePriceYen": 300,
+      "selectedUseHandler": {
+        "cpuAddress": "03:C313",
+        "dispatchCpuAddress": "03:BCB3",
+        "dispatchBytes": "c9 0e 00 d0 06 20 13 c3"
+      }
+    },
+    "0F": {
+      "id": "0F",
+      "recordFileOffset": "0x02B2AC",
+      "recordBytes": "1c 0e 5f b3 00 00",
+      "basePriceYen": 0,
+      "selectedUseHandler": {
+        "cpuAddress": "03:C4D9",
+        "dispatchCpuAddress": "03:BCBE",
+        "dispatchBytes": "c9 0f 00 d0 06 20 d9 c4"
+      }
+    },
+    "10": {
+      "id": "10",
+      "recordFileOffset": "0x02B2B2",
+      "recordBytes": "1e 0e 66 b3 00 00",
+      "basePriceYen": 0,
+      "selectedUseHandler": {
+        "cpuAddress": "03:C4EA",
+        "dispatchCpuAddress": "03:BCC9",
+        "dispatchBytes": "c9 10 00 d0 06 20 ea c4"
+      }
+    },
+    "11": {
+      "id": "11",
+      "recordFileOffset": "0x02B2B8",
+      "recordBytes": "20 0e 6b b3 64 00",
+      "basePriceYen": 100,
+      "selectedUseHandler": {
+        "cpuAddress": "03:C526",
+        "dispatchCpuAddress": "03:BCD4",
+        "dispatchBytes": "c9 11 00 d0 06 20 26 c5"
+      }
+    },
+    "12": {
+      "id": "12",
+      "recordFileOffset": "0x02B2BE",
+      "recordBytes": "22 0e 70 b3 00 00",
+      "basePriceYen": 0,
+      "selectedUseHandler": {
+        "cpuAddress": "03:C537",
+        "dispatchCpuAddress": "03:BCDF",
+        "dispatchBytes": "c9 12 00 d0 06 20 37 c5"
+      }
+    },
+    "13": {
+      "id": "13",
+      "recordFileOffset": "0x02B2C4",
+      "recordBytes": "24 0c 75 b3 00 00",
+      "basePriceYen": 0,
+      "selectedUseHandler": {
+        "cpuAddress": "03:C548",
+        "dispatchCpuAddress": "03:BCEA",
+        "dispatchBytes": "c9 13 00 d0 06 20 48 c5"
+      }
+    },
+    "14": {
+      "id": "14",
+      "recordFileOffset": "0x02B2CA",
+      "recordBytes": "26 0e 7a b3 00 00",
+      "basePriceYen": 0,
+      "selectedUseHandler": {
+        "cpuAddress": "03:C584",
+        "dispatchCpuAddress": "03:BCF5",
+        "dispatchBytes": "c9 14 00 d0 06 20 84 c5"
+      }
+    },
+    "15": {
+      "id": "15",
+      "recordFileOffset": "0x02B2D0",
+      "recordBytes": "28 08 7f b3 32 00",
+      "basePriceYen": 50,
+      "selectedUseHandler": {
+        "cpuAddress": "03:C5C0",
+        "dispatchCpuAddress": "03:BD00",
+        "dispatchBytes": "c9 15 00 d0 06 20 c0 c5"
+      }
+    },
+    "16": {
+      "id": "16",
+      "recordFileOffset": "0x02B2D6",
+      "recordBytes": "2a 0c 85 b3 32 00",
+      "basePriceYen": 50,
+      "selectedUseHandler": {
+        "cpuAddress": "03:C5F6",
+        "dispatchCpuAddress": "03:BD0B",
+        "dispatchBytes": "c9 16 00 d0 06 20 f6 c5"
+      }
+    },
+    "17": {
+      "id": "17",
+      "recordFileOffset": "0x02B2DC",
+      "recordBytes": "2c 08 8a b3 64 00",
+      "basePriceYen": 100,
+      "selectedUseHandler": {
+        "cpuAddress": "03:BD1B",
+        "dispatchCpuAddress": "03:BD16",
+        "note": "Inline message-only key selection branch; chest interaction is a separate consumer."
+      }
+    }
+  }
+}

@@ -151,6 +151,26 @@ def build():
     lure_coverage = load(DATA / "lure-coverage.json")
     rod_research = load(DATA / "rod-response.json")
     food_research = load(DATA / "food-effects-confirmed.json")
+    tool_research = {}
+    for filename in ("general-tool-actions.json", "chum-basket-use.json", "quest-tool-use.json"):
+        research_path = DATA / filename
+        if research_path.exists():
+            document = load(research_path)
+            for item_id, finding in document["items"].items():
+                if item_id in tool_research:
+                    raise ValueError(f"Duplicate general-tool research for {item_id}")
+                tool_research[item_id] = finding
+    if tool_research:
+        expected_tools = {f"{n:02X}" for n in range(1, 24)}
+        if set(tool_research) != expected_tools:
+            missing = sorted(expected_tools - set(tool_research))
+            extra = sorted(set(tool_research) - expected_tools)
+            raise ValueError(f"General-tool coverage incomplete: missing={missing}, extra={extra}")
+        for item_id, finding in tool_research.items():
+            for locale in ("en", "ja", "th"):
+                if not finding.get("summary", {}).get(locale) or not finding.get("facts", {}).get(locale):
+                    raise ValueError(f"Missing practical tool explanation: {item_id}/{locale}")
+    tool_locations = load(DATA / "tool-use-locations.json")["items"] if (DATA / "tool-use-locations.json").exists() else {}
     thai_fish_names = stage_fish_names()
 
     fish = {entry["id_hex"].upper(): entry for entry in acceptance["fish_profiles"]}
@@ -580,6 +600,14 @@ def build():
             entry["evidenceNotes"] = loc_lists()
             entry["evidence"] = {"type": "rom_use_unresolved", "sources": ["data/items-rom.json"]}
 
+        if category == "general_tool" and item_id in tool_research:
+            finding = tool_research[item_id]
+            for field in ("summary", "facts", "evidence", "evidenceNotes", "displayName", "compatibleFishIds", "fishIds", "fishScope"):
+                if field in finding:
+                    entry[field] = finding[field]
+
+        if category == "general_tool" and item_id in tool_locations:
+            entry["useLocations"] = tool_locations[item_id]
         item_data[key(category, item_id)] = entry
 
     output = {
@@ -595,6 +623,11 @@ def build():
             "data/rod-response.json",
             "data/food-effects-confirmed.json",
             "data/hook-float-use.json",
+            "data/general-tool-actions.json",
+            "data/chum-basket-use.json",
+            "data/quest-tool-use.json",
+            "data/general-tool-code-index.json",
+            "data/tool-use-locations.json",
             "data/stages/*.json (Thai fish names where recorded)",
             "catalogue/gallery-data.json",
         ],

@@ -104,3 +104,7 @@ The legacy notes under `data/stages` and `data/fish-guides` are historical sourc
 - Early-shop screenshots and custom-fly interface reference: [SFC 釣魚太郎2 walkthrough](https://evaandmaicy.blogspot.com/2014/11/sfc-2_18.html).
 
 Research snapshot: **4 October 2026**. Corrections and better-supported interpretations are welcome; please include the game version, ROM hash, and evidence for proposed changes.
+
+## General tools and quest items
+
+The [23-tool research index](docs/general-tool-research.md) traces travel and exploration actions, groundbait, basket capacity, postcards and event items. Catalogue cards explain actions and conditions; evidence links show the code consumers and decoded original-ROM text.

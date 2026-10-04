@@ -1,0 +1,753 @@
+{
+  "schemaVersion": 1,
+  "rom": {
+    "sha1": "c2103dd94e2a1a65a495fc02adc2e7d040f31212",
+    "sizeBytes": 1572864,
+    "edition": "Original Japanese SFC ROM supplied for this research"
+  },
+  "scope": "Selected-use handlers and directly traced event/NPC consumers for general-tool IDs 06, 07, 0F, 10, 11, 12, 15, 16 and 17. No walkthrough claims are used as evidence.",
+  "coordinateNote": "Coordinates are the X,Y tile pairs loaded from the ROM's object-coordinate tables, not pixel coordinates. Internal map IDs 7–12 are the towns/interiors attached to the six visible outdoor areas 1–6.",
+  "items": {
+    "06": {
+      "name": {
+        "en": "Received postcard",
+        "ja": "届いた絵はがき",
+        "th": "ไปรษณียบัตรที่ได้รับ"
+      },
+      "record": {
+        "fileOffset": "0x02B276",
+        "bytes": "0A 0E 1A B3 00 00",
+        "basePriceYen": 0
+      },
+      "summary": {
+        "en": "Select it to read postcards and story messages addressed to the current saved character. Reading it does not grant HP or money, and the item is not consumed.",
+        "ja": "現在のセーブキャラクター宛てのはがきや物語メッセージを読む。読む処理ではHP・所持金は増えず、アイテムも消費しない。",
+        "th": "เลือกใช้เพื่ออ่านไปรษณียบัตรและข้อความเนื้อเรื่องที่ส่งถึงตัวละครเซฟปัจจุบัน การอ่านไม่เพิ่ม HP หรือเงิน และไม่ใช้ไอเท็มทิ้ง"
+      },
+      "facts": {
+        "en": [
+          "Displays mail addressed to the current saved character, including messages that change with story progress."
+        ],
+        "ja": [
+          "現在のセーブキャラクター宛ての手紙と、物語の進行に応じたメッセージを表示する。"
+        ],
+        "th": [
+          "แสดงจดหมายที่ส่งถึงตัวละครเซฟปัจจุบัน รวมถึงข้อความที่เปลี่ยนไปตามความคืบหน้าในเนื้อเรื่อง"
+        ]
+      },
+      "evidence": {
+        "type": "rom_trace",
+        "sources": [
+          "data/general-tool-code-index.json",
+          "docs/quest-tool-use-research.md"
+        ]
+      },
+      "evidenceNotes": {
+        "en": [
+          "The item handler sets action state 09. The state table routes to the read-mail handler, which searches four saved-character mail blocks using the current-character selector. The read path does not modify HP or money."
+        ],
+        "ja": [
+          "アイテム処理はアクション状態09を設定する。状態テーブルは受信メール処理へ進み、現在のキャラクター選択値で4つのセーブメール領域を検索する。読取処理にHP・所持金の変更はない。"
+        ],
+        "th": [
+          "โค้ดใช้ไอเท็มตั้งสถานะการกระทำ 09 แล้วตารางสถานะส่งไปยังตัวอ่านจดหมาย ซึ่งค้นหาพื้นที่จดหมายของตัวละครที่เซฟไว้ 4 ช่องด้วยค่าตัวละครปัจจุบัน เส้นทางอ่านไม่มีการเปลี่ยน HP หรือเงิน"
+        ]
+      },
+      "rawTrace": {
+        "selectedUseCpu": "03:C072",
+        "stateDispatch": {
+          "cpu": "00:8010..8032",
+          "state": 9,
+          "handler": "00:83A9",
+          "readMail": "01:9FD6",
+          "mailScan": "01:DE21",
+          "renderAndAcknowledge": "01:E05D"
+        },
+        "wram": {
+          "actionState": "7E:0834",
+          "currentCharacter": "7E:0860",
+          "readModeFlag": "7F:2C46"
+        },
+        "mailBlocks": [
+          "7F:1B0A",
+          "7F:1BB6",
+          "7F:1C62",
+          "7F:1D0E"
+        ],
+        "readModeFlagSkipsAcknowledgementWrite": true
+      }
+    },
+    "07": {
+      "name": {
+        "en": "Postcard",
+        "ja": "絵はがき",
+        "th": "ไปรษณียบัตร"
+      },
+      "record": {
+        "fileOffset": "0x02B27C",
+        "bytes": "0C 0E 24 B3 0A 00",
+        "basePriceYen": 10
+      },
+      "summary": {
+        "en": "Send a postcard to another saved character. Choose a recipient and confirm; if the previous postcard has not arrived, the game asks whether to delete it first. A successful send consumes this postcard.",
+        "ja": "別のセーブキャラクターへはがきを送る。宛先を選んで確認する。前のはがきが未着なら削除確認が出て、送信が完了するとこのはがきを消費する。",
+        "th": "ส่งไปรษณียบัตรให้ตัวละครเซฟช่องอื่น โดยเลือกผู้รับและยืนยัน หากฉบับก่อนยังไปไม่ถึง เกมจะถามว่าจะลบฉบับนั้นก่อนหรือไม่ เมื่อส่งสำเร็จ ไปรษณียบัตรใบนี้ถูกใช้ไป"
+      },
+      "facts": {
+        "en": [
+          "If there is no eligible other saved character, the game says there is nobody to send to. The send route is rejected in some game modes/areas."
+        ],
+        "ja": [
+          "送信できる別のセーブキャラクターがいない場合は、送る相手がいないと表示する。特定のゲーム状態・エリアでは送信できない。"
+        ],
+        "th": [
+          "ถ้าไม่มีตัวละครเซฟช่องอื่นที่รับได้ เกมจะแจ้งว่าไม่มีผู้รับ และบางสถานะหรือบางพื้นที่จะส่งไม่ได้"
+        ]
+      },
+      "evidence": {
+        "type": "rom_trace",
+        "sources": [
+          "data/general-tool-code-index.json",
+          "docs/quest-tool-use-research.md"
+        ]
+      },
+      "evidenceNotes": {
+        "en": [
+          "The selected-use handler checks field state 02, a mode limit at 7E:0858, and excludes area 13. Recipient eligibility is checked against the other saved-character records. Messages 025A, 025C and 025E respectively report no recipient, an undelivered prior postcard, and the delete-and-send prompt. The completed route records sender/area data, removes ID 07 from inventory and returns action state to 01. The record's 10-yen base price does not by itself prove shop stock."
+        ],
+        "ja": [
+          "選択処理はフィールド状態02、7E:0858のモード条件を確認し、エリア13を除外する。宛先は他のセーブキャラクター記録から選ぶ。メッセージ025Aは宛先なし、025Cは前のはがきが未着、025Eは削除して送るかの確認。送信完了時に送信者・エリア情報を記録し、所持欄からID07を削除して状態01へ戻る。レコードの基本価格10円だけでは店頭在庫を証明しない。"
+        ],
+        "th": [
+          "ตัวใช้ตรวจสถานะภาคสนาม 02 เงื่อนไขโหมดที่ 7E:0858 และไม่ให้ใช้ในพื้นที่ 13 ผู้รับเลือกจากข้อมูลตัวละครเซฟช่องอื่น ข้อความ 025A คือไม่มีผู้รับ, 025C คือฉบับก่อนยังไปไม่ถึง และ 025E ถามว่าจะลบแล้วส่งหรือไม่ เมื่อส่งเสร็จจะบันทึกข้อมูลผู้ส่ง/พื้นที่ ลบ ID 07 ออกจากช่องเก็บของ และคืนสถานะเป็น 01 ราคาพื้นฐาน 10 เยนในเรกคอร์ดไม่ได้ยืนยันว่ามีขายในร้าน"
+        ]
+      },
+      "rawTrace": {
+        "selectedUseCpu": "03:C0E4",
+        "eligibilityCpu": [
+          "03:C132",
+          "03:C1CC"
+        ],
+        "stateDispatch": {
+          "cpu": "00:8010..8032",
+          "state": 10,
+          "handler": "00:83AE",
+          "sendMail": "01:E2E2"
+        },
+        "sendCompletion": "01:E46D..E4A3",
+        "recipientSaveSlots": [
+          "70:0010",
+          "70:04E0",
+          "70:09B0",
+          "70:0E80"
+        ],
+        "wram": {
+          "currentCharacter": "7E:0860",
+          "currentArea": "7E:085A",
+          "postcardArray": "7E:0B5A"
+        },
+        "messageOffsets": [
+          "05:025A",
+          "05:025C",
+          "05:025E"
+        ]
+      }
+    },
+    "0F": {
+      "name": {
+        "en": "Milk bottle",
+        "ja": "牛乳ビン",
+        "th": "ขวดนม"
+      },
+      "record": {
+        "fileOffset": "0x02B2AC",
+        "bytes": "1C 0E 5F B3 00 00",
+        "basePriceYen": 0
+      },
+      "summary": {
+        "en": "Take the empty bottle to the cow in area 3 (6,103) to get milk. First obtain the bottle from the town chest. Selecting the bottle alone only shows its description.",
+        "ja": "エリア3の町の宝箱でビンを入手し、牛（6,103）へ持っていくと牛乳になる。ビンをメニューで使うだけでは説明が出る。",
+        "th": "เอาขวดเปล่าไปหาวัวในด่าน 3 (6,103) เพื่อเติมนม โดยรับขวดจากหีบในเมืองก่อน ถ้าเลือกใช้ขวดจากเมนูอย่างเดียวจะขึ้นแค่คำอธิบาย"
+      },
+      "facts": {
+        "en": [
+          "The town chest for area 3 at (6,4) grants the empty bottle and enables the cow interaction. The cow replaces the bottle with milk."
+        ],
+        "ja": [
+          "エリア3の町の宝箱（6,4）で空きビンを入手し、牛との交換イベントが使えるようになる。牛はビンを牛乳に置き換える。"
+        ],
+        "th": [
+          "หีบในเมืองของพื้นที่ 3 พิกัด (6,4) ให้ขวดเปล่าและเปิดทางให้แลกกับวัว วัวเปลี่ยนขวดเป็นนม"
+        ]
+      },
+      "evidence": {
+        "type": "rom_trace",
+        "sources": [
+          "data/general-tool-code-index.json",
+          "docs/quest-tool-use-research.md"
+        ]
+      },
+      "evidenceNotes": {
+        "en": [
+          "The direct-use handler 03:C4D9 only displays message 0168. The town chest branch at 00:D0EA..D113 grants ID 0F and sets 7E:0C1A bit 0. In area 3, NPC slot 0C at (6,103), 00:C804 checks that flag and ID 0F, then writes ID 10 into the found inventory slot."
+        ],
+        "ja": [
+          "直接使用処理03:C4D9はメッセージ0168のみを表示する。町の宝箱処理00:D0EA..D113はID0Fを与え、7E:0C1Aのbit0を設定する。エリア3のNPCスロット0C（6,103）、00:C804はそのフラグとID0Fを確認して、見つかった所持欄をID10に置き換える。"
+        ],
+        "th": [
+          "ตัวใช้โดยตรง 03:C4D9 แสดงข้อความ 0168 เท่านั้น ทางหีบเมือง 00:D0EA..D113 ให้ ID 0F และตั้งบิต 0 ของ 7E:0C1A ส่วน NPC ช่อง 0C ในพื้นที่ 3 (6,103) ที่ 00:C804 ตรวจธงนี้กับ ID 0F แล้วเขียน ID 10 ทับช่องไอเท็มที่พบ"
+        ]
+      },
+      "rawTrace": {
+        "selectedUseCpu": "03:C4D9",
+        "emptyBottleMessage": "05:0168",
+        "acquisition": {
+          "cpu": "00:D0EA..D113",
+          "mapId": 9,
+          "visibleArea": 3,
+          "kind": "town chest",
+          "xy": [
+            6,
+            4
+          ],
+          "setsFlag": "7E:0C1A bit 0"
+        },
+        "cowExchange": {
+          "cpu": "00:C804",
+          "map": 3,
+          "npcSlot": "0C",
+          "xy": [
+            6,
+            103
+          ],
+          "requires": [
+            "7E:0C1A bit 0",
+            "item 0F"
+          ],
+          "result": "replace found item slot with ID 10"
+        }
+      }
+    },
+    "10": {
+      "name": {
+        "en": "Milk",
+        "ja": "牛乳",
+        "th": "นม"
+      },
+      "record": {
+        "fileOffset": "0x02B2B2",
+        "bytes": "1E 0E 66 B3 00 00",
+        "basePriceYen": 0
+      },
+      "summary": {
+        "en": "Drink it to restore current HP to maximum; the milk becomes an empty bottle. You can also trade it to the canoe maker in area 3 (28,39) for a canoe.",
+        "ja": "飲むと現在HPが最大値まで回復し、牛乳は空きビンに変わる。エリア3（28,39）の船大工に渡すとカヌーと交換できる。",
+        "th": "ดื่มแล้ว HP ปัจจุบันเต็มตามค่าสูงสุด จากนั้นนมจะกลายเป็นขวดเปล่า หรือเอาไปแลกเรือแคนูกับช่างทำเรือในพื้นที่ 3 (28,39) ได้"
+      },
+      "facts": {
+        "en": [
+          "Drinking restores HP to maximum and leaves an empty bottle; take it back to the area-3 cow to refill.",
+          "The canoe maker at (28,39) trades the milk for a canoe if you do not already own one."
+        ],
+        "ja": [
+          "飲むとHPが最大まで回復し、空きビンが残る。エリア3の牛に戻れば牛乳に替えられる。",
+          "船大工（28,39）は、カヌーを未所持なら牛乳とカヌーを交換する。"
+        ],
+        "th": [
+          "ดื่มแล้ว HP เต็มและเหลือขวดเปล่า นำกลับไปหาวัวด่าน 3 เพื่อเติมนมอีกได้",
+          "ถ้ายังไม่มีแคนู เอานมไปคุยกับช่างทำเรือที่ (28,39) เพื่อแลกแคนู"
+        ]
+      },
+      "evidence": {
+        "type": "rom_trace",
+        "sources": [
+          "data/general-tool-code-index.json",
+          "docs/quest-tool-use-research.md"
+        ]
+      },
+      "evidenceNotes": {
+        "en": [
+          "The use handler 03:C4EA copies 7E:0864 (maximum HP) to 7E:0862 (current HP), replaces the selected menu item with ID 0F and renders message 016A. The canoe exchange is 00:C8EC..C8FD; its text 02B8 requests fresh milk and 02BA confirms the canoe. The item record's zero base price does not establish free availability."
+        ],
+        "ja": [
+          "使用処理03:C4EAは7E:0864（最大HP）を7E:0862（現在HP）へコピーし、選択中のアイテムをID0Fに置き換えてメッセージ016Aを表示する。カヌー交換は00:C8EC..C8FD。メッセージ02B8は牛乳を求め、02BAでカヌーを渡す。レコード基本価格0円は無料入手の証明ではない。"
+        ],
+        "th": [
+          "ตัวใช้ 03:C4EA คัดลอก 7E:0864 (HP สูงสุด) ไปยัง 7E:0862 (HP ปัจจุบัน) แทนไอเท็มที่เลือกด้วย ID 0F แล้วแสดงข้อความ 016A จุดแลกเรืออยู่ที่ 00:C8EC..C8FD ข้อความ 02B8 ขอ fresh milk และ 02BA ยืนยันว่าให้เรือ ราคา 0 เยนในเรกคอร์ดไม่ได้แปลว่าได้ฟรี"
+        ]
+      },
+      "rawTrace": {
+        "selectedUseCpu": "03:C4EA",
+        "hpCurrent": "7E:0862",
+        "hpMaximum": "7E:0864",
+        "postUseItemId": "0F",
+        "messages": [
+          "05:016A",
+          "05:02B8",
+          "05:02BA"
+        ],
+        "canoeExchange": {
+          "cpu": "00:C8EC..C8FD",
+          "map": 3,
+          "npcSlot": "1A",
+          "xy": [
+            28,
+            39
+          ],
+          "requires": "item 10",
+          "reward": "item 02 canoe"
+        }
+      }
+    },
+    "11": {
+      "name": {
+        "en": "Lottery ticket",
+        "ja": "富くじ",
+        "th": "สลาก"
+      },
+      "record": {
+        "fileOffset": "0x02B2B8",
+        "bytes": "20 0E 6B B3 64 00",
+        "basePriceYen": 100
+      },
+      "summary": {
+        "en": "Use one ticket at the lottery counter in outdoor area 5 (54,22). The ticket is consumed; the ROM awards 100, 1,000 or 5,000 yen on a win, otherwise nothing.",
+        "ja": "屋外エリア5の富くじ所（54,22）で1枚使う。はずれを含む抽選で、当たりは100円・1,000円・5,000円。券は消費される。",
+        "th": "ใช้สลากหนึ่งใบที่เคาน์เตอร์ในพื้นที่กลางแจ้ง 5 พิกัด (54,22) สลากถูกใช้ทิ้ง ถ้าถูกรางวัลได้ 100, 1,000 หรือ 5,000 เยน ถ้าไม่ถูกจะไม่ได้เงิน"
+      },
+      "facts": {
+        "en": [
+          "A chest in the area-5 town at (4,6) contains a ticket; no key is needed. Offering food at a Jizo statue improves the lottery threshold. The area-5 statue at (49,22) is near the counter.",
+          "For example, a bento or daikon offering adds 40 to the winning threshold; an orange adds 5. The threshold is capped at 255. These are internal threshold increments, not percentage points."
+        ],
+        "ja": [
+          "エリア5の町の宝箱（4,6）に券がある。カギは不要。地蔵に食べ物を供えると抽選の当選しきい値が上がる。エリア5では地蔵（49,22）が抽選所の近くにある。",
+          "供え物の例：弁当・大根は当選しきい値に40、みかんは5を加える。上限は255。確率のパーセント値ではない。"
+        ],
+        "th": [
+          "หีบในเมืองพื้นที่ 5 พิกัด (4,6) มีสลากโดยไม่ต้องใช้กุญแจ การถวายอาหารให้รูปปั้นจิโซช่วยเพิ่มเกณฑ์ถูกรางวัล รูปปั้นในพื้นที่ 5 อยู่ที่ (49,22) ใกล้เคาน์เตอร์",
+          "ถวายข้าวกล่องหรือหัวไชเท้าเพิ่มเกณฑ์ถูกรางวัล 40 หน่วย ส่วนส้มเพิ่ม 5 หน่วย สะสมได้สูงสุด 255 หน่วย ตัวเลขนี้เป็นเกณฑ์ในเกม ไม่ใช่เปอร์เซ็นต์"
+        ]
+      },
+      "evidence": {
+        "type": "rom_trace",
+        "sources": [
+          "data/general-tool-code-index.json",
+          "docs/quest-tool-use-research.md"
+        ]
+      },
+      "evidenceNotes": {
+        "en": [
+          "The area-5 counter is NPC slot 18 at (54,22), 00:CB6B..CBD9. It checks ID 11, removes the ticket, compares a table-driven RNG byte with 7E:0C22, then selects the 100/1,000/5,000-yen branches (messages 0328/0326/0324); loss uses 032A. Do not read this as a uniform or independently rolled percentage. Food offering at 03:A3DF adds the selected food record's first byte to 7E:0C22, capped at 255; the value is from the ROM food table, not fish size. The item record's 100-yen base price does not prove shop stock."
+        ],
+        "ja": [
+          "エリア5の抽選所はNPCスロット18（54,22）、00:CB6B..CBD9。ID11を確認して券を消費し、テーブル参照式の乱数バイトと7E:0C22を比較して、100・1,000・5,000円の分岐（メッセージ0328/0326/0324）を選ぶ。はずれは032A。均一または独立確率と解釈しない。03:A3DFの食べ物供え処理は選択した食べ物レコード先頭バイトを7E:0C22へ加算し、255で上限。値は魚の大きさではなくROMの食べ物表の値。基本価格100円だけでは店頭在庫を証明しない。"
+        ],
+        "th": [
+          "จุดสลากพื้นที่ 5 คือ NPC ช่อง 18 (54,22), โค้ด 00:CB6B..CBD9 ตรวจ ID 11 แล้วใช้สลาก จากนั้นเทียบไบต์สุ่มแบบอ่านตารางกับ 7E:0C22 และเลือกแขนงรางวัล 100/1,000/5,000 เยน (ข้อความ 0328/0326/0324); แพ้ใช้ 032A อย่าตีความเป็นเปอร์เซ็นต์สุ่มสม่ำเสมอหรือการสุ่มอิสระ การถวายอาหารที่ 03:A3DF บวกไบต์แรกของเรกคอร์ดอาหารที่เลือกเข้า 7E:0C22 โดยสูงสุด 255 ค่านี้มาจากตารางอาหารใน ROM ไม่ใช่ขนาดปลา ราคาพื้นฐาน 100 เยนไม่ได้ยืนยันว่ามีขายในร้าน"
+        ]
+      },
+      "rawTrace": {
+        "selectedUseCpu": "03:C526",
+        "acquisition": {
+          "cpu": "00:D158..D181",
+          "mapId": 11,
+          "visibleArea": 5,
+          "kind": "town chest",
+          "xy": [
+            4,
+            6
+          ],
+          "requiresKey": false,
+          "reward": "item 11"
+        },
+        "ticketCheckAndDraw": "00:CB6B..CBD9",
+        "lotteryMap": 5,
+        "lotteryNpcSlot": "18",
+        "lotteryXY": [
+          54,
+          22
+        ],
+        "foodOffering": {
+          "cpu": "03:A3DF..A490",
+          "threshold": "7E:0C22",
+          "foodTable": "05:B1DF",
+          "cap": 255
+        },
+        "rng": "00:DA92 -> 00:EDE9",
+        "thresholdComparison": "random byte >= 7E:0C22 loses; lower enters prize selection",
+        "prizeYen": [
+          100,
+          1000,
+          5000
+        ],
+        "messageOffsets": [
+          "05:0322",
+          "05:0324",
+          "05:0326",
+          "05:0328",
+          "05:032A"
+        ]
+      }
+    },
+    "12": {
+      "name": {
+        "en": "Candle",
+        "ja": "ロウソク",
+        "th": "เทียน"
+      },
+      "record": {
+        "fileOffset": "0x02B2BE",
+        "bytes": "22 0E 70 B3 00 00",
+        "basePriceYen": 0
+      },
+      "summary": {
+        "en": "Give the candle to the NPC in area 6 (47,36) to complete the signal/reunion event. A follow-up line for saved character 1 mentions a huge red-eyed Akame in the lake's deep northwest.",
+        "ja": "エリア6（47,36）のNPCに渡すと、合図と再会のイベントが進む。セーブキャラクター1の追加台詞では、湖の北西の深場にいる巨大な赤い目のアカメに触れる。",
+        "th": "เอาเทียนไปให้ NPC ในพื้นที่ 6 (47,36) เพื่อทำเควสต์ส่งสัญญาณและให้ตัวละครกลับมาพบกัน บทพูดต่อของตัวละครเซฟหมายเลข 1 กล่าวถึงอาคาเมะตาแดงตัวใหญ่ในน้ำลึกทางตะวันตกเฉียงเหนือของทะเลสาบ"
+      },
+      "facts": {
+        "en": [
+          "A locked chest in the area-6 town at (4,6) contains the candle. The outdoor NPC consumes it to complete the signal/reunion scene."
+        ],
+        "ja": [
+          "エリア6の町の鍵付き宝箱（4,6）にロウソクがある。屋外NPCはこれを消費し、合図と再会のイベントを進める。"
+        ],
+        "th": [
+          "หีบล็อกในเมืองพื้นที่ 6 พิกัด (4,6) มีเทียน NPC กลางแจ้งใช้เทียนทิ้งเพื่อเดินเหตุการณ์ส่งสัญญาณและพบกัน"
+        ]
+      },
+      "evidence": {
+        "type": "rom_trace",
+        "sources": [
+          "data/general-tool-code-index.json",
+          "docs/quest-tool-use-research.md",
+          "examples/general-tool-rom-messages.png"
+        ]
+      },
+      "evidenceNotes": {
+        "en": [
+          "Selecting the candle directly only displays message 0170. The event consumer at 00:CE73 checks ID 12, removes it, and calls 02:DFA0; that scene sets 7E:0C1C bit 2. Message 033A says the signal is awaited; 033C accepts the candle. Message 0340 appears only when saved-character selector 7E:0860 equals 1; it describes the huge Akame in the deep northwest as the pair's guardian. The text is a clue; this trace alone does not prove the exact fish spawn tile."
+        ],
+        "ja": [
+          "ロウソクを直接選ぶとメッセージ0170のみ。イベント処理00:CE73はID12を確認して消費し、02:DFA0を呼び出す。この場面は7E:0C1Cのbit2を設定する。メッセージ033Aは合図待ち、033Cはロウソク受領を示す。0340はセーブキャラクター選択値7E:0860が1のときだけ表示され、北西の深場の巨大アカメを二人の守り神と説明する。これは手掛かりの台詞で、正確な出現タイルまではこの追跡だけでは確定しない。"
+        ],
+        "th": [
+          "เลือกใช้เทียนโดยตรงจะแสดงข้อความ 0170 เท่านั้น ตัวเหตุการณ์ 00:CE73 ตรวจ ID 12 แล้วใช้เทียนทิ้ง ก่อนเรียก 02:DFA0 ซึ่งตั้งบิต 2 ของ 7E:0C1C ข้อความ 033A บอกว่ารอสัญญาณ และ 033C รับเทียน ข้อความ 0340 จะแสดงเฉพาะเมื่อตัวเลือกตัวละครเซฟ 7E:0860 เท่ากับ 1 โดยบอกว่าอาคาเมะตัวใหญ่ในน้ำลึกทางตะวันตกเฉียงเหนือเป็นเทพผู้คุ้มครองของทั้งคู่ ข้อความนี้เป็นเบาะแส แต่โค้ดส่วนนี้ยังไม่ยืนยันช่องที่ปลาปรากฏแน่นอน"
+        ]
+      },
+      "rawTrace": {
+        "selectedUseCpu": "03:C537",
+        "directUseMessage": "05:0170",
+        "keyChest": {
+          "cpu": "00:D041..D059",
+          "mapId": 12,
+          "visibleArea": 6,
+          "xy": [
+            4,
+            6
+          ],
+          "requires": "item 17",
+          "reward": "item 12"
+        },
+        "eventConsumer": {
+          "cpu": "00:CE73..CE8F -> 02:DFA0",
+          "map": 6,
+          "npcSlot": "22",
+          "xy": [
+            47,
+            36
+          ],
+          "requires": "item 12",
+          "setsFlag": "7E:0C1C bit 2"
+        },
+        "messageOffsets": [
+          "05:033A",
+          "05:033C",
+          "05:033E",
+          "05:0340",
+          "05:0350",
+          "05:0352"
+        ]
+      }
+    },
+    "15": {
+      "name": {
+        "en": "Fried tofu",
+        "ja": "あぶらあげ",
+        "th": "เต้าหู้ทอด"
+      },
+      "record": {
+        "fileOffset": "0x02B2D0",
+        "bytes": "28 08 7F B3 32 00",
+        "basePriceYen": 50
+      },
+      "summary": {
+        "en": "Eat it to restore current HP to maximum; it is consumed. In area 4, give it to the quest NPC at (32,42) to advance the fox story and open the fireworks follow-up.",
+        "ja": "食べると現在HPが最大値まで回復し、消費する。エリア4（32,42）のイベントNPCに渡すとキツネの物語が進み、花火イベントへ進める。",
+        "th": "กินแล้ว HP ปัจจุบันเต็มตามค่าสูงสุดและไอเท็มหมดไป หรือเอาไปให้ NPC เควสต์ในพื้นที่ 4 (32,42) เพื่อเดินเรื่องจิ้งจอกและเปิดเหตุการณ์ต่อด้วยดอกไม้ไฟ"
+      },
+      "facts": {
+        "en": [
+          "The NPC says the fried tofu tastes good but more food is needed to move. The same quest branch can accept fireworks next; the direct-use fireworks route does not require this step."
+        ],
+        "ja": [
+          "NPCは油揚げがおいしいが、動くにはもっと食べる必要があると話す。同じイベント分岐では次に花火を渡せる。花火の直接使用ルートにはこの手順は不要。"
+        ],
+        "th": [
+          "NPC บอกว่าเต้าหู้อร่อยแต่ต้องกินเพิ่มจึงจะขยับได้ แขนงเควสต์เดียวกันรับดอกไม้ไฟต่อได้ แต่เส้นทางใช้ดอกไม้ไฟโดยตรงไม่ต้องผ่านขั้นนี้ก่อน"
+        ]
+      },
+      "evidence": {
+        "type": "rom_trace",
+        "sources": [
+          "data/general-tool-code-index.json",
+          "docs/quest-tool-use-research.md",
+          "examples/general-tool-rom-messages.png"
+        ]
+      },
+      "evidenceNotes": {
+        "en": [
+          "Direct use at 03:C5C0 copies maximum HP 7E:0864 to current HP 7E:0862 and compacts the selected-item list to consume it; message 016C confirms eating. The area-4 event at 00:CA1C checks ID 15, removes it and sets 7E:0C1C bit 0. Message 02FE is the response. Its record's 50-yen base price does not prove store availability."
+        ],
+        "ja": [
+          "直接使用03:C5C0は最大HP7E:0864を現在HP7E:0862へコピーし、選択アイテム一覧を詰めて消費する。メッセージ016Cは食べたことを示す。エリア4イベント00:CA1CはID15を確認・削除し、7E:0C1Cのbit0を立てる。返答はメッセージ02FE。基本価格50円だけでは店頭在庫を証明しない。"
+        ],
+        "th": [
+          "ใช้โดยตรงที่ 03:C5C0 จะคัดลอก HP สูงสุด 7E:0864 ไปยัง HP ปัจจุบัน 7E:0862 และเลื่อนรายการไอเท็มเพื่อใช้ทิ้ง ข้อความ 016C ยืนยันว่ากินแล้ว เหตุการณ์พื้นที่ 4 ที่ 00:CA1C ตรวจ ID 15 ใช้ทิ้ง และตั้งบิต 0 ของ 7E:0C1C คำตอบ NPC คือข้อความ 02FE ราคาพื้นฐาน 50 เยนไม่ได้ยืนยันว่ามีขายในร้าน"
+        ]
+      },
+      "rawTrace": {
+        "selectedUseCpu": "03:C5C0..C5F5",
+        "questConsumer": {
+          "cpu": "00:CA1C..CA43",
+          "map": 4,
+          "npcSlot": "0C",
+          "xy": [
+            32,
+            42
+          ],
+          "requires": "item 15",
+          "setsFlag": "7E:0C1C bit 0"
+        },
+        "postTofuFollowUp": "00:C9D7..CA60 checks the story flag and item 16",
+        "messageOffsets": [
+          "05:016C",
+          "05:02FC",
+          "05:02FE"
+        ]
+      }
+    },
+    "16": {
+      "name": {
+        "en": "Fireworks",
+        "ja": "花火",
+        "th": "ดอกไม้ไฟ"
+      },
+      "record": {
+        "fileOffset": "0x02B2D6",
+        "bytes": "2A 0C 85 B3 32 00",
+        "basePriceYen": 50
+      },
+      "summary": {
+        "en": "In area 4, directly use fireworks at X=31–33, Y=42–43 before the fox scene has happened. The fox appears startled and runs away; fireworks are consumed. This shortcut works without first giving the NPC fried tofu.",
+        "ja": "エリア4の座標X=31～33・Y=42～43で、キツネの場面が起きる前に花火を直接使う。キツネが驚いて姿を見せ、逃げていく。花火は消費される。NPCに油揚げを渡す前でも使える。",
+        "th": "ใช้ดอกไม้ไฟโดยตรงที่ X=31–33, Y=42–43 ในพื้นที่ 4 ก่อนฉากจิ้งจอกเกิด จิ้งจอกจะเผยตัวด้วยท่าทีตกใจแล้วหนีไป ดอกไม้ไฟถูกใช้ทิ้ง ใช้ทางลัดนี้ได้โดยไม่ต้องเอาเต้าหู้ทอดไปให้ NPC ก่อน"
+      },
+      "facts": {
+        "en": [
+          "The area-4 quest NPC at (32,42) accepts fireworks after the fried-tofu step and triggers the fox scene. A separate NPC at (62,32) accepts fireworks without the tofu step and gives a hint; direct use at the marked tiles also starts the scene without the tofu step.",
+          "Using it at other valid outdoor locations plays the ordinary fireworks scene and still consumes it. It cannot be used while riding a tub or canoe."
+        ],
+        "ja": [
+          "エリア4のイベントNPC（32,42）は油揚げの後に花火を受け取り、キツネの場面を起こす。別NPC（62,32）は油揚げなしでも花火を受け取って助言する。指定タイルでの直接使用も油揚げなしで場面を起こす。",
+          "他の使用可能な屋外位置では通常の花火の場面になり、花火は消費される。タライ・カヌーに乗っている時は使えない。"
+        ],
+        "th": [
+          "NPC เควสต์พื้นที่ 4 (32,42) รับดอกไม้ไฟหลังขั้นเต้าหู้ทอดและเริ่มฉากจิ้งจอก ส่วน NPC อีกคน (62,32) รับดอกไม้ไฟโดยไม่ต้องผ่านขั้นเต้าหู้และให้คำใบ้ การใช้โดยตรงที่พิกัดที่ระบุก็เริ่มฉากได้โดยไม่ต้องทำขั้นเต้าหู้ก่อน",
+          "ใช้ในจุดกลางแจ้งอื่นที่ใช้ได้จะเป็นฉากดอกไม้ไฟทั่วไปและยังเสียไอเท็ม ใช้ไม่ได้ขณะอยู่บนกะละมังหรือแคนู"
+        ]
+      },
+      "evidence": {
+        "type": "rom_trace",
+        "sources": [
+          "data/general-tool-code-index.json",
+          "docs/quest-tool-use-research.md",
+          "examples/general-tool-rom-messages.png"
+        ]
+      },
+      "evidenceNotes": {
+        "en": [
+          "Direct use 03:C5F6 only works in accepted field/action modes and areas 1–6. It consumes the selected item and normally sets action state 0F. In area 4, if 7E:0C1A bit 7 is clear and player tile is X=31–33, Y=42–43, it instead selects state 0E and dispatches to 02:DF9C. That event sets 7E:0C1A bit 7 and 7E:0C1C bit 0; messages 0300/0302 say the firework is used and the fox appears startled and runs away. This direct-use check does not require the tofu flag. A separate quest-NPC branch at slot 0C (32,42), after the tofu step, also consumes fireworks and triggers 02:DF9C. The hint NPC at slot 1E (62,32) uses 00:CAFB, has no tofu prerequisite, consumes the item and displays message 02E6. The hint message itself is not evidence that the fox scene occurred."
+        ],
+        "ja": [
+          "直接使用03:C5F6は許可されたフィールド状態・エリア1～6でのみ動作する。選択品を消費し通常は状態0Fにする。エリア4で7E:0C1Aのbit7が未設定、プレイヤー座標がX=31～33・Y=42～43なら状態0Eを選び02:DF9Cへ進む。このイベントは7E:0C1Aのbit7と7E:0C1Cのbit0を設定する。メッセージ0300/0302は花火使用、キツネの出現・驚き・逃走を示す。直接使用処理に油揚げ条件はない。別のイベントNPCスロット0C（32,42）も油揚げイベント後に花火を消費して02:DF9Cを起動する。ヒントNPCスロット1E（62,32）は油揚げ条件なしで00:CAFBによりアイテムを消費してメッセージ02E6を表示する。この助言だけではキツネ出現イベントの発生を証明しない。"
+        ],
+        "th": [
+          "ใช้โดยตรงที่ 03:C5F6 ได้เฉพาะสถานะภาคสนามที่กำหนดและพื้นที่ 1–6 โดยใช้ไอเท็มที่เลือกทิ้งและปกติตั้งสถานะ 0F ในพื้นที่ 4 หากบิต 7 ของ 7E:0C1A ยังไม่ถูกตั้ง และพิกัดผู้เล่นอยู่ในกรอบ X=31–33, Y=42–43 จะเลือกสถานะ 0E แล้วไปที่ 02:DF9C เหตุการณ์นี้ตั้งบิต 7 ของ 7E:0C1A และบิต 0 ของ 7E:0C1C ข้อความ 0300/0302 บอกว่าใช้ดอกไม้ไฟ จิ้งจอกเผยตัว ตกใจและหนีไป การใช้โดยตรงไม่ต้องมีธงเต้าหู้ทอด NPC เควสต์ช่อง 0C (32,42) เป็นอีกเส้นทาง หลังขั้นเต้าหู้ทอดจะใช้ดอกไม้ไฟทิ้งแล้วเรียก 02:DF9C ส่วน NPC ให้คำใบ้ช่อง 1E (62,32) ใช้ทาง 00:CAFB โดยไม่ต้องผ่านขั้นเต้าหู้ ใช้ไอเท็มทิ้งและแสดงข้อความ 02E6 ข้อความคำแนะนำอย่างเดียวไม่ยืนยันว่าฉากจิ้งจอกเกิดแล้ว"
+        ]
+      },
+      "rawTrace": {
+        "selectedUseCpu": "03:C5F6..C660",
+        "fieldEvent": {
+          "map": 4,
+          "playerX": [
+            31,
+            33
+          ],
+          "playerY": [
+            42,
+            43
+          ],
+          "requires": "7E:0C1A bit 7 clear",
+          "state": 14,
+          "handler": "02:DF9C",
+          "setsFlags": [
+            "7E:0C1A bit 7",
+            "7E:0C1C bit 0"
+          ]
+        },
+        "tofuNpcFoxEvent": {
+          "cpu": "00:C9D7..CA60",
+          "map": 4,
+          "npcSlot": "0C",
+          "xy": [
+            32,
+            42
+          ],
+          "requires": [
+            "item 15 offered first",
+            "item 16"
+          ],
+          "result": "consumes fireworks and calls 02:DF9C"
+        },
+        "hintNpc": {
+          "cpu": "00:CAFB..CB1E",
+          "map": 4,
+          "npcSlot": "1E",
+          "xy": [
+            62,
+            32
+          ],
+          "requires": "item 16",
+          "result": "consumes item; message 02E6; action state 0F"
+        },
+        "messageOffsets": [
+          "05:02E6",
+          "05:0300",
+          "05:0302"
+        ]
+      }
+    },
+    "17": {
+      "name": {
+        "en": "Key",
+        "ja": "カギ",
+        "th": "กุญแจ"
+      },
+      "record": {
+        "fileOffset": "0x02B2DC",
+        "bytes": "2C 08 8A B3 64 00",
+        "basePriceYen": 100
+      },
+      "summary": {
+        "en": "Use it by interacting with locked chests in the towns for areas 1, 2, 4 and 6. It is not consumed. The rewards are potato bait, waxworm bait, a small lure rod and a candle.",
+        "ja": "エリア1・2・4・6の町の鍵付き宝箱を調べると開く。カギは消費されない。報酬はイモ、ブドウムシ、小型ルアーロッド、ロウソク。",
+        "th": "เดินไปตรวจหีบที่ล็อกในเมืองของพื้นที่ 1, 2, 4 และ 6 เพื่อเปิด กุญแจไม่หาย รางวัลคือเหยื่อมันฝรั่ง หนอนองุ่น คันลัวร์เล็ก และเทียน"
+      },
+      "facts": {
+        "en": [
+          "Selecting the key by itself only displays its description. The actual effect is checked during chest interaction.",
+          "Chest rewards by area: 1 potato bait; 2 waxworm bait; 4 small lure rod; 6 candle.",
+          "Leave room in the relevant inventory before opening a chest; the reward routines check available slots."
+        ],
+        "ja": [
+          "カギを選んで使うだけでは説明表示のみ。実際の効果は宝箱との会話処理で確認される。",
+          "宝箱の中身：エリア1イモ、2ブドウムシ、4小型ルアーロッド、6ロウソク。",
+          "開ける前に該当する所持欄に空きを作る。報酬処理は空き枠を確認する。"
+        ],
+        "th": [
+          "เลือกใช้กุญแจจากเมนูเปล่าๆ จะแสดงแค่คำอธิบาย ผลจริงเกิดตอนกดตรวจหีบ",
+          "รางวัลตามด่าน: 1 เหยื่อมันฝรั่ง; 2 หนอนองุ่น; 4 คันลัวร์เล็ก; 6 เทียน",
+          "เว้นที่ว่างในกระเป๋าหมวดที่รับรางวัลก่อนเปิดหีบ เพราะโค้ดเช็กช่องว่างก่อนให้ของ"
+        ]
+      },
+      "evidence": {
+        "type": "rom_trace",
+        "sources": [
+          "data/general-tool-code-index.json",
+          "docs/quest-tool-use-research.md",
+          "examples/general-tool-rom-messages.png"
+        ]
+      },
+      "evidenceNotes": {
+        "en": [
+          "The selected-use branch at 03:BD1B displays message 0172 only. The chest handler 00:CFB1..D059 checks for the key in the towns attached to outdoor areas 1, 2, 4 and 6 (internal map IDs 7, 8, 10 and 12), changes the chest graphic to its opened state, and grants the listed reward. That branch does not remove the key. The rewards are potato bait, waxworm bait, a small lure rod and a candle. An already-open chest displays message 0262; a locked chest without the key displays 0270. Coordinates are internal map7 (5,68), map8 (4,6), map10 (4,6), map12 (4,6). Inventory space is checked separately for the bait/rod/general-tool reward; message 0196 is the no-room response. The chest is marked open before the capacity check, but persistence of a no-room result after reload has not been traced. The 100-yen item-record price does not establish shop availability."
+        ],
+        "ja": [
+          "選択使用分岐03:BD1Bはメッセージ0172のみ。宝箱処理00:CFB1..D059は屋外エリア1・2・4・6に対応する町（内部マップID7・8・10・12）でカギを確認し、宝箱グラフィックを開いた状態に変更して報酬を渡す。この分岐でカギは削除されない。報酬はイモ、ブドウムシ、小型ルアーロッド、ロウソク。開いた宝箱は0262、カギがない施錠箱は0270を表示。座標は内部マップ7（5,68）、8（4,6）、10（4,6）、12（4,6）。エサ・竿・一般道具の空き欄を別途確認し、空きがない場合は0196を表示する。容量確認より先に宝箱を開いた状態にするが、空きなしの結果が再読込後も保持されるかは未追跡。基本価格100円だけでは店頭在庫を証明しない。"
+        ],
+        "th": [
+          "แขนงเลือกใช้ที่ 03:BD1B แสดงข้อความ 0172 เท่านั้น ตัวเปิดหีบ 00:CFB1..D059 ตรวจหากุญแจในเมืองที่เชื่อมกับพื้นที่กลางแจ้ง 1, 2, 4 และ 6 (รหัสแผนที่ภายใน 7, 8, 10, 12) เปลี่ยนกราฟิกหีบเป็นสถานะเปิดและให้รางวัล โดยไม่ลบกุญแจ รางวัลคือเหยื่อมันฝรั่ง หนอนองุ่น คันลัวร์เล็ก และเทียน หีบที่เปิดแล้วแสดงข้อความ 0262; หีบล็อกที่ไม่มีกุญแจแสดง 0270 พิกัดคือแผนที่ภายใน 7 (5,68), 8 (4,6), 10 (4,6), 12 (4,6) โค้ดตรวจช่องว่างในช่องเหยื่อ/คัน/ของทั่วไปแยกต่างหาก ถ้าไม่มีจะแสดง 0196 หีบถูกเปลี่ยนเป็นสถานะเปิดก่อนตรวจช่องว่าง แต่ยังไม่ได้ไล่ว่าผลช่องว่างคงอยู่หลังโหลดใหม่หรือไม่ ราคาพื้นฐาน 100 เยนไม่ได้ยืนยันว่ามีขายในร้าน"
+        ]
+      },
+      "rawTrace": {
+        "selectedUseCpu": "03:BD1B",
+        "chestConsumer": "00:CFB1..D059",
+        "chests": [
+          {
+            "mapId": 7,
+            "visibleArea": 1,
+            "slot": "0E",
+            "xy": [
+              5,
+              68
+            ],
+            "reward": "bait 11 potato bait",
+            "capacityCheck": "7E:0B36"
+          },
+          {
+            "mapId": 8,
+            "visibleArea": 2,
+            "slot": "0E",
+            "xy": [
+              4,
+              6
+            ],
+            "reward": "bait 0B waxworm",
+            "capacityCheck": "7E:0B36"
+          },
+          {
+            "mapId": 10,
+            "visibleArea": 4,
+            "slot": "0E",
+            "xy": [
+              4,
+              6
+            ],
+            "reward": "rod 0A small lure rod",
+            "capacityCheck": "7E:0B06"
+          },
+          {
+            "mapId": 12,
+            "visibleArea": 6,
+            "slot": "0E",
+            "xy": [
+              4,
+              6
+            ],
+            "reward": "candle 12",
+            "capacityCheck": "general-tool inventory"
+          }
+        ],
+        "inventoryCheck": "00:D208",
+        "keyConsumed": false,
+        "messageOffsets": [
+          "05:0172",
+          "05:0262",
+          "05:0270"
+        ]
+      }
+    }
+  }
+}

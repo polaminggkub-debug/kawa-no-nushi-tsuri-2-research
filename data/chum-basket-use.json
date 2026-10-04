@@ -1,0 +1,617 @@
+{
+  "schema_version": 1,
+  "rom": {
+    "size_bytes": 1572864,
+    "sha1": "c2103dd94e2a1a65a495fc02adc2e7d040f31212",
+    "sha256": "e0594921a5a2ef1a2613b9d2e29fed066569e3793393c591bf4c4968a54c0b49",
+    "identity": "user-supplied headerless original Japanese SFC dump"
+  },
+  "scope": "Original-ROM traces for the three successive groundbait-use states and the three keepnet capacity upgrades. No external guide or guide-derived effect claims.",
+  "raw_evidence": {
+    "dispatcher": {
+      "cpu_address": "03:BC4A..BD2E",
+      "source": "data/general-tool-code-index.json",
+      "groundbait_branch_cpu": "03:BCA6",
+      "groundbait_branch_bytes": "c9 0a 00 f0 02 b0 06 20 4a c2 4c 2e bd",
+      "meaning": "IDs 08, 09, and 0A reach the shared handler at 03:C24A; IDs 0B..0D have no selected-use branch."
+    },
+    "item_records": {
+      "cpu_base": "05:B258",
+      "stride_bytes": 6,
+      "source": "data/item-table-records.json",
+      "items": {
+        "08": {
+          "file_offset": "0x02B282",
+          "bytes": "0e 08 2a b3 32 00",
+          "base_price_yen": 50,
+          "rom_name_ja": "寄せエサ"
+        },
+        "09": {
+          "file_offset": "0x02B288",
+          "bytes": "10 08 30 b3 00 00",
+          "base_price_yen": 0,
+          "rom_name_ja": "寄せエサ"
+        },
+        "0A": {
+          "file_offset": "0x02B28E",
+          "bytes": "12 08 36 b3 00 00",
+          "base_price_yen": 0,
+          "rom_name_ja": "寄せエサ"
+        },
+        "0B": {
+          "file_offset": "0x02B294",
+          "bytes": "14 08 3c b3 2c 01",
+          "base_price_yen": 300,
+          "rom_name_ja": "びく 容量10"
+        },
+        "0C": {
+          "file_offset": "0x02B29A",
+          "bytes": "16 08 46 b3 90 01",
+          "base_price_yen": 400,
+          "rom_name_ja": "びく 容量20"
+        },
+        "0D": {
+          "file_offset": "0x02B2A0",
+          "bytes": "18 08 50 b3 f4 01",
+          "base_price_yen": 500,
+          "rom_name_ja": "びく 容量30"
+        }
+      }
+    },
+    "chum_use": {
+      "handler_cpu": "03:C24A..C2DD",
+      "location_gate_cpu": "03:C24E..C261",
+      "location_gate_bytes": "ad 48 08 c9 09 00 f0 0c ad 4a 08 c9 00 00 f0 04 20 73 c2 60",
+      "location_gate_meaning": "If 7E:0848 == 9 or 7E:084A == 0, show message-table offset 0108 and do not enter the placement/consumption path. The ROM text says to scatter chum at the water's edge; the two state fields are not semantically decoded here.",
+      "active_target_gate_cpu": "03:C273..C28B",
+      "active_target_gate_bytes": "20 de c2 ad 45 1d d0 52 a5 12 8d 41 1d a5 14 8d 43 1d a9 0c 00 8d 45 1d",
+      "placement_meaning": "03:C2DE checks whether an old target remains in the current coordinate window. For a valid inactive target, the handler stores the selected coordinate pair from 7E:0012/0014 at 7E:1D41/1D43 and initializes 7E:1D45 to 12.",
+      "already_active_message_cpu": "03:C2CD..C2DD",
+      "success_message_table_offset": "0104",
+      "already_active_message_table_offset": "0106",
+      "invalid_location_message_table_offset": "0108",
+      "item_charge_transition_cpu": "03:C29C..C2C8",
+      "item_charge_transition_bytes": "ae cf 1b bd d5 1b c9 0a 00 d0 1a ae cf 1b e0 1e 00 b0 0a bd d7 1b 9d d5 1b e8 e8 80 f1 a9 00 00 9d d5 1b 80 04 1a 9d d5 1b",
+      "item_charge_meaning": "On successful placement, increment selected item ID 08 to 09 or 09 to 0A. On using 0A, shift later inventory entries left and clear the last slot. Invalid-location and already-active paths return before this sequence.",
+      "old_target_area_check_cpu": "03:C2DE..C30F",
+      "old_target_area_check_bytes": "ad 00 02 85 06 18 69 10 00 85 08 ad 02 02 85 0a 18 69 0e 00 85 0c ad 41 1d c5 06 90 14 c5 08 f0 02 b0 0e ad 43 1d c5 0a 90 07 c5 0c f0 02 b0 01 60 9c 45 1d 60",
+      "decoded_messages": {
+        "0104": "寄せエサを まいた。",
+        "0106": "さっき まいたので まだ 必要ありません。",
+        "0108": "水際で、寄せエサを まきましょう。"
+      },
+      "message_render_source": "publication/scripts/render_rom_messages.py; direct rendering from the original ROM's message table and font"
+    },
+    "chum_movement_and_countdown": {
+      "fish_profile_mask_source": "data/fish-acceptance.json",
+      "fish_profile_mask_cpu": "05:8018 (+15 word per 23-byte fish profile), loaded at 03:D26D..D30C into 7E:1208",
+      "movement_branch_cpu": "00:D5F0..D61A",
+      "movement_branch_bytes": "ad 08 12 2d 1e 12 f0 0d ad 04 12 29 08 00 f0 05 20 1f d8 80 1a ad 08 12 29 80 51 f0 0f ad 45 1d f0 05 20 d2 d7 80 03 20 7a d7 80 03 20 7a d7",
+      "movement_rule": "The existing bait-direction branch gets first chance: (7E:1208 & 7E:121E) must be nonzero and profile byte 7E:1204 must include bit 08. Otherwise, a nonzero (7E:1208 & 0x5180) profile mask uses the chum target while 7E:1D45 is nonzero; other profiles take the normal direction path.",
+      "target_direction_cpu": "00:D7D2..D81E",
+      "target_direction_bytes": "bf 8e 01 7f 85 22 bf ae 01 7f 85 24 22 96 da 00 29 80 00 f0 1a a5 22 cd 41 1d d0 04 80 11 80 0d cd 41 1d b0 05 a9 00 01 80 03 a9 00 02 80 19 a5 24 cd 43 1d d0 05 20 6c d8 80 0d cd 43 1d b0 05 a9 00 04 80 03 a9 00 08 9f 7a 02 7f 60",
+      "counter_decrement_cpu": "04:C01D..C02B",
+      "counter_decrement_bytes": "20 e6 c7 ad 45 1d f0 03 ce 45 1d a9 03 00 8d 6d 1f",
+      "counter_call_path": "04:BF61..BF8F calls 04:D056 after the aim/input state 7E:1F73 is set. If the resolved target value 7E:1322 is nonzero, control reaches 04:C01D, which decrements nonzero 7E:1D45 once before setting fishing phase 7E:1F6D=3. A zero target value takes the other phase path and does not decrement here.",
+      "counter_interpretation": "The counter starts at 12, is not a frame/seconds timer, and reaches zero after 12 qualifying phase-3 transitions. The exact screen-visible number of casts during which fish steering is observed was not measured.",
+      "clear_cpu_addresses": [
+        "00:9F37",
+        "00:9FB1",
+        "03:85CF",
+        "03:C30F"
+      ],
+      "limit": "This direction branch does not establish increased bite probability, catch success, or that chum overrides the earlier bait-direction branch.",
+      "area_clear_call_path": "00:A0E0..A12F calls 00:D4C3 during the fishing update. 00:D4C3 calls the 03:8056 function-table entry, which calls 03:C2DE; C2DE checks the saved target against the inclusive current coordinate window X=$0200..$0210 and Y=$0202..$0210, then clears 7E:1D45 at 03:C30F when outside. Area/stage update paths at 00:9F37 and 00:9FB1 also clear the marker."
+    },
+    "basket_purchase": {
+      "purchase_handler_cpu": "03:9450..94D3",
+      "purchase_write_bytes": "c9 0b 00 d0 09 a9 0a 00 8d 12 0c 4c bf 94 c9 0c 00 d0 09 a9 14 00 8d 12 0c 4c bf 94 c9 0d 00 d0 09 a9 1e 00 8d 12 0c 4c bf 94",
+      "capacity_field": "7E:0C12",
+      "capacity_by_item_id": {
+        "0B": 10,
+        "0C": 20,
+        "0D": 30
+      },
+      "purchase_gate_cpu": "03:941E..944F",
+      "purchase_gate_bytes": "ad 12 0c c5 06 d0 10 a0 98 01 20 28 d3 a9 1e 00 8d a8 16 80 17 ad 12 0c c5 06 f0 10 90 0e a0 9a 01 20 28 d3 a9 1e 00 8d a8 16 80 02 18 60",
+      "purchase_gate_meaning": "Equal capacity triggers message 0198; buying a lower capacity triggers 019A. A larger choice writes the new capacity directly to 7E:0C12. The selected item IDs 0B..0D are not added to the general-tool inventory by this handler.",
+      "decoded_messages": {
+        "0198": "このびくは 今持っているじゃないですか!",
+        "019A": "このびくは 今持っているのよりも 小さいですよ。"
+      }
+    },
+    "basket_capacity_before_fishing_action": {
+      "cpu_address": "04:D218..D254",
+      "caller_cpu": "04:BF32",
+      "caller_bytes": "ad 4a 13 29 00 80 f0 17 20 18 d2 20 1e d8 20 ac c1",
+      "count_loop_cpu": "04:D218..D229",
+      "count_loop_bytes": "64 06 a2 00 00 bd 7a 0b f0 02 e6 06 e8 e8 e0 3c 00 90 f2",
+      "capacity_compare_cpu": "04:D22B..D251",
+      "capacity_compare_bytes": "a5 06 cd 12 0c 90 1f a9 1e 00 8d a8 16 a0 92 00 20 3b ec 22 04 80 02 22 8a da 00 a9 03 00 8d 4e 08 22 08 80 02 60",
+      "behavior": "Counts nonzero species entries in the 30 two-byte basket slots. If count >= 7E:0C12 on this fishing-action path, renders message 0092 and returns from the capacity handler. The text says fishing cannot proceed while the basket is full.",
+      "decoded_message_0092": "びく が いっぱいで 釣りが できない。"
+    },
+    "fish_landing_and_full_notification": {
+      "cpu_address": "01:8AC3..8AFF",
+      "store_and_compare_bytes": "a2 00 00 bd 7a 0b f0 04 e8 e8 80 f7 ad e8 11 9d 7a 0b ad b1 1e 9d b6 0b 8a 4a 1a cd 12 0c d0 1c 22 bd 85 02 a0 a2 00 20 01 97 a9 00 20 04 56 22 04 80 02 22 8a da 00 a9 00 20 14 56 60",
+      "meaning": "Stores the landed fish species and size in the first empty slots, then checks whether the resulting count equals capacity. At equality, it displays message 00A2; the fish has already been stored.",
+      "decoded_message_00A2": "びく が いっぱいに なってしまった。"
+    },
+    "stored_fish_consumption": {
+      "category_distinction": "Food-category item ID 08 魚 is separate from general-tool item ID 08 寄せエサ.",
+      "cpu_address": "03:BA15..BA7D",
+      "food_id_branch_cpu": "03:BA15..BA2D",
+      "fish_read_size_cpu": "03:BA2D..BA4C",
+      "remove_one_fish_cpu": "03:BA64..BA7D",
+      "remove_one_fish_bytes": "a2 00 00 bd 7c 0b 9d 7a 0b bd b8 0b 9d b6 0b e8 e8 e0 3a 00 90 ed 9e 7a 0b 9e b6 0b",
+      "meaning": "Food ID 08 reads the first stored fish species and size, then shifts later species/size records left and clears the last slot. The calculation shifts raw size right by two and clamps zero to one; controlled original-ROM observations confirm HP restoration for the tested values.",
+      "runtime_source": "data/food-effects-confirmed.json",
+      "runtime_method": "Controlled play observations using the supplied original ROM and isolated copies of a gameplay state."
+    }
+  },
+  "items": {
+    "08": {
+      "displayName": {
+        "en": "Chum (3 uses remaining)",
+        "ja": "寄せエサ（残り3回）",
+        "th": "เหยื่อโปรยเรียกปลา (เหลือ 3 ครั้ง)"
+      },
+      "summary": {
+        "en": "Scatter at the water’s edge to mark a point and steer eligible fish toward it while you fish nearby.",
+        "ja": "水際に誘導点を置く。条件を通る魚の進行方向をその地点へ向ける。",
+        "th": "โปรยริมตลิ่งเพื่อกำหนดจุด แล้วให้ปลาที่เข้าเงื่อนไขว่ายเข้าหาจุดนั้นระหว่างตกปลา"
+      },
+      "facts": {
+        "en": [
+          "Three uses. After the first successful placement, two remain.",
+          "Place the marker where you want eligible fish to move toward. It wears off as fishing progresses or when you leave its active area.",
+          "This changes fish movement; it does not establish a bite-rate or catch-success bonus."
+        ],
+        "ja": [
+          "3回使える。1回目の設置成功後は残り2回。",
+          "魚に向かわせたい場所へ置く。釣りの進行で作動値が減り、誘導点が現在のエリア範囲外になると解除される。",
+          "変わるのは魚の移動方向。食いつき率や釣果率の上昇は確認できない。"
+        ],
+        "th": [
+          "ใช้ได้ 3 ครั้ง; โปรยสำเร็จครั้งแรกแล้วเหลือ 2 ครั้ง",
+          "วางจุดไว้ตรงที่อยากให้ปลาเข้าหา; ผลจะลดลงตามความคืบหน้าการตกปลา และหยุดเมื่อจุดออกนอกพื้นที่ที่ยังทำงานอยู่",
+          "โค้ดยืนยันว่าหันทิศการเคลื่อนที่ของปลา แต่ไม่ได้ยืนยันว่าเพิ่มอัตรากัดหรือโอกาสตกสำเร็จ"
+        ]
+      },
+      "fishIds": [
+        "06",
+        "07",
+        "08",
+        "09",
+        "0B",
+        "0C",
+        "0D",
+        "0E",
+        "0F",
+        "10",
+        "11",
+        "12",
+        "14",
+        "15",
+        "16",
+        "17",
+        "18",
+        "1A",
+        "1B",
+        "1C",
+        "1D",
+        "20",
+        "23",
+        "24",
+        "25",
+        "26",
+        "28",
+        "29",
+        "2D",
+        "2F",
+        "30",
+        "32",
+        "33",
+        "34",
+        "36",
+        "37",
+        "39",
+        "3A",
+        "3B",
+        "3D",
+        "3E",
+        "3F",
+        "44",
+        "46",
+        "47",
+        "48",
+        "49"
+      ],
+      "fishScope": {
+        "en": "These are the creatures whose movement can be steered toward the groundbait point when the equipped-bait direction does not take priority. The list includes non-fish creatures. It does not show which bait they will eat or prove a bite-rate bonus.",
+        "ja": "装備中のエサへの移動が優先されない場合、寄せエサの地点へ誘導される生物の一覧。魚以外の生物も含む。食べるエサの一覧や食いつき率上昇を示すものではない。",
+        "th": "รายชื่อนี้คือสัตว์ที่โค้ดให้ว่ายเข้าหาจุดโปรยได้ เมื่อการว่ายเข้าหาเหยื่อเบ็ดไม่ได้ทำงานก่อน มีสัตว์ที่ไม่ใช่ปลาด้วย รายชื่อนี้ไม่ได้บอกว่ามันกินเหยื่ออะไรหรือได้โบนัสอัตรากัดเท่าไร"
+      },
+      "evidence": {
+        "type": "rom_trace",
+        "sources": [
+          "docs/chum-basket-research.md",
+          "data/fish-acceptance.json",
+          "data/general-tool-code-index.json",
+          "data/item-table-records.json"
+        ]
+      },
+      "evidenceNotes": {
+        "en": [
+          "Use handler: 03:BC4A..BD2E dispatches 08/09/0A to 03:C24A. Message offsets 0104, 0106, 0108 were rendered from the original ROM message table/font.",
+          "Coordinates/marker: 03:C273..C2C8; valid location text/gate: 03:C24E..C261; active old-target bounds: 03:C2DE..C30F.",
+          "Movement: 00:D5F0..D61A and 00:D7D2..D81E. The profile mask is the ROM fish-profile +15 word loaded to 7E:1208. Counter: 04:C020..C02B, reached through 04:BF61..BF8F after target resolution."
+        ],
+        "ja": [
+          "使用処理: 03:BC4A..BD2Eで08/09/0Aを03:C24Aへ送る。メッセージ0104・0106・0108はROM内のメッセージ表とフォントから描画した。",
+          "座標・作動値: 03:C273..C2C8。場所条件と表示文: 03:C24E..C261。既存誘導点の範囲判定: 03:C2DE..C30F。",
+          "移動方向: 00:D5F0..D61A、00:D7D2..D81E。プロフィールマスクは魚プロフィール+15のROM値で、7E:1208に読み込まれる。カウンター: 04:C020..C02B。ターゲット判定後の04:BF61..BF8F経由で減る。"
+        ],
+        "th": [
+          "ทางใช้ไอเท็ม: 03:BC4A..BD2E ส่ง ID 08/09/0A ไปที่ 03:C24A; ข้อความ 0104, 0106, 0108 ถอดจากตารางข้อความและฟอนต์ใน ROM ต้นฉบับ",
+          "พิกัด/แฟล็ก: 03:C273..C2C8; เงื่อนไขตำแหน่ง/ข้อความ: 03:C24E..C261; ตรวจว่าจุดเดิมยังอยู่ในขอบเขตพื้นที่: 03:C2DE..C30F",
+          "โค้ดหันทิศปลา: 00:D5F0..D61A และ 00:D7D2..D81E; mask จากโปรไฟล์ปลา ROM ช่อง +15 ถูกโหลดไว้ที่ 7E:1208; ตัวนับอยู่ที่ 04:C020..C02B และลดผ่าน 04:BF61..BF8F หลังตรวจจุดหมาย"
+        ]
+      }
+    },
+    "09": {
+      "displayName": {
+        "en": "Chum (2 uses remaining)",
+        "ja": "寄せエサ（残り2回）",
+        "th": "เหยื่อโปรยเรียกปลา (เหลือ 2 ครั้ง)"
+      },
+      "summary": {
+        "en": "The same groundbait item, now with two uses left; its placement and fish-steering behavior are unchanged.",
+        "ja": "同じ寄せエサの残り2回状態。設置方法と魚の誘導処理は同じ。",
+        "th": "เหยื่อโปรยชิ้นเดิมที่เหลือ 2 ครั้ง; วิธีโปรยและผลหันทิศปลาเหมือนเดิม"
+      },
+      "facts": {
+        "en": [
+          "Two uses remain. After the next successful placement, one remains.",
+          "The same marker, eligible-profile movement rule, and area/casting-progress limits apply as ID 08."
+        ],
+        "ja": [
+          "残り2回。次の設置成功後は残り1回。",
+          "誘導点・対象プロフィール・フェーズ進行とエリア範囲による解除はID 08と同じ。"
+        ],
+        "th": [
+          "เหลือ 2 ครั้ง; โปรยสำเร็จครั้งถัดไปแล้วจะเหลือ 1 ครั้ง",
+          "ตั้งจุดและหันทิศปลาตามเงื่อนไขเดียวกับ ID 08; หมดผลจากความคืบหน้าการตกปลาหรือย้ายออกจากขอบเขตพื้นที่"
+        ]
+      },
+      "evidence": {
+        "type": "rom_trace",
+        "sources": [
+          "docs/chum-basket-research.md",
+          "data/general-tool-code-index.json",
+          "data/item-table-records.json"
+        ]
+      },
+      "evidenceNotes": {
+        "en": [
+          "Same shared handler and fish-direction/countdown routines documented for ID 08. The ROM record uses the same Japanese label and a zero price field; inventory transition is at 03:C29C..C2C8."
+        ],
+        "ja": [
+          "ID 08と同じ共通処理・魚の方向・カウンター処理。ROMレコード名は同じ寄せエサで、価格欄は0。所持IDの移行は03:C29C..C2C8。"
+        ],
+        "th": [
+          "ใช้ handler และโค้ดหันทิศ/ตัวนับร่วมกับ ID 08; ระเบียน ROM ใช้ชื่อญี่ปุ่นเดียวกันและช่องราคาของ ID 09 เป็น 0; โค้ดเปลี่ยน ID อยู่ที่ 03:C29C..C2C8"
+        ]
+      },
+      "fishIds": [
+        "06",
+        "07",
+        "08",
+        "09",
+        "0B",
+        "0C",
+        "0D",
+        "0E",
+        "0F",
+        "10",
+        "11",
+        "12",
+        "14",
+        "15",
+        "16",
+        "17",
+        "18",
+        "1A",
+        "1B",
+        "1C",
+        "1D",
+        "20",
+        "23",
+        "24",
+        "25",
+        "26",
+        "28",
+        "29",
+        "2D",
+        "2F",
+        "30",
+        "32",
+        "33",
+        "34",
+        "36",
+        "37",
+        "39",
+        "3A",
+        "3B",
+        "3D",
+        "3E",
+        "3F",
+        "44",
+        "46",
+        "47",
+        "48",
+        "49"
+      ],
+      "fishScope": {
+        "en": "These are the creatures whose movement can be steered toward the groundbait point when the equipped-bait direction does not take priority. The list includes non-fish creatures. It does not show which bait they will eat or prove a bite-rate bonus.",
+        "ja": "装備中のエサへの移動が優先されない場合、寄せエサの地点へ誘導される生物の一覧。魚以外の生物も含む。食べるエサの一覧や食いつき率上昇を示すものではない。",
+        "th": "รายชื่อนี้คือสัตว์ที่โค้ดให้ว่ายเข้าหาจุดโปรยได้ เมื่อการว่ายเข้าหาเหยื่อเบ็ดไม่ได้ทำงานก่อน มีสัตว์ที่ไม่ใช่ปลาด้วย รายชื่อนี้ไม่ได้บอกว่ามันกินเหยื่ออะไรหรือได้โบนัสอัตรากัดเท่าไร"
+      }
+    },
+    "0A": {
+      "displayName": {
+        "en": "Chum (1 use remaining)",
+        "ja": "寄せエサ（残り1回）",
+        "th": "เหยื่อโปรยเรียกปลา (เหลือ 1 ครั้ง)"
+      },
+      "summary": {
+        "en": "The same groundbait item with its final use; a successful placement removes it from the tool list.",
+        "ja": "同じ寄せエサの最後の1回。設置に成功すると道具欄からなくなる。",
+        "th": "เหยื่อโปรยชิ้นเดิมครั้งสุดท้าย; เมื่อโปรยสำเร็จไอเท็มจะหายจากช่องเครื่องมือ"
+      },
+      "facts": {
+        "en": [
+          "One use remains. A successful placement consumes it.",
+          "The same marker, eligible-profile movement rule, and area/casting-progress limits apply as ID 08."
+        ],
+        "ja": [
+          "残り1回。設置成功時に消費される。",
+          "誘導点・対象プロフィール・フェーズ進行とエリア範囲による解除はID 08と同じ。"
+        ],
+        "th": [
+          "เหลือ 1 ครั้ง; โปรยสำเร็จแล้วไอเท็มจะถูกใช้หมด",
+          "ตั้งจุดและหันทิศปลาตามเงื่อนไขเดียวกับ ID 08; หมดผลจากความคืบหน้าการตกปลาหรือย้ายออกจากขอบเขตพื้นที่"
+        ]
+      },
+      "evidence": {
+        "type": "rom_trace",
+        "sources": [
+          "docs/chum-basket-research.md",
+          "data/general-tool-code-index.json",
+          "data/item-table-records.json"
+        ]
+      },
+      "evidenceNotes": {
+        "en": [
+          "Same shared handler and fish-direction/countdown routines documented for ID 08. 03:C2A5..C2C2 compares ID 0A, shifts later entries, then writes zero to the last slot."
+        ],
+        "ja": [
+          "ID 08と同じ共通処理・魚の方向・カウンター処理。03:C2A5..C2C2でID 0Aを判定し、後続所持品を詰めて最後を0にする。"
+        ],
+        "th": [
+          "ใช้ handler/โค้ดหันทิศ/ตัวนับร่วมกับ ID 08; 03:C2A5..C2C2 ตรวจ ID 0A แล้วเลื่อนช่องถัดไปและเขียน 0 ลงช่องสุดท้าย"
+        ]
+      },
+      "fishIds": [
+        "06",
+        "07",
+        "08",
+        "09",
+        "0B",
+        "0C",
+        "0D",
+        "0E",
+        "0F",
+        "10",
+        "11",
+        "12",
+        "14",
+        "15",
+        "16",
+        "17",
+        "18",
+        "1A",
+        "1B",
+        "1C",
+        "1D",
+        "20",
+        "23",
+        "24",
+        "25",
+        "26",
+        "28",
+        "29",
+        "2D",
+        "2F",
+        "30",
+        "32",
+        "33",
+        "34",
+        "36",
+        "37",
+        "39",
+        "3A",
+        "3B",
+        "3D",
+        "3E",
+        "3F",
+        "44",
+        "46",
+        "47",
+        "48",
+        "49"
+      ],
+      "fishScope": {
+        "en": "These are the creatures whose movement can be steered toward the groundbait point when the equipped-bait direction does not take priority. The list includes non-fish creatures. It does not show which bait they will eat or prove a bite-rate bonus.",
+        "ja": "装備中のエサへの移動が優先されない場合、寄せエサの地点へ誘導される生物の一覧。魚以外の生物も含む。食べるエサの一覧や食いつき率上昇を示すものではない。",
+        "th": "รายชื่อนี้คือสัตว์ที่โค้ดให้ว่ายเข้าหาจุดโปรยได้ เมื่อการว่ายเข้าหาเหยื่อเบ็ดไม่ได้ทำงานก่อน มีสัตว์ที่ไม่ใช่ปลาด้วย รายชื่อนี้ไม่ได้บอกว่ามันกินเหยื่ออะไรหรือได้โบนัสอัตรากัดเท่าไร"
+      }
+    },
+    "0B": {
+      "displayName": {
+        "en": "Keepnet (10 fish)",
+        "ja": "びく（10匹）",
+        "th": "ข้องใส่ปลา ความจุ 10 ตัว"
+      },
+      "summary": {
+        "en": "Buy it to increase keepnet capacity to 10 fish immediately. No separate equip/use action is needed.",
+        "ja": "購入するとびくの容量がすぐに10匹になる。装備・使用操作は不要。",
+        "th": "ซื้อแล้วเพิ่มความจุข้องเป็น 10 ตัวทันที ไม่ต้องเลือกใช้จากเมนูอีก"
+      },
+      "facts": {
+        "en": [
+          "Capacity: 10 fish; ROM item record lists 300 yen.",
+          "At exactly full, the game stores the landed fish and then tells you the keepnet is full. The next fishing action is blocked until you make room.",
+          "Choose Fish in the Food category to eat one stored fish and free a keepnet slot."
+        ],
+        "ja": [
+          "容量は10匹。ROMレコードの価格欄は300円。",
+          "満杯になる魚も先に保存され、その後びく満杯の表示が出る。次の釣り操作は空きを作るまで止まる。",
+          "食べ物の「魚」を選んで保存した魚を1匹食べると、びくに空きができる。"
+        ],
+        "th": [
+          "ความจุ 10 ตัว; ระเบียนไอเท็มใน ROM ระบุราคา 300 เยน",
+          "ปลาตัวที่ทำให้เต็มจะถูกเก็บก่อนแล้วจึงขึ้นข้อความว่าข้องเต็ม; กิจกรรมตกปลาครั้งต่อไปจะเริ่มไม่ได้จนกว่าจะมีที่ว่าง",
+          "เลือก “ปลา” ในหมวดอาหารเพื่อกินปลาที่เก็บไว้หนึ่งตัวและคืนที่ว่างในข้อง"
+        ]
+      },
+      "evidence": {
+        "type": "rom_trace",
+        "sources": [
+          "docs/chum-basket-research.md",
+          "data/item-table-records.json",
+          "data/food-effects-confirmed.json"
+        ]
+      },
+      "evidenceNotes": {
+        "en": [
+          "Shop capacity write and upgrade gate: 03:93A0..944F and 03:9450..94D3. Capacity field: 7E:0C12.",
+          "Pre-action full check: 04:D218..D254, called at 04:BF32; it counts 30 species slots and compares count >= capacity. Message offsets 0092 and 00A2 were rendered from the original ROM font.",
+          "Food ID 08 reads and removes one stored fish at 03:BA15..BA7D; controlled HP samples are separately listed in data/food-effects-confirmed.json."
+        ],
+        "ja": [
+          "店で容量を書き込む処理・購入判定: 03:93A0..944F、03:9450..94D3。容量欄: 7E:0C12。",
+          "操作前の満杯判定: 04:D218..D254、04:BF32から呼ばれる。30個の魚ID枠を数えて個数>=容量を比較。メッセージ0092・00A2はROMフォントから描画。",
+          "食べ物ID 08は03:BA15..BA7Dで保存魚を読み、1匹分を取り除く。HPの実測値はdata/food-effects-confirmed.jsonに別記。"
+        ],
+        "th": [
+          "โค้ดเขียนความจุจากการซื้อและตรวจไม่ให้ลดระดับ: 03:93A0..944F, 03:9450..94D3; ช่องความจุ 7E:0C12",
+          "ตรวจเต็มก่อนกิจกรรมตกปลา: 04:D218..D254 ถูกเรียกจาก 04:BF32; นับช่องรหัสปลา 30 ช่องและเทียบจำนวน >= ความจุ; ข้อความ 0092 และ 00A2 เรนเดอร์จากฟอนต์ ROM",
+          "อาหาร ID 08 อ่านและนำปลาออกหนึ่งตัวที่ 03:BA15..BA7D; ค่าฟื้น HP ที่ทดลองไว้แยกอยู่ใน data/food-effects-confirmed.json"
+        ]
+      }
+    },
+    "0C": {
+      "displayName": {
+        "en": "Keepnet (20 fish)",
+        "ja": "びく（20匹）",
+        "th": "ข้องใส่ปลา ความจุ 20 ตัว"
+      },
+      "summary": {
+        "en": "Buy it to increase keepnet capacity to 20 fish immediately. No separate equip/use action is needed.",
+        "ja": "購入するとびくの容量がすぐに20匹になる。装備・使用操作は不要。",
+        "th": "ซื้อแล้วเพิ่มความจุข้องเป็น 20 ตัวทันที ไม่ต้องเลือกใช้จากเมนูอีก"
+      },
+      "facts": {
+        "en": [
+          "Capacity: 20 fish; ROM item record lists 400 yen.",
+          "At exactly full, the game stores the landed fish and then tells you the keepnet is full. The next fishing action is blocked until you make room.",
+          "Choose Fish in the Food category to eat one stored fish and free a keepnet slot."
+        ],
+        "ja": [
+          "容量は20匹。ROMレコードの価格欄は400円。",
+          "満杯になる魚も先に保存され、その後びく満杯の表示が出る。次の釣り操作は空きを作るまで止まる。",
+          "食べ物の「魚」を選んで保存した魚を1匹食べると、びくに空きができる。"
+        ],
+        "th": [
+          "ความจุ 20 ตัว; ระเบียนไอเท็มใน ROM ระบุราคา 400 เยน",
+          "ปลาตัวที่ทำให้เต็มจะถูกเก็บก่อนแล้วจึงขึ้นข้อความว่าข้องเต็ม; กิจกรรมตกปลาครั้งต่อไปจะเริ่มไม่ได้จนกว่าจะมีที่ว่าง",
+          "เลือก “ปลา” ในหมวดอาหารเพื่อกินปลาที่เก็บไว้หนึ่งตัวและคืนที่ว่างในข้อง"
+        ]
+      },
+      "evidence": {
+        "type": "rom_trace",
+        "sources": [
+          "docs/chum-basket-research.md",
+          "data/item-table-records.json",
+          "data/food-effects-confirmed.json"
+        ]
+      },
+      "evidenceNotes": {
+        "en": [
+          "Shop capacity write and upgrade gate: 03:93A0..944F and 03:9450..94D3; field 7E:0C12.",
+          "Food ID 08 reads and removes one stored fish at 03:BA15..BA7D; controlled HP samples are separately listed in data/food-effects-confirmed.json."
+        ],
+        "ja": [
+          "店で容量を書き込む処理・購入判定: 03:93A0..944F、03:9450..94D3。容量欄7E:0C12。",
+          "食べ物ID 08は03:BA15..BA7Dで保存魚を読み、1匹分を取り除く。HPの実測値はdata/food-effects-confirmed.jsonに別記。"
+        ],
+        "th": [
+          "โค้ดเขียนความจุและตรวจการอัปเกรด: 03:93A0..944F, 03:9450..94D3; ช่อง 7E:0C12",
+          "อาหาร ID 08 อ่านและนำปลาออกหนึ่งตัวที่ 03:BA15..BA7D; ค่าฟื้น HP ที่ทดลองไว้แยกอยู่ใน data/food-effects-confirmed.json"
+        ]
+      }
+    },
+    "0D": {
+      "displayName": {
+        "en": "Keepnet (30 fish)",
+        "ja": "びく（30匹）",
+        "th": "ข้องใส่ปลา ความจุ 30 ตัว"
+      },
+      "summary": {
+        "en": "Buy it to increase keepnet capacity to 30 fish immediately. No separate equip/use action is needed.",
+        "ja": "購入するとびくの容量がすぐに30匹になる。装備・使用操作は不要。",
+        "th": "ซื้อแล้วเพิ่มความจุข้องเป็น 30 ตัวทันที ไม่ต้องเลือกใช้จากเมนูอีก"
+      },
+      "facts": {
+        "en": [
+          "Capacity: 30 fish; ROM item record lists 500 yen.",
+          "At exactly full, the game stores the landed fish and then tells you the keepnet is full. The next fishing action is blocked until you make room.",
+          "Choose Fish in the Food category to eat one stored fish and free a keepnet slot."
+        ],
+        "ja": [
+          "容量は30匹。ROMレコードの価格欄は500円。",
+          "満杯になる魚も先に保存され、その後びく満杯の表示が出る。次の釣り操作は空きを作るまで止まる。",
+          "食べ物の「魚」を選んで保存した魚を1匹食べると、びくに空きができる。"
+        ],
+        "th": [
+          "ความจุ 30 ตัว; ระเบียนไอเท็มใน ROM ระบุราคา 500 เยน",
+          "ปลาตัวที่ทำให้เต็มจะถูกเก็บก่อนแล้วจึงขึ้นข้อความว่าข้องเต็ม; กิจกรรมตกปลาครั้งต่อไปจะเริ่มไม่ได้จนกว่าจะมีที่ว่าง",
+          "เลือก “ปลา” ในหมวดอาหารเพื่อกินปลาที่เก็บไว้หนึ่งตัวและคืนที่ว่างในข้อง"
+        ]
+      },
+      "evidence": {
+        "type": "rom_trace",
+        "sources": [
+          "docs/chum-basket-research.md",
+          "data/item-table-records.json",
+          "data/food-effects-confirmed.json"
+        ]
+      },
+      "evidenceNotes": {
+        "en": [
+          "Shop capacity write and upgrade gate: 03:93A0..944F and 03:9450..94D3; field 7E:0C12.",
+          "Food ID 08 reads and removes one stored fish at 03:BA15..BA7D; controlled HP samples are separately listed in data/food-effects-confirmed.json."
+        ],
+        "ja": [
+          "店で容量を書き込む処理・購入判定: 03:93A0..944F、03:9450..94D3。容量欄7E:0C12。",
+          "食べ物ID 08は03:BA15..BA7Dで保存魚を読み、1匹分を取り除く。HPの実測値はdata/food-effects-confirmed.jsonに別記。"
+        ],
+        "th": [
+          "โค้ดเขียนความจุและตรวจการอัปเกรด: 03:93A0..944F, 03:9450..94D3; ช่อง 7E:0C12",
+          "อาหาร ID 08 อ่านและนำปลาออกหนึ่งตัวที่ 03:BA15..BA7D; ค่าฟื้น HP ที่ทดลองไว้แยกอยู่ใน data/food-effects-confirmed.json"
+        ]
+      }
+    }
+  }
+}

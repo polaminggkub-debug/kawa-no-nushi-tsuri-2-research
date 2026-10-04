@@ -1,0 +1,244 @@
+{
+  "schemaVersion": 1,
+  "rom": {
+    "sha1": "c2103dd94e2a1a65a495fc02adc2e7d040f31212"
+  },
+  "scope": "NPC default positions from original-ROM object tables; item-use bindings from traced event consumers. Fireworks activation rectangle comes from 03:C63A..C65E. Terrain is rendered from the same original ROM.",
+  "items": {
+    "0F": [
+      {
+        "stage": 3,
+        "name": {
+          "en": "Cow: refill the empty bottle",
+          "ja": "牛：空きビンに牛乳を入れる",
+          "th": "คุยกับวัวเพื่อเติมนมใส่ขวดเปล่า"
+        },
+        "tileX": 6,
+        "tileY": 103,
+        "image": "maps/tool-use-cow.png",
+        "fullImage": "maps/rom-field-03.png",
+        "width": 384,
+        "height": 384,
+        "pin": {
+          "x": 0.2708333333333333,
+          "y": 0.5
+        },
+        "source": {
+          "objectSlotHex": "0C",
+          "coordinateFileOffset": "0x003EBA",
+          "consumer": "00:C804..C83B"
+        }
+      }
+    ],
+    "10": [
+      {
+        "stage": 3,
+        "name": {
+          "en": "Cow: refill the empty bottle",
+          "ja": "牛：空きビンに牛乳を入れる",
+          "th": "คุยกับวัวเพื่อเติมนมใส่ขวดเปล่า"
+        },
+        "tileX": 6,
+        "tileY": 103,
+        "image": "maps/tool-use-cow.png",
+        "fullImage": "maps/rom-field-03.png",
+        "width": 384,
+        "height": 384,
+        "pin": {
+          "x": 0.2708333333333333,
+          "y": 0.5
+        },
+        "source": {
+          "objectSlotHex": "0C",
+          "coordinateFileOffset": "0x003EBA",
+          "consumer": "00:C804..C83B"
+        }
+      },
+      {
+        "stage": 3,
+        "name": {
+          "en": "Canoe maker: trade milk for a canoe",
+          "ja": "カヌー職人：牛乳とカヌーを交換",
+          "th": "คนทำเรือ: นำนมมาแลกเรือแคนู"
+        },
+        "tileX": 28,
+        "tileY": 39,
+        "image": "maps/tool-use-canoe-maker.png",
+        "fullImage": "maps/rom-field-03.png",
+        "width": 384,
+        "height": 384,
+        "pin": {
+          "x": 0.8541666666666666,
+          "y": 0.5
+        },
+        "source": {
+          "objectSlotHex": "1A",
+          "coordinateFileOffset": "0x003ED6",
+          "consumer": "00:C8D4..C911"
+        }
+      }
+    ],
+    "11": [
+      {
+        "stage": 5,
+        "name": {
+          "en": "Lottery drawing counter",
+          "ja": "富くじの抽選所",
+          "th": "เคาน์เตอร์ขึ้นสลาก"
+        },
+        "tileX": 54,
+        "tileY": 22,
+        "image": "maps/tool-use-lottery-counter.png",
+        "fullImage": "maps/rom-field-05.png",
+        "width": 384,
+        "height": 384,
+        "pin": {
+          "x": 0.5,
+          "y": 0.6041666666666666
+        },
+        "source": {
+          "objectSlotHex": "18",
+          "coordinateFileOffset": "0x003FBA",
+          "consumer": "00:CBD9..CCD4"
+        }
+      },
+      {
+        "stage": 5,
+        "name": {
+          "en": "Jizo: offer food to raise the lottery threshold",
+          "ja": "お地蔵さま：食べ物を供えて抽選の判定値を上げる",
+          "th": "รูปปั้นจิโซ: ถวายอาหารเพิ่มค่าเกณฑ์ถูกรางวัล"
+        },
+        "tileX": 49,
+        "tileY": 22,
+        "image": "maps/tool-use-jizo.png",
+        "fullImage": "maps/rom-field-05.png",
+        "width": 384,
+        "height": 384,
+        "pin": {
+          "x": 0.5,
+          "y": 0.6041666666666666
+        },
+        "source": {
+          "objectSlotHex": "08",
+          "coordinateFileOffset": "0x003F9A",
+          "consumer": "00:C1E8..C1F7; 03:A3DF..A43B"
+        },
+        "markerItem": {
+          "category": "food",
+          "id": "07"
+        }
+      }
+    ],
+    "12": [
+      {
+        "stage": 6,
+        "name": {
+          "en": "Give the candle for the reunion event",
+          "ja": "再会イベントのロウソクを渡す",
+          "th": "คุยเพื่อให้เทียนและทำเควสต์ส่งสัญญาณ"
+        },
+        "tileX": 47,
+        "tileY": 36,
+        "image": "maps/tool-use-candle.png",
+        "fullImage": "maps/rom-field-06.png",
+        "width": 384,
+        "height": 384,
+        "pin": {
+          "x": 0.5,
+          "y": 0.5
+        },
+        "source": {
+          "objectSlotHex": "22",
+          "coordinateFileOffset": "0x004042",
+          "consumer": "00:CE4E..CE9E"
+        }
+      }
+    ],
+    "15": [
+      {
+        "stage": 4,
+        "name": {
+          "en": "Fox event: give fried tofu or use fireworks nearby",
+          "ja": "キツネのイベント：あぶらあげを渡す／近くで花火を使う",
+          "th": "จุดเควสต์จิ้งจอก: ให้เต้าหู้ทอด หรือใช้ดอกไม้ไฟบริเวณนี้"
+        },
+        "tileX": 32,
+        "tileY": 42,
+        "image": "maps/tool-use-fox.png",
+        "fullImage": "maps/rom-field-04.png",
+        "width": 384,
+        "height": 384,
+        "pin": {
+          "x": 0.5,
+          "y": 0.5
+        },
+        "source": {
+          "objectSlotHex": "0C",
+          "coordinateFileOffset": "0x003F2E",
+          "consumer": "00:C9D7..CA62; 03:C62A..C664"
+        },
+        "useWindow": {
+          "xMin": 31,
+          "xMax": 33,
+          "yMin": 42,
+          "yMax": 43
+        }
+      }
+    ],
+    "16": [
+      {
+        "stage": 4,
+        "name": {
+          "en": "Fox event: give fried tofu or use fireworks nearby",
+          "ja": "キツネのイベント：あぶらあげを渡す／近くで花火を使う",
+          "th": "จุดเควสต์จิ้งจอก: ให้เต้าหู้ทอด หรือใช้ดอกไม้ไฟบริเวณนี้"
+        },
+        "tileX": 32,
+        "tileY": 42,
+        "image": "maps/tool-use-fox.png",
+        "fullImage": "maps/rom-field-04.png",
+        "width": 384,
+        "height": 384,
+        "pin": {
+          "x": 0.5,
+          "y": 0.5
+        },
+        "source": {
+          "objectSlotHex": "0C",
+          "coordinateFileOffset": "0x003F2E",
+          "consumer": "00:C9D7..CA62; 03:C62A..C664"
+        },
+        "useWindow": {
+          "xMin": 31,
+          "xMax": 33,
+          "yMin": 42,
+          "yMax": 43
+        }
+      },
+      {
+        "stage": 4,
+        "name": {
+          "en": "NPC accepts fireworks and gives the fox hint",
+          "ja": "花火を受け取りキツネの助言をする人物",
+          "th": "NPC รับดอกไม้ไฟและบอกใบ้เรื่องจิ้งจอก"
+        },
+        "tileX": 62,
+        "tileY": 32,
+        "image": "maps/tool-use-fireworks-hint.png",
+        "fullImage": "maps/rom-field-04.png",
+        "width": 384,
+        "height": 384,
+        "pin": {
+          "x": 0.9375,
+          "y": 0.5
+        },
+        "source": {
+          "objectSlotHex": "1E",
+          "coordinateFileOffset": "0x003F52",
+          "consumer": "00:CAF6..CB1D"
+        }
+      }
+    ]
+  }
+}
