@@ -158,7 +158,7 @@ def sprite_source(profile_id, row_offset, start_pointer, second_pointer,
             "secondPointerFileOffset": f"0x{second_offset:06X}",
             "firstStreamBoundary": {
                 "fileOffset": f"0x{second_offset:06X}",
-                "meaning": "second animation stream pointer; exclusive input bound for decoding the first stream",
+                "meaning": "second animation stream pointer; observed exclusive end of the first stream",
             },
             "firstStreamBytesConsumed": consumed_bytes,
             "firstStreamCompressedEndFileOffset": f"0x{start_offset + consumed_bytes:06X}",
@@ -221,7 +221,7 @@ def extract(rom, manifest_path, output_dir):
             "rowStrideBytes": GRAPHICS_STRIDE,
             "profileCount": PROFILE_COUNT,
             "rowFormat": "24-bit first-animation pointer, padding byte, 24-bit second-animation pointer, padding byte",
-            "pointerUse": "The second pointer starts a separate animation stream; it is used as the exclusive input bound while decoding the first stream.",
+            "pointerUse": "The second pointer starts a separate animation stream and exactly bounds the first stream in all 72 named profiles.",
         },
         "decompression": {
             "cpuAddress": "00:E5C2",
@@ -282,8 +282,8 @@ def extract(rom, manifest_path, output_dir):
             raise ValueError(f"Profile {key}: refusing to assign art without a decoded ROM name")
 
         decoded, consumed_bytes = decode_stream(rom[start_offset:second_offset], profile_id)
-        if start_offset + consumed_bytes > second_offset:
-            raise ValueError(f"Profile {key}: first stream crosses its second-pointer boundary")
+        if start_offset + consumed_bytes != second_offset:
+            raise ValueError(f"Profile {key}: first stream does not end at its second-animation pointer")
         if len(decoded) != 0x2000:
             raise ValueError(
                 f"Profile {key}: expected two 0x1000-byte frames, got 0x{len(decoded):X}"

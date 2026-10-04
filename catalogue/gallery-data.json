@@ -33024,7 +33024,7 @@
           "secondPointerFileOffset": "0x0B1282",
           "firstStreamBoundary": {
             "fileOffset": "0x0B1282",
-            "meaning": "second animation stream pointer; exclusive input bound for decoding the first stream"
+            "meaning": "second animation stream pointer; observed exclusive end of the first stream"
           },
           "firstStreamBytesConsumed": 1878,
           "firstStreamCompressedEndFileOffset": "0x0B1282"
@@ -33083,7 +33083,7 @@
           "secondPointerFileOffset": "0x0B1CFC",
           "firstStreamBoundary": {
             "fileOffset": "0x0B1CFC",
-            "meaning": "second animation stream pointer; exclusive input bound for decoding the first stream"
+            "meaning": "second animation stream pointer; observed exclusive end of the first stream"
           },
           "firstStreamBytesConsumed": 1750,
           "firstStreamCompressedEndFileOffset": "0x0B1CFC"
@@ -33142,7 +33142,7 @@
           "secondPointerFileOffset": "0x0B297C",
           "firstStreamBoundary": {
             "fileOffset": "0x0B297C",
-            "meaning": "second animation stream pointer; exclusive input bound for decoding the first stream"
+            "meaning": "second animation stream pointer; observed exclusive end of the first stream"
           },
           "firstStreamBytesConsumed": 2259,
           "firstStreamCompressedEndFileOffset": "0x0B297C"
@@ -33201,7 +33201,7 @@
           "secondPointerFileOffset": "0x0B3B79",
           "firstStreamBoundary": {
             "fileOffset": "0x0B3B79",
-            "meaning": "second animation stream pointer; exclusive input bound for decoding the first stream"
+            "meaning": "second animation stream pointer; observed exclusive end of the first stream"
           },
           "firstStreamBytesConsumed": 3507,
           "firstStreamCompressedEndFileOffset": "0x0B3B79"
@@ -33260,7 +33260,7 @@
           "secondPointerFileOffset": "0x0B5149",
           "firstStreamBoundary": {
             "fileOffset": "0x0B5149",
-            "meaning": "second animation stream pointer; exclusive input bound for decoding the first stream"
+            "meaning": "second animation stream pointer; observed exclusive end of the first stream"
           },
           "firstStreamBytesConsumed": 3971,
           "firstStreamCompressedEndFileOffset": "0x0B5149"
@@ -33319,7 +33319,7 @@
           "secondPointerFileOffset": "0x0B6A4C",
           "firstStreamBoundary": {
             "fileOffset": "0x0B6A4C",
-            "meaning": "second animation stream pointer; exclusive input bound for decoding the first stream"
+            "meaning": "second animation stream pointer; observed exclusive end of the first stream"
           },
           "firstStreamBytesConsumed": 4552,
           "firstStreamCompressedEndFileOffset": "0x0B6A4C"
@@ -33378,7 +33378,7 @@
           "secondPointerFileOffset": "0x0B7AE2",
           "firstStreamBoundary": {
             "fileOffset": "0x0B7AE2",
-            "meaning": "second animation stream pointer; exclusive input bound for decoding the first stream"
+            "meaning": "second animation stream pointer; observed exclusive end of the first stream"
           },
           "firstStreamBytesConsumed": 2145,
           "firstStreamCompressedEndFileOffset": "0x0B7AE2"
@@ -33437,7 +33437,7 @@
           "secondPointerFileOffset": "0x0B866B",
           "firstStreamBoundary": {
             "fileOffset": "0x0B866B",
-            "meaning": "second animation stream pointer; exclusive input bound for decoding the first stream"
+            "meaning": "second animation stream pointer; observed exclusive end of the first stream"
           },
           "firstStreamBytesConsumed": 1807,
           "firstStreamCompressedEndFileOffset": "0x0B866B"
@@ -33496,7 +33496,7 @@
           "secondPointerFileOffset": "0x0B92FF",
           "firstStreamBoundary": {
             "fileOffset": "0x0B92FF",
-            "meaning": "second animation stream pointer; exclusive input bound for decoding the first stream"
+            "meaning": "second animation stream pointer; observed exclusive end of the first stream"
           },
           "firstStreamBytesConsumed": 2285,
           "firstStreamCompressedEndFileOffset": "0x0B92FF"
@@ -33555,7 +33555,7 @@
           "secondPointerFileOffset": "0x0B9E82",
           "firstStreamBoundary": {
             "fileOffset": "0x0B9E82",
-            "meaning": "second animation stream pointer; exclusive input bound for decoding the first stream"
+            "meaning": "second animation stream pointer; observed exclusive end of the first stream"
           },
           "firstStreamBytesConsumed": 1782,
           "firstStreamCompressedEndFileOffset": "0x0B9E82"
@@ -33614,7 +33614,7 @@
           "secondPointerFileOffset": "0x0BF870",
           "firstStreamBoundary": {
             "fileOffset": "0x0BF870",
-            "meaning": "second animation stream pointer; exclusive input bound for decoding the first stream"
+            "meaning": "second animation stream pointer; observed exclusive end of the first stream"
           },
           "firstStreamBytesConsumed": 3501,
           "firstStreamCompressedEndFileOffset": "0x0BF870"
@@ -33673,7 +33673,7 @@
           "secondPointerFileOffset": "0x0C0980",
           "firstStreamBoundary": {
             "fileOffset": "0x0C0980",
-            "meaning": "second animation stream pointer; exclusive input bound for decoding the first stream"
+            "meaning": "second animation stream pointer; observed exclusive end of the first stream"
           },
           "firstStreamBytesConsumed": 2865,
           "firstStreamCompressedEndFileOffset": "0x0C0980"
@@ -33732,7 +33732,7 @@
           "secondPointerFileOffset": "0x0C157B",
           "firstStreamBoundary": {
             "fileOffset": "0x0C157B",
-            "meaning": "second animation stream pointer; exclusive input bound for decoding the first stream"
+            "meaning": "second animation stream pointer; observed exclusive end of the first stream"
           },
           "firstStreamBytesConsumed": 1697,
           "firstStreamCompressedEndFileOffset": "0x0C157B"
@@ -33791,7 +33791,7 @@
           "secondPointerFileOffset": "0x0C1FD1",
           "firstStreamBoundary": {
             "fileOffset": "0x0C1FD1",
-            "meaning": "second animation stream pointer; exclusive input bound for decoding the first stream"
+            "meaning": "second animation stream pointer; observed exclusive end of the first stream"
           },
           "firstStreamBytesConsumed": 1750,
           "firstStreamCompressedEndFileOffset": "0x0C1FD1"
@@ -33850,7 +33850,7 @@
           "secondPointerFileOffset": "0x0C325D",
           "firstStreamBoundary": {
             "fileOffset": "0x0C325D",
-            "meaning": "second animation stream pointer; exclusive input bound for decoding the first stream"
+            "meaning": "second animation stream pointer; observed exclusive end of the first stream"
           },
           "firstStreamBytesConsumed": 3847,
           "firstStreamCompressedEndFileOffset": "0x0C325D"
@@ -33909,7 +33909,7 @@
           "secondPointerFileOffset": "0x0C47EE",
           "firstStreamBoundary": {
             "fileOffset": "0x0C47EE",
-            "meaning": "second animation stream pointer; exclusive input bound for decoding the first stream"
+            "meaning": "second animation stream pointer; observed exclusive end of the first stream"
           },
           "firstStreamBytesConsumed": 3799,
           "firstStreamCompressedEndFileOffset": "0x0C47EE"
@@ -33968,7 +33968,7 @@
           "secondPointerFileOffset": "0x0C5CC7",
           "firstStreamBoundary": {
             "fileOffset": "0x0C5CC7",
-            "meaning": "second animation stream pointer; exclusive input bound for decoding the first stream"
+            "meaning": "second animation stream pointer; observed exclusive end of the first stream"
           },
           "firstStreamBytesConsumed": 3678,
           "firstStreamCompressedEndFileOffset": "0x0C5CC7"
@@ -34027,7 +34027,7 @@
           "secondPointerFileOffset": "0x0C6A18",
           "firstStreamBoundary": {
             "fileOffset": "0x0C6A18",
-            "meaning": "second animation stream pointer; exclusive input bound for decoding the first stream"
+            "meaning": "second animation stream pointer; observed exclusive end of the first stream"
           },
           "firstStreamBytesConsumed": 1802,
           "firstStreamCompressedEndFileOffset": "0x0C6A18"
@@ -34089,7 +34089,7 @@
           "secondPointerFileOffset": "0x0C78E7",
           "firstStreamBoundary": {
             "fileOffset": "0x0C78E7",
-            "meaning": "second animation stream pointer; exclusive input bound for decoding the first stream"
+            "meaning": "second animation stream pointer; observed exclusive end of the first stream"
           },
           "firstStreamBytesConsumed": 2803,
           "firstStreamCompressedEndFileOffset": "0x0C78E7"
@@ -34149,7 +34149,7 @@
           "secondPointerFileOffset": "0x0C87B5",
           "firstStreamBoundary": {
             "fileOffset": "0x0C87B5",
-            "meaning": "second animation stream pointer; exclusive input bound for decoding the first stream"
+            "meaning": "second animation stream pointer; observed exclusive end of the first stream"
           },
           "firstStreamBytesConsumed": 2459,
           "firstStreamCompressedEndFileOffset": "0x0C87B5"
@@ -34208,7 +34208,7 @@
           "secondPointerFileOffset": "0x0CFBAC",
           "firstStreamBoundary": {
             "fileOffset": "0x0CFBAC",
-            "meaning": "second animation stream pointer; exclusive input bound for decoding the first stream"
+            "meaning": "second animation stream pointer; observed exclusive end of the first stream"
           },
           "firstStreamBytesConsumed": 4125,
           "firstStreamCompressedEndFileOffset": "0x0CFBAC"
@@ -34271,7 +34271,7 @@
           "secondPointerFileOffset": "0x0D0DFD",
           "firstStreamBoundary": {
             "fileOffset": "0x0D0DFD",
-            "meaning": "second animation stream pointer; exclusive input bound for decoding the first stream"
+            "meaning": "second animation stream pointer; observed exclusive end of the first stream"
           },
           "firstStreamBytesConsumed": 2859,
           "firstStreamCompressedEndFileOffset": "0x0D0DFD"
@@ -34332,7 +34332,7 @@
           "secondPointerFileOffset": "0x0D1B94",
           "firstStreamBoundary": {
             "fileOffset": "0x0D1B94",
-            "meaning": "second animation stream pointer; exclusive input bound for decoding the first stream"
+            "meaning": "second animation stream pointer; observed exclusive end of the first stream"
           },
           "firstStreamBytesConsumed": 2158,
           "firstStreamCompressedEndFileOffset": "0x0D1B94"
@@ -34391,7 +34391,7 @@
           "secondPointerFileOffset": "0x0D2BCB",
           "firstStreamBoundary": {
             "fileOffset": "0x0D2BCB",
-            "meaning": "second animation stream pointer; exclusive input bound for decoding the first stream"
+            "meaning": "second animation stream pointer; observed exclusive end of the first stream"
           },
           "firstStreamBytesConsumed": 3118,
           "firstStreamCompressedEndFileOffset": "0x0D2BCB"
@@ -34450,7 +34450,7 @@
           "secondPointerFileOffset": "0x0D3A37",
           "firstStreamBoundary": {
             "fileOffset": "0x0D3A37",
-            "meaning": "second animation stream pointer; exclusive input bound for decoding the first stream"
+            "meaning": "second animation stream pointer; observed exclusive end of the first stream"
           },
           "firstStreamBytesConsumed": 2126,
           "firstStreamCompressedEndFileOffset": "0x0D3A37"
@@ -34509,7 +34509,7 @@
           "secondPointerFileOffset": "0x0D4BEA",
           "firstStreamBoundary": {
             "fileOffset": "0x0D4BEA",
-            "meaning": "second animation stream pointer; exclusive input bound for decoding the first stream"
+            "meaning": "second animation stream pointer; observed exclusive end of the first stream"
           },
           "firstStreamBytesConsumed": 3374,
           "firstStreamCompressedEndFileOffset": "0x0D4BEA"
@@ -34568,7 +34568,7 @@
           "secondPointerFileOffset": "0x0D6144",
           "firstStreamBoundary": {
             "fileOffset": "0x0D6144",
-            "meaning": "second animation stream pointer; exclusive input bound for decoding the first stream"
+            "meaning": "second animation stream pointer; observed exclusive end of the first stream"
           },
           "firstStreamBytesConsumed": 3804,
           "firstStreamCompressedEndFileOffset": "0x0D6144"
@@ -34627,7 +34627,7 @@
           "secondPointerFileOffset": "0x0D7C2F",
           "firstStreamBoundary": {
             "fileOffset": "0x0D7C2F",
-            "meaning": "second animation stream pointer; exclusive input bound for decoding the first stream"
+            "meaning": "second animation stream pointer; observed exclusive end of the first stream"
           },
           "firstStreamBytesConsumed": 4998,
           "firstStreamCompressedEndFileOffset": "0x0D7C2F"
@@ -34686,7 +34686,7 @@
           "secondPointerFileOffset": "0x0D8E6F",
           "firstStreamBoundary": {
             "fileOffset": "0x0D8E6F",
-            "meaning": "second animation stream pointer; exclusive input bound for decoding the first stream"
+            "meaning": "second animation stream pointer; observed exclusive end of the first stream"
           },
           "firstStreamBytesConsumed": 2658,
           "firstStreamCompressedEndFileOffset": "0x0D8E6F"
@@ -34745,7 +34745,7 @@
           "secondPointerFileOffset": "0x0D9BAF",
           "firstStreamBoundary": {
             "fileOffset": "0x0D9BAF",
-            "meaning": "second animation stream pointer; exclusive input bound for decoding the first stream"
+            "meaning": "second animation stream pointer; observed exclusive end of the first stream"
           },
           "firstStreamBytesConsumed": 2074,
           "firstStreamCompressedEndFileOffset": "0x0D9BAF"
@@ -34804,7 +34804,7 @@
           "secondPointerFileOffset": "0x0E0F3A",
           "firstStreamBoundary": {
             "fileOffset": "0x0E0F3A",
-            "meaning": "second animation stream pointer; exclusive input bound for decoding the first stream"
+            "meaning": "second animation stream pointer; observed exclusive end of the first stream"
           },
           "firstStreamBytesConsumed": 1971,
           "firstStreamCompressedEndFileOffset": "0x0E0F3A"
@@ -34863,7 +34863,7 @@
           "secondPointerFileOffset": "0x0E1B03",
           "firstStreamBoundary": {
             "fileOffset": "0x0E1B03",
-            "meaning": "second animation stream pointer; exclusive input bound for decoding the first stream"
+            "meaning": "second animation stream pointer; observed exclusive end of the first stream"
           },
           "firstStreamBytesConsumed": 2050,
           "firstStreamCompressedEndFileOffset": "0x0E1B03"
@@ -34925,7 +34925,7 @@
           "secondPointerFileOffset": "0x0E2B77",
           "firstStreamBoundary": {
             "fileOffset": "0x0E2B77",
-            "meaning": "second animation stream pointer; exclusive input bound for decoding the first stream"
+            "meaning": "second animation stream pointer; observed exclusive end of the first stream"
           },
           "firstStreamBytesConsumed": 3155,
           "firstStreamCompressedEndFileOffset": "0x0E2B77"
@@ -35003,7 +35003,7 @@
           "secondPointerFileOffset": "0x0E3856",
           "firstStreamBoundary": {
             "fileOffset": "0x0E3856",
-            "meaning": "second animation stream pointer; exclusive input bound for decoding the first stream"
+            "meaning": "second animation stream pointer; observed exclusive end of the first stream"
           },
           "firstStreamBytesConsumed": 1800,
           "firstStreamCompressedEndFileOffset": "0x0E3856"
@@ -35062,7 +35062,7 @@
           "secondPointerFileOffset": "0x0E441D",
           "firstStreamBoundary": {
             "fileOffset": "0x0E441D",
-            "meaning": "second animation stream pointer; exclusive input bound for decoding the first stream"
+            "meaning": "second animation stream pointer; observed exclusive end of the first stream"
           },
           "firstStreamBytesConsumed": 2113,
           "firstStreamCompressedEndFileOffset": "0x0E441D"
@@ -35121,7 +35121,7 @@
           "secondPointerFileOffset": "0x0E50EE",
           "firstStreamBoundary": {
             "fileOffset": "0x0E50EE",
-            "meaning": "second animation stream pointer; exclusive input bound for decoding the first stream"
+            "meaning": "second animation stream pointer; observed exclusive end of the first stream"
           },
           "firstStreamBytesConsumed": 2288,
           "firstStreamCompressedEndFileOffset": "0x0E50EE"
@@ -35180,7 +35180,7 @@
           "secondPointerFileOffset": "0x0E6141",
           "firstStreamBoundary": {
             "fileOffset": "0x0E6141",
-            "meaning": "second animation stream pointer; exclusive input bound for decoding the first stream"
+            "meaning": "second animation stream pointer; observed exclusive end of the first stream"
           },
           "firstStreamBytesConsumed": 3054,
           "firstStreamCompressedEndFileOffset": "0x0E6141"
@@ -35239,7 +35239,7 @@
           "secondPointerFileOffset": "0x0E7497",
           "firstStreamBoundary": {
             "fileOffset": "0x0E7497",
-            "meaning": "second animation stream pointer; exclusive input bound for decoding the first stream"
+            "meaning": "second animation stream pointer; observed exclusive end of the first stream"
           },
           "firstStreamBytesConsumed": 3309,
           "firstStreamCompressedEndFileOffset": "0x0E7497"
@@ -35298,7 +35298,7 @@
           "secondPointerFileOffset": "0x0E843D",
           "firstStreamBoundary": {
             "fileOffset": "0x0E843D",
-            "meaning": "second animation stream pointer; exclusive input bound for decoding the first stream"
+            "meaning": "second animation stream pointer; observed exclusive end of the first stream"
           },
           "firstStreamBytesConsumed": 2304,
           "firstStreamCompressedEndFileOffset": "0x0E843D"
@@ -35357,7 +35357,7 @@
           "secondPointerFileOffset": "0x0A295D",
           "firstStreamBoundary": {
             "fileOffset": "0x0A295D",
-            "meaning": "second animation stream pointer; exclusive input bound for decoding the first stream"
+            "meaning": "second animation stream pointer; observed exclusive end of the first stream"
           },
           "firstStreamBytesConsumed": 2494,
           "firstStreamCompressedEndFileOffset": "0x0A295D"
@@ -35416,7 +35416,7 @@
           "secondPointerFileOffset": "0x0A3AFE",
           "firstStreamBoundary": {
             "fileOffset": "0x0A3AFE",
-            "meaning": "second animation stream pointer; exclusive input bound for decoding the first stream"
+            "meaning": "second animation stream pointer; observed exclusive end of the first stream"
           },
           "firstStreamBytesConsumed": 3301,
           "firstStreamCompressedEndFileOffset": "0x0A3AFE"
@@ -35475,7 +35475,7 @@
           "secondPointerFileOffset": "0x0A4B3E",
           "firstStreamBoundary": {
             "fileOffset": "0x0A4B3E",
-            "meaning": "second animation stream pointer; exclusive input bound for decoding the first stream"
+            "meaning": "second animation stream pointer; observed exclusive end of the first stream"
           },
           "firstStreamBytesConsumed": 2613,
           "firstStreamCompressedEndFileOffset": "0x0A4B3E"
@@ -35534,7 +35534,7 @@
           "secondPointerFileOffset": "0x0A58C2",
           "firstStreamBoundary": {
             "fileOffset": "0x0A58C2",
-            "meaning": "second animation stream pointer; exclusive input bound for decoding the first stream"
+            "meaning": "second animation stream pointer; observed exclusive end of the first stream"
           },
           "firstStreamBytesConsumed": 2233,
           "firstStreamCompressedEndFileOffset": "0x0A58C2"
@@ -35593,7 +35593,7 @@
           "secondPointerFileOffset": "0x0A65F6",
           "firstStreamBoundary": {
             "fileOffset": "0x0A65F6",
-            "meaning": "second animation stream pointer; exclusive input bound for decoding the first stream"
+            "meaning": "second animation stream pointer; observed exclusive end of the first stream"
           },
           "firstStreamBytesConsumed": 2297,
           "firstStreamCompressedEndFileOffset": "0x0A65F6"
@@ -35658,7 +35658,7 @@
           "secondPointerFileOffset": "0x0A77EA",
           "firstStreamBoundary": {
             "fileOffset": "0x0A77EA",
-            "meaning": "second animation stream pointer; exclusive input bound for decoding the first stream"
+            "meaning": "second animation stream pointer; observed exclusive end of the first stream"
           },
           "firstStreamBytesConsumed": 3413,
           "firstStreamCompressedEndFileOffset": "0x0A77EA"
@@ -35718,7 +35718,7 @@
           "secondPointerFileOffset": "0x0A8646",
           "firstStreamBoundary": {
             "fileOffset": "0x0A8646",
-            "meaning": "second animation stream pointer; exclusive input bound for decoding the first stream"
+            "meaning": "second animation stream pointer; observed exclusive end of the first stream"
           },
           "firstStreamBytesConsumed": 2277,
           "firstStreamCompressedEndFileOffset": "0x0A8646"
@@ -35777,7 +35777,7 @@
           "secondPointerFileOffset": "0x0A9531",
           "firstStreamBoundary": {
             "fileOffset": "0x0A9531",
-            "meaning": "second animation stream pointer; exclusive input bound for decoding the first stream"
+            "meaning": "second animation stream pointer; observed exclusive end of the first stream"
           },
           "firstStreamBytesConsumed": 2686,
           "firstStreamCompressedEndFileOffset": "0x0A9531"
@@ -35839,7 +35839,7 @@
           "secondPointerFileOffset": "0x0AA672",
           "firstStreamBoundary": {
             "fileOffset": "0x0AA672",
-            "meaning": "second animation stream pointer; exclusive input bound for decoding the first stream"
+            "meaning": "second animation stream pointer; observed exclusive end of the first stream"
           },
           "firstStreamBytesConsumed": 3031,
           "firstStreamCompressedEndFileOffset": "0x0AA672"
@@ -35903,7 +35903,7 @@
           "secondPointerFileOffset": "0x0AB3CA",
           "firstStreamBoundary": {
             "fileOffset": "0x0AB3CA",
-            "meaning": "second animation stream pointer; exclusive input bound for decoding the first stream"
+            "meaning": "second animation stream pointer; observed exclusive end of the first stream"
           },
           "firstStreamBytesConsumed": 2027,
           "firstStreamCompressedEndFileOffset": "0x0AB3CA"
@@ -35964,7 +35964,7 @@
           "secondPointerFileOffset": "0x0AC57C",
           "firstStreamBoundary": {
             "fileOffset": "0x0AC57C",
-            "meaning": "second animation stream pointer; exclusive input bound for decoding the first stream"
+            "meaning": "second animation stream pointer; observed exclusive end of the first stream"
           },
           "firstStreamBytesConsumed": 3422,
           "firstStreamCompressedEndFileOffset": "0x0AC57C"
@@ -36026,7 +36026,7 @@
           "secondPointerFileOffset": "0x0AD4AC",
           "firstStreamBoundary": {
             "fileOffset": "0x0AD4AC",
-            "meaning": "second animation stream pointer; exclusive input bound for decoding the first stream"
+            "meaning": "second animation stream pointer; observed exclusive end of the first stream"
           },
           "firstStreamBytesConsumed": 2281,
           "firstStreamCompressedEndFileOffset": "0x0AD4AC"
@@ -36089,7 +36089,7 @@
           "secondPointerFileOffset": "0x0AE86B",
           "firstStreamBoundary": {
             "fileOffset": "0x0AE86B",
-            "meaning": "second animation stream pointer; exclusive input bound for decoding the first stream"
+            "meaning": "second animation stream pointer; observed exclusive end of the first stream"
           },
           "firstStreamBytesConsumed": 3998,
           "firstStreamCompressedEndFileOffset": "0x0AE86B"
@@ -36149,7 +36149,7 @@
           "secondPointerFileOffset": "0x0AF934",
           "firstStreamBoundary": {
             "fileOffset": "0x0AF934",
-            "meaning": "second animation stream pointer; exclusive input bound for decoding the first stream"
+            "meaning": "second animation stream pointer; observed exclusive end of the first stream"
           },
           "firstStreamBytesConsumed": 2502,
           "firstStreamCompressedEndFileOffset": "0x0AF934"
@@ -36208,7 +36208,7 @@
           "secondPointerFileOffset": "0x0B06EB",
           "firstStreamBoundary": {
             "fileOffset": "0x0B06EB",
-            "meaning": "second animation stream pointer; exclusive input bound for decoding the first stream"
+            "meaning": "second animation stream pointer; observed exclusive end of the first stream"
           },
           "firstStreamBytesConsumed": 2226,
           "firstStreamCompressedEndFileOffset": "0x0B06EB"
@@ -36267,7 +36267,7 @@
           "secondPointerFileOffset": "0x0BA972",
           "firstStreamBoundary": {
             "fileOffset": "0x0BA972",
-            "meaning": "second animation stream pointer; exclusive input bound for decoding the first stream"
+            "meaning": "second animation stream pointer; observed exclusive end of the first stream"
           },
           "firstStreamBytesConsumed": 1851,
           "firstStreamCompressedEndFileOffset": "0x0BA972"
@@ -36326,7 +36326,7 @@
           "secondPointerFileOffset": "0x0BB60C",
           "firstStreamBoundary": {
             "fileOffset": "0x0BB60C",
-            "meaning": "second animation stream pointer; exclusive input bound for decoding the first stream"
+            "meaning": "second animation stream pointer; observed exclusive end of the first stream"
           },
           "firstStreamBytesConsumed": 2254,
           "firstStreamCompressedEndFileOffset": "0x0BB60C"
@@ -36385,7 +36385,7 @@
           "secondPointerFileOffset": "0x0BC305",
           "firstStreamBoundary": {
             "fileOffset": "0x0BC305",
-            "meaning": "second animation stream pointer; exclusive input bound for decoding the first stream"
+            "meaning": "second animation stream pointer; observed exclusive end of the first stream"
           },
           "firstStreamBytesConsumed": 2230,
           "firstStreamCompressedEndFileOffset": "0x0BC305"
@@ -36444,7 +36444,7 @@
           "secondPointerFileOffset": "0x0BD19A",
           "firstStreamBoundary": {
             "fileOffset": "0x0BD19A",
-            "meaning": "second animation stream pointer; exclusive input bound for decoding the first stream"
+            "meaning": "second animation stream pointer; observed exclusive end of the first stream"
           },
           "firstStreamBytesConsumed": 2705,
           "firstStreamCompressedEndFileOffset": "0x0BD19A"
@@ -36506,7 +36506,7 @@
           "secondPointerFileOffset": "0x0BDE06",
           "firstStreamBoundary": {
             "fileOffset": "0x0BDE06",
-            "meaning": "second animation stream pointer; exclusive input bound for decoding the first stream"
+            "meaning": "second animation stream pointer; observed exclusive end of the first stream"
           },
           "firstStreamBytesConsumed": 1821,
           "firstStreamCompressedEndFileOffset": "0x0BDE06"
@@ -36566,7 +36566,7 @@
           "secondPointerFileOffset": "0x0BE7AF",
           "firstStreamBoundary": {
             "fileOffset": "0x0BE7AF",
-            "meaning": "second animation stream pointer; exclusive input bound for decoding the first stream"
+            "meaning": "second animation stream pointer; observed exclusive end of the first stream"
           },
           "firstStreamBytesConsumed": 1505,
           "firstStreamCompressedEndFileOffset": "0x0BE7AF"
@@ -36628,7 +36628,7 @@
           "secondPointerFileOffset": "0x0C95B7",
           "firstStreamBoundary": {
             "fileOffset": "0x0C95B7",
-            "meaning": "second animation stream pointer; exclusive input bound for decoding the first stream"
+            "meaning": "second animation stream pointer; observed exclusive end of the first stream"
           },
           "firstStreamBytesConsumed": 2349,
           "firstStreamCompressedEndFileOffset": "0x0C95B7"
@@ -36688,7 +36688,7 @@
           "secondPointerFileOffset": "0x0CA1CF",
           "firstStreamBoundary": {
             "fileOffset": "0x0CA1CF",
-            "meaning": "second animation stream pointer; exclusive input bound for decoding the first stream"
+            "meaning": "second animation stream pointer; observed exclusive end of the first stream"
           },
           "firstStreamBytesConsumed": 1981,
           "firstStreamCompressedEndFileOffset": "0x0CA1CF"
@@ -36753,7 +36753,7 @@
           "secondPointerFileOffset": "0x0CACE5",
           "firstStreamBoundary": {
             "fileOffset": "0x0CACE5",
-            "meaning": "second animation stream pointer; exclusive input bound for decoding the first stream"
+            "meaning": "second animation stream pointer; observed exclusive end of the first stream"
           },
           "firstStreamBytesConsumed": 1827,
           "firstStreamCompressedEndFileOffset": "0x0CACE5"
@@ -36813,7 +36813,7 @@
           "secondPointerFileOffset": "0x0CBE33",
           "firstStreamBoundary": {
             "fileOffset": "0x0CBE33",
-            "meaning": "second animation stream pointer; exclusive input bound for decoding the first stream"
+            "meaning": "second animation stream pointer; observed exclusive end of the first stream"
           },
           "firstStreamBytesConsumed": 3506,
           "firstStreamCompressedEndFileOffset": "0x0CBE33"
@@ -36872,7 +36872,7 @@
           "secondPointerFileOffset": "0x0CCDE9",
           "firstStreamBoundary": {
             "fileOffset": "0x0CCDE9",
-            "meaning": "second animation stream pointer; exclusive input bound for decoding the first stream"
+            "meaning": "second animation stream pointer; observed exclusive end of the first stream"
           },
           "firstStreamBytesConsumed": 2419,
           "firstStreamCompressedEndFileOffset": "0x0CCDE9"
@@ -36931,7 +36931,7 @@
           "secondPointerFileOffset": "0x0CE419",
           "firstStreamBoundary": {
             "fileOffset": "0x0CE419",
-            "meaning": "second animation stream pointer; exclusive input bound for decoding the first stream"
+            "meaning": "second animation stream pointer; observed exclusive end of the first stream"
           },
           "firstStreamBytesConsumed": 4417,
           "firstStreamCompressedEndFileOffset": "0x0CE419"
@@ -36993,7 +36993,7 @@
           "secondPointerFileOffset": "0x0DA901",
           "firstStreamBoundary": {
             "fileOffset": "0x0DA901",
-            "meaning": "second animation stream pointer; exclusive input bound for decoding the first stream"
+            "meaning": "second animation stream pointer; observed exclusive end of the first stream"
           },
           "firstStreamBytesConsumed": 2346,
           "firstStreamCompressedEndFileOffset": "0x0DA901"
@@ -37053,7 +37053,7 @@
           "secondPointerFileOffset": "0x0DBAC2",
           "firstStreamBoundary": {
             "fileOffset": "0x0DBAC2",
-            "meaning": "second animation stream pointer; exclusive input bound for decoding the first stream"
+            "meaning": "second animation stream pointer; observed exclusive end of the first stream"
           },
           "firstStreamBytesConsumed": 3283,
           "firstStreamCompressedEndFileOffset": "0x0DBAC2"
@@ -37112,7 +37112,7 @@
           "secondPointerFileOffset": "0x0DC8DB",
           "firstStreamBoundary": {
             "fileOffset": "0x0DC8DB",
-            "meaning": "second animation stream pointer; exclusive input bound for decoding the first stream"
+            "meaning": "second animation stream pointer; observed exclusive end of the first stream"
           },
           "firstStreamBytesConsumed": 1914,
           "firstStreamCompressedEndFileOffset": "0x0DC8DB"
@@ -37171,7 +37171,7 @@
           "secondPointerFileOffset": "0x0DDDB1",
           "firstStreamBoundary": {
             "fileOffset": "0x0DDDB1",
-            "meaning": "second animation stream pointer; exclusive input bound for decoding the first stream"
+            "meaning": "second animation stream pointer; observed exclusive end of the first stream"
           },
           "firstStreamBytesConsumed": 4364,
           "firstStreamCompressedEndFileOffset": "0x0DDDB1"
@@ -37230,7 +37230,7 @@
           "secondPointerFileOffset": "0x0DF32F",
           "firstStreamBoundary": {
             "fileOffset": "0x0DF32F",
-            "meaning": "second animation stream pointer; exclusive input bound for decoding the first stream"
+            "meaning": "second animation stream pointer; observed exclusive end of the first stream"
           },
           "firstStreamBytesConsumed": 3480,
           "firstStreamCompressedEndFileOffset": "0x0DF32F"
@@ -37289,7 +37289,7 @@
           "secondPointerFileOffset": "0x0E0331",
           "firstStreamBoundary": {
             "fileOffset": "0x0E0331",
-            "meaning": "second animation stream pointer; exclusive input bound for decoding the first stream"
+            "meaning": "second animation stream pointer; observed exclusive end of the first stream"
           },
           "firstStreamBytesConsumed": 2243,
           "firstStreamCompressedEndFileOffset": "0x0E0331"
