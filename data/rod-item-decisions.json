@@ -311,9 +311,9 @@
         "ja": "ルアー釣りの予算枠"
       },
       "recommendation": {
-        "en": "Use 0A when starting lure fishing on a budget: it is listed for full ¥500. In areas where both are stocked, 0C costs a full ¥600 and raises the cutoff from 70 to 100 and the multiplier from ×15 to ×21; the new-purchase quote difference is ¥100. Area 5 lists 0A but not 0C, so 0A is the recorded local lure-rod option there.",
-        "th": "ใช้คัน 0A เมื่อต้องการเริ่มสายลัวร์แบบประหยัด: มีขายราคาเต็ม ¥500 ในด่านที่มีทั้งสองคัน คัน 0C ราคาเต็ม ¥600 เพิ่มช่วงเล็งจาก 70 เป็น 100 และตัวคูณจาก ×15 เป็น ×21 ต่างกัน ¥100 ระหว่างราคาซื้อใหม่ ด่าน 5 มีคัน 0A แต่ไม่มี 0C ดังนั้น 0A เป็นคันลัวร์ที่มีรายการขายในด่านนั้น",
-        "ja": "予算を抑えてルアー釣りを始めるなら、全額500円の0Aを使います。両方が販売されるエリアでは、0Cは全額600円で照準上限70から100、倍率×15から×21へ上がり、新品価格の差は100円です。エリア5には0Aがあり0Cはないため、記録上のルアー竿の選択肢は0Aです。"
+        "en": "Keep 0A if its aiming time is enough for you. In area 4, claim it from the unopened locked town chest with key 17 and a free rod slot before buying another copy. If you need a lure rod earlier, 0A costs ¥500; where both are stocked, choose 0C at ¥600 if the longer aiming time and higher fish-position loss limit are worth paying for. In area 5, 0A is the recorded local lure-rod offer and 0C is not stocked.",
+        "ja": "照準時間が足りているなら0Aを使い続けてください。エリア4の施錠宝箱が未開封なら、カギ17と竿欄の空きを用意して受け取り、重複購入を避けられます。それ以前にルアー竿が必要なら0Aは500円。両方を売るエリアでは、照準時間と道具喪失の魚位置境界を増やしたいときに600円の0Cを選びます。エリア5の記録上のルアー竿は0Aで、0Cは在庫にありません。",
+        "th": "ถ้ามี 0A อยู่แล้วและเวลาเล็งพอ ใช้ต่อได้ ด่าน 4 ถ้าหีบล็อกในเมืองยังไม่เปิด ให้พกกุญแจ 17 และเว้นช่องคันเบ็ดไปรับคันนี้ก่อนซื้อซ้ำ ถ้าต้องใช้ลัวร์ก่อนถึงด่านนั้น 0A ราคา ¥500 เป็นตัวเริ่ม; ในด่านที่มีขายทั้งคู่ เลือก 0C ราคา ¥600 เมื่ออยากได้เวลาเล็งและขอบเขตตำแหน่งปลาก่อนเสียอุปกรณ์เพิ่ม ด่าน 5 มีรายการขาย 0A แต่ไม่มี 0C"
       },
       "reason": {
         "en": "Rod 0A is the cheaper listed entry, not the strongest lure rod. Its low aim rank is based on the full-HP cutoff; HP below 100 shortens the lure-rod aim window.",
@@ -330,7 +330,9 @@
         "data/rod-response.json",
         "docs/rod-lure-practical-research.md",
         "data/shop-stock-rom.json",
-        "docs/shop-stock-research.md"
+        "docs/shop-stock-research.md",
+        "data/town-item-acquisition.json",
+        "docs/town-item-acquisition-research.md"
       ]
     },
     "0B": {

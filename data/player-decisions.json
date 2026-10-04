@@ -281,19 +281,19 @@
       "id": "quest_items_do_not_waste",
       "category": "general_tool",
       "title": {
-        "th": "ของเควสต์: แลกนมก่อนดื่ม และเคลียร์หีบให้ครบ",
-        "en": "Quest items: trade the milk before drinking and check the key chests",
-        "ja": "イベントアイテム：牛乳は交換してから飲み、鍵の宝箱を確認"
+        "th": "ของเควสต์: ดื่มนมแล้วกลับไปเติมได้; อย่าลืมหีบในเมือง",
+        "en": "Quest items: refill the milk bottle later; check the town chests",
+        "ja": "イベントアイテム：牛乳は後で補充できる。町の宝箱も確認"
       },
       "recommendation": {
-        "th": "ด่าน3: เก็บขวดจากหีบเมือง (6,4) เติมกับวัว (6,103) แล้วเอานมไปแลกเรือแคนูกับช่าง (28,39) ก่อนดื่ม; ถ้าดื่มจะเต็ม HP แต่เหลือขวดเปล่า. กุญแจ 17 เปิดหีบในเมืองด่าน1/2/4/6 และไม่ถูกใช้ทิ้ง—เว้นช่องในกระเป๋าหมวดรางวัลก่อน. ด่าน4: ถ้าต้องการเส้นเรื่องจิ้งจอก ให้ยื่นเต้าหู้ทอด 15 ที่ NPC (32,42) แล้วใช้ประทัด 16; ประทัดยังจุดฉากจิ้งจอกได้โดยตรงที่ X31–33,Y42–43. ด่าน6 เทียน 12 ใช้กับ NPC (47,36)",
-        "en": "Area 3: take the bottle from the town chest (6,4), fill it at the cow (6,103), then trade the milk to the canoe maker (28,39) before drinking it. Drinking restores full HP but leaves an empty bottle. Key 17 opens town chests in areas 1/2/4/6 and is retained; leave room for the reward in the matching inventory. Area 4: give fried tofu 15 to the NPC at (32,42) for the fox-story step, then use fireworks 16; fireworks can also trigger the fox scene directly at X31–33, Y42–43. In area 6, give candle 12 to the NPC at (47,36).",
-        "ja": "エリア3：町の宝箱（6,4）でビンを取り、牛（6,103）で牛乳にしてから、船頭（28,39）に渡してカヌーと交換。飲むとHP全回復しますが空きビンに戻ります。鍵17はエリア1/2/4/6の町の宝箱を開けても消費されません。報酬用の所持枠を空けてください。エリア4：キツネの話を進めるならNPC（32,42）に油揚げ15を渡してから花火16を使用。花火はX31–33、Y42–43で直接使ってもキツネのイベントを起こせます。エリア6ではNPC（47,36）にロウソク12を渡します。"
+        "en": "Area 3: take the bottle from the town chest (6,4), fill it at the cow (6,103), then choose: trade fresh milk for the canoe at (28,39) now, or drink it for full HP and refill the empty bottle at the cow later. Area 4: give fried tofu 15 at (32,42) for the fox-story step, then use fireworks 16; fireworks can also trigger the fox scene directly at X31–33, Y42–43 without the tofu step. Area 6: take candle 12 from the town chest and give it to the NPC at (47,36).",
+        "ja": "エリア3：町の宝箱（6,4）でビンを取り、牛（6,103）で牛乳にします。その後は選択してください。カヌーが必要なら先に船大工（28,39）へ渡す。HP回復を優先するなら飲んで最大まで回復し、空きビンを後で牛に持っていけば再び牛乳にできます。エリア4：キツネの話を進めるならNPC（32,42）に油揚げ15を渡してから花火16を使う。油揚げの手順を通らず、X31–33、Y42–43で花火を直接使ってもキツネの場面が始まります。エリア6：町の宝箱からロウソク12を取り、NPC（47,36）に渡します。",
+        "th": "ด่าน 3: รับขวดจากหีบเมือง (6,4) เติมนมที่วัว (6,103) แล้วเลือกว่าจะทำอะไรต่อ—ถ้าต้องการแคนู ให้แลกนมกับช่างที่ (28,39) ก่อน; ถ้าต้องการฟื้น HP ให้เต็มก่อน ดื่มนมได้ แล้วนำขวดเปล่ากลับไปเติมที่วัวภายหลัง. ด่าน 4: ถ้าต้องการเดินเรื่องจิ้งจอก ให้ยื่นเต้าหู้ทอด 15 ที่ NPC (32,42) แล้วใช้ประทัด 16; หรือจุดฉากจิ้งจอกโดยตรงด้วยประทัดที่ X31–33, Y42–43 โดยไม่ต้องผ่านขั้นเต้าหู้. ด่าน 6: รับเทียน 12 จากหีบเมืองแล้วนำไปให้ NPC ที่ (47,36)."
       },
       "reason": {
-        "th": "การดื่มนมทำให้ไอเท็มเปลี่ยนเป็นขวดเปล่าจึงเอาไปแลกเรือไม่ได้; กุญแจไม่หายเมื่อเปิดหีบ แต่หีบต้องมีที่ว่างสำหรับรางวัล",
-        "en": "Drinking milk turns it back into an empty bottle, so it cannot then be traded for the canoe. The key is not consumed, but each chest needs room for its reward.",
-        "ja": "牛乳を飲むと空きビンに戻るため、カヌーとの交換に使えなくなります。鍵は消費されませんが、宝箱の報酬を入れる空き枠が必要です。"
+        "en": "Drinking milk changes it to an empty bottle, but the area-3 cow can refill that bottle; it delays the canoe exchange rather than permanently removing the route.",
+        "ja": "牛乳を飲むと空きビンに戻りますが、エリア3の牛で再び牛乳にできます。カヌー交換ができなくなるのではなく、後で補充する手間が増えるだけです。",
+        "th": "ดื่มนมแล้วไอเท็มจะเปลี่ยนเป็นขวดเปล่า แต่กลับไปเติมที่วัวด่าน 3 ได้ จึงแค่ต้องกลับมาเติมใหม่ก่อนแลกแคนู ไม่ได้ปิดทางแลกถาวร"
       },
       "scope": {
         "th": "ตำแหน่งและผลเหล่านี้มาจากเงื่อนไข NPC/หีบใน ROM; ไฟประทัดตรงจุดกับเส้นเรื่องเต้าหู้เป็นคนละทาง",
@@ -311,10 +311,6 @@
         },
         {
           "category": "general_tool",
-          "id": "17"
-        },
-        {
-          "category": "general_tool",
           "id": "15"
         },
         {
@@ -324,6 +320,48 @@
         {
           "category": "general_tool",
           "id": "12"
+        },
+        {
+          "category": "general_tool",
+          "id": "17"
+        },
+        {
+          "category": "general_tool",
+          "id": "11"
+        }
+      ]
+    },
+    {
+      "id": "key_and_lottery",
+      "category": "general_tool",
+      "title": {
+        "th": "กุญแจหนึ่งดอกใช้กับหีบสี่ด่าน; รับสลากจากหีบก่อนซื้อ",
+        "en": "One key opens four area chests; take the ticket from its chest before buying one",
+        "ja": "カギ1個で4エリアの宝箱を開ける。券は購入前に宝箱から取る"
+      },
+      "recommendation": {
+        "th": "ซื้อกุญแจ 17 หนึ่งดอกจากร้านด่าน 1 ราคา ¥100; สต็อกมีในด่าน 1, 2, 4 และ 6 และกุญแจไม่หายเมื่อเปิดหีบ จึงใช้ดอกเดิมกับหีบล็อกในเมืองทั้งสี่ด่านได้ เว้นช่องของรางวัลหมวดเหยื่อ/คัน/อุปกรณ์ให้ว่างก่อนเปิด. สลาก 11 รับจากหีบเมืองด่าน 5 ที่ (4,6) โดยไม่ต้องใช้กุญแจ แล้วนำไปขึ้นที่เคาน์เตอร์กลางแจ้ง (54,22) ก่อนซื้อสลากเพิ่ม. ถ้าจะเพิ่มเกณฑ์ถูกรางวัล ถวายอาหารที่รูปปั้นจิโซ (49,22): ข้าวกล่อง 06 เพิ่ม 40 หน่วย; ส้ม 01 เพิ่ม 5; ตัวเลขนี้ไม่ใช่เปอร์เซ็นต์",
+        "en": "Buy one key (17) for ¥100 in area 1; recorded shop stock also includes it in areas 2, 4 and 6. It is retained after opening a chest, so the same key opens the locked town chests in areas 1, 2, 4 and 6. Leave space in the matching bait, rod or tool inventory before opening each chest. Take ticket 11 from the area-5 town chest at (4,6) without a key, then use it at the outdoor counter (54,22) before buying another ticket. If you want to raise the lottery threshold, offer food at the Jizo (49,22): bento 06 adds 40, orange 01 adds 5. These values are not percentages.",
+        "ja": "エリア1の店でカギ17を1個、100円で購入します。記録された店頭在庫はエリア2・4・6にもあります。宝箱を開けてもカギは消費されないため、同じ1個でエリア1・2・4・6の町の鍵付き宝箱を開けられます。各宝箱を開ける前に、対応するエサ・竿・道具欄を空けてください。富くじ11はエリア5の町の宝箱（4,6）からカギなしで入手し、追加購入の前に屋外の抽選所（54,22）で使います。当選しきい値を上げたい場合は地蔵（49,22）に食べ物を供えます。日の丸弁当06は40、みかん01は5を加算します。確率のパーセント値ではありません。"
+      },
+      "reason": {
+        "th": "หีบแต่ละใบให้รางวัลหมวดต่างกันและตรวจช่องว่างก่อนรับของ; ส่วนสลากถูกใช้ที่เคาน์เตอร์และมีแขนงแพ้ด้วย จึงควรเก็บใบจากหีบก่อนจ่ายเงิน",
+        "en": "Each chest checks room in a different inventory before granting its reward. The counter consumes the ticket and includes a losing branch, so use the chest ticket before paying for another.",
+        "ja": "宝箱は報酬ごとに所持欄の空きを確認します。抽選所では券が消費され、はずれ分岐もあるため、追加購入の前に宝箱の券を使ってください。"
+      },
+      "scope": {
+        "th": "เพิ่มค่าเกณฑ์จากอาหารที่ถวายได้ แต่ยังไม่สรุปเป็นเปอร์เซ็นต์หรือกำไรคาดหวัง; หัวไชเท้า 07 เพิ่ม 40 เช่นกันเมื่อมีอยู่แล้ว แต่หน้านี้ยังไม่ได้ยืนยันแหล่งที่มา",
+        "en": "Food offerings raise the recorded threshold, but the ROM trace does not establish a percentage or expected payout. Daikon 07 also adds 40 if you already have it; this page does not establish where to obtain it.",
+        "ja": "食べ物を供えると記録上のしきい値は上がりますが、当選確率や期待払い戻し率は算出していません。大根07も所持していれば40加算しますが、このページでは入手方法を確認していません。"
+      },
+      "items": [
+        {
+          "category": "general_tool",
+          "id": "17"
+        },
+        {
+          "category": "general_tool",
+          "id": "11"
         }
       ]
     },
@@ -341,16 +379,21 @@
         "ja": "まず対象魚に適合するエサと釣り方を選びます。魚名が一致する針に、食いつきや釣り上げやすさを期待して追加料金を払わないでください。"
       },
       "reason": {
-        "th": "เบ็ดที่ตรงชนิดปลาเปลี่ยนจังหวะช่วงสู้หลังปลากินเหยื่อ ซึ่งอาจทำให้เช็กทางหนีและเบ็ดหายเร็วขึ้นหรือช้าลง; ไม่ได้เพิ่มชนิดเหยื่อที่ปลาอมได้",
-        "en": "A fish-matched hook changes the fight timing after a bite and can move the later escape/lost-hook check earlier or later. It does not add bait compatibility.",
-        "ja": "魚IDが一致する針は食いついた後のファイト進行を変え、逃走・ハリ損失チェックを早める場合も遅らせる場合もあります。エサの適合種類は増えません。"
+        "en": "The fish name on a hook does not add a bait that the fish will accept. Use a hook you already have while choosing bait from the target fish’s recorded list.",
+        "ja": "針の魚名によって、その魚が食べるエサの種類が増えるわけではありません。所持している針を使い、対象魚の記録されたエサ一覧から選んでください。",
+        "th": "ชื่อปลาบนเบ็ดไม่ได้เพิ่มชนิดเหยื่อที่ปลานั้นรับได้ ใช้เบ็ดที่มีอยู่ก่อน แล้วเลือกเหยื่อจากรายชื่อของปลาที่จะตก"
       },
       "scope": {
-        "th": "ยังไม่มีผลทดลองยืนยันว่าเบ็ดชนิดใดจับได้ง่ายกว่าทุกสถานการณ์; ให้ดูรายละเอียดการตอบสนองเฉพาะปลาในหลักฐานเทคนิค",
-        "en": "No hook is proven to land fish more easily in every situation. Fish-specific response details remain in the technical evidence.",
-        "ja": "すべての状況で釣り上げやすくなる針は確認されていません。魚別の応答詳細は技術資料を参照してください。"
+        "en": "This advice does not rank which hook lands fish more easily. Open the generic hook record to compare its traced use without assuming a catch bonus.",
+        "ja": "この案内は針の釣り上げやすさを順位付けするものではありません。釣果ボーナスを想定せず、汎用ハリの記録を確認してください。",
+        "th": "คำแนะนำนี้ไม่ได้จัดอันดับว่าเบ็ดไหนช่วยดึงปลาขึ้นง่ายกว่า เปิดดูเบ็ดทั่วไปเพื่อเทียบการใช้งานที่ตรวจได้ โดยไม่สมมติว่ามีโบนัสจับปลา"
       },
-      "items": []
+      "items": [
+        {
+          "category": "hook",
+          "id": "06"
+        }
+      ]
     }
   ]
 }

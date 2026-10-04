@@ -86,3 +86,7 @@ Rod 01 → alternative 04 → return to 01 works. All 21 cards render their own 
 ## Gear and acquisition follow-up
 
 Added individual decisions for 157 gear records, fish starter/backup deep links, a linked six-area float/sinker price table, six chest acquisition routes, and map autocomplete. Current source render: 1,524 localized detail renders / 209,808 local references. Browser checks are separately recorded in `player-usefulness-audit.md`; this count does not assert all references were clicked by a human/browser.
+
+## Acquisition and practical-choice follow-up
+
+Current source render: 1,524 localized detail renders / 209,937 local references. Added six front-facing chest choices, net-to-bait and bait-to-net links, mushroom-to-orange alternatives, refillable-milk advice, and key/ticket overview links. Local browser clicks verified bait 09 -> gold net 04 with area 3 and return context retained; canoe 02 visibly offers the milk exchange route and no shop purchase. Source-render counts are not manual click counts.

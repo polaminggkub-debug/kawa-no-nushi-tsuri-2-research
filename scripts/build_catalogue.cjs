@@ -90,6 +90,12 @@ if(!fs.existsSync(gearPath))throw new Error('Missing per-item gear decisions');
     item.gearDecision=choice;
   }
 }
+const toolsSource=JSON.parse(fs.readFileSync(path.join(root,'data/general-tool-actions.json'),'utf8'));
+if(toolsSource.rom?.sha1!=='c2103dd94e2a1a65a495fc02adc2e7d040f31212')throw new Error('Net gathering source ROM mismatch');
+for(const item of data.items)delete item.netGatherArea;
+const netItem=data.items.find(i=>i.category==='general_tool'&&i.id==='04');
+netItem.gatheredBaitByArea=toolsSource.items['04'].trace.perAreaBaitIds;
+for(const [stage,id] of Object.entries(netItem.gatheredBaitByArea)){const bait=data.items.find(i=>i.category==='bait'&&i.id===id);bait.netGatherArea=Number(stage);bait.playerUse.evidence.sources=[...new Set([...(bait.playerUse.evidence.sources||[]),'data/general-tool-actions.json','docs/general-tool-actions-research.md'])];}
 const acquisitionPath=path.join(root,'data/town-item-acquisition.json');
 if(!fs.existsSync(acquisitionPath))throw new Error('Missing town acquisition data');
 {
@@ -97,6 +103,7 @@ if(!fs.existsSync(acquisitionPath))throw new Error('Missing town acquisition dat
   if(acquisitions.rom?.sha1!=='c2103dd94e2a1a65a495fc02adc2e7d040f31212')throw new Error('Acquisition ROM mismatch');
   for(const [key,entries] of Object.entries(acquisitions.items||{})){
     const item=data.items.find(i=>i.category+':'+i.id===key);if(!item)throw new Error('Acquisition missing item '+key);
+    item.acquisitionOptions=entries;
     item.playerUse.evidence||={type:'rom_trace',sources:[]};
     item.playerUse.evidence.sources=[...new Set([...(item.playerUse.evidence.sources||[]),'docs/town-item-acquisition-research.md','data/town-item-acquisition.json'])];
     const previous=item.playerUse.useLocations||[];

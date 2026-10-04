@@ -23,3 +23,7 @@ Poison mushroom `0A` separately branches to `03:BB4C`, also sets HP to zero and 
 ## Buying food
 
 The six shop foods recover 5/10/15/20/30/40 HP and their ROM prices are 5/10/15/20/30/40 yen respectively. Each costs 1 yen per nominal HP. The maximum-HP clamp means excess recovery is not credited; selecting an amount near the missing HP avoids that waste. See [shop stock](shop-stock-research.md) for the areas selling each food.
+
+## Player decision for unidentified mushrooms
+
+Controlled menu captures give both mushroom records the same Japanese display name, while one restores 10 HP and the other sets HP to zero. Therefore, when the player cannot identify their mushroom, the catalogue now recommends shop food for recovery and links to orange 01 (5 HP / 5 yen with recorded seller locations). This is a conservative recovery choice from the observed effects, not a new mushroom-identification mechanic.

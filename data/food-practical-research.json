@@ -232,6 +232,11 @@
           "docs/food-practical-research.md",
           "data/food-effects-confirmed.json"
         ]
+      },
+      "summary": {
+        "en": "If you cannot identify which mushroom you have, use shop food for HP recovery instead. The tested menu gives the healing and poison mushrooms the same name; the poison one sets HP to zero.",
+        "th": "ถ้าแยกไม่ออกว่าเห็ดในกระเป๋าเป็นชนิดไหน ให้ใช้อาหารจากร้านฟื้น HP แทน เมนูที่ทดสอบแสดงชื่อเห็ดฟื้นพลังกับเห็ดพิษเหมือนกัน และเห็ดพิษทำให้ HP เหลือ 0",
+        "ja": "持っているキノコの種類を識別できなければ、HP回復には店売りの食料を使ってください。確認したメニューでは回復用と毒キノコが同じ名前で表示され、毒の方はHPを0にします。"
       }
     },
     "food:0A": {
@@ -241,6 +246,11 @@
           "docs/food-practical-research.md",
           "data/food-effects-confirmed.json"
         ]
+      },
+      "summary": {
+        "en": "If you cannot identify which mushroom you have, use shop food for HP recovery instead. The tested menu gives the healing and poison mushrooms the same name; the poison one sets HP to zero.",
+        "th": "ถ้าแยกไม่ออกว่าเห็ดในกระเป๋าเป็นชนิดไหน ให้ใช้อาหารจากร้านฟื้น HP แทน เมนูที่ทดสอบแสดงชื่อเห็ดฟื้นพลังกับเห็ดพิษเหมือนกัน และเห็ดพิษทำให้ HP เหลือ 0",
+        "ja": "持っているキノコの種類を識別できなければ、HP回復には店売りの食料を使ってください。確認したメニューでは回復用と毒キノコが同じ名前で表示され、毒の方はHPを0にします。"
       }
     }
   }

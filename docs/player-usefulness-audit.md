@@ -68,3 +68,12 @@ Run `node scripts/check_entity_links.cjs`, `node scripts/check_shop_conditions.c
 - Maps have localized keyboard/click autocomplete with unique fish sprites and confirmed areas. Typing stays on the current map; committing a fish changes area only if needed. A functional harness executes the real listeners with all 72 mapped profiles; live EN/TH/JA checks covered Area 6 → Rainbow trout in Area 1, Escape, clear and exact return context.
 - Root browser checks additionally covered hook01 → Akame → hook return, float01 → six-area price table → float02, ticket acquisition/entrance disclosure, and wing09 → Rainbow optional backup automatically opened. Original evidence remains collapsed.
 - Source-render coverage: 1,524 localized detail renders, 209,808 link/asset/entity references, all 315 items and 73 fish profiles. Repeated references are not a count of manual clicks. Full-goal status remains active; unresolved traversal/gameplay outcomes listed above remain research work.
+
+## Follow-up: acquisition before spending and safe recovery choices
+
+- Six chest rewards now have a visible acquisition callout before purchase listings, with a direct location/entrance action. Rod 0A's decision considers its area-4 key chest and tells owners to keep the existing rod when aiming time is sufficient.
+- An unidentified mushroom now leads to a concrete alternative: use recorded shop food rather than relying on the menu name, which is shared by +10-HP and HP-zero records in the controlled observation. The orange profile is linked with a retained return path.
+- Gold net output IDs come directly from `general-tool-actions.json`'s traced area table. Both directions are linked: net → bait profile and bait → net collection instructions. No exact shallow-water coordinate is claimed by these links.
+- Catalogue comparison alternatives omit the currently displayed item, preventing a comparison link from looping to the same profile.
+- Local browser checks: rod 0A's chest action scrolls to the authentic town crop; mushroom09 → orange01 retains the mushroom return; net04 → salmon roe09 retains area3 and the net return. The all-record renderer requires acquisition/gathering/food-alternative actions.
+- The area-6 normal-shop walk and daikon acquisition remain research work. The whole-site goal is still active.

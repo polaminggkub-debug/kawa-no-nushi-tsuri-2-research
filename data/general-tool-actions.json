@@ -12,9 +12,9 @@
       "id": "01",
       "nameJa": "タライ",
       "summary": {
-        "en": "Use the tub from a location accepted by the game to enter its water-travel mode.",
-        "ja": "ゲームが使用を認める場所でタライを使い、水上移動モードに入る。",
-        "th": "ใช้กะละมังจากจุดที่เกมอนุญาต เพื่อให้ลอยน้ำและเข้าโหมดเดินทางทางน้ำ"
+        "en": "Keep using a tub you already own if it gets you where you need to go and you want to save the fresh milk. No canoe appears in the six recorded area shop stocks; the verified way to get one is to trade fresh milk to the area-3 canoe maker at (28,39).",
+        "ja": "今のタライで移動できて牛乳を残したいなら、そのまま使ってください。全6エリアの店頭在庫にカヌーは記録されていません。確認できた入手方法は、エリア3（28,39）の船大工に牛乳を渡す交換です。",
+        "th": "ถ้ามีกะละมังอยู่แล้วและพาไปถึงจุดหมายได้ ให้ใช้ต่อเมื่ออยากเก็บนมสดไว้; ไม่พบแคนูในสต็อกร้านทั้ง 6 ด่าน วิธีได้แคนูที่ยืนยันจากโค้ดคือเอานมสดไปแลกกับช่างทำเรือด่าน 3 (28,39)."
       },
       "facts": {
         "en": [
@@ -88,9 +88,9 @@
       "id": "02",
       "nameJa": "カヌー",
       "summary": {
-        "en": "Use the canoe from a location accepted by the game to enter its water-travel mode.",
-        "ja": "ゲームが使用を認める場所でカヌーを使い、水上移動モードに入る。",
-        "th": "ใช้แคนูจากจุดที่เกมอนุญาต เพื่อให้ลอยน้ำและเข้าโหมดเดินทางทางน้ำ"
+        "en": "Choose the canoe if its extra movement in the traced no-current water branch is worth trading away fresh milk; that branch schedules 14 position steps versus the tub’s 10, not a universal trip-time guarantee. No area shop stock is recorded for the canoe. If you do not want to spend the milk, keep using your tub.",
+        "ja": "流れのない分岐で移動量が増えることを重視し、牛乳を交換に使ってよい場合はカヌーを選ぶ。この分岐ではタライの10回に対し14回位置を進めるが、全行程での所要時間が必ず短くなるわけではない。全エリアの店頭在庫にカヌーは記録されていません。牛乳を残すならタライを使い続ける。",
+        "th": "ถ้าต้องการให้เคลื่อนที่มากขึ้นในเส้นทางน้ำที่โค้ดตรวจว่าไม่มีกระแส และยอมแลกนมสดได้ ให้เลือกแคนู: รอบที่ตรวจขยับตำแหน่ง 14 ครั้ง เทียบกับกะละมัง 10 ครั้ง ไม่ได้แปลว่าเวลาเดินทางทุกเส้นทางสั้นลงเสมอ; ไม่พบแคนูในสต็อกร้านทั้งหกด่าน ถ้าอยากเก็บนมไว้ ใช้กะละมังต่อได้"
       },
       "facts": {
         "en": [

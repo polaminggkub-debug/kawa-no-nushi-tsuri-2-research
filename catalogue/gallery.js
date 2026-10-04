@@ -265,6 +265,28 @@
     }).join('')}</details>`:'';
     return `<div class="shop-locations"><h4>${title}</h4>${regular?`<p>${regularLabel} · ${regular}</p>`:''}${special?`<p>${lang==='th'?'ร้านคันเบ็ดพิเศษในเมือง':lang==='ja'?'町の専用竿店':'Special rod merchant in town'} · ${special}</p>`:''}${condition?`<p>${condition}</p>`:''}${bundles}</div>`;
   }
+  function gatheredBaitChoices(item){
+    if(!item.gatheredBaitByArea)return '';
+    const title=lang==='th'?'เหยื่อที่ตาข่ายหาได้: เลือกดูว่าใช้ตกปลาอะไร':lang==='ja'?'金アミで採れるエサ：対応魚を見る':'Baits gathered with the net: see which fish accept them';
+    return `<section class="detail-section gathered-bait"><h3>${title}</h3>${Object.entries(item.gatheredBaitByArea).map(([stage,id])=>{const bait=allItems.find(i=>i.category==='bait'&&i.id===id);return `<p>${lang==='th'?'ด่าน':lang==='ja'?'エリア':'Area'} ${stage} · <a data-gathered-bait href="${esc(itemHref(bait))}">${esc(itemName(bait))} (${id}) ↗</a></p>`;}).join('')}</section>`;
+  }
+  function baitGatherChoice(item){
+    if(!item.netGatherArea)return '';
+    const note=lang==='th'?`ถ้ามีตาข่ายสีทองอยู่แล้ว หาเหยื่อนี้ได้ในด่าน ${item.netGatherArea}: ยืนในน้ำตื้น ใช้ตาข่าย แล้วขยับช่องก่อนใช้ซ้ำ แทนการซื้อเหยื่อเพิ่ม` :lang==='ja'?`金アミを持っているならエリア${item.netGatherArea}の浅瀬でこのエサを採れます。浅瀬に立って使い、次は別のタイルへ移動してください。追加購入の代わりになります。`:`If you already own the gold net, gather this bait in area ${item.netGatherArea} instead of buying more: stand in shallow water, use the net, then move to a new tile before using it again.`;
+    const label=lang==='th'?'ดูวิธีใช้ตาข่ายและจำนวนที่เก็บได้':lang==='ja'?'金アミの使い方と採れる個数を見る':'See net use and gathering amounts';
+    return `<aside class="detail-section bait-gather-choice" data-bait-gather-choice><p>${esc(note)}</p><a href="${esc(itemHref(allItems.find(i=>i.category==='general_tool'&&i.id==='04')))}">${label} ↗</a></aside>`;
+  }
+  function mushroomAlternative(item){
+    if(item.category!=='food'||!['09','0A'].includes(item.id))return '';
+    return `<p><a class="route-button" data-mushroom-alternative href="${esc(itemHref(allItems.find(i=>i.category==='food'&&i.id==='01')))}">${lang==='th'?'ดูส้ม: ฟื้น 5 HP ราคา ¥5 พร้อมร้านที่ขาย':lang==='ja'?'みかんを見る：5HP回復・5円、販売場所付き':'See oranges: restore 5 HP for ¥5, with shops'} ↗</a></p>`;
+  }
+  function acquisitionChoice(item){
+    const entries=item.acquisitionOptions||[];
+    if(!entries.length)return '';
+    const title=item.playerUse?.shops?.length?(lang==='th'?'รับจากหีบก่อนซื้อซ้ำ':lang==='ja'?'重複購入の前に宝箱から入手':'Check the chest before buying another copy'):(lang==='th'?'รับไอเท็มนี้จากหีบ':lang==='ja'?'この道具を宝箱から入手':'Get this item from a chest');
+    const open=lang==='th'?'ดูจุดรับของและทางเข้าเมือง':lang==='ja'?'入手地点と町の入口を見る':'See the reward location and town entrance';
+    return `<aside class="shop-locations acquisition-choice" data-acquisition-choice><h4>${title}</h4>${entries.map(loc=>`<p><strong>${lang==='th'?'ด่าน':lang==='ja'?'エリア':'Area'} ${loc.stage}</strong> · ${esc(local(loc.name))}</p><p>${esc(local(loc.action))}</p>`).join('')}<a href="${esc(itemHref(item))}#use-locations">${open} ↗</a></aside>`;
+  }
   function toolUseLocations(item) {
     const locations=useOf(item).useLocations||[];
     if(!locations.length)return '';
@@ -327,13 +349,13 @@
   }
   const rodAdviceTitle=lang==='th'?'ควรเลือกคันนี้เมื่อไร?':lang==='ja'?'この竿を選ぶときは？':'When should I choose this rod?';
   const rodAdviceExtras=item=>item.rodDecision||item.gearDecision?`<p class="rod-verdict">${esc(local((item.rodDecision||item.gearDecision).label))}</p>`:'';
-  const rodAlternatives=item=>(item.rodDecision||item.gearDecision)?.alternatives?.length?`<div class="rod-alternatives"><p>${lang==='th'?'ตัวเลือกที่นำมาเทียบ:':lang==='ja'?'比較する候補：':'Compare with:'}</p>${(item.rodDecision||item.gearDecision).alternatives.map(decisionLink).join('')}</div>`:'';
+  const rodAlternatives=item=>(item.rodDecision||item.gearDecision)?.alternatives?.some(ref=>ref.category!==item.category||ref.id!==item.id)?`<div class="rod-alternatives"><p>${lang==='th'?'ตัวเลือกที่นำมาเทียบ:':lang==='ja'?'比較する候補：':'Compare with:'}</p>${(item.rodDecision||item.gearDecision).alternatives.filter(ref=>ref.category!==item.category||ref.id!==item.id).map(decisionLink).join('')}</div>`:'';
   function gearNextActions(item){
     if(!item.gearDecision)return '';
     if(item.category==='float_weight')return `<p><a class="route-button" data-float-price-guide href="index${lang==='en'?'':'.'+lang}.html?category=float_weight#category-decisions">${lang==='th'?'ดูทุ่นและตะกั่วราคาต่ำสุดแยกทั้งหกด่าน':lang==='ja'?'6エリアの最安ウキ・オモリを見る':'See the cheapest float and sinker in each of six areas'} ↗</a></p>`;
 
     const ids=(item.gearDecision.targetFish||[]).filter(id=>fishVisuals[id]);
-    if(item.category==='hook'&&ids.length)return `<p>${lang==='th'?'ดูเหยื่อและจุดตกของปลาที่ชื่อเบ็ดอ้างถึง':lang==='ja'?'竿名の魚のエサ・場所を見る':'Bait and locations for the fish named by this hook'}: ${ids.map(id=>`<a href="${esc(fishHref(id))}">${esc(fishName(id))} ↗</a>`).join(' · ')}</p>`;
+    if(item.category==='hook'&&ids.length)return `<p>${lang==='th'?'ดูเหยื่อและจุดตกของปลาที่ชื่อเบ็ดอ้างถึง':lang==='ja'?'ハリ名の魚のエサ・場所を見る':'Bait and locations for the fish named by this hook'}: ${ids.map(id=>`<a href="${esc(fishHref(id))}">${esc(fishName(id))} ↗</a>`).join(' · ')}</p>`;
     if(item.category.startsWith('fly')){
       const id=document.getElementById('fish-filter').value;
       if(id&&!allItems.some(candidate=>candidate.category==='fly'&&useOf(candidate).fishIds?.includes(id)))return `<p><a data-fly-next href="${esc(fishHref(id))}">${lang==='th'?'ปลานี้ไม่ผ่านเงื่อนไขฟลาย: ดูเหยื่อและวิธีอื่น':lang==='ja'?'この魚はフライ判定に不適合：他の釣法を見る':'This fish fails the fly profile check: see other methods'} ↗</a></p>`;
@@ -376,7 +398,7 @@
     renderDecisions(category);
     const box=document.getElementById('cards');
     if(!shown.length){box.innerHTML=`<p class="empty-state">${esc(fish?(lang==='th'?'ไม่มีรายการที่ยืนยันว่าใช้กับปลานี้ได้ในหมวดและคำค้นที่เลือก ลองหมวดอื่น หรือกด × เพื่อล้างปลาเป้าหมาย':lang==='ja'?'選択した種類・検索条件では、この魚に対応する確認済みアイテムがありません。別の種類、または×で魚の指定を解除。':'No verified compatible item matches this category and search. Try another category, or clear the target with ×.'):copy.empty)}</p>`;return;}
-    box.innerHTML=shown.map(item=>{const use=useOf(item);const {summary,facts}=visibleUse(item);return `<article class="item-card ${item.category==='food'&&item.id==='0A'?'poison-food':''}" id="item-${item.category}-${item.id}"><div class="card-main"><figure class="sprite"><a href="${esc(itemHref(item))}" aria-label="${esc(itemName(item))} — ${detailLabel}"><img loading="lazy" src="${esc(item.image)}" alt="${esc(itemName(item))}"></a></figure><div class="card-text"><span class="category-tag">${esc(categoryNames[item.category])}</span><h3><a class="entity-title" href="${esc(itemHref(item))}">${esc(itemName(item))}</a></h3>${thaiLabel(item)}${itemName(item)!==item.nameJa?`<p class="jp-name" lang="ja">${esc(item.nameJa)}</p>`:''}<div class="price-row">${item.priceYen>0&&use.shops?.length&&!item.category.startsWith('fly')?`<span class="price-badge">${esc(formatYen(item))}</span>`:''}<span class="item-id">ID ${esc(item.id)}</span></div></div></div><div class="use-block" ${item.rodDecision||item.gearDecision?(item.rodDecision?'data-rod-decision':'data-gear-decision')+'="'+esc(item.id)+'"':''}><h4>${esc(item.rodDecision?rodAdviceTitle:item.gearDecision?(lang==='th'?'ควรซื้อหรือใช้ชิ้นนี้เมื่อไร?':lang==='ja'?'この道具を買う・使うときは？':'When should I buy or use this?'):player.use)}</h4>${rodAdviceExtras(item)}<p class="use-summary">${esc(summary)}</p>${use.evidence?.type==='player_guide_report'?`<p class="fish-scope">${lang==='th'?'คำอธิบายการใช้จากคู่มือผู้เล่น ยังไม่ได้ยืนยันจากโค้ดเกม':lang==='ja'?'用途はプレイヤーガイドによる報告。ゲームコードでは未確認。':'Use reported by a player guide; not yet confirmed in game code.'}</p>`:''}${facts.length?`<ul class="use-facts">${facts.map(n=>`<li>${esc(n)}</li>`).join('')}</ul>`:''}${rodAlternatives(item)}${gearNextActions(item)}</div>${shopLocations(item)}${toolUseLocations(item)}${fishList(item)}${detailedFields(item)}</article>`;}).join('');
+    box.innerHTML=shown.map(item=>{const use=useOf(item);const {summary,facts}=visibleUse(item);return `<article class="item-card ${item.category==='food'&&item.id==='0A'?'poison-food':''}" id="item-${item.category}-${item.id}"><div class="card-main"><figure class="sprite"><a href="${esc(itemHref(item))}" aria-label="${esc(itemName(item))} — ${detailLabel}"><img loading="lazy" src="${esc(item.image)}" alt="${esc(itemName(item))}"></a></figure><div class="card-text"><span class="category-tag">${esc(categoryNames[item.category])}</span><h3><a class="entity-title" href="${esc(itemHref(item))}">${esc(itemName(item))}</a></h3>${thaiLabel(item)}${itemName(item)!==item.nameJa?`<p class="jp-name" lang="ja">${esc(item.nameJa)}</p>`:''}<div class="price-row">${item.priceYen>0&&use.shops?.length&&!item.category.startsWith('fly')?`<span class="price-badge">${esc(formatYen(item))}</span>`:''}<span class="item-id">ID ${esc(item.id)}</span></div></div></div><div class="use-block" ${item.rodDecision||item.gearDecision?(item.rodDecision?'data-rod-decision':'data-gear-decision')+'="'+esc(item.id)+'"':''}><h4>${esc(item.rodDecision?rodAdviceTitle:item.gearDecision?(lang==='th'?'ควรซื้อหรือใช้ชิ้นนี้เมื่อไร?':lang==='ja'?'この道具を買う・使うときは？':'When should I buy or use this?'):player.use)}</h4>${rodAdviceExtras(item)}<p class="use-summary">${esc(summary)}</p>${use.evidence?.type==='player_guide_report'?`<p class="fish-scope">${lang==='th'?'คำอธิบายการใช้จากคู่มือผู้เล่น ยังไม่ได้ยืนยันจากโค้ดเกม':lang==='ja'?'用途はプレイヤーガイドによる報告。ゲームコードでは未確認。':'Use reported by a player guide; not yet confirmed in game code.'}</p>`:''}${facts.length?`<ul class="use-facts">${facts.map(n=>`<li>${esc(n)}</li>`).join('')}</ul>`:''}${rodAlternatives(item)}${gearNextActions(item)}</div>${gatheredBaitChoices(item)}${baitGatherChoice(item)}${mushroomAlternative(item)}${acquisitionChoice(item)}${shopLocations(item)}${toolUseLocations(item)}${fishList(item)}${detailedFields(item)}</article>`;}).join('');
   }
   fetch('gallery-data.json?v=player-usefulness-20261004-6').then(r=>{if(!r.ok)throw new Error('catalogue unavailable');return r.json();}).then(data=>{
     allItems=data.items;decisions=data.playerDecisions?.sections||[];gearPriceGuide=data.gearPriceGuide||{};fishVisuals=data.fishVisuals||{};fishLocations=data.fishLocations||{};

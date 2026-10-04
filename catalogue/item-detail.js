@@ -294,7 +294,7 @@
     if(item.category==='float_weight')return `<p><a class="route-button" data-float-price-guide href="index${lang==='en'?'':'.'+lang}.html?category=float_weight#category-decisions">${lang==='th'?'ดูทุ่นและตะกั่วราคาต่ำสุดแยกทั้งหกด่าน':lang==='ja'?'6エリアの最安ウキ・オモリを見る':'See the cheapest float and sinker in each of six areas'} ↗</a></p>`;
 
     const ids=(item.gearDecision.targetFish||[]).filter(id=>fishVisuals[id]);
-    if(item.category==='hook'&&ids.length)return `<p>${lang==='th'?'ดูเหยื่อและจุดตกของปลาที่ชื่อเบ็ดอ้างถึง (ไม่ได้แนะนำให้ใช้เบ็ดนี้จับง่ายกว่า)':lang==='ja'?'竿名が参照する魚のエサ・場所を確認（このハリの優位性を示すものではありません）':'See bait and locations for the fish named by this hook (not a claim this hook lands it more easily)'}</p>${ids.map(id=>`<a class="route-button" href="${esc(fishProfileLink(id,fishLocations))}">${esc(fishName(id,fishVisuals))} ↗</a>`).join('')}`;
+    if(item.category==='hook'&&ids.length)return `<p>${lang==='th'?'ดูเหยื่อและจุดตกของปลาที่ชื่อเบ็ดอ้างถึง (ไม่ได้แนะนำให้ใช้เบ็ดนี้จับง่ายกว่า)':lang==='ja'?'ハリ名が参照する魚のエサ・場所を確認（このハリの優位性を示すものではありません）':'See bait and locations for the fish named by this hook (not a claim this hook lands it more easily)'}</p>${ids.map(id=>`<a class="route-button" href="${esc(fishProfileLink(id,fishLocations))}">${esc(fishName(id,fishVisuals))} ↗</a>`).join('')}`;
     if(item.category.startsWith('fly')){
       const target=selectedFish&&fishVisuals[selectedFish]?selectedFish:'';
       if(target){const supported=allItems.some(candidate=>candidate.category==='fly'&&candidate.playerUse?.fishIds?.includes(target));return `<p><a class="route-button" data-fly-next href="${esc(fishProfileLink(target,fishLocations))}${supported?'#fly-backup':''}">${supported?(lang==='th'?'ดูชุดฟลายเริ่มต้นและชุดสำรองสำหรับปลาที่เลือก':lang==='ja'?'選んだ魚の最初の毛バリと予備を見る':'See starter and backup flies for the selected fish'):(lang==='th'?'ปลานี้ไม่ผ่านเงื่อนไขฟลาย: ดูเหยื่อและวิธีอื่น':lang==='ja'?'この魚はフライ判定に不適合：他のエサ・釣法を見る':'This fish fails the fly profile check: see other bait and methods')} ↗</a></p>`;}
@@ -303,6 +303,28 @@
       return `<p><a class="route-button" data-fly-next href="item${lang==='en'?'':'.'+lang}.html?category=fly&id=01&return=${encodeURIComponent(currentLocalRoute())}">${lang==='th'?'เลือกปลาจากรายชื่อบอดี้ แล้วดูชุดฟลายในหน้าปลา':lang==='ja'?'ボディの魚一覧から選び、魚ページで毛バリ候補を見る':'Choose a fish from the body list, then see flies on its profile'} ↗</a></p>`;
     }
     return '';
+  }
+  function gatheredBaitChoices(item,allItems){
+    if(!item.gatheredBaitByArea)return '';
+    const title=lang==='th'?'เหยื่อที่ตาข่ายหาได้: เลือกดูว่าใช้ตกปลาอะไร':lang==='ja'?'金アミで採れるエサ：対応魚を見る':'Baits gathered with the net: see which fish accept them';
+    return `<section class="detail-section gathered-bait"><h3>${title}</h3>${Object.entries(item.gatheredBaitByArea).map(([stage,id])=>{const bait=allItems.find(i=>i.category==='bait'&&i.id===id);return `<p>${lang==='th'?'ด่าน':lang==='ja'?'エリア':'Area'} ${stage} · <a data-gathered-bait href="item${lang==='en'?'':'.'+lang}.html?category=bait&id=${esc(id)}&stage=${stage}&return=${encodeURIComponent(currentLocalRoute())}">${esc(imageName(bait))} (${id}) ↗</a></p>`;}).join('')}</section>`;
+  }
+  function baitGatherChoice(item){
+    if(!item.netGatherArea)return '';
+    const note=lang==='th'?`ถ้ามีตาข่ายสีทองอยู่แล้ว หาเหยื่อนี้ได้ในด่าน ${item.netGatherArea}: ยืนในน้ำตื้น ใช้ตาข่าย แล้วขยับช่องก่อนใช้ซ้ำ แทนการซื้อเหยื่อเพิ่ม` :lang==='ja'?`金アミを持っているならエリア${item.netGatherArea}の浅瀬でこのエサを採れます。浅瀬に立って使い、次は別のタイルへ移動してください。追加購入の代わりになります。`:`If you already own the gold net, gather this bait in area ${item.netGatherArea} instead of buying more: stand in shallow water, use the net, then move to a new tile before using it again.`;
+    const label=lang==='th'?'ดูวิธีใช้ตาข่ายและจำนวนที่เก็บได้':lang==='ja'?'金アミの使い方と採れる個数を見る':'See net use and gathering amounts';
+    return `<aside class="detail-section bait-gather-choice" data-bait-gather-choice><p>${esc(note)}</p><a href="item${lang==='en'?'':'.'+lang}.html?category=general_tool&id=04&stage=${item.netGatherArea}&return=${encodeURIComponent(currentLocalRoute())}">${label} ↗</a></aside>`;
+  }
+  function mushroomAlternative(item){
+    if(item.category!=='food'||!['09','0A'].includes(item.id))return '';
+    return `<p><a class="route-button" data-mushroom-alternative href="item${lang==='en'?'':'.'+lang}.html?category=food&id=01&return=${encodeURIComponent(currentLocalRoute())}">${lang==='th'?'ดูส้ม: ฟื้น 5 HP ราคา ¥5 พร้อมร้านที่ขาย':lang==='ja'?'みかんを見る：5HP回復・5円、販売場所付き':'See oranges: restore 5 HP for ¥5, with shops'} ↗</a></p>`;
+  }
+  function acquisitionChoice(item){
+    const entries=item.acquisitionOptions||[];
+    if(!entries.length)return '';
+    const title=item.playerUse?.shops?.length?(lang==='th'?'รับจากหีบก่อนซื้อซ้ำ':lang==='ja'?'重複購入の前に宝箱から入手':'Check the chest before buying another copy'):(lang==='th'?'รับไอเท็มนี้จากหีบ':lang==='ja'?'この道具を宝箱から入手':'Get this item from a chest');
+    const open=lang==='th'?'ดูจุดรับของและทางเข้าเมือง':lang==='ja'?'入手地点と町の入口を見る':'See the reward location and town entrance';
+    return `<aside class="detail-section acquisition-choice" data-acquisition-choice><h2>${title}</h2>${entries.map(loc=>`<p><strong>${lang==='th'?'ด่าน':lang==='ja'?'エリア':'Area'} ${loc.stage}</strong> · ${esc(local(loc.name))}</p><p>${esc(local(loc.action))}</p>`).join('')}<a class="route-button" href="#use-locations">${open} ↓</a></aside>`;
   }
   function render(item, allItems, fishVisuals, fishLocations, decisions) {
     setNavigation();
@@ -324,7 +346,7 @@
     const categoryHref=currentCategoryLink();
     const intro=`<nav class="detail-breadcrumb"><a href="${esc(categoryHref)}">${esc(copy.allItems)} · ${esc(categoryText)}</a></nav>`;
     const moreLink=`<p class="detail-back-to-list"><a class="route-button" href="${esc(categoryHref)}">${esc(copy.allItems)} · ${esc(categoryText)} ↗</a></p>`;
-    $('detail-root').innerHTML=`${intro}<section class="detail-hero">${image}${identity}</section>${targetContext}${actionSection}${rodAdvice?'':buyingDecision(item,allItems,decisions)}${shopSection(item,allItems,fishLocations)}${useLocationSection(item,fishLocations,allItems)}${fishSection(item,fishVisuals,fishLocations)}${moreLink}${technicalSection(item)}<p class="muted">${esc(copy.sourced)}</p>`;
+    $('detail-root').innerHTML=`${intro}<section class="detail-hero">${image}${identity}</section>${targetContext}${actionSection}${gatheredBaitChoices(item,allItems)}${baitGatherChoice(item)}${mushroomAlternative(item)}${acquisitionChoice(item)}${rodAdvice?'':buyingDecision(item,allItems,decisions)}${shopSection(item,allItems,fishLocations)}${useLocationSection(item,fishLocations,allItems)}${fishSection(item,fishVisuals,fishLocations)}${moreLink}${technicalSection(item)}<p class="muted">${esc(copy.sourced)}</p>`;
     if(selectedRoute&&item.category==='bait')document.getElementById(`rig-${selectedRoute}`)?.scrollIntoView({block:'center'});
     if(location.hash==='#use-locations')document.getElementById('use-locations')?.scrollIntoView({block:'start'});
     document.title=`${name} · ${categoryText} · ${lang==='th'?'ตกปลาทาโร่ 2':lang==='ja'?'川のぬし釣り2':'Kawa no Nushi Tsuri 2'}`;
