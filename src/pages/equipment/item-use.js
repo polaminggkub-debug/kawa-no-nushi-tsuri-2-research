@@ -1,19 +1,14 @@
-import { flyWingPlayerDecision } from '../../entities/item/index.js'
+import { fishMealSummary, flyWingPlayerDecision } from '../../entities/item/index.js'
 
 function fishMealAdvice(ctx) {
   return {
-    summary:
-      ctx.lang === 'th'
-        ? 'ตรวจชื่อปลาที่เมนูแสดงก่อนกิน เพราะเกมกินตัวแรกในข้อง ถ้าเป็นคุซะฟุกุอย่ากิน: HP จะเหลือ 0'
-        : ctx.lang === 'ja'
-          ? '食べる前に表示された魚名を確認する。びくの先頭を食べる。クサフグなら食べない：HPが0になる。'
-          : 'Check the displayed fish name before eating: the game eats the first keepnet fish. Do not eat Kusafugu; it sets HP to zero.',
+    summary: fishMealSummary(ctx.lang),
     facts: [
       ctx.lang === 'th'
-        ? 'ถ้าต้องการฟื้น HP โดยไม่เสียปลาตัวแรก ให้ซื้ออาหารแทน ปลาปกติฟื้นตามขนาด แต่กินแล้วปลาตัวนั้นหายไป'
+        ? 'ตัวอย่าง: 20 ซม. ฟื้น 5 HP, 40 ซม. ฟื้น 10 HP, 100 ซม. ฟื้น 25 HP. เมนูแสดงปลาตัวแรกเท่านั้น; ถ้าจะเก็บปลาตัวนี้ไว้ ให้ใช้อาหารอย่างอื่นแทน'
         : ctx.lang === 'ja'
-          ? '先頭の魚を残して回復したいなら食料を買う。普通の魚はサイズに応じて回復するが、食べると失う。'
-          : 'Buy food instead if you want to keep the first fish. Ordinary fish restore HP by size, but eating removes that fish.',
+          ? '例：20cmなら5HP、40cmなら10HP、100cmなら25HP。メニューに表示された先頭の魚だけが対象。残したい魚なら別の食料を使う。'
+          : 'Examples: 20 cm restores 5 HP, 40 cm restores 10 HP, and 100 cm restores 25 HP. Only the first fish shown in the menu is selected; use other food if you want to keep it.',
     ],
   }
 }

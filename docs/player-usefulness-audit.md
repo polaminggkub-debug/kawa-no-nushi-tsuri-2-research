@@ -318,3 +318,9 @@ The journal guide now offers a complete route with one entry per eligible specie
 Full-route and area checkboxes share the existing species-keyed browser storage. Checking the same species in both views counts once, and the unmarked filter applies to both. A return from a route entry opens its original group, including when the destination belongs to another area; language changes preserve that group. The checklist does not read the game save.
 
 The data audit covers all IDs 01–42 and their 97 fish/area memberships. Every species has mapped points and a complete compatible local float setup in its first route area. Availability in a generated game state, bite/landing success, quest completion and a natural 66-species playthrough are not established by these checks. The full-site usefulness goal remains active beyond this bounded route and rod release.
+
+## Fish meals and map links (2026-10-05)
+
+The food audit found an obsolete uncertainty: the earlier food experiment did not identify the stored-size unit, while the later water/keepnet trace copies the current size directly into the keepnet and displays it as centimetres. The first-fish meal now explains the usable conversion: divide its displayed centimetres by four, round down, restore at least one HP, and clamp to missing HP. The first fish is removed. Kusafugu is an exception that sets HP to zero. Historical controlled observations remain distinct from the later code trace; neither proves a natural all-species meal trial.
+
+Catalogue map links previously held only a fish ID until navigation pointer/focus/click handlers refreshed them. Ordinary clicks worked, but the initial link itself omitted the resolved area, rig, map and return context. The catalogue now creates the complete link after updating its filters, so copying or opening it directly retains the same context. Independent guards check initial links separately from rendered click/return journeys.

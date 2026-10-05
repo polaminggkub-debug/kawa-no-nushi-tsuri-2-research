@@ -10,7 +10,11 @@ function readFilters() {
 
 function updateCatalogueLink(ctx, fish) {
   const maps = ctx.lang === 'th' ? 'maps.th.html' : ctx.lang === 'ja' ? 'maps.ja.html' : 'maps.html'
-  document.getElementById('map-browser-link').href = `${maps}${fish ? '?fish=' + fish : ''}`
+  const query = new URLSearchParams({ return: ctx.sourceReturn(), route: ctx.baitRoute })
+  if (fish) query.set('fish', fish)
+  if (ctx.locationStage) query.set('stage', String(ctx.locationStage))
+  query.set('map', String(ctx.locationMapIndex))
+  document.getElementById('map-browser-link').href = `${maps}?${query}`
   document.getElementById('generic-lure-kit').hidden = !!fish
 }
 
@@ -43,8 +47,8 @@ function updateCatalogueUrl(ctx, category, fish, flyPart) {
 
 function updatePageContext(ctx, filters) {
   ctx.renderTargetCategories(filters.fish)
-  updateCatalogueLink(ctx, filters.fish)
   updateCatalogueUrl(ctx, filters.category, filters.fish, ctx.flyPart)
+  updateCatalogueLink(ctx, filters.fish)
   ctx.refreshLanguageLinks?.()
 }
 

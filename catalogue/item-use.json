@@ -18515,39 +18515,39 @@
     },
     "food:08": {
       "summary": {
-        "th": "กินปลาตัวแรกในข้องเพื่อฟื้น HP และคืนช่องว่าง ต้องดูชื่อปลาก่อนกิน: คุซะฟุกุทำให้ HP เหลือ 0",
-        "en": "Eat the first fish in the keepnet to recover HP and free a slot. Check its name first: Kusafugu sets HP to zero.",
-        "ja": "びくの先頭の魚を食べてHPを回復し、空きを作る。名前を確認すること。クサフグはHPが0になる。"
+        "th": "เมนูกินปลาตัวแรกในข้องแล้วเอาออก: ดูชื่อก่อนยืนยัน. ปลาอื่นเอาขนาดที่แสดงเป็นเซนติเมตรหาร 4 ปัดเศษลง ฟื้นขั้นต่ำ 1 HP และไม่เกิน HP ที่ขาด; คุซะฟุกุทำ HP เหลือ 0",
+        "en": "The menu eats and removes the first fish in the keepnet. Check its name: other fish restore their displayed size in cm divided by 4 (round down, at least 1 HP), capped at missing HP; Kusafugu sets HP to zero.",
+        "ja": "びくの先頭の魚を食べて取り除く。名前を確認：通常の魚は表示サイズ(cm)を4で割って切り捨て、最低1HP、不足HPまで回復。クサフグはHPが0になる。"
       },
       "facts": {
         "th": [
           "เมนูแสดงชื่อปลาตัวแรกในข้องก่อนกิน ไม่ได้เลือกตัวไหนก็ได้จากข้อง",
-          "ปลาอื่นฟื้นตามขนาด: ค่าขนาดที่เกมเก็บหาร 4 ปัดลง ขั้นต่ำ 1 HP เช่น 30 → 7 HP, 100 → 25 HP",
+          "ปลาอื่นฟื้น 1 HP ต่อขนาด 4 ซม. ปัดเศษลง ขั้นต่ำ 1 HP: 20 ซม. → 5 HP, 40 ซม. → 10 HP, 100 ซม. → 25 HP",
           "กินแล้วปลาตัวนั้นถูกนำออกจากข้อง HP ไม่เกินค่าสูงสุด",
           "ข้อยกเว้นคือคุซะฟุกุ: กินแล้ว HP เหลือ 0 และเข้าสู่เหตุการณ์หมดแรง"
         ],
         "en": [
           "The menu previews the first stored fish; it does not let you freely choose a different keepnet fish.",
-          "Other fish recover floor(stored size / 4), with a minimum of 1 HP: 30 → 7 HP, 100 → 25 HP.",
+          "Other fish restore 1 HP per 4 cm of displayed size, rounded down, with a minimum of 1 HP: 20 cm → 5 HP, 40 cm → 10 HP, 100 cm → 25 HP.",
           "Eating removes that fish and caps recovery at maximum HP.",
           "Exception: Kusafugu sets HP to zero and enters the collapse event."
         ],
         "ja": [
           "メニューはびくの先頭の魚名を表示する。任意の魚を選ぶ方式ではない。",
-          "他の魚は保存サイズ÷4の切り捨て、最低1HPを回復する。30なら7HP、100なら25HP。",
+          "通常の魚は表示サイズ4cmにつき1HPを回復し、端数切り捨て、最低1HP。20cmなら5HP、40cmなら10HP、100cmなら25HP。",
           "食べた魚はびくから消え、HPは最大値を超えない。",
           "クサフグは例外。HPが0になり、倒れるイベントに入る。"
         ]
       },
       "evidenceNotes": {
         "en": [
-          "Stored-size unit has not been mapped to the catch-screen unit; the formula is exact for the ROM integer."
+          "A later ROM trace confirms that the selected size is copied to the keepnet unchanged and displayed in centimetres. The divide-by-four and minimum-one rule are the ordinary-fish code path; runtime samples still cover six species and the recorded sizes only."
         ],
         "ja": [
-          "保存サイズと釣果画面の単位の対応は未確定。式はROM整数値に対するもの。"
+          "後のROM追跡で、魚のサイズが変換されずにびくへコピーされ、センチメートル表示されることを確認。4で割り最低1HPとする処理は通常魚のコード経路による。実行確認は6種と記録済みサイズの範囲。"
         ],
         "th": [
-          "สูตรตรงกับค่าจำนวนเต็มใน ROM แต่ยังไม่ยืนยันหน่วยขนาดเทียบกับหน้าจอรายงานปลาที่ตกได้"
+          "การแกะ ROM ภายหลังยืนยันว่าค่าขนาดปลาเดียวกันถูกคัดลอกเข้าข้องโดยไม่แปลง และหน้าจอแสดงเป็นเซนติเมตร สูตรหาร 4 และขั้นต่ำ 1 HP มาจากเส้นทางโค้ดของปลาทั่วไป; การทดลองในเกมยังครอบคลุมเพียง 6 ชนิดและขนาดที่บันทึกไว้"
         ]
       },
       "fishIds": [],
@@ -18568,7 +18568,10 @@
         "type": "rom_trace",
         "sources": [
           "docs/food-practical-research.md",
-          "data/food-effects-confirmed.json"
+          "data/food-effects-confirmed.json",
+          "docs/fish-location-research.md",
+          "docs/water-surface-icons.md",
+          "data/rom-water-icons.json"
         ]
       },
       "shops": []

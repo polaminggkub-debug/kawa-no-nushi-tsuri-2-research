@@ -1,7 +1,7 @@
 import assert from 'node:assert/strict'
 import fs from 'node:fs'
 import path from 'node:path'
-import { data, root, render, unescapeHtml } from './shared.mjs'
+import { data, root, render, renderCatalogue, unescapeHtml } from './shared.mjs'
 
 function readData(name) {
   return JSON.parse(fs.readFileSync(path.join(root, 'data', name), 'utf8'))
@@ -36,6 +36,37 @@ for (const item of shopFoods) {
 for (const lang of ['en', 'ja', 'th']) {
   for (const item of shopFoods) {
     for (const stage of [1, 2, 3, 4, 5, 6]) await checkLocalChoices(item, lang, stage)
+  }
+}
+
+const fishMeal = data.items.find((item) => item.category === 'food' && item.id === '08')
+const mealClaims = {
+  en: /(?=.*cm)(?=.*divided by four)(?=.*minimum 1 HP)(?=.*capped at missing HP)(?=.*first .*fish)(?=.*Kusafugu)(?=.*HP to zero)/,
+  ja: /(?=.*表示サイズ.*cm)(?=.*4.*(?:割|cm))(?=.*最低1HP)(?=.*不足HP|最大値)(?=.*先頭.*(?:魚|を食べ))(?=.*クサフグ)(?=.*HPが0)/,
+  th: /(?=.*ซม\.)(?=.*หาร 4)(?=.*ขั้นต่ำ 1 HP)(?=.*ไม่เกิน HP ที่ขาด|HP ไม่เกินค่าสูงสุด)(?=.*ปลาตัวแรก)(?=.*คุซะฟุกุ)(?=.*HP เหลือ 0)/,
+}
+const mealExamples = {
+  en: /20 cm(?: restores| →) 5 HP.*40 cm(?: restores| →) 10 HP.*100 cm(?: restores| →) 25 HP/,
+  ja: /20cm.*5HP.*40cm.*10HP.*100cm.*25HP/,
+  th: /20 ซม\..*(?:ฟื้น 5 HP|→ 5 HP).*40 ซม\..*(?:ฟื้น 10 HP|→ 10 HP).*100 ซม\..*(?:ฟื้น 25 HP|→ 25 HP)/,
+}
+for (const lang of ['en', 'ja', 'th']) {
+  const catalogue = await renderCatalogue(lang, '?category=food#catalogue')
+  const card = catalogue.runtime.renderItemCard(fishMeal)
+  const detail = await render('item', lang, new URLSearchParams({ category: 'food', id: '08' }))
+  for (const [surface, html] of [
+    [
+      'card',
+      card.slice(
+        card.indexOf('<div class="use-block"'),
+        card.indexOf('<details class="record-details">'),
+      ),
+    ],
+    ['detail', detail.html.split('<details class="evidence"')[0]],
+  ]) {
+    const text = unescapeHtml(html)
+    assert(mealClaims[lang].test(text), `Fish meal ${surface} guidance missing ${lang}`)
+    assert(mealExamples[lang].test(text), `Fish meal ${surface} size examples missing ${lang}`)
   }
 }
 

@@ -1,4 +1,4 @@
-import { flyWingPlayerDecision } from '../../entities/item/index.js'
+import { fishMealSummary, flyWingPlayerDecision } from '../../entities/item/index.js'
 
 function decisionUsage(ctx, decision) {
   return {
@@ -27,13 +27,7 @@ function specialCategoryUsage(ctx, item, use) {
     return { summary, facts: [] }
   }
   if (item.category === 'food' && item.id === '08') {
-    const summary =
-      ctx.lang === 'th'
-        ? 'ตรวจชื่อปลาที่เมนูแสดงก่อนกิน เพราะเกมกินตัวแรกในข้อง ถ้าเป็นคุซะฟุกุอย่ากิน: HP จะเหลือ 0'
-        : ctx.lang === 'ja'
-          ? '食べる前に表示された魚名を確認する。びくの先頭を食べる。クサフグなら食べない：HPが0になる。'
-          : 'Check the displayed fish name before eating: the game eats the first keepnet fish. Do not eat Kusafugu; it sets HP to zero.'
-    return { summary, facts: use.facts?.[ctx.lang] || [] }
+    return { summary: fishMealSummary(ctx.lang), facts: use.facts?.[ctx.lang] || [] }
   }
   return null
 }

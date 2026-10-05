@@ -437,6 +437,16 @@
     return `index${locale === "en" ? "" : `.${locale}`}.html?${query}#category-decisions`;
   }
 
+  // src/entities/item/fish-meal-copy.js
+  var summaries = {
+    th: "ปลาอื่นเอาขนาดที่แสดงเป็นเซนติเมตรหาร 4 แล้วปัดเศษลง (ขั้นต่ำ 1 HP ไม่เกิน HP ที่ขาด). เมนูกินปลาตัวแรกในข้องและเอาออก—ตรวจชื่อก่อนยืนยัน; คุซะฟุกุทำ HP เหลือ 0",
+    en: "Other fish restore their displayed size in centimetres divided by four (round down, minimum 1 HP), capped at missing HP. The menu eats and removes the first fish in the keepnet; check its name because Kusafugu sets HP to zero.",
+    ja: "通常の魚は表示サイズ(cm)を4で割って切り捨て（最低1HP、不足HPまで）回復する。びくの先頭を食べて取り除くため、名前を確認すること。クサフグはHPが0になる。"
+  };
+  function fishMealSummary(lang) {
+    return summaries[lang] || summaries.en;
+  }
+
   // src/entities/item/rod-area-copy.js
   var COPY = {
     en: {
@@ -1386,9 +1396,9 @@
   // src/pages/equipment/item-use.js
   function fishMealAdvice(ctx) {
     return {
-      summary: ctx.lang === "th" ? "ตรวจชื่อปลาที่เมนูแสดงก่อนกิน เพราะเกมกินตัวแรกในข้อง ถ้าเป็นคุซะฟุกุอย่ากิน: HP จะเหลือ 0" : ctx.lang === "ja" ? "食べる前に表示された魚名を確認する。びくの先頭を食べる。クサフグなら食べない：HPが0になる。" : "Check the displayed fish name before eating: the game eats the first keepnet fish. Do not eat Kusafugu; it sets HP to zero.",
+      summary: fishMealSummary(ctx.lang),
       facts: [
-        ctx.lang === "th" ? "ถ้าต้องการฟื้น HP โดยไม่เสียปลาตัวแรก ให้ซื้ออาหารแทน ปลาปกติฟื้นตามขนาด แต่กินแล้วปลาตัวนั้นหายไป" : ctx.lang === "ja" ? "先頭の魚を残して回復したいなら食料を買う。普通の魚はサイズに応じて回復するが、食べると失う。" : "Buy food instead if you want to keep the first fish. Ordinary fish restore HP by size, but eating removes that fish."
+        ctx.lang === "th" ? "ตัวอย่าง: 20 ซม. ฟื้น 5 HP, 40 ซม. ฟื้น 10 HP, 100 ซม. ฟื้น 25 HP. เมนูแสดงปลาตัวแรกเท่านั้น; ถ้าจะเก็บปลาตัวนี้ไว้ ให้ใช้อาหารอย่างอื่นแทน" : ctx.lang === "ja" ? "例：20cmなら5HP、40cmなら10HP、100cmなら25HP。メニューに表示された先頭の魚だけが対象。残したい魚なら別の食料を使う。" : "Examples: 20 cm restores 5 HP, 40 cm restores 10 HP, and 100 cm restores 25 HP. Only the first fish shown in the menu is selected; use other food if you want to keep it."
       ]
     };
   }
@@ -2744,7 +2754,11 @@
   }
   function updateCatalogueLink(ctx, fish) {
     const maps = ctx.lang === "th" ? "maps.th.html" : ctx.lang === "ja" ? "maps.ja.html" : "maps.html";
-    document.getElementById("map-browser-link").href = `${maps}${fish ? "?fish=" + fish : ""}`;
+    const query = new URLSearchParams({ return: ctx.sourceReturn(), route: ctx.baitRoute });
+    if (fish) query.set("fish", fish);
+    if (ctx.locationStage) query.set("stage", String(ctx.locationStage));
+    query.set("map", String(ctx.locationMapIndex));
+    document.getElementById("map-browser-link").href = `${maps}?${query}`;
     document.getElementById("generic-lure-kit").hidden = !!fish;
   }
   function updateCatalogueUrl(ctx, category, fish, flyPart) {
@@ -2771,8 +2785,8 @@
   }
   function updatePageContext(ctx, filters) {
     ctx.renderTargetCategories(filters.fish);
-    updateCatalogueLink(ctx, filters.fish);
     updateCatalogueUrl(ctx, filters.category, filters.fish, ctx.flyPart);
+    updateCatalogueLink(ctx, filters.fish);
     ctx.refreshLanguageLinks?.();
   }
   function routeLabels(ctx) {
@@ -3803,7 +3817,7 @@
   }
   function loadCatalogue(ctx) {
     showCatalogueLoading(ctx);
-    fetch("gallery-data.json?v=compendium-20261005-32").then((response) => {
+    fetch("gallery-data.json?v=compendium-20261005-33").then((response) => {
       if (!response.ok) throw new Error("catalogue unavailable");
       return response.json();
     }).then((data) => initializeLoadedCatalogue(ctx, data)).catch((error) => {

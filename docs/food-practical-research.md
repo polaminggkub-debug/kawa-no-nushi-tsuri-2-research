@@ -12,7 +12,11 @@ ROM SHA-1: `c2103dd94e2a1a65a495fc02adc2e7d040f31212`. This supplements the [ear
 
 The Fish menu preview at `03:B9D3..B9E2` reads species from `0B7A`, the first keepnet slot. `03:BA2D..BA55` reads that same first species and size `0BB6`. Two LSR instructions divide size by four, rounding down; if zero, the routine substitutes one. It removes the first fish and shifts the remaining species/size records left (`03:BA64..BA7D`), then uses the common HP recovery path.
 
-This is not a free-choice fish selector: check the displayed fish name before confirming. The integer size unit has not yet been mapped to its displayed catch unit, so the formula is identified as a stored-size formula, with numerical examples. The previously observed 30 → 7 and larger-size samples agree with this code.
+The stored size is the centimetre value shown for the catch: `04:8717..871B` copies the current fish size unchanged into the catch state, `01:8AD5..8ADA` copies it unchanged into the keepnet record, and `02:AA5F..AA7A` formats that integer as centimetres. The later size-path trace and its ROM fingerprints are recorded in [fish-location research](fish-location-research.md#evidence-limits), [water-surface mark research](water-surface-icons.md), and [rom-water-icons.json](../data/rom-water-icons.json).
+
+For an ordinary fish, the ROM therefore restores `floor(displayed size in cm / 4)`, with a minimum of 1 HP. Examples: 20 cm → 5 HP, 40 cm → 10 HP, and 100 cm → 25 HP. The common recovery path still caps the result at the amount of HP missing. This gives the player a direct estimate from the displayed fish size before deciding whether to eat the first catch or preserve it.
+
+This is not a free-choice fish selector: check the displayed first-fish name before confirming. The controlled observations remain historical samples: six species at size 30 all restored 7 HP, and one species was sampled at sizes 4 through 200. Those samples agree with the traced ordinary-fish arithmetic but do not expand the recorded runtime sample set.
 
 ## Kusafugu exception
 

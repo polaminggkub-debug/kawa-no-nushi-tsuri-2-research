@@ -266,7 +266,43 @@
       "screenshots": [
         "references/items-research/food-effects/08-fish-size140-after.png"
       ],
-      "fish_size_unit": "unknown; raw WRAM value was used, and the size-unit was not confirmed from an in-game catch-size display"
+      "fish_size_unit": "The early WRAM trials recorded raw stored size before its displayed unit was traced. Later ROM evidence confirms the selected size is copied into the keepnet unchanged and displayed in centimetres.",
+      "later_rom_size_unit_clarification": {
+        "rom_sha1": "c2103dd94e2a1a65a495fc02adc2e7d040f31212",
+        "claim": "The live fish size is copied unchanged into the landed-fish state and keepnet record; the keepnet renderer formats that value as centimetres. Food ID 08 reads that same stored keepnet size, divides by four with integer truncation, and substitutes 1 when the result is zero. The formula is established by the ROM handler; the runtime species/size samples above remain the historical controlled observations.",
+        "sources": [
+          "docs/food-practical-research.md",
+          "docs/fish-location-research.md",
+          "docs/water-surface-icons.md",
+          "data/rom-water-icons.json"
+        ],
+        "byte_fingerprints": [
+          {
+            "cpu_range_inclusive": "03:BA2D..BA55",
+            "file_offset": "0x01BA2D",
+            "byte_count": 41,
+            "sha256": "b4247323d6361e5181f1b99376dba2524624ea11e320e094b5260a5de6b0f144"
+          },
+          {
+            "cpu_range_inclusive": "04:8717..871D",
+            "file_offset": "0x020717",
+            "byte_count": 7,
+            "sha256": "ad01f2414dcff5f48624a0a3fafcff3f0140f0f1e9dceccd30ddaa5ba84c3903"
+          },
+          {
+            "cpu_range_inclusive": "01:8AD5..8ADA",
+            "file_offset": "0x008AD5",
+            "byte_count": 6,
+            "sha256": "050a05bae55d28cad14b68b6a9a4e0ffbf81a2c73cf98a1a5e732cefb012b6a2"
+          },
+          {
+            "cpu_range_inclusive": "02:AA5F..AA7A",
+            "file_offset": "0x012A5F",
+            "byte_count": 28,
+            "sha256": "2af287b6fe3fb6397c4ba4ad5b2b4fb47bdc86c87cca95a70cc7884ec383a835"
+          }
+        ]
+      }
     },
     {
       "id": "0x09",
@@ -306,7 +342,7 @@
   "notes": [
     "Common foods were tested with current HP 1 and maximum HP 100 to avoid healing caps.",
     "For item 0x08, a selected food item with no fish stored in the basket did not change HP or consume a fish. With a fish record present, the game consumed that fish and the observed healing matched floor(raw_size/4) for all tested sizes 4 through 200.",
-    "The fish size formula is an empirical fit to tested samples. Species IDs 0x01, 0x06, 0x08, 0x20, 0x38, and 0x49 all yielded the same +7 at raw size 30; do not infer behavior for untested memory layouts or malformed values.",
+    "The size/HP values above remain controlled runtime observations: species IDs 0x01, 0x06, 0x08, 0x20, 0x38, and 0x49 all yielded the same +7 at raw size 30, and one species was sampled at sizes 4 through 200. The later ROM trace establishes the ordinary-fish arithmetic separately; no claim is made for malformed memory records.",
     "Item 0x09 and 0x0A both displayed きのこ in the tested menu; 0x09 restored 10 HP and 0x0A set HP to zero."
   ]
 }

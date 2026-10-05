@@ -96,5 +96,6 @@ await import('./postcard-next-action.mjs')
 await import('./fly-price-choice.mjs')
 await import('./selected-shop-area.mjs')
 await import('./selected-rod-area.mjs')
+await import('./catalogue-map-navigation.mjs')
 
 await import('./magnet-next-action.mjs')

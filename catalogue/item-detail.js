@@ -556,6 +556,16 @@
     return `index${locale === "en" ? "" : `.${locale}`}.html?${query}#category-decisions`;
   }
 
+  // src/entities/item/fish-meal-copy.js
+  var summaries = {
+    th: "ปลาอื่นเอาขนาดที่แสดงเป็นเซนติเมตรหาร 4 แล้วปัดเศษลง (ขั้นต่ำ 1 HP ไม่เกิน HP ที่ขาด). เมนูกินปลาตัวแรกในข้องและเอาออก—ตรวจชื่อก่อนยืนยัน; คุซะฟุกุทำ HP เหลือ 0",
+    en: "Other fish restore their displayed size in centimetres divided by four (round down, minimum 1 HP), capped at missing HP. The menu eats and removes the first fish in the keepnet; check its name because Kusafugu sets HP to zero.",
+    ja: "通常の魚は表示サイズ(cm)を4で割って切り捨て（最低1HP、不足HPまで）回復する。びくの先頭を食べて取り除くため、名前を確認すること。クサフグはHPが0になる。"
+  };
+  function fishMealSummary(lang) {
+    return summaries[lang] || summaries.en;
+  }
+
   // src/entities/item/rod-area-copy.js
   var COPY = {
     en: {
@@ -1220,8 +1230,7 @@
       return { summary, facts: [] };
     }
     if (item.category === "food" && item.id === "08") {
-      const summary = ctx.lang === "th" ? "ตรวจชื่อปลาที่เมนูแสดงก่อนกิน เพราะเกมกินตัวแรกในข้อง ถ้าเป็นคุซะฟุกุอย่ากิน: HP จะเหลือ 0" : ctx.lang === "ja" ? "食べる前に表示された魚名を確認する。びくの先頭を食べる。クサフグなら食べない：HPが0になる。" : "Check the displayed fish name before eating: the game eats the first keepnet fish. Do not eat Kusafugu; it sets HP to zero.";
-      return { summary, facts: use.facts?.[ctx.lang] || [] };
+      return { summary: fishMealSummary(ctx.lang), facts: use.facts?.[ctx.lang] || [] };
     }
     return null;
   }
@@ -2788,7 +2797,7 @@
   function loadCatalogue(ctx) {
     ctx.flyMakerLink = (item) => item.category.startsWith("fly") ? `<p><a class="route-button" data-fly-maker href="${ctx.esc(ctx.currentCategoryLink().split("#")[0] + "#fly-instructions")}">${ctx.lang === "th" ? "ดูขั้นตอนประกอบฟลายเองและตรวจราคาในเกม" : ctx.lang === "ja" ? "自作フライの手順とゲーム内見積額を確認" : "See custom fly steps and check the in-game quote"} ↗</a></p>` : "";
     ctx.setNavigation();
-    fetch("gallery-data.json?v=compendium-20261005-32").then((response) => {
+    fetch("gallery-data.json?v=compendium-20261005-33").then((response) => {
       if (!response.ok) throw new Error("catalogue data unavailable");
       return response.json();
     }).then((data) => {
