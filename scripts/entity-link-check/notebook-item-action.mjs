@@ -9,7 +9,8 @@ const actionSource = JSON.parse(
 ).items['05']
 const playerCopy = {
   en: {
-    summary: 'Use the Fishing Notebook to check which fish you have recorded.',
+    summary:
+      'All four characters start with the Fishing Notebook; no purchase or quest is needed for the initial copy. Open general tools and select 05 to check your recorded fish.',
     fact: 'Switch between the six area groups to view their fish records and overview pages.',
     hidden: [
       'Open the Fishing Notebook to consult the fish records organized into six area groups and the corresponding area-overview pages.',
@@ -19,7 +20,8 @@ const playerCopy = {
     rule: [/one entry per species/, /equal or smaller duplicate does not add another entry/],
   },
   ja: {
-    summary: '釣りノートで、記録した魚を確認する。',
+    summary:
+      '4人とも最初から釣りノートを持っています。最初の1冊に購入やイベントは不要です。道具一覧で05を選び、記録した魚を確認してください。',
     fact: '6エリアの各グループを切り替え、魚の記録と概要ページを確認できる。',
     hidden: [
       '釣りノートを開くと、魚の記録を6エリア別に整理した一覧と対応するエリア概要を参照できる。',
@@ -29,7 +31,8 @@ const playerCopy = {
     rule: [/魚種ごとに1件だけ記録/, /同じサイズ以下の同種では別の項目は増えません/],
   },
   th: {
-    summary: 'ใช้สมุดตกปลาเช็กว่าบันทึกปลาชนิดไหนแล้ว',
+    summary:
+      'ตัวละครทั้ง 4 คนมีสมุดตกปลาตั้งแต่เริ่ม ไม่ต้องซื้อหรือทำเควสต์เพื่อรับเล่มแรก เปิดรายการเครื่องมือแล้วเลือก 05 เพื่อเช็กปลาที่บันทึกไว้',
     fact: 'สลับดูทั้ง 6 ด่านเพื่ออ่านบันทึกปลาและหน้าภาพรวมของแต่ละด่าน',
     hidden: [
       'เปิดสมุดตกปลาเพื่อดูบันทึกปลาที่จัดเป็นหกพื้นที่ พร้อมหน้าภาพรวมของพื้นที่ตามลำดับ',

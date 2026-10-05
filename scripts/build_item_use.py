@@ -621,7 +621,7 @@ def build():
 
         if category == "general_tool" and item_id in tool_research:
             finding = tool_research[item_id]
-            for field in ("summary", "facts", "evidence", "evidenceNotes", "displayName", "compatibleFishIds", "fishIds", "fishScope"):
+            for field in ("summary", "facts", "evidence", "evidenceNotes", "displayName", "compatibleFishIds", "fishIds", "fishScope", "startingEquipment"):
                 if field in finding:
                     entry[field] = finding[field]
 

@@ -1,0 +1,118 @@
+{
+  "schemaVersion": 1,
+  "rom": {
+    "sizeBytes": 1572864,
+    "sha1": "c2103dd94e2a1a65a495fc02adc2e7d040f31212",
+    "sha256": "e0594921a5a2ef1a2613b9d2e29fed066569e3793393c591bf4c4968a54c0b49",
+    "header": "none"
+  },
+  "evidenceType": "rom_code_trace",
+  "scope": "Initial Fishing Notebook availability for all four character records; no external guides.",
+  "sources": [
+    "docs/general-tool-actions-research.md",
+    "scripts/verify_notebook_starting_inventory.py"
+  ],
+  "item": {
+    "category": "general_tool",
+    "id": "05",
+    "nameJa": "釣りノート"
+  },
+  "acquisition": {
+    "type": "starting_equipment",
+    "characterIds": [
+      1,
+      2,
+      3,
+      4
+    ],
+    "initializer": "01:B775",
+    "saveInitializer": "01:B705",
+    "callSites": [
+      "01:B734",
+      "01:B73C",
+      "01:B744",
+      "01:B74C"
+    ],
+    "grant": {
+      "cpu": "01:B84F..B854",
+      "fileOffset": "0x00B84F",
+      "value": "0005",
+      "inventoryAddress": "7E:0B5A",
+      "widthBytes": 2,
+      "condition": "unconditional in character initializer"
+    },
+    "persistence": {
+      "callSite": "01:B9DD",
+      "routine": "01:BD17",
+      "sramRecordBases": [
+        "70:0010",
+        "70:04E0",
+        "70:09B0",
+        "70:0E80"
+      ],
+      "copy": "01:BD8F..BD99 saves low bytes of character words; Tool05 fits one byte"
+    }
+  },
+  "limitations": [
+    "Static code evidence in the original Japanese ROM, not a new controller replay.",
+    "Thai-patch initializer equivalence was not independently checked.",
+    "Does not establish replacement acquisition or every possible removal/sale path.",
+    "No shop, price or NPC gift is inferred from this initial grant."
+  ],
+  "checks": [
+    {
+      "name": "signature_mismatch_initializes_save",
+      "cpu": "01:B5DF",
+      "fileOffset": "0x00B5DF",
+      "bytes": "a2 00 00 bf 67 b7 01 df 00 00 70 f0 04 20 05 b7 60"
+    },
+    {
+      "name": "fresh_save_initialization",
+      "cpu": "01:B705",
+      "fileOffset": "0x00B705",
+      "bytes": "a9 00 00 8f 00 00 70 8b a0 01 00 a2 00 00 a9 fe 1f 54 70 70 ab a2 00 00 bf 67 b7 01 9f 00 00 70 e8 e8 e0 0e 00 90 f1 20 c5 be"
+    },
+    {
+      "name": "all_four_character_initializers",
+      "cpu": "01:B72F",
+      "fileOffset": "0x00B72F",
+      "bytes": "a9 01 00 85 12 20 75 b7 a9 02 00 85 12 20 75 b7 a9 03 00 85 12 20 75 b7 a9 04 00 85 12 20 75 b7 60"
+    },
+    {
+      "name": "clear_character_data_restore_word_width",
+      "cpu": "01:B775",
+      "fileOffset": "0x00B775",
+      "bytes": "38 a9 e8 11 e9 5a 08 85 10 e2 20 a9 00 a2 00 00 9d 5a 08 e8 e4 10 90 f8 c2 20"
+    },
+    {
+      "name": "unconditional_notebook_grant",
+      "cpu": "01:B84F",
+      "fileOffset": "0x00B84F",
+      "bytes": "a9 05 00 8d 5a 0b a9 13 00 8d 5c 0b"
+    },
+    {
+      "name": "save_initialized_character",
+      "cpu": "01:B9DD",
+      "fileOffset": "0x00B9DD",
+      "bytes": "20 17 bd 60"
+    },
+    {
+      "name": "four_character_sram_destinations",
+      "cpu": "01:BD17",
+      "fileOffset": "0x00BD17",
+      "bytes": "38 a9 e8 11 e9 5a 08 85 10 ad 60 08 c9 01 00 d0 0d a9 10 00 85 06 a9 70 00 85 08 4c 6b bd c9 02 00 d0 0d a9 e0 04 85 06 a9 70 00 85 08 4c 6b bd c9 03 00 d0 0d a9 b0 09 85 06 a9 70 00 85 08 4c 6b bd c9 04 00 d0 0d a9 80 0e 85 06 a9 70 00 85 08 4c 6b bd"
+    },
+    {
+      "name": "compact_inventory_save_copy",
+      "cpu": "01:BD8F",
+      "fileOffset": "0x00BD8F",
+      "bytes": "bd 5a 08 97 06 c8 e8 e8 e4 10 90 f4 c2 20"
+    },
+    {
+      "name": "notebook_item_record",
+      "cpu": "05:B270",
+      "fileOffset": "0x02B270",
+      "bytes": "08 0e 13 b3 32 00"
+    }
+  ]
+}

@@ -121,3 +121,5 @@ await import('./food-area-availability.mjs')
 await import('./shop-category-check-scope.mjs')
 
 await import('./notebook-consolidation.mjs')
+
+await import('./notebook-starting-inventory.mjs')

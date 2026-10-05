@@ -736,3 +736,30 @@ The previous r65 release f3eb1e1 passed quality and deploy (37380425257).
 Actual public TH food01Area2 and target-fish shop food guidance were verified.
 This copy refinement is not a whole-site completion claim. Acquisition of
 Tool05 is still an evidence gap; no purchase path is inferred from its price.
+
+## Fishing Notebook initial acquisition (r67)
+
+Tool05 now answers how to obtain it: all four initialized character records
+start with the notebook. No initial purchase or quest is needed; open general
+tools and choose05. The redundant no-shop-offer panel is omitted only for
+this proven starting item, leaving ordinary unstocked acquisition advice intact.
+The six-page use instructions,66-species guide links and old evidence remain.
+
+The supplied original Japanese ROM was hashed and its initializer/save flow
+independently reviewed. B705 calls B775 for four characters; B84F writes05
+unconditionally to0B5A; B9DD calls BD17 to save the initialized inventory.
+The new verifier reproduces nine byte checks and the published evidence JSON.
+This is static original-ROM proof, not a newly replayed start-to-menu journey,
+Thai-patch equivalence or replacement-acquisition claim.
+
+Actual TH390 tool05Area4 displayed the starting answer without a purchase
+panel. JA320 and EN1200 retained the answer and fit horizontally; the explicit
+return opened Area4's notebook guide in the selected language. Independent
+guards cover all six areas/noarea and three languages, ordinaryunstocked Tool01
+controls, copiedprovenance, facts and66-guide actions. Catalogue data requests
+were versioned to avoid serving cached pre-research answers.
+
+The r66 notebook consolidation2576c29 passed quality and deploy37380905652.
+Actual public TH390 showed22 eligible,17 route additions,5 earlier species,
+one breakdown,folded filing explanation,66 unique rows and no overflow.
+Analytics was deferred at the owner's request; no tracking integration was enabled.

@@ -64,6 +64,26 @@ The source bytes at file `0x01C04C` are `02 60 07 00 08 00 09 00 16 00 05 00 06 
 
 ## Fishing Notebook: ID 05
 
+### Starting equipment: no initial purchase or quest
+
+All four characters receive the Fishing Notebook in their initial inventory. **Open the general-tools list and select ID `05` to inspect your records.** This acquisition conclusion comes from the original Japanese ROM’s initialization code, not its item price or an inferred shop sale.
+
+The save initializer at `01:B705` calls character initializer `01:B775` with `$12=1,2,3,4` at `01:B734`, `01:B73C`, `01:B744`, and `01:B74C`. After clearing the character data and restoring 16-bit accumulator width, `01:B84F..B854` unconditionally executes `LDA #$0005; STA $0B5A` (`A9 05 00 8D 5A 0B`, file offset `0x00B84F`). `$7E:0B5A` is the first general-tool inventory slot. Character-specific setup follows this common grant.
+
+The initializer joins `01:B9DD`, which calls save routine `01:BD17`. That routine selects the appropriate character record at SRAM `70:0010`, `70:04E0`, `70:09B0`, or `70:0E80`. Its compact copy at `01:BD8F..BD99` saves the low byte of each character word; the notebook ID fits this byte. Thus the initial tool is persisted for every character record.
+
+The [starting-inventory evidence](../data/notebook-starting-inventory.json) contains the exact code fingerprints, original-ROM hashes, four-character control flow, and limitations. Reproduce it with a locally supplied ROM:
+
+```sh
+python3 scripts/verify_notebook_starting_inventory.py \
+  --rom /path/to/headerless-japanese-original.sfc \
+  --output data/notebook-starting-inventory.json
+```
+
+The verifier rejects any ROM other than the 1,572,864-byte headerless Japanese original, SHA-1 `c2103dd94e2a1a65a495fc02adc2e7d040f31212`, SHA-256 `e0594921a5a2ef1a2613b9d2e29fed066569e3793393c591bf4c4968a54c0b49`, and checks the instruction bytes before producing the evidence. This is a static code verification; it does not claim a new controller replay, an independent comparison with the Thai patch, replacement acquisition, or every possible removal/sale path. No NPC gift, shop sale, or price is inferred.
+
+### Viewing the six-area records
+
 Handler `$03:C05C..C071` saves the current state in `$0836`, switches `$0834` to `8`, and increments the shared item-use counter. State 8 dispatches to `$00:83A4`, which calls `$01:9738`; that routine calls `$01:BF30`.
 
 `$01:BF30..C00B` scans the 66 word entries in `$0C3C`. It gathers entries whose area value is 1–6 into six lists in `$7F:2AFA` and records cumulative list byte boundaries at `$7F:2A8E..2A98`. `$01:C258..C2EA` sorts each list using corresponding values in `$0CC0` and `$0D44`. This is the notebook's fish-record organization. The ROM-backed notebook renderer also has six overview pages in the same order as field areas 1–6. Its overview artwork does not itself read the fish-spawn coordinate tables; see [`fish-location-research.md`](fish-location-research.md).

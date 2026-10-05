@@ -169,6 +169,13 @@ function ordinaryPurchaseSection(ctx, item, fishLocations, selected) {
 }
 
 export function shopSection(ctx, item, allItems, fishLocations) {
+  if (
+    item.category === 'general_tool' &&
+    item.id === '05' &&
+    item.playerUse?.startingEquipment?.type === 'starting_equipment' &&
+    !item.playerUse?.shops?.length
+  )
+    return ''
   const selected = selectedStage(ctx)
   if (item.category === 'food' && item.id === '08') return fishMealRecovery(ctx, selected)
   if (['fly', 'fly_wing', 'fly_tail'].includes(item.category))

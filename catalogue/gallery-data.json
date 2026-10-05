@@ -51899,9 +51899,9 @@
       "renderSha256": "678b812cb17ef52f45a93f80db7e6991649415b3d09f24030c7e5b4e4fd0c7cc",
       "playerUse": {
         "summary": {
-          "en": "Use the Fishing Notebook to check which fish you have recorded.",
-          "ja": "釣りノートで、記録した魚を確認する。",
-          "th": "ใช้สมุดตกปลาเช็กว่าบันทึกปลาชนิดไหนแล้ว"
+          "en": "All four characters start with the Fishing Notebook; no purchase or quest is needed for the initial copy. Open general tools and select 05 to check your recorded fish.",
+          "ja": "4人とも最初から釣りノートを持っています。最初の1冊に購入やイベントは不要です。道具一覧で05を選び、記録した魚を確認してください。",
+          "th": "ตัวละครทั้ง 4 คนมีสมุดตกปลาตั้งแต่เริ่ม ไม่ต้องซื้อหรือทำเควสต์เพื่อรับเล่มแรก เปิดรายการเครื่องมือแล้วเลือก 05 เพื่อเช็กปลาที่บันทึกไว้"
         },
         "facts": {
           "en": [
@@ -51918,17 +51918,20 @@
           "en": [
             "The six-page area correspondence is confirmed in the ROM-backed field/notebook render trace. This evidence does not claim that the notebook artwork itself encodes fish spawn coordinates.",
             "Open the Fishing Notebook to consult the fish records organized into six area groups and the corresponding area-overview pages.",
-            "The ROM sorts the entries within each group; this item is for looking up records and does not change fishing equipment."
+            "The ROM sorts the entries within each group; this item is for looking up records and does not change fishing equipment.",
+            "Starting ownership is verified in the original Japanese ROM initializer for all four character records. This is code evidence, not a new controller replay or independent Thai-patch check; replacement acquisition is not established."
           ],
           "ja": [
             "6ページとエリアの対応はROMのフィールド／ノート描画経路で確認した。ノート画像から魚の出現座標が読めるとは主張しない。",
             "釣りノートを開くと、魚の記録を6エリア別に整理した一覧と対応するエリア概要を参照できる。",
-            "ROMは各一覧内の記録を並べ替える。記録を調べるための道具で、釣り道具は変更しない。"
+            "ROMは各一覧内の記録を並べ替える。記録を調べるための道具で、釣り道具は変更しない。",
+            "初期所持は日本語原版ROMの4人分の初期化コードで確認。新しい操作再現やタイ語パッチの独立確認ではなく、再入手方法も未確認です。"
           ],
           "th": [
             "ยืนยันความสัมพันธ์ระหว่างหกหน้ากับพื้นที่จากเส้นทางวาดฉากและสมุดใน ROM แต่ไม่ได้อ้างว่าภาพในสมุดระบุพิกัดเกิดปลาได้",
             "เปิดสมุดตกปลาเพื่อดูบันทึกปลาที่จัดเป็นหกพื้นที่ พร้อมหน้าภาพรวมของพื้นที่ตามลำดับ",
-            "เกมเรียงรายการปลาในแต่ละพื้นที่ ไอเท็มนี้ใช้เปิดดูข้อมูล ไม่ได้เปลี่ยนอุปกรณ์ตกปลา"
+            "เกมเรียงรายการปลาในแต่ละพื้นที่ ไอเท็มนี้ใช้เปิดดูข้อมูล ไม่ได้เปลี่ยนอุปกรณ์ตกปลา",
+            "ยืนยันการมีสมุดเริ่มต้นจากโค้ด ROM ญี่ปุ่นของทั้ง 4 ตัวละคร ไม่ใช่การเล่นทดสอบใหม่หรือการตรวจแพตช์ไทยแยก และยังไม่ได้ยืนยันวิธีรับทดแทน"
           ]
         },
         "fishIds": [],
@@ -51944,8 +51947,20 @@
             "docs/general-tool-actions-research.md",
             "docs/fish-location-research.md",
             "docs/notebook-completion-research.md",
-            "data/notebook-natural-landing-evidence.json"
+            "data/notebook-natural-landing-evidence.json",
+            "data/notebook-starting-inventory.json",
+            "scripts/verify_notebook_starting_inventory.py"
           ]
+        },
+        "startingEquipment": {
+          "type": "starting_equipment",
+          "characterIds": [
+            1,
+            2,
+            3,
+            4
+          ],
+          "source": "data/notebook-starting-inventory.json"
         },
         "shops": []
       },
