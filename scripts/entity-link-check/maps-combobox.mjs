@@ -87,7 +87,9 @@ class Element {
     )
   }
 
-  scrollIntoView() {}
+  scrollIntoView() {
+    this.scrolledIntoView = true
+  }
 }
 
 function createHarnessDocument(locale, links) {
@@ -129,7 +131,7 @@ function makeLocation(query = '') {
     'https://example.test/catalogue/maps.html?' +
       (query || 'stage=6&return=index.th.html%3Fcategory%3Dlure%26fish%3D06%23catalogue'),
   )
-  return { href: url.href, pathname: url.pathname, search: url.search }
+  return { href: url.href, pathname: url.pathname, search: url.search, hash: url.hash }
 }
 
 function makeHistory(location) {
@@ -138,7 +140,12 @@ function makeHistory(location) {
     replaceState(_state, _title, target) {
       const url = new URL(target, location.href)
       this.lastUrl = url.href
-      Object.assign(location, { href: url.href, pathname: url.pathname, search: url.search })
+      Object.assign(location, {
+        href: url.href,
+        pathname: url.pathname,
+        search: url.search,
+        hash: url.hash,
+      })
     },
   }
 }
@@ -287,6 +294,7 @@ async function main() {
   const outputs = await renderFrontendOutputs()
   for (const locale of ['en', 'th', 'ja']) {
     const { runtime, nodes, links, location, history } = await runMapPage(outputs, locale)
+    await checkNotebookRouteHashes(outputs, locale)
     await checkPendingNavigation(outputs, locale)
     checkProfiles(runtime)
     checkLocaleReturns(runtime, links, location)
@@ -296,6 +304,24 @@ async function main() {
   console.log(
     `PASS: accessible fish combobox; ${profileIds.length} ROM-mapped fish profiles; bundled typing, keyboard selection, map targeting, clear, and localized return behavior checked in three locales.`,
   )
+}
+
+async function checkNotebookRouteHashes(outputs, locale) {
+  const valid = await runMapPage(
+    outputs,
+    locale,
+    false,
+    'stage=1&section=s1-c1-r1#notebook-route-6',
+  )
+  assert.equal(valid.runtime.notebookRouteStage, 6)
+  assert.equal(valid.runtime.openNotebookGuide, true)
+  assert.equal(valid.nodes.get('notebook-route-6').scrolledIntoView, true)
+  assert.equal(new URL(valid.history.lastUrl).hash, '#notebook-route-6')
+
+  const invalid = await runMapPage(outputs, locale, false, 'stage=1#notebook-route-7')
+  assert.equal(invalid.runtime.notebookRouteStage, 0)
+  assert.equal(invalid.runtime.openNotebookGuide, false)
+  assert.equal(new URL(invalid.history.lastUrl).hash, '')
 }
 
 await main()

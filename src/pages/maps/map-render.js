@@ -337,7 +337,8 @@ export function enableControls(ctx) {
 }
 
 export function initFromUrl(ctx) {
-  ctx.openNotebookGuide = location.hash === '#notebook-guide'
+  ctx.notebookRouteStage = Number(location.hash.match(/^#notebook-route-([1-6])$/)?.[1]) || 0
+  ctx.openNotebookGuide = location.hash === '#notebook-guide' || Boolean(ctx.notebookRouteStage)
   const p = new URLSearchParams(location.search)
   ctx.activeWaterMark = normalizeWaterMark(p.get('mark'))
   ctx.lastWaterMark = ctx.activeWaterMark

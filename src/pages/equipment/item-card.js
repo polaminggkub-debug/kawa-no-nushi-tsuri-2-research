@@ -2,7 +2,12 @@ import { renderTargetAdvice } from '../../shared/lib/index.js'
 import { questNextActions } from './quest-next-actions.js'
 import { hookTargetLinks } from './hook-target-links.js'
 import { baitLureVerdict } from './bait-lure-verdict.js'
-import { flyWingPlayerDecision, flyWingPlayerLinks } from '../../entities/item/index.js'
+import { areaLabel, withStage } from './rod-area-page-helpers.js'
+import {
+  flyWingPlayerDecision,
+  flyWingPlayerLinks,
+  rodAreaDecision,
+} from '../../entities/item/index.js'
 
 function flyWingActionHrefs(ctx, item, decision, fish) {
   const bodyId = decision.bundle?.body || '01'
@@ -36,6 +41,26 @@ function flyWingActionHrefs(ctx, item, decision, fish) {
 
 function itemAdvice(item) {
   return item.rodDecision || item.baitLureDecision || item.gearDecision
+}
+
+function areaRodView(ctx, item) {
+  const decision = rodAreaDecision(ctx.lang, item, ctx.allItems, ctx.locationStage)
+  if (!decision) return item
+  return {
+    ...item,
+    rodDecision: { ...item.rodDecision, ...decision },
+    generalRodDecision: item.rodDecision,
+    areaRodDecision: decision,
+  }
+}
+
+function isAreaRodOffer(item) {
+  return (
+    item.areaRodDecision &&
+    !['item-unstocked', 'style-unstocked', 'style-never-stocked'].includes(
+      item.areaRodDecision.status,
+    )
+  )
 }
 
 function cardActionTitle(ctx, item, advice) {
@@ -88,6 +113,60 @@ function renderCardIdentity(ctx, item, use, detailHref) {
   return `<div class="card-main"><figure class="sprite">${image}</figure><div class="card-text"><span class="category-tag">${ctx.esc(ctx.categoryNames[item.category])}</span><h3><a class="entity-title" href="${ctx.esc(detailHref)}">${ctx.esc(ctx.itemName(item))}</a></h3>${ctx.thaiLabel(item)}${japanese}<div class="price-row">${price}<span class="item-id">ID ${ctx.esc(item.id)}</span></div>${offerNote}<a class="card-detail-link" href="${ctx.esc(detailHref)}">${ctx.esc(ctx.cardUi.details)} ↗</a></div></div>`
 }
 
+function rodAreaAlternativeLinks(ctx, item) {
+  const decision = item.areaRodDecision
+  if (!decision?.alternatives?.length) return ''
+  const nextStage = decision.status === 'style-unstocked' ? decision.nextStockStage : 0
+  const label = nextStage
+    ? ctx.lang === 'th'
+      ? `คันรูปแบบเดียวกันที่มีรายการขายในด่าน ${nextStage}`
+      : ctx.lang === 'ja'
+        ? `同じ釣り方の販売記録（エリア${nextStage}）`
+        : `Same-style recorded offers in Area ${nextStage}`
+    : item.areaRodDecision.status === 'item-unstocked'
+      ? ctx.lang === 'th'
+        ? 'คันรูปแบบเดียวกันที่มีขายในด่านนี้'
+        : ctx.lang === 'ja'
+          ? 'このエリアで販売記録がある同じ釣り方の竿'
+          : 'Same-style offers recorded in this area'
+      : ctx.lang === 'th'
+        ? 'คันอื่นที่มีขายในด่านนี้สำหรับเปรียบเทียบ'
+        : ctx.lang === 'ja'
+          ? 'このエリアで比較できる同じ釣り方の竿'
+          : 'Other same-style offers recorded in this area'
+  const links = decision.alternatives
+    .map((ref) =>
+      ctx.allItems.find(
+        (candidate) => candidate.category === ref.category && candidate.id === ref.id,
+      ),
+    )
+    .filter(Boolean)
+    .map((candidate) => {
+      const href = ctx.itemHref(candidate)
+      const target = nextStage ? withStage(href, nextStage) : href
+      const stageAttr = nextStage ? ` data-stage="${nextStage}"` : ''
+      return `<a class="decision-item" data-rod-area-alternative="${ctx.esc(candidate.id)}"${stageAttr} href="${ctx.esc(target)}"><img src="${ctx.esc(candidate.image)}" alt=""><span>${ctx.esc(ctx.itemName(candidate))}<small>ID ${ctx.esc(candidate.id)}${nextStage ? ` · ${ctx.esc(areaLabel(ctx, nextStage))}` : ''}</small></span></a>`
+    })
+    .join('')
+  if (!links) return ''
+  const marker = nextStage
+    ? `data-rod-area-next-stock="${nextStage}"`
+    : 'data-rod-area-alternatives'
+  return `<div class="rod-alternatives" ${marker}><p>${ctx.esc(label)}</p>${links}</div>`
+}
+
+function generalRodRouteAdvice(ctx, item) {
+  const advice = item.generalRodDecision
+  if (!advice?.recommendation) return ''
+  const label =
+    ctx.lang === 'th'
+      ? 'คำแนะนำเส้นทางทั่วไปทุกด่าน'
+      : ctx.lang === 'ja'
+        ? 'エリア指定なしの一般ルート案内'
+        : 'General route advice across areas'
+  return `<details class="general-rod-route-advice"><summary>${label}</summary><p>${ctx.esc(ctx.local(advice.recommendation))}</p>${advice.reason ? `<p>${ctx.esc(ctx.local(advice.reason))}</p>` : ''}</details>`
+}
+
 function guideEvidenceNote(ctx, use) {
   if (use.evidence?.type !== 'player_guide_report') return ''
   return `<p class="fish-scope">${ctx.lang === 'th' ? 'คำอธิบายการใช้จากคู่มือผู้เล่น ยังไม่ได้ยืนยันจากโค้ดเกม' : ctx.lang === 'ja' ? '用途はプレイヤーガイドによる報告。ゲームコードでは未確認。' : 'Use reported by a player guide; not yet confirmed in game code.'}</p>`
@@ -106,7 +185,9 @@ function renderCardDisclosure(ctx, item, use, summary, facts, advice, wingDecisi
     recommendation,
     factList,
     guideEvidenceNote(ctx, use),
-    !wingDecision && advice ? ctx.rodAlternatives(item) : '',
+    !wingDecision && item.areaRodDecision ? rodAreaAlternativeLinks(ctx, item) : '',
+    !wingDecision && advice && !item.areaRodDecision ? ctx.rodAlternatives(item) : '',
+    !wingDecision ? generalRodRouteAdvice(ctx, item) : '',
     !wingDecision && advice ? ctx.gearNextActions(item) : '',
     !wingDecision && advice && !item.flyMakerMenuChoice ? ctx.flyMakerLink(item) : '',
   ].join('')
@@ -150,11 +231,15 @@ function renderCardGuidance(ctx, item, use, summary, facts, advice) {
       ? ctx.flyMakerLink(item)
       : ''
   const hookTargets = hookTargetLinks(ctx, item)
-  const visibleAdvice =
-    targetAdvice || lureVerdict
+  const visibleAdvice = item.areaRodDecision
+    ? `<p class="use-summary card-verdict">${ctx.esc(label)}</p>`
+    : targetAdvice || lureVerdict
       ? targetAdvice || lureVerdict
       : `<p class="use-summary ${summaryClass}">${ctx.esc(label)}</p>`
-  return `<div class="use-block" ${dataDecision}><h4>${ctx.esc(actionTitle)}</h4>${visibleAdvice}${hookTargets}${menuAction}<div class="card-more-content">${disclosure}</div></div>`
+  const areaMarker = item.areaRodDecision
+    ? ` data-rod-area-decision="${item.areaRodDecision.stage}" data-rod-area-status="${ctx.esc(item.areaRodDecision.status)}"`
+    : ''
+  return `<div class="use-block" ${dataDecision}${areaMarker}><h4>${ctx.esc(actionTitle)}</h4>${visibleAdvice}${hookTargets}${menuAction}<div class="card-more-content">${disclosure}</div></div>`
 }
 
 function renderCardAcquisition(ctx, item) {
@@ -184,13 +269,23 @@ function renderCardAcquisition(ctx, item) {
 }
 
 export function renderItemCard(ctx, item) {
-  const use = ctx.useOf(item)
-  const { summary, facts } = ctx.visibleUse(item)
-  const advice = itemAdvice(item)
-  const detailHref = ctx.itemHref(item)
-  const identity = renderCardIdentity(ctx, item, use, detailHref)
-  const guidance = renderCardGuidance(ctx, item, use, summary, facts, advice)
-  const details = renderCardAcquisition(ctx, item)
-  const poison = item.category === 'food' && item.id === '0A' ? 'poison-food' : ''
-  return `<article class="item-card item-card-compact ${poison}" id="item-${item.category}-${item.id}">${identity}${guidance}${questNextActions(ctx, item)}${details}</article>`
+  const view = areaRodView(ctx, item)
+  const use = ctx.useOf(view)
+  const areaUse = view.areaRodDecision
+    ? {
+        ...use,
+        shops: (use.shops || []).filter(
+          (shop) => Number(shop.stage) === view.areaRodDecision.stage,
+        ),
+      }
+    : use
+  const { summary, facts } = ctx.visibleUse(view)
+  const advice = itemAdvice(view)
+  const detailHref = ctx.itemHref(view)
+  const identity = renderCardIdentity(ctx, view, areaUse, detailHref)
+  const guidance = renderCardGuidance(ctx, view, use, summary, facts, advice)
+  const details = renderCardAcquisition(ctx, view)
+  const poison = view.category === 'food' && view.id === '0A' ? 'poison-food' : ''
+  const offerMarker = isAreaRodOffer(view) ? ' data-selected-area-offer="true"' : ''
+  return `<article class="item-card item-card-compact ${poison}" id="item-${view.category}-${view.id}"${offerMarker}>${identity}${guidance}${questNextActions(ctx, view)}${details}</article>`
 }

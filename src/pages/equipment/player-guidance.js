@@ -1,9 +1,26 @@
+import { rodAreaDecision } from '../../entities/item/index.js'
+import {
+  areaLabel,
+  categoryDecisionCopy,
+  hasSelectedArea,
+  localRodOffer,
+  withStage,
+} from './rod-area-page-helpers.js'
+
 export function decisionCard(ctx, d) {
   const marker = d.id === 'lure_coverage_pair' ? ' data-lure-coverage-pair' : ''
   const nextAction = d.nextAction?.href
     ? `<p><a class="route-button" data-fly-backup-action href="${ctx.esc(d.nextAction.href)}">${ctx.esc(ctx.local(d.nextAction.label))} ↗</a></p>`
     : ''
-  return `<article class="decision-card"${marker}><h3>${ctx.esc(ctx.local(d.title))}</h3><p class="decision-action">${ctx.esc(ctx.local(d.recommendation))}</p>${d.reason ? `<p>${ctx.esc(ctx.local(d.reason))}</p>` : ''}<div class="decision-items">${(d.items || []).map(ctx.decisionLink).join('')}</div>${d.scope ? `<small>${ctx.esc(ctx.local(d.scope))}</small>` : ''}${nextAction}</article>`
+  const rodScope =
+    d.category === 'rod' && hasSelectedArea(ctx)
+      ? ctx.lang === 'th'
+        ? `<p class="fish-scope">คำแนะนำเส้นทางทั่วไป ไม่ได้คัดจากสต็อกด่าน ${hasSelectedArea(ctx)}</p>`
+        : ctx.lang === 'ja'
+          ? `<p class="fish-scope">一般ルート案内です。エリア${hasSelectedArea(ctx)}の販売記録に基づく案内ではありません。</p>`
+          : `<p class="fish-scope">General route advice; not selected-area stock advice for Area ${hasSelectedArea(ctx)}.</p>`
+      : ''
+  return `<article class="decision-card"${marker}><h3>${ctx.esc(ctx.local(d.title))}</h3>${rodScope}<p class="decision-action">${ctx.esc(ctx.local(d.recommendation))}</p>${d.reason ? `<p>${ctx.esc(ctx.local(d.reason))}</p>` : ''}<div class="decision-items">${(d.items || []).map(ctx.decisionLink).join('')}</div>${d.scope ? `<small>${ctx.esc(ctx.local(d.scope))}</small>` : ''}${nextAction}</article>`
 }
 
 function renderPlayerDecisionOverview(ctx) {
@@ -75,10 +92,11 @@ function renderCategoryDecisionDisclosure(ctx, category, categoryChoices) {
   const body = sections.join('')
   const count = sections.length
   const visibleLureCard = lureCoverage ? ctx.decisionCard(lureCoverage) : ''
+  const copy = categoryDecisionCopy(ctx, category, count)
   box.innerHTML =
     visibleLureCard +
     (body
-      ? `<details id="category-recommendations-disclosure" class="overview-disclosure category-recommendations"><summary>${ctx.esc(ctx.cardUi.categoryAdvice(count))}</summary><div class="category-recommendations-content">${body}</div></details>`
+      ? `<details id="category-recommendations-disclosure" class="overview-disclosure category-recommendations"><summary>${ctx.esc(copy.label)}</summary><div class="category-recommendations-content">${copy.note}${body}</div></details>`
       : '')
   const disclosure = box.querySelector?.('#category-recommendations-disclosure')
   if (
@@ -350,25 +368,67 @@ export function flyDecision(ctx, category) {
   return ctx.decisionCard(decision)
 }
 
-function rodTableAdvice(ctx, item) {
+function rodAreaTableAlternatives(ctx, decision) {
+  if (!decision?.alternatives?.length) return ''
+  const fallbackStage = decision.status === 'style-unstocked' ? decision.nextStockStage : 0
+  const links = decision.alternatives
+    .map((ref) =>
+      ctx.allItems.find(
+        (candidate) => candidate.category === ref.category && candidate.id === ref.id,
+      ),
+    )
+    .filter(Boolean)
+    .map((candidate) => {
+      const href = fallbackStage
+        ? withStage(ctx.itemHref(candidate), fallbackStage)
+        : ctx.itemHref(candidate)
+      const stage = fallbackStage ? ` data-stage="${fallbackStage}"` : ''
+      return `<a data-rod-area-alternative="${ctx.esc(candidate.id)}"${stage} href="${ctx.esc(href)}">${ctx.esc(ctx.itemName(candidate))} (${ctx.esc(candidate.id)})${fallbackStage ? ` · ${ctx.esc(areaLabel(ctx, fallbackStage))}` : ''} ↗</a>`
+    })
+    .join(' · ')
+  if (!links) return ''
+  return fallbackStage
+    ? `<div data-rod-area-next-stock="${fallbackStage}">${links}</div>`
+    : `<div data-rod-area-alternatives>${links}</div>`
+}
+
+function rodTableAdvice(ctx, item, areaDecision) {
   const linkLabel =
     ctx.lang === 'th'
       ? 'ดูเงื่อนไขซื้อและคันที่เทียบ'
       : ctx.lang === 'ja'
         ? '購入条件・比較候補を見る'
         : 'See purchase conditions and alternatives'
-  return `<td class="rod-table-advice"><strong>${ctx.esc(ctx.local(item.rodDecision?.label))}</strong><a href="${ctx.esc(ctx.itemHref(item))}">${linkLabel} ↗</a></td>`
+  const advice = areaDecision || item.rodDecision
+  const marker = areaDecision
+    ? ` data-rod-area-decision="${areaDecision.stage}" data-rod-area-status="${ctx.esc(areaDecision.status)}"`
+    : ''
+  const alternatives = rodAreaTableAlternatives(ctx, areaDecision)
+  return `<td class="rod-table-advice"${marker}><strong>${ctx.esc(ctx.local(advice?.label))}</strong><a href="${ctx.esc(ctx.itemHref(item))}">${linkLabel} ↗</a>${alternatives}</td>`
 }
 
 function rodComparisonRow(ctx, item, styles) {
-  const stockPrice = ctx.useOf(item).shops?.length
-    ? ctx.formatYen(item)
-    : ctx.lang === 'th'
-      ? 'ไม่พบในร้าน'
-      : ctx.lang === 'ja'
-        ? '店頭在庫なし'
-        : 'No recorded shop stock'
-  return `<tr><td><a href="${ctx.esc(ctx.itemHref(item))}">${ctx.esc(ctx.itemName(item))}</a></td><td>${ctx.esc(styles[item.decodedFields.styleCode])}</td><td>${item.decodedFields.castAimHoldCutoffInternal}</td><td>${item.decodedFields.rangeMultiplier}</td><td>${ctx.esc(stockPrice)}</td>${rodTableAdvice(ctx, item)}</tr>`
+  const selected = hasSelectedArea(ctx)
+  const areaDecision = selected ? rodAreaDecision(ctx.lang, item, ctx.allItems, selected) : null
+  const stockPrice = areaDecision
+    ? localRodOffer(areaDecision)
+      ? ctx.formatYen(item)
+      : ctx.lang === 'th'
+        ? `${areaLabel(ctx, selected)}: ไม่พบรายการขายที่บันทึกไว้`
+        : ctx.lang === 'ja'
+          ? `${areaLabel(ctx, selected)}：販売記録なし`
+          : `${areaLabel(ctx, selected)}: no offer recorded`
+    : ctx.useOf(item).shops?.length
+      ? ctx.formatYen(item)
+      : ctx.lang === 'th'
+        ? 'ไม่พบในร้าน'
+        : ctx.lang === 'ja'
+          ? '店頭在庫なし'
+          : 'No recorded shop stock'
+  const rowMarker = areaDecision
+    ? ` data-rod-area-decision="${selected}" data-rod-area-status="${ctx.esc(areaDecision.status)}"${localRodOffer(areaDecision) ? ' data-selected-area-offer="true"' : ''}`
+    : ''
+  return `<tr${rowMarker}><td><a href="${ctx.esc(ctx.itemHref(item))}">${ctx.esc(ctx.itemName(item))}</a></td><td>${ctx.esc(styles[item.decodedFields.styleCode])}</td><td>${item.decodedFields.castAimHoldCutoffInternal}</td><td>${item.decodedFields.rangeMultiplier}</td><td>${ctx.esc(stockPrice)}</td>${rodTableAdvice(ctx, item, areaDecision)}</tr>`
 }
 
 export function renderComparison(ctx, category) {

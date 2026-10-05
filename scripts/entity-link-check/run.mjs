@@ -53,6 +53,7 @@ await import('./bottle-capacity.mjs')
 await import('./water-sprite-assets.mjs')
 
 await import('./notebook-actions.mjs')
+await import('./notebook-full-route.mjs')
 
 await import('./wing-palette.mjs')
 
@@ -94,5 +95,6 @@ await import('./postcard-next-action.mjs')
 
 await import('./fly-price-choice.mjs')
 await import('./selected-shop-area.mjs')
+await import('./selected-rod-area.mjs')
 
 await import('./magnet-next-action.mjs')

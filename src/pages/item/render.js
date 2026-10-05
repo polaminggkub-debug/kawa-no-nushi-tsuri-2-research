@@ -5,7 +5,11 @@ import { townPasteBaitAction } from './bait-acquisition.js'
 import { notebookAction } from './notebook.js'
 import { questNextActions } from './quest-next-actions.js'
 import { targetAdviceSection } from './target-advice.js'
-import { flyWingPlayerDecision, flyWingPlayerLinks } from '../../entities/item/index.js'
+import {
+  flyWingPlayerDecision,
+  flyWingPlayerLinks,
+  rodAreaDecision,
+} from '../../entities/item/index.js'
 function renderFishTarget(ctx, fishVisuals, fishLocations) {
   if (!ctx.selectedFish) return ''
   const fish = fishVisuals[ctx.selectedFish]
@@ -106,9 +110,42 @@ function decisionFacts(ctx, item, allItems) {
   const items = alternatives
     .map((ref) => allItems.find((item) => item.category === ref.category && item.id === ref.id))
     .filter(Boolean)
-  return items.length
-    ? `<div class="detail-grid rod-alternatives">${items.map((item) => ctx.componentLink(item)).join('')}</div>`
-    : ''
+  if (!items.length) return ''
+  if (!item.areaRodDecision)
+    return `<div class="detail-grid rod-alternatives">${items.map((entry) => ctx.componentLink(entry)).join('')}</div>`
+  const nextStage =
+    item.areaRodDecision.status === 'style-unstocked' ? item.areaRodDecision.nextStockStage : 0
+  const links = items
+    .map((candidate) => {
+      const href = ctx.detailItemLink(candidate)
+      const target = nextStage ? withStage(href, nextStage) : href
+      const stage = nextStage ? ` data-stage="${nextStage}"` : ''
+      return `<a class="entity-link" data-rod-area-alternative="${ctx.esc(candidate.id)}"${stage} href="${ctx.esc(target)}"><img src="${ctx.esc(candidate.image)}" alt=""><span>${ctx.esc(ctx.imageName(candidate))}<small>ID ${ctx.esc(candidate.id)}${nextStage ? ` · ${ctx.esc(ctx.copy.area(nextStage))}` : ''}</small></span></a>`
+    })
+    .join('')
+  return nextStage
+    ? `<div class="detail-grid rod-alternatives" data-rod-area-next-stock="${nextStage}">${links}</div>`
+    : `<div class="detail-grid rod-alternatives" data-rod-area-alternatives>${links}</div>`
+}
+
+function withStage(href, stage) {
+  const [pathAndQuery, hash = ''] = href.split('#')
+  const [path, query = ''] = pathAndQuery.split('?')
+  const params = new URLSearchParams(query)
+  params.set('stage', String(stage))
+  return `${path}?${params}${hash ? `#${hash}` : ''}`
+}
+
+function generalRodRouteAdvice(ctx, item) {
+  const advice = item.generalRodDecision
+  if (!advice?.recommendation) return ''
+  const title =
+    ctx.lang === 'th'
+      ? 'คำแนะนำเส้นทางทั่วไปทุกด่าน'
+      : ctx.lang === 'ja'
+        ? 'エリア指定なしの一般ルート案内'
+        : 'General route advice across areas'
+  return `<details class="general-rod-route-advice"><summary>${title}</summary><p>${ctx.esc(ctx.local(advice.recommendation))}</p>${advice.reason ? `<p>${ctx.esc(ctx.local(advice.reason))}</p>` : ''}</details>`
 }
 
 function flyWingDetailHrefs(ctx, item, decision, allItems, fishLocations) {
@@ -163,8 +200,12 @@ function decisionSectionSupport(
     (targetAdvice && !isFly ? general : '') +
     factList +
     (wingDecision ? '' : decisionFacts(ctx, item, allItems))
-  if (!decision || !reasons) return reasons
-  return `<details class="decision-reasons"><summary>${ctx.esc(decisionReasonTitle(ctx, true))}</summary>${reasons}</details>`
+  const routeAdvice = generalRodRouteAdvice(ctx, item)
+  if (!decision || !reasons) return routeAdvice + reasons
+  return (
+    routeAdvice +
+    `<details class="decision-reasons"><summary>${ctx.esc(decisionReasonTitle(ctx, true))}</summary>${reasons}</details>`
+  )
 }
 
 function decisionSectionCopy(ctx, item, decision, wingDecision, facts) {
@@ -182,10 +223,13 @@ function decisionSectionCopy(ctx, item, decision, wingDecision, facts) {
       ? 'data-bait-lure-decision'
       : 'data-gear-decision'
   const marker = decision ? `${key}="${ctx.esc(item.id)}"` : ''
+  const areaMarker = item.areaRodDecision
+    ? ` data-rod-area-decision="${item.areaRodDecision.stage}" data-rod-area-status="${ctx.esc(item.areaRodDecision.status)}"${!['item-unstocked', 'style-unstocked', 'style-never-stocked'].includes(item.areaRodDecision.status) ? ' data-selected-area-offer="true"' : ''}`
+    : ''
   return {
     factList,
     verdict,
-    marker,
+    marker: `${marker}${areaMarker}`,
     heading: decision ? rodDecisionTitle(ctx, item) : ctx.copy.use,
   }
 }
@@ -231,7 +275,8 @@ function renderDecisionSection(ctx, item, summary, facts, imageNote, data) {
     factList,
     allItems,
   )
-  return `<section id="what-to-do" class="decision-panel ${decision ? 'rod-decision' : ''}" ${dataAttribute}><h2>${ctx.esc(heading)}</h2>${targetAdvice || general}${supporting}${actions}${note}</section>`
+  const primary = item.areaRodDecision ? general : targetAdvice || general
+  return `<section id="what-to-do" class="decision-panel ${decision ? 'rod-decision' : ''}" ${dataAttribute}><h2>${ctx.esc(heading)}</h2>${primary}${supporting}${actions}${note}</section>`
 }
 
 function renderQuickOptions(ctx, item, allItems, fishLocations) {
@@ -259,8 +304,17 @@ function renderMoreOptions(ctx, item, allItems, fishLocations) {
 }
 
 function renderItemSections(ctx, item, allItems, fishVisuals, fishLocations, decisions) {
-  const usage = ctx.visibleUsage(item, allItems, fishVisuals)
-  const summary = usage.summary || ctx.local(item.playerUse?.summary) || ''
+  const areaDecision = rodAreaDecision(ctx.lang, item, allItems, ctx.selectedStage)
+  const viewItem = areaDecision
+    ? {
+        ...item,
+        rodDecision: { ...item.rodDecision, ...areaDecision },
+        generalRodDecision: item.rodDecision,
+        areaRodDecision: areaDecision,
+      }
+    : item
+  const usage = ctx.visibleUsage(viewItem, allItems, fishVisuals)
+  const summary = usage.summary || ctx.local(viewItem.playerUse?.summary) || ''
   const facts = usage.facts || []
   const name = ctx.imageName(item)
   const categoryText = ctx.categoryLabel(item)
@@ -272,7 +326,7 @@ function renderItemSections(ctx, item, allItems, fishVisuals, fishLocations, dec
   const note = item[`imageNote${ctx.lang === 'th' ? 'Th' : ctx.lang === 'ja' ? 'Ja' : 'En'}`] || ''
   const action =
     magnetNextAction(ctx, item, allItems) ||
-    renderDecisionSection(ctx, item, summary, facts, note, {
+    renderDecisionSection(ctx, viewItem, summary, facts, note, {
       allItems,
       fishVisuals,
       fishLocations,

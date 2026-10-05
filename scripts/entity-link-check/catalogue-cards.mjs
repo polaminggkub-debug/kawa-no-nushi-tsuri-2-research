@@ -397,25 +397,31 @@ function checkFishPanel(result, locale) {
 
 function checkRodComparison(result, locale) {
   const { runtime, nodes, url } = result
-  nodes['style-filter'].value = '4'
-  runtime.renderComparison('rod')
-  const table = nodes['rod-comparison'].innerHTML
-  const rods = data.items.filter((item) => item.category === 'rod')
-  assert.equal(rods.length, expectedRodCount)
-  assert.equal((table.match(/class="rod-table-advice"/g) || []).length, expectedRodCount)
-  assert(!table.includes('rod-table-reason'), `Full reason duplicated in rod table: ${locale}`)
-  for (const item of rods) {
-    const label = localizedField(item.rodDecision, 'label', item, locale)
-    assert(
-      unescapeHtml(table).includes(label),
-      `Rod verdict missing from comparison: ${item.id}/${locale}`,
-    )
-    assert(
-      table.includes(`category=rod&amp;id=${item.id}`),
-      `Rod profile link missing: ${item.id}/${locale}`,
-    )
+  const previousLocationStage = runtime.locationStage
+  runtime.locationStage = ''
+  try {
+    nodes['style-filter'].value = '4'
+    runtime.renderComparison('rod')
+    const table = nodes['rod-comparison'].innerHTML
+    const rods = data.items.filter((item) => item.category === 'rod')
+    assert.equal(rods.length, expectedRodCount)
+    assert.equal((table.match(/class="rod-table-advice"/g) || []).length, expectedRodCount)
+    assert(!table.includes('rod-table-reason'), `Full reason duplicated in rod table: ${locale}`)
+    for (const item of rods) {
+      const label = localizedField(item.rodDecision, 'label', item, locale)
+      assert(
+        unescapeHtml(table).includes(label),
+        `Rod verdict missing from comparison: ${item.id}/${locale}`,
+      )
+      assert(
+        table.includes(`category=rod&amp;id=${item.id}`),
+        `Rod profile link missing: ${item.id}/${locale}`,
+      )
+    }
+    validate(table, url)
+  } finally {
+    runtime.locationStage = previousLocationStage
   }
-  validate(table, url)
 }
 
 export async function runCatalogueCards() {

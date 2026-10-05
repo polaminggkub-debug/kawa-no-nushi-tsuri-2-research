@@ -301,3 +301,20 @@ A player opening an item from Area 6 previously saw Area 1 stock before recorded
 The same ordering applies to exact ready-made fly price comparisons through the shared assembly list. This changes presentation of existing ROM-derived shop records, without adding stock, access, price or fishing-effect claims. Separate automated checks cover available, missing and invalid area selections; actual mobile/desktop journeys remain the visual acceptance check.
 
 A separate current-page review confirmed the next context gap: rod 03 still leads with an Area 1 budget recommendation when opened from Area 6, although recorded stock there includes 03/04/14/15. Purchase ordering does not fix this advice. The next step is selected-area rod tradeoffs derived from existing stock, price, aim and reach evidence, with no inferred catch-power claim.
+
+
+## Rod advice follows the selected area (2026-10-05)
+
+The rod context layer compares only recorded shop candidates for the same ROM fishing style in the selected area. The catalogue card, comparison row and item detail share this decision. Full new-purchase price, aim-window cutoff and the traced fish-position loss boundary support budget and handling choices; they do not establish catch probability, a universal best rod or fish-specific advantages. Casting/lure aim comparisons assume HP100.
+
+A rod without a local offer must be distinguished from an area without any recorded rod of that style. In the first case, the guide compares recorded local candidates; in the second, it gives explicitly other-area purchase options and a keep-owned path. General route advice is retained with its scope labeled, and original records and research sources remain accessible.
+
+Fresh original-ROM extraction on this pass reproduced `data/rod-response.json` and `data/shop-stock-rom.json` exactly (21 rod records and all six area stocks). This validates the inputs to the advice, separately from whether its sentences and links are useful or correct.
+
+## One checklist for all 66 journal species (2026-10-05)
+
+The journal guide now offers a complete route with one entry per eligible species, grouped by its first numbered area: 6/10/11/17/11/11. Every entry retains an original-game portrait and direct actions for its fish profile, filtered map and compatible equipment. This full-route count is separate from each area's available-species count and from the current game's movable journal page totals. Profiles without journal slots stay in the area catalogue, outside the 66-entry route.
+
+Full-route and area checkboxes share the existing species-keyed browser storage. Checking the same species in both views counts once, and the unmarked filter applies to both. A return from a route entry opens its original group, including when the destination belongs to another area; language changes preserve that group. The checklist does not read the game save.
+
+The data audit covers all IDs 01–42 and their 97 fish/area memberships. Every species has mapped points and a complete compatible local float setup in its first route area. Availability in a generated game state, bite/landing success, quest completion and a natural 66-species playthrough are not established by these checks. The full-site usefulness goal remains active beyond this bounded route and rod release.

@@ -120,7 +120,7 @@
   }
   function renderNotes(ctx, data) {
     const list = data.researchNotes[ctx.lang] || data.researchNotes.en;
-    document.getElementById("research-notes").innerHTML = list.map((text2) => `<p>${ctx.esc(text2)}</p>`).join("");
+    document.getElementById("research-notes").innerHTML = list.map((text4) => `<p>${ctx.esc(text4)}</p>`).join("");
     document.getElementById("sources").innerHTML = data.sources.map(
       (src) => `<p>${src.url ? `<a href="${ctx.esc(src.url)}" target="_blank" rel="noopener">${ctx.esc(ctx.lang === "th" ? src.titleTh : ctx.lang === "ja" ? src.titleJa : src.titleEn)} ↗</a>` : `<strong>${ctx.esc(ctx.lang === "th" ? src.titleTh : ctx.lang === "ja" ? src.titleJa : src.titleEn)}</strong>`}<br><span>${ctx.esc(ctx.lang === "th" ? src.detailTh : ctx.lang === "ja" ? src.detailJa : src.detailEn)}</span></p>`
     ).join("");
@@ -318,239 +318,6 @@
     }).join("");
   }
 
-  // src/pages/equipment/player-guidance.js
-  function decisionCard(ctx, d) {
-    const marker = d.id === "lure_coverage_pair" ? " data-lure-coverage-pair" : "";
-    const nextAction = d.nextAction?.href ? `<p><a class="route-button" data-fly-backup-action href="${ctx.esc(d.nextAction.href)}">${ctx.esc(ctx.local(d.nextAction.label))} ↗</a></p>` : "";
-    return `<article class="decision-card"${marker}><h3>${ctx.esc(ctx.local(d.title))}</h3><p class="decision-action">${ctx.esc(ctx.local(d.recommendation))}</p>${d.reason ? `<p>${ctx.esc(ctx.local(d.reason))}</p>` : ""}<div class="decision-items">${(d.items || []).map(ctx.decisionLink).join("")}</div>${d.scope ? `<small>${ctx.esc(ctx.local(d.scope))}</small>` : ""}${nextAction}</article>`;
-  }
-  function renderPlayerDecisionOverview(ctx) {
-    const title = ctx.lang === "th" ? "ซื้ออะไร พกอะไร ทำอะไรก่อนตก" : ctx.lang === "ja" ? "買う・持つ・釣る前にすること" : "What to buy, carry and do before fishing";
-    const tip = ctx.lang === "th" ? "ใช้ลัวร์หรือตีเหยื่อ: เติม HP ให้ถึง 100 ก่อน ถ้าอยากได้เวลาเล็งเต็มของคัน" : ctx.lang === "ja" ? "ルアー・投げ釣り：照準時間を最大にするには、先にHPを100まで回復する。" : "Lure / casting: restore HP to 100 first to get your rod’s full aiming time.";
-    const scope = ctx.lang === "th" ? "หลักฐานนี้ยืนยันผลเรื่องเวลาเล็ง ยังไม่ได้ยืนยันโบนัสโอกาสปลากินเหยื่อ" : ctx.lang === "ja" ? "照準時間への効果を確認。食いつき率ボーナスは未確認。" : "This restores aiming time; a bite-rate bonus is not established.";
-    document.getElementById("player-decisions").hidden = !!document.getElementById("fish-filter").value;
-    document.getElementById("player-decisions").innerHTML = `<h2>${title}</h2><aside class="play-tip"><strong>${tip}</strong><p>${scope}</p></aside><div class="decision-grid">${ctx.decisions.map(ctx.decisionCard).join("")}</div>`;
-  }
-  function selectCategoryDecisions(ctx, category) {
-    const style = document.getElementById("style-filter").value;
-    const decisionStyles = {
-      float_rod_path: "1",
-      casting_rod_path: "2",
-      lure_rod_path: "4",
-      fly_rod_path: "8"
-    };
-    const selectedFish = document.getElementById("fish-filter").value;
-    const showLureCoverage = category === "lure" && !selectedFish;
-    const categoryChoices = ctx.decisions.filter(
-      (d) => !selectedFish && d.category === category && !(showLureCoverage && d.id === "lure_coverage_pair") && (category !== "rod" || !style || decisionStyles[d.id] === style) && !(category === "flymaker" && selectedFish)
-    );
-    return categoryChoices;
-  }
-  function renderCategoryDecisionDisclosure(ctx, category, categoryChoices) {
-    const box = document.getElementById("category-decisions");
-    const previous = box.querySelector?.("#category-recommendations-disclosure");
-    const keepOpen = Boolean(previous?.open);
-    const flyAdvice = ctx.flyDecision(category);
-    const showLureCoverage = category === "lure" && !document.getElementById("fish-filter").value;
-    const lureCoverage = showLureCoverage ? ctx.decisions.find((decision) => decision.id === "lure_coverage_pair") : null;
-    const priceAdvice = category === "float_weight" ? ctx.floatPriceGuide() : category === "hook" ? ctx.hookPriceGuide() : "";
-    const sections = [
-      ...category === "all" ? [] : categoryChoices.map(ctx.decisionCard),
-      flyAdvice,
-      priceAdvice
-    ].filter(Boolean);
-    const body = sections.join("");
-    const count = sections.length;
-    const visibleLureCard = lureCoverage ? ctx.decisionCard(lureCoverage) : "";
-    box.innerHTML = visibleLureCard + (body ? `<details id="category-recommendations-disclosure" class="overview-disclosure category-recommendations"><summary>${ctx.esc(ctx.cardUi.categoryAdvice(count))}</summary><div class="category-recommendations-content">${body}</div></details>` : "");
-    const disclosure = box.querySelector?.("#category-recommendations-disclosure");
-    if (disclosure && (keepOpen || typeof location !== "undefined" && location.hash === "#category-decisions"))
-      disclosure.open = true;
-  }
-  function renderDecisions(ctx, category) {
-    renderPlayerDecisionOverview(ctx);
-    const choices = selectCategoryDecisions(ctx, category);
-    renderCategoryDecisionDisclosure(ctx, category, choices);
-  }
-  function hookPriceGuide(ctx) {
-    const title = ctx.lang === "th" ? "เบ็ดหายหรือยังไม่มี? ซื้อเบ็ดทั่วไปที่ถูกสุดในด่านนี้" : ctx.lang === "ja" ? "針を失った・持っていない？現在エリアの最安の汎用針" : "Lost your hook or have none? Buy the cheapest stocked generic hook";
-    const note = ctx.lang === "th" ? "ถ้ามีเบ็ดอยู่แล้วใช้ต่อได้ ซื้อเมื่อต้องเติมเบ็ดสำหรับชุดทุ่นหรือตะกั่ว ตารางนี้เทียบราคาเบ็ดที่ไม่ผูกกับปลาเฉพาะ ไม่ใช่อันดับดึงปลาสำเร็จ และไม่ต้องซื้อเบ็ดชุดเหยื่อสำหรับลัวร์หรือฟลาย" : ctx.lang === "ja" ? "所持している針はそのまま使えます。ウキ・オモリ仕掛けの針が必要な時だけ購入。魚ID一致分岐のない針の価格比較で、釣果順位ではありません。ルアー・フライ用にエサ釣りの針を買う必要はありません。" : "Keep the hook you own. Buy only when a float or sinker bait rig needs a hook. This compares prices of hooks without a species-match branch, not landing success. Do not buy a bait-rig hook for lure or fly fishing.";
-    return `<section class="decision-card" id="hook-price-guide"><h3>${title}</h3><p>${note}</p><div class="table-wrap"><table><thead><tr><th>${ctx.lang === "th" ? "ด่าน" : ctx.lang === "ja" ? "エリア" : "Area"}</th><th>${ctx.lang === "th" ? "ซื้อชิ้นนี้ถ้าต้องเติมเบ็ด" : ctx.lang === "ja" ? "針が必要なら購入" : "Buy if you need a hook"}</th></tr></thead><tbody>${[
-      1,
-      2,
-      3,
-      4,
-      5,
-      6
-    ].map((stage) => {
-      const row = ctx.gearPriceGuide.hook[stage], item = ctx.allItems.find((i) => i.category === row.category && i.id === row.id);
-      return `<tr><td>${stage}</td><td><a data-hook-budget-stage="${stage}" href="${ctx.esc(ctx.areaItemLink(item, stage))}">${ctx.esc(ctx.itemName(item))} (${row.id}) · ¥${row.priceYen}</a></td></tr>`;
-    }).join("")}</tbody></table></div></section>`;
-  }
-  function floatPriceGuide(ctx) {
-    const fish = document.getElementById("fish-filter").value;
-    const title = fish ? ctx.lang === "th" ? `ซื้อทุ่นหรือตะกั่วสำหรับ${ctx.fishName(fish)} ที่ไหน` : ctx.lang === "ja" ? `${ctx.fishName(fish)}に使えるウキ・オモリの販売エリア` : `Where to buy floats or sinkers for ${ctx.fishName(fish)}` : ctx.lang === "th" ? "ซื้อทุ่นหรือตะกั่วที่ไหนให้ถูกสุดในด่านนี้" : ctx.lang === "ja" ? "現在のエリアで最安のウキ・オモリを買う" : "Cheapest stocked float or sinker in your area";
-    const note = fish ? ctx.lang === "th" ? `ถ้ามีของที่ใช้กับ${ctx.fishName(fish)} อยู่แล้วให้ใช้ต่อ ตารางแสดงเฉพาะของที่ผ่านเงื่อนไขปลานี้และมีบันทึกขายในแต่ละด่าน การผ่านเงื่อนไขไม่รับประกันว่าปลากินหรือจับขึ้นได้` : ctx.lang === "ja" ? `${ctx.fishName(fish)}に使える道具を持っていれば継続してください。表には魚の判定を通り、各エリアで販売記録がある品だけを表示します。適合は食いつきや釣果を保証しません。` : `Keep a model you already own for ${ctx.fishName(fish)}. The table lists only stocked items that pass this fish’s ROM profile check. Passing the check does not guarantee a bite or catch.` : ctx.lang === "th" ? "มีรุ่นเดิมอยู่แล้วใช้ต่อได้ ตารางนี้เลือกจากราคาของที่มีขาย ไม่ใช่อันดับจับปลา ทุ่นกับตะกั่วใช้คนละชุดปลา: เปิดรายละเอียดเพื่อตรวจปลาเป้าหมายก่อนซื้อ" : ctx.lang === "ja" ? "所持品はそのまま使えます。店頭価格による選択であり釣果順位ではありません。ウキとオモリの対応魚は違うため、購入前に詳細で魚を確認してください。" : "Keep the model you own. These choices use recorded shop prices, not catch rankings. Float and sinker routes accept different fish; check the item profile for your target before buying.";
-    const none = ctx.lang === "th" ? "ไม่พบในสต็อกด่านนี้" : ctx.lang === "ja" ? "店頭記録なし" : "No recorded stock";
-    const choice = (kind, stage) => {
-      if (fish) return targetFloatChoice(ctx, kind, stage, fish);
-      const row = ctx.gearPriceGuide[kind]?.[stage];
-      if (!row) return `${none} · ${firstStockLink(ctx, kind)}`;
-      const item = ctx.allItems.find((i) => i.category === row.category && i.id === row.id);
-      return `<a href="${ctx.esc(ctx.areaItemLink(item, stage))}">${ctx.esc(ctx.itemName(item))} (${row.id}) · ¥${row.priceYen}</a>`;
-    };
-    return `<section class="decision-card" id="float-price-guide"><h3>${title}</h3><p>${note}</p><div class="table-wrap"><table><thead><tr><th>${ctx.lang === "th" ? "ด่าน" : ctx.lang === "ja" ? "エリア" : "Area"}</th><th>${ctx.lang === "th" ? "ทุ่น" : ctx.lang === "ja" ? "ウキ" : "Float"}</th><th>${ctx.lang === "th" ? "ตะกั่ว" : ctx.lang === "ja" ? "オモリ" : "Sinker"}</th></tr></thead><tbody>${[1, 2, 3, 4, 5, 6].map((stage) => `<tr><td>${stage}</td><td>${choice("float", stage)}</td><td>${choice("sinker", stage)}</td></tr>`).join("")}</tbody></table></div></section>`;
-  }
-  function floatRigKind(item) {
-    const id = Number.parseInt(item.id, 16);
-    if (item.category !== "float_weight") return "";
-    if (id >= 1 && id <= 8) return "float";
-    if (id >= 9 && id <= 10) return "sinker";
-    return "";
-  }
-  function stockedForArea(item, stage) {
-    return (item.playerUse?.shops || []).some((shop) => Number(shop.stage) === stage);
-  }
-  function floatCandidatesForFish(ctx, kind, fish) {
-    return ctx.allItems.filter(
-      (item) => floatRigKind(item) === kind && (ctx.fishIdsFor(item) || []).includes(fish)
-    );
-  }
-  function targetFloatOffer(ctx, kind, stage, candidates) {
-    const stocked = candidates.filter((item2) => stockedForArea(item2, stage));
-    const guide = ctx.gearPriceGuide[kind]?.[stage];
-    const guideItem = stocked.find((item2) => item2.id === guide?.id);
-    const item = guideItem || stocked.sort((a, b) => Number(a.priceYen) - Number(b.priceYen) || a.id.localeCompare(b.id))[0];
-    if (!item) return null;
-    return {
-      item,
-      priceYen: item.id === guideItem?.id ? Number(guide.priceYen) : Number(item.priceYen)
-    };
-  }
-  function targetFloatChoice(ctx, kind, stage, fish) {
-    const candidates = floatCandidatesForFish(ctx, kind, fish);
-    if (!candidates.length) return incompatibleFloatText(ctx, kind, fish);
-    const offer = targetFloatOffer(ctx, kind, stage, candidates);
-    if (!offer) return noCompatibleFloatStockText(ctx, kind, stage, fish, candidates);
-    return `<a data-target-float-offer="${kind}" data-target-fish="${ctx.esc(fish)}" href="${ctx.esc(ctx.areaItemLink(offer.item, stage))}">${ctx.esc(ctx.itemName(offer.item))} (${offer.item.id}) · ¥${offer.priceYen}</a>`;
-  }
-  function incompatibleFloatText(ctx, kind, fish) {
-    const rig = kind === "float" ? ["ทุ่น", "ウキ", "float"] : ["ตะกั่ว", "オモリ", "sinker"];
-    const fishName = ctx.fishName(fish);
-    const text2 = ctx.lang === "th" ? `ไม่มี${rig[0]}ที่ผ่านเงื่อนไขปลา${fishName}ใน ROM` : ctx.lang === "ja" ? `この魚のROM判定を通る${rig[1]}はありません` : `No ${rig[2]} passes the ROM profile check for ${fishName}`;
-    return `<span data-target-rig-incompatible="${kind}" data-target-fish="${ctx.esc(fish)}">${ctx.esc(text2)}</span>`;
-  }
-  function noCompatibleFloatStockText(ctx, kind, stage, fish, candidates) {
-    const laterStages = [
-      ...new Set(
-        candidates.flatMap(
-          (item) => (item.playerUse?.shops || []).map((shop) => Number(shop.stage)).filter((shopStage) => shopStage > stage)
-        )
-      )
-    ].sort((a, b) => a - b);
-    const nextStage = laterStages.find(
-      (shopStage) => targetFloatOffer(ctx, kind, shopStage, candidates)
-    );
-    const nextOffer = nextStage ? targetFloatOffer(ctx, kind, nextStage, candidates) : null;
-    if (!nextOffer) {
-      return `<span data-no-compatible-float-stock data-target-fish="${ctx.esc(fish)}">${ctx.lang === "th" ? "ไม่มีของที่ผ่านเงื่อนไขปลาในสต็อกด่านนี้" : ctx.lang === "ja" ? "このエリアに魚の判定を通る在庫はありません" : "No stocked item in this area passes the fish check"}</span>`;
-    }
-    const message = ctx.lang === "th" ? `ด่าน ${stage} ไม่มีของที่ผ่านเงื่อนไขปลา; มีขายตั้งแต่ด่าน ${nextStage}` : ctx.lang === "ja" ? `エリア${stage}には適合品がありません。エリア${nextStage}から販売記録があります。` : `No matching stock in area ${stage}; recorded from area ${nextStage}.`;
-    return `<span data-no-compatible-float-stock data-target-fish="${ctx.esc(fish)}">${ctx.esc(message)} <a data-target-float-next-stock="${kind}" data-target-fish="${ctx.esc(fish)}" href="${ctx.esc(ctx.areaItemLink(nextOffer.item, nextStage))}">${ctx.esc(ctx.itemName(nextOffer.item))} (${nextOffer.item.id}) · ¥${nextOffer.priceYen}</a></span>`;
-  }
-  function findFlyOffer(ctx, fish, stage) {
-    const offers = ctx.allItems.filter((i) => i.category === "fly" && (ctx.useOf(i).fishIds || []).includes(fish)).flatMap(
-      (i) => (ctx.useOf(i).shops || []).filter((s) => s.bundle).map((s) => ({ body: i, ...s }))
-    ).sort((a, b) => a.bundle.shopPriceYen - b.bundle.shopPriceYen || a.stage - b.stage);
-    const sameArea = offers.filter((o) => o.stage === stage);
-    return { offer: (sameArea.length ? sameArea : offers)[0], sameArea };
-  }
-  function noReadyFlyCard(ctx, fish) {
-    const title = ctx.lang === "th" ? "ปลานี้ควรใช้อะไร" : ctx.lang === "ja" ? "この魚には何を使うか" : "What to use for this fish";
-    const note = ctx.lang === "th" ? "ยังไม่มีชุดฟลายสำเร็จรูปที่ผ่านเงื่อนไขให้แนะนำ เปิดหน้าปลาเพื่อเลือกวิธีตกและอุปกรณ์ที่รองรับ" : ctx.lang === "ja" ? "条件に合う店売り毛バリは案内できません。魚のページで対応する釣り方と道具を選んでください。" : "No qualifying ready-made fly is listed. Open this fish’s guide to choose a supported method and setup.";
-    const action = ctx.lang === "th" ? "เลือกชุดตกสำหรับปลานี้" : ctx.lang === "ja" ? "対応する釣り方と道具を見る" : "Choose a setup for this fish";
-    return `<article class="decision-card"><h3>${ctx.esc(title)}</h3><p>${ctx.esc(note)}</p><a class="route-button" data-fly-fallback="${ctx.esc(fish)}" href="${ctx.esc(ctx.fishHref(fish))}">${ctx.esc(action)} ↗</a></article>`;
-  }
-  function flyDecisionCopy(ctx, fish, offer, sameArea) {
-    const b = offer.bundle, refs = [
-      { category: "fly", id: b.body },
-      { category: "fly_wing", id: b.wing },
-      { category: "fly_tail", id: b.tail }
-    ].filter((r) => r.id !== "00");
-    const action = ctx.lang === "th" ? `สำหรับ${ctx.fishName(fish)} เริ่มลองชุดนี้ได้: ร้านฟลายด่าน ${offer.stage} ราคา ${b.shopPriceYen} เยนทั้งชุด` : ctx.lang === "ja" ? `${ctx.fishName(fish)}なら、この構成から試せる。エリア${offer.stage}の毛バリ店、完成品${b.shopPriceYen}円。` : `For ${ctx.fishName(fish)}, start with this ready-made fly: area ${offer.stage} fly shop, ¥${b.shopPriceYen} for the complete bundle.`;
-    const reason = ctx.lang === "th" ? `เลือกชุดราคาต่ำสุดที่บอดี้ผ่านเงื่อนไขปลานี้${sameArea.length ? "ในด่านของแผนที่ที่เลือก" : ""} เพื่อลดเงินที่ต้องจ่าย ไม่ใช่เพราะพิสูจน์ว่าจับง่ายที่สุด` : ctx.lang === "ja" ? `ボディ判定に合う${sameArea.length ? "選択エリア内の" : ""}最安の店売り構成を選び、出費を抑える。釣果の最良構成ではない。` : `Lowest listed price among qualifying bodies${sameArea.length ? " in the selected fishing area" : ""}, to limit your spending; not a proven best-catching fly.`;
-    const scope = ctx.lang === "th" ? "ยังมีเงื่อนไขซ่อนของบอดี้กับปีก ถ้าปลาไม่กิน การตีซ้ำไม่สุ่มค่านั้นใหม่ อย่าเหมาว่าราคาสูงกว่าจะดีกว่า" : ctx.lang === "ja" ? "隠しボディ・ウィング条件も残る。投げ直しでは再抽選されず、高価なほど良いとは限らない。" : "Hidden body/wing conditions still apply. Recasting does not reroll them; paying more is not an established advantage.";
-    return {
-      title: ctx.lang === "th" ? "ชุดฟลายสำหรับปลาที่เลือก" : ctx.lang === "ja" ? "選んだ魚の毛バリ候補" : "Fly to try for your selected fish",
-      recommendation: action,
-      reason,
-      scope,
-      items: refs
-    };
-  }
-  function hasThreeBundleFlyBackup(ctx, fish) {
-    const bundles = ctx.allItems.filter((item) => item.category === "fly" && (ctx.useOf(item).fishIds || []).includes(fish)).flatMap((item) => (ctx.useOf(item).shops || []).map((shop) => shop.bundle).filter(Boolean));
-    const residue = (id) => Number.parseInt(id, 16) & 3;
-    for (let first = 0; first < bundles.length; first += 1) {
-      for (let second = first + 1; second < bundles.length; second += 1) {
-        for (let third = second + 1; third < bundles.length; third += 1) {
-          const choices = [bundles[first], bundles[second], bundles[third]];
-          if (new Set(choices.map((bundle) => residue(bundle.body))).size === 3 && new Set(choices.map((bundle) => residue(bundle.wing))).size === 3)
-            return true;
-        }
-      }
-    }
-    return false;
-  }
-  function flyBackupAction(ctx, fish) {
-    const labels = {
-      th: "ถ้าชุดเริ่มต้นติดเงื่อนไขซ่อน: ดูชุดสำรองของปลานี้ · ไม่รับประกันว่าปลากิน",
-      en: "If the starter is blocked by the hidden check: see this fish’s backup sets · no bite guarantee",
-      ja: "最初のセットが隠し判定でブロックされたら、この魚の予備セットを見る（食いつき保証ではありません）"
-    };
-    return hasThreeBundleFlyBackup(ctx, fish) ? { href: `${ctx.fishHref(fish)}#fly-backup`, label: labels } : null;
-  }
-  function flyDecision(ctx, category) {
-    const fish = document.getElementById("fish-filter").value;
-    if (!["flymaker", "all"].includes(category) || !fish) return "";
-    const stage = Number(ctx.locationStage || (ctx.fishLocations[fish]?.locations || [])[0]?.stage);
-    const { offer, sameArea } = findFlyOffer(ctx, fish, stage);
-    if (!offer) return noReadyFlyCard(ctx, fish);
-    const decision = flyDecisionCopy(ctx, fish, offer, sameArea);
-    decision.nextAction = flyBackupAction(ctx, fish);
-    return ctx.decisionCard(decision);
-  }
-  function rodTableAdvice(ctx, item) {
-    const linkLabel = ctx.lang === "th" ? "ดูเงื่อนไขซื้อและคันที่เทียบ" : ctx.lang === "ja" ? "購入条件・比較候補を見る" : "See purchase conditions and alternatives";
-    return `<td class="rod-table-advice"><strong>${ctx.esc(ctx.local(item.rodDecision?.label))}</strong><a href="${ctx.esc(ctx.itemHref(item))}">${linkLabel} ↗</a></td>`;
-  }
-  function rodComparisonRow(ctx, item, styles) {
-    const stockPrice = ctx.useOf(item).shops?.length ? ctx.formatYen(item) : ctx.lang === "th" ? "ไม่พบในร้าน" : ctx.lang === "ja" ? "店頭在庫なし" : "No recorded shop stock";
-    return `<tr><td><a href="${ctx.esc(ctx.itemHref(item))}">${ctx.esc(ctx.itemName(item))}</a></td><td>${ctx.esc(styles[item.decodedFields.styleCode])}</td><td>${item.decodedFields.castAimHoldCutoffInternal}</td><td>${item.decodedFields.rangeMultiplier}</td><td>${ctx.esc(stockPrice)}</td>${rodTableAdvice(ctx, item)}</tr>`;
-  }
-  function renderComparison(ctx, category) {
-    const box = document.getElementById("rod-comparison");
-    if (category !== "rod") {
-      box.innerHTML = "";
-      return;
-    }
-    const rods = ctx.allItems.filter((item) => item.category === "rod");
-    const wasOpen = Boolean(box.querySelector?.(".comparison")?.open);
-    const styles = ctx.lang === "th" ? { 1: "ทุ่น / อายุ", 2: "ตีเหยื่อ", 4: "ลัวร์", 8: "ฟลาย" } : ctx.lang === "ja" ? { 1: "ウキ・アユ", 2: "投げ", 4: "ルアー", 8: "フライ" } : { 1: "Float / Ayu", 2: "Casting", 4: "Lure", 8: "Fly" };
-    box.innerHTML = `<details id="rod-comparison-details" class="overview-disclosure comparison"${wasOpen ? " open" : ""}><summary>${ctx.esc(ctx.player.compare)} · ${rods.length}</summary><p>${ctx.lang === "th" ? "เวลาเล็งสูง = ขยับจุดเป้าหมายได้นานขึ้น; ขอบเขตสูง = ปลาออกไปไกลกว่าเดิมก่อนเข้าเงื่อนไขหนีและเสียอุปกรณ์ที่แกะได้ ตัวเลขเป็นหน่วยเปรียบเทียบภายใน ไม่ใช่เมตรหรือคะแนนพลัง และปลาอาจหนีด้วยเงื่อนไขอื่น" : ctx.lang === "ja" ? "照準時間が大きいほど狙いを動かせる時間が長い。魚位置の境界が大きいほど、追跡した道具喪失分岐に入るまで魚が遠くに行ける。内部比較値であり、メートル・強さではない。別条件の逃げもある。" : "More aim time lets you move the target longer. A higher fish-position limit allows the fish farther out before the traced tackle-loss escape condition. Values are internal comparisons, not metres or power. Other escape conditions still apply."}</p><div class="table-wrap"><table><thead><tr><th>${ctx.esc(ctx.copy.item)}</th><th>${ctx.esc(ctx.player.style)}</th><th>${ctx.esc(ctx.player.aim)}</th><th>${ctx.esc(ctx.player.reach)}</th><th>${ctx.lang === "th" ? "ราคาซื้อ" : ctx.lang === "ja" ? "購入価格" : "Purchase price"}</th><th>${ctx.lang === "th" ? "คำแนะนำ" : ctx.lang === "ja" ? "選び方" : "Recommendation"}</th></tr></thead><tbody>${rods.slice().sort(
-      (a, b) => a.decodedFields.styleCode - b.decodedFields.styleCode || b.decodedFields.rangeMultiplier - a.decodedFields.rangeMultiplier
-    ).map((item) => rodComparisonRow(ctx, item, styles)).join("")}</tbody></table></div></details>`;
-  }
-  function firstStockLink(ctx, kind) {
-    const first = Object.entries(ctx.gearPriceGuide[kind] || {}).filter(([, row2]) => row2).sort(([a], [b]) => Number(a) - Number(b))[0];
-    if (!first) return "";
-    const [stage, row] = first;
-    const item = ctx.allItems.find((entry) => entry.category === row.category && entry.id === row.id);
-    if (!item) return "";
-    const label = ctx.lang === "th" ? `ดูสต็อกแรก: ด่าน ${stage}` : ctx.lang === "ja" ? `最初の在庫：エリア${stage}` : `First stock: area ${stage}`;
-    return `<a data-first-stock="${kind}" href="${ctx.esc(ctx.areaItemLink(item, stage))}">${ctx.esc(label)} · ¥${row.priceYen}</a>`;
-  }
-
   // src/entities/item/fly-wing-decision.js
   var PATH_LIMITED_WINGS = /* @__PURE__ */ new Set(["25", "26", "66", "67"]);
   function hasUnverifiedFlyWingPath(item) {
@@ -668,6 +435,952 @@
     if (["float", "sinker"].includes(route)) query.set("route", route);
     if (typeof returnPath === "string" && returnPath) query.set("return", returnPath);
     return `index${locale === "en" ? "" : `.${locale}`}.html?${query}#category-decisions`;
+  }
+
+  // src/entities/item/rod-area-copy.js
+  var COPY = {
+    en: {
+      styles: { 1: "Float/Ayu", 2: "casting", 4: "lure", 8: "fly" },
+      labels: {
+        only: "{area}: only same-style rod listed",
+        dominated: "{area}: buy {otherId} instead — {betterReason}{hpNote}",
+        dual: "{area}: choose for lowest price, longest aim{hpNote} and farthest traced limit",
+        cheapest: "{area}: lowest new-purchase price",
+        aim: "{area}: longest aim window{hpNote}",
+        aimChoice: "{area}: choose {id} when {comparison}{hpNote}",
+        boundary: "{area}: choose for the longest limit before tackle-loss risk",
+        boundaryPeerCheapest: "{area}: choose {id} for the farthest limit at the lowest price among those rods",
+        boundaryPeerAim: "{area}: choose {id} for more aim time than {otherId} at the same farthest limit{hpNote}",
+        tradeoff: "{area}: choose {id} when {comparison}{hpNote}",
+        tradeoffFallback: "{area}: choose {id} when {comparison}{hpNote}",
+        itemMissing: "{area}: no offer for {id}; lowest-price local option is {budgetId} ({budgetPrice})",
+        styleMissing: "{area}: no same-style offer; {direction} numbered-area offer: ID {nextId} in Area {nextStage}",
+        styleNever: "{area}: no same-style offer recorded in any numbered area"
+      },
+      comparison: {
+        aimMore: "it gives you more time to adjust the target than the cheaper rod {id}",
+        aimLess: "it gives you less time to adjust the target than the cheaper rod {id}",
+        boundaryMore: "it lets the fish move farther than with the cheaper rod {id} before the traced tackle-loss branch",
+        boundaryLess: "the fish reaches the traced tackle-loss branch closer than with the cheaper rod {id}",
+        aimMoreAny: "it gives you more time to adjust the target than rod {id}",
+        aimLessAny: "it gives you less time to adjust the target than rod {id}",
+        boundaryMoreAny: "it lets the fish move farther than with rod {id} before the traced tackle-loss branch",
+        boundaryLessAny: "the fish reaches the traced tackle-loss branch closer than with rod {id}",
+        versus: "{benefits}",
+        higherPrice: "Rod {id} costs more at {price}; {comparison}{hpNote}.",
+        cheaper: "a lower full new-purchase price",
+        samePrice: "the same full new-purchase price",
+        and: " and ",
+        but: ", but "
+      },
+      recommendation: {
+        only: "This is the only {style} rod with a recorded offer in {area}: {stats}. Its aim cutoff gives more time to move the target; its ×{boundary} value is one traced fish-position limit before a tackle-loss escape. Choose it if you need this style here; keep it if already owned.",
+        dominated: "For a new {style} rod in {area}, choose {otherId} ({otherStats}) over {id} ({stats}): {betterReason}. Keep {id} if you own it; fish-specific differences remain unresolved.",
+        dual: "Choose {id} in {area} if you need a new {style} rod: it has the lowest full price ({price}), gives the longest time to adjust the target ({aim}){hpNote}, and lets the fish move farthest before one traced tackle-loss branch (×{boundary}). Keep an owned rod.",
+        cheapest: "Choose {id} to pay the lowest recorded full price in {area} ({price}). {aimLine} {boundaryLine} These are full new-purchase quotes, not trade-in costs; keep a rod you already own.",
+        aim: "Choose {id} in {area} when extra time to move the target matters: its aim cutoff ({aim}){hpNote} is the highest among local {style} offers. {budgetLine} {boundaryLine}",
+        aimChoice: "Choose {id} at full new-purchase price {price} when {comparison}{hpNote}. The cheaper option is {lowerId} at {lowerPrice}; keep a rod you already own.",
+        boundary: "Choose {id} in {area} when the largest recorded fish-position limit before one traced tackle-loss escape matters (×{boundary}). {budgetLine} {aimLine}",
+        boundaryPeerCheapest: "Choose {id} for the farthest recorded fish-position limit at the lowest full price among rods tied on that limit ({price}). {otherId} costs {otherPrice} for more time to adjust the target{hpNote} at the same limit.",
+        boundaryPeerAim: "Choose {id} when you want more time to adjust the target than {otherId}{hpNote} while keeping the same farthest recorded fish-position limit. Full new-purchase price: {price} versus {otherPrice}.",
+        tradeoff: "{id} has a tradeoff among local {style} offers: {lowerLine} {higherLine} Choose based on the full new-purchase price and the aim and boundary values you need.",
+        itemMissing: "{id} has no recorded offer in {area}. The same-style rods listed here are {options}. Keep {id} if owned. For a new purchase: {budgetLine} {aimLine} {boundaryLine} These are only price, aim and traced-boundary comparisons; they do not rank catch success.",
+        styleMissing: "{area} has no recorded {style} rod offer. The {direction} numbered area with same-style shop records is Area {nextStage}: {options}. Keep {id} if owned; this is a shop-stock route, not a claim that the rod cannot be obtained another way.",
+        aimLeader: "The longest local aim window is {id} ({stats}), giving more time to move the target.",
+        aimOther: "{id} ({stats}) gives more time to move the target.",
+        boundaryLeader: "The largest local limit is {id} ({stats}); it lets the fish move farther before one traced tackle-loss escape branch.",
+        boundaryOther: "{id} ({stats}) has a larger limit before one traced tackle-loss escape branch.",
+        budgetLeader: "The lowest full-price quote is {id} ({stats}).",
+        budgetOther: "{id} ({stats}) has the lowest full-price quote.",
+        step: "Compared with {otherId} ({otherStats}), {choiceId} has full price {price} (from {otherPrice}), aim cutoff {aim} (from {otherAim}), and loss limit ×{boundary} (from ×{otherBoundary}).",
+        area: "Area {stage}",
+        reason: "This choice is based on recorded same-style shop offers and the listed price and two decoded values only.",
+        styleNever: "No {style} rod has a recorded shop offer in the six areas. Keep {id} if owned; no shop purchase location is established.",
+        tradeoffChoice: "Choose {id} at the full new-purchase price {price} when {comparison}{hpNote}. {higherLine} Keep a rod you already own. Fish-specific advantage remains unresolved.",
+        noHigher: "",
+        scope: "Comparison scope: recorded same-style shop stock, full new-purchase price, aim cutoff and one traced fish-position threshold before a tackle-loss escape. This does not rank bites, landed fish or fish-specific advantage.{hp}{fly}",
+        hp: " Aim values for lure/casting rods assume HP 100 and shorten below 100.",
+        fly: " The fly rod’s separate half-value threshold is omitted because its effect is unresolved.",
+        noHp: "",
+        noFly: "",
+        next: "next",
+        previous: "previous",
+        and: " and "
+      }
+    },
+    th: {
+      styles: { 1: "สายทุ่น/อายุ", 2: "ตีเหยื่อ", 4: "ลัวร์", 8: "ฟลาย" },
+      labels: {
+        only: "ด่าน {stage}: มีคันรูปแบบนี้ขายเพียงคันเดียว",
+        dominated: "ด่าน {stage}: ซื้อคัน {otherId} แทน — {betterReason}{hpNote}",
+        dual: "ด่าน {stage}: เลือกเมื่ออยากจ่ายถูกสุด ได้เวลาเล็งนานสุด{hpNote}และปลาออกได้ไกลสุด",
+        cheapest: "ด่าน {stage}: ซื้อใหม่ราคาเต็มต่ำสุด",
+        aim: "ด่าน {stage}: เวลาเล็งสูงสุด{hpNote}",
+        aimChoice: "ด่าน {stage}: เลือกคัน {id} เมื่อ{comparison}{hpNote}",
+        boundary: "ด่าน {stage}: เลือกเมื่ออยากให้ปลาออกไปได้ไกลก่อนเสี่ยงเสียอุปกรณ์",
+        boundaryPeerCheapest: "ด่าน {stage}: เลือกคัน {id} เพื่อได้ขอบเขตไกลสุดในราคาต่ำสุดของกลุ่ม",
+        boundaryPeerAim: "ด่าน {stage}: เลือกคัน {id} เพื่อเล็งได้นานกว่าคัน {otherId} โดยยังได้ขอบเขตไกลสุด{hpNote}",
+        tradeoff: "ด่าน {stage}: เลือกคัน {id} เมื่อ{comparison}{hpNote}",
+        tradeoffFallback: "ด่าน {stage}: เลือกคัน {id} เมื่อ{comparison}{hpNote}",
+        itemMissing: "ด่าน {stage}: ไม่มีรายการขายคัน {id}; ตัวเลือกถูกสุดในด่านนี้คือ {budgetId} ({budgetPrice})",
+        styleMissing: "ด่าน {stage}: ไม่มีรายการขายรูปแบบนี้; ด่าน{direction}ที่มีคือคัน {nextId} ในด่าน {nextStage}",
+        styleNever: "ด่าน {stage}: ไม่พบรายการขายคันรูปแบบนี้ที่บันทึกไว้ทั้งหกด่าน"
+      },
+      comparison: {
+        aimMore: "ให้เวลาขยับเป้าได้นานกว่าคันราคาต่ำกว่า {id}",
+        aimLess: "ให้เวลาขยับเป้าได้น้อยกว่าคันราคาต่ำกว่า {id}",
+        boundaryMore: "ปลาออกไปได้ไกลกว่าคันราคาต่ำกว่า {id} ก่อนเข้าเงื่อนไขเสี่ยงเสียอุปกรณ์",
+        boundaryLess: "ปลาเข้าเงื่อนไขเสี่ยงเสียอุปกรณ์เมื่ออยู่ใกล้กว่าคันราคาต่ำกว่า {id}",
+        aimMoreAny: "ให้เวลาขยับเป้าได้นานกว่าคัน {id}",
+        aimLessAny: "ให้เวลาขยับเป้าได้น้อยกว่าคัน {id}",
+        boundaryMoreAny: "ปลาออกไปได้ไกลกว่าคัน {id} ก่อนเข้าเงื่อนไขเสี่ยงเสียอุปกรณ์",
+        boundaryLessAny: "ปลาเข้าเงื่อนไขเสี่ยงเสียอุปกรณ์เมื่ออยู่ใกล้กว่าคัน {id}",
+        versus: "{benefits}",
+        higherPrice: "คัน {id} ราคาเต็มสูงกว่า ({price}) และ{comparison}{hpNote}",
+        cheaper: "ราคาเต็มซื้อใหม่ถูกกว่า",
+        samePrice: "ราคาเต็มซื้อใหม่เท่ากัน",
+        and: " และ",
+        but: " แต่"
+      },
+      recommendation: {
+        only: "นี่เป็นคัน{style}คันเดียวที่มีรายการขายใน{area}: {stats} เวลาเล็งที่สูงขึ้นเพิ่มเวลาขยับเป้าหมาย; ค่า ×{boundary} คือขอบเขตตำแหน่งปลาก่อนเข้าเส้นทางเสียอุปกรณ์หนึ่งแบบ เลือกเมื่อจำเป็นต้องใช้รูปแบบนี้ในด่านนี้; ถ้ามีอยู่แล้วใช้ต่อได้",
+        dominated: "ถ้าจะซื้อคัน{style}ใหม่ใน{area} ให้เลือกคัน {otherId} ({otherStats}) แทนคัน {id} ({stats}): {betterReason} ถ้ามีคัน {id} อยู่แล้วใช้ต่อได้; ผลเฉพาะปลายังไม่ยืนยัน",
+        dual: "ถ้าต้องซื้อคัน{style}ใหม่ใน{area} ให้เลือกคัน {id}: ราคาเต็มต่ำสุด ({price}), มีเวลาเล็งขยับเป้านานสุด ({aim}){hpNote} และให้ปลาออกไปได้ไกลสุดก่อนเข้าเงื่อนไขเสี่ยงเสียอุปกรณ์ที่แกะได้หนึ่งแบบ (×{boundary}) ถ้ามีคันอยู่แล้วใช้ต่อได้",
+        cheapest: "เลือกคัน {id} ถ้าต้องการจ่ายราคาเต็มต่ำสุดใน{area} ({price}) {aimLine} {boundaryLine} เป็นราคาเต็มซื้อใหม่ ไม่ใช่ค่าหักคันเก่า; ถ้ามีคันเดิมอยู่แล้วใช้ต่อได้",
+        aim: "เลือกคัน {id} ใน{area} ถ้าต้องการเวลาขยับเป้าหมายนานขึ้น: ค่าเวลาเล็ง ({aim}){hpNote} สูงสุดในกลุ่ม{style}ที่มีขายในด่านนี้ {budgetLine} {boundaryLine}",
+        aimChoice: "เลือกคัน {id} ราคาเต็มซื้อใหม่ {price} เมื่อ{comparison}{hpNote} ตัวเลือกที่ถูกกว่าคือคัน {lowerId} ราคา {lowerPrice}; ถ้ามีคันอยู่แล้วใช้ต่อได้",
+        boundary: "เลือกคัน {id} ใน{area} ถ้าต้องการขอบเขตตำแหน่งปลาสูงสุดก่อนเข้าเส้นทางเสียอุปกรณ์ที่ตรวจพบหนึ่งแบบ (×{boundary}) {budgetLine} {aimLine}",
+        boundaryPeerCheapest: "เลือกคัน {id} ถ้าต้องการขอบเขตตำแหน่งปลาไกลสุดในราคาเต็มต่ำสุดของกลุ่มที่มีขอบเขตเท่ากัน ({price}) คัน {otherId} ราคา {otherPrice} ให้เวลาขยับเป้านานกว่า{hpNote} โดยยังได้ขอบเขตเท่ากัน",
+        boundaryPeerAim: "เลือกคัน {id} ถ้าต้องการเวลาขยับเป้านานกว่าคัน {otherId}{hpNote} โดยยังได้ขอบเขตตำแหน่งปลาไกลสุดเท่ากัน ราคาเต็มซื้อใหม่ {price} เทียบกับ {otherPrice}",
+        tradeoff: "คัน {id} มีข้อแลกเปลี่ยนเมื่อเทียบกับคัน{style}ที่มีขาย: {lowerLine} {higherLine} เลือกโดยดูราคาเต็มซื้อใหม่ เวลาเล็ง และขอบเขตที่ต้องการ",
+        itemMissing: "ไม่มีรายการขายคัน {id} ใน{area}; คัน{style}ที่มีขายคือ {options} ถ้ามีคัน {id} อยู่แล้วใช้ต่อได้ ถ้าจะซื้อใหม่: {budgetLine} {aimLine} {boundaryLine} นี่เป็นการเทียบราคา เวลาเล็ง และขอบเขตที่ตรวจพบเท่านั้น ไม่ได้จัดอันดับโอกาสจับปลา",
+        styleMissing: "{area} ไม่มีรายการขายคัน{style}ที่บันทึกไว้; ด่าน{direction}ที่มีรายการขายรูปแบบเดียวกันคือด่าน {nextStage}: {options} ถ้ามีคัน {id} อยู่แล้วใช้ต่อได้ ข้อมูลนี้บอกเฉพาะรายการขายในร้าน ไม่ได้ยืนยันว่าหาได้จากทางอื่นไม่ได้",
+        aimLeader: "คันที่มีเวลาเล็งสูงสุดคือ {id} ({stats}) จึงขยับเป้าหมายได้นานกว่า",
+        aimOther: "คัน {id} ({stats}) เพิ่มเวลาขยับเป้าหมาย",
+        boundaryLeader: "ขอบเขตสูงสุดคือคัน {id} ({stats}); ปลาขยับออกไปได้ไกลกว่าก่อนเข้าเส้นทางเสียอุปกรณ์หนึ่งแบบ",
+        boundaryOther: "คัน {id} ({stats}) มีขอบเขตก่อนเส้นทางเสียอุปกรณ์หนึ่งแบบสูงกว่า",
+        budgetLeader: "ราคาเต็มต่ำสุดคือคัน {id} ({stats})",
+        budgetOther: "คัน {id} ({stats}) มีราคาเต็มต่ำสุด",
+        step: "เทียบคัน {otherId} ({otherStats}) กับคัน {choiceId}: ราคาเต็ม {price} (เดิม {otherPrice}), เวลาเล็ง {aim} (เดิม {otherAim}), ขอบเขต ×{boundary} (เดิม ×{otherBoundary})",
+        area: "ด่าน {stage}",
+        reason: "คำแนะนำนี้ใช้รายการขายคันรูปแบบเดียวกัน ราคา และค่าที่ถอดจากโค้ดสองค่าเท่านั้น",
+        styleNever: "ไม่พบคัน{style}ในรายการขายทั้งหกด่าน ถ้ามีคัน {id} อยู่แล้วใช้ต่อได้; ยังไม่มีตำแหน่งร้านที่ยืนยันให้ซื้อคันรูปแบบนี้",
+        tradeoffChoice: "เลือกคัน {id} ในราคาเต็มซื้อใหม่ {price} เมื่อ{comparison}{hpNote} {higherLine} ถ้ามีคันอยู่แล้วใช้ต่อได้ และยังไม่ยืนยันข้อได้เปรียบเฉพาะปลา",
+        noHigher: "",
+        scope: "ขอบเขตการเทียบ: สต็อกร้านรูปแบบเดียวกัน ราคาเต็มซื้อใหม่ เวลาเล็ง และเกณฑ์ตำแหน่งปลาก่อนเส้นทางเสียอุปกรณ์หนึ่งแบบ ไม่ได้จัดอันดับปลากิน จับขึ้น หรือข้อได้เปรียบเฉพาะปลา{hp}{fly}",
+        hp: " ค่าเล็งคันลัวร์/ตีเหยื่ออิง HP 100 และลดลงเมื่อ HP ต่ำกว่า 100",
+        fly: " ไม่รวมเกณฑ์ครึ่งหนึ่งอีกชุดของคันฟลาย เพราะยังไม่ทราบผลแยก",
+        noHp: "",
+        noFly: "",
+        next: "ถัดไป",
+        previous: "ก่อนหน้า",
+        and: " และ"
+      }
+    },
+    ja: {
+      styles: { 1: "ウキ・アユ", 2: "投げ釣り", 4: "ルアー", 8: "フライ" },
+      labels: {
+        only: "エリア{stage}：同じ釣り方で唯一の店頭記録",
+        dominated: "エリア{stage}：新品購入は{id}より{otherId} — {betterReason}{hpNote}",
+        dual: "エリア{stage}：最安で照準時間{hpNote}・確認境界も最大",
+        cheapest: "エリア{stage}：新品全額が最安",
+        aim: "エリア{stage}：照準時間が最長{hpNote}",
+        aimChoice: "エリア{stage}：{id}は{comparison}{hpNote}",
+        boundary: "エリア{stage}：魚が道具喪失リスクに達する前に遠くへ動ける値で選ぶ",
+        boundaryPeerCheapest: "エリア{stage}：最遠境界の竿では新品全額が最安の{id}を選ぶ",
+        boundaryPeerAim: "エリア{stage}：{otherId}より照準時間が長い{id}を、同じ最遠境界で選ぶ{hpNote}",
+        tradeoff: "エリア{stage}：{comparison}ので{id}を選ぶ{hpNote}",
+        tradeoffFallback: "エリア{stage}：{comparison}ので{id}を選ぶ{hpNote}",
+        itemMissing: "エリア{stage}：{id}の販売記録なし。同エリアの最安候補は{budgetId}（{budgetPrice}）",
+        styleMissing: "エリア{stage}：同じ釣り方の記録なし。{direction}番号エリア{nextStage}に{nextId}の販売記録",
+        styleNever: "エリア{stage}：同じ釣り方の販売記録は全6エリアにありません"
+      },
+      comparison: {
+        aimMore: "安い竿{id}より照準時間が長い",
+        aimLess: "安い竿{id}より照準時間が短い",
+        boundaryMore: "安い竿{id}より魚が遠くまで移動してから確認済みの道具喪失分岐に入る",
+        boundaryLess: "安い竿{id}より魚が近い位置で確認済みの道具喪失分岐に入る",
+        aimMoreAny: "竿{id}より照準時間が長く、狙う位置を動かせる時間が延びる",
+        aimLessAny: "竿{id}より照準時間が短く、狙う位置を動かせる時間が減る",
+        boundaryMoreAny: "竿{id}より魚が遠くへ進んでから確認済みの道具喪失分岐に入る",
+        boundaryLessAny: "竿{id}より魚が近い位置で確認済みの道具喪失分岐に入る",
+        versus: "{benefits}",
+        higherPrice: "高価な竿{id}（新品全額{price}）なら、{comparison}{hpNote}",
+        cheaper: "新品全額が安い",
+        samePrice: "新品全額が同じ",
+        and: "、",
+        but: "が、その一方で"
+      },
+      recommendation: {
+        only: "エリア{stage}で販売記録がある{style}竿はこれだけです：{stats}。照準上限は狙うタイルを動かせる時間に関係します。×{boundary}は特定の道具喪失分岐までの魚位置しきい値です。この釣り方が必要なら選び、所持していれば継続できます。",
+        dominated: "エリア{stage}で{style}竿を新しく買うなら{id}（{stats}）より{otherId}（{otherStats}）を選びます：{betterReason}。所持していれば{id}を使い続けられます。魚別の差は未解明です。",
+        dual: "エリア{stage}で{style}竿を新しく買うなら{id}。新品全額が最安（{price}）で、狙う位置を動かせる時間（{aim}）{hpNote}と、確認した道具喪失分岐まで魚が進める距離（×{boundary}）も最大です。所持していれば使い続けられます。",
+        cheapest: "エリア{stage}で新品全額を抑えるなら{id}（{price}）が最安です。{aimLine} {boundaryLine} 所持品の下取り価格ではなく、新品の全額です。すでに持っていれば継続できます。",
+        aim: "照準時間を優先するなら、エリア{stage}の{id}（{aim}）{hpNote}を選びます。同じ釣り方の店頭在庫で最長です。{budgetLine} {boundaryLine}",
+        aimChoice: "新品全額{price}の{id}を選びます。{comparison}{hpNote}。出費を抑えるなら{lowerId}（{lowerPrice}）です。所持している竿は継続できます。",
+        boundary: "特定の道具喪失分岐までの魚位置しきい値を優先するなら、エリア{stage}の{id}（×{boundary}）を選びます。{budgetLine} {aimLine}",
+        boundaryPeerCheapest: "同じ最遠境界の竿で新品全額が最安なのは{id}（{price}）です。{otherId}（{otherPrice}）なら境界を保ったまま狙う位置を動かせる時間が長くなります{hpNote}。",
+        boundaryPeerAim: "同じ最遠境界を保ちながら{otherId}より狙う位置を動かせる時間を延ばすなら{id}を選びます{hpNote}。新品全額は{price}で、{otherId}は{otherPrice}です。",
+        tradeoff: "{id}はエリア{stage}の{style}販売記録の中で、価格・照準・境界にトレードオフがあります。{lowerLine} {higherLine} 新品全額と必要な照準時間・境界で選びます。",
+        itemMissing: "{id}の販売記録はエリア{stage}にありません。同じ釣り方でこのエリアに販売記録がある竿は{options}です。{id}を所持していれば継続できます。新しく買うなら：{budgetLine} {aimLine} {boundaryLine} 価格・照準・確認済み境界だけの比較で、釣果全体の優劣は判断できません。",
+        styleMissing: "エリア{stage}に{style}竿の販売記録はありません。同じ釣り方で販売記録がある{direction}番号エリアはエリア{nextStage}です：{options}。所持している竿は継続できます。店頭記録から他の入手方法までは判断できません。",
+        styleNever: "6エリアの販売記録に{style}竿はありません。{id}を所持していれば継続できます。店頭での購入場所は確認できません。",
+        tradeoffChoice: "新品全額{price}の{id}を選びます。{comparison}{hpNote}。{higherLine}。所持している竿は継続でき、魚別の優位性は未解明です。",
+        noHigher: "",
+        aimLeader: "照準時間が最長なのは{id}（{stats}）。狙うタイルを動かせる時間が長くなります。",
+        aimOther: "{id}（{stats}）の方が狙うタイルを動かせる時間が長いです。",
+        boundaryLeader: "確認済み境界が最大なのは{id}（{stats}）。特定の道具喪失分岐まで魚が遠くへ移動できます。",
+        boundaryOther: "{id}（{stats}）の方が特定の道具喪失分岐までの境界が大きいです。",
+        budgetLeader: "新品全額の最安は{id}（{stats}）。",
+        budgetOther: "新品全額は{id}（{stats}）が最安です。",
+        step: "{otherId}（{otherStats}）と{choiceId}の比較：新品全額 {price}（{otherPrice}から）、照準上限 {aim}（{otherAim}から）、境界 ×{boundary}（×{otherBoundary}から）。",
+        area: "エリア{stage}",
+        reason: "同じ釣り方の店頭記録、価格、コードで確認した二つの値だけを使っています。",
+        scope: "比較範囲：同じ釣り方の店頭在庫、新品全額、照準上限、特定の道具喪失分岐までの魚位置しきい値のみ。食いつき、取り込み、魚別の優位性は順位付けしません。{hp}{fly}",
+        hp: " ルアー竿・投げ竿の照準値はHP100時で、HP100未満では短くなります。",
+        fly: " フライ竿の半値しきい値は効果が未解明のため比較していません。",
+        noHp: "",
+        noFly: "",
+        next: "次の",
+        previous: "前の",
+        and: "、"
+      }
+    }
+  };
+  function interpolate(template, values) {
+    return template.replace(/\{([a-zA-Z]+)\}/g, (_match, key) => String(values[key] ?? ""));
+  }
+  function rodAreaCopy(lang, type, key, values = {}) {
+    const locale = COPY[lang] || COPY.en;
+    return interpolate(locale[type][key], values);
+  }
+  function rodAreaScope(lang, styleCode2) {
+    const locale = COPY[lang] || COPY.en;
+    const hp = [2, 4].includes(styleCode2) ? locale.recommendation.hp : "";
+    const fly = styleCode2 === 8 ? locale.recommendation.fly : "";
+    return interpolate(locale.recommendation.scope, { hp, fly });
+  }
+
+  // src/entities/item/rod-area-label.js
+  var AIM_STYLES = [2, 4];
+  function text(lang, type, key, values) {
+    return rodAreaCopy(lang, type, key, values);
+  }
+  function offerPrice(lang, price) {
+    return lang === "ja" ? `${price}円` : `¥${price}`;
+  }
+  function aimCondition(lang, item) {
+    if (!AIM_STYLES.includes(Number(item.decodedFields?.styleCode))) return "";
+    return lang === "th" ? " (HP 100 ใช้กับเวลาเล็งเท่านั้น)" : lang === "ja" ? "（HP100は照準値のみ）" : " (HP 100 applies to aim only)";
+  }
+  function leader(choices, field) {
+    const values = choices.map((choice) => choice[field]);
+    const value = field === "price" ? Math.min(...values) : Math.max(...values);
+    return choices.find((choice) => choice[field] === value);
+  }
+  function tradeoffNeighbors(candidate, choices) {
+    const lower = choices.filter((choice) => choice.price < candidate.price).sort((a, b) => b.price - a.price || a.id.localeCompare(b.id))[0];
+    const higher = choices.filter((choice) => choice.price > candidate.price).sort((a, b) => a.price - b.price || a.id.localeCompare(b.id))[0];
+    return { lower, higher };
+  }
+  function relationCopy(lang, key) {
+    const names = ["id", "benefits", "price", "comparison", "hpNote"];
+    const placeholders = Object.fromEntries(names.map((name) => [name, `%%${name}%%`]));
+    return Object.entries(placeholders).reduce(
+      (copy2, [name, marker]) => copy2.replaceAll(marker, `{${name}}`),
+      text(lang, "comparison", key, placeholders)
+    );
+  }
+  function tradeoffDescription(lang, subject, other) {
+    const aimKey = subject.aim > other.aim ? "aimMore" : subject.aim < other.aim ? "aimLess" : "";
+    const boundaryKey = subject.boundary > other.boundary ? "boundaryMore" : subject.boundary < other.boundary ? "boundaryLess" : "";
+    const keys = [aimKey, boundaryKey].filter(Boolean);
+    const phrases = keys.map((key) => relationCopy(lang, key).replace("{id}", other.id));
+    const opposing = keys.length === 2 && subject.aim > other.aim !== subject.boundary > other.boundary;
+    const joiner = opposing ? relationCopy(lang, "but") : relationCopy(lang, "and");
+    return relationCopy(lang, "versus").replace("{benefits}", phrases.join(joiner));
+  }
+  function higherPriceDescription(lang, subject, other) {
+    return relationCopy(lang, "higherPrice").replace("{id}", subject.id).replace("{price}", offerPrice(lang, subject.price)).replace("{comparison}", tradeoffDescription(lang, subject, other)).replace("{hpNote}", aimCondition(lang, subject.item));
+  }
+  function boundaryPeerContext(choices, maximum) {
+    const peers = choices.filter((choice) => choice.boundary === maximum);
+    if (peers.length < 2) return null;
+    return { cheapest: leader(peers, "price"), aimLeader: leader(peers, "aim") };
+  }
+  function dominatedReason(lang, candidate, better) {
+    const keys = [better.price < candidate.price ? "cheaper" : "samePrice"];
+    if (better.aim > candidate.aim) keys.push("aimMoreAny");
+    if (better.boundary > candidate.boundary) keys.push("boundaryMoreAny");
+    return keys.map((key) => relationCopy(lang, key).replace("{id}", candidate.id)).join(relationCopy(lang, "and"));
+  }
+  function valuesFor(lang, candidate, stage, better) {
+    return {
+      stage,
+      area: text(lang, "recommendation", "area", { stage }),
+      id: candidate.id,
+      otherId: better?.id || "",
+      price: offerPrice(lang, candidate.price),
+      aim: candidate.aim,
+      hpNote: aimCondition(lang, candidate.item)
+    };
+  }
+  function areaLeaderLabel(lang, status, candidate, choices, values) {
+    if (status === "aim") {
+      const budget = leader(choices, "price");
+      if (budget.id !== candidate.id) {
+        return text(lang, "labels", "aimChoice", {
+          ...values,
+          comparison: tradeoffDescription(lang, candidate, budget)
+        });
+      }
+    }
+    if (status === "boundary") {
+      const maximum = Math.max(...choices.map((choice) => choice.boundary));
+      const peer = boundaryPeerContext(choices, maximum);
+      if (peer?.cheapest.id === candidate.id && peer.aimLeader.id !== candidate.id) {
+        return text(lang, "labels", "boundaryPeerCheapest", values);
+      }
+      if (peer?.aimLeader.id === candidate.id && peer.cheapest.id !== candidate.id) {
+        return text(lang, "labels", "boundaryPeerAim", {
+          ...values,
+          otherId: peer.cheapest.id
+        });
+      }
+    }
+    return "";
+  }
+  function tradeoffLabel(lang, candidate, choices, values) {
+    const { lower, higher } = tradeoffNeighbors(candidate, choices);
+    const other = lower || leader(choices, "price");
+    const key = higher ? "tradeoff" : "tradeoffFallback";
+    return text(lang, "labels", key, {
+      ...values,
+      lowerId: other.id,
+      comparison: tradeoffDescription(lang, candidate, other)
+    });
+  }
+  function areaRodLabel(lang, status, candidate, choices, stage, better) {
+    const values = valuesFor(lang, candidate, stage, better);
+    if (status === "dominated") {
+      return text(lang, "labels", status, {
+        ...values,
+        betterReason: dominatedReason(lang, candidate, better)
+      });
+    }
+    const leaderLabel = areaLeaderLabel(lang, status, candidate, choices, values);
+    if (leaderLabel) return leaderLabel;
+    if (status !== "tradeoff") return text(lang, "labels", status, values);
+    return tradeoffLabel(lang, candidate, choices, values);
+  }
+
+  // src/entities/item/rod-area-decision.js
+  var LOCALES = ["en", "th", "ja"];
+  var STYLES = { 1: "Float/Ayu", 2: "Casting", 4: "Lure", 8: "Fly" };
+  function validStage(value) {
+    const stage = Number(value);
+    return Number.isInteger(stage) && stage >= 1 && stage <= 6 ? stage : 0;
+  }
+  function styleCode(item) {
+    const style = Number(item.decodedFields?.styleCode);
+    return Object.hasOwn(STYLES, style) ? style : 0;
+  }
+  function rodMetrics(item) {
+    const values = {
+      price: Number(item.priceYen),
+      aim: Number(item.decodedFields?.castAimHoldCutoffInternal),
+      boundary: Number(item.decodedFields?.rangeMultiplier)
+    };
+    return Object.values(values).every(Number.isFinite) ? { ...values, id: item.id, item } : null;
+  }
+  function localStyleOffers(item, allItems, stage) {
+    const style = styleCode(item);
+    return allItems.filter(
+      (candidate) => candidate.category === "rod" && styleCode(candidate) === style && candidate.playerUse?.shops?.some((offer) => Number(offer.stage) === stage)
+    ).map(rodMetrics).filter(Boolean).sort((a, b) => a.id.localeCompare(b.id));
+  }
+  function dominates(first, second) {
+    return first.id !== second.id && first.price <= second.price && first.aim >= second.aim && first.boundary >= second.boundary && (first.price < second.price || first.aim > second.aim || first.boundary > second.boundary);
+  }
+  function dominators(candidate, choices) {
+    return choices.filter((choice) => dominates(choice, candidate)).sort(
+      (a, b) => a.price - b.price || b.aim - a.aim || b.boundary - a.boundary || a.id.localeCompare(b.id)
+    );
+  }
+  function extremes(choices) {
+    return {
+      cheapest: Math.min(...choices.map((choice) => choice.price)),
+      aim: Math.max(...choices.map((choice) => choice.aim)),
+      boundary: Math.max(...choices.map((choice) => choice.boundary))
+    };
+  }
+  function offerPrice2(lang, price) {
+    return lang === "ja" ? `${price}円` : `¥${price}`;
+  }
+  function offerStats(lang, choice) {
+    const hpNote = aimCondition2(lang, choice.item);
+    if (lang === "th")
+      return `${offerPrice2(lang, choice.price)} · เวลาเล็ง ${choice.aim}${hpNote} · ขอบเขต ×${choice.boundary}`;
+    if (lang === "ja")
+      return `${offerPrice2(lang, choice.price)}・照準${choice.aim}${hpNote}・境界×${choice.boundary}`;
+    return `${offerPrice2(lang, choice.price)} · aim ${choice.aim}${hpNote} · limit ×${choice.boundary}`;
+  }
+  function aimCondition2(lang, item) {
+    if (![2, 4].includes(styleCode(item))) return "";
+    return lang === "th" ? " (HP 100 ใช้กับเวลาเล็งเท่านั้น)" : lang === "ja" ? "（HP100は照準値のみ）" : " (HP 100 applies to aim only)";
+  }
+  function localized(valueForLocale) {
+    return Object.fromEntries(LOCALES.map((lang) => [lang, valueForLocale(lang)]));
+  }
+  function text2(lang, type, key, values) {
+    return rodAreaCopy(lang, type, key, values);
+  }
+  function leader2(choices, field) {
+    const value = field === "price" ? Math.min(...choices.map((choice) => choice.price)) : Math.max(...choices.map((choice) => choice[field]));
+    return choices.find((choice) => choice[field] === value);
+  }
+  function leaderSentence(lang, field, candidate, choices) {
+    const best = leader2(choices, field);
+    const key = field === "aim" ? "aim" : field === "boundary" ? "boundary" : "budget";
+    const sentenceKey = best.id === candidate.id ? `${key}Leader` : `${key}Other`;
+    return text2(lang, "recommendation", sentenceKey, {
+      id: best.id,
+      stats: offerStats(lang, best),
+      hpNote: ""
+    });
+  }
+  function tradeoffNeighbors2(candidate, choices) {
+    const lower = choices.filter((choice) => choice.price < candidate.price).sort((a, b) => b.price - a.price || a.id.localeCompare(b.id))[0];
+    const higher = choices.filter((choice) => choice.price > candidate.price).sort((a, b) => a.price - b.price || a.id.localeCompare(b.id))[0];
+    return { lower, higher };
+  }
+  function localStatus(candidate, choices, best) {
+    if (choices.length === 1) return "only";
+    if (best) return "dominated";
+    const tops = extremes(choices);
+    if (candidate.price === tops.cheapest && candidate.aim === tops.aim && candidate.boundary === tops.boundary)
+      return "dual";
+    if (candidate.price === tops.cheapest) return "cheapest";
+    if (candidate.aim === tops.aim) return "aim";
+    if (candidate.boundary === tops.boundary) return "boundary";
+    return "tradeoff";
+  }
+  function localRecommendation(lang, status, candidate, choices, stage, best) {
+    const values = localRecommendationValues(lang, candidate, stage);
+    const basic = simpleLocalRecommendation(lang, status, candidate, choices, best, values);
+    return basic || tradeoffRecommendation(lang, candidate, choices, values);
+  }
+  function localRecommendationValues(lang, candidate, stage) {
+    return {
+      area: text2(lang, "recommendation", "area", { stage }),
+      stage,
+      id: candidate.id,
+      style: text2(lang, "styles", String(styleCode(candidate.item)), {}),
+      price: offerPrice2(lang, candidate.price),
+      aim: candidate.aim,
+      boundary: candidate.boundary,
+      stats: offerStats(lang, candidate),
+      hpNote: aimCondition2(lang, candidate.item)
+    };
+  }
+  function simpleLocalRecommendation(lang, status, candidate, choices, best, values) {
+    if (status === "only") return text2(lang, "recommendation", "only", values);
+    if (status === "dominated")
+      return text2(lang, "recommendation", "dominated", {
+        ...values,
+        otherId: best.id,
+        otherStats: offerStats(lang, best),
+        betterReason: dominatedReason(lang, candidate, best)
+      });
+    if (status === "dual") return text2(lang, "recommendation", "dual", values);
+    if (status === "cheapest") return cheapestRecommendation(lang, candidate, choices, values);
+    if (status === "aim") return aimRecommendation(lang, candidate, choices, values);
+    if (status === "boundary") return boundaryRecommendation(lang, candidate, choices, values);
+    return "";
+  }
+  function cheapestRecommendation(lang, candidate, choices, values) {
+    return text2(lang, "recommendation", "cheapest", {
+      ...values,
+      aimLine: leaderSentence(lang, "aim", candidate, choices),
+      boundaryLine: leaderSentence(lang, "boundary", candidate, choices)
+    });
+  }
+  function aimRecommendation(lang, candidate, choices, values) {
+    const budget = leader2(choices, "price");
+    if (budget.id !== candidate.id) {
+      return text2(lang, "recommendation", "aimChoice", {
+        ...values,
+        lowerId: budget.id,
+        lowerPrice: offerPrice2(lang, budget.price),
+        comparison: tradeoffDescription(lang, candidate, budget)
+      });
+    }
+    return text2(lang, "recommendation", "aim", {
+      ...values,
+      budgetLine: leaderSentence(lang, "price", candidate, choices),
+      boundaryLine: leaderSentence(lang, "boundary", candidate, choices)
+    });
+  }
+  function boundaryRecommendation(lang, candidate, choices, values) {
+    const maximum = Math.max(...choices.map((choice) => choice.boundary));
+    const peer = boundaryPeerContext(choices, maximum);
+    if (peer?.cheapest.id === candidate.id && peer.aimLeader.id !== candidate.id) {
+      return text2(lang, "recommendation", "boundaryPeerCheapest", {
+        ...values,
+        otherId: peer.aimLeader.id,
+        otherPrice: offerPrice2(lang, peer.aimLeader.price),
+        otherAim: peer.aimLeader.aim,
+        hpNote: aimCondition2(lang, peer.aimLeader.item)
+      });
+    }
+    if (peer?.aimLeader.id === candidate.id && peer.cheapest.id !== candidate.id) {
+      return text2(lang, "recommendation", "boundaryPeerAim", {
+        ...values,
+        otherId: peer.cheapest.id,
+        otherPrice: offerPrice2(lang, peer.cheapest.price),
+        hpNote: aimCondition2(lang, candidate.item)
+      });
+    }
+    return text2(lang, "recommendation", "boundary", {
+      ...values,
+      budgetLine: leaderSentence(lang, "price", candidate, choices),
+      aimLine: leaderSentence(lang, "aim", candidate, choices)
+    });
+  }
+  function tradeoffRecommendation(lang, candidate, choices, values) {
+    const { lower, higher } = tradeoffNeighbors2(candidate, choices);
+    return text2(lang, "recommendation", "tradeoffChoice", {
+      ...values,
+      lowerId: lower?.id || leader2(choices, "price").id,
+      comparison: tradeoffDescription(lang, candidate, lower || leader2(choices, "price")),
+      higherLine: higher ? higherPriceDescription(lang, higher, candidate) : leaderSentence(lang, "aim", candidate, choices)
+    });
+  }
+  function alternativesFor(candidate, choices, isStocked) {
+    if (!isStocked) return choices.map((choice) => ({ category: "rod", id: choice.id }));
+    const alternatives = [];
+    const best = dominators(candidate, choices)[0];
+    const add = (choice) => {
+      if (choice && choice.id !== candidate.id && !alternatives.some((ref) => ref.id === choice.id))
+        alternatives.push({ category: "rod", id: choice.id });
+    };
+    add(best);
+    add(leader2(choices, "price"));
+    add(leader2(choices, "aim"));
+    add(leader2(choices, "boundary"));
+    const { lower, higher } = tradeoffNeighbors2(candidate, choices);
+    add(lower);
+    add(higher);
+    return alternatives;
+  }
+  function stockAtStage(allItems, style, stage) {
+    const source = allItems.find((item) => item.category === "rod" && styleCode(item) === style);
+    return source ? localStyleOffers(source, allItems, stage) : [];
+  }
+  function nextRecordedStage(allItems, style, stage) {
+    const stages = allItems.filter((item) => item.category === "rod" && styleCode(item) === style).flatMap((item) => (item.playerUse?.shops || []).map((offer) => Number(offer.stage))).filter((area) => Number.isInteger(area) && area >= 1 && area <= 6).sort((a, b) => a - b);
+    const next = stages.find((area) => area > stage);
+    return next || stages.filter((area) => area < stage).at(-1) || 0;
+  }
+  function localeOptions(lang, choices) {
+    return choices.map((choice) => `${choice.id} (${offerStats(lang, choice)})`).join(lang === "ja" ? "、" : "; ");
+  }
+  function decisionResult(status, stage, style, labelFor, recommendationFor, alternatives, nextStockStage = 0) {
+    return {
+      status,
+      stage,
+      label: localized(labelFor),
+      recommendation: localized(recommendationFor),
+      reason: localized((lang) => text2(lang, "recommendation", "reason", {})),
+      scope: localized((lang) => rodAreaScope(lang, style)),
+      alternatives,
+      nextStockStage
+    };
+  }
+  function areaValues(lang, stage) {
+    return {
+      stage,
+      area: text2(lang, "recommendation", "area", { stage })
+    };
+  }
+  function unstockedItem(item, choices, stage, style) {
+    const status = "item-unstocked";
+    const area = localized((lang) => text2(lang, "recommendation", "area", { stage }));
+    const budget = leader2(choices, "price");
+    return decisionResult(
+      status,
+      stage,
+      style,
+      (lang) => text2(lang, "labels", "itemMissing", {
+        stage,
+        area: area[lang],
+        id: item.id,
+        budgetId: budget.id,
+        budgetPrice: offerPrice2(lang, budget.price)
+      }),
+      (lang) => text2(lang, "recommendation", "itemMissing", {
+        id: item.id,
+        stage,
+        area: area[lang],
+        style: text2(lang, "styles", String(style), {}) || STYLES[style],
+        options: localeOptions(lang, choices),
+        hpNote: aimCondition2(lang, item),
+        budgetLine: leaderSentence(lang, "price", budget, choices),
+        aimLine: leaderSentence(lang, "aim", leader2(choices, "aim"), choices),
+        boundaryLine: leaderSentence(lang, "boundary", leader2(choices, "boundary"), choices)
+      }),
+      alternativesFor(null, choices, false)
+    );
+  }
+  function noStyleStock(item, allItems, stage, style) {
+    const nextStage = nextRecordedStage(allItems, style, stage);
+    const choices = nextStage ? stockAtStage(allItems, style, nextStage) : [];
+    const direction = nextStage > stage ? "next" : "previous";
+    const status = choices.length ? "style-unstocked" : "style-never-stocked";
+    const key = choices.length ? "styleMissing" : "styleNever";
+    const labelKey = choices.length ? "styleMissing" : "styleNever";
+    const result = decisionResult(
+      status,
+      stage,
+      style,
+      (lang) => text2(lang, "labels", labelKey, {
+        ...areaValues(lang, stage),
+        nextStage,
+        nextId: choices[0]?.id || "",
+        direction: text2(lang, "recommendation", direction, {})
+      }),
+      (lang) => text2(lang, "recommendation", key, {
+        id: item.id,
+        ...areaValues(lang, stage),
+        nextStage,
+        nextId: choices[0]?.id || "",
+        direction: text2(lang, "recommendation", direction, {}),
+        style: text2(lang, "styles", String(style), {}) || STYLES[style],
+        options: localeOptions(lang, choices),
+        hpNote: aimCondition2(lang, item)
+      }),
+      alternativesFor(null, choices, false),
+      nextStage
+    );
+    return result;
+  }
+  function rodAreaDecision(_lang, item, allItems, selectedArea) {
+    const stage = validStage(selectedArea);
+    const style = styleCode(item);
+    if (!stage || item.category !== "rod" || !style) return null;
+    const choices = localStyleOffers(item, allItems, stage);
+    if (!choices.length) return noStyleStock(item, allItems, stage, style);
+    const candidate = choices.find((choice) => choice.id === item.id);
+    if (!candidate) return unstockedItem(item, choices, stage, style);
+    const better = dominators(candidate, choices)[0];
+    const status = localStatus(candidate, choices, better);
+    return decisionResult(
+      status,
+      stage,
+      style,
+      (lang) => areaRodLabel(lang, status, candidate, choices, stage, better),
+      (lang) => localRecommendation(lang, status, candidate, choices, stage, better),
+      alternativesFor(candidate, choices, true)
+    );
+  }
+
+  // src/pages/equipment/rod-area-page-helpers.js
+  function hasSelectedArea(ctx) {
+    const stage = Number(ctx.locationStage);
+    return Number.isInteger(stage) && stage >= 1 && stage <= 6 ? stage : 0;
+  }
+  function localRodOffer(decision) {
+    return decision && !["item-unstocked", "style-unstocked", "style-never-stocked"].includes(decision.status);
+  }
+  function withStage(href, stage) {
+    const [pathAndQuery, hash = ""] = href.split("#");
+    const [path, query = ""] = pathAndQuery.split("?");
+    const params = new URLSearchParams(query);
+    params.set("stage", String(stage));
+    return `${path}?${params}${hash ? `#${hash}` : ""}`;
+  }
+  function areaLabel(ctx, stage) {
+    if (ctx.lang === "th") return `ด่าน ${stage}`;
+    if (ctx.lang === "ja") return `エリア${stage}`;
+    return `Area ${stage}`;
+  }
+  function categoryDecisionCopy(ctx, category, count) {
+    const area = hasSelectedArea(ctx);
+    const isAreaRod = area && category === "rod";
+    return {
+      label: categoryLabel(ctx, category, count, area, isAreaRod),
+      note: categoryNote(ctx, area, isAreaRod)
+    };
+  }
+  function categoryLabel(ctx, category, count, area, isAreaRod) {
+    if (!isAreaRod) return ctx.cardUi.categoryAdvice(count);
+    if (ctx.lang === "th") return `คำแนะนำคันเบ็ดทั่วไป (ไม่คัดตามด่าน ${area}) · ${count}`;
+    if (ctx.lang === "ja") return `一般的な竿のルート案内（エリア${area}に限定しない） · ${count}`;
+    return `General rod route advice (not scoped to Area ${area}) · ${count}`;
+  }
+  function categoryNote(ctx, area, isAreaRod) {
+    if (!isAreaRod) return "";
+    if (ctx.lang === "th")
+      return "<p>ส่วนนี้เป็นคำแนะนำเส้นทางเดิม ตารางเทียบด้านล่างคัดรายการขายตามด่านที่เลือก</p>";
+    if (ctx.lang === "ja")
+      return "<p>この欄は一般ルート案内です。下の比較表は選択エリアの販売記録で比較します。</p>";
+    return "<p>These are general route recommendations. The comparison table below uses recorded offers for the selected area.</p>";
+  }
+
+  // src/pages/equipment/player-guidance.js
+  function decisionCard(ctx, d) {
+    const marker = d.id === "lure_coverage_pair" ? " data-lure-coverage-pair" : "";
+    const nextAction = d.nextAction?.href ? `<p><a class="route-button" data-fly-backup-action href="${ctx.esc(d.nextAction.href)}">${ctx.esc(ctx.local(d.nextAction.label))} ↗</a></p>` : "";
+    const rodScope = d.category === "rod" && hasSelectedArea(ctx) ? ctx.lang === "th" ? `<p class="fish-scope">คำแนะนำเส้นทางทั่วไป ไม่ได้คัดจากสต็อกด่าน ${hasSelectedArea(ctx)}</p>` : ctx.lang === "ja" ? `<p class="fish-scope">一般ルート案内です。エリア${hasSelectedArea(ctx)}の販売記録に基づく案内ではありません。</p>` : `<p class="fish-scope">General route advice; not selected-area stock advice for Area ${hasSelectedArea(ctx)}.</p>` : "";
+    return `<article class="decision-card"${marker}><h3>${ctx.esc(ctx.local(d.title))}</h3>${rodScope}<p class="decision-action">${ctx.esc(ctx.local(d.recommendation))}</p>${d.reason ? `<p>${ctx.esc(ctx.local(d.reason))}</p>` : ""}<div class="decision-items">${(d.items || []).map(ctx.decisionLink).join("")}</div>${d.scope ? `<small>${ctx.esc(ctx.local(d.scope))}</small>` : ""}${nextAction}</article>`;
+  }
+  function renderPlayerDecisionOverview(ctx) {
+    const title = ctx.lang === "th" ? "ซื้ออะไร พกอะไร ทำอะไรก่อนตก" : ctx.lang === "ja" ? "買う・持つ・釣る前にすること" : "What to buy, carry and do before fishing";
+    const tip = ctx.lang === "th" ? "ใช้ลัวร์หรือตีเหยื่อ: เติม HP ให้ถึง 100 ก่อน ถ้าอยากได้เวลาเล็งเต็มของคัน" : ctx.lang === "ja" ? "ルアー・投げ釣り：照準時間を最大にするには、先にHPを100まで回復する。" : "Lure / casting: restore HP to 100 first to get your rod’s full aiming time.";
+    const scope = ctx.lang === "th" ? "หลักฐานนี้ยืนยันผลเรื่องเวลาเล็ง ยังไม่ได้ยืนยันโบนัสโอกาสปลากินเหยื่อ" : ctx.lang === "ja" ? "照準時間への効果を確認。食いつき率ボーナスは未確認。" : "This restores aiming time; a bite-rate bonus is not established.";
+    document.getElementById("player-decisions").hidden = !!document.getElementById("fish-filter").value;
+    document.getElementById("player-decisions").innerHTML = `<h2>${title}</h2><aside class="play-tip"><strong>${tip}</strong><p>${scope}</p></aside><div class="decision-grid">${ctx.decisions.map(ctx.decisionCard).join("")}</div>`;
+  }
+  function selectCategoryDecisions(ctx, category) {
+    const style = document.getElementById("style-filter").value;
+    const decisionStyles = {
+      float_rod_path: "1",
+      casting_rod_path: "2",
+      lure_rod_path: "4",
+      fly_rod_path: "8"
+    };
+    const selectedFish = document.getElementById("fish-filter").value;
+    const showLureCoverage = category === "lure" && !selectedFish;
+    const categoryChoices = ctx.decisions.filter(
+      (d) => !selectedFish && d.category === category && !(showLureCoverage && d.id === "lure_coverage_pair") && (category !== "rod" || !style || decisionStyles[d.id] === style) && !(category === "flymaker" && selectedFish)
+    );
+    return categoryChoices;
+  }
+  function renderCategoryDecisionDisclosure(ctx, category, categoryChoices) {
+    const box = document.getElementById("category-decisions");
+    const previous = box.querySelector?.("#category-recommendations-disclosure");
+    const keepOpen = Boolean(previous?.open);
+    const flyAdvice = ctx.flyDecision(category);
+    const showLureCoverage = category === "lure" && !document.getElementById("fish-filter").value;
+    const lureCoverage = showLureCoverage ? ctx.decisions.find((decision) => decision.id === "lure_coverage_pair") : null;
+    const priceAdvice = category === "float_weight" ? ctx.floatPriceGuide() : category === "hook" ? ctx.hookPriceGuide() : "";
+    const sections = [
+      ...category === "all" ? [] : categoryChoices.map(ctx.decisionCard),
+      flyAdvice,
+      priceAdvice
+    ].filter(Boolean);
+    const body = sections.join("");
+    const count = sections.length;
+    const visibleLureCard = lureCoverage ? ctx.decisionCard(lureCoverage) : "";
+    const copy2 = categoryDecisionCopy(ctx, category, count);
+    box.innerHTML = visibleLureCard + (body ? `<details id="category-recommendations-disclosure" class="overview-disclosure category-recommendations"><summary>${ctx.esc(copy2.label)}</summary><div class="category-recommendations-content">${copy2.note}${body}</div></details>` : "");
+    const disclosure = box.querySelector?.("#category-recommendations-disclosure");
+    if (disclosure && (keepOpen || typeof location !== "undefined" && location.hash === "#category-decisions"))
+      disclosure.open = true;
+  }
+  function renderDecisions(ctx, category) {
+    renderPlayerDecisionOverview(ctx);
+    const choices = selectCategoryDecisions(ctx, category);
+    renderCategoryDecisionDisclosure(ctx, category, choices);
+  }
+  function hookPriceGuide(ctx) {
+    const title = ctx.lang === "th" ? "เบ็ดหายหรือยังไม่มี? ซื้อเบ็ดทั่วไปที่ถูกสุดในด่านนี้" : ctx.lang === "ja" ? "針を失った・持っていない？現在エリアの最安の汎用針" : "Lost your hook or have none? Buy the cheapest stocked generic hook";
+    const note = ctx.lang === "th" ? "ถ้ามีเบ็ดอยู่แล้วใช้ต่อได้ ซื้อเมื่อต้องเติมเบ็ดสำหรับชุดทุ่นหรือตะกั่ว ตารางนี้เทียบราคาเบ็ดที่ไม่ผูกกับปลาเฉพาะ ไม่ใช่อันดับดึงปลาสำเร็จ และไม่ต้องซื้อเบ็ดชุดเหยื่อสำหรับลัวร์หรือฟลาย" : ctx.lang === "ja" ? "所持している針はそのまま使えます。ウキ・オモリ仕掛けの針が必要な時だけ購入。魚ID一致分岐のない針の価格比較で、釣果順位ではありません。ルアー・フライ用にエサ釣りの針を買う必要はありません。" : "Keep the hook you own. Buy only when a float or sinker bait rig needs a hook. This compares prices of hooks without a species-match branch, not landing success. Do not buy a bait-rig hook for lure or fly fishing.";
+    return `<section class="decision-card" id="hook-price-guide"><h3>${title}</h3><p>${note}</p><div class="table-wrap"><table><thead><tr><th>${ctx.lang === "th" ? "ด่าน" : ctx.lang === "ja" ? "エリア" : "Area"}</th><th>${ctx.lang === "th" ? "ซื้อชิ้นนี้ถ้าต้องเติมเบ็ด" : ctx.lang === "ja" ? "針が必要なら購入" : "Buy if you need a hook"}</th></tr></thead><tbody>${[
+      1,
+      2,
+      3,
+      4,
+      5,
+      6
+    ].map((stage) => {
+      const row = ctx.gearPriceGuide.hook[stage], item = ctx.allItems.find((i) => i.category === row.category && i.id === row.id);
+      return `<tr><td>${stage}</td><td><a data-hook-budget-stage="${stage}" href="${ctx.esc(ctx.areaItemLink(item, stage))}">${ctx.esc(ctx.itemName(item))} (${row.id}) · ¥${row.priceYen}</a></td></tr>`;
+    }).join("")}</tbody></table></div></section>`;
+  }
+  function floatPriceGuide(ctx) {
+    const fish = document.getElementById("fish-filter").value;
+    const title = fish ? ctx.lang === "th" ? `ซื้อทุ่นหรือตะกั่วสำหรับ${ctx.fishName(fish)} ที่ไหน` : ctx.lang === "ja" ? `${ctx.fishName(fish)}に使えるウキ・オモリの販売エリア` : `Where to buy floats or sinkers for ${ctx.fishName(fish)}` : ctx.lang === "th" ? "ซื้อทุ่นหรือตะกั่วที่ไหนให้ถูกสุดในด่านนี้" : ctx.lang === "ja" ? "現在のエリアで最安のウキ・オモリを買う" : "Cheapest stocked float or sinker in your area";
+    const note = fish ? ctx.lang === "th" ? `ถ้ามีของที่ใช้กับ${ctx.fishName(fish)} อยู่แล้วให้ใช้ต่อ ตารางแสดงเฉพาะของที่ผ่านเงื่อนไขปลานี้และมีบันทึกขายในแต่ละด่าน การผ่านเงื่อนไขไม่รับประกันว่าปลากินหรือจับขึ้นได้` : ctx.lang === "ja" ? `${ctx.fishName(fish)}に使える道具を持っていれば継続してください。表には魚の判定を通り、各エリアで販売記録がある品だけを表示します。適合は食いつきや釣果を保証しません。` : `Keep a model you already own for ${ctx.fishName(fish)}. The table lists only stocked items that pass this fish’s ROM profile check. Passing the check does not guarantee a bite or catch.` : ctx.lang === "th" ? "มีรุ่นเดิมอยู่แล้วใช้ต่อได้ ตารางนี้เลือกจากราคาของที่มีขาย ไม่ใช่อันดับจับปลา ทุ่นกับตะกั่วใช้คนละชุดปลา: เปิดรายละเอียดเพื่อตรวจปลาเป้าหมายก่อนซื้อ" : ctx.lang === "ja" ? "所持品はそのまま使えます。店頭価格による選択であり釣果順位ではありません。ウキとオモリの対応魚は違うため、購入前に詳細で魚を確認してください。" : "Keep the model you own. These choices use recorded shop prices, not catch rankings. Float and sinker routes accept different fish; check the item profile for your target before buying.";
+    const none = ctx.lang === "th" ? "ไม่พบในสต็อกด่านนี้" : ctx.lang === "ja" ? "店頭記録なし" : "No recorded stock";
+    const choice = (kind, stage) => {
+      if (fish) return targetFloatChoice(ctx, kind, stage, fish);
+      const row = ctx.gearPriceGuide[kind]?.[stage];
+      if (!row) return `${none} · ${firstStockLink(ctx, kind)}`;
+      const item = ctx.allItems.find((i) => i.category === row.category && i.id === row.id);
+      return `<a href="${ctx.esc(ctx.areaItemLink(item, stage))}">${ctx.esc(ctx.itemName(item))} (${row.id}) · ¥${row.priceYen}</a>`;
+    };
+    return `<section class="decision-card" id="float-price-guide"><h3>${title}</h3><p>${note}</p><div class="table-wrap"><table><thead><tr><th>${ctx.lang === "th" ? "ด่าน" : ctx.lang === "ja" ? "エリア" : "Area"}</th><th>${ctx.lang === "th" ? "ทุ่น" : ctx.lang === "ja" ? "ウキ" : "Float"}</th><th>${ctx.lang === "th" ? "ตะกั่ว" : ctx.lang === "ja" ? "オモリ" : "Sinker"}</th></tr></thead><tbody>${[1, 2, 3, 4, 5, 6].map((stage) => `<tr><td>${stage}</td><td>${choice("float", stage)}</td><td>${choice("sinker", stage)}</td></tr>`).join("")}</tbody></table></div></section>`;
+  }
+  function floatRigKind(item) {
+    const id = Number.parseInt(item.id, 16);
+    if (item.category !== "float_weight") return "";
+    if (id >= 1 && id <= 8) return "float";
+    if (id >= 9 && id <= 10) return "sinker";
+    return "";
+  }
+  function stockedForArea(item, stage) {
+    return (item.playerUse?.shops || []).some((shop) => Number(shop.stage) === stage);
+  }
+  function floatCandidatesForFish(ctx, kind, fish) {
+    return ctx.allItems.filter(
+      (item) => floatRigKind(item) === kind && (ctx.fishIdsFor(item) || []).includes(fish)
+    );
+  }
+  function targetFloatOffer(ctx, kind, stage, candidates) {
+    const stocked = candidates.filter((item2) => stockedForArea(item2, stage));
+    const guide = ctx.gearPriceGuide[kind]?.[stage];
+    const guideItem = stocked.find((item2) => item2.id === guide?.id);
+    const item = guideItem || stocked.sort((a, b) => Number(a.priceYen) - Number(b.priceYen) || a.id.localeCompare(b.id))[0];
+    if (!item) return null;
+    return {
+      item,
+      priceYen: item.id === guideItem?.id ? Number(guide.priceYen) : Number(item.priceYen)
+    };
+  }
+  function targetFloatChoice(ctx, kind, stage, fish) {
+    const candidates = floatCandidatesForFish(ctx, kind, fish);
+    if (!candidates.length) return incompatibleFloatText(ctx, kind, fish);
+    const offer = targetFloatOffer(ctx, kind, stage, candidates);
+    if (!offer) return noCompatibleFloatStockText(ctx, kind, stage, fish, candidates);
+    return `<a data-target-float-offer="${kind}" data-target-fish="${ctx.esc(fish)}" href="${ctx.esc(ctx.areaItemLink(offer.item, stage))}">${ctx.esc(ctx.itemName(offer.item))} (${offer.item.id}) · ¥${offer.priceYen}</a>`;
+  }
+  function incompatibleFloatText(ctx, kind, fish) {
+    const rig = kind === "float" ? ["ทุ่น", "ウキ", "float"] : ["ตะกั่ว", "オモリ", "sinker"];
+    const fishName = ctx.fishName(fish);
+    const text4 = ctx.lang === "th" ? `ไม่มี${rig[0]}ที่ผ่านเงื่อนไขปลา${fishName}ใน ROM` : ctx.lang === "ja" ? `この魚のROM判定を通る${rig[1]}はありません` : `No ${rig[2]} passes the ROM profile check for ${fishName}`;
+    return `<span data-target-rig-incompatible="${kind}" data-target-fish="${ctx.esc(fish)}">${ctx.esc(text4)}</span>`;
+  }
+  function noCompatibleFloatStockText(ctx, kind, stage, fish, candidates) {
+    const laterStages = [
+      ...new Set(
+        candidates.flatMap(
+          (item) => (item.playerUse?.shops || []).map((shop) => Number(shop.stage)).filter((shopStage) => shopStage > stage)
+        )
+      )
+    ].sort((a, b) => a - b);
+    const nextStage = laterStages.find(
+      (shopStage) => targetFloatOffer(ctx, kind, shopStage, candidates)
+    );
+    const nextOffer = nextStage ? targetFloatOffer(ctx, kind, nextStage, candidates) : null;
+    if (!nextOffer) {
+      return `<span data-no-compatible-float-stock data-target-fish="${ctx.esc(fish)}">${ctx.lang === "th" ? "ไม่มีของที่ผ่านเงื่อนไขปลาในสต็อกด่านนี้" : ctx.lang === "ja" ? "このエリアに魚の判定を通る在庫はありません" : "No stocked item in this area passes the fish check"}</span>`;
+    }
+    const message = ctx.lang === "th" ? `ด่าน ${stage} ไม่มีของที่ผ่านเงื่อนไขปลา; มีขายตั้งแต่ด่าน ${nextStage}` : ctx.lang === "ja" ? `エリア${stage}には適合品がありません。エリア${nextStage}から販売記録があります。` : `No matching stock in area ${stage}; recorded from area ${nextStage}.`;
+    return `<span data-no-compatible-float-stock data-target-fish="${ctx.esc(fish)}">${ctx.esc(message)} <a data-target-float-next-stock="${kind}" data-target-fish="${ctx.esc(fish)}" href="${ctx.esc(ctx.areaItemLink(nextOffer.item, nextStage))}">${ctx.esc(ctx.itemName(nextOffer.item))} (${nextOffer.item.id}) · ¥${nextOffer.priceYen}</a></span>`;
+  }
+  function findFlyOffer(ctx, fish, stage) {
+    const offers = ctx.allItems.filter((i) => i.category === "fly" && (ctx.useOf(i).fishIds || []).includes(fish)).flatMap(
+      (i) => (ctx.useOf(i).shops || []).filter((s) => s.bundle).map((s) => ({ body: i, ...s }))
+    ).sort((a, b) => a.bundle.shopPriceYen - b.bundle.shopPriceYen || a.stage - b.stage);
+    const sameArea = offers.filter((o) => o.stage === stage);
+    return { offer: (sameArea.length ? sameArea : offers)[0], sameArea };
+  }
+  function noReadyFlyCard(ctx, fish) {
+    const title = ctx.lang === "th" ? "ปลานี้ควรใช้อะไร" : ctx.lang === "ja" ? "この魚には何を使うか" : "What to use for this fish";
+    const note = ctx.lang === "th" ? "ยังไม่มีชุดฟลายสำเร็จรูปที่ผ่านเงื่อนไขให้แนะนำ เปิดหน้าปลาเพื่อเลือกวิธีตกและอุปกรณ์ที่รองรับ" : ctx.lang === "ja" ? "条件に合う店売り毛バリは案内できません。魚のページで対応する釣り方と道具を選んでください。" : "No qualifying ready-made fly is listed. Open this fish’s guide to choose a supported method and setup.";
+    const action = ctx.lang === "th" ? "เลือกชุดตกสำหรับปลานี้" : ctx.lang === "ja" ? "対応する釣り方と道具を見る" : "Choose a setup for this fish";
+    return `<article class="decision-card"><h3>${ctx.esc(title)}</h3><p>${ctx.esc(note)}</p><a class="route-button" data-fly-fallback="${ctx.esc(fish)}" href="${ctx.esc(ctx.fishHref(fish))}">${ctx.esc(action)} ↗</a></article>`;
+  }
+  function flyDecisionCopy(ctx, fish, offer, sameArea) {
+    const b = offer.bundle, refs = [
+      { category: "fly", id: b.body },
+      { category: "fly_wing", id: b.wing },
+      { category: "fly_tail", id: b.tail }
+    ].filter((r) => r.id !== "00");
+    const action = ctx.lang === "th" ? `สำหรับ${ctx.fishName(fish)} เริ่มลองชุดนี้ได้: ร้านฟลายด่าน ${offer.stage} ราคา ${b.shopPriceYen} เยนทั้งชุด` : ctx.lang === "ja" ? `${ctx.fishName(fish)}なら、この構成から試せる。エリア${offer.stage}の毛バリ店、完成品${b.shopPriceYen}円。` : `For ${ctx.fishName(fish)}, start with this ready-made fly: area ${offer.stage} fly shop, ¥${b.shopPriceYen} for the complete bundle.`;
+    const reason = ctx.lang === "th" ? `เลือกชุดราคาต่ำสุดที่บอดี้ผ่านเงื่อนไขปลานี้${sameArea.length ? "ในด่านของแผนที่ที่เลือก" : ""} เพื่อลดเงินที่ต้องจ่าย ไม่ใช่เพราะพิสูจน์ว่าจับง่ายที่สุด` : ctx.lang === "ja" ? `ボディ判定に合う${sameArea.length ? "選択エリア内の" : ""}最安の店売り構成を選び、出費を抑える。釣果の最良構成ではない。` : `Lowest listed price among qualifying bodies${sameArea.length ? " in the selected fishing area" : ""}, to limit your spending; not a proven best-catching fly.`;
+    const scope = ctx.lang === "th" ? "ยังมีเงื่อนไขซ่อนของบอดี้กับปีก ถ้าปลาไม่กิน การตีซ้ำไม่สุ่มค่านั้นใหม่ อย่าเหมาว่าราคาสูงกว่าจะดีกว่า" : ctx.lang === "ja" ? "隠しボディ・ウィング条件も残る。投げ直しでは再抽選されず、高価なほど良いとは限らない。" : "Hidden body/wing conditions still apply. Recasting does not reroll them; paying more is not an established advantage.";
+    return {
+      title: ctx.lang === "th" ? "ชุดฟลายสำหรับปลาที่เลือก" : ctx.lang === "ja" ? "選んだ魚の毛バリ候補" : "Fly to try for your selected fish",
+      recommendation: action,
+      reason,
+      scope,
+      items: refs
+    };
+  }
+  function hasThreeBundleFlyBackup(ctx, fish) {
+    const bundles = ctx.allItems.filter((item) => item.category === "fly" && (ctx.useOf(item).fishIds || []).includes(fish)).flatMap((item) => (ctx.useOf(item).shops || []).map((shop) => shop.bundle).filter(Boolean));
+    const residue = (id) => Number.parseInt(id, 16) & 3;
+    for (let first = 0; first < bundles.length; first += 1) {
+      for (let second = first + 1; second < bundles.length; second += 1) {
+        for (let third = second + 1; third < bundles.length; third += 1) {
+          const choices = [bundles[first], bundles[second], bundles[third]];
+          if (new Set(choices.map((bundle) => residue(bundle.body))).size === 3 && new Set(choices.map((bundle) => residue(bundle.wing))).size === 3)
+            return true;
+        }
+      }
+    }
+    return false;
+  }
+  function flyBackupAction(ctx, fish) {
+    const labels = {
+      th: "ถ้าชุดเริ่มต้นติดเงื่อนไขซ่อน: ดูชุดสำรองของปลานี้ · ไม่รับประกันว่าปลากิน",
+      en: "If the starter is blocked by the hidden check: see this fish’s backup sets · no bite guarantee",
+      ja: "最初のセットが隠し判定でブロックされたら、この魚の予備セットを見る（食いつき保証ではありません）"
+    };
+    return hasThreeBundleFlyBackup(ctx, fish) ? { href: `${ctx.fishHref(fish)}#fly-backup`, label: labels } : null;
+  }
+  function flyDecision(ctx, category) {
+    const fish = document.getElementById("fish-filter").value;
+    if (!["flymaker", "all"].includes(category) || !fish) return "";
+    const stage = Number(ctx.locationStage || (ctx.fishLocations[fish]?.locations || [])[0]?.stage);
+    const { offer, sameArea } = findFlyOffer(ctx, fish, stage);
+    if (!offer) return noReadyFlyCard(ctx, fish);
+    const decision = flyDecisionCopy(ctx, fish, offer, sameArea);
+    decision.nextAction = flyBackupAction(ctx, fish);
+    return ctx.decisionCard(decision);
+  }
+  function rodAreaTableAlternatives(ctx, decision) {
+    if (!decision?.alternatives?.length) return "";
+    const fallbackStage = decision.status === "style-unstocked" ? decision.nextStockStage : 0;
+    const links = decision.alternatives.map(
+      (ref) => ctx.allItems.find(
+        (candidate) => candidate.category === ref.category && candidate.id === ref.id
+      )
+    ).filter(Boolean).map((candidate) => {
+      const href = fallbackStage ? withStage(ctx.itemHref(candidate), fallbackStage) : ctx.itemHref(candidate);
+      const stage = fallbackStage ? ` data-stage="${fallbackStage}"` : "";
+      return `<a data-rod-area-alternative="${ctx.esc(candidate.id)}"${stage} href="${ctx.esc(href)}">${ctx.esc(ctx.itemName(candidate))} (${ctx.esc(candidate.id)})${fallbackStage ? ` · ${ctx.esc(areaLabel(ctx, fallbackStage))}` : ""} ↗</a>`;
+    }).join(" · ");
+    if (!links) return "";
+    return fallbackStage ? `<div data-rod-area-next-stock="${fallbackStage}">${links}</div>` : `<div data-rod-area-alternatives>${links}</div>`;
+  }
+  function rodTableAdvice(ctx, item, areaDecision) {
+    const linkLabel = ctx.lang === "th" ? "ดูเงื่อนไขซื้อและคันที่เทียบ" : ctx.lang === "ja" ? "購入条件・比較候補を見る" : "See purchase conditions and alternatives";
+    const advice = areaDecision || item.rodDecision;
+    const marker = areaDecision ? ` data-rod-area-decision="${areaDecision.stage}" data-rod-area-status="${ctx.esc(areaDecision.status)}"` : "";
+    const alternatives = rodAreaTableAlternatives(ctx, areaDecision);
+    return `<td class="rod-table-advice"${marker}><strong>${ctx.esc(ctx.local(advice?.label))}</strong><a href="${ctx.esc(ctx.itemHref(item))}">${linkLabel} ↗</a>${alternatives}</td>`;
+  }
+  function rodComparisonRow(ctx, item, styles) {
+    const selected = hasSelectedArea(ctx);
+    const areaDecision = selected ? rodAreaDecision(ctx.lang, item, ctx.allItems, selected) : null;
+    const stockPrice = areaDecision ? localRodOffer(areaDecision) ? ctx.formatYen(item) : ctx.lang === "th" ? `${areaLabel(ctx, selected)}: ไม่พบรายการขายที่บันทึกไว้` : ctx.lang === "ja" ? `${areaLabel(ctx, selected)}：販売記録なし` : `${areaLabel(ctx, selected)}: no offer recorded` : ctx.useOf(item).shops?.length ? ctx.formatYen(item) : ctx.lang === "th" ? "ไม่พบในร้าน" : ctx.lang === "ja" ? "店頭在庫なし" : "No recorded shop stock";
+    const rowMarker = areaDecision ? ` data-rod-area-decision="${selected}" data-rod-area-status="${ctx.esc(areaDecision.status)}"${localRodOffer(areaDecision) ? ' data-selected-area-offer="true"' : ""}` : "";
+    return `<tr${rowMarker}><td><a href="${ctx.esc(ctx.itemHref(item))}">${ctx.esc(ctx.itemName(item))}</a></td><td>${ctx.esc(styles[item.decodedFields.styleCode])}</td><td>${item.decodedFields.castAimHoldCutoffInternal}</td><td>${item.decodedFields.rangeMultiplier}</td><td>${ctx.esc(stockPrice)}</td>${rodTableAdvice(ctx, item, areaDecision)}</tr>`;
+  }
+  function renderComparison(ctx, category) {
+    const box = document.getElementById("rod-comparison");
+    if (category !== "rod") {
+      box.innerHTML = "";
+      return;
+    }
+    const rods = ctx.allItems.filter((item) => item.category === "rod");
+    const wasOpen = Boolean(box.querySelector?.(".comparison")?.open);
+    const styles = ctx.lang === "th" ? { 1: "ทุ่น / อายุ", 2: "ตีเหยื่อ", 4: "ลัวร์", 8: "ฟลาย" } : ctx.lang === "ja" ? { 1: "ウキ・アユ", 2: "投げ", 4: "ルアー", 8: "フライ" } : { 1: "Float / Ayu", 2: "Casting", 4: "Lure", 8: "Fly" };
+    box.innerHTML = `<details id="rod-comparison-details" class="overview-disclosure comparison"${wasOpen ? " open" : ""}><summary>${ctx.esc(ctx.player.compare)} · ${rods.length}</summary><p>${ctx.lang === "th" ? "เวลาเล็งสูง = ขยับจุดเป้าหมายได้นานขึ้น; ขอบเขตสูง = ปลาออกไปไกลกว่าเดิมก่อนเข้าเงื่อนไขหนีและเสียอุปกรณ์ที่แกะได้ ตัวเลขเป็นหน่วยเปรียบเทียบภายใน ไม่ใช่เมตรหรือคะแนนพลัง และปลาอาจหนีด้วยเงื่อนไขอื่น" : ctx.lang === "ja" ? "照準時間が大きいほど狙いを動かせる時間が長い。魚位置の境界が大きいほど、追跡した道具喪失分岐に入るまで魚が遠くに行ける。内部比較値であり、メートル・強さではない。別条件の逃げもある。" : "More aim time lets you move the target longer. A higher fish-position limit allows the fish farther out before the traced tackle-loss escape condition. Values are internal comparisons, not metres or power. Other escape conditions still apply."}</p><div class="table-wrap"><table><thead><tr><th>${ctx.esc(ctx.copy.item)}</th><th>${ctx.esc(ctx.player.style)}</th><th>${ctx.esc(ctx.player.aim)}</th><th>${ctx.esc(ctx.player.reach)}</th><th>${ctx.lang === "th" ? "ราคาซื้อ" : ctx.lang === "ja" ? "購入価格" : "Purchase price"}</th><th>${ctx.lang === "th" ? "คำแนะนำ" : ctx.lang === "ja" ? "選び方" : "Recommendation"}</th></tr></thead><tbody>${rods.slice().sort(
+      (a, b) => a.decodedFields.styleCode - b.decodedFields.styleCode || b.decodedFields.rangeMultiplier - a.decodedFields.rangeMultiplier
+    ).map((item) => rodComparisonRow(ctx, item, styles)).join("")}</tbody></table></div></details>`;
+  }
+  function firstStockLink(ctx, kind) {
+    const first = Object.entries(ctx.gearPriceGuide[kind] || {}).filter(([, row2]) => row2).sort(([a], [b]) => Number(a) - Number(b))[0];
+    if (!first) return "";
+    const [stage, row] = first;
+    const item = ctx.allItems.find((entry) => entry.category === row.category && entry.id === row.id);
+    if (!item) return "";
+    const label = ctx.lang === "th" ? `ดูสต็อกแรก: ด่าน ${stage}` : ctx.lang === "ja" ? `最初の在庫：エリア${stage}` : `First stock: area ${stage}`;
+    return `<a data-first-stock="${kind}" href="${ctx.esc(ctx.areaItemLink(item, stage))}">${ctx.esc(label)} · ¥${row.priceYen}</a>`;
   }
 
   // src/pages/equipment/item-use.js
@@ -1000,8 +1713,8 @@
     }
     const nested = target.searchParams.get("return");
     if (nested) {
-      const localized = depth < 4 ? localizeSafeReturn(nested, targetLocale, baseHref, depth + 1) : "";
-      if (localized) target.searchParams.set("return", localized);
+      const localized2 = depth < 4 ? localizeSafeReturn(nested, targetLocale, baseHref, depth + 1) : "";
+      if (localized2) target.searchParams.set("return", localized2);
       else target.searchParams.delete("return");
     }
     return safeLocalReturn(routeForTarget(target, base), baseHref);
@@ -1341,18 +2054,18 @@
   }
   function compatibilityText(ctx, fish, route) {
     if (route === "lure")
-      return text(ctx, {
+      return text3(ctx, {
         th: `ผ่านเงื่อนไขลัวร์สำหรับ${fish}`,
         ja: `${fish}のルアー判定に適合`,
         en: `Passes the lure check for ${fish}`
       });
-    return text(ctx, {
+    return text3(ctx, {
       th: `ผ่านเงื่อนไขเหยื่อสำหรับ${fish} · ${routeName(ctx, route)}`,
       ja: `${fish}のエサ判定に適合 · ${routeName(ctx, route)}`,
       en: `Passes the bait check for ${fish} · ${routeName(ctx, route)}`
     });
   }
-  function text(ctx, values) {
+  function text3(ctx, values) {
     return values[ctx.lang] || values.en;
   }
   function conditionText(ctx, condition) {
@@ -1371,11 +2084,11 @@
   }
   function alternativeList(ctx, advice) {
     if (!advice.alternatives.length) return "";
-    const heading = advice.currentStock?.available ? text(ctx, {
+    const heading = advice.currentStock?.available ? text3(ctx, {
       th: "ตัวเลือกที่ถูกกว่าซึ่งผ่านเงื่อนไขปลาและมีขายในด่านนี้",
       ja: "この魚の判定を通り、エリア内で買える安い候補",
       en: "Cheaper local offers that pass this fish check"
-    }) : text(ctx, {
+    }) : text3(ctx, {
       th: "ตัวเลือกที่มีขายในด่านนี้และผ่านเงื่อนไขปลา",
       ja: "エリア内で販売され、この魚の判定を通る候補",
       en: "Local offers that pass this fish check"
@@ -1383,7 +2096,7 @@
     return `<p>${ctx.esc(heading)}</p><ul>${advice.alternatives.map((offer) => alternativeLink(ctx, offer)).join("")}</ul>`;
   }
   function noAreaDecision(ctx) {
-    return text(ctx, {
+    return text3(ctx, {
       th: "มีของชิ้นนี้อยู่แล้วใช้ต่อได้ เลือกด่านจากแผนที่เพื่อดูว่ามีขายอะไรและราคาเท่าไร",
       ja: "所持していれば使用できます。地図でエリアを選ぶと、店頭在庫と価格を確認できます。",
       en: "Use it if you already own it. Choose an area on the map to check local stock and prices."
@@ -1391,33 +2104,33 @@
   }
   function absentStockDecision(ctx, advice) {
     if (advice.alternatives.length)
-      return text(ctx, {
+      return text3(ctx, {
         th: "ถ้ามีชิ้นนี้อยู่แล้วใช้ต่อได้ ชิ้นนี้ไม่มีรายการขายในด่านนี้; ถ้าจะซื้อใหม่ ให้เลือกตัวเลือกด้านล่าง",
         ja: "所持していればそのまま使えます。この品はエリア内の在庫記録がありません。新しく買うなら下記の候補を選べます。",
         en: "Keep using it if owned. This item has no recorded stock in this area; for a new purchase, choose a compatible offer below."
       });
-    return text(ctx, {
+    return text3(ctx, {
       th: "ชิ้นนี้ไม่มีรายการขายในด่านนี้; ถ้ามีอยู่แล้วใช้ต่อได้ หรือดูร้านในด่านอื่น",
       ja: "この品はエリア内の在庫記録がありません。所持品は使えます。別エリアの店を確認してください。",
       en: "This item has no recorded stock in this area. Use it if owned, or check another area’s shops."
     });
   }
   function conditionalStockDecision(ctx, stage, stock) {
-    return text(ctx, {
+    return text3(ctx, {
       th: `มีขายในด่าน ${stage} ราคา ¥${stock.priceYen} แต่${conditionText(ctx, stock.condition)}`,
       ja: `エリア${stage}で${stock.priceYen}円で販売。ただし${conditionText(ctx, stock.condition)}`,
       en: `Stocked in area ${stage} for ¥${stock.priceYen}, but ${conditionText(ctx, stock.condition)}.`
     });
   }
   function cheapestStockDecision(ctx, stage, stock) {
-    return text(ctx, {
+    return text3(ctx, {
       th: `มีขายในด่าน ${stage} ราคา ¥${stock.priceYen}; ถ้าจะซื้อ ชิ้นนี้เป็นหนึ่งในตัวเลือกที่ถูกที่สุดซึ่งผ่านเงื่อนไขปลาในสต็อกที่ตรวจได้`,
       ja: `エリア${stage}で${stock.priceYen}円。このエリアで確認できた魚判定を通る在庫品の最安候補の一つです。`,
       en: `Stocked in area ${stage} for ¥${stock.priceYen}; it is one of the cheapest recorded local offers passing this fish check.`
     });
   }
   function compareStockDecision(ctx, stage, stock) {
-    return text(ctx, {
+    return text3(ctx, {
       th: `มีขายในด่าน ${stage} ราคา ¥${stock.priceYen}; ถ้ามีอยู่แล้วใช้ต่อได้ ถ้าจะซื้อให้ดูตัวเลือกที่ถูกกว่าด้านล่าง`,
       ja: `エリア${stage}で${stock.priceYen}円。所持品はそのまま使えます。購入するなら下記の安い候補を確認してください。`,
       en: `Stocked in area ${stage} for ¥${stock.priceYen}. Keep using it if owned; compare the cheaper offers below before buying.`
@@ -1438,7 +2151,7 @@
     if (!advice) return "";
     const fishName = ctx.fishName(fish);
     const status = compatibilityText(ctx, fishName, advice.route);
-    const limit = text(ctx, {
+    const limit = text3(ctx, {
       th: "ยืนยันเฉพาะว่าเข้าเงื่อนไขตรวจเหยื่อ ไม่ได้ยืนยันโอกาสกินเหยื่อหรือจับขึ้น",
       ja: "エサの判定を通ることのみ確認。食いつき率・取り込みは示しません。",
       en: "This confirms the bait check only; it does not establish bite odds or landing success."
@@ -1493,7 +2206,7 @@
     const locations = ctx.fishLocations?.[AKAME_ID]?.locations || [];
     const point = locations.find((entry) => Number(entry.stage) === 6)?.points?.find((entry) => entry.x === 37 && entry.y === 29);
     if (!point) return "";
-    const text2 = {
+    const text4 = {
       th: {
         title: "เบาะแสหลังส่งเทียน · ตัวละครเซฟ 1",
         body: `บทพูดชี้ไปทางตะวันตกเฉียงเหนือแต่ไม่ระบุช่องตกปลา; ตารางจุดเกิดปลาใน ROM แยกต่างหากวางอาคาเมะไว้ที่ด่าน 6 X ${point.x}, Y ${point.y} หนึ่งจุด ซึ่งบางรอบอาจไม่ทำงาน`,
@@ -1513,11 +2226,11 @@
         map: "See this map point"
       }
     }[ctx.lang];
-    return `<div class="card-quest-next-action" data-quest-next-action="candle-akame"><strong>${ctx.esc(text2.title)}</strong><p>${ctx.esc(text2.body)}</p><p><a data-quest-fish-profile href="${ctx.esc(ctx.fishHref(AKAME_ID))}">${ctx.esc(text2.profile)} ↗</a> · <a data-quest-fish-map href="${ctx.esc(fishMapHref2(ctx, point))}">${ctx.esc(text2.map)} ↗</a></p></div>`;
+    return `<div class="card-quest-next-action" data-quest-next-action="candle-akame"><strong>${ctx.esc(text4.title)}</strong><p>${ctx.esc(text4.body)}</p><p><a data-quest-fish-profile href="${ctx.esc(ctx.fishHref(AKAME_ID))}">${ctx.esc(text4.profile)} ↗</a> · <a data-quest-fish-map href="${ctx.esc(fishMapHref2(ctx, point))}">${ctx.esc(text4.map)} ↗</a></p></div>`;
   }
   function fireworksCardAction(ctx, item) {
     if (!itemMatches(item, FIREWORKS_ID)) return "";
-    const text2 = {
+    const text4 = {
       th: {
         title: "ใช้ผิดจุดแล้วต้องหาอีก?",
         body: "ร้านเมืองด่าน 4 มีรายการดอกไม้ไฟในตาราง ROM ราคา ¥50; ยังยืนยันไม่ได้ว่าซื้อซ้ำได้ไม่จำกัด",
@@ -1534,11 +2247,11 @@
         shop: "Check Area 4 shop stock"
       }
     }[ctx.lang];
-    return `<div class="card-quest-next-action" data-quest-next-action="fireworks-recovery"><strong>${ctx.esc(text2.title)}</strong><p>${ctx.esc(text2.body)}</p><p><a data-quest-fireworks-shop href="${ctx.esc(fireworksShopHref(ctx))}">${ctx.esc(text2.shop)} ↗</a></p></div>`;
+    return `<div class="card-quest-next-action" data-quest-next-action="fireworks-recovery"><strong>${ctx.esc(text4.title)}</strong><p>${ctx.esc(text4.body)}</p><p><a data-quest-fireworks-shop href="${ctx.esc(fireworksShopHref(ctx))}">${ctx.esc(text4.shop)} ↗</a></p></div>`;
   }
   function notebookCardAction(ctx, item) {
     if (!itemMatches(item, "05")) return "";
-    const text2 = {
+    const text4 = {
       th: {
         title: "อยากเก็บปลาให้ครบสมุด?",
         body: "สมุดนับหนึ่งรายการต่อปลาหนึ่งชนิด ดูปลาใหม่กับปลาที่ซ้ำในแต่ละด่าน แล้วติ๊กตามที่เช็กได้ในเกม",
@@ -1559,7 +2272,7 @@
     const returnPath = ctx.sourceReturn?.();
     if (returnPath) query.set("return", returnPath);
     const href = `${ctx.detailFile("maps")}?${query}#notebook-guide`;
-    return `<aside class="card-quest-next-action notebook-card-action" data-notebook-item-action><strong>${ctx.esc(text2.title)}</strong><p>${ctx.esc(text2.body)}</p><p><a class="notebook-guide-link" href="${ctx.esc(href)}">${ctx.esc(text2.link)} ↗</a></p></aside>`;
+    return `<aside class="card-quest-next-action notebook-card-action" data-notebook-item-action><strong>${ctx.esc(text4.title)}</strong><p>${ctx.esc(text4.body)}</p><p><a class="notebook-guide-link" href="${ctx.esc(href)}">${ctx.esc(text4.link)} ↗</a></p></aside>`;
   }
   function questNextActions(ctx, item) {
     return [
@@ -1594,7 +2307,7 @@
   }
 
   // src/pages/equipment/bait-lure-verdict.js
-  var COPY = {
+  var COPY2 = {
     en: {
       ownBait: (route) => `If you already own it, keep using it for fish that pass its ${route} compatibility check.`,
       ownLure: "If you already own it, keep using it for fish that pass this lure’s compatibility check.",
@@ -1669,7 +2382,7 @@
     }
   };
   function copy(ctx) {
-    return COPY[ctx.lang] || COPY.en;
+    return COPY2[ctx.lang] || COPY2.en;
   }
   function stageNumber(value) {
     const stage = Number(value);
@@ -1861,6 +2574,21 @@
   function itemAdvice(item) {
     return item.rodDecision || item.baitLureDecision || item.gearDecision;
   }
+  function areaRodView(ctx, item) {
+    const decision = rodAreaDecision(ctx.lang, item, ctx.allItems, ctx.locationStage);
+    if (!decision) return item;
+    return {
+      ...item,
+      rodDecision: { ...item.rodDecision, ...decision },
+      generalRodDecision: item.rodDecision,
+      areaRodDecision: decision
+    };
+  }
+  function isAreaRodOffer(item) {
+    return item.areaRodDecision && !["item-unstocked", "style-unstocked", "style-never-stocked"].includes(
+      item.areaRodDecision.status
+    );
+  }
   function cardActionTitle(ctx, item, advice) {
     if (item.rodDecision) return ctx.rodAdviceTitle;
     if (!advice) return ctx.player.use;
@@ -1888,6 +2616,31 @@
     const offerNote = conditionalOfferNote(ctx, item, use);
     return `<div class="card-main"><figure class="sprite">${image}</figure><div class="card-text"><span class="category-tag">${ctx.esc(ctx.categoryNames[item.category])}</span><h3><a class="entity-title" href="${ctx.esc(detailHref)}">${ctx.esc(ctx.itemName(item))}</a></h3>${ctx.thaiLabel(item)}${japanese}<div class="price-row">${price}<span class="item-id">ID ${ctx.esc(item.id)}</span></div>${offerNote}<a class="card-detail-link" href="${ctx.esc(detailHref)}">${ctx.esc(ctx.cardUi.details)} ↗</a></div></div>`;
   }
+  function rodAreaAlternativeLinks(ctx, item) {
+    const decision = item.areaRodDecision;
+    if (!decision?.alternatives?.length) return "";
+    const nextStage = decision.status === "style-unstocked" ? decision.nextStockStage : 0;
+    const label = nextStage ? ctx.lang === "th" ? `คันรูปแบบเดียวกันที่มีรายการขายในด่าน ${nextStage}` : ctx.lang === "ja" ? `同じ釣り方の販売記録（エリア${nextStage}）` : `Same-style recorded offers in Area ${nextStage}` : item.areaRodDecision.status === "item-unstocked" ? ctx.lang === "th" ? "คันรูปแบบเดียวกันที่มีขายในด่านนี้" : ctx.lang === "ja" ? "このエリアで販売記録がある同じ釣り方の竿" : "Same-style offers recorded in this area" : ctx.lang === "th" ? "คันอื่นที่มีขายในด่านนี้สำหรับเปรียบเทียบ" : ctx.lang === "ja" ? "このエリアで比較できる同じ釣り方の竿" : "Other same-style offers recorded in this area";
+    const links = decision.alternatives.map(
+      (ref) => ctx.allItems.find(
+        (candidate) => candidate.category === ref.category && candidate.id === ref.id
+      )
+    ).filter(Boolean).map((candidate) => {
+      const href = ctx.itemHref(candidate);
+      const target = nextStage ? withStage(href, nextStage) : href;
+      const stageAttr = nextStage ? ` data-stage="${nextStage}"` : "";
+      return `<a class="decision-item" data-rod-area-alternative="${ctx.esc(candidate.id)}"${stageAttr} href="${ctx.esc(target)}"><img src="${ctx.esc(candidate.image)}" alt=""><span>${ctx.esc(ctx.itemName(candidate))}<small>ID ${ctx.esc(candidate.id)}${nextStage ? ` · ${ctx.esc(areaLabel(ctx, nextStage))}` : ""}</small></span></a>`;
+    }).join("");
+    if (!links) return "";
+    const marker = nextStage ? `data-rod-area-next-stock="${nextStage}"` : "data-rod-area-alternatives";
+    return `<div class="rod-alternatives" ${marker}><p>${ctx.esc(label)}</p>${links}</div>`;
+  }
+  function generalRodRouteAdvice(ctx, item) {
+    const advice = item.generalRodDecision;
+    if (!advice?.recommendation) return "";
+    const label = ctx.lang === "th" ? "คำแนะนำเส้นทางทั่วไปทุกด่าน" : ctx.lang === "ja" ? "エリア指定なしの一般ルート案内" : "General route advice across areas";
+    return `<details class="general-rod-route-advice"><summary>${label}</summary><p>${ctx.esc(ctx.local(advice.recommendation))}</p>${advice.reason ? `<p>${ctx.esc(ctx.local(advice.reason))}</p>` : ""}</details>`;
+  }
   function guideEvidenceNote(ctx, use) {
     if (use.evidence?.type !== "player_guide_report") return "";
     return `<p class="fish-scope">${ctx.lang === "th" ? "คำอธิบายการใช้จากคู่มือผู้เล่น ยังไม่ได้ยืนยันจากโค้ดเกม" : ctx.lang === "ja" ? "用途はプレイヤーガイドによる報告。ゲームコードでは未確認。" : "Use reported by a player guide; not yet confirmed in game code."}</p>`;
@@ -1899,7 +2652,9 @@
       recommendation,
       factList,
       guideEvidenceNote(ctx, use),
-      !wingDecision && advice ? ctx.rodAlternatives(item) : "",
+      !wingDecision && item.areaRodDecision ? rodAreaAlternativeLinks(ctx, item) : "",
+      !wingDecision && advice && !item.areaRodDecision ? ctx.rodAlternatives(item) : "",
+      !wingDecision ? generalRodRouteAdvice(ctx, item) : "",
       !wingDecision && advice ? ctx.gearNextActions(item) : "",
       !wingDecision && advice && !item.flyMakerMenuChoice ? ctx.flyMakerLink(item) : ""
     ].join("");
@@ -1928,8 +2683,9 @@
     const summaryClass = advice ? "card-verdict" : "card-effect";
     const menuAction = wingDecision ? wingLinks : item.flyMakerMenuChoice ? ctx.flyMakerLink(item) : "";
     const hookTargets = hookTargetLinks(ctx, item);
-    const visibleAdvice = targetAdvice2 || lureVerdict ? targetAdvice2 || lureVerdict : `<p class="use-summary ${summaryClass}">${ctx.esc(label)}</p>`;
-    return `<div class="use-block" ${dataDecision}><h4>${ctx.esc(actionTitle)}</h4>${visibleAdvice}${hookTargets}${menuAction}<div class="card-more-content">${disclosure}</div></div>`;
+    const visibleAdvice = item.areaRodDecision ? `<p class="use-summary card-verdict">${ctx.esc(label)}</p>` : targetAdvice2 || lureVerdict ? targetAdvice2 || lureVerdict : `<p class="use-summary ${summaryClass}">${ctx.esc(label)}</p>`;
+    const areaMarker = item.areaRodDecision ? ` data-rod-area-decision="${item.areaRodDecision.stage}" data-rod-area-status="${ctx.esc(item.areaRodDecision.status)}"` : "";
+    return `<div class="use-block" ${dataDecision}${areaMarker}><h4>${ctx.esc(actionTitle)}</h4>${visibleAdvice}${hookTargets}${menuAction}<div class="card-more-content">${disclosure}</div></div>`;
   }
   function renderCardAcquisition(ctx, item) {
     const actions = [
@@ -1957,15 +2713,23 @@
     return `${sellers}${choices}${fish}${ctx.toolUseLocations(item)}${ctx.detailedFields(item)}`;
   }
   function renderItemCard(ctx, item) {
-    const use = ctx.useOf(item);
-    const { summary, facts } = ctx.visibleUse(item);
-    const advice = itemAdvice(item);
-    const detailHref = ctx.itemHref(item);
-    const identity = renderCardIdentity(ctx, item, use, detailHref);
-    const guidance = renderCardGuidance(ctx, item, use, summary, facts, advice);
-    const details = renderCardAcquisition(ctx, item);
-    const poison = item.category === "food" && item.id === "0A" ? "poison-food" : "";
-    return `<article class="item-card item-card-compact ${poison}" id="item-${item.category}-${item.id}">${identity}${guidance}${questNextActions(ctx, item)}${details}</article>`;
+    const view = areaRodView(ctx, item);
+    const use = ctx.useOf(view);
+    const areaUse = view.areaRodDecision ? {
+      ...use,
+      shops: (use.shops || []).filter(
+        (shop) => Number(shop.stage) === view.areaRodDecision.stage
+      )
+    } : use;
+    const { summary, facts } = ctx.visibleUse(view);
+    const advice = itemAdvice(view);
+    const detailHref = ctx.itemHref(view);
+    const identity = renderCardIdentity(ctx, view, areaUse, detailHref);
+    const guidance = renderCardGuidance(ctx, view, use, summary, facts, advice);
+    const details = renderCardAcquisition(ctx, view);
+    const poison = view.category === "food" && view.id === "0A" ? "poison-food" : "";
+    const offerMarker = isAreaRodOffer(view) ? ' data-selected-area-offer="true"' : "";
+    return `<article class="item-card item-card-compact ${poison}" id="item-${view.category}-${view.id}"${offerMarker}>${identity}${guidance}${questNextActions(ctx, view)}${details}</article>`;
   }
 
   // src/pages/equipment/catalogue-results.js
@@ -2494,9 +3258,9 @@
       /[&<>"']/g,
       (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" })[c]
     );
-    ctx.set = (selector, text2) => {
+    ctx.set = (selector, text4) => {
       const node = document.querySelector(selector);
-      if (node) node.textContent = text2;
+      if (node) node.textContent = text4;
     };
   }
 

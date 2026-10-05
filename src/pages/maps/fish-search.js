@@ -132,11 +132,13 @@ export function indexMapSections(ctx) {
 
 export function updateUrl(ctx) {
   const params = new URLSearchParams()
-  const anchor = ctx.openNotebookGuide
-    ? '#notebook-guide'
-    : location.hash === '#map-view'
-      ? '#map-view'
-      : ''
+  const anchor = ctx.notebookRouteStage
+    ? `#notebook-route-${ctx.notebookRouteStage}`
+    : ctx.openNotebookGuide
+      ? '#notebook-guide'
+      : location.hash === '#map-view'
+        ? '#map-view'
+        : ''
   params.set('stage', String(ctx.activeStage))
   if (ctx.returnPath) params.set('return', ctx.returnPath)
   if (ctx.activeSection) params.set('section', ctx.activeSection)
@@ -156,7 +158,10 @@ export function updateLanguageLinks(ctx, params) {
     const toLang = link.getAttribute('hreflang')
     if (ctx.returnPath && ['en', 'th', 'ja'].includes(toLang))
       paramsCopy.set('return', ctx.localizeReturn(ctx.returnPath, toLang))
-    link.href = `${route}?${paramsCopy.toString()}${location.hash === '#notebook-guide' || location.hash === '#map-view' ? location.hash : ''}`
+    const keepAnchor =
+      ['#notebook-guide', '#map-view'].includes(location.hash) ||
+      /^#notebook-route-[1-6]$/.test(location.hash)
+    link.href = `${route}?${paramsCopy.toString()}${keepAnchor ? location.hash : ''}`
   })
 }
 

@@ -16,7 +16,9 @@ export function loadMaps(ctx) {
       ctx.initFromUrl()
       ctx.enableControls()
       ctx.render()
-      if (ctx.openNotebookGuide) ctx.$('notebook-guide')?.scrollIntoView({ block: 'start' })
+      if (ctx.notebookRouteStage)
+        ctx.$(`notebook-route-${ctx.notebookRouteStage}`)?.scrollIntoView({ block: 'start' })
+      else if (ctx.openNotebookGuide) ctx.$('notebook-guide')?.scrollIntoView({ block: 'start' })
       else if (location.hash === '#map-view') ctx.$('map-view')?.scrollIntoView({ block: 'start' })
     })
     .catch((error) => {

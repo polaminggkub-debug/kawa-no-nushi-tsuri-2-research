@@ -1357,6 +1357,7 @@ footer p {
 .notebook-new,
 .notebook-repeated,
 .notebook-excluded,
+.notebook-full-route,
 .notebook-evidence {
   margin-top: 11px;
   border-top: 1px solid #d7e0d4;
@@ -1365,11 +1366,30 @@ footer p {
 .notebook-new summary,
 .notebook-repeated summary,
 .notebook-excluded summary,
+.notebook-full-route summary,
 .notebook-evidence summary {
   color: #42634f;
   cursor: pointer;
   font-size: 13px;
   font-weight: 700;
+}
+.notebook-full-route > summary,
+.notebook-route-group > summary {
+  min-height: 44px;
+  padding: 10px 0;
+}
+.notebook-full-route > p {
+  margin: 0 0 10px;
+  font-size: 14px;
+  line-height: 1.55;
+}
+.notebook-route-group {
+  margin: 8px 0;
+  padding: 0 10px 8px;
+  border: 1px solid #d7e0d4;
+  border-radius: 9px;
+  background: #fffefa;
+  scroll-margin-top: 8rem;
 }
 .notebook-repeated p,
 .notebook-excluded p,
