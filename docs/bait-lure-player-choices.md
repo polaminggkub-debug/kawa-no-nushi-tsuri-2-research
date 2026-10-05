@@ -56,3 +56,22 @@ For broad lure-mask coverage, the separately verified two-item sets are Sinking 
 Regenerate that file with `node scripts/build_bait_lure_choices.cjs`. The generator checks all gate arrays against the ROM-derived acceptance data, prices against the item table, and stages against the six-area stock manifest.
 
 Evidence sources: [fish acceptance gates](fish-acceptance-research.md), [six-area shop stock and price consumers](shop-stock-research.md), [lure coverage set](../data/lure-coverage.json), [bait records and masks](../data/fish-acceptance.json), and [item table records](../data/item-table-records.json). No outside gameplay guide is used.
+
+## Same-price broader-coverage choices
+
+The catalogue now exposes `equalPriceByStage` separately from cheaper offers.
+For each of the 104 bait/lure records, a candidate must be the same category,
+have exactly the same ROM price, be unconditionally stocked alongside the
+original item in that area, cover every accepted profile on every compared rig,
+and add at least one accepted profile. Empty sets are preserved.
+
+Seven items have qualifying alternatives: bait 04 and 13; lure 2B, 2C, 43,
+49 and 4A. For example, Loach 13 and Small fish 12 both cost ¥20 in Areas 3,
+5 and 6. Small fish covers all Loach profiles and more: float 32 versus 21,
+sinker 12 versus 6. When buying for broader species coverage, choose Small
+fish; an owned compatible Loach remains usable. This comparison does not
+establish greater bite probability, fight advantage or landing success.
+
+Both catalogue cards and item details show the choice, with links preserving
+the purchase area, rig and return destination. An area without a qualifying
+local pair does not receive another area's equal-price recommendation.

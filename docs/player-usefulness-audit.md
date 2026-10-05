@@ -330,3 +330,16 @@ Catalogue map links previously held only a fish ID until navigation pointer/focu
 Food and general-tool browsing now shows item search, category and sorting without the global target-fish picker. Choosing a fish belongs to tackle browsing, and those controls return when entering a fishing category. Tools still retain their own species links. An incoming food/tool URL with a stale target fish now displays its requested category and items instead of mixing an `all` category control with empty results; the nested source return remains intact.
 
 Shop search now enters browsing mode when the player types a new query, clearing the previous item target and focused entrance. Previously a Spoon target message and seller actions could remain while the list showed only Soft Worm. Existing bookmarked URLs combining a query with an item target follow the same rule. The category, area, town/outdoor view, target fish, rig and original return are preserved; clearing the text does not resurrect the old item target. This corrects presentation state and adds no stock or acquisition claim.
+
+## Equal-price bait/lure purchase choices (2026-10-05)
+
+A bounded audit of all 81 lures and 23 baits found that strictly cheaper
+comparisons omitted useful same-price broader-coverage purchases. The 104
+records now preserve area-specific equal-price alternatives independently of
+cheaper offers. Seven items qualify; all other records retain empty maps.
+
+Cards and item detail decisions expose the choices as area/rig/return-aware
+links. The catalogue omits its redundant “no cheaper” fallback when a same-price
+choice exists. Owned compatible items remain usable; compatibility coverage is
+not described as bite, fight or landing superiority. Technical gates and the
+original cheaper comparisons remain intact. See bait-lure-player-choices.md.

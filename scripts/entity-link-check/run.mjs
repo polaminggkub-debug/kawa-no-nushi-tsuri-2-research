@@ -30,6 +30,7 @@ await import('./float-price-links.mjs')
 
 await import('./cheaper-price-links.mjs')
 await import('./bait-lure-verdict.mjs')
+await import('./equal-price-bait-choice.mjs')
 await import('./bait-empty-route.mjs')
 
 await import('./strategy-actions.mjs')

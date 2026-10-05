@@ -169,6 +169,7 @@ const output = {
     bait: 'Float: bait-mask overlap and nonzero fish-profile threshold. Sinker: bait-mask overlap plus fish-profile +13 bit 08 and nonzero +3 threshold. These are necessary profile checks, not bite results.',
     lure: 'Lure-mask/fish-profile overlap at the lure gate; candidate position, periodic selection, and input-state checks still apply.',
     cheaperByStage: 'For each area, list only the cheapest lower-price stocked item(s) whose route-paired gates cover the current item’s entire accepted profile set. This preserves compatibility coverage only; it does not assert equal fight behavior or catch odds.',
+    equalPriceByStage: 'Same-category, same-price alternatives unconditionally stocked alongside the original in that area. Each alternative covers every original accepted profile on every compared rig and adds at least one profile. Compatibility coverage only, not bite probability or fight/landing superiority.',
     prices: 'A ROM item-record price is presented as a shop purchase quote only when the item appears in the six decoded area stock lists. Conditional stock requirements are retained.'
   },
   sources: ['data/fish-acceptance.json', 'data/shop-stock-rom.json', 'data/item-table-records.json', 'docs/fish-acceptance-research.md', 'docs/shop-stock-research.md'],
@@ -238,6 +239,18 @@ for (const category of ['bait', 'lure']) {
           .map(candidate => ({ category, id: candidate.id, priceYen: candidate.priceYen }));
       }
     }
+    const equalPriceByStage = {};
+    for (const stage of offerStages) {
+      if (!ownOffers.some(row => row.stage === stage && !row.condition)) continue;
+      const peers = itemRows.filter(candidate => {
+        if (candidate.id === item.id || candidate.priceYen !== item.priceYen) return false;
+        const other = gatesById[candidate.id];
+        const routes = category === 'bait' ? { float: other.float, sinker: other.sinker } : { all: other.all };
+        return covers(routes, itemGate) && Object.keys(itemGate).some(route => routes[route].length > itemGate[route].length)
+          && (stockByKey[`${category}:${candidate.id}`] || []).some(row => row.stage === stage && !row.condition);
+      });
+      if (peers.length) equalPriceByStage[String(stage)] = peers.map(candidate => ({ category, id: candidate.id, priceYen: candidate.priceYen }));
+    }
     const stageAlternatives = [...new Map(Object.values(cheaperByStage).flat().map(reference => [reference.id, reference])).values()]
       .sort((a, b) => a.priceYen - b.priceYen || parseInt(a.id, 16) - parseInt(b.id, 16));
     const alternatives = stageAlternatives.slice(0, 2).map(row => refs(category, row.id));
@@ -265,7 +278,8 @@ for (const category of ['bait', 'lure']) {
       romRecordPriceYen: item.priceYen,
       fullShopPriceYen: offerStages.length ? item.priceYen : null,
       shopOffersByStage,
-      cheaperByStage
+      cheaperByStage,
+      equalPriceByStage
     };
   }
 }

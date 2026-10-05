@@ -101,7 +101,7 @@ if(baitLureSource.rom?.sha1!=='c2103dd94e2a1a65a495fc02adc2e7d040f31212')throw n
 for(const item of data.items.filter(i=>['bait','lure'].includes(i.category))){
  const choice=baitLureSource.items[item.category+':'+item.id];
  if(!choice)throw new Error('Missing bait/lure choice '+item.category+':'+item.id);
- item.baitLureDecision=Object.fromEntries(['label','recommendation','reason','alternatives','cheaperByStage'].map(key=>[key,choice[key]]));
+ item.baitLureDecision=Object.fromEntries(['label','recommendation','reason','alternatives','cheaperByStage','equalPriceByStage'].map(key=>[key,choice[key]]));
  item.baitLureDecision.sources=[...new Set([...(choice.sources||[]),'data/bait-lure-player-choices.json','docs/bait-lure-player-choices.md'])];
 }
 if(!fs.existsSync(gearPath))throw new Error('Missing per-item gear decisions');

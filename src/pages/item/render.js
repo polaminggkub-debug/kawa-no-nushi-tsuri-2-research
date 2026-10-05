@@ -1,3 +1,4 @@
+import { equalPriceChoice } from '../../entities/item/index.js'
 import { magnetNextAction } from './magnet-next-action.js'
 import { flyPriceChoice } from './fly-price-choice.js'
 import { flyMenuPosition } from './fly-menu-position.js'
@@ -276,7 +277,7 @@ function renderDecisionSection(ctx, item, summary, facts, imageNote, data) {
     allItems,
   )
   const primary = item.areaRodDecision ? general : targetAdvice || general
-  return `<section id="what-to-do" class="decision-panel ${decision ? 'rod-decision' : ''}" ${dataAttribute}><h2>${ctx.esc(heading)}</h2>${primary}${supporting}${actions}${note}</section>`
+  return `<section id="what-to-do" class="decision-panel ${decision ? 'rod-decision' : ''}" ${dataAttribute}><h2>${ctx.esc(heading)}</h2>${primary}${equalPriceChoice(ctx, item, allItems)}${supporting}${actions}${note}</section>`
 }
 
 function renderQuickOptions(ctx, item, allItems, fishLocations) {

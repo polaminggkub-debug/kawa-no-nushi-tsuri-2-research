@@ -14,7 +14,8 @@
     "bait": "Float: bait-mask overlap and nonzero fish-profile threshold. Sinker: bait-mask overlap plus fish-profile +13 bit 08 and nonzero +3 threshold. These are necessary profile checks, not bite results.",
     "lure": "Lure-mask/fish-profile overlap at the lure gate; candidate position, periodic selection, and input-state checks still apply.",
     "cheaperByStage": "For each area, list only the cheapest lower-price stocked item(s) whose route-paired gates cover the current item’s entire accepted profile set. This preserves compatibility coverage only; it does not assert equal fight behavior or catch odds.",
-    "prices": "A ROM item-record price is presented as a shop purchase quote only when the item appears in the six decoded area stock lists. Conditional stock requirements are retained."
+    "prices": "A ROM item-record price is presented as a shop purchase quote only when the item appears in the six decoded area stock lists. Conditional stock requirements are retained.",
+    "equalPriceByStage": "Same-category, same-price alternatives unconditionally stocked alongside the original in that area. Each alternative covers every original accepted profile on every compared rig and adds at least one profile. Compatibility coverage only, not bite probability or fight/landing superiority."
   },
   "sources": [
     "data/fish-acceptance.json",
@@ -147,7 +148,8 @@
           "priceYen": 5
         }
       },
-      "cheaperByStage": {}
+      "cheaperByStage": {},
+      "equalPriceByStage": {}
     },
     "bait:02": {
       "category": "bait",
@@ -245,7 +247,8 @@
           "priceYen": 10
         }
       },
-      "cheaperByStage": {}
+      "cheaperByStage": {},
+      "equalPriceByStage": {}
     },
     "bait:03": {
       "category": "bait",
@@ -368,7 +371,8 @@
             "priceYen": 10
           }
         ]
-      }
+      },
+      "equalPriceByStage": {}
     },
     "bait:04": {
       "category": "bait",
@@ -465,6 +469,29 @@
             "priceYen": 20
           }
         ]
+      },
+      "equalPriceByStage": {
+        "1": [
+          {
+            "category": "bait",
+            "id": "07",
+            "priceYen": 25
+          }
+        ],
+        "2": [
+          {
+            "category": "bait",
+            "id": "07",
+            "priceYen": 25
+          }
+        ],
+        "3": [
+          {
+            "category": "bait",
+            "id": "07",
+            "priceYen": 25
+          }
+        ]
       }
     },
     "bait:05": {
@@ -554,7 +581,8 @@
           "priceYen": 15
         }
       },
-      "cheaperByStage": {}
+      "cheaperByStage": {},
+      "equalPriceByStage": {}
     },
     "bait:06": {
       "category": "bait",
@@ -625,7 +653,8 @@
           "priceYen": 30
         }
       },
-      "cheaperByStage": {}
+      "cheaperByStage": {},
+      "equalPriceByStage": {}
     },
     "bait:07": {
       "category": "bait",
@@ -757,7 +786,8 @@
             "priceYen": 20
           }
         ]
-      }
+      },
+      "equalPriceByStage": {}
     },
     "bait:08": {
       "category": "bait",
@@ -859,7 +889,8 @@
           "priceYen": 20
         }
       },
-      "cheaperByStage": {}
+      "cheaperByStage": {},
+      "equalPriceByStage": {}
     },
     "bait:09": {
       "category": "bait",
@@ -970,7 +1001,8 @@
             "priceYen": 20
           }
         ]
-      }
+      },
+      "equalPriceByStage": {}
     },
     "bait:0A": {
       "category": "bait",
@@ -1060,7 +1092,8 @@
           "priceYen": 40
         }
       },
-      "cheaperByStage": {}
+      "cheaperByStage": {},
+      "equalPriceByStage": {}
     },
     "bait:0B": {
       "category": "bait",
@@ -1194,7 +1227,8 @@
             "priceYen": 10
           }
         ]
-      }
+      },
+      "equalPriceByStage": {}
     },
     "bait:0C": {
       "category": "bait",
@@ -1328,7 +1362,8 @@
             "priceYen": 10
           }
         ]
-      }
+      },
+      "equalPriceByStage": {}
     },
     "bait:0D": {
       "category": "bait",
@@ -1416,7 +1451,8 @@
       "romRecordPriceYen": 30,
       "fullShopPriceYen": null,
       "shopOffersByStage": {},
-      "cheaperByStage": {}
+      "cheaperByStage": {},
+      "equalPriceByStage": {}
     },
     "bait:0E": {
       "category": "bait",
@@ -1497,7 +1533,8 @@
           "priceYen": 25
         }
       },
-      "cheaperByStage": {}
+      "cheaperByStage": {},
+      "equalPriceByStage": {}
     },
     "bait:0F": {
       "category": "bait",
@@ -1578,7 +1615,8 @@
           "priceYen": 25
         }
       },
-      "cheaperByStage": {}
+      "cheaperByStage": {},
+      "equalPriceByStage": {}
     },
     "bait:10": {
       "category": "bait",
@@ -1683,7 +1721,8 @@
             "priceYen": 25
           }
         ]
-      }
+      },
+      "equalPriceByStage": {}
     },
     "bait:11": {
       "category": "bait",
@@ -1744,7 +1783,8 @@
           "priceYen": 25
         }
       },
-      "cheaperByStage": {}
+      "cheaperByStage": {},
+      "equalPriceByStage": {}
     },
     "bait:12": {
       "category": "bait",
@@ -1849,7 +1889,8 @@
           "priceYen": 20
         }
       },
-      "cheaperByStage": {}
+      "cheaperByStage": {},
+      "equalPriceByStage": {}
     },
     "bait:13": {
       "category": "bait",
@@ -1933,7 +1974,30 @@
           "priceYen": 20
         }
       },
-      "cheaperByStage": {}
+      "cheaperByStage": {},
+      "equalPriceByStage": {
+        "3": [
+          {
+            "category": "bait",
+            "id": "12",
+            "priceYen": 20
+          }
+        ],
+        "5": [
+          {
+            "category": "bait",
+            "id": "12",
+            "priceYen": 20
+          }
+        ],
+        "6": [
+          {
+            "category": "bait",
+            "id": "12",
+            "priceYen": 20
+          }
+        ]
+      }
     },
     "bait:14": {
       "category": "bait",
@@ -2087,7 +2151,8 @@
             "priceYen": 20
           }
         ]
-      }
+      },
+      "equalPriceByStage": {}
     },
     "bait:15": {
       "category": "bait",
@@ -2181,7 +2246,8 @@
           "priceYen": 35
         }
       },
-      "cheaperByStage": {}
+      "cheaperByStage": {},
+      "equalPriceByStage": {}
     },
     "bait:16": {
       "category": "bait",
@@ -2263,7 +2329,8 @@
           "priceYen": 40
         }
       },
-      "cheaperByStage": {}
+      "cheaperByStage": {},
+      "equalPriceByStage": {}
     },
     "bait:17": {
       "category": "bait",
@@ -2352,7 +2419,8 @@
             "priceYen": 25
           }
         ]
-      }
+      },
+      "equalPriceByStage": {}
     },
     "lure:01": {
       "category": "lure",
@@ -2764,7 +2832,8 @@
             "priceYen": 20
           }
         ]
-      }
+      },
+      "equalPriceByStage": {}
     },
     "lure:02": {
       "category": "lure",
@@ -3176,7 +3245,8 @@
             "priceYen": 20
           }
         ]
-      }
+      },
+      "equalPriceByStage": {}
     },
     "lure:03": {
       "category": "lure",
@@ -3585,7 +3655,8 @@
             "priceYen": 20
           }
         ]
-      }
+      },
+      "equalPriceByStage": {}
     },
     "lure:04": {
       "category": "lure",
@@ -3994,7 +4065,8 @@
             "priceYen": 20
           }
         ]
-      }
+      },
+      "equalPriceByStage": {}
     },
     "lure:05": {
       "category": "lure",
@@ -4403,7 +4475,8 @@
             "priceYen": 20
           }
         ]
-      }
+      },
+      "equalPriceByStage": {}
     },
     "lure:06": {
       "category": "lure",
@@ -4815,7 +4888,8 @@
             "priceYen": 20
           }
         ]
-      }
+      },
+      "equalPriceByStage": {}
     },
     "lure:07": {
       "category": "lure",
@@ -5227,7 +5301,8 @@
             "priceYen": 20
           }
         ]
-      }
+      },
+      "equalPriceByStage": {}
     },
     "lure:08": {
       "category": "lure",
@@ -5636,7 +5711,8 @@
             "priceYen": 20
           }
         ]
-      }
+      },
+      "equalPriceByStage": {}
     },
     "lure:09": {
       "category": "lure",
@@ -6045,7 +6121,8 @@
             "priceYen": 20
           }
         ]
-      }
+      },
+      "equalPriceByStage": {}
     },
     "lure:0A": {
       "category": "lure",
@@ -6460,7 +6537,8 @@
             "priceYen": 20
           }
         ]
-      }
+      },
+      "equalPriceByStage": {}
     },
     "lure:0B": {
       "category": "lure",
@@ -6875,7 +6953,8 @@
             "priceYen": 20
           }
         ]
-      }
+      },
+      "equalPriceByStage": {}
     },
     "lure:0C": {
       "category": "lure",
@@ -7287,7 +7366,8 @@
             "priceYen": 20
           }
         ]
-      }
+      },
+      "equalPriceByStage": {}
     },
     "lure:0D": {
       "category": "lure",
@@ -7699,7 +7779,8 @@
             "priceYen": 20
           }
         ]
-      }
+      },
+      "equalPriceByStage": {}
     },
     "lure:0E": {
       "category": "lure",
@@ -8114,7 +8195,8 @@
             "priceYen": 20
           }
         ]
-      }
+      },
+      "equalPriceByStage": {}
     },
     "lure:0F": {
       "category": "lure",
@@ -8526,7 +8608,8 @@
             "priceYen": 20
           }
         ]
-      }
+      },
+      "equalPriceByStage": {}
     },
     "lure:10": {
       "category": "lure",
@@ -8938,7 +9021,8 @@
             "priceYen": 20
           }
         ]
-      }
+      },
+      "equalPriceByStage": {}
     },
     "lure:11": {
       "category": "lure",
@@ -9353,7 +9437,8 @@
             "priceYen": 20
           }
         ]
-      }
+      },
+      "equalPriceByStage": {}
     },
     "lure:12": {
       "category": "lure",
@@ -9768,7 +9853,8 @@
             "priceYen": 20
           }
         ]
-      }
+      },
+      "equalPriceByStage": {}
     },
     "lure:13": {
       "category": "lure",
@@ -10180,7 +10266,8 @@
             "priceYen": 20
           }
         ]
-      }
+      },
+      "equalPriceByStage": {}
     },
     "lure:14": {
       "category": "lure",
@@ -10592,7 +10679,8 @@
             "priceYen": 20
           }
         ]
-      }
+      },
+      "equalPriceByStage": {}
     },
     "lure:15": {
       "category": "lure",
@@ -11007,7 +11095,8 @@
             "priceYen": 20
           }
         ]
-      }
+      },
+      "equalPriceByStage": {}
     },
     "lure:16": {
       "category": "lure",
@@ -11419,7 +11508,8 @@
             "priceYen": 20
           }
         ]
-      }
+      },
+      "equalPriceByStage": {}
     },
     "lure:17": {
       "category": "lure",
@@ -11523,7 +11613,8 @@
           "priceYen": 20
         }
       },
-      "cheaperByStage": {}
+      "cheaperByStage": {},
+      "equalPriceByStage": {}
     },
     "lure:18": {
       "category": "lure",
@@ -11655,7 +11746,8 @@
             "priceYen": 20
           }
         ]
-      }
+      },
+      "equalPriceByStage": {}
     },
     "lure:19": {
       "category": "lure",
@@ -12073,7 +12165,8 @@
             "priceYen": 20
           }
         ]
-      }
+      },
+      "equalPriceByStage": {}
     },
     "lure:1A": {
       "category": "lure",
@@ -12488,7 +12581,8 @@
             "priceYen": 20
           }
         ]
-      }
+      },
+      "equalPriceByStage": {}
     },
     "lure:1B": {
       "category": "lure",
@@ -12900,7 +12994,8 @@
             "priceYen": 20
           }
         ]
-      }
+      },
+      "equalPriceByStage": {}
     },
     "lure:1C": {
       "category": "lure",
@@ -13309,7 +13404,8 @@
             "priceYen": 20
           }
         ]
-      }
+      },
+      "equalPriceByStage": {}
     },
     "lure:1D": {
       "category": "lure",
@@ -13721,7 +13817,8 @@
             "priceYen": 20
           }
         ]
-      }
+      },
+      "equalPriceByStage": {}
     },
     "lure:1E": {
       "category": "lure",
@@ -14136,7 +14233,8 @@
             "priceYen": 20
           }
         ]
-      }
+      },
+      "equalPriceByStage": {}
     },
     "lure:1F": {
       "category": "lure",
@@ -14545,7 +14643,8 @@
             "priceYen": 20
           }
         ]
-      }
+      },
+      "equalPriceByStage": {}
     },
     "lure:20": {
       "category": "lure",
@@ -14957,7 +15056,8 @@
             "priceYen": 20
           }
         ]
-      }
+      },
+      "equalPriceByStage": {}
     },
     "lure:21": {
       "category": "lure",
@@ -15366,7 +15466,8 @@
             "priceYen": 20
           }
         ]
-      }
+      },
+      "equalPriceByStage": {}
     },
     "lure:22": {
       "category": "lure",
@@ -15775,7 +15876,8 @@
             "priceYen": 20
           }
         ]
-      }
+      },
+      "equalPriceByStage": {}
     },
     "lure:23": {
       "category": "lure",
@@ -15850,7 +15952,8 @@
           "priceYen": 30
         }
       },
-      "cheaperByStage": {}
+      "cheaperByStage": {},
+      "equalPriceByStage": {}
     },
     "lure:24": {
       "category": "lure",
@@ -15945,7 +16048,8 @@
             "priceYen": 30
           }
         ]
-      }
+      },
+      "equalPriceByStage": {}
     },
     "lure:25": {
       "category": "lure",
@@ -16360,7 +16464,8 @@
             "priceYen": 20
           }
         ]
-      }
+      },
+      "equalPriceByStage": {}
     },
     "lure:26": {
       "category": "lure",
@@ -16778,7 +16883,8 @@
             "priceYen": 20
           }
         ]
-      }
+      },
+      "equalPriceByStage": {}
     },
     "lure:27": {
       "category": "lure",
@@ -17193,7 +17299,8 @@
             "priceYen": 20
           }
         ]
-      }
+      },
+      "equalPriceByStage": {}
     },
     "lure:28": {
       "category": "lure",
@@ -17602,7 +17709,8 @@
             "priceYen": 20
           }
         ]
-      }
+      },
+      "equalPriceByStage": {}
     },
     "lure:29": {
       "category": "lure",
@@ -18017,7 +18125,8 @@
             "priceYen": 20
           }
         ]
-      }
+      },
+      "equalPriceByStage": {}
     },
     "lure:2A": {
       "category": "lure",
@@ -18429,7 +18538,8 @@
             "priceYen": 20
           }
         ]
-      }
+      },
+      "equalPriceByStage": {}
     },
     "lure:2B": {
       "category": "lure",
@@ -18839,6 +18949,42 @@
             "category": "lure",
             "id": "47",
             "priceYen": 20
+          }
+        ]
+      },
+      "equalPriceByStage": {
+        "1": [
+          {
+            "category": "lure",
+            "id": "2E",
+            "priceYen": 25
+          },
+          {
+            "category": "lure",
+            "id": "2F",
+            "priceYen": 25
+          },
+          {
+            "category": "lure",
+            "id": "30",
+            "priceYen": 25
+          },
+          {
+            "category": "lure",
+            "id": "31",
+            "priceYen": 25
+          }
+        ],
+        "3": [
+          {
+            "category": "lure",
+            "id": "18",
+            "priceYen": 25
+          },
+          {
+            "category": "lure",
+            "id": "31",
+            "priceYen": 25
           }
         ]
       }
@@ -19256,6 +19402,27 @@
             "priceYen": 20
           }
         ]
+      },
+      "equalPriceByStage": {
+        "3": [
+          {
+            "category": "lure",
+            "id": "18",
+            "priceYen": 25
+          },
+          {
+            "category": "lure",
+            "id": "31",
+            "priceYen": 25
+          }
+        ],
+        "5": [
+          {
+            "category": "lure",
+            "id": "18",
+            "priceYen": 25
+          }
+        ]
       }
     },
     "lure:2D": {
@@ -19665,7 +19832,8 @@
             "priceYen": 20
           }
         ]
-      }
+      },
+      "equalPriceByStage": {}
     },
     "lure:2E": {
       "category": "lure",
@@ -19794,7 +19962,8 @@
             "priceYen": 20
           }
         ]
-      }
+      },
+      "equalPriceByStage": {}
     },
     "lure:2F": {
       "category": "lure",
@@ -19923,7 +20092,8 @@
             "priceYen": 20
           }
         ]
-      }
+      },
+      "equalPriceByStage": {}
     },
     "lure:30": {
       "category": "lure",
@@ -20052,7 +20222,8 @@
             "priceYen": 20
           }
         ]
-      }
+      },
+      "equalPriceByStage": {}
     },
     "lure:31": {
       "category": "lure",
@@ -20184,7 +20355,8 @@
             "priceYen": 20
           }
         ]
-      }
+      },
+      "equalPriceByStage": {}
     },
     "lure:32": {
       "category": "lure",
@@ -20593,7 +20765,8 @@
             "priceYen": 20
           }
         ]
-      }
+      },
+      "equalPriceByStage": {}
     },
     "lure:33": {
       "category": "lure",
@@ -21002,7 +21175,8 @@
             "priceYen": 20
           }
         ]
-      }
+      },
+      "equalPriceByStage": {}
     },
     "lure:34": {
       "category": "lure",
@@ -21414,7 +21588,8 @@
             "priceYen": 20
           }
         ]
-      }
+      },
+      "equalPriceByStage": {}
     },
     "lure:35": {
       "category": "lure",
@@ -21826,7 +22001,8 @@
             "priceYen": 20
           }
         ]
-      }
+      },
+      "equalPriceByStage": {}
     },
     "lure:36": {
       "category": "lure",
@@ -22235,7 +22411,8 @@
             "priceYen": 20
           }
         ]
-      }
+      },
+      "equalPriceByStage": {}
     },
     "lure:37": {
       "category": "lure",
@@ -22647,7 +22824,8 @@
             "priceYen": 20
           }
         ]
-      }
+      },
+      "equalPriceByStage": {}
     },
     "lure:38": {
       "category": "lure",
@@ -23056,7 +23234,8 @@
             "priceYen": 20
           }
         ]
-      }
+      },
+      "equalPriceByStage": {}
     },
     "lure:39": {
       "category": "lure",
@@ -23468,7 +23647,8 @@
             "priceYen": 20
           }
         ]
-      }
+      },
+      "equalPriceByStage": {}
     },
     "lure:3A": {
       "category": "lure",
@@ -23877,7 +24057,8 @@
             "priceYen": 20
           }
         ]
-      }
+      },
+      "equalPriceByStage": {}
     },
     "lure:3B": {
       "category": "lure",
@@ -24289,7 +24470,8 @@
             "priceYen": 20
           }
         ]
-      }
+      },
+      "equalPriceByStage": {}
     },
     "lure:3C": {
       "category": "lure",
@@ -24698,7 +24880,8 @@
             "priceYen": 20
           }
         ]
-      }
+      },
+      "equalPriceByStage": {}
     },
     "lure:3D": {
       "category": "lure",
@@ -25107,7 +25290,8 @@
             "priceYen": 20
           }
         ]
-      }
+      },
+      "equalPriceByStage": {}
     },
     "lure:3E": {
       "category": "lure",
@@ -25516,7 +25700,8 @@
             "priceYen": 20
           }
         ]
-      }
+      },
+      "equalPriceByStage": {}
     },
     "lure:3F": {
       "category": "lure",
@@ -25925,7 +26110,8 @@
             "priceYen": 20
           }
         ]
-      }
+      },
+      "equalPriceByStage": {}
     },
     "lure:40": {
       "category": "lure",
@@ -26334,7 +26520,8 @@
             "priceYen": 20
           }
         ]
-      }
+      },
+      "equalPriceByStage": {}
     },
     "lure:41": {
       "category": "lure",
@@ -26743,7 +26930,8 @@
             "priceYen": 20
           }
         ]
-      }
+      },
+      "equalPriceByStage": {}
     },
     "lure:42": {
       "category": "lure",
@@ -27152,7 +27340,8 @@
             "priceYen": 20
           }
         ]
-      }
+      },
+      "equalPriceByStage": {}
     },
     "lure:43": {
       "category": "lure",
@@ -27564,6 +27753,20 @@
             "priceYen": 20
           }
         ]
+      },
+      "equalPriceByStage": {
+        "3": [
+          {
+            "category": "lure",
+            "id": "18",
+            "priceYen": 25
+          },
+          {
+            "category": "lure",
+            "id": "31",
+            "priceYen": 25
+          }
+        ]
       }
     },
     "lure:44": {
@@ -27973,7 +28176,8 @@
             "priceYen": 20
           }
         ]
-      }
+      },
+      "equalPriceByStage": {}
     },
     "lure:45": {
       "category": "lure",
@@ -28385,7 +28589,8 @@
             "priceYen": 20
           }
         ]
-      }
+      },
+      "equalPriceByStage": {}
     },
     "lure:46": {
       "category": "lure",
@@ -28737,7 +28942,8 @@
           "priceYen": 20
         }
       },
-      "cheaperByStage": {}
+      "cheaperByStage": {},
+      "equalPriceByStage": {}
     },
     "lure:47": {
       "category": "lure",
@@ -29089,7 +29295,8 @@
           "priceYen": 20
         }
       },
-      "cheaperByStage": {}
+      "cheaperByStage": {},
+      "equalPriceByStage": {}
     },
     "lure:48": {
       "category": "lure",
@@ -29441,7 +29648,8 @@
           "priceYen": 20
         }
       },
-      "cheaperByStage": {}
+      "cheaperByStage": {},
+      "equalPriceByStage": {}
     },
     "lure:49": {
       "category": "lure",
@@ -29851,6 +30059,30 @@
             "category": "lure",
             "id": "47",
             "priceYen": 20
+          }
+        ]
+      },
+      "equalPriceByStage": {
+        "1": [
+          {
+            "category": "lure",
+            "id": "2E",
+            "priceYen": 25
+          },
+          {
+            "category": "lure",
+            "id": "2F",
+            "priceYen": 25
+          },
+          {
+            "category": "lure",
+            "id": "30",
+            "priceYen": 25
+          },
+          {
+            "category": "lure",
+            "id": "31",
+            "priceYen": 25
           }
         ]
       }
@@ -30268,6 +30500,30 @@
             "priceYen": 20
           }
         ]
+      },
+      "equalPriceByStage": {
+        "1": [
+          {
+            "category": "lure",
+            "id": "2E",
+            "priceYen": 25
+          },
+          {
+            "category": "lure",
+            "id": "2F",
+            "priceYen": 25
+          },
+          {
+            "category": "lure",
+            "id": "30",
+            "priceYen": 25
+          },
+          {
+            "category": "lure",
+            "id": "31",
+            "priceYen": 25
+          }
+        ]
       }
     },
     "lure:4B": {
@@ -30677,7 +30933,8 @@
             "priceYen": 20
           }
         ]
-      }
+      },
+      "equalPriceByStage": {}
     },
     "lure:4C": {
       "category": "lure",
@@ -31086,7 +31343,8 @@
             "priceYen": 20
           }
         ]
-      }
+      },
+      "equalPriceByStage": {}
     },
     "lure:4D": {
       "category": "lure",
@@ -31495,7 +31753,8 @@
             "priceYen": 20
           }
         ]
-      }
+      },
+      "equalPriceByStage": {}
     },
     "lure:4E": {
       "category": "lure",
@@ -31904,7 +32163,8 @@
             "priceYen": 20
           }
         ]
-      }
+      },
+      "equalPriceByStage": {}
     },
     "lure:4F": {
       "category": "lure",
@@ -32313,7 +32573,8 @@
             "priceYen": 20
           }
         ]
-      }
+      },
+      "equalPriceByStage": {}
     },
     "lure:50": {
       "category": "lure",
@@ -32722,7 +32983,8 @@
             "priceYen": 20
           }
         ]
-      }
+      },
+      "equalPriceByStage": {}
     },
     "lure:51": {
       "category": "lure",
@@ -33131,7 +33393,8 @@
             "priceYen": 20
           }
         ]
-      }
+      },
+      "equalPriceByStage": {}
     }
   }
 }

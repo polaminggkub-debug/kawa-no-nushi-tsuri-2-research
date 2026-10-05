@@ -1213,6 +1213,63 @@
     );
   }
 
+  // src/entities/item/equal-price-choice.js
+  var COPY2 = {
+    th: {
+      title: "ซื้อใหม่เพื่อใช้กับปลาหลายชนิด: ราคาเท่ากัน แต่รองรับปลามากกว่า",
+      advice: "เลือกตัวเลือกนี้ถ้าอยากพกชิ้นที่ใช้ได้กว้างขึ้น รองรับปลาเดิมครบทุกสายตกที่เปรียบเทียบ ถ้ามีชิ้นเดิมและใช้กับปลาเป้าหมายได้แล้ว ให้ใช้ต่อได้",
+      limit: "ไม่ได้ยืนยันว่าปลากินบ่อยขึ้นหรือตกขึ้นง่ายกว่า",
+      area: (stage) => `ด่าน ${stage}`
+    },
+    en: {
+      title: "Buying for more species: same price, broader fish coverage",
+      advice: "Choose this option to carry an item with broader compatibility. It covers every original fish on each compared rig. Keep using the current item if you own it and it works for your target.",
+      limit: "This does not establish more bites or easier landings.",
+      area: (stage) => `Area ${stage}`
+    },
+    ja: {
+      title: "複数の魚を狙って買うなら：同じ価格で対応魚が多い候補",
+      advice: "対応する魚を増やしたいなら、この候補を選べます。比較した各仕掛けで元の魚すべてに対応します。すでに持っていて対象魚に使える品は、そのまま使えます。",
+      limit: "食いつきや取り込みやすさの優位を示すものではありません。",
+      area: (stage) => `エリア${stage}`
+    }
+  };
+  function groupedOffers(ctx, item) {
+    const stage = Number(ctx.locationStage || ctx.selectedStage);
+    const groups = /* @__PURE__ */ new Map();
+    for (const [area, refs] of Object.entries(item.baitLureDecision?.equalPriceByStage || {})) {
+      if (stage && Number(area) !== stage) continue;
+      for (const ref of refs) {
+        const key = `${ref.category}:${ref.id}`;
+        const group = groups.get(key) || { ref, areas: [] };
+        group.areas.push(Number(area));
+        groups.set(key, group);
+      }
+    }
+    return [...groups.values()];
+  }
+  function offerLinks(ctx, item, allItems) {
+    const c = COPY2[ctx.lang] || COPY2.en;
+    return groupedOffers(ctx, item).flatMap(({ ref, areas }) => {
+      const target = allItems.find((entry) => entry.category === ref.category && entry.id === ref.id);
+      if (!target || target.priceYen !== item.priceYen) return [];
+      const names = { en: target.nameEn, ja: target.nameJa, th: target.nameTh };
+      const name = target.playerUse?.displayName?.[ctx.lang] || names[ctx.lang] || target.nameJa;
+      const href = ctx.areaItemLink(target, areas[0]);
+      const label = `${name} (ID ${target.id}) · ¥${target.priceYen} · ${areas.map(c.area).join(", ")}`;
+      return [
+        `<a data-equal-price-item="${ctx.esc(ref.category + ":" + ref.id)}" data-offer-stage="${areas[0]}" href="${ctx.esc(href)}">${ctx.esc(label)} ↗</a>`
+      ];
+    });
+  }
+  function equalPriceChoice(ctx, item, allItems, includeLimit = true) {
+    const links = offerLinks(ctx, item, allItems);
+    if (!links.length) return "";
+    const c = COPY2[ctx.lang] || COPY2.en;
+    const limit = includeLimit ? `<p class="muted">${ctx.esc(c.limit)}</p>` : "";
+    return `<aside data-equal-price-choice><h3>${ctx.esc(c.title)}</h3><p>${ctx.esc(c.advice)}</p><p>${links.join(" · ")}</p>${limit}</aside>`;
+  }
+
   // src/pages/item/usage.js
   function decisionUsage(ctx, decision) {
     return {
@@ -2707,7 +2764,7 @@
       allItems
     );
     const primary = item.areaRodDecision ? general : targetAdvice2 || general;
-    return `<section id="what-to-do" class="decision-panel ${decision ? "rod-decision" : ""}" ${dataAttribute}><h2>${ctx.esc(heading)}</h2>${primary}${supporting}${actions}${note}</section>`;
+    return `<section id="what-to-do" class="decision-panel ${decision ? "rod-decision" : ""}" ${dataAttribute}><h2>${ctx.esc(heading)}</h2>${primary}${equalPriceChoice(ctx, item, allItems)}${supporting}${actions}${note}</section>`;
   }
   function renderQuickOptions(ctx, item, allItems, fishLocations) {
     const options = [
@@ -2797,7 +2854,7 @@
   function loadCatalogue(ctx) {
     ctx.flyMakerLink = (item) => item.category.startsWith("fly") ? `<p><a class="route-button" data-fly-maker href="${ctx.esc(ctx.currentCategoryLink().split("#")[0] + "#fly-instructions")}">${ctx.lang === "th" ? "ดูขั้นตอนประกอบฟลายเองและตรวจราคาในเกม" : ctx.lang === "ja" ? "自作フライの手順とゲーム内見積額を確認" : "See custom fly steps and check the in-game quote"} ↗</a></p>` : "";
     ctx.setNavigation();
-    fetch("gallery-data.json?v=compendium-20261005-33").then((response) => {
+    fetch("gallery-data.json?v=compendium-20261005-34").then((response) => {
       if (!response.ok) throw new Error("catalogue data unavailable");
       return response.json();
     }).then((data) => {

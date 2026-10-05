@@ -122,8 +122,13 @@ function checkCard(runtime, base, item, stage, route, lang) {
       'Buying-new choice is not cheaper',
     )
   checkLocalPriority(item, stage, choices)
+  const equalOffers = item.baitLureDecision?.equalPriceByStage || {}
+  const hasEqualOffer = stage
+    ? Boolean(equalOffers[String(stage)]?.length)
+    : Object.values(equalOffers).some((offers) => offers.length)
   assert(
     choices.length ||
+      (hasEqualOffer && visible.includes('data-equal-price-choice')) ||
       visible.includes('data-bait-lure-fish-picker') ||
       visible.includes('data-bait-route-switch'),
   )

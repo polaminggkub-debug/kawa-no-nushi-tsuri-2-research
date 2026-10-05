@@ -1547,7 +1547,7 @@
         if (!r.ok) throw Error("fish locations");
         return r.json();
       }),
-      fetch("gallery-data.json?v=compendium-20261005-33").then((r) => {
+      fetch("gallery-data.json?v=compendium-20261005-34").then((r) => {
         if (!r.ok) throw Error("fish sprites");
         return r.json();
       })

@@ -3916,6 +3916,7 @@
             }
           ]
         },
+        "equalPriceByStage": {},
         "sources": [
           "data/fish-acceptance.json",
           "data/lure-coverage.json",
@@ -4116,6 +4117,7 @@
             }
           ]
         },
+        "equalPriceByStage": {},
         "sources": [
           "data/fish-acceptance.json",
           "data/lure-coverage.json",
@@ -4313,6 +4315,7 @@
             }
           ]
         },
+        "equalPriceByStage": {},
         "sources": [
           "data/fish-acceptance.json",
           "data/lure-coverage.json",
@@ -4510,6 +4513,7 @@
             }
           ]
         },
+        "equalPriceByStage": {},
         "sources": [
           "data/fish-acceptance.json",
           "data/lure-coverage.json",
@@ -4707,6 +4711,7 @@
             }
           ]
         },
+        "equalPriceByStage": {},
         "sources": [
           "data/fish-acceptance.json",
           "data/lure-coverage.json",
@@ -4907,6 +4912,7 @@
             }
           ]
         },
+        "equalPriceByStage": {},
         "sources": [
           "data/fish-acceptance.json",
           "data/lure-coverage.json",
@@ -5107,6 +5113,7 @@
             }
           ]
         },
+        "equalPriceByStage": {},
         "sources": [
           "data/fish-acceptance.json",
           "data/lure-coverage.json",
@@ -5304,6 +5311,7 @@
             }
           ]
         },
+        "equalPriceByStage": {},
         "sources": [
           "data/fish-acceptance.json",
           "data/lure-coverage.json",
@@ -5501,6 +5509,7 @@
             }
           ]
         },
+        "equalPriceByStage": {},
         "sources": [
           "data/fish-acceptance.json",
           "data/lure-coverage.json",
@@ -5704,6 +5713,7 @@
             }
           ]
         },
+        "equalPriceByStage": {},
         "sources": [
           "data/fish-acceptance.json",
           "data/lure-coverage.json",
@@ -5907,6 +5917,7 @@
             }
           ]
         },
+        "equalPriceByStage": {},
         "sources": [
           "data/fish-acceptance.json",
           "data/lure-coverage.json",
@@ -6107,6 +6118,7 @@
             }
           ]
         },
+        "equalPriceByStage": {},
         "sources": [
           "data/fish-acceptance.json",
           "data/lure-coverage.json",
@@ -6307,6 +6319,7 @@
             }
           ]
         },
+        "equalPriceByStage": {},
         "sources": [
           "data/fish-acceptance.json",
           "data/lure-coverage.json",
@@ -6510,6 +6523,7 @@
             }
           ]
         },
+        "equalPriceByStage": {},
         "sources": [
           "data/fish-acceptance.json",
           "data/lure-coverage.json",
@@ -6716,6 +6730,7 @@
             }
           ]
         },
+        "equalPriceByStage": {},
         "sources": [
           "data/fish-acceptance.json",
           "data/lure-coverage.json",
@@ -6922,6 +6937,7 @@
             }
           ]
         },
+        "equalPriceByStage": {},
         "sources": [
           "data/fish-acceptance.json",
           "data/lure-coverage.json",
@@ -7125,6 +7141,7 @@
             }
           ]
         },
+        "equalPriceByStage": {},
         "sources": [
           "data/fish-acceptance.json",
           "data/lure-coverage.json",
@@ -7362,6 +7379,7 @@
             }
           ]
         },
+        "equalPriceByStage": {},
         "sources": [
           "data/fish-acceptance.json",
           "data/lure-coverage.json",
@@ -7562,6 +7580,7 @@
             }
           ]
         },
+        "equalPriceByStage": {},
         "sources": [
           "data/fish-acceptance.json",
           "data/lure-coverage.json",
@@ -7762,6 +7781,7 @@
             }
           ]
         },
+        "equalPriceByStage": {},
         "sources": [
           "data/fish-acceptance.json",
           "data/lure-coverage.json",
@@ -7965,6 +7985,7 @@
             }
           ]
         },
+        "equalPriceByStage": {},
         "sources": [
           "data/fish-acceptance.json",
           "data/lure-coverage.json",
@@ -8171,6 +8192,7 @@
             }
           ]
         },
+        "equalPriceByStage": {},
         "sources": [
           "data/fish-acceptance.json",
           "data/lure-coverage.json",
@@ -8337,6 +8359,7 @@
         },
         "alternatives": [],
         "cheaperByStage": {},
+        "equalPriceByStage": {},
         "sources": [
           "data/fish-acceptance.json",
           "data/lure-coverage.json",
@@ -8531,6 +8554,7 @@
             }
           ]
         },
+        "equalPriceByStage": {},
         "sources": [
           "data/fish-acceptance.json",
           "data/lure-coverage.json",
@@ -8737,6 +8761,7 @@
             }
           ]
         },
+        "equalPriceByStage": {},
         "sources": [
           "data/fish-acceptance.json",
           "data/lure-coverage.json",
@@ -8940,6 +8965,7 @@
             }
           ]
         },
+        "equalPriceByStage": {},
         "sources": [
           "data/fish-acceptance.json",
           "data/lure-coverage.json",
@@ -9140,6 +9166,7 @@
             }
           ]
         },
+        "equalPriceByStage": {},
         "sources": [
           "data/fish-acceptance.json",
           "data/lure-coverage.json",
@@ -9337,6 +9364,7 @@
             }
           ]
         },
+        "equalPriceByStage": {},
         "sources": [
           "data/fish-acceptance.json",
           "data/lure-coverage.json",
@@ -9537,6 +9565,7 @@
             }
           ]
         },
+        "equalPriceByStage": {},
         "sources": [
           "data/fish-acceptance.json",
           "data/lure-coverage.json",
@@ -9740,6 +9769,7 @@
             }
           ]
         },
+        "equalPriceByStage": {},
         "sources": [
           "data/fish-acceptance.json",
           "data/lure-coverage.json",
@@ -9943,6 +9973,7 @@
             }
           ]
         },
+        "equalPriceByStage": {},
         "sources": [
           "data/fish-acceptance.json",
           "data/lure-coverage.json",
@@ -10143,6 +10174,7 @@
             }
           ]
         },
+        "equalPriceByStage": {},
         "sources": [
           "data/fish-acceptance.json",
           "data/lure-coverage.json",
@@ -10368,6 +10400,7 @@
             }
           ]
         },
+        "equalPriceByStage": {},
         "sources": [
           "data/fish-acceptance.json",
           "data/lure-coverage.json",
@@ -10565,6 +10598,7 @@
             }
           ]
         },
+        "equalPriceByStage": {},
         "sources": [
           "data/fish-acceptance.json",
           "data/lure-coverage.json",
@@ -10712,6 +10746,7 @@
         },
         "alternatives": [],
         "cheaperByStage": {},
+        "equalPriceByStage": {},
         "sources": [
           "data/fish-acceptance.json",
           "data/lure-coverage.json",
@@ -10879,6 +10914,7 @@
             }
           ]
         },
+        "equalPriceByStage": {},
         "sources": [
           "data/fish-acceptance.json",
           "data/lure-coverage.json",
@@ -11082,6 +11118,7 @@
             }
           ]
         },
+        "equalPriceByStage": {},
         "sources": [
           "data/fish-acceptance.json",
           "data/lure-coverage.json",
@@ -11294,6 +11331,7 @@
             }
           ]
         },
+        "equalPriceByStage": {},
         "sources": [
           "data/fish-acceptance.json",
           "data/lure-coverage.json",
@@ -11503,6 +11541,7 @@
             }
           ]
         },
+        "equalPriceByStage": {},
         "sources": [
           "data/fish-acceptance.json",
           "data/lure-coverage.json",
@@ -11706,6 +11745,7 @@
             }
           ]
         },
+        "equalPriceByStage": {},
         "sources": [
           "data/fish-acceptance.json",
           "data/lure-coverage.json",
@@ -11909,6 +11949,7 @@
             }
           ]
         },
+        "equalPriceByStage": {},
         "sources": [
           "data/fish-acceptance.json",
           "data/lure-coverage.json",
@@ -12109,6 +12150,7 @@
             }
           ]
         },
+        "equalPriceByStage": {},
         "sources": [
           "data/fish-acceptance.json",
           "data/lure-coverage.json",
@@ -12306,6 +12348,42 @@
               "category": "lure",
               "id": "47",
               "priceYen": 20
+            }
+          ]
+        },
+        "equalPriceByStage": {
+          "1": [
+            {
+              "category": "lure",
+              "id": "2E",
+              "priceYen": 25
+            },
+            {
+              "category": "lure",
+              "id": "2F",
+              "priceYen": 25
+            },
+            {
+              "category": "lure",
+              "id": "30",
+              "priceYen": 25
+            },
+            {
+              "category": "lure",
+              "id": "31",
+              "priceYen": 25
+            }
+          ],
+          "3": [
+            {
+              "category": "lure",
+              "id": "18",
+              "priceYen": 25
+            },
+            {
+              "category": "lure",
+              "id": "31",
+              "priceYen": 25
             }
           ]
         },
@@ -12512,6 +12590,27 @@
             }
           ]
         },
+        "equalPriceByStage": {
+          "3": [
+            {
+              "category": "lure",
+              "id": "18",
+              "priceYen": 25
+            },
+            {
+              "category": "lure",
+              "id": "31",
+              "priceYen": 25
+            }
+          ],
+          "5": [
+            {
+              "category": "lure",
+              "id": "18",
+              "priceYen": 25
+            }
+          ]
+        },
         "sources": [
           "data/fish-acceptance.json",
           "data/lure-coverage.json",
@@ -12709,6 +12808,7 @@
             }
           ]
         },
+        "equalPriceByStage": {},
         "sources": [
           "data/fish-acceptance.json",
           "data/lure-coverage.json",
@@ -12900,6 +13000,7 @@
             }
           ]
         },
+        "equalPriceByStage": {},
         "sources": [
           "data/fish-acceptance.json",
           "data/lure-coverage.json",
@@ -13091,6 +13192,7 @@
             }
           ]
         },
+        "equalPriceByStage": {},
         "sources": [
           "data/fish-acceptance.json",
           "data/lure-coverage.json",
@@ -13282,6 +13384,7 @@
             }
           ]
         },
+        "equalPriceByStage": {},
         "sources": [
           "data/fish-acceptance.json",
           "data/lure-coverage.json",
@@ -13476,6 +13579,7 @@
             }
           ]
         },
+        "equalPriceByStage": {},
         "sources": [
           "data/fish-acceptance.json",
           "data/lure-coverage.json",
@@ -13679,6 +13783,7 @@
             }
           ]
         },
+        "equalPriceByStage": {},
         "sources": [
           "data/fish-acceptance.json",
           "data/lure-coverage.json",
@@ -13882,6 +13987,7 @@
             }
           ]
         },
+        "equalPriceByStage": {},
         "sources": [
           "data/fish-acceptance.json",
           "data/lure-coverage.json",
@@ -14088,6 +14194,7 @@
             }
           ]
         },
+        "equalPriceByStage": {},
         "sources": [
           "data/fish-acceptance.json",
           "data/lure-coverage.json",
@@ -14294,6 +14401,7 @@
             }
           ]
         },
+        "equalPriceByStage": {},
         "sources": [
           "data/fish-acceptance.json",
           "data/lure-coverage.json",
@@ -14497,6 +14605,7 @@
             }
           ]
         },
+        "equalPriceByStage": {},
         "sources": [
           "data/fish-acceptance.json",
           "data/lure-coverage.json",
@@ -14703,6 +14812,7 @@
             }
           ]
         },
+        "equalPriceByStage": {},
         "sources": [
           "data/fish-acceptance.json",
           "data/lure-coverage.json",
@@ -14906,6 +15016,7 @@
             }
           ]
         },
+        "equalPriceByStage": {},
         "sources": [
           "data/fish-acceptance.json",
           "data/lure-coverage.json",
@@ -15106,6 +15217,7 @@
             }
           ]
         },
+        "equalPriceByStage": {},
         "sources": [
           "data/fish-acceptance.json",
           "data/lure-coverage.json",
@@ -15309,6 +15421,7 @@
             }
           ]
         },
+        "equalPriceByStage": {},
         "sources": [
           "data/fish-acceptance.json",
           "data/lure-coverage.json",
@@ -15515,6 +15628,7 @@
             }
           ]
         },
+        "equalPriceByStage": {},
         "sources": [
           "data/fish-acceptance.json",
           "data/lure-coverage.json",
@@ -15718,6 +15832,7 @@
             }
           ]
         },
+        "equalPriceByStage": {},
         "sources": [
           "data/fish-acceptance.json",
           "data/lure-coverage.json",
@@ -15921,6 +16036,7 @@
             }
           ]
         },
+        "equalPriceByStage": {},
         "sources": [
           "data/fish-acceptance.json",
           "data/lure-coverage.json",
@@ -16124,6 +16240,7 @@
             }
           ]
         },
+        "equalPriceByStage": {},
         "sources": [
           "data/fish-acceptance.json",
           "data/lure-coverage.json",
@@ -16327,6 +16444,7 @@
             }
           ]
         },
+        "equalPriceByStage": {},
         "sources": [
           "data/fish-acceptance.json",
           "data/lure-coverage.json",
@@ -16530,6 +16648,7 @@
             }
           ]
         },
+        "equalPriceByStage": {},
         "sources": [
           "data/fish-acceptance.json",
           "data/lure-coverage.json",
@@ -16733,6 +16852,7 @@
             }
           ]
         },
+        "equalPriceByStage": {},
         "sources": [
           "data/fish-acceptance.json",
           "data/lure-coverage.json",
@@ -16936,6 +17056,7 @@
             }
           ]
         },
+        "equalPriceByStage": {},
         "sources": [
           "data/fish-acceptance.json",
           "data/lure-coverage.json",
@@ -17142,6 +17263,20 @@
             }
           ]
         },
+        "equalPriceByStage": {
+          "3": [
+            {
+              "category": "lure",
+              "id": "18",
+              "priceYen": 25
+            },
+            {
+              "category": "lure",
+              "id": "31",
+              "priceYen": 25
+            }
+          ]
+        },
         "sources": [
           "data/fish-acceptance.json",
           "data/lure-coverage.json",
@@ -17345,6 +17480,7 @@
             }
           ]
         },
+        "equalPriceByStage": {},
         "sources": [
           "data/fish-acceptance.json",
           "data/lure-coverage.json",
@@ -17551,6 +17687,7 @@
             }
           ]
         },
+        "equalPriceByStage": {},
         "sources": [
           "data/fish-acceptance.json",
           "data/lure-coverage.json",
@@ -17691,6 +17828,7 @@
         },
         "alternatives": [],
         "cheaperByStage": {},
+        "equalPriceByStage": {},
         "sources": [
           "data/fish-acceptance.json",
           "data/lure-coverage.json",
@@ -17831,6 +17969,7 @@
         },
         "alternatives": [],
         "cheaperByStage": {},
+        "equalPriceByStage": {},
         "sources": [
           "data/fish-acceptance.json",
           "data/lure-coverage.json",
@@ -17971,6 +18110,7 @@
         },
         "alternatives": [],
         "cheaperByStage": {},
+        "equalPriceByStage": {},
         "sources": [
           "data/fish-acceptance.json",
           "data/lure-coverage.json",
@@ -18168,6 +18308,30 @@
               "category": "lure",
               "id": "47",
               "priceYen": 20
+            }
+          ]
+        },
+        "equalPriceByStage": {
+          "1": [
+            {
+              "category": "lure",
+              "id": "2E",
+              "priceYen": 25
+            },
+            {
+              "category": "lure",
+              "id": "2F",
+              "priceYen": 25
+            },
+            {
+              "category": "lure",
+              "id": "30",
+              "priceYen": 25
+            },
+            {
+              "category": "lure",
+              "id": "31",
+              "priceYen": 25
             }
           ]
         },
@@ -18374,6 +18538,30 @@
             }
           ]
         },
+        "equalPriceByStage": {
+          "1": [
+            {
+              "category": "lure",
+              "id": "2E",
+              "priceYen": 25
+            },
+            {
+              "category": "lure",
+              "id": "2F",
+              "priceYen": 25
+            },
+            {
+              "category": "lure",
+              "id": "30",
+              "priceYen": 25
+            },
+            {
+              "category": "lure",
+              "id": "31",
+              "priceYen": 25
+            }
+          ]
+        },
         "sources": [
           "data/fish-acceptance.json",
           "data/lure-coverage.json",
@@ -18571,6 +18759,7 @@
             }
           ]
         },
+        "equalPriceByStage": {},
         "sources": [
           "data/fish-acceptance.json",
           "data/lure-coverage.json",
@@ -18768,6 +18957,7 @@
             }
           ]
         },
+        "equalPriceByStage": {},
         "sources": [
           "data/fish-acceptance.json",
           "data/lure-coverage.json",
@@ -18965,6 +19155,7 @@
             }
           ]
         },
+        "equalPriceByStage": {},
         "sources": [
           "data/fish-acceptance.json",
           "data/lure-coverage.json",
@@ -19162,6 +19353,7 @@
             }
           ]
         },
+        "equalPriceByStage": {},
         "sources": [
           "data/fish-acceptance.json",
           "data/lure-coverage.json",
@@ -19359,6 +19551,7 @@
             }
           ]
         },
+        "equalPriceByStage": {},
         "sources": [
           "data/fish-acceptance.json",
           "data/lure-coverage.json",
@@ -19556,6 +19749,7 @@
             }
           ]
         },
+        "equalPriceByStage": {},
         "sources": [
           "data/fish-acceptance.json",
           "data/lure-coverage.json",
@@ -19784,6 +19978,7 @@
             }
           ]
         },
+        "equalPriceByStage": {},
         "sources": [
           "data/fish-acceptance.json",
           "data/lure-coverage.json",
@@ -35167,6 +35362,7 @@
         },
         "alternatives": [],
         "cheaperByStage": {},
+        "equalPriceByStage": {},
         "sources": [
           "data/fish-acceptance.json",
           "data/shop-stock-rom.json",
@@ -35357,6 +35553,7 @@
         },
         "alternatives": [],
         "cheaperByStage": {},
+        "equalPriceByStage": {},
         "sources": [
           "data/fish-acceptance.json",
           "data/shop-stock-rom.json",
@@ -35572,6 +35769,7 @@
             }
           ]
         },
+        "equalPriceByStage": {},
         "sources": [
           "data/fish-acceptance.json",
           "data/shop-stock-rom.json",
@@ -35766,6 +35964,29 @@
               "category": "bait",
               "id": "08",
               "priceYen": 20
+            }
+          ]
+        },
+        "equalPriceByStage": {
+          "1": [
+            {
+              "category": "bait",
+              "id": "07",
+              "priceYen": 25
+            }
+          ],
+          "2": [
+            {
+              "category": "bait",
+              "id": "07",
+              "priceYen": 25
+            }
+          ],
+          "3": [
+            {
+              "category": "bait",
+              "id": "07",
+              "priceYen": 25
             }
           ]
         },
@@ -35967,6 +36188,7 @@
         },
         "alternatives": [],
         "cheaperByStage": {},
+        "equalPriceByStage": {},
         "sources": [
           "data/fish-acceptance.json",
           "data/shop-stock-rom.json",
@@ -36140,6 +36362,7 @@
         },
         "alternatives": [],
         "cheaperByStage": {},
+        "equalPriceByStage": {},
         "sources": [
           "data/fish-acceptance.json",
           "data/shop-stock-rom.json",
@@ -36386,6 +36609,7 @@
             }
           ]
         },
+        "equalPriceByStage": {},
         "sources": [
           "data/fish-acceptance.json",
           "data/shop-stock-rom.json",
@@ -36602,6 +36826,7 @@
         },
         "alternatives": [],
         "cheaperByStage": {},
+        "equalPriceByStage": {},
         "sources": [
           "data/fish-acceptance.json",
           "data/shop-stock-rom.json",
@@ -36808,6 +37033,7 @@
             }
           ]
         },
+        "equalPriceByStage": {},
         "sources": [
           "data/fish-acceptance.json",
           "data/shop-stock-rom.json",
@@ -37007,6 +37233,7 @@
         },
         "alternatives": [],
         "cheaperByStage": {},
+        "equalPriceByStage": {},
         "sources": [
           "data/fish-acceptance.json",
           "data/shop-stock-rom.json",
@@ -37351,6 +37578,7 @@
             }
           ]
         },
+        "equalPriceByStage": {},
         "sources": [
           "data/fish-acceptance.json",
           "data/shop-stock-rom.json",
@@ -37577,6 +37805,7 @@
             }
           ]
         },
+        "equalPriceByStage": {},
         "sources": [
           "data/fish-acceptance.json",
           "data/shop-stock-rom.json",
@@ -37750,6 +37979,7 @@
           }
         ],
         "cheaperByStage": {},
+        "equalPriceByStage": {},
         "sources": [
           "data/fish-acceptance.json",
           "data/shop-stock-rom.json",
@@ -37920,6 +38150,7 @@
         },
         "alternatives": [],
         "cheaperByStage": {},
+        "equalPriceByStage": {},
         "sources": [
           "data/fish-acceptance.json",
           "data/shop-stock-rom.json",
@@ -38088,6 +38319,7 @@
         },
         "alternatives": [],
         "cheaperByStage": {},
+        "equalPriceByStage": {},
         "sources": [
           "data/fish-acceptance.json",
           "data/shop-stock-rom.json",
@@ -38280,6 +38512,7 @@
             }
           ]
         },
+        "equalPriceByStage": {},
         "sources": [
           "data/fish-acceptance.json",
           "data/shop-stock-rom.json",
@@ -38551,6 +38784,7 @@
         },
         "alternatives": [],
         "cheaperByStage": {},
+        "equalPriceByStage": {},
         "sources": [
           "data/fish-acceptance.json",
           "data/shop-stock-rom.json",
@@ -38771,6 +39005,7 @@
         },
         "alternatives": [],
         "cheaperByStage": {},
+        "equalPriceByStage": {},
         "sources": [
           "data/fish-acceptance.json",
           "data/shop-stock-rom.json",
@@ -38954,6 +39189,29 @@
         },
         "alternatives": [],
         "cheaperByStage": {},
+        "equalPriceByStage": {
+          "3": [
+            {
+              "category": "bait",
+              "id": "12",
+              "priceYen": 20
+            }
+          ],
+          "5": [
+            {
+              "category": "bait",
+              "id": "12",
+              "priceYen": 20
+            }
+          ],
+          "6": [
+            {
+              "category": "bait",
+              "id": "12",
+              "priceYen": 20
+            }
+          ]
+        },
         "sources": [
           "data/fish-acceptance.json",
           "data/shop-stock-rom.json",
@@ -39207,6 +39465,7 @@
             }
           ]
         },
+        "equalPriceByStage": {},
         "sources": [
           "data/fish-acceptance.json",
           "data/shop-stock-rom.json",
@@ -39411,6 +39670,7 @@
         },
         "alternatives": [],
         "cheaperByStage": {},
+        "equalPriceByStage": {},
         "sources": [
           "data/fish-acceptance.json",
           "data/shop-stock-rom.json",
@@ -39597,6 +39857,7 @@
         },
         "alternatives": [],
         "cheaperByStage": {},
+        "equalPriceByStage": {},
         "sources": [
           "data/fish-acceptance.json",
           "data/shop-stock-rom.json",
@@ -39767,6 +40028,7 @@
             }
           ]
         },
+        "equalPriceByStage": {},
         "sources": [
           "data/fish-acceptance.json",
           "data/shop-stock-rom.json",

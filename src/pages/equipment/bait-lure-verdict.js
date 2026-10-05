@@ -1,3 +1,5 @@
+import { equalPriceChoice } from '../../entities/item/index.js'
+
 const COPY = {
   en: {
     ownBait: (route) =>
@@ -271,7 +273,9 @@ function offerSentence(ctx, item, offers) {
 export function baitLureVerdict(ctx, item) {
   if (!item?.baitLureDecision || !['bait', 'lure'].includes(item.category)) return ''
   const offers = cheaperOffers(ctx, item)
+  const equal = equalPriceChoice(ctx, item, ctx.allItems, false)
+  const buying = !offers.length && equal ? '' : offerSentence(ctx, item, offers)
   const ownUse = ownUseMarkup(ctx, item)
   const stock = ownStockNote(ctx, item)
-  return `<div class="bait-lure-verdict" data-bait-lure-verdict="${ctx.esc(item.category + ':' + item.id)}">${ownUse}<p class="bait-lure-own-stock">${ctx.esc(stock)}</p>${offerSentence(ctx, item, offers)}<p class="bait-lure-evidence-limit">${ctx.esc(copy(ctx).limit)}</p></div>`
+  return `<div class="bait-lure-verdict" data-bait-lure-verdict="${ctx.esc(item.category + ':' + item.id)}">${ownUse}<p class="bait-lure-own-stock">${ctx.esc(stock)}</p>${buying}${equal}<p class="bait-lure-evidence-limit">${ctx.esc(copy(ctx).limit)}</p></div>`
 }
