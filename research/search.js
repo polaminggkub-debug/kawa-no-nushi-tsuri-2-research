@@ -11,9 +11,52 @@
     initialize: () => initialize
   });
 
+  // src/pages/strategy/search-return.js
+  function restoreSearchQuery(filter) {
+    if (typeof location === "undefined") return;
+    filter.value = new URLSearchParams(location.search).get("q") || "";
+  }
+  function persistSearchQuery(query) {
+    if (typeof location === "undefined" || typeof history === "undefined") return;
+    const target = new URL(location.href);
+    target.searchParams.delete("q");
+    if (query) {
+      target.searchParams.set("q", query);
+      target.hash = "technical-evidence";
+    }
+    if (target.href !== location.href) history.replaceState(null, "", target.href);
+  }
+  function refreshFishReturns(rows, query) {
+    if (typeof location === "undefined") return;
+    const returned = new URL(location.href);
+    returned.searchParams.delete("q");
+    if (query) returned.searchParams.set("q", query);
+    returned.hash = "technical-evidence";
+    const file = returned.pathname.split("/").pop();
+    const route = `../research/${file}${returned.search}${returned.hash}`;
+    for (const row of rows) {
+      const link = row.querySelector('a[href*="id="]');
+      if (!link) continue;
+      const target = new URL(link.href, location.href);
+      target.searchParams.set("return", route);
+      link.href = target.href;
+    }
+  }
+  function preserveResearchLanguageState(event) {
+    const link = event.target.closest?.("a[href]");
+    if (!link) return;
+    const query = document.getElementById("filter")?.value || "";
+    const target = new URL(link.href, location.href);
+    target.searchParams.delete("q");
+    if (query) target.searchParams.set("q", query);
+    target.hash = location.hash || (query ? "#technical-evidence" : "");
+    link.href = target.href;
+  }
+
   // src/pages/strategy/setup-search.js
   function setupSearch(ctx) {
     ctx.filter = document.getElementById("filter");
+    restoreSearchQuery(ctx.filter);
     ctx.resultCount = document.getElementById("filter-count");
     ctx.rows = Array.from(document.querySelectorAll("#fish-matrix tbody tr"));
     ctx.copy = {
@@ -47,6 +90,8 @@
         if (matches) shown++;
       }
       ctx.resultCount.textContent = ctx.copy.count(shown, ctx.rows.length);
+      persistSearchQuery(ctx.filter.value);
+      refreshFishReturns(ctx.rows, ctx.filter.value);
     };
     ctx.filter.addEventListener("input", ctx.applyFilter);
   }
@@ -80,20 +125,13 @@
 
   // src/pages/strategy/topic-navigation.js
   function setupTopicNavigation() {
-    if (typeof location !== "undefined" && location.hash === "#technical-evidence")
+    if (typeof location !== "undefined" && (location.hash === "#technical-evidence" || new URLSearchParams(location.search).get("q")))
       document.getElementById("technical-evidence").open = true;
     document.getElementById("strategy-topics")?.addEventListener("click", (event) => {
       if (event.target.closest("a")?.getAttribute("href") === "#technical-evidence")
         document.getElementById("technical-evidence").open = true;
     });
-    document.querySelector(".strategy-languages")?.addEventListener("click", preserveLanguageTopic);
-  }
-  function preserveLanguageTopic(event) {
-    const link = event.target.closest?.("a[href]");
-    if (!link || !location.hash) return;
-    const target = new URL(link.href, location.href);
-    target.hash = location.hash;
-    link.href = target.href;
+    document.querySelector(".strategy-languages")?.addEventListener("click", preserveResearchLanguageState);
   }
 
   // src/pages/strategy/index.js

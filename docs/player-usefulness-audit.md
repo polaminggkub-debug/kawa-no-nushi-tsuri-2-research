@@ -520,3 +520,38 @@ selector and clicked the seller's stock link. Both reached exactly
 at 390px without horizontal overflow. The independent guard reproduces the
 original malformed fragment before the fix. This supports the repaired handoff,
 not the completion of every shop interaction or natural in-game purchase.
+
+## Research search round trips (2026-10-06)
+
+The strategy page still puts carry/buy choices first and keeps its raw tables
+inside the technical disclosure. A real search-to-fish-to-return journey exposed
+a navigation gap: returning discarded the typed filter and closed that
+disclosure, requiring the player to find the same row again.
+
+Matrix fish links now retain the localized research page, typed `q` and evidence
+anchor. The returned page restores the input before loading aliases and opens
+the disclosure. Language changes preserve the current query and topic. Typing
+or clearing a query also updates the address without reloading, so a later
+reload does not restore a stale filter. Existing Japanese-name/ID fallback and
+alias-load warnings remain.
+
+An independent regression first failed on the lost restored query. Actual local
+Thai review searched Yamame, opened its fish page, used the explicit return link,
+and confirmed the same one-row result and open disclosure. Switching to English
+and Japanese retained that query. At 390px, changing the query and reloading
+retained the new result; clearing and reloading showed all 72 ordinary profiles,
+without horizontal page overflow. The zero-mask placeholder is retained in ROM
+research rather than counted as an ordinary profile.
+
+## Notebook route area changes (2026-10-06)
+
+Changing the selected map area while viewing a bookmarked notebook route now
+updates its fragment and open route group together. Previously Area 4 could show
+the Area 3 route after changing area, and reloading preserved that mismatch.
+Other map and notebook-summary fragments retain their own purpose.
+
+The independent regression failed against the committed pre-fix map bundle.
+Actual local review at 390px opened the Area 3 route, selected Area 4, and
+reloaded: the address and open group both remained Area 4, all six groups and
+the 66-species total remained present, and the page did not overflow. Existing
+manual progress was retained; no game save is read or changed.

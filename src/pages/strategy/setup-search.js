@@ -1,5 +1,8 @@
+import { persistSearchQuery, refreshFishReturns, restoreSearchQuery } from './search-return.js'
+
 export function setupSearch(ctx) {
   ctx.filter = document.getElementById('filter')
+  restoreSearchQuery(ctx.filter)
   ctx.resultCount = document.getElementById('filter-count')
   ctx.rows = Array.from(document.querySelectorAll('#fish-matrix tbody tr'))
   ctx.copy = {
@@ -36,6 +39,8 @@ export function setupSearch(ctx) {
       if (matches) shown++
     }
     ctx.resultCount.textContent = ctx.copy.count(shown, ctx.rows.length)
+    persistSearchQuery(ctx.filter.value)
+    refreshFishReturns(ctx.rows, ctx.filter.value)
   }
   ctx.filter.addEventListener('input', ctx.applyFilter)
 }

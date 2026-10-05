@@ -1482,6 +1482,7 @@
       const button = event.target.closest("[data-stage]");
       if (!button || button.disabled) return;
       ctx.activeStage = Number(button.dataset.stage);
+      if (/^#notebook-route-[1-6]$/.test(location.hash)) ctx.notebookRouteStage = ctx.activeStage;
       ctx.activeSection = ctx.chooseSection(ctx.activeStage);
       ctx.render();
     });

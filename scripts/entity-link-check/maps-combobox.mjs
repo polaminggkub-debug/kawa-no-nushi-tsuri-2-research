@@ -300,12 +300,14 @@ async function main() {
   for (const locale of ['en', 'th', 'ja']) {
     const { runtime, nodes, links, location, history } = await runMapPage(outputs, locale)
     await checkNotebookRouteHashes(outputs, locale)
+    await checkNotebookRouteStageSwitch(outputs, locale)
     await checkPendingNavigation(outputs, locale)
     checkProfiles(runtime)
     checkLocaleReturns(runtime, links, location)
     checkSearchAndKeyboard(runtime, nodes, history)
     checkEmptySearch(runtime, nodes, history)
   }
+  await checkUnrelatedMapAnchors(outputs)
   console.log(
     `PASS: accessible fish combobox; ${profileIds.length} ROM-mapped fish profiles; bundled typing, keyboard selection, map targeting, clear, and localized return behavior checked in three locales.`,
   )
@@ -327,6 +329,62 @@ async function checkNotebookRouteHashes(outputs, locale) {
   assert.equal(invalid.runtime.notebookRouteStage, 0)
   assert.equal(invalid.runtime.openNotebookGuide, false)
   assert.equal(new URL(invalid.history.lastUrl).hash, '')
+}
+
+async function checkNotebookRouteStageSwitch(outputs, locale) {
+  const returnPath = 'index.th.html?category=rod&id=03#catalogue'
+  const query = new URLSearchParams({
+    stage: '3',
+    section: 's3-c1-r3',
+    fish: '28',
+    route: 'sinker',
+    return: returnPath,
+  })
+  const page = await runMapPage(outputs, locale, false, `${query}#notebook-route-3`)
+  assertNotebookGroupState(page.nodes, 3)
+  dispatchStage(page.runtime, 4)
+  assert.equal(page.runtime.activeStage, 4, `${locale}: selected area did not switch`)
+  assert.equal(page.runtime.selectedFish, '28', `${locale}: selected fish was lost`)
+  assert.equal(page.runtime.selectedRoute, 'sinker', `${locale}: route filter was lost`)
+  assertNotebookStageUrl(page.history, page.runtime, returnPath, locale)
+  assertNotebookGroupState(page.nodes, 4)
+}
+
+function dispatchStage(runtime, stage) {
+  const button = { disabled: false, dataset: { stage: String(stage) } }
+  runtime.areaList.dispatch('click', { target: { closest: () => button } })
+}
+
+function assertNotebookStageUrl(history, runtime, returnPath, locale) {
+  const url = new URL(history.lastUrl)
+  assert.equal(url.hash, '#notebook-route-4', `${locale}: route anchor stayed on old area`)
+  assert.equal(url.searchParams.get('stage'), '4')
+  assert.equal(url.searchParams.get('section'), runtime.activeSection)
+  assert.match(runtime.activeSection, /^s4-/)
+  assert.equal(url.searchParams.get('fish'), '28')
+  assert.equal(url.searchParams.get('route'), 'sinker')
+  assert.equal(url.searchParams.get('return'), returnPath)
+}
+
+function assertNotebookGroupState(nodes, selectedStage) {
+  const markup = nodes.get('notebook-guide').innerHTML
+  for (let stage = 1; stage <= 6; stage++) {
+    const group = markup.match(new RegExp(`<details id="notebook-route-${stage}"[^>]*>`))?.[0]
+    assert(group, `Notebook route ${stage} disappeared during map navigation`)
+    assert.equal(/\sopen(?:\s|>)/.test(group), stage === selectedStage)
+  }
+  assert.match(markup, /data-notebook-route-total="66"/)
+  assert.match(markup, /class="notebook-manual"/)
+  assert.match(markup, /data-notebook-remaining/)
+}
+
+async function checkUnrelatedMapAnchors(outputs) {
+  for (const anchor of ['#map-view', '#notebook-guide']) {
+    const page = await runMapPage(outputs, 'en', false, `stage=3&section=s3-c1-r3${anchor}`)
+    dispatchStage(page.runtime, 4)
+    assert.equal(new URL(page.history.lastUrl).hash, anchor)
+    if (anchor === '#notebook-guide') assertNotebookGroupState(page.nodes, 4)
+  }
 }
 
 await main()
