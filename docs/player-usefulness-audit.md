@@ -292,3 +292,12 @@ The Magnet detail in Area 6 previously described a story gate but offered only t
 The current area's fixed exit picture stays visible in Areas 1–5, while the other areas' pictures remain available in a closed disclosure. No location data, anchors, research sources, or original captures are removed. The complete natural sequence that first sets the story prerequisite remains a research task, not a claimed player route. See [the ROM gate trace](magnet-story-gate-research.md).
 
 Mobile return verification also exposed a moving click target during animated map scrolling. The map return link now has the existing sticky-header scroll margin, and map anchor scrolling is immediate, so the return target settles before it is clicked.
+
+
+## Selected-area purchase guidance (2026-10-05)
+
+A player opening an item from Area 6 previously saw Area 1 stock before recorded Area 6 stock. Item purchases now put the selected area's recorded seller or ready-made fly bundle first, with an explicit localized marker. The other recorded areas remain visible. When there is no recorded offer in the selected area, a short notice says so before showing recorded alternatives; this is not a claim that the item is impossible to obtain there by other means. Conditional stock, bundle components, prices and return routes are preserved.
+
+The same ordering applies to exact ready-made fly price comparisons through the shared assembly list. This changes presentation of existing ROM-derived shop records, without adding stock, access, price or fishing-effect claims. Separate automated checks cover available, missing and invalid area selections; actual mobile/desktop journeys remain the visual acceptance check.
+
+A separate current-page review confirmed the next context gap: rod 03 still leads with an Area 1 budget recommendation when opened from Area 6, although recorded stock there includes 03/04/14/15. Purchase ordering does not fix this advice. The next step is selected-area rod tradeoffs derived from existing stock, price, aim and reach evidence, with no inferred catch-power claim.

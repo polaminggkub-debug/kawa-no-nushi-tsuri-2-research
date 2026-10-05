@@ -299,6 +299,42 @@
   }
 
   // src/pages/item/purchases.js
+  function selectedStage(ctx) {
+    const stage = Number(ctx.selectedStage);
+    return Number.isInteger(stage) && stage >= 1 && stage <= 6 ? stage : 0;
+  }
+  function selectedAreaLabel(ctx) {
+    return {
+      th: "ด่านที่เลือก",
+      ja: "選択中のエリア",
+      en: "Selected area"
+    }[ctx.lang];
+  }
+  function missingAreaNote(ctx, stage, isFly, hasOtherAreas) {
+    const area = ctx.copy.shopArea(stage);
+    const kind = isFly ? {
+      th: "ชุดฟลายสำเร็จรูป",
+      ja: "店売り毛バリセット",
+      en: "ready-made fly sets"
+    }[ctx.lang] : {
+      th: "รายการขายไอเท็มนี้",
+      ja: "この道具の店頭在庫",
+      en: "offers for this item"
+    }[ctx.lang];
+    const message = hasOtherAreas ? {
+      th: `ไม่พบ${kind}ที่บันทึกไว้ใน${area}; แสดงด่านอื่นที่มีรายการไว้ด้านล่าง`,
+      ja: `${area}に${kind}の記録はありません。記録のある他エリアを下に表示しています。`,
+      en: `No ${kind} are recorded in ${area}; other areas with a recorded offer are listed below.`
+    }[ctx.lang] : {
+      th: `ไม่พบ${kind}ที่บันทึกไว้ใน${area}หรือด่านอื่นจากข้อมูล ROM ที่ตรวจ`,
+      ja: `確認したROMデータには${area}にも他エリアにも${kind}の記録がありません。`,
+      en: `No ${kind} are recorded in ${area} or any other area in the checked ROM data.`
+    }[ctx.lang];
+    return `<p class="muted selected-area-missing-note" data-selected-area-missing="true">${ctx.esc(message)}</p>`;
+  }
+  function selectedAreaBadge(ctx, stage) {
+    return Number(stage) === selectedStage(ctx) ? ` <span class="detail-badge" data-selected-area-badge>${ctx.esc(selectedAreaLabel(ctx))}</span>` : "";
+  }
   function flyAssemblies(ctx, item, allItems) {
     const id = item.id, parts = [];
     for (const body of allItems.filter((i) => i.category === "fly"))
@@ -311,7 +347,10 @@
         if (parts.some((p) => p.key === key)) continue;
         parts.push({ key, stage: Number(shop.stage), bundle: b, body });
       }
-    return parts.sort((a, b) => a.stage - b.stage || a.bundle.shopPriceYen - b.bundle.shopPriceYen);
+    const selected = selectedStage(ctx);
+    return parts.sort(
+      (a, b) => Number(b.stage === selected) - Number(a.stage === selected) || a.stage - b.stage || a.bundle.shopPriceYen - b.bundle.shopPriceYen
+    );
   }
   function shopCondition(ctx, item, offer, fishLocations) {
     if (!offer?.condition) return "";
@@ -320,32 +359,64 @@
     const action = knownAyuCondition ? `<a class="route-button" href="${ctx.esc(ctx.fishProfileLink("38", fishLocations))}">${ctx.esc(ctx.lang === "th" ? "ดูจุดตกและเหยื่อสำหรับปลาอายุ" : ctx.lang === "ja" ? "アユの釣り場と対応エサを見る" : "Find Ayu fishing spots and compatible bait")} ↗</a>` : "";
     return `<p class="shop-condition"><strong>${ctx.esc(ctx.copy.unlock)}</strong> ${ctx.esc(message)}</p>${action}`;
   }
-  function shopSection(ctx, item, allItems, fishLocations) {
+  function flyPurchaseCard(ctx, bundle, stage, allItems, fishLocations, selected) {
+    const refs = [
+      ["fly", bundle.body],
+      ["fly_wing", bundle.wing],
+      ["fly_tail", bundle.tail]
+    ].filter(([, id]) => id && id !== "00").map(([category, id]) => allItems.find((i) => i.category === category && i.id === id)).filter(Boolean);
+    const isSelected = stage === selected;
+    return `<article class="detail-section" data-purchase-stage="${stage}"${isSelected ? ' data-selected-area-offer="true"' : ""}><h3>${ctx.esc(ctx.copy.bundleAt(stage))}${selectedAreaBadge(ctx, stage)}</h3><p><strong>${ctx.esc(ctx.copy.completePrice)} · ${ctx.esc(ctx.copy.price(bundle.shopPriceYen))}</strong></p><div class="detail-grid">${refs.map((part) => ctx.componentLink(part)).join("")}</div>${ctx.stageButton(stage, fishLocations)}<p class="muted">${ctx.esc(ctx.copy.mapNote)}</p></article>`;
+  }
+  function flyPurchaseSection(ctx, item, allItems, fishLocations, selected) {
+    const assemblies = ctx.flyAssemblies(item, allItems);
+    if (!assemblies.length)
+      return `<section class="detail-section purchase-section"><h2>${ctx.esc(ctx.copy.shop)}</h2>${selected ? missingAreaNote(ctx, selected, true, false) : ""}<p class="muted">${ctx.esc(ctx.copy.noShop)}</p></section>`;
+    const hasSelectedAssembly = assemblies.some(({ stage }) => stage === selected);
+    const note = selected && !hasSelectedAssembly ? missingAreaNote(ctx, selected, true, true) : "";
+    const usedIn = item.category !== "fly" ? `<p>${ctx.esc(ctx.copy.usedIn)}</p>` : "";
+    const cards = assemblies.map(
+      ({ stage, bundle }) => flyPurchaseCard(ctx, bundle, stage, allItems, fishLocations, selected)
+    ).join("");
+    return `<section id="fly-purchases" class="detail-section purchase-section"><h2>${ctx.esc(ctx.copy.shop)}</h2>${usedIn}${note}<div class="detail-grid">${cards}</div></section>`;
+  }
+  function shopSeller(ctx, offer) {
+    if (offer?.shop === "special_rod_shop")
+      return ctx.lang === "th" ? "ร้านคันเบ็ดพิเศษในเมือง" : ctx.lang === "ja" ? "町の専用竿店" : "Special rod shop";
+    return ctx.lang === "th" ? "ร้านในด่านนี้" : ctx.lang === "ja" ? "エリア内の店" : "Store stock in this area";
+  }
+  function shopOfferCard(ctx, item, stage, offer, fishLocations, selected) {
+    const isSelected = stage === selected;
+    const itemPrice = item.priceYen != null ? ` · ${ctx.esc(ctx.copy.price(item.priceYen))}` : "";
+    return `<article class="detail-section" data-purchase-stage="${stage}"${isSelected ? ' data-selected-area-offer="true"' : ""}><h3>${ctx.esc(ctx.stageName(stage, fishLocations))}${selectedAreaBadge(ctx, stage)}</h3><p>${ctx.esc(shopSeller(ctx, offer))}${itemPrice}</p>${ctx.shopCondition(item, offer, fishLocations)}${ctx.stageButton(stage, fishLocations)}</article>`;
+  }
+  function ordinaryPurchaseSection(ctx, item, fishLocations, selected) {
     const shops = item.playerUse?.shops || [];
-    const isFly = ["fly", "fly_wing", "fly_tail"].includes(item.category);
-    if (isFly) {
-      const assemblies = ctx.flyAssemblies(item, allItems);
-      if (!assemblies.length)
-        return `<section class="detail-section purchase-section"><h2>${ctx.esc(ctx.copy.shop)}</h2><p class="muted">${ctx.esc(ctx.copy.noShop)}</p></section>`;
-      return `<section id="fly-purchases" class="detail-section purchase-section"><h2>${ctx.esc(ctx.copy.shop)}</h2>${item.category !== "fly" ? `<p>${ctx.esc(ctx.copy.usedIn)}</p>` : ""}<div class="detail-grid">${assemblies.map(({ stage, bundle }) => {
-        const refs = [
-          ["fly", bundle.body],
-          ["fly_wing", bundle.wing],
-          ["fly_tail", bundle.tail]
-        ].filter(([, id]) => id && id !== "00").map(([c, id]) => allItems.find((i) => i.category === c && i.id === id)).filter(Boolean);
-        return `<article class="detail-section"><h3>${ctx.esc(ctx.copy.bundleAt(stage))}</h3><p><strong>${ctx.esc(ctx.copy.completePrice)} · ${ctx.esc(ctx.copy.price(bundle.shopPriceYen))}</strong></p><div class="detail-grid">${refs.map((part) => ctx.componentLink(part)).join("")}</div>${ctx.stageButton(stage, fishLocations)}<p class="muted">${ctx.esc(ctx.copy.mapNote)}</p></article>`;
-      }).join("")}</div></section>`;
-    }
     if (!shops.length)
-      return `<section class="detail-section purchase-section"><h2>${ctx.esc(ctx.copy.shop)}</h2><p class="muted">${ctx.esc(ctx.copy.noShop)}</p></section>`;
-    const stageRows = [
-      ...new Set(shops.map((s) => Number(s.stage)).filter((n) => n >= 1 && n <= 6))
-    ].sort((a, b) => a - b);
-    return `<section class="detail-section purchase-section"><h2>${ctx.esc(ctx.copy.shop)}</h2>${item.priceYen != null ? `<p><strong>${ctx.esc(ctx.copy.price(item.priceYen))}</strong> <span class="muted">· ${ctx.esc(ctx.copy.stockAt)} · ${ctx.esc(ctx.copy.priceFromRom)}</span></p>` : ""}<div class="detail-grid">${stageRows.map((stage) => {
-      const offer = shops.find((s) => Number(s.stage) === stage);
-      const seller = offer?.shop === "special_rod_shop" ? ctx.lang === "th" ? "ร้านคันเบ็ดพิเศษในเมือง" : ctx.lang === "ja" ? "町の専用竿店" : "Special rod shop" : ctx.lang === "th" ? "ร้านในด่านนี้" : ctx.lang === "ja" ? "エリア内の店" : "Store stock in this area";
-      return `<article class="detail-section"><h3>${ctx.esc(ctx.stageName(stage, fishLocations))}</h3><p>${ctx.esc(seller)}${item.priceYen != null ? ` · ${ctx.esc(ctx.copy.price(item.priceYen))}` : ""}</p>${ctx.shopCondition(item, offer, fishLocations)}${ctx.stageButton(stage, fishLocations)}</article>`;
-    }).join("")}</div><p class="muted">${ctx.esc(ctx.copy.mapNote)}</p></section>`;
+      return `<section class="detail-section purchase-section"><h2>${ctx.esc(ctx.copy.shop)}</h2>${selected ? missingAreaNote(ctx, selected, false, false) : ""}<p class="muted">${ctx.esc(ctx.copy.noShop)}</p></section>`;
+    const stages = [
+      ...new Set(shops.map((shop) => Number(shop.stage)).filter((stage) => stage >= 1 && stage <= 6))
+    ].sort((a, b) => Number(b === selected) - Number(a === selected) || a - b);
+    const hasSelectedOffer = stages.includes(selected);
+    const note = selected && !hasSelectedOffer ? missingAreaNote(ctx, selected, false, stages.length > 0) : "";
+    const price = item.priceYen != null ? `<p><strong>${ctx.esc(ctx.copy.price(item.priceYen))}</strong> <span class="muted">· ${ctx.esc(ctx.copy.stockAt)} · ${ctx.esc(ctx.copy.priceFromRom)}</span></p>` : "";
+    const cards = stages.map(
+      (stage) => shopOfferCard(
+        ctx,
+        item,
+        stage,
+        shops.find((shop) => Number(shop.stage) === stage),
+        fishLocations,
+        selected
+      )
+    ).join("");
+    return `<section class="detail-section purchase-section"><h2>${ctx.esc(ctx.copy.shop)}</h2>${price}${note}<div class="detail-grid">${cards}</div><p class="muted">${ctx.esc(ctx.copy.mapNote)}</p></section>`;
+  }
+  function shopSection(ctx, item, allItems, fishLocations) {
+    const selected = selectedStage(ctx);
+    if (["fly", "fly_wing", "fly_tail"].includes(item.category))
+      return flyPurchaseSection(ctx, item, allItems, fishLocations, selected);
+    return ordinaryPurchaseSection(ctx, item, fishLocations, selected);
   }
   function buyingDecision(ctx, item, allItems, decisions) {
     const rodPaths = {
@@ -985,8 +1056,8 @@
   }
   function priceChoiceGroup(ctx, group, items) {
     const area = ctx.copy.area(group.stages.join(" / "));
-    const selectedStage = Number(ctx.selectedStage);
-    const linkStage = group.stages.some((stage) => Number(stage) === selectedStage) ? selectedStage : Number(group.stages[0]);
+    const selectedStage2 = Number(ctx.selectedStage);
+    const linkStage = group.stages.some((stage) => Number(stage) === selectedStage2) ? selectedStage2 : Number(group.stages[0]);
     const refs = group.refs.map((ref) => priceChoiceItem(ctx, ref, items, linkStage)).join(" / ");
     return `<p><strong>${ctx.esc(area)}</strong> · ${refs}</p>`;
   }
