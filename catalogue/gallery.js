@@ -2802,6 +2802,7 @@
     return values[ctx.lang] || values.en;
   }
   function showCatalogueLoading(ctx) {
+    document.getElementById("category-menu").hidden = true;
     const message = local(ctx, {
       th: "กำลังโหลดรายการและคำแนะนำตามตัวเลือกของคุณ…",
       ja: "選択条件に合うアイテムと案内を読み込み中…",
@@ -2818,6 +2819,7 @@
     document.getElementById("result-count").textContent = "";
   }
   function showCatalogueError(ctx) {
+    document.getElementById("category-menu").hidden = true;
     const message = local(ctx, {
       th: "โหลดรายการไม่สำเร็จ ยังแสดงคำแนะนำตามปลาหรือตัวเลือกของคุณไม่ได้ ลองโหลดหน้าใหม่ หรือเลือกหน้าอื่นจากเมนูด้านบน",
       ja: "一覧を読み込めず、選択した魚・条件の案内を表示できません。再読み込みするか、上のメニューから別のページを選んでください。",
@@ -2997,6 +2999,7 @@
     ctx.renderCards();
     openInitialContext();
     bindCatalogueEvents(ctx);
+    document.getElementById("category-menu").hidden = false;
   }
   function initializeLoadedCatalogue(ctx, data) {
     installCatalogueData(ctx, data);
@@ -3006,7 +3009,7 @@
   }
   function loadCatalogue(ctx) {
     showCatalogueLoading(ctx);
-    fetch("gallery-data.json?v=compendium-20261005-25").then((response) => {
+    fetch("gallery-data.json?v=compendium-20261005-26").then((response) => {
       if (!response.ok) throw new Error("catalogue unavailable");
       return response.json();
     }).then((data) => initializeLoadedCatalogue(ctx, data)).catch((error) => {

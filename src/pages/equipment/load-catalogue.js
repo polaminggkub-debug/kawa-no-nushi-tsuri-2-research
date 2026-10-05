@@ -208,6 +208,7 @@ function renderInitialCatalogue(ctx) {
   ctx.renderCards()
   openInitialContext()
   bindCatalogueEvents(ctx)
+  document.getElementById('category-menu').hidden = false
 }
 
 function initializeLoadedCatalogue(ctx, data) {
@@ -219,7 +220,7 @@ function initializeLoadedCatalogue(ctx, data) {
 
 export function loadCatalogue(ctx) {
   showCatalogueLoading(ctx)
-  fetch('gallery-data.json?v=compendium-20261005-25')
+  fetch('gallery-data.json?v=compendium-20261005-26')
     .then((response) => {
       if (!response.ok) throw new Error('catalogue unavailable')
       return response.json()

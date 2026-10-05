@@ -27,7 +27,7 @@ function fetchProfile(ctx) {
 }
 
 function loadGallery() {
-  return fetch('gallery-data.json?v=compendium-20261005-25').then((response) => {
+  return fetch('gallery-data.json?v=compendium-20261005-26').then((response) => {
     if (!response.ok) throw new Error('gallery data unavailable')
     return response.json()
   })
