@@ -172,6 +172,10 @@
   }
   function bindNotebookProgress(ctx, mount) {
     if (!ctx.notebookCompletion?.species || !mount.querySelector(".notebook-manual")) return;
+    if (ctx.notebookFocusNeedsReveal) {
+      onlyRemaining = false;
+      ctx.notebookFocusNeedsReveal = false;
+    }
     const c = text[ctx.lang] || text.en;
     const eligible = eligibleNotebookIds(ctx.notebookCompletion);
     const storage = storageAccess();
@@ -187,8 +191,12 @@
     updateProgress(mount, eligible, state.ids, c, state.persistent);
     mount.onchange = (event) => {
       const input = event.target;
-      if (input.matches("[data-notebook-remaining]")) onlyRemaining = input.checked;
-      else if (input.matches("[data-notebook-mark]")) {
+      if (input.matches("[data-notebook-remaining]")) {
+        ctx.notebookSpecies = "";
+        mount.querySelector("[data-notebook-focused]")?.removeAttribute("data-notebook-focused");
+        onlyRemaining = input.checked;
+        ctx.updateUrl?.();
+      } else if (input.matches("[data-notebook-mark]")) {
         const id = input.dataset.notebookMark;
         state.ids = readNotebookMarks(storage, eligible).ids;
         state.ids = input.checked ? [.../* @__PURE__ */ new Set([...state.ids, id])] : state.ids.filter((entry) => entry !== id);
@@ -309,7 +317,9 @@
   function excludedFish(ctx, ids, profiles) {
     return (Array.isArray(ids) ? ids : []).map((id) => normalizedId(ctx, id)).filter((id) => profiles[id]?.notebookEligible === false && ctx.species[id]);
   }
-  function notebookReturn(ctx) {
+  function notebookReturn(ctx, id = "") {
+    if (id && id === ctx.notebookSpecies)
+      return `${ctx.sourceReturn().split("#")[0]}#notebook-species-${id}`;
     const anchor = ctx.notebookFullRoute ? `notebook-route-${ctx.activeStage}` : "notebook-guide";
     return `${ctx.sourceReturn().split("#")[0]}#${anchor}`;
   }
@@ -333,7 +343,9 @@
     return `<details class="notebook-help" data-notebook-help><summary>${ctx.esc(copyText.help)}</summary><section class="notebook-count-explainer"><h4>${ctx.esc(copyText.countNoteTitle)}</h4><p>${ctx.esc(copyText.countNote(ctx.activeStage, recordableCount, newCount, repeatCount))}</p></section>${notebookVerificationMarkup(ctx, copyText)}<p class="notebook-target-note">${ctx.esc(copyText.spawnNote)}</p>${areaCountLinks(ctx, guide, copyText)}</details>`;
   }
   function fishActionLinks(ctx, id, returnPath) {
-    const stage = String(ctx.activeStage);
+    const stage = String(
+      id === ctx.notebookSpecies ? ctx.notebookSelectedStage || ctx.activeStage : ctx.activeStage
+    );
     const fishQuery = new URLSearchParams({
       id,
       stage,
@@ -357,14 +369,23 @@
     const equipmentHref = `${localizedPage(ctx, "index")}?${equipmentQuery}#fish-location-panel`;
     return { detailHref, mapHref, equipmentHref };
   }
+  function focusContext(ctx, id) {
+    if (!ctx.notebookFullRoute || id !== ctx.notebookSpecies) return "";
+    const first = ctx.activeStage;
+    const selected = ctx.notebookSelectedStage || first;
+    const label = ctx.lang === "th" ? `จัดไว้ในด่าน ${first} เพื่อไม่นับซ้ำ · จุดตกที่เลือก: ด่าน ${selected}` : ctx.lang === "ja" ? `重複しないようエリア${first}に掲載 · 選択中の釣り場：エリア${selected}` : `Filed under Area ${first} to avoid duplicates · Selected fishing area: ${selected}`;
+    return `<p class="notebook-focus-context">${ctx.esc(label)}</p>`;
+  }
   function fishCard(ctx, copyText, id) {
     const fish = ctx.species[id];
     const image = fish.visual?.image ? `<img loading="lazy" src="${ctx.esc(fish.visual.image)}" alt="">` : "";
-    const returnPath = notebookReturn(ctx);
+    const returnPath = notebookReturn(ctx, id);
     const { detailHref, mapHref, equipmentHref } = fishActionLinks(ctx, id, returnPath);
     const actionsLabel = copyText.actionsFor(fish.name);
     const className = ctx.notebookFullRoute ? "notebook-fish notebook-route-fish" : "notebook-fish";
-    return `<article class="${className}" data-notebook-card="${ctx.esc(id)}"><a class="notebook-fish-main" data-notebook-action="details" href="${ctx.esc(detailHref)}" aria-label="${ctx.esc(fish.name)} · ${ctx.esc(copyText.details)}">${image}<span><strong>${ctx.esc(fish.name)}</strong><small>${ctx.esc(copyText.id)} ${ctx.esc(id)} · ${ctx.esc(copyText.details)} ↗</small></span></a><nav class="notebook-fish-actions" aria-label="${ctx.esc(actionsLabel)}"><a data-notebook-action="map" href="${ctx.esc(mapHref)}">${ctx.esc(copyText.mapAction)} ↗</a><a data-notebook-action="equipment" href="${ctx.esc(equipmentHref)}">${ctx.esc(copyText.equipmentAction)} ↗</a></nav></article>`;
+    const focused = id === ctx.notebookSpecies ? " data-notebook-focused" : "";
+    const anchor = ctx.notebookFullRoute ? ` id="notebook-species-${ctx.esc(id)}"${focused}` : "";
+    return `<article class="${className}" data-notebook-card="${ctx.esc(id)}"${anchor}><a class="notebook-fish-main" data-notebook-action="details" href="${ctx.esc(detailHref)}" aria-label="${ctx.esc(fish.name)} · ${ctx.esc(copyText.details)}">${image}<span><strong>${ctx.esc(fish.name)}</strong><small>${ctx.esc(copyText.id)} ${ctx.esc(id)} · ${ctx.esc(copyText.details)} ↗</small></span></a>${focusContext(ctx, id)}<nav class="notebook-fish-actions" aria-label="${ctx.esc(actionsLabel)}"><a data-notebook-action="map" href="${ctx.esc(mapHref)}">${ctx.esc(copyText.mapAction)} ↗</a><a data-notebook-action="equipment" href="${ctx.esc(equipmentHref)}">${ctx.esc(copyText.equipmentAction)} ↗</a></nav></article>`;
   }
   function fishList(ctx, copyText, ids) {
     return ids.map((id) => fishCard(ctx, copyText, id)).join("");
@@ -377,7 +398,12 @@
         seen.add(id);
         return true;
       });
-      const routeCtx = { ...ctx, activeStage: entry.stage, notebookFullRoute: true };
+      const routeCtx = {
+        ...ctx,
+        activeStage: entry.stage,
+        notebookFullRoute: true,
+        notebookSelectedStage: ctx.activeStage
+      };
       const selected = Number(ctx.notebookRouteStage) || (ctx.openNotebookGuide ? Number(ctx.activeStage) : 0);
       const open2 = selected === entry.stage ? " open" : "";
       return `<details id="notebook-route-${entry.stage}" class="notebook-route-group" data-notebook-route-stage="${entry.stage}" data-route-count="${ids.length}"${open2}><summary>${ctx.esc(copyText.routeGroup(entry.stage, ids.length))}</summary><div class="notebook-fish-list">${fishList(routeCtx, copyText, ids)}</div></details>`;
@@ -735,6 +761,31 @@
     });
   }
 
+  // src/pages/maps/notebook-focus.js
+  function initializeNotebookFocus(ctx, hash) {
+    const id = hash.match(/^#notebook-species-([0-9a-f]{2})$/i)?.[1]?.toUpperCase();
+    const entry = ctx.notebookCompletion?.species?.[id];
+    ctx.notebookSpecies = "";
+    ctx.notebookFocusNeedsReveal = false;
+    if (entry?.notebookEligible !== true) return;
+    const stage = Number(entry.firstOccurrenceStage);
+    if (!Number.isInteger(stage) || stage < 1 || stage > 6) return;
+    ctx.notebookSpecies = id;
+    ctx.notebookFocusNeedsReveal = true;
+    ctx.notebookRouteStage = stage;
+    ctx.openNotebookGuide = true;
+  }
+  function notebookFocusAnchor(ctx) {
+    return ctx.notebookSpecies ? `#notebook-species-${ctx.notebookSpecies}` : "";
+  }
+  function scrollToNotebookSpecies(ctx) {
+    if (!ctx.notebookSpecies) return false;
+    const card = ctx.$(`notebook-species-${ctx.notebookSpecies}`);
+    if (!card) return false;
+    card.scrollIntoView?.({ block: "start" });
+    return true;
+  }
+
   // src/pages/maps/fish-search.js
   function safeReturn(ctx, raw) {
     if (!raw || raw.startsWith("//") || raw.includes("\\") || /^[a-z][a-z0-9+.-]*:/i.test(raw))
@@ -851,7 +902,7 @@
   }
   function updateUrl(ctx) {
     const params = new URLSearchParams();
-    const anchor = ctx.notebookRouteStage ? `#notebook-route-${ctx.notebookRouteStage}` : ctx.openNotebookGuide ? "#notebook-guide" : location.hash === "#map-view" ? "#map-view" : "";
+    const anchor = notebookFocusAnchor(ctx) || (ctx.notebookRouteStage ? `#notebook-route-${ctx.notebookRouteStage}` : ctx.openNotebookGuide ? "#notebook-guide" : location.hash === "#map-view" ? "#map-view" : "");
     params.set("stage", String(ctx.activeStage));
     if (ctx.returnPath) params.set("return", ctx.returnPath);
     if (ctx.activeSection) params.set("section", ctx.activeSection);
@@ -871,7 +922,7 @@
       const toLang = link.getAttribute("hreflang");
       if (ctx.returnPath && ["en", "th", "ja"].includes(toLang))
         paramsCopy.set("return", ctx.localizeReturn(ctx.returnPath, toLang));
-      const keepAnchor = ["#notebook-guide", "#map-view"].includes(location.hash) || /^#notebook-route-[1-6]$/.test(location.hash);
+      const keepAnchor = ["#notebook-guide", "#map-view"].includes(location.hash) || /^#notebook-route-[1-6]$/.test(location.hash) || /^#notebook-species-[0-9A-F]{2}$/.test(location.hash);
       link.href = `${route}?${paramsCopy.toString()}${keepAnchor ? location.hash : ""}`;
     });
   }
@@ -1090,6 +1141,7 @@
   function setFish(ctx, id, { toggle = true } = {}) {
     if (!ctx.species[id]?.stages?.length) return;
     const next = toggle && ctx.selectedFish === id ? "" : id;
+    if (next !== ctx.notebookSpecies) ctx.notebookSpecies = "";
     const previousSection = ctx.activeSection;
     ctx.selectedFish = next;
     if (ctx.selectedFish && !ctx.fishInStage(ctx.selectedFish, ctx.activeStage))
@@ -1296,6 +1348,7 @@
   function initFromUrl(ctx) {
     ctx.notebookRouteStage = Number(location.hash.match(/^#notebook-route-([1-6])$/)?.[1]) || 0;
     ctx.openNotebookGuide = location.hash === "#notebook-guide" || Boolean(ctx.notebookRouteStage);
+    initializeNotebookFocus(ctx, location.hash);
     const p = new URLSearchParams(location.search);
     ctx.selectedRoute = ["float", "sinker", "lure", "fly"].includes(p.get("route")) ? p.get("route") : "";
     ctx.activeWaterMark = normalizeWaterMark(p.get("mark"));
@@ -1450,7 +1503,7 @@
 
   // src/pages/maps/bind-map-targets.js
   function bindFishLinks(ctx) {
-    ctx.sourceReturn = () => location.pathname.split("/").pop() + location.search + (ctx.openNotebookGuide ? "#notebook-guide" : location.hash === "#map-view" ? "#map-view" : "");
+    ctx.sourceReturn = () => location.pathname.split("/").pop() + location.search + (notebookFocusAnchor(ctx) || (ctx.openNotebookGuide ? "#notebook-guide" : location.hash === "#map-view" ? "#map-view" : ""));
     ctx.fishHref = (id) => {
       const source = ctx.sourceReturn();
       const returnPath = source.endsWith("#notebook-guide") ? source : `${source.split("#")[0]}#map-view`;
@@ -1482,6 +1535,10 @@
       const button = event.target.closest("[data-stage]");
       if (!button || button.disabled) return;
       ctx.activeStage = Number(button.dataset.stage);
+      if (ctx.notebookSpecies) {
+        ctx.notebookSpecies = "";
+        ctx.notebookRouteStage = ctx.activeStage;
+      }
       if (/^#notebook-route-[1-6]$/.test(location.hash)) ctx.notebookRouteStage = ctx.activeStage;
       ctx.activeSection = ctx.chooseSection(ctx.activeStage);
       ctx.render();
@@ -1597,12 +1654,14 @@
       ctx.searchInput.value = "";
       ctx.searchTerm = "";
       ctx.selectedFish = "";
+      ctx.notebookSpecies = "";
       ctx.closeSuggestions(true);
       ctx.render();
       ctx.searchInput.focus();
     });
     ctx.$("show-all").addEventListener("click", () => {
       ctx.selectedFish = "";
+      ctx.notebookSpecies = "";
       ctx.lastWaterMark = ctx.activeWaterMark || ctx.lastWaterMark;
       ctx.activeWaterMark = "";
       ctx.listScope = "area";
@@ -1651,6 +1710,7 @@
       ctx.initFromUrl();
       ctx.enableControls();
       ctx.render();
+      if (scrollToNotebookSpecies(ctx)) return;
       if (ctx.notebookRouteStage)
         ctx.$(`notebook-route-${ctx.notebookRouteStage}`)?.scrollIntoView({ block: "start" });
       else if (ctx.openNotebookGuide) ctx.$("notebook-guide")?.scrollIntoView({ block: "start" });

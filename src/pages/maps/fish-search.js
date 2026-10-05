@@ -1,6 +1,7 @@
 import { notebookStatus } from './notebook-status.js'
 import { renderGrowthOnlyFishBadge } from './water-icons.js'
 import { distinctFishNames } from '../../entities/fish/index.js'
+import { notebookFocusAnchor } from './notebook-focus.js'
 
 export function safeReturn(ctx, raw) {
   if (!raw || raw.startsWith('//') || raw.includes('\\') || /^[a-z][a-z0-9+.-]*:/i.test(raw))
@@ -137,13 +138,15 @@ export function indexMapSections(ctx) {
 
 export function updateUrl(ctx) {
   const params = new URLSearchParams()
-  const anchor = ctx.notebookRouteStage
-    ? `#notebook-route-${ctx.notebookRouteStage}`
-    : ctx.openNotebookGuide
-      ? '#notebook-guide'
-      : location.hash === '#map-view'
-        ? '#map-view'
-        : ''
+  const anchor =
+    notebookFocusAnchor(ctx) ||
+    (ctx.notebookRouteStage
+      ? `#notebook-route-${ctx.notebookRouteStage}`
+      : ctx.openNotebookGuide
+        ? '#notebook-guide'
+        : location.hash === '#map-view'
+          ? '#map-view'
+          : '')
   params.set('stage', String(ctx.activeStage))
   if (ctx.returnPath) params.set('return', ctx.returnPath)
   if (ctx.activeSection) params.set('section', ctx.activeSection)
@@ -166,7 +169,8 @@ export function updateLanguageLinks(ctx, params) {
       paramsCopy.set('return', ctx.localizeReturn(ctx.returnPath, toLang))
     const keepAnchor =
       ['#notebook-guide', '#map-view'].includes(location.hash) ||
-      /^#notebook-route-[1-6]$/.test(location.hash)
+      /^#notebook-route-[1-6]$/.test(location.hash) ||
+      /^#notebook-species-[0-9A-F]{2}$/.test(location.hash)
     link.href = `${route}?${paramsCopy.toString()}${keepAnchor ? location.hash : ''}`
   })
 }

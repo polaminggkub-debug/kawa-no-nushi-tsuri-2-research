@@ -9,12 +9,14 @@ export function bindSearchActions(ctx) {
     ctx.searchInput.value = ''
     ctx.searchTerm = ''
     ctx.selectedFish = ''
+    ctx.notebookSpecies = ''
     ctx.closeSuggestions(true)
     ctx.render()
     ctx.searchInput.focus()
   })
   ctx.$('show-all').addEventListener('click', () => {
     ctx.selectedFish = ''
+    ctx.notebookSpecies = ''
     ctx.lastWaterMark = ctx.activeWaterMark || ctx.lastWaterMark
     ctx.activeWaterMark = ''
     ctx.listScope = 'area'

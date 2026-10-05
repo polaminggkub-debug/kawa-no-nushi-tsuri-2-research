@@ -1,5 +1,6 @@
 import { normalizeWaterMark } from './water-mark-filter.js'
 import { notebookStatus } from './notebook-status.js'
+import { initializeNotebookFocus } from './notebook-focus.js'
 
 export function renderSectionSelect(ctx) {
   const data = ctx.stages[ctx.activeStage]
@@ -70,6 +71,7 @@ export function renderTargetSectionLinks(ctx, data, targetSections) {
 export function setFish(ctx, id, { toggle = true } = {}) {
   if (!ctx.species[id]?.stages?.length) return
   const next = toggle && ctx.selectedFish === id ? '' : id
+  if (next !== ctx.notebookSpecies) ctx.notebookSpecies = ''
   const previousSection = ctx.activeSection
   ctx.selectedFish = next
   if (ctx.selectedFish && !ctx.fishInStage(ctx.selectedFish, ctx.activeStage))
@@ -340,6 +342,7 @@ export function enableControls(ctx) {
 export function initFromUrl(ctx) {
   ctx.notebookRouteStage = Number(location.hash.match(/^#notebook-route-([1-6])$/)?.[1]) || 0
   ctx.openNotebookGuide = location.hash === '#notebook-guide' || Boolean(ctx.notebookRouteStage)
+  initializeNotebookFocus(ctx, location.hash)
   const p = new URLSearchParams(location.search)
   ctx.selectedRoute = ['float', 'sinker', 'lure', 'fly'].includes(p.get('route'))
     ? p.get('route')

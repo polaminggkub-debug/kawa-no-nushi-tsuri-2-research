@@ -1243,6 +1243,25 @@
     return `<section id="fight-controls" class="detail-section"><h2>${esc(text.title)}</h2><p><strong>${esc(text.action)}</strong></p><p>${esc(text.result)}</p><details id="fight-controls-evidence"><summary>${esc(text.evidence)}</summary><p>${esc(text.setup)}</p><p>${esc(text.continuation)}</p><p><a href="https://github.com/polaminggkub-debug/kawa-no-nushi-tsuri-2-research/blob/main/docs/fight-input-research.md">${esc(text.trace)} ↗</a></p><div class="fight-captures"><figure><a href="../research/assets/fight-hold-escape.png"><img src="../research/assets/fight-hold-escape.png" alt="${esc(text.escape)}" loading="lazy"></a><figcaption>${esc(text.escape)}</figcaption></figure><figure><a href="../research/assets/fight-release-catch.png"><img src="../research/assets/fight-release-catch.png" alt="${esc(text.catch)}" loading="lazy"></a><figcaption>${esc(text.catch)}</figcaption></figure></div></details></section>`;
   }
 
+  // src/pages/fish/notebook-checklist-link.js
+  function checklistStage(ctx, firstStage) {
+    const selected = Number(ctx.requestedStage);
+    return Number.isInteger(selected) && selected >= 1 && selected <= 6 ? selected : firstStage;
+  }
+  function checklistCopy(ctx) {
+    if (ctx.locale === "th") return "เปิดเช็กลิสต์บนเว็บของปลาชนิดนี้ (จดเอง แยกจากสมุดในเกม)";
+    if (ctx.locale === "ja") return "この魚の手動チェックリストを開く（ゲーム内ノートとは別）";
+    return "Open this species’ manual web checklist (separate from the in-game notebook)";
+  }
+  function notebookChecklistLink(ctx, firstStage) {
+    const stage = checklistStage(ctx, firstStage);
+    const query = new URLSearchParams({ stage: String(stage), fish: ctx.id });
+    if (ctx.requestedMethod) query.set("route", ctx.requestedMethod);
+    query.set("return", ctx.currentFishPath(stage));
+    const href = `${ctx.mapPath()}?${query}#notebook-species-${ctx.id}`;
+    return `<a class="route-button" data-fish-notebook-checklist href="${ctx.escapeHtml(href)}">${ctx.escapeHtml(checklistCopy(ctx))} ↗</a>`;
+  }
+
   // src/pages/fish/notebook-status.js
   var copy2 = {
     th: {
@@ -1300,7 +1319,7 @@
     if (!validStage2(first) || !stages.length) return renderUnconfirmed(ctx, text);
     const otherStages = stages.filter((stage) => stage !== first);
     const locations = otherStages.length ? text.repeats(otherStages.join(", ")) : text.noRepeats;
-    return `<section class="decision-panel fish-notebook-goal" data-fish-notebook-status="eligible" data-notebook-first-stage="${first}" data-notebook-stages="${stages.join(",")}"><h2>${ctx.escapeHtml(text.eligibleTitle)}</h2><p>${ctx.escapeHtml(text.eligibleBody)}</p><p><strong>${ctx.escapeHtml(text.first(first))}</strong> · ${ctx.escapeHtml(locations)}</p><p>${ctx.escapeHtml(text.recorded)}</p><a class="route-button" href="#fish-area-map">${ctx.escapeHtml(text.map)} ↓</a></section>`;
+    return `<section class="decision-panel fish-notebook-goal" data-fish-notebook-status="eligible" data-notebook-first-stage="${first}" data-notebook-stages="${stages.join(",")}"><h2>${ctx.escapeHtml(text.eligibleTitle)}</h2><p>${ctx.escapeHtml(text.eligibleBody)}</p><p><strong>${ctx.escapeHtml(text.first(first))}</strong> · ${ctx.escapeHtml(locations)}</p><p>${ctx.escapeHtml(text.recorded)}</p><a class="route-button" href="#fish-area-map">${ctx.escapeHtml(text.map)} ↓</a><p>${notebookChecklistLink(ctx, first)}</p></section>`;
   }
   function renderExcluded(ctx, text) {
     return `<section class="decision-panel fish-notebook-goal" data-fish-notebook-status="excluded"><h2>${ctx.escapeHtml(text.excludedTitle)}</h2><p>${ctx.escapeHtml(text.excludedBody)}</p></section>`;

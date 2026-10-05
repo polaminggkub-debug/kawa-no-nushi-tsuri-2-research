@@ -125,6 +125,10 @@ function addListMessages(mount, c) {
 
 export function bindNotebookProgress(ctx, mount) {
   if (!ctx.notebookCompletion?.species || !mount.querySelector('.notebook-manual')) return
+  if (ctx.notebookFocusNeedsReveal) {
+    onlyRemaining = false
+    ctx.notebookFocusNeedsReveal = false
+  }
   const c = text[ctx.lang] || text.en
   const eligible = eligibleNotebookIds(ctx.notebookCompletion)
   const storage = storageAccess()
@@ -140,8 +144,12 @@ export function bindNotebookProgress(ctx, mount) {
   updateProgress(mount, eligible, state.ids, c, state.persistent)
   mount.onchange = (event) => {
     const input = event.target
-    if (input.matches('[data-notebook-remaining]')) onlyRemaining = input.checked
-    else if (input.matches('[data-notebook-mark]')) {
+    if (input.matches('[data-notebook-remaining]')) {
+      ctx.notebookSpecies = ''
+      mount.querySelector('[data-notebook-focused]')?.removeAttribute('data-notebook-focused')
+      onlyRemaining = input.checked
+      ctx.updateUrl?.()
+    } else if (input.matches('[data-notebook-mark]')) {
       const id = input.dataset.notebookMark
       state.ids = readNotebookMarks(storage, eligible).ids
       state.ids = input.checked

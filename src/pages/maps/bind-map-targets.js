@@ -1,8 +1,15 @@
+import { notebookFocusAnchor } from './notebook-focus.js'
+
 function bindFishLinks(ctx) {
   ctx.sourceReturn = () =>
     location.pathname.split('/').pop() +
     location.search +
-    (ctx.openNotebookGuide ? '#notebook-guide' : location.hash === '#map-view' ? '#map-view' : '')
+    (notebookFocusAnchor(ctx) ||
+      (ctx.openNotebookGuide
+        ? '#notebook-guide'
+        : location.hash === '#map-view'
+          ? '#map-view'
+          : ''))
   ctx.fishHref = (id) => {
     const source = ctx.sourceReturn()
     const returnPath = source.endsWith('#notebook-guide')
@@ -43,6 +50,10 @@ export function bindMapTargets(ctx) {
     const button = event.target.closest('[data-stage]')
     if (!button || button.disabled) return
     ctx.activeStage = Number(button.dataset.stage)
+    if (ctx.notebookSpecies) {
+      ctx.notebookSpecies = ''
+      ctx.notebookRouteStage = ctx.activeStage
+    }
     if (/^#notebook-route-[1-6]$/.test(location.hash)) ctx.notebookRouteStage = ctx.activeStage
     ctx.activeSection = ctx.chooseSection(ctx.activeStage)
     ctx.render()

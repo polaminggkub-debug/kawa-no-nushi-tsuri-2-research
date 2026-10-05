@@ -62,7 +62,7 @@ function checkRouteGroups(groups, lang, activeStage, source, origin, suffix) {
     const expected = guide.stages[stage - 1].firstOccurrenceSpecies
     const cards = [
       ...body.matchAll(
-        /<article class="notebook-fish notebook-route-fish" data-notebook-card="([0-9A-F]{2})">([\s\S]*?)<\/article>/g,
+        /<article\b(?=[^>]*class="notebook-fish notebook-route-fish")(?=[^>]*data-notebook-card="([0-9A-F]{2})")[^>]*>([\s\S]*?)<\/article>/g,
       ),
     ]
     const ids = cards.map(([, id]) => id)

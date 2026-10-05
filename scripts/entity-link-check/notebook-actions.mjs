@@ -34,7 +34,7 @@ function checkStage(lang, stage) {
     )?.[1] || ''
   const cards = [
     ...group.matchAll(
-      /<article class="notebook-fish notebook-route-fish" data-notebook-card="([0-9A-F]{2})">([\s\S]*?)<\/article>/g,
+      /<article\b(?=[^>]*class="notebook-fish notebook-route-fish")(?=[^>]*data-notebook-card="([0-9A-F]{2})")[^>]*>([\s\S]*?)<\/article>/g,
     ),
   ]
   assert.equal(cards.length, stage.firstOccurrenceCount)

@@ -647,3 +647,39 @@ The previous area-lure release (1837a83) passed GitHub quality and deployment.
 A current public TH Area 2 fish-to-lure-24 click verified pair 17+24 / ¥55 and
 its 38-profile kit context on item detail. New food publication remains a
 separate release step; this work does not establish whole-site completion.
+
+## Fish profile to the exact manual checklist row (r64)
+
+An eligible fish profile now links directly to that species in the existing
+66-species web checklist. Players arriving from equipment or a map pin no
+longer have to reopen a route group and find the fish again. The selected
+fishing area stays in the URL; the first-occurrence area only chooses which
+collection group opens. The focused row has a visible outline, and its map,
+equipment and profile actions keep the current selected area.
+
+These remain manual website marks, separate from the game's notebook. Opening
+a link never marks a species or reads a game save. A focused, already-marked
+species is revealed on entry; choosing the unmarked-only filter afterward
+hides it normally. All 66 unique rows remain, while excluded or unknown
+profiles have no completion action. Research and notebook evidence are intact.
+
+Actual local TH 390px clicks verified profile 06 in Area 3 to its exact row in
+the Area 1 route group, checking and reloading, language changes to EN/JA,
+filtering marked fish, returning to the original profile, and explicitly
+changing area to Area 2. EN 1200px and JA mobile views have no horizontal
+overflow. The temporary mark was removed through the UI, restoring 1/66.
+The first visual check found CSS :target did not identify dynamically rendered
+rows; an explicit focus marker fixed the missing outline. A separate desktop
+review found that scrolling hid both area headings. The focused card now
+states its deduplication group and the selected fishing area directly, avoiding
+confusion when a fish from Area 3 is filed once under Area 1.
+
+The prior food release ef3c537 passed quality and deployment (run 37375367564).
+A public Area 2 food view now shows onigiri 10 HP / ¥10 and dango 15 HP / ¥15
+before explanatory prose. This bounded handoff is not whole-site completion.
+
+Verification: the full `npm run check` passes after independent guard fixes
+for new article attributes and the newly required localized map-path mock.
+The handoff guard checks 66 eligible profiles in EN/JA/TH, excluded/unknown
+profiles, exact unique cards, selected-area actions, nested returns and manual
+progress behavior. No gate was bypassed to publish this repair.

@@ -1572,6 +1572,20 @@ footer p {
   text-decoration: none;
 }
 
+/* src/pages/maps/styles/notebook-focus.css */
+.notebook-route-fish[id] {
+  scroll-margin-top: 9rem;
+}
+.notebook-route-fish[data-notebook-focused] {
+  outline: 3px solid var(--deep);
+  outline-offset: 4px;
+}
+.notebook-focus-context {
+  margin: 0;
+  font-size: 0.8rem;
+  color: var(--muted);
+}
+
 /* src/pages/maps/index.css */
 
 /* src/app/maps.css */

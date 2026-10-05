@@ -184,7 +184,7 @@ async function checkNotebookEquipmentLink(locale, route) {
   const html = notebookGuideMarkup(notebookContext(locale, route, source))
   const card = html.match(
     new RegExp(
-      `<article class="notebook-fish notebook-route-fish" data-notebook-card="${fish}">([\\s\\S]*?)<\\/article>`,
+      `<article\\b(?=[^>]*class="notebook-fish notebook-route-fish")(?=[^>]*data-notebook-card="${fish}")[^>]*>([\\s\\S]*?)<\\/article>`,
     ),
   )?.[1]
   assert(card, `${locale} ${route}: missing Area 4 notebook card ${fish}`)

@@ -1,3 +1,5 @@
+import { notebookChecklistLink } from './notebook-checklist-link.js'
+
 const copy = {
   th: {
     eligibleTitle: 'เป้าหมายสมุด · 1 ใน 66 ชนิด',
@@ -69,7 +71,7 @@ function renderEligible(ctx, entry, text) {
   if (!validStage(first) || !stages.length) return renderUnconfirmed(ctx, text)
   const otherStages = stages.filter((stage) => stage !== first)
   const locations = otherStages.length ? text.repeats(otherStages.join(', ')) : text.noRepeats
-  return `<section class="decision-panel fish-notebook-goal" data-fish-notebook-status="eligible" data-notebook-first-stage="${first}" data-notebook-stages="${stages.join(',')}"><h2>${ctx.escapeHtml(text.eligibleTitle)}</h2><p>${ctx.escapeHtml(text.eligibleBody)}</p><p><strong>${ctx.escapeHtml(text.first(first))}</strong> · ${ctx.escapeHtml(locations)}</p><p>${ctx.escapeHtml(text.recorded)}</p><a class="route-button" href="#fish-area-map">${ctx.escapeHtml(text.map)} ↓</a></section>`
+  return `<section class="decision-panel fish-notebook-goal" data-fish-notebook-status="eligible" data-notebook-first-stage="${first}" data-notebook-stages="${stages.join(',')}"><h2>${ctx.escapeHtml(text.eligibleTitle)}</h2><p>${ctx.escapeHtml(text.eligibleBody)}</p><p><strong>${ctx.escapeHtml(text.first(first))}</strong> · ${ctx.escapeHtml(locations)}</p><p>${ctx.escapeHtml(text.recorded)}</p><a class="route-button" href="#fish-area-map">${ctx.escapeHtml(text.map)} ↓</a><p>${notebookChecklistLink(ctx, first)}</p></section>`
 }
 
 function renderExcluded(ctx, text) {

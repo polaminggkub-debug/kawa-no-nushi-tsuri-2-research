@@ -1,0 +1,14 @@
+.notebook-route-fish[id] {
+  scroll-margin-top: 9rem;
+}
+
+.notebook-route-fish[data-notebook-focused] {
+  outline: 3px solid var(--deep);
+  outline-offset: 4px;
+}
+
+.notebook-focus-context {
+  margin: 0;
+  font-size: 0.8rem;
+  color: var(--muted);
+}

@@ -340,6 +340,7 @@ function makeRenderContext(locale, fishId, stage, clickLink) {
   ctx.localReturn = ''
   ctx.setNavigation = () => {}
   ctx.cataloguePath = () => `index${locale === 'en' ? '' : `.${locale}`}.html`
+  ctx.mapPath = () => `maps${locale === 'en' ? '' : `.${locale}`}.html`
   ctx.getLocations = (source) => source.fish[fishId].locations
   ctx.localizedFishName = (fish, id) => localizedFishName(ctx, fish, id)
   ctx.matchingItems = (items) => matchingItems(ctx, items)

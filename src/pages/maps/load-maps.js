@@ -1,3 +1,5 @@
+import { scrollToNotebookSpecies } from './notebook-focus.js'
+
 export function loadMaps(ctx) {
   Promise.all([
     fetch('fish-locations.json').then((r) => {
@@ -16,6 +18,7 @@ export function loadMaps(ctx) {
       ctx.initFromUrl()
       ctx.enableControls()
       ctx.render()
+      if (scrollToNotebookSpecies(ctx)) return
       if (ctx.notebookRouteStage)
         ctx.$(`notebook-route-${ctx.notebookRouteStage}`)?.scrollIntoView({ block: 'start' })
       else if (ctx.openNotebookGuide) ctx.$('notebook-guide')?.scrollIntoView({ block: 'start' })

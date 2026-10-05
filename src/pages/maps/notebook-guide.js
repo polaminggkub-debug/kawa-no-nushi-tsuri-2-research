@@ -136,7 +136,9 @@ function excludedFish(ctx, ids, profiles) {
     .filter((id) => profiles[id]?.notebookEligible === false && ctx.species[id])
 }
 
-function notebookReturn(ctx) {
+function notebookReturn(ctx, id = '') {
+  if (id && id === ctx.notebookSpecies)
+    return `${ctx.sourceReturn().split('#')[0]}#notebook-species-${id}`
   const anchor = ctx.notebookFullRoute ? `notebook-route-${ctx.activeStage}` : 'notebook-guide'
   return `${ctx.sourceReturn().split('#')[0]}#${anchor}`
 }
@@ -165,7 +167,9 @@ function notebookHelp(ctx, guide, copyText, recordableCount, newCount, repeatCou
 }
 
 function fishActionLinks(ctx, id, returnPath) {
-  const stage = String(ctx.activeStage)
+  const stage = String(
+    id === ctx.notebookSpecies ? ctx.notebookSelectedStage || ctx.activeStage : ctx.activeStage,
+  )
   const fishQuery = new URLSearchParams({
     id,
     stage,
@@ -190,16 +194,31 @@ function fishActionLinks(ctx, id, returnPath) {
   return { detailHref, mapHref, equipmentHref }
 }
 
+function focusContext(ctx, id) {
+  if (!ctx.notebookFullRoute || id !== ctx.notebookSpecies) return ''
+  const first = ctx.activeStage
+  const selected = ctx.notebookSelectedStage || first
+  const label =
+    ctx.lang === 'th'
+      ? `จัดไว้ในด่าน ${first} เพื่อไม่นับซ้ำ · จุดตกที่เลือก: ด่าน ${selected}`
+      : ctx.lang === 'ja'
+        ? `重複しないようエリア${first}に掲載 · 選択中の釣り場：エリア${selected}`
+        : `Filed under Area ${first} to avoid duplicates · Selected fishing area: ${selected}`
+  return `<p class="notebook-focus-context">${ctx.esc(label)}</p>`
+}
+
 function fishCard(ctx, copyText, id) {
   const fish = ctx.species[id]
   const image = fish.visual?.image
     ? `<img loading="lazy" src="${ctx.esc(fish.visual.image)}" alt="">`
     : ''
-  const returnPath = notebookReturn(ctx)
+  const returnPath = notebookReturn(ctx, id)
   const { detailHref, mapHref, equipmentHref } = fishActionLinks(ctx, id, returnPath)
   const actionsLabel = copyText.actionsFor(fish.name)
   const className = ctx.notebookFullRoute ? 'notebook-fish notebook-route-fish' : 'notebook-fish'
-  return `<article class="${className}" data-notebook-card="${ctx.esc(id)}"><a class="notebook-fish-main" data-notebook-action="details" href="${ctx.esc(detailHref)}" aria-label="${ctx.esc(fish.name)} · ${ctx.esc(copyText.details)}">${image}<span><strong>${ctx.esc(fish.name)}</strong><small>${ctx.esc(copyText.id)} ${ctx.esc(id)} · ${ctx.esc(copyText.details)} ↗</small></span></a><nav class="notebook-fish-actions" aria-label="${ctx.esc(actionsLabel)}"><a data-notebook-action="map" href="${ctx.esc(mapHref)}">${ctx.esc(copyText.mapAction)} ↗</a><a data-notebook-action="equipment" href="${ctx.esc(equipmentHref)}">${ctx.esc(copyText.equipmentAction)} ↗</a></nav></article>`
+  const focused = id === ctx.notebookSpecies ? ' data-notebook-focused' : ''
+  const anchor = ctx.notebookFullRoute ? ` id="notebook-species-${ctx.esc(id)}"${focused}` : ''
+  return `<article class="${className}" data-notebook-card="${ctx.esc(id)}"${anchor}><a class="notebook-fish-main" data-notebook-action="details" href="${ctx.esc(detailHref)}" aria-label="${ctx.esc(fish.name)} · ${ctx.esc(copyText.details)}">${image}<span><strong>${ctx.esc(fish.name)}</strong><small>${ctx.esc(copyText.id)} ${ctx.esc(id)} · ${ctx.esc(copyText.details)} ↗</small></span></a>${focusContext(ctx, id)}<nav class="notebook-fish-actions" aria-label="${ctx.esc(actionsLabel)}"><a data-notebook-action="map" href="${ctx.esc(mapHref)}">${ctx.esc(copyText.mapAction)} ↗</a><a data-notebook-action="equipment" href="${ctx.esc(equipmentHref)}">${ctx.esc(copyText.equipmentAction)} ↗</a></nav></article>`
 }
 
 function fishList(ctx, copyText, ids) {
@@ -215,7 +234,12 @@ function fullRouteMarkup(ctx, guide, copyText) {
         seen.add(id)
         return true
       })
-      const routeCtx = { ...ctx, activeStage: entry.stage, notebookFullRoute: true }
+      const routeCtx = {
+        ...ctx,
+        activeStage: entry.stage,
+        notebookFullRoute: true,
+        notebookSelectedStage: ctx.activeStage,
+      }
       const selected =
         Number(ctx.notebookRouteStage) || (ctx.openNotebookGuide ? Number(ctx.activeStage) : 0)
       const open = selected === entry.stage ? ' open' : ''
