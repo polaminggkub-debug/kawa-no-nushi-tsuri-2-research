@@ -2,40 +2,218 @@
   padding: 1rem;
   margin-block: 1rem;
   background: var(--surface, #f0f3e9);
+  border: 1px solid #d6ded1;
   border-radius: 0.75rem;
 }
+
 .water-icon-key h4 {
+  margin: 0 0 0.25rem;
+  color: var(--deep);
+  font-size: 1.25rem;
+}
+
+.water-mark-heading {
   margin: 0 0 0.75rem;
+  color: var(--muted);
+  font-weight: 650;
 }
-.water-icon-key ul {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 1rem;
-  padding: 0;
-  list-style: none;
-}
-.water-icon-key li {
-  display: flex;
-  align-items: center;
+
+.water-mark-buttons {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
   gap: 0.6rem;
 }
-.water-icon-key img {
-  width: 144px;
-  height: 144px;
+
+.water-mark-button {
+  display: flex;
+  min-width: 0;
+  min-height: 88px;
+  align-items: center;
+  gap: 0.65rem;
+  padding: 0.55rem;
+  border: 2px solid #ccd7c7;
+  border-radius: 0.65rem;
+  background: var(--card, #fffefa);
+  color: var(--ink, #192522);
+  text-align: left;
+  cursor: pointer;
+}
+
+.water-mark-button:hover,
+.water-mark-button.is-active {
+  border-color: var(--green, #245b4a);
+  background: #e4eee1;
+}
+
+.water-mark-button.is-active {
+  box-shadow: 0 0 0 2px #b8cdb8;
+}
+
+.water-mark-button:focus-visible,
+.water-mark-actions button:focus-visible,
+.water-mark-actions a:focus-visible {
+  outline: 3px solid #b58428;
+  outline-offset: 2px;
+}
+
+.water-mark-button img {
+  width: 64px;
+  height: 64px;
+  flex: 0 0 64px;
   object-fit: contain;
   image-rendering: pixelated;
   background: #202033;
-  border-radius: 0.5rem;
-  flex-shrink: 0;
+  border-radius: 0.4rem;
 }
-.water-icon-key p {
-  font-size: 0.9rem;
-  line-height: 1.6;
+
+.water-mark-button > span {
+  display: block;
+  min-width: 0;
+  font-size: 0.88rem;
+  font-weight: 700;
+  line-height: 1.35;
+  overflow-wrap: anywhere;
+}
+
+.water-mark-button small {
+  display: block;
+  margin-top: 0.25rem;
+  color: var(--green, #245b4a);
+  font-size: 0.7rem;
+  font-weight: 600;
+}
+
+.water-mark-results {
+  margin-top: 0.75rem;
+  padding: 0.8rem 0.9rem;
+  border-left: 4px solid var(--green, #245b4a);
+  border-radius: 0 0.55rem 0.55rem 0;
+  background: #fffefa;
+}
+
+.water-mark-results p {
+  margin: 0 0 0.35rem;
+  color: var(--muted, #64716c);
+  font-size: 0.88rem;
+  line-height: 1.5;
+}
+
+.water-mark-results .water-mark-count {
+  color: var(--deep, #173b35);
+  font-weight: 750;
+}
+
+.water-mark-results .water-mark-conflict {
+  padding: 0.55rem 0.65rem;
+  border-radius: 0.4rem;
+  background: #fff0d8;
+  color: #5f3c0c;
+  font-weight: 700;
+}
+
+.water-mark-actions {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.55rem;
+  margin-top: 0.55rem;
+}
+
+.water-mark-actions a,
+.water-mark-actions button,
+.water-mark-fish-detail {
+  display: inline-flex;
+  align-items: center;
+  min-height: 36px;
+  padding: 0.4rem 0.6rem;
+  border: 1px solid #b8cbb7;
+  border-radius: 0.45rem;
+  background: #f4f7f0;
+  color: var(--green, #245b4a);
+  font-size: 0.82rem;
+  font-weight: 700;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.water-mark-actions a:hover,
+.water-mark-actions button:hover,
+.water-mark-fish-detail:hover {
+  border-color: var(--green, #245b4a);
+  background: #e4eee1;
+}
+
+.water-mark-notes {
+  margin-top: 0.7rem;
+  color: var(--muted, #64716c);
+  font-size: 0.84rem;
+  line-height: 1.5;
+}
+
+.water-mark-notes > p {
+  margin: 0.25rem 0;
+}
+
+.water-mark-evidence {
+  margin-top: 0.45rem;
+  padding-top: 0.4rem;
+  border-top: 1px solid #d9dfd4;
+}
+
+.water-mark-evidence summary {
+  color: var(--green, #245b4a);
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.water-mark-evidence p {
+  margin: 0.5rem 0 0;
+}
+
+.water-mark-fish-detail {
+  margin-top: 0.65rem;
 }
 
 @media (max-width: 760px) {
-  .water-icon-key img {
-    width: 96px;
-    height: 96px;
+  .water-mark-buttons {
+    gap: 0.4rem;
+  }
+
+  .water-mark-button {
+    min-height: 0;
+    flex-direction: column;
+    align-items: stretch;
+    gap: 0.35rem;
+    padding: 0.45rem;
+  }
+
+  .water-mark-button img {
+    width: min(100%, 72px);
+    height: 60px;
+    flex-basis: 60px;
+    align-self: center;
+  }
+
+  .water-mark-button > span {
+    font-size: 0.78rem;
+  }
+}
+
+@media (max-width: 400px) {
+  .water-icon-key {
+    padding: 0.7rem;
+  }
+
+  .water-mark-button {
+    padding: 0.35rem;
+  }
+
+  .water-mark-button img {
+    height: 48px;
+    flex-basis: 48px;
+  }
+
+  .water-mark-button > span {
+    font-size: 0.7rem;
   }
 }

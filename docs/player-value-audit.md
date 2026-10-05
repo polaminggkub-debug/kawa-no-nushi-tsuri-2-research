@@ -39,4 +39,4 @@ The fish picker accepts typed Thai, English/Latin, Japanese names and profile ID
 
 ## Continued usefulness audit
 
-The [active full-site usefulness audit](player-usefulness-audit.md) records the next publication cycle: area-specific low-price fish shopping choices, restored tool-location maps, per-rod buying advice, per-hook/float facts, and chum movement labels. It separates completed checks from unresolved full-goal requirements.
+The [active full-site usefulness audit](player-usefulness-audit.md) records completed area-specific fish shopping choices, tool-location maps, individual advice for all 21 rods, hook/float facts, and chum movement labels, together with the remaining audit. Its dated sections retain historical findings; the latest section states current coverage and unresolved full-goal requirements.

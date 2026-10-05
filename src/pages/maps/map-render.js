@@ -1,21 +1,21 @@
+import { normalizeWaterMark } from './water-mark-filter.js'
+
 export function renderSectionSelect(ctx) {
   const data = ctx.stages[ctx.activeStage]
-  let sections = [...(data?.sections.values() || [])]
-  if (ctx.selectedFish)
-    sections = sections.filter((section) =>
-      section.pins.some((pin) => pin.fishIds.includes(ctx.selectedFish)),
-    )
+  const allSections = [...(data?.sections.values() || [])]
+  const matchedSections = allSections.filter((section) =>
+    section.pins.some((pin) => ctx.visibleMapFishIds(pin.fishIds).length),
+  )
+  const sections = matchedSections.length ? matchedSections : allSections
   sections.sort((a, b) => a.row - b.row || a.col - b.col)
   if (!sections.some((s) => s.key === ctx.activeSection))
     ctx.activeSection = ctx.chooseSection(ctx.activeStage)
   ctx.stageSelect.innerHTML = sections
     .map((section) => {
-      const visible = section.pins.filter(
-        (pin) => !ctx.selectedFish || pin.fishIds.includes(ctx.selectedFish),
-      )
-      const speciesCount = new Set(
-        visible.flatMap((pin) => (ctx.selectedFish ? [ctx.selectedFish] : pin.fishIds)),
-      ).size
+      const visible = section.pins
+        .map((pin) => ctx.visibleMapFishIds(pin.fishIds))
+        .filter((fishIds) => fishIds.length)
+      const speciesCount = new Set(visible.flat()).size
       const label = `${ctx.c.mapSection(section.col + 1, section.row + 1)} · ${ctx.c.point(visible.length)} · ${speciesCount} ${ctx.c.species}`
       return `<option value="${section.key}" ${section.key === ctx.activeSection ? 'selected' : ''}>${ctx.esc(label)}</option>`
     })
@@ -27,20 +27,24 @@ export function renderSectionSelect(ctx) {
 export function renderTargetSectionLinks(ctx, data, targetSections) {
   const summary = ctx.$('target-section-summary'),
     shortcuts = ctx.$('other-sections')
-  if (!ctx.selectedFish || !data) {
+  if (
+    !ctx.selectedFish ||
+    !data ||
+    (ctx.activeWaterMark && !ctx.fishMatchesWaterMark(ctx.selectedFish))
+  ) {
     summary.hidden = true
     summary.textContent = ''
     shortcuts.hidden = true
     shortcuts.innerHTML = ''
     return
   }
-  const total = [...data.pins.values()].filter((pin) =>
-    pin.fishIds.includes(ctx.selectedFish),
+  const total = [...data.pins.values()].filter(
+    (pin) => ctx.visibleMapFishIds(pin.fishIds).length,
   ).length
   const sections = targetSections
     .map((section) => ({
       section,
-      count: section.pins.filter((pin) => pin.fishIds.includes(ctx.selectedFish)).length,
+      count: section.pins.filter((pin) => ctx.visibleMapFishIds(pin.fishIds).length).length,
     }))
     .filter((entry) => entry.count > 0)
   const current = sections.find((entry) => entry.section.key === ctx.activeSection)?.count || 0
@@ -110,7 +114,7 @@ export function renderMap(ctx) {
   const filtered = section.pins
     .map((pin) => ({
       ...pin,
-      fishIds: ctx.selectedFish ? pin.fishIds.filter((id) => id === ctx.selectedFish) : pin.fishIds,
+      fishIds: ctx.visibleMapFishIds(pin.fishIds),
     }))
     .filter((pin) => pin.fishIds.length)
   const geometry = ctx.mapGeometry(data, section, filtered)
@@ -226,9 +230,11 @@ export function renderMapSummary(ctx, section, filtered) {
   const counts = new Set(filtered.flatMap((pin) => pin.fishIds)).size
   ctx.$('map-summary').textContent =
     `${ctx.c.mapSection(section.col + 1, section.row + 1)} · ${ctx.c.point(filtered.length)} · ${counts} ${ctx.c.species}`
-  ctx.$('pin-help').textContent = ctx.selectedFish
-    ? `${ctx.c.selectedTarget} ${ctx.fishName(ctx.selectedFish)}. ${ctx.c.point(filtered.length)}. ${mapZoomHelp(ctx.lang)}`
-    : `${ctx.c.noTarget} ${ctx.lang === 'th' ? 'กดรูปปลาเพื่อดูรายละเอียด หรือกดจุดซ้อนเพื่อเลือกชนิด' : ctx.lang === 'ja' ? '魚画像は詳細へ。重なった地点は魚種を選択。' : 'Fish portraits open details; shared points let you choose a species'}.`
+  ctx.$('pin-help').textContent = ctx.activeWaterMark
+    ? ctx.waterMarkPinHelp(filtered.length > 0)
+    : ctx.selectedFish
+      ? `${ctx.c.selectedTarget} ${ctx.fishName(ctx.selectedFish)}. ${ctx.c.point(filtered.length)}. ${mapZoomHelp(ctx.lang)}`
+      : `${ctx.c.noTarget} ${ctx.lang === 'th' ? 'กดรูปปลาเพื่อดูรายละเอียด หรือกดจุดซ้อนเพื่อเลือกชนิด' : ctx.lang === 'ja' ? '魚画像は詳細へ。重なった地点は魚種を選択。' : 'Fish portraits open details; shared points let you choose a species'}.`
 }
 export function renderMapNavigation(ctx) {
   ctx.$('zoom-fit').textContent =
@@ -281,9 +287,10 @@ export function renderOverview(ctx, data, section) {
     box.innerHTML = ''
     return
   }
-  const selectedSections = [...data.sections.values()].filter(
-    (s) => !ctx.selectedFish || s.pins.some((p) => p.fishIds.includes(ctx.selectedFish)),
+  const matchedSections = [...data.sections.values()].filter((section) =>
+    section.pins.some((pin) => ctx.visibleMapFishIds(pin.fishIds).length),
   )
+  const selectedSections = matchedSections.length ? matchedSections : [...data.sections.values()]
   function rect(s) {
     const x = s.col * 384,
       y = s.row * 384,
@@ -331,7 +338,11 @@ export function enableControls(ctx) {
 export function initFromUrl(ctx) {
   ctx.openNotebookGuide = location.hash === '#notebook-guide'
   const p = new URLSearchParams(location.search)
+  ctx.activeWaterMark = normalizeWaterMark(p.get('mark'))
+  ctx.lastWaterMark = ctx.activeWaterMark
   if (p.get('scope') === 'section') ctx.listScope = 'section'
+  ctx.searchTerm = p.get('q') || ''
+  ctx.searchInput.value = ctx.searchTerm
   const stage = Number(p.get('stage'))
   if (ctx.stages[stage]) ctx.activeStage = stage
   const target = ctx.idNorm(p.get('fish') || '')

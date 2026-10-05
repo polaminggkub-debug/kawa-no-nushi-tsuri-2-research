@@ -19,7 +19,7 @@ Internal town map IDs are outdoor-area IDs plus six. A town coordinate is not an
 
 The shop positions come from town object slot `08` and the separate fixed-rod slot `10`. Slot `08` dispatches to the normal shop menu (`03:8634`). The town stock table is associated with the matching outdoor area; actual sale availability is still determined by [the decoded area stock](shop-stock-research.md). Slot `10` dispatches to the special rod menu (`03:86E1..8733`) only in town maps 10–12. Its confirmed offers are area 4 rod `0D`, area 5 rods `08` and `01`, and area 6 rod `10`. Slot `10` in town maps 7–9 runs a different interaction and is not labelled as a rod shop here.
 
-The seller’s position is an exact ROM object coordinate. The entrance association is shown as verified only when a local emulator probe started at the ROM-selected town arrival and opened the expected shop slot. The area-6 regular-shop interaction is positioned exactly, but its walk from entrance #2 has not been verified; the map page should show those endpoints separately.
+The seller’s position is an exact ROM object coordinate. The entrance association is shown as verified only when a local emulator probe started at the ROM-selected town arrival and opened the expected shop slot. The Area 6 regular-shop route from entrance #2 is now independently replayed and linked. Its 33 controller-only steps begin from a debug field fixture, so this verifies the entrance and town walk, not natural new-game progression. See [the bounded walking evidence](area6-shop-walking-research.md).
 
 ## Outdoor entrance coordinates
 
@@ -42,7 +42,7 @@ The access probes used the local original ROM in Snes9x with the player placed a
 
 - **Normal shop, areas 1–5:** entrance ordinal 1 arrives at `(7,29)`; the original-ROM interaction probe opened slot `08`, mode `2`, in the associated town map. Area 4 used a route around the room divider; the directional frame sequence is retained in `verifiedAccess` for reproducibility.
 - **Special-rod seller, areas 4–6:** entrance ordinal 4 arrives at `(7,77)`; the probe opened slot `10`, mode `7`, in each town map 10–12. Area 4's vendor is one tile east of the `(7,74)` approach; areas 5 and 6 place the vendor at `(7,74)`.
-- **Normal shop, area 6:** object slot `08` at `(8,23)` is confirmed by the town object table and mode dispatcher. Its specific walk from the recorded arrival was not confirmed, so no entrance link is claimed.
+- **Normal shop, area 6:** entrance ordinal 1 at field `(2,49)` arrives at town `(7,29)`. From there, move up 3 tiles, right 2, up 3, down 1 and left 1 to `(8,24)`, face up and press A; advance the greeting with A to open the shop menu. The independent 33-step controller replay confirms this route and the original shop screenshot. Its debug starting fixture does not prove natural story progression. The extractor checks these endpoints and image hash against `area6-shop-walk-evidence.json` before adding the entrance association.
 
 This establishes an entrance-to-town spawn and a shop interaction within the same town coordinate system. It does not claim a universal route, travel time, or that every possible entry point is accessible at every progression state. The outdoor entry routine also checks the game's current event/action state before transitioning.
 

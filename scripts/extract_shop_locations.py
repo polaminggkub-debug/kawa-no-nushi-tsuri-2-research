@@ -161,6 +161,34 @@ def render_town_maps(args):
     return rendered
 
 
+def area6_regular_access(entrances, interactions):
+    evidence = json.loads((ROOT / "data/area6-shop-walk-evidence.json").read_text(encoding="utf-8"))
+    entrance = next(entry for entry in entrances if entry["ordinal"] == 1)
+    shop = next(entry for entry in interactions if entry["interactionSlotHex"] == "08")
+    if evidence["romSha1"] != SHA1 or not evidence["independentReplayMatchedPriorScreenshot"]:
+        raise ValueError("Area 6 walk has no matching independent ROM replay")
+    expected = evidence["entrance"]
+    if [entrance["fieldTile"][key] for key in ("x", "y")] != expected["fieldTile"]:
+        raise ValueError("Area 6 entrance differs from the replay")
+    if [entrance["townArrival"][key] for key in ("x", "y")] != expected["townArrival"]:
+        raise ValueError("Area 6 arrival differs from the replay")
+    if [shop["townTile"][key] for key in ("x", "y")] != evidence["shop"]["counterTile"]:
+        raise ValueError("Area 6 shop differs from the replay")
+    image = (ROOT / "data" / evidence["image"]).read_bytes()
+    if hashlib.sha256(image).hexdigest() != evidence["imageSha256"]:
+        raise ValueError("Area 6 replay image hash differs")
+    return {
+        "interactionSlotHex": "08", "entranceOrdinal": 1,
+        "probe": {
+            "townArrival": {"x": 7, "y": 29}, "result": "normal shop opened",
+            "observedMode": 2, "observedSlotHex": "08",
+            "runtimeEvidence": "33 controller-only steps from an Area 6 debug field fixture; independently replayed. Does not prove new-game progression.",
+            "controls": ["Up 3 tiles", "Right 2 tiles", "Up 3 tiles", "Down 1 tile", "Left 1 tile", "Face Up", "A", "A after greeting"],
+            "evidenceHref": "../docs/area6-shop-walking-research.md",
+        },
+    }
+
+
 def make_area_data(rom, area, town_images, field_bounds):
     town_map_id = area + 6
     arrivals = [pair(rom, ARRIVAL_TILES_FILE_OFFSET + 4 * ordinal) for ordinal in range(5)]
@@ -225,6 +253,8 @@ def make_area_data(rom, area, town_images, field_bounds):
     # Only link an entrance to an NPC where an original-ROM movement probe opened it.
     # Probes begin at the exact arrival coordinate selected by the ROM transition table.
     verified_access = []
+    if area == 6:
+        verified_access.append(area6_regular_access(entrances, interactions))
     if area in (1, 2, 3, 4, 5):
         verified_access.append({
             "interactionSlotHex": "08",

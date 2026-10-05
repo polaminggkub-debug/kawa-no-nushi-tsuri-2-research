@@ -22610,6 +22610,19 @@
           "data/shop-stock-rom.json"
         ]
       },
+      "flyMakerMenuChoice": {
+        "category": "fly",
+        "part": "body",
+        "id": "2B",
+        "familyJa": "カディス",
+        "area": 1,
+        "row": 1,
+        "column": 1,
+        "image": "custom/fly-other-menu-positions/caddis-body-c1-r1-cursor.png",
+        "imageSha256": "042c6c508a1e9a65aae878a7f335658339acc9aa21650711e5322dcb13d5c997",
+        "resultSource": "caddis-body-c1-r1.result.json",
+        "evidenceHref": "../docs/fly-maker-other-families-menu-research.md"
+      },
       "nameTh": null,
       "labelImageTh": "thai-labels/fly-2B.png"
     },
@@ -22782,6 +22795,19 @@
           "data/fish-acceptance.json",
           "data/shop-stock-rom.json"
         ]
+      },
+      "flyMakerMenuChoice": {
+        "category": "fly",
+        "part": "body",
+        "id": "2C",
+        "familyJa": "カディス",
+        "area": 1,
+        "row": 2,
+        "column": 1,
+        "image": "custom/fly-other-menu-positions/caddis-body-c1-r2-cursor.png",
+        "imageSha256": "2330c52ca5db27be5d55eaef426361b2b40e9f5606366b74768450761539eb8f",
+        "resultSource": "caddis-body-c1-r2.result.json",
+        "evidenceHref": "../docs/fly-maker-other-families-menu-research.md"
       },
       "nameTh": null,
       "labelImageTh": "thai-labels/fly-2C.png"
@@ -22956,6 +22982,19 @@
           "data/shop-stock-rom.json"
         ]
       },
+      "flyMakerMenuChoice": {
+        "category": "fly",
+        "part": "body",
+        "id": "2D",
+        "familyJa": "カディス",
+        "area": 1,
+        "row": 3,
+        "column": 1,
+        "image": "custom/fly-other-menu-positions/caddis-body-c1-r3-cursor.png",
+        "imageSha256": "a978868e26d607c012419c5eaaf0921f627085c5b6948eb438f27edfce439fb8",
+        "resultSource": "caddis-body-c1-r3.result.json",
+        "evidenceHref": "../docs/fly-maker-other-families-menu-research.md"
+      },
       "nameTh": null,
       "labelImageTh": "thai-labels/fly-2D.png"
     },
@@ -23128,6 +23167,19 @@
           "data/fish-acceptance.json",
           "data/shop-stock-rom.json"
         ]
+      },
+      "flyMakerMenuChoice": {
+        "category": "fly",
+        "part": "body",
+        "id": "2E",
+        "familyJa": "カディス",
+        "area": 1,
+        "row": 4,
+        "column": 1,
+        "image": "custom/fly-other-menu-positions/caddis-body-c1-r4-cursor.png",
+        "imageSha256": "68a8abab79df73be5e48b73ba35cb6754ee3bab07baffbaa4a58f751d08545c2",
+        "resultSource": "caddis-body-c1-r4.result.json",
+        "evidenceHref": "../docs/fly-maker-other-families-menu-research.md"
       },
       "nameTh": null,
       "labelImageTh": "thai-labels/fly-2E.png"
@@ -23302,6 +23354,19 @@
           "data/shop-stock-rom.json"
         ]
       },
+      "flyMakerMenuChoice": {
+        "category": "fly",
+        "part": "body",
+        "id": "2F",
+        "familyJa": "カディス",
+        "area": 1,
+        "row": 1,
+        "column": 2,
+        "image": "custom/fly-other-menu-positions/caddis-body-c2-r1-cursor.png",
+        "imageSha256": "af999d491676711de1552a240ae1616b532aaa340cf27c13ffb90373c0f119db",
+        "resultSource": "caddis-body-c2-r1.result.json",
+        "evidenceHref": "../docs/fly-maker-other-families-menu-research.md"
+      },
       "nameTh": null,
       "labelImageTh": "thai-labels/fly-2F.png"
     },
@@ -23462,6 +23527,19 @@
           "data/fish-acceptance.json",
           "data/shop-stock-rom.json"
         ]
+      },
+      "flyMakerMenuChoice": {
+        "category": "fly",
+        "part": "body",
+        "id": "30",
+        "familyJa": "カディス",
+        "area": 1,
+        "row": 2,
+        "column": 2,
+        "image": "custom/fly-other-menu-positions/caddis-body-c2-r2-cursor.png",
+        "imageSha256": "ebb8382e25ba3a759f7cdcb21bf124ab2d6cb49611d7c4d094b3573cb1016193",
+        "resultSource": "caddis-body-c2-r2.result.json",
+        "evidenceHref": "../docs/fly-maker-other-families-menu-research.md"
       },
       "nameTh": null,
       "labelImageTh": "thai-labels/fly-30.png"
@@ -23636,6 +23714,19 @@
           "data/shop-stock-rom.json"
         ]
       },
+      "flyMakerMenuChoice": {
+        "category": "fly",
+        "part": "body",
+        "id": "31",
+        "familyJa": "カディス",
+        "area": 1,
+        "row": 3,
+        "column": 2,
+        "image": "custom/fly-other-menu-positions/caddis-body-c2-r3-cursor.png",
+        "imageSha256": "3cd4b3b6280ee1a5d8dee663c98076b7ecc384ea26df158a601a52fd64806466",
+        "resultSource": "caddis-body-c2-r3.result.json",
+        "evidenceHref": "../docs/fly-maker-other-families-menu-research.md"
+      },
       "nameTh": null,
       "labelImageTh": "thai-labels/fly-31.png"
     },
@@ -23796,6 +23887,19 @@
           "data/fish-acceptance.json",
           "data/shop-stock-rom.json"
         ]
+      },
+      "flyMakerMenuChoice": {
+        "category": "fly",
+        "part": "body",
+        "id": "32",
+        "familyJa": "カディス",
+        "area": 1,
+        "row": 4,
+        "column": 2,
+        "image": "custom/fly-other-menu-positions/caddis-body-c2-r4-cursor.png",
+        "imageSha256": "76807365263b700d5c7432c89e6b86a7df9bd6eaa0198db1fefe3c4008c9044f",
+        "resultSource": "caddis-body-c2-r4.result.json",
+        "evidenceHref": "../docs/fly-maker-other-families-menu-research.md"
       },
       "nameTh": null,
       "labelImageTh": "thai-labels/fly-32.png"
@@ -23970,6 +24074,19 @@
           "data/shop-stock-rom.json"
         ]
       },
+      "flyMakerMenuChoice": {
+        "category": "fly",
+        "part": "body",
+        "id": "33",
+        "familyJa": "カディス",
+        "area": 1,
+        "row": 1,
+        "column": 3,
+        "image": "custom/fly-other-menu-positions/caddis-body-c3-r1-cursor.png",
+        "imageSha256": "4b2f3dfe1ef7ce09a6a02f729e8c2ebc3fef0484034a7575ba62e90db37d0cf1",
+        "resultSource": "caddis-body-c3-r1.result.json",
+        "evidenceHref": "../docs/fly-maker-other-families-menu-research.md"
+      },
       "nameTh": null,
       "labelImageTh": "thai-labels/fly-33.png"
     },
@@ -24126,6 +24243,19 @@
           "data/fish-acceptance.json",
           "data/shop-stock-rom.json"
         ]
+      },
+      "flyMakerMenuChoice": {
+        "category": "fly",
+        "part": "body",
+        "id": "3E",
+        "familyJa": "カディス",
+        "area": 1,
+        "row": 2,
+        "column": 3,
+        "image": "custom/fly-other-menu-positions/caddis-body-c3-r2-cursor.png",
+        "imageSha256": "3e0929199021366fc33af3a21e749b0fc967f2835c080cbdfae83cf3f4342b5a",
+        "resultSource": "caddis-body-c3-r2.result.json",
+        "evidenceHref": "../docs/fly-maker-other-families-menu-research.md"
       },
       "nameTh": null,
       "labelImageTh": "thai-labels/fly-3E.png"
@@ -24295,6 +24425,19 @@
           "data/shop-stock-rom.json"
         ]
       },
+      "flyMakerMenuChoice": {
+        "category": "fly",
+        "part": "body",
+        "id": "3F",
+        "familyJa": "カディス",
+        "area": 1,
+        "row": 3,
+        "column": 3,
+        "image": "custom/fly-other-menu-positions/caddis-body-c3-r3-cursor.png",
+        "imageSha256": "43e1f77cc47648bfa117e09c8bc34ca3095f15dd7b0bdaf3b8ae700de8d82b7f",
+        "resultSource": "caddis-body-c3-r3.result.json",
+        "evidenceHref": "../docs/fly-maker-other-families-menu-research.md"
+      },
       "nameTh": null,
       "labelImageTh": "thai-labels/fly-3F.png"
     },
@@ -24451,6 +24594,19 @@
           "data/fish-acceptance.json",
           "data/shop-stock-rom.json"
         ]
+      },
+      "flyMakerMenuChoice": {
+        "category": "fly",
+        "part": "body",
+        "id": "40",
+        "familyJa": "カディス",
+        "area": 1,
+        "row": 4,
+        "column": 3,
+        "image": "custom/fly-other-menu-positions/caddis-body-c3-r4-cursor.png",
+        "imageSha256": "840d15bb40ac98becbec82b7eccadcb45ab7b878c42e01968c3cf2164e5ad340",
+        "resultSource": "caddis-body-c3-r4.result.json",
+        "evidenceHref": "../docs/fly-maker-other-families-menu-research.md"
       },
       "nameTh": null,
       "labelImageTh": "thai-labels/fly-40.png"
@@ -24609,6 +24765,19 @@
           "data/shop-stock-rom.json"
         ]
       },
+      "flyMakerMenuChoice": {
+        "category": "fly",
+        "part": "body",
+        "id": "41",
+        "familyJa": "カディス",
+        "area": 1,
+        "row": 1,
+        "column": 4,
+        "image": "custom/fly-other-menu-positions/caddis-body-c4-r1-cursor.png",
+        "imageSha256": "cdd8550cdbd8b9e19e70c5149b04035981fa5404dcbf5008cb18424571315a0f",
+        "resultSource": "caddis-body-c4-r1.result.json",
+        "evidenceHref": "../docs/fly-maker-other-families-menu-research.md"
+      },
       "nameTh": null,
       "labelImageTh": "thai-labels/fly-41.png"
     },
@@ -24765,6 +24934,19 @@
           "data/fish-acceptance.json",
           "data/shop-stock-rom.json"
         ]
+      },
+      "flyMakerMenuChoice": {
+        "category": "fly",
+        "part": "body",
+        "id": "42",
+        "familyJa": "カディス",
+        "area": 1,
+        "row": 2,
+        "column": 4,
+        "image": "custom/fly-other-menu-positions/caddis-body-c4-r2-cursor.png",
+        "imageSha256": "98eb9038fe1e978bdfce410ce97c795be45628668936b34aac28cb88f0954751",
+        "resultSource": "caddis-body-c4-r2.result.json",
+        "evidenceHref": "../docs/fly-maker-other-families-menu-research.md"
       },
       "nameTh": null,
       "labelImageTh": "thai-labels/fly-42.png"
@@ -28067,6 +28249,20 @@
           "data/shop-stock-rom.json"
         ]
       },
+      "flyMakerMenuChoice": {
+        "category": "fly",
+        "part": "body",
+        "id": "77",
+        "familyJa": "テレストリアル",
+        "area": 1,
+        "row": 1,
+        "column": 1,
+        "image": "custom/fly-other-menu-positions/terrestrial-body-c1-r1-cursor.png",
+        "imageSha256": "01db2f22033ae94c52c1eecb116d52cfe61b8215e2daee28961a0bc3dee3ced8",
+        "resultSource": "terrestrial-body-c1-r1.result.json",
+        "nextStep": "quote",
+        "evidenceHref": "../docs/fly-maker-other-families-menu-research.md"
+      },
       "nameTh": null,
       "labelImageTh": "thai-labels/fly-77.png"
     },
@@ -28211,6 +28407,20 @@
           "data/fish-acceptance.json",
           "data/shop-stock-rom.json"
         ]
+      },
+      "flyMakerMenuChoice": {
+        "category": "fly",
+        "part": "body",
+        "id": "78",
+        "familyJa": "テレストリアル",
+        "area": 1,
+        "row": 2,
+        "column": 1,
+        "image": "custom/fly-other-menu-positions/terrestrial-body-c1-r2-cursor.png",
+        "imageSha256": "24119e8679dbafe6375bbfd3b445da319468468ee7a354c633cdfdd18e74d223",
+        "resultSource": "terrestrial-body-c1-r2.result.json",
+        "nextStep": "quote",
+        "evidenceHref": "../docs/fly-maker-other-families-menu-research.md"
       },
       "nameTh": null,
       "labelImageTh": "thai-labels/fly-78.png"
@@ -28357,6 +28567,20 @@
           "data/shop-stock-rom.json"
         ]
       },
+      "flyMakerMenuChoice": {
+        "category": "fly",
+        "part": "body",
+        "id": "79",
+        "familyJa": "テレストリアル",
+        "area": 1,
+        "row": 3,
+        "column": 1,
+        "image": "custom/fly-other-menu-positions/terrestrial-body-c1-r3-cursor.png",
+        "imageSha256": "cecf9c72ae9425d8be28479bdc5bf9ae46aa6c01a9dd6740bbbf3148b90bcd98",
+        "resultSource": "terrestrial-body-c1-r3.result.json",
+        "nextStep": "quote",
+        "evidenceHref": "../docs/fly-maker-other-families-menu-research.md"
+      },
       "nameTh": null,
       "labelImageTh": "thai-labels/fly-79.png"
     },
@@ -28501,6 +28725,20 @@
           "data/fish-acceptance.json",
           "data/shop-stock-rom.json"
         ]
+      },
+      "flyMakerMenuChoice": {
+        "category": "fly",
+        "part": "body",
+        "id": "7A",
+        "familyJa": "テレストリアル",
+        "area": 1,
+        "row": 4,
+        "column": 1,
+        "image": "custom/fly-other-menu-positions/terrestrial-body-c1-r4-cursor.png",
+        "imageSha256": "0ab67b5decf98ce8f3906045a92de3504ec4f4700ef77a3cebabbacf50a40c0f",
+        "resultSource": "terrestrial-body-c1-r4.result.json",
+        "nextStep": "quote",
+        "evidenceHref": "../docs/fly-maker-other-families-menu-research.md"
       },
       "nameTh": null,
       "labelImageTh": "thai-labels/fly-7A.png"
@@ -28647,6 +28885,20 @@
           "data/shop-stock-rom.json"
         ]
       },
+      "flyMakerMenuChoice": {
+        "category": "fly",
+        "part": "body",
+        "id": "7B",
+        "familyJa": "テレストリアル",
+        "area": 1,
+        "row": 1,
+        "column": 2,
+        "image": "custom/fly-other-menu-positions/terrestrial-body-c2-r1-cursor.png",
+        "imageSha256": "8e6cd22f477982cbe5f3c9d57d4f8ecb01e1cb252f109aa9dc5999f6db4abf5b",
+        "resultSource": "terrestrial-body-c2-r1.result.json",
+        "nextStep": "quote",
+        "evidenceHref": "../docs/fly-maker-other-families-menu-research.md"
+      },
       "nameTh": null,
       "labelImageTh": "thai-labels/fly-7B.png"
     },
@@ -28791,6 +29043,20 @@
           "data/fish-acceptance.json",
           "data/shop-stock-rom.json"
         ]
+      },
+      "flyMakerMenuChoice": {
+        "category": "fly",
+        "part": "body",
+        "id": "7C",
+        "familyJa": "テレストリアル",
+        "area": 1,
+        "row": 2,
+        "column": 2,
+        "image": "custom/fly-other-menu-positions/terrestrial-body-c2-r2-cursor.png",
+        "imageSha256": "bc31509cae1acd5ab501b1837d0708dd41568043a18cadc9231955f1de65bc54",
+        "resultSource": "terrestrial-body-c2-r2.result.json",
+        "nextStep": "quote",
+        "evidenceHref": "../docs/fly-maker-other-families-menu-research.md"
       },
       "nameTh": null,
       "labelImageTh": "thai-labels/fly-7C.png"
@@ -28937,6 +29203,20 @@
           "data/shop-stock-rom.json"
         ]
       },
+      "flyMakerMenuChoice": {
+        "category": "fly",
+        "part": "body",
+        "id": "7D",
+        "familyJa": "テレストリアル",
+        "area": 1,
+        "row": 3,
+        "column": 2,
+        "image": "custom/fly-other-menu-positions/terrestrial-body-c2-r3-cursor.png",
+        "imageSha256": "5ff21ac38ce2364d338a20c76027a92b32dbeb836dd86c8679ef51f385be12da",
+        "resultSource": "terrestrial-body-c2-r3.result.json",
+        "nextStep": "quote",
+        "evidenceHref": "../docs/fly-maker-other-families-menu-research.md"
+      },
       "nameTh": null,
       "labelImageTh": "thai-labels/fly-7D.png"
     },
@@ -29081,6 +29361,20 @@
           "data/fish-acceptance.json",
           "data/shop-stock-rom.json"
         ]
+      },
+      "flyMakerMenuChoice": {
+        "category": "fly",
+        "part": "body",
+        "id": "7E",
+        "familyJa": "テレストリアル",
+        "area": 1,
+        "row": 4,
+        "column": 2,
+        "image": "custom/fly-other-menu-positions/terrestrial-body-c2-r4-cursor.png",
+        "imageSha256": "9e1af9aea34ad46744188ba3c656cee67b0134f177b521897ab2ef8a2789b830",
+        "resultSource": "terrestrial-body-c2-r4.result.json",
+        "nextStep": "quote",
+        "evidenceHref": "../docs/fly-maker-other-families-menu-research.md"
       },
       "nameTh": null,
       "labelImageTh": "thai-labels/fly-7E.png"
@@ -29239,6 +29533,20 @@
           "data/shop-stock-rom.json"
         ]
       },
+      "flyMakerMenuChoice": {
+        "category": "fly",
+        "part": "body",
+        "id": "7F",
+        "familyJa": "テレストリアル",
+        "area": 1,
+        "row": 1,
+        "column": 3,
+        "image": "custom/fly-other-menu-positions/terrestrial-body-c3-r1-cursor.png",
+        "imageSha256": "b21106094bcc46f39a754ec28944b9bc1576008b982270fd431a8a9239119871",
+        "resultSource": "terrestrial-body-c3-r1.result.json",
+        "nextStep": "quote",
+        "evidenceHref": "../docs/fly-maker-other-families-menu-research.md"
+      },
       "nameTh": null,
       "labelImageTh": "thai-labels/fly-7F.png"
     },
@@ -29384,6 +29692,20 @@
           "data/shop-stock-rom.json"
         ]
       },
+      "flyMakerMenuChoice": {
+        "category": "fly",
+        "part": "body",
+        "id": "80",
+        "familyJa": "テレストリアル",
+        "area": 1,
+        "row": 2,
+        "column": 3,
+        "image": "custom/fly-other-menu-positions/terrestrial-body-c3-r2-cursor.png",
+        "imageSha256": "c2ff1a2c109f5c1953d6d8224ffcf8a4d2fbd99824e61c3d2c4c2cb779d638f5",
+        "resultSource": "terrestrial-body-c3-r2.result.json",
+        "nextStep": "quote",
+        "evidenceHref": "../docs/fly-maker-other-families-menu-research.md"
+      },
       "nameTh": null,
       "labelImageTh": "thai-labels/fly-80.png"
     },
@@ -29528,6 +29850,20 @@
           "data/fish-acceptance.json",
           "data/shop-stock-rom.json"
         ]
+      },
+      "flyMakerMenuChoice": {
+        "category": "fly",
+        "part": "body",
+        "id": "81",
+        "familyJa": "テレストリアル",
+        "area": 1,
+        "row": 3,
+        "column": 3,
+        "image": "custom/fly-other-menu-positions/terrestrial-body-c3-r3-cursor.png",
+        "imageSha256": "a34ae1c6e59157ee1e4049f7fd1c84bf9338df5fa12e0a4ae512b27bbb905940",
+        "resultSource": "terrestrial-body-c3-r3.result.json",
+        "nextStep": "quote",
+        "evidenceHref": "../docs/fly-maker-other-families-menu-research.md"
       },
       "nameTh": null,
       "labelImageTh": "thai-labels/fly-81.png"
@@ -29686,6 +30022,20 @@
           "data/shop-stock-rom.json"
         ]
       },
+      "flyMakerMenuChoice": {
+        "category": "fly",
+        "part": "body",
+        "id": "82",
+        "familyJa": "テレストリアル",
+        "area": 1,
+        "row": 4,
+        "column": 3,
+        "image": "custom/fly-other-menu-positions/terrestrial-body-c3-r4-cursor.png",
+        "imageSha256": "3b9c057d8ed827138203150c91d50531ecf42d0df8f97bbb58425bb97ea0a989",
+        "resultSource": "terrestrial-body-c3-r4.result.json",
+        "nextStep": "quote",
+        "evidenceHref": "../docs/fly-maker-other-families-menu-research.md"
+      },
       "nameTh": null,
       "labelImageTh": "thai-labels/fly-82.png"
     },
@@ -29831,6 +30181,20 @@
           "data/shop-stock-rom.json"
         ]
       },
+      "flyMakerMenuChoice": {
+        "category": "fly",
+        "part": "body",
+        "id": "83",
+        "familyJa": "テレストリアル",
+        "area": 1,
+        "row": 1,
+        "column": 4,
+        "image": "custom/fly-other-menu-positions/terrestrial-body-c4-r1-cursor.png",
+        "imageSha256": "f6ae7b2c42785b2d0e03ed59a1b7f71ed6880dd19394c995bf60a6d27e73cbea",
+        "resultSource": "terrestrial-body-c4-r1.result.json",
+        "nextStep": "quote",
+        "evidenceHref": "../docs/fly-maker-other-families-menu-research.md"
+      },
       "nameTh": null,
       "labelImageTh": "thai-labels/fly-83.png"
     },
@@ -29975,6 +30339,20 @@
           "data/fish-acceptance.json",
           "data/shop-stock-rom.json"
         ]
+      },
+      "flyMakerMenuChoice": {
+        "category": "fly",
+        "part": "body",
+        "id": "84",
+        "familyJa": "テレストリアル",
+        "area": 1,
+        "row": 2,
+        "column": 4,
+        "image": "custom/fly-other-menu-positions/terrestrial-body-c4-r2-cursor.png",
+        "imageSha256": "f8968675a758e4a0f8fdfe9f39d0642155771b01f5cb1abe59c7b4e47be8a452",
+        "resultSource": "terrestrial-body-c4-r2.result.json",
+        "nextStep": "quote",
+        "evidenceHref": "../docs/fly-maker-other-families-menu-research.md"
       },
       "nameTh": null,
       "labelImageTh": "thai-labels/fly-84.png"
@@ -30133,6 +30511,20 @@
           "data/shop-stock-rom.json"
         ]
       },
+      "flyMakerMenuChoice": {
+        "category": "fly",
+        "part": "body",
+        "id": "85",
+        "familyJa": "テレストリアル",
+        "area": 1,
+        "row": 3,
+        "column": 4,
+        "image": "custom/fly-other-menu-positions/terrestrial-body-c4-r3-cursor.png",
+        "imageSha256": "e274c267c086a0983eb47a75d0e12bc2eea882a10e0426795178ba2ce5400665",
+        "resultSource": "terrestrial-body-c4-r3.result.json",
+        "nextStep": "quote",
+        "evidenceHref": "../docs/fly-maker-other-families-menu-research.md"
+      },
       "nameTh": null,
       "labelImageTh": "thai-labels/fly-85.png"
     },
@@ -30289,6 +30681,20 @@
           "data/fish-acceptance.json",
           "data/shop-stock-rom.json"
         ]
+      },
+      "flyMakerMenuChoice": {
+        "category": "fly",
+        "part": "body",
+        "id": "86",
+        "familyJa": "テレストリアル",
+        "area": 1,
+        "row": 4,
+        "column": 4,
+        "image": "custom/fly-other-menu-positions/terrestrial-body-c4-r4-cursor.png",
+        "imageSha256": "043231227559edc388823e437bcb67fe9e3a8a10fc48930af435e01cb02faf74",
+        "resultSource": "terrestrial-body-c4-r4.result.json",
+        "nextStep": "quote",
+        "evidenceHref": "../docs/fly-maker-other-families-menu-research.md"
       },
       "nameTh": null,
       "labelImageTh": "thai-labels/fly-86.png"
@@ -47368,6 +47774,23 @@
           "docs/fly-maker-menu-research.md",
           "data/fly-maker-menu-trace.json"
         ]
+      },
+      "flyMakerMenuChoice": {
+        "category": "fly_wing",
+        "part": "wing",
+        "id": "34",
+        "familyJa": "カディス",
+        "area": 1,
+        "row": 1,
+        "column": 1,
+        "image": "custom/fly-other-menu-positions/caddis-wing-c1-r1-cursor.png",
+        "imageSha256": "451b70c88c018eb0f0931fee3bd60de3bb559f2c7fb4037fd2da4d1aacc52162",
+        "resultSource": "caddis-wing-c1-r1.result.json",
+        "nonePosition": {
+          "row": 4,
+          "column": 4
+        },
+        "evidenceHref": "../docs/fly-maker-other-families-menu-research.md"
       }
     },
     {
@@ -47498,6 +47921,23 @@
           "docs/fly-maker-menu-research.md",
           "data/fly-maker-menu-trace.json"
         ]
+      },
+      "flyMakerMenuChoice": {
+        "category": "fly_wing",
+        "part": "wing",
+        "id": "35",
+        "familyJa": "カディス",
+        "area": 1,
+        "row": 2,
+        "column": 1,
+        "image": "custom/fly-other-menu-positions/caddis-wing-c1-r2-cursor.png",
+        "imageSha256": "0874b24d89cb663da0d53775cf019819dc57178d5b3a2b5eb1ed927dd2234519",
+        "resultSource": "caddis-wing-c1-r2.result.json",
+        "nonePosition": {
+          "row": 4,
+          "column": 4
+        },
+        "evidenceHref": "../docs/fly-maker-other-families-menu-research.md"
       }
     },
     {
@@ -47628,6 +48068,23 @@
           "docs/fly-maker-menu-research.md",
           "data/fly-maker-menu-trace.json"
         ]
+      },
+      "flyMakerMenuChoice": {
+        "category": "fly_wing",
+        "part": "wing",
+        "id": "36",
+        "familyJa": "カディス",
+        "area": 1,
+        "row": 3,
+        "column": 1,
+        "image": "custom/fly-other-menu-positions/caddis-wing-c1-r3-cursor.png",
+        "imageSha256": "67a42ab00b4ddd6378f4deb1e851a279e27408f427e3d0609cc3d97292705c17",
+        "resultSource": "caddis-wing-c1-r3.result.json",
+        "nonePosition": {
+          "row": 4,
+          "column": 4
+        },
+        "evidenceHref": "../docs/fly-maker-other-families-menu-research.md"
       }
     },
     {
@@ -47758,6 +48215,23 @@
           "docs/fly-maker-menu-research.md",
           "data/fly-maker-menu-trace.json"
         ]
+      },
+      "flyMakerMenuChoice": {
+        "category": "fly_wing",
+        "part": "wing",
+        "id": "37",
+        "familyJa": "カディス",
+        "area": 1,
+        "row": 4,
+        "column": 1,
+        "image": "custom/fly-other-menu-positions/caddis-wing-c1-r4-cursor.png",
+        "imageSha256": "867d827fa9d23893506e7643488460daadb0161852c46dd41fba4141a6fb1052",
+        "resultSource": "caddis-wing-c1-r4.result.json",
+        "nonePosition": {
+          "row": 4,
+          "column": 4
+        },
+        "evidenceHref": "../docs/fly-maker-other-families-menu-research.md"
       }
     },
     {
@@ -47888,6 +48362,23 @@
           "docs/fly-maker-menu-research.md",
           "data/fly-maker-menu-trace.json"
         ]
+      },
+      "flyMakerMenuChoice": {
+        "category": "fly_wing",
+        "part": "wing",
+        "id": "38",
+        "familyJa": "カディス",
+        "area": 1,
+        "row": 1,
+        "column": 2,
+        "image": "custom/fly-other-menu-positions/caddis-wing-c2-r1-cursor.png",
+        "imageSha256": "138937882282d27044839a3eefeccd1ecac3e23020fb34348d634026d829fef4",
+        "resultSource": "caddis-wing-c2-r1.result.json",
+        "nonePosition": {
+          "row": 4,
+          "column": 4
+        },
+        "evidenceHref": "../docs/fly-maker-other-families-menu-research.md"
       }
     },
     {
@@ -48018,6 +48509,23 @@
           "docs/fly-maker-menu-research.md",
           "data/fly-maker-menu-trace.json"
         ]
+      },
+      "flyMakerMenuChoice": {
+        "category": "fly_wing",
+        "part": "wing",
+        "id": "39",
+        "familyJa": "カディス",
+        "area": 1,
+        "row": 2,
+        "column": 2,
+        "image": "custom/fly-other-menu-positions/caddis-wing-c2-r2-cursor.png",
+        "imageSha256": "20d3385baa1b6d7383693847638f5f64bfd08dd2445220fdabd6f98220ec9968",
+        "resultSource": "caddis-wing-c2-r2.result.json",
+        "nonePosition": {
+          "row": 4,
+          "column": 4
+        },
+        "evidenceHref": "../docs/fly-maker-other-families-menu-research.md"
       }
     },
     {
@@ -48136,6 +48644,23 @@
           "docs/fly-maker-menu-research.md",
           "data/fly-maker-menu-trace.json"
         ]
+      },
+      "flyMakerMenuChoice": {
+        "category": "fly_wing",
+        "part": "wing",
+        "id": "3A",
+        "familyJa": "カディス",
+        "area": 1,
+        "row": 3,
+        "column": 2,
+        "image": "custom/fly-other-menu-positions/caddis-wing-c2-r3-cursor.png",
+        "imageSha256": "eb464f42a88ee3245715e2960655361140252c3041d835d7ff960318df2aab21",
+        "resultSource": "caddis-wing-c2-r3.result.json",
+        "nonePosition": {
+          "row": 4,
+          "column": 4
+        },
+        "evidenceHref": "../docs/fly-maker-other-families-menu-research.md"
       }
     },
     {
@@ -48254,6 +48779,23 @@
           "docs/fly-maker-menu-research.md",
           "data/fly-maker-menu-trace.json"
         ]
+      },
+      "flyMakerMenuChoice": {
+        "category": "fly_wing",
+        "part": "wing",
+        "id": "3B",
+        "familyJa": "カディス",
+        "area": 1,
+        "row": 4,
+        "column": 2,
+        "image": "custom/fly-other-menu-positions/caddis-wing-c2-r4-cursor.png",
+        "imageSha256": "3f2ffa53f42381889683258ff3a6a169310e472a4df17ba494ba8c16a001064b",
+        "resultSource": "caddis-wing-c2-r4.result.json",
+        "nonePosition": {
+          "row": 4,
+          "column": 4
+        },
+        "evidenceHref": "../docs/fly-maker-other-families-menu-research.md"
       }
     },
     {
@@ -48384,6 +48926,23 @@
           "docs/fly-maker-menu-research.md",
           "data/fly-maker-menu-trace.json"
         ]
+      },
+      "flyMakerMenuChoice": {
+        "category": "fly_wing",
+        "part": "wing",
+        "id": "3C",
+        "familyJa": "カディス",
+        "area": 1,
+        "row": 1,
+        "column": 3,
+        "image": "custom/fly-other-menu-positions/caddis-wing-c3-r1-cursor.png",
+        "imageSha256": "69cc166cc7b2fcf23e32f62e00f11bd9ba18f280176d3aff20a3f2c2174767a1",
+        "resultSource": "caddis-wing-c3-r1.result.json",
+        "nonePosition": {
+          "row": 4,
+          "column": 4
+        },
+        "evidenceHref": "../docs/fly-maker-other-families-menu-research.md"
       }
     },
     {
@@ -48525,6 +49084,23 @@
           "docs/fly-maker-menu-research.md",
           "data/fly-maker-menu-trace.json"
         ]
+      },
+      "flyMakerMenuChoice": {
+        "category": "fly_wing",
+        "part": "wing",
+        "id": "43",
+        "familyJa": "カディス",
+        "area": 1,
+        "row": 2,
+        "column": 3,
+        "image": "custom/fly-other-menu-positions/caddis-wing-c3-r2-cursor.png",
+        "imageSha256": "90ae76bb8982edcb78dd102253a58de5eda929d88482dcd7006879fb280d1bdc",
+        "resultSource": "caddis-wing-c3-r2.result.json",
+        "nonePosition": {
+          "row": 4,
+          "column": 4
+        },
+        "evidenceHref": "../docs/fly-maker-other-families-menu-research.md"
       }
     },
     {
@@ -48655,6 +49231,23 @@
           "docs/fly-maker-menu-research.md",
           "data/fly-maker-menu-trace.json"
         ]
+      },
+      "flyMakerMenuChoice": {
+        "category": "fly_wing",
+        "part": "wing",
+        "id": "44",
+        "familyJa": "カディス",
+        "area": 1,
+        "row": 3,
+        "column": 3,
+        "image": "custom/fly-other-menu-positions/caddis-wing-c3-r3-cursor.png",
+        "imageSha256": "b01ec24f208f00120f79eda64f210fe970da4ab2ae797280ac92e6961345136b",
+        "resultSource": "caddis-wing-c3-r3.result.json",
+        "nonePosition": {
+          "row": 4,
+          "column": 4
+        },
+        "evidenceHref": "../docs/fly-maker-other-families-menu-research.md"
       }
     },
     {
@@ -48785,6 +49378,23 @@
           "docs/fly-maker-menu-research.md",
           "data/fly-maker-menu-trace.json"
         ]
+      },
+      "flyMakerMenuChoice": {
+        "category": "fly_wing",
+        "part": "wing",
+        "id": "45",
+        "familyJa": "カディス",
+        "area": 1,
+        "row": 4,
+        "column": 3,
+        "image": "custom/fly-other-menu-positions/caddis-wing-c3-r4-cursor.png",
+        "imageSha256": "1270f4a52dbb76be9d3fd1e9a47482f969a9706fee5bd88ff683267e4ab10243",
+        "resultSource": "caddis-wing-c3-r4.result.json",
+        "nonePosition": {
+          "row": 4,
+          "column": 4
+        },
+        "evidenceHref": "../docs/fly-maker-other-families-menu-research.md"
       }
     },
     {
@@ -48903,6 +49513,23 @@
           "docs/fly-maker-menu-research.md",
           "data/fly-maker-menu-trace.json"
         ]
+      },
+      "flyMakerMenuChoice": {
+        "category": "fly_wing",
+        "part": "wing",
+        "id": "46",
+        "familyJa": "カディス",
+        "area": 1,
+        "row": 1,
+        "column": 4,
+        "image": "custom/fly-other-menu-positions/caddis-wing-c4-r1-cursor.png",
+        "imageSha256": "f35b37cb5c4e3ccad0b14791878a18bbddf487badcab6ba9e8b672b9ee8792c0",
+        "resultSource": "caddis-wing-c4-r1.result.json",
+        "nonePosition": {
+          "row": 4,
+          "column": 4
+        },
+        "evidenceHref": "../docs/fly-maker-other-families-menu-research.md"
       }
     },
     {
@@ -49033,6 +49660,23 @@
           "docs/fly-maker-menu-research.md",
           "data/fly-maker-menu-trace.json"
         ]
+      },
+      "flyMakerMenuChoice": {
+        "category": "fly_wing",
+        "part": "wing",
+        "id": "47",
+        "familyJa": "カディス",
+        "area": 1,
+        "row": 2,
+        "column": 4,
+        "image": "custom/fly-other-menu-positions/caddis-wing-c4-r2-cursor.png",
+        "imageSha256": "8c2d4d87e2293afbdb505bd808f9dbefcdca2f625e3cc11192c1609ace9d0779",
+        "resultSource": "caddis-wing-c4-r2.result.json",
+        "nonePosition": {
+          "row": 4,
+          "column": 4
+        },
+        "evidenceHref": "../docs/fly-maker-other-families-menu-research.md"
       }
     },
     {
@@ -49163,6 +49807,23 @@
           "docs/fly-maker-menu-research.md",
           "data/fly-maker-menu-trace.json"
         ]
+      },
+      "flyMakerMenuChoice": {
+        "category": "fly_wing",
+        "part": "wing",
+        "id": "48",
+        "familyJa": "カディス",
+        "area": 1,
+        "row": 3,
+        "column": 4,
+        "image": "custom/fly-other-menu-positions/caddis-wing-c4-r3-cursor.png",
+        "imageSha256": "a8324312a5bcf726a0ab94a1f8099fc85596420dd90855a2fa74308c2fefe851",
+        "resultSource": "caddis-wing-c4-r3.result.json",
+        "nonePosition": {
+          "row": 4,
+          "column": 4
+        },
+        "evidenceHref": "../docs/fly-maker-other-families-menu-research.md"
       }
     },
     {
@@ -52380,6 +53041,23 @@
           "data/fly-customization.json",
           "data/shop-stock-rom.json"
         ]
+      },
+      "flyMakerMenuChoice": {
+        "category": "fly_tail",
+        "part": "tail",
+        "id": "3D",
+        "familyJa": "カディス",
+        "area": 1,
+        "row": 1,
+        "column": 1,
+        "image": "custom/fly-other-menu-positions/caddis-tail-c1-r1-cursor.png",
+        "imageSha256": "e31a3438a197165d2b424a708fd69047fac327a986aaff00bf2a09ba16f942b3",
+        "resultSource": "caddis-tail-c1-r1.result.json",
+        "nonePosition": {
+          "row": 4,
+          "column": 1
+        },
+        "evidenceHref": "../docs/fly-maker-other-families-menu-research.md"
       }
     },
     {
@@ -52526,6 +53204,23 @@
           "data/fly-customization.json",
           "data/shop-stock-rom.json"
         ]
+      },
+      "flyMakerMenuChoice": {
+        "category": "fly_tail",
+        "part": "tail",
+        "id": "49",
+        "familyJa": "カディス",
+        "area": 1,
+        "row": 2,
+        "column": 1,
+        "image": "custom/fly-other-menu-positions/caddis-tail-c1-r2-cursor.png",
+        "imageSha256": "39f41821e34109351cf7ba627ca3e2e332d203a56a765c7ecaecb3b89ace3f2f",
+        "resultSource": "caddis-tail-c1-r2.result.json",
+        "nonePosition": {
+          "row": 4,
+          "column": 1
+        },
+        "evidenceHref": "../docs/fly-maker-other-families-menu-research.md"
       }
     },
     {
@@ -52661,6 +53356,23 @@
           "data/fly-customization.json",
           "data/shop-stock-rom.json"
         ]
+      },
+      "flyMakerMenuChoice": {
+        "category": "fly_tail",
+        "part": "tail",
+        "id": "4A",
+        "familyJa": "カディス",
+        "area": 1,
+        "row": 3,
+        "column": 1,
+        "image": "custom/fly-other-menu-positions/caddis-tail-c1-r3-cursor.png",
+        "imageSha256": "57e27077d3afe1e4ab13f2cd9f995f57799feb7ff50c70e4f4d52f7280d7b17c",
+        "resultSource": "caddis-tail-c1-r3.result.json",
+        "nonePosition": {
+          "row": 4,
+          "column": 1
+        },
+        "evidenceHref": "../docs/fly-maker-other-families-menu-research.md"
       }
     },
     {

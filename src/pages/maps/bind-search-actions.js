@@ -15,6 +15,9 @@ export function bindSearchActions(ctx) {
   })
   ctx.$('show-all').addEventListener('click', () => {
     ctx.selectedFish = ''
+    ctx.lastWaterMark = ctx.activeWaterMark || ctx.lastWaterMark
+    ctx.activeWaterMark = ''
+    ctx.listScope = 'area'
     ctx.searchInput.value = ''
     ctx.searchTerm = ''
     ctx.closeSuggestions(true)

@@ -334,16 +334,15 @@
     const townMap = ctx.mapAsset(area.townTerrain?.image);
     summary.textContent = place === "outdoor" ? `${ctx.text.area(stage)}. ${fieldMapSet?.name?.[ctx.lang] || ""}` : `${ctx.text.townSummary(stage)}.`;
     const allEntrances = Array.isArray(area.entrances) ? area.entrances : [];
-    let entrances = allEntrances.filter(
+    const validEntrances = allEntrances.filter(
       (entry) => ctx.pointWithin(entry.fieldTile, fieldMapSet?.fieldMap) && ctx.pointWithin(entry.townArrival, area.townTerrain) && (!entry.townArrival?.mapId || Number(entry.townArrival.mapId) === Number(area.townMapId))
     );
-    if (ctx.focusedEntrance !== null)
-      entrances = entrances.filter((entry) => Number(entry.ordinal) === ctx.focusedEntrance);
+    const entrances = ctx.focusedEntrance === null ? validEntrances : validEntrances.filter((entry) => Number(entry.ordinal) === ctx.focusedEntrance);
     const allInteractions = Array.isArray(area.interactions) ? area.interactions : [];
     const interactions = allInteractions.filter(
       (node) => ctx.pointWithin(node.townTile, area.townTerrain)
     );
-    const excludedPoints = allEntrances.length - entrances.length + (allInteractions.length - interactions.length);
+    const excludedPoints = allEntrances.length - validEntrances.length + (allInteractions.length - interactions.length);
     if (excludedPoints) summary.textContent += ` ${ctx.text.invalidPoints}`;
     if (place === "outdoor" && ctx.focusedEntrance !== null)
       summary.textContent += ` ${ctx.text.focusedEntrance(ctx.focusedEntrance)}`;

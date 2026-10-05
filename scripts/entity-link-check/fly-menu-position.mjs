@@ -170,7 +170,9 @@ function checkPublishedImages() {
 function checkAttachments() {
   const realChoices = evidence.choices.filter((choice) => choice.id !== '00')
   assert.equal(realChoices.length, 40)
-  const attached = data.items.filter((item) => item.flyMakerMenuChoice)
+  const attached = data.items.filter(
+    (item) => item.flyMakerMenuChoice?.familyJa === evidence.familyJa,
+  )
   assert.equal(attached.length, realChoices.length)
   assert.deepEqual(
     sortChoices(
@@ -186,6 +188,10 @@ function checkAttachments() {
   )
   assert(!attached.some((item) => item.id === '00'))
 
+  checkMayflyAttachmentFixtures(realChoices)
+}
+
+function checkMayflyAttachmentFixtures(realChoices) {
   const fixtures = realChoices.map((choice) => ({
     category: choice.category,
     id: choice.id,
@@ -366,5 +372,5 @@ for (const lang of ['en', 'ja', 'th']) {
 }
 
 console.log(
-  'PASS: 41 Area 1 Mayfly menu positions, authentic images, 40 component links, unknown-item fallback, and localized position instructions.',
+  'PASS: 41 Area 1 Mayfly menu positions, authentic images, 40 Mayfly component links, unknown-item fallback, and localized position instructions.',
 )

@@ -1,4 +1,4 @@
-const text = {
+const mayfly = {
   en: {
     title: 'Find this component in the game menu',
     scope: 'Area 1 · choose Mayfly (メイフライ) at the fly maker',
@@ -46,18 +46,93 @@ const text = {
   },
 }
 
+const otherFamilies = {
+  en: {
+    family: { カディス: 'Caddis', テレストリアル: 'Terrestrial' },
+    scope: (area, family, familyJa) =>
+      `Area ${area} · choose ${family} (${familyJa}) at the fly maker`,
+    none: (part, instructions) =>
+      `To choose None for the ${part}, start at top-left: ${instructions} (無し).`,
+    directQuote:
+      'After selecting this Terrestrial body, the game skips wing and tail selection and opens the quote.',
+    limit: (area, family) =>
+      `Verified only in this Area ${area} ${family} menu. Position identifies the component; it does not establish a bite or landing advantage. Check the final quote before paying.`,
+  },
+  ja: {
+    family: { カディス: 'カディス', テレストリアル: 'テレストリアル' },
+    scope: (area, family) => `エリア${area} · 「${family}」のフライを作成`,
+    none: (part, instructions) => `「${part}」で「無し」を選ぶ場合：左上から${instructions}`,
+    directQuote:
+      'このテレストリアル・ボディを選ぶと、ウィングとテールの選択画面を飛ばして見積額へ進みます。',
+    limit: (area, family) =>
+      `確認したのはエリア${area}の${family}メニューだけです。位置は部品の識別であり、食いつきや取り込み効果を示しません。支払前に見積額を確認してください。`,
+  },
+  th: {
+    family: { カディス: 'แคดดิส', テレストリアル: 'เทอเรสเทรียล' },
+    scope: (area, family, familyJa) =>
+      `ร้านด่าน ${area} · เลือก${family} (${familyJa}) ตอนประกอบฟลาย`,
+    none: (part, instructions) =>
+      `ถ้าจะเลือก “ไม่มี” (無し) ในเมนู${part} ให้เริ่มจากซ้ายบน: ${instructions}`,
+    directQuote: 'หลังเลือกบอดี้เทอเรสเทรียลนี้ เกมข้ามเมนูปีกและหาง แล้วไปหน้าเสนอราคาเลย',
+    limit: (area, family) =>
+      `ยืนยันตำแหน่งเฉพาะเมนู${family}ในร้านด่าน ${area} ตำแหน่งบอกว่าชิ้นไหน ไม่ได้พิสูจน์ว่าปลากินหรือตกขึ้นง่ายกว่า ตรวจราคาสุทธิก่อนจ่าย`,
+  },
+}
+
+function instructionsFor(copy, row, column) {
+  return [column > 1 ? copy.right(column - 1) : '', row > 1 ? copy.down(row - 1) : '', copy.confirm]
+    .filter(Boolean)
+    .join(' → ')
+}
+
+function otherFamilyCopy(lang, choice) {
+  const copy = otherFamilies[lang] || otherFamilies.en
+  const family = copy.family[choice.familyJa] || choice.familyJa
+  const area = choice.area || 1
+  return {
+    ...mayfly[lang],
+    scope: copy.scope(area, family, choice.familyJa),
+    limit: copy.limit(area, family),
+    none: copy.none,
+    directQuote: copy.directQuote,
+  }
+}
+
+function nonePositionInstructions(copy, choice, lang) {
+  const row = choice.nonePosition?.row
+  const column = choice.nonePosition?.column
+  if (!row || !column) return ''
+  const movement = [
+    column > 1 ? copy.right(column - 1) : '',
+    row > 1 ? copy.down(row - 1) : '',
+    copy.confirm,
+  ]
+    .filter(Boolean)
+    .join(' → ')
+  const part =
+    choice.part === 'wing'
+      ? { en: 'wing', ja: 'ウィング', th: 'ปีก' }
+      : { en: 'tail', ja: 'テール', th: 'หาง' }
+  return copy.none(part[lang], movement)
+}
+
 export function flyMenuPosition(ctx, item) {
   const choice = item.flyMakerMenuChoice
   if (!choice) return ''
-  const c = text[ctx.lang] || text.en
-  const moves = [
-    choice.column > 1 ? c.right(choice.column - 1) : '',
-    choice.row > 1 ? c.down(choice.row - 1) : '',
-    c.confirm,
-  ].filter(Boolean)
-  const instructions = moves.join(' → ')
-  const position = c.position(choice.row, choice.column)
-  const omitTail =
-    choice.part === 'tail' ? `<p class="fly-menu-none-tail">${ctx.esc(c.noneTail)}</p>` : ''
-  return `<section id="fly-menu-position" class="detail-section fly-menu-position" data-fly-menu-position="${ctx.esc(item.category)}:${ctx.esc(item.id)}"><h2>${ctx.esc(c.title)}</h2><p>${ctx.esc(c.scope)}</p><p><strong>${ctx.esc(position)}</strong> · ${ctx.esc(c.start)}</p><p class="rod-verdict">${ctx.esc(instructions)}</p>${omitTail}<figure><a href="${ctx.esc(choice.image)}" target="_blank" rel="noopener"><img src="${ctx.esc(choice.image)}" alt="${ctx.esc(position)}" width="256" height="224" loading="lazy"></a><figcaption>${ctx.esc(c.caption)}</figcaption></figure><details><summary>${ctx.esc(c.evidence)}</summary><p>${ctx.esc(c.limit)}</p><a href="${ctx.esc(choice.evidenceHref)}">${ctx.esc(c.notes)} ↗</a></details></section>`
+  const lang = ctx.lang in mayfly ? ctx.lang : 'en'
+  const isMayfly = !choice.familyJa || choice.familyJa === 'メイフライ'
+  const copy = isMayfly ? mayfly[lang] : otherFamilyCopy(lang, choice)
+  const instructions = instructionsFor(copy, choice.row, choice.column)
+  const position = copy.position(choice.row, choice.column)
+  const noneInstructions =
+    isMayfly && choice.part === 'tail'
+      ? `<p class="fly-menu-none-tail">${ctx.esc(copy.noneTail)}</p>`
+      : choice.nonePosition
+        ? `<p class="fly-menu-none-tail">${ctx.esc(nonePositionInstructions(copy, choice, lang))}</p>`
+        : ''
+  const nextStep =
+    choice.nextStep === 'quote'
+      ? `<p class="fly-menu-next-step rod-verdict">${ctx.esc(copy.directQuote)}</p>`
+      : ''
+  return `<section id="fly-menu-position" class="detail-section fly-menu-position" data-fly-menu-position="${ctx.esc(item.category)}:${ctx.esc(item.id)}"><h2>${ctx.esc(copy.title)}</h2><p>${ctx.esc(copy.scope)}</p><p><strong>${ctx.esc(position)}</strong> · ${ctx.esc(copy.start)}</p><p class="rod-verdict">${ctx.esc(instructions)}</p>${noneInstructions}${nextStep}<figure><a href="${ctx.esc(choice.image)}" target="_blank" rel="noopener"><img src="${ctx.esc(choice.image)}" alt="${ctx.esc(position)}" width="256" height="224" loading="lazy"></a><figcaption>${ctx.esc(copy.caption)}</figcaption></figure><details><summary>${ctx.esc(copy.evidence)}</summary><p>${ctx.esc(copy.limit)}</p><a href="${ctx.esc(choice.evidenceHref)}">${ctx.esc(copy.notes)} ↗</a></details></section>`
 }

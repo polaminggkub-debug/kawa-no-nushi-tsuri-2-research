@@ -1225,7 +1225,7 @@
     });
   }
   function loadGallery() {
-    return fetch("gallery-data.json?v=compendium-20261005-20").then((response) => {
+    return fetch("gallery-data.json?v=compendium-20261005-21").then((response) => {
       if (!response.ok) throw new Error("gallery data unavailable");
       return response.json();
     });

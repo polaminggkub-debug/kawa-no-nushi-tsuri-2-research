@@ -1257,6 +1257,31 @@
       ],
       "verifiedAccess": [
         {
+          "interactionSlotHex": "08",
+          "entranceOrdinal": 1,
+          "probe": {
+            "townArrival": {
+              "x": 7,
+              "y": 29
+            },
+            "result": "normal shop opened",
+            "observedMode": 2,
+            "observedSlotHex": "08",
+            "runtimeEvidence": "33 controller-only steps from an Area 6 debug field fixture; independently replayed. Does not prove new-game progression.",
+            "controls": [
+              "Up 3 tiles",
+              "Right 2 tiles",
+              "Up 3 tiles",
+              "Down 1 tile",
+              "Left 1 tile",
+              "Face Up",
+              "A",
+              "A after greeting"
+            ],
+            "evidenceHref": "../docs/area6-shop-walking-research.md"
+          }
+        },
+        {
           "interactionSlotHex": "10",
           "entranceOrdinal": 4,
           "probe": {

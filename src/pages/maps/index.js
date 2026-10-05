@@ -1,6 +1,18 @@
 export { renderNotebookGuide } from './notebook-guide.js'
 export { renderWaterKey } from './water-icons.js'
 export {
+  waterMarkAreaText,
+  waterMarkFishHeading,
+  waterMarkEmptyText,
+  waterMarkPinHelp,
+} from './water-icons.js'
+export {
+  fishMatchesWaterMark,
+  waterMarkFishIds,
+  visibleMapFishIds,
+  bindWaterMarkFilter,
+} from './water-mark-filter.js'
+export {
   safeReturn,
   localizeReturn,
   buildData,
@@ -46,9 +58,11 @@ import { bindMapControls } from './bind-map-controls.js'
 import { bindFishSearch } from './bind-fish-search.js'
 import { bindSearchActions } from './bind-search-actions.js'
 import { loadMaps } from './load-maps.js'
+import { bindWaterMarkFilter } from './water-mark-filter.js'
 export function initialize(ctx) {
   setupContext(ctx)
   bindMapTargets(ctx)
+  bindWaterMarkFilter(ctx)
   bindMapControls(ctx)
   bindFishSearch(ctx)
   bindSearchActions(ctx)

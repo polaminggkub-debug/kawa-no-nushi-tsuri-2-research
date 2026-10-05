@@ -48,3 +48,11 @@ The replacement uses the loaded original-ROM OBJ graphics from a controlled Snes
 Unresolved: empirical frequency during ordinary play, and whether another object rebuilding event can change the cached mark before capture. No gameplay advantage is attributed to the visual class itself.
 
 Original full-frame fixtures: [small](../catalogue/images/water-icons/water-small-frame.png), [large](../catalogue/images/water-icons/water-large-frame.png), [bubble](../catalogue/images/water-icons/water-bubble-frame.png). These older frames are retained as superseded capture evidence; the former lower-left terrain crops were incorrect.
+
+## Use a mark to narrow down fish on the map
+
+The map page now offers **Small / Large / Bubbles** as filters. Choose the area you are playing, then the mark you saw. The candidates come from that area's configured species intersected with the ROM-derived possible classes; they are not a species identification or encounter percentage. Open a candidate's map points or profile to choose its compatible equipment. Clear the mark to browse all species again.
+
+For example, [Area 3 with the bubble filter](../catalogue/maps.html?stage=3&mark=bubble#map-view) has one candidate, Oikawa (`0F`). Rainbow trout (`06`) also has Area 3 points but is not a bubble candidate. Potato-bait compatibility is a different mechanic and is not used to build this filter. Areas 1 and 2 have no bubble-class profiles in their configured tables; an empty result means that narrow lookup has no recorded candidates, not that the whole area contains no fish.
+
+A retained target fish may conflict with a mark filter. The page explains that conflict and offers a direct action to show the mark's candidates, or to clear only the mark and keep the target. Mark selection is preserved in map URLs, localized views and detail returns. The notebook checklist remains a separate global collection tool; filtering map candidates does not remove species from the notebook guide.

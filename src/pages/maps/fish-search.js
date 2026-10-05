@@ -139,7 +139,9 @@ export function updateUrl(ctx) {
   if (ctx.returnPath) params.set('return', ctx.returnPath)
   if (ctx.activeSection) params.set('section', ctx.activeSection)
   if (ctx.selectedFish) params.set('fish', ctx.selectedFish)
+  if (ctx.activeWaterMark) params.set('mark', ctx.activeWaterMark)
   if (ctx.listScope === 'section') params.set('scope', 'section')
+  if (ctx.searchTerm) params.set('q', ctx.searchTerm)
   history.replaceState(null, '', `${location.pathname}?${params.toString()}${anchor}`)
   ctx.updateLanguageLinks(params)
 }
@@ -169,16 +171,14 @@ export function chooseSection(ctx, stage, preferredKey = '') {
     sections = [...(data?.sections.values() || [])]
   if (!sections.length) return ''
   if (preferredKey && data.sections.has(preferredKey)) return preferredKey
-  if (ctx.selectedFish) {
-    const forFish = sections
-      .map((s) => ({
-        ...s,
-        count: s.pins.filter((p) => p.fishIds.includes(ctx.selectedFish)).length,
-      }))
-      .filter((s) => s.count > 0)
-      .sort((a, b) => b.count - a.count || a.row - b.row || a.col - b.col)
-    if (forFish.length) return forFish[0].key
-  }
+  const filtered = sections
+    .map((section) => ({
+      ...section,
+      count: section.pins.filter((pin) => ctx.visibleMapFishIds(pin.fishIds).length).length,
+    }))
+    .filter((section) => section.count > 0)
+    .sort((a, b) => b.count - a.count || a.row - b.row || a.col - b.col)
+  if (filtered.length) return filtered[0].key
   return sections.sort((a, b) => b.pins.length - a.pins.length || a.row - b.row || a.col - b.col)[0]
     .key
 }
@@ -189,11 +189,13 @@ export function renderAreas(ctx) {
     .map((data) => {
       const targetHere = !ctx.selectedFish || data.species.has(ctx.selectedFish)
       const pressed = data.stage === ctx.activeStage
-      const small = ctx.selectedFish
-        ? targetHere
-          ? ctx.c.targetAvailable
-          : ctx.c.targetAbsent
-        : ctx.c.allArea(data.species.size)
+      const small = ctx.activeWaterMark
+        ? ctx.waterMarkAreaText(data.stage)
+        : ctx.selectedFish
+          ? targetHere
+            ? ctx.c.targetAvailable
+            : ctx.c.targetAbsent
+          : ctx.c.allArea(data.species.size)
       return `<button class="area-button" type="button" data-stage="${data.stage}" aria-pressed="${pressed}" ${ctx.selectedFish && !targetHere ? 'disabled' : ''}><strong>${ctx.esc(ctx.c.area(data.stage))}</strong><small>${ctx.esc(data.name)} · ${ctx.esc(small)}</small></button>`
     })
     .join('')
@@ -213,7 +215,10 @@ export function normalizedSearch(ctx, value) {
 export function matchingSuggestions(ctx, term) {
   const query = ctx.normalizedSearch(term)
   if (!query) return []
-  return Object.keys(ctx.species)
+  const pool = ctx.activeWaterMark
+    ? ctx.waterMarkFishIds(ctx.activeStage)
+    : Object.keys(ctx.species)
+  return pool
     .filter(
       (id) =>
         ctx.species[id].stages.length && ctx.normalizedSearch(ctx.searchable(id)).includes(query),
@@ -265,6 +270,7 @@ export function renderSuggestions(ctx) {
       const item = ctx.species[id],
         image = item.visual.image || ''
       const areaBadges = item.stages
+        .filter((stage) => !ctx.activeWaterMark || stage === ctx.activeStage)
         .map((stage) => `<span class="suggestion-area-badge">${ctx.esc(ctx.c.area(stage))}</span>`)
         .join('')
       const secondary =
@@ -346,32 +352,42 @@ export function renderFishList(ctx) {
       .get(ctx.activeSection)
       ?.pins.flatMap((pin) => pin.fishIds) || [],
   )
-  const ids = Object.keys(ctx.species)
+  const pool = ctx.activeWaterMark
+    ? ctx.waterMarkFishIds(ctx.activeStage)
+    : Object.keys(ctx.species)
+  const ids = pool
     .filter((id) =>
       term
         ? ctx.normalizedSearch(ctx.searchable(id)).includes(term)
-        : ctx.listScope === 'section'
-          ? sectionIds.has(id)
-          : ctx.fishInStage(id, ctx.activeStage),
+        : ctx.activeWaterMark
+          ? ctx.listScope === 'section'
+            ? sectionIds.has(id)
+            : true
+          : ctx.listScope === 'section'
+            ? sectionIds.has(id)
+            : ctx.fishInStage(id, ctx.activeStage),
     )
     .sort((a, b) => ctx.fishName(a).localeCompare(ctx.fishName(b), ctx.lang))
   ctx.renderFishListHeader(term, ids)
   ctx.fishList.innerHTML = ids.length
     ? ids.map((id) => ctx.fishChoice(id, term, sectionIds)).join('')
-    : `<div class="empty-list">${ctx.esc(ctx.c.noFish)}</div>`
+    : `<div class="empty-list">${ctx.esc(ctx.activeWaterMark ? ctx.waterMarkEmptyText(Boolean(term)) : ctx.c.noFish)}</div>`
 }
 
 export function renderFishListHeader(ctx, term, ids) {
   const header = ctx.$('fish-title')
-  header.textContent = term
-    ? ctx.c.searchResults
-    : ctx.listScope === 'section'
-      ? ctx.lang === 'th'
-        ? 'ปลาในส่วนแผนที่นี้'
-        : ctx.lang === 'ja'
-          ? 'この地図範囲の魚'
-          : 'Fish in this map section'
-      : ctx.c.fishIn
+  header.tabIndex = -1
+  header.textContent = ctx.activeWaterMark
+    ? ctx.waterMarkFishHeading(Boolean(term))
+    : term
+      ? ctx.c.searchResults
+      : ctx.listScope === 'section'
+        ? ctx.lang === 'th'
+          ? 'ปลาในส่วนแผนที่นี้'
+          : ctx.lang === 'ja'
+            ? 'この地図範囲の魚'
+            : 'Fish in this map section'
+        : ctx.c.fishIn
   ctx.$('fish-scope').innerHTML = [
     ['area', ctx.lang === 'th' ? 'ทั้งด่าน' : ctx.lang === 'ja' ? 'エリア全体' : 'Whole area'],
     [
@@ -384,9 +400,14 @@ export function renderFishListHeader(ctx, term, ids) {
         `<button type="button" data-scope="${value}" aria-pressed="${ctx.listScope === value}">${label}</button>`,
     )
     .join('')
-  ctx.$('area-summary').textContent = term
-    ? `${ids.length} ${ctx.c.fish} · ${ctx.c.areas} ${ctx.lang === 'ja' ? 'で出現' : ctx.lang === 'th' ? 'ที่พบ' : 'with configured points'}`
-    : `${ctx.c.area(ctx.activeStage)} · ${ids.length} ${ctx.c.fish}`
+  ctx.$('area-summary').textContent =
+    ctx.activeWaterMark && !term
+      ? ctx.waterMarkAreaText(ctx.activeStage)
+      : term && ctx.activeWaterMark
+        ? `${ctx.c.area(ctx.activeStage)} · ${ids.length} ${ctx.c.fish}`
+        : term
+          ? `${ids.length} ${ctx.c.fish} · ${ctx.c.areas} ${ctx.lang === 'ja' ? 'で出現' : ctx.lang === 'th' ? 'ที่พบ' : 'with configured points'}`
+          : `${ctx.c.area(ctx.activeStage)} · ${ids.length} ${ctx.c.fish}`
   ctx.$('search-count').textContent = `${ids.length} ${ctx.c.fish}`
   ctx.$('show-all').textContent = ctx.c.showAll
   ctx.fishList.hidden = false

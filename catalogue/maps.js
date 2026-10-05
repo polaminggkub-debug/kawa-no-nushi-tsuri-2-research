@@ -10,6 +10,7 @@
   __export(maps_exports, {
     addFishLocation: () => addFishLocation,
     areaCount: () => areaCount,
+    bindWaterMarkFilter: () => bindWaterMarkFilter,
     buildData: () => buildData,
     chooseSection: () => chooseSection,
     chooseSuggestion: () => chooseSuggestion,
@@ -17,6 +18,7 @@
     enableControls: () => enableControls,
     fishChoice: () => fishChoice,
     fishInStage: () => fishInStage,
+    fishMatchesWaterMark: () => fishMatchesWaterMark,
     indexMapSections: () => indexMapSections,
     initFromUrl: () => initFromUrl,
     initialize: () => initialize,
@@ -46,7 +48,13 @@
     showPinDetails: () => showPinDetails,
     speciesRecord: () => speciesRecord,
     updateLanguageLinks: () => updateLanguageLinks,
-    updateUrl: () => updateUrl
+    updateUrl: () => updateUrl,
+    visibleMapFishIds: () => visibleMapFishIds,
+    waterMarkAreaText: () => waterMarkAreaText,
+    waterMarkEmptyText: () => waterMarkEmptyText,
+    waterMarkFishHeading: () => waterMarkFishHeading,
+    waterMarkFishIds: () => waterMarkFishIds,
+    waterMarkPinHelp: () => waterMarkPinHelp
   });
 
   // src/pages/maps/notebook-progress.js
@@ -398,45 +406,193 @@
   var copy2 = {
     th: {
       title: "สัญลักษณ์บนผิวน้ำในเกม",
-      imageNote: "ขยายกราฟิกไอคอนต้นฉบับจากเกมบนพื้นเรียบเพื่อให้เห็นชัด ภาพในเกมมีหลายทิศและหลายเฟรม",
+      imageNote: "ภาพขยายจากกราฟิกต้นฉบับในเกม; ในเกมมีหลายทิศและหลายเฟรม",
       small: "ปลาเล็ก: ต่ำกว่า 50 ซม.",
       large: "ปลาใหญ่: ตั้งแต่ 50 ซม.",
-      bubble: "ฟอง: บางชนิดใช้ภาพนี้ทุกขนาด",
-      note: "ภาพปลาใช้ขนาดตอนสร้างไอคอน ปลาโตต่อได้โดยภาพไม่เปลี่ยนทันที จึงไม่รับประกันขนาดตอนตกได้ ฟองไม่บอกขนาด และไอคอนอย่างเดียวบอกชนิดปลาไม่ได้ ภาพหมุดบนเว็บคือรูปชนิดปลา ไม่ใช่ไอคอนในเกม",
-      detail: "ดูไอคอนที่ปลานี้แสดงได้"
+      bubble: "ฟอง: ปลาบางชนิดใช้ทุกขนาด",
+      filterTitle: "กรองปลาตามสัญลักษณ์ที่อาจเห็น",
+      idle: "เลือกสัญลักษณ์เพื่อดูชนิดปลาที่มีโอกาสแสดงภาพแบบนั้นในด่านนี้",
+      count: (n, area, mark) => `ด่าน ${area}: มีปลา ${n} ชนิดที่ข้อมูล ROM ระบุว่าอาจใช้สัญลักษณ์ “${mark}”`,
+      none: (area) => `ไม่พบชนิดปลาที่ใช้สัญลักษณ์นี้ในข้อมูลของด่าน ${area} ลองเลือกด่านอื่นหรือล้างตัวกรอง`,
+      resultLimit: "รายการนี้แสดงความเป็นไปได้จากข้อมูล ROM ไม่ใช่โอกาสหรือเปอร์เซ็นต์ที่จะเจอปลา",
+      sameRule: "กติกาสัญลักษณ์เหมือนกันทุกด่าน แต่แต่ละด่านมีชนิดปลาไม่เหมือนกัน",
+      effect: "ยังไม่พบหลักฐานว่าสัญลักษณ์เองเพิ่มโอกาสกินเหยื่อหรือตกได้ ขนาดจริงของปลาใช้ในการคำนวณการสู้ปลาบางจุด",
+      conflict: (name, mark) => `ปลาที่เลือก “${name}” ไม่มีสัญลักษณ์ “${mark}” ในข้อมูล ROM จึงไม่มีหมุดตรงกับตัวกรองนี้`,
+      clearTarget: "ดูปลาที่เข้ากับสัญลักษณ์นี้",
+      listLink: "ไปยังรายชื่อปลาที่เข้ากัน",
+      clearFilter: "ล้างตัวกรองสัญลักษณ์",
+      evidence: "อ่านความหมายของสัญลักษณ์",
+      detail: "ดูสัญลักษณ์ที่ปลานี้อาจแสดง",
+      note: "ปลาเล็ก/ใหญ่คำนวณจากขนาดตอนสร้างไอคอน ซึ่งอาจไม่อัปเดตทันทีเมื่อปลาโต ปลาบางชนิดใช้ภาพฟองทุกขนาด สัญลักษณ์อย่างเดียวระบุชนิดปลาไม่ได้ หมุดบนเว็บเป็นรูปชนิดปลา ไม่ใช่สัญลักษณ์ในเกม",
+      listHeading: "ปลาที่อาจแสดงสัญลักษณ์นี้ในด่านนี้",
+      listSearchHeading: "ค้นหาในปลาที่อาจแสดงสัญลักษณ์นี้",
+      listEmpty: "ไม่มีปลาที่เข้ากับสัญลักษณ์นี้ในขอบเขตรายการที่เลือก",
+      listSearchEmpty: "ไม่พบคำค้นในรายชื่อปลาที่อาจแสดงสัญลักษณ์นี้",
+      sectionEmpty: "ส่วนแผนที่นี้ไม่มีจุดที่ตรงกับตัวกรอง ลองเลือกส่วนอื่น"
     },
     en: {
       title: "Water marks in the game",
-      imageNote: "Original game icon pixels enlarged on a plain backdrop for clarity. Other directions and animation frames appear in play.",
-      small: "Small: under 50 cm",
-      large: "Large: at least 50 cm",
-      bubble: "Bubbles: certain species, any size",
-      note: "Fish marks read size when created and do not immediately refresh as fish grow; they do not guarantee landed size. Bubbles do not reveal size; a mark alone cannot identify the species. Website pins show species portraits, not in-game marks.",
-      detail: "See this fish’s possible marks"
+      imageNote: "Original game pixels enlarged; directions and animation frames vary in play.",
+      small: "Small fish: under 50 cm",
+      large: "Large fish: 50 cm or more",
+      bubble: "Bubbles: some fish, at any size",
+      filterTitle: "Filter fish by a possible water mark",
+      idle: "Choose a mark to see which species can show it in this area.",
+      count: (n, area, mark) => `Area ${area}: ROM data lists ${n} species that may use the “${mark}” mark.`,
+      none: (area) => `No species with this mark are listed for Area ${area}. Try another area or clear the filter.`,
+      resultLimit: "This is a ROM-based possibility list, not a chance or percentage of finding a fish.",
+      sameRule: "The same mark rule applies in every area, but the fish available differ by area.",
+      effect: "No evidence shows that the mark itself improves bites or catches. Actual fish size is used in some fight calculations.",
+      conflict: (name, mark) => `The selected fish, “${name},” cannot have the “${mark}” mark in the ROM data, so no pins match both filters.`,
+      clearTarget: "Show fish that can have this mark",
+      listLink: "Jump to compatible fish",
+      clearFilter: "Clear mark filter",
+      evidence: "How to read these marks",
+      detail: "See this fish’s possible marks",
+      note: "Small/large is based on size when the icon is created and may not update immediately as a fish grows. Some fish show bubbles at any size. A mark alone cannot identify the species. Website pins are species portraits, not in-game marks.",
+      listHeading: "Fish that may show this mark in this area",
+      listSearchHeading: "Search among fish that may show this mark",
+      listEmpty: "No fish match this mark in the selected list scope.",
+      listSearchEmpty: "No search matches among fish that may show this mark.",
+      sectionEmpty: "No matching points in this map section. Try another section."
     },
     ja: {
       title: "ゲーム内の水面マーク",
-      imageNote: "原作のマークを単色背景で拡大しています。ゲームでは方向やアニメーションにより形が変わります。",
+      imageNote: "原作の画像を拡大しています。ゲーム中は方向やアニメーションで形が変わります。",
       small: "小魚影：50cm未満",
       large: "大魚影：50cm以上",
-      bubble: "泡：特定の魚種、サイズ不問",
-      note: "魚影は作成時のサイズを示し、成長しても直ちに更新されません。釣り上げ時のサイズは保証しません。泡ではサイズを判断できず、マークだけでは魚種も特定できません。地図のピンは魚種の画像で、ゲーム内のマークではありません。",
-      detail: "この魚のマークを確認"
+      bubble: "泡：一部の魚、サイズ不問",
+      filterTitle: "水面マークから魚種を絞り込む",
+      idle: "マークを選ぶと、このエリアで表示される可能性がある魚種を確認できます。",
+      count: (n, area, mark) => `エリア${area}：ROM上で「${mark}」を使う可能性がある魚種は${n}種です。`,
+      none: (area) => `エリア${area}にはこのマークに該当する魚種がありません。別のエリアを選ぶか、絞り込みを解除してください。`,
+      resultLimit: "ROMから確認できる可能性の一覧で、遭遇確率や割合ではありません。",
+      sameRule: "マークの判定規則は全エリア共通ですが、エリアごとに魚種が異なります。",
+      effect: "マーク自体が食いつきや釣果を高める証拠はありません。実際の魚のサイズは一部のファイト計算に使われます。",
+      conflict: (name, mark) => `選択中の「${name}」はROMデータ上「${mark}」にならないため、両方に一致する地点はありません。`,
+      clearTarget: "このマークに該当する魚を見る",
+      listLink: "該当する魚の一覧へ",
+      clearFilter: "マーク絞り込みを解除",
+      evidence: "マークの見方",
+      detail: "この魚に表示されるマーク",
+      note: "小魚影・大魚影はアイコン生成時のサイズで決まり、成長後すぐ更新されない場合があります。一部の魚はサイズに関係なく泡のマークを使います。マークだけでは魚種を特定できません。地図のピンは魚種画像で、ゲーム内マークではありません。",
+      listHeading: "このエリアで表示される可能性がある魚",
+      listSearchHeading: "このマークに該当する魚を検索",
+      listEmpty: "選択中の一覧範囲に、このマークに該当する魚はいません。",
+      listSearchEmpty: "このマークに該当する魚の中に一致する検索結果はありません。",
+      sectionEmpty: "この範囲に該当する地点はありません。別の範囲を選んでください。"
     }
   };
   function renderWaterKey(ctx) {
-    const node = ctx.$("water-icon-key");
-    const data = ctx.waterIcons;
+    const node = ctx.$("water-icon-key"), data = ctx.waterIcons;
     if (!node || !data?.classes) return;
-    const c = copy2[ctx.lang];
-    const profile = data.profiles?.[ctx.selectedFish];
-    const classes = profile?.possibleClasses || ["small", "large", "bubble"];
-    const cards = classes.filter((key) => data.classes[key]?.image).map(
-      (key) => `<li><img src="${ctx.esc(data.classes[key].image + "?v=native-20261005")}" alt=""><span>${ctx.esc(c[key])}</span></li>`
-    ).join("");
-    const link = profile ? `<a href="${ctx.esc(ctx.fishHref(ctx.selectedFish))}#water-icons">${ctx.esc(c.detail)} ↗</a>` : "";
-    node.innerHTML = `<h4>${ctx.esc(c.title)}</h4><ul>${cards}</ul><p class="water-icon-image-note">${ctx.esc(c.imageNote)}</p><p>${ctx.esc(c.note)}</p>${link}`;
-    node.hidden = !cards;
+    const labels = copy2[ctx.lang], profile = data.profiles?.[ctx.selectedFish], classes = ["small", "large", "bubble"];
+    const buttons = classes.filter((key) => data.classes[key]?.image).map((key) => markButton(ctx, labels, data, key, profile)).join("");
+    node.innerHTML = `${renderHeader(labels)}<div class="water-mark-buttons" role="group" aria-label="${ctx.esc(labels.filterTitle)}">${buttons}</div>${renderMarkResults(ctx, labels)}<div class="water-mark-notes"><p>${ctx.esc(labels.sameRule)}</p><p>${ctx.esc(labels.effect)}</p><details class="water-mark-evidence"><summary>${ctx.esc(labels.evidence)}</summary><p class="water-icon-image-note">${ctx.esc(labels.imageNote)}</p><p>${ctx.esc(labels.note)}</p></details></div>${renderFishDetailLink(ctx, labels)}`;
+    node.hidden = !buttons;
+  }
+  function renderHeader(labels) {
+    return `<h4>${labels.title}</h4><p class="water-mark-heading">${labels.filterTitle}</p>`;
+  }
+  function markButton(ctx, labels, data, key, profile) {
+    const active = ctx.activeWaterMark === key, possible = profile?.possibleClasses?.includes(key), image = `${data.classes[key].image}?v=native-20261005`;
+    return `<button type="button" id="water-mark-${key}" class="water-mark-button${active ? " is-active" : ""}" data-water-mark="${key}" aria-pressed="${active}" aria-controls="fish-list map-view" aria-label="${ctx.esc(labels[key])}"><img src="${ctx.esc(image)}" alt=""><span>${ctx.esc(labels[key])}${possible ? `<small>${ctx.lang === "th" ? "เป็นไปได้กับปลาที่เลือก" : ctx.lang === "ja" ? "選択中の魚に該当" : "Possible for selected fish"}</small>` : ""}</span></button>`;
+  }
+  function renderMarkResults(ctx, labels) {
+    const mark = ctx.activeWaterMark;
+    if (!mark)
+      return `<div class="water-mark-results" id="water-mark-results"><p>${ctx.esc(labels.idle)}</p></div>`;
+    const ids = ctx.waterMarkFishIds(ctx.activeStage, mark), label = labels[mark], count = ids.length, status = count ? labels.count(count, ctx.activeStage, label) : labels.none(ctx.activeStage), conflict = ctx.selectedFish && !ctx.fishMatchesWaterMark(ctx.selectedFish, mark);
+    return `<div class="water-mark-results" id="water-mark-results"><p class="water-mark-count" aria-live="polite">${ctx.esc(status)}</p><p>${ctx.esc(labels.resultLimit)}</p>${conflict ? `<p class="water-mark-conflict" data-water-mark-conflict role="status">${ctx.esc(labels.conflict(ctx.fishName(ctx.selectedFish), label))}</p>` : ""}<div class="water-mark-actions"><a href="#fish-list">${ctx.esc(labels.listLink)} ↘</a>${ctx.selectedFish ? `<button type="button" data-action="show-mark-candidates">${ctx.esc(labels.clearTarget)}</button>` : ""}<button type="button" data-action="clear-water-mark">${ctx.esc(labels.clearFilter)}</button></div></div>`;
+  }
+  function waterMarkAreaText(ctx, stage) {
+    if (!ctx.activeWaterMark) return "";
+    const count = ctx.waterMarkFishIds(stage).length, mark = copy2[ctx.lang][ctx.activeWaterMark];
+    if (ctx.lang === "th") return `${count} ชนิดอาจแสดง · ${mark}`;
+    if (ctx.lang === "ja") return `${count}種が表示される可能性 · ${mark}`;
+    return `${count} possible · ${mark}`;
+  }
+  function waterMarkFishHeading(ctx, hasSearch) {
+    const labels = copy2[ctx.lang];
+    return hasSearch ? labels.listSearchHeading : labels.listHeading;
+  }
+  function waterMarkEmptyText(ctx, hasSearch) {
+    if (!ctx.activeWaterMark) return ctx.c.noFish;
+    const labels = copy2[ctx.lang];
+    return hasSearch ? labels.listSearchEmpty : labels.listEmpty;
+  }
+  function waterMarkPinHelp(ctx, hasPoints) {
+    const labels = copy2[ctx.lang];
+    if (!ctx.activeWaterMark) return "";
+    const mark = labels[ctx.activeWaterMark];
+    if (ctx.selectedFish && !ctx.fishMatchesWaterMark(ctx.selectedFish))
+      return labels.conflict(ctx.fishName(ctx.selectedFish), mark);
+    if (!hasPoints && !ctx.waterMarkFishIds(ctx.activeStage).length)
+      return labels.none(ctx.activeStage);
+    if (!hasPoints) return labels.sectionEmpty;
+    if (ctx.lang === "th")
+      return `กรองจุดตามปลาที่อาจแสดง “${mark}” สัญลักษณ์ไม่ได้ระบุชนิดปลาที่กำลังอยู่ตรงนั้น`;
+    if (ctx.lang === "ja")
+      return `「${mark}」を表示する可能性がある魚の地点に絞り込みました。マークだけでは今いる魚種は分かりません。`;
+    return `Filtered to points for fish that may show “${mark}”. The mark does not identify which fish is there now.`;
+  }
+  function renderFishDetailLink(ctx, labels) {
+    return ctx.selectedFish ? `<a class="water-mark-fish-detail" href="${ctx.esc(ctx.fishHref(ctx.selectedFish))}#water-icons">${ctx.esc(labels.detail)} ↗</a>` : "";
+  }
+
+  // src/pages/maps/water-mark-filter.js
+  var WATER_MARKS = ["small", "large", "bubble"];
+  function normalizeWaterMark(mark) {
+    return WATER_MARKS.includes(mark) ? mark : "";
+  }
+  function fishMatchesWaterMark(ctx, id, mark = ctx.activeWaterMark) {
+    if (!mark) return true;
+    return (ctx.waterIcons?.profiles?.[id]?.possibleClasses || []).includes(mark);
+  }
+  function waterMarkFishIds(ctx, stage, mark = ctx.activeWaterMark) {
+    const ids = ctx.stages[stage]?.species || [];
+    return [...ids].filter((id) => fishMatchesWaterMark(ctx, id, mark));
+  }
+  function visibleMapFishIds(ctx, ids) {
+    return ids.filter(
+      (id) => (!ctx.selectedFish || id === ctx.selectedFish) && fishMatchesWaterMark(ctx, id)
+    );
+  }
+  function bindWaterMarkFilter(ctx) {
+    const panel = ctx.$("water-icon-key");
+    panel.addEventListener("click", (event) => {
+      const markButton2 = event.target.closest("[data-water-mark]");
+      if (markButton2) return selectWaterMark(ctx, markButton2.dataset.waterMark);
+      const actionButton = event.target.closest("[data-action]"), action = actionButton?.dataset.action;
+      if (action === "clear-water-mark") clearWaterMark(ctx);
+      if (action === "show-mark-candidates") showMarkCandidates(ctx);
+    });
+  }
+  function selectWaterMark(ctx, mark) {
+    if (!WATER_MARKS.includes(mark)) return;
+    ctx.lastWaterMark = mark;
+    ctx.activeWaterMark = ctx.activeWaterMark === mark ? "" : mark;
+    ctx.activeSection = ctx.chooseSection(ctx.activeStage);
+    ctx.render();
+    ctx.$(`water-mark-${mark}`)?.focus?.();
+  }
+  function clearWaterMark(ctx) {
+    ctx.lastWaterMark = ctx.activeWaterMark || ctx.lastWaterMark || "small";
+    ctx.activeWaterMark = "";
+    ctx.activeSection = ctx.chooseSection(ctx.activeStage);
+    ctx.render();
+    ctx.$(`water-mark-${ctx.lastWaterMark}`)?.focus?.();
+  }
+  function showMarkCandidates(ctx) {
+    ctx.selectedFish = "";
+    ctx.searchInput.value = "";
+    ctx.searchTerm = "";
+    ctx.listScope = "area";
+    ctx.closeSuggestions(true);
+    ctx.activeSection = ctx.chooseSection(ctx.activeStage);
+    ctx.render();
+    ctx.$("fish-list").scrollIntoView?.({ block: "start" });
+    ctx.$("fish-title")?.focus?.();
   }
 
   // src/pages/maps/fish-search.js
@@ -557,7 +713,9 @@
     if (ctx.returnPath) params.set("return", ctx.returnPath);
     if (ctx.activeSection) params.set("section", ctx.activeSection);
     if (ctx.selectedFish) params.set("fish", ctx.selectedFish);
+    if (ctx.activeWaterMark) params.set("mark", ctx.activeWaterMark);
     if (ctx.listScope === "section") params.set("scope", "section");
+    if (ctx.searchTerm) params.set("q", ctx.searchTerm);
     history.replaceState(null, "", `${location.pathname}?${params.toString()}${anchor}`);
     ctx.updateLanguageLinks(params);
   }
@@ -582,20 +740,18 @@
     const data = ctx.stages[stage], sections = [...data?.sections.values() || []];
     if (!sections.length) return "";
     if (preferredKey && data.sections.has(preferredKey)) return preferredKey;
-    if (ctx.selectedFish) {
-      const forFish = sections.map((s) => ({
-        ...s,
-        count: s.pins.filter((p) => p.fishIds.includes(ctx.selectedFish)).length
-      })).filter((s) => s.count > 0).sort((a, b) => b.count - a.count || a.row - b.row || a.col - b.col);
-      if (forFish.length) return forFish[0].key;
-    }
+    const filtered = sections.map((section) => ({
+      ...section,
+      count: section.pins.filter((pin) => ctx.visibleMapFishIds(pin.fishIds).length).length
+    })).filter((section) => section.count > 0).sort((a, b) => b.count - a.count || a.row - b.row || a.col - b.col);
+    if (filtered.length) return filtered[0].key;
     return sections.sort((a, b) => b.pins.length - a.pins.length || a.row - b.row || a.col - b.col)[0].key;
   }
   function renderAreas(ctx) {
     ctx.areaList.innerHTML = Object.values(ctx.stages).sort((a, b) => a.stage - b.stage).map((data) => {
       const targetHere = !ctx.selectedFish || data.species.has(ctx.selectedFish);
       const pressed = data.stage === ctx.activeStage;
-      const small = ctx.selectedFish ? targetHere ? ctx.c.targetAvailable : ctx.c.targetAbsent : ctx.c.allArea(data.species.size);
+      const small = ctx.activeWaterMark ? ctx.waterMarkAreaText(data.stage) : ctx.selectedFish ? targetHere ? ctx.c.targetAvailable : ctx.c.targetAbsent : ctx.c.allArea(data.species.size);
       return `<button class="area-button" type="button" data-stage="${data.stage}" aria-pressed="${pressed}" ${ctx.selectedFish && !targetHere ? "disabled" : ""}><strong>${ctx.esc(ctx.c.area(data.stage))}</strong><small>${ctx.esc(data.name)} · ${ctx.esc(small)}</small></button>`;
     }).join("");
   }
@@ -608,7 +764,8 @@
   function matchingSuggestions(ctx, term) {
     const query = ctx.normalizedSearch(term);
     if (!query) return [];
-    return Object.keys(ctx.species).filter(
+    const pool = ctx.activeWaterMark ? ctx.waterMarkFishIds(ctx.activeStage) : Object.keys(ctx.species);
+    return pool.filter(
       (id) => ctx.species[id].stages.length && ctx.normalizedSearch(ctx.searchable(id)).includes(query)
     ).sort((a, b) => {
       const rank = (id) => {
@@ -640,7 +797,7 @@
     const areaLabel = ctx.lang === "th" ? "พื้นที่" : ctx.lang === "ja" ? "エリア" : "Areas";
     ctx.suggestionList.innerHTML = ctx.suggestionIds.map((id, index) => {
       const item = ctx.species[id], image = item.visual.image || "";
-      const areaBadges = item.stages.map((stage) => `<span class="suggestion-area-badge">${ctx.esc(ctx.c.area(stage))}</span>`).join("");
+      const areaBadges = item.stages.filter((stage) => !ctx.activeWaterMark || stage === ctx.activeStage).map((stage) => `<span class="suggestion-area-badge">${ctx.esc(ctx.c.area(stage))}</span>`).join("");
       const secondary = ctx.lang === "ja" ? item.visual.nameLatin || item.visual.nameTh || "" : item.visual.nameJa || "";
       const targetClass = ctx.selectedFish === id ? " is-map-target" : "";
       return `<div id="fish-suggestion-${id}" class="fish-suggestion${targetClass}" role="option" aria-selected="false" aria-posinset="${index + 1}" aria-setsize="${matches.length}" data-suggestion="${id}">${image ? `<img src="${ctx.esc(image)}" alt="">` : '<span class="suggestion-no-image" aria-hidden="true"></span>'}<span class="suggestion-copy"><strong>${ctx.esc(item.name)}</strong>${secondary && secondary !== item.name ? `<small class="suggestion-alias">${ctx.esc(secondary)}</small>` : ""}<span class="suggestion-meta"><code>ID ${ctx.esc(id)}</code><span class="suggestion-area-label">${areaLabel}</span><span class="suggestion-areas">${areaBadges}</span></span></span></div>`;
@@ -702,15 +859,17 @@
     const sectionIds = new Set(
       ctx.stages[ctx.activeStage]?.sections.get(ctx.activeSection)?.pins.flatMap((pin) => pin.fishIds) || []
     );
-    const ids = Object.keys(ctx.species).filter(
-      (id) => term ? ctx.normalizedSearch(ctx.searchable(id)).includes(term) : ctx.listScope === "section" ? sectionIds.has(id) : ctx.fishInStage(id, ctx.activeStage)
+    const pool = ctx.activeWaterMark ? ctx.waterMarkFishIds(ctx.activeStage) : Object.keys(ctx.species);
+    const ids = pool.filter(
+      (id) => term ? ctx.normalizedSearch(ctx.searchable(id)).includes(term) : ctx.activeWaterMark ? ctx.listScope === "section" ? sectionIds.has(id) : true : ctx.listScope === "section" ? sectionIds.has(id) : ctx.fishInStage(id, ctx.activeStage)
     ).sort((a, b) => ctx.fishName(a).localeCompare(ctx.fishName(b), ctx.lang));
     ctx.renderFishListHeader(term, ids);
-    ctx.fishList.innerHTML = ids.length ? ids.map((id) => ctx.fishChoice(id, term, sectionIds)).join("") : `<div class="empty-list">${ctx.esc(ctx.c.noFish)}</div>`;
+    ctx.fishList.innerHTML = ids.length ? ids.map((id) => ctx.fishChoice(id, term, sectionIds)).join("") : `<div class="empty-list">${ctx.esc(ctx.activeWaterMark ? ctx.waterMarkEmptyText(Boolean(term)) : ctx.c.noFish)}</div>`;
   }
   function renderFishListHeader(ctx, term, ids) {
     const header = ctx.$("fish-title");
-    header.textContent = term ? ctx.c.searchResults : ctx.listScope === "section" ? ctx.lang === "th" ? "ปลาในส่วนแผนที่นี้" : ctx.lang === "ja" ? "この地図範囲の魚" : "Fish in this map section" : ctx.c.fishIn;
+    header.tabIndex = -1;
+    header.textContent = ctx.activeWaterMark ? ctx.waterMarkFishHeading(Boolean(term)) : term ? ctx.c.searchResults : ctx.listScope === "section" ? ctx.lang === "th" ? "ปลาในส่วนแผนที่นี้" : ctx.lang === "ja" ? "この地図範囲の魚" : "Fish in this map section" : ctx.c.fishIn;
     ctx.$("fish-scope").innerHTML = [
       ["area", ctx.lang === "th" ? "ทั้งด่าน" : ctx.lang === "ja" ? "エリア全体" : "Whole area"],
       [
@@ -720,7 +879,7 @@
     ].map(
       ([value, label]) => `<button type="button" data-scope="${value}" aria-pressed="${ctx.listScope === value}">${label}</button>`
     ).join("");
-    ctx.$("area-summary").textContent = term ? `${ids.length} ${ctx.c.fish} · ${ctx.c.areas} ${ctx.lang === "ja" ? "で出現" : ctx.lang === "th" ? "ที่พบ" : "with configured points"}` : `${ctx.c.area(ctx.activeStage)} · ${ids.length} ${ctx.c.fish}`;
+    ctx.$("area-summary").textContent = ctx.activeWaterMark && !term ? ctx.waterMarkAreaText(ctx.activeStage) : term && ctx.activeWaterMark ? `${ctx.c.area(ctx.activeStage)} · ${ids.length} ${ctx.c.fish}` : term ? `${ids.length} ${ctx.c.fish} · ${ctx.c.areas} ${ctx.lang === "ja" ? "で出現" : ctx.lang === "th" ? "ที่พบ" : "with configured points"}` : `${ctx.c.area(ctx.activeStage)} · ${ids.length} ${ctx.c.fish}`;
     ctx.$("search-count").textContent = `${ids.length} ${ctx.c.fish}`;
     ctx.$("show-all").textContent = ctx.c.showAll;
     ctx.fishList.hidden = false;
@@ -739,21 +898,17 @@
   // src/pages/maps/map-render.js
   function renderSectionSelect(ctx) {
     const data = ctx.stages[ctx.activeStage];
-    let sections = [...data?.sections.values() || []];
-    if (ctx.selectedFish)
-      sections = sections.filter(
-        (section) => section.pins.some((pin) => pin.fishIds.includes(ctx.selectedFish))
-      );
+    const allSections = [...data?.sections.values() || []];
+    const matchedSections = allSections.filter(
+      (section) => section.pins.some((pin) => ctx.visibleMapFishIds(pin.fishIds).length)
+    );
+    const sections = matchedSections.length ? matchedSections : allSections;
     sections.sort((a, b) => a.row - b.row || a.col - b.col);
     if (!sections.some((s) => s.key === ctx.activeSection))
       ctx.activeSection = ctx.chooseSection(ctx.activeStage);
     ctx.stageSelect.innerHTML = sections.map((section) => {
-      const visible = section.pins.filter(
-        (pin) => !ctx.selectedFish || pin.fishIds.includes(ctx.selectedFish)
-      );
-      const speciesCount = new Set(
-        visible.flatMap((pin) => ctx.selectedFish ? [ctx.selectedFish] : pin.fishIds)
-      ).size;
+      const visible = section.pins.map((pin) => ctx.visibleMapFishIds(pin.fishIds)).filter((fishIds) => fishIds.length);
+      const speciesCount = new Set(visible.flat()).size;
       const label = `${ctx.c.mapSection(section.col + 1, section.row + 1)} · ${ctx.c.point(visible.length)} · ${speciesCount} ${ctx.c.species}`;
       return `<option value="${section.key}" ${section.key === ctx.activeSection ? "selected" : ""}>${ctx.esc(label)}</option>`;
     }).join("");
@@ -762,7 +917,7 @@
   }
   function renderTargetSectionLinks(ctx, data, targetSections) {
     const summary = ctx.$("target-section-summary"), shortcuts = ctx.$("other-sections");
-    if (!ctx.selectedFish || !data) {
+    if (!ctx.selectedFish || !data || ctx.activeWaterMark && !ctx.fishMatchesWaterMark(ctx.selectedFish)) {
       summary.hidden = true;
       summary.textContent = "";
       shortcuts.hidden = true;
@@ -770,11 +925,11 @@
       return;
     }
     const total = [...data.pins.values()].filter(
-      (pin) => pin.fishIds.includes(ctx.selectedFish)
+      (pin) => ctx.visibleMapFishIds(pin.fishIds).length
     ).length;
     const sections = targetSections.map((section) => ({
       section,
-      count: section.pins.filter((pin) => pin.fishIds.includes(ctx.selectedFish)).length
+      count: section.pins.filter((pin) => ctx.visibleMapFishIds(pin.fishIds).length).length
     })).filter((entry) => entry.count > 0);
     const current = sections.find((entry) => entry.section.key === ctx.activeSection)?.count || 0;
     const elsewhere = Math.max(0, total - current);
@@ -821,7 +976,7 @@
     }
     const filtered = section.pins.map((pin) => ({
       ...pin,
-      fishIds: ctx.selectedFish ? pin.fishIds.filter((id) => id === ctx.selectedFish) : pin.fishIds
+      fishIds: ctx.visibleMapFishIds(pin.fishIds)
     })).filter((pin) => pin.fishIds.length);
     const geometry = ctx.mapGeometry(data, section, filtered);
     const {
@@ -914,7 +1069,7 @@
   function renderMapSummary(ctx, section, filtered) {
     const counts = new Set(filtered.flatMap((pin) => pin.fishIds)).size;
     ctx.$("map-summary").textContent = `${ctx.c.mapSection(section.col + 1, section.row + 1)} · ${ctx.c.point(filtered.length)} · ${counts} ${ctx.c.species}`;
-    ctx.$("pin-help").textContent = ctx.selectedFish ? `${ctx.c.selectedTarget} ${ctx.fishName(ctx.selectedFish)}. ${ctx.c.point(filtered.length)}. ${mapZoomHelp(ctx.lang)}` : `${ctx.c.noTarget} ${ctx.lang === "th" ? "กดรูปปลาเพื่อดูรายละเอียด หรือกดจุดซ้อนเพื่อเลือกชนิด" : ctx.lang === "ja" ? "魚画像は詳細へ。重なった地点は魚種を選択。" : "Fish portraits open details; shared points let you choose a species"}.`;
+    ctx.$("pin-help").textContent = ctx.activeWaterMark ? ctx.waterMarkPinHelp(filtered.length > 0) : ctx.selectedFish ? `${ctx.c.selectedTarget} ${ctx.fishName(ctx.selectedFish)}. ${ctx.c.point(filtered.length)}. ${mapZoomHelp(ctx.lang)}` : `${ctx.c.noTarget} ${ctx.lang === "th" ? "กดรูปปลาเพื่อดูรายละเอียด หรือกดจุดซ้อนเพื่อเลือกชนิด" : ctx.lang === "ja" ? "魚画像は詳細へ。重なった地点は魚種を選択。" : "Fish portraits open details; shared points let you choose a species"}.`;
   }
   function renderMapNavigation(ctx) {
     ctx.$("zoom-fit").textContent = ctx.lang === "th" ? "พอดีจอ" : ctx.lang === "ja" ? "全体表示" : "Fit view";
@@ -953,9 +1108,10 @@
       box.innerHTML = "";
       return;
     }
-    const selectedSections = [...data.sections.values()].filter(
-      (s) => !ctx.selectedFish || s.pins.some((p) => p.fishIds.includes(ctx.selectedFish))
+    const matchedSections = [...data.sections.values()].filter(
+      (section2) => section2.pins.some((pin) => ctx.visibleMapFishIds(pin.fishIds).length)
     );
+    const selectedSections = matchedSections.length ? matchedSections : [...data.sections.values()];
     function rect(s) {
       const x = s.col * 384, y = s.row * 384, w = Math.min(384, data.width - x), h = Math.min(384, data.height - y);
       return overview.rotated ? {
@@ -993,7 +1149,11 @@
   function initFromUrl(ctx) {
     ctx.openNotebookGuide = location.hash === "#notebook-guide";
     const p = new URLSearchParams(location.search);
+    ctx.activeWaterMark = normalizeWaterMark(p.get("mark"));
+    ctx.lastWaterMark = ctx.activeWaterMark;
     if (p.get("scope") === "section") ctx.listScope = "section";
+    ctx.searchTerm = p.get("q") || "";
+    ctx.searchInput.value = ctx.searchTerm;
     const stage = Number(p.get("stage"));
     if (ctx.stages[stage]) ctx.activeStage = stage;
     const target = ctx.idNorm(p.get("fish") || "");
@@ -1116,6 +1276,8 @@
     ctx.species = {};
     ctx.stages = {};
     ctx.selectedFish = "";
+    ctx.activeWaterMark = "";
+    ctx.lastWaterMark = "";
     ctx.activeStage = 1;
     ctx.activeSection = "";
     ctx.searchTerm = "";
@@ -1277,6 +1439,9 @@
     });
     ctx.$("show-all").addEventListener("click", () => {
       ctx.selectedFish = "";
+      ctx.lastWaterMark = ctx.activeWaterMark || ctx.lastWaterMark;
+      ctx.activeWaterMark = "";
+      ctx.listScope = "area";
       ctx.searchInput.value = "";
       ctx.searchTerm = "";
       ctx.closeSuggestions(true);
@@ -1308,7 +1473,7 @@
         if (!r.ok) throw Error("fish locations");
         return r.json();
       }),
-      fetch("gallery-data.json?v=compendium-20261005-20").then((r) => {
+      fetch("gallery-data.json?v=compendium-20261005-21").then((r) => {
         if (!r.ok) throw Error("fish sprites");
         return r.json();
       })
@@ -1331,6 +1496,7 @@
   function initialize(ctx) {
     setupContext(ctx);
     bindMapTargets(ctx);
+    bindWaterMarkFilter(ctx);
     bindMapControls(ctx);
     bindFishSearch(ctx);
     bindSearchActions(ctx);
