@@ -291,7 +291,7 @@
     }[ctx.lang];
   }
   function foodChoicePanel(ctx, item, allItems, sections) {
-    const copy5 = foodCopy(ctx);
+    const copy6 = foodCopy(ctx);
     const hpLabel = (hp) => ctx.lang === "th" ? `ฟื้นได้สูงสุด ${hp} HP` : ctx.lang === "ja" ? `最大${hp} HP回復` : `Restores up to ${hp} HP`;
     const foodOption = (other) => {
       const hp = other.playerUse?.hpRecovery?.hp;
@@ -301,12 +301,12 @@
     const alternatives = allItems.filter(
       (other) => other.category === "food" && other.id !== item.id && other.priceYen > 0 && other.playerUse?.shops?.some((shop) => Number(shop.stage) === ctx.selectedStage)
     );
-    const nearby = ctx.selectedStage ? `<h3>${ctx.esc(copy5[0])} · ${ctx.selectedStage}</h3><div class="detail-grid" data-local-food-options>${alternatives.map(foodOption).join("")}</div>` : "";
+    const nearby = ctx.selectedStage ? `<h3>${ctx.esc(copy6[0])} · ${ctx.selectedStage}</h3><div class="detail-grid" data-local-food-options>${alternatives.map(foodOption).join("")}</div>` : "";
     const catalogueOptions = allItems.filter((other) => other.category === "food" && other.priceYen > 0 && other.id !== item.id).map(foodOption).join("");
     const full = sections.map(
       (section) => `<h3>${ctx.esc(ctx.local(section.title))}</h3><p>${ctx.esc(ctx.local(section.recommendation))}</p><p class="muted">${ctx.esc(ctx.local(section.scope))}</p>`
     ).join("");
-    return `<section class="detail-section buying-decision" data-food-choice>${nearby}<details><summary>${ctx.esc(copy5[1])}</summary>${full}<div class="detail-grid" data-all-food-options>${catalogueOptions}</div></details></section>`;
+    return `<section class="detail-section buying-decision" data-food-choice>${nearby}<details><summary>${ctx.esc(copy6[1])}</summary>${full}<div class="detail-grid" data-all-food-options>${catalogueOptions}</div></details></section>`;
   }
 
   // src/pages/item/fish-meal-recovery.js
@@ -539,8 +539,8 @@
     if (!bundle) return { ...noBundleCopy(lang, item.id, fishName2), bundle: null, itemId: item.id };
     const body = nameForBundleItem(allItems, "fly", bundle.body);
     const supported = Boolean(fishId && (body?.playerUse?.fishIds || []).includes(fishId));
-    const copy5 = bundleCopy(lang, item, bundle, fishName2, supported);
-    return { ...copy5, bundle, supported, hasTarget: Boolean(fishId), itemId: item.id };
+    const copy6 = bundleCopy(lang, item, bundle, fishName2, supported);
+    return { ...copy6, bundle, supported, hasTarget: Boolean(fishId), itemId: item.id };
   }
   function actionLabel(lang, key, bundle) {
     const labels = {
@@ -878,7 +878,7 @@
     const names = ["id", "benefits", "price", "comparison", "hpNote"];
     const placeholders = Object.fromEntries(names.map((name) => [name, `%%${name}%%`]));
     return Object.entries(placeholders).reduce(
-      (copy5, [name, marker]) => copy5.replaceAll(marker, `{${name}}`),
+      (copy6, [name, marker]) => copy6.replaceAll(marker, `{${name}}`),
       text(lang, "comparison", key, placeholders)
     );
   }
@@ -1548,11 +1548,11 @@
     const ids = Array.isArray(use.fishIds) ? normalizedFishIds(use.fishIds) : [];
     const categories2 = ["lure", "fly", "bait", "float_weight", "general_tool"];
     if (!categories2.includes(item.category) || !ids.length && !routeKeys.length) return "";
-    const copy5 = steeringCopy(ctx);
-    const heading = steering ? copy5.title : rigRoute ? ctx.copy[`${rigRoute}FishHeading`] : ctx.copy.fish;
+    const copy6 = steeringCopy(ctx);
+    const heading = steering ? copy6.title : rigRoute ? ctx.copy[`${rigRoute}FishHeading`] : ctx.copy.fish;
     const groups = renderCompatibilityGroups(ctx, routes, routeKeys, ids, fishVisuals, fishLocations);
     const accepted = targetAccepted(ctx, routes, routeKeys, ids);
-    const status = ctx.selectedFish ? rigRoute ? routeTargetStatus(ctx, rigRoute, accepted) : targetStatus(ctx, routes, accepted, steering, copy5) : "";
+    const status = ctx.selectedFish ? rigRoute ? routeTargetStatus(ctx, rigRoute, accepted) : targetStatus(ctx, routes, accepted, steering, copy6) : "";
     const fishTarget = ctx.selectedFish ? `<p class="play-target"${rigRoute ? ` data-target-route="${rigRoute}"` : ""}><strong>${ctx.esc(ctx.copy.target)} · ${ctx.esc(ctx.fishName(ctx.selectedFish, fishVisuals))} (${ctx.esc(ctx.selectedFish)})</strong><br>${ctx.esc(status)}</p>${acceptedBaitLink(ctx, fishLocations, rigRoute)}` : "";
     const count = routeKeys.length ? new Set(Object.values(routes).flatMap(normalizedFishIds)).size : ids.length;
     const list = `<details class="compatibility-details"><summary>${ctx.esc(compatibilitySummary(ctx, count, steering, rigRoute))}</summary>${groups}</details>`;
@@ -2490,45 +2490,45 @@
       controlledLimit: "ตรวจตำแหน่งซ้ำอย่างอิสระจากเมนูด่านเลขคู่ที่จำลองในสภาวะควบคุม ยืนยันช่องเลือกชิ้นส่วน แต่ยังไม่ได้ยืนยันเส้นทางเดินหรือการเข้าร้านจากการเล่นปกติ ไม่ได้พิสูจน์ว่าปลากินหรือตกขึ้นง่ายกว่า ตรวจราคาสุทธิก่อนจ่าย"
     }
   };
-  function instructionsFor(copy5, row, column) {
-    return [column > 1 ? copy5.right(column - 1) : "", row > 1 ? copy5.down(row - 1) : "", copy5.confirm].filter(Boolean).join(" → ");
+  function instructionsFor(copy6, row, column) {
+    return [column > 1 ? copy6.right(column - 1) : "", row > 1 ? copy6.down(row - 1) : "", copy6.confirm].filter(Boolean).join(" → ");
   }
   function otherFamilyCopy(lang, choice) {
-    const copy5 = otherFamilies[lang] || otherFamilies.en;
-    const family = copy5.family[choice.familyJa] || choice.familyJa;
+    const copy6 = otherFamilies[lang] || otherFamilies.en;
+    const family = copy6.family[choice.familyJa] || choice.familyJa;
     const area = choice.area || 1;
     return {
       ...mayfly[lang],
-      scope: choice.controlledFixture && !choice.access ? copy5.controlledScope(family, choice.familyJa) : copy5.scope(area, family, choice.familyJa),
-      limit: choice.controlledFixture ? copy5.controlledLimit : copy5.limit(area, family),
-      none: copy5.none,
-      directQuote: copy5.directQuote
+      scope: choice.controlledFixture && !choice.access ? copy6.controlledScope(family, choice.familyJa) : copy6.scope(area, family, choice.familyJa),
+      limit: choice.controlledFixture ? copy6.controlledLimit : copy6.limit(area, family),
+      none: copy6.none,
+      directQuote: copy6.directQuote
     };
   }
-  function nonePositionInstructions(copy5, choice, lang) {
+  function nonePositionInstructions(copy6, choice, lang) {
     const row = choice.nonePosition?.row;
     const column = choice.nonePosition?.column;
     if (!row || !column) return "";
     const movement = [
-      column > 1 ? copy5.right(column - 1) : "",
-      row > 1 ? copy5.down(row - 1) : "",
-      copy5.confirm
+      column > 1 ? copy6.right(column - 1) : "",
+      row > 1 ? copy6.down(row - 1) : "",
+      copy6.confirm
     ].filter(Boolean).join(" → ");
     const part = choice.part === "wing" ? { en: "wing", ja: "ウィング", th: "ปีก" } : { en: "tail", ja: "テール", th: "หาง" };
-    return copy5.none(part[lang], movement);
+    return copy6.none(part[lang], movement);
   }
   function flyMenuPosition(ctx, item) {
     const choice = item.flyMakerMenuChoice;
     if (!choice) return "";
     const lang = ctx.lang in mayfly ? ctx.lang : "en";
     const isMayfly = !choice.familyJa || choice.familyJa === "メイフライ";
-    const copy5 = isMayfly ? mayfly[lang] : otherFamilyCopy(lang, choice);
-    const instructions = instructionsFor(copy5, choice.row, choice.column);
-    const position = copy5.position(choice.row, choice.column);
-    const scope = choice.access ? copy5.scope.replace(/^(?:Area \d+|ร้านด่าน \d+|エリア\d+) · /, "") : copy5.scope;
-    const noneInstructions = isMayfly && choice.part === "tail" ? `<p class="fly-menu-none-tail">${ctx.esc(copy5.noneTail)}</p>` : choice.nonePosition ? `<p class="fly-menu-none-tail">${ctx.esc(nonePositionInstructions(copy5, choice, lang))}</p>` : "";
-    const nextStep = choice.nextStep === "quote" ? `<p class="fly-menu-next-step rod-verdict">${ctx.esc(copy5.directQuote)}</p>` : "";
-    return `<section id="fly-menu-position" class="detail-section fly-menu-position" data-fly-menu-position="${ctx.esc(item.category)}:${ctx.esc(item.id)}"><h2>${ctx.esc(copy5.title)}</h2><p>${ctx.esc(scope)}</p>${flyMakerAccess(ctx, item)}<p><strong>${ctx.esc(position)}</strong> · ${ctx.esc(copy5.start)}</p><p class="rod-verdict">${ctx.esc(instructions)}</p>${noneInstructions}${nextStep}<figure><a href="${ctx.esc(choice.image)}" target="_blank" rel="noopener"><img src="${ctx.esc(choice.image)}" alt="${ctx.esc(position)}" width="256" height="224" loading="lazy"></a><figcaption>${ctx.esc(copy5.caption)}</figcaption></figure><details><summary>${ctx.esc(copy5.evidence)}</summary><p>${ctx.esc(copy5.limit)}</p><a href="${ctx.esc(readableEvidenceHref(choice.evidenceHref))}">${ctx.esc(copy5.notes)} ↗</a></details></section>`;
+    const copy6 = isMayfly ? mayfly[lang] : otherFamilyCopy(lang, choice);
+    const instructions = instructionsFor(copy6, choice.row, choice.column);
+    const position = copy6.position(choice.row, choice.column);
+    const scope = choice.access ? copy6.scope.replace(/^(?:Area \d+|ร้านด่าน \d+|エリア\d+) · /, "") : copy6.scope;
+    const noneInstructions = isMayfly && choice.part === "tail" ? `<p class="fly-menu-none-tail">${ctx.esc(copy6.noneTail)}</p>` : choice.nonePosition ? `<p class="fly-menu-none-tail">${ctx.esc(nonePositionInstructions(copy6, choice, lang))}</p>` : "";
+    const nextStep = choice.nextStep === "quote" ? `<p class="fly-menu-next-step rod-verdict">${ctx.esc(copy6.directQuote)}</p>` : "";
+    return `<section id="fly-menu-position" class="detail-section fly-menu-position" data-fly-menu-position="${ctx.esc(item.category)}:${ctx.esc(item.id)}"><h2>${ctx.esc(copy6.title)}</h2><p>${ctx.esc(scope)}</p>${flyMakerAccess(ctx, item)}<p><strong>${ctx.esc(position)}</strong> · ${ctx.esc(copy6.start)}</p><p class="rod-verdict">${ctx.esc(instructions)}</p>${noneInstructions}${nextStep}<figure><a href="${ctx.esc(choice.image)}" target="_blank" rel="noopener"><img src="${ctx.esc(choice.image)}" alt="${ctx.esc(position)}" width="256" height="224" loading="lazy"></a><figcaption>${ctx.esc(copy6.caption)}</figcaption></figure><details><summary>${ctx.esc(copy6.evidence)}</summary><p>${ctx.esc(copy6.limit)}</p><a href="${ctx.esc(readableEvidenceHref(choice.evidenceHref))}">${ctx.esc(copy6.notes)} ↗</a></details></section>`;
   }
 
   // src/pages/item/bait-acquisition.js
@@ -2596,6 +2596,92 @@
     });
     const href = `maps${ctx.lang === "en" ? "" : `.${ctx.lang}`}.html?${query}#notebook-guide`;
     return `<aside class="detail-section" data-notebook-action><h2>${ctx.esc(c[0])}</h2><p>${ctx.esc(c[1])}</p><a class="route-button" href="${ctx.esc(href)}">${ctx.esc(c[2])} ↗</a></aside>`;
+  }
+
+  // src/pages/item/quest-choice-layout.js
+  function questChoiceLayout(ctx, item, action, extras) {
+    if (item.category !== "general_tool" || !["10", "15"].includes(item.id)) return { action, extras };
+    const label = {
+      th: "คำอธิบายไอเท็มและบทสนทนาเพิ่มเติม",
+      en: "Item description and additional dialogue",
+      ja: "道具の説明と追加の会話"
+    }[ctx.lang];
+    const original = action.replace('id="what-to-do"', "");
+    return {
+      action: `<div id="what-to-do" data-quest-choice-primary>${extras}</div>`,
+      extras: `<details class="detail-section" data-quest-choice-description><summary>${ctx.esc(label)}</summary>${original}</details>`
+    };
+  }
+
+  // src/pages/item/milk-canoe-choice.js
+  function milkChoiceCopy(lang) {
+    return {
+      th: {
+        title: "เก็บนมไว้แลกเรือ หรือดื่มเติม HP?",
+        reserve: "ถ้าอยากได้แคนูและยังไม่มี ให้เก็บนมสดไว้คุยกับช่างทำเรือด่าน 3 (28,39) ไม่จำเป็นต้องแลกเรือถ้าพอใจกับกะละมังที่มีแล้ว",
+        heal: "ถ้าไม่แลก ใช้ดื่มเมื่อขาด HP เพื่อฟื้นจนเต็มตามค่าสูงสุด นมจะกลายเป็นขวดเปล่า นำไปเติมกับวัวด่าน 3 (6,103) ได้ ถ้าดื่มก่อน ต้องเติมใหม่ก่อนแลกเรือ",
+        compare: "ดูข้อแลกเปลี่ยนของแคนูกับกะละมัง",
+        trade: "ดูจุดแลกนมเป็นแคนู · ด่าน 3"
+      },
+      ja: {
+        title: "牛乳をカヌー用に残す？ HP回復に使う？",
+        reserve: "カヌーが欲しく、まだ持っていないなら、牛乳をエリア3（28,39）の船大工との交換用に残してください。今のタライで十分なら、交換する必要はありません。",
+        heal: "交換しないなら、HPが必要なときに飲むと最大HPまで回復し、空きビンになる。エリア3の牛（6,103）で補充できます。先に飲んだ場合、交換前に補充が必要です。",
+        compare: "カヌーとタライの選択理由を比較",
+        trade: "牛乳とカヌーの交換地点 · エリア3"
+      },
+      en: {
+        title: "Reserve milk for a canoe, or drink it for HP?",
+        reserve: "Want a canoe and do not own one? Keep the fresh milk for the Area 3 canoe maker at (28,39). You do not need to trade if your existing tub suits you.",
+        heal: "Otherwise drink it when you need HP: it restores current HP to maximum and becomes an empty bottle. Refill at the Area 3 cow (6,103). If you drink first, refill before trading for the canoe.",
+        compare: "Compare the canoe and tub trade-off",
+        trade: "See the milk-for-canoe location · Area 3"
+      }
+    }[lang];
+  }
+  function canoeHref(ctx, hash) {
+    const query = new URLSearchParams({ category: "general_tool", id: "02", stage: "3" });
+    const returned = ctx.safeLocalRoute(ctx.currentLocalRoute());
+    if (returned) query.set("return", returned);
+    return `${ctx.localePage[ctx.lang]}?${query}${hash}`;
+  }
+  function milkCanoeChoice(ctx, item) {
+    if (item?.category !== "general_tool" || item.id !== "10") return "";
+    const text5 = milkChoiceCopy(ctx.lang);
+    return `<aside class="detail-section quest-next-action" data-milk-canoe-choice><h2>${ctx.esc(text5.title)}</h2><p data-milk-reserve-action>${ctx.esc(text5.reserve)}</p><p data-milk-heal-action>${ctx.esc(text5.heal)}</p><p><a class="route-button" data-milk-canoe-comparison href="${ctx.esc(canoeHref(ctx, "#what-to-do"))}">${ctx.esc(text5.compare)} ↗</a></p><p><a class="route-button" data-milk-canoe-location href="${ctx.esc(canoeHref(ctx, "#use-locations"))}">${ctx.esc(text5.trade)} ↗</a></p></aside>`;
+  }
+
+  // src/pages/item/tofu-alternative.js
+  var copy5 = {
+    th: {
+      title: "อยากดูฉากจิ้งจอกโดยเก็บเต้าหู้ไว้?",
+      action: "ถ้าฉากจิ้งจอกยังไม่เกิด ไปสนามด่าน 4 ที่ X 31–33, Y 42–43 แล้วเลือกใช้ดอกไม้ไฟ 16 ตรงจุดนี้ ไม่ต้องมอบเต้าหู้ก่อน ดอกไม้ไฟจะหมดไป หากใช้ผิดจุดก็เสียดอกไม้ไฟโดยไม่เกิดฉากนี้",
+      alternative: "เก็บเต้าหู้ไว้กินเมื่ออยากเติม HP เต็ม หรือมอบให้ NPC ด่าน 4 ที่ (32,42) ถ้าอยากเล่นเส้นทางบทสนทนานั้น กินหรือมอบแล้วเต้าหู้หมดไป",
+      link: "ดูดอกไม้ไฟและตำแหน่งใช้บนภาพแผนที่"
+    },
+    en: {
+      title: "Want the fox scene while keeping your tofu?",
+      action: "If the fox scene has not occurred, go to the Area 4 field at X 31–33, Y 42–43 and use fireworks 16 there. No tofu offering is required. The fireworks are consumed; using them at the wrong spot spends them without triggering this scene.",
+      alternative: "Keep tofu to eat when you need full HP, or give it to the Area 4 NPC at (32,42) if you want that dialogue route. Eating or offering consumes the tofu.",
+      link: "See fireworks and the use location on the map"
+    },
+    ja: {
+      title: "油揚げを残してキツネの場面を見たい？",
+      action: "キツネの場面がまだ起きていなければ、エリア4の屋外X 31–33・Y 42–43へ行き、そこで花火16を直接使ってください。油揚げを先に渡す必要はありません。花火は消費され、違う場所で使うとこの場面は起きません。",
+      alternative: "HPを全回復したい時に食べるために残すか、会話ルートを進めたい場合はエリア4（32,42）のNPCへ渡してください。食べても渡しても油揚げは消費されます。",
+      link: "花火と使用地点のマップを見る"
+    }
+  };
+  function tofuAlternative(ctx, item) {
+    if (item?.category !== "general_tool" || item.id !== "15") return "";
+    const text5 = copy5[ctx.lang] || copy5.en;
+    const [page, search = ""] = ctx.detailItemLink({ category: "general_tool", id: "16" }).split("?");
+    const params = new URLSearchParams(search);
+    params.set("stage", "4");
+    params.delete("fish");
+    params.delete("route");
+    const href = `${page}?${params}#use-locations`;
+    return `<aside class="detail-section quest-next-action" data-quest-next-action="tofu-fireworks-alternative"><h2>${ctx.esc(text5.title)}</h2><p>${ctx.esc(text5.action)}</p><p data-tofu-heal-dialogue-choice>${ctx.esc(text5.alternative)}</p><p><a class="route-button" data-tofu-fireworks-action href="${ctx.esc(href)}">${ctx.esc(text5.link)} ↗</a></p></aside>`;
   }
 
   // src/pages/item/postcard-next-action.js
@@ -2739,6 +2825,8 @@
   function questNextActions(ctx, item, fishLocations) {
     return [
       postcardNextAction(ctx, item, fishLocations),
+      tofuAlternative(ctx, item),
+      milkCanoeChoice(ctx, item),
       candleAction(ctx, item, fishLocations),
       fireworksAction(ctx, item)
     ].filter(Boolean).join("");
@@ -2866,9 +2954,9 @@
     const pair = requestedKit(ctx, item, allItems);
     if (!pair) return "";
     const partner = pair.items.find((entry) => entry.id !== item.id);
-    const copy5 = kitCopy(ctx, pair);
+    const copy6 = kitCopy(ctx, pair);
     const link = partnerHref(ctx, partner, pair);
-    return `<section class="detail-section" data-lure-kit-context="${ctx.esc(pair.key)}" data-kit-coverage="${pair.coverageCount}"><h2>${ctx.esc(copy5.title)}</h2><p><strong>${ctx.esc(copy5.action)}</strong></p><a class="entity-link" data-lure-kit-partner="${ctx.esc(partner.id)}" href="${ctx.esc(link)}"><img src="${ctx.esc(partner.image)}" alt=""><span>${ctx.esc(ctx.imageName(partner))}<small>${ctx.esc(copy5.partner)} ↗</small></span></a><p class="muted">${ctx.esc(copy5.scope)}</p></section>`;
+    return `<section class="detail-section" data-lure-kit-context="${ctx.esc(pair.key)}" data-kit-coverage="${pair.coverageCount}"><h2>${ctx.esc(copy6.title)}</h2><p><strong>${ctx.esc(copy6.action)}</strong></p><a class="entity-link" data-lure-kit-partner="${ctx.esc(partner.id)}" href="${ctx.esc(link)}"><img src="${ctx.esc(partner.image)}" alt=""><span>${ctx.esc(ctx.imageName(partner))}<small>${ctx.esc(copy6.partner)} ↗</small></span></a><p class="muted">${ctx.esc(copy6.scope)}</p></section>`;
   }
   function kitItemComparison(ctx, item, allItems, section) {
     if (!requestedKit(ctx, item, allItems)) return section;
@@ -3098,7 +3186,7 @@
     const categoryHref = ctx.currentCategoryLink();
     const intro = `<nav class="detail-breadcrumb" aria-label="${ctx.esc(ctx.copy.category)}"><a href="${ctx.esc(categoryHref)}">${ctx.esc(ctx.copy.allItems)}</a><span aria-hidden="true">/</span><span>${ctx.esc(categoryText)}</span></nav>`;
     const hero = renderItemHero(ctx, item, name, categoryText);
-    const target = renderFishTarget(ctx, fishVisuals, fishLocations);
+    const target = ctx.fishingContext(item) ? renderFishTarget(ctx, fishVisuals, fishLocations) : "";
     const baitTarget = renderBaitTarget(ctx, item, fishVisuals, fishLocations);
     const kit = lureKitContext(ctx, item, allItems);
     const note = item[`imageNote${ctx.lang === "th" ? "Th" : ctx.lang === "ja" ? "Ja" : "En"}`] || "";
@@ -3108,11 +3196,12 @@
       fishLocations
     });
     const extras = renderQuickOptions(ctx, item, allItems, fishLocations);
+    const choices = questChoiceLayout(ctx, item, action, extras);
     const rodAdvice = item.rodDecision || item.gearDecision || item.baitLureDecision;
     const buying = rodAdvice ? "" : ctx.buyingDecision(item, allItems, decisions);
     const more = renderMoreOptions(ctx, item, allItems, fishLocations);
     const back = `<p class="detail-back-to-list"><a class="route-button" href="${ctx.esc(categoryHref)}">${ctx.esc(ctx.copy.allItems)} · ${ctx.esc(categoryText)} ↗</a></p>`;
-    return `${intro}${hero}${target}${baitTarget}${kit}${action}${flyPriceChoice(ctx, item, allItems)}${flyMenuPosition(ctx, item)}${extras}${buying}${ctx.shopSection(item, allItems, fishLocations)}${ctx.useLocationSection(item, fishLocations, allItems)}${ctx.fishSection(item, fishVisuals, fishLocations)}${more}${back}${ctx.technicalSection(item)}<p class="muted">${ctx.esc(ctx.copy.sourced)}</p>`;
+    return `${intro}${hero}${target}${baitTarget}${kit}${choices.action}${flyPriceChoice(ctx, item, allItems)}${flyMenuPosition(ctx, item)}${choices.extras}${buying}${ctx.shopSection(item, allItems, fishLocations)}${ctx.useLocationSection(item, fishLocations, allItems)}${ctx.fishSection(item, fishVisuals, fishLocations)}${more}${back}${ctx.technicalSection(item)}<p class="muted">${ctx.esc(ctx.copy.sourced)}</p>`;
   }
   function scrollToItemAnchor() {
     const exact = [

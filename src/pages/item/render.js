@@ -5,6 +5,7 @@ import { flyPriceChoice } from './fly-price-choice.js'
 import { flyMenuPosition } from './fly-menu-position.js'
 import { townPasteBaitAction } from './bait-acquisition.js'
 import { notebookAction } from './notebook.js'
+import { questChoiceLayout } from './quest-choice-layout.js'
 import { questNextActions } from './quest-next-actions.js'
 import { targetAdviceSection } from './target-advice.js'
 import { lureKitContext, kitItemComparison } from './lure-kit-context.js'
@@ -325,7 +326,7 @@ function renderItemSections(ctx, item, allItems, fishVisuals, fishLocations, dec
   const categoryHref = ctx.currentCategoryLink()
   const intro = `<nav class="detail-breadcrumb" aria-label="${ctx.esc(ctx.copy.category)}"><a href="${ctx.esc(categoryHref)}">${ctx.esc(ctx.copy.allItems)}</a><span aria-hidden="true">/</span><span>${ctx.esc(categoryText)}</span></nav>`
   const hero = renderItemHero(ctx, item, name, categoryText)
-  const target = renderFishTarget(ctx, fishVisuals, fishLocations)
+  const target = ctx.fishingContext(item) ? renderFishTarget(ctx, fishVisuals, fishLocations) : ''
   const baitTarget = renderBaitTarget(ctx, item, fishVisuals, fishLocations)
   const kit = lureKitContext(ctx, item, allItems)
   const note = item[`imageNote${ctx.lang === 'th' ? 'Th' : ctx.lang === 'ja' ? 'Ja' : 'En'}`] || ''
@@ -337,11 +338,12 @@ function renderItemSections(ctx, item, allItems, fishVisuals, fishLocations, dec
       fishLocations,
     })
   const extras = renderQuickOptions(ctx, item, allItems, fishLocations)
+  const choices = questChoiceLayout(ctx, item, action, extras)
   const rodAdvice = item.rodDecision || item.gearDecision || item.baitLureDecision
   const buying = rodAdvice ? '' : ctx.buyingDecision(item, allItems, decisions)
   const more = renderMoreOptions(ctx, item, allItems, fishLocations)
   const back = `<p class="detail-back-to-list"><a class="route-button" href="${ctx.esc(categoryHref)}">${ctx.esc(ctx.copy.allItems)} · ${ctx.esc(categoryText)} ↗</a></p>`
-  return `${intro}${hero}${target}${baitTarget}${kit}${action}${flyPriceChoice(ctx, item, allItems)}${flyMenuPosition(ctx, item)}${extras}${buying}${ctx.shopSection(item, allItems, fishLocations)}${ctx.useLocationSection(item, fishLocations, allItems)}${ctx.fishSection(item, fishVisuals, fishLocations)}${more}${back}${ctx.technicalSection(item)}<p class="muted">${ctx.esc(ctx.copy.sourced)}</p>`
+  return `${intro}${hero}${target}${baitTarget}${kit}${choices.action}${flyPriceChoice(ctx, item, allItems)}${flyMenuPosition(ctx, item)}${choices.extras}${buying}${ctx.shopSection(item, allItems, fishLocations)}${ctx.useLocationSection(item, fishLocations, allItems)}${ctx.fishSection(item, fishVisuals, fishLocations)}${more}${back}${ctx.technicalSection(item)}<p class="muted">${ctx.esc(ctx.copy.sourced)}</p>`
 }
 
 function scrollToItemAnchor() {

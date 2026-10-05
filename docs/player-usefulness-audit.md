@@ -908,3 +908,42 @@ existing direct-fireworks alternative. Its canonical producer and linked action
 need a separate correction. Price sorting remains a lower-priority improvement
 because raw price does not prioritize purchases available in the selected area.
 The full-site usefulness goal remains active.
+
+## r72 — Make healing-versus-quest choices explicit
+
+The tofu summary now gives the decision that its existing ROM evidence already
+supports: for the Area 4 fox scene, direct fireworks use does not require a tofu
+offering. Keep tofu for full-HP healing, or choose the NPC dialogue route; both
+eating and offering consume tofu. A dedicated action opens fireworks 16 at its
+Area 4 use locations, with the verified tile range, the not-yet-triggered scene
+condition and the wrong-location consumption warning. No new quest completion
+or ending reward is inferred. The NPC branch, messages and raw trace remain.
+
+Milk now leads with reserve-versus-heal: reserve it if you want a canoe you do
+not own, otherwise drink when you need HP and refill the empty bottle at the
+cow. The optional exchange is not presented as mandatory progression. Details
+link separately to the existing canoe-versus-tub comparison and the Area 3
+exchange location. These actions override an unrelated selected area only for
+the actual destination while retaining the exact original route in the return.
+Neither action carries an unrelated selected fish into a quest destination.
+
+A rendered tofu visit also showed an irrelevant selected-fish portrait above
+the quest decision. Item detail now follows the existing fishing-context policy:
+food and non-fishing quest tools omit that panel, while tackle and the existing
+fish-relevant tools retain it. Context remains in the original route and return;
+the change does not discard research or the user's prior selection.
+
+The parallel audit followed canonical producers through actual name resolvers.
+A proposed chum identity problem was rejected: the visible names already show
+3/2/1 uses remaining. A smaller remaining consistency opportunity is putting
+the verified buy-once/reuse-key decision directly in the key's main summary.
+This round is bounded source and rendered-journey evidence, not acceptance of
+every item or completion of the whole-site usefulness goal.
+
+Rendered mobile review caught a second repeated decision block after the first
+implementation. For these two items only, the complete choice panel now appears
+once at the existing `#what-to-do` anchor; the original description and dialogue
+facts are retained in one closed disclosure. Healing, optional dialogue/trade,
+consumption and refill warnings remain in the visible choice itself. Ordinary
+items keep their existing layout. Thai 390px settled anchor position was 182px
+with document width 390px; this is bounded visual evidence, not all-device proof.

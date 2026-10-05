@@ -53608,9 +53608,9 @@
       "renderSha256": "fb6bd93ffbc81ba9e241b3178a1c65cf7344b8f3b9575a750281888e5eb7c960",
       "playerUse": {
         "summary": {
-          "en": "Drink it to restore current HP to maximum; the milk becomes an empty bottle. You can also trade it to the canoe maker in area 3 (28,39) for a canoe.",
-          "ja": "飲むと現在HPが最大値まで回復し、牛乳は空きビンに変わる。エリア3（28,39）の船大工に渡すとカヌーと交換できる。",
-          "th": "ดื่มแล้ว HP ปัจจุบันเต็มตามค่าสูงสุด จากนั้นนมจะกลายเป็นขวดเปล่า หรือเอาไปแลกเรือแคนูกับช่างทำเรือในพื้นที่ 3 (28,39) ได้"
+          "en": "Want a canoe and do not own one? Reserve the fresh milk for the Area 3 canoe maker at (28,39). Otherwise drink it when you need HP: it restores current HP to maximum and becomes an empty bottle you can refill at the cow (6,103). Drinking first means refilling before the canoe trade.",
+          "ja": "カヌーが欲しく、まだ持っていないなら、牛乳をエリア3（28,39）の船大工との交換用に残してください。それ以外はHPが必要なときに飲むと最大HPまで回復し、空きビンになる。牛（6,103）で補充できます。先に飲んだ場合、カヌー交換の前に補充が必要です。",
+          "th": "ถ้าอยากได้แคนูและยังไม่มี ให้เก็บนมสดไว้แลกกับช่างทำเรือด่าน 3 (28,39) ถ้าไม่แลก ใช้ดื่มเมื่อขาด HP เพื่อฟื้นจนเต็มตามค่าสูงสุด แล้วนำขวดเปล่ากลับไปเติมกับวัว (6,103) ถ้าดื่มก่อน ต้องเติมนมใหม่ก่อนแลกเรือ"
         },
         "facts": {
           "en": [
@@ -54380,9 +54380,9 @@
       "renderSha256": "e882a2bff622ed8ed7a5da5b75014c910c700716b0263165f384ecb14fa277dc",
       "playerUse": {
         "summary": {
-          "en": "Eat it to restore current HP to maximum; it is consumed. In area 4, give it to the quest NPC at (32,42) to advance the fox story and open the fireworks follow-up.",
-          "ja": "食べると現在HPが最大値まで回復し、消費する。エリア4（32,42）のイベントNPCに渡すとキツネの物語が進み、花火イベントへ進める。",
-          "th": "กินแล้ว HP ปัจจุบันเต็มตามค่าสูงสุดและไอเท็มหมดไป หรือเอาไปให้ NPC เควสต์ในพื้นที่ 4 (32,42) เพื่อเดินเรื่องจิ้งจอกและเปิดเหตุการณ์ต่อด้วยดอกไม้ไฟ"
+          "en": "For the Area 4 fox scene, use fireworks directly at the verified spot; you do not need to give away tofu first. Keep tofu to eat when you need full HP, or give it to the NPC at (32,42) if you want that dialogue route. Eating or giving it consumes the tofu.",
+          "ja": "エリア4のキツネの場面を見たいなら、確認済みの地点で花火を直接使えます。先に油揚げを渡す必要はありません。油揚げはHPを全回復したい時に食べるか、会話ルートを進めたい場合は（32,42）のNPCへ渡してください。食べても渡しても消費します。",
+          "th": "ถ้าต้องการฉากจิ้งจอกด่าน 4 ใช้ดอกไม้ไฟตรงจุดที่ตรวจแล้วได้เลย ไม่ต้องเสียเต้าหู้ก่อน เก็บเต้าหู้ไว้กินเมื่อต้องการเติม HP เต็ม หรือมอบให้ NPC ที่ (32,42) ถ้าต้องการเล่นเส้นทางบทสนทนานั้น กินหรือมอบแล้วเต้าหู้หมดไป"
         },
         "facts": {
           "en": [

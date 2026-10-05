@@ -87,6 +87,10 @@ async function checkItemTargetRoute(lang, category, route) {
   const target = result.html.match(
     /<aside class="detail-section play-target">([\s\S]*?)<\/aside>/,
   )?.[1]
+  if (['food', 'general_tool'].includes(category)) {
+    assert(!target, `${category}/${lang}: unrelated item should not display a fish target`)
+    return
+  }
   assert(target, `${category}/${lang}: selected fish targets did not render`)
   const suffix = lang === 'en' ? '' : `.${lang}`
   const targets = [...unescapeHtml(target).matchAll(/href="([^"]+)"/g)]

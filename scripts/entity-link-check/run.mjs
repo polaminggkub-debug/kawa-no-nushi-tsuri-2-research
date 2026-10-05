@@ -135,3 +135,7 @@ await import('./shared-layout-invariants.mjs')
 
 await import('./strategy-lure-area-context.mjs')
 await import('./shop-purchase-verdicts.mjs')
+
+await import('./tofu-direct-fireworks.mjs')
+
+await import('./milk-canoe-choice.mjs')

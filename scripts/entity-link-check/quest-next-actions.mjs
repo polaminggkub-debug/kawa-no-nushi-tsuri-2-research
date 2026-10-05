@@ -63,6 +63,7 @@ function itemContext(lang) {
   const current = `/catalogue/item${suffix}.html?category=general_tool&id=12`
   return {
     lang,
+    localePage: { en: 'item.html', th: 'item.th.html', ja: 'item.ja.html' },
     mapsPage: { en: 'maps.html', th: 'maps.th.html', ja: 'maps.ja.html' },
     esc: escaped,
     fishName: () => ({ en: 'Akame', ja: 'アカメ', th: 'อาคาเมะ' })[lang],
@@ -125,7 +126,11 @@ async function checkLocale(lang) {
   assertMapLink(cardCandle, suffix, 'category=general_tool')
   assertShopLink(detailFireworks, suffix, 'category=general_tool')
   assertShopLink(cardFireworks, suffix, 'category=general_tool')
-  assert.equal(itemActions(itemCtx, { category: 'general_tool', id: '10' }, fishLocations), '')
+  assert(
+    itemActions(itemCtx, { category: 'general_tool', id: '10' }, fishLocations).includes(
+      'data-milk-canoe-choice',
+    ),
+  )
   assert.equal(cardActions(cardCtx, { category: 'general_tool', id: '10' }), '')
 }
 
