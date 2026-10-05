@@ -11,6 +11,11 @@ const targetScopeCopy = {
   ja: 'ROM条件を通ることのみ確認。食いつき・釣り上げは保証されません。',
   th: 'ยืนยันเฉพาะเงื่อนไขจาก ROM ไม่ได้ยืนยันโอกาสกินเหยื่อหรือจับขึ้น',
 }
+const noFishBaitLureScopeCopy = {
+  en: 'Bait and lure choices: This compares compatible fish and recorded shop stock; it does not show which item gets more bites or is easier to land.',
+  ja: 'エサ・ルアーの選び方：これは対応する魚と店頭在庫の比較です。食いつきや取り込みやすさは示しません。',
+  th: 'การเลือกเหยื่อจริงและลัวร์: ข้อมูลนี้เทียบชนิดปลาที่ใช้ได้กับรายการของในร้าน ไม่ได้บอกว่าอันไหนทำให้ปลากินมากกว่าหรือตกขึ้นง่ายกว่า',
+}
 const previousBaitScopeCopy = {
   en: 'This confirms the bait check only; it does not establish bite odds or landing success.',
   ja: 'エサの判定を通ることのみ確認。食いつき率・取り込みは示しません。',
@@ -56,8 +61,16 @@ async function checkStandaloneTargetScope(locale, category, id, fish) {
 
 async function checkNoTargetScope(locale, category) {
   const { nodes } = await renderCatalogue(locale, `?category=${category}&stage=1&route=float`)
-  assert.equal(nodes['fish-status'].textContent, '')
+  const status = unescapeHtml(nodes['fish-status'].textContent || nodes['fish-status'].innerHTML)
+  const requiresBaitLureScope = ['bait', 'lure', 'all'].includes(category)
+  assert.equal(
+    occurrences(status, noFishBaitLureScopeCopy[locale]),
+    requiresBaitLureScope ? 1 : 0,
+    `${locale}/${category} no-fish scope count`,
+  )
+  assert.equal(occurrences(status, targetScopeCopy[locale]), 0)
   const cards = unescapeHtml(nodes.cards.innerHTML)
+  assert.equal(occurrences(cards, noFishBaitLureScopeCopy[locale]), 0)
   assert.equal(occurrences(cards, targetScopeCopy[locale]), 0)
   assert.equal(occurrences(cards, previousBaitScopeCopy[locale]), 0)
 }
@@ -197,7 +210,8 @@ for (const locale of locales) {
   ]) {
     await checkTargetCatalogueScope(locale, category, fish)
   }
-  for (const category of ['bait', 'lure', 'all']) await checkNoTargetScope(locale, category)
+  for (const category of ['bait', 'lure', 'all', 'rod', 'food', 'general_tool', 'flymaker'])
+    await checkNoTargetScope(locale, category)
   await checkStandaloneTargetScope(locale, 'bait', '01', '03')
   await checkStandaloneTargetScope(locale, 'lure', '17', '06')
   await checkFlyScope(locale)

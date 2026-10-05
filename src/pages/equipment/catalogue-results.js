@@ -1,5 +1,6 @@
 import { navigationRoute } from './navigation-route.js'
 import { targetAdviceScope } from '../../shared/lib/index.js'
+import { baitLureEvidenceScope } from './bait-lure-verdict.js'
 
 const fishCompatibleCategoryOrder = { bait: 0, lure: 1, fly: 2, float_weight: 3 }
 
@@ -193,7 +194,8 @@ function categoryDescription(ctx, category, fish) {
 }
 
 function fishStatus(ctx, filters) {
-  if (!filters.fish) return ''
+  if (!filters.fish)
+    return ['bait', 'lure', 'all'].includes(filters.category) ? baitLureEvidenceScope(ctx) : ''
   if (['rod', 'hook'].includes(filters.category)) {
     if (ctx.lang === 'th')
       return 'แสดงอุปกรณ์ทั้งหมวดสำหรับเลือกทั่วไป ไม่ได้จัดว่าเหมาะกับปลานี้หรือช่วยเพิ่มโอกาสตกได้'
@@ -229,7 +231,9 @@ function updateCatalogueHeadings(ctx, filters) {
   ctx.set('#category-description', categoryDescription(ctx, filters.category, filters.fish))
   ctx.set(
     '#fish-status',
-    filters.fish ? `${ctx.fishName(filters.fish)} — ${fishStatus(ctx, filters)}` : '',
+    filters.fish
+      ? `${ctx.fishName(filters.fish)} — ${fishStatus(ctx, filters)}`
+      : fishStatus(ctx, filters),
   )
 }
 

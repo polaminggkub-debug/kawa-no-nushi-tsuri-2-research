@@ -2318,6 +2318,7 @@
   // src/pages/equipment/quest-next-actions.js
   var AKAME_ID = "37";
   var FIREWORKS_ID = "16";
+  var EEL_ID = "3B";
   function itemMatches(item, id) {
     return item?.category === "general_tool" && item.id === id;
   }
@@ -2346,6 +2347,22 @@
     const returned = localizedReturn(ctx);
     if (returned) query.set("return", returned);
     return `${ctx.detailFile("shops")}?${query}`;
+  }
+  function eelMapHref(ctx) {
+    const query = new URLSearchParams({
+      stage: "6",
+      fish: EEL_ID,
+      section: "s6-c2-r1"
+    });
+    const returned = localizedReturn(ctx);
+    if (returned) query.set("return", returned);
+    return `${ctx.detailFile("maps")}?${query}#map-view`;
+  }
+  function eelProfileHref(ctx) {
+    const [path, queryString = ""] = ctx.fishHref(EEL_ID).split("?");
+    const query = new URLSearchParams(queryString);
+    query.set("stage", "6");
+    return `${path}?${query}`;
   }
   function candleCardAction(ctx, item) {
     if (!itemMatches(item, "12")) return "";
@@ -2395,6 +2412,35 @@
     }[ctx.lang];
     return `<div class="card-quest-next-action" data-quest-next-action="fireworks-recovery"><strong>${ctx.esc(text4.title)}</strong><p>${ctx.esc(text4.body)}</p><p><a data-quest-fireworks-shop href="${ctx.esc(fireworksShopHref(ctx))}">${ctx.esc(text4.shop)} ↗</a></p></div>`;
   }
+  function postcardCardAction(ctx, item) {
+    if (!itemMatches(item, "06")) return "";
+    const record = ctx.fishLocations?.[EEL_ID]?.locations?.find((entry) => Number(entry.stage) === 6);
+    if (!record?.points?.some((point) => point.x === 41 && point.y === 8)) return "";
+    const text4 = {
+      th: {
+        title: "เมื่ออ่านแล้วพบจดหมายจากหมอให้ตกปลาไหลใหญ่",
+        body: "ถ้าพบข้อความนี้แล้ว ใช้แม่เหล็กในด่าน 6 ดูทิศทาง หรือเปิดจุดบนแผนที่ด้านล่าง เลือกเหยื่อและอุปกรณ์จากหน้าปลาไหลใหญ่ก่อนออกไปตก",
+        limit: "จุดนี้มาจากตารางเกม บางรอบอาจไม่มีปลา ยังไม่ได้พิสูจน์ว่าตกได้แล้วต้องส่งให้ใครหรือรับรางวัลอย่างไร",
+        fish: "ดูเหยื่อและอุปกรณ์ของปลาไหลใหญ่",
+        map: "ดูจุดด่าน 6 · X 41, Y 8"
+      },
+      ja: {
+        title: "医者から大ウナギを釣る依頼が届いたら",
+        body: "この依頼を見たら、エリア6で磁石のオオウナギ項目を使うか、下の地図で地点を確認。釣りに行く前に魚のページで対応エサと道具を選んでください。",
+        limit: "地点はROMの出現表に基づき、生成状態によって魚がいない場合があります。釣った後の渡す相手や報酬は未検証です。",
+        fish: "オオウナギのエサと道具を見る",
+        map: "エリア6の地点 · X 41, Y 8"
+      },
+      en: {
+        title: "After reading the doctor’s request for a giant eel",
+        body: "Once this request appears, use its Area 6 Magnet heading or open the map point below. Choose compatible bait and equipment from the fish profile before fishing.",
+        limit: "This is a configured ROM spawn point and can be inactive. Who to give the landed eel to, or what reward follows, is not yet verified.",
+        fish: "See giant eel bait and equipment",
+        map: "Area 6 point · X 41, Y 8"
+      }
+    }[ctx.lang];
+    return `<aside class="card-quest-next-action" data-quest-next-action="postcard-eel"><strong>${ctx.esc(text4.title)}</strong><p>${ctx.esc(text4.body)}</p><p><a class="route-button" data-quest-fish-profile href="${ctx.esc(eelProfileHref(ctx))}">${ctx.esc(text4.fish)} ↗</a></p><p><a class="route-button" data-quest-fish-map href="${ctx.esc(eelMapHref(ctx))}">${ctx.esc(text4.map)} ↗</a></p><p>${ctx.esc(text4.limit)}</p></aside>`;
+  }
   function notebookCardAction(ctx, item) {
     if (!itemMatches(item, "05")) return "";
     const text4 = {
@@ -2424,6 +2470,7 @@
     return [
       candleCardAction(ctx, item),
       fireworksCardAction(ctx, item),
+      postcardCardAction(ctx, item),
       notebookCardAction(ctx, item)
     ].filter(Boolean).join("");
   }
@@ -2684,14 +2731,23 @@
     const title = stage ? `${hasLocalOffer ? c.buy : c.elsewhere} · ${c.area(stage)}` : `${c.buy} · ${c.cheaper}`;
     return `<p class="bait-lure-buy-choices"><strong>${ctx.esc(title)}:</strong> ${shown.map((offer) => offerLabel(ctx, offer)).join(" · ")}</p>`;
   }
-  function baitLureVerdict(ctx, item) {
+  function baitLureEvidenceScope(ctx) {
+    const label = {
+      en: "Bait and lure choices: ",
+      ja: "エサ・ルアーの選び方：",
+      th: "การเลือกเหยื่อจริงและลัวร์: "
+    }[ctx.lang];
+    return (label || "Bait and lure choices: ") + copy(ctx).limit;
+  }
+  function baitLureVerdict(ctx, item, { includeScope = true } = {}) {
     if (!item?.baitLureDecision || !["bait", "lure"].includes(item.category)) return "";
     const offers = cheaperOffers(ctx, item);
     const equal = equalPriceChoice(ctx, item, ctx.allItems, false);
     const buying = !offers.length && equal ? "" : offerSentence(ctx, item, offers);
     const ownUse = ownUseMarkup(ctx, item);
     const stock = ownStockNote(ctx, item);
-    return `<div class="bait-lure-verdict" data-bait-lure-verdict="${ctx.esc(item.category + ":" + item.id)}">${ownUse}<p class="bait-lure-own-stock">${ctx.esc(stock)}</p>${buying}${equal}<p class="bait-lure-evidence-limit">${ctx.esc(copy(ctx).limit)}</p></div>`;
+    const scope = includeScope ? `<p class="bait-lure-evidence-limit">${ctx.esc(copy(ctx).limit)}</p>` : "";
+    return `<div class="bait-lure-verdict" data-bait-lure-verdict="${ctx.esc(item.category + ":" + item.id)}">${ownUse}<p class="bait-lure-own-stock">${ctx.esc(stock)}</p>${buying}${equal}${scope}</div>`;
   }
 
   // src/pages/equipment/item-card.js
@@ -2823,7 +2879,7 @@
     );
     const targetAdvice2 = wingDecision ? "" : renderTargetAdvice(ctx, item, fish, { includeScope: false });
     const label = wingDecision?.label || (advice ? ctx.local(advice.label) : summary);
-    const lureVerdict = !fish && !wingDecision ? baitLureVerdict(ctx, item) : "";
+    const lureVerdict = !fish && !wingDecision ? baitLureVerdict(ctx, item, { includeScope: false }) : "";
     const disclosure = renderCardDisclosure(ctx, item, use, summary, facts2, advice, wingDecision);
     const wingLinks = wingDecision ? flyWingPlayerLinks(ctx, wingDecision, flyWingActionHrefs(ctx, item, wingDecision, fish)) : "";
     const actionTitle = targetAdvice2 ? ctx.lang === "th" ? "คำแนะนำสำหรับปลาที่เลือก" : ctx.lang === "ja" ? "選んだ魚への案内" : "Advice for your selected fish" : cardActionTitle(ctx, item, advice);
@@ -3022,7 +3078,8 @@
     return "Only items that pass this fish’s ROM compatibility checks are shown. By default, the ID order shows bait first, then lures and flies, followed by floats and sinkers.";
   }
   function fishStatus(ctx, filters) {
-    if (!filters.fish) return "";
+    if (!filters.fish)
+      return ["bait", "lure", "all"].includes(filters.category) ? baitLureEvidenceScope(ctx) : "";
     if (["rod", "hook"].includes(filters.category)) {
       if (ctx.lang === "th")
         return "แสดงอุปกรณ์ทั้งหมวดสำหรับเลือกทั่วไป ไม่ได้จัดว่าเหมาะกับปลานี้หรือช่วยเพิ่มโอกาสตกได้";
@@ -3057,7 +3114,7 @@
     ctx.set("#category-description", categoryDescription(ctx, filters.category, filters.fish));
     ctx.set(
       "#fish-status",
-      filters.fish ? `${ctx.fishName(filters.fish)} — ${fishStatus(ctx, filters)}` : ""
+      filters.fish ? `${ctx.fishName(filters.fish)} — ${fishStatus(ctx, filters)}` : fishStatus(ctx, filters)
     );
   }
   function emptyCatalogueMessage(ctx, fish) {

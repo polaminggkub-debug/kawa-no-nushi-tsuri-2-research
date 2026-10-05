@@ -270,12 +270,24 @@ function offerSentence(ctx, item, offers) {
   return `<p class="bait-lure-buy-choices"><strong>${ctx.esc(title)}:</strong> ${shown.map((offer) => offerLabel(ctx, offer)).join(' · ')}</p>`
 }
 
-export function baitLureVerdict(ctx, item) {
+export function baitLureEvidenceScope(ctx) {
+  const label = {
+    en: 'Bait and lure choices: ',
+    ja: 'エサ・ルアーの選び方：',
+    th: 'การเลือกเหยื่อจริงและลัวร์: ',
+  }[ctx.lang]
+  return (label || 'Bait and lure choices: ') + copy(ctx).limit
+}
+
+export function baitLureVerdict(ctx, item, { includeScope = true } = {}) {
   if (!item?.baitLureDecision || !['bait', 'lure'].includes(item.category)) return ''
   const offers = cheaperOffers(ctx, item)
   const equal = equalPriceChoice(ctx, item, ctx.allItems, false)
   const buying = !offers.length && equal ? '' : offerSentence(ctx, item, offers)
   const ownUse = ownUseMarkup(ctx, item)
   const stock = ownStockNote(ctx, item)
-  return `<div class="bait-lure-verdict" data-bait-lure-verdict="${ctx.esc(item.category + ':' + item.id)}">${ownUse}<p class="bait-lure-own-stock">${ctx.esc(stock)}</p>${buying}${equal}<p class="bait-lure-evidence-limit">${ctx.esc(copy(ctx).limit)}</p></div>`
+  const scope = includeScope
+    ? `<p class="bait-lure-evidence-limit">${ctx.esc(copy(ctx).limit)}</p>`
+    : ''
+  return `<div class="bait-lure-verdict" data-bait-lure-verdict="${ctx.esc(item.category + ':' + item.id)}">${ownUse}<p class="bait-lure-own-stock">${ctx.esc(stock)}</p>${buying}${equal}${scope}</div>`
 }

@@ -211,7 +211,8 @@ function renderCardGuidance(ctx, item, use, summary, facts, advice) {
     ? ''
     : renderTargetAdvice(ctx, item, fish, { includeScope: false })
   const label = wingDecision?.label || (advice ? ctx.local(advice.label) : summary)
-  const lureVerdict = !fish && !wingDecision ? baitLureVerdict(ctx, item) : ''
+  const lureVerdict =
+    !fish && !wingDecision ? baitLureVerdict(ctx, item, { includeScope: false }) : ''
   const disclosure = renderCardDisclosure(ctx, item, use, summary, facts, advice, wingDecision)
   const wingLinks = wingDecision
     ? flyWingPlayerLinks(ctx, wingDecision, flyWingActionHrefs(ctx, item, wingDecision, fish))

@@ -467,3 +467,40 @@ The first-fish meal now gives a specific preservation choice: when keeping a gia
 The catalogue and detail share two practical notes: displayed-size recovery examples and the eel-preservation action. The generic empty-stock purchase section was replaced with a caught-fish explanation and a link to food choices that retains the selected area and detail return path. Four repetitive detail bullets were replaced by those notes; original data and technical evidence remain. An independent guard first failed on the absent preservation text, then passed with exactly one warning on both surfaces in all three languages, existing food effects and examples retained, and no invented coordinates.
 
 Three separate bounded journeys—low-HP food to a listed shop, an unstocked rod to a local alternative, and a target fly's ready-made versus DIY price—had no decision-changing defect. Actual public fish selection was also rechecked: selecting a target from a float category opens compatible bait. These observations are not full-site completion evidence. Natural giant-eel quest timing, broader fight controls, and remaining collection/acquisition journeys still require research or rendered checks.
+
+## Item-by-item decision review (2026-10-06)
+
+Two independent source and rendering-path reviews covered all 315 item records,
+split into 141 rods, bodies, hooks, floats, foods and tools, and 174 baits, lures,
+wings and tails. The review checked the actual advice precedence, comparison and
+acquisition routes rather than treating the presence of a summary as acceptance.
+This is a semantic source review, not a claim that every item was clicked in every
+language and device size.
+
+The bait/lure catalogue now states its comparison limit once above the results,
+instead of repeating it on each of 104 cards when no fish is selected. Owned-item
+advice, local stock, cheaper alternatives and equal-price choices remain on each
+card. Mixed-category browsing labels the note as bait/lure guidance. Unrelated
+categories clear it; standalone details retain their own limit.
+
+The postcard card now exposes the next action already available in its detail:
+after seeing the doctor's giant-eel request, open the fish's bait/equipment page
+or its configured Area 6 map point. The point must exist in the decoded data;
+inactive-spawn and unverified recipient/reward limits remain explicit. This adds
+navigation, not a newly proven quest outcome.
+
+Three Mayfly wing records (25, 66 and 67) still lack a verified maker position or
+ready-made shop route. Their research remains available without an invented
+acquisition instruction. Rod response branches and relative bite/landing odds
+remain evidence questions. Dry-body recommendations already explain appearance
+or using an owned body in their comparison disclosure, so that initial suspected
+gap did not require a change. Broader map, seller and collection journeys remain
+in the completion audit; this release does not finish the full-site goal.
+
+Actual local review covered Thai bait (23 cards), lure (81), and mixed-category
+(315) browsing with no repeated card scope note, and clearing the note when
+switching to food. The Thai postcard map and profile buttons were clicked at
+390px: both open Area 6 for the eel, and map return restores the source Area 4,
+search and card anchor. Separate buttons use the existing 44px minimum hit area.
+English was inspected at 1200px and Japanese at 320px; the affected card does not
+overflow horizontally, and the English profile link opens the correct fish.

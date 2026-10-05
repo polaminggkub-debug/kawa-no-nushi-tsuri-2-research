@@ -3,6 +3,15 @@ import { data, renderCatalogue, unescapeHtml, validate } from './shared.mjs'
 
 const items = data.items.filter((item) => ['bait', 'lure'].includes(item.category))
 assert.equal(items.length, 104)
+const commonScopeCopy = {
+  en: 'Bait and lure choices: This compares compatible fish and recorded shop stock; it does not show which item gets more bites or is easier to land.',
+  ja: 'エサ・ルアーの選び方：これは対応する魚と店頭在庫の比較です。食いつきや取り込みやすさは示しません。',
+  th: 'การเลือกเหยื่อจริงและลัวร์: ข้อมูลนี้เทียบชนิดปลาที่ใช้ได้กับรายการของในร้าน ไม่ได้บอกว่าอันไหนทำให้ปลากินมากกว่าหรือตกขึ้นง่ายกว่า',
+}
+
+function occurrences(value, phrase) {
+  return value.split(phrase).length - 1
+}
 
 function coverage(item, route) {
   return item.category === 'bait' ? item.playerUse.fishIdsByRoute[route] : item.playerUse.fishIds
@@ -106,7 +115,10 @@ function checkCard(runtime, base, item, stage, route, lang) {
   assert(visible.includes(`data-bait-lure-verdict="${item.category}:${item.id}"`))
   assert(visible.includes('bait-lure-owned-action'))
   assert(visible.includes('bait-lure-own-stock'))
-  assert(visible.includes('bait-lure-evidence-limit'))
+  assert(
+    !visible.includes('bait-lure-evidence-limit'),
+    `Repeated scope caveat remains on ${item.category}:${item.id}`,
+  )
   checkOwnedAvailability(visible, item, stage, lang)
   checkEmptyRoute(visible, item, route, base, stage, lang)
   const matches = [
@@ -143,7 +155,31 @@ function checkCard(runtime, base, item, stage, route, lang) {
   validate(html, base)
 }
 
+async function checkSharedNoFishScope(lang, category) {
+  const { nodes } = await renderCatalogue(lang, `?category=${category}&sort=id`)
+  const status = unescapeHtml(nodes['fish-status'].textContent || nodes['fish-status'].innerHTML)
+  const cards = unescapeHtml(nodes.cards.innerHTML)
+  assert.equal(occurrences(status, commonScopeCopy[lang]), 1, `${lang}/${category} scope count`)
+  assert.equal(occurrences(cards, commonScopeCopy[lang]), 0, `${lang}/${category} card scope`)
+  assert.equal(occurrences(cards, 'bait-lure-evidence-limit'), 0, `${lang}/${category} card marker`)
+  const expectedVerdicts = category === 'bait' ? 23 : category === 'lure' ? 81 : 104
+  assert.equal(
+    (cards.match(/data-bait-lure-verdict=/g) || []).length,
+    expectedVerdicts,
+    `${lang}/${category} lost bait/lure decisions`,
+  )
+}
+
+async function checkUnrelatedCategoryHasNoSharedScope(lang, category) {
+  const { nodes } = await renderCatalogue(lang, `?category=${category}&sort=id`)
+  const status = unescapeHtml(nodes['fish-status'].textContent || nodes['fish-status'].innerHTML)
+  assert.equal(occurrences(status, commonScopeCopy[lang]), 0, `${lang}/${category} unrelated scope`)
+}
+
 for (const lang of ['en', 'ja', 'th']) {
+  for (const category of ['bait', 'lure', 'all']) await checkSharedNoFishScope(lang, category)
+  for (const category of ['rod', 'food', 'general_tool', 'flymaker'])
+    await checkUnrelatedCategoryHasNoSharedScope(lang, category)
   for (const route of ['float', 'sinker']) {
     for (const stage of [0, 1, 2, 3, 4, 5, 6]) {
       const { runtime, url, nodes } = await renderCatalogue(
