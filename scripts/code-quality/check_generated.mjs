@@ -1,3 +1,6 @@
+import assert from 'node:assert/strict'
+import { createHash } from 'node:crypto'
+import { versionAssetReferences } from './asset-versions.mjs'
 import { existsSync, readFileSync } from 'node:fs'
 import { isAbsolute, resolve, sep } from 'node:path'
 import { fileURLToPath, pathToFileURL } from 'node:url'
@@ -33,10 +36,47 @@ function verifyOutputs(outputs) {
     const current = readFileSync(target, 'utf8')
     if (current !== generated) errors.push(`Generated artifact is stale: ${file}`)
   }
+  errors.push(...verifyAssetVersions(outputs))
   return errors
 }
 
+function verifyAssetVersions(outputs) {
+  const errors = []
+  for (const [file, html] of outputs) {
+    if (!file.endsWith('.html')) continue
+    const base = new URL(file, 'https://generated.invalid/')
+    for (const match of html.matchAll(/\b(?:src|href)=["']([^"']+)["']/g)) {
+      const url = new URL(match[1], base)
+      const asset = url.pathname.slice(1)
+      if (url.origin !== base.origin || !/\.(js|css)$/.test(asset) || !outputs.has(asset)) continue
+      const hash = createHash('sha256').update(outputs.get(asset)).digest('hex').slice(0, 16)
+      if (url.searchParams.get('v') !== hash)
+        errors.push(`Stale asset version: ${file} -> ${asset}`)
+    }
+  }
+  return errors
+}
+
+function verifyVersionMutation() {
+  const assets = new Map([
+    ['catalogue/maps.js', 'before'],
+    ['catalogue/maps.css', 'stable'],
+  ])
+  const html =
+    '<script src="maps.js?lang=th&v=old#keep"></script><link href="maps.css"><img src="photo.png"><script src="https://example.com/external.js?v=old"></script>'
+  const before = versionAssetReferences(html, 'catalogue/maps.th.html', assets)
+  assets.set('catalogue/maps.js', 'after')
+  const after = versionAssetReferences(html, 'catalogue/maps.th.html', assets)
+  assert.notEqual(before.match(/maps.js[^"']+/)[0], after.match(/maps.js[^"']+/)[0])
+  assert.equal(before.match(/maps.css[^"']+/)[0], after.match(/maps.css[^"']+/)[0])
+  assert.ok(after.includes('lang=th&v='))
+  assert.ok(after.includes('#keep'))
+  assert.ok(after.includes('src="photo.png"'))
+  assert.ok(after.includes('https://example.com/external.js?v=old'))
+}
+
 export async function checkGeneratedOutputs() {
+  verifyVersionMutation()
   const outputs = await renderFrontendOutputs()
   return { outputs: outputs.size, errors: verifyOutputs(outputs) }
 }

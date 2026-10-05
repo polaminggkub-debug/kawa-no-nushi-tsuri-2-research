@@ -1,4 +1,5 @@
 import assert from 'node:assert/strict'
+import { createHash } from 'node:crypto'
 import fs from 'node:fs'
 import path from 'node:path'
 import { data, locations, root } from './shared.mjs'
@@ -34,8 +35,10 @@ function checkCacheRevisions() {
     for (const page of pages) {
       const html = fs.readFileSync(path.join(root, 'catalogue', page), 'utf8')
       assert(
-        html.includes(`${script}?v=${version}`),
-        `Script/data cache revision mismatch: ${page}`,
+        html.includes(
+          `${script}?v=${createHash('sha256').update(source).digest('hex').slice(0, 16)}`,
+        ),
+        `Script content cache revision mismatch: ${page}`,
       )
     }
   }

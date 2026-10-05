@@ -3,6 +3,7 @@ import { readdirSync, readFileSync, writeFileSync } from 'node:fs'
 import { resolve, relative } from 'node:path'
 import { fileURLToPath } from 'node:url'
 import vm from 'node:vm'
+import { versionAssetReferences } from './code-quality/asset-versions.mjs'
 
 const root = fileURLToPath(new URL('../', import.meta.url))
 export const scripts = {
@@ -168,7 +169,8 @@ export async function renderFrontendOutputs() {
           : slice === 'strategy'
             ? strategyTables(file, source)
             : source
-      outputs.set(`${slice === 'strategy' ? 'research' : 'catalogue'}/${file}`, html)
+      const outputPath = `${slice === 'strategy' ? 'research' : 'catalogue'}/${file}`
+      outputs.set(outputPath, versionAssetReferences(html, outputPath, outputs))
     }
   }
   return outputs
