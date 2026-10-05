@@ -6,6 +6,66 @@ const items = data.items.filter((item) => ['bait', 'lure'].includes(item.categor
 const ids = Object.keys(data.fishVisuals)
 const locales = ['en', 'ja', 'th']
 let cases = 0
+const targetScopeCopy = {
+  en: 'This confirms the ROM compatibility check only; a bite or catch is not guaranteed.',
+  ja: 'ROM条件を通ることのみ確認。食いつき・釣り上げは保証されません。',
+  th: 'ยืนยันเฉพาะเงื่อนไขจาก ROM ไม่ได้ยืนยันโอกาสกินเหยื่อหรือจับขึ้น',
+}
+const previousBaitScopeCopy = {
+  en: 'This confirms the bait check only; it does not establish bite odds or landing success.',
+  ja: 'エサの判定を通ることのみ確認。食いつき率・取り込みは示しません。',
+  th: 'ยืนยันเฉพาะว่าเข้าเงื่อนไขตรวจเหยื่อ ไม่ได้ยืนยันโอกาสกินเหยื่อหรือจับขึ้น',
+}
+const flyScopeCopy = {
+  en: 'Showing fly bodies whose body-profile check passes for this fish; a bite or catch is not guaranteed.',
+  ja: 'この魚のボディプロフィール判定を通るフライボディです。食いつき・釣り上げは保証されません。',
+  th: 'แสดงบอดี้ฟลายที่ผ่านเงื่อนไขโปรไฟล์ของปลานี้ ไม่ได้รับประกันว่าปลากินหรือตกขึ้นได้',
+}
+
+function occurrences(value, phrase) {
+  return value.split(phrase).length - 1
+}
+
+async function checkTargetCatalogueScope(locale, category, fish) {
+  const query = `?category=${category}&fish=${fish}&stage=1&route=float`
+  const { nodes, url } = await renderCatalogue(locale, query)
+  const status = nodes['fish-status'].textContent
+  const cards = unescapeHtml(nodes.cards.innerHTML)
+  assert(nodes.cards.innerHTML.includes('<article'), `No ${category} results in ${locale}`)
+  assert(
+    status.includes(targetScopeCopy[locale]),
+    `${locale}/${category} lacks the shared scope note`,
+  )
+  assert.equal(occurrences(status, targetScopeCopy[locale]), 1)
+  assert.equal(occurrences(cards, targetScopeCopy[locale]), 0)
+  assert.equal(occurrences(cards, previousBaitScopeCopy[locale]), 0)
+  assert(
+    !cards.includes('bait check only'),
+    `${locale}/${category} labels a non-bait check as bait`,
+  )
+  validate(cards, url)
+}
+
+async function checkStandaloneTargetScope(locale, category, id, fish) {
+  const query = new URLSearchParams({ category, id, fish, route: 'float', stage: '1' })
+  const { html } = await render('item', locale, query)
+  const markup = unescapeHtml(html)
+  assert.equal(occurrences(markup, targetScopeCopy[locale]), 1)
+  assert(!markup.includes('bait check only'), `${locale}/${category}:${id} has a bait-only caveat`)
+}
+
+async function checkNoTargetScope(locale, category) {
+  const { nodes } = await renderCatalogue(locale, `?category=${category}&stage=1&route=float`)
+  assert.equal(nodes['fish-status'].textContent, '')
+  const cards = unescapeHtml(nodes.cards.innerHTML)
+  assert.equal(occurrences(cards, targetScopeCopy[locale]), 0)
+  assert.equal(occurrences(cards, previousBaitScopeCopy[locale]), 0)
+}
+
+async function checkFlyScope(locale) {
+  const { nodes } = await renderCatalogue(locale, '?category=flymaker&part=fly&fish=06&stage=1')
+  assert(nodes['fish-status'].textContent.includes(flyScopeCopy[locale]))
+}
 
 function accepted(item, fish, route) {
   const use = item.playerUse || {}
@@ -128,6 +188,21 @@ for (const locale of locales) {
   nodes['fish-filter'].value = ''
   assert(!runtime.renderItemCard(items[0]).includes('data-target-advice'))
 }
+
+for (const locale of locales) {
+  for (const [category, fish] of [
+    ['bait', '03'],
+    ['lure', '06'],
+    ['all', '06'],
+  ]) {
+    await checkTargetCatalogueScope(locale, category, fish)
+  }
+  for (const category of ['bait', 'lure', 'all']) await checkNoTargetScope(locale, category)
+  await checkStandaloneTargetScope(locale, 'bait', '01', '03')
+  await checkStandaloneTargetScope(locale, 'lure', '17', '06')
+  await checkFlyScope(locale)
+}
+
 console.log(
   `PASS: ${cases} target/rig/area metadata cases; contextual cards and retained evidence in EN/JA/TH.`,
 )

@@ -207,7 +207,9 @@ function renderCardGuidance(ctx, item, use, summary, facts, advice) {
     fish,
     fish ? ctx.fishName(fish) : '',
   )
-  const targetAdvice = wingDecision ? '' : renderTargetAdvice(ctx, item, fish)
+  const targetAdvice = wingDecision
+    ? ''
+    : renderTargetAdvice(ctx, item, fish, { includeScope: false })
   const label = wingDecision?.label || (advice ? ctx.local(advice.label) : summary)
   const lureVerdict = !fish && !wingDecision ? baitLureVerdict(ctx, item) : ''
   const disclosure = renderCardDisclosure(ctx, item, use, summary, facts, advice, wingDecision)

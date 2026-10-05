@@ -2180,18 +2180,21 @@
     );
     return isCheapest ? cheapestStockDecision(ctx, advice.stage, stock) : compareStockDecision(ctx, advice.stage, stock);
   }
-  function renderTargetAdvice(ctx, item, fish) {
+  function targetAdviceScope(ctx) {
+    return text3(ctx, {
+      th: "ยืนยันเฉพาะเงื่อนไขจาก ROM ไม่ได้ยืนยันโอกาสกินเหยื่อหรือจับขึ้น",
+      ja: "ROM条件を通ることのみ確認。食いつき・釣り上げは保証されません。",
+      en: "This confirms the ROM compatibility check only; a bite or catch is not guaranteed."
+    });
+  }
+  function renderTargetAdvice(ctx, item, fish, { includeScope = true } = {}) {
     const advice = targetAdvice(ctx, item, fish);
     if (!advice) return "";
     const fishName2 = ctx.fishName(fish);
     const status = compatibilityText(ctx, fishName2, advice.route);
-    const limit = text3(ctx, {
-      th: "ยืนยันเฉพาะว่าเข้าเงื่อนไขตรวจเหยื่อ ไม่ได้ยืนยันโอกาสกินเหยื่อหรือจับขึ้น",
-      ja: "エサの判定を通ることのみ確認。食いつき率・取り込みは示しません。",
-      en: "This confirms the bait check only; it does not establish bite odds or landing success."
-    });
+    const scope = includeScope ? `<small>${ctx.esc(targetAdviceScope(ctx))}</small>` : "";
     const markers = `data-target-advice data-target-fish="${ctx.esc(fish)}" data-target-route="${advice.route}" data-target-stage="${advice.stage || ""}"`;
-    return `<div class="target-advice" ${markers}><p class="target-compatibility"><strong>${ctx.esc(status)}</strong></p><p>${ctx.esc(shopDecision(ctx, advice))}</p>${alternativeList(ctx, advice)}<small>${ctx.esc(limit)}</small></div>`;
+    return `<div class="target-advice" ${markers}><p class="target-compatibility"><strong>${ctx.esc(status)}</strong></p><p>${ctx.esc(shopDecision(ctx, advice))}</p>${alternativeList(ctx, advice)}${scope}</div>`;
   }
 
   // src/shared/lib/evidence-link.js

@@ -215,18 +215,21 @@
     );
     return isCheapest ? cheapestStockDecision(ctx, advice.stage, stock) : compareStockDecision(ctx, advice.stage, stock);
   }
-  function renderTargetAdvice(ctx, item, fish) {
+  function targetAdviceScope(ctx) {
+    return text(ctx, {
+      th: "ยืนยันเฉพาะเงื่อนไขจาก ROM ไม่ได้ยืนยันโอกาสกินเหยื่อหรือจับขึ้น",
+      ja: "ROM条件を通ることのみ確認。食いつき・釣り上げは保証されません。",
+      en: "This confirms the ROM compatibility check only; a bite or catch is not guaranteed."
+    });
+  }
+  function renderTargetAdvice(ctx, item, fish, { includeScope = true } = {}) {
     const advice = targetAdvice(ctx, item, fish);
     if (!advice) return "";
     const fishName = ctx.fishName(fish);
     const status = compatibilityText(ctx, fishName, advice.route);
-    const limit = text(ctx, {
-      th: "ยืนยันเฉพาะว่าเข้าเงื่อนไขตรวจเหยื่อ ไม่ได้ยืนยันโอกาสกินเหยื่อหรือจับขึ้น",
-      ja: "エサの判定を通ることのみ確認。食いつき率・取り込みは示しません。",
-      en: "This confirms the bait check only; it does not establish bite odds or landing success."
-    });
+    const scope = includeScope ? `<small>${ctx.esc(targetAdviceScope(ctx))}</small>` : "";
     const markers = `data-target-advice data-target-fish="${ctx.esc(fish)}" data-target-route="${advice.route}" data-target-stage="${advice.stage || ""}"`;
-    return `<div class="target-advice" ${markers}><p class="target-compatibility"><strong>${ctx.esc(status)}</strong></p><p>${ctx.esc(shopDecision(ctx, advice))}</p>${alternativeList(ctx, advice)}<small>${ctx.esc(limit)}</small></div>`;
+    return `<div class="target-advice" ${markers}><p class="target-compatibility"><strong>${ctx.esc(status)}</strong></p><p>${ctx.esc(shopDecision(ctx, advice))}</p>${alternativeList(ctx, advice)}${scope}</div>`;
   }
 
   // src/shared/lib/evidence-link.js
@@ -2803,7 +2806,7 @@
       fish,
       fish ? ctx.fishName(fish) : ""
     );
-    const targetAdvice2 = wingDecision ? "" : renderTargetAdvice(ctx, item, fish);
+    const targetAdvice2 = wingDecision ? "" : renderTargetAdvice(ctx, item, fish, { includeScope: false });
     const label = wingDecision?.label || (advice ? ctx.local(advice.label) : summary);
     const lureVerdict = !fish && !wingDecision ? baitLureVerdict(ctx, item) : "";
     const disclosure = renderCardDisclosure(ctx, item, use, summary, facts, advice, wingDecision);
@@ -3012,7 +3015,8 @@
         return "一般的な装備一覧です。この魚への適合や釣果向上を示すものではありません。";
       return "Showing the full equipment category for general selection; this does not establish fish compatibility or a catch advantage.";
     }
-    if (filters.category === "bait") return ctx.player.fishOnly;
+    if (filters.category === "bait") return `${ctx.player.fishOnly} · ${targetAdviceScope(ctx)}`;
+    if (["lure", "all"].includes(filters.category)) return targetAdviceScope(ctx);
     if (filters.category === "flymaker" && ctx.flyPart !== "fly") {
       if (ctx.lang === "th")
         return "แสดงชิ้นส่วนที่ร้านขายพร้อมบอดี้ซึ่งผ่านเงื่อนไขปลานี้ ไม่ได้ยืนยันว่าปีกหรือหางเพิ่มโอกาสกิน";

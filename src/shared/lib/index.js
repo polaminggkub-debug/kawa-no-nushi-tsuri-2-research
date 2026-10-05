@@ -7,5 +7,5 @@ export function createPageRuntime(api) {
   return runtime
 }
 
-export { targetAdvice, renderTargetAdvice } from './target-advice.js'
+export { targetAdvice, renderTargetAdvice, targetAdviceScope } from './target-advice.js'
 export { readableEvidenceHref } from './evidence-link.js'

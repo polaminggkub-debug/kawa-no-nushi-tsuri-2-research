@@ -1,4 +1,5 @@
 import { navigationRoute } from './navigation-route.js'
+import { targetAdviceScope } from '../../shared/lib/index.js'
 
 const fishCompatibleCategoryOrder = { bait: 0, lure: 1, fly: 2, float_weight: 3 }
 
@@ -200,7 +201,8 @@ function fishStatus(ctx, filters) {
       return '一般的な装備一覧です。この魚への適合や釣果向上を示すものではありません。'
     return 'Showing the full equipment category for general selection; this does not establish fish compatibility or a catch advantage.'
   }
-  if (filters.category === 'bait') return ctx.player.fishOnly
+  if (filters.category === 'bait') return `${ctx.player.fishOnly} · ${targetAdviceScope(ctx)}`
+  if (['lure', 'all'].includes(filters.category)) return targetAdviceScope(ctx)
   if (filters.category === 'flymaker' && ctx.flyPart !== 'fly') {
     if (ctx.lang === 'th')
       return 'แสดงชิ้นส่วนที่ร้านขายพร้อมบอดี้ซึ่งผ่านเงื่อนไขปลานี้ ไม่ได้ยืนยันว่าปีกหรือหางเพิ่มโอกาสกิน'
