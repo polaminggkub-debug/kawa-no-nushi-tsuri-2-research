@@ -1,10 +1,12 @@
 import { distinctFishNames } from './fish-names.js'
+import { renderFightControls } from './fight-controls.js'
 
 const profileAnchors = {
   '#fish-area-map': 'fish-area-map',
   '#water-icons': 'water-icons',
   '#all-compatible': 'all-compatible',
   '#fly-backup': 'fly-backup',
+  '#fight-controls': 'fight-controls',
 }
 
 function profileAnchorId(hash) {
@@ -80,7 +82,7 @@ function compatibleSection(ctx, state) {
 }
 
 function profileContent(ctx, fishData, fish, state) {
-  return `${renderProfileHero(ctx, state)}${renderFirstStep(ctx)}${ctx.renderAreas(state.locations, state.activeStage, fish)}${ctx.renderExchange(fishData.items || [], state.activeStage)}${ctx.renderShopping(state.matches, state.locations, state.activeStage, fishData.items || [], fishData.flyBackupChoices)}${compatibleSection(ctx, state)}${ctx.renderWaterIcons(fishData.waterIcons, state.activeStage)}${ctx.renderEvidence(fish, state.locations, state.matches)}`
+  return `${renderProfileHero(ctx, state)}${renderFirstStep(ctx)}${ctx.renderAreas(state.locations, state.activeStage, fish)}${ctx.renderExchange(fishData.items || [], state.activeStage)}${ctx.renderShopping(state.matches, state.locations, state.activeStage, fishData.items || [], fishData.flyBackupChoices)}${renderFightControls(ctx, state.activeStage)}${compatibleSection(ctx, state)}${ctx.renderWaterIcons(fishData.waterIcons, state.activeStage)}${ctx.renderEvidence(fish, state.locations, state.matches)}`
 }
 
 function unconfirmedProfileContent(ctx, fish, state) {

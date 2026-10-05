@@ -960,13 +960,13 @@
     const conditional = localConditionalSale(entries, stage);
     const sales = recordedSales(entries, method);
     const fallback = sales[0];
-    const copy = missingMethodCopy(ctx, method, stage, entries.length);
+    const copy2 = missingMethodCopy(ctx, method, stage, entries.length);
     const actions = [];
     if (conditional) {
       const item = conditional.entry.item;
       const href = offerLink(ctx, method, conditional.entry, stage, stage);
       actions.push(
-        `<a class="route-button" data-conditional-sale href="${ctx.escapeHtml(href)}">${ctx.escapeHtml(copy.conditional(ctx.localizedItemName(item)))}</a>`
+        `<a class="route-button" data-conditional-sale href="${ctx.escapeHtml(href)}">${ctx.escapeHtml(copy2.conditional(ctx.localizedItemName(item)))}</a>`
       );
     }
     if (fallback) {
@@ -975,17 +975,17 @@
       const price = Number.isFinite(amount) ? ` · ¥${amount}` : "";
       const href = offerLink(ctx, method, fallback.entry, stage, fallback.shop.stage);
       actions.push(
-        `<a class="route-button" data-recorded-sale href="${ctx.escapeHtml(href)}">${ctx.escapeHtml(copy.sale(fallback.shop.stage, `${ctx.localizedItemName(item)} (ID ${item.id})`, price))} ↗</a>`
+        `<a class="route-button" data-recorded-sale href="${ctx.escapeHtml(href)}">${ctx.escapeHtml(copy2.sale(fallback.shop.stage, `${ctx.localizedItemName(item)} (ID ${item.id})`, price))} ↗</a>`
       );
     } else if (!conditional) {
       const entry = entries[0];
       const href = compatibleItemLink(ctx, method, entry, stage);
       actions.push(
-        `<a class="route-button" data-acquisition-details href="${ctx.escapeHtml(href)}">${ctx.escapeHtml(copy.detail(`${ctx.localizedItemName(entry.item)} (ID ${entry.item.id})`))} ↗</a>`
+        `<a class="route-button" data-acquisition-details href="${ctx.escapeHtml(href)}">${ctx.escapeHtml(copy2.detail(`${ctx.localizedItemName(entry.item)} (ID ${entry.item.id})`))} ↗</a>`
       );
     }
-    const noSales = !fallback && !conditional ? `<p class="muted">${ctx.escapeHtml(copy.noSales)}</p>` : "";
-    return `<article class="detail-section method-no-local-stock" data-method-no-local="${method}"><h3>${ctx.escapeHtml(copy.title)}</h3><p>${ctx.escapeHtml(copy.owned)}</p>${noSales}<div class="method-stock-actions">${actions.join("")}</div></article>`;
+    const noSales = !fallback && !conditional ? `<p class="muted">${ctx.escapeHtml(copy2.noSales)}</p>` : "";
+    return `<article class="detail-section method-no-local-stock" data-method-no-local="${method}"><h3>${ctx.escapeHtml(copy2.title)}</h3><p>${ctx.escapeHtml(copy2.owned)}</p>${noSales}<div class="method-stock-actions">${actions.join("")}</div></article>`;
   }
   function missingMethodActions(ctx, entries, offers, stage) {
     const methods = ["float", "sinker", "lure", "fly"];
@@ -1081,31 +1081,74 @@
     if (stage) query.set("stage", String(stage));
     return `${ctx.itemPath()}?${query.toString()}`;
   }
-  function iconFact(copy, iconClass) {
-    if (iconClass === "small") return copy.smallFact;
-    if (iconClass === "large") return copy.largeFact;
-    return copy.bubbleFact;
+  function iconFact(copy2, iconClass) {
+    if (iconClass === "small") return copy2.smallFact;
+    if (iconClass === "large") return copy2.largeFact;
+    return copy2.bubbleFact;
   }
-  function iconCard(ctx, copy, waterIcons, profile, iconClass, stage) {
+  function iconCard(ctx, copy2, waterIcons, profile, iconClass, stage) {
     const conditional = profile.growthOnlyClasses?.includes(iconClass) === true;
-    const label = conditional ? copy.growthLabel : copy[iconClass];
+    const label = conditional ? copy2.growthLabel : copy2[iconClass];
     const image = ctx.escapeHtml(imageFor(waterIcons, iconClass) + "?v=native-20261005");
-    const fact = ctx.escapeHtml(conditional ? copy.growthFact : iconFact(copy, iconClass));
-    const bubbleAction = iconClass === "bubble" && profile.bubble === true ? `<a class="route-button" data-water-bait-link href="${ctx.escapeHtml(potatoBaitLink(ctx, stage))}">${ctx.escapeHtml(copy.baitAction)} ↗</a>` : "";
+    const fact = ctx.escapeHtml(conditional ? copy2.growthFact : iconFact(copy2, iconClass));
+    const bubbleAction = iconClass === "bubble" && profile.bubble === true ? `<a class="route-button" data-water-bait-link href="${ctx.escapeHtml(potatoBaitLink(ctx, stage))}">${ctx.escapeHtml(copy2.baitAction)} ↗</a>` : "";
     return `<article class="entity-link water-icon-card" data-water-icon="${iconClass}" data-water-class-evidence="${conditional ? "growth-only" : "initial"}"><img loading="lazy" src="${image}" alt="${ctx.escapeHtml(label)}"><span><strong>${ctx.escapeHtml(label)}</strong><small>${fact}</small></span>${bubbleAction}</article>`;
   }
-  function evidenceDetails(ctx, copy) {
+  function evidenceDetails(ctx, copy2) {
     const href = "https://github.com/polaminggkub-debug/kawa-no-nushi-tsuri-2-research/blob/main/docs/water-surface-icons.md";
-    return `<details class="water-icon-evidence"><summary>${ctx.escapeHtml(copy.evidence)}</summary><p><a href="${href}">${ctx.escapeHtml(copy.evidenceLink)} ↗</a></p></details>`;
+    return `<details class="water-icon-evidence"><summary>${ctx.escapeHtml(copy2.evidence)}</summary><p><a href="${href}">${ctx.escapeHtml(copy2.evidenceLink)} ↗</a></p></details>`;
   }
   function renderWaterIcons(ctx, waterIcons, stage) {
     const profile = waterIcons?.profiles?.[ctx.id];
     if (!waterIcons?.romSha1 || !profile) return "";
     const classes = visibleClasses(waterIcons, profile);
     if (!classes.length) return "";
-    const copy = copyFor(ctx);
-    const cards = classes.map((iconClass) => iconCard(ctx, copy, waterIcons, profile, iconClass, stage)).join("");
-    return `<section class="detail-section water-icon-guide" id="water-icons"><h2>${ctx.escapeHtml(copy.title)}</h2><p class="section-lede">${ctx.escapeHtml(copy.intro)}</p><div class="detail-grid water-icon-grid">${cards}</div>${evidenceDetails(ctx, copy)}</section>`;
+    const copy2 = copyFor(ctx);
+    const cards = classes.map((iconClass) => iconCard(ctx, copy2, waterIcons, profile, iconClass, stage)).join("");
+    return `<section class="detail-section water-icon-guide" id="water-icons"><h2>${ctx.escapeHtml(copy2.title)}</h2><p class="section-lede">${ctx.escapeHtml(copy2.intro)}</p><div class="detail-grid water-icon-grid">${cards}</div>${evidenceDetails(ctx, copy2)}</section>`;
+  }
+
+  // src/pages/fish/fight-controls.js
+  var copy = {
+    th: {
+      title: "ยามาเมะหนีตอนกด A ค้าง? ลองเปลี่ยนจังหวะ",
+      action: "ลองกด A แล้วปล่อยคั่นเป็นช่วง ๆ เป็นทางเลือกทดลองสำหรับยามาเมะด่าน 1",
+      result: "จากเหตุการณ์ธรรมชาติหนึ่งครั้ง เมื่อเวลาเล่นรวมและเวลาที่กด A รวมเท่ากัน แบบแบ่งกด/ปล่อยทำให้ปลายังอยู่ ส่วนแบบค้างยาวครั้งเดียวแล้วปล่อยจบด้วยปลาหนี ยังไม่ทราบจังหวะที่ดีที่สุดหรือสูตรที่รับประกันจับได้",
+      evidence: "ดูชุดที่ทดลองและหลักฐาน",
+      setup: "ชุดที่ทดลอง: คัน 02 · ทุ่น 04 · ตะขอ 06 · เหยื่อ 07 ก่อนโยน · HP 100 เกมอ่านการกด A/B ค้างกับการปล่อยต่างกันในแขนงที่ตรวจ ขณะปลายังไม่ถึงขอบเขตของคัน",
+      continuation: "ผล 23 ซม. มาจากการเล่นต่อด้วยปุ่มเพิ่มเติมหลังการเปรียบเทียบ ไม่ใช่ผลจับได้ทันทีจากจังหวะข้างต้น และยังไม่ยืนยันว่าช่วยเพิ่มโอกาสจับในชุดอื่น",
+      trace: "อ่านวิธีทดลอง ข้อจำกัด และโค้ดที่ตรวจ",
+      escape: "ภาพผลปลาหนีจากการกดค้าง",
+      catch: "ภาพ 23 ซม. หลังเล่นต่อแยกต่างหาก"
+    },
+    en: {
+      title: "Yamame escaping while you hold A? Try changing the rhythm",
+      action: "Try pressing A with release intervals as an experimental option for Area 1 Yamame.",
+      result: "In one natural encounter, schedules with the same total time and A-held time left the fish in the fight when split into presses and releases; one long hold followed by release ended in escape. No best rhythm or guaranteed catch is established.",
+      evidence: "Tested setup and evidence",
+      setup: "Tested setup: rod 02 · float 04 · hook 06 · bait 07 before casting · HP 100. The traced game branch treats held A/B and released input differently while the fish remains below the rod boundary.",
+      continuation: "The 23 cm catch required a separate continuation with additional inputs after the comparison. It was not an immediate catch from the pattern above, and no catch advantage is established for other setups.",
+      trace: "Read the experiment, limitations and code trace",
+      escape: "Hold-input escape result",
+      catch: "23 cm result after the separate continuation"
+    },
+    ja: {
+      title: "Aを押し続けるとヤマメに逃げられる？ 押し方を変えてみる",
+      action: "エリア1のヤマメでは、Aを押して離す操作を試す選択肢があります。実験段階の提案です。",
+      result: "自然発生した1回のファイトで、経過時間とAを押した合計時間を同じにすると、押す・離すを分けた操作では魚が残り、長く1回押してから離す操作では逃げられました。最適なリズムや必ず釣れる操作は未確認です。",
+      evidence: "実験した装備と根拠",
+      setup: "実験装備：竿02・ウキ04・ハリ06・投げる前のエサ07・HP100。調べたゲーム分岐では、魚が竿の境界に達するまではA/Bを押している状態と離した状態を別に処理します。",
+      continuation: "23cmの釣果は比較後に別の追加操作を行った結果です。上のリズムだけで直ちに釣れた結果ではなく、他の装備で釣果が上がることも未確認です。",
+      trace: "実験方法・制限・コードを読む",
+      escape: "押し続けた操作の逃走結果",
+      catch: "別の追加操作後の23cmの結果"
+    }
+  };
+  function renderFightControls(ctx, stage) {
+    if (ctx.id !== "03" || String(stage) !== "1") return "";
+    const text = copy[ctx.locale] || copy.en;
+    const esc = ctx.escapeHtml;
+    return `<section id="fight-controls" class="detail-section"><h2>${esc(text.title)}</h2><p><strong>${esc(text.action)}</strong></p><p>${esc(text.result)}</p><details id="fight-controls-evidence"><summary>${esc(text.evidence)}</summary><p>${esc(text.setup)}</p><p>${esc(text.continuation)}</p><p><a href="https://github.com/polaminggkub-debug/kawa-no-nushi-tsuri-2-research/blob/main/docs/fight-input-research.md">${esc(text.trace)} ↗</a></p><div class="fight-captures"><figure><a href="../research/assets/fight-hold-escape.png"><img src="../research/assets/fight-hold-escape.png" alt="${esc(text.escape)}" loading="lazy"></a><figcaption>${esc(text.escape)}</figcaption></figure><figure><a href="../research/assets/fight-release-catch.png"><img src="../research/assets/fight-release-catch.png" alt="${esc(text.catch)}" loading="lazy"></a><figcaption>${esc(text.catch)}</figcaption></figure></div></details></section>`;
   }
 
   // src/pages/fish/render.js
@@ -1113,7 +1156,8 @@
     "#fish-area-map": "fish-area-map",
     "#water-icons": "water-icons",
     "#all-compatible": "all-compatible",
-    "#fly-backup": "fly-backup"
+    "#fly-backup": "fly-backup",
+    "#fight-controls": "fight-controls"
   };
   function profileAnchorId(hash) {
     return profileAnchors[hash] || "";
@@ -1174,7 +1218,7 @@
     return `<section id="all-compatible" class="detail-section"><h2>${ctx.escapeHtml(ctx.copy.compatible)}</h2><p class="section-lede">${ctx.escapeHtml(ctx.copy.compatibilityNote)}</p><p>${ctx.escapeHtml(compatibilityIntro(ctx))}</p>${ctx.renderCompatibility(state.matches, state.activeStage)}</section>`;
   }
   function profileContent(ctx, fishData, fish, state) {
-    return `${renderProfileHero(ctx, state)}${renderFirstStep(ctx)}${ctx.renderAreas(state.locations, state.activeStage, fish)}${ctx.renderExchange(fishData.items || [], state.activeStage)}${ctx.renderShopping(state.matches, state.locations, state.activeStage, fishData.items || [], fishData.flyBackupChoices)}${compatibleSection(ctx, state)}${ctx.renderWaterIcons(fishData.waterIcons, state.activeStage)}${ctx.renderEvidence(fish, state.locations, state.matches)}`;
+    return `${renderProfileHero(ctx, state)}${renderFirstStep(ctx)}${ctx.renderAreas(state.locations, state.activeStage, fish)}${ctx.renderExchange(fishData.items || [], state.activeStage)}${ctx.renderShopping(state.matches, state.locations, state.activeStage, fishData.items || [], fishData.flyBackupChoices)}${renderFightControls(ctx, state.activeStage)}${compatibleSection(ctx, state)}${ctx.renderWaterIcons(fishData.waterIcons, state.activeStage)}${ctx.renderEvidence(fish, state.locations, state.matches)}`;
   }
   function unconfirmedProfileContent(ctx, fish, state) {
     const evidence = ctx.renderEvidence(fish, state.locations, state.matches).replace(
