@@ -1,3 +1,5 @@
+import { categoryNavigationHref } from './category-navigation.js'
+
 export function renderTargetCategories(ctx, fish) {
   const available = fish ? ctx.groups.filter((c) => ctx.fishCategories.includes(c)) : ctx.groups
   const select = document.getElementById('category-filter'),
@@ -9,7 +11,15 @@ export function renderTargetCategories(ctx, fish) {
   document.getElementById('category-menu').innerHTML = available
     .map((c) => {
       const item = ctx.allItems.find((i) => ctx.groupOf(i) === c)
-      return `<a class="category-button" href="?category=${c}${fish ? '&fish=' + fish : ''}#catalogue" data-category="${c}"><img src="${ctx.esc(item?.image)}" alt=""><span><strong>${ctx.esc(ctx.player.cat[c])}</strong><small>${ctx.allItems.filter((i) => ctx.groupOf(i) === c && (!fish || ctx.fishIdsFor(i).includes(fish) || (['fly_wing', 'fly_tail'].includes(i.category) && ctx.flyBundlePartFor(i, fish)))).length}</small></span></a>`
+      const count = ctx.allItems.filter((i) =>
+        fish && ['rod', 'hook'].includes(c)
+          ? ctx.groupOf(i) === c
+          : ctx.groupOf(i) === c &&
+            (!fish ||
+              ctx.fishIdsFor(i).includes(fish) ||
+              (['fly_wing', 'fly_tail'].includes(i.category) && ctx.flyBundlePartFor(i, fish))),
+      ).length
+      return `<a class="category-button" href="${ctx.esc(categoryNavigationHref(ctx, c, fish))}" data-category="${c}"><img src="${ctx.esc(item?.image)}" alt=""><span><strong>${ctx.esc(ctx.player.cat[c])}</strong><small>${count}</small></span></a>`
     })
     .join('')
 }
@@ -35,7 +45,7 @@ export function renderFilters(ctx) {
   document.getElementById('category-menu').innerHTML = ctx.groups
     .map((c) => {
       const i = ctx.allItems.find((i) => ctx.groupOf(i) === c)
-      return `<a class="category-button" href="?category=${c}#catalogue" data-category="${c}"><img src="${ctx.esc(i?.image)}" alt=""><span><strong>${ctx.esc(ctx.player.cat[c])}</strong><small>${ctx.allItems.filter((i) => ctx.groupOf(i) === c).length}</small></span></a>`
+      return `<a class="category-button" href="${ctx.esc(categoryNavigationHref(ctx, c, document.getElementById('fish-filter').value))}" data-category="${c}"><img src="${ctx.esc(i?.image)}" alt=""><span><strong>${ctx.esc(ctx.player.cat[c])}</strong><small>${ctx.allItems.filter((i) => ctx.groupOf(i) === c).length}</small></span></a>`
     })
     .join('')
 }

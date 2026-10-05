@@ -26,6 +26,7 @@ function checkStage(lang, stage) {
     stage.firstOccurrenceCount + stage.repeatedFromEarlierStages.length,
   )
   validate(html, origin)
+  checkVerification(html, origin, stage.stage, source, suffix)
   checkAreaLinks(html, origin, nested)
   const cards = [
     ...html.matchAll(
@@ -34,6 +35,23 @@ function checkStage(lang, stage) {
   ]
   assert.equal(cards.length, stage.speciesIds.length)
   for (const [, id, card] of cards) checkCard(card, id, stage.stage, source, origin, suffix)
+}
+
+function checkVerification(html, origin, stage, source, suffix) {
+  const section = html.match(
+    /<section[^>]*data-notebook-verification[^>]*>([\s\S]*?)<\/section>/,
+  )?.[1]
+  assert(section, 'Missing visible journal verification instruction')
+  assert(html.indexOf('data-notebook-verification') < html.indexOf('class="notebook-manual"'))
+  const link = section.match(/data-notebook-open[^>]*href="([^"]+)"/)
+  assert(link, 'Journal verification must link to the notebook item')
+  const url = new URL(unescapeHtml(link[1]), origin)
+  assert(url.pathname.endsWith(`/item${suffix}.html`))
+  assert.equal(url.searchParams.get('category'), 'general_tool')
+  assert.equal(url.searchParams.get('id'), '05')
+  assert.equal(url.searchParams.get('stage'), String(stage))
+  assert.equal(url.searchParams.get('return'), `${source}#notebook-guide`)
+  assert(!section.includes('<details'), 'The player instruction must not be collapsed evidence')
 }
 
 function makeContext(lang, stage, source) {

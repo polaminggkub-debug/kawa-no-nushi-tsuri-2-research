@@ -92,7 +92,7 @@ export function previousPageAction(rawReturn, locale, baseHref) {
   return { href, label: previousPageLabel(locale) }
 }
 
-function updateLanguageLinks(rawReturn, baseHref) {
+export function updateLanguageLinks(rawReturn, baseHref) {
   const current = new URL(baseHref)
   document.querySelectorAll('.language-links a').forEach((link) => {
     const locale = link.getAttribute('hreflang')
@@ -100,8 +100,11 @@ function updateLanguageLinks(rawReturn, baseHref) {
     const route = link.dataset.route || link.getAttribute('href').split(/[?#]/)[0]
     link.dataset.route = route
     const query = new URLSearchParams(current.search)
-    query.set('return', localizeSafeReturn(rawReturn, locale, baseHref))
-    link.href = `${route}?${query}${current.hash}`
+    const safeReturn = localizeSafeReturn(rawReturn, locale, baseHref)
+    if (safeReturn) query.set('return', safeReturn)
+    else query.delete('return')
+    const params = query.toString()
+    link.href = `${route}${params ? `?${params}` : ''}${current.hash}`
   })
 }
 
@@ -116,18 +119,21 @@ export function setupReturnAction(ctx) {
   const rawReturn = new URLSearchParams(window.location.search).get('return') || ''
   const mapAction = mapReturnAction(rawReturn, ctx.lang, window.location.href)
   const action = mapAction || previousPageAction(rawReturn, ctx.lang, window.location.href)
-  if (!action) return
-  const nav = document.querySelector('.hero-meta')
-  if (nav && !document.querySelector('[data-previous-page-return]')) {
-    const link = document.createElement('a')
-    link.className = mapAction ? 'back-link map-return-link' : 'back-link previous-page-return-link'
-    link.dataset.previousPageReturn = 'true'
-    if (mapAction) link.dataset.mapReturn = 'true'
-    link.href = action.href
-    link.textContent = action.label
-    nav.prepend(link)
+  if (action) {
+    const nav = document.querySelector('.hero-meta')
+    if (nav && !document.querySelector('[data-previous-page-return]')) {
+      const link = document.createElement('a')
+      link.className = mapAction
+        ? 'back-link map-return-link'
+        : 'back-link previous-page-return-link'
+      link.dataset.previousPageReturn = 'true'
+      if (mapAction) link.dataset.mapReturn = 'true'
+      link.href = action.href
+      link.textContent = action.label
+      nav.prepend(link)
+    }
   }
-  updateLanguageLinks(action.href, window.location.href)
+  updateLanguageLinks(rawReturn, window.location.href)
 }
 
 export function mapReturnMarkup(ctx) {

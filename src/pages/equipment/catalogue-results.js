@@ -39,6 +39,7 @@ function updatePageContext(ctx, filters) {
   ctx.renderTargetCategories(filters.fish)
   updateCatalogueLink(ctx, filters.fish)
   updateCatalogueUrl(ctx, filters.category, filters.fish, ctx.flyPart)
+  ctx.refreshLanguageLinks?.()
 }
 
 function routeLabels(ctx) {
@@ -85,6 +86,7 @@ function renderCategoryControls(ctx, category) {
 
 function fishMatchesItem(ctx, item, filters) {
   if (!filters.fish) return true
+  if (['rod', 'hook'].includes(filters.category)) return true
   if (
     ['bait', 'lure', 'fly', 'float_weight'].includes(item.category) &&
     ctx.fishIdsFor(item).includes(filters.fish)
@@ -156,6 +158,13 @@ function categoryDescription(ctx, category, fish) {
 
 function fishStatus(ctx, filters) {
   if (!filters.fish) return ''
+  if (['rod', 'hook'].includes(filters.category)) {
+    if (ctx.lang === 'th')
+      return 'แสดงอุปกรณ์ทั้งหมวดสำหรับเลือกทั่วไป ไม่ได้จัดว่าเหมาะกับปลานี้หรือช่วยเพิ่มโอกาสตกได้'
+    if (ctx.lang === 'ja')
+      return '一般的な装備一覧です。この魚への適合や釣果向上を示すものではありません。'
+    return 'Showing the full equipment category for general selection; this does not establish fish compatibility or a catch advantage.'
+  }
   if (filters.category === 'bait') return ctx.player.fishOnly
   if (filters.category === 'flymaker' && ctx.flyPart !== 'fly') {
     if (ctx.lang === 'th')

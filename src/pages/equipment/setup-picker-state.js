@@ -6,7 +6,7 @@ export function setupPickerState(ctx) {
   ctx.baitRoute = 'float'
   ctx.decisions = []
   ctx.gearPriceGuide = {}
-  ctx.fishCategories = ['all', 'bait', 'lure', 'flymaker', 'float_weight']
+  ctx.fishCategories = ['all', 'bait', 'lure', 'flymaker', 'float_weight', 'rod', 'hook']
   ctx.suggestionIds = []
   ctx.activeSuggestion = -1
   ctx.pickerCopy = {

@@ -221,6 +221,9 @@
       evidence: "ROM evidence and method",
       evidenceLink: "Read the notebook record research",
       spawnNote: "These are the game’s configured area candidates. If a point has no fish in your current run, open the map to check whether this species has other recorded points.",
+      verifyTitle: "After fishing: check the game journal before ticking this list",
+      verifyBody: "Open Tool 05 (Fishing Notebook) and compare the fish’s name across all six pages. Page totals can move when a larger-size record moves to another area. Seeing a fish bite alone does not confirm that the journal recorded it.",
+      verifyLink: "View Tool 05 details · Fishing Notebook",
       empty: "No new species are listed for this area in the route."
     },
     ja: {
@@ -247,6 +250,9 @@
       evidence: "ROMの根拠と調査方法",
       evidenceLink: "魚図鑑の記録に関する調査を読む",
       spawnNote: "ゲームの設定上、このエリアに出現する魚です。現在のプレイで地点に魚がいないときは、地図を開いて同種の別地点があるか確認してください。",
+      verifyTitle: "釣りのあと、ゲーム内の図鑑を確認してからチェック",
+      verifyBody: "道具05「釣りノート」を開き、魚名を6ページすべて確認してください。最大サイズの記録が別エリアに移るとページ別の数も変わります。魚が食いついただけでは、図鑑への記録を確認できません。",
+      verifyLink: "道具05の詳細 · 釣りノート",
       empty: "このエリアにルート上の新しい魚種はありません。"
     },
     th: {
@@ -273,6 +279,9 @@
       evidence: "หลักฐาน ROM และวิธีตรวจสอบ",
       evidenceLink: "อ่านบันทึกการแกะระบบสมุดปลา",
       spawnNote: "รายการนี้คือปลาที่เกมตั้งไว้ในด่าน บางจุดอาจไม่มีปลาในรอบที่เล่น ถ้าจุดที่ไปไม่มีปลา ให้เปิดแผนที่ตรวจว่าปลาชนิดนั้นมีจุดอื่นหรือไม่",
+      verifyTitle: "หลังตกปลา ให้เช็กสมุดเกมก่อนติ๊กเช็กลิสต์นี้",
+      verifyBody: "เปิดไอเท็ม 05 “สมุดบันทึกการตกปลา” แล้วเทียบชื่อปลาทั้ง 6 หน้า จำนวนในแต่ละหน้าเปลี่ยนได้เมื่อสถิติขนาดใหญ่สุดย้ายไปอีกด่าน การเห็นปลากัดเบ็ดอย่างเดียวยังยืนยันไม่ได้ว่าสมุดบันทึกปลาแล้ว",
+      verifyLink: "ดูรายละเอียดไอเท็ม 05 · สมุดบันทึกการตกปลา",
       empty: "ไม่มีปลาใหม่ตามเส้นทางในด่านนี้"
     }
   };
@@ -294,6 +303,18 @@
   function localizedPage(ctx, page) {
     const suffix = ctx.lang === "en" ? "" : `.${ctx.lang}`;
     return `${page}${suffix}.html`;
+  }
+  function notebookItemLink(ctx) {
+    const query = new URLSearchParams({
+      category: "general_tool",
+      id: "05",
+      stage: String(ctx.activeStage),
+      return: notebookReturn(ctx)
+    });
+    return `${localizedPage(ctx, "item")}?${query}`;
+  }
+  function notebookVerificationMarkup(ctx, copyText) {
+    return `<section class="notebook-verification" data-notebook-verification><h4>${ctx.esc(copyText.verifyTitle)}</h4><p>${ctx.esc(copyText.verifyBody)}</p><a data-notebook-open href="${ctx.esc(notebookItemLink(ctx))}">${ctx.esc(copyText.verifyLink)} ↗</a></section>`;
   }
   function fishActionLinks(ctx, id, returnPath) {
     const stage = String(ctx.activeStage);
@@ -391,7 +412,7 @@
     );
     const progress = routeProgress(ctx, guide, ctx.activeStage);
     const total = guide.totals.notebookEligibleSpecies;
-    return `<div class="notebook-guide-panel" data-stage="${ctx.activeStage}" data-notebook-total="${recordableCount}" data-notebook-new="${newIds.length}" data-notebook-repeated="${repeatedIds.length}"><div class="notebook-guide-heading"><div><p class="notebook-eyebrow">${ctx.esc(copyText.title)}</p><h3>${ctx.esc(ctx.c.area(ctx.activeStage))}</h3></div></div><div class="notebook-count-summary"><p class="notebook-recordable"><strong>${recordableCount}</strong><span>${ctx.esc(copyText.recordableLabel(ctx.activeStage))}</span></p><div class="notebook-count-breakdown"><p>${ctx.esc(copyText.newCount(newIds.length))}</p><p>${ctx.esc(copyText.repeatedCount(repeatedIds.length))}</p></div></div><section class="notebook-count-explainer"><h4>${ctx.esc(copyText.countNoteTitle)}</h4><p>${ctx.esc(copyText.countNote(ctx.activeStage, recordableCount, newIds.length, repeatedIds.length))}</p></section>${areaCountLinks(ctx, guide, copyText)}${progressMarkup(ctx)}${newList}${repeated}${excluded}${evidenceLink(ctx, copyText, copyText.progress(ctx.activeStage, progress, total))}</div>`;
+    return `<div class="notebook-guide-panel" data-stage="${ctx.activeStage}" data-notebook-total="${recordableCount}" data-notebook-new="${newIds.length}" data-notebook-repeated="${repeatedIds.length}"><div class="notebook-guide-heading"><div><p class="notebook-eyebrow">${ctx.esc(copyText.title)}</p><h3>${ctx.esc(ctx.c.area(ctx.activeStage))}</h3></div></div><div class="notebook-count-summary"><p class="notebook-recordable"><strong>${recordableCount}</strong><span>${ctx.esc(copyText.recordableLabel(ctx.activeStage))}</span></p><div class="notebook-count-breakdown"><p>${ctx.esc(copyText.newCount(newIds.length))}</p><p>${ctx.esc(copyText.repeatedCount(repeatedIds.length))}</p></div></div><section class="notebook-count-explainer"><h4>${ctx.esc(copyText.countNoteTitle)}</h4><p>${ctx.esc(copyText.countNote(ctx.activeStage, recordableCount, newIds.length, repeatedIds.length))}</p></section>${areaCountLinks(ctx, guide, copyText)}${notebookVerificationMarkup(ctx, copyText)}${progressMarkup(ctx)}${newList}${repeated}${excluded}${evidenceLink(ctx, copyText, copyText.progress(ctx.activeStage, progress, total))}</div>`;
   }
   function renderNotebookGuide(ctx) {
     const mount = ctx.$("notebook-guide");
@@ -1497,7 +1518,7 @@
         if (!r.ok) throw Error("fish locations");
         return r.json();
       }),
-      fetch("gallery-data.json?v=compendium-20261005-24").then((r) => {
+      fetch("gallery-data.json?v=compendium-20261005-25").then((r) => {
         if (!r.ok) throw Error("fish sprites");
         return r.json();
       })

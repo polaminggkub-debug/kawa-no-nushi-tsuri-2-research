@@ -1,4 +1,5 @@
 import { showCatalogueLoading, showCatalogueError } from './catalogue-load-state.js'
+import { categoryNavigationHref, refreshCategoryNavigationLinks } from './category-navigation.js'
 
 function installCatalogueData(ctx, data) {
   ctx.allItems = data.items
@@ -99,6 +100,14 @@ function openInitialContext() {
 function handleCategoryClick(ctx, event) {
   const link = event.target.closest('[data-category]')
   if (!link) return
+  if (
+    (event.button !== undefined && event.button !== 0) ||
+    event.metaKey ||
+    event.ctrlKey ||
+    event.shiftKey ||
+    event.altKey
+  )
+    return
   event.preventDefault()
   document.getElementById('category-filter').value = link.dataset.category
   document.getElementById('search').value = ''
@@ -108,8 +117,13 @@ function handleCategoryClick(ctx, event) {
     history.replaceState(
       null,
       '',
-      `?category=${link.dataset.category}${document.getElementById('fish-filter').value ? '&fish=' + document.getElementById('fish-filter').value : ''}#catalogue`,
+      categoryNavigationHref(
+        ctx,
+        link.dataset.category,
+        document.getElementById('fish-filter').value,
+      ),
     )
+  ctx.refreshLanguageLinks?.()
   document.getElementById('catalogue').scrollIntoView({ behavior: 'smooth', block: 'start' })
 }
 
@@ -150,12 +164,14 @@ function handleLocationStageClick(ctx, event) {
   ctx.locationMapIndex = 0
   ctx.renderFishLocation(document.getElementById('fish-filter').value)
   ctx.renderDecisions(document.getElementById('category-filter').value)
+  refreshCategoryNavigationLinks(ctx, document.getElementById('fish-filter').value)
 }
 
 function handleLocationMapChange(ctx, event) {
   if (event.target.id !== 'location-map-select') return
   ctx.locationMapIndex = Number(event.target.value)
   ctx.renderFishLocation(document.getElementById('fish-filter').value)
+  refreshCategoryNavigationLinks(ctx, document.getElementById('fish-filter').value)
 }
 
 function bindFilterInputs(ctx) {
@@ -203,7 +219,7 @@ function initializeLoadedCatalogue(ctx, data) {
 
 export function loadCatalogue(ctx) {
   showCatalogueLoading(ctx)
-  fetch('gallery-data.json?v=compendium-20261005-24')
+  fetch('gallery-data.json?v=compendium-20261005-25')
     .then((response) => {
       if (!response.ok) throw new Error('catalogue unavailable')
       return response.json()

@@ -1,6 +1,11 @@
-import { setupReturnAction } from './return-action.js'
+import { setupReturnAction, updateLanguageLinks } from './return-action.js'
 
 export function setupNavigation(ctx) {
+  ctx.refreshLanguageLinks = () => {
+    if (typeof window === 'undefined' || typeof document === 'undefined') return
+    const current = new URL(window.location.href)
+    updateLanguageLinks(current.searchParams.get('return') || '', current.href)
+  }
   ctx.sourceReturn = () => {
     if (typeof location === 'undefined')
       return `index${ctx.lang === 'en' ? '' : '.' + ctx.lang}.html#catalogue`

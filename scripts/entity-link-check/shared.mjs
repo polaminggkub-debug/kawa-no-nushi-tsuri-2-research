@@ -212,11 +212,9 @@ export async function render(
 }
 
 export async function galleryForage(lang) {
-  const location = {
-    pathname: `/catalogue/index${lang === 'en' ? '' : `.${lang}`}.html`,
-    search: '?category=bait&fish=06&route=sinker',
-    hash: '#catalogue',
-  }
+  const location = new URL(
+    `https://example.test/catalogue/index${lang === 'en' ? '' : `.${lang}`}.html?category=bait&fish=06&route=sinker#catalogue`,
+  )
   const { document, nodes } = createDocument(lang, { 'fish-filter': '06', 'sort-filter': 'id' })
   const context = vmContext(document, location, true)
   vm.runInNewContext(sourceBundle('gallery'), context)
@@ -244,12 +242,12 @@ export async function galleryForage(lang) {
 export async function renderCatalogue(lang, search = '', loading = false, captureHistory = false) {
   const suffix = lang === 'en' ? '' : `.${lang}`
   const location = new URL(`https://example.test/catalogue/index${suffix}.html${search}`)
-  const { document, nodes } = createDocument(lang, { 'sort-filter': 'id' })
+  const { document, nodes, languages } = createDocument(lang, { 'sort-filter': 'id' })
   const context = vmContext(document, location, loading, captureHistory)
   vm.runInNewContext(sourceBundle('gallery'), context)
   await new Promise((resolve) => setImmediate(resolve))
   assert(context.__testRuntimeContext, 'Catalogue bundle lacks page runtime')
-  return { nodes, runtime: context.__testRuntimeContext, url: location }
+  return { nodes, languages, runtime: context.__testRuntimeContext, url: location }
 }
 
 export function assertForagePointReturn(link, base, lang, stage, context, fish, route) {

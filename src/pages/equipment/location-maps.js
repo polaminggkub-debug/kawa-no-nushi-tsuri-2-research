@@ -311,10 +311,10 @@ function fishLocationHeader(ctx, id, fish, title, labels, chosen) {
     : ''
   const intro =
     ctx.lang === 'th'
-      ? 'ดูจุดตก แล้วเลือกเหยื่อจากรายการด้านล่าง'
+      ? 'ดูจุดตก แล้วเทียบตัวเลือกในหมวดที่เลือกด้านล่าง'
       : ctx.lang === 'ja'
-        ? '釣り場を確認してから、下の対応エサを選びます。'
-        : 'Find a fishing spot, then choose compatible tackle below.'
+        ? '釣り場を確認してから、下で選択中のカテゴリーを比較します。'
+        : 'Find a fishing spot, then compare the selected equipment category below.'
   const profile = `<a class="fish-profile-link" href="${ctx.esc(ctx.fishHref(id))}">${labels.profileLabel} ↗</a>`
   const map = `<a class="map-browser-cta" href="${ctx.esc(fishMapHref(ctx, labels, id, chosen))}">${labels.pageLabel} ↗</a>`
   return `<div class="location-heading">${portrait}<div><h2>${ctx.esc(title)} — ${ctx.esc(ctx.fishName(id))}</h2><p>${intro}</p><nav class="fish-location-links">${profile}${map}</nav></div></div>`

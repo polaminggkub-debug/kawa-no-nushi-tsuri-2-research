@@ -417,3 +417,38 @@
   font-size: 13px;
   line-height: 1.6;
 }
+
+.notebook-verification {
+  margin: 12px 0;
+  padding: 10px 12px;
+  border-left: 3px solid var(--green);
+  border-radius: 0 8px 8px 0;
+  background: #eaf0e7;
+}
+
+.notebook-verification h4 {
+  margin: 0 0 5px;
+  font-size: 14px;
+}
+
+.notebook-verification p {
+  margin: 0;
+  font-size: 13px;
+  line-height: 1.55;
+}
+
+.notebook-verification a {
+  display: inline-block;
+  margin-top: 7px;
+  color: #245b4a;
+  font-size: 13px;
+  font-weight: 750;
+  line-height: 1.4;
+  overflow-wrap: anywhere;
+}
+
+.notebook-verification a:focus-visible {
+  border-radius: 4px;
+  outline: 2px solid #668f71;
+  outline-offset: 3px;
+}

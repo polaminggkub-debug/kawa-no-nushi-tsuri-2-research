@@ -263,6 +263,37 @@
       );
   }
 
+  // src/pages/equipment/category-navigation.js
+  var ROUTES = ["float", "sinker"];
+  var FLY_PARTS = ["fly", "fly_wing", "fly_tail"];
+  var STAGES = ["1", "2", "3", "4", "5", "6"];
+  function categoryNavigationHref(ctx, category, fish) {
+    const search = typeof location === "undefined" ? "" : location.search;
+    const query = new URLSearchParams(search);
+    query.set("category", category);
+    if (fish) query.set("fish", fish);
+    else query.delete("fish");
+    query.delete("q");
+    query.delete("style");
+    if (STAGES.includes(String(ctx.locationStage || ""))) query.set("stage", ctx.locationStage);
+    else query.delete("stage");
+    if (ROUTES.includes(ctx.baitRoute)) query.set("route", ctx.baitRoute);
+    else query.delete("route");
+    if (category === "flymaker" && FLY_PARTS.includes(ctx.flyPart)) query.set("part", ctx.flyPart);
+    else query.delete("part");
+    const map = Number(ctx.locationMapIndex);
+    if (query.has("map") || Number.isInteger(map) && map > 0) {
+      if (Number.isInteger(map) && map >= 0) query.set("map", String(map));
+      else query.delete("map");
+    }
+    return `?${query.toString()}#catalogue`;
+  }
+  function refreshCategoryNavigationLinks(ctx, fish) {
+    document.querySelectorAll("#category-menu [data-category]").forEach((link) => {
+      link.setAttribute("href", categoryNavigationHref(ctx, link.dataset.category, fish));
+    });
+  }
+
   // src/pages/equipment/category-controls.js
   function renderTargetCategories(ctx, fish) {
     const available = fish ? ctx.groups.filter((c) => ctx.fishCategories.includes(c)) : ctx.groups;
@@ -271,7 +302,10 @@
     select.value = !fish || ctx.fishCategories.includes(current) ? current : "all";
     document.getElementById("category-menu").innerHTML = available.map((c) => {
       const item = ctx.allItems.find((i) => ctx.groupOf(i) === c);
-      return `<a class="category-button" href="?category=${c}${fish ? "&fish=" + fish : ""}#catalogue" data-category="${c}"><img src="${ctx.esc(item?.image)}" alt=""><span><strong>${ctx.esc(ctx.player.cat[c])}</strong><small>${ctx.allItems.filter((i) => ctx.groupOf(i) === c && (!fish || ctx.fishIdsFor(i).includes(fish) || ["fly_wing", "fly_tail"].includes(i.category) && ctx.flyBundlePartFor(i, fish))).length}</small></span></a>`;
+      const count = ctx.allItems.filter(
+        (i) => fish && ["rod", "hook"].includes(c) ? ctx.groupOf(i) === c : ctx.groupOf(i) === c && (!fish || ctx.fishIdsFor(i).includes(fish) || ["fly_wing", "fly_tail"].includes(i.category) && ctx.flyBundlePartFor(i, fish))
+      ).length;
+      return `<a class="category-button" href="${ctx.esc(categoryNavigationHref(ctx, c, fish))}" data-category="${c}"><img src="${ctx.esc(item?.image)}" alt=""><span><strong>${ctx.esc(ctx.player.cat[c])}</strong><small>${count}</small></span></a>`;
     }).join("");
   }
   function renderFilters(ctx) {
@@ -283,7 +317,7 @@
     document.getElementById("sort-filter").innerHTML = `<option value="id">${ctx.esc(ctx.copy.sortId)}</option><option value="name">${ctx.esc(ctx.copy.sortName)}</option>`;
     document.getElementById("category-menu").innerHTML = ctx.groups.map((c) => {
       const i = ctx.allItems.find((i2) => ctx.groupOf(i2) === c);
-      return `<a class="category-button" href="?category=${c}#catalogue" data-category="${c}"><img src="${ctx.esc(i?.image)}" alt=""><span><strong>${ctx.esc(ctx.player.cat[c])}</strong><small>${ctx.allItems.filter((i2) => ctx.groupOf(i2) === c).length}</small></span></a>`;
+      return `<a class="category-button" href="${ctx.esc(categoryNavigationHref(ctx, c, document.getElementById("fish-filter").value))}" data-category="${c}"><img src="${ctx.esc(i?.image)}" alt=""><span><strong>${ctx.esc(ctx.player.cat[c])}</strong><small>${ctx.allItems.filter((i2) => ctx.groupOf(i2) === c).length}</small></span></a>`;
     }).join("");
   }
 
@@ -978,8 +1012,11 @@
       const route = link.dataset.route || link.getAttribute("href").split(/[?#]/)[0];
       link.dataset.route = route;
       const query = new URLSearchParams(current.search);
-      query.set("return", localizeSafeReturn(rawReturn, locale, baseHref));
-      link.href = `${route}?${query}${current.hash}`;
+      const safeReturn = localizeSafeReturn(rawReturn, locale, baseHref);
+      if (safeReturn) query.set("return", safeReturn);
+      else query.delete("return");
+      const params = query.toString();
+      link.href = `${route}${params ? `?${params}` : ""}${current.hash}`;
     });
   }
   function mapReturnAction(rawReturn, locale, baseHref) {
@@ -992,18 +1029,19 @@
     const rawReturn = new URLSearchParams(window.location.search).get("return") || "";
     const mapAction = mapReturnAction(rawReturn, ctx.lang, window.location.href);
     const action = mapAction || previousPageAction(rawReturn, ctx.lang, window.location.href);
-    if (!action) return;
-    const nav = document.querySelector(".hero-meta");
-    if (nav && !document.querySelector("[data-previous-page-return]")) {
-      const link = document.createElement("a");
-      link.className = mapAction ? "back-link map-return-link" : "back-link previous-page-return-link";
-      link.dataset.previousPageReturn = "true";
-      if (mapAction) link.dataset.mapReturn = "true";
-      link.href = action.href;
-      link.textContent = action.label;
-      nav.prepend(link);
+    if (action) {
+      const nav = document.querySelector(".hero-meta");
+      if (nav && !document.querySelector("[data-previous-page-return]")) {
+        const link = document.createElement("a");
+        link.className = mapAction ? "back-link map-return-link" : "back-link previous-page-return-link";
+        link.dataset.previousPageReturn = "true";
+        if (mapAction) link.dataset.mapReturn = "true";
+        link.href = action.href;
+        link.textContent = action.label;
+        nav.prepend(link);
+      }
     }
-    updateLanguageLinks(action.href, window.location.href);
+    updateLanguageLinks(rawReturn, window.location.href);
   }
   function mapReturnMarkup(ctx) {
     if (typeof window === "undefined") return "";
@@ -1163,7 +1201,7 @@
   }
   function fishLocationHeader(ctx, id, fish, title, labels, chosen) {
     const portrait = fish.image ? `<a href="${ctx.esc(ctx.fishHref(id))}" aria-label="${ctx.esc(ctx.fishName(id))} — ${ctx.detailLabel}"><img src="${ctx.esc(fish.image)}" alt=""></a>` : "";
-    const intro = ctx.lang === "th" ? "ดูจุดตก แล้วเลือกเหยื่อจากรายการด้านล่าง" : ctx.lang === "ja" ? "釣り場を確認してから、下の対応エサを選びます。" : "Find a fishing spot, then choose compatible tackle below.";
+    const intro = ctx.lang === "th" ? "ดูจุดตก แล้วเทียบตัวเลือกในหมวดที่เลือกด้านล่าง" : ctx.lang === "ja" ? "釣り場を確認してから、下で選択中のカテゴリーを比較します。" : "Find a fishing spot, then compare the selected equipment category below.";
     const profile = `<a class="fish-profile-link" href="${ctx.esc(ctx.fishHref(id))}">${labels.profileLabel} ↗</a>`;
     const map = `<a class="map-browser-cta" href="${ctx.esc(fishMapHref(ctx, labels, id, chosen))}">${labels.pageLabel} ↗</a>`;
     return `<div class="location-heading">${portrait}<div><h2>${ctx.esc(title)} — ${ctx.esc(ctx.fishName(id))}</h2><p>${intro}</p><nav class="fish-location-links">${profile}${map}</nav></div></div>`;
@@ -1942,6 +1980,7 @@
     ctx.renderTargetCategories(filters.fish);
     updateCatalogueLink(ctx, filters.fish);
     updateCatalogueUrl(ctx, filters.category, filters.fish, ctx.flyPart);
+    ctx.refreshLanguageLinks?.();
   }
   function routeLabels(ctx) {
     if (ctx.lang === "th") return { float: "ชุดทุ่น", sinker: "ชุดตะกั่ว / หน้าดิน" };
@@ -1973,6 +2012,7 @@
   }
   function fishMatchesItem(ctx, item, filters) {
     if (!filters.fish) return true;
+    if (["rod", "hook"].includes(filters.category)) return true;
     if (["bait", "lure", "fly", "float_weight"].includes(item.category) && ctx.fishIdsFor(item).includes(filters.fish))
       return true;
     return filters.category === "flymaker" && ctx.flyPart !== "fly" && ctx.flyBundlePartFor(item, filters.fish);
@@ -2018,6 +2058,13 @@
   }
   function fishStatus(ctx, filters) {
     if (!filters.fish) return "";
+    if (["rod", "hook"].includes(filters.category)) {
+      if (ctx.lang === "th")
+        return "แสดงอุปกรณ์ทั้งหมวดสำหรับเลือกทั่วไป ไม่ได้จัดว่าเหมาะกับปลานี้หรือช่วยเพิ่มโอกาสตกได้";
+      if (ctx.lang === "ja")
+        return "一般的な装備一覧です。この魚への適合や釣果向上を示すものではありません。";
+      return "Showing the full equipment category for general selection; this does not establish fish compatibility or a catch advantage.";
+    }
     if (filters.category === "bait") return ctx.player.fishOnly;
     if (filters.category === "flymaker" && ctx.flyPart !== "fly") {
       if (ctx.lang === "th")
@@ -2642,7 +2689,7 @@
     ctx.baitRoute = "float";
     ctx.decisions = [];
     ctx.gearPriceGuide = {};
-    ctx.fishCategories = ["all", "bait", "lure", "flymaker", "float_weight"];
+    ctx.fishCategories = ["all", "bait", "lure", "flymaker", "float_weight", "rod", "hook"];
     ctx.suggestionIds = [];
     ctx.activeSuggestion = -1;
     ctx.pickerCopy = {
@@ -2687,6 +2734,11 @@
 
   // src/pages/equipment/setup-navigation.js
   function setupNavigation(ctx) {
+    ctx.refreshLanguageLinks = () => {
+      if (typeof window === "undefined" || typeof document === "undefined") return;
+      const current = new URL(window.location.href);
+      updateLanguageLinks(current.searchParams.get("return") || "", current.href);
+    };
     ctx.sourceReturn = () => {
       if (typeof location === "undefined")
         return `index${ctx.lang === "en" ? "" : "." + ctx.lang}.html#catalogue`;
@@ -2859,6 +2911,8 @@
   function handleCategoryClick(ctx, event) {
     const link = event.target.closest("[data-category]");
     if (!link) return;
+    if (event.button !== void 0 && event.button !== 0 || event.metaKey || event.ctrlKey || event.shiftKey || event.altKey)
+      return;
     event.preventDefault();
     document.getElementById("category-filter").value = link.dataset.category;
     document.getElementById("search").value = "";
@@ -2868,8 +2922,13 @@
       history.replaceState(
         null,
         "",
-        `?category=${link.dataset.category}${document.getElementById("fish-filter").value ? "&fish=" + document.getElementById("fish-filter").value : ""}#catalogue`
+        categoryNavigationHref(
+          ctx,
+          link.dataset.category,
+          document.getElementById("fish-filter").value
+        )
       );
+    ctx.refreshLanguageLinks?.();
     document.getElementById("catalogue").scrollIntoView({ behavior: "smooth", block: "start" });
   }
   function handleBaitRouteClick(ctx, event) {
@@ -2906,11 +2965,13 @@
     ctx.locationMapIndex = 0;
     ctx.renderFishLocation(document.getElementById("fish-filter").value);
     ctx.renderDecisions(document.getElementById("category-filter").value);
+    refreshCategoryNavigationLinks(ctx, document.getElementById("fish-filter").value);
   }
   function handleLocationMapChange(ctx, event) {
     if (event.target.id !== "location-map-select") return;
     ctx.locationMapIndex = Number(event.target.value);
     ctx.renderFishLocation(document.getElementById("fish-filter").value);
+    refreshCategoryNavigationLinks(ctx, document.getElementById("fish-filter").value);
   }
   function bindFilterInputs(ctx) {
     const inputIds = ["search", "category-filter", "sort-filter", "style-filter"];
@@ -2945,7 +3006,7 @@
   }
   function loadCatalogue(ctx) {
     showCatalogueLoading(ctx);
-    fetch("gallery-data.json?v=compendium-20261005-24").then((response) => {
+    fetch("gallery-data.json?v=compendium-20261005-25").then((response) => {
       if (!response.ok) throw new Error("catalogue unavailable");
       return response.json();
     }).then((data) => initializeLoadedCatalogue(ctx, data)).catch((error) => {
