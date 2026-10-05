@@ -1348,6 +1348,7 @@
     if (ctx.returnPath) {
       const back = document.createElement("a");
       back.className = "back-link";
+      back.id = "map-source-back";
       back.href = ctx.returnPath;
       back.textContent = ctx.lang === "th" ? "← กลับหน้าที่เปิดแผนที่" : ctx.lang === "ja" ? "← 前のページに戻る" : "← Back to the page that opened this map";
       document.querySelector(".hero-meta").prepend(back);

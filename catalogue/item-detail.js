@@ -280,7 +280,7 @@
     }[ctx.lang];
   }
   function foodChoicePanel(ctx, item, allItems, sections) {
-    const copy3 = foodCopy(ctx);
+    const copy4 = foodCopy(ctx);
     const hpLabel = (hp) => ctx.lang === "th" ? `ฟื้น HP +${hp} หน่วย` : ctx.lang === "ja" ? `HP+${hp}回復` : `Restores +${hp} HP`;
     const foodOption = (other) => {
       const hp = other.playerUse?.hpRecovery?.hp;
@@ -290,12 +290,12 @@
     const alternatives = allItems.filter(
       (other) => other.category === "food" && other.id !== item.id && other.priceYen > 0 && other.playerUse?.shops?.some((shop) => Number(shop.stage) === ctx.selectedStage)
     );
-    const nearby = ctx.selectedStage ? `<h3>${ctx.esc(copy3[0])} · ${ctx.selectedStage}</h3><div class="detail-grid" data-local-food-options>${alternatives.map(foodOption).join("")}</div>` : "";
+    const nearby = ctx.selectedStage ? `<h3>${ctx.esc(copy4[0])} · ${ctx.selectedStage}</h3><div class="detail-grid" data-local-food-options>${alternatives.map(foodOption).join("")}</div>` : "";
     const catalogueOptions = allItems.filter((other) => other.category === "food" && other.priceYen > 0 && other.id !== item.id).map(foodOption).join("");
     const full = sections.map(
       (section) => `<h3>${ctx.esc(ctx.local(section.title))}</h3><p>${ctx.esc(ctx.local(section.recommendation))}</p><p class="muted">${ctx.esc(ctx.local(section.scope))}</p>`
     ).join("");
-    return `<section class="detail-section buying-decision" data-food-choice><p>${ctx.esc(copy3[2])}</p>${nearby}<details><summary>${ctx.esc(copy3[1])}</summary>${full}<div class="detail-grid" data-all-food-options>${catalogueOptions}</div></details></section>`;
+    return `<section class="detail-section buying-decision" data-food-choice><p>${ctx.esc(copy4[2])}</p>${nearby}<details><summary>${ctx.esc(copy4[1])}</summary>${full}<div class="detail-grid" data-all-food-options>${catalogueOptions}</div></details></section>`;
   }
 
   // src/pages/item/purchases.js
@@ -423,8 +423,8 @@
     if (!bundle) return { ...noBundleCopy(lang, item.id, fishName2), bundle: null, itemId: item.id };
     const body = nameForBundleItem(allItems, "fly", bundle.body);
     const supported = Boolean(fishId && (body?.playerUse?.fishIds || []).includes(fishId));
-    const copy3 = bundleCopy(lang, item, bundle, fishName2, supported);
-    return { ...copy3, bundle, supported, hasTarget: Boolean(fishId), itemId: item.id };
+    const copy4 = bundleCopy(lang, item, bundle, fishName2, supported);
+    return { ...copy4, bundle, supported, hasTarget: Boolean(fishId), itemId: item.id };
   }
   function actionLabel(lang, key, bundle) {
     const labels = {
@@ -622,11 +622,11 @@
     const ids = Array.isArray(use.fishIds) ? normalizedFishIds(use.fishIds) : [];
     const categories2 = ["lure", "fly", "bait", "float_weight", "general_tool"];
     if (!categories2.includes(item.category) || !ids.length && !routeKeys.length) return "";
-    const copy3 = steeringCopy(ctx);
-    const heading = steering ? copy3.title : rigRoute ? ctx.copy[`${rigRoute}FishHeading`] : ctx.copy.fish;
+    const copy4 = steeringCopy(ctx);
+    const heading = steering ? copy4.title : rigRoute ? ctx.copy[`${rigRoute}FishHeading`] : ctx.copy.fish;
     const groups = renderCompatibilityGroups(ctx, routes, routeKeys, ids, fishVisuals, fishLocations);
     const accepted = targetAccepted(ctx, routes, routeKeys, ids);
-    const status = ctx.selectedFish ? rigRoute ? routeTargetStatus(ctx, rigRoute, accepted) : targetStatus(ctx, routes, accepted, steering, copy3) : "";
+    const status = ctx.selectedFish ? rigRoute ? routeTargetStatus(ctx, rigRoute, accepted) : targetStatus(ctx, routes, accepted, steering, copy4) : "";
     const fishTarget = ctx.selectedFish ? `<p class="play-target"${rigRoute ? ` data-target-route="${rigRoute}"` : ""}><strong>${ctx.esc(ctx.copy.target)} · ${ctx.esc(ctx.fishName(ctx.selectedFish, fishVisuals))} (${ctx.esc(ctx.selectedFish)})</strong><br>${ctx.esc(status)}</p>${acceptedBaitLink(ctx, fishLocations, rigRoute)}` : "";
     const count = routeKeys.length ? new Set(Object.values(routes).flatMap(normalizedFishIds)).size : ids.length;
     const list = `<details class="compatibility-details"><summary>${ctx.esc(compatibilitySummary(ctx, count, steering, rigRoute))}</summary>${groups}</details>`;
@@ -835,13 +835,25 @@
     ].join("");
     return `<article class="detail-section" ${locationAnchor(loc, stage)}><h3>${ctx.esc(stageName2 + townLabel(ctx, loc))}</h3>${content}</article>`;
   }
+  function locationCards(ctx, item, locations, fishLocations, allItems, text3) {
+    if (!locations.length) return "";
+    const cards = locations.map((loc) => locationEntry(ctx, item, loc, fishLocations, allItems, text3)).join("");
+    const layout = locations.length === 1 ? "single-location" : "";
+    return `<div class="detail-grid tool-location-grid ${layout}">${cards}</div>`;
+  }
+  function groupedMagnetLocations(ctx, item, locations, fishLocations, allItems, text3) {
+    const current = locations.filter((loc) => Number(loc.stage) === Number(ctx.selectedStage));
+    const others = locations.filter((loc) => Number(loc.stage) !== Number(ctx.selectedStage));
+    const label = ctx.lang === "th" ? "ดูจุดออกในด่านอื่น" : ctx.lang === "ja" ? "他エリアの出口を見る" : "See exits in other areas";
+    return locationCards(ctx, item, current, fishLocations, allItems, text3) + (others.length ? `<details class="magnet-other-exits"><summary>${ctx.esc(label)} · ${others.length}</summary>${locationCards(ctx, item, others, fishLocations, allItems, text3)}</details>` : "");
+  }
   function useLocationSection(ctx, item, fishLocations, allItems) {
     const locations = item.playerUse?.useLocations || [];
     if (!locations.length) return "";
     const text3 = locationCopy(ctx);
-    const cards = locations.map((loc) => locationEntry(ctx, item, loc, fishLocations, allItems, text3)).join("");
-    const layout = locations.length === 1 ? "single-location" : "";
-    return `<section class="detail-section locations-section" id="use-locations"><h2>${ctx.esc(ctx.copy.useLocations)}</h2><div class="detail-grid tool-location-grid ${layout}">${cards}</div></section>`;
+    const grouped = item.category === "general_tool" && item.id === "0E" && Number(ctx.selectedStage) >= 1 && Number(ctx.selectedStage) <= 6;
+    const cards = grouped ? groupedMagnetLocations(ctx, item, locations, fishLocations, allItems, text3) : locationCards(ctx, item, locations, fishLocations, allItems, text3);
+    return `<section class="detail-section locations-section" id="use-locations"><h2>${ctx.esc(ctx.copy.useLocations)}</h2>${cards}</section>`;
   }
 
   // src/pages/item/actions.js
@@ -1033,9 +1045,82 @@
     return `<details class="more-options"><summary>${ctx.esc(title)}</summary><div class="detail-content">${content}</div></details>`;
   }
 
+  // src/pages/item/magnet-next-action.js
+  var copy = {
+    th: {
+      title: "ด่าน 6 ใช้แม่เหล็กแล้วไม่บอกทิศ: ทำอะไรต่อ?",
+      action: "ยังไม่ต้องซื้อแม่เหล็กเพิ่ม ใช้แผนที่เลือกปลาและจุดตกได้เลยระหว่างตรวจความคืบหน้าเรื่องราว",
+      notebook: "รวมจำนวนจากสมุดเกมทั้ง 6 หน้า ต้องบันทึกอย่างน้อย 65 ชนิดที่ต่างกันจาก 66 ชนิด ไม่ใช่ตก 65 ครั้ง และยังมีเงื่อนไขเรื่องราวอีกด้วย ครบ 65 ชนิดอย่างเดียวจึงไม่รับประกันว่าจะบอกทิศ",
+      checklist: "เทียบชื่อปลากับเช็กลิสต์สมุด",
+      map: "เลือกจุดตกด่าน 6 บนแผนที่",
+      postcard: "หลังเทียบสมุด ให้อ่านไปรษณียบัตรที่ได้รับ (06) ในเกม ถ้าข้อความหมอขอปลาไหลใหญ่ปรากฏ การอ่านครั้งนั้นจะเปิดทิศแม่เหล็กด่าน 6 ถ้ายังไม่ปรากฏ เงื่อนไขเรื่องราวอาจยังไม่ครบ",
+      mail: "ดูคำแนะนำไปรษณียบัตรและจุดปลาไหลใหญ่",
+      evidence: "เงื่อนไขที่ยืนยันและสิ่งที่ยังต้องค้นคว้า",
+      limit: "ROM ยืนยันจำนวนช่องสมุดและเงื่อนไขเรื่องราว แต่ยังไม่มีลำดับการเล่นตามปกติที่ยืนยันครบเพื่อเปิดเงื่อนไขนั้น เช็กลิสต์เว็บไม่อ่านเซฟเกมและไม่ปลดล็อกเกม",
+      source: "อ่านหลักฐานเงื่อนไขเรื่องราว",
+      noticeSource: "หลักฐานการอ่านไปรษณียบัตร",
+      general: "วิธีใช้แม่เหล็กทั่วไปและคำแนะนำซื้อ"
+    },
+    en: {
+      title: "No Magnet heading in Area 6: what next?",
+      action: "Do not buy another Magnet yet. Use the map to choose fish and fishing spots while checking story progress.",
+      notebook: "Add the counts on all six in-game notebook pages. At least 65 distinct species records out of 66 are required, not 65 catches. A story prerequisite is also required, so 65 records alone do not guarantee a heading.",
+      checklist: "Compare fish names with the notebook checklist",
+      map: "Choose Area 6 fishing spots on the map",
+      postcard: "After checking the notebook, read Received postcard 06 in the game. If the doctor’s giant-eel request appears, that read enables the Area 6 Magnet heading. If it does not appear, the story prerequisite may still be missing.",
+      mail: "See postcard guidance and the giant-eel point",
+      evidence: "Verified conditions and remaining research",
+      limit: "ROM evidence establishes the notebook count and story gate, but a complete ordinary-play sequence to unlock the prerequisite is not yet verified. The web checklist does not read your save or unlock the game.",
+      source: "Read the story-gate evidence",
+      noticeSource: "Postcard reader evidence",
+      general: "General Magnet use and buying advice"
+    },
+    ja: {
+      title: "エリア6で磁石が方角を示さないときは？",
+      action: "磁石をもう一つ買う必要はまだありません。物語の進行を確認する間も、地図で魚と釣り場を選べます。",
+      notebook: "ゲーム内の図鑑6ページの数を合計してください。66種類のうち異なる65種類以上の記録が必要です。65回釣るという意味ではありません。物語の前提条件もあるため、65種類だけで方角が出るとは限りません。",
+      checklist: "図鑑チェックリストと魚名を照合する",
+      map: "地図でエリア6の釣り場を選ぶ",
+      postcard: "図鑑を確認したら、ゲーム内で受け取ったハガキ06を読んでください。医者のオオウナギ依頼が出たとき、その読み取りでエリア6の磁石の方角表示が有効になります。出ない場合、物語の前提条件がまだ足りない可能性があります。",
+      mail: "ハガキの案内とオオウナギの地点を見る",
+      evidence: "確認した条件と未解決点",
+      limit: "ROMで図鑑の数と物語の条件を確認していますが、前提条件を解除する通常プレイの全手順は未検証です。ウェブのチェックリストはセーブを読み取らず、ゲームの条件も解除しません。",
+      source: "物語条件の根拠を読む",
+      noticeSource: "ハガキ読み取りの根拠",
+      general: "磁石の基本操作と購入の目安"
+    }
+  };
+  function returnQuery(ctx) {
+    const query = new URLSearchParams({ stage: "6" });
+    const returned = ctx.safeLocalRoute(ctx.currentLocalRoute());
+    if (returned) query.set("return", returned);
+    return query;
+  }
+  function generalUse(ctx, item, c) {
+    const summary = ctx.local(item.playerUse?.summary) || "";
+    const facts = item.playerUse?.facts?.[ctx.lang] || [];
+    const note = item[`imageNote${ctx.lang === "th" ? "Th" : ctx.lang === "ja" ? "Ja" : "En"}`] || "";
+    return `<details class="magnet-general-use"><summary>${ctx.esc(c.general)}</summary><p>${ctx.esc(summary)}</p><ul>${facts.map((fact) => `<li>${ctx.esc(fact)}</li>`).join("")}</ul><p class="muted">${ctx.esc(note)}</p></details>`;
+  }
+  function magnetNextAction(ctx, item, allItems) {
+    if (item.category !== "general_tool" || item.id !== "0E" || Number(ctx.selectedStage) !== 6)
+      return "";
+    const c = copy[ctx.lang] || copy.en;
+    const query = returnQuery(ctx);
+    const map = `${ctx.mapsPage[ctx.lang]}?${query}`;
+    const postcard = allItems.find(
+      (candidate) => candidate.category === "general_tool" && candidate.id === "06"
+    );
+    const mailQuery = returnQuery(ctx);
+    mailQuery.set("category", "general_tool");
+    mailQuery.set("id", "06");
+    const mail = postcard ? `<p>${ctx.esc(c.postcard)}</p><a class="route-button" data-magnet-mail href="${ctx.esc(ctx.localePage[ctx.lang] + "?" + mailQuery)}">${ctx.esc(c.mail)} ↗</a>` : "";
+    return `<section id="what-to-do" class="decision-panel magnet-next-action" data-magnet-next-action><h2>${ctx.esc(c.title)}</h2><p class="rod-verdict">${ctx.esc(c.action)}</p><p>${ctx.esc(c.notebook)}</p><p><a class="route-button" data-magnet-notebook href="${ctx.esc(map + "#notebook-guide")}">${ctx.esc(c.checklist)} ↗</a></p><p><a class="route-button" data-magnet-map href="${ctx.esc(map + "#map-view")}">${ctx.esc(c.map)} ↗</a></p>${mail}${generalUse(ctx, item, c)}<details class="magnet-story-evidence"><summary>${ctx.esc(c.evidence)}</summary><p>${ctx.esc(c.limit)}</p><a href="../docs/magnet-story-gate-research.md">${ctx.esc(c.source)} ↗</a><br><a href="../docs/quest-tool-use-research.md">${ctx.esc(c.noticeSource)} ↗</a></details></section>`;
+  }
+
   // src/pages/item/fly-price-choice.js
   var categories = ["fly", "fly_wing", "fly_tail"];
-  var copy = {
+  var copy2 = {
     th: {
       title: "ซื้อสำเร็จรูปหรือประกอบเอง?",
       contribution: (price) => `ชิ้นนี้เพิ่ม ${price} เยนในราคาฟลายที่ประกอบเอง`,
@@ -1129,7 +1214,7 @@
   function flyPriceChoice(ctx, item, allItems) {
     if (!categories.includes(item.category) || !verifiedMenu(item) || !Number.isFinite(item.priceYen) || item.priceYen < 0)
       return "";
-    const c = copy[ctx.lang] || copy.en;
+    const c = copy2[ctx.lang] || copy2.en;
     const comparisons = flyAssemblies(ctx, item, allItems).map((assembly) => comparisonMarkup(ctx, assembly, allItems, c)).join("");
     return `<section id="fly-price-choice" class="detail-section fly-price-choice" data-fly-price-choice="${ctx.esc(item.category)}:${ctx.esc(item.id)}"><h2>${ctx.esc(c.title)}</h2><p><strong>${ctx.esc(c.contribution(item.priceYen))}</strong></p><p>${ctx.esc(c.rule)}</p>${comparisons ? `<div class="detail-grid">${comparisons}</div>` : ""}<a class="route-button" href="#fly-menu-position">${ctx.esc(c.menu)} ↘</a><details class="fly-price-evidence"><summary>${ctx.esc(c.evidence)}</summary><p>${ctx.esc(c.limit)}</p><a href="../docs/fly-maker-menu-research.md">${ctx.esc(c.sources)} ↗</a></details></section>`;
   }
@@ -1223,48 +1308,48 @@
       controlledLimit: "ตรวจตำแหน่งซ้ำอย่างอิสระจากเมนูด่านเลขคู่ที่จำลองในสภาวะควบคุม ยืนยันช่องเลือกชิ้นส่วน แต่ยังไม่ได้ยืนยันเส้นทางเดินหรือการเข้าร้านจากการเล่นปกติ ไม่ได้พิสูจน์ว่าปลากินหรือตกขึ้นง่ายกว่า ตรวจราคาสุทธิก่อนจ่าย"
     }
   };
-  function instructionsFor(copy3, row, column) {
-    return [column > 1 ? copy3.right(column - 1) : "", row > 1 ? copy3.down(row - 1) : "", copy3.confirm].filter(Boolean).join(" → ");
+  function instructionsFor(copy4, row, column) {
+    return [column > 1 ? copy4.right(column - 1) : "", row > 1 ? copy4.down(row - 1) : "", copy4.confirm].filter(Boolean).join(" → ");
   }
   function otherFamilyCopy(lang, choice) {
-    const copy3 = otherFamilies[lang] || otherFamilies.en;
-    const family = copy3.family[choice.familyJa] || choice.familyJa;
+    const copy4 = otherFamilies[lang] || otherFamilies.en;
+    const family = copy4.family[choice.familyJa] || choice.familyJa;
     const area = choice.area || 1;
     return {
       ...mayfly[lang],
-      scope: choice.controlledFixture ? copy3.controlledScope(family, choice.familyJa) : copy3.scope(area, family, choice.familyJa),
-      limit: choice.controlledFixture ? copy3.controlledLimit : copy3.limit(area, family),
-      none: copy3.none,
-      directQuote: copy3.directQuote
+      scope: choice.controlledFixture ? copy4.controlledScope(family, choice.familyJa) : copy4.scope(area, family, choice.familyJa),
+      limit: choice.controlledFixture ? copy4.controlledLimit : copy4.limit(area, family),
+      none: copy4.none,
+      directQuote: copy4.directQuote
     };
   }
-  function nonePositionInstructions(copy3, choice, lang) {
+  function nonePositionInstructions(copy4, choice, lang) {
     const row = choice.nonePosition?.row;
     const column = choice.nonePosition?.column;
     if (!row || !column) return "";
     const movement = [
-      column > 1 ? copy3.right(column - 1) : "",
-      row > 1 ? copy3.down(row - 1) : "",
-      copy3.confirm
+      column > 1 ? copy4.right(column - 1) : "",
+      row > 1 ? copy4.down(row - 1) : "",
+      copy4.confirm
     ].filter(Boolean).join(" → ");
     const part = choice.part === "wing" ? { en: "wing", ja: "ウィング", th: "ปีก" } : { en: "tail", ja: "テール", th: "หาง" };
-    return copy3.none(part[lang], movement);
+    return copy4.none(part[lang], movement);
   }
   function flyMenuPosition(ctx, item) {
     const choice = item.flyMakerMenuChoice;
     if (!choice) return "";
     const lang = ctx.lang in mayfly ? ctx.lang : "en";
     const isMayfly = !choice.familyJa || choice.familyJa === "メイフライ";
-    const copy3 = isMayfly ? mayfly[lang] : otherFamilyCopy(lang, choice);
-    const instructions = instructionsFor(copy3, choice.row, choice.column);
-    const position = copy3.position(choice.row, choice.column);
-    const noneInstructions = isMayfly && choice.part === "tail" ? `<p class="fly-menu-none-tail">${ctx.esc(copy3.noneTail)}</p>` : choice.nonePosition ? `<p class="fly-menu-none-tail">${ctx.esc(nonePositionInstructions(copy3, choice, lang))}</p>` : "";
-    const nextStep = choice.nextStep === "quote" ? `<p class="fly-menu-next-step rod-verdict">${ctx.esc(copy3.directQuote)}</p>` : "";
-    return `<section id="fly-menu-position" class="detail-section fly-menu-position" data-fly-menu-position="${ctx.esc(item.category)}:${ctx.esc(item.id)}"><h2>${ctx.esc(copy3.title)}</h2><p>${ctx.esc(copy3.scope)}</p><p><strong>${ctx.esc(position)}</strong> · ${ctx.esc(copy3.start)}</p><p class="rod-verdict">${ctx.esc(instructions)}</p>${noneInstructions}${nextStep}<figure><a href="${ctx.esc(choice.image)}" target="_blank" rel="noopener"><img src="${ctx.esc(choice.image)}" alt="${ctx.esc(position)}" width="256" height="224" loading="lazy"></a><figcaption>${ctx.esc(copy3.caption)}</figcaption></figure><details><summary>${ctx.esc(copy3.evidence)}</summary><p>${ctx.esc(copy3.limit)}</p><a href="${ctx.esc(choice.evidenceHref)}">${ctx.esc(copy3.notes)} ↗</a></details></section>`;
+    const copy4 = isMayfly ? mayfly[lang] : otherFamilyCopy(lang, choice);
+    const instructions = instructionsFor(copy4, choice.row, choice.column);
+    const position = copy4.position(choice.row, choice.column);
+    const noneInstructions = isMayfly && choice.part === "tail" ? `<p class="fly-menu-none-tail">${ctx.esc(copy4.noneTail)}</p>` : choice.nonePosition ? `<p class="fly-menu-none-tail">${ctx.esc(nonePositionInstructions(copy4, choice, lang))}</p>` : "";
+    const nextStep = choice.nextStep === "quote" ? `<p class="fly-menu-next-step rod-verdict">${ctx.esc(copy4.directQuote)}</p>` : "";
+    return `<section id="fly-menu-position" class="detail-section fly-menu-position" data-fly-menu-position="${ctx.esc(item.category)}:${ctx.esc(item.id)}"><h2>${ctx.esc(copy4.title)}</h2><p>${ctx.esc(copy4.scope)}</p><p><strong>${ctx.esc(position)}</strong> · ${ctx.esc(copy4.start)}</p><p class="rod-verdict">${ctx.esc(instructions)}</p>${noneInstructions}${nextStep}<figure><a href="${ctx.esc(choice.image)}" target="_blank" rel="noopener"><img src="${ctx.esc(choice.image)}" alt="${ctx.esc(position)}" width="256" height="224" loading="lazy"></a><figcaption>${ctx.esc(copy4.caption)}</figcaption></figure><details><summary>${ctx.esc(copy4.evidence)}</summary><p>${ctx.esc(copy4.limit)}</p><a href="${ctx.esc(choice.evidenceHref)}">${ctx.esc(copy4.notes)} ↗</a></details></section>`;
   }
 
   // src/pages/item/bait-acquisition.js
-  var copy2 = {
+  var copy3 = {
     th: {
       title: "หาเหยื่อ 0D ในเมืองแทนการหาร้านขาย",
       body: "ถ้ามีแว่นขยาย 03: เข้าเมืองทางเข้าลำดับที่ 2 ซึ่งพามา X7,Y29 หยุดเดินแล้วใช้แว่นขยายบนช่องที่ต่างจากช่องที่ใช้แว่นขยายครั้งก่อน กองเหยื่อเดิมต้องยังไม่เต็ม 9 หรือมีช่องเหยื่อว่าง ได้ 1–4 ชิ้นตามพื้นที่ว่างในกอง สูงสุด 9 ชิ้น ขยับช่องก่อนค้นซ้ำ",
@@ -1289,7 +1374,7 @@
   };
   function townPasteBaitAction(ctx, item) {
     if (item.category !== "bait" || item.id !== "0D") return "";
-    const text3 = copy2[ctx.lang] || copy2.en;
+    const text3 = copy3[ctx.lang] || copy3.en;
     const stage = String(ctx.selectedStage || 1);
     const suffix = ctx.lang === "en" ? "" : `.${ctx.lang}`;
     const query = new URLSearchParams({ stage, place: "town", entrance: "1" });
@@ -1905,7 +1990,7 @@
     const target = renderFishTarget(ctx, fishVisuals, fishLocations);
     const baitTarget = renderBaitTarget(ctx, item, fishVisuals, fishLocations);
     const note = item[`imageNote${ctx.lang === "th" ? "Th" : ctx.lang === "ja" ? "Ja" : "En"}`] || "";
-    const action = renderDecisionSection(ctx, item, summary, facts, note, {
+    const action = magnetNextAction(ctx, item, allItems) || renderDecisionSection(ctx, item, summary, facts, note, {
       allItems,
       fishVisuals,
       fishLocations

@@ -93,3 +93,5 @@ await import('./strategy-target-action.mjs')
 await import('./postcard-next-action.mjs')
 
 await import('./fly-price-choice.mjs')
+
+await import('./magnet-next-action.mjs')

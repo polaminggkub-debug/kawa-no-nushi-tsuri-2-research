@@ -1,3 +1,4 @@
+import { magnetNextAction } from './magnet-next-action.js'
 import { flyPriceChoice } from './fly-price-choice.js'
 import { flyMenuPosition } from './fly-menu-position.js'
 import { townPasteBaitAction } from './bait-acquisition.js'
@@ -269,11 +270,13 @@ function renderItemSections(ctx, item, allItems, fishVisuals, fishLocations, dec
   const target = renderFishTarget(ctx, fishVisuals, fishLocations)
   const baitTarget = renderBaitTarget(ctx, item, fishVisuals, fishLocations)
   const note = item[`imageNote${ctx.lang === 'th' ? 'Th' : ctx.lang === 'ja' ? 'Ja' : 'En'}`] || ''
-  const action = renderDecisionSection(ctx, item, summary, facts, note, {
-    allItems,
-    fishVisuals,
-    fishLocations,
-  })
+  const action =
+    magnetNextAction(ctx, item, allItems) ||
+    renderDecisionSection(ctx, item, summary, facts, note, {
+      allItems,
+      fishVisuals,
+      fishLocations,
+    })
   const extras = renderQuickOptions(ctx, item, allItems, fishLocations)
   const rodAdvice = item.rodDecision || item.gearDecision || item.baitLureDecision
   const buying = rodAdvice ? '' : ctx.buyingDecision(item, allItems, decisions)

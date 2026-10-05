@@ -224,13 +224,43 @@ function locationEntry(ctx, item, loc, fishLocations, allItems, text) {
   return `<article class="detail-section" ${locationAnchor(loc, stage)}><h3>${ctx.esc(stageName + townLabel(ctx, loc))}</h3>${content}</article>`
 }
 
-export function useLocationSection(ctx, item, fishLocations, allItems) {
-  const locations = item.playerUse?.useLocations || []
+function locationCards(ctx, item, locations, fishLocations, allItems, text) {
   if (!locations.length) return ''
-  const text = locationCopy(ctx)
   const cards = locations
     .map((loc) => locationEntry(ctx, item, loc, fishLocations, allItems, text))
     .join('')
   const layout = locations.length === 1 ? 'single-location' : ''
-  return `<section class="detail-section locations-section" id="use-locations"><h2>${ctx.esc(ctx.copy.useLocations)}</h2><div class="detail-grid tool-location-grid ${layout}">${cards}</div></section>`
+  return `<div class="detail-grid tool-location-grid ${layout}">${cards}</div>`
+}
+
+function groupedMagnetLocations(ctx, item, locations, fishLocations, allItems, text) {
+  const current = locations.filter((loc) => Number(loc.stage) === Number(ctx.selectedStage))
+  const others = locations.filter((loc) => Number(loc.stage) !== Number(ctx.selectedStage))
+  const label =
+    ctx.lang === 'th'
+      ? 'ดูจุดออกในด่านอื่น'
+      : ctx.lang === 'ja'
+        ? '他エリアの出口を見る'
+        : 'See exits in other areas'
+  return (
+    locationCards(ctx, item, current, fishLocations, allItems, text) +
+    (others.length
+      ? `<details class="magnet-other-exits"><summary>${ctx.esc(label)} · ${others.length}</summary>${locationCards(ctx, item, others, fishLocations, allItems, text)}</details>`
+      : '')
+  )
+}
+
+export function useLocationSection(ctx, item, fishLocations, allItems) {
+  const locations = item.playerUse?.useLocations || []
+  if (!locations.length) return ''
+  const text = locationCopy(ctx)
+  const grouped =
+    item.category === 'general_tool' &&
+    item.id === '0E' &&
+    Number(ctx.selectedStage) >= 1 &&
+    Number(ctx.selectedStage) <= 6
+  const cards = grouped
+    ? groupedMagnetLocations(ctx, item, locations, fishLocations, allItems, text)
+    : locationCards(ctx, item, locations, fishLocations, allItems, text)
+  return `<section class="detail-section locations-section" id="use-locations"><h2>${ctx.esc(ctx.copy.useLocations)}</h2>${cards}</section>`
 }
