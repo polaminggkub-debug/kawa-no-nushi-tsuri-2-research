@@ -71,6 +71,7 @@ export const text_ja = {
   ayuFish: 'アユの釣り場を見る ↗',
   noPrice: '個別の販売価格は未確認',
   price: (n) => `${n}円`,
+  foodRecovery: (hp) => `最大${hp} HP回復`,
   returnItem: '← 店を開いたページに戻る',
   returnCatalogue: '← アイテム一覧',
   technical: 'ROMの根拠',

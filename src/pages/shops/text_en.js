@@ -75,6 +75,7 @@ export const text_en = {
   ayuFish: 'Find Ayu fishing spots ↗',
   noPrice: 'No separate price confirmed',
   price: (n) => `¥${n}`,
+  foodRecovery: (hp) => `Restores up to ${hp} HP`,
   returnItem: '← Back to the page that opened this shop',
   returnCatalogue: '← Item catalogue',
   technical: 'ROM evidence',

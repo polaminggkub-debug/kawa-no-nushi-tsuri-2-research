@@ -78,6 +78,8 @@ await import('./hook-target-links.mjs')
 await import('./map-focus-action.mjs')
 
 await import('./shop-fish-decisions.mjs')
+await import('./shop-food-recovery-labels.mjs')
+await import('./canonical-category-decisions.mjs')
 await import('./map-notebook-exclusions.mjs')
 
 await import('./gear-guide-context.mjs')

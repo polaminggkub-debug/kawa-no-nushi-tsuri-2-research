@@ -78,7 +78,7 @@ function compatibleSection(ctx, state) {
 }
 
 function profileContent(ctx, fishData, fish, state) {
-  return `${renderProfileHero(ctx, state)}${renderFirstStep(ctx)}${ctx.renderWaterIcons(fishData.waterIcons, state.activeStage)}${ctx.renderExchange(fishData.items || [], state.activeStage)}${ctx.renderAreas(state.locations, state.activeStage, fish)}${ctx.renderShopping(state.matches, state.locations, state.activeStage, fishData.items || [], fishData.flyBackupChoices)}${compatibleSection(ctx, state)}${ctx.renderEvidence(fish, state.locations, state.matches)}`
+  return `${renderProfileHero(ctx, state)}${renderFirstStep(ctx)}${ctx.renderAreas(state.locations, state.activeStage, fish)}${ctx.renderExchange(fishData.items || [], state.activeStage)}${ctx.renderShopping(state.matches, state.locations, state.activeStage, fishData.items || [], fishData.flyBackupChoices)}${compatibleSection(ctx, state)}${ctx.renderWaterIcons(fishData.waterIcons, state.activeStage)}${ctx.renderEvidence(fish, state.locations, state.matches)}`
 }
 
 function unconfirmedProfileContent(ctx, fish, state) {

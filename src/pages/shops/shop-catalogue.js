@@ -247,6 +247,11 @@ export function offerCard(ctx, item, options = {}) {
   const name = ctx.itemName(item)
   const compatibility = shopCompatibility(ctx, item)
   const price = item.priceYen != null ? ctx.text.price(item.priceYen) : ctx.text.noPrice
+  const recoveryHp = item.category === 'food' ? item.playerUse?.hpRecovery?.hp : null
+  const recovery =
+    Number.isSafeInteger(recoveryHp) && recoveryHp > 0
+      ? `<p class="food-recovery">${ctx.esc(ctx.text.foodRecovery(recoveryHp))}</p>`
+      : ''
   const extra = canHaveCondition
     ? `<p class="condition"><strong>${ctx.esc(ctx.text.conditionTitle)}:</strong> ${ctx.esc(ctx.text.ayu)} <a href="${ctx.esc(ctx.fishHref('38'))}">${ctx.esc(ctx.text.ayuFish)}</a></p>`
     : ''
@@ -255,7 +260,7 @@ export function offerCard(ctx, item, options = {}) {
       <a class="offer-image-link" href="${ctx.esc(ctx.itemHref(item))}"><img loading="lazy" src="${ctx.esc(image)}" alt="${ctx.esc(name)}"></a>
       <p class="small-id">${ctx.esc(ctx.catName(item.category))} · ID ${ctx.esc(item.id)}</p>
       <h4><a href="${ctx.esc(ctx.itemHref(item))}">${ctx.esc(name)}</a></h4>
-      <p class="price">${ctx.esc(price)}</p>${shopCompatibilityBadge(ctx, item, compatibility)}${canHaveCondition ? `<p class="condition-label">${ctx.esc(ctx.text.soldConditional)}</p>` : ''}${extra}
+      <p class="price">${ctx.esc(price)}</p>${recovery}${shopCompatibilityBadge(ctx, item, compatibility)}${canHaveCondition ? `<p class="condition-label">${ctx.esc(ctx.text.soldConditional)}</p>` : ''}${extra}
     </article>`
 }
 

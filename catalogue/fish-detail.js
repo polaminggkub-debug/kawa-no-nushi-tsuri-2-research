@@ -1131,7 +1131,7 @@
     return `<section id="all-compatible" class="detail-section"><h2>${ctx.escapeHtml(ctx.copy.compatible)}</h2><p class="section-lede">${ctx.escapeHtml(ctx.copy.compatibilityNote)}</p><p>${ctx.escapeHtml(compatibilityIntro(ctx))}</p>${ctx.renderCompatibility(state.matches, state.activeStage)}</section>`;
   }
   function profileContent(ctx, fishData, fish, state) {
-    return `${renderProfileHero(ctx, state)}${renderFirstStep(ctx)}${ctx.renderWaterIcons(fishData.waterIcons, state.activeStage)}${ctx.renderExchange(fishData.items || [], state.activeStage)}${ctx.renderAreas(state.locations, state.activeStage, fish)}${ctx.renderShopping(state.matches, state.locations, state.activeStage, fishData.items || [], fishData.flyBackupChoices)}${compatibleSection(ctx, state)}${ctx.renderEvidence(fish, state.locations, state.matches)}`;
+    return `${renderProfileHero(ctx, state)}${renderFirstStep(ctx)}${ctx.renderAreas(state.locations, state.activeStage, fish)}${ctx.renderExchange(fishData.items || [], state.activeStage)}${ctx.renderShopping(state.matches, state.locations, state.activeStage, fishData.items || [], fishData.flyBackupChoices)}${compatibleSection(ctx, state)}${ctx.renderWaterIcons(fishData.waterIcons, state.activeStage)}${ctx.renderEvidence(fish, state.locations, state.matches)}`;
   }
   function unconfirmedProfileContent(ctx, fish, state) {
     const evidence = ctx.renderEvidence(fish, state.locations, state.matches).replace(
@@ -1213,7 +1213,7 @@
     lure: "Lures",
     fly: "Fly bodies",
     firstStep: "Start with the map, then choose your gear",
-    firstStepBody: "Select an area below to see this fish’s ROM-derived map points and the lowest-priced compatible shop option recorded for that area. Keep compatible gear you already own. Passing the recorded check does not guarantee a bite or a landed fish.",
+    firstStepBody: "Choose an area to find fishing points, then choose a tackle setup below for your fishing method.",
     chooseSpots: "Choose a fishing area",
     compatible: "ROM-confirmed compatibility",
     compatibilityNote: "These entries pass the recorded bait, lure, or fly fish check for this profile. That does not guarantee a bite or a landed catch. Rod or hook bonuses for this individual fish are not established here.",
@@ -1254,7 +1254,7 @@
     lure: "ルアー",
     fly: "フライ本体",
     firstStep: "まずマップを見てから道具を選ぶ",
-    firstStepBody: "エリアを選ぶと、ROMから抽出したこの魚のポイントと、そのエリアで販売記録がある最安の対応候補を表示します。対応する道具を持っていれば使い続けてください。判定を通っても、食いつきや取り込みは保証されません。",
+    firstStepBody: "エリアを選んで釣りポイントを確認し、下から自分の釣り方に合う道具セットを選んでください。",
     chooseSpots: "釣るエリアを選ぶ",
     compatible: "ROMで確認した対応条件",
     compatibilityNote: "各項目は、このプロフィールに対するエサ・ルアー・フライの魚判定を通過します。食いつきや取り込みを保証しません。この魚だけに有効な竿やハリのボーナスも確認していません。",
@@ -1295,7 +1295,7 @@
     lure: "เหยื่อปลอม",
     fly: "ตัวฟลาย",
     firstStep: "เริ่มจากดูแผนที่ แล้วค่อยเลือกอุปกรณ์",
-    firstStepBody: "เลือกด่านด้านล่างเพื่อดูจุดเกิดปลาที่ถอดจาก ROM และตัวเลือกเหยื่อที่ผ่านเงื่อนไขซึ่งมีข้อมูลร้านในด่านนั้น ถ้ามีอุปกรณ์ที่ผ่านเงื่อนไขอยู่แล้วใช้ต่อได้ การผ่านเงื่อนไขไม่ได้รับประกันว่าปลาจะกินหรือดึงขึ้นได้",
+    firstStepBody: "เลือกด่านเพื่อดูจุดตก แล้วเลือกชุดอุปกรณ์ด้านล่างตามวิธีที่คุณเล่น",
     chooseSpots: "เลือกด่านที่จะไปตก",
     compatible: "เหยื่อที่ผ่านเงื่อนไขใน ROM",
     compatibilityNote: "รายการนี้ผ่านด่านตรวจเหยื่อจริง เหยื่อปลอม หรือตัวฟลายของโปรไฟล์ปลานี้ ไม่ได้รับประกันว่าปลาจะกินหรือดึงขึ้นมาได้ และยังไม่มีหลักฐานว่าคันหรือตะขอได้โบนัสเฉพาะปลาชนิดนี้",

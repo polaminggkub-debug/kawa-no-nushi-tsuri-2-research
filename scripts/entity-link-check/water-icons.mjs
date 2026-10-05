@@ -47,10 +47,23 @@ function checkRenderPlacement() {
   const end = source.indexOf('function unconfirmedProfileContent(', start)
   assert(start >= 0 && end > start, 'Fish profile renderer boundary not found')
   const content = source.slice(start, end)
-  const firstStep = content.indexOf('renderFirstStep(ctx)')
-  const waterIcons = content.indexOf('ctx.renderWaterIcons(')
-  const map = content.indexOf('ctx.renderAreas(')
-  assert(firstStep >= 0 && waterIcons > firstStep && map > waterIcons)
+  const sections = [
+    'renderFirstStep(ctx)',
+    'ctx.renderAreas(',
+    'ctx.renderExchange(',
+    'ctx.renderShopping(',
+    'compatibleSection(ctx, state)',
+    'ctx.renderWaterIcons(',
+    'ctx.renderEvidence(',
+  ].map((section) => content.indexOf(section))
+  assert(
+    sections.every((position) => position >= 0),
+    'Fish action section is missing',
+  )
+  assert(
+    sections.every((position, index) => index === 0 || sections[index - 1] < position),
+    'Fish page must show map and shopping actions before water-mark research',
+  )
 }
 
 async function checkLocalizedCards(locale) {

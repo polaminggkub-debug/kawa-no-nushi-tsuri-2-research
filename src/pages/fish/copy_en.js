@@ -11,7 +11,7 @@ export const copy_en = {
   fly: 'Fly bodies',
   firstStep: 'Start with the map, then choose your gear',
   firstStepBody:
-    'Select an area below to see this fish’s ROM-derived map points and the lowest-priced compatible shop option recorded for that area. Keep compatible gear you already own. Passing the recorded check does not guarantee a bite or a landed fish.',
+    'Choose an area to find fishing points, then choose a tackle setup below for your fishing method.',
   chooseSpots: 'Choose a fishing area',
   compatible: 'ROM-confirmed compatibility',
   compatibilityNote:

@@ -71,6 +71,7 @@ export const text_th = {
   ayuFish: 'ดูจุดตกปลาอายุ ↗',
   noPrice: 'ยังไม่มีราคาขายแยกที่ยืนยันได้',
   price: (n) => `${n} เยน`,
+  foodRecovery: (hp) => `ฟื้นได้สูงสุด ${hp} HP`,
   returnItem: '← กลับหน้าที่เปิดร้านนี้',
   returnCatalogue: '← คลังไอเท็ม',
   technical: 'หลักฐานจาก ROM',

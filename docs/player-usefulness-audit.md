@@ -373,3 +373,26 @@ now distinguishes maker slot 10 in towns 7–9 from the special-rod NPC in towns
 endpoints in areas 1–3, falling back to the first recorded maker where needed.
 The renderer preserves controller-replay limits and does not imply story access,
 a clear walk, or fishing superiority. See fly-maker-access-research.md.
+
+## 2026-10-05: shop recovery choices and one recommendation location
+
+A rendered Area 1 shop showed only orange/rice-ball names and prices. Shop food
+cards now expose their ROM-backed numeric recovery, qualified as an upper limit
+because recovery cannot exceed missing HP. No recovery is inferred from an item
+price, and quest/conditional-sale information is retained.
+
+Equipment purchase recommendations now have one canonical category disclosure.
+The general quick guide keeps the pre-fishing HP tip and links to that disclosure
+instead of repeating its cards. All-category browsing retains all recommendations;
+category/style filtering retains matching advice. A link opens the disclosure and
+is omitted where no disclosure exists.
+
+Fish detail pages now put area maps and equipment choices before the water-mark
+explanation. Their opening instruction is shorter; compatibility limits, all icon
+classes, exchange actions, and technical evidence remain available.
+
+Local browser review exercised food card to detail and return, the quick-guide
+link opening four rod recommendations, and fish 06's map-before-shopping flow.
+Mobile shop rendering was also inspected at 390px. This is a bounded improvement;
+the full-site usefulness goal remains active, and these checks are not a natural
+playthrough or proof that every research uncertainty has been resolved.

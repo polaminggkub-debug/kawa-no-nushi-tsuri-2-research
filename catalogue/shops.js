@@ -736,13 +736,15 @@
     const name = ctx.itemName(item);
     const compatibility = shopCompatibility(ctx, item);
     const price = item.priceYen != null ? ctx.text.price(item.priceYen) : ctx.text.noPrice;
+    const recoveryHp = item.category === "food" ? item.playerUse?.hpRecovery?.hp : null;
+    const recovery = Number.isSafeInteger(recoveryHp) && recoveryHp > 0 ? `<p class="food-recovery">${ctx.esc(ctx.text.foodRecovery(recoveryHp))}</p>` : "";
     const extra = canHaveCondition ? `<p class="condition"><strong>${ctx.esc(ctx.text.conditionTitle)}:</strong> ${ctx.esc(ctx.text.ayu)} <a href="${ctx.esc(ctx.fishHref("38"))}">${ctx.esc(ctx.text.ayuFish)}</a></p>` : "";
     return `<article class="offer-card${target ? " is-target" : ""}" data-offer="${ctx.esc(item.category)}:${ctx.esc(item.id)}">
       ${target ? `<span class="target-badge">${ctx.esc(ctx.text.targetBadge)}</span>` : ""}${special ? `<span class="shop-kind">${ctx.esc(ctx.text.special)}</span>` : ""}
       <a class="offer-image-link" href="${ctx.esc(ctx.itemHref(item))}"><img loading="lazy" src="${ctx.esc(image)}" alt="${ctx.esc(name)}"></a>
       <p class="small-id">${ctx.esc(ctx.catName(item.category))} · ID ${ctx.esc(item.id)}</p>
       <h4><a href="${ctx.esc(ctx.itemHref(item))}">${ctx.esc(name)}</a></h4>
-      <p class="price">${ctx.esc(price)}</p>${shopCompatibilityBadge(ctx, item, compatibility)}${canHaveCondition ? `<p class="condition-label">${ctx.esc(ctx.text.soldConditional)}</p>` : ""}${extra}
+      <p class="price">${ctx.esc(price)}</p>${recovery}${shopCompatibilityBadge(ctx, item, compatibility)}${canHaveCondition ? `<p class="condition-label">${ctx.esc(ctx.text.soldConditional)}</p>` : ""}${extra}
     </article>`;
   }
   function bundleCard(ctx, bundle, stage, items, target) {
@@ -1101,6 +1103,7 @@
     ayuFish: "Find Ayu fishing spots ↗",
     noPrice: "No separate price confirmed",
     price: (n) => `¥${n}`,
+    foodRecovery: (hp) => `Restores up to ${hp} HP`,
     returnItem: "← Back to the page that opened this shop",
     returnCatalogue: "← Item catalogue",
     technical: "ROM evidence",
@@ -1186,6 +1189,7 @@
     ayuFish: "ดูจุดตกปลาอายุ ↗",
     noPrice: "ยังไม่มีราคาขายแยกที่ยืนยันได้",
     price: (n) => `${n} เยน`,
+    foodRecovery: (hp) => `ฟื้นได้สูงสุด ${hp} HP`,
     returnItem: "← กลับหน้าที่เปิดร้านนี้",
     returnCatalogue: "← คลังไอเท็ม",
     technical: "หลักฐานจาก ROM",
@@ -1271,6 +1275,7 @@
     ayuFish: "アユの釣り場を見る ↗",
     noPrice: "個別の販売価格は未確認",
     price: (n) => `${n}円`,
+    foodRecovery: (hp) => `最大${hp} HP回復`,
     returnItem: "← 店を開いたページに戻る",
     returnCatalogue: "← アイテム一覧",
     technical: "ROMの根拠",

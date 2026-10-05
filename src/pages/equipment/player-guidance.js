@@ -42,10 +42,24 @@ function renderPlayerDecisionOverview(ctx) {
       : ctx.lang === 'ja'
         ? '照準時間への効果を確認。食いつき率ボーナスは未確認。'
         : 'This restores aiming time; a bite-rate bonus is not established.'
+  const categoryLink =
+    ctx.lang === 'th'
+      ? 'ดูคำแนะนำของหมวดที่เลือกด้านบน'
+      : ctx.lang === 'ja'
+        ? '選択中のカテゴリの案内を見る'
+        : 'See recommendations for the selected category above'
+  const hasCategoryDisclosure = Boolean(
+    document.getElementById('category-recommendations-disclosure'),
+  )
   document.getElementById('player-decisions').hidden =
     !!document.getElementById('fish-filter').value
   document.getElementById('player-decisions').innerHTML =
-    `<h2>${title}</h2><aside class="play-tip"><strong>${tip}</strong><p>${scope}</p></aside><div class="decision-grid">${ctx.decisions.map(ctx.decisionCard).join('')}</div>`
+    `<h2>${title}</h2><aside class="play-tip"><strong>${tip}</strong><p>${scope}</p>${hasCategoryDisclosure ? `<p><a class="route-button" data-player-decisions-link href="#category-decisions">${categoryLink} ↗</a></p>` : ''}</aside>`
+  const link = document.querySelector?.('[data-player-decisions-link]')
+  link?.addEventListener?.('click', () => {
+    const disclosure = document.getElementById('category-recommendations-disclosure')
+    if (disclosure) disclosure.open = true
+  })
 }
 
 function selectCategoryDecisions(ctx, category) {
@@ -58,14 +72,12 @@ function selectCategoryDecisions(ctx, category) {
   }
   const selectedFish = document.getElementById('fish-filter').value
   const showLureCoverage = category === 'lure' && !selectedFish
-  const categoryChoices = ctx.decisions.filter(
-    (d) =>
-      !selectedFish &&
-      d.category === category &&
-      !(showLureCoverage && d.id === 'lure_coverage_pair') &&
-      (category !== 'rod' || !style || decisionStyles[d.id] === style) &&
-      !(category === 'flymaker' && selectedFish),
-  )
+  const categoryChoices = ctx.decisions.filter((d) => {
+    if (selectedFish) return false
+    const matchesCategory = category === 'all' || d.category === category
+    const matchesStyle = category !== 'rod' || !style || decisionStyles[d.id] === style
+    return matchesCategory && matchesStyle && !(showLureCoverage && d.id === 'lure_coverage_pair')
+  })
   return categoryChoices
 }
 
@@ -84,11 +96,9 @@ function renderCategoryDecisionDisclosure(ctx, category, categoryChoices) {
       : category === 'hook'
         ? ctx.hookPriceGuide()
         : ''
-  const sections = [
-    ...(category === 'all' ? [] : categoryChoices.map(ctx.decisionCard)),
-    flyAdvice,
-    priceAdvice,
-  ].filter(Boolean)
+  const sections = [...categoryChoices.map(ctx.decisionCard), flyAdvice, priceAdvice].filter(
+    Boolean,
+  )
   const body = sections.join('')
   const count = sections.length
   const visibleLureCard = lureCoverage ? ctx.decisionCard(lureCoverage) : ''
@@ -107,9 +117,9 @@ function renderCategoryDecisionDisclosure(ctx, category, categoryChoices) {
 }
 
 export function renderDecisions(ctx, category) {
-  renderPlayerDecisionOverview(ctx)
   const choices = selectCategoryDecisions(ctx, category)
   renderCategoryDecisionDisclosure(ctx, category, choices)
+  renderPlayerDecisionOverview(ctx)
 }
 
 export function hookPriceGuide(ctx) {
