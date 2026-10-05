@@ -33,7 +33,9 @@ export function shopFishContext(ctx) {
         ? 'エサの判定はオモリ仕掛けを選んだ場合はオモリ、それ以外はウキで表示します。'
         : 'Bait labels use the sinker route when selected; otherwise they use float.'
   const copy = contextCopy(ctx.lang)
-  return `<aside class="shop-fish-context" data-shop-fish-context data-fish="${ctx.esc(ctx.selectedFish)}" data-stage="${stage}" data-method="${method}"><img src="${ctx.esc(ctx.imagePath(fish.image))}" alt=""><div><p class="shop-fish-context-label">${ctx.esc(copy.target)}</p><a class="shop-fish-profile-link" href="${ctx.esc(href)}"><strong>${ctx.esc(name)}</strong><span>${ctx.esc(copy.profile)} · ID ${ctx.esc(ctx.selectedFish)} · ${ctx.esc(ctx.text.stageWord(stage))} · ${ctx.esc(methodText)} ↗</span></a><p>${ctx.esc(copy.explains)} ${ctx.esc(baitNote)}</p></div></aside>`
+  const category = ctx.$('category-select')?.value || ctx.startCategory || 'all'
+  const baitRouteNote = ['all', 'bait'].includes(category) ? ` ${baitNote}` : ''
+  return `<aside class="shop-fish-context" data-shop-fish-context data-fish="${ctx.esc(ctx.selectedFish)}" data-stage="${stage}" data-method="${method}"><img src="${ctx.esc(ctx.imagePath(fish.image))}" alt=""><div><p class="shop-fish-context-label">${ctx.esc(copy.target)}</p><a class="shop-fish-profile-link" href="${ctx.esc(href)}"><strong>${ctx.esc(name)}</strong><span>${ctx.esc(copy.profile)} · ID ${ctx.esc(ctx.selectedFish)} · ${ctx.esc(ctx.text.stageWord(stage))} · ${ctx.esc(methodText)} ↗</span></a><p>${ctx.esc(copy.explains)}${ctx.esc(baitRouteNote)}</p></div></aside>`
 }
 
 export function shopCompatibilityBadge(ctx, item, state) {

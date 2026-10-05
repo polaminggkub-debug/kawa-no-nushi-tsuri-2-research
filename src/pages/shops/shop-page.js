@@ -37,6 +37,7 @@ export async function init(ctx) {
   }
   const items = galleryResult.value.items || []
   ctx.fishVisuals = galleryResult.value.fishVisuals || {}
+  applyFishRouteCategoryDefault(ctx, categorySelect)
   window.__shopItems = items
   const stock = stockResult.value
   const mapManifest = mapResult.status === 'fulfilled' ? mapResult.value : null
@@ -48,6 +49,20 @@ export async function init(ctx) {
   render()
   scrollRequestedSection(ctx)
   enableShopControls(ctx)
+}
+
+function applyFishRouteCategoryDefault(ctx, categorySelect) {
+  if (
+    ctx.params.has('category') ||
+    ctx.startId ||
+    ctx.searchValue.trim() ||
+    ctx.flyMakerIntent ||
+    !ctx.selectedFish ||
+    !ctx.fishVisuals[ctx.selectedFish]
+  )
+    return
+  categorySelect.value =
+    ctx.selectedRig === 'lure' ? 'lure' : ctx.selectedRig === 'fly' ? 'fly' : 'bait'
 }
 
 function scrollRequestedSection(ctx) {

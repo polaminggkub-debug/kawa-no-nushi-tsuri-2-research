@@ -59,6 +59,7 @@ for (const lang of ['en', 'th', 'ja']) {
   }
 }
 checkDistinctThaiShopName()
+checkCategoryAwareBaitNote()
 console.log(
   'Shop fish decisions PASS: all item profiles, both bait routes, three locales, bundle-body checks and contextual actions.',
 )
@@ -76,6 +77,50 @@ function checkDistinctThaiShopName() {
   assert.equal(labelFor('ja'), 'ウナギ')
   assert.equal(labelFor('en'), 'Unagi')
   assert.deepEqual(fish.nameThVariants, ['อูนางิ / ปลาไหลญี่ปุ่น', 'อูนางิ'])
+}
+
+function checkCategoryAwareBaitNote() {
+  const copy = {
+    en: {
+      bait: 'Bait labels use the sinker route when selected; otherwise they use float.',
+      profile:
+        'Check the marks before buying: not every listed item passes this fish check. Passing does not guarantee a bite or landing.',
+    },
+    th: {
+      bait: 'ป้ายเหยื่อจริงใช้เส้นทางตะกั่วเมื่อเลือกตะกั่ว; วิธีอื่นหรือยังไม่เลือกจะใช้ทุ่น',
+      profile:
+        'ดูป้ายก่อนซื้อ: ของที่แสดงไม่ได้ผ่านเงื่อนไขปลานี้ทุกชิ้น และการผ่านเงื่อนไขไม่รับประกันว่าปลากินหรือตกขึ้นได้',
+    },
+    ja: {
+      bait: 'エサの判定はオモリ仕掛けを選んだ場合はオモリ、それ以外はウキで表示します。',
+      profile:
+        '購入前に印を確認してください。表示品がすべてこの魚の判定を通るわけではなく、判定を通っても食いつきや取り込みは保証されません。',
+    },
+  }
+  for (const lang of ['en', 'th', 'ja']) {
+    for (const category of ['all', 'bait']) {
+      const html = fishContextFor(lang, 'sinker', category)
+      assert(
+        html.includes(copy[lang].bait),
+        `${lang}/${category}: missing category-aware bait explanation`,
+      )
+      assert(html.includes(copy[lang].profile), `${lang}/${category}: profile guidance missing`)
+    }
+    for (const category of ['lure', 'fly']) {
+      const html = fishContextFor(lang, 'sinker', category)
+      assert(
+        !html.includes(copy[lang].bait),
+        `${lang}/${category}: bait-only explanation should be omitted`,
+      )
+      assert(html.includes(copy[lang].profile), `${lang}/${category}: profile guidance missing`)
+    }
+  }
+}
+
+function fishContextFor(lang, route, category) {
+  const ctx = context(lang, route)
+  ctx.$ = (id) => ({ value: id === 'category-select' ? category : '1' })
+  return shopFishContext(ctx)
 }
 
 function expectedState(item, fish, route) {

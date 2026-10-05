@@ -50,7 +50,7 @@ export function stateParams(ctx, overrides = {}) {
   }
   const out = new URLSearchParams()
   for (const [key, value] of Object.entries(state))
-    if (value && !(key === 'category' && value === 'all')) out.set(key, value)
+    if (value && !(key === 'category' && value === 'all' && !ctx.selectedFish)) out.set(key, value)
   return out
 }
 

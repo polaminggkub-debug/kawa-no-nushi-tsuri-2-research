@@ -204,12 +204,11 @@
       title: "Fish checklist",
       help: "How to check your journal / why the counts differ",
       fullRoute: (count) => `Collect all ${count} species · one entry per fish`,
-      fullRouteNote: "Each species appears once in its first numbered area. Choose a fish to open its map points or compatible gear.",
+      fullRouteNote: "Each species is listed once, in the first area with a configured point. A point may be inactive in your current run; choose a fish to check its map points or compatible gear.",
       routeGroup: (stage, count) => `Area ${stage} · ${count} new species`,
       recordableLabel: (stage) => `species available in Area ${stage} · not a required page total`,
       newCount: (count) => `New on the full route: ${count}`,
       repeatedCount: (count) => `Also occur earlier: ${count}`,
-      progress: (stage, count, total) => `Route plan through Area ${stage}: ${count}/${total} unique species · not your save`,
       areaCountsTitle: "Map species with journal slots available by area · some occur in multiple areas",
       areaCount: (stage, count) => `Area ${stage}: ${count} available here`,
       newTitle: (count) => `Show the ${count} new species to catch here`,
@@ -237,12 +236,11 @@
       title: "魚チェックリスト",
       help: "確認方法・ゲーム内の数と異なる理由",
       fullRoute: (count) => `全${count}種を集める · 魚ごとに1項目`,
-      fullRouteNote: "各魚は最初の番号エリアに一度だけ掲載します。魚を選んで釣り場や対応する道具へ進めます。",
+      fullRouteNote: "各魚は設定上の出現地点がある最初のエリアに一度だけ掲載します。今のプレイでは地点が有効とは限りません。魚を選び、地図の地点や対応する道具を確認してください。",
       routeGroup: (stage, count) => `エリア${stage} · 初登場${count}種`,
       recordableLabel: (stage) => `エリア${stage}の図鑑対象種 · ページの必要数ではありません`,
       newCount: (count) => `全エリアルートで初登場: ${count}種`,
       repeatedCount: (count) => `前のエリアにも出現: ${count}種`,
-      progress: (stage, count, total) => `エリア${stage}までのルート計画: ${count}/${total}種 · セーブデータの進行状況ではありません`,
       areaCountsTitle: "エリア別・出現地点のある図鑑対象種 · 複数エリアに出現する魚もいます",
       areaCount: (stage, count) => `エリア${stage}: ${count}種が出現可能`,
       newTitle: (count) => `このエリアで釣る新しい魚 ${count}種を見る`,
@@ -270,12 +268,11 @@
       title: "เช็กลิสต์ปลา",
       help: "วิธีเช็กในเกม / ทำไมจำนวนไม่ตรงกัน",
       fullRoute: (count) => `เก็บให้ครบ ${count} ชนิด · ไม่ซ้ำ`,
-      fullRouteNote: "ปลาแต่ละชนิดอยู่ในด่านแรกที่พบเพียงครั้งเดียว เลือกปลาเพื่อดูจุดตกหรืออุปกรณ์ที่ใช้ได้",
+      fullRouteNote: "จัดปลาแต่ละชนิดไว้ครั้งเดียวในด่านแรกที่มีจุดเกิดในข้อมูลเกม จุดนั้นอาจไม่มีปลาในรอบที่เล่น เลือกปลาเพื่อตรวจจุดบนแผนที่หรือเลือกอุปกรณ์ที่ใช้ได้",
       routeGroup: (stage, count) => `ด่าน ${stage} · ปลาใหม่ ${count} ชนิด`,
       recordableLabel: (stage) => `ชนิดที่ลงสมุดได้และพบในด่าน ${stage} · ไม่ใช่ยอดที่หน้าสมุดต้องมี`,
       newCount: (count) => `ปลาใหม่ในเส้นทางครบทุกด่าน: ${count} ชนิด`,
       repeatedCount: (count) => `พบได้ในด่านก่อนด้วย: ${count} ชนิด`,
-      progress: (stage, count, total) => `แผนเก็บปลาไม่ซ้ำถึงด่าน ${stage}: ${count}/${total} ชนิด · ไม่ใช่ความคืบหน้าในเซฟ`,
       areaCountsTitle: "ชนิดปลาที่มีช่องในสมุดและมีจุดตก แยกตามด่าน · บางชนิดพบได้หลายด่าน",
       areaCount: (stage, count) => `ด่าน ${stage}: มีจุดตกที่บันทึกได้ ${count} ชนิด`,
       newTitle: (count) => `ดูรายชื่อปลาใหม่ ${count} ชนิดที่ควรเก็บในด่านนี้`,
@@ -393,13 +390,6 @@
     const noteMarkup = note ? `<p>${ctx.esc(note)}</p>` : "";
     return `<details class="notebook-${kind}"><summary>${ctx.esc(title(ids.length))}</summary>${noteMarkup}<div class="notebook-fish-list">${fishList(ctx, copyText, ids)}</div></details>`;
   }
-  function routeProgress(ctx, guide, activeStage) {
-    let total = 0;
-    for (const stage of guide.stages)
-      if (stage.stage <= Number(activeStage))
-        total += eligibleFish(ctx, stage.firstOccurrenceSpecies, guide.species).length;
-    return Math.min(total, guide.totals.notebookEligibleSpecies);
-  }
   function areaCountLinks(ctx, guide, copyText) {
     const links = guide.stages.map((entry) => {
       const stage = Number(entry.stage);
@@ -413,9 +403,9 @@
     }).join("");
     return `<div class="notebook-area-counts"><p>${ctx.esc(copyText.areaCountsTitle)}</p><nav aria-label="${ctx.esc(copyText.areaCountsTitle)}">${links}</nav></div>`;
   }
-  function evidenceLink(ctx, copyText, progressText) {
+  function evidenceLink(ctx, copyText) {
     const href = "https://github.com/polaminggkub-debug/kawa-no-nushi-tsuri-2-research/blob/main/docs/notebook-completion-research.md";
-    return `<details class="notebook-evidence"><summary>${ctx.esc(copyText.evidence)}</summary><p class="notebook-progress">${ctx.esc(progressText)}</p><p>${ctx.esc(copyText.triggerLimit)}</p><p><a href="${href}">${ctx.esc(copyText.evidenceLink)} ↗</a></p></details>`;
+    return `<details class="notebook-evidence"><summary>${ctx.esc(copyText.evidence)}</summary><p>${ctx.esc(copyText.triggerLimit)}</p><p><a href="${href}">${ctx.esc(copyText.evidenceLink)} ↗</a></p></details>`;
   }
   function notebookGuideMarkup(ctx) {
     const guide = ctx.notebookCompletion;
@@ -446,9 +436,7 @@
       excludedIds,
       copyText
     );
-    const progress = routeProgress(ctx, guide, ctx.activeStage);
-    const total = guide.totals.notebookEligibleSpecies;
-    return `<div class="notebook-guide-panel" data-stage="${ctx.activeStage}" data-notebook-total="${recordableCount}" data-notebook-new="${newIds.length}" data-notebook-repeated="${repeatedIds.length}"><div class="notebook-guide-heading"><div><p class="notebook-eyebrow">${ctx.esc(copyText.title)}</p><h3>${ctx.esc(ctx.c.area(ctx.activeStage))}</h3></div></div><div class="notebook-count-summary"><p class="notebook-recordable"><strong>${recordableCount}</strong><span>${ctx.esc(copyText.recordableLabel(ctx.activeStage))}</span></p><div class="notebook-count-breakdown"><p>${ctx.esc(copyText.newCount(newIds.length))}</p><p>${ctx.esc(copyText.repeatedCount(repeatedIds.length))}</p></div></div>${progressMarkup(ctx)}${notebookHelp(ctx, guide, copyText, recordableCount, newIds.length, repeatedIds.length)}${fullRouteMarkup(ctx, guide, copyText)}${repeated}${excluded}${evidenceLink(ctx, copyText, copyText.progress(ctx.activeStage, progress, total))}</div>`;
+    return `<div class="notebook-guide-panel" data-stage="${ctx.activeStage}" data-notebook-total="${recordableCount}" data-notebook-new="${newIds.length}" data-notebook-repeated="${repeatedIds.length}"><div class="notebook-guide-heading"><div><p class="notebook-eyebrow">${ctx.esc(copyText.title)}</p><h3>${ctx.esc(ctx.c.area(ctx.activeStage))}</h3></div></div><div class="notebook-count-summary"><p class="notebook-recordable"><strong>${recordableCount}</strong><span>${ctx.esc(copyText.recordableLabel(ctx.activeStage))}</span></p><div class="notebook-count-breakdown"><p>${ctx.esc(copyText.newCount(newIds.length))}</p><p>${ctx.esc(copyText.repeatedCount(repeatedIds.length))}</p></div></div>${progressMarkup(ctx)}${notebookHelp(ctx, guide, copyText, recordableCount, newIds.length, repeatedIds.length)}${fullRouteMarkup(ctx, guide, copyText)}${repeated}${excluded}${evidenceLink(ctx, copyText)}</div>`;
   }
   function renderNotebookGuide(ctx) {
     const mount = ctx.$("notebook-guide");

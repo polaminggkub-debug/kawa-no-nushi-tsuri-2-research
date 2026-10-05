@@ -96,7 +96,7 @@
     };
     const out = new URLSearchParams();
     for (const [key, value] of Object.entries(state))
-      if (value && !(key === "category" && value === "all")) out.set(key, value);
+      if (value && !(key === "category" && value === "all" && !ctx.selectedFish)) out.set(key, value);
     return out;
   }
   function refreshUrl(ctx) {
@@ -477,7 +477,9 @@
     const methodText = contextCopy(ctx.lang).methods[method];
     const baitNote = ctx.lang === "th" ? "ป้ายเหยื่อจริงใช้เส้นทางตะกั่วเมื่อเลือกตะกั่ว; วิธีอื่นหรือยังไม่เลือกจะใช้ทุ่น" : ctx.lang === "ja" ? "エサの判定はオモリ仕掛けを選んだ場合はオモリ、それ以外はウキで表示します。" : "Bait labels use the sinker route when selected; otherwise they use float.";
     const copy3 = contextCopy(ctx.lang);
-    return `<aside class="shop-fish-context" data-shop-fish-context data-fish="${ctx.esc(ctx.selectedFish)}" data-stage="${stage}" data-method="${method}"><img src="${ctx.esc(ctx.imagePath(fish.image))}" alt=""><div><p class="shop-fish-context-label">${ctx.esc(copy3.target)}</p><a class="shop-fish-profile-link" href="${ctx.esc(href)}"><strong>${ctx.esc(name)}</strong><span>${ctx.esc(copy3.profile)} · ID ${ctx.esc(ctx.selectedFish)} · ${ctx.esc(ctx.text.stageWord(stage))} · ${ctx.esc(methodText)} ↗</span></a><p>${ctx.esc(copy3.explains)} ${ctx.esc(baitNote)}</p></div></aside>`;
+    const category = ctx.$("category-select")?.value || ctx.startCategory || "all";
+    const baitRouteNote = ["all", "bait"].includes(category) ? ` ${baitNote}` : "";
+    return `<aside class="shop-fish-context" data-shop-fish-context data-fish="${ctx.esc(ctx.selectedFish)}" data-stage="${stage}" data-method="${method}"><img src="${ctx.esc(ctx.imagePath(fish.image))}" alt=""><div><p class="shop-fish-context-label">${ctx.esc(copy3.target)}</p><a class="shop-fish-profile-link" href="${ctx.esc(href)}"><strong>${ctx.esc(name)}</strong><span>${ctx.esc(copy3.profile)} · ID ${ctx.esc(ctx.selectedFish)} · ${ctx.esc(ctx.text.stageWord(stage))} · ${ctx.esc(methodText)} ↗</span></a><p>${ctx.esc(copy3.explains)}${ctx.esc(baitRouteNote)}</p></div></aside>`;
   }
   function shopCompatibilityBadge(ctx, item, state) {
     if (!state) return "";
@@ -980,6 +982,7 @@
     }
     const items = galleryResult.value.items || [];
     ctx.fishVisuals = galleryResult.value.fishVisuals || {};
+    applyFishRouteCategoryDefault(ctx, categorySelect);
     window.__shopItems = items;
     const stock = stockResult.value;
     const mapManifest = mapResult.status === "fulfilled" ? mapResult.value : null;
@@ -991,6 +994,11 @@
     render();
     scrollRequestedSection(ctx);
     enableShopControls(ctx);
+  }
+  function applyFishRouteCategoryDefault(ctx, categorySelect) {
+    if (ctx.params.has("category") || ctx.startId || ctx.searchValue.trim() || ctx.flyMakerIntent || !ctx.selectedFish || !ctx.fishVisuals[ctx.selectedFish])
+      return;
+    categorySelect.value = ctx.selectedRig === "lure" ? "lure" : ctx.selectedRig === "fly" ? "fly" : "bait";
   }
   function scrollRequestedSection(ctx) {
     const arrivalTarget = /^#town-arrival-[0-4]$/.test(location.hash);

@@ -134,7 +134,11 @@ async function renderShopAt(url, lang, fetcher, selectedLocations = locations) {
     document,
     location: url,
     window: { location: url },
-    history: { replaceState() {} },
+    history: {
+      replaceState(_state, _title, nextUrl) {
+        url.href = new URL(nextUrl, url).href
+      },
+    },
     URL,
     URLSearchParams,
     console,
@@ -234,6 +238,64 @@ async function checkLocale(lang) {
     injected.summary.includes(locale.invalid),
     `Injected out-of-bounds point did not warn/${lang}`,
   )
+}
+
+async function checkFishRouteCategoryDefaults() {
+  const lang = 'en'
+  for (const [query, category, fish, route] of [
+    ['stage=5&fish=10&route=float', 'bait', '10', 'float'],
+    ['stage=5&fish=10&route=sinker', 'bait', '10', 'sinker'],
+    ['stage=5&fish=10&route=lure', 'lure', '10', 'lure'],
+    ['stage=5&fish=10&route=fly', 'fly', '10', 'fly'],
+    ['stage=5&fish=10', 'bait', '10', ''],
+    ['category=all&stage=5&fish=10&route=lure', 'all', '10', 'lure'],
+    ['category=float_weight&stage=5&fish=10&route=lure', 'float_weight', '10', 'lure'],
+    ['category=general_tool&id=05&stage=5&fish=10&route=float', 'general_tool', '10', 'float'],
+    ['id=05&stage=5&fish=10&route=float', 'all', '10', 'float'],
+    ['stage=5&fish=10&route=float&q=17', 'all', '10', 'float'],
+    ['stage=5&fish=10&route=fly&maker=1', 'all', '10', 'fly'],
+    ['stage=5&fish=FF&route=lure', 'all', 'FF', 'lure'],
+  ]) {
+    const page = await renderShopAt(
+      new URL(`${articlePath(lang)}?${query}`, 'https://example.test'),
+      lang,
+    )
+    const values = { category, fish, stage: '5', route: route || null }
+    assert.equal(page.nodes.get('category-select').value, category)
+    for (const [key, value] of Object.entries(values))
+      assert.equal(page.url.searchParams.get(key), value)
+  }
+  await checkManualAllClearReload(lang)
+}
+
+async function checkManualAllClearReload(lang) {
+  for (const action of ['manual', 'clear']) {
+    const page = await renderShopAt(
+      new URL(`${articlePath(lang)}?stage=5&fish=10&route=float`, 'https://example.test'),
+      lang,
+    )
+    if (action === 'manual') {
+      page.nodes.get('category-select').value = 'all'
+      page.nodes.get('category-select').listeners.change()
+    } else page.nodes.get('clear-filters').listeners.click()
+    for (const current of [page, await renderShopAt(new URL(page.url.href), lang)]) {
+      assert.equal(current.nodes.get('category-select').value, 'all')
+      for (const [key, value] of Object.entries({
+        category: 'all',
+        fish: '10',
+        stage: '5',
+        route: 'float',
+      }))
+        assert.equal(current.url.searchParams.get(key), value)
+      for (const locale of ['en', 'th', 'ja'])
+        assert.equal(
+          new URL(current.nodes.get(`language-${locale}`).href, current.url).searchParams.get(
+            'category',
+          ),
+          'all',
+        )
+    }
+  }
 }
 
 function shopUrl(lang, includeReturn = true) {
@@ -363,6 +425,7 @@ async function main() {
     await checkLocale(lang)
     await checkShopLoading(lang)
   }
+  await checkFishRouteCategoryDefaults()
   console.log(
     'PASS: Area 6 shop routes plus localized load recovery, disabled controls, and stock-only fallback across EN/JA/TH.',
   )

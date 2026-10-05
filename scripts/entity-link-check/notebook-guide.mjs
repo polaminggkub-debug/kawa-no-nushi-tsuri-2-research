@@ -10,6 +10,23 @@ const root = path.resolve(fileURLToPath(new URL('../..', import.meta.url)))
 const guide = JSON.parse(fs.readFileSync(path.join(root, 'data/notebook-completion.json'), 'utf8'))
 const availableCounts = [6, 12, 15, 22, 27, 15]
 const newCounts = [6, 10, 11, 17, 11, 11]
+const fullRouteScope = {
+  en: [
+    'first area with a configured point',
+    'A point may be inactive in your current run',
+    'choose a fish to check its map points or compatible gear',
+  ],
+  ja: [
+    '設定上の出現地点がある最初のエリア',
+    '地点が有効とは限りません',
+    '魚を選び、地図の地点や対応する道具を確認してください',
+  ],
+  th: [
+    'ด่านแรกที่มีจุดเกิดในข้อมูลเกม',
+    'จุดนั้นอาจไม่มีปลาในรอบที่เล่น',
+    'เลือกปลาเพื่อตรวจจุดบนแผนที่หรือเลือกอุปกรณ์ที่ใช้ได้',
+  ],
+}
 
 checkDataset()
 checkHeroShortcutTemplates()
@@ -188,6 +205,7 @@ function checkState(lang, stage, state, openGroup) {
     new RegExp(`data-notebook-repeated="${stage.repeatedFromEarlierStages.length}"`),
   )
   checkRoute(html, lang, stage, state, openGroup)
+  checkFullRouteScope(html, lang)
   checkHelp(html, lang, stage)
   checkStageLists(html, stage)
   checkSingleRecordRule(html, lang)
@@ -229,6 +247,15 @@ function checkRoute(html, lang, activeStage, state, openGroup) {
     guide.stages.flatMap((entry) => entry.firstOccurrenceSpecies),
   )
   assert.equal(new Set(found).size, 66, `${lang}: master route repeats a new-fish card`)
+}
+
+function checkFullRouteScope(html, lang) {
+  const route = detailsBlock(html, 'notebook-full-route')
+  const note = unescapeHtml(route.match(/<p>([\s\S]*?)<\/p>/)?.[1] || '')
+  for (const phrase of fullRouteScope[lang])
+    assert(note.includes(phrase), `${lang}: full route scope is missing “${phrase}”`)
+  const help = detailsBlock(html, 'notebook-help')
+  assert(!help.includes(note), `${lang}: route scope must stay beside the full route`)
 }
 
 function checkHelp(html, lang, stage) {
@@ -308,7 +335,10 @@ function checkManualAndEvidence(html, lang) {
     `${lang}: natural-catch proof must stay in collapsed evidence`,
   )
   assert(evidence.includes('notebook-completion-research.md'))
-  assert(evidence.includes('notebook-progress'))
+  assert(
+    !evidence.includes('notebook-progress'),
+    `${lang}: redundant route progress must leave evidence`,
+  )
   const naturalProof = { en: '0/0 to 23/1', ja: '0/0から23/1', th: 'จาก 0/0 เป็น 23/1' }
   assert(evidence.includes(naturalProof[lang]), `${lang}: natural-catch evidence is missing`)
 }

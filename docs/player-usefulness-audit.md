@@ -1,5 +1,14 @@
 # Player usefulness audit
 
+## 2026-10-06: fish-led shopping and a clearer notebook route
+
+- Following Shops with a valid selected fish and no explicit item/category/search/maker intent now opens bait for float/sinker, lures for lure fishing, or ready-made fly bundles for fly fishing. This resolves an actual public path that retained the fish but foregrounded food and unrelated tools. Explicit categories and ordinary shopping remain available.
+- Choosing all categories or clearing filters while a fish is selected now retains `category=all` in the URL, return context and language links. A mobile walkthrough exposed the previous omission: reload silently reapplied the new bait default. Explicit intent now survives reload.
+- The target-fish shop panel explains bait rigs only when bait or all categories are visible. Lure/fly shopping retains the compatibility caveat and offer badges without unrelated bait instructions.
+- The 66-species notebook route states that grouping uses the first area with a configured point; a point can be inactive in the current run. Fish actions still lead to maps and equipment. The duplicate fixed route-plan subtotal was removed from the technical disclosure; manual checklist progress, all six area counts, the observed landing case and ROM evidence remain.
+
+These are browsing and presentation changes; no game records or catch-rate claims changed. The full-site usefulness goal and unresolved controlled-catch/natural-prerequisite research remain active.
+
 ## 2026-10-06: usable recovery and concise contextual advice
 
 - Equipment, maps, fish, item details and shops now offer real reload buttons after required data fails. A same-URL link with a fragment did not reload during an actual browser reproduction; button handlers now reload the current URL, retaining selected fish, area, method and source context.
