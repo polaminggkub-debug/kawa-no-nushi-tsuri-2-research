@@ -15,7 +15,7 @@ for (const sourcePath of sourcePaths) {
     assert.equal(target.pathname, '/kawa-no-nushi-tsuri-2-research/catalogue/index.th.html')
     assert.equal(target.searchParams.get('category'), 'flymaker')
     assert.equal(target.searchParams.get('part'), part)
-    assertSharedContext(target, source)
+    assertSharedContext(target, source, 'fly')
   }
 }
 
@@ -29,7 +29,8 @@ for (const [category, part] of [
   const target = runNavigation(source)
   assert.equal(target.searchParams.get('category'), category)
   assert.equal(target.searchParams.get('part'), part)
-  assertSharedContext(target, source)
+  const route = category === 'flymaker' ? 'fly' : category === 'lure' ? 'lure' : 'float'
+  assertSharedContext(target, source, route)
 }
 
 function sourceUrl(path, category, part) {
@@ -77,11 +78,11 @@ function restoreGlobal(name, value) {
   else globalThis[name] = value
 }
 
-function assertSharedContext(target, source) {
+function assertSharedContext(target, source, route) {
   const current = new URL(source)
   assert.equal(target.searchParams.get('fish'), '06')
   assert.equal(target.searchParams.get('stage'), '2')
-  assert.equal(target.searchParams.get('route'), 'float')
+  assert.equal(target.searchParams.get('route'), route)
   assert.equal(
     target.searchParams.get('return'),
     current.pathname.split('/').pop() + current.search + current.hash,

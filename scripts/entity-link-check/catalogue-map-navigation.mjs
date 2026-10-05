@@ -1,4 +1,5 @@
 import assert from 'node:assert/strict'
+import { updateNavigation } from '../../src/pages/navigation/context-links.js'
 import { locations, renderCatalogue, unescapeHtml } from './shared.mjs'
 
 const locales = ['en', 'ja', 'th']
@@ -23,6 +24,7 @@ for (const locale of locales) {
   }
   await checkFishPanelNavigation(locale, '06', '2', '2', 'lure', 'lure')
   await checkFishPanelNavigation(locale, '06', '2', '2', 'flymaker', 'fly')
+  for (const part of ['fly_wing', 'fly_tail']) await checkFlyPartLinks(locale, part)
 }
 
 console.log(
@@ -61,7 +63,7 @@ async function checkFishPanelNavigation(
     category,
     fish,
     stage: requestedStage,
-    route,
+    route: category === 'bait' ? route : 'float',
     map: '0',
     return: nestedReturn,
   })
@@ -73,21 +75,96 @@ async function checkFishPanelNavigation(
   const suffix = locale === 'en' ? '' : `.${locale}`
   const panel = unescapeHtml(result.nodes['fish-location-panel'].innerHTML)
   assert(panel, `${locale} ${fish}: embedded fish location panel did not render`)
+  checkRenderedMapLinks(result, panel, suffix, fish, resolvedStage, route, exactReturn)
+  if (category === 'lure' || category === 'flymaker')
+    checkEquipmentItemLinks(
+      result.nodes.cards.innerHTML,
+      result.url,
+      suffix,
+      category,
+      fish,
+      resolvedStage,
+      route,
+      exactReturn,
+    )
+  if (category !== 'bait') checkUpdatedMapNavigation(result, suffix, fish, resolvedStage, route)
+}
 
+function checkRenderedMapLinks(result, panel, suffix, fish, stage, route, exactReturn) {
   checkMapTarget(
     result.nodes['map-browser-link'].href,
     result.url,
     suffix,
     fish,
-    resolvedStage,
-    result.runtime.baitRoute,
+    stage,
+    route,
     exactReturn,
   )
   const panelMap = panel.match(/class="map-browser-cta" href="([^"]+)"/)?.[1]
-  assert(panelMap, `${locale} ${fish}: missing embedded map action`)
-  checkMapTarget(panelMap, result.url, suffix, fish, resolvedStage, route, exactReturn)
+  assert(panelMap, `${fish}: missing embedded map action`)
+  checkMapTarget(panelMap, result.url, suffix, fish, stage, route, exactReturn)
   checkAreaLinks(panel, result.url, suffix, fish, route, exactReturn)
-  checkFishProfileLinks(panel, result.url, suffix, fish, resolvedStage, route, exactReturn)
+  checkFishProfileLinks(panel, result.url, suffix, fish, stage, route, exactReturn)
+}
+
+function checkEquipmentItemLinks(cards, base, suffix, category, fish, stage, route, exactReturn) {
+  const itemCategories = category === 'flymaker' ? ['fly', 'fly_wing', 'fly_tail'] : ['lure']
+  const links = [...unescapeHtml(cards).matchAll(/<a class="entity-title" href="([^"]+)"/g)]
+    .map(([, href]) => new URL(href, base))
+    .filter((url) => url.pathname.endsWith(`/item${suffix}.html`))
+    .filter((url) => itemCategories.includes(url.searchParams.get('category')))
+  assert(links.length > 0, `${category}: expected selected-category item detail links`)
+  for (const target of links) {
+    assert.equal(target.searchParams.get('fish'), fish)
+    assert.equal(target.searchParams.get('route'), route)
+    assert.equal(target.searchParams.get('stage'), stage)
+    assert.equal(target.searchParams.get('return'), exactReturn)
+  }
+}
+
+async function checkFlyPartLinks(locale, part) {
+  const query = new URLSearchParams({
+    category: 'flymaker',
+    part,
+    fish: '06',
+    stage: '2',
+    route: 'float',
+    map: '0',
+    sort: 'id',
+  })
+  const result = await renderCatalogue(locale, `?${query}#fish-location-panel`)
+  checkEquipmentItemLinks(
+    result.nodes.cards.innerHTML,
+    result.url,
+    locale === 'en' ? '' : `.${locale}`,
+    'flymaker',
+    '06',
+    '2',
+    'fly',
+    expectedCatalogueReturn(result),
+  )
+}
+
+function checkUpdatedMapNavigation(result, suffix, fish, stage, route) {
+  const link = { dataset: { compendiumDestination: '1' }, href: `maps${suffix}.html` }
+  link.getAttribute = (key) => (key === 'href' ? link.href : null)
+  const previousDocument = globalThis.document
+  const previousLocation = globalThis.location
+  globalThis.document = {
+    querySelector: () => null,
+    querySelectorAll: (selector) => (selector === '[data-compendium-destination]' ? [link] : []),
+  }
+  globalThis.location = new URL(result.url.href)
+  try {
+    updateNavigation({})
+  } finally {
+    if (previousDocument === undefined) delete globalThis.document
+    else globalThis.document = previousDocument
+    if (previousLocation === undefined) delete globalThis.location
+    else globalThis.location = previousLocation
+  }
+  const expectedReturn = `${result.url.pathname.split('/').pop()}${result.url.search}${result.url.hash}`
+  checkMapTarget(link.href, result.url, suffix, fish, stage, route, expectedReturn)
 }
 
 function expectedCatalogueReturn(result) {

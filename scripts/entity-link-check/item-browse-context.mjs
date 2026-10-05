@@ -19,6 +19,15 @@ for (const lang of ['en', 'th', 'ja'])
     await checkUnrelatedBrowseContext(lang, route)
   }
 
+for (const lang of ['en', 'th', 'ja']) {
+  await checkItemTargetRoute(lang, 'lure', 'lure')
+  await checkItemTargetRoute(lang, 'fly', 'fly')
+  await checkItemTargetRoute(lang, 'fly_wing', 'fly')
+  await checkItemTargetRoute(lang, 'fly_tail', 'fly')
+  await checkItemTargetRoute(lang, 'food', '')
+  await checkItemTargetRoute(lang, 'general_tool', '')
+}
+
 async function checkFishingBrowseContext(lang, route) {
   for (const category of fishingCategories) {
     const item = data.items.find((entry) => entry.category === category)
@@ -62,6 +71,48 @@ async function checkUnrelatedBrowseContext(lang, route) {
       assert(!url.searchParams.has('route'), `${category} browse link carries an unrelated rig`)
     }
   }
+}
+
+async function checkItemTargetRoute(lang, category, route) {
+  const item = data.items.find((entry) => entry.category === category)
+  assert(item, `Missing representative item for ${category}`)
+  const params = new URLSearchParams({
+    category,
+    id: item.id,
+    fish: '06',
+    stage: '2',
+    route: route || 'fly',
+  })
+  const result = await render('item', lang, params)
+  const target = result.html.match(
+    /<aside class="detail-section play-target">([\s\S]*?)<\/aside>/,
+  )?.[1]
+  assert(target, `${category}/${lang}: selected fish targets did not render`)
+  const suffix = lang === 'en' ? '' : `.${lang}`
+  const targets = [...unescapeHtml(target).matchAll(/href="([^"]+)"/g)]
+    .map(([, href]) => new URL(href, result.url))
+    .filter(
+      (url) =>
+        url.pathname.endsWith(`/fish${suffix}.html`) ||
+        url.pathname.endsWith(`/maps${suffix}.html`),
+    )
+  assert(targets.some((url) => url.pathname.endsWith(`/fish${suffix}.html`)))
+  assert(targets.some((url) => url.pathname.endsWith(`/maps${suffix}.html`)))
+  for (const url of targets) assertItemTargetRoute(url, result, category, route)
+}
+
+function assertItemTargetRoute(target, result, category, route) {
+  if (route) assert.equal(target.searchParams.get('route'), route, `${category} target lost method`)
+  else assert(!target.searchParams.has('route'), `${category} target carries an unrelated method`)
+  const returned = new URL(target.searchParams.get('return'), result.url)
+  assert(
+    returned.pathname.endsWith(
+      `/item${result.url.pathname.match(/item(\.th|\.ja)?\.html$/)?.[1] || ''}.html`,
+    ),
+  )
+  assert.equal(returned.searchParams.get('category'), category)
+  assert.equal(returned.searchParams.get('id'), result.url.searchParams.get('id'))
+  assert.equal(returned.searchParams.get('route'), result.url.searchParams.get('route'))
 }
 
 function browseUrl(html, base) {

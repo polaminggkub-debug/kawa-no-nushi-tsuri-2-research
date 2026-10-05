@@ -291,7 +291,7 @@ async function checkCatalogueMenuLinkContext(lang) {
   assert.equal(target.searchParams.get('id'), '01')
   assert.equal(target.searchParams.get('fish'), '06')
   assert.equal(target.searchParams.get('stage'), '1')
-  assert.equal(target.searchParams.get('route'), 'sinker')
+  assert.equal(target.searchParams.get('route'), 'fly')
   assert.equal(target.hash, '#fly-menu-position')
 
   const back = new URL(target.searchParams.get('return'), target)

@@ -1779,10 +1779,10 @@
   }
 
   // src/pages/equipment/navigation-route.js
-  function navigationRoute(ctx) {
-    const category = document.getElementById("category-filter").value;
+  function navigationRoute(ctx, itemCategory = "") {
+    const category = itemCategory || document.getElementById("category-filter").value;
     if (category === "lure") return "lure";
-    if (category === "flymaker") return "fly";
+    if (["flymaker", "fly", "fly_wing", "fly_tail"].includes(category)) return "fly";
     return ctx.baitRoute;
   }
 
@@ -2871,7 +2871,7 @@
   }
   function updateCatalogueLink(ctx, category, fish) {
     const maps = ctx.lang === "th" ? "maps.th.html" : ctx.lang === "ja" ? "maps.ja.html" : "maps.html";
-    const query = new URLSearchParams({ return: ctx.sourceReturn(), route: ctx.baitRoute });
+    const query = new URLSearchParams({ return: ctx.sourceReturn(), route: navigationRoute(ctx) });
     if (fish) query.set("fish", fish);
     if (ctx.locationStage) query.set("stage", String(ctx.locationStage));
     query.set("map", String(ctx.locationMapIndex));
@@ -3719,7 +3719,7 @@
       const fish = document.getElementById("fish-filter").value;
       if (ctx.fishingContext(item) && fish) q.set("fish", fish);
       if (item.category === "bait" || ctx.fishingContext(item) && fish)
-        q.set("route", ctx.baitRoute);
+        q.set("route", navigationRoute(ctx, item.category));
       if (ctx.locationStage) q.set("stage", String(ctx.locationStage));
       return `${ctx.detailFile("item")}?${q}`;
     };

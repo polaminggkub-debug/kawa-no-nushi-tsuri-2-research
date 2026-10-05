@@ -1,3 +1,5 @@
+import { navigationRoute } from './navigation-route.js'
+
 function readFilters() {
   const category = document.getElementById('category-filter').value
   if (['food', 'general_tool'].includes(category)) {
@@ -15,7 +17,7 @@ function readFilters() {
 
 function updateCatalogueLink(ctx, category, fish) {
   const maps = ctx.lang === 'th' ? 'maps.th.html' : ctx.lang === 'ja' ? 'maps.ja.html' : 'maps.html'
-  const query = new URLSearchParams({ return: ctx.sourceReturn(), route: ctx.baitRoute })
+  const query = new URLSearchParams({ return: ctx.sourceReturn(), route: navigationRoute(ctx) })
   if (fish) query.set('fish', fish)
   if (ctx.locationStage) query.set('stage', String(ctx.locationStage))
   query.set('map', String(ctx.locationMapIndex))

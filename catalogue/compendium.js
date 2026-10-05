@@ -14,6 +14,12 @@
   });
 
   // src/pages/navigation/context-links.js
+  function fishingRoute(current) {
+    const category = current.searchParams.get("category");
+    if (category === "lure") return "lure";
+    if (["flymaker", "fly", "fly_wing", "fly_tail"].includes(category)) return "fly";
+    return current.searchParams.get("route");
+  }
   function equipmentCategory(url, current) {
     const category = current.searchParams.get("category");
     if (!category) return;
@@ -38,8 +44,10 @@
       link.dataset.baseHref = link.dataset.baseHref || link.getAttribute("href");
       const dest = Number(link.dataset.compendiumDestination), url = new URL(link.dataset.baseHref, location.href);
       if (dest === 3) return;
-      for (const key of ["stage", "route"])
-        if (current.searchParams.has(key)) url.searchParams.set(key, current.searchParams.get(key));
+      if (current.searchParams.has("stage"))
+        url.searchParams.set("stage", current.searchParams.get("stage"));
+      const route = fishingRoute(current);
+      if (route) url.searchParams.set("route", route);
       if (fish) url.searchParams.set("fish", fish);
       if (dest === 0) equipmentCategory(url, current);
       if (dest === 1 && current.searchParams.has("map"))

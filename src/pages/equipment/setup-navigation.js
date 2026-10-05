@@ -40,7 +40,7 @@ export function setupNavigation(ctx) {
     const fish = document.getElementById('fish-filter').value
     if (ctx.fishingContext(item) && fish) q.set('fish', fish)
     if (item.category === 'bait' || (ctx.fishingContext(item) && fish))
-      q.set('route', ctx.baitRoute)
+      q.set('route', navigationRoute(ctx, item.category))
     if (ctx.locationStage) q.set('stage', String(ctx.locationStage))
     return `${ctx.detailFile('item')}?${q}`
   }

@@ -134,6 +134,7 @@
     const p = new URLSearchParams();
     p.set("stage", String(stage));
     if (fish) p.set("fish", fish);
+    if (retainsFishingTarget(ctx) && ctx.selectedRoute) p.set("route", ctx.selectedRoute);
     const returnRoute = ctx.safeLocalRoute(ctx.currentLocalRoute());
     if (returnRoute) p.set("return", returnRoute);
     return `${ctx.mapsPage[ctx.lang]}?${p}`;
@@ -142,6 +143,7 @@
     const locations = fishLocations[id]?.locations || [];
     const location2 = locations.find((loc) => Number(loc.stage) === ctx.selectedStage) || locations[0];
     const p = new URLSearchParams({ id });
+    if (retainsFishingTarget(ctx) && ctx.selectedRoute) p.set("route", ctx.selectedRoute);
     if (location2?.stage) p.set("stage", String(location2.stage));
     const returnRoute = ctx.safeLocalRoute(ctx.currentLocalRoute());
     if (returnRoute) p.set("return", returnRoute);
@@ -3175,7 +3177,7 @@
     ctx.requestedId = ctx.normalizeId(ctx.params.get("id"));
     ctx.selectedFish = ctx.normalizeId(ctx.params.get("fish"));
     ctx.selectedStage = /^[1-6]$/.test(ctx.params.get("stage") || "") ? Number(ctx.params.get("stage")) : 0;
-    ctx.selectedRoute = ["float", "sinker"].includes(ctx.params.get("route")) ? ctx.params.get("route") : "";
+    ctx.selectedRoute = ["float", "sinker", "lure", "fly"].includes(ctx.params.get("route")) ? ctx.params.get("route") : "";
     ctx.baseDir = location.pathname.slice(0, location.pathname.lastIndexOf("/") + 1);
     ctx.routeFiles = {
       catalogue: /^\/(?:[^/]+\/)?catalogue\/(?:index(?:\.th|\.ja)?|maps(?:\.th|\.ja)?|fish(?:\.th|\.ja)?|item(?:\.th|\.ja)?|shops(?:\.th|\.ja)?)\.html$/,

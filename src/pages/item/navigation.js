@@ -91,6 +91,7 @@ export function mapLink(ctx, stage, fish = '') {
   const p = new URLSearchParams()
   p.set('stage', String(stage))
   if (fish) p.set('fish', fish)
+  if (retainsFishingTarget(ctx) && ctx.selectedRoute) p.set('route', ctx.selectedRoute)
   const returnRoute = ctx.safeLocalRoute(ctx.currentLocalRoute())
   if (returnRoute) p.set('return', returnRoute)
   return `${ctx.mapsPage[ctx.lang]}?${p}`
@@ -100,6 +101,7 @@ export function fishProfileLink(ctx, id, fishLocations) {
   const locations = fishLocations[id]?.locations || []
   const location = locations.find((loc) => Number(loc.stage) === ctx.selectedStage) || locations[0]
   const p = new URLSearchParams({ id })
+  if (retainsFishingTarget(ctx) && ctx.selectedRoute) p.set('route', ctx.selectedRoute)
   if (location?.stage) p.set('stage', String(location.stage))
   const returnRoute = ctx.safeLocalRoute(ctx.currentLocalRoute())
   if (returnRoute) p.set('return', returnRoute)

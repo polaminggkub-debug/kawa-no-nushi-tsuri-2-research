@@ -119,9 +119,10 @@ for (const locale of locales) {
     if (expected.length) assert(alternatives.length, 'Missing actionable alternative link')
     for (const match of alternatives) {
       const next = new URL(match[2], url)
+      const expectedRoute = item.category === 'lure' ? 'lure' : 'float'
       assert.equal(next.searchParams.get('fish'), '06')
       assert.equal(next.searchParams.get('stage'), '1')
-      assert.equal(next.searchParams.get('route'), 'float')
+      assert.equal(next.searchParams.get('route'), expectedRoute)
     }
   }
   nodes['fish-filter'].value = ''

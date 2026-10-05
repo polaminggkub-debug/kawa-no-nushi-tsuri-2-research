@@ -32,7 +32,7 @@ export function setupContext(ctx) {
   ctx.selectedStage = /^[1-6]$/.test(ctx.params.get('stage') || '')
     ? Number(ctx.params.get('stage'))
     : 0
-  ctx.selectedRoute = ['float', 'sinker'].includes(ctx.params.get('route'))
+  ctx.selectedRoute = ['float', 'sinker', 'lure', 'fly'].includes(ctx.params.get('route'))
     ? ctx.params.get('route')
     : ''
   ctx.baseDir = location.pathname.slice(0, location.pathname.lastIndexOf('/') + 1)
