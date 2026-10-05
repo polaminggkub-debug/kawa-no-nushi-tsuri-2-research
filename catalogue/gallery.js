@@ -240,6 +240,20 @@
     return repository + value.slice(3);
   }
 
+  // src/shared/lib/hp-recovery-action.js
+  var labels = {
+    th: "เลือกอาหารฟื้น HP และดูแหล่งซื้อ",
+    ja: "HP回復用の食料と販売場所を選ぶ",
+    en: "Choose recovery food and see where to buy it"
+  };
+  function hpRecoveryAction(options) {
+    const { locale, cataloguePath, stage, returnPath, source, escapeHtml } = options;
+    const query = new URLSearchParams({ category: "food", return: returnPath });
+    if (/^[1-6]$/.test(String(stage))) query.set("stage", String(stage));
+    const href = `${cataloguePath}?${query}#category-decisions`;
+    return `<a class="route-button" data-hp-food-action data-hp-source="${escapeHtml(source)}" href="${escapeHtml(href)}">${escapeHtml(labels[locale] || labels.en)} ↗</a>`;
+  }
+
   // src/shared/lib/index.js
   function createPageRuntime(api) {
     const runtime = {};
@@ -603,7 +617,7 @@
     return { ...copy2, bundle, supported, hasTarget: Boolean(fishId), itemId: item.id };
   }
   function actionLabel(lang, key, bundle) {
-    const labels = {
+    const labels2 = {
       shop: {
         th: `เปิดร้านด่าน ${bundle.stage} และชุดฟลายนี้`,
         en: `Open area ${bundle.stage} shop and this fly set`,
@@ -630,7 +644,7 @@
         ja: "メニュー位置を確認した別のウィングを見る"
       }
     };
-    return labels[key]?.[lang] || labels[key]?.en || "";
+    return labels2[key]?.[lang] || labels2[key]?.en || "";
   }
   function flyWingPlayerLinks(ctx, decision, hrefs = {}) {
     if (!decision) return "";
@@ -1392,6 +1406,96 @@
     return `<aside data-equal-price-choice><h3>${ctx.esc(c.title)}</h3><p>${ctx.esc(c.advice)}</p><p>${links.join(" · ")}</p>${limit}</aside>`;
   }
 
+  // src/entities/item/lure-coverage-kit.js
+  var PREFERRED_PAIR_ORDER = /* @__PURE__ */ new Map([
+    ["2E+23", 0],
+    ["17+24", 1],
+    ["17+23", 2]
+  ]);
+  function luresWithFishProfiles(items) {
+    return items.filter(
+      (item) => item.category === "lure" && (item.playerUse?.fishIds || []).length > 0
+    );
+  }
+  function expectedFishIds(lures) {
+    return new Set(lures.flatMap((item) => item.playerUse.fishIds || []));
+  }
+  function pairItems(first, second) {
+    return [first, second].sort((a, b) => {
+      const maskA = Number.parseInt(a.decodedFields?.fishHookGateMaskHex || "0", 16);
+      const maskB = Number.parseInt(b.decodedFields?.fishHookGateMaskHex || "0", 16);
+      return maskB - maskA || a.id.localeCompare(b.id);
+    });
+  }
+  function pairKey(items) {
+    return items.map((item) => item.id).join("+");
+  }
+  function isFullCoverage(items, expected) {
+    const covered = new Set(items.flatMap((item) => item.playerUse.fishIds || []));
+    return covered.size === expected.size && [...expected].every((id) => covered.has(id));
+  }
+  function makePair(items, coverageCount) {
+    const orderedItems = pairItems(...items);
+    return {
+      items: orderedItems,
+      key: pairKey(orderedItems),
+      totalYen: orderedItems.reduce((sum, item) => sum + Number(item.priceYen), 0),
+      coverageCount
+    };
+  }
+  function pairOrder(first, second) {
+    const priceDifference = first.totalYen - second.totalYen;
+    if (priceDifference) return priceDifference;
+    const firstPreference = PREFERRED_PAIR_ORDER.get(first.key) ?? Infinity;
+    const secondPreference = PREFERRED_PAIR_ORDER.get(second.key) ?? Infinity;
+    return firstPreference - secondPreference || first.key.localeCompare(second.key);
+  }
+  function lureCoverageOptions(items) {
+    const lures = luresWithFishProfiles(items);
+    const expected = expectedFishIds(lures);
+    const pairs = [];
+    for (let first = 0; first < lures.length; first += 1) {
+      for (let second = first + 1; second < lures.length; second += 1) {
+        const pair = pairItems(lures[first], lures[second]);
+        if (pair.every((item) => Number.isFinite(item.priceYen)) && isFullCoverage(pair, expected))
+          pairs.push(makePair(pair, expected.size));
+      }
+    }
+    return { coverageCount: expected.size, pairs: pairs.sort(pairOrder) };
+  }
+  function stockedInArea(item, stage) {
+    return (item.playerUse?.shops || []).some(
+      (shop) => Number(shop.stage) === stage && !shop.condition
+    );
+  }
+  function lureCoverageForArea(options, stage) {
+    const area = Number(stage);
+    const localPairs = Number.isInteger(area) && area >= 1 && area <= 6 ? options.pairs.filter((pair) => pair.items.every((item) => stockedInArea(item, area))) : [];
+    return {
+      stage: area,
+      coverageCount: options.coverageCount,
+      localPairs,
+      pair: localPairs[0] || options.pairs[0] || null,
+      isLocal: localPairs.length > 0
+    };
+  }
+  function lureCoverageByArea(options) {
+    return [1, 2, 3, 4, 5, 6].map((stage) => lureCoverageForArea(options, stage));
+  }
+
+  // src/pages/equipment/hp-recovery-tip.js
+  function catalogueHpRecoveryAction(ctx) {
+    if (typeof ctx.sourceReturn !== "function") return "";
+    return hpRecoveryAction({
+      locale: ctx.lang,
+      cataloguePath: `index${ctx.lang === "en" ? "" : "." + ctx.lang}.html`,
+      stage: ctx.locationStage,
+      returnPath: ctx.sourceReturn(),
+      source: "catalogue",
+      escapeHtml: ctx.esc
+    });
+  }
+
   // src/pages/equipment/rod-area-page-helpers.js
   function hasSelectedArea(ctx) {
     const stage = Number(ctx.locationStage);
@@ -1435,8 +1539,73 @@
     return `<p>These rod recommendations are general routes, not stock choices for Area ${area}. Open Shops to see recorded offers in your selected area.</p>`;
   }
 
+  // src/pages/equipment/lure-coverage-guidance.js
+  function areaNames(ctx, stages) {
+    if (ctx.lang === "th") return `ด่าน ${stages.join(", ")}`;
+    if (ctx.lang === "ja") return `エリア${stages.join("・")}`;
+    if (stages.length === 1) return `Area ${stages[0]}`;
+    return `Areas ${stages.slice(0, -1).join(", ")} and ${stages.at(-1)}`;
+  }
+  function pairSummary(ctx, pair) {
+    const price = ctx.lang === "ja" ? `${pair.totalYen}円` : `¥${pair.totalYen}`;
+    return `${pair.key} · ${price}`;
+  }
+  function groupedLureAreas(options) {
+    const groups = /* @__PURE__ */ new Map();
+    for (const choice of lureCoverageByArea(options)) {
+      const key = choice.isLocal ? choice.pair.key : "none";
+      const group = groups.get(key) || { pair: choice.isLocal ? choice.pair : null, stages: [] };
+      group.stages.push(choice.stage);
+      groups.set(key, group);
+    }
+    return [...groups.values()];
+  }
+  function groupSummary(ctx, group) {
+    if (group.pair) return `${areaNames(ctx, group.stages)}: ${pairSummary(ctx, group.pair)}`;
+    const unavailable = ctx.lang === "th" ? "ไม่มีคู่ครบขายในพื้นที่; ใช้คู่ที่มีอยู่หรือซื้อ 17+23 ที่ด่าน 4" : ctx.lang === "ja" ? "店頭で一式は揃いません。所持中のセットを使うか、エリア4で17+23を購入" : "no complete local pair; keep a full pair you own or buy 17+23 in Area 4";
+    return `${areaNames(ctx, group.stages)}: ${unavailable}`;
+  }
+  function noStageRecommendation(ctx, options) {
+    const areaChoices = groupedLureAreas(options).map((group) => groupSummary(ctx, group));
+    if (ctx.lang === "th") return `ชุดครบที่ซื้อได้ตามด่าน: ${areaChoices.join("; ")}`;
+    if (ctx.lang === "ja") return `エリア別に店頭で揃うセット：${areaChoices.join("；")}`;
+    return `Complete pairs by area: ${areaChoices.join("; ")}`;
+  }
+  function currentAreaRecommendation(ctx, options, stage, choice) {
+    if (choice.isLocal) {
+      if (ctx.lang === "th")
+        return `ด่าน ${stage} ซื้อคู่ ${pairSummary(ctx, choice.pair)} ได้ครบในพื้นที่นี้`;
+      if (ctx.lang === "ja")
+        return `エリア${stage}では${pairSummary(ctx, choice.pair)}を店頭で揃えられます。`;
+      return `Area ${stage} stocks the complete pair ${pairSummary(ctx, choice.pair)}.`;
+    }
+    const sellers = lureCoverageByArea(options).filter((area) => area.isLocal && area.pair.key === choice.pair.key).map((area) => area.stage);
+    const sellerAreas = areaNames(ctx, sellers);
+    if (ctx.lang === "th")
+      return `ด่าน ${stage} ไม่มีคู่ครบขายในพื้นที่; คู่ครบที่ราคาต่ำสุดคือ ${pairSummary(ctx, choice.pair)} ซื้อครบได้ที่ ${sellerAreas}. ถ้ามีคู่ครบอยู่แล้ว ใช้ต่อได้`;
+    if (ctx.lang === "ja")
+      return `エリア${stage}では一式が揃いません。最安の組み合わせ${pairSummary(ctx, choice.pair)}は${sellerAreas}で購入できます。すでに一式を持っていればそのまま使えます。`;
+    return `Area ${stage} has no complete local pair. The lowest-cost full pair is ${pairSummary(ctx, choice.pair)}, stocked in ${sellerAreas}. Keep a full pair you already own.`;
+  }
+  function contextualLureCoverageDecision(ctx, decision) {
+    const options = lureCoverageOptions(ctx.allItems);
+    const stage = hasSelectedArea(ctx);
+    const choice = lureCoverageForArea(options, stage || 1);
+    if (!choice.pair) return decision;
+    const recommendation = stage ? currentAreaRecommendation(ctx, options, stage, choice) : noStageRecommendation(ctx, options);
+    const items = stage ? choice.pair.items : lureCoverageByArea(options).filter((area) => area.isLocal).flatMap((area) => area.pair.items).filter(
+      (item, index, all) => all.findIndex((candidate) => candidate.id === item.id) === index
+    );
+    return {
+      ...decision,
+      recommendation: { ...decision.recommendation, [ctx.lang]: recommendation },
+      items: items.map((item) => ({ category: item.category, id: item.id }))
+    };
+  }
+
   // src/pages/equipment/player-guidance.js
   function decisionCard(ctx, d) {
+    d = d.id === "lure_coverage_pair" ? contextualLureCoverageDecision(ctx, d) : d;
     const marker = d.id === "lure_coverage_pair" ? " data-lure-coverage-pair" : "";
     const lureGuide = d.id === "lure_coverage_pair" ? lureCoverageGuide(ctx) : "";
     const nextAction = d.nextAction?.href ? `<p><a class="route-button" data-fly-backup-action href="${ctx.esc(d.nextAction.href)}">${ctx.esc(ctx.local(d.nextAction.label))} ↗</a></p>` : "";
@@ -1458,7 +1627,7 @@
       document.getElementById("category-recommendations-disclosure")
     );
     document.getElementById("player-decisions").hidden = !!document.getElementById("fish-filter").value;
-    document.getElementById("player-decisions").innerHTML = `<h2>${title}</h2><aside class="play-tip"><strong>${tip}</strong><p>${scope}</p>${hasCategoryDisclosure ? `<p><a class="route-button" data-player-decisions-link href="#category-decisions">${categoryLink} ↗</a></p>` : ""}</aside>`;
+    document.getElementById("player-decisions").innerHTML = `<h2>${title}</h2><aside class="play-tip"><strong>${tip}</strong><p>${scope}</p><p>${catalogueHpRecoveryAction(ctx)}</p>${hasCategoryDisclosure ? `<p><a class="route-button" data-player-decisions-link href="#category-decisions">${categoryLink} ↗</a></p>` : ""}</aside>`;
     const link = document.querySelector?.("[data-player-decisions-link]");
     link?.addEventListener?.("click", () => {
       const disclosure = document.getElementById("category-recommendations-disclosure");
@@ -1639,12 +1808,12 @@
     return false;
   }
   function flyBackupAction(ctx, fish) {
-    const labels = {
+    const labels2 = {
       th: "ถ้าชุดเริ่มต้นติดเงื่อนไขซ่อน: ดูชุดสำรองของปลานี้ · ไม่รับประกันว่าปลากิน",
       en: "If the starter is blocked by the hidden check: see this fish’s backup sets · no bite guarantee",
       ja: "最初のセットが隠し判定でブロックされたら、この魚の予備セットを見る（食いつき保証ではありません）"
     };
-    return hasThreeBundleFlyBackup(ctx, fish) ? { href: `${ctx.fishHref(fish)}#fly-backup`, label: labels } : null;
+    return hasThreeBundleFlyBackup(ctx, fish) ? { href: `${ctx.fishHref(fish)}#fly-backup`, label: labels2 } : null;
   }
   function flyDecision(ctx, category) {
     const fish = document.getElementById("fish-filter").value;
@@ -2229,88 +2398,88 @@
     const portrait = fish.image ? `<a href="${ctx.esc(ctx.fishHref(id))}" aria-label="${ctx.esc(ctx.fishName(id))} — ${ctx.detailLabel}"><img src="${ctx.esc(fish.image)}" alt="${ctx.esc(ctx.fishName(id))}"></a>` : "";
     return `<span class="map-pin" style="left:${Number(pin.x) * 100}%;top:${Number(pin.y) * 100}%" title="${ctx.esc(ctx.fishName(id))} · X ${pin.tileX}, Y ${pin.tileY}">${portrait}<b>${index + 1}</b></span>`;
   }
-  function fishMapImage(ctx, id, fish, map, title, labels) {
-    if (!map.image) return `<p>${ctx.esc(labels.unknown)}</p>`;
+  function fishMapImage(ctx, id, fish, map, title, labels2) {
+    if (!map.image) return `<p>${ctx.esc(labels2.unknown)}</p>`;
     const pins = (map.pins || []).map((pin, index) => fishPin(ctx, id, fish, pin, index)).join("");
     const ratio = `${Number(map.width) || 1}/${Number(map.height) || 1}`;
-    return `<div class="map-scroll"><div class="map-canvas" style="aspect-ratio:${ratio}"><img class="map-background" loading="lazy" src="${ctx.esc(map.image)}?v=terrain-context-20261004" alt="${ctx.esc(title)}">${pins}</div></div><p class="fish-scope">${ctx.esc(fishPinNote(ctx))}</p><a href="${ctx.esc(map.image)}" target="_blank" rel="noopener">${labels.openMap} ↗</a>${map.fullImage ? ` · <a href="${ctx.esc(map.fullImage)}" target="_blank" rel="noopener">${ctx.lang === "th" ? "ดูแผนที่ทั้งด่าน" : ctx.lang === "ja" ? "全体地図" : "Full area map"} ↗</a>` : ""}`;
+    return `<div class="map-scroll"><div class="map-canvas" style="aspect-ratio:${ratio}"><img class="map-background" loading="lazy" src="${ctx.esc(map.image)}?v=terrain-context-20261004" alt="${ctx.esc(title)}">${pins}</div></div><p class="fish-scope">${ctx.esc(fishPinNote(ctx))}</p><a href="${ctx.esc(map.image)}" target="_blank" rel="noopener">${labels2.openMap} ↗</a>${map.fullImage ? ` · <a href="${ctx.esc(map.fullImage)}" target="_blank" rel="noopener">${ctx.lang === "th" ? "ดูแผนที่ทั้งด่าน" : ctx.lang === "ja" ? "全体地図" : "Full area map"} ↗</a>` : ""}`;
   }
-  function fishMapArticle(ctx, id, fish, map, index, labels) {
+  function fishMapArticle(ctx, id, fish, map, index, labels2) {
     const title = ctx.local(map.name) || `${ctx.lang === "th" ? "แผนที่" : ctx.lang === "ja" ? "地図" : "Map"} ${index + 1}`;
     const bounds = map.tileBounds ? `<p class="fish-scope">X ${map.tileBounds.xMin}–${map.tileBounds.xMax} · Y ${map.tileBounds.yMin}–${map.tileBounds.yMax}</p>` : "";
-    const source = map.sourceUrl ? ` · <a href="${ctx.esc(map.sourceUrl)}" target="_blank" rel="noopener">${labels.source} ↗</a>` : "";
+    const source = map.sourceUrl ? ` · <a href="${ctx.esc(map.sourceUrl)}" target="_blank" rel="noopener">${labels2.source} ↗</a>` : "";
     const note = map.note ? `<p>${ctx.esc(ctx.local(map.note))}</p>` : "";
-    return `<article class="location-map"><h4>${ctx.esc(title)}</h4>${bounds}${fishMapImage(ctx, id, fish, map, title, labels)}${source}${note}</article>`;
+    return `<article class="location-map"><h4>${ctx.esc(title)}</h4>${bounds}${fishMapImage(ctx, id, fish, map, title, labels2)}${source}${note}</article>`;
   }
-  function renderFishMaps(ctx, id, fish, maps, labels) {
-    return maps.filter((map, index) => index === ctx.locationMapIndex).map((map, index) => fishMapArticle(ctx, id, fish, map, index, labels)).join("");
+  function renderFishMaps(ctx, id, fish, maps, labels2) {
+    return maps.filter((map, index) => index === ctx.locationMapIndex).map((map, index) => fishMapArticle(ctx, id, fish, map, index, labels2)).join("");
   }
   function stageButtons(ctx, locations, stageWord) {
     return locations.map(
       (location2) => `<button type="button" data-location-stage="${location2.stage}" aria-pressed="${String(location2.stage) === ctx.locationStage}">${stageWord} ${location2.stage} · ${ctx.esc(ctx.local(location2.stageName))}</button>`
     ).join("");
   }
-  function fishMapHref(ctx, labels, id, location2) {
+  function fishMapHref(ctx, labels2, id, location2) {
     const query = new URLSearchParams({
       fish: id,
       route: navigationRoute(ctx),
       return: ctx.sourceReturn()
     });
     if (location2) query.set("stage", String(location2.stage));
-    return `${labels.page}?${query}`;
+    return `${labels2.page}?${query}`;
   }
-  function renderFishAreaLinks(ctx, id, locations, labels) {
-    if (!locations.length) return `<p>${ctx.esc(labels.unknown)}</p>`;
+  function renderFishAreaLinks(ctx, id, locations, labels2) {
+    if (!locations.length) return `<p>${ctx.esc(labels2.unknown)}</p>`;
     const unique = [
       ...new Map(locations.map((location2) => [String(location2.stage), location2])).values()
     ];
     const links = unique.map((location2) => {
-      const label = `${labels.stage} ${location2.stage} · ${ctx.local(location2.stageName)}`;
-      return `<a class="fish-area-link" href="${ctx.esc(fishMapHref(ctx, labels, id, location2))}">${ctx.esc(label)} ↗</a>`;
+      const label = `${labels2.stage} ${location2.stage} · ${ctx.local(location2.stageName)}`;
+      return `<a class="fish-area-link" href="${ctx.esc(fishMapHref(ctx, labels2, id, location2))}">${ctx.esc(label)} ↗</a>`;
     }).join("");
-    return `<nav class="fish-area-links" aria-label="${ctx.esc(labels.areasLabel)}"><strong>${ctx.esc(labels.areasLabel)}:</strong> ${links}</nav>`;
+    return `<nav class="fish-area-links" aria-label="${ctx.esc(labels2.areasLabel)}"><strong>${ctx.esc(labels2.areasLabel)}:</strong> ${links}</nav>`;
   }
-  function fishLocationHeader(ctx, id, fish, title, labels, chosen) {
+  function fishLocationHeader(ctx, id, fish, title, labels2, chosen) {
     const portrait = fish.image ? `<a href="${ctx.esc(ctx.fishHref(id))}" aria-label="${ctx.esc(ctx.fishName(id))} — ${ctx.detailLabel}"><img src="${ctx.esc(fish.image)}" alt=""></a>` : "";
     const intro = ctx.lang === "th" ? "ดูจุดตก แล้วเทียบตัวเลือกในหมวดที่เลือกด้านล่าง" : ctx.lang === "ja" ? "釣り場を確認してから、下で選択中のカテゴリーを比較します。" : "Find a fishing spot, then compare the selected equipment category below.";
-    const profile = `<a class="fish-profile-link" href="${ctx.esc(ctx.fishHref(id))}">${labels.profileLabel} ↗</a>`;
-    const map = `<a class="map-browser-cta" href="${ctx.esc(fishMapHref(ctx, labels, id, chosen))}">${labels.pageLabel} ↗</a>`;
+    const profile = `<a class="fish-profile-link" href="${ctx.esc(ctx.fishHref(id))}">${labels2.profileLabel} ↗</a>`;
+    const map = `<a class="map-browser-cta" href="${ctx.esc(fishMapHref(ctx, labels2, id, chosen))}">${labels2.pageLabel} ↗</a>`;
     return `<div class="location-heading">${portrait}<div><h2>${ctx.esc(title)} — ${ctx.esc(ctx.fishName(id))}</h2><p>${intro}</p><nav class="fish-location-links">${profile}${map}</nav></div></div>`;
   }
-  function chosenStageContent(ctx, chosen, locations, labels, overviewHtml, mapMenu, maps) {
-    if (!locations.length) return `<p>${ctx.esc(labels.unknown)}</p>`;
+  function chosenStageContent(ctx, chosen, locations, labels2, overviewHtml, mapMenu, maps) {
+    if (!locations.length) return `<p>${ctx.esc(labels2.unknown)}</p>`;
     const access = chosen.accessNote ? `<p class="location-access">${ctx.esc(ctx.local(chosen.accessNote))}</p>` : "";
     const noMap = !maps ? `<p>${ctx.lang === "th" ? "พบพิกัดใน ROM แล้ว อยู่ระหว่างถอดภาพแผนที่" : ctx.lang === "ja" ? "ROM座標を抽出済み。地図画像を復号中。" : "ROM coordinates extracted; map rendering is in progress."}</p>` : "";
     const points = (chosen.points || []).map((point) => `(${point.x}, ${point.y})`).join(" · ");
     const pointLabel = ctx.lang === "th" ? "ดูพิกัดจุดเกิดจากเกม" : ctx.lang === "ja" ? "出現座標" : "Spawn coordinates";
     const provenance = ctx.lang === "th" ? "ตำแหน่งและชนิดปลาถอดจาก ROM; เปิดรายละเอียดเพื่อดูตารางและโค้ดที่ใช้ตรวจสอบ" : ctx.lang === "ja" ? "場所と魚種はROMから抽出。根拠の表とコードは調査詳細を参照。" : "Locations and species are extracted from ROM; research notes identify the source tables and code.";
-    return `<nav class="part-menu location-stages" aria-label="${labels.stage}">${stageButtons(ctx, locations, labels.stage)}</nav><h3>${labels.stage} ${chosen.stage} · ${ctx.esc(ctx.local(chosen.stageName))}</h3><p>${ctx.esc(ctx.local(chosen.description))}</p>${access}${overviewHtml}${mapMenu}<div class="location-maps">${maps}</div>${noMap}<details class="spawn-coordinates"><summary>${pointLabel}</summary><p>${points}</p></details><p class="location-provenance">${provenance}</p>`;
+    return `<nav class="part-menu location-stages" aria-label="${labels2.stage}">${stageButtons(ctx, locations, labels2.stage)}</nav><h3>${labels2.stage} ${chosen.stage} · ${ctx.esc(ctx.local(chosen.stageName))}</h3><p>${ctx.esc(ctx.local(chosen.description))}</p>${access}${overviewHtml}${mapMenu}<div class="location-maps">${maps}</div>${noMap}<details class="spawn-coordinates"><summary>${pointLabel}</summary><p>${points}</p></details><p class="location-provenance">${provenance}</p>`;
   }
-  function renderFishLocationContent(ctx, id, fish, chosen, locations, labels) {
+  function renderFishLocationContent(ctx, id, fish, chosen, locations, labels2) {
     const mapChoices = chosen?.maps || [];
     if (ctx.locationMapIndex >= mapChoices.length) ctx.locationMapIndex = 0;
     const viewBox = mapChoices[ctx.locationMapIndex]?.overviewBox;
     const overview = renderAreaOverview(ctx, chosen, viewBox);
     const mapMenu = renderFishMapMenu(ctx, mapChoices);
-    const maps = renderFishMaps(ctx, id, fish, mapChoices, labels);
-    const mapContent = chosenStageContent(ctx, chosen, locations, labels, overview, mapMenu, maps);
-    const mapLabel = chosen ? `${labels.mapDetails} · ${labels.stage} ${chosen.stage} · ${ctx.local(chosen.stageName)}` : labels.mapDetails;
+    const maps = renderFishMaps(ctx, id, fish, mapChoices, labels2);
+    const mapContent = chosenStageContent(ctx, chosen, locations, labels2, overview, mapMenu, maps);
+    const mapLabel = chosen ? `${labels2.mapDetails} · ${labels2.stage} ${chosen.stage} · ${ctx.local(chosen.stageName)}` : labels2.mapDetails;
     const disclosure = locations.length ? ctx.cardDisclosure(mapLabel, mapContent, "fish-location-details") : "";
-    return `${fishLocationHeader(ctx, id, fish, labels.title, labels, chosen)}${renderFishAreaLinks(ctx, id, locations, labels)}${disclosure}`;
+    return `${fishLocationHeader(ctx, id, fish, labels2.title, labels2, chosen)}${renderFishAreaLinks(ctx, id, locations, labels2)}${disclosure}`;
   }
   function renderFishLocation(ctx, id) {
-    const labels = fishMapLabels(ctx);
+    const labels2 = fishMapLabels(ctx);
     if (!id) return renderEmptyFishLocation();
     const fish = ctx.fishVisuals[id] || {};
     const locations = ctx.fishLocations[id]?.locations || [];
     const chosen = selectFishStage(ctx, locations);
-    const mapHref = fishMapHref(ctx, labels, id, chosen);
+    const mapHref = fishMapHref(ctx, labels2, id, chosen);
     document.getElementById("map-browser-link").href = mapHref;
     const panel = document.getElementById("fish-location-panel");
     const keepMapOpen = panel.dataset?.fishId === String(id) && panel.querySelector?.("details.fish-location-details")?.open;
     panel.hidden = false;
     panel.dataset && (panel.dataset.fishId = String(id));
-    panel.innerHTML = mapReturnMarkup(ctx) + renderFishLocationContent(ctx, id, fish, chosen, locations, labels);
+    panel.innerHTML = mapReturnMarkup(ctx) + renderFishLocationContent(ctx, id, fish, chosen, locations, labels2);
     const disclosure = panel.querySelector?.("details.fish-location-details");
     if (keepMapOpen && disclosure) disclosure.open = true;
   }
@@ -3546,7 +3715,7 @@
     fishOnly: "แสดงเหยื่อที่ผ่านเงื่อนไขของปลาที่เลือก",
     basePrice: "ราคาพื้นฐาน",
     kit: "ชุดเหยื่อที่ครอบคลุมชนิดปลา",
-    kitText: "ด่าน 1 ซื้อสปูน 2E + ยางหนอน 23 รวม 55 เยน แล้วพกคู่นี้ต่อได้ ไม่ต้องซื้อจมน้ำเพิ่ม ถ้าเริ่มซื้อชุดใหม่ที่ด่าน 4 เลือกจมน้ำ 17 + ยางหนอน 23 รวม 50 เยนได้ ทั้งสองคู่ครอบคลุมเงื่อนไขลัวร์ 38 โปรไฟล์ ไม่ใช่การรับประกันจับสำเร็จ",
+    kitText: "เลือกตามด่าน: ด่าน 1 ใช้ 2E+23 ¥55, ด่าน 2–3 ใช้ 17+24 ¥55, ด่าน 4 ใช้ 17+23 ¥50; ด่าน 5–6 ไม่มีคู่ครบขาย ให้พกคู่ที่มีหรือซื้อ 17+23 ที่ด่าน 4 ทั้งหมดครอบคลุมเงื่อนไขลัวร์ 38 โปรไฟล์ ไม่รับประกันว่าปลากินหรือจับขึ้นได้",
     kitLink: "ดูชุดพร้อมภาพและตารางปลา",
     guide: "วิธีประกอบฟลายในเกม",
     research: "รายละเอียดและที่มาของข้อมูล",
@@ -3593,7 +3762,7 @@
     fishOnly: "Showing baits that pass the selected fish’s conditions",
     basePrice: "Base price",
     kit: "A lure set covering the compatible species",
-    kitText: "Buy Spoon 2E + Soft worm 23 for ¥55 in area 1 and keep the pair. If starting a new kit in area 4, Sinking 17 + Soft worm 23 costs ¥50. Both cover 38 compatible profiles; buying Sinking after you own Spoon does not save money. Compatibility is not guaranteed landing.",
+    kitText: "Choose by area: 2E+23 costs ¥55 in Area 1, 17+24 costs ¥55 in Areas 2–3, and 17+23 costs ¥50 in Area 4. Areas 5–6 have no complete local pair; carry one you own or buy 17+23 in Area 4. Each pair covers the same 38 lure-compatible profiles, not a guaranteed bite or catch.",
     kitLink: "See the illustrated set and fish table",
     guide: "Make a fly in the game",
     research: "Research details and sources",
@@ -3640,7 +3809,7 @@
     fishOnly: "選んだ魚の条件に合うエサを表示",
     basePrice: "基本価格",
     kit: "対応魚を網羅するルアー構成",
-    kitText: "エリア1でスプーン2E＋ソフト・ワーム23を55円で買い、そのまま持ち続ける。エリア4で新しく揃えるなら17＋23は50円。どちらも適合38プロフィールを網羅するが、取り込み保証ではない。スプーン所持後のシンキング追加購入は節約にならない。",
+    kitText: "エリア別に選択：エリア1は2E+23が55円、エリア2・3は17+24が55円、エリア4は17+23が50円。エリア5・6では一式揃わないため、所持中のセットを使うかエリア4で17+23を購入。いずれもルアー判定を通る38プロフィールをカバーしますが、食いつきや釣果の保証ではありません。",
     kitLink: "画像付き構成と魚別表",
     guide: "ゲーム内でフライを作る",
     research: "調査詳細と出典",

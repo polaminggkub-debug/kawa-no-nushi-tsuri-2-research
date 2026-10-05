@@ -16,7 +16,11 @@ function checkLocale(locale) {
   const cards = [
     ...html.matchAll(/<div class="shop" data-shop-item="([a-z_]+):([0-9A-F]+)">([\s\S]*?)<\/div>/g),
   ]
-  assert.equal(cards.length, 9, 'All nine recommendation stock labels must be actionable')
+  assert.equal(cards.length, 10, 'All ten recommendation stock labels must be actionable')
+  assert(
+    cards.some(([, category, id]) => category === 'lure' && id === '24'),
+    `${locale}: area 2/3 complete-kit lure 24 has no shop action`,
+  )
   for (const [, category, id, content] of cards) {
     const item = data.items.find((entry) => entry.category === category && entry.id === id)
     assert(item, `Missing shop data for ${category}:${id}`)
@@ -146,5 +150,5 @@ assert.throws(
   /Unrecorded strategy stock/,
 )
 console.log(
-  'PASS: all nine strategy shop links and item details return to their localized topic; language links preserve the current hash; recorded stock is enforced.',
+  'PASS: all ten strategy shop links and item details return to their localized topic; language links preserve the current hash; recorded stock is enforced.',
 )

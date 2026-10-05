@@ -265,40 +265,97 @@
     });
   }
 
+  // src/entities/item/lure-coverage-kit.js
+  var PREFERRED_PAIR_ORDER = /* @__PURE__ */ new Map([
+    ["2E+23", 0],
+    ["17+24", 1],
+    ["17+23", 2]
+  ]);
+  function luresWithFishProfiles(items) {
+    return items.filter(
+      (item) => item.category === "lure" && (item.playerUse?.fishIds || []).length > 0
+    );
+  }
+  function expectedFishIds(lures) {
+    return new Set(lures.flatMap((item) => item.playerUse.fishIds || []));
+  }
+  function pairItems(first, second) {
+    return [first, second].sort((a, b) => {
+      const maskA = Number.parseInt(a.decodedFields?.fishHookGateMaskHex || "0", 16);
+      const maskB = Number.parseInt(b.decodedFields?.fishHookGateMaskHex || "0", 16);
+      return maskB - maskA || a.id.localeCompare(b.id);
+    });
+  }
+  function pairKey(items) {
+    return items.map((item) => item.id).join("+");
+  }
+  function isFullCoverage(items, expected) {
+    const covered = new Set(items.flatMap((item) => item.playerUse.fishIds || []));
+    return covered.size === expected.size && [...expected].every((id) => covered.has(id));
+  }
+  function makePair(items, coverageCount) {
+    const orderedItems = pairItems(...items);
+    return {
+      items: orderedItems,
+      key: pairKey(orderedItems),
+      totalYen: orderedItems.reduce((sum, item) => sum + Number(item.priceYen), 0),
+      coverageCount
+    };
+  }
+  function pairOrder(first, second) {
+    const priceDifference = first.totalYen - second.totalYen;
+    if (priceDifference) return priceDifference;
+    const firstPreference = PREFERRED_PAIR_ORDER.get(first.key) ?? Infinity;
+    const secondPreference = PREFERRED_PAIR_ORDER.get(second.key) ?? Infinity;
+    return firstPreference - secondPreference || first.key.localeCompare(second.key);
+  }
+  function lureCoverageOptions(items) {
+    const lures = luresWithFishProfiles(items);
+    const expected = expectedFishIds(lures);
+    const pairs = [];
+    for (let first = 0; first < lures.length; first += 1) {
+      for (let second = first + 1; second < lures.length; second += 1) {
+        const pair = pairItems(lures[first], lures[second]);
+        if (pair.every((item) => Number.isFinite(item.priceYen)) && isFullCoverage(pair, expected))
+          pairs.push(makePair(pair, expected.size));
+      }
+    }
+    return { coverageCount: expected.size, pairs: pairs.sort(pairOrder) };
+  }
+  function stockedInArea(item, stage) {
+    return (item.playerUse?.shops || []).some(
+      (shop) => Number(shop.stage) === stage && !shop.condition
+    );
+  }
+  function lureCoverageForArea(options, stage) {
+    const area = Number(stage);
+    const localPairs = Number.isInteger(area) && area >= 1 && area <= 6 ? options.pairs.filter((pair) => pair.items.every((item) => stockedInArea(item, area))) : [];
+    return {
+      stage: area,
+      coverageCount: options.coverageCount,
+      localPairs,
+      pair: localPairs[0] || options.pairs[0] || null,
+      isLocal: localPairs.length > 0
+    };
+  }
+
   // src/pages/fish/lure-kit.js
   function availableInArea(item, stage) {
     return (item.playerUse?.shops || []).some(
       (shop) => String(shop.stage) === stage && !shop.condition
     );
   }
-  function coveringPairs(lures, profileCount) {
-    const pairs = [
-      ["2E", "23"],
-      ["17", "23"]
-    ].map((ids) => ids.map((id) => lures.find((item) => item.id === id))).filter(
-      (pair) => pair.every(Boolean) && pair.every((item) => Number.isFinite(item.priceYen)) && new Set(pair.flatMap((item) => item.playerUse?.fishIds || [])).size === profileCount
-    );
-    return pairs;
-  }
-  function chooseLurePair(pairs, stage) {
-    const stocked = (item) => availableInArea(item, stage);
-    pairs.sort(
-      (a, b) => Number(b.every(stocked)) - Number(a.every(stocked)) || a.reduce((sum, item) => sum + item.priceYen, 0) - b.reduce((sum, item) => sum + item.priceYen, 0)
-    );
-    const localPair = pairs.find((pair) => pair.every(stocked));
-    return { pair: localPair || pairs[0], localPair };
-  }
   function lureKitTitle(ctx) {
     if (ctx.locale === "th") return "ถ้าจะตกปลาอื่นด้วย: ชุดลัวร์สองชิ้น";
     if (ctx.locale === "ja") return "ほかの魚も狙うなら：ルアー2種類のセット";
     return "Fishing for other species too? A two-lure kit";
   }
-  function lureKitIntro(ctx, count, total, hasLocalLureOffer) {
+  function lureKitIntro(ctx, count, total) {
     if (ctx.locale === "th")
-      return hasLocalLureOffer ? `ชุดราคาต่ำสุดด้านบนเลือกเพื่อปลาตัวนี้เท่านั้น ถ้าจะพกลัวร์สำหรับปลาหลายชนิด คู่ด้านล่างครอบคลุม ${count} โปรไฟล์ที่ผ่านเงื่อนไขลัวร์ รวมราคาซื้อใหม่ ¥${total}. ไม่ต้องซื้อทุกตัวเลือก: ถ้ามีคู่สปูนกับยางหนอนอยู่แล้ว ใช้ต่อได้` : `ถ้าจะพกลัวร์สำหรับปลาหลายชนิด คู่ด้านล่างครอบคลุม ${count} โปรไฟล์ที่ผ่านเงื่อนไขลัวร์ รวมราคาซื้อใหม่ ¥${total}. ไม่ต้องซื้อทุกตัวเลือก: ถ้ามีคู่สปูนกับยางหนอนอยู่แล้ว ใช้ต่อได้`;
+      return `คู่นี้ครอบคลุม ${count} โปรไฟล์ที่ผ่านเงื่อนไขลัวร์ ราคา ¥${total} หากซื้อใหม่ครบคู่ ไม่ต้องซื้อซ้ำถ้ามีคู่ที่ครอบคลุมครบอยู่แล้ว`;
     if (ctx.locale === "ja")
-      return hasLocalLureOffer ? `上の最安候補はこの魚だけを狙う選択です。ほかの魚も狙うなら、下の組み合わせでルアー判定を通る${count}プロフィールをカバーでき、新規購入は合計${total}円です。全部買う必要はありません。スプーンとワームの組を持っているなら、そのまま使用できます。` : `複数の魚に使うルアーセットが必要なら、下の組み合わせでルアー判定を通る${count}プロフィールをカバーでき、新規購入は合計${total}円です。全部買う必要はありません。スプーンとワームの組を持っているなら、そのまま使用できます。`;
-    return hasLocalLureOffer ? `The cheapest choice above is for this fish alone. For a kit to use across species, the pair below covers all ${count} profiles that pass the lure check, for ¥${total} when buying new. Do not buy every alternative: keep the Spoon-and-worm pair if you already own it.` : `For a multi-species lure kit, the pair below covers all ${count} profiles that pass the lure check, for ¥${total} when buying new. Do not buy every alternative: keep the Spoon-and-worm pair if you already own it.`;
+      return `この組み合わせはルアー判定を通る${count}プロフィールをカバーし、新規購入は合計${total}円です。すでに全範囲をカバーする組を持っていれば買い直す必要はありません。`;
+    return `This pair covers all ${count} profiles that pass the lure check, for ¥${total} when buying new. Keep a full-coverage pair you already own.`;
   }
   function lureKitAvailability(ctx, localPair, hasLocalLureOffer) {
     if (ctx.locale === "th")
@@ -314,7 +371,7 @@
     if (ctx.locale === "ja") return accepts ? "表示中の魚に対応" : "このセットでほかの魚を担当";
     return accepts ? "Works for the fish you are viewing" : "Covers other fish in this kit";
   }
-  function lureKitCard(ctx, item, stage) {
+  function lureKitCard(ctx, item, stage, pairKey2) {
     const stages = [
       ...new Set(
         (item.playerUse?.shops || []).filter((shop) => !shop.condition).map((shop) => shop.stage)
@@ -325,6 +382,8 @@
       id: item.id,
       fish: ctx.id,
       stage,
+      route: "lure",
+      kit: pairKey2,
       return: ctx.currentFishPath(stage)
     });
     const href = `${ctx.itemPath()}?${query}`;
@@ -340,17 +399,15 @@
   }
   function renderReusableKit(ctx, items, stage) {
     const lures = items.filter((item) => item.category === "lure");
-    const profileCount = new Set(lures.flatMap((item) => item.playerUse?.fishIds || [])).size;
+    const coverage = lureCoverageOptions(lures);
     if (!lures.some((item) => (item.playerUse?.fishIds || []).includes(ctx.id))) return "";
-    const { pair, localPair } = chooseLurePair(coveringPairs(lures, profileCount), stage);
+    const { pair, isLocal } = lureCoverageForArea(coverage, stage);
     if (!pair) return "";
     const hasLocalLureOffer = lures.some(
       (item) => (item.playerUse?.fishIds || []).includes(ctx.id) && availableInArea(item, String(stage))
     );
-    const count = profileCount;
-    const total = pair.reduce((sum, item) => sum + item.priceYen, 0);
-    const cards = pair.map((item) => lureKitCard(ctx, item, stage)).join("");
-    return `<section class="detail-section reusable-kit" data-kit="${pair.map((item) => item.id).join("+")}" data-coverage="${count}" data-total="${total}" data-local="${Boolean(localPair)}"><h3>${ctx.escapeHtml(lureKitTitle(ctx))}</h3><p>${ctx.escapeHtml(lureKitIntro(ctx, count, total, hasLocalLureOffer))}</p><p><strong>${ctx.escapeHtml(lureKitAvailability(ctx, Boolean(localPair), hasLocalLureOffer))}</strong></p><div class="detail-grid">${cards}</div><p class="muted">${ctx.escapeHtml(lureKitScope(ctx))}</p></section>`;
+    const cards = pair.items.map((item) => lureKitCard(ctx, item, stage, pair.key)).join("");
+    return `<section class="detail-section reusable-kit" data-kit="${pair.key}" data-coverage="${pair.coverageCount}" data-total="${pair.totalYen}" data-local="${isLocal}"><h3>${ctx.escapeHtml(lureKitTitle(ctx))}</h3><p>${ctx.escapeHtml(lureKitIntro(ctx, pair.coverageCount, pair.totalYen))}</p><p><strong>${ctx.escapeHtml(lureKitAvailability(ctx, isLocal, hasLocalLureOffer))}</strong></p><div class="detail-grid">${cards}</div><p class="muted">${ctx.escapeHtml(lureKitScope(ctx))}</p></section>`;
   }
 
   // src/pages/fish/fly-backup.js
@@ -448,7 +505,7 @@
   }
 
   // src/pages/fish/fishing-setup.js
-  function stockedInArea(item, stage) {
+  function stockedInArea2(item, stage) {
     return item.playerUse?.shops?.some(
       (shop) => String(shop.stage) === String(stage) && !shop.condition
     );
@@ -513,7 +570,7 @@
     return `${ctx.itemPath()}?${params}`;
   }
   function rigChoiceCard(ctx, role, method, stage) {
-    const stocked = role.candidates.filter((item) => stockedInArea(item, stage));
+    const stocked = role.candidates.filter((item) => stockedInArea2(item, stage));
     const choice = stocked[0] || role.candidates[0];
     if (!choice) return "";
     const localStock = stocked.length > 0;
@@ -529,8 +586,8 @@
     const rods = orderedForPurchase(
       items.filter((item) => item.category === "rod" && item.decodedFields?.styleCode === style)
     );
-    const localRod = rods.find((rod) => stockedInArea(rod, stage));
-    const localParts = roles.map((role) => role.candidates.find((item) => stockedInArea(item, stage)));
+    const localRod = rods.find((rod) => stockedInArea2(rod, stage));
+    const localParts = roles.map((role) => role.candidates.find((item) => stockedInArea2(item, stage)));
     if (!localRod || !localParts.every(Boolean)) return null;
     return localRod.priceYen + baitPrice + localParts.reduce((sum, item) => sum + item.priceYen, 0);
   }
@@ -540,7 +597,7 @@
     return `<p class="rig-total" data-rig-total="${total}"><strong>${ctx.escapeHtml(label)}</strong></p>`;
   }
   function rigFloatFallback(ctx, method, stage, items, roles) {
-    if (method !== "sinker" || roles[1].candidates.some((item) => stockedInArea(item, stage)))
+    if (method !== "sinker" || roles[1].candidates.some((item) => stockedInArea2(item, stage)))
       return "";
     const hasFloat = ctx.starterOffers(ctx.matchingItems(items), stage).some((offer) => offer.method === "float");
     if (!hasFloat) return "";
@@ -557,7 +614,7 @@
       (item) => item.category === "rod" && item.decodedFields?.styleCode === style
     );
     const priced = orderedForPurchase(rods);
-    const localRods = priced.filter((rod) => stockedInArea(rod, stage));
+    const localRods = priced.filter((rod) => stockedInArea2(rod, stage));
     const choice = localRods[0] || priced[0];
     if (!choice) return "";
     const title = ctx.locale === "th" ? "คันสำหรับวิธีนี้" : ctx.locale === "ja" ? "この釣り方の竿" : "Rod for this method";
@@ -807,6 +864,29 @@
     return `<section class="detail-section" data-unconfirmed-profile-action><h2>${ctx.escapeHtml(title)}</h2><p>${ctx.escapeHtml(text)}</p><a class="route-button" href="${ctx.escapeHtml(ctx.cataloguePath())}?category=all#catalogue">${ctx.locale === "th" ? "เลือกปลาอื่นจากช่องค้นหา" : ctx.locale === "ja" ? "検索欄で別の魚を選ぶ" : "Choose another fish in the search field"} ↗</a></section>`;
   }
 
+  // src/shared/lib/hp-recovery-action.js
+  var labels = {
+    th: "เลือกอาหารฟื้น HP และดูแหล่งซื้อ",
+    ja: "HP回復用の食料と販売場所を選ぶ",
+    en: "Choose recovery food and see where to buy it"
+  };
+  function hpRecoveryAction(options) {
+    const { locale, cataloguePath: cataloguePath2, stage, returnPath, source, escapeHtml: escapeHtml2 } = options;
+    const query = new URLSearchParams({ category: "food", return: returnPath });
+    if (/^[1-6]$/.test(String(stage))) query.set("stage", String(stage));
+    const href = `${cataloguePath2}?${query}#category-decisions`;
+    return `<a class="route-button" data-hp-food-action data-hp-source="${escapeHtml2(source)}" href="${escapeHtml2(href)}">${escapeHtml2(labels[locale] || labels.en)} ↗</a>`;
+  }
+
+  // src/shared/lib/index.js
+  function createPageRuntime(api) {
+    const runtime = {};
+    for (const [name, value] of Object.entries(api)) {
+      if (name !== "initialize") runtime[name] = value.bind(null, runtime);
+    }
+    return runtime;
+  }
+
   // src/pages/fish/shopping.js
   function compatibilityGroup(ctx, entries, category, stage) {
     const group = entries.filter((entry) => entry.item.category === category);
@@ -823,10 +903,18 @@
     const groups = ["bait", "lure", "fly"].map((category) => compatibilityGroup(ctx, entries, category, stage)).join("");
     return groups || `<p class="empty-state">${ctx.escapeHtml(ctx.copy.noCompatibility)}</p>`;
   }
-  function aimTip(ctx, method) {
+  function aimTip(ctx, method, stage) {
     if (!["lure", "sinker"].includes(method)) return "";
     const text = ctx.locale === "th" ? "ก่อนใช้คันลัวร์หรือคันหวด เติม HP ให้ถึง 100 เพื่อให้ได้เวลาเล็งเต็มของคันนั้น ไม่ใช่โบนัสโอกาสปลากิน" : ctx.locale === "ja" ? "ルアー竿・投げ竿を使う前にHPを100まで回復すると、竿本来の照準時間になります。食いつき率のボーナスではありません。" : "Restore HP to 100 before lure or casting fishing to get the rod’s full aim window. This does not add a bite-rate bonus.";
-    return `<p class="aim-tip">${ctx.escapeHtml(text)}</p>`;
+    const action = hpRecoveryAction({
+      locale: ctx.locale,
+      cataloguePath: ctx.cataloguePath(),
+      stage,
+      returnPath: `${ctx.currentFishPath(stage)}#starter-${method}`,
+      source: `fish-${method}`,
+      escapeHtml: ctx.escapeHtml
+    });
+    return `<p class="aim-tip">${ctx.escapeHtml(text)}</p><p>${action}</p>`;
   }
   function starterLink(ctx, offer, stage) {
     const item = offer.entry.item;
@@ -849,7 +937,7 @@
     const method = offer.method;
     const item = offer.entry.item;
     const rig = ctx.renderRigForMethod(method, stage, allItems, offer.price);
-    const aim = aimTip(ctx, method);
+    const aim = aimTip(ctx, method, stage);
     const fly = offer.bundle ? `<p class="muted">${ctx.escapeHtml(text.fly)}</p>` : "";
     const link = starterLink(ctx, offer, stage);
     const total = rig.match(/data-rig-total="(\d+)"/)?.[1];
@@ -1014,7 +1102,7 @@
 
   // src/pages/fish/water-icons.js
   var classOrder = ["small", "large", "bubble"];
-  var labels = {
+  var labels2 = {
     en: {
       title: "Read the water marks",
       intro: "Use these marks to narrow down candidates on the map. A mark records size when the object is built; later growth does not directly update it. The caught size may differ, and a mark alone cannot identify the species.",
@@ -1062,7 +1150,7 @@
     }
   };
   function copyFor(ctx) {
-    return labels[ctx.locale] || labels.en;
+    return labels2[ctx.locale] || labels2.en;
   }
   function imageFor(waterIcons, iconClass) {
     const image = waterIcons?.classes?.[iconClass]?.image;
@@ -1643,15 +1731,6 @@
     setupLocale(ctx);
     loadCopy(ctx);
     loadProfile(ctx);
-  }
-
-  // src/shared/lib/index.js
-  function createPageRuntime(api) {
-    const runtime = {};
-    for (const [name, value] of Object.entries(api)) {
-      if (name !== "initialize") runtime[name] = value.bind(null, runtime);
-    }
-    return runtime;
   }
 
   // src/app/fish.js

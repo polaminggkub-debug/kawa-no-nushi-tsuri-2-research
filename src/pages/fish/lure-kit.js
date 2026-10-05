@@ -1,34 +1,9 @@
+import { lureCoverageForArea, lureCoverageOptions } from '../../entities/item/index.js'
+
 function availableInArea(item, stage) {
   return (item.playerUse?.shops || []).some(
     (shop) => String(shop.stage) === stage && !shop.condition,
   )
-}
-
-function coveringPairs(lures, profileCount) {
-  const pairs = [
-    ['2E', '23'],
-    ['17', '23'],
-  ]
-    .map((ids) => ids.map((id) => lures.find((item) => item.id === id)))
-    .filter(
-      (pair) =>
-        pair.every(Boolean) &&
-        pair.every((item) => Number.isFinite(item.priceYen)) &&
-        new Set(pair.flatMap((item) => item.playerUse?.fishIds || [])).size === profileCount,
-    )
-  return pairs
-}
-
-function chooseLurePair(pairs, stage) {
-  const stocked = (item) => availableInArea(item, stage)
-  pairs.sort(
-    (a, b) =>
-      Number(b.every(stocked)) - Number(a.every(stocked)) ||
-      a.reduce((sum, item) => sum + item.priceYen, 0) -
-        b.reduce((sum, item) => sum + item.priceYen, 0),
-  )
-  const localPair = pairs.find((pair) => pair.every(stocked))
-  return { pair: localPair || pairs[0], localPair }
 }
 
 function lureKitTitle(ctx) {
@@ -37,18 +12,12 @@ function lureKitTitle(ctx) {
   return 'Fishing for other species too? A two-lure kit'
 }
 
-function lureKitIntro(ctx, count, total, hasLocalLureOffer) {
+function lureKitIntro(ctx, count, total) {
   if (ctx.locale === 'th')
-    return hasLocalLureOffer
-      ? `ชุดราคาต่ำสุดด้านบนเลือกเพื่อปลาตัวนี้เท่านั้น ถ้าจะพกลัวร์สำหรับปลาหลายชนิด คู่ด้านล่างครอบคลุม ${count} โปรไฟล์ที่ผ่านเงื่อนไขลัวร์ รวมราคาซื้อใหม่ ¥${total}. ไม่ต้องซื้อทุกตัวเลือก: ถ้ามีคู่สปูนกับยางหนอนอยู่แล้ว ใช้ต่อได้`
-      : `ถ้าจะพกลัวร์สำหรับปลาหลายชนิด คู่ด้านล่างครอบคลุม ${count} โปรไฟล์ที่ผ่านเงื่อนไขลัวร์ รวมราคาซื้อใหม่ ¥${total}. ไม่ต้องซื้อทุกตัวเลือก: ถ้ามีคู่สปูนกับยางหนอนอยู่แล้ว ใช้ต่อได้`
+    return `คู่นี้ครอบคลุม ${count} โปรไฟล์ที่ผ่านเงื่อนไขลัวร์ ราคา ¥${total} หากซื้อใหม่ครบคู่ ไม่ต้องซื้อซ้ำถ้ามีคู่ที่ครอบคลุมครบอยู่แล้ว`
   if (ctx.locale === 'ja')
-    return hasLocalLureOffer
-      ? `上の最安候補はこの魚だけを狙う選択です。ほかの魚も狙うなら、下の組み合わせでルアー判定を通る${count}プロフィールをカバーでき、新規購入は合計${total}円です。全部買う必要はありません。スプーンとワームの組を持っているなら、そのまま使用できます。`
-      : `複数の魚に使うルアーセットが必要なら、下の組み合わせでルアー判定を通る${count}プロフィールをカバーでき、新規購入は合計${total}円です。全部買う必要はありません。スプーンとワームの組を持っているなら、そのまま使用できます。`
-  return hasLocalLureOffer
-    ? `The cheapest choice above is for this fish alone. For a kit to use across species, the pair below covers all ${count} profiles that pass the lure check, for ¥${total} when buying new. Do not buy every alternative: keep the Spoon-and-worm pair if you already own it.`
-    : `For a multi-species lure kit, the pair below covers all ${count} profiles that pass the lure check, for ¥${total} when buying new. Do not buy every alternative: keep the Spoon-and-worm pair if you already own it.`
+    return `この組み合わせはルアー判定を通る${count}プロフィールをカバーし、新規購入は合計${total}円です。すでに全範囲をカバーする組を持っていれば買い直す必要はありません。`
+  return `This pair covers all ${count} profiles that pass the lure check, for ¥${total} when buying new. Keep a full-coverage pair you already own.`
 }
 
 function lureKitAvailability(ctx, localPair, hasLocalLureOffer) {
@@ -79,7 +48,7 @@ function lureKitTarget(ctx, item) {
   return accepts ? 'Works for the fish you are viewing' : 'Covers other fish in this kit'
 }
 
-function lureKitCard(ctx, item, stage) {
+function lureKitCard(ctx, item, stage, pairKey) {
   const stages = [
     ...new Set(
       (item.playerUse?.shops || []).filter((shop) => !shop.condition).map((shop) => shop.stage),
@@ -90,6 +59,8 @@ function lureKitCard(ctx, item, stage) {
     id: item.id,
     fish: ctx.id,
     stage,
+    route: 'lure',
+    kit: pairKey,
     return: ctx.currentFishPath(stage),
   })
   const href = `${ctx.itemPath()}?${query}`
@@ -107,16 +78,14 @@ function lureKitScope(ctx) {
 
 export function renderReusableKit(ctx, items, stage) {
   const lures = items.filter((item) => item.category === 'lure')
-  const profileCount = new Set(lures.flatMap((item) => item.playerUse?.fishIds || [])).size
+  const coverage = lureCoverageOptions(lures)
   if (!lures.some((item) => (item.playerUse?.fishIds || []).includes(ctx.id))) return ''
-  const { pair, localPair } = chooseLurePair(coveringPairs(lures, profileCount), stage)
+  const { pair, isLocal } = lureCoverageForArea(coverage, stage)
   if (!pair) return ''
   const hasLocalLureOffer = lures.some(
     (item) =>
       (item.playerUse?.fishIds || []).includes(ctx.id) && availableInArea(item, String(stage)),
   )
-  const count = profileCount
-  const total = pair.reduce((sum, item) => sum + item.priceYen, 0)
-  const cards = pair.map((item) => lureKitCard(ctx, item, stage)).join('')
-  return `<section class="detail-section reusable-kit" data-kit="${pair.map((item) => item.id).join('+')}" data-coverage="${count}" data-total="${total}" data-local="${Boolean(localPair)}"><h3>${ctx.escapeHtml(lureKitTitle(ctx))}</h3><p>${ctx.escapeHtml(lureKitIntro(ctx, count, total, hasLocalLureOffer))}</p><p><strong>${ctx.escapeHtml(lureKitAvailability(ctx, Boolean(localPair), hasLocalLureOffer))}</strong></p><div class="detail-grid">${cards}</div><p class="muted">${ctx.escapeHtml(lureKitScope(ctx))}</p></section>`
+  const cards = pair.items.map((item) => lureKitCard(ctx, item, stage, pair.key)).join('')
+  return `<section class="detail-section reusable-kit" data-kit="${pair.key}" data-coverage="${pair.coverageCount}" data-total="${pair.totalYen}" data-local="${isLocal}"><h3>${ctx.escapeHtml(lureKitTitle(ctx))}</h3><p>${ctx.escapeHtml(lureKitIntro(ctx, pair.coverageCount, pair.totalYen))}</p><p><strong>${ctx.escapeHtml(lureKitAvailability(ctx, isLocal, hasLocalLureOffer))}</strong></p><div class="detail-grid">${cards}</div><p class="muted">${ctx.escapeHtml(lureKitScope(ctx))}</p></section>`
 }

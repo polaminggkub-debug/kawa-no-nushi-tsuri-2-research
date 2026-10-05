@@ -9,3 +9,4 @@ export function createPageRuntime(api) {
 
 export { targetAdvice, renderTargetAdvice, targetAdviceScope } from './target-advice.js'
 export { readableEvidenceHref } from './evidence-link.js'
+export { hpRecoveryAction } from './hp-recovery-action.js'

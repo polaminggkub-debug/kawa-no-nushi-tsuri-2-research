@@ -2,6 +2,7 @@ import assert from 'node:assert/strict'
 import fs from 'node:fs'
 import path from 'node:path'
 import { data, locations, render, root, unescapeHtml } from './shared.mjs'
+import { checkLureKit, checkLureKitNavigation } from './lure-kit-value.mjs'
 
 checkEvidenceTouchTargets()
 
@@ -12,7 +13,7 @@ for (const lang of ['en', 'ja', 'th']) {
       const result = await render('fish', lang, new URLSearchParams({ id: fishId, stage }))
       checkEvidenceLinks(result, fishId)
       checkAreaDecision(result, lang, fishId, area)
-      checkReusableKit(result, fishId, stage)
+      checkLureKit(result, lang, fishId, stage)
       checkFlyBackup(result, fishId)
       checkVisibleFishEvidence(result)
       await checkStarterOffers(result, fishId, stage)
@@ -21,6 +22,7 @@ for (const lang of ['en', 'ja', 'th']) {
   const unknown = await render('fish', lang, 'id=43')
   checkEvidenceLinks(unknown, '43')
 }
+for (const lang of ['en', 'ja', 'th']) await checkLureKitNavigation(lang)
 for (const lang of ['en', 'ja', 'th']) await checkFishLoadRecovery(lang)
 
 async function checkFishLoadRecovery(lang) {
@@ -139,44 +141,6 @@ function mapPage(lang) {
 
 function fishPage(lang) {
   return `fish${lang === 'en' ? '' : `.${lang}`}.html`
-}
-
-function checkReusableKit(result, fishId, stage) {
-  const kit = result.html.match(
-    /class="detail-section reusable-kit" data-kit="([^"]+)" data-coverage="(\d+)" data-total="(\d+)" data-local="(true|false)"/,
-  )
-  const lures = data.items.filter((item) => item.category === 'lure')
-  const lureProfiles = new Set(lures.flatMap((item) => item.playerUse?.fishIds || []))
-  assert.equal(Boolean(kit), lureProfiles.has(fishId))
-  if (!kit) return
-  const pair = kit[1].split('+').map((id) => lures.find((item) => item.id === id))
-  assert(pair.every(Boolean), 'Kit has unknown item')
-  const covered = new Set(pair.flatMap((item) => item.playerUse.fishIds))
-  assert.deepEqual([...covered].sort(), [...lureProfiles].sort())
-  assert.equal(Number(kit[2]), covered.size)
-  assert.equal(
-    Number(kit[3]),
-    pair.reduce((sum, item) => sum + item.priceYen, 0),
-  )
-  const localStock = (item) =>
-    item.playerUse.shops.some((shop) => String(shop.stage) === stage && !shop.condition)
-  assert.equal(kit[4], String(pair.every(localStock)))
-  checkKitPrice(kit, lures, localStock)
-}
-
-function checkKitPrice(kit, lures, localStock) {
-  const candidates = [
-    ['17', '23'],
-    ['2E', '23'],
-  ].map((ids) => ids.map((id) => lures.find((item) => item.id === id)))
-  const localPairs = candidates.filter((pair) => pair.every(localStock))
-  assert.equal(kit[4], String(Boolean(localPairs.length)))
-  const expected = Math.min(
-    ...(localPairs.length ? localPairs : candidates).map((pair) =>
-      pair.reduce((sum, item) => sum + item.priceYen, 0),
-    ),
-  )
-  assert.equal(Number(kit[3]), expected)
 }
 
 function checkFlyBackup(result, fishId) {

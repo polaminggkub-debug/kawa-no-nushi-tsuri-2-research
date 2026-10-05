@@ -6,6 +6,7 @@ import { townPasteBaitAction } from './bait-acquisition.js'
 import { notebookAction } from './notebook.js'
 import { questNextActions } from './quest-next-actions.js'
 import { targetAdviceSection } from './target-advice.js'
+import { lureKitContext } from './lure-kit-context.js'
 import {
   flyWingPlayerDecision,
   flyWingPlayerLinks,
@@ -324,6 +325,7 @@ function renderItemSections(ctx, item, allItems, fishVisuals, fishLocations, dec
   const hero = renderItemHero(ctx, item, name, categoryText)
   const target = renderFishTarget(ctx, fishVisuals, fishLocations)
   const baitTarget = renderBaitTarget(ctx, item, fishVisuals, fishLocations)
+  const kit = lureKitContext(ctx, item, allItems)
   const note = item[`imageNote${ctx.lang === 'th' ? 'Th' : ctx.lang === 'ja' ? 'Ja' : 'En'}`] || ''
   const action =
     magnetNextAction(ctx, item, allItems) ||
@@ -337,7 +339,7 @@ function renderItemSections(ctx, item, allItems, fishVisuals, fishLocations, dec
   const buying = rodAdvice ? '' : ctx.buyingDecision(item, allItems, decisions)
   const more = renderMoreOptions(ctx, item, allItems, fishLocations)
   const back = `<p class="detail-back-to-list"><a class="route-button" href="${ctx.esc(categoryHref)}">${ctx.esc(ctx.copy.allItems)} · ${ctx.esc(categoryText)} ↗</a></p>`
-  return `${intro}${hero}${target}${baitTarget}${action}${flyPriceChoice(ctx, item, allItems)}${flyMenuPosition(ctx, item)}${extras}${buying}${ctx.shopSection(item, allItems, fishLocations)}${ctx.useLocationSection(item, fishLocations, allItems)}${ctx.fishSection(item, fishVisuals, fishLocations)}${more}${back}${ctx.technicalSection(item)}<p class="muted">${ctx.esc(ctx.copy.sourced)}</p>`
+  return `${intro}${hero}${target}${baitTarget}${kit}${action}${flyPriceChoice(ctx, item, allItems)}${flyMenuPosition(ctx, item)}${extras}${buying}${ctx.shopSection(item, allItems, fishLocations)}${ctx.useLocationSection(item, fishLocations, allItems)}${ctx.fishSection(item, fishVisuals, fishLocations)}${more}${back}${ctx.technicalSection(item)}<p class="muted">${ctx.esc(ctx.copy.sourced)}</p>`
 }
 
 function scrollToItemAnchor() {

@@ -19,7 +19,7 @@ export const player_en = {
   basePrice: 'Base price',
   kit: 'A lure set covering the compatible species',
   kitText:
-    'Buy Spoon 2E + Soft worm 23 for ¥55 in area 1 and keep the pair. If starting a new kit in area 4, Sinking 17 + Soft worm 23 costs ¥50. Both cover 38 compatible profiles; buying Sinking after you own Spoon does not save money. Compatibility is not guaranteed landing.',
+    'Choose by area: 2E+23 costs ¥55 in Area 1, 17+24 costs ¥55 in Areas 2–3, and 17+23 costs ¥50 in Area 4. Areas 5–6 have no complete local pair; carry one you own or buy 17+23 in Area 4. Each pair covers the same 38 lure-compatible profiles, not a guaranteed bite or catch.',
   kitLink: 'See the illustrated set and fish table',
   guide: 'Make a fly in the game',
   research: 'Research details and sources',

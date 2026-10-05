@@ -1327,6 +1327,64 @@
     return `<aside data-equal-price-choice><h3>${ctx.esc(c.title)}</h3><p>${ctx.esc(c.advice)}</p><p>${links.join(" · ")}</p>${limit}</aside>`;
   }
 
+  // src/entities/item/lure-coverage-kit.js
+  var PREFERRED_PAIR_ORDER = /* @__PURE__ */ new Map([
+    ["2E+23", 0],
+    ["17+24", 1],
+    ["17+23", 2]
+  ]);
+  function luresWithFishProfiles(items) {
+    return items.filter(
+      (item) => item.category === "lure" && (item.playerUse?.fishIds || []).length > 0
+    );
+  }
+  function expectedFishIds(lures) {
+    return new Set(lures.flatMap((item) => item.playerUse.fishIds || []));
+  }
+  function pairItems(first, second) {
+    return [first, second].sort((a, b) => {
+      const maskA = Number.parseInt(a.decodedFields?.fishHookGateMaskHex || "0", 16);
+      const maskB = Number.parseInt(b.decodedFields?.fishHookGateMaskHex || "0", 16);
+      return maskB - maskA || a.id.localeCompare(b.id);
+    });
+  }
+  function pairKey(items) {
+    return items.map((item) => item.id).join("+");
+  }
+  function isFullCoverage(items, expected) {
+    const covered = new Set(items.flatMap((item) => item.playerUse.fishIds || []));
+    return covered.size === expected.size && [...expected].every((id) => covered.has(id));
+  }
+  function makePair(items, coverageCount) {
+    const orderedItems = pairItems(...items);
+    return {
+      items: orderedItems,
+      key: pairKey(orderedItems),
+      totalYen: orderedItems.reduce((sum, item) => sum + Number(item.priceYen), 0),
+      coverageCount
+    };
+  }
+  function pairOrder(first, second) {
+    const priceDifference = first.totalYen - second.totalYen;
+    if (priceDifference) return priceDifference;
+    const firstPreference = PREFERRED_PAIR_ORDER.get(first.key) ?? Infinity;
+    const secondPreference = PREFERRED_PAIR_ORDER.get(second.key) ?? Infinity;
+    return firstPreference - secondPreference || first.key.localeCompare(second.key);
+  }
+  function lureCoverageOptions(items) {
+    const lures = luresWithFishProfiles(items);
+    const expected = expectedFishIds(lures);
+    const pairs = [];
+    for (let first = 0; first < lures.length; first += 1) {
+      for (let second = first + 1; second < lures.length; second += 1) {
+        const pair = pairItems(lures[first], lures[second]);
+        if (pair.every((item) => Number.isFinite(item.priceYen)) && isFullCoverage(pair, expected))
+          pairs.push(makePair(pair, expected.size));
+      }
+    }
+    return { coverageCount: expected.size, pairs: pairs.sort(pairOrder) };
+  }
+
   // src/pages/item/usage.js
   function decisionUsage(ctx, decision) {
     return {
@@ -2713,6 +2771,52 @@
     return renderTargetAdvice(adapter, item, ctx.selectedFish);
   }
 
+  // src/pages/item/lure-kit-context.js
+  function requestedKit(ctx, item, allItems) {
+    const raw = ctx.params.get("kit") || "";
+    if (item.category !== "lure" || !/^[0-9A-F]{2}\+[0-9A-F]{2}$/.test(raw)) return null;
+    const key = raw.split("+").sort().join("+");
+    return lureCoverageOptions(allItems).pairs.find(
+      (pair) => pair.items.map((entry) => entry.id).sort().join("+") === key && pair.items.some((entry) => entry.id === item.id)
+    ) || null;
+  }
+  function kitCopy(ctx, pair) {
+    if (ctx.lang === "th")
+      return {
+        title: "คุณกำลังเลือกของสำหรับชุดลัวร์หลายชนิด",
+        action: `เก็บทั้งคู่ ${pair.key} เพื่อครอบคลุมเงื่อนไขลัวร์ ${pair.coverageCount} โปรไฟล์ รวม ¥${pair.totalYen} หากซื้อใหม่ ถ้ามีคู่ครบอยู่แล้ว ใช้ต่อได้ ไม่ต้องซื้อซ้ำ`,
+        scope: "คำแนะนำราคาถูกกว่าด้านล่างเลือกเพื่อปลาที่ดูอยู่ตัวเดียว การเปลี่ยนชิ้นหนึ่งไม่ได้ยืนยันว่าครอบคลุมครบทั้งชุด ไม่ได้รับประกันปลากินหรือดึงขึ้นสำเร็จ",
+        partner: "ดูอีกชิ้นในชุดและแหล่งซื้อ"
+      };
+    if (ctx.lang === "ja")
+      return {
+        title: "複数の魚に使うルアーセットを選択中",
+        action: `${pair.key}の両方を持つと${pair.coverageCount}プロフィールのルアー判定をカバーできます。新規購入は合計${pair.totalYen}円。すでに一式を持っていれば買い直す必要はありません。`,
+        scope: "下の安い候補は表示中の魚だけを狙う選択です。片方を替えてもセット全体のカバーは保証されません。食いつきや取り込みの保証ではありません。",
+        partner: "もう一方の道具と販売場所を見る"
+      };
+    return {
+      title: "Choosing an item for a multi-species lure kit",
+      action: `Keep both ${pair.key} to cover ${pair.coverageCount} lure-compatible profiles, for ¥${pair.totalYen} when buying new. Keep using a complete pair you already own; you do not need to buy it again.`,
+      scope: "Cheaper choices below target only the fish you are viewing. Replacing one member does not establish full-kit coverage. Coverage does not guarantee a bite or landing.",
+      partner: "See the other kit member and where to buy it"
+    };
+  }
+  function partnerHref(ctx, partner, pair) {
+    const [page, search = ""] = ctx.detailItemLink(partner).split("?");
+    const query = new URLSearchParams(search);
+    query.set("kit", pair.key);
+    return `${page}?${query}`;
+  }
+  function lureKitContext(ctx, item, allItems) {
+    const pair = requestedKit(ctx, item, allItems);
+    if (!pair) return "";
+    const partner = pair.items.find((entry) => entry.id !== item.id);
+    const copy5 = kitCopy(ctx, pair);
+    const link = partnerHref(ctx, partner, pair);
+    return `<section class="detail-section" data-lure-kit-context="${ctx.esc(pair.key)}" data-kit-coverage="${pair.coverageCount}"><h2>${ctx.esc(copy5.title)}</h2><p><strong>${ctx.esc(copy5.action)}</strong></p><a class="entity-link" data-lure-kit-partner="${ctx.esc(partner.id)}" href="${ctx.esc(link)}"><img src="${ctx.esc(partner.image)}" alt=""><span>${ctx.esc(ctx.imageName(partner))}<small>${ctx.esc(copy5.partner)} ↗</small></span></a><p class="muted">${ctx.esc(copy5.scope)}</p></section>`;
+  }
+
   // src/pages/item/render.js
   function renderFishTarget(ctx, fishVisuals, fishLocations) {
     if (!ctx.selectedFish) return "";
@@ -2932,6 +3036,7 @@
     const hero = renderItemHero(ctx, item, name, categoryText);
     const target = renderFishTarget(ctx, fishVisuals, fishLocations);
     const baitTarget = renderBaitTarget(ctx, item, fishVisuals, fishLocations);
+    const kit = lureKitContext(ctx, item, allItems);
     const note = item[`imageNote${ctx.lang === "th" ? "Th" : ctx.lang === "ja" ? "Ja" : "En"}`] || "";
     const action = magnetNextAction(ctx, item, allItems) || renderDecisionSection(ctx, viewItem, summary, facts2, note, {
       allItems,
@@ -2943,7 +3048,7 @@
     const buying = rodAdvice ? "" : ctx.buyingDecision(item, allItems, decisions);
     const more = renderMoreOptions(ctx, item, allItems, fishLocations);
     const back = `<p class="detail-back-to-list"><a class="route-button" href="${ctx.esc(categoryHref)}">${ctx.esc(ctx.copy.allItems)} · ${ctx.esc(categoryText)} ↗</a></p>`;
-    return `${intro}${hero}${target}${baitTarget}${action}${flyPriceChoice(ctx, item, allItems)}${flyMenuPosition(ctx, item)}${extras}${buying}${ctx.shopSection(item, allItems, fishLocations)}${ctx.useLocationSection(item, fishLocations, allItems)}${ctx.fishSection(item, fishVisuals, fishLocations)}${more}${back}${ctx.technicalSection(item)}<p class="muted">${ctx.esc(ctx.copy.sourced)}</p>`;
+    return `${intro}${hero}${target}${baitTarget}${kit}${action}${flyPriceChoice(ctx, item, allItems)}${flyMenuPosition(ctx, item)}${extras}${buying}${ctx.shopSection(item, allItems, fishLocations)}${ctx.useLocationSection(item, fishLocations, allItems)}${ctx.fishSection(item, fishVisuals, fishLocations)}${more}${back}${ctx.technicalSection(item)}<p class="muted">${ctx.esc(ctx.copy.sourced)}</p>`;
   }
   function scrollToItemAnchor() {
     if (location.hash === "#fly-menu-position")

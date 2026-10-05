@@ -1,4 +1,10 @@
 {
+  "lure-kit-areas": [
+    "<tr data-lure-kit-area=\"1\"><th>1</th><td><a href=\"../catalogue/item.th.html?id=2E&amp;return=..%2Fresearch%2Findex.th.html%23lure-kit&amp;category=lure\">2E</a> + <a href=\"../catalogue/item.th.html?id=23&amp;return=..%2Fresearch%2Findex.th.html%23lure-kit&amp;category=lure\">23</a> · ¥55</td></tr>",
+    "<tr data-lure-kit-area=\"2,3\"><th>2–3</th><td><a href=\"../catalogue/item.th.html?id=17&amp;return=..%2Fresearch%2Findex.th.html%23lure-kit&amp;category=lure\">17</a> + <a href=\"../catalogue/item.th.html?id=24&amp;return=..%2Fresearch%2Findex.th.html%23lure-kit&amp;category=lure\">24</a> · ¥55</td></tr>",
+    "<tr data-lure-kit-area=\"4\"><th>4</th><td><a href=\"../catalogue/item.th.html?id=17&amp;return=..%2Fresearch%2Findex.th.html%23lure-kit&amp;category=lure\">17</a> + <a href=\"../catalogue/item.th.html?id=23&amp;return=..%2Fresearch%2Findex.th.html%23lure-kit&amp;category=lure\">23</a> · ¥50</td></tr>",
+    "<tr data-lure-kit-area=\"5,6\"><th>5–6</th><td>ไม่มีคู่ครบขายในพื้นที่ ให้พกคู่ที่มีหรือซื้อ <a href=\"../catalogue/item.th.html?id=17&amp;return=..%2Fresearch%2Findex.th.html%23lure-kit&amp;category=lure\">17</a> + <a href=\"../catalogue/item.th.html?id=23&amp;return=..%2Fresearch%2Findex.th.html%23lure-kit&amp;category=lure\">23</a> ที่ด่าน 4</td></tr>"
+  ],
   "table-1": [
     "<tr><td>ทุ่น / อายุ</td><td><a href=\"../catalogue/item.th.html?id=01&amp;return=..%2Fresearch%2Findex.th.html&amp;category=rod\"><code>01</code> คันทานาโกะ 2m</a></td><td>¥500</td><td>พื้นที่ 5 (ร้านคันเบ็ดพิเศษ)</td><td>10</td><td>3 × 336 = 1008</td><td>57</td><td>0</td><td><code>0x02A7F5</code></td><td><code>01 00 0A 03 39 00 08 00 51 A9 F4 01</code></td></tr>",
     "<tr><td>ทุ่น / อายุ</td><td><a href=\"../catalogue/item.th.html?id=02&amp;return=..%2Fresearch%2Findex.th.html&amp;category=rod\"><code>02</code> คันคาร์บอนลำธาร 6m</a></td><td>¥500</td><td>ไม่พบรายการขายในข้อมูลร้านหกพื้นที่</td><td>60</td><td>8 × 336 = 2688</td><td>1</td><td>1</td><td><code>0x02A801</code></td><td><code>01 02 3C 08 01 09 0E 01 5F A9 F4 01</code></td></tr>",

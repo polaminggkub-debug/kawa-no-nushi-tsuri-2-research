@@ -63,18 +63,18 @@ The owner's active goal is to review **all information on the website** until ea
 
 ## Concrete fixes in this cycle
 
-| Problem | Change | Evidence / verification |
-| --- | --- | --- |
-| A fish profile lists dozens of accepted items without helping choose one | Area chooser and lowest-price stocked starter choice per float/sinker/lure/fly method | Existing item acceptance lists and six-area stock records; independent minimum-price check for every 103 fish/area pair in all three languages |
-| Starter fly price could sound like a body-only purchase | Explicitly a shop bundle quote; some sets omit wing or tail; item details show its actual parts | `docs/shop-stock-research.md`, `playerUse.shops[].bundle` |
-| Large alternative lists resemble a shopping checklist | Lists collapsed, explicitly labelled as alternatives that do not all need buying | Browser/render inspection |
-| Tools have coordinates but their detail pages send users to a generic fish map | Actual use-location crops, exact existing item/bait markers, use-window text and full-image actions restored | `playerUse.useLocations`; no new coordinate inference |
-| Chum lists imply bait acceptance | Title/target status now describe movement steering of creature profiles | `data/chum-basket-use.json`, `catalogue/item-use.json` |
-| Hook and float overrides drop useful findings | Confirmed per-item summaries/facts restored; no catch/bite upgrade claimed | `docs/hook-practical-research.md`, `catalogue/item-use.json`; visible-fact regression assertions |
-| A rod page doesn't say whether to buy/replace it | Individual buy/keep/replace advice, recorded-area exceptions and linked comparisons | `data/rod-item-decisions.json`; all 21 rod cards and profiles in all locales require their own recommendation |
-| Fly-part breadcrumb opens the wrong category; tool target context overrides tool browsing | Fly maker + correct part restored; general categories clear the fish-only filter | Breadcrumb assertions across all 315 items and locales |
-| Map section counts can look like the whole area, and a research/item return path can be lost | Current/whole-area point totals, buttons to other sections, exact allowed return destinations | Browser: Iwana area 1, 24/81 points → section row 7, 13/81 points → return to Spinner item; same-origin absolute item path normalized |
-| Clicking the current component/marker loops to the same item | Current component is labelled; current item's map marker opens the location image | Renderer inspection |
+| Problem                                                                                      | Change                                                                                                       | Evidence / verification                                                                                                                        |
+| -------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------ | ---------------------------------------------------------------------------------------------------------------------------------------------- |
+| A fish profile lists dozens of accepted items without helping choose one                     | Area chooser and lowest-price stocked starter choice per float/sinker/lure/fly method                        | Existing item acceptance lists and six-area stock records; independent minimum-price check for every 103 fish/area pair in all three languages |
+| Starter fly price could sound like a body-only purchase                                      | Explicitly a shop bundle quote; some sets omit wing or tail; item details show its actual parts              | `docs/shop-stock-research.md`, `playerUse.shops[].bundle`                                                                                      |
+| Large alternative lists resemble a shopping checklist                                        | Lists collapsed, explicitly labelled as alternatives that do not all need buying                             | Browser/render inspection                                                                                                                      |
+| Tools have coordinates but their detail pages send users to a generic fish map               | Actual use-location crops, exact existing item/bait markers, use-window text and full-image actions restored | `playerUse.useLocations`; no new coordinate inference                                                                                          |
+| Chum lists imply bait acceptance                                                             | Title/target status now describe movement steering of creature profiles                                      | `data/chum-basket-use.json`, `catalogue/item-use.json`                                                                                         |
+| Hook and float overrides drop useful findings                                                | Confirmed per-item summaries/facts restored; no catch/bite upgrade claimed                                   | `docs/hook-practical-research.md`, `catalogue/item-use.json`; visible-fact regression assertions                                               |
+| A rod page doesn't say whether to buy/replace it                                             | Individual buy/keep/replace advice, recorded-area exceptions and linked comparisons                          | `data/rod-item-decisions.json`; all 21 rod cards and profiles in all locales require their own recommendation                                  |
+| Fly-part breadcrumb opens the wrong category; tool target context overrides tool browsing    | Fly maker + correct part restored; general categories clear the fish-only filter                             | Breadcrumb assertions across all 315 items and locales                                                                                         |
+| Map section counts can look like the whole area, and a research/item return path can be lost | Current/whole-area point totals, buttons to other sections, exact allowed return destinations                | Browser: Iwana area 1, 24/81 points → section row 7, 13/81 points → return to Spinner item; same-origin absolute item path normalized          |
+| Clicking the current component/marker loops to the same item                                 | Current component is labelled; current item's map marker opens the location image                            | Renderer inspection                                                                                                                            |
 
 ## Verified scope
 
@@ -205,7 +205,6 @@ Profile43 no longer presents empty location/compatibility sections as a fishing 
 
 The scoped food/chum/hook source review found no additional material food-action gap. This does not replace the remaining whole-site browser/state audit, natural-route research, Area6 shop traversal or unresolved code-dependent decisions.
 
-
 ## Follow-up: keep fishing decisions through seller navigation (2026-10-04)
 
 - Item → seller and seller → item now retain the shop area, selected fish and float/sinker rig for fishing equipment, bait-gathering tools, groundbait and map navigation with the magnet. Food and unrelated tools retain area and a contextual return link, without presenting that fish as their own target. Magnifier is tool 03; notebook 05 is not a fishing-target tool.
@@ -220,14 +219,12 @@ The scoped food/chum/hook source review found no additional material food-action
 
 - Early navigation regression: before the map data promise resolves, language links now carry the incoming area/fish/section and localized return route. The functional harness asserts this before calling map initialization; users need not wait for fish data to retain their selection when switching language. Published post-load map language/back clicks also preserved the bait01/Iwana/sinker choice.
 
-
 ## Follow-up: profile navigation during pending data (2026-10-04)
 
 - Item and fish profiles now establish their language and back links synchronously, before their catalogue/location requests resolve. The loaded render still validates identities and refreshes navigation normally.
 - The entity harness holds both requests pending and checks all six locale/profile combinations before any profile body can render: selected item/fish, stage, bait rig, and recursively localized return are retained. The shop harness independently holds data pending and verifies all three locale variants keep area6, target, rig and localized item return; shop initialization already established those links before its requests.
 - Local browser: Thai bait01/Iwana/sinker → Japanese retains target and rig; its fish-profile action → Thai retains the nested item and map return. Iwana's fish profile selects its recorded area1 rather than inventing an area3 spawn.
 - This addresses the observed early-language-navigation defect; it does not certify all gameplay findings or every website state. The full player-usefulness goal remains active.
-
 
 ## Follow-up: gathered bait choices and mushroom outcomes (2026-10-04)
 
@@ -269,12 +266,12 @@ These are research tasks with direct player outcomes, not reasons to expand raw-
 
 The owner redirected work away from the net and magnifying glass. Both are deferred; their existing evidence is retained. The current batch has three independent workers plus the coordinator:
 
-| Stream | Owned work | Required outcome/evidence |
-| --- | --- | --- |
-| Fly ROM trace | Private maker-code notes only | Confirm menu cursor/list to component IDs, quoted price and inventory requirements from the original ROM. |
-| Fly runtime crosswalk | Private controller-input probes only | Match authentic menu pictures and cursor selections to stored body/wing/tail IDs, with money/inventory deltas. Setup injections must be disclosed separately. |
-| Catalogue clarity | Selected-fish status and decision-fact rendering | Correct all/body/bait result labels in EN/JA/TH and remove repeated decision reasons without removing evidence. |
-| Coordinator | Integration, maker guide, release checks | Turn confirmed findings into selectable player instructions; inspect desktop/mobile and run the full publication gate. |
+| Stream                | Owned work                                       | Required outcome/evidence                                                                                                                                     |
+| --------------------- | ------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Fly ROM trace         | Private maker-code notes only                    | Confirm menu cursor/list to component IDs, quoted price and inventory requirements from the original ROM.                                                     |
+| Fly runtime crosswalk | Private controller-input probes only             | Match authentic menu pictures and cursor selections to stored body/wing/tail IDs, with money/inventory deltas. Setup injections must be disclosed separately. |
+| Catalogue clarity     | Selected-fish status and decision-fact rendering | Correct all/body/bait result labels in EN/JA/TH and remove repeated decision reasons without removing evidence.                                               |
+| Coordinator           | Integration, maker guide, release checks         | Turn confirmed findings into selectable player instructions; inspect desktop/mobile and run the full publication gate.                                        |
 
 When workers finish, dispatch the next independent batch: Area 6 ordinary shop access, the Area 6 magnet's natural prerequisite/use path, and fish/map navigation review. A decoded coordinate alone does not close either access task. Map review must follow selecting a fish through its actual fishing location and accepted equipment, including return links and filters. Workers must own separate files/directories; generated artifacts, integration and publication remain coordinator-owned.
 
@@ -335,7 +332,6 @@ The current area's fixed exit picture stays visible in Areas 1–5, while the ot
 
 Mobile return verification also exposed a moving click target during animated map scrolling. The map return link now has the existing sticky-header scroll margin, and map anchor scrolling is immediate, so the return target settles before it is clicked.
 
-
 ## Selected-area purchase guidance (2026-10-05)
 
 A player opening an item from Area 6 previously saw Area 1 stock before recorded Area 6 stock. Item purchases now put the selected area's recorded seller or ready-made fly bundle first, with an explicit localized marker. The other recorded areas remain visible. When there is no recorded offer in the selected area, a short notice says so before showing recorded alternatives; this is not a claim that the item is impossible to obtain there by other means. Conditional stock, bundle components, prices and return routes are preserved.
@@ -343,7 +339,6 @@ A player opening an item from Area 6 previously saw Area 1 stock before recorded
 The same ordering applies to exact ready-made fly price comparisons through the shared assembly list. This changes presentation of existing ROM-derived shop records, without adding stock, access, price or fishing-effect claims. Separate automated checks cover available, missing and invalid area selections; actual mobile/desktop journeys remain the visual acceptance check.
 
 A separate current-page review confirmed the next context gap: rod 03 still leads with an Area 1 budget recommendation when opened from Area 6, although recorded stock there includes 03/04/14/15. Purchase ordering does not fix this advice. The next step is selected-area rod tradeoffs derived from existing stock, price, aim and reach evidence, with no inferred catch-power claim.
-
 
 ## Rod advice follows the selected area (2026-10-05)
 
@@ -460,6 +455,7 @@ its full comparison, the canonical Thai lure-kit link to research, Japanese
 Rod→Lure filter changes with the quick guide open, and All with Area 4 selected.
 These checks support this release's flows and do not certify the entire site's
 usefulness or a natural gameplay run. The full-site goal remains active.
+
 ## Giant-eel preservation and fish-meal clarity (2026-10-06)
 
 The first-fish meal now gives a specific preservation choice: when keeping a giant eel for the doctor's request, use other food instead of eating it as the first keepnet fish. The original-ROM meal consumer removes that first fish and has no giant-eel protection. This is distinct from the separate town-sale path that temporarily protects one eel before story bit `0x10`. The canonical food research records the consumer addresses and byte fingerprints; no delivery coordinate, reward, or full quest replay is inferred.
@@ -578,3 +574,50 @@ the 66-species goal. The eel-to-postcard-to-return journey kept the eel, Area 6,
 and the nested map return. English at 1200px and Japanese at 320px retained the
 excluded-species decision without horizontal overflow. These browser journeys
 do not establish natural quest completion or a new notebook-update trigger.
+
+## Public return paths and manual checklist review (2026-10-06)
+
+The r60 public Thai research page was checked at 390px: searching rainbow trout,
+opening fish 06 and using the explicit return restored the same query, open
+technical disclosure and one of 72 ordinary profile rows. The loaded map and
+research assets matched r60; the later fish-profile release was still queued.
+
+Actual local Thai checklist review started with one existing marked species,
+marked Koi 0D in Area 4, enabled the remaining-only filter, changed to Area 5 and
+reloaded. The global count rose from one to two exactly once, marked cards were
+hidden by the filter, and the repeated Koi cards in Area 5 remained checked after
+reload. The filter resets on reload; the species marks persist. The test mark
+was removed through the visible control, restoring the original one-species
+state. This checks a real repeat-species journey, not every possible manual
+progress state or reading a game save.
+
+## Locally complete lure kits and HP recovery actions (2026-10-06)
+
+The kit selector now enumerates two-lure unions from the recorded compatibility
+profiles and compares complete pairs with regular area stock. Area 1 retains
+2E+23 for ¥55; Areas 2 and 3 offer 17+24 for ¥55; Area 4 offers 17+23 for ¥50.
+Areas 5 and 6 disclose that no complete pair is stocked locally. Already-owned
+complete pairs remain useful; buying another pair is not required. These are
+38 lure-compatible profiles, not 66 notebook targets or demonstrated catch odds.
+The same decisions appear on fish profiles, the equipment recommendation and
+the localized strategy guide, with item and seller destinations retained.
+
+A separate rendered journey review found that the HP100 advice had no direct
+food action. Catalogue quick-start and lure/casting starter tips now link to
+food choices in the selected area and retain an explicit return to the original
+page or starter card. The food destination drops the fish/equipment filters:
+food selection depends on missing HP and stock, rather than fish compatibility.
+The independent guard first failed on the missing action before wiring it.
+
+Verification: the regenerated frontend passes the full `npm run check` gate.
+Independent guards cover six areas in three languages, the 38-profile pair
+matrix, all-area member links, research rows, ten seller actions, and fish-kit
+item/partner return journeys. Item detail preserves the complete-kit intent
+before its single-fish recommendation; invalid or unrelated kits show no panel.
+Actual Thai mobile clicks verified fish-to-food/back and kit-to-partner/seller/
+back, with no horizontal overflow. The final Area 3 fish view shows the locally
+stocked 17+24 pair and HP recovery action. The live bait-default round trip was
+also reviewed: selecting Aouo from floats opens four compatible bait cards,
+then item detail and its explicit return retain bait, fish and area.
+Publication remains separate from passing local checks. The selected-area food
+advice still needs to foreground local stock; it is recorded as follow-up work.

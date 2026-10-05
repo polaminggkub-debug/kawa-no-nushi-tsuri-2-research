@@ -1,3 +1,5 @@
+import { hpRecoveryAction } from '../../shared/lib/index.js'
+
 function compatibilityGroup(ctx, entries, category, stage) {
   const group = entries.filter((entry) => entry.item.category === category)
   if (!group.length) return ''
@@ -18,7 +20,7 @@ export function renderCompatibility(ctx, entries, stage) {
   return groups || `<p class="empty-state">${ctx.escapeHtml(ctx.copy.noCompatibility)}</p>`
 }
 
-function aimTip(ctx, method) {
+function aimTip(ctx, method, stage) {
   if (!['lure', 'sinker'].includes(method)) return ''
   const text =
     ctx.locale === 'th'
@@ -26,7 +28,15 @@ function aimTip(ctx, method) {
       : ctx.locale === 'ja'
         ? 'ルアー竿・投げ竿を使う前にHPを100まで回復すると、竿本来の照準時間になります。食いつき率のボーナスではありません。'
         : 'Restore HP to 100 before lure or casting fishing to get the rod’s full aim window. This does not add a bite-rate bonus.'
-  return `<p class="aim-tip">${ctx.escapeHtml(text)}</p>`
+  const action = hpRecoveryAction({
+    locale: ctx.locale,
+    cataloguePath: ctx.cataloguePath(),
+    stage,
+    returnPath: `${ctx.currentFishPath(stage)}#starter-${method}`,
+    source: `fish-${method}`,
+    escapeHtml: ctx.escapeHtml,
+  })
+  return `<p class="aim-tip">${ctx.escapeHtml(text)}</p><p>${action}</p>`
 }
 
 function starterLink(ctx, offer, stage) {
@@ -52,7 +62,7 @@ function starterCard(ctx, offer, stage, allItems, text) {
   const method = offer.method
   const item = offer.entry.item
   const rig = ctx.renderRigForMethod(method, stage, allItems, offer.price)
-  const aim = aimTip(ctx, method)
+  const aim = aimTip(ctx, method, stage)
   const fly = offer.bundle ? `<p class="muted">${ctx.escapeHtml(text.fly)}</p>` : ''
   const link = starterLink(ctx, offer, stage)
   const total = rig.match(/data-rig-total="(\d+)"/)?.[1]

@@ -1,4 +1,6 @@
 import { rodAreaDecision } from '../../entities/item/index.js'
+import { catalogueHpRecoveryAction } from './hp-recovery-tip.js'
+import { contextualLureCoverageDecision } from './lure-coverage-guidance.js'
 import {
   areaLabel,
   categoryDecisionCopy,
@@ -8,6 +10,7 @@ import {
 } from './rod-area-page-helpers.js'
 
 export function decisionCard(ctx, d) {
+  d = d.id === 'lure_coverage_pair' ? contextualLureCoverageDecision(ctx, d) : d
   const marker = d.id === 'lure_coverage_pair' ? ' data-lure-coverage-pair' : ''
   const lureGuide = d.id === 'lure_coverage_pair' ? lureCoverageGuide(ctx) : ''
   const nextAction = d.nextAction?.href
@@ -55,7 +58,7 @@ function renderPlayerDecisionOverview(ctx) {
   document.getElementById('player-decisions').hidden =
     !!document.getElementById('fish-filter').value
   document.getElementById('player-decisions').innerHTML =
-    `<h2>${title}</h2><aside class="play-tip"><strong>${tip}</strong><p>${scope}</p>${hasCategoryDisclosure ? `<p><a class="route-button" data-player-decisions-link href="#category-decisions">${categoryLink} ↗</a></p>` : ''}</aside>`
+    `<h2>${title}</h2><aside class="play-tip"><strong>${tip}</strong><p>${scope}</p><p>${catalogueHpRecoveryAction(ctx)}</p>${hasCategoryDisclosure ? `<p><a class="route-button" data-player-decisions-link href="#category-decisions">${categoryLink} ↗</a></p>` : ''}</aside>`
   const link = document.querySelector?.('[data-player-decisions-link]')
   link?.addEventListener?.('click', () => {
     const disclosure = document.getElementById('category-recommendations-disclosure')
