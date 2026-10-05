@@ -44,12 +44,23 @@ export async function init(ctx) {
   const render = () => ctx.renderShopView(view)
   ctx.bindShopFilters(view, render)
   render()
-  scrollRequestedFishContext(ctx)
+  scrollRequestedSection(ctx)
 }
 
-function scrollRequestedFishContext(ctx) {
-  if (location.hash === '#shop-fish-context')
-    ctx.$('shop-fish-context')?.scrollIntoView?.({ block: 'start' })
+function scrollRequestedSection(ctx) {
+  if (location.hash === '#location-section') {
+    const panel = ctx.$('shop-map-disclosure')
+    if (panel) panel.open = true
+  }
+  const allowed = [
+    'shop-fish-context',
+    'location-section',
+    'regular-stock',
+    'special-stock',
+    'bundle-stock',
+  ]
+  const id = location.hash.slice(1)
+  if (allowed.includes(id)) ctx.$(id)?.scrollIntoView?.({ block: 'start' })
 }
 
 export function renderShopView(ctx, view) {
@@ -67,6 +78,7 @@ export function renderShopView(ctx, view) {
   ctx.renderOffers(items, stock, stage, category, query)
 }
 export function bindShopFilters(ctx, view, render) {
+  bindShopAnchors(ctx)
   const { stageSelect, categorySelect, search } = view
   stageSelect.addEventListener('change', () => {
     ctx.focusedEntrance = null
@@ -107,5 +119,12 @@ export function bindShopFilters(ctx, view, render) {
       `${location.pathname}?${ctx.stateParams({ category: 'all', id: '', q: '' }).toString()}${location.hash}`,
     )
     render()
+  })
+}
+
+export function bindShopAnchors(ctx) {
+  window.addEventListener?.('hashchange', () => {
+    ctx.updateLanguageLinks()
+    scrollRequestedSection(ctx)
   })
 }

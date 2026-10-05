@@ -80,3 +80,5 @@ await import('./map-notebook-exclusions.mjs')
 await import('./gear-guide-context.mjs')
 await import('./category-context.mjs')
 await import('./fish-selection-context.mjs')
+
+await import('./shop-target-actions.mjs')

@@ -10,6 +10,7 @@
   __export(shops_exports, {
     bindShopFilters: () => bindShopFilters,
     bundleCard: () => bundleCard,
+    bundleContainsTarget: () => bundleContainsTarget,
     bundleMatches: () => bundleMatches,
     catName: () => catName,
     cropCanvas: () => cropCanvas,
@@ -270,8 +271,54 @@
     history.replaceState(null, "", `${location.pathname}?${next.toString()}${location.hash}`);
   }
 
-  // src/pages/shops/area6-walk.js
+  // src/pages/shops/target-actions.js
   var copy = {
+    th: {
+      title: "ของที่คุณกำลังหาซื้อ",
+      seller: "ดูตำแหน่งคนขายและทางเข้าเมือง",
+      offer: "ดูสินค้าชิ้นนี้และเงื่อนไขซื้อ",
+      bundle: "ขายรวมในชุดฟลาย ไม่ได้ขายชิ้นนี้แยก",
+      cheapestBundle: "ชุดที่มีชิ้นนี้ ราคาต่ำสุด",
+      price: "ราคาซื้อใหม่"
+    },
+    en: {
+      title: "The item you came to buy",
+      seller: "Show seller and town entrance",
+      offer: "Show this offer and purchase conditions",
+      bundle: "Included in complete flies; not sold separately here",
+      cheapestBundle: "Lowest price for a bundle containing this part",
+      price: "New purchase price"
+    },
+    ja: {
+      title: "探している購入品",
+      seller: "販売場所と町への入口を見る",
+      offer: "この商品と購入条件を見る",
+      bundle: "完成フライに含まれる部品で、ここでは単品販売ではありません",
+      cheapestBundle: "この部品を含む完成フライの最安価格",
+      price: "新規購入価格"
+    }
+  };
+  function actionHref(ctx, target, stage, place, hash) {
+    return `${ctx.shopsUrl({ stage, place, category: target.category, id: target.id, q: "", entrance: "" }).split("#")[0]}${hash}`;
+  }
+  function targetActions(ctx, target, stage, found, bundles) {
+    const text = copy[ctx.lang] || copy.en;
+    const name = ctx.esc(ctx.itemName(target));
+    const title = `<h2>${ctx.esc(text.title)}</h2><a class="shop-target-item" href="${ctx.esc(ctx.itemHref(target))}"><img src="${ctx.esc(ctx.imagePath(target.image))}" alt=""><strong>${name}</strong><small>ID ${ctx.esc(target.id)}</small></a>`;
+    if (!found) return title;
+    const bundlePrice = bundles.length ? Math.min(...bundles.map((bundle) => bundle.shopPriceYen)) : null;
+    const price = bundlePrice ?? target.priceYen;
+    const label = bundlePrice === null ? text.price : text.cheapestBundle;
+    const priceLine = price != null ? `<p>${ctx.esc(label)}: <strong>${ctx.esc(ctx.text.price(price))}</strong></p>` : "";
+    const bundleNote = bundles.length ? `<p>${ctx.esc(text.bundle)}</p>` : "";
+    const group = bundles.length ? "bundle-stock" : ctx.isSpecial(target, stage) ? "special-stock" : "regular-stock";
+    const sellerHref = actionHref(ctx, target, stage, "town", "#location-section");
+    const offerHref = actionHref(ctx, target, stage, "town", `#${group}`);
+    return `${title}${priceLine}${bundleNote}<nav class="shop-target-actions" aria-label="${ctx.esc(text.title)}"><a class="route-button" data-target-seller href="${ctx.esc(sellerHref)}">${ctx.esc(text.seller)} ↗</a><a class="route-button" data-target-offer href="${ctx.esc(offerHref)}">${ctx.esc(text.offer)} ↓</a></nav>`;
+  }
+
+  // src/pages/shops/area6-walk.js
+  var copy2 = {
     th: {
       title: "เดินไปถึงร้านปกติด่าน 6",
       steps: [
@@ -305,7 +352,7 @@
   };
   function area6Walk(ctx, view, node) {
     if (Number(view.stage) !== 6 || node.kind !== "regular-shop") return "";
-    const c = copy[ctx.lang];
+    const c = copy2[ctx.lang];
     return `<aside class="shop-walk" data-area6-walk><h4>${ctx.esc(c.title)}</h4><ol>${c.steps.map((step) => `<li>${ctx.esc(step)}</li>`).join("")}</ol><details><summary>${ctx.esc(c.image)}</summary><a href="images/shop-routes/area6-regular-shop.png"><img loading="lazy" src="images/shop-routes/area6-regular-shop.png" alt="${ctx.esc(c.image)}"></a><p><a href="../docs/area6-shop-walking-research.md">${ctx.esc(c.evidence)} ↗</a></p></details></aside>`;
   }
 
@@ -336,14 +383,14 @@
     const name = fishName(ctx, fish, ctx.selectedFish);
     const methodText = contextCopy(ctx.lang).methods[method];
     const baitNote = ctx.lang === "th" ? "ป้ายเหยื่อจริงใช้เส้นทางตะกั่วเมื่อเลือกตะกั่ว; วิธีอื่นหรือยังไม่เลือกจะใช้ทุ่น" : ctx.lang === "ja" ? "エサの判定はオモリ仕掛けを選んだ場合はオモリ、それ以外はウキで表示します。" : "Bait labels use the sinker route when selected; otherwise they use float.";
-    const copy2 = contextCopy(ctx.lang);
-    return `<aside class="shop-fish-context" data-shop-fish-context data-fish="${ctx.esc(ctx.selectedFish)}" data-stage="${stage}" data-method="${method}"><img src="${ctx.esc(ctx.imagePath(fish.image))}" alt=""><div><p class="shop-fish-context-label">${ctx.esc(copy2.target)}</p><a class="shop-fish-profile-link" href="${ctx.esc(href)}"><strong>${ctx.esc(name)}</strong><span>${ctx.esc(copy2.profile)} · ID ${ctx.esc(ctx.selectedFish)} · ${ctx.esc(ctx.text.stageWord(stage))} · ${ctx.esc(methodText)} ↗</span></a><p>${ctx.esc(copy2.explains)} ${ctx.esc(baitNote)}</p></div></aside>`;
+    const copy3 = contextCopy(ctx.lang);
+    return `<aside class="shop-fish-context" data-shop-fish-context data-fish="${ctx.esc(ctx.selectedFish)}" data-stage="${stage}" data-method="${method}"><img src="${ctx.esc(ctx.imagePath(fish.image))}" alt=""><div><p class="shop-fish-context-label">${ctx.esc(copy3.target)}</p><a class="shop-fish-profile-link" href="${ctx.esc(href)}"><strong>${ctx.esc(name)}</strong><span>${ctx.esc(copy3.profile)} · ID ${ctx.esc(ctx.selectedFish)} · ${ctx.esc(ctx.text.stageWord(stage))} · ${ctx.esc(methodText)} ↗</span></a><p>${ctx.esc(copy3.explains)} ${ctx.esc(baitNote)}</p></div></aside>`;
   }
   function shopCompatibilityBadge(ctx, item, state) {
     if (!state) return "";
     const method = item.category === "bait" ? baitRoute(ctx) : item.category === "lure" ? "lure" : "fly";
-    const copy2 = contextCopy(ctx.lang);
-    const text = item.category === "bait" ? copy2.status.bait[method][state] : copy2.status[item.category][state];
+    const copy3 = contextCopy(ctx.lang);
+    const text = item.category === "bait" ? copy3.status.bait[method][state] : copy3.status[item.category][state];
     return `<p class="shop-compatibility ${state}" data-shop-compatibility="${state}" data-compatibility-method="${method}"><strong>${ctx.esc(text)}</strong></p>`;
   }
   function baitRoute(ctx) {
@@ -691,7 +738,7 @@
     const links = [...recordedStages].sort((a, b) => a - b).map(
       (n) => `<a class="stage-link" href="${ctx.esc(ctx.shopsUrl({ stage: n, category: ctx.targetCategory, id: ctx.targetId }))}">${ctx.esc(ctx.text.browseArea(n))}</a>`
     ).join(" ");
-    box.innerHTML = `<strong>${ctx.esc(found ? ctx.text.targetFound : ctx.text.targetNotHere)}</strong>${conditional ? `<p>${ctx.esc(ctx.text.soldConditional)}</p>` : ""}${!found && links ? `<p>${ctx.esc(ctx.text.soldElsewhere)} ${links}</p>` : ""}`;
+    box.innerHTML = `${targetActions(ctx, target, stage, found, isBundlePart ? (currentArea?.flyBundles || []).filter(inBundle) : [])}<strong>${ctx.esc(found ? ctx.text.targetFound : ctx.text.targetNotHere)}</strong>${conditional ? `<p>${ctx.esc(ctx.text.soldConditional)}</p>` : ""}${!found && links ? `<p>${ctx.esc(ctx.text.soldElsewhere)} ${links}</p>` : ""}`;
   }
   function shopsUrl(ctx, overrides = {}) {
     const q = ctx.stateParams(overrides);
@@ -714,11 +761,13 @@
     );
     const rods = stockItems.filter((item) => ctx.isSpecial(item, stage) && !bundledCategory(item));
     const bundles = area.flyBundles || [];
-    const filtered = ctx.filterItems(standard, category, query);
-    const filteredSpecial = ctx.filterItems(rods, category, query);
+    const selectedFirst = selectedOfferSort(target);
+    const filtered = ctx.filterItems(standard, category, query).sort(selectedFirst);
+    const filteredSpecial = ctx.filterItems(rods, category, query).sort(selectedFirst);
     const filteredBundles = bundles.filter(
       (bundle) => ctx.bundleMatches(items, bundle, category, query)
     );
+    filteredBundles.sort(selectedBundleSort(ctx, target));
     const offers = filtered.length + filteredSpecial.length + filteredBundles.length;
     ctx.$("offer-count").textContent = ctx.text.filtered(offers);
     ctx.renderTarget(items, stock, stage);
@@ -762,6 +811,16 @@
       )
     );
     return matchesCategory && matchesQuery;
+  }
+  function bundleContainsTarget(_ctx, bundle, target) {
+    const key = { fly: "body", fly_wing: "wing", fly_tail: "tail" }[target.category];
+    return Boolean(key && String(bundle[key] || "").toUpperCase() === target.id);
+  }
+  function selectedOfferSort(target) {
+    return (a, b) => Number(b.category === target.category && b.id === target.id) - Number(a.category === target.category && a.id === target.id);
+  }
+  function selectedBundleSort(ctx, target) {
+    return (a, b) => Number(ctx.bundleContainsTarget(b, target)) - Number(ctx.bundleContainsTarget(a, target)) || a.shopPriceYen - b.shopPriceYen;
   }
 
   // src/pages/shops/shop-page.js
@@ -807,11 +866,22 @@
     const render = () => ctx.renderShopView(view);
     ctx.bindShopFilters(view, render);
     render();
-    scrollRequestedFishContext(ctx);
+    scrollRequestedSection(ctx);
   }
-  function scrollRequestedFishContext(ctx) {
-    if (location.hash === "#shop-fish-context")
-      ctx.$("shop-fish-context")?.scrollIntoView?.({ block: "start" });
+  function scrollRequestedSection(ctx) {
+    if (location.hash === "#location-section") {
+      const panel = ctx.$("shop-map-disclosure");
+      if (panel) panel.open = true;
+    }
+    const allowed = [
+      "shop-fish-context",
+      "location-section",
+      "regular-stock",
+      "special-stock",
+      "bundle-stock"
+    ];
+    const id = location.hash.slice(1);
+    if (allowed.includes(id)) ctx.$(id)?.scrollIntoView?.({ block: "start" });
   }
   function renderShopView(ctx, view) {
     const { stageSelect, categorySelect, search, items, stock, mapManifest, locations } = view;
@@ -826,6 +896,7 @@
     ctx.renderOffers(items, stock, stage, category, query);
   }
   function bindShopFilters(ctx, view, render) {
+    bindShopAnchors(ctx);
     const { stageSelect, categorySelect, search } = view;
     stageSelect.addEventListener("change", () => {
       ctx.focusedEntrance = null;
@@ -866,6 +937,12 @@
         `${location.pathname}?${ctx.stateParams({ category: "all", id: "", q: "" }).toString()}${location.hash}`
       );
       render();
+    });
+  }
+  function bindShopAnchors(ctx) {
+    window.addEventListener?.("hashchange", () => {
+      ctx.updateLanguageLinks();
+      scrollRequestedSection(ctx);
     });
   }
 

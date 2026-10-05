@@ -1,3 +1,4 @@
+import { targetActions } from './target-actions.js'
 import { area6Walk } from './area6-walk.js'
 import { shopCompatibility, shopCompatibilityBadge, shopFishContext } from './player-decision.js'
 export function renderLocations(ctx, locations, mapManifest, stage, place, items) {
@@ -353,7 +354,7 @@ export function renderTarget(ctx, items, stock, stage) {
         `<a class="stage-link" href="${ctx.esc(ctx.shopsUrl({ stage: n, category: ctx.targetCategory, id: ctx.targetId }))}">${ctx.esc(ctx.text.browseArea(n))}</a>`,
     )
     .join(' ')
-  box.innerHTML = `<strong>${ctx.esc(found ? ctx.text.targetFound : ctx.text.targetNotHere)}</strong>${conditional ? `<p>${ctx.esc(ctx.text.soldConditional)}</p>` : ''}${!found && links ? `<p>${ctx.esc(ctx.text.soldElsewhere)} ${links}</p>` : ''}`
+  box.innerHTML = `${targetActions(ctx, target, stage, found, isBundlePart ? (currentArea?.flyBundles || []).filter(inBundle) : [])}<strong>${ctx.esc(found ? ctx.text.targetFound : ctx.text.targetNotHere)}</strong>${conditional ? `<p>${ctx.esc(ctx.text.soldConditional)}</p>` : ''}${!found && links ? `<p>${ctx.esc(ctx.text.soldElsewhere)} ${links}</p>` : ''}`
 }
 
 export function shopsUrl(ctx, overrides = {}) {
@@ -380,11 +381,13 @@ export function renderOffers(ctx, items, stock, stage, category, query) {
   )
   const rods = stockItems.filter((item) => ctx.isSpecial(item, stage) && !bundledCategory(item))
   const bundles = area.flyBundles || []
-  const filtered = ctx.filterItems(standard, category, query)
-  const filteredSpecial = ctx.filterItems(rods, category, query)
+  const selectedFirst = selectedOfferSort(target)
+  const filtered = ctx.filterItems(standard, category, query).sort(selectedFirst)
+  const filteredSpecial = ctx.filterItems(rods, category, query).sort(selectedFirst)
   const filteredBundles = bundles.filter((bundle) =>
     ctx.bundleMatches(items, bundle, category, query),
   )
+  filteredBundles.sort(selectedBundleSort(ctx, target))
   const offers = filtered.length + filteredSpecial.length + filteredBundles.length
   ctx.$('offer-count').textContent = ctx.text.filtered(offers)
   ctx.renderTarget(items, stock, stage)
@@ -442,4 +445,21 @@ export function bundleMatches(ctx, items, bundle, category, query) {
         ),
       )
   return matchesCategory && matchesQuery
+}
+
+export function bundleContainsTarget(_ctx, bundle, target) {
+  const key = { fly: 'body', fly_wing: 'wing', fly_tail: 'tail' }[target.category]
+  return Boolean(key && String(bundle[key] || '').toUpperCase() === target.id)
+}
+
+function selectedOfferSort(target) {
+  return (a, b) =>
+    Number(b.category === target.category && b.id === target.id) -
+    Number(a.category === target.category && a.id === target.id)
+}
+
+function selectedBundleSort(ctx, target) {
+  return (a, b) =>
+    Number(ctx.bundleContainsTarget(b, target)) - Number(ctx.bundleContainsTarget(a, target)) ||
+    a.shopPriceYen - b.shopPriceYen
 }

@@ -35,6 +35,7 @@ export {
   shopsUrl,
   renderOffers,
   bundleMatches,
+  bundleContainsTarget,
 } from './shop-catalogue.js'
 export { shopCompatibility, shopFishContext } from './player-decision.js'
 export { init, renderShopView, bindShopFilters } from './shop-page.js'
