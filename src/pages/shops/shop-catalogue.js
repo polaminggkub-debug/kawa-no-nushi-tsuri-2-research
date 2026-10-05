@@ -1,4 +1,5 @@
 import { area6Walk } from './area6-walk.js'
+import { shopCompatibility, shopCompatibilityBadge, shopFishContext } from './player-decision.js'
 export function renderLocations(ctx, locations, mapManifest, stage, place, items) {
   const area = locations?.areas?.find((a) => Number(a.outdoorArea) === stage)
   const visuals = ctx.$('location-visuals')
@@ -241,6 +242,7 @@ export function offerCard(ctx, item, options = {}) {
   const canHaveCondition = condition && shopOffer?.condition
   const image = ctx.imagePath(item.image)
   const name = ctx.itemName(item)
+  const compatibility = shopCompatibility(ctx, item)
   const price = item.priceYen != null ? ctx.text.price(item.priceYen) : ctx.text.noPrice
   const extra = canHaveCondition
     ? `<p class="condition"><strong>${ctx.esc(ctx.text.conditionTitle)}:</strong> ${ctx.esc(ctx.text.ayu)} <a href="${ctx.esc(ctx.fishHref('38'))}">${ctx.esc(ctx.text.ayuFish)}</a></p>`
@@ -250,7 +252,7 @@ export function offerCard(ctx, item, options = {}) {
       <a class="offer-image-link" href="${ctx.esc(ctx.itemHref(item))}"><img loading="lazy" src="${ctx.esc(image)}" alt="${ctx.esc(name)}"></a>
       <p class="small-id">${ctx.esc(ctx.catName(item.category))} · ID ${ctx.esc(item.id)}</p>
       <h4><a href="${ctx.esc(ctx.itemHref(item))}">${ctx.esc(name)}</a></h4>
-      <p class="price">${ctx.esc(price)}</p>${canHaveCondition ? `<p class="condition-label">${ctx.esc(ctx.text.soldConditional)}</p>` : ''}${extra}
+      <p class="price">${ctx.esc(price)}</p>${shopCompatibilityBadge(ctx, item, compatibility)}${canHaveCondition ? `<p class="condition-label">${ctx.esc(ctx.text.soldConditional)}</p>` : ''}${extra}
     </article>`
 }
 
@@ -266,6 +268,8 @@ export function bundleCard(ctx, bundle, stage, items, target) {
   const selected = components.some(
     (item) => target.category === item.category && target.id === item.id,
   )
+  const body = components.find((item) => item.category === 'fly')
+  const compatibility = body ? shopCompatibility(ctx, body) : ''
   const parts = components
     .map(
       (item) =>
@@ -279,7 +283,7 @@ export function bundleCard(ctx, bundle, stage, items, target) {
       ${selected ? `<span class="target-badge">${ctx.esc(ctx.text.targetBadge)}</span>` : ''}
       <span class="shop-kind">${ctx.esc(ctx.text.bundle)}</span><p class="small-id">${ctx.esc(ctx.text.stageWord(stage))} · ${ctx.esc(ctx.text.parts)}</p>
       <div class="bundle-parts">${parts}</div><div class="bundle-labels">${labels}</div>
-      <p class="price">${ctx.esc(ctx.text.complete)} · ${ctx.esc(ctx.text.price(bundle.shopPriceYen))}</p>
+      <p class="price">${ctx.esc(ctx.text.complete)} · ${ctx.esc(ctx.text.price(bundle.shopPriceYen))}</p>${body ? shopCompatibilityBadge(ctx, body, compatibility) : ''}
     </article>`
 }
 
@@ -361,6 +365,8 @@ export function renderOffers(ctx, items, stock, stage, category, query) {
   const area = stock.areas.find((a) => Number(a.stage) === stage)
   const list = ctx.$('shop-results')
   const target = { category: ctx.targetCategory, id: ctx.targetId }
+  const fishContext = ctx.$('shop-fish-context')
+  if (fishContext) fishContext.innerHTML = shopFishContext(ctx)
   if (!area) {
     list.innerHTML = `<p class="empty-state">${ctx.esc(ctx.text.noCategory)}</p>`
     return

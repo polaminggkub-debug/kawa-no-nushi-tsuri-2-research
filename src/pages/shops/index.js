@@ -36,6 +36,7 @@ export {
   renderOffers,
   bundleMatches,
 } from './shop-catalogue.js'
+export { shopCompatibility, shopFishContext } from './player-decision.js'
 export { init, renderShopView, bindShopFilters } from './shop-page.js'
 import { setupContext } from './setup-context.js'
 import { loadShops } from './load-shops.js'

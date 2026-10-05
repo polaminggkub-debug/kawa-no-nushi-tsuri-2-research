@@ -363,6 +363,29 @@ footer p {
   text-decoration: underline;
 }
 
+.notebook-excluded-badge[href] {
+  text-decoration: underline;
+}
+
+.notebook-excluded-badge {
+  display: inline-flex;
+  width: fit-content;
+  max-width: 100%;
+  align-items: center;
+  border-radius: 999px;
+  background: #f7ead1;
+  color: #684b19;
+  font-size: 11px;
+  font-weight: 700;
+  line-height: 1.4;
+  padding: 3px 8px;
+  text-decoration: none;
+}
+
+.fish-choice-row > .notebook-excluded-badge {
+  grid-column: 2;
+}
+
 .filter-action {
   color: #245b4a !important;
 }

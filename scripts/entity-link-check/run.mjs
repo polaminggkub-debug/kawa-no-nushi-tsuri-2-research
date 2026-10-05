@@ -73,3 +73,6 @@ await import('./fly-wing-acquisition.mjs')
 await import('./area6-shop-actions.mjs')
 await import('./hook-target-links.mjs')
 await import('./map-focus-action.mjs')
+
+await import('./shop-fish-decisions.mjs')
+await import('./map-notebook-exclusions.mjs')

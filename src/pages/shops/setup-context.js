@@ -36,7 +36,7 @@ export function setupContext(ctx) {
   ctx.startCategory = ctx.validCategory(ctx.params.get('category'))
   ctx.startId = ctx.validId(ctx.params.get('id'))
   ctx.selectedFish = ctx.validId(ctx.params.get('fish'))
-  ctx.selectedRig = ['float', 'sinker'].includes(ctx.params.get('route'))
+  ctx.selectedRig = ['float', 'sinker', 'lure', 'fly'].includes(ctx.params.get('route'))
     ? ctx.params.get('route')
     : ''
   ctx.targetCategory = ctx.startCategory

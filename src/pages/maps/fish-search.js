@@ -1,3 +1,5 @@
+import { notebookStatus } from './notebook-status.js'
+
 export function safeReturn(ctx, raw) {
   if (!raw || raw.startsWith('//') || raw.includes('\\') || /^[a-z][a-z0-9+.-]*:/i.test(raw))
     return ''
@@ -278,7 +280,7 @@ export function renderSuggestions(ctx) {
           ? item.visual.nameLatin || item.visual.nameTh || ''
           : item.visual.nameJa || ''
       const targetClass = ctx.selectedFish === id ? ' is-map-target' : ''
-      return `<div id="fish-suggestion-${id}" class="fish-suggestion${targetClass}" role="option" aria-selected="false" aria-posinset="${index + 1}" aria-setsize="${matches.length}" data-suggestion="${id}">${image ? `<img src="${ctx.esc(image)}" alt="">` : '<span class="suggestion-no-image" aria-hidden="true"></span>'}<span class="suggestion-copy"><strong>${ctx.esc(item.name)}</strong>${secondary && secondary !== item.name ? `<small class="suggestion-alias">${ctx.esc(secondary)}</small>` : ''}<span class="suggestion-meta"><code>ID ${ctx.esc(id)}</code><span class="suggestion-area-label">${areaLabel}</span><span class="suggestion-areas">${areaBadges}</span></span></span></div>`
+      return `<div id="fish-suggestion-${id}" class="fish-suggestion${targetClass}" role="option" aria-selected="false" aria-posinset="${index + 1}" aria-setsize="${matches.length}" data-suggestion="${id}">${image ? `<img src="${ctx.esc(image)}" alt="">` : '<span class="suggestion-no-image" aria-hidden="true"></span>'}<span class="suggestion-copy"><strong>${ctx.esc(item.name)}</strong>${secondary && secondary !== item.name ? `<small class="suggestion-alias">${ctx.esc(secondary)}</small>` : ''}<span class="suggestion-meta"><code>ID ${ctx.esc(id)}</code><span class="suggestion-area-label">${areaLabel}</span><span class="suggestion-areas">${areaBadges}</span></span>${notebookStatus(ctx, id, false)}</span></div>`
     })
     .join('')
   ctx.suggestionList.hidden = !open
@@ -427,5 +429,5 @@ export function fishChoice(ctx, id, term, sectionIds) {
   const sub = term
     ? `${ctx.c.areasPrefix} ${availability}`
     : `${ctx.c.point(pointCount)}${item.visual.nameJa && ctx.lang !== 'ja' ? ` · ${item.visual.nameJa}` : ''}`
-  return `<div class="fish-choice-row ${ctx.selectedFish === id ? 'selected' : ''}"><a class="fish-portrait-link" href="${ctx.esc(ctx.fishHref(id))}" aria-label="${ctx.esc(item.name)} — ${ctx.detailLabel}">${img ? `<img loading="lazy" src="${ctx.esc(img)}" alt="${ctx.esc(item.name)}">` : ''}</a><button class="fish-choice" type="button" data-fish="${id}" aria-pressed="${ctx.selectedFish === id}"><span>${ctx.esc(item.name)}<small>${ctx.esc(sub)}</small><small class="filter-action">${ctx.lang === 'th' ? 'เน้นบนแผนที่' : ctx.lang === 'ja' ? '地図で絞り込む' : 'Focus on map'}</small></span></button><a class="fish-details-link" href="${ctx.esc(ctx.fishHref(id))}">${ctx.detailLabel} ↗</a></div>`
+  return `<div class="fish-choice-row ${ctx.selectedFish === id ? 'selected' : ''}"><a class="fish-portrait-link" href="${ctx.esc(ctx.fishHref(id))}" aria-label="${ctx.esc(item.name)} — ${ctx.detailLabel}">${img ? `<img loading="lazy" src="${ctx.esc(img)}" alt="${ctx.esc(item.name)}">` : ''}</a><button class="fish-choice" type="button" data-fish="${id}" aria-pressed="${ctx.selectedFish === id}"><span>${ctx.esc(item.name)}<small>${ctx.esc(sub)}</small><small class="filter-action">${ctx.lang === 'th' ? 'เน้นบนแผนที่' : ctx.lang === 'ja' ? '地図で絞り込む' : 'Focus on map'}</small></span></button><a class="fish-details-link" href="${ctx.esc(ctx.fishHref(id))}">${ctx.detailLabel} ↗</a>${notebookStatus(ctx, id)}</div>`
 }

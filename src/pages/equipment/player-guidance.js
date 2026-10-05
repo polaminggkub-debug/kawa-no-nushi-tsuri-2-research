@@ -116,14 +116,25 @@ export function hookPriceGuide(ctx) {
 }
 
 export function floatPriceGuide(ctx) {
-  const title =
-    ctx.lang === 'th'
+  const fish = document.getElementById('fish-filter').value
+  const title = fish
+    ? ctx.lang === 'th'
+      ? `ซื้อทุ่นหรือตะกั่วสำหรับ${ctx.fishName(fish)} ที่ไหน`
+      : ctx.lang === 'ja'
+        ? `${ctx.fishName(fish)}に使えるウキ・オモリの販売エリア`
+        : `Where to buy floats or sinkers for ${ctx.fishName(fish)}`
+    : ctx.lang === 'th'
       ? 'ซื้อทุ่นหรือตะกั่วที่ไหนให้ถูกสุดในด่านนี้'
       : ctx.lang === 'ja'
         ? '現在のエリアで最安のウキ・オモリを買う'
         : 'Cheapest stocked float or sinker in your area'
-  const note =
-    ctx.lang === 'th'
+  const note = fish
+    ? ctx.lang === 'th'
+      ? `ถ้ามีของที่ใช้กับ${ctx.fishName(fish)} อยู่แล้วให้ใช้ต่อ ตารางแสดงเฉพาะของที่ผ่านเงื่อนไขปลานี้และมีบันทึกขายในแต่ละด่าน การผ่านเงื่อนไขไม่รับประกันว่าปลากินหรือจับขึ้นได้`
+      : ctx.lang === 'ja'
+        ? `${ctx.fishName(fish)}に使える道具を持っていれば継続してください。表には魚の判定を通り、各エリアで販売記録がある品だけを表示します。適合は食いつきや釣果を保証しません。`
+        : `Keep a model you already own for ${ctx.fishName(fish)}. The table lists only stocked items that pass this fish’s ROM profile check. Passing the check does not guarantee a bite or catch.`
+    : ctx.lang === 'th'
       ? 'มีรุ่นเดิมอยู่แล้วใช้ต่อได้ ตารางนี้เลือกจากราคาของที่มีขาย ไม่ใช่อันดับจับปลา ทุ่นกับตะกั่วใช้คนละชุดปลา: เปิดรายละเอียดเพื่อตรวจปลาเป้าหมายก่อนซื้อ'
       : ctx.lang === 'ja'
         ? '所持品はそのまま使えます。店頭価格による選択であり釣果順位ではありません。ウキとオモリの対応魚は違うため、購入前に詳細で魚を確認してください。'
@@ -135,12 +146,91 @@ export function floatPriceGuide(ctx) {
         ? '店頭記録なし'
         : 'No recorded stock'
   const choice = (kind, stage) => {
+    if (fish) return targetFloatChoice(ctx, kind, stage, fish)
     const row = ctx.gearPriceGuide[kind]?.[stage]
     if (!row) return `${none} · ${firstStockLink(ctx, kind)}`
     const item = ctx.allItems.find((i) => i.category === row.category && i.id === row.id)
     return `<a href="${ctx.esc(ctx.areaItemLink(item, stage))}">${ctx.esc(ctx.itemName(item))} (${row.id}) · ¥${row.priceYen}</a>`
   }
   return `<section class="decision-card" id="float-price-guide"><h3>${title}</h3><p>${note}</p><div class="table-wrap"><table><thead><tr><th>${ctx.lang === 'th' ? 'ด่าน' : ctx.lang === 'ja' ? 'エリア' : 'Area'}</th><th>${ctx.lang === 'th' ? 'ทุ่น' : ctx.lang === 'ja' ? 'ウキ' : 'Float'}</th><th>${ctx.lang === 'th' ? 'ตะกั่ว' : ctx.lang === 'ja' ? 'オモリ' : 'Sinker'}</th></tr></thead><tbody>${[1, 2, 3, 4, 5, 6].map((stage) => `<tr><td>${stage}</td><td>${choice('float', stage)}</td><td>${choice('sinker', stage)}</td></tr>`).join('')}</tbody></table></div></section>`
+}
+
+function floatRigKind(item) {
+  const id = Number.parseInt(item.id, 16)
+  if (item.category !== 'float_weight') return ''
+  if (id >= 0x01 && id <= 0x08) return 'float'
+  if (id >= 0x09 && id <= 0x0a) return 'sinker'
+  return ''
+}
+
+function stockedForArea(item, stage) {
+  return (item.playerUse?.shops || []).some((shop) => Number(shop.stage) === stage)
+}
+
+function floatCandidatesForFish(ctx, kind, fish) {
+  return ctx.allItems.filter(
+    (item) => floatRigKind(item) === kind && (ctx.fishIdsFor(item) || []).includes(fish),
+  )
+}
+
+function targetFloatOffer(ctx, kind, stage, candidates) {
+  const stocked = candidates.filter((item) => stockedForArea(item, stage))
+  const guide = ctx.gearPriceGuide[kind]?.[stage]
+  const guideItem = stocked.find((item) => item.id === guide?.id)
+  const item =
+    guideItem ||
+    stocked.sort((a, b) => Number(a.priceYen) - Number(b.priceYen) || a.id.localeCompare(b.id))[0]
+  if (!item) return null
+  return {
+    item,
+    priceYen: item.id === guideItem?.id ? Number(guide.priceYen) : Number(item.priceYen),
+  }
+}
+
+function targetFloatChoice(ctx, kind, stage, fish) {
+  const candidates = floatCandidatesForFish(ctx, kind, fish)
+  if (!candidates.length) return incompatibleFloatText(ctx, kind, fish)
+  const offer = targetFloatOffer(ctx, kind, stage, candidates)
+  if (!offer) return noCompatibleFloatStockText(ctx, kind, stage, fish, candidates)
+  return `<a data-target-float-offer="${kind}" data-target-fish="${ctx.esc(fish)}" href="${ctx.esc(ctx.areaItemLink(offer.item, stage))}">${ctx.esc(ctx.itemName(offer.item))} (${offer.item.id}) · ¥${offer.priceYen}</a>`
+}
+
+function incompatibleFloatText(ctx, kind, fish) {
+  const rig = kind === 'float' ? ['ทุ่น', 'ウキ', 'float'] : ['ตะกั่ว', 'オモリ', 'sinker']
+  const fishName = ctx.fishName(fish)
+  const text =
+    ctx.lang === 'th'
+      ? `ไม่มี${rig[0]}ที่ผ่านเงื่อนไขปลา${fishName}ใน ROM`
+      : ctx.lang === 'ja'
+        ? `この魚のROM判定を通る${rig[1]}はありません`
+        : `No ${rig[2]} passes the ROM profile check for ${fishName}`
+  return `<span data-target-rig-incompatible="${kind}" data-target-fish="${ctx.esc(fish)}">${ctx.esc(text)}</span>`
+}
+
+function noCompatibleFloatStockText(ctx, kind, stage, fish, candidates) {
+  const laterStages = [
+    ...new Set(
+      candidates.flatMap((item) =>
+        (item.playerUse?.shops || [])
+          .map((shop) => Number(shop.stage))
+          .filter((shopStage) => shopStage > stage),
+      ),
+    ),
+  ].sort((a, b) => a - b)
+  const nextStage = laterStages.find((shopStage) =>
+    targetFloatOffer(ctx, kind, shopStage, candidates),
+  )
+  const nextOffer = nextStage ? targetFloatOffer(ctx, kind, nextStage, candidates) : null
+  if (!nextOffer) {
+    return `<span data-no-compatible-float-stock data-target-fish="${ctx.esc(fish)}">${ctx.lang === 'th' ? 'ไม่มีของที่ผ่านเงื่อนไขปลาในสต็อกด่านนี้' : ctx.lang === 'ja' ? 'このエリアに魚の判定を通る在庫はありません' : 'No stocked item in this area passes the fish check'}</span>`
+  }
+  const message =
+    ctx.lang === 'th'
+      ? `ด่าน ${stage} ไม่มีของที่ผ่านเงื่อนไขปลา; มีขายตั้งแต่ด่าน ${nextStage}`
+      : ctx.lang === 'ja'
+        ? `エリア${stage}には適合品がありません。エリア${nextStage}から販売記録があります。`
+        : `No matching stock in area ${stage}; recorded from area ${nextStage}.`
+  return `<span data-no-compatible-float-stock data-target-fish="${ctx.esc(fish)}">${ctx.esc(message)} <a data-target-float-next-stock="${kind}" data-target-fish="${ctx.esc(fish)}" href="${ctx.esc(ctx.areaItemLink(nextOffer.item, nextStage))}">${ctx.esc(ctx.itemName(nextOffer.item))} (${nextOffer.item.id}) · ¥${nextOffer.priceYen}</a></span>`
 }
 
 function findFlyOffer(ctx, fish, stage) {

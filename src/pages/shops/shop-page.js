@@ -34,6 +34,7 @@ export async function init(ctx) {
     return
   }
   const items = galleryResult.value.items || []
+  ctx.fishVisuals = galleryResult.value.fishVisuals || {}
   window.__shopItems = items
   const stock = stockResult.value
   const mapManifest = mapResult.status === 'fulfilled' ? mapResult.value : null
@@ -43,6 +44,12 @@ export async function init(ctx) {
   const render = () => ctx.renderShopView(view)
   ctx.bindShopFilters(view, render)
   render()
+  scrollRequestedFishContext(ctx)
+}
+
+function scrollRequestedFishContext(ctx) {
+  if (location.hash === '#shop-fish-context')
+    ctx.$('shop-fish-context')?.scrollIntoView?.({ block: 'start' })
 }
 
 export function renderShopView(ctx, view) {

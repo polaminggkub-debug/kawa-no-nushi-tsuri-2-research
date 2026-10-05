@@ -40,6 +40,8 @@
     sellerLocationCard: () => sellerLocationCard,
     sellerStockActions: () => sellerStockActions,
     setQueryValue: () => setQueryValue,
+    shopCompatibility: () => shopCompatibility,
+    shopFishContext: () => shopFishContext,
     shopsUrl: () => shopsUrl,
     stateParams: () => stateParams,
     targetReturn: () => targetReturn,
@@ -307,6 +309,130 @@
     return `<aside class="shop-walk" data-area6-walk><h4>${ctx.esc(c.title)}</h4><ol>${c.steps.map((step) => `<li>${ctx.esc(step)}</li>`).join("")}</ol><details><summary>${ctx.esc(c.image)}</summary><a href="images/shop-routes/area6-regular-shop.png"><img loading="lazy" src="images/shop-routes/area6-regular-shop.png" alt="${ctx.esc(c.image)}"></a><p><a href="../docs/area6-shop-walking-research.md">${ctx.esc(c.evidence)} ↗</a></p></details></aside>`;
   }
 
+  // src/pages/shops/player-decision.js
+  function shopCompatibility(ctx, item) {
+    if (!ctx.selectedFish || !ctx.fishVisuals?.[ctx.selectedFish]) return "";
+    const use = item.playerUse || {};
+    let fishIds;
+    if (item.category === "lure" || item.category === "fly") fishIds = use.fishIds;
+    else if (item.category === "bait") fishIds = use.fishIdsByRoute?.[baitRoute(ctx)];
+    else return "";
+    if (!Array.isArray(fishIds)) return "";
+    return fishIds.includes(ctx.selectedFish) ? "accepted" : "rejected";
+  }
+  function shopFishContext(ctx) {
+    const fish = ctx.fishVisuals?.[ctx.selectedFish];
+    if (!fish) return "";
+    const stage = Number(ctx.$("stage-select")?.value || ctx.startStage);
+    const method = selectedMethod(ctx);
+    const returnTo = ctx.targetReturn();
+    const query = new URLSearchParams({
+      id: ctx.selectedFish,
+      stage: String(stage),
+      route: method,
+      return: returnTo
+    });
+    const href = `${ctx.pages.fish[ctx.lang]}?${query.toString()}`;
+    const name = fishName(ctx, fish, ctx.selectedFish);
+    const methodText = contextCopy(ctx.lang).methods[method];
+    const baitNote = ctx.lang === "th" ? "ป้ายเหยื่อจริงใช้เส้นทางตะกั่วเมื่อเลือกตะกั่ว; วิธีอื่นหรือยังไม่เลือกจะใช้ทุ่น" : ctx.lang === "ja" ? "エサの判定はオモリ仕掛けを選んだ場合はオモリ、それ以外はウキで表示します。" : "Bait labels use the sinker route when selected; otherwise they use float.";
+    const copy2 = contextCopy(ctx.lang);
+    return `<aside class="shop-fish-context" data-shop-fish-context data-fish="${ctx.esc(ctx.selectedFish)}" data-stage="${stage}" data-method="${method}"><img src="${ctx.esc(ctx.imagePath(fish.image))}" alt=""><div><p class="shop-fish-context-label">${ctx.esc(copy2.target)}</p><a class="shop-fish-profile-link" href="${ctx.esc(href)}"><strong>${ctx.esc(name)}</strong><span>${ctx.esc(copy2.profile)} · ID ${ctx.esc(ctx.selectedFish)} · ${ctx.esc(ctx.text.stageWord(stage))} · ${ctx.esc(methodText)} ↗</span></a><p>${ctx.esc(copy2.explains)} ${ctx.esc(baitNote)}</p></div></aside>`;
+  }
+  function shopCompatibilityBadge(ctx, item, state) {
+    if (!state) return "";
+    const method = item.category === "bait" ? baitRoute(ctx) : item.category === "lure" ? "lure" : "fly";
+    const copy2 = contextCopy(ctx.lang);
+    const text = item.category === "bait" ? copy2.status.bait[method][state] : copy2.status[item.category][state];
+    return `<p class="shop-compatibility ${state}" data-shop-compatibility="${state}" data-compatibility-method="${method}"><strong>${ctx.esc(text)}</strong></p>`;
+  }
+  function baitRoute(ctx) {
+    return ctx.selectedRig === "sinker" ? "sinker" : "float";
+  }
+  function selectedMethod(ctx) {
+    return ["float", "sinker", "lure", "fly"].includes(ctx.selectedRig) ? ctx.selectedRig : "float";
+  }
+  function fishName(ctx, fish, id) {
+    if (ctx.lang === "th")
+      return fish.nameTh || fish.nameThVariants?.join(" / ") || fish.nameLatin || fish.nameJa || `ปลา ${id}`;
+    if (ctx.lang === "ja") return fish.nameJa || `魚 ${id}`;
+    return fish.nameEn || fish.nameLatin || fish.nameLatinVariants?.[0] || fish.nameJa || `Fish ${id}`;
+  }
+  var localizedCopy = {
+    th: {
+      target: "ปลาที่เลือกไว้",
+      profile: "เปิดหน้าข้อมูลปลา",
+      explains: "ดูป้ายก่อนซื้อ: ของที่แสดงไม่ได้ผ่านเงื่อนไขปลานี้ทุกชิ้น และการผ่านเงื่อนไขไม่รับประกันว่าปลากินหรือตกขึ้นได้",
+      methods: { float: "สายทุ่น", sinker: "สายตะกั่ว", lure: "สายลัวร์", fly: "สายฟลาย" },
+      status: {
+        lure: {
+          accepted: "ผ่านเงื่อนไขชนิดปลาของลัวร์",
+          rejected: "ไม่ผ่านเงื่อนไขชนิดปลาของลัวร์"
+        },
+        bait: {
+          float: {
+            accepted: "ผ่านเงื่อนไขเหยื่อสายทุ่น",
+            rejected: "ไม่ผ่านเงื่อนไขเหยื่อสายทุ่น"
+          },
+          sinker: {
+            accepted: "ผ่านเงื่อนไขเหยื่อสายตะกั่ว",
+            rejected: "ไม่ผ่านเงื่อนไขเหยื่อสายตะกั่ว"
+          }
+        },
+        fly: {
+          accepted: "บอดี้ฟลายผ่านเงื่อนไขปลา 1 ข้อ",
+          rejected: "บอดี้ฟลายไม่ผ่านเงื่อนไขปลา 1 ข้อ"
+        }
+      }
+    },
+    ja: {
+      target: "選択中の魚",
+      profile: "魚プロフィールを見る",
+      explains: "購入前に印を確認してください。表示品がすべてこの魚の判定を通るわけではなく、判定を通っても食いつきや取り込みは保証されません。",
+      methods: { float: "ウキ仕掛け", sinker: "オモリ仕掛け", lure: "ルアー", fly: "毛バリ" },
+      status: {
+        lure: { accepted: "ルアーの魚種判定を通る", rejected: "ルアーの魚種判定を通らない" },
+        bait: {
+          float: { accepted: "ウキのエサ判定を通る", rejected: "ウキのエサ判定を通らない" },
+          sinker: { accepted: "オモリのエサ判定を通る", rejected: "オモリのエサ判定を通らない" }
+        },
+        fly: {
+          accepted: "ボディの魚プロフィール判定の1つを通る",
+          rejected: "ボディの魚プロフィール判定の1つを通らない"
+        }
+      }
+    },
+    en: {
+      target: "Selected fish",
+      profile: "Open fish profile",
+      explains: "Check the marks before buying: not every listed item passes this fish check. Passing does not guarantee a bite or landing.",
+      methods: { float: "Float route", sinker: "Sinker route", lure: "Lure route", fly: "Fly route" },
+      status: {
+        lure: {
+          accepted: "Passes the lure fish-type check",
+          rejected: "Does not pass the lure fish-type check"
+        },
+        bait: {
+          float: {
+            accepted: "Passes the float bait check",
+            rejected: "Does not pass the float bait check"
+          },
+          sinker: {
+            accepted: "Passes the sinker bait check",
+            rejected: "Does not pass the sinker bait check"
+          }
+        },
+        fly: {
+          accepted: "Body passes one fish-profile check",
+          rejected: "Body does not pass one fish-profile check"
+        }
+      }
+    }
+  };
+  function contextCopy(lang) {
+    return localizedCopy[lang] || localizedCopy.en;
+  }
+
   // src/pages/shops/shop-catalogue.js
   function renderLocations(ctx, locations, mapManifest, stage, place, items) {
     const area = locations?.areas?.find((a) => Number(a.outdoorArea) === stage);
@@ -484,6 +610,7 @@
     const canHaveCondition = condition && shopOffer?.condition;
     const image = ctx.imagePath(item.image);
     const name = ctx.itemName(item);
+    const compatibility = shopCompatibility(ctx, item);
     const price = item.priceYen != null ? ctx.text.price(item.priceYen) : ctx.text.noPrice;
     const extra = canHaveCondition ? `<p class="condition"><strong>${ctx.esc(ctx.text.conditionTitle)}:</strong> ${ctx.esc(ctx.text.ayu)} <a href="${ctx.esc(ctx.fishHref("38"))}">${ctx.esc(ctx.text.ayuFish)}</a></p>` : "";
     return `<article class="offer-card${target ? " is-target" : ""}" data-offer="${ctx.esc(item.category)}:${ctx.esc(item.id)}">
@@ -491,7 +618,7 @@
       <a class="offer-image-link" href="${ctx.esc(ctx.itemHref(item))}"><img loading="lazy" src="${ctx.esc(image)}" alt="${ctx.esc(name)}"></a>
       <p class="small-id">${ctx.esc(ctx.catName(item.category))} · ID ${ctx.esc(item.id)}</p>
       <h4><a href="${ctx.esc(ctx.itemHref(item))}">${ctx.esc(name)}</a></h4>
-      <p class="price">${ctx.esc(price)}</p>${canHaveCondition ? `<p class="condition-label">${ctx.esc(ctx.text.soldConditional)}</p>` : ""}${extra}
+      <p class="price">${ctx.esc(price)}</p>${shopCompatibilityBadge(ctx, item, compatibility)}${canHaveCondition ? `<p class="condition-label">${ctx.esc(ctx.text.soldConditional)}</p>` : ""}${extra}
     </article>`;
   }
   function bundleCard(ctx, bundle, stage, items, target) {
@@ -503,6 +630,8 @@
     const selected = components.some(
       (item) => target.category === item.category && target.id === item.id
     );
+    const body = components.find((item) => item.category === "fly");
+    const compatibility = body ? shopCompatibility(ctx, body) : "";
     const parts = components.map(
       (item) => `<a class="bundle-part" href="${ctx.esc(ctx.itemHref(item))}" title="${ctx.esc(ctx.itemName(item))}"><img loading="lazy" src="${ctx.esc(ctx.imagePath(item.image))}" alt="${ctx.esc(ctx.itemName(item))}"></a>`
     ).join('<span class="bundle-plus" aria-hidden="true">+</span>');
@@ -511,7 +640,7 @@
       ${selected ? `<span class="target-badge">${ctx.esc(ctx.text.targetBadge)}</span>` : ""}
       <span class="shop-kind">${ctx.esc(ctx.text.bundle)}</span><p class="small-id">${ctx.esc(ctx.text.stageWord(stage))} · ${ctx.esc(ctx.text.parts)}</p>
       <div class="bundle-parts">${parts}</div><div class="bundle-labels">${labels}</div>
-      <p class="price">${ctx.esc(ctx.text.complete)} · ${ctx.esc(ctx.text.price(bundle.shopPriceYen))}</p>
+      <p class="price">${ctx.esc(ctx.text.complete)} · ${ctx.esc(ctx.text.price(bundle.shopPriceYen))}</p>${body ? shopCompatibilityBadge(ctx, body, compatibility) : ""}
     </article>`;
   }
   function filterItems(ctx, items, category, query) {
@@ -572,6 +701,8 @@
     const area = stock.areas.find((a) => Number(a.stage) === stage);
     const list = ctx.$("shop-results");
     const target = { category: ctx.targetCategory, id: ctx.targetId };
+    const fishContext = ctx.$("shop-fish-context");
+    if (fishContext) fishContext.innerHTML = shopFishContext(ctx);
     if (!area) {
       list.innerHTML = `<p class="empty-state">${ctx.esc(ctx.text.noCategory)}</p>`;
       return;
@@ -666,6 +797,7 @@
       return;
     }
     const items = galleryResult.value.items || [];
+    ctx.fishVisuals = galleryResult.value.fishVisuals || {};
     window.__shopItems = items;
     const stock = stockResult.value;
     const mapManifest = mapResult.status === "fulfilled" ? mapResult.value : null;
@@ -675,6 +807,11 @@
     const render = () => ctx.renderShopView(view);
     ctx.bindShopFilters(view, render);
     render();
+    scrollRequestedFishContext(ctx);
+  }
+  function scrollRequestedFishContext(ctx) {
+    if (location.hash === "#shop-fish-context")
+      ctx.$("shop-fish-context")?.scrollIntoView?.({ block: "start" });
   }
   function renderShopView(ctx, view) {
     const { stageSelect, categorySelect, search, items, stock, mapManifest, locations } = view;
@@ -1012,7 +1149,7 @@
     ctx.startCategory = ctx.validCategory(ctx.params.get("category"));
     ctx.startId = ctx.validId(ctx.params.get("id"));
     ctx.selectedFish = ctx.validId(ctx.params.get("fish"));
-    ctx.selectedRig = ["float", "sinker"].includes(ctx.params.get("route")) ? ctx.params.get("route") : "";
+    ctx.selectedRig = ["float", "sinker", "lure", "fly"].includes(ctx.params.get("route")) ? ctx.params.get("route") : "";
     ctx.targetCategory = ctx.startCategory;
     ctx.targetId = ctx.startId;
   }

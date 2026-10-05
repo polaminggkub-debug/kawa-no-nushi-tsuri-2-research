@@ -1,4 +1,5 @@
 import { normalizeWaterMark } from './water-mark-filter.js'
+import { notebookStatus } from './notebook-status.js'
 
 export function renderSectionSelect(ctx) {
   const data = ctx.stages[ctx.activeStage]
@@ -95,7 +96,7 @@ export function showPinDetails(ctx, ids, x, y) {
       .map((id) => {
         const f = ctx.species[id],
           img = f.visual.image || ''
-        return `<div class="pin-fish-row"><a class="pin-fish-details" href="${ctx.esc(ctx.fishHref(id))}">${img ? `<img src="${ctx.esc(img)}" alt="">` : ''}<span>${ctx.esc(f.name)} — ${ctx.detailLabel} ↗</span></a><button class="pin-fish-choice" type="button" data-fish="${id}">${ctx.lang === 'th' ? 'เน้นบนแผนที่' : ctx.lang === 'ja' ? '地図で絞り込む' : 'Focus on map'}</button></div>`
+        return `<div class="pin-fish-row"><a class="pin-fish-details" href="${ctx.esc(ctx.fishHref(id))}">${img ? `<img src="${ctx.esc(img)}" alt="">` : ''}<span>${ctx.esc(f.name)} — ${ctx.detailLabel} ↗</span></a>${notebookStatus(ctx, id)}<button class="pin-fish-choice" type="button" data-fish="${id}">${ctx.lang === 'th' ? 'เน้นบนแผนที่' : ctx.lang === 'ja' ? '地図で絞り込む' : 'Focus on map'}</button></div>`
       })
       .join('')
 }

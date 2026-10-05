@@ -595,6 +595,30 @@
     ctx.$("fish-title")?.focus?.();
   }
 
+  // src/pages/maps/notebook-status.js
+  var copy3 = {
+    en: {
+      badge: "No journal entry",
+      reason: "This species has no fish-journal entry. See the journal guide."
+    },
+    ja: {
+      badge: "図鑑の記録枠なし",
+      reason: "この魚種は図鑑の記録対象ではありません。図鑑ガイドを見る。"
+    },
+    th: {
+      badge: "ไม่มีช่องในสมุดปลา",
+      reason: "ปลาชนิดนี้ไม่มีช่องบันทึกในสมุดปลา ดูคำแนะนำสมุดปลา"
+    }
+  };
+  function notebookStatus(ctx, id, linked = true) {
+    if (ctx.notebookCompletion?.species?.[id]?.notebookEligible !== false) return "";
+    const text2 = copy3[ctx.lang] || copy3.en;
+    const marker = `class="notebook-excluded-badge" data-notebook-excluded="${ctx.esc(id)}"`;
+    if (!linked)
+      return `<span ${marker} title="${ctx.esc(text2.reason)}">${ctx.esc(text2.badge)}</span>`;
+    return `<a class="notebook-excluded-badge" data-notebook-excluded="${ctx.esc(id)}" href="#notebook-guide" aria-label="${ctx.esc(text2.reason)}">${ctx.esc(text2.badge)}</a>`;
+  }
+
   // src/pages/maps/fish-search.js
   function safeReturn(ctx, raw) {
     if (!raw || raw.startsWith("//") || raw.includes("\\") || /^[a-z][a-z0-9+.-]*:/i.test(raw))
@@ -800,7 +824,7 @@
       const areaBadges = item.stages.filter((stage) => !ctx.activeWaterMark || stage === ctx.activeStage).map((stage) => `<span class="suggestion-area-badge">${ctx.esc(ctx.c.area(stage))}</span>`).join("");
       const secondary = ctx.lang === "ja" ? item.visual.nameLatin || item.visual.nameTh || "" : item.visual.nameJa || "";
       const targetClass = ctx.selectedFish === id ? " is-map-target" : "";
-      return `<div id="fish-suggestion-${id}" class="fish-suggestion${targetClass}" role="option" aria-selected="false" aria-posinset="${index + 1}" aria-setsize="${matches.length}" data-suggestion="${id}">${image ? `<img src="${ctx.esc(image)}" alt="">` : '<span class="suggestion-no-image" aria-hidden="true"></span>'}<span class="suggestion-copy"><strong>${ctx.esc(item.name)}</strong>${secondary && secondary !== item.name ? `<small class="suggestion-alias">${ctx.esc(secondary)}</small>` : ""}<span class="suggestion-meta"><code>ID ${ctx.esc(id)}</code><span class="suggestion-area-label">${areaLabel}</span><span class="suggestion-areas">${areaBadges}</span></span></span></div>`;
+      return `<div id="fish-suggestion-${id}" class="fish-suggestion${targetClass}" role="option" aria-selected="false" aria-posinset="${index + 1}" aria-setsize="${matches.length}" data-suggestion="${id}">${image ? `<img src="${ctx.esc(image)}" alt="">` : '<span class="suggestion-no-image" aria-hidden="true"></span>'}<span class="suggestion-copy"><strong>${ctx.esc(item.name)}</strong>${secondary && secondary !== item.name ? `<small class="suggestion-alias">${ctx.esc(secondary)}</small>` : ""}<span class="suggestion-meta"><code>ID ${ctx.esc(id)}</code><span class="suggestion-area-label">${areaLabel}</span><span class="suggestion-areas">${areaBadges}</span></span>${notebookStatus(ctx, id, false)}</span></div>`;
     }).join("");
     ctx.suggestionList.hidden = !open;
     ctx.fishList.hidden = open;
@@ -892,7 +916,7 @@
       (pin) => pin.fishIds.includes(id) && (ctx.listScope !== "section" || sectionIds.has(id) && ctx.stages[ctx.activeStage].sections.get(ctx.activeSection)?.pins.includes(pin))
     ).length;
     const sub = term ? `${ctx.c.areasPrefix} ${availability}` : `${ctx.c.point(pointCount)}${item.visual.nameJa && ctx.lang !== "ja" ? ` · ${item.visual.nameJa}` : ""}`;
-    return `<div class="fish-choice-row ${ctx.selectedFish === id ? "selected" : ""}"><a class="fish-portrait-link" href="${ctx.esc(ctx.fishHref(id))}" aria-label="${ctx.esc(item.name)} — ${ctx.detailLabel}">${img ? `<img loading="lazy" src="${ctx.esc(img)}" alt="${ctx.esc(item.name)}">` : ""}</a><button class="fish-choice" type="button" data-fish="${id}" aria-pressed="${ctx.selectedFish === id}"><span>${ctx.esc(item.name)}<small>${ctx.esc(sub)}</small><small class="filter-action">${ctx.lang === "th" ? "เน้นบนแผนที่" : ctx.lang === "ja" ? "地図で絞り込む" : "Focus on map"}</small></span></button><a class="fish-details-link" href="${ctx.esc(ctx.fishHref(id))}">${ctx.detailLabel} ↗</a></div>`;
+    return `<div class="fish-choice-row ${ctx.selectedFish === id ? "selected" : ""}"><a class="fish-portrait-link" href="${ctx.esc(ctx.fishHref(id))}" aria-label="${ctx.esc(item.name)} — ${ctx.detailLabel}">${img ? `<img loading="lazy" src="${ctx.esc(img)}" alt="${ctx.esc(item.name)}">` : ""}</a><button class="fish-choice" type="button" data-fish="${id}" aria-pressed="${ctx.selectedFish === id}"><span>${ctx.esc(item.name)}<small>${ctx.esc(sub)}</small><small class="filter-action">${ctx.lang === "th" ? "เน้นบนแผนที่" : ctx.lang === "ja" ? "地図で絞り込む" : "Focus on map"}</small></span></button><a class="fish-details-link" href="${ctx.esc(ctx.fishHref(id))}">${ctx.detailLabel} ↗</a>${notebookStatus(ctx, id)}</div>`;
   }
 
   // src/pages/maps/map-render.js
@@ -961,7 +985,7 @@
     box.hidden = false;
     box.innerHTML = `<span class="pin-details-label">X ${x}, Y ${y} · ${unique.length} ${ctx.c.species}</span>` + unique.map((id) => {
       const f = ctx.species[id], img = f.visual.image || "";
-      return `<div class="pin-fish-row"><a class="pin-fish-details" href="${ctx.esc(ctx.fishHref(id))}">${img ? `<img src="${ctx.esc(img)}" alt="">` : ""}<span>${ctx.esc(f.name)} — ${ctx.detailLabel} ↗</span></a><button class="pin-fish-choice" type="button" data-fish="${id}">${ctx.lang === "th" ? "เน้นบนแผนที่" : ctx.lang === "ja" ? "地図で絞り込む" : "Focus on map"}</button></div>`;
+      return `<div class="pin-fish-row"><a class="pin-fish-details" href="${ctx.esc(ctx.fishHref(id))}">${img ? `<img src="${ctx.esc(img)}" alt="">` : ""}<span>${ctx.esc(f.name)} — ${ctx.detailLabel} ↗</span></a>${notebookStatus(ctx, id)}<button class="pin-fish-choice" type="button" data-fish="${id}">${ctx.lang === "th" ? "เน้นบนแผนที่" : ctx.lang === "ja" ? "地図で絞り込む" : "Focus on map"}</button></div>`;
     }).join("");
   }
   function renderMap(ctx) {
@@ -1473,7 +1497,7 @@
         if (!r.ok) throw Error("fish locations");
         return r.json();
       }),
-      fetch("gallery-data.json?v=compendium-20261005-22").then((r) => {
+      fetch("gallery-data.json?v=compendium-20261005-23").then((r) => {
         if (!r.ok) throw Error("fish sprites");
         return r.json();
       })

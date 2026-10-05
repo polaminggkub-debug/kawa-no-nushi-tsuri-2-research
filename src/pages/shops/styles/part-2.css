@@ -129,6 +129,74 @@
   margin: 8px 0;
 }
 
+#shop-fish-context {
+  scroll-margin-top: 8rem;
+}
+
+#shop-fish-context:empty {
+  display: none;
+}
+
+.shop-fish-context {
+  display: grid;
+  grid-template-columns: 66px minmax(0, 1fr);
+  gap: 12px;
+  align-items: center;
+  margin: 12px 0;
+  padding: 12px;
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  background: #f5f7f1;
+}
+
+.shop-fish-context > img {
+  width: 64px;
+  height: 64px;
+  object-fit: contain;
+  image-rendering: pixelated;
+}
+
+.shop-fish-context p {
+  margin: 4px 0;
+  color: var(--muted);
+  font-size: 0.92rem;
+}
+
+.shop-fish-context .shop-fish-context-label {
+  color: var(--green-dark);
+  font-weight: 750;
+}
+
+.shop-fish-profile-link {
+  display: inline-grid;
+  gap: 2px;
+  color: var(--ink);
+}
+
+.shop-fish-profile-link span {
+  color: var(--muted);
+  font-size: 0.9rem;
+}
+
+.shop-compatibility {
+  width: fit-content;
+  max-width: 100%;
+  padding: 4px 9px;
+  border-radius: 999px;
+  font-size: 0.88rem;
+  line-height: 1.35;
+}
+
+.shop-compatibility.accepted {
+  background: #e9f3e9;
+  color: #215a3c;
+}
+
+.shop-compatibility.rejected {
+  background: #f8ece7;
+  color: #8a3527;
+}
+
 .evidence-note {
   margin: 30px 0;
   padding: 16px 20px;
@@ -203,6 +271,15 @@ footer {
   }
   .offer-card {
     padding: 13px;
+  }
+  .shop-fish-context {
+    grid-template-columns: 52px minmax(0, 1fr);
+    gap: 9px;
+    padding: 10px;
+  }
+  .shop-fish-context > img {
+    width: 50px;
+    height: 50px;
   }
   footer {
     padding-inline: 16px;
