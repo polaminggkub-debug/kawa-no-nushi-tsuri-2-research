@@ -1,4 +1,4 @@
-import { fishMealSummary, flyWingPlayerDecision } from '../../entities/item/index.js'
+import { fishMealSummary, fishMealFacts, flyWingPlayerDecision } from '../../entities/item/index.js'
 
 function decisionUsage(ctx, decision) {
   return {
@@ -27,7 +27,7 @@ function specialCategoryUsage(ctx, item, use) {
     return { summary, facts: [] }
   }
   if (item.category === 'food' && item.id === '08') {
-    return { summary: fishMealSummary(ctx.lang), facts: use.facts?.[ctx.lang] || [] }
+    return { summary: fishMealSummary(ctx.lang), facts: fishMealFacts(ctx.lang) }
   }
   return null
 }

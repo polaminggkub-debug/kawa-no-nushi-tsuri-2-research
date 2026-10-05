@@ -670,6 +670,23 @@
   function fishMealSummary(lang) {
     return summaries[lang] || summaries.en;
   }
+  var facts = {
+    th: [
+      "ตัวอย่าง: 20 ซม. ฟื้น 5 HP, 40 ซม. ฟื้น 10 HP, 100 ซม. ฟื้น 25 HP.",
+      "ถ้าจะเก็บโออูนางิ / ปลาไหลยักษ์ไว้ให้หมอ อย่าเลือกกินปลาเมื่อมันเป็นปลาตัวแรกในข้อง เมนูกินปลาไม่ได้กันปลาไหลยักษ์ไว้ให้; ใช้อาหารอื่นฟื้น HP แทน"
+    ],
+    en: [
+      "Examples: 20 cm restores 5 HP, 40 cm restores 10 HP, and 100 cm restores 25 HP.",
+      "To keep the giant eel for the doctor’s request, do not eat the first keepnet fish when it is the giant eel. The fish-meal menu does not protect the giant eel; use other food to restore HP."
+    ],
+    ja: [
+      "例：20cmなら5HP、40cmなら10HP、100cmなら25HP。",
+      "医者の依頼用にオオウナギを残すなら、びくの先頭がオオウナギのときは食べない。食べる処理はオオウナギを保護しないため、HP回復には別の食料を使う。"
+    ]
+  };
+  function fishMealFacts(lang) {
+    return facts[lang] || facts.en;
+  }
 
   // src/entities/item/rod-area-copy.js
   var COPY = {
@@ -1695,9 +1712,7 @@
   function fishMealAdvice(ctx) {
     return {
       summary: fishMealSummary(ctx.lang),
-      facts: [
-        ctx.lang === "th" ? "ตัวอย่าง: 20 ซม. ฟื้น 5 HP, 40 ซม. ฟื้น 10 HP, 100 ซม. ฟื้น 25 HP. เมนูแสดงปลาตัวแรกเท่านั้น; ถ้าจะเก็บปลาตัวนี้ไว้ ให้ใช้อาหารอย่างอื่นแทน" : ctx.lang === "ja" ? "例：20cmなら5HP、40cmなら10HP、100cmなら25HP。メニューに表示された先頭の魚だけが対象。残したい魚なら別の食料を使う。" : "Examples: 20 cm restores 5 HP, 40 cm restores 10 HP, and 100 cm restores 25 HP. Only the first fish shown in the menu is selected; use other food if you want to keep it."
-      ]
+      facts: fishMealFacts(ctx.lang)
     };
   }
   function decisionAdvice(ctx, decision) {
@@ -2778,8 +2793,8 @@
     if (use.evidence?.type !== "player_guide_report") return "";
     return `<p class="fish-scope">${ctx.lang === "th" ? "คำอธิบายการใช้จากคู่มือผู้เล่น ยังไม่ได้ยืนยันจากโค้ดเกม" : ctx.lang === "ja" ? "用途はプレイヤーガイドによる報告。ゲームコードでは未確認。" : "Use reported by a player guide; not yet confirmed in game code."}</p>`;
   }
-  function renderCardDisclosure(ctx, item, use, summary, facts, advice, wingDecision) {
-    const factList = facts.length ? `<ul class="use-facts">${facts.map((fact) => `<li>${ctx.esc(fact)}</li>`).join("")}</ul>` : "";
+  function renderCardDisclosure(ctx, item, use, summary, facts2, advice, wingDecision) {
+    const factList = facts2.length ? `<ul class="use-facts">${facts2.map((fact) => `<li>${ctx.esc(fact)}</li>`).join("")}</ul>` : "";
     const recommendation = wingDecision ? `<h5>${ctx.esc(ctx.cardUi.fullRecommendation)}</h5><p class="card-full-recommendation">${ctx.esc(wingDecision.recommendation)}</p><p class="card-decision-reason">${ctx.esc(wingDecision.reason)}</p>` : advice ? `<h5>${ctx.esc(ctx.cardUi.fullRecommendation)}</h5><p class="card-full-recommendation">${ctx.esc(ctx.local(advice.recommendation) || summary)}</p>${advice.reason ? `<p class="card-decision-reason">${ctx.esc(ctx.local(advice.reason))}</p>` : ""}` : "";
     const details = [
       recommendation,
@@ -2797,7 +2812,7 @@
       advice || wingDecision ? "card-decision-disclosure" : "card-use-disclosure"
     );
   }
-  function renderCardGuidance(ctx, item, use, summary, facts, advice) {
+  function renderCardGuidance(ctx, item, use, summary, facts2, advice) {
     const fish = document.getElementById("fish-filter")?.value || "";
     const wingDecision = flyWingPlayerDecision(
       ctx.lang,
@@ -2809,7 +2824,7 @@
     const targetAdvice2 = wingDecision ? "" : renderTargetAdvice(ctx, item, fish, { includeScope: false });
     const label = wingDecision?.label || (advice ? ctx.local(advice.label) : summary);
     const lureVerdict = !fish && !wingDecision ? baitLureVerdict(ctx, item) : "";
-    const disclosure = renderCardDisclosure(ctx, item, use, summary, facts, advice, wingDecision);
+    const disclosure = renderCardDisclosure(ctx, item, use, summary, facts2, advice, wingDecision);
     const wingLinks = wingDecision ? flyWingPlayerLinks(ctx, wingDecision, flyWingActionHrefs(ctx, item, wingDecision, fish)) : "";
     const actionTitle = targetAdvice2 ? ctx.lang === "th" ? "คำแนะนำสำหรับปลาที่เลือก" : ctx.lang === "ja" ? "選んだ魚への案内" : "Advice for your selected fish" : cardActionTitle(ctx, item, advice);
     const dataDecision = wingDecision ? `data-fly-wing-decision="${ctx.esc(item.id)}"` : cardDecisionAttribute(ctx, item, advice);
@@ -2854,11 +2869,11 @@
         (shop) => Number(shop.stage) === view.areaRodDecision.stage
       )
     } : use;
-    const { summary, facts } = ctx.visibleUse(view);
+    const { summary, facts: facts2 } = ctx.visibleUse(view);
     const advice = itemAdvice(view);
     const detailHref = ctx.itemHref(view);
     const identity = renderCardIdentity(ctx, view, areaUse, detailHref);
-    const guidance = renderCardGuidance(ctx, view, use, summary, facts, advice);
+    const guidance = renderCardGuidance(ctx, view, use, summary, facts2, advice);
     const details = renderCardAcquisition(ctx, view);
     const poison = view.category === "food" && view.id === "0A" ? "poison-food" : "";
     const offerMarker = isAreaRodOffer(view) ? ' data-selected-area-offer="true"' : "";

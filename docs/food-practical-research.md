@@ -18,6 +18,26 @@ For an ordinary fish, the ROM therefore restores `floor(displayed size in cm / 4
 
 This is not a free-choice fish selector: check the displayed first-fish name before confirming. The controlled observations remain historical samples: six species at size 30 all restored 7 HP, and one species was sampled at sizes 4 through 200. Those samples agree with the traced ordinary-fish arithmetic but do not expand the recorded runtime sample set.
 
+### Preserve a giant eel intended for the doctor
+
+If keeping an オオウナギ / giant eel (`3B`) for the doctor's request, do not select the fish meal when that eel is the first fish shown. Use other food for HP recovery. The meal consumer does not protect the giant eel: it checks only the poisonous species `3F`, then calculates ordinary recovery and calls the first-slot removal routine. This advice preserves a fish the player intends to keep; it does not establish a delivery location, a reward, or the exact event needed to finish the request.
+
+The doctor's request is explicit in original-ROM message `01E0` (text file offset `02D260`): `大ウナギを 早く / やぶ医者に 食べさせて / あげてください。` The separate town-sale path calls `03:A2BA` from `03:A11C`. While story bit `0x10` at `$0C18` is clear, it temporarily removes **one** stored `3B`, saves its size in `$1D53`, and restores it through `03:A375` after the sale. That bounded sale protection must not be generalized to voluntary eating, multiple eels, or later story states.
+
+Reproducible LoROM fingerprints, checked against the SHA-1 above:
+
+| Code location | Bytes | Meaning |
+| --- | --- | --- |
+| `03:BA2D` | `AD 7A 0B 8D E8 11 20 6D D2 AD E8 11 C9 3F 00` | Read first keepnet species, prepare its name, compare only with Kusafugu. |
+| `03:BA3C` | `D0 03 4C 16 BB AD B6 0B 4A 4A` | Ordinary species reaches stored-size division; poisonous fish takes the exception. |
+| `03:BA55` | `20 64 BA` | Call first-slot removal after ordinary meal text. |
+| `03:BA64` | `A2 00 00 BD 7C 0B 9D 7A 0B BD B8 0B 9D B6 0B` | Shift subsequent species and sizes over the consumed first fish. |
+| `03:A2BA` | `9C 51 1D 9C 53 1D AD 18 0C 29 10 00 D0 46` | Sale filter's separate story-bit gate. |
+| `03:A2CB` | `B9 7A 0B C9 3B 00 D0 34 8D 51 1D B9 B6 0B 8D 53 1D` | Cache one giant eel and its size for sale protection. |
+| `03:A159` | `20 75 A3` | Sale completion calls the eel restoration routine. |
+
+These are static consumer traces. No new natural giant-eel meal or full quest replay is claimed.
+
 ## Kusafugu exception
 
 Before the size formula, `03:BA36..BA3E` compares the first species with `3F` (クサフグ / Kusafugu) and jumps to `03:BB16` on equality. That routine removes the fish, displays the meal text, sets current HP to zero at `03:BB27`, displays message `0130`, increments the event flag and sets action state `0B`. Thus the old generic statement that any fish restores HP omitted a concrete dangerous exception.

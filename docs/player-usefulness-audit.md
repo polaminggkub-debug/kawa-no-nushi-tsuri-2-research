@@ -460,3 +460,10 @@ its full comparison, the canonical Thai lure-kit link to research, Japanese
 Rod→Lure filter changes with the quick guide open, and All with Area 4 selected.
 These checks support this release's flows and do not certify the entire site's
 usefulness or a natural gameplay run. The full-site goal remains active.
+## Giant-eel preservation and fish-meal clarity (2026-10-06)
+
+The first-fish meal now gives a specific preservation choice: when keeping a giant eel for the doctor's request, use other food instead of eating it as the first keepnet fish. The original-ROM meal consumer removes that first fish and has no giant-eel protection. This is distinct from the separate town-sale path that temporarily protects one eel before story bit `0x10`. The canonical food research records the consumer addresses and byte fingerprints; no delivery coordinate, reward, or full quest replay is inferred.
+
+The catalogue and detail share two practical notes: displayed-size recovery examples and the eel-preservation action. The generic empty-stock purchase section was replaced with a caught-fish explanation and a link to food choices that retains the selected area and detail return path. Four repetitive detail bullets were replaced by those notes; original data and technical evidence remain. An independent guard first failed on the absent preservation text, then passed with exactly one warning on both surfaces in all three languages, existing food effects and examples retained, and no invented coordinates.
+
+Three separate bounded journeys—low-HP food to a listed shop, an unstocked rod to a local alternative, and a target fly's ready-made versus DIY price—had no decision-changing defect. Actual public fish selection was also rechecked: selecting a target from a float category opens compatible bait. These observations are not full-site completion evidence. Natural giant-eel quest timing, broader fight controls, and remaining collection/acquisition journeys still require research or rendered checks.

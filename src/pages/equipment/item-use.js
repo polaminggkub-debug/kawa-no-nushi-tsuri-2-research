@@ -1,15 +1,9 @@
-import { fishMealSummary, flyWingPlayerDecision } from '../../entities/item/index.js'
+import { fishMealSummary, fishMealFacts, flyWingPlayerDecision } from '../../entities/item/index.js'
 
 function fishMealAdvice(ctx) {
   return {
     summary: fishMealSummary(ctx.lang),
-    facts: [
-      ctx.lang === 'th'
-        ? 'ตัวอย่าง: 20 ซม. ฟื้น 5 HP, 40 ซม. ฟื้น 10 HP, 100 ซม. ฟื้น 25 HP. เมนูแสดงปลาตัวแรกเท่านั้น; ถ้าจะเก็บปลาตัวนี้ไว้ ให้ใช้อาหารอย่างอื่นแทน'
-        : ctx.lang === 'ja'
-          ? '例：20cmなら5HP、40cmなら10HP、100cmなら25HP。メニューに表示された先頭の魚だけが対象。残したい魚なら別の食料を使う。'
-          : 'Examples: 20 cm restores 5 HP, 40 cm restores 10 HP, and 100 cm restores 25 HP. Only the first fish shown in the menu is selected; use other food if you want to keep it.',
-    ],
+    facts: fishMealFacts(ctx.lang),
   }
 }
 

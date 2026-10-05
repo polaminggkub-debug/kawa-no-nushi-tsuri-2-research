@@ -1,4 +1,5 @@
 import { foodChoicePanel } from './food-choice.js'
+import { fishMealRecovery } from './fish-meal-recovery.js'
 
 function selectedStage(ctx) {
   const stage = Number(ctx.selectedStage)
@@ -169,6 +170,7 @@ function ordinaryPurchaseSection(ctx, item, fishLocations, selected) {
 
 export function shopSection(ctx, item, allItems, fishLocations) {
   const selected = selectedStage(ctx)
+  if (item.category === 'food' && item.id === '08') return fishMealRecovery(ctx, selected)
   if (['fly', 'fly_wing', 'fly_tail'].includes(item.category))
     return flyPurchaseSection(ctx, item, allItems, fishLocations, selected)
   return ordinaryPurchaseSection(ctx, item, fishLocations, selected)

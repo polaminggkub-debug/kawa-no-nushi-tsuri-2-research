@@ -288,7 +288,7 @@
     }[ctx.lang];
   }
   function foodChoicePanel(ctx, item, allItems, sections) {
-    const copy4 = foodCopy(ctx);
+    const copy5 = foodCopy(ctx);
     const hpLabel = (hp) => ctx.lang === "th" ? `ฟื้นได้สูงสุด ${hp} HP` : ctx.lang === "ja" ? `最大${hp} HP回復` : `Restores up to ${hp} HP`;
     const foodOption = (other) => {
       const hp = other.playerUse?.hpRecovery?.hp;
@@ -298,12 +298,40 @@
     const alternatives = allItems.filter(
       (other) => other.category === "food" && other.id !== item.id && other.priceYen > 0 && other.playerUse?.shops?.some((shop) => Number(shop.stage) === ctx.selectedStage)
     );
-    const nearby = ctx.selectedStage ? `<h3>${ctx.esc(copy4[0])} · ${ctx.selectedStage}</h3><div class="detail-grid" data-local-food-options>${alternatives.map(foodOption).join("")}</div>` : "";
+    const nearby = ctx.selectedStage ? `<h3>${ctx.esc(copy5[0])} · ${ctx.selectedStage}</h3><div class="detail-grid" data-local-food-options>${alternatives.map(foodOption).join("")}</div>` : "";
     const catalogueOptions = allItems.filter((other) => other.category === "food" && other.priceYen > 0 && other.id !== item.id).map(foodOption).join("");
     const full = sections.map(
       (section) => `<h3>${ctx.esc(ctx.local(section.title))}</h3><p>${ctx.esc(ctx.local(section.recommendation))}</p><p class="muted">${ctx.esc(ctx.local(section.scope))}</p>`
     ).join("");
-    return `<section class="detail-section buying-decision" data-food-choice>${nearby}<details><summary>${ctx.esc(copy4[1])}</summary>${full}<div class="detail-grid" data-all-food-options>${catalogueOptions}</div></details></section>`;
+    return `<section class="detail-section buying-decision" data-food-choice>${nearby}<details><summary>${ctx.esc(copy5[1])}</summary>${full}<div class="detail-grid" data-all-food-options>${catalogueOptions}</div></details></section>`;
+  }
+
+  // src/pages/item/fish-meal-recovery.js
+  var copy = {
+    th: [
+      "อาหารฟื้น HP แทนการกินปลา",
+      "เมนูนี้ใช้ปลาที่ตกได้และเก็บในข้อง ถ้าอยากเก็บปลาไว้ ให้ใช้อาหารที่มีอยู่ก่อน หรือดูอาหารอื่นตามด่านที่เลือก",
+      "เลือกอาหารฟื้น HP"
+    ],
+    en: [
+      "Restore HP while keeping your fish",
+      "This menu uses a caught fish stored in your keepnet. To keep that fish, use food you already own or compare other food for the selected area.",
+      "Choose food for HP recovery"
+    ],
+    ja: [
+      "魚を残してHPを回復",
+      "このメニューは釣ってびくに入れた魚を使う。魚を残すなら手持ちの食料を先に使うか、選択エリアの他の食料を比較する。",
+      "HP回復用の食料を選ぶ"
+    ]
+  };
+  function fishMealRecovery(ctx, stage) {
+    const [title, description, action] = copy[ctx.lang] || copy.en;
+    const query = new URLSearchParams({ category: "food" });
+    if (stage) query.set("stage", String(stage));
+    const returned = ctx.safeLocalRoute(ctx.currentLocalRoute());
+    if (returned) query.set("return", returned);
+    const href = `${ctx.cataloguePage[ctx.lang]}?${query}#catalogue`;
+    return `<section class="detail-section" data-fish-meal-recovery><h2>${ctx.esc(title)}</h2><p>${ctx.esc(description)}</p><a class="route-button" href="${ctx.esc(href)}">${ctx.esc(action)} ↗</a></section>`;
   }
 
   // src/pages/item/purchases.js
@@ -425,6 +453,7 @@
   }
   function shopSection(ctx, item, allItems, fishLocations) {
     const selected = selectedStage(ctx);
+    if (item.category === "food" && item.id === "08") return fishMealRecovery(ctx, selected);
     if (["fly", "fly_wing", "fly_tail"].includes(item.category))
       return flyPurchaseSection(ctx, item, allItems, fishLocations, selected);
     return ordinaryPurchaseSection(ctx, item, fishLocations, selected);
@@ -505,8 +534,8 @@
     if (!bundle) return { ...noBundleCopy(lang, item.id, fishName2), bundle: null, itemId: item.id };
     const body = nameForBundleItem(allItems, "fly", bundle.body);
     const supported = Boolean(fishId && (body?.playerUse?.fishIds || []).includes(fishId));
-    const copy4 = bundleCopy(lang, item, bundle, fishName2, supported);
-    return { ...copy4, bundle, supported, hasTarget: Boolean(fishId), itemId: item.id };
+    const copy5 = bundleCopy(lang, item, bundle, fishName2, supported);
+    return { ...copy5, bundle, supported, hasTarget: Boolean(fishId), itemId: item.id };
   }
   function actionLabel(lang, key, bundle) {
     const labels = {
@@ -575,6 +604,23 @@
   };
   function fishMealSummary(lang) {
     return summaries[lang] || summaries.en;
+  }
+  var facts = {
+    th: [
+      "ตัวอย่าง: 20 ซม. ฟื้น 5 HP, 40 ซม. ฟื้น 10 HP, 100 ซม. ฟื้น 25 HP.",
+      "ถ้าจะเก็บโออูนางิ / ปลาไหลยักษ์ไว้ให้หมอ อย่าเลือกกินปลาเมื่อมันเป็นปลาตัวแรกในข้อง เมนูกินปลาไม่ได้กันปลาไหลยักษ์ไว้ให้; ใช้อาหารอื่นฟื้น HP แทน"
+    ],
+    en: [
+      "Examples: 20 cm restores 5 HP, 40 cm restores 10 HP, and 100 cm restores 25 HP.",
+      "To keep the giant eel for the doctor’s request, do not eat the first keepnet fish when it is the giant eel. The fish-meal menu does not protect the giant eel; use other food to restore HP."
+    ],
+    ja: [
+      "例：20cmなら5HP、40cmなら10HP、100cmなら25HP。",
+      "医者の依頼用にオオウナギを残すなら、びくの先頭がオオウナギのときは食べない。食べる処理はオオウナギを保護しないため、HP回復には別の食料を使う。"
+    ]
+  };
+  function fishMealFacts(lang) {
+    return facts[lang] || facts.en;
   }
 
   // src/entities/item/rod-area-copy.js
@@ -827,7 +873,7 @@
     const names = ["id", "benefits", "price", "comparison", "hpNote"];
     const placeholders = Object.fromEntries(names.map((name) => [name, `%%${name}%%`]));
     return Object.entries(placeholders).reduce(
-      (copy4, [name, marker]) => copy4.replaceAll(marker, `{${name}}`),
+      (copy5, [name, marker]) => copy5.replaceAll(marker, `{${name}}`),
       text(lang, "comparison", key, placeholders)
     );
   }
@@ -1298,7 +1344,7 @@
       return { summary, facts: [] };
     }
     if (item.category === "food" && item.id === "08") {
-      return { summary: fishMealSummary(ctx.lang), facts: use.facts?.[ctx.lang] || [] };
+      return { summary: fishMealSummary(ctx.lang), facts: fishMealFacts(ctx.lang) };
     }
     return null;
   }
@@ -1320,8 +1366,8 @@
       return { summary: ctx.local(use.summary), facts: use.facts?.[ctx.lang] || [] };
     const special = specialCategoryUsage(ctx, item, use);
     if (special) return special;
-    const facts = use.specialResponseTarget ? [] : use.facts?.[ctx.lang] || use.facts?.en || [];
-    return { summary: ctx.local(use.summary) || "", facts };
+    const facts2 = use.specialResponseTarget ? [] : use.facts?.[ctx.lang] || use.facts?.en || [];
+    return { summary: ctx.local(use.summary) || "", facts: facts2 };
   }
   function steeringCopy(ctx) {
     return {
@@ -1417,11 +1463,11 @@
     const ids = Array.isArray(use.fishIds) ? normalizedFishIds(use.fishIds) : [];
     const categories2 = ["lure", "fly", "bait", "float_weight", "general_tool"];
     if (!categories2.includes(item.category) || !ids.length && !routeKeys.length) return "";
-    const copy4 = steeringCopy(ctx);
-    const heading = steering ? copy4.title : rigRoute ? ctx.copy[`${rigRoute}FishHeading`] : ctx.copy.fish;
+    const copy5 = steeringCopy(ctx);
+    const heading = steering ? copy5.title : rigRoute ? ctx.copy[`${rigRoute}FishHeading`] : ctx.copy.fish;
     const groups = renderCompatibilityGroups(ctx, routes, routeKeys, ids, fishVisuals, fishLocations);
     const accepted = targetAccepted(ctx, routes, routeKeys, ids);
-    const status = ctx.selectedFish ? rigRoute ? routeTargetStatus(ctx, rigRoute, accepted) : targetStatus(ctx, routes, accepted, steering, copy4) : "";
+    const status = ctx.selectedFish ? rigRoute ? routeTargetStatus(ctx, rigRoute, accepted) : targetStatus(ctx, routes, accepted, steering, copy5) : "";
     const fishTarget = ctx.selectedFish ? `<p class="play-target"${rigRoute ? ` data-target-route="${rigRoute}"` : ""}><strong>${ctx.esc(ctx.copy.target)} · ${ctx.esc(ctx.fishName(ctx.selectedFish, fishVisuals))} (${ctx.esc(ctx.selectedFish)})</strong><br>${ctx.esc(status)}</p>${acceptedBaitLink(ctx, fishLocations, rigRoute)}` : "";
     const count = routeKeys.length ? new Set(Object.values(routes).flatMap(normalizedFishIds)).size : ids.length;
     const list = `<details class="compatibility-details"><summary>${ctx.esc(compatibilitySummary(ctx, count, steering, rigRoute))}</summary>${groups}</details>`;
@@ -1841,7 +1887,7 @@
   }
 
   // src/pages/item/magnet-next-action.js
-  var copy = {
+  var copy2 = {
     th: {
       title: "ด่าน 6 ใช้แม่เหล็กแล้วไม่บอกทิศ: ทำอะไรต่อ?",
       action: "ยังไม่ต้องซื้อแม่เหล็กเพิ่ม ใช้แผนที่เลือกปลาและจุดตกได้เลยระหว่างตรวจความคืบหน้าเรื่องราว",
@@ -1893,14 +1939,14 @@
   }
   function generalUse(ctx, item, c) {
     const summary = ctx.local(item.playerUse?.summary) || "";
-    const facts = item.playerUse?.facts?.[ctx.lang] || [];
+    const facts2 = item.playerUse?.facts?.[ctx.lang] || [];
     const note = item[`imageNote${ctx.lang === "th" ? "Th" : ctx.lang === "ja" ? "Ja" : "En"}`] || "";
-    return `<details class="magnet-general-use"><summary>${ctx.esc(c.general)}</summary><p>${ctx.esc(summary)}</p><ul>${facts.map((fact) => `<li>${ctx.esc(fact)}</li>`).join("")}</ul><p class="muted">${ctx.esc(note)}</p></details>`;
+    return `<details class="magnet-general-use"><summary>${ctx.esc(c.general)}</summary><p>${ctx.esc(summary)}</p><ul>${facts2.map((fact) => `<li>${ctx.esc(fact)}</li>`).join("")}</ul><p class="muted">${ctx.esc(note)}</p></details>`;
   }
   function magnetNextAction(ctx, item, allItems) {
     if (item.category !== "general_tool" || item.id !== "0E" || Number(ctx.selectedStage) !== 6)
       return "";
-    const c = copy[ctx.lang] || copy.en;
+    const c = copy2[ctx.lang] || copy2.en;
     const query = returnQuery(ctx);
     const map = `${ctx.mapsPage[ctx.lang]}?${query}`;
     const postcard = allItems.find(
@@ -1915,7 +1961,7 @@
 
   // src/pages/item/fly-price-choice.js
   var categories = ["fly", "fly_wing", "fly_tail"];
-  var copy2 = {
+  var copy3 = {
     th: {
       title: "ซื้อสำเร็จรูปหรือประกอบเอง?",
       contribution: (price) => `ชิ้นนี้เพิ่ม ${price} เยนในราคาฟลายที่ประกอบเอง`,
@@ -2009,7 +2055,7 @@
   function flyPriceChoice(ctx, item, allItems) {
     if (!categories.includes(item.category) || !verifiedMenu(item) || !Number.isFinite(item.priceYen) || item.priceYen < 0)
       return "";
-    const c = copy2[ctx.lang] || copy2.en;
+    const c = copy3[ctx.lang] || copy3.en;
     const comparisons = flyAssemblies(ctx, item, allItems).map((assembly) => comparisonMarkup(ctx, assembly, allItems, c)).join("");
     return `<section id="fly-price-choice" class="detail-section fly-price-choice" data-fly-price-choice="${ctx.esc(item.category)}:${ctx.esc(item.id)}"><h2>${ctx.esc(c.title)}</h2><p><strong>${ctx.esc(c.contribution(item.priceYen))}</strong></p><p>${ctx.esc(c.rule)}</p>${comparisons ? `<div class="detail-grid">${comparisons}</div>` : ""}<a class="route-button" href="#fly-menu-position">${ctx.esc(c.menu)} ↘</a><details class="fly-price-evidence"><summary>${ctx.esc(c.evidence)}</summary><p>${ctx.esc(c.limit)}</p><a href="https://github.com/polaminggkub-debug/kawa-no-nushi-tsuri-2-research/blob/main/docs/fly-maker-menu-research.md">${ctx.esc(c.sources)} ↗</a></details></section>`;
   }
@@ -2344,49 +2390,49 @@
       controlledLimit: "ตรวจตำแหน่งซ้ำอย่างอิสระจากเมนูด่านเลขคู่ที่จำลองในสภาวะควบคุม ยืนยันช่องเลือกชิ้นส่วน แต่ยังไม่ได้ยืนยันเส้นทางเดินหรือการเข้าร้านจากการเล่นปกติ ไม่ได้พิสูจน์ว่าปลากินหรือตกขึ้นง่ายกว่า ตรวจราคาสุทธิก่อนจ่าย"
     }
   };
-  function instructionsFor(copy4, row, column) {
-    return [column > 1 ? copy4.right(column - 1) : "", row > 1 ? copy4.down(row - 1) : "", copy4.confirm].filter(Boolean).join(" → ");
+  function instructionsFor(copy5, row, column) {
+    return [column > 1 ? copy5.right(column - 1) : "", row > 1 ? copy5.down(row - 1) : "", copy5.confirm].filter(Boolean).join(" → ");
   }
   function otherFamilyCopy(lang, choice) {
-    const copy4 = otherFamilies[lang] || otherFamilies.en;
-    const family = copy4.family[choice.familyJa] || choice.familyJa;
+    const copy5 = otherFamilies[lang] || otherFamilies.en;
+    const family = copy5.family[choice.familyJa] || choice.familyJa;
     const area = choice.area || 1;
     return {
       ...mayfly[lang],
-      scope: choice.controlledFixture && !choice.access ? copy4.controlledScope(family, choice.familyJa) : copy4.scope(area, family, choice.familyJa),
-      limit: choice.controlledFixture ? copy4.controlledLimit : copy4.limit(area, family),
-      none: copy4.none,
-      directQuote: copy4.directQuote
+      scope: choice.controlledFixture && !choice.access ? copy5.controlledScope(family, choice.familyJa) : copy5.scope(area, family, choice.familyJa),
+      limit: choice.controlledFixture ? copy5.controlledLimit : copy5.limit(area, family),
+      none: copy5.none,
+      directQuote: copy5.directQuote
     };
   }
-  function nonePositionInstructions(copy4, choice, lang) {
+  function nonePositionInstructions(copy5, choice, lang) {
     const row = choice.nonePosition?.row;
     const column = choice.nonePosition?.column;
     if (!row || !column) return "";
     const movement = [
-      column > 1 ? copy4.right(column - 1) : "",
-      row > 1 ? copy4.down(row - 1) : "",
-      copy4.confirm
+      column > 1 ? copy5.right(column - 1) : "",
+      row > 1 ? copy5.down(row - 1) : "",
+      copy5.confirm
     ].filter(Boolean).join(" → ");
     const part = choice.part === "wing" ? { en: "wing", ja: "ウィング", th: "ปีก" } : { en: "tail", ja: "テール", th: "หาง" };
-    return copy4.none(part[lang], movement);
+    return copy5.none(part[lang], movement);
   }
   function flyMenuPosition(ctx, item) {
     const choice = item.flyMakerMenuChoice;
     if (!choice) return "";
     const lang = ctx.lang in mayfly ? ctx.lang : "en";
     const isMayfly = !choice.familyJa || choice.familyJa === "メイフライ";
-    const copy4 = isMayfly ? mayfly[lang] : otherFamilyCopy(lang, choice);
-    const instructions = instructionsFor(copy4, choice.row, choice.column);
-    const position = copy4.position(choice.row, choice.column);
-    const scope = choice.access ? copy4.scope.replace(/^(?:Area \d+|ร้านด่าน \d+|エリア\d+) · /, "") : copy4.scope;
-    const noneInstructions = isMayfly && choice.part === "tail" ? `<p class="fly-menu-none-tail">${ctx.esc(copy4.noneTail)}</p>` : choice.nonePosition ? `<p class="fly-menu-none-tail">${ctx.esc(nonePositionInstructions(copy4, choice, lang))}</p>` : "";
-    const nextStep = choice.nextStep === "quote" ? `<p class="fly-menu-next-step rod-verdict">${ctx.esc(copy4.directQuote)}</p>` : "";
-    return `<section id="fly-menu-position" class="detail-section fly-menu-position" data-fly-menu-position="${ctx.esc(item.category)}:${ctx.esc(item.id)}"><h2>${ctx.esc(copy4.title)}</h2><p>${ctx.esc(scope)}</p>${flyMakerAccess(ctx, item)}<p><strong>${ctx.esc(position)}</strong> · ${ctx.esc(copy4.start)}</p><p class="rod-verdict">${ctx.esc(instructions)}</p>${noneInstructions}${nextStep}<figure><a href="${ctx.esc(choice.image)}" target="_blank" rel="noopener"><img src="${ctx.esc(choice.image)}" alt="${ctx.esc(position)}" width="256" height="224" loading="lazy"></a><figcaption>${ctx.esc(copy4.caption)}</figcaption></figure><details><summary>${ctx.esc(copy4.evidence)}</summary><p>${ctx.esc(copy4.limit)}</p><a href="${ctx.esc(readableEvidenceHref(choice.evidenceHref))}">${ctx.esc(copy4.notes)} ↗</a></details></section>`;
+    const copy5 = isMayfly ? mayfly[lang] : otherFamilyCopy(lang, choice);
+    const instructions = instructionsFor(copy5, choice.row, choice.column);
+    const position = copy5.position(choice.row, choice.column);
+    const scope = choice.access ? copy5.scope.replace(/^(?:Area \d+|ร้านด่าน \d+|エリア\d+) · /, "") : copy5.scope;
+    const noneInstructions = isMayfly && choice.part === "tail" ? `<p class="fly-menu-none-tail">${ctx.esc(copy5.noneTail)}</p>` : choice.nonePosition ? `<p class="fly-menu-none-tail">${ctx.esc(nonePositionInstructions(copy5, choice, lang))}</p>` : "";
+    const nextStep = choice.nextStep === "quote" ? `<p class="fly-menu-next-step rod-verdict">${ctx.esc(copy5.directQuote)}</p>` : "";
+    return `<section id="fly-menu-position" class="detail-section fly-menu-position" data-fly-menu-position="${ctx.esc(item.category)}:${ctx.esc(item.id)}"><h2>${ctx.esc(copy5.title)}</h2><p>${ctx.esc(scope)}</p>${flyMakerAccess(ctx, item)}<p><strong>${ctx.esc(position)}</strong> · ${ctx.esc(copy5.start)}</p><p class="rod-verdict">${ctx.esc(instructions)}</p>${noneInstructions}${nextStep}<figure><a href="${ctx.esc(choice.image)}" target="_blank" rel="noopener"><img src="${ctx.esc(choice.image)}" alt="${ctx.esc(position)}" width="256" height="224" loading="lazy"></a><figcaption>${ctx.esc(copy5.caption)}</figcaption></figure><details><summary>${ctx.esc(copy5.evidence)}</summary><p>${ctx.esc(copy5.limit)}</p><a href="${ctx.esc(readableEvidenceHref(choice.evidenceHref))}">${ctx.esc(copy5.notes)} ↗</a></details></section>`;
   }
 
   // src/pages/item/bait-acquisition.js
-  var copy3 = {
+  var copy4 = {
     th: {
       title: "หาเหยื่อ 0D ในเมืองแทนการหาร้านขาย",
       body: "ถ้ามีแว่นขยาย 03: เข้าเมืองทางเข้าลำดับที่ 2 ซึ่งพามา X7,Y29 หยุดเดินแล้วใช้แว่นขยายบนช่องที่ต่างจากช่องที่ใช้แว่นขยายครั้งก่อน กองเหยื่อเดิมต้องยังไม่เต็ม 9 หรือมีช่องเหยื่อว่าง ได้ 1–4 ชิ้นตามพื้นที่ว่างในกอง สูงสุด 9 ชิ้น ขยับช่องก่อนค้นซ้ำ",
@@ -2411,7 +2457,7 @@
   };
   function townPasteBaitAction(ctx, item) {
     if (item.category !== "bait" || item.id !== "0D") return "";
-    const text5 = copy3[ctx.lang] || copy3.en;
+    const text5 = copy4[ctx.lang] || copy4.en;
     const stage = String(ctx.selectedStage || 1);
     const suffix = ctx.lang === "en" ? "" : `.${ctx.lang}`;
     const query = new URLSearchParams({ stage, place: "town", entrance: "1" });
@@ -2791,8 +2837,8 @@
     if (!decision || !reasons) return routeAdvice + reasons;
     return routeAdvice + `<details class="decision-reasons"><summary>${ctx.esc(decisionReasonTitle(ctx, true))}</summary>${reasons}</details>`;
   }
-  function decisionSectionCopy(ctx, item, decision, wingDecision, facts) {
-    const factList = facts.length ? `<h3>${ctx.esc(decisionReasonTitle(ctx, Boolean(decision)))}</h3><ul>${facts.map((fact) => `<li>${ctx.esc(fact)}</li>`).join("")}</ul>` : "";
+  function decisionSectionCopy(ctx, item, decision, wingDecision, facts2) {
+    const factList = facts2.length ? `<h3>${ctx.esc(decisionReasonTitle(ctx, Boolean(decision)))}</h3><ul>${facts2.map((fact) => `<li>${ctx.esc(fact)}</li>`).join("")}</ul>` : "";
     const verdict = wingDecision ? `<p class="rod-verdict" data-fly-wing-verdict="${ctx.esc(item.id)}">${ctx.esc(wingDecision.label)}</p>` : decision ? `<p class="rod-verdict">${ctx.esc(ctx.local(decision.label))}</p>` : "";
     const key = item.rodDecision ? "data-rod-decision" : item.baitLureDecision ? "data-bait-lure-decision" : "data-gear-decision";
     const marker = decision ? `${key}="${ctx.esc(item.id)}"` : "";
@@ -2804,7 +2850,7 @@
       heading: decision ? rodDecisionTitle(ctx, item) : ctx.copy.use
     };
   }
-  function renderDecisionSection(ctx, item, summary, facts, imageNote, data) {
+  function renderDecisionSection(ctx, item, summary, facts2, imageNote, data) {
     const { allItems, fishVisuals, fishLocations } = data;
     const decision = item.rodDecision || item.gearDecision || item.baitLureDecision;
     const fishId = ctx.selectedFish || "";
@@ -2820,7 +2866,7 @@
       verdict,
       marker: dataAttribute,
       heading
-    } = decisionSectionCopy(ctx, item, decision, wingDecision, facts);
+    } = decisionSectionCopy(ctx, item, decision, wingDecision, facts2);
     const body = summary || ctx.copy.noFish;
     const targetAdvice2 = wingDecision ? "" : targetAdviceSection(ctx, item, allItems, fishVisuals, fishLocations);
     const general = `${verdict}<p>${ctx.esc(body)}</p>`;
@@ -2878,7 +2924,7 @@
     } : item;
     const usage = ctx.visibleUsage(viewItem, allItems, fishVisuals);
     const summary = usage.summary || ctx.local(viewItem.playerUse?.summary) || "";
-    const facts = usage.facts || [];
+    const facts2 = usage.facts || [];
     const name = ctx.imageName(item);
     const categoryText = ctx.categoryLabel(item);
     const categoryHref = ctx.currentCategoryLink();
@@ -2887,7 +2933,7 @@
     const target = renderFishTarget(ctx, fishVisuals, fishLocations);
     const baitTarget = renderBaitTarget(ctx, item, fishVisuals, fishLocations);
     const note = item[`imageNote${ctx.lang === "th" ? "Th" : ctx.lang === "ja" ? "Ja" : "En"}`] || "";
-    const action = magnetNextAction(ctx, item, allItems) || renderDecisionSection(ctx, viewItem, summary, facts, note, {
+    const action = magnetNextAction(ctx, item, allItems) || renderDecisionSection(ctx, viewItem, summary, facts2, note, {
       allItems,
       fishVisuals,
       fishLocations
