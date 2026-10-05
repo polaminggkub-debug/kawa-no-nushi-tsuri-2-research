@@ -85,13 +85,21 @@ for (const lang of ['th', 'en', 'ja']) {
     assert(html.includes(localeExpectations[lang].limit))
     assert(html.includes('href="#fly-purchases"'))
     assert(html.includes('href="#fly-menu-position"'))
-    assert(html.includes('../docs/fly-maker-menu-research.md'))
+    assert(
+      html.includes(
+        'https://github.com/polaminggkub-debug/kawa-no-nushi-tsuri-2-research/blob/main/docs/fly-maker-menu-research.md',
+      ),
+    )
     const evidence = html.match(/<details class="fly-price-evidence">[\s\S]*?<\/details>/)?.[0]
     assert(
       evidence?.includes(localeExpectations[lang].limit),
       'Keep the comparison limit in its collapsed pricing evidence',
     )
-    assert(evidence?.includes('../docs/fly-maker-menu-research.md'))
+    assert(
+      evidence?.includes(
+        'https://github.com/polaminggkub-debug/kawa-no-nushi-tsuri-2-research/blob/main/docs/fly-maker-menu-research.md',
+      ),
+    )
     assert(!/\sopen(?:\s|>)/.test(evidence), 'Pricing evidence stays collapsed by default')
     assert(!/catch(?:ing)? (?:bonus|advantage|better)|จับ(?:ปลา)?ได้ดีกว่า/i.test(html))
   }

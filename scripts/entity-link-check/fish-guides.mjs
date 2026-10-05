@@ -1,11 +1,16 @@
 import assert from 'node:assert/strict'
-import { data, locations, render, unescapeHtml } from './shared.mjs'
+import fs from 'node:fs'
+import path from 'node:path'
+import { data, locations, render, root, unescapeHtml } from './shared.mjs'
+
+checkEvidenceTouchTargets()
 
 for (const lang of ['en', 'ja', 'th']) {
   for (const [fishId, record] of Object.entries(locations.fish)) {
     for (const area of record.locations || []) {
       const stage = String(area.stage)
       const result = await render('fish', lang, new URLSearchParams({ id: fishId, stage }))
+      checkEvidenceLinks(result, fishId)
       checkAreaDecision(result, lang, fishId, area)
       checkReusableKit(result, fishId, stage)
       checkFlyBackup(result, fishId)
@@ -13,6 +18,8 @@ for (const lang of ['en', 'ja', 'th']) {
       await checkStarterOffers(result, fishId, stage)
     }
   }
+  const unknown = await render('fish', lang, 'id=43')
+  checkEvidenceLinks(unknown, '43')
 }
 for (const lang of ['en', 'ja', 'th']) await checkFishLoadRecovery(lang)
 
@@ -225,6 +232,66 @@ function checkVisibleFishEvidence(result) {
   assert(!visible.includes('spawn slots in the ROM table'))
   assert(!visible.includes('ช่องเกิดปลาในตาราง ROM'))
   assert(!visible.includes('ROMテーブルの出現枠'))
+}
+
+function expectedFishEvidence(fishId) {
+  const expected = new Set()
+  for (const item of data.items) {
+    const use = item.playerUse || {}
+    const matches =
+      item.category === 'bait'
+        ? Object.values(use.fishIdsByRoute || {}).some((ids) => ids.includes(fishId))
+        : ['lure', 'fly'].includes(item.category) && (use.fishIds || []).includes(fishId)
+    if (matches) for (const source of use.evidence?.sources || []) expected.add(source)
+  }
+  return expected
+}
+
+function checkEvidenceLinks(result, fishId) {
+  const evidence = result.html.slice(result.html.indexOf('<details class="evidence"'))
+  assert(evidence.startsWith('<details class="evidence"'), `${fishId}: evidence disclosure missing`)
+  checkEvidenceFileLink(evidence, 'data/rom-fish-locations.json', fishId)
+  const sourceList = evidence.match(/<ul class="evidence-sources">([\s\S]*?)<\/ul>/)?.[1] || ''
+  const links = [
+    ...sourceList.matchAll(
+      /<li><a class="evidence-source-link" href="([^"]+)">([\s\S]*?)<\/a><\/li>/g,
+    ),
+  ]
+  const expected = expectedFishEvidence(fishId)
+  assert.equal(links.length, expected.size, `${fishId}: source list link count`)
+  for (const source of expectedFishEvidence(fishId)) {
+    assert(
+      links.some(([, href]) => linkTarget(href, source)),
+      `${fishId}: source link missing: ${source}`,
+    )
+    checkEvidenceFileLink(sourceList, source, fishId)
+  }
+}
+
+function linkTarget(href, source) {
+  const target = `https://github.com/polaminggkub-debug/kawa-no-nushi-tsuri-2-research/blob/main/${source}`
+  return unescapeHtml(href) === target
+}
+
+function checkEvidenceFileLink(html, source, fishId) {
+  const links = [
+    ...html.matchAll(
+      /<a class="evidence-source-link" href="([^"]+)"><code>([^<]+)<\/code> ↗<\/a>/g,
+    ),
+  ]
+  assert(
+    links.some(([, href, label]) => linkTarget(href, source) && unescapeHtml(label) === source),
+    `${fishId}: source link must preserve its path and open the repository file: ${source}`,
+  )
+}
+
+function checkEvidenceTouchTargets() {
+  const css = fs.readFileSync(path.join(root, 'src/shared/detail/index.css'), 'utf8')
+  assert.match(
+    css,
+    /\.evidence-source-link\s*\{[^}]*display:\s*block;[^}]*min-height:\s*44px;/s,
+    'Evidence links must remain separate block-sized 44px touch targets',
+  )
 }
 
 async function checkStarterOffers(result, fishId, stage) {

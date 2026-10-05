@@ -1,3 +1,4 @@
+import { readableEvidenceHref } from '../../shared/lib/index.js'
 function itemDisplayName(ctx, item) {
   return item.playerUse?.displayName?.[ctx.lang] || ctx.itemName(item)
 }
@@ -49,7 +50,7 @@ function renderScreenshot(ctx, palette, copy) {
 }
 
 function renderTechnicalEvidence(ctx, palette, copy) {
-  const evidenceLink = `<p><a href="${ctx.esc(palette.evidenceHref)}" target="_blank" rel="noopener">${ctx.esc(copy.evidenceLink)} ↗</a></p>`
+  const evidenceLink = `<p><a href="${ctx.esc(readableEvidenceHref(palette.evidenceHref))}" target="_blank" rel="noopener">${ctx.esc(copy.evidenceLink)} ↗</a></p>`
   return `<details class="wing-palette__technical"><summary>${ctx.esc(copy.technicalTitle)}</summary><div><p>${ctx.esc(copy.rightEdge)}</p><p>${ctx.esc(copy.noRanking)}</p><p>${ctx.esc(copy.evidence)}</p>${evidenceLink}</div></details>`
 }
 

@@ -55,7 +55,11 @@ async function checkNoStockDetails(lang, category, id, isFly) {
     if (!isFly) assert(evidence.includes('0x02A801'))
     if (isFly) {
       assert(decoded.includes('id="fly-menu-position"'))
-      assert(decoded.includes('../docs/fly-maker-access-research.md'))
+      assert(
+        decoded.includes(
+          'https://github.com/polaminggkub-debug/kawa-no-nushi-tsuri-2-research/blob/main/docs/fly-maker-access-research.md',
+        ),
+      )
       assert(evidence.includes('0x02AAD6'))
     }
   }

@@ -8,3 +8,4 @@ export function createPageRuntime(api) {
 }
 
 export { targetAdvice, renderTargetAdvice } from './target-advice.js'
+export { readableEvidenceHref } from './evidence-link.js'

@@ -429,7 +429,7 @@
   function area6Walk(ctx, view, node) {
     if (Number(view.stage) !== 6 || node.kind !== "regular-shop") return "";
     const c = copy2[ctx.lang];
-    return `<aside class="shop-walk" data-area6-walk><h4>${ctx.esc(c.title)}</h4><ol>${c.steps.map((step) => `<li>${ctx.esc(step)}</li>`).join("")}</ol><details><summary>${ctx.esc(c.image)}</summary><a href="images/shop-routes/area6-regular-shop.png"><img loading="lazy" src="images/shop-routes/area6-regular-shop.png" alt="${ctx.esc(c.image)}"></a><p><a href="../docs/area6-shop-walking-research.md">${ctx.esc(c.evidence)} ↗</a></p></details></aside>`;
+    return `<aside class="shop-walk" data-area6-walk><h4>${ctx.esc(c.title)}</h4><ol>${c.steps.map((step) => `<li>${ctx.esc(step)}</li>`).join("")}</ol><details><summary>${ctx.esc(c.image)}</summary><a href="images/shop-routes/area6-regular-shop.png"><img loading="lazy" src="images/shop-routes/area6-regular-shop.png" alt="${ctx.esc(c.image)}"></a><p><a href="https://github.com/polaminggkub-debug/kawa-no-nushi-tsuri-2-research/blob/main/docs/area6-shop-walking-research.md">${ctx.esc(c.evidence)} ↗</a></p></details></aside>`;
   }
 
   // src/entities/fish/index.js

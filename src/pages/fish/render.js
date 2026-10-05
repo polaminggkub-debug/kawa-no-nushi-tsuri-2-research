@@ -90,7 +90,7 @@ function unconfirmedProfileContent(ctx, fish, state) {
     .renderEvidence(fish, state.locations, state.matches)
     .replace(
       '</details>',
-      '<p><a href="../docs/fish-acceptance-research.md">Fish acceptance research · profile 43 ↗</a></p></details>',
+      '<p><a href="https://github.com/polaminggkub-debug/kawa-no-nushi-tsuri-2-research/blob/main/docs/fish-acceptance-research.md">Fish acceptance research · profile 43 ↗</a></p></details>',
     )
   return `<div class="detail-hero"><div><p class="muted">${ctx.escapeHtml(ctx.copy.pageTitle)} · ID 43</p><h1>${ctx.escapeHtml(state.headline)}</h1></div></div>${ctx.unconfirmedProfileAction()}${evidence}`
 }

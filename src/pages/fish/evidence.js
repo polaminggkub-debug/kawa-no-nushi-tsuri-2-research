@@ -1,3 +1,8 @@
+function evidenceFileLink(ctx, source) {
+  const path = ctx.escapeHtml(source)
+  return `<a class="evidence-source-link" href="https://github.com/polaminggkub-debug/kawa-no-nushi-tsuri-2-research/blob/main/${path}"><code>${path}</code> ↗</a>`
+}
+
 export function renderEvidence(ctx, fish, locations, compatibleEntries) {
   const sourceSet = new Set()
   for (const entry of compatibleEntries) {
@@ -11,7 +16,7 @@ export function renderEvidence(ctx, fish, locations, compatibleEntries) {
       return `<li><strong>${ctx.escapeHtml(ctx.copy.stage(stage))}:</strong> ${ctx.escapeHtml(ctx.copy.configuredPoints(ctx.pointCount(location)))} · ${ctx.escapeHtml(ctx.copy.spawnSlots(ctx.slotCount(location)))}<br>${ctx.escapeHtml(coords || '—')}</li>`
     })
     .join('')
-  return `<details class="evidence"><summary>${ctx.escapeHtml(ctx.copy.evidence)}</summary><p>${ctx.escapeHtml(ctx.copy.evidenceIntro)}</p><dl><dt>${ctx.escapeHtml(ctx.copy.profile)}</dt><dd>${ctx.escapeHtml(ctx.id)}</dd>${profileOffset ? `<dt>${ctx.escapeHtml(ctx.copy.profileOffset)}</dt><dd>${ctx.escapeHtml(profileOffset)}</dd>` : ''}<dt>${ctx.escapeHtml(ctx.copy.source)}</dt><dd>data/rom-fish-locations.json</dd>${sourceSet.size ? `<dt>${ctx.escapeHtml(ctx.copy.reference)}</dt><dd>${[...sourceSet].map(ctx.escapeHtml).join(' · ')}</dd>` : ''}</dl>${locationDetails ? `<h3>${ctx.escapeHtml(ctx.copy.coords)}</h3><ul>${locationDetails}</ul>` : ''}</details>`
+  return `<details class="evidence"><summary>${ctx.escapeHtml(ctx.copy.evidence)}</summary><p>${ctx.escapeHtml(ctx.copy.evidenceIntro)}</p><dl><dt>${ctx.escapeHtml(ctx.copy.profile)}</dt><dd>${ctx.escapeHtml(ctx.id)}</dd>${profileOffset ? `<dt>${ctx.escapeHtml(ctx.copy.profileOffset)}</dt><dd>${ctx.escapeHtml(profileOffset)}</dd>` : ''}<dt>${ctx.escapeHtml(ctx.copy.source)}</dt><dd>${evidenceFileLink(ctx, 'data/rom-fish-locations.json')}</dd>${sourceSet.size ? `<dt>${ctx.escapeHtml(ctx.copy.reference)}</dt><dd><ul class="evidence-sources">${[...sourceSet].map((source) => `<li>${evidenceFileLink(ctx, source)}</li>`).join('')}</ul></dd>` : ''}</dl>${locationDetails ? `<h3>${ctx.escapeHtml(ctx.copy.coords)}</h3><ul>${locationDetails}</ul>` : ''}</details>`
 }
 
 export function renderExchange(ctx, items, stage) {

@@ -777,6 +777,10 @@
   }
 
   // src/pages/fish/evidence.js
+  function evidenceFileLink(ctx, source) {
+    const path = ctx.escapeHtml(source);
+    return `<a class="evidence-source-link" href="https://github.com/polaminggkub-debug/kawa-no-nushi-tsuri-2-research/blob/main/${path}"><code>${path}</code> ↗</a>`;
+  }
   function renderEvidence(ctx, fish, locations, compatibleEntries) {
     const sourceSet = /* @__PURE__ */ new Set();
     for (const entry of compatibleEntries) {
@@ -788,7 +792,7 @@
       const coords = (location2.points || []).map((point) => `(${point.x}, ${point.y})`).join(" · ");
       return `<li><strong>${ctx.escapeHtml(ctx.copy.stage(stage))}:</strong> ${ctx.escapeHtml(ctx.copy.configuredPoints(ctx.pointCount(location2)))} · ${ctx.escapeHtml(ctx.copy.spawnSlots(ctx.slotCount(location2)))}<br>${ctx.escapeHtml(coords || "—")}</li>`;
     }).join("");
-    return `<details class="evidence"><summary>${ctx.escapeHtml(ctx.copy.evidence)}</summary><p>${ctx.escapeHtml(ctx.copy.evidenceIntro)}</p><dl><dt>${ctx.escapeHtml(ctx.copy.profile)}</dt><dd>${ctx.escapeHtml(ctx.id)}</dd>${profileOffset ? `<dt>${ctx.escapeHtml(ctx.copy.profileOffset)}</dt><dd>${ctx.escapeHtml(profileOffset)}</dd>` : ""}<dt>${ctx.escapeHtml(ctx.copy.source)}</dt><dd>data/rom-fish-locations.json</dd>${sourceSet.size ? `<dt>${ctx.escapeHtml(ctx.copy.reference)}</dt><dd>${[...sourceSet].map(ctx.escapeHtml).join(" · ")}</dd>` : ""}</dl>${locationDetails ? `<h3>${ctx.escapeHtml(ctx.copy.coords)}</h3><ul>${locationDetails}</ul>` : ""}</details>`;
+    return `<details class="evidence"><summary>${ctx.escapeHtml(ctx.copy.evidence)}</summary><p>${ctx.escapeHtml(ctx.copy.evidenceIntro)}</p><dl><dt>${ctx.escapeHtml(ctx.copy.profile)}</dt><dd>${ctx.escapeHtml(ctx.id)}</dd>${profileOffset ? `<dt>${ctx.escapeHtml(ctx.copy.profileOffset)}</dt><dd>${ctx.escapeHtml(profileOffset)}</dd>` : ""}<dt>${ctx.escapeHtml(ctx.copy.source)}</dt><dd>${evidenceFileLink(ctx, "data/rom-fish-locations.json")}</dd>${sourceSet.size ? `<dt>${ctx.escapeHtml(ctx.copy.reference)}</dt><dd><ul class="evidence-sources">${[...sourceSet].map((source) => `<li>${evidenceFileLink(ctx, source)}</li>`).join("")}</ul></dd>` : ""}</dl>${locationDetails ? `<h3>${ctx.escapeHtml(ctx.copy.coords)}</h3><ul>${locationDetails}</ul>` : ""}</details>`;
   }
   function renderExchange(ctx, items, stage) {
     const rewards = items.filter((item) => item.exchangeFishId === ctx.id);
@@ -1223,7 +1227,7 @@
   function unconfirmedProfileContent(ctx, fish, state) {
     const evidence = ctx.renderEvidence(fish, state.locations, state.matches).replace(
       "</details>",
-      '<p><a href="../docs/fish-acceptance-research.md">Fish acceptance research · profile 43 ↗</a></p></details>'
+      '<p><a href="https://github.com/polaminggkub-debug/kawa-no-nushi-tsuri-2-research/blob/main/docs/fish-acceptance-research.md">Fish acceptance research · profile 43 ↗</a></p></details>'
     );
     return `<div class="detail-hero"><div><p class="muted">${ctx.escapeHtml(ctx.copy.pageTitle)} · ID 43</p><h1>${ctx.escapeHtml(state.headline)}</h1></div></div>${ctx.unconfirmedProfileAction()}${evidence}`;
   }

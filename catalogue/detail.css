@@ -1082,5 +1082,16 @@ button:focus-visible {
   width: 100%;
   max-width: 512px;
 }
+.evidence-sources {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+.evidence-source-link {
+  display: block;
+  min-height: 44px;
+  padding: 8px 0;
+  box-sizing: border-box;
+}
 
 /* src/app/detail.css */

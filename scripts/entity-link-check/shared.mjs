@@ -44,6 +44,10 @@ export function validate(html, base, allowInvalidIdentity = false) {
       }
       continue
     }
+    assert(
+      !url.pathname.toLocaleLowerCase().endsWith('.md'),
+      `Local Markdown link opens as a download instead of a readable page: ${url}`,
+    )
     const pathname = url.pathname.replace(/^\/kawa-no-nushi-tsuri-2-research\//, '/')
     const file = path.join(root, pathname.replace(/^\//, ''))
     assert(fs.existsSync(file), `Missing local route/asset ${url}`)
