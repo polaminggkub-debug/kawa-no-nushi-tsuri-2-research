@@ -153,6 +153,7 @@ for(const [id,capacity] of Object.entries(keepnetSource.raw_evidence.basket_purc
 }
 const toolsSource=JSON.parse(fs.readFileSync(path.join(root,'data/general-tool-actions.json'),'utf8'));
 if(toolsSource.rom?.sha1!=='c2103dd94e2a1a65a495fc02adc2e7d040f31212')throw new Error('Net gathering source ROM mismatch');
+require('./attach_audio_mode_actions.cjs')(data,toolsSource);
 for(const item of data.items)delete item.netGatherArea;
 const netItem=data.items.find(i=>i.category==='general_tool'&&i.id==='04');
 netItem.gatheredBaitByArea=toolsSource.items['04'].trace.perAreaBaitIds;

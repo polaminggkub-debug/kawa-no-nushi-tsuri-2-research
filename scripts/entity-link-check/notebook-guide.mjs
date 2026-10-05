@@ -28,6 +28,19 @@ function checkDataset() {
     guide.stages.map((stage) => stage.firstOccurrenceCount),
     newCounts,
   )
+  for (const stage of guide.stages) {
+    assert.equal(stage.firstOccurrenceCount, stage.firstOccurrenceSpecies.length)
+    assert.equal(
+      stage.recordableSpeciesCount,
+      stage.firstOccurrenceCount + stage.repeatedFromEarlierStages.length,
+      `Area ${stage.stage}: available count must equal first catches plus repeats`,
+    )
+    assert.equal(
+      stage.speciesIds.length,
+      stage.recordableSpeciesCount + stage.excludedFromNotebook.length,
+      `Area ${stage.stage}: map list must retain journal exclusions`,
+    )
+  }
   const seen = new Set()
   for (const stage of guide.stages) {
     for (const id of stage.firstOccurrenceSpecies) {
@@ -66,6 +79,7 @@ function checkState(lang, stage, state, openGroup) {
   checkRoute(html, lang, stage, state, openGroup)
   checkHelp(html, lang, stage)
   checkStageLists(html, stage)
+  checkSingleRecordRule(html, lang)
   checkManualAndEvidence(html, lang)
   validate(html, new URL(`https://example.test/catalogue/maps${ctx.suffix}.html`))
 }
@@ -113,6 +127,7 @@ function checkHelp(html, lang, stage) {
   assert(help.includes('data-notebook-verification'))
   assert(help.includes('class="notebook-target-note"'))
   checkHelpCopy(help, lang)
+  checkVerificationInstruction(help, lang)
   const counts = [...help.matchAll(/data-notebook-area="(\d)" data-notebook-count="(\d+)"/g)]
   assert.deepEqual(
     counts.map(([, id, count]) => [Number(id), Number(count)]),
@@ -132,6 +147,44 @@ function checkStageLists(html, stage) {
   assert.deepEqual(cardIds(excluded), stage.excludedFromNotebook)
   assert(!hasOpenAttribute(repeated), 'Repeated-fish details must stay collapsed')
   assert(!hasOpenAttribute(excluded), 'Excluded profiles must stay collapsed')
+  if (excluded) assert(!/<p\b/.test(excluded), 'Excluded species need no repeated explanation')
+}
+
+function checkSingleRecordRule(html, lang) {
+  const help = detailsBlock(html, 'notebook-help')
+  const rule = {
+    en: [/largest-size record/i, /same-size or smaller catch/i, /larger catch moves/i],
+    ja: [/最大サイズの記録/, /同じか小さい魚/, /より大きい魚/],
+    th: [/สถิติปลาขนาดใหญ่สุด/, /ขนาดเท่าหรือเล็กกว่า/, /ใหญ่กว่า.*รายการจะย้าย/],
+  }[lang]
+  for (const pattern of rule) {
+    const pageMatches = html.match(new RegExp(pattern.source, 'gi')) || []
+    const helpMatches = help.match(new RegExp(pattern.source, 'gi')) || []
+    assert.equal(
+      pageMatches.length,
+      1,
+      `${lang}: record-move rule is repeated or missing: ${pattern}`,
+    )
+    assert.equal(helpMatches.length, 1, `${lang}: record-move rule belongs in collapsed help`)
+  }
+  const oldExcludedNotes = {
+    en: 'These fish appear on the map but have no species entry in the journal.',
+    ja: 'マップ上にはいますが、図鑑に魚種の記録枠はありません。',
+    th: 'ปลากลุ่มนี้ปรากฏบนแผนที่ แต่ไม่มีรายการชนิดปลาในสมุด',
+  }
+  assert(!html.includes(oldExcludedNotes[lang]), `${lang}: excluded fish explanation is redundant`)
+}
+
+function checkVerificationInstruction(help, lang) {
+  const section = help.match(/<section class="notebook-verification"[\s\S]*?<\/section>/)?.[0]
+  assert(section, `${lang}: notebook verification instruction is missing`)
+  const body = unescapeHtml(section)
+  const instruction = {
+    en: /Land the fish, finish the landing messages, then open Tool 05 .*check that its name appears on one of the six pages\./,
+    ja: /魚を取り込み、取り込みメッセージを最後まで進めてから道具05.*魚名が6ページのいずれかにあるか確認してください。/,
+    th: /ตกปลาให้ขึ้นและผ่านข้อความผลการตกจนจบ.*เปิดไอเท็ม 05.*ชื่อปลาปรากฏอยู่ในหน้าด่านใดด่านหนึ่งหรือไม่/,
+  }[lang]
+  assert(instruction.test(body), `${lang}: journal-check instruction should remain actionable`)
 }
 
 function checkManualAndEvidence(html, lang) {

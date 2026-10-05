@@ -214,22 +214,22 @@
       areaCount: (stage, count) => `Area ${stage}: ${count} available here`,
       newTitle: (count) => `Show the ${count} new species to catch here`,
       repeated: (count) => `Also found in an earlier area · ${count}`,
-      repeatedNote: "These species already have one journal slot. An equal or smaller size leaves the record unchanged; when the game records a larger size here, the existing entry moves to this area.",
+      repeatedNote: "If any are still missing from your journal, you can catch them in this area too.",
       excluded: (count) => `On this map, not in the 66-species journal · ${count}`,
-      excludedNote: "These fish appear on the map but have no species entry in the journal.",
+      excludedNote: "",
       details: "Fish details",
       mapAction: "Map points",
       equipmentAction: "Compatible gear",
       actionsFor: (name) => `Next actions for ${name}`,
       id: "ID",
       countNoteTitle: "Why the count in your game journal can differ",
-      countNote: (stage, total, added, repeated) => `Available here: ${total} = ${added} first on the route + ${repeated} also found earlier. The game counts species whose largest-size record is assigned to this area. There is no fixed target for each page. Add the six game-page counts to check progress out of 66. Check both fish lists and the other game pages before pursuing a missing species.`,
+      countNote: () => "The game assigns each species to the area of its largest-size record. A same-size or smaller catch leaves the record where it is; a larger catch moves it to the new area. There is no fixed target for each page. Add all six page counts to check progress toward 66.",
       triggerLimit: "Controller-only replay confirmed an Area 1 Yamame landing: after the landing message progressed, its notebook size/area changed from 0/0 to 23/1. This confirms one landed-catch path; it does not establish every failure or species outcome.",
       evidence: "ROM evidence and method",
       evidenceLink: "Read the notebook record research",
       spawnNote: "These are the game’s configured area candidates. If a point has no fish in your current run, open the map to check whether this species has other recorded points.",
       verifyTitle: "After fishing: check the game journal before ticking this list",
-      verifyBody: "Land the fish and finish the landing messages, then open Tool 05 (Fishing Notebook) and compare the fish’s name across all six pages. Page totals can move when a larger-size record moves to another area. Seeing a fish bite alone does not confirm that the journal recorded it.",
+      verifyBody: "Land the fish, finish the landing messages, then open Tool 05 (Fishing Notebook) and check that its name appears on one of the six pages.",
       verifyLink: "View Tool 05 details · Fishing Notebook",
       empty: "No new species are listed for this area in the route."
     },
@@ -247,22 +247,22 @@
       areaCount: (stage, count) => `エリア${stage}: ${count}種が出現可能`,
       newTitle: (count) => `このエリアで釣る新しい魚 ${count}種を見る`,
       repeated: (count) => `前のエリアにも登場 · ${count}種`,
-      repeatedNote: "この魚種の図鑑枠は1つです。同じか小さいサイズでは記録は変わらず、別エリアでより大きいサイズが記録されると、このエリアへ移ります。",
-      excluded: (count) => `マップにはいるが図鑑66種には含まれない · ${count}種`,
-      excludedNote: "マップ上にはいますが、図鑑に魚種の記録枠はありません。",
+      repeatedNote: "図鑑にまだ記録されていない魚がいれば、このエリアでも釣れます。",
+      excluded: (count) => `マップには出るが図鑑66種の対象外 · ${count}種`,
+      excludedNote: "",
       details: "魚の詳細",
       mapAction: "地図の釣り場",
       equipmentAction: "使える道具",
       actionsFor: (name) => `${name}の次の操作`,
       id: "ID",
       countNoteTitle: "ゲーム内図鑑の数と異なる理由",
-      countNote: (stage, total, added, repeated) => `このエリアの対象種: ${total} = ルート初登場${added} + 前エリアにも出現${repeated}。ゲーム内の数は、最大サイズの記録がこのエリアにある魚種数です。各ページに固定の目標数はありません。6ページの数を合計して全66種の進行を確認し、未記録の魚を探す前に下の両一覧と他のページを確認してください。`,
+      countNote: () => "魚種は最大サイズの記録があるエリアのページに記録されます。同じか小さい魚を釣っても記録は移らず、より大きい魚を釣ると新しいエリアのページに移ります。各ページに固定の目標数はありません。6ページの数を合計して全66種の進行を確認してください。",
       triggerLimit: "通常のコントローラー操作でエリア1のヤマメを取り込み、取り込みメッセージを進めた後に図鑑のサイズ・エリアが0/0から23/1へ変化しました。取り込みによる更新例であり、全魚種・失敗時の挙動を証明するものではありません。",
       evidence: "ROMの根拠と調査方法",
       evidenceLink: "魚図鑑の記録に関する調査を読む",
       spawnNote: "ゲームの設定上、このエリアに出現する魚です。現在のプレイで地点に魚がいないときは、地図を開いて同種の別地点があるか確認してください。",
       verifyTitle: "釣りのあと、ゲーム内の図鑑を確認してからチェック",
-      verifyBody: "魚を取り込み、取り込みメッセージを進めてから道具05「釣りノート」を開き、魚名を6ページすべて確認してください。最大サイズの記録が別エリアに移るとページ別の数も変わります。魚が食いついただけでは、図鑑への記録を確認できません。",
+      verifyBody: "魚を取り込み、取り込みメッセージを最後まで進めてから道具05「釣りノート」を開き、魚名が6ページのいずれかにあるか確認してください。",
       verifyLink: "道具05の詳細 · 釣りノート",
       empty: "このエリアにルート上の新しい魚種はありません。"
     },
@@ -280,22 +280,22 @@
       areaCount: (stage, count) => `ด่าน ${stage}: มีจุดตกที่บันทึกได้ ${count} ชนิด`,
       newTitle: (count) => `ดูรายชื่อปลาใหม่ ${count} ชนิดที่ควรเก็บในด่านนี้`,
       repeated: (count) => `พบในด่านก่อนหน้าด้วย · ${count} ชนิด`,
-      repeatedNote: "ปลากลุ่มนี้ใช้ช่องสมุดเดิม ขนาดเท่าหรือเล็กกว่าสถิติเดิมจะไม่เปลี่ยนรายการ เมื่อเกมบันทึกขนาดที่ใหญ่กว่าในด่านนี้ ช่องเดิมจะย้ายมาด่านนี้",
+      repeatedNote: "ถ้าชนิดไหนยังไม่มีในสมุด คุณยังตกในด่านนี้ได้",
       excluded: (count) => `มีบนแผนที่ แต่ไม่มีช่องในสมุด 66 ชนิด · ${count} ชนิด`,
-      excludedNote: "ปลากลุ่มนี้ปรากฏบนแผนที่ แต่ไม่มีรายการชนิดปลาในสมุด",
+      excludedNote: "",
       details: "ดูข้อมูลปลา",
       mapAction: "ดูจุดตกบนแผนที่",
       equipmentAction: "ดูอุปกรณ์ที่ใช้ได้",
       actionsFor: (name) => `เลือกทำต่อสำหรับ${name}`,
       id: "ID",
       countNoteTitle: "ทำไมเลขในสมุดเกมถึงไม่เท่ากับจำนวนในไกด์",
-      countNote: (stage, total, added, repeated) => `ด่านนี้มี ${total} ชนิด = ปลาใหม่ตามเส้นทาง ${added} + พบในด่านก่อนด้วย ${repeated} เกมนับชนิดปลาที่สถิติขนาดใหญ่สุดอยู่ในด่านนี้ แต่ละหน้าจึงไม่มียอดเป้าหมายตายตัว บวกเลขทั้ง 6 หน้าในเกมเพื่อเช็กว่าครบ 66 หรือยัง ก่อนตามหาปลาเพิ่ม ให้เทียบชื่อจากทั้งสองรายการด้านล่างกับทุกหน้าในสมุด`,
+      countNote: () => "เกมจะลงชนิดปลาไว้ในหน้าด่านที่มีสถิติปลาขนาดใหญ่สุด ปลาที่ขนาดเท่าหรือเล็กกว่าสถิติเดิมจะไม่ย้ายรายการ ถ้าตกได้ตัวใหญ่กว่า รายการจะย้ายไปหน้าด่านใหม่ แต่ละหน้าจึงไม่มียอดเป้าหมายตายตัว ให้บวกยอดทั้ง 6 หน้าเพื่อเช็กความคืบหน้าให้ครบ 66 ชนิด",
       triggerLimit: "เล่นด้วยปุ่มควบคุมตามปกติแล้วตกยามาเมะในด่าน 1 ขึ้นได้ หลังผ่านข้อความตกสำเร็จ ค่าขนาด/ด่านในสมุดเปลี่ยนจาก 0/0 เป็น 23/1 ยืนยันทางบันทึกจากการตกขึ้นหนึ่งกรณี ยังไม่ได้พิสูจน์ผลของทุกชนิดปลาหรือทุกกรณีที่ตกไม่สำเร็จ",
       evidence: "หลักฐาน ROM และวิธีตรวจสอบ",
       evidenceLink: "อ่านบันทึกการแกะระบบสมุดปลา",
       spawnNote: "รายการนี้คือปลาที่เกมตั้งไว้ในด่าน บางจุดอาจไม่มีปลาในรอบที่เล่น ถ้าจุดที่ไปไม่มีปลา ให้เปิดแผนที่ตรวจว่าปลาชนิดนั้นมีจุดอื่นหรือไม่",
       verifyTitle: "หลังตกปลา ให้เช็กสมุดเกมก่อนติ๊กเช็กลิสต์นี้",
-      verifyBody: "ตกปลาขึ้นและผ่านข้อความตกสำเร็จให้จบ แล้วเปิดไอเท็ม 05 “สมุดบันทึกการตกปลา” เทียบชื่อปลาทั้ง 6 หน้า จำนวนในแต่ละหน้าเปลี่ยนได้เมื่อสถิติขนาดใหญ่สุดย้ายไปอีกด่าน การเห็นปลากัดเบ็ดอย่างเดียวยังยืนยันไม่ได้ว่าสมุดบันทึกปลาแล้ว",
+      verifyBody: "ตกปลาให้ขึ้นและผ่านข้อความผลการตกจนจบ จากนั้นเปิดไอเท็ม 05 “สมุดบันทึกการตกปลา” แล้วดูว่าชื่อปลาปรากฏอยู่ในหน้าด่านใดด่านหนึ่งหรือไม่",
       verifyLink: "ดูรายละเอียดไอเท็ม 05 · สมุดบันทึกการตกปลา",
       empty: "ไม่มีปลาใหม่ตามเส้นทางในด่านนี้"
     }
@@ -388,7 +388,8 @@
   }
   function detailsList(ctx, kind, title, note, ids, copyText) {
     if (!ids.length) return "";
-    return `<details class="notebook-${kind}"><summary>${ctx.esc(title(ids.length))}</summary><p>${ctx.esc(note)}</p><div class="notebook-fish-list">${fishList(ctx, copyText, ids)}</div></details>`;
+    const noteMarkup = note ? `<p>${ctx.esc(note)}</p>` : "";
+    return `<details class="notebook-${kind}"><summary>${ctx.esc(title(ids.length))}</summary>${noteMarkup}<div class="notebook-fish-list">${fishList(ctx, copyText, ids)}</div></details>`;
   }
   function routeProgress(ctx, guide, activeStage) {
     let total = 0;
@@ -1554,7 +1555,7 @@
         if (!r.ok) throw Error("fish locations");
         return r.json();
       }),
-      fetch("gallery-data.json?v=compendium-20261005-35").then((r) => {
+      fetch("gallery-data.json?v=compendium-20261005-44").then((r) => {
         if (!r.ok) throw Error("fish sprites");
         return r.json();
       })

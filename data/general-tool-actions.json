@@ -481,19 +481,19 @@
       "id": "13",
       "nameJa": "ステレオ",
       "summary": {
-        "en": "Toggle the music to monaural; the item then changes to Monaural.",
-        "ja": "音楽をモノラルに切り替え、所持アイテムをモノラルにする。",
-        "th": "สลับเสียงเพลงเป็นโมโน แล้วเปลี่ยนไอเท็มที่ถือเป็นโมโน"
+        "en": "Current music mode: Stereo. Use this item to switch to Monaural; it then becomes Monaural.",
+        "ja": "現在の音楽モードはステレオ。使うとモノラルに切り替わり、アイテムもモノラルになる。",
+        "th": "โหมดเสียงเพลงปัจจุบันคือสเตอริโอ ใช้ไอเท็มนี้เพื่อสลับเป็นโมโน แล้วไอเท็มจะเปลี่ยนเป็นโมโน"
       },
       "facts": {
         "en": [
-          "Using Stereo changes the music to monaural; the item then changes to Monaural."
+          "The item name shows the current mode, not the mode it will switch to."
         ],
         "ja": [
-          "ステレオを使うと音楽がモノラルに切り替わり、アイテムもモノラルに変わる。"
+          "アイテム名は現在のモードを示し、切り替え後のモードを示すものではない。"
         ],
         "th": [
-          "เมื่อใช้สเตอริโอ เพลงจะเปลี่ยนเป็นโมโน และไอเท็มจะเปลี่ยนเป็นโมโนตาม"
+          "ชื่อไอเท็มบอกโหมดที่ใช้อยู่ ไม่ใช่โหมดที่จะเปลี่ยนไป"
         ]
       },
       "evidence": {
@@ -531,19 +531,19 @@
       "id": "14",
       "nameJa": "モノラル",
       "summary": {
-        "en": "Toggle the music to stereo; the item then changes to Stereo.",
-        "ja": "音楽をステレオに切り替え、所持アイテムをステレオにする。",
-        "th": "สลับเสียงเพลงเป็นสเตอริโอ แล้วเปลี่ยนไอเท็มที่ถือเป็นสเตอริโอ"
+        "en": "Current music mode: Monaural. Use this item to switch to Stereo; it then becomes Stereo.",
+        "ja": "現在の音楽モードはモノラル。使うとステレオに切り替わり、アイテムもステレオになる。",
+        "th": "โหมดเสียงเพลงปัจจุบันคือโมโน ใช้ไอเท็มนี้เพื่อสลับเป็นสเตอริโอ แล้วไอเท็มจะเปลี่ยนเป็นสเตอริโอ"
       },
       "facts": {
         "en": [
-          "Using Monaural changes the music to stereo; the item then changes to Stereo."
+          "The item name shows the current mode, not the mode it will switch to."
         ],
         "ja": [
-          "モノラルを使うと音楽がステレオに切り替わり、アイテムもステレオに変わる。"
+          "アイテム名は現在のモードを示し、切り替え後のモードを示すものではない。"
         ],
         "th": [
-          "เมื่อใช้โมโน เพลงจะเปลี่ยนเป็นสเตอริโอ และไอเท็มจะเปลี่ยนเป็นสเตอริโอตาม"
+          "ชื่อไอเท็มบอกโหมดที่ใช้อยู่ ไม่ใช่โหมดที่จะเปลี่ยนไป"
         ]
       },
       "evidence": {

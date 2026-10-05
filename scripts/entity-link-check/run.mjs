@@ -101,6 +101,7 @@ await import('./postcard-next-action.mjs')
 await import('./fly-price-choice.mjs')
 await import('./selected-shop-area.mjs')
 await import('./selected-rod-area.mjs')
+await import('./audio-mode-actions.mjs')
 await import('./catalogue-map-navigation.mjs')
 await import('./fish-picker-category-scope.mjs')
 
