@@ -46,6 +46,37 @@ function templateFiles(slice) {
     .map((file) => ({ file, source: readFileSync(resolve(directory, file), 'utf8') }))
 }
 
+function strategyTopicAt(source, offset) {
+  const sections = []
+  const tags = /<section\b[^>]*>|<\/section>/g
+  for (const match of source.slice(0, offset).matchAll(tags)) {
+    if (match[0].startsWith('</')) sections.pop()
+    else sections.push(match[0].match(/\bid="([^"]+)"/)?.[1] || '')
+  }
+  const topic = sections.at(-1)
+  return ['lure-kit', 'rod-choice'].includes(topic) ? topic : undefined
+}
+
+function returnToStrategyTopic(href, topic) {
+  const queryStart = href.indexOf('?')
+  if (queryStart < 0) return href
+  const params = new URLSearchParams(href.slice(queryStart + 1).replace(/&amp;/g, '&'))
+  const returnTo = params.get('return')
+  if (!returnTo) return href
+  params.set('return', `${returnTo.split('#')[0]}#${topic}`)
+  return `${href.slice(0, queryStart + 1)}${params.toString().replace(/&/g, '&amp;')}`
+}
+
+function renderStrategyItemReturns(source) {
+  return source.replace(
+    /href="([^"]*\/catalogue\/item(?:\.[a-z]+)?\.html\?[^"]*)"/g,
+    (match, href, offset) => {
+      const topic = strategyTopicAt(source, offset)
+      return topic ? `href="${returnToStrategyTopic(href, topic)}"` : match
+    },
+  )
+}
+
 export function renderStrategyShops(source, file, data) {
   const suffix = file.includes('.th.') ? '.th' : file.includes('.ja.') ? '.ja' : ''
   const label =
@@ -56,23 +87,28 @@ export function renderStrategyShops(source, file, data) {
         : 'Find seller · Area'
   return source.replace(
     /(<div class="shop" data-shop-item="([a-z_]+):([0-9A-F]+)">)([^<]+)(<\/div>)/g,
-    (_match, open, category, id, text, close) => {
+    (_match, open, category, id, text, close, offset) => {
       const item = data.items.find((entry) => entry.category === category && entry.id === id)
       if (!item) throw new Error(`Unknown strategy recommendation ${category}:${id}`)
       const body = text.replace(/[1-6]/g, (stage) => {
         if (!item.playerUse?.shops?.some((shop) => Number(shop.stage) === Number(stage)))
           throw new Error(`Unrecorded strategy stock ${category}:${id} in area ${stage}`)
+        return stage
+      })
+      const topic = strategyTopicAt(source, offset)
+      if (!topic) throw new Error(`Strategy shop action has no player topic: ${category}:${id}`)
+      const linkedBody = body.replace(/[1-6]/g, (stage) => {
         const query = new URLSearchParams({
           stage,
           place: 'town',
           category,
           id,
-          return: `../research/${file}`,
+          return: `../research/${file}#${topic}`,
         })
         const href = `../catalogue/shops${suffix}.html?${query}`.replace(/&/g, '&amp;')
         return `<a href="${href}" aria-label="${label} ${stage}">${stage}</a>`
       })
-      return open + body + close
+      return open + linkedBody + close
     },
   )
 }
@@ -86,7 +122,7 @@ function strategyTables(file, source) {
   )
   const data = JSON.parse(readFileSync(resolve(root, 'catalogue/gallery-data.json'), 'utf8'))
   const html = source.replace(/<!-- table:([^ ]+) -->/g, (_match, key) => tables[key].join('\n'))
-  return renderStrategyShops(html, file, data)
+  return renderStrategyShops(renderStrategyItemReturns(html), file, data)
 }
 
 async function renderEquipment(source, locale, script) {

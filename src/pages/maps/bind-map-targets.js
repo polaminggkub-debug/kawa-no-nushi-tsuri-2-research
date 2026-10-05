@@ -9,7 +9,8 @@ function bindFishLinks(ctx) {
       ? source
       : `${source.split('#')[0]}#map-view`
     const page = `fish${ctx.lang === 'en' ? '' : '.' + ctx.lang}.html`
-    const query = `id=${id}&stage=${ctx.activeStage}&return=${encodeURIComponent(returnPath)}`
+    const query = new URLSearchParams({ id, stage: String(ctx.activeStage), return: returnPath })
+    if (ctx.selectedRoute) query.set('route', ctx.selectedRoute)
     return `${page}?${query}`
   }
 }

@@ -177,18 +177,21 @@ function fishActionLinks(ctx, id, returnPath) {
     stage,
     return: returnPath,
   })
+  if (ctx.selectedRoute) fishQuery.set('route', ctx.selectedRoute)
   const detailHref = `${localizedPage(ctx, 'fish')}?${fishQuery}`
   const mapQuery = new URLSearchParams({
     stage,
     fish: id,
     return: returnPath,
   })
+  if (ctx.selectedRoute) mapQuery.set('route', ctx.selectedRoute)
   const mapHref = `${localizedPage(ctx, 'maps')}?${mapQuery}#map-view`
   const equipmentQuery = new URLSearchParams({
     fish: id,
     stage,
     return: returnPath,
   })
+  if (ctx.selectedRoute) equipmentQuery.set('route', ctx.selectedRoute)
   const equipmentHref = `${localizedPage(ctx, 'index')}?${equipmentQuery}#fish-location-panel`
   return { detailHref, mapHref, equipmentHref }
 }

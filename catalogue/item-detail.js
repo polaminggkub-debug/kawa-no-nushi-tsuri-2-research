@@ -2562,10 +2562,25 @@
   function bodyDecision(ctx, item, fish) {
     const accepted = (item.playerUse?.fishIds || []).includes(ctx.selectedFish);
     return local(ctx, {
-      th: accepted ? `บอดี้นี้ผ่านเงื่อนไขโปรไฟล์ของ${fish} ใช้เป็นตัวเลือกประกอบฟลายได้ แต่ยังต้องให้ปลาเจอเหยื่อและดึงขึ้นสำเร็จ` : `บอดี้นี้ไม่ผ่านเงื่อนไขโปรไฟล์ของ${fish} เลือกบอดี้ที่ใช้กับปลานี้ได้จากชุดเริ่มต้นด้านล่าง`,
-      ja: accepted ? `このボディは${fish}のプロフィール判定を通ります。自作候補にできますが、魚との接触と取り込みも必要です。` : `このボディは${fish}のプロフィール判定を通りません。下の開始用セットから適合するボディを選んでください。`,
-      en: accepted ? `This body passes the profile check for ${fish}. It is a custom-fly candidate; contact with the fish and successful landing still matter.` : `This body does not pass the profile check for ${fish}. Choose a compatible body from the starter sets below.`
+      th: accepted ? `บอดี้นี้ผ่านเงื่อนไขโปรไฟล์ของ${fish} ใช้เป็นตัวเลือกประกอบฟลายได้ แต่เป็นเพียงด่านตรวจแรก บอดี้กับปีกของชุดยังอาจติดเงื่อนไขซ่อน` : `บอดี้นี้ไม่ผ่านเงื่อนไขโปรไฟล์ของ${fish} เลือกบอดี้ที่ใช้กับปลานี้ได้จากชุดเริ่มต้นด้านล่าง`,
+      ja: accepted ? `このボディは${fish}のプロフィール判定を通り、自作候補にできます。ただし最初の判定だけで、セットのボディとウィングは隠れた条件で遮断される場合があります。` : `このボディは${fish}のプロフィール判定を通りません。下の開始用セットから適合するボディを選んでください。`,
+      en: accepted ? `This body passes the profile check for ${fish} and is a custom-fly candidate. That is only the first check; the set’s body and wing can still meet a hidden blocking condition.` : `This body does not pass the profile check for ${fish}. Choose a compatible body from the starter sets below.`
     });
+  }
+  function hiddenGateAction(ctx, item, available, profileHref) {
+    if (!available || item.category === "fly" && !(item.playerUse?.fishIds || []).includes(ctx.selectedFish))
+      return "";
+    const note = local(ctx, {
+      th: "ถ้าปลาไม่กิน อย่าตีชุดเดิมซ้ำเพื่อหวังสุ่มเงื่อนไขนี้ใหม่ การพักค้างคืนอาจเปลี่ยนค่าแต่ก็อาจได้ค่าเดิม ลองดูชุดสำรองที่เปลี่ยนทั้งบอดี้และปีก การไม่กินอาจมีสาเหตุอื่น และชุดสำรองไม่ได้รับประกันว่าตกได้",
+      ja: "反応がなくても、同じセットの投げ直しではこの条件を再抽選しません。宿泊は値を更新する場合がありますが、同じ値にもなります。ボディとウィングを変える予備セットを確認してください。反応しない原因は他にもあり、釣果は保証しません。",
+      en: "If there is no bite, recasting the same set does not reroll this check. An overnight stay may refresh the values but can repeat them. Check the backup sets that vary body and wing. No bite can have other causes; the backup sets do not guarantee a catch."
+    });
+    const label = local(ctx, {
+      th: "ดูชุดฟลายสำรองสำหรับปลานี้",
+      ja: "この魚の予備フライセットを見る",
+      en: "See backup fly sets for this fish"
+    });
+    return `<aside data-fly-hidden-gate><p>${ctx.esc(note)}</p><a class="route-button" data-fly-backup-action href="${ctx.esc(profileHref + "#fly-backup")}">${ctx.esc(label)} ↗</a></aside>`;
   }
   function partDecision(ctx, fish) {
     return local(ctx, {
@@ -2599,8 +2614,9 @@
       ja: `${fish}の別の釣法を見る`,
       en: `See other methods for ${fish}`
     });
-    const href = ctx.fishProfileLink(ctx.selectedFish, fishLocations) + (available ? "#starter-fly" : "");
-    return `<div data-fly-target-advice="${ctx.esc(ctx.selectedFish)}"><p>${ctx.esc(decision)}</p><a class="route-button" data-fly-starter-link href="${ctx.esc(href)}">${ctx.esc(action)} ↗</a></div>`;
+    const profileHref = ctx.fishProfileLink(ctx.selectedFish, fishLocations);
+    const href = profileHref + (available ? "#starter-fly" : "");
+    return `<div data-fly-target-advice="${ctx.esc(ctx.selectedFish)}"><p>${ctx.esc(decision)}</p><a class="route-button" data-fly-starter-link href="${ctx.esc(href)}">${ctx.esc(action)} ↗</a>${hiddenGateAction(ctx, item, available, profileHref)}</div>`;
   }
 
   // src/pages/item/target-advice.js
@@ -2887,7 +2903,7 @@
   function loadCatalogue(ctx) {
     ctx.flyMakerLink = (item) => item.category.startsWith("fly") ? `<p><a class="route-button" data-fly-maker href="${ctx.esc(ctx.currentCategoryLink().split("#")[0] + "#fly-instructions")}">${ctx.lang === "th" ? "ดูขั้นตอนประกอบฟลายเองและตรวจราคาในเกม" : ctx.lang === "ja" ? "自作フライの手順とゲーム内見積額を確認" : "See custom fly steps and check the in-game quote"} ↗</a></p>` : "";
     ctx.setNavigation();
-    fetch("gallery-data.json?v=compendium-20261005-46").then((response) => {
+    fetch("gallery-data.json?v=compendium-20261005-47").then((response) => {
       if (!response.ok) throw new Error("catalogue data unavailable");
       return response.json();
     }).then((data) => {

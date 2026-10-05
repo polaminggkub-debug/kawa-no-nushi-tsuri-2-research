@@ -188,9 +188,9 @@
       {
         "stage": 5,
         "name": {
-          "en": "Jizo: offer food to raise the lottery threshold",
-          "ja": "お地蔵さま：食べ物を供えて抽選の判定値を上げる",
-          "th": "รูปปั้นจิโซ: ถวายอาหารเพิ่มค่าเกณฑ์ถูกรางวัล"
+          "en": "Offer spare food here before drawing",
+          "ja": "くじを引く前に余った食料を供える",
+          "th": "ถวายอาหารที่เหลือก่อนขึ้นสลาก"
         },
         "tileX": 49,
         "tileY": 22,

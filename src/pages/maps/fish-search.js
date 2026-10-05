@@ -144,6 +144,7 @@ export function updateUrl(ctx) {
   if (ctx.returnPath) params.set('return', ctx.returnPath)
   if (ctx.activeSection) params.set('section', ctx.activeSection)
   if (ctx.selectedFish) params.set('fish', ctx.selectedFish)
+  if (ctx.selectedRoute) params.set('route', ctx.selectedRoute)
   if (ctx.activeWaterMark) params.set('mark', ctx.activeWaterMark)
   if (ctx.listScope === 'section') params.set('scope', 'section')
   if (ctx.searchTerm) params.set('q', ctx.searchTerm)

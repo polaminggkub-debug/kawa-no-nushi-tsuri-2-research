@@ -14,9 +14,9 @@ function localizedFile(root, locale) {
 }
 
 function sourceReturn(locale) {
-  const catalogue = `${localizedFile('index', locale)}?category=all&fish=06#fish-location-panel`
-  const fish = `${localizedFile('fish', locale)}?id=06&stage=2&return=${encodeURIComponent(catalogue)}`
-  return `${localizedFile('maps', locale)}?stage=2&section=s2-c1-r6&fish=06&return=${encodeURIComponent(fish)}`
+  const catalogue = `${localizedFile('index', locale)}?category=all&fish=06&route=sinker#fish-location-panel`
+  const fish = `${localizedFile('fish', locale)}?id=06&stage=2&route=sinker&return=${encodeURIComponent(catalogue)}`
+  return `${localizedFile('maps', locale)}?stage=2&section=s2-c1-r6&fish=06&route=sinker&return=${encodeURIComponent(fish)}`
 }
 
 function fakeMapContext(locale, mapReturn) {
@@ -24,6 +24,7 @@ function fakeMapContext(locale, mapReturn) {
   return {
     lang: locale,
     selectedFish: '06',
+    selectedRoute: 'sinker',
     activeStage: 2,
     sourceReturn: () => mapReturn,
     c: { tackle: 'Browse tackle' },
@@ -86,14 +87,17 @@ function assertLocalizedContext(raw, locale, base) {
   assert.equal(map.searchParams.get('stage'), '2')
   assert.equal(map.searchParams.get('section'), 's2-c1-r6')
   assert.equal(map.searchParams.get('fish'), '06')
+  assert.equal(map.searchParams.get('route'), 'sinker')
   const fish = new URL(map.searchParams.get('return'), base)
   assert(fish.pathname.endsWith(`/fish${locale === 'en' ? '' : `.${locale}`}.html`))
   assert.equal(fish.searchParams.get('id'), '06')
   assert.equal(fish.searchParams.get('stage'), '2')
+  assert.equal(fish.searchParams.get('route'), 'sinker')
   const catalogue = new URL(fish.searchParams.get('return'), base)
   assert(catalogue.pathname.endsWith(`/index${locale === 'en' ? '' : `.${locale}`}.html`))
   assert.equal(catalogue.searchParams.get('category'), 'all')
   assert.equal(catalogue.searchParams.get('fish'), '06')
+  assert.equal(catalogue.searchParams.get('route'), 'sinker')
   assert.equal(catalogue.hash, '#fish-location-panel')
 }
 
@@ -106,6 +110,7 @@ function testMapToCatalogue(locale) {
   assert.equal(catalogueUrl.searchParams.get('return'), mapReturn)
   assert.equal(catalogueUrl.searchParams.get('fish'), '06')
   assert.equal(catalogueUrl.searchParams.get('stage'), '2')
+  assert.equal(catalogueUrl.searchParams.get('route'), 'sinker')
   assert.equal(catalogueUrl.hash, '#fish-location-panel')
   const action = mapReturnAction(catalogueUrl.searchParams.get('return'), locale, catalogueUrl.href)
   assert(action, `${locale}: map return action should be available`)

@@ -58,6 +58,7 @@ function createHarness(lang, fetchMode = 'success') {
   const document = {
     documentElement: { lang },
     getElementById: id => elements[id],
+    querySelector: () => null,
     querySelectorAll: selector => selector === '#fish-matrix tbody tr' ? rows : []
   };
   const fetch = fetchMode === 'success'

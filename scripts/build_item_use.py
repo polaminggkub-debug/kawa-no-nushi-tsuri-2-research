@@ -516,11 +516,17 @@ def build():
                     ["การทดลองตรงกับสูตรขนาดปลาที่บันทึกไว้หาร 4 แล้วปัดลง และใช้ปลาในข้อง 1 ตัว; ยังไม่ทราบหน่วยขนาด"],
                 )
                 entry["hpRecovery"] = {"formula": "floor(raw stored fish size / 4)", "sample": {"fishSize": 30, "hp": 7}}
+            elif item_id == "09":
+                entry["summary"] = loc(
+                    "Healing mushroom ID 09: restores 10 HP, up to your maximum. The tested Japan-ROM menu labels poison mushroom ID 0A with the same name, ‘きのこ’; if you cannot identify the item in your inventory, use shop food instead. Revisiting a search location does not guarantee this safe type: the magnifier selects mushroom type from the game’s shared sequence.",
+                    "回復キノコ ID 09：HPを10回復（最大HPまで）。確認した日本版ROMのメニューでは、毒キノコID 0Aも同じ「きのこ」と表示される。所持品を見分けられない場合は店の食料を使う。同じ探索地点へ戻っても安全な種類は保証されない。虫めがねはゲーム共通の乱数列からキノコの種類を選ぶ。",
+                    "เห็ดฟื้นพลัง ID 09: ฟื้น 10 HP แต่ไม่เกินค่าสูงสุด เมนูใน ROM ญี่ปุ่นที่ทดสอบแสดงเห็ดพิษ ID 0A ด้วยชื่อเดียวกันว่า “きのこ”; ถ้าแยกไอเท็มในช่องเก็บของไม่ได้ ให้ใช้อาหารจากร้านแทน กลับไปค้นจุดเดิมก็ไม่รับประกันว่าจะได้เห็ดชนิดนี้ เพราะแว่นขยายเลือกชนิดจากลำดับสุ่มร่วมของเกม",
+                )
             elif item_id == "0A":
                 entry["summary"] = loc(
-                    "Poison mushroom: eating it sets current HP to 0. The tested game menu shows the same label as the healing mushroom.",
-                    "毒キノコ。食べると現在HPが0になる。確認したメニューでは回復キノコと同じ表示名。",
-                    "เห็ดพิษ: กินแล้ว HP เหลือ 0; เมนูที่ทดสอบแสดงชื่อเหมือนเห็ดที่ฟื้นพลัง",
+                    "Poison mushroom ID 0A: eating it sets current HP to 0. The tested Japan-ROM menu labels healing mushroom ID 09 with the same name, ‘きのこ’; if you cannot identify the item in your inventory, do not eat it—use shop food instead. Revisiting a search location does not guarantee the healing type: the magnifier selects mushroom type from the game’s shared sequence.",
+                    "毒キノコ ID 0A：食べると現在HPが0になる。確認した日本版ROMのメニューでは、回復キノコID 09も同じ「きのこ」と表示される。所持品を見分けられない場合は食べず、店の食料を使う。同じ探索地点へ戻っても回復用は保証されない。虫めがねはゲーム共通の乱数列からキノコの種類を選ぶ。",
+                    "เห็ดพิษ ID 0A: กินแล้ว HP ปัจจุบันเหลือ 0 เมนูใน ROM ญี่ปุ่นที่ทดสอบแสดงเห็ดฟื้นพลัง ID 09 ด้วยชื่อเดียวกันว่า “きのこ”; ถ้าแยกไอเท็มในช่องเก็บของไม่ได้ อย่ากิน ให้ใช้อาหารจากร้านแทน กลับไปค้นจุดเดิมก็ไม่รับประกันว่าจะได้เห็ดฟื้นพลัง เพราะแว่นขยายเลือกชนิดจากลำดับสุ่มร่วมของเกม",
                 )
                 entry["hpRecovery"] = {"effect": "sets current HP to 0"}
             else:

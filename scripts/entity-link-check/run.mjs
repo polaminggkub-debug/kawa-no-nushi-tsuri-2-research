@@ -24,6 +24,7 @@ console.log(
 await import('./selected-fly-advice.mjs')
 
 await import('./map-catalogue-return.mjs')
+await import('./map-equipment-route.mjs')
 
 await import('./catalogue-loading.mjs')
 await import('./float-price-links.mjs')
@@ -109,3 +110,4 @@ await import('./fish-picker-category-scope.mjs')
 await import('./magnet-next-action.mjs')
 await import('./fish-player-decision-copy.mjs')
 await import('./map-mobile-fish-layout.mjs')
+await import('./food-lottery-decisions.mjs')

@@ -17,6 +17,7 @@ export function setupContext(ctx) {
   ctx.species = {}
   ctx.stages = {}
   ctx.selectedFish = ''
+  ctx.selectedRoute = ''
   ctx.activeWaterMark = ''
   ctx.lastWaterMark = ''
   ctx.activeStage = 1

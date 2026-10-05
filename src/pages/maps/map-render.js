@@ -260,6 +260,7 @@ export function renderMapNavigation(ctx) {
       return: ctx.sourceReturn(),
     })
     if (ctx.selectedFish) q.set('fish', ctx.selectedFish)
+    if (ctx.selectedRoute) q.set('route', ctx.selectedRoute)
     shopNav.href = `shops${ctx.lang === 'en' ? '' : '.' + ctx.lang}.html?${q}`
   }
   const catalogue = ctx.$('catalogue-fish-link')
@@ -272,10 +273,10 @@ export function renderMapNavigation(ctx) {
         : 'Browse the equipment catalogue ↗'
   const query = new URLSearchParams({ return: ctx.sourceReturn() })
   if (ctx.selectedFish) {
-    query.set('category', 'all')
     query.set('fish', ctx.selectedFish)
     query.set('stage', String(ctx.activeStage))
   }
+  if (ctx.selectedRoute) query.set('route', ctx.selectedRoute)
   const catalogueFile =
     ctx.lang === 'th' ? 'index.th.html' : ctx.lang === 'ja' ? 'index.ja.html' : 'index.html'
   catalogue.href = `${catalogueFile}?${query}${ctx.selectedFish ? '#fish-location-panel' : '#catalogue'}`
@@ -340,6 +341,9 @@ export function initFromUrl(ctx) {
   ctx.notebookRouteStage = Number(location.hash.match(/^#notebook-route-([1-6])$/)?.[1]) || 0
   ctx.openNotebookGuide = location.hash === '#notebook-guide' || Boolean(ctx.notebookRouteStage)
   const p = new URLSearchParams(location.search)
+  ctx.selectedRoute = ['float', 'sinker', 'lure', 'fly'].includes(p.get('route'))
+    ? p.get('route')
+    : ''
   ctx.activeWaterMark = normalizeWaterMark(p.get('mark'))
   ctx.lastWaterMark = ctx.activeWaterMark
   if (p.get('scope') === 'section') ctx.listScope = 'section'

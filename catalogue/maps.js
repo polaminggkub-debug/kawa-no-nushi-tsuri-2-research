@@ -342,18 +342,21 @@
       stage,
       return: returnPath
     });
+    if (ctx.selectedRoute) fishQuery.set("route", ctx.selectedRoute);
     const detailHref = `${localizedPage(ctx, "fish")}?${fishQuery}`;
     const mapQuery = new URLSearchParams({
       stage,
       fish: id,
       return: returnPath
     });
+    if (ctx.selectedRoute) mapQuery.set("route", ctx.selectedRoute);
     const mapHref = `${localizedPage(ctx, "maps")}?${mapQuery}#map-view`;
     const equipmentQuery = new URLSearchParams({
       fish: id,
       stage,
       return: returnPath
     });
+    if (ctx.selectedRoute) equipmentQuery.set("route", ctx.selectedRoute);
     const equipmentHref = `${localizedPage(ctx, "index")}?${equipmentQuery}#fish-location-panel`;
     return { detailHref, mapHref, equipmentHref };
   }
@@ -845,6 +848,7 @@
     if (ctx.returnPath) params.set("return", ctx.returnPath);
     if (ctx.activeSection) params.set("section", ctx.activeSection);
     if (ctx.selectedFish) params.set("fish", ctx.selectedFish);
+    if (ctx.selectedRoute) params.set("route", ctx.selectedRoute);
     if (ctx.activeWaterMark) params.set("mark", ctx.activeWaterMark);
     if (ctx.listScope === "section") params.set("scope", "section");
     if (ctx.searchTerm) params.set("q", ctx.searchTerm);
@@ -1223,16 +1227,17 @@
         return: ctx.sourceReturn()
       });
       if (ctx.selectedFish) q.set("fish", ctx.selectedFish);
+      if (ctx.selectedRoute) q.set("route", ctx.selectedRoute);
       shopNav.href = `shops${ctx.lang === "en" ? "" : "." + ctx.lang}.html?${q}`;
     }
     const catalogue = ctx.$("catalogue-fish-link");
     catalogue.textContent = ctx.selectedFish ? ctx.c.tackle : ctx.lang === "th" ? "กลับไปเลือกอุปกรณ์ตกปลา ↗" : ctx.lang === "ja" ? "道具カタログへ ↗" : "Browse the equipment catalogue ↗";
     const query = new URLSearchParams({ return: ctx.sourceReturn() });
     if (ctx.selectedFish) {
-      query.set("category", "all");
       query.set("fish", ctx.selectedFish);
       query.set("stage", String(ctx.activeStage));
     }
+    if (ctx.selectedRoute) query.set("route", ctx.selectedRoute);
     const catalogueFile = ctx.lang === "th" ? "index.th.html" : ctx.lang === "ja" ? "index.ja.html" : "index.html";
     catalogue.href = `${catalogueFile}?${query}${ctx.selectedFish ? "#fish-location-panel" : "#catalogue"}`;
   }
@@ -1284,6 +1289,7 @@
     ctx.notebookRouteStage = Number(location.hash.match(/^#notebook-route-([1-6])$/)?.[1]) || 0;
     ctx.openNotebookGuide = location.hash === "#notebook-guide" || Boolean(ctx.notebookRouteStage);
     const p = new URLSearchParams(location.search);
+    ctx.selectedRoute = ["float", "sinker", "lure", "fly"].includes(p.get("route")) ? p.get("route") : "";
     ctx.activeWaterMark = normalizeWaterMark(p.get("mark"));
     ctx.lastWaterMark = ctx.activeWaterMark;
     if (p.get("scope") === "section") ctx.listScope = "section";
@@ -1411,6 +1417,7 @@
     ctx.species = {};
     ctx.stages = {};
     ctx.selectedFish = "";
+    ctx.selectedRoute = "";
     ctx.activeWaterMark = "";
     ctx.lastWaterMark = "";
     ctx.activeStage = 1;
@@ -1440,7 +1447,8 @@
       const source = ctx.sourceReturn();
       const returnPath = source.endsWith("#notebook-guide") ? source : `${source.split("#")[0]}#map-view`;
       const page = `fish${ctx.lang === "en" ? "" : "." + ctx.lang}.html`;
-      const query = `id=${id}&stage=${ctx.activeStage}&return=${encodeURIComponent(returnPath)}`;
+      const query = new URLSearchParams({ id, stage: String(ctx.activeStage), return: returnPath });
+      if (ctx.selectedRoute) query.set("route", ctx.selectedRoute);
       return `${page}?${query}`;
     };
   }
@@ -1620,7 +1628,7 @@
         if (!r.ok) throw Error("fish locations");
         return r.json();
       }),
-      fetch("gallery-data.json?v=compendium-20261005-46").then((r) => {
+      fetch("gallery-data.json?v=compendium-20261005-47").then((r) => {
         if (!r.ok) throw Error("fish sprites");
         return r.json();
       })

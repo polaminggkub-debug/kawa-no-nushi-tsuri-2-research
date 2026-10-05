@@ -86,6 +86,14 @@
       if (event.target.closest("a")?.getAttribute("href") === "#technical-evidence")
         document.getElementById("technical-evidence").open = true;
     });
+    document.querySelector(".strategy-languages")?.addEventListener("click", preserveLanguageTopic);
+  }
+  function preserveLanguageTopic(event) {
+    const link = event.target.closest?.("a[href]");
+    if (!link || !location.hash) return;
+    const target = new URL(link.href, location.href);
+    target.hash = location.hash;
+    link.href = target.href;
   }
 
   // src/pages/strategy/index.js

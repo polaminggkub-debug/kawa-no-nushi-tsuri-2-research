@@ -18578,9 +18578,9 @@
     },
     "food:09": {
       "summary": {
-        "en": "If you cannot identify which mushroom you have, use shop food for HP recovery instead. The tested menu gives the healing and poison mushrooms the same name; the poison one sets HP to zero. Revisiting a search location does not guarantee the safe type: the magnifier selects it from the game’s shared sequence.",
-        "th": "ถ้าแยกไม่ออกว่าเห็ดในกระเป๋าเป็นชนิดไหน ให้ใช้อาหารจากร้านฟื้น HP แทน เมนูที่ทดสอบแสดงชื่อเห็ดฟื้นพลังกับเห็ดพิษเหมือนกัน และเห็ดพิษทำให้ HP เหลือ 0 การกลับไปหาเห็ดที่จุดเดิมไม่ได้รับประกันชนิดปลอดภัย: โค้ดแว่นขยายเลือกชนิดจากลำดับสุ่มร่วมของเกม",
-        "ja": "持っているキノコの種類を識別できなければ、HP回復には店売りの食料を使ってください。確認したメニューでは回復用と毒キノコが同じ名前で表示され、毒の方はHPを0にします。 同じ探索地点へ戻っても安全な種類は確定しません。虫メガネはゲーム共通の乱数列で種類を選びます。"
+        "en": "Healing mushroom ID 09: restores 10 HP, up to your maximum. The tested Japan-ROM menu labels poison mushroom ID 0A with the same name, ‘きのこ’; if you cannot identify the item in your inventory, use shop food instead. Revisiting a search location does not guarantee this safe type: the magnifier selects mushroom type from the game’s shared sequence.",
+        "th": "เห็ดฟื้นพลัง ID 09: ฟื้น 10 HP แต่ไม่เกินค่าสูงสุด เมนูใน ROM ญี่ปุ่นที่ทดสอบแสดงเห็ดพิษ ID 0A ด้วยชื่อเดียวกันว่า “きのこ”; ถ้าแยกไอเท็มในช่องเก็บของไม่ได้ ให้ใช้อาหารจากร้านแทน กลับไปค้นจุดเดิมก็ไม่รับประกันว่าจะได้เห็ดชนิดนี้ เพราะแว่นขยายเลือกชนิดจากลำดับสุ่มร่วมของเกม",
+        "ja": "回復キノコ ID 09：HPを10回復（最大HPまで）。確認した日本版ROMのメニューでは、毒キノコID 0Aも同じ「きのこ」と表示される。所持品を見分けられない場合は店の食料を使う。同じ探索地点へ戻っても安全な種類は保証されない。虫めがねはゲーム共通の乱数列からキノコの種類を選ぶ。"
       },
       "facts": {
         "en": [
@@ -18599,9 +18599,6 @@
         "th": []
       },
       "fishIds": [],
-      "hpRecovery": {
-        "hp": 10
-      },
       "evidence": {
         "type": "rom_trace",
         "sources": [
@@ -18614,9 +18611,9 @@
     },
     "food:0A": {
       "summary": {
-        "en": "If you cannot identify which mushroom you have, use shop food for HP recovery instead. The tested menu gives the healing and poison mushrooms the same name; the poison one sets HP to zero. Revisiting a search location does not guarantee the safe type: the magnifier selects it from the game’s shared sequence.",
-        "th": "ถ้าแยกไม่ออกว่าเห็ดในกระเป๋าเป็นชนิดไหน ให้ใช้อาหารจากร้านฟื้น HP แทน เมนูที่ทดสอบแสดงชื่อเห็ดฟื้นพลังกับเห็ดพิษเหมือนกัน และเห็ดพิษทำให้ HP เหลือ 0 การกลับไปหาเห็ดที่จุดเดิมไม่ได้รับประกันชนิดปลอดภัย: โค้ดแว่นขยายเลือกชนิดจากลำดับสุ่มร่วมของเกม",
-        "ja": "持っているキノコの種類を識別できなければ、HP回復には店売りの食料を使ってください。確認したメニューでは回復用と毒キノコが同じ名前で表示され、毒の方はHPを0にします。 同じ探索地点へ戻っても安全な種類は確定しません。虫メガネはゲーム共通の乱数列で種類を選びます。"
+        "en": "Poison mushroom ID 0A: eating it sets current HP to 0. The tested Japan-ROM menu labels healing mushroom ID 09 with the same name, ‘きのこ’; if you cannot identify the item in your inventory, do not eat it—use shop food instead. Revisiting a search location does not guarantee the healing type: the magnifier selects mushroom type from the game’s shared sequence.",
+        "th": "เห็ดพิษ ID 0A: กินแล้ว HP ปัจจุบันเหลือ 0 เมนูใน ROM ญี่ปุ่นที่ทดสอบแสดงเห็ดฟื้นพลัง ID 09 ด้วยชื่อเดียวกันว่า “きのこ”; ถ้าแยกไอเท็มในช่องเก็บของไม่ได้ อย่ากิน ให้ใช้อาหารจากร้านแทน กลับไปค้นจุดเดิมก็ไม่รับประกันว่าจะได้เห็ดฟื้นพลัง เพราะแว่นขยายเลือกชนิดจากลำดับสุ่มร่วมของเกม",
+        "ja": "毒キノコ ID 0A：食べると現在HPが0になる。確認した日本版ROMのメニューでは、回復キノコID 09も同じ「きのこ」と表示される。所持品を見分けられない場合は食べず、店の食料を使う。同じ探索地点へ戻っても回復用は保証されない。虫めがねはゲーム共通の乱数列からキノコの種類を選ぶ。"
       },
       "facts": {
         "en": [
@@ -20960,33 +20957,30 @@
     },
     "general_tool:11": {
       "summary": {
-        "en": "Use one ticket at the lottery counter in outdoor area 5 (54,22). The ticket is consumed; the ROM awards 100, 1,000 or 5,000 yen on a win, otherwise nothing.",
-        "ja": "屋外エリア5の富くじ所（54,22）で1枚使う。はずれを含む抽選で、当たりは100円・1,000円・5,000円。券は消費される。",
-        "th": "ใช้สลากหนึ่งใบที่เคาน์เตอร์ในพื้นที่กลางแจ้ง 5 พิกัด (54,22) สลากถูกใช้ทิ้ง ถ้าถูกรางวัลได้ 100, 1,000 หรือ 5,000 เยน ถ้าไม่ถูกจะไม่ได้เงิน"
+        "en": "Before spending your ticket at the area-5 counter (54,22), offer food you already have to spare at the nearby Jizo (49,22). This can move some draw results from a loss to a prize branch, but it does not guarantee a win. You do not need to buy food just for the ticket. The ticket is consumed when drawn.",
+        "ja": "エリア5の抽選所（54,22）で券を使う前に、余っている食料があれば近くのお地蔵さま（49,22）へ供えてください。供えると、以前ならはずれた一部の抽選値が賞品分岐に入るようになりますが、当選が保証されるわけではありません。くじのためだけに食料を買う必要はありません。抽選で券は消費されます。",
+        "th": "ก่อนใช้สลากที่เคาน์เตอร์ด่าน 5 (54,22) ถ้ามีอาหารเหลือ ให้นำไปถวายรูปปั้นจิโซใกล้กัน (49,22): การถวายทำให้ผลจับสลากบางค่าที่เดิมแพ้เปลี่ยนเป็นผลที่ได้รางวัลได้ แต่ก็ยังไม่รับประกันว่าจะถูกรางวัล ไม่ต้องซื้ออาหารมาเพื่อสลากโดยเฉพาะ เมื่อขึ้นสลากแล้วไอเท็มจะถูกใช้ทิ้ง"
       },
       "facts": {
         "en": [
-          "A chest in the area-5 town at (4,6) contains a ticket; no key is needed. Offering food at a Jizo statue improves the lottery threshold. The area-5 statue at (49,22) is near the counter.",
-          "For example, a bento or daikon offering adds 40 to the winning threshold; an orange adds 5. The threshold is capped at 255. These are internal threshold increments, not percentage points."
+          "A chest in the area-5 town at (4,6) contains a ticket; no key is needed. The ticket is used at the counter (54,22), which has 100-, 1,000- and 5,000-yen prize branches plus a no-prize branch. The Jizo at (49,22) is nearby."
         ],
         "ja": [
-          "エリア5の町の宝箱（4,6）に券がある。カギは不要。地蔵に食べ物を供えると抽選の当選しきい値が上がる。エリア5では地蔵（49,22）が抽選所の近くにある。",
-          "供え物の例：弁当・大根は当選しきい値に40、みかんは5を加える。上限は255。確率のパーセント値ではない。"
+          "エリア5の町の宝箱（4,6）に券がある。カギは不要。抽選所（54,22）では100・1,000・5,000円の賞品分岐と賞品なしの分岐がある。地蔵（49,22）は近くにある。"
         ],
         "th": [
-          "หีบในเมืองพื้นที่ 5 พิกัด (4,6) มีสลากโดยไม่ต้องใช้กุญแจ การถวายอาหารให้รูปปั้นจิโซช่วยเพิ่มเกณฑ์ถูกรางวัล รูปปั้นในพื้นที่ 5 อยู่ที่ (49,22) ใกล้เคาน์เตอร์",
-          "ถวายข้าวกล่องหรือหัวไชเท้าเพิ่มเกณฑ์ถูกรางวัล 40 หน่วย ส่วนส้มเพิ่ม 5 หน่วย สะสมได้สูงสุด 255 หน่วย ตัวเลขนี้เป็นเกณฑ์ในเกม ไม่ใช่เปอร์เซ็นต์"
+          "หีบในเมืองด่าน 5 พิกัด (4,6) มีสลากโดยไม่ต้องใช้กุญแจ เคาน์เตอร์ (54,22) มีแขนงรางวัล 100, 1,000 และ 5,000 เยน รวมถึงแขนงที่ไม่ได้รางวัล รูปปั้นจิโซอยู่ใกล้กันที่ (49,22)"
         ]
       },
       "evidenceNotes": {
         "en": [
-          "The area-5 counter is NPC slot 18 at (54,22), 00:CB6B..CBD9. It checks ID 11, removes the ticket, compares a table-driven RNG byte with 7E:0C22, then selects the 100/1,000/5,000-yen branches (messages 0328/0326/0324); loss uses 032A. Do not read this as a uniform or independently rolled percentage. Food offering at 03:A3DF adds the selected food record's first byte to 7E:0C22, capped at 255; the value is from the ROM food table, not fish size. The item record's 100-yen base price does not prove shop stock."
+          "The area-5 counter is NPC slot 18 at (54,22), 00:CB6B..CBD9. It checks ID 11, removes the ticket, and compares a table-driven RNG byte with threshold 7E:0C22: a byte below the threshold enters a prize branch; a byte at or above it loses. Messages 0328/0326/0324 are the 100/1,000/5,000-yen branches; 032A is the losing branch. Jizo offering at 03:A3DF adds the selected food record's first byte to 7E:0C22, capped at 255; ROM examples are +40 for bento/daikon and +5 for orange. This expands the values that pass the comparison but does not establish a uniform win percentage or expected payout. The item record's 100-yen base price does not prove shop stock."
         ],
         "ja": [
-          "エリア5の抽選所はNPCスロット18（54,22）、00:CB6B..CBD9。ID11を確認して券を消費し、テーブル参照式の乱数バイトと7E:0C22を比較して、100・1,000・5,000円の分岐（メッセージ0328/0326/0324）を選ぶ。はずれは032A。均一または独立確率と解釈しない。03:A3DFの食べ物供え処理は選択した食べ物レコード先頭バイトを7E:0C22へ加算し、255で上限。値は魚の大きさではなくROMの食べ物表の値。基本価格100円だけでは店頭在庫を証明しない。"
+          "エリア5の抽選所はNPCスロット18（54,22）、00:CB6B..CBD9。ID11を確認して券を消費し、テーブル参照式の乱数値と判定値7E:0C22を比較する。乱数値が判定値未満なら賞品分岐、以上ならはずれ。メッセージ0328/0326/0324は100・1,000・5,000円の分岐、032Aははずれ。地蔵の供え物処理03:A3DFは選択食料レコードの先頭バイトを7E:0C22へ加算し、上限は255。ROM表の例では弁当・大根が+40、みかんが+5。この加算は比較を通る値の範囲を広げるが、均一な当選率や期待払戻額は証明しない。基本価格100円だけでは店頭在庫を証明しない。"
         ],
         "th": [
-          "จุดสลากพื้นที่ 5 คือ NPC ช่อง 18 (54,22), โค้ด 00:CB6B..CBD9 ตรวจ ID 11 แล้วใช้สลาก จากนั้นเทียบไบต์สุ่มแบบอ่านตารางกับ 7E:0C22 และเลือกแขนงรางวัล 100/1,000/5,000 เยน (ข้อความ 0328/0326/0324); แพ้ใช้ 032A อย่าตีความเป็นเปอร์เซ็นต์สุ่มสม่ำเสมอหรือการสุ่มอิสระ การถวายอาหารที่ 03:A3DF บวกไบต์แรกของเรกคอร์ดอาหารที่เลือกเข้า 7E:0C22 โดยสูงสุด 255 ค่านี้มาจากตารางอาหารใน ROM ไม่ใช่ขนาดปลา ราคาพื้นฐาน 100 เยนไม่ได้ยืนยันว่ามีขายในร้าน"
+          "เคาน์เตอร์ด่าน 5 อยู่ช่อง NPC 18 ที่ (54,22), 00:CB6B..CBD9 ตรวจ ID 11 และใช้สลาก จากนั้นเทียบไบต์สุ่มจากตารางกับเกณฑ์ 7E:0C22: ค่าที่ต่ำกว่าเข้าแขนงรางวัล ส่วนค่าที่เท่ากับหรือสูงกว่าแพ้ ข้อความ 0328/0326/0324 คือแขนง 100/1,000/5,000 เยน และ 032A คือแขนงแพ้ การถวายอาหารที่รูปปั้นจิโซ 03:A3DF บวกไบต์แรกของเรกคอร์ดอาหารที่เลือกเข้า 7E:0C22 โดยมีค่าสูงสุด 255; ตัวอย่างจากตาราง ROM คือข้าวกล่อง/หัวไชเท้า +40 และส้ม +5 การเพิ่มนี้ขยายช่วงค่าที่ผ่านการเปรียบเทียบ แต่ไม่ได้พิสูจน์เปอร์เซ็นต์ชนะที่แน่นอนหรือเงินรางวัลคาดหวัง ราคาพื้นฐาน 100 เยนไม่ได้ยืนยันว่ามีขายในร้าน"
         ]
       },
       "fishIds": [],
@@ -21030,9 +21024,9 @@
         {
           "stage": 5,
           "name": {
-            "en": "Jizo: offer food to raise the lottery threshold",
-            "ja": "お地蔵さま：食べ物を供えて抽選の判定値を上げる",
-            "th": "รูปปั้นจิโซ: ถวายอาหารเพิ่มค่าเกณฑ์ถูกรางวัล"
+            "en": "Offer spare food here before drawing",
+            "ja": "くじを引く前に余った食料を供える",
+            "th": "ถวายอาหารที่เหลือก่อนขึ้นสลาก"
           },
           "tileX": 49,
           "tileY": 22,

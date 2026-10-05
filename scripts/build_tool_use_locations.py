@@ -35,7 +35,7 @@ def build(rom):
         ('cow', 3, 0x0C, ['0F','10'], loc('Cow: refill the empty bottle', '牛：空きビンに牛乳を入れる', 'คุยกับวัวเพื่อเติมนมใส่ขวดเปล่า'), '00:C804..C83B'),
         ('canoe-maker', 3, 0x1A, ['10','02'], loc('Canoe maker: trade milk for a canoe', 'カヌー職人：牛乳とカヌーを交換', 'คนทำเรือ: นำนมมาแลกเรือแคนู'), '00:C8D4..C911'),
         ('lottery-counter', 5, 0x18, ['11'], loc('Lottery drawing counter', '富くじの抽選所', 'เคาน์เตอร์ขึ้นสลาก'), '00:CBD9..CCD4'),
-        ('jizo', 5, 0x08, ['11'], loc('Jizo: offer food to raise the lottery threshold', 'お地蔵さま：食べ物を供えて抽選の判定値を上げる', 'รูปปั้นจิโซ: ถวายอาหารเพิ่มค่าเกณฑ์ถูกรางวัล'), '00:C1E8..C1F7; 03:A3DF..A43B'),
+        ('jizo', 5, 0x08, ['11'], loc('Offer spare food here before drawing', 'くじを引く前に余った食料を供える', 'ถวายอาหารที่เหลือก่อนขึ้นสลาก'), '00:C1E8..C1F7; 03:A3DF..A43B'),
         ('candle', 6, 0x22, ['12'], loc('Give the candle for the reunion event', '再会イベントのロウソクを渡す', 'คุยเพื่อให้เทียนและทำเควสต์ส่งสัญญาณ'), '00:CE4E..CE9E'),
         ('fox', 4, 0x0C, ['15','16'], loc('Fox event: give fried tofu or use fireworks nearby', 'キツネのイベント：あぶらあげを渡す／近くで花火を使う', 'จุดเควสต์จิ้งจอก: ให้เต้าหู้ทอด หรือใช้ดอกไม้ไฟบริเวณนี้'), '00:C9D7..CA62; 03:C62A..C664'),
         ('fireworks-hint', 4, 0x1E, ['16'], loc('NPC accepts fireworks and gives the fox hint', '花火を受け取りキツネの助言をする人物', 'NPC รับดอกไม้ไฟและบอกใบ้เรื่องจิ้งจอก'), '00:CAF6..CB1D'),

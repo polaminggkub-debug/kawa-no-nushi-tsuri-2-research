@@ -122,6 +122,7 @@ export function itemPath(ctx) {
 export function fishMapLink(ctx, stage, section = '') {
   const query = new URLSearchParams({ fish: ctx.id })
   if (stage) query.set('stage', String(stage))
+  if (ctx.requestedMethod) query.set('route', ctx.requestedMethod)
   if (/^s[1-6]-c\d+-r\d+$/.test(section)) query.set('section', section)
   query.set('return', `${ctx.currentFishPath(stage)}#fish-area-map`)
   return `${ctx.mapPath()}?${query.toString()}`
