@@ -91,3 +91,5 @@ await import('./fish-starter-totals.mjs')
 await import('./item-browse-context.mjs')
 await import('./strategy-target-action.mjs')
 await import('./postcard-next-action.mjs')
+
+await import('./fly-price-choice.mjs')

@@ -41,7 +41,11 @@ For research only, body IDs `01` and `02` share the wet fish-profile group but h
 
 ## Shop prices and stock are a different thing
 
-The regular shop’s three parallel eight-entry lists hold prebuilt body/wing/tail combinations. The shop copies the body, wing, and tail at the same list index and charges the price associated with the selected fly record. These lists do not prove that their components are offered for separate purchase. The custom-fly maker has a separate menu and quote path. Do not add component-table price fields to estimate every finished custom fly; use the quote shown by the game.
+The regular shop sells completed body/wing/tail combinations from three parallel eight-entry lists. Its price is the listed ready-made bundle price; the parts are not sold separately by those lists.
+
+The maker uses a different price calculation. For IDs that are selectable together in the same maker family, its ROM code adds the selected components’ price fields (`+9`), adds ¥0 for `無し`, then caps the quote at ¥10,000. This lets us calculate a quote for a controller-verified recipe, but do not combine IDs from different families or assume an unverified record is selectable. Read the maker’s displayed quote before confirming payment.
+
+One direct comparison is verified in Area 1: body `01` + wing `09` + tail `13` are the first Mayfly choices and produce a ¥25 maker quote. The Area 1 shop also sells that exact saved combination as a finished fly for ¥5. If you want these exact three IDs, buy the ready-made one and save ¥20. Both routes store the same component IDs; this price comparison does not claim that either choice catches fish better. See the [maker price trace](fly-maker-menu-research.md), [verified menu IDs and quote](../data/fly-maker-ui-crosswalk.json), and [ROM shop stock](../data/shop-stock-rom.json) with its [extraction notes](shop-stock-research.md).
 
 ## What the remaining component fields establish
 

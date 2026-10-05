@@ -280,7 +280,7 @@
     }[ctx.lang];
   }
   function foodChoicePanel(ctx, item, allItems, sections) {
-    const copy2 = foodCopy(ctx);
+    const copy3 = foodCopy(ctx);
     const hpLabel = (hp) => ctx.lang === "th" ? `ฟื้น HP +${hp} หน่วย` : ctx.lang === "ja" ? `HP+${hp}回復` : `Restores +${hp} HP`;
     const foodOption = (other) => {
       const hp = other.playerUse?.hpRecovery?.hp;
@@ -290,12 +290,12 @@
     const alternatives = allItems.filter(
       (other) => other.category === "food" && other.id !== item.id && other.priceYen > 0 && other.playerUse?.shops?.some((shop) => Number(shop.stage) === ctx.selectedStage)
     );
-    const nearby = ctx.selectedStage ? `<h3>${ctx.esc(copy2[0])} · ${ctx.selectedStage}</h3><div class="detail-grid" data-local-food-options>${alternatives.map(foodOption).join("")}</div>` : "";
+    const nearby = ctx.selectedStage ? `<h3>${ctx.esc(copy3[0])} · ${ctx.selectedStage}</h3><div class="detail-grid" data-local-food-options>${alternatives.map(foodOption).join("")}</div>` : "";
     const catalogueOptions = allItems.filter((other) => other.category === "food" && other.priceYen > 0 && other.id !== item.id).map(foodOption).join("");
     const full = sections.map(
       (section) => `<h3>${ctx.esc(ctx.local(section.title))}</h3><p>${ctx.esc(ctx.local(section.recommendation))}</p><p class="muted">${ctx.esc(ctx.local(section.scope))}</p>`
     ).join("");
-    return `<section class="detail-section buying-decision" data-food-choice><p>${ctx.esc(copy2[2])}</p>${nearby}<details><summary>${ctx.esc(copy2[1])}</summary>${full}<div class="detail-grid" data-all-food-options>${catalogueOptions}</div></details></section>`;
+    return `<section class="detail-section buying-decision" data-food-choice><p>${ctx.esc(copy3[2])}</p>${nearby}<details><summary>${ctx.esc(copy3[1])}</summary>${full}<div class="detail-grid" data-all-food-options>${catalogueOptions}</div></details></section>`;
   }
 
   // src/pages/item/purchases.js
@@ -327,7 +327,7 @@
       const assemblies = ctx.flyAssemblies(item, allItems);
       if (!assemblies.length)
         return `<section class="detail-section purchase-section"><h2>${ctx.esc(ctx.copy.shop)}</h2><p class="muted">${ctx.esc(ctx.copy.noShop)}</p></section>`;
-      return `<section class="detail-section purchase-section"><h2>${ctx.esc(ctx.copy.shop)}</h2>${item.category !== "fly" ? `<p>${ctx.esc(ctx.copy.usedIn)}</p>` : ""}<div class="detail-grid">${assemblies.map(({ stage, bundle }) => {
+      return `<section id="fly-purchases" class="detail-section purchase-section"><h2>${ctx.esc(ctx.copy.shop)}</h2>${item.category !== "fly" ? `<p>${ctx.esc(ctx.copy.usedIn)}</p>` : ""}<div class="detail-grid">${assemblies.map(({ stage, bundle }) => {
         const refs = [
           ["fly", bundle.body],
           ["fly_wing", bundle.wing],
@@ -423,8 +423,8 @@
     if (!bundle) return { ...noBundleCopy(lang, item.id, fishName2), bundle: null, itemId: item.id };
     const body = nameForBundleItem(allItems, "fly", bundle.body);
     const supported = Boolean(fishId && (body?.playerUse?.fishIds || []).includes(fishId));
-    const copy2 = bundleCopy(lang, item, bundle, fishName2, supported);
-    return { ...copy2, bundle, supported, hasTarget: Boolean(fishId), itemId: item.id };
+    const copy3 = bundleCopy(lang, item, bundle, fishName2, supported);
+    return { ...copy3, bundle, supported, hasTarget: Boolean(fishId), itemId: item.id };
   }
   function actionLabel(lang, key, bundle) {
     const labels = {
@@ -620,13 +620,13 @@
     const rigRoute = floatSinkerRoute(item);
     const routeKeys = compatibilityRoutes(routes);
     const ids = Array.isArray(use.fishIds) ? normalizedFishIds(use.fishIds) : [];
-    const categories = ["lure", "fly", "bait", "float_weight", "general_tool"];
-    if (!categories.includes(item.category) || !ids.length && !routeKeys.length) return "";
-    const copy2 = steeringCopy(ctx);
-    const heading = steering ? copy2.title : rigRoute ? ctx.copy[`${rigRoute}FishHeading`] : ctx.copy.fish;
+    const categories2 = ["lure", "fly", "bait", "float_weight", "general_tool"];
+    if (!categories2.includes(item.category) || !ids.length && !routeKeys.length) return "";
+    const copy3 = steeringCopy(ctx);
+    const heading = steering ? copy3.title : rigRoute ? ctx.copy[`${rigRoute}FishHeading`] : ctx.copy.fish;
     const groups = renderCompatibilityGroups(ctx, routes, routeKeys, ids, fishVisuals, fishLocations);
     const accepted = targetAccepted(ctx, routes, routeKeys, ids);
-    const status = ctx.selectedFish ? rigRoute ? routeTargetStatus(ctx, rigRoute, accepted) : targetStatus(ctx, routes, accepted, steering, copy2) : "";
+    const status = ctx.selectedFish ? rigRoute ? routeTargetStatus(ctx, rigRoute, accepted) : targetStatus(ctx, routes, accepted, steering, copy3) : "";
     const fishTarget = ctx.selectedFish ? `<p class="play-target"${rigRoute ? ` data-target-route="${rigRoute}"` : ""}><strong>${ctx.esc(ctx.copy.target)} · ${ctx.esc(ctx.fishName(ctx.selectedFish, fishVisuals))} (${ctx.esc(ctx.selectedFish)})</strong><br>${ctx.esc(status)}</p>${acceptedBaitLink(ctx, fishLocations, rigRoute)}` : "";
     const count = routeKeys.length ? new Set(Object.values(routes).flatMap(normalizedFishIds)).size : ids.length;
     const list = `<details class="compatibility-details"><summary>${ctx.esc(compatibilitySummary(ctx, count, steering, rigRoute))}</summary>${groups}</details>`;
@@ -1033,6 +1033,107 @@
     return `<details class="more-options"><summary>${ctx.esc(title)}</summary><div class="detail-content">${content}</div></details>`;
   }
 
+  // src/pages/item/fly-price-choice.js
+  var categories = ["fly", "fly_wing", "fly_tail"];
+  var copy = {
+    th: {
+      title: "ซื้อสำเร็จรูปหรือประกอบเอง?",
+      contribution: (price) => `ชิ้นนี้เพิ่ม ${price} เยนในราคาฟลายที่ประกอบเอง`,
+      rule: "ร้านประกอบคิดราคาบอดี้ + ปีก + หาง ไม่ต้องซื้อชิ้นส่วนแยก เลือก “ไม่มี” คิด 0 เยน ตรวจราคาสุทธิก่อนจ่ายและเหลือช่องเก็บฟลายด้วย",
+      composition: (ids) => `ชุด ${ids}`,
+      ready: (stage, price) => `สำเร็จรูปด่าน ${stage}: ¥${price}`,
+      custom: (area, price) => `ประกอบชุดนี้ในเมนูที่ตรวจแล้ว ด่าน ${area}: ¥${price}`,
+      cheaper: (saving) => `ถ้าต้องการชิ้นส่วนชุดนี้ ซื้อสำเร็จรูปประหยัด ${saving} เยน ประกอบเองเมื่ออยากเปลี่ยนชิ้นส่วน`,
+      equal: "ราคาเท่ากัน ถ้าต้องการชุดนี้เลือกสำเร็จรูปได้เลย ประกอบเองเมื่ออยากเปลี่ยนชิ้นส่วน",
+      diy: (saving) => `ประกอบชุดนี้เองประหยัด ${saving} เยน หากเข้าถึงเมนูที่ระบุได้`,
+      shop: "ดูร้านและชิ้นส่วนชุดสำเร็จรูป",
+      menu: "ดูตำแหน่งชิ้นนี้ในเมนูประกอบ",
+      evidence: "หลักฐานราคาและขอบเขตการเปรียบเทียบ",
+      limit: "เทียบรหัสชิ้นส่วนชุดเดียวกันและราคา ไม่ใช่อันดับโอกาสกัดหรือจับสำเร็จ เมนูที่ตรวจอาจอยู่คนละด่านกับร้านสำเร็จรูป จึงไม่ได้หมายความว่าประกอบชุดนี้ได้ในทุกร้าน",
+      sources: "อ่านวิธีคิดราคาจาก ROM"
+    },
+    en: {
+      title: "Ready-made or custom fly?",
+      contribution: (price) => `This component adds ¥${price} to a custom fly quote`,
+      rule: "The maker charges body + wing + tail; you do not buy loose parts first. None adds ¥0. Check the final quote and keep a free fly slot.",
+      composition: (ids) => `Composition ${ids}`,
+      ready: (stage, price) => `Ready-made in Area ${stage}: ¥${price}`,
+      custom: (area, price) => `Make these parts in the verified Area ${area} menu: ¥${price}`,
+      cheaper: (saving) => `For these exact parts, buy ready-made to save ¥${saving}. Customize when you want different parts.`,
+      equal: "The prices match. Buy ready-made for these parts; customize when you want different parts.",
+      diy: (saving) => `Making these parts saves ¥${saving}, if you can reach the listed menu.`,
+      shop: "See ready-made shops and components",
+      menu: "Find this part in the maker menu",
+      evidence: "Price evidence and comparison limits",
+      limit: "This compares identical component IDs and prices, not bite or landing odds. The verified maker menu may be in a different area from the ready-made shop; this does not establish availability in every maker.",
+      sources: "Read the ROM pricing research"
+    },
+    ja: {
+      title: "既製フライと自作、どちらを選ぶ？",
+      contribution: (price) => `この部品は自作フライの見積額に${price}円を加える`,
+      rule: "自作の料金はボディ＋ウイング＋テールの合計。部品を先に購入する必要はない。「なし」は0円。支払う前に見積額とフライの空き枠を確認する。",
+      composition: (ids) => `構成 ${ids}`,
+      ready: (stage, price) => `エリア${stage}の既製品：${price}円`,
+      custom: (area, price) => `確認済みのエリア${area}のメニューで自作：${price}円`,
+      cheaper: (saving) => `同じ部品の組み合わせなら既製品で${saving}円節約。部品を変えたいときに自作する。`,
+      equal: "料金は同じ。この組み合わせなら既製品を選べる。部品を変えたいときに自作する。",
+      diy: (saving) => `記載のメニューに行けるなら、自作で${saving}円節約できる。`,
+      shop: "既製品の店と部品を見る",
+      menu: "自作メニューでこの部品を探す",
+      evidence: "料金の根拠と比較の範囲",
+      limit: "同じ部品IDと料金の比較であり、食いつきや取り込み成功率の順位ではない。確認した自作メニューと既製品の店は別エリアの場合がある。すべての店で作れることは示していない。",
+      sources: "ROMの料金調査を読む"
+    }
+  };
+  function verifiedMenu(item) {
+    const choice = item?.flyMakerMenuChoice;
+    if (!item || !choice) return false;
+    return choice?.id === item.id && choice.category === item.category && Number.isInteger(choice.area) && choice.area >= 1 && choice.area <= 6 && typeof choice.familyJa === "string" && choice.familyJa.length > 0;
+  }
+  function verifiedQuote(bundle, allItems) {
+    if (!bundle.body || bundle.body === "00") return null;
+    const refs = [
+      ["fly", bundle.body],
+      ["fly_wing", bundle.wing],
+      ["fly_tail", bundle.tail]
+    ];
+    const parts = refs.filter(([, id]) => id !== "00").map(([category, id]) => allItems.find((item) => item.category === category && item.id === id));
+    if (!parts.length || parts.some(
+      (part) => !verifiedMenu(part) || !Number.isFinite(part.priceYen) || part.priceYen < 0
+    ))
+      return null;
+    const menu = parts[0].flyMakerMenuChoice;
+    if (parts.some(
+      (part) => part.flyMakerMenuChoice.area !== menu.area || part.flyMakerMenuChoice.familyJa !== menu.familyJa
+    ))
+      return null;
+    if (menu.familyJa === "テレストリアル" && (bundle.wing !== "00" || bundle.tail !== "00"))
+      return null;
+    return {
+      area: menu.area,
+      price: Math.min(
+        1e4,
+        parts.reduce((sum, part) => sum + part.priceYen, 0)
+      )
+    };
+  }
+  function comparisonMarkup(ctx, assembly, allItems, c) {
+    const quote = verifiedQuote(assembly.bundle, allItems);
+    const ready = assembly.bundle.shopPriceYen;
+    if (!quote || !Number.isFinite(ready) || ready < 0) return "";
+    const saving = quote.price - ready;
+    const decision = saving > 0 ? c.cheaper(saving) : saving === 0 ? c.equal : c.diy(-saving);
+    const ids = [assembly.bundle.body, assembly.bundle.wing, assembly.bundle.tail].join(" / ");
+    return `<article class="detail-section" data-fly-price-comparison="${ctx.esc(ids)}"><h3>${ctx.esc(c.composition(ids))}</h3><p><strong>${ctx.esc(c.ready(assembly.stage, ready))}</strong><br>${ctx.esc(c.custom(quote.area, quote.price))}</p><p class="rod-verdict">${ctx.esc(decision)}</p><a class="route-button" href="#fly-purchases">${ctx.esc(c.shop)} ↘</a></article>`;
+  }
+  function flyPriceChoice(ctx, item, allItems) {
+    if (!categories.includes(item.category) || !verifiedMenu(item) || !Number.isFinite(item.priceYen) || item.priceYen < 0)
+      return "";
+    const c = copy[ctx.lang] || copy.en;
+    const comparisons = flyAssemblies(ctx, item, allItems).map((assembly) => comparisonMarkup(ctx, assembly, allItems, c)).join("");
+    return `<section id="fly-price-choice" class="detail-section fly-price-choice" data-fly-price-choice="${ctx.esc(item.category)}:${ctx.esc(item.id)}"><h2>${ctx.esc(c.title)}</h2><p><strong>${ctx.esc(c.contribution(item.priceYen))}</strong></p><p>${ctx.esc(c.rule)}</p>${comparisons ? `<div class="detail-grid">${comparisons}</div>` : ""}<a class="route-button" href="#fly-menu-position">${ctx.esc(c.menu)} ↘</a><details class="fly-price-evidence"><summary>${ctx.esc(c.evidence)}</summary><p>${ctx.esc(c.limit)}</p><a href="../docs/fly-maker-menu-research.md">${ctx.esc(c.sources)} ↗</a></details></section>`;
+  }
+
   // src/pages/item/fly-menu-position.js
   var mayfly = {
     en: {
@@ -1122,48 +1223,48 @@
       controlledLimit: "ตรวจตำแหน่งซ้ำอย่างอิสระจากเมนูด่านเลขคู่ที่จำลองในสภาวะควบคุม ยืนยันช่องเลือกชิ้นส่วน แต่ยังไม่ได้ยืนยันเส้นทางเดินหรือการเข้าร้านจากการเล่นปกติ ไม่ได้พิสูจน์ว่าปลากินหรือตกขึ้นง่ายกว่า ตรวจราคาสุทธิก่อนจ่าย"
     }
   };
-  function instructionsFor(copy2, row, column) {
-    return [column > 1 ? copy2.right(column - 1) : "", row > 1 ? copy2.down(row - 1) : "", copy2.confirm].filter(Boolean).join(" → ");
+  function instructionsFor(copy3, row, column) {
+    return [column > 1 ? copy3.right(column - 1) : "", row > 1 ? copy3.down(row - 1) : "", copy3.confirm].filter(Boolean).join(" → ");
   }
   function otherFamilyCopy(lang, choice) {
-    const copy2 = otherFamilies[lang] || otherFamilies.en;
-    const family = copy2.family[choice.familyJa] || choice.familyJa;
+    const copy3 = otherFamilies[lang] || otherFamilies.en;
+    const family = copy3.family[choice.familyJa] || choice.familyJa;
     const area = choice.area || 1;
     return {
       ...mayfly[lang],
-      scope: choice.controlledFixture ? copy2.controlledScope(family, choice.familyJa) : copy2.scope(area, family, choice.familyJa),
-      limit: choice.controlledFixture ? copy2.controlledLimit : copy2.limit(area, family),
-      none: copy2.none,
-      directQuote: copy2.directQuote
+      scope: choice.controlledFixture ? copy3.controlledScope(family, choice.familyJa) : copy3.scope(area, family, choice.familyJa),
+      limit: choice.controlledFixture ? copy3.controlledLimit : copy3.limit(area, family),
+      none: copy3.none,
+      directQuote: copy3.directQuote
     };
   }
-  function nonePositionInstructions(copy2, choice, lang) {
+  function nonePositionInstructions(copy3, choice, lang) {
     const row = choice.nonePosition?.row;
     const column = choice.nonePosition?.column;
     if (!row || !column) return "";
     const movement = [
-      column > 1 ? copy2.right(column - 1) : "",
-      row > 1 ? copy2.down(row - 1) : "",
-      copy2.confirm
+      column > 1 ? copy3.right(column - 1) : "",
+      row > 1 ? copy3.down(row - 1) : "",
+      copy3.confirm
     ].filter(Boolean).join(" → ");
     const part = choice.part === "wing" ? { en: "wing", ja: "ウィング", th: "ปีก" } : { en: "tail", ja: "テール", th: "หาง" };
-    return copy2.none(part[lang], movement);
+    return copy3.none(part[lang], movement);
   }
   function flyMenuPosition(ctx, item) {
     const choice = item.flyMakerMenuChoice;
     if (!choice) return "";
     const lang = ctx.lang in mayfly ? ctx.lang : "en";
     const isMayfly = !choice.familyJa || choice.familyJa === "メイフライ";
-    const copy2 = isMayfly ? mayfly[lang] : otherFamilyCopy(lang, choice);
-    const instructions = instructionsFor(copy2, choice.row, choice.column);
-    const position = copy2.position(choice.row, choice.column);
-    const noneInstructions = isMayfly && choice.part === "tail" ? `<p class="fly-menu-none-tail">${ctx.esc(copy2.noneTail)}</p>` : choice.nonePosition ? `<p class="fly-menu-none-tail">${ctx.esc(nonePositionInstructions(copy2, choice, lang))}</p>` : "";
-    const nextStep = choice.nextStep === "quote" ? `<p class="fly-menu-next-step rod-verdict">${ctx.esc(copy2.directQuote)}</p>` : "";
-    return `<section id="fly-menu-position" class="detail-section fly-menu-position" data-fly-menu-position="${ctx.esc(item.category)}:${ctx.esc(item.id)}"><h2>${ctx.esc(copy2.title)}</h2><p>${ctx.esc(copy2.scope)}</p><p><strong>${ctx.esc(position)}</strong> · ${ctx.esc(copy2.start)}</p><p class="rod-verdict">${ctx.esc(instructions)}</p>${noneInstructions}${nextStep}<figure><a href="${ctx.esc(choice.image)}" target="_blank" rel="noopener"><img src="${ctx.esc(choice.image)}" alt="${ctx.esc(position)}" width="256" height="224" loading="lazy"></a><figcaption>${ctx.esc(copy2.caption)}</figcaption></figure><details><summary>${ctx.esc(copy2.evidence)}</summary><p>${ctx.esc(copy2.limit)}</p><a href="${ctx.esc(choice.evidenceHref)}">${ctx.esc(copy2.notes)} ↗</a></details></section>`;
+    const copy3 = isMayfly ? mayfly[lang] : otherFamilyCopy(lang, choice);
+    const instructions = instructionsFor(copy3, choice.row, choice.column);
+    const position = copy3.position(choice.row, choice.column);
+    const noneInstructions = isMayfly && choice.part === "tail" ? `<p class="fly-menu-none-tail">${ctx.esc(copy3.noneTail)}</p>` : choice.nonePosition ? `<p class="fly-menu-none-tail">${ctx.esc(nonePositionInstructions(copy3, choice, lang))}</p>` : "";
+    const nextStep = choice.nextStep === "quote" ? `<p class="fly-menu-next-step rod-verdict">${ctx.esc(copy3.directQuote)}</p>` : "";
+    return `<section id="fly-menu-position" class="detail-section fly-menu-position" data-fly-menu-position="${ctx.esc(item.category)}:${ctx.esc(item.id)}"><h2>${ctx.esc(copy3.title)}</h2><p>${ctx.esc(copy3.scope)}</p><p><strong>${ctx.esc(position)}</strong> · ${ctx.esc(copy3.start)}</p><p class="rod-verdict">${ctx.esc(instructions)}</p>${noneInstructions}${nextStep}<figure><a href="${ctx.esc(choice.image)}" target="_blank" rel="noopener"><img src="${ctx.esc(choice.image)}" alt="${ctx.esc(position)}" width="256" height="224" loading="lazy"></a><figcaption>${ctx.esc(copy3.caption)}</figcaption></figure><details><summary>${ctx.esc(copy3.evidence)}</summary><p>${ctx.esc(copy3.limit)}</p><a href="${ctx.esc(choice.evidenceHref)}">${ctx.esc(copy3.notes)} ↗</a></details></section>`;
   }
 
   // src/pages/item/bait-acquisition.js
-  var copy = {
+  var copy2 = {
     th: {
       title: "หาเหยื่อ 0D ในเมืองแทนการหาร้านขาย",
       body: "ถ้ามีแว่นขยาย 03: เข้าเมืองทางเข้าลำดับที่ 2 ซึ่งพามา X7,Y29 หยุดเดินแล้วใช้แว่นขยายบนช่องที่ต่างจากช่องที่ใช้แว่นขยายครั้งก่อน กองเหยื่อเดิมต้องยังไม่เต็ม 9 หรือมีช่องเหยื่อว่าง ได้ 1–4 ชิ้นตามพื้นที่ว่างในกอง สูงสุด 9 ชิ้น ขยับช่องก่อนค้นซ้ำ",
@@ -1188,7 +1289,7 @@
   };
   function townPasteBaitAction(ctx, item) {
     if (item.category !== "bait" || item.id !== "0D") return "";
-    const text3 = copy[ctx.lang] || copy.en;
+    const text3 = copy2[ctx.lang] || copy2.en;
     const stage = String(ctx.selectedStage || 1);
     const suffix = ctx.lang === "en" ? "" : `.${ctx.lang}`;
     const query = new URLSearchParams({ stage, place: "town", entrance: "1" });
@@ -1814,7 +1915,7 @@
     const buying = rodAdvice ? "" : ctx.buyingDecision(item, allItems, decisions);
     const more = renderMoreOptions(ctx, item, allItems, fishLocations);
     const back = `<p class="detail-back-to-list"><a class="route-button" href="${ctx.esc(categoryHref)}">${ctx.esc(ctx.copy.allItems)} · ${ctx.esc(categoryText)} ↗</a></p>`;
-    return `${intro}${hero}${target}${baitTarget}${action}${flyMenuPosition(ctx, item)}${extras}${buying}${ctx.shopSection(item, allItems, fishLocations)}${ctx.useLocationSection(item, fishLocations, allItems)}${ctx.fishSection(item, fishVisuals, fishLocations)}${more}${back}${ctx.technicalSection(item)}<p class="muted">${ctx.esc(ctx.copy.sourced)}</p>`;
+    return `${intro}${hero}${target}${baitTarget}${action}${flyPriceChoice(ctx, item, allItems)}${flyMenuPosition(ctx, item)}${extras}${buying}${ctx.shopSection(item, allItems, fishLocations)}${ctx.useLocationSection(item, fishLocations, allItems)}${ctx.fishSection(item, fishVisuals, fishLocations)}${more}${back}${ctx.technicalSection(item)}<p class="muted">${ctx.esc(ctx.copy.sourced)}</p>`;
   }
   function scrollToItemAnchor() {
     if (location.hash === "#fly-menu-position")

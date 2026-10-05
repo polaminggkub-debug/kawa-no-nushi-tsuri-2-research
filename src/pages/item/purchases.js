@@ -39,7 +39,7 @@ export function shopSection(ctx, item, allItems, fishLocations) {
     const assemblies = ctx.flyAssemblies(item, allItems)
     if (!assemblies.length)
       return `<section class="detail-section purchase-section"><h2>${ctx.esc(ctx.copy.shop)}</h2><p class="muted">${ctx.esc(ctx.copy.noShop)}</p></section>`
-    return `<section class="detail-section purchase-section"><h2>${ctx.esc(ctx.copy.shop)}</h2>${item.category !== 'fly' ? `<p>${ctx.esc(ctx.copy.usedIn)}</p>` : ''}<div class="detail-grid">${assemblies
+    return `<section id="fly-purchases" class="detail-section purchase-section"><h2>${ctx.esc(ctx.copy.shop)}</h2>${item.category !== 'fly' ? `<p>${ctx.esc(ctx.copy.usedIn)}</p>` : ''}<div class="detail-grid">${assemblies
       .map(({ stage, bundle }) => {
         const refs = [
           ['fly', bundle.body],
