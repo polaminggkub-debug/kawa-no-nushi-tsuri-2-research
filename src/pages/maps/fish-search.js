@@ -148,6 +148,7 @@ export function updateUrl(ctx) {
           ? '#map-view'
           : '')
   params.set('stage', String(ctx.activeStage))
+  if (ctx.eelReturnRequested) params.set('action', 'eel-return')
   if (ctx.returnPath) params.set('return', ctx.returnPath)
   if (ctx.activeSection) params.set('section', ctx.activeSection)
   if (ctx.selectedFish) params.set('fish', ctx.selectedFish)

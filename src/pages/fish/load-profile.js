@@ -27,7 +27,7 @@ function fetchProfile(ctx) {
 }
 
 function loadGallery() {
-  return fetch('gallery-data.json?v=notebook-starting-20261006-67').then((response) => {
+  return fetch('gallery-data.json?v=eel-ending-20261006-68').then((response) => {
     if (!response.ok) throw new Error('gallery data unavailable')
     return response.json()
   })

@@ -282,10 +282,17 @@ function assertRecordedFishAdvice(text, locale, id) {
 
 function assertQuestCaveat(text, locale) {
   const caveat = {
-    en: [/who receives the eel after landing/i, /reward/i, /unverified/i],
-    ja: [/釣った後.{0,35}誰へ渡す/, /報酬/, /未確認|未検証/],
-    th: [/หลังตกได้.{0,40}ส่งให้ใคร/, /รางวัล/, /ยังไม่ยืนยัน|ยังไม่ได้พิสูจน์/],
+    en: [
+      /keep it.*starting village/i,
+      /story conditions are complete/i,
+      /ending scene.*automatic/i,
+    ],
+    ja: [/ウナギを残して最初の村/, /物語の条件がそろうと/, /エンディングの自動シーン/],
+    th: [/เก็บปลาไหลไว้และกลับหมู่บ้านเริ่มต้น/, /หากเงื่อนไขเนื้อเรื่องครบ/, /ฉากจบอัตโนมัติ/],
   }[locale]
   for (const [index, test] of caveat.entries())
-    assert(test.test(text), `${locale}/3B: preserve hand-in/reward uncertainty ${index + 1}`)
+    assert(
+      test.test(text),
+      `${locale}/3B: preserve conditional ending-return guidance ${index + 1}`,
+    )
 }

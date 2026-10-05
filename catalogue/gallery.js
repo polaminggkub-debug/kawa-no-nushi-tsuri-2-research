@@ -2605,6 +2605,12 @@
     if (returned) query.set("return", returned);
     return `${ctx.detailFile("shops")}?${query}`;
   }
+  function returnVillageHref(ctx) {
+    const query = new URLSearchParams({ stage: "1", section: "s1-c1-r8", action: "eel-return" });
+    const returned = localizedReturn(ctx);
+    if (returned) query.set("return", returned);
+    return `${ctx.detailFile("maps")}?${query}#map-view`;
+  }
   function eelMapHref(ctx) {
     const query = new URLSearchParams({
       stage: "6",
@@ -2677,26 +2683,32 @@
       th: {
         title: "เมื่ออ่านแล้วพบจดหมายจากหมอให้ตกปลาไหลใหญ่",
         body: "ถ้าพบข้อความนี้แล้ว ใช้แม่เหล็กในด่าน 6 ดูทิศทาง หรือเปิดจุดบนแผนที่ด้านล่าง เลือกเหยื่อและอุปกรณ์จากหน้าปลาไหลใหญ่ก่อนออกไปตก",
-        limit: "จุดนี้มาจากตารางเกม บางรอบอาจไม่มีปลา ยังไม่ได้พิสูจน์ว่าตกได้แล้วต้องส่งให้ใครหรือรับรางวัลอย่างไร",
+        afterCatch: "จับตามคำขอได้แล้ว ให้เก็บปลาไหลไว้และกลับหมู่บ้านเริ่มต้น หากเงื่อนไขเนื้อเรื่องครบ เกมจะเริ่มฉากช่วยหมอและฉากจบอัตโนมัติ",
+        returnMap: "ดูทางกลับหมู่บ้าน · ด่าน 1 (12,189)",
+        limit: "จุดตกที่กำหนดอาจไม่มีปลาในรอบนี้",
         fish: "ดูเหยื่อและอุปกรณ์ของปลาไหลใหญ่",
         map: "ดูจุดด่าน 6 · X 41, Y 8"
       },
       ja: {
         title: "医者から大ウナギを釣る依頼が届いたら",
         body: "この依頼を見たら、エリア6で磁石のオオウナギ項目を使うか、下の地図で地点を確認。釣りに行く前に魚のページで対応エサと道具を選んでください。",
-        limit: "地点はROMの出現表に基づき、生成状態によって魚がいない場合があります。釣った後の渡す相手や報酬は未検証です。",
+        afterCatch: "依頼の魚を釣ったら、ウナギを残して最初の村へ戻ってください。物語の条件がそろうと、医者の回復とエンディングの自動シーンが始まります。",
+        returnMap: "最初の村への入口 · エリア1 (12,189)",
+        limit: "設定された釣り場に魚がいない場合もあります。",
         fish: "オオウナギのエサと道具を見る",
         map: "エリア6の地点 · X 41, Y 8"
       },
       en: {
         title: "After reading the doctor’s request for a giant eel",
         body: "Once this request appears, use its Area 6 Magnet heading or open the map point below. Choose compatible bait and equipment from the fish profile before fishing.",
-        limit: "This is a configured ROM spawn point and can be inactive. Who to give the landed eel to, or what reward follows, is not yet verified.",
+        afterCatch: "After catching the requested eel, keep it and return to the starting village. When the story conditions are complete, the doctor-recovery and ending scene starts automatically.",
+        returnMap: "Starting-village entrance · Area 1 (12,189)",
+        limit: "The configured fishing point may be inactive.",
         fish: "See giant eel bait and equipment",
         map: "Area 6 point · X 41, Y 8"
       }
     }[ctx.lang];
-    return `<aside class="card-quest-next-action" data-quest-next-action="postcard-eel"><strong>${ctx.esc(text4.title)}</strong><p>${ctx.esc(text4.body)}</p><p><a class="route-button" data-quest-fish-profile href="${ctx.esc(eelProfileHref(ctx))}">${ctx.esc(text4.fish)} ↗</a></p><p><a class="route-button" data-quest-fish-map href="${ctx.esc(eelMapHref(ctx))}">${ctx.esc(text4.map)} ↗</a></p><p>${ctx.esc(text4.limit)}</p></aside>`;
+    return `<aside class="card-quest-next-action" data-quest-next-action="postcard-eel"><strong>${ctx.esc(text4.title)}</strong><p>${ctx.esc(text4.body)}</p><p><a class="route-button" data-quest-fish-profile href="${ctx.esc(eelProfileHref(ctx))}">${ctx.esc(text4.fish)} ↗</a></p><p><a class="route-button" data-quest-fish-map href="${ctx.esc(eelMapHref(ctx))}">${ctx.esc(text4.map)} ↗</a></p><p data-eel-ending-action>${ctx.esc(text4.afterCatch)}</p><p><a class="route-button" data-eel-return-map href="${ctx.esc(returnVillageHref(ctx))}">${ctx.esc(text4.returnMap)} ↗</a></p><p>${ctx.esc(text4.limit)}</p></aside>`;
   }
   function notebookCardAction(ctx, item) {
     if (!itemMatches(item, "05")) return "";
@@ -3995,6 +4007,9 @@
     }[ctx.lang];
   }
 
+  // src/entities/fish/eel-ending-route.js
+  var eelEndingEntrance = Object.freeze({ stage: 1, x: 12, y: 189 });
+
   // src/entities/fish/index.js
   function nameKey(value) {
     return String(value || "").normalize("NFKC").trim().replace(/\s+/g, " ").toLocaleLowerCase();
@@ -4318,7 +4333,7 @@
   }
   function loadCatalogue(ctx) {
     showCatalogueLoading(ctx);
-    fetch("gallery-data.json?v=notebook-starting-20261006-67").then((response) => {
+    fetch("gallery-data.json?v=eel-ending-20261006-68").then((response) => {
       if (!response.ok) throw new Error("catalogue unavailable");
       return response.json();
     }).then((data) => initializeLoadedCatalogue(ctx, data)).catch((error) => {

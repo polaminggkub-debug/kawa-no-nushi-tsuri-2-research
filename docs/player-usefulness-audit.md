@@ -763,3 +763,34 @@ The r66 notebook consolidation2576c29 passed quality and deploy37380905652.
 Actual public TH390 showed22 eligible,17 route additions,5 earlier species,
 one breakdown,folded filing explanation,66 unique rows and no overflow.
 Analytics was deferred at the owner's request; no tracking integration was enabled.
+
+## Giant-eel next action and marked village return (2026-10-06, r68)
+
+The giant-eel profile and received-postcard card/detail no longer stop at an
+unknown recipient. Original-ROM storage control flow and decoded ending dialogue
+support a conditional next action: keep the requested eel and return to the
+starting village through Area 1 tile (12,189). If the story conditions are
+complete, the game starts the doctor-recovery and ending scene automatically.
+The prior recipient uncertainty in the historical entries above is superseded
+by this bounded finding; no separate NPC hand-in transaction is invented.
+
+The return link opens the correct original-map section with a labeled entrance
+arrow, not just coordinates. Its position is checked against the independently
+verified route data. The arrow is clickable back to the source guidance; reload
+and language changes retain the requested entrance and localized return. Ordinary
+fish maps and other areas/sections do not show this quest marker. Thai 390px,
+Japanese 320px and English 1200px journeys were checked in the actual browser,
+including fish → entrance → source and fish → postcard → entrance.
+
+The duplicated new after-catch fact was removed from the general facts list;
+the action appears once in its dedicated panel, and the underlying evidence
+remains in the ROM details, route data and research document. The source-verifier
+checks 21 original-ROM instruction/message fingerprints and three message
+pointers. An independent reviewer also inspected the control flow and original
+rendered dialogue, rather than treating fingerprint success as semantic proof.
+
+This is static original-Japanese-ROM evidence, not a fresh ordinary-play quest
+completion. Full story progression, Thai-patch equivalence, exact rewards and
+scene effects on inventory/HP/money remain unproved. The full-site usefulness
+goal remains active; the separate fight-continuation audit recovered a private
+same-seed controller chain but has not yet replayed it freshly.

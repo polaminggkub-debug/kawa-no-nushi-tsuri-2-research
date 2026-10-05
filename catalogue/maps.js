@@ -738,6 +738,9 @@
     return `<a class="notebook-excluded-badge" data-notebook-excluded="${ctx.esc(id)}" href="#notebook-guide" aria-label="${ctx.esc(text2.reason)}">${ctx.esc(text2.badge)}</a>`;
   }
 
+  // src/entities/fish/eel-ending-route.js
+  var eelEndingEntrance = Object.freeze({ stage: 1, x: 12, y: 189 });
+
   // src/entities/fish/index.js
   function nameKey(value) {
     return String(value || "").normalize("NFKC").trim().replace(/\s+/g, " ").toLocaleLowerCase();
@@ -898,6 +901,7 @@
     const params = new URLSearchParams();
     const anchor = notebookFocusAnchor(ctx) || (ctx.notebookRouteStage ? `#notebook-route-${ctx.notebookRouteStage}` : ctx.openNotebookGuide ? "#notebook-guide" : location.hash === "#map-view" ? "#map-view" : "");
     params.set("stage", String(ctx.activeStage));
+    if (ctx.eelReturnRequested) params.set("action", "eel-return");
     if (ctx.returnPath) params.set("return", ctx.returnPath);
     if (ctx.activeSection) params.set("section", ctx.activeSection);
     if (ctx.selectedFish) params.set("fish", ctx.selectedFish);
@@ -1086,6 +1090,36 @@
     return `<div class="fish-choice-row ${ctx.selectedFish === id ? "selected" : ""}"><a class="fish-portrait-link" href="${ctx.esc(ctx.fishHref(id))}" aria-label="${ctx.esc(item.name)} — ${ctx.detailLabel}">${img ? `<img loading="lazy" src="${ctx.esc(img)}" alt="${ctx.esc(item.name)}">` : ""}</a><button class="fish-choice" type="button" data-fish="${id}" aria-pressed="${ctx.selectedFish === id}"><span>${ctx.esc(item.name)}<small>${ctx.esc(sub)}</small>${growthBadge}<small class="filter-action">${ctx.lang === "th" ? "เน้นบนแผนที่" : ctx.lang === "ja" ? "地図で絞り込む" : "Focus on map"}</small></span></button><a class="fish-details-link" href="${ctx.esc(ctx.fishHref(id))}">${ctx.detailLabel} ↗</a>${notebookStatus(ctx, id)}</div>`;
   }
 
+  // src/pages/maps/eel-return-marker.js
+  var copy4 = {
+    th: {
+      label: "ทางเข้าหมู่บ้าน",
+      help: "เก็บปลาไหลไว้แล้วกลับหมู่บ้านทางจุดลูกศร เมื่อเงื่อนไขเนื้อเรื่องครบ เกมจะเริ่มฉากช่วยหมอและฉากจบอัตโนมัติ กดลูกศรเพื่อกลับไปอ่านคำขอ"
+    },
+    en: {
+      label: "Starting-village entrance",
+      help: "Keep the eel and enter the village at the arrow. When the story conditions are complete, the doctor-recovery and ending scene starts automatically. Select the arrow to return to the request guidance."
+    },
+    ja: {
+      label: "最初の村への入口",
+      help: "ウナギを残して矢印の地点から村へ戻ります。物語の条件がそろうと、医者の回復とエンディングの自動シーンが始まります。矢印を選ぶと依頼の説明に戻ります。"
+    }
+  };
+  function renderEelReturnMarker(ctx, geometry) {
+    const route = eelEndingEntrance;
+    if (!ctx.eelReturnRequested || Number(ctx.activeStage) !== route.stage) return "";
+    const { x, y } = route;
+    const section = `s1-c${Math.floor(x / 24) + 1}-r${Math.floor(y / 24) + 1}`;
+    if (ctx.activeSection !== section) return "";
+    const text2 = copy4[ctx.lang] || copy4.en;
+    const px = (x * 16 + 8 - geometry.originX) * geometry.scale + geometry.gutterLeft;
+    const py = (y * 16 + 8 - geometry.originY) * geometry.scale + geometry.gutterTop;
+    const fallback = ctx.lang === "en" ? "item.html" : `item.${ctx.lang}.html`;
+    const href = ctx.returnPath || `${fallback}?category=general_tool&id=06&stage=6`;
+    ctx.$("pin-help").textContent = text2.help;
+    return `<a class="eel-return-marker" data-eel-return-marker data-x="${x}" data-y="${y}" href="${ctx.esc(href)}" style="left:${px}px;top:${py}px" aria-label="${ctx.esc(`${text2.label} · X ${x}, Y ${y}`)}"><span aria-hidden="true">↓</span><strong>${ctx.esc(text2.label)}</strong></a>`;
+  }
+
   // src/pages/maps/map-render.js
   function renderSectionSelect(ctx) {
     const data = ctx.stages[ctx.activeStage];
@@ -1188,7 +1222,7 @@
     const pins = filtered.map((pin) => ctx.mapPinMarkup(pin, originX, originY, scale, gutterLeft, gutterTop)).join("");
     ctx.$("map-view").style.width = `${viewW}px`;
     ctx.$("map-view").style.height = `${viewH}px`;
-    ctx.$("map-view").innerHTML = `<div class="map-terrain-window" role="img" aria-label="${ctx.esc(`${stageTitle} · ${ctx.c.fullMap}`)}" style="width:${terrainW}px;height:${terrainH}px;left:${gutterLeft}px;top:${gutterTop}px"><img class="map-ground" src="${ctx.esc(data.fullImage)}" alt="" style="width:${Math.round(sourceW * scale)}px;height:${Math.round(sourceH * scale)}px;left:${Math.round(-originX * scale)}px;top:${Math.round(-originY * scale)}px"></div>${pins}`;
+    ctx.$("map-view").innerHTML = `<div class="map-terrain-window" role="img" aria-label="${ctx.esc(`${stageTitle} · ${ctx.c.fullMap}`)}" style="width:${terrainW}px;height:${terrainH}px;left:${gutterLeft}px;top:${gutterTop}px"><img class="map-ground" src="${ctx.esc(data.fullImage)}" alt="" style="width:${Math.round(sourceW * scale)}px;height:${Math.round(sourceH * scale)}px;left:${Math.round(-originX * scale)}px;top:${Math.round(-originY * scale)}px"></div>${pins}${renderEelReturnMarker(ctx, geometry)}`;
     ctx.$("pin-details").hidden = true;
     ctx.renderOverview(data, section);
     ctx.renderMapNavigation();
@@ -1493,6 +1527,7 @@
     ctx.fishName = (id) => ctx.species[id]?.name || ctx.c.fishName(id);
     ctx.detailLabel = ctx.lang === "th" ? "รายละเอียด" : ctx.lang === "ja" ? "詳細" : "Details";
     ctx.returnPath = ctx.safeReturn(new URLSearchParams(location.search).get("return") || "");
+    ctx.eelReturnRequested = new URLSearchParams(location.search).get("action") === "eel-return";
   }
 
   // src/pages/maps/bind-map-targets.js
@@ -1693,7 +1728,7 @@
         if (!r.ok) throw Error("fish locations");
         return r.json();
       }),
-      fetch("gallery-data.json?v=notebook-starting-20261006-67").then((r) => {
+      fetch("gallery-data.json?v=eel-ending-20261006-68").then((r) => {
         if (!r.ok) throw Error("fish sprites");
         return r.json();
       })

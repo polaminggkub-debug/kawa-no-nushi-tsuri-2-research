@@ -39,4 +39,5 @@ export function setupContext(ctx) {
   ctx.fishName = (id) => ctx.species[id]?.name || ctx.c.fishName(id)
   ctx.detailLabel = ctx.lang === 'th' ? 'รายละเอียด' : ctx.lang === 'ja' ? '詳細' : 'Details'
   ctx.returnPath = ctx.safeReturn(new URLSearchParams(location.search).get('return') || '')
+  ctx.eelReturnRequested = new URLSearchParams(location.search).get('action') === 'eel-return'
 }

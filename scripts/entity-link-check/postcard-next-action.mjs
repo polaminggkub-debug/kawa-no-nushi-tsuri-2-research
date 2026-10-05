@@ -20,19 +20,19 @@ const copy = {
   en: {
     condition: 'Once this request appears',
     map: 'Area 6 point · X 41, Y 8',
-    limit: 'Who to give the landed eel to, or what reward follows, is not yet verified.',
+    limit: 'The configured fishing point may be inactive.',
     magnet: 'Magnet heading',
   },
   ja: {
     condition: 'この依頼を見たら',
     map: 'エリア6の地点 · X 41, Y 8',
-    limit: '釣った後の渡す相手や報酬は未検証です。',
+    limit: '設定された釣り場に魚がいない場合もあります。',
     magnet: '磁石のオオウナギ項目',
   },
   th: {
     condition: 'ถ้าพบข้อความนี้แล้ว',
     map: 'ดูจุดด่าน 6 · X 41, Y 8',
-    limit: 'ยังไม่ได้พิสูจน์ว่าตกได้แล้วต้องส่งให้ใครหรือรับรางวัลอย่างไร',
+    limit: 'จุดตกที่กำหนดอาจไม่มีปลาในรอบนี้',
     magnet: 'แม่เหล็ก',
   },
 }
@@ -129,17 +129,26 @@ function extractCatalogueAction(card, locale, stage) {
 
 function checkCatalogueCopy(action, locale) {
   const text = unescapeHtml(action)
-  const unresolved = {
-    en: ['Who to give the landed eel to', 'what reward follows', 'not yet verified'],
-    ja: ['渡す相手や報酬', '未検証'],
-    th: ['ยังไม่ได้พิสูจน์', 'ให้ใคร', 'รางวัล'],
+  const conditions = {
+    en: [
+      /keep it.*starting village/i,
+      /story conditions are complete/i,
+      /ending scene.*automatic/i,
+    ],
+    ja: [/ウナギを残して最初の村/, /物語の条件がそろうと/, /エンディングの自動シーン/],
+    th: [/เก็บปลาไหลไว้และกลับหมู่บ้านเริ่มต้น/, /หากเงื่อนไขเนื้อเรื่องครบ/, /ฉากจบอัตโนมัติ/],
   }
+
   assert(
     text.includes(copy[locale].condition),
     `${locale}: card advice must be conditional on seeing the request`,
   )
-  for (const phrase of unresolved[locale])
-    assert(text.includes(phrase), `${locale}: card must not promise a hand-in recipient or reward`)
+  for (const rule of conditions[locale])
+    assert.match(
+      text,
+      rule,
+      `${locale}: retain conditional village return without universal completion`,
+    )
   assert(text.includes(copy[locale].map))
   assert(text.includes('41') && text.includes('8'), `${locale}: show the supported eel coordinates`)
 }

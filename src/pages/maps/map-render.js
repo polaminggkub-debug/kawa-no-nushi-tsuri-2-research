@@ -1,6 +1,7 @@
 import { normalizeWaterMark } from './water-mark-filter.js'
 import { notebookStatus } from './notebook-status.js'
 import { initializeNotebookFocus } from './notebook-focus.js'
+import { renderEelReturnMarker } from './eel-return-marker.js'
 
 export function renderSectionSelect(ctx) {
   const data = ctx.stages[ctx.activeStage]
@@ -141,7 +142,7 @@ export function renderMap(ctx) {
   ctx.$('map-view').style.width = `${viewW}px`
   ctx.$('map-view').style.height = `${viewH}px`
   ctx.$('map-view').innerHTML =
-    `<div class="map-terrain-window" role="img" aria-label="${ctx.esc(`${stageTitle} · ${ctx.c.fullMap}`)}" style="width:${terrainW}px;height:${terrainH}px;left:${gutterLeft}px;top:${gutterTop}px"><img class="map-ground" src="${ctx.esc(data.fullImage)}" alt="" style="width:${Math.round(sourceW * scale)}px;height:${Math.round(sourceH * scale)}px;left:${Math.round(-originX * scale)}px;top:${Math.round(-originY * scale)}px"></div>${pins}`
+    `<div class="map-terrain-window" role="img" aria-label="${ctx.esc(`${stageTitle} · ${ctx.c.fullMap}`)}" style="width:${terrainW}px;height:${terrainH}px;left:${gutterLeft}px;top:${gutterTop}px"><img class="map-ground" src="${ctx.esc(data.fullImage)}" alt="" style="width:${Math.round(sourceW * scale)}px;height:${Math.round(sourceH * scale)}px;left:${Math.round(-originX * scale)}px;top:${Math.round(-originY * scale)}px"></div>${pins}${renderEelReturnMarker(ctx, geometry)}`
   ctx.$('pin-details').hidden = true
   ctx.renderOverview(data, section)
   ctx.renderMapNavigation()

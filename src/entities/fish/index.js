@@ -1,3 +1,5 @@
+export { eelEndingEntrance } from './eel-ending-route.js'
+
 function nameKey(value) {
   return String(value || '')
     .normalize('NFKC')

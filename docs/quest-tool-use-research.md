@@ -44,6 +44,24 @@ The practical step after seeing the notice is to use the Magnet in Area 6. The s
 
 The prerequisite bit `0x02` is set by a separate automatic return scene, not by reading postcard ID `06`. The transition handler at `00:9E43..9E5F` queues state `0x0C` when `$0C18 == 1` and the paired Area 1 route reaches map selector `7`, tile `(7,13)`; the transition table pairs it with Area 1 tile `(8,183)`. The state dispatcher `00:8010..8032` enters `00:8259 → 02:DF8C → 02:E5F5`; after the selected-profile scene, `02:E643..E649` ORs bit `0x02` into `$0C18`. No NPC or item check is part of this bit-setting tail. The earlier fishing callback can set `$0C18=1` when the selected profile matches an active fish-table row, but it does not explicitly test a landed-catch result. Static evidence therefore does not establish whether the player must start that encounter, get a bite, win the fight, or land the fish before the return scene can run.
 
+### After catching the requested giant eel: return to the starting village
+
+**Keep the eel and return through Area 1 tile `(12,189)` to the starting village. When the story prerequisites are complete, the game starts an automatic doctor-recovery and ending scene.** The paired destination is internal village map `7`, tile `(7,77)`; this is a return transition, not an independently located doctor NPC hand-in transaction.
+
+The static branch at `01:85E4..85FC` calls `01:917A`, then `01:8A7A` and `01:8DFE`. For a giant-eel row with nonzero story state and bit `08` clear, `01:917A` sets bit `08` before the same branch stores fish ID `3B` and size in the basket (`01:8AC3..8AD8`) and removes the active world fish entry. This connects the bit producer to the successful-storage path; the raw `$1EA3` threshold is not a player-facing distance instruction.
+
+At `00:9E62..9E7E`, `$0C18 == 000F`, destination map `7`, and destination Y `77` queue action state `0D`. The Area 1 transition entry at `00:9FC9` contains `(12,189)`, paired with `(7,77)` at `00:A059`. Dispatch `00:825E → 02:DF94 → 02:EC10 → 02:EC43` reaches the scene. Message `03C8` (file `0x02F00C`) describes giving medicine made from the giant eel to the doctor, who recovers and stands; `03CA` describes cheering villagers, and `03CC` (file `0x02F06F`) describes the shared eel meal and ends with `おわり`. The completion tail `02:EFAE..EFB4` ORs bit `10` into `$0C18`.
+
+[Machine-readable ending-route evidence](../data/giant-eel-ending-route.json) includes exact original-ROM fingerprints and message pointers/bytes. Reproduce it using your own supplied original ROM:
+
+```sh
+python3 scripts/verify_giant_eel_ending_route.py \
+  --rom /path/to/headerless-japanese-original.sfc \
+  --output data/giant-eel-ending-route.json
+```
+
+The verifier rejects a mismatched size, SHA-1 or SHA-256 before checking code and message bytes. This establishes original-Japanese-ROM control flow and decoded dialogue, **not a natural completion replay**. A caught eel alone does not guarantee the scene; the story gate must also be satisfied. Thai-patch equivalence, full ordinary-save progression, exact rewards, and every inventory/HP/money effect in scene helpers remain unverified. The text’s shared meal does not by itself prove that the basket eel is consumed. Preserve the [keep-eel food warning](food-practical-research.md) while completing the request.
+
 ### Empty bottle and milk
 
 - `03:C4D9` handles direct use of `0F`: it displays message `0168` (“It is an empty milk bottle”) and has no other effect.

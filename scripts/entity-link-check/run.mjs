@@ -123,3 +123,5 @@ await import('./shop-category-check-scope.mjs')
 await import('./notebook-consolidation.mjs')
 
 await import('./notebook-starting-inventory.mjs')
+
+await import('./giant-eel-return-route.mjs')
