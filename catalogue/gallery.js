@@ -2744,10 +2744,15 @@
 
   // src/pages/equipment/catalogue-results.js
   function readFilters() {
+    const category = document.getElementById("category-filter").value;
+    if (["food", "general_tool"].includes(category)) {
+      document.getElementById("fish-filter").value = "";
+      document.getElementById("fish-search").value = "";
+    }
     return {
       term: document.getElementById("search").value.trim().toLocaleLowerCase(),
       fish: document.getElementById("fish-filter").value,
-      category: document.getElementById("category-filter").value,
+      category,
       order: document.getElementById("sort-filter").value,
       style: document.getElementById("style-filter").value
     };
@@ -2813,6 +2818,9 @@
     document.getElementById("fly-part-menu").innerHTML = category === "flymaker" ? choices + guide : "";
   }
   function renderCategoryControls(ctx, category) {
+    const fishPickerHidden = ["food", "general_tool"].includes(category);
+    document.getElementById("fish-picker").hidden = fishPickerHidden;
+    if (fishPickerHidden) ctx.closeFishSuggestions?.();
     renderBaitRouteControl(ctx, category);
     document.getElementById("style-label").hidden = category !== "rod";
     renderFlyPartControl(ctx, category);

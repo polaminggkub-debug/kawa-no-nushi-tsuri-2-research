@@ -97,5 +97,6 @@ await import('./fly-price-choice.mjs')
 await import('./selected-shop-area.mjs')
 await import('./selected-rod-area.mjs')
 await import('./catalogue-map-navigation.mjs')
+await import('./fish-picker-category-scope.mjs')
 
 await import('./magnet-next-action.mjs')

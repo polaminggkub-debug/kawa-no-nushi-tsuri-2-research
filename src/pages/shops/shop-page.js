@@ -5,6 +5,7 @@ export async function init(ctx) {
   stageSelect.value = String(ctx.startStage)
   categorySelect.value = ctx.startCategory || 'all'
   search.value = ctx.searchValue
+  if (search.value.trim()) clearTargetContext(ctx)
   document
     .querySelectorAll('input[name="place"]')
     .forEach((input) => (input.checked = input.value === ctx.startPlace))
@@ -102,6 +103,7 @@ export function bindShopFilters(ctx, view, render) {
     render()
   })
   search.addEventListener('input', () => {
+    clearTargetContext(ctx)
     ctx.setQueryValue('q', search.value)
     render()
   })
@@ -121,6 +123,12 @@ export function bindShopFilters(ctx, view, render) {
     )
     render()
   })
+}
+
+function clearTargetContext(ctx) {
+  ctx.targetCategory = ''
+  ctx.targetId = ''
+  ctx.focusedEntrance = null
 }
 
 export function bindShopAnchors(ctx) {

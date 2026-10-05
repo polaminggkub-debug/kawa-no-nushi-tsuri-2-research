@@ -78,6 +78,7 @@ function itemInStock(stage, category, id) {
 }
 
 async function main() {
+  await checkSearchReplacesTarget();
   assert.equal(stock.areas.length, 6, 'six area stock sets are present');
   for(const locale of ['en','th','ja']){
     const suffix=locale==='en'?'':'.'+locale;
@@ -194,6 +195,33 @@ async function main() {
   assert.ok(area4Special.playerUse.shops.some(shop=>shop.stage===4&&shop.shop==='special_rod_shop'));
   assert.equal(itemInStock(4,'rod','0D'),true,'special rod appears in decoded area stock references');
   console.log('Shop browser checks passed: six ROM areas, verified town/shop pairing, localized search, safe returns, fly bundles, and sentinel-coordinate exclusion.');
+}
+
+async function checkSearchReplacesTarget() {
+  for (const locale of ['en','th','ja']) {
+    const suffix=locale==='en'?'':'.'+locale;
+    const origin=`item${suffix}.html?category=lure&id=2E&fish=06&stage=1&route=sinker`;
+    const query=new URLSearchParams({stage:'1',place:'town',category:'lure',id:'2E',fish:'06',route:'sinker',return:origin}).toString();
+    const page=await renderPage({locale,query,category:'lure',stage:1});
+    assert.match(page.elements['target-status'].innerHTML,/ID 2E/);
+    page.elements['item-search'].value='23';
+    page.elements['item-search'].listeners.input();
+    assert.doesNotMatch(page.elements['target-status'].innerHTML,/ID 2E/,'New search must remove the old item target');
+    assert.match(page.elements['shop-results'].innerHTML,/data-offer="lure:23"/);
+    assert.doesNotMatch(page.elements['shop-results'].innerHTML,/data-offer="lure:2E"/);
+    const current=new URL(page.location.href);
+    assert.equal(current.searchParams.get('id'),null);
+    for(const [key,value] of Object.entries({category:'lure',q:'23',stage:'1',place:'town',fish:'06',route:'sinker'}))
+      assert.equal(current.searchParams.get(key),value,`Shop search loses ${key}`);
+    assert.equal(new URL(current.searchParams.get('return'),page.location.href).href,new URL(origin,page.location.href).href,'Shop search loses its original return');
+    page.elements['item-search'].value='';
+    page.elements['item-search'].listeners.input();
+    assert.equal(new URL(page.location.href).searchParams.get('id'),null,'Clearing search must not resurrect the old target');
+    const bookmarked=await renderPage({locale,query:query+'&q=23',category:'lure',search:'23',stage:1});
+    assert.doesNotMatch(bookmarked.elements['target-status'].innerHTML,/ID 2E/,'A bookmarked search must not retain an unrelated target');
+    assert.match(bookmarked.elements['shop-results'].innerHTML,/data-offer="lure:23"/);
+    assert.equal(new URL(bookmarked.location.href).searchParams.get('id'),null);
+  }
 }
 
 main().catch(error=>{ console.error(error); process.exitCode=1; });

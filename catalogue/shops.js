@@ -830,6 +830,7 @@
     stageSelect.value = String(ctx.startStage);
     categorySelect.value = ctx.startCategory || "all";
     search.value = ctx.searchValue;
+    if (search.value.trim()) clearTargetContext(ctx);
     document.querySelectorAll('input[name="place"]').forEach((input) => input.checked = input.value === ctx.startPlace);
     ctx.updateLanguageLinks();
     const loc = await Promise.allSettled([
@@ -921,6 +922,7 @@
       render();
     });
     search.addEventListener("input", () => {
+      clearTargetContext(ctx);
       ctx.setQueryValue("q", search.value);
       render();
     });
@@ -940,6 +942,11 @@
       );
       render();
     });
+  }
+  function clearTargetContext(ctx) {
+    ctx.targetCategory = "";
+    ctx.targetId = "";
+    ctx.focusedEntrance = null;
   }
   function bindShopAnchors(ctx) {
     window.addEventListener?.("hashchange", () => {
