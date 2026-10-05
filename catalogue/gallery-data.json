@@ -42477,7 +42477,9 @@
           "type": "rom_trace",
           "sources": [
             "docs/general-tool-actions-research.md",
-            "docs/fish-location-research.md"
+            "docs/fish-location-research.md",
+            "docs/notebook-completion-research.md",
+            "data/notebook-natural-landing-evidence.json"
           ]
         },
         "shops": []
@@ -42523,30 +42525,39 @@
       "renderSha256": "575239d08961ef7f9d2aba176819b885db00ce6b5cf228f2706e344c3320ad2d",
       "playerUse": {
         "summary": {
-          "en": "Select it to read postcards and story messages addressed to the current saved character. Reading it does not grant HP or money, and the item is not consumed.",
-          "ja": "現在のセーブキャラクター宛てのはがきや物語メッセージを読む。読む処理ではHP・所持金は増えず、アイテムも消費しない。",
-          "th": "เลือกใช้เพื่ออ่านไปรษณียบัตรและข้อความเนื้อเรื่องที่ส่งถึงตัวละครเซฟปัจจุบัน การอ่านไม่เพิ่ม HP หรือเงิน และไม่ใช้ไอเท็มทิ้ง"
+          "en": "Keep the received postcard and read it as the story progresses to check requests, including the doctor’s giant-eel request. Reading keeps the item.",
+          "ja": "届いた絵はがきを残し、物語が進んだら医者のオオウナギ依頼などの用件を確認してください。読んでもアイテムは残ります。",
+          "th": "เก็บไปรษณียบัตรไว้และเปิดอ่านเมื่อเนื้อเรื่องคืบหน้า เพื่อตรวจคำขอที่เกมส่งมา เช่นคำขอปลาไหลยักษ์จากหมอ อ่านแล้วไอเท็มยังอยู่ในช่องเก็บของ"
         },
         "facts": {
           "en": [
-            "Displays mail addressed to the current saved character, including messages that change with story progress."
+            "The ROM generates story notices from this save's progress when ID 06 is read; they do not require another local saved character to send them (unlike postcard ID 07)."
           ],
           "ja": [
-            "現在のセーブキャラクター宛ての手紙と、物語の進行に応じたメッセージを表示する。"
+            "ID 06を読むと、このセーブの進行状況から物語メッセージが表示される。別のローカルセーブキャラクターから送ってもらう必要はない（はがきID 07の送信とは異なる）。"
           ],
           "th": [
-            "แสดงจดหมายที่ส่งถึงตัวละครเซฟปัจจุบัน รวมถึงข้อความที่เปลี่ยนไปตามความคืบหน้าในเนื้อเรื่อง"
+            "เมื่ออ่าน ID 06 เกมสร้างข้อความเนื้อเรื่องจากความคืบหน้าในเซฟนี้เอง ไม่ต้องมีตัวละครเซฟช่องอื่นส่งมาให้ (ต่างจากไปรษณียบัตร ID 07 ที่ต้องส่ง)"
           ]
         },
         "evidenceNotes": {
           "en": [
-            "The item handler sets action state 09. The state table routes to the read-mail handler, which searches four saved-character mail blocks using the current-character selector. The read path does not modify HP or money."
+            "The item handler sets action state 09. The state table routes to the read-mail handler, which searches four saved-character mail blocks using the current-character selector. The read path does not consume ID 06 or modify HP or money.",
+            "For message 041E, 01:DE89..DEB1 requires $0C18 bit 0x02, bit 0x04 clear, and at least 0x41 (65) nonzero two-byte records among $0DC8..$0E4A. The reader sets bit 0x04 at 01:DEB3..DEB9, then copies ROM message 041E into the display buffer beginning at 01:DECC. This check sets the Magnet-heading flag; it does not mark the eel as caught or grant an item reward.",
+            "Bit 0x02 is set separately after the automatic profile-specific return scene at 02:E643..E649. The scene is queued by the Area 1 return transition when $0C18 == 1 at 00:9E43..9E5F; the matching transition maps Area 1 tile (8,183) to map selector 7 tile (7,13). The earlier fishing callback matches a selected profile to an active fish-table row but does not test a landed-catch result, so the exact ordinary-play trigger timing remains unverified.",
+            "The Magnet's Area 6 dynamic target is separately traced in docs/magnet-story-gate-research.md: it matches fish-table row 1, giant eel ID 3B, at (41,8)."
           ],
           "ja": [
-            "アイテム処理はアクション状態09を設定する。状態テーブルは受信メール処理へ進み、現在のキャラクター選択値で4つのセーブメール領域を検索する。読取処理にHP・所持金の変更はない。"
+            "アイテム処理はアクション状態09を設定する。状態テーブルは受信メール処理へ進み、現在のキャラクター選択値で4つのセーブメール領域を検索する。読取処理でID 06は消費されず、HP・所持金も変化しない。",
+            "メッセージ041Eの条件は01:DE89..DEB1。$0C18のビット0x02が立ち、ビット0x04が未設定で、$0DC8..$0E4Aの2バイト魚種記録66枠中65枠以上が非ゼロであること。読取処理は01:DEB3..DEB9でビット0x04を設定し、01:DECCからROMメッセージ041Eを表示バッファへコピーする。この判定は磁石の方向表示を有効にするが、オオウナギを釣った記録やアイテム報酬を付与するものではない。",
+            "ビット0x02は別の処理で設定される。$0C18 == 1のとき、エリア1の帰還遷移がエリア1の(8,183)からマップ選択値7の(7,13)へ移り、キャラクター別の自動シーンを開始する（00:9E43..9E5F）。シーン後半の02:E643..E649でビット0x02を設定する。先行する釣りコールバックは選択キャラクターとアクティブな魚テーブル行を照合するが、釣り上げ結果を明示的には検査しないため、通常プレイでいつ条件が成立するかは未確認。",
+            "磁石のエリア6動的目標はdocs/magnet-story-gate-research.mdで別途追跡済み。魚テーブル1行目のオオウナギ（魚ID 3B）、座標(41,8)と一致する。"
           ],
           "th": [
-            "โค้ดใช้ไอเท็มตั้งสถานะการกระทำ 09 แล้วตารางสถานะส่งไปยังตัวอ่านจดหมาย ซึ่งค้นหาพื้นที่จดหมายของตัวละครที่เซฟไว้ 4 ช่องด้วยค่าตัวละครปัจจุบัน เส้นทางอ่านไม่มีการเปลี่ยน HP หรือเงิน"
+            "โค้ดใช้ไอเท็มตั้งสถานะการกระทำ 09 แล้วตารางสถานะส่งไปยังตัวอ่านจดหมาย ซึ่งค้นหาพื้นที่จดหมายของตัวละครที่เซฟไว้ 4 ช่องด้วยค่าตัวละครปัจจุบัน การอ่านไม่ใช้ ID 06 ทิ้งและไม่เปลี่ยน HP หรือเงิน",
+            "เงื่อนไขข้อความ 041E ที่ 01:DE89..DEB1 คือต้องมีบิต 0x02 ใน $0C18, บิต 0x04 ยังไม่ถูกตั้ง และมีช่องบันทึกปลาที่ไม่เป็นศูนย์อย่างน้อย 0x41 (65) จากช่องสองไบต์ 66 ช่องใน $0DC8..$0E4A ตัวอ่านตั้งบิต 0x04 ที่ 01:DEB3..DEB9 แล้วคัดลอกข้อความ ROM 041E ลงบัฟเฟอร์เริ่มที่ 01:DECC เงื่อนไขนี้เปิดทิศทางของแม่เหล็ก ไม่ได้บันทึกว่าตกปลาไหลยักษ์ได้แล้วหรือให้รางวัลเป็นไอเท็ม",
+            "บิต 0x02 ถูกตั้งแยกต่างหากหลังฉากกลับอัตโนมัติของตัวละครที่เลือก เมื่อ $0C18 == 1 ทางกลับในด่าน 1 จะพิกัด (8,183) ไปยังแผนที่เมืองรหัส 7 พิกัด (7,13) และเริ่มฉาก (00:9E43..9E5F); ช่วงท้ายฉากที่ 02:E643..E649 ตั้งบิต 0x02 คอลแบ็กตกปลาก่อนหน้านี้ตรวจตัวละครที่เลือกเทียบกับแถวปลาที่กำลังทำงาน แต่ไม่ได้ตรวจผลว่าตกขึ้นมาได้แล้วหรือไม่ จึงยังยืนยันไม่ได้ว่าเงื่อนไขเกิดขึ้นตอนไหนในการเล่นปกติ",
+            "เป้าหมายแบบไดนามิกของแม่เหล็กในด่าน 6 มีหลักฐานแยกใน docs/magnet-story-gate-research.md: ตรงกับปลาไหลยักษ์ ID 3B แถวที่ 1 ของตารางปลา ที่พิกัด (41,8)"
           ]
         },
         "fishIds": [],
@@ -42560,7 +42571,9 @@
           "type": "rom_trace",
           "sources": [
             "data/general-tool-code-index.json",
-            "docs/quest-tool-use-research.md"
+            "docs/quest-tool-use-research.md",
+            "docs/magnet-story-gate-research.md",
+            "data/magnet-story-gate.json"
           ]
         },
         "shops": []

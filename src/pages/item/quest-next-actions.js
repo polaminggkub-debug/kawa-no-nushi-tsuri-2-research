@@ -1,3 +1,5 @@
+import { postcardNextAction } from './postcard-next-action.js'
+
 const AKAME_ID = '37'
 const FIREWORKS_ID = '16'
 
@@ -90,7 +92,11 @@ function fireworksAction(ctx, item) {
 }
 
 export function questNextActions(ctx, item, fishLocations) {
-  return [candleAction(ctx, item, fishLocations), fireworksAction(ctx, item)]
+  return [
+    postcardNextAction(ctx, item, fishLocations),
+    candleAction(ctx, item, fishLocations),
+    fireworksAction(ctx, item),
+  ]
     .filter(Boolean)
     .join('')
 }

@@ -1390,7 +1390,7 @@
     });
   }
   function loadGallery() {
-    return fetch("gallery-data.json?v=compendium-20261005-29").then((response) => {
+    return fetch("gallery-data.json?v=compendium-20261005-32").then((response) => {
       if (!response.ok) throw new Error("gallery data unavailable");
       return response.json();
     });

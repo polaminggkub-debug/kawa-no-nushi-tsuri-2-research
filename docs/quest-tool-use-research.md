@@ -10,7 +10,7 @@ The machine-readable entries, including English/Japanese/Thai player-facing copy
 
 | ID | Item | What the traced code lets the player do |
 | --- | --- | --- |
-| `06` | Received postcard (`届いた絵はがき`) | Read mail/story messages stored for the currently selected saved character. The read route does not consume the item or change HP/money. |
+| `06` | Received postcard (`届いた絵はがき`) | Read local postcards and story notices for the selected saved character. When the doctor's notice appears, use the Area 6 Magnet to find the requested giant eel (fish ID `3B`) at `(41,8)`. Reading does not consume the item or grant a reward. |
 | `07` | Postcard (`絵はがき`) | Send mail to another saved character. Pick a recipient and confirm. If an earlier postcard is still undelivered, the game asks whether to remove it first. A completed send consumes the postcard. |
 | `0F` | Milk bottle (`牛乳ビン`) | Before opening the area-3 town chest `(6,4)`, leave one space in the general-tool inventory. Take the bottle to the cow in area 3 `(6,103)`; its event replaces the bottle with milk. Selecting the empty bottle itself only shows its description. |
 | `10` | Milk (`牛乳`) | Drink it to fill current HP to maximum; it becomes an empty bottle. Or give it to the canoe maker in area 3 `(28,39)` to receive canoe `02`. |
@@ -31,6 +31,18 @@ Coordinates are the ROM's map-tile `(X,Y)` pairs, not screen pixels. The game ha
 - `07` enters action state `10` after recipient/pending-mail confirmation. The send path at `01:E2E2` records current-character and area data. Completion at `01:E46D..E4A3` compacts the inventory and removes ID `07`, then returns action state to `01`.
 - The ROM message table entries `025A`, `025C` and `025E` respectively say there is no recipient, the previous postcard has not arrived, and ask whether to delete the previous postcard and send this one. Eligible recipients are other saved-character records at `70:0010`, `70:04E0`, `70:09B0` and `70:0E80`; the current character is excluded.
 - The send handler checks action state `02`, the mode bound at `7E:0858`, and excludes area `13`. The item record lists a 10-yen base price, but this alone does not establish that a shop sells it.
+
+### Doctor notice and Area 6 Magnet
+
+The received-postcard reader can generate a doctor notice from ROM message `041E`:
+
+> `医者の私が、病気になってしまいました。病気を治すには、大ウナギを食べなくてはなりません。釣って下さい。待っています。`
+
+The reader shows this notice when `$0C18` bit `0x02` is already set, bit `0x04` is still clear, and at least `0x41` (65) of the 66 two-byte species-record slots at `$7E:0DC8..$7E:0E4A` are nonzero. The counter advances by two bytes per slot, so this is 65 recorded species slots, not 65 repeated catches. On that same read, `01:DEB3..DEB9` sets bit `0x04`; the message copy/setup starts at `01:DECC`. The reader grants no item reward and does not establish that the eel has been caught.
+
+The practical step after seeing the notice is to use the Magnet in Area 6. The separate Magnet trace resolves its dynamic target to fish-table row 1: giant eel `オオウナギ`, fish ID `3B`, tile `(41,8)` ([Magnet gate evidence](magnet-story-gate-research.md), [machine-readable trace](../data/magnet-story-gate.json)). This is the Magnet's target location; the notice and heading alone do not prove a successful catch.
+
+The prerequisite bit `0x02` is set by a separate automatic return scene, not by reading postcard ID `06`. The transition handler at `00:9E43..9E5F` queues state `0x0C` when `$0C18 == 1` and the paired Area 1 route reaches map selector `7`, tile `(7,13)`; the transition table pairs it with Area 1 tile `(8,183)`. The state dispatcher `00:8010..8032` enters `00:8259 → 02:DF8C → 02:E5F5`; after the selected-profile scene, `02:E643..E649` ORs bit `0x02` into `$0C18`. No NPC or item check is part of this bit-setting tail. The earlier fishing callback can set `$0C18=1` when the selected profile matches an active fish-table row, but it does not explicitly test a landed-catch result. Static evidence therefore does not establish whether the player must start that encounter, get a bite, win the fight, or land the fish before the return scene can run.
 
 ### Empty bottle and milk
 
