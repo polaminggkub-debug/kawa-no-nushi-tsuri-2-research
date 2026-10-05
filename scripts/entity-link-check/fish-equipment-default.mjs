@@ -129,6 +129,9 @@ async function checkInitialAndExplicitCategory(lang) {
   assert.equal(initial.runtime.baitRoute, 'float')
   assertBaitFirst(initial.nodes.cards.innerHTML, lang, '06')
 
+  await checkMethodRoundTrip(lang, 'lure', 'lure')
+  await checkMethodRoundTrip(lang, 'fly', 'flymaker')
+
   const explicit = await renderCatalogue(
     lang,
     '?category=float_weight&fish=06&route=sinker&stage=4',
@@ -137,6 +140,36 @@ async function checkInitialAndExplicitCategory(lang) {
   )
   assert.equal(explicit.nodes['category-filter'].value, 'float_weight')
   assert.equal(explicit.url.searchParams.get('category'), 'float_weight')
+
+  const methodDoesNotOverride = await renderCatalogue(
+    lang,
+    '?category=rod&fish=06&route=lure&stage=2',
+    false,
+    true,
+  )
+  assert.equal(methodDoesNotOverride.nodes['category-filter'].value, 'rod')
+}
+
+async function checkMethodRoundTrip(lang, route, category) {
+  const mapReturn = `${mapPage(lang)}?stage=2&section=s2-c1-r6&fish=06#map-view`
+  const result = await renderCatalogue(
+    lang,
+    `?fish=06&route=${route}&stage=2&return=${encodeURIComponent(mapReturn)}`,
+    false,
+    true,
+  )
+  assert.equal(result.nodes['category-filter'].value, category)
+  assert.equal(result.url.searchParams.get('category'), category)
+  assert.equal(result.url.searchParams.get('fish'), '06')
+  assert.equal(result.url.searchParams.get('return'), mapReturn)
+  const map = new URL(result.nodes['map-browser-link'].href, result.url)
+  assert.equal(map.searchParams.get('route'), route)
+  assert.equal(map.searchParams.get('fish'), '06')
+  assert.equal(map.searchParams.get('stage'), '2')
+  const returned = new URL(map.searchParams.get('return'), map)
+  assert.equal(returned.searchParams.get('category'), category)
+  assert.equal(returned.searchParams.get('fish'), '06')
+  assert.equal(returned.searchParams.get('return'), mapReturn)
 }
 
 async function checkClearAndManualCategory(lang) {

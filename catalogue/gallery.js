@@ -3836,7 +3836,11 @@
     restoreFishAndStage(ctx, query);
     restoreTextFilters(ctx, query);
     const fish = document.getElementById("fish-filter").value;
-    if (fish && !query?.has("category")) applyFishEquipmentDefault(ctx, fish);
+    if (fish && !query?.has("category")) {
+      const methodCategory = { lure: "lure", fly: "flymaker" }[query?.get("route")];
+      if (methodCategory) document.getElementById("category-filter").value = methodCategory;
+      else applyFishEquipmentDefault(ctx, fish);
+    }
   }
   function syncFishSearchText(ctx) {
     const fish = document.getElementById("fish-filter").value;
