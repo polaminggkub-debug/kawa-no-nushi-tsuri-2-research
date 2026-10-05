@@ -7,7 +7,7 @@ import { townPasteBaitAction } from './bait-acquisition.js'
 import { notebookAction } from './notebook.js'
 import { questNextActions } from './quest-next-actions.js'
 import { targetAdviceSection } from './target-advice.js'
-import { lureKitContext } from './lure-kit-context.js'
+import { lureKitContext, kitItemComparison } from './lure-kit-context.js'
 import {
   flyWingPlayerDecision,
   flyWingPlayerLinks,
@@ -279,7 +279,8 @@ function renderDecisionSection(ctx, item, summary, facts, imageNote, data) {
     allItems,
   )
   const primary = item.areaRodDecision ? general : targetAdvice || general
-  return `<section id="what-to-do" class="decision-panel ${decision ? 'rod-decision' : ''}" ${dataAttribute}${foodAreaMarker(ctx.lang, item, ctx.selectedStage)}><h2>${ctx.esc(heading)}</h2>${primary}${foodAreaAction(ctx, item, ctx.selectedStage, ctx.currentLocalRoute())}${equalPriceChoice(ctx, item, allItems)}${supporting}${actions}${note}</section>`
+  const section = `<section id="what-to-do" class="decision-panel ${decision ? 'rod-decision' : ''}" ${dataAttribute}${foodAreaMarker(ctx.lang, item, ctx.selectedStage)}><h2>${ctx.esc(heading)}</h2>${primary}${foodAreaAction(ctx, item, ctx.selectedStage, ctx.currentLocalRoute())}${equalPriceChoice(ctx, item, allItems)}${supporting}${actions}${note}</section>`
+  return kitItemComparison(ctx, item, allItems, section)
 }
 
 function renderQuickOptions(ctx, item, allItems, fishLocations) {

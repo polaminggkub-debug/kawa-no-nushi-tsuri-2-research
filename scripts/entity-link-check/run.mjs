@@ -132,3 +132,6 @@ await import('./fly-maker-recovery.mjs')
 await import('./area-quests.mjs')
 
 await import('./shared-layout-invariants.mjs')
+
+await import('./strategy-lure-area-context.mjs')
+await import('./shop-purchase-verdicts.mjs')

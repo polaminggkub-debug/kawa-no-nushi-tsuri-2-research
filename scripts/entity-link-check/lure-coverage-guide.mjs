@@ -193,7 +193,7 @@ function checkResearchAreaRecommendations(lang) {
       ([, areas, content]) => [areas, content],
     ),
   )
-  assert.deepEqual([...rows.keys()].sort(), ['1', '2,3', '4', '5,6'])
+  assert.deepEqual([...rows.keys()].sort(), ['1', '2', '3', '4', '5', '6'])
   checkResearchMatrixRows(rows, lang)
   for (const stage of [2, 3]) assertResearchLureSale(section, lang, stage)
 }
@@ -201,7 +201,8 @@ function checkResearchAreaRecommendations(lang) {
 function checkResearchMatrixRows(rows, lang) {
   const singleRows = [
     ['1', ['2E', '23'], 55],
-    ['2,3', ['17', '24'], 55],
+    ['2', ['17', '24'], 55],
+    ['3', ['17', '24'], 55],
     ['4', ['17', '23'], 50],
   ]
   for (const [area, ids, price] of singleRows) {
@@ -209,7 +210,10 @@ function checkResearchMatrixRows(rows, lang) {
     for (const id of ids) assert(row.includes(id), `${lang}/areas${area}: lure ${id} missing`)
     assert(row.includes(priceLabel(lang, price)), `${lang}/areas${area}: pair price missing`)
   }
-  const noLocal = rows.get('5,6')
+  for (const area of ['5', '6']) checkResearchNoLocalRow(rows.get(area), lang)
+}
+
+function checkResearchNoLocalRow(noLocal, lang) {
   assert(
     noLocal.includes('17') && noLocal.includes('23'),
     `${lang}/areas5,6: fallback pair missing`,

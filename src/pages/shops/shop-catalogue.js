@@ -2,6 +2,7 @@ import { flyMakerLocation } from './fly-maker-location.js'
 import { targetActions } from './target-actions.js'
 import { area6Walk } from './area6-walk.js'
 import { shopCompatibility, shopCompatibilityBadge, shopFishContext } from './player-decision.js'
+import { shopPurchaseDecision } from './shop-purchase-decision.js'
 export function renderLocations(ctx, locations, mapManifest, stage, place, items) {
   const area = locations?.areas?.find((a) => Number(a.outdoorArea) === stage)
   const visuals = ctx.$('location-visuals')
@@ -261,7 +262,7 @@ export function offerCard(ctx, item, options = {}) {
       <a class="offer-image-link" href="${ctx.esc(ctx.itemHref(item))}"><img loading="lazy" src="${ctx.esc(image)}" alt="${ctx.esc(name)}"></a>
       <p class="small-id">${ctx.esc(ctx.catName(item.category))} · ID ${ctx.esc(item.id)}</p>
       <h4><a href="${ctx.esc(ctx.itemHref(item))}">${ctx.esc(name)}</a></h4>
-      <p class="price">${ctx.esc(price)}</p>${recovery}${shopCompatibilityBadge(ctx, item, compatibility)}${canHaveCondition ? `<p class="condition-label">${ctx.esc(ctx.text.soldConditional)}</p>` : ''}${extra}
+      <p class="price">${ctx.esc(price)}</p>${recovery}${shopCompatibilityBadge(ctx, item, compatibility)}${shopPurchaseDecision(ctx, item, options.stage, options.items || [])}${canHaveCondition ? `<p class="condition-label">${ctx.esc(ctx.text.soldConditional)}</p>` : ''}${extra}
     </article>`
 }
 
@@ -402,7 +403,7 @@ export function renderOffers(ctx, items, stock, stage, category, query) {
   const groups = []
   if (filtered.length)
     groups.push(
-      `<section class="seller-group" id="regular-stock"><h3>${ctx.esc(ctx.text.regular)}</h3><p class="seller-description">${ctx.esc(ctx.text.regularNote)}</p><div class="offer-grid">${filtered.map((item) => ctx.offerCard(item, { stage, target: target.category === item.category && target.id === item.id })).join('')}</div></section>`,
+      `<section class="seller-group" id="regular-stock"><h3>${ctx.esc(ctx.text.regular)}</h3><p class="seller-description">${ctx.esc(ctx.text.regularNote)}</p><div class="offer-grid">${filtered.map((item) => ctx.offerCard(item, { stage, items, target: target.category === item.category && target.id === item.id })).join('')}</div></section>`,
     )
   if (filteredBundles.length)
     groups.push(
@@ -410,7 +411,7 @@ export function renderOffers(ctx, items, stock, stage, category, query) {
     )
   if (filteredSpecial.length)
     groups.push(
-      `<section class="seller-group" id="special-stock"><h3>${ctx.esc(ctx.text.special)}</h3><p class="seller-description">${ctx.esc(ctx.text.specialNote)}</p><div class="offer-grid">${filteredSpecial.map((item) => ctx.offerCard(item, { stage, special: true, target: target.category === item.category && target.id === item.id })).join('')}</div></section>`,
+      `<section class="seller-group" id="special-stock"><h3>${ctx.esc(ctx.text.special)}</h3><p class="seller-description">${ctx.esc(ctx.text.specialNote)}</p><div class="offer-grid">${filteredSpecial.map((item) => ctx.offerCard(item, { stage, items, special: true, target: target.category === item.category && target.id === item.id })).join('')}</div></section>`,
     )
   if (!offers)
     groups.push(

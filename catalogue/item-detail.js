@@ -2839,20 +2839,20 @@
       return {
         title: "คุณกำลังเลือกของสำหรับชุดลัวร์หลายชนิด",
         action: `เก็บทั้งคู่ ${pair.key} เพื่อครอบคลุมเงื่อนไขลัวร์ ${pair.coverageCount} โปรไฟล์ รวม ¥${pair.totalYen} หากซื้อใหม่ ถ้ามีคู่ครบอยู่แล้ว ใช้ต่อได้ ไม่ต้องซื้อซ้ำ`,
-        scope: "คำแนะนำราคาถูกกว่าด้านล่างเลือกเพื่อปลาที่ดูอยู่ตัวเดียว การเปลี่ยนชิ้นหนึ่งไม่ได้ยืนยันว่าครอบคลุมครบทั้งชุด ไม่ได้รับประกันปลากินหรือดึงขึ้นสำเร็จ",
+        scope: "คำแนะนำราคาถูกกว่าด้านล่างเปรียบเทียบไอเท็มแต่ละชิ้น ถ้าเลือกปลาไว้จะเทียบสำหรับปลานั้น การเปลี่ยนชิ้นหนึ่งต้องตรวจความครอบคลุมของทั้งคู่ด้วย ชุดนี้ไม่ได้รับประกันปลากินหรือดึงขึ้นสำเร็จ",
         partner: "ดูอีกชิ้นในชุดและแหล่งซื้อ"
       };
     if (ctx.lang === "ja")
       return {
         title: "複数の魚に使うルアーセットを選択中",
         action: `${pair.key}の両方を持つと${pair.coverageCount}プロフィールのルアー判定をカバーできます。新規購入は合計${pair.totalYen}円。すでに一式を持っていれば買い直す必要はありません。`,
-        scope: "下の安い候補は表示中の魚だけを狙う選択です。片方を替えてもセット全体のカバーは保証されません。食いつきや取り込みの保証ではありません。",
+        scope: "下の安い候補は道具単体の比較です。魚を選択している場合は、その魚について比較します。片方を替えるときはセット全体のカバーも確認してください。食いつきや取り込みの保証ではありません。",
         partner: "もう一方の道具と販売場所を見る"
       };
     return {
       title: "Choosing an item for a multi-species lure kit",
       action: `Keep both ${pair.key} to cover ${pair.coverageCount} lure-compatible profiles, for ¥${pair.totalYen} when buying new. Keep using a complete pair you already own; you do not need to buy it again.`,
-      scope: "Cheaper choices below target only the fish you are viewing. Replacing one member does not establish full-kit coverage. Coverage does not guarantee a bite or landing.",
+      scope: "Cheaper choices below compare individual items; with a selected fish, they compare choices for that fish. Check the coverage of the complete pair before replacing a member. Coverage does not guarantee a bite or landing.",
       partner: "See the other kit member and where to buy it"
     };
   }
@@ -2869,6 +2869,15 @@
     const copy5 = kitCopy(ctx, pair);
     const link = partnerHref(ctx, partner, pair);
     return `<section class="detail-section" data-lure-kit-context="${ctx.esc(pair.key)}" data-kit-coverage="${pair.coverageCount}"><h2>${ctx.esc(copy5.title)}</h2><p><strong>${ctx.esc(copy5.action)}</strong></p><a class="entity-link" data-lure-kit-partner="${ctx.esc(partner.id)}" href="${ctx.esc(link)}"><img src="${ctx.esc(partner.image)}" alt=""><span>${ctx.esc(ctx.imageName(partner))}<small>${ctx.esc(copy5.partner)} ↗</small></span></a><p class="muted">${ctx.esc(copy5.scope)}</p></section>`;
+  }
+  function kitItemComparison(ctx, item, allItems, section) {
+    if (!requestedKit(ctx, item, allItems)) return section;
+    const comparison = {
+      th: "เปรียบเทียบไอเท็มชิ้นนี้แยกจากชุด",
+      en: "Compare this item separately from the kit",
+      ja: "セットとは別に、この道具単体を比較"
+    }[ctx.lang];
+    return `<details class="detail-section" data-kit-item-comparison><summary>${ctx.esc(comparison)}</summary>${section}</details>`;
   }
 
   // src/pages/item/render.js
@@ -3048,7 +3057,8 @@
       allItems
     );
     const primary = item.areaRodDecision ? general : targetAdvice2 || general;
-    return `<section id="what-to-do" class="decision-panel ${decision ? "rod-decision" : ""}" ${dataAttribute}${foodAreaMarker(ctx.lang, item, ctx.selectedStage)}><h2>${ctx.esc(heading)}</h2>${primary}${foodAreaAction(ctx, item, ctx.selectedStage, ctx.currentLocalRoute())}${equalPriceChoice(ctx, item, allItems)}${supporting}${actions}${note}</section>`;
+    const section = `<section id="what-to-do" class="decision-panel ${decision ? "rod-decision" : ""}" ${dataAttribute}${foodAreaMarker(ctx.lang, item, ctx.selectedStage)}><h2>${ctx.esc(heading)}</h2>${primary}${foodAreaAction(ctx, item, ctx.selectedStage, ctx.currentLocalRoute())}${equalPriceChoice(ctx, item, allItems)}${supporting}${actions}${note}</section>`;
+    return kitItemComparison(ctx, item, allItems, section);
   }
   function renderQuickOptions(ctx, item, allItems, fishLocations) {
     const options = [

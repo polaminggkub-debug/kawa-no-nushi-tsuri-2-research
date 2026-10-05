@@ -870,3 +870,41 @@ Natural full-campaign completion, character-specific catch-to-story
 sufficiency, exact ending rewards and Thai-patch equivalence remain research
 limitations. The whole-site usefulness
 goal remains active; this index does not close those questions.
+
+## r71 — Carry the buying decision into strategy links and seller cards
+
+A rendered strategy-table journey exposed lost context: choosing lure 24 from
+Areas 2–3 opened a generic item comparison that pointed to cheaper lure 23 in
+other areas. The table now has one row per area; each link carries the actual
+purchase area and the complete two-lure kit. Areas 5–6 retain the instruction
+to keep an owned kit or buy the verified pair in Area 4, and their purchase
+links explicitly use Area 4. Pair identities, costs, 38-profile compatibility
+scope and stock evidence are unchanged.
+
+A valid kit detail puts the complete-pair action and partner link first. The
+individual item comparison remains available in a labelled disclosure instead
+of competing with the kit decision. Ordinary item visits retain their existing
+visible decision. The localized explanation distinguishes an individual-item
+comparison from a selected-fish comparison, including when no fish is selected.
+
+Seller cards now reuse existing current-area rod decisions and existing hook
+and float/sinker decisions. They answer whether to buy the offered item or
+choose an alternative without requiring every detail page to be opened. Exact
+reasons and comparison limits remain folded; the rod-category guidance states
+once that this compares price, aim and a traced boundary rather than catch
+success. Rod comparison receives the full catalogue, not the filtered seller
+list, and is omitted if comparison data is unavailable.
+
+Independent guards cover six strategy rows in all three languages, canonical
+kit coverage, price and ROM stock, localized return routes, kit partner area,
+valid-kit versus ordinary decision hierarchy, and all stocked rod/hook/float
+seller verdicts against their existing decision sources. Mutation checks reject
+missing/wrong area context and incorrect fallback/return routes. These source
+checks supplement rendered browser journeys; they do not establish natural
+fishing outcomes or every page/device/language combination.
+
+The fresh breadth audit also found that the tofu item summary omits the useful
+existing direct-fireworks alternative. Its canonical producer and linked action
+need a separate correction. Price sorting remains a lower-priority improvement
+because raw price does not prioritize purchases available in the selected area.
+The full-site usefulness goal remains active.

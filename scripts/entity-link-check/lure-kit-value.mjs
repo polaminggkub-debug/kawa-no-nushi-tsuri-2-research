@@ -215,11 +215,28 @@ function checkKitContextCopy(panel, lang) {
   const copy = {
     en: [
       '38 lure-compatible profiles',
-      'target only the fish you are viewing',
-      'does not establish full-kit coverage',
+      'compare individual items',
+      'with a selected fish, they compare choices for that fish',
+      'Check the coverage of the complete pair before replacing a member',
+      'Coverage does not guarantee a bite or landing',
+      'you do not need to buy it again',
     ],
-    ja: ['38プロフィール', '表示中の魚だけ', 'セット全体のカバーは保証されません'],
-    th: ['38 โปรไฟล์', 'ปลาที่ดูอยู่ตัวเดียว', 'ไม่ได้ยืนยันว่าครอบคลุมครบทั้งชุด'],
+    ja: [
+      '38プロフィール',
+      '道具単体の比較',
+      '魚を選択している場合は、その魚について比較',
+      '片方を替えるときはセット全体のカバーも確認',
+      '食いつきや取り込みの保証ではありません',
+      '買い直す必要はありません',
+    ],
+    th: [
+      '38 โปรไฟล์',
+      'เปรียบเทียบไอเท็มแต่ละชิ้น',
+      'ถ้าเลือกปลาไว้จะเทียบสำหรับปลานั้น',
+      'การเปลี่ยนชิ้นหนึ่งต้องตรวจความครอบคลุมของทั้งคู่',
+      'ไม่ได้รับประกันปลากินหรือดึงขึ้นสำเร็จ',
+      'ไม่ต้องซื้อซ้ำ',
+    ],
   }[lang]
   for (const phrase of copy)
     assert(panel.includes(phrase), `${lang}: kit-context limitation/action missing`)

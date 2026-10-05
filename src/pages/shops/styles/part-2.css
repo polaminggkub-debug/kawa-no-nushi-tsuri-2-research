@@ -325,3 +325,25 @@ footer {
 [id^='town-arrival-'] {
   scroll-margin-top: 130px;
 }
+
+.shop-purchase-decision {
+  border-top: 1px solid var(--line);
+  margin-top: 12px;
+  padding-top: 8px;
+  line-height: 1.65;
+}
+
+.shop-purchase-decision strong {
+  color: var(--green);
+}
+
+.shop-purchase-decision details {
+  margin-top: 12px;
+  font-size: 0.94rem;
+}
+
+.shop-purchase-decision summary {
+  cursor: pointer;
+  color: var(--muted);
+  padding-block: 6px;
+}
