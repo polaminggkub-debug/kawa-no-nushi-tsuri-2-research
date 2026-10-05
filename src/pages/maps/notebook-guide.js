@@ -3,7 +3,7 @@ import { progressMarkup, bindNotebookProgress } from './notebook-progress.js'
 const copy = {
   en: {
     title: 'Fish journal · route checklist',
-    recordableLabel: (stage) => `map species with journal slots in Area ${stage}`,
+    recordableLabel: (stage) => `species available in Area ${stage} · not a required page total`,
     newCount: (count) => `New on the full route: ${count}`,
     repeatedCount: (count) => `Also occur earlier: ${count}`,
     progress: (stage, count, total) =>
@@ -23,8 +23,8 @@ const copy = {
     actionsFor: (name) => `Next actions for ${name}`,
     id: 'ID',
     countNoteTitle: 'Why the count in your game journal can differ',
-    countNote: () =>
-      'The game counts species whose largest-size record is assigned to this area. There is no fixed target for each page. Add the six game-page counts to check progress out of 66. Check both fish lists and the other game pages before pursuing a missing species.',
+    countNote: (stage, total, added, repeated) =>
+      `Available here: ${total} = ${added} first on the route + ${repeated} also found earlier. The game counts species whose largest-size record is assigned to this area. There is no fixed target for each page. Add the six game-page counts to check progress out of 66. Check both fish lists and the other game pages before pursuing a missing species.`,
     triggerLimit:
       'The ROM trace confirms the larger-size check, but does not prove which fishing outcomes trigger the journal update.',
     evidence: 'ROM evidence and method',
@@ -39,7 +39,7 @@ const copy = {
   },
   ja: {
     title: '魚図鑑 · 全66種ルートチェック',
-    recordableLabel: (stage) => `エリア${stage}に出現地点があり、図鑑に記録できる魚種`,
+    recordableLabel: (stage) => `エリア${stage}の図鑑対象種 · ページの必要数ではありません`,
     newCount: (count) => `全エリアルートで初登場: ${count}種`,
     repeatedCount: (count) => `前のエリアにも出現: ${count}種`,
     progress: (stage, count, total) =>
@@ -58,8 +58,8 @@ const copy = {
     actionsFor: (name) => `${name}の次の操作`,
     id: 'ID',
     countNoteTitle: 'ゲーム内図鑑の数と異なる理由',
-    countNote: () =>
-      'ゲーム内の数は、最大サイズの記録がこのエリアにある魚種数です。各ページに固定の目標数はありません。6ページの数を合計して全66種の進行を確認し、未記録の魚を探す前に下の両一覧と他のページを確認してください。',
+    countNote: (stage, total, added, repeated) =>
+      `このエリアの対象種: ${total} = ルート初登場${added} + 前エリアにも出現${repeated}。ゲーム内の数は、最大サイズの記録がこのエリアにある魚種数です。各ページに固定の目標数はありません。6ページの数を合計して全66種の進行を確認し、未記録の魚を探す前に下の両一覧と他のページを確認してください。`,
     triggerLimit:
       'ROMコードではサイズ比較を確認しましたが、どの釣果で図鑑更新処理が呼ばれるかは確認できていません。',
     evidence: 'ROMの根拠と調査方法',
@@ -74,7 +74,7 @@ const copy = {
   },
   th: {
     title: 'สมุดปลา · เส้นทางเก็บครบ 66 ชนิด',
-    recordableLabel: (stage) => `ชนิดที่มีจุดในแผนที่ด่าน ${stage} และมีช่องในสมุด`,
+    recordableLabel: (stage) => `ชนิดที่ลงสมุดได้และพบในด่าน ${stage} · ไม่ใช่ยอดที่หน้าสมุดต้องมี`,
     newCount: (count) => `ปลาใหม่ในเส้นทางครบทุกด่าน: ${count} ชนิด`,
     repeatedCount: (count) => `พบได้ในด่านก่อนด้วย: ${count} ชนิด`,
     progress: (stage, count, total) =>
@@ -93,8 +93,8 @@ const copy = {
     actionsFor: (name) => `เลือกทำต่อสำหรับ${name}`,
     id: 'ID',
     countNoteTitle: 'ทำไมเลขในสมุดเกมถึงไม่เท่ากับจำนวนในไกด์',
-    countNote: () =>
-      'เกมนับชนิดปลาที่สถิติขนาดใหญ่สุดอยู่ในด่านนี้ แต่ละหน้าจึงไม่มียอดเป้าหมายตายตัว บวกเลขทั้ง 6 หน้าในเกมเพื่อเช็กว่าครบ 66 หรือยัง ก่อนตามหาปลาเพิ่ม ให้เทียบชื่อจากทั้งสองรายการด้านล่างกับทุกหน้าในสมุด',
+    countNote: (stage, total, added, repeated) =>
+      `ด่านนี้มี ${total} ชนิด = ปลาใหม่ตามเส้นทาง ${added} + พบในด่านก่อนด้วย ${repeated} เกมนับชนิดปลาที่สถิติขนาดใหญ่สุดอยู่ในด่านนี้ แต่ละหน้าจึงไม่มียอดเป้าหมายตายตัว บวกเลขทั้ง 6 หน้าในเกมเพื่อเช็กว่าครบ 66 หรือยัง ก่อนตามหาปลาเพิ่ม ให้เทียบชื่อจากทั้งสองรายการด้านล่างกับทุกหน้าในสมุด`,
     triggerLimit:
       'โค้ด ROM ยืนยันว่าตรวจค่าขนาดที่มากกว่าสถิติเดิม แต่ยังระบุไม่ได้ว่าผลการตกแบบใดเรียกการอัปเดตสมุด',
     evidence: 'หลักฐาน ROM และวิธีตรวจสอบ',

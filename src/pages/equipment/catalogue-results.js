@@ -30,7 +30,13 @@ function updateCatalogueUrl(ctx, category, fish, flyPart) {
   const search = document.getElementById('search').value.trim()
   if (search) query.set('q', search)
   else query.delete('q')
+  const style = document.getElementById('style-filter').value
+  if (style) query.set('style', style)
+  else query.delete('style')
+  query.set('sort', document.getElementById('sort-filter').value || 'id')
   if (ctx.locationStage) query.set('stage', String(ctx.locationStage))
+  else query.delete('stage')
+  if (query.has('map') || ctx.locationMapIndex > 0) query.set('map', String(ctx.locationMapIndex))
   query.set('route', ctx.baitRoute)
   history.replaceState(null, '', `?${query.toString()}${location.hash || '#catalogue'}`)
 }
@@ -302,4 +308,5 @@ export function renderCards(ctx) {
   renderCategoryControls(ctx, filters.category)
   const items = sortCatalogueItems(ctx, filterCatalogueItems(ctx, filters), filters.order)
   renderResults(ctx, items, filters)
+  updatePageContext(ctx, filters)
 }

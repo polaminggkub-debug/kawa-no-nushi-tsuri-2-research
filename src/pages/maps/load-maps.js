@@ -4,7 +4,7 @@ export function loadMaps(ctx) {
       if (!r.ok) throw Error('fish locations')
       return r.json()
     }),
-    fetch('gallery-data.json?v=compendium-20261005-26').then((r) => {
+    fetch('gallery-data.json?v=compendium-20261005-27').then((r) => {
       if (!r.ok) throw Error('fish sprites')
       return r.json()
     }),

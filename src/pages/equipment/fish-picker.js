@@ -130,9 +130,6 @@ export function selectFish(ctx, id) {
   ctx.locationMapIndex = 0
   ctx.renderCards()
   if (typeof history !== 'undefined')
-    history.replaceState(
-      null,
-      '',
-      `?category=${document.getElementById('category-filter').value}${id ? '&fish=' + encodeURIComponent(id) : ''}#fish-location-panel`,
-    )
+    history.replaceState(null, '', `?${new URLSearchParams(location.search)}#fish-location-panel`)
+  ctx.refreshLanguageLinks?.()
 }

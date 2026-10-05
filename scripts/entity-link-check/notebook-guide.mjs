@@ -83,6 +83,10 @@ async function checkLocale(lang) {
 function checkCountExplanation(html, lang, stage) {
   const expected = [6, 12, 15, 22, 27, 15][stage.stage - 1]
   assert.match(html, new RegExp(`data-notebook-total="${expected}"`))
+  assert(
+    html.includes(`${expected}${lang === 'th' ? ' ชนิด' : ''} =`),
+    `${lang} lacks the total/additions/repeats explanation`,
+  )
   const note = html.indexOf('class="notebook-count-explainer"')
   assert(note > html.indexOf('class="notebook-count-summary"'))
   assert(note < html.indexOf('class="notebook-new"'))
