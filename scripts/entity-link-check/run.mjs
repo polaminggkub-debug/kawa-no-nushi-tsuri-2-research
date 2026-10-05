@@ -125,3 +125,6 @@ await import('./notebook-consolidation.mjs')
 await import('./notebook-starting-inventory.mjs')
 
 await import('./giant-eel-return-route.mjs')
+
+await import('./fight-surface-progression.mjs')
+await import('./fly-maker-recovery.mjs')

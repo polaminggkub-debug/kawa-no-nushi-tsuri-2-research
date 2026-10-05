@@ -4,21 +4,36 @@ const COPY = {
     note: (family, point) =>
       `คนนี้ประกอบ${family} เข้ามาทางเข้าลำดับที่ 2 จะเริ่มที่ X7,Y29 แล้วหาจุด X${point.x},Y${point.y} ตามรูป ตรวจช่องฟลายว่างและราคาก่อนยืนยัน ตำแหน่งมาจาก ROM ยังไม่ได้ทดลองเดินเส้นทางนี้`,
     field: 'ดูทางเข้าเมืองบนแผนที่ด่าน',
-    unavailable: 'ตัวอย่างตำแหน่งประกอบฟลายที่ยืนยันจาก ROM: กลับไปเมืองด่าน 2',
+    unavailable:
+      'ยังไม่มีตำแหน่งคนทำฟลายที่ยืนยันในด่านนี้ เลือกเมืองตามตระกูลฟลายที่ต้องการประกอบ',
+    recovery: [
+      'ด่าน 1 · เมย์ฟลาย / แคดดิส / เทอเรสเทรียล',
+      'ด่าน 2 · ดิพเทรา / สโตนฟลาย / เทอเรสเทรียล',
+    ],
   },
   en: {
     title: (stage) => `Fly maker · Area ${stage} town`,
     note: (family, point) =>
       `This maker assembles ${family}. Entrance 2 arrives at X7,Y29; find X${point.x},Y${point.y} using the picture. Check a free fly slot and the quote before confirming. The location is ROM-derived; this walk has not been replayed.`,
     field: 'Show the town entrance on the area map',
-    unavailable: 'For a recorded fly-maker location, return to Area 2 town.',
+    unavailable:
+      'No maker location is verified here. Choose a recorded town for the fly family you want to make.',
+    recovery: [
+      'Area 1 · Mayfly / Caddis / Terrestrial',
+      'Area 2 · Diptera / Stonefly / Terrestrial',
+    ],
   },
   ja: {
     title: (stage) => `毛バリ職人 · エリア${stage}の町`,
     note: (family, point) =>
       `${family}を作成する職人です。入口2からX7,Y29に到着し、画像のX${point.x},Y${point.y}を目指します。フライ欄の空きと見積額を確認してから決定してください。場所はROMに基づき、この歩行経路は再現していません。`,
     field: '屋外地図で町入口を見る',
-    unavailable: 'ROMで確認した毛バリ職人の場所：エリア2の町へ戻る。',
+    unavailable:
+      'このエリアの職人の場所は未確認です。作りたい系統に対応する確認済みの町を選んでください。',
+    recovery: [
+      'エリア1 · メイフライ / カディス / テレストリアル',
+      'エリア2 · ディプテラ / ストーンフライ / テレストリアル',
+    ],
   },
 }
 
@@ -38,14 +53,22 @@ function familyName(lang, stage) {
   return names[lang] || names.en
 }
 
+function makerRecovery(ctx, text) {
+  const links = [1, 2].map((stage, index) => {
+    const href =
+      ctx.shopsUrl({ stage, place: 'town', entrance: '1', maker: '1' }).split('#')[0] +
+      '#fly-maker-location'
+    return `<a class="route-button" data-maker-recovery-stage="${stage}" href="${ctx.esc(href)}">${ctx.esc(text.recovery[index])} ↗</a>`
+  })
+  return `<aside id="fly-maker-location" data-maker-recovery><p>${ctx.esc(text.unavailable)}</p>${links.join(' ')}</aside>`
+}
+
 export function flyMakerLocation(ctx, view) {
   if (!ctx.flyMakerIntent && location.hash !== '#fly-maker-location') return ''
   const text = COPY[ctx.lang] || COPY.en
   const node = view.interactions.find((entry) => entry.handler === '03:9517')
   if (![1, 2, 3].includes(view.stage) || !node) {
-    const href =
-      ctx.shopsUrl({ stage: 2, place: 'town', entrance: '1' }).split('#')[0] + '#fly-maker-location'
-    return `<aside id="fly-maker-location"><a class="route-button" href="${ctx.esc(href)}">${ctx.esc(text.unavailable)}</a></aside>`
+    return makerRecovery(ctx, text)
   }
   const href =
     ctx.shopsUrl({ stage: view.stage, place: 'area', entrance: '1' }).split('#')[0] +

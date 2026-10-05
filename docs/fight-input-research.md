@@ -38,6 +38,35 @@ The A60/neutral20 branch then continued with A30 and neutral5 plus additional re
 - [Actual escape-message capture](../research/assets/fight-hold-escape.png), SHA-256 `9b82e413631ad0562e9392c01a3c68581377086119da438b6747b1ec90310839`.
 - [Actual 23 cm result after the continuation](../research/assets/fight-release-catch.png), SHA-256 `8ac39b47e00686b747a9954a216118f0495188065f947c6d99c143d23c1db1b1`.
 
+## Same-seed replay and surface-message progression
+
+The retained encounter was replayed afresh using controller inputs only, with no RAM injection. This reproduces the same natural seed; it is **not a second naturally encountered fish**. The structured [surface progression evidence](../data/fight-surface-progression.json) records actual button events, durations, state fingerprints and notebook fields without distributing ROM, state, WRAM or core files. The ROM alone cannot reproduce this encounter without the private seed.
+
+| Chained phase | Requested frames | Actual frames including neutral save | State SHA-256 |
+| --- | ---: | ---: | --- |
+| Press/release comparison continuation | 320 | 321 | `5842b4a324ebecb9cbab44e1d15df8c451ae78346ae1707f3149ded44910dbe7` |
+| Additional A30 / neutral5 | 35 | 36 | `4c964b7cdd810c1bdcf98083ac66178fe2ba1e19ad1b108248de8040b31ef910` |
+| Surface actions | 44 | 45 | `9be12c769f933c80ab8eafad31364913002e2f97c3c0d176184456e3cea351d2` |
+| Surface text completion | 121 | 122 | `42bccf24c59d19eef94f613c744227e533bb777ed62d1125830129395bf9b962` |
+
+Each fresh phase matched its previously indexed phase state byte for byte. A flattened replay explicitly retained three neutral boundary-save frames; its final save added the fourth. Its **524 actual frames** produced a byte-identical final state to the chained endpoint. Both ended with Yamame notebook callback counter `$0E50=1`, best size `$0DCC=23`, and area `$0C40=1`. The callback counter is a raw field, not a count of unique fish species. These timing numbers describe evidence, not a recommended button combo.
+
+Four surface variants then started from the same additional-A30/neutral5 state and ran **167 actual frames each**. Only the selected button was retained; every other interval became neutral. Event frames below are 1-based from this surface seed, not from the initial fight seed. Every listed press lasts one frame.
+
+| Variant | Retained button events | Visible endpoint | Callback counter / best size / area |
+| --- | --- | --- | --- |
+| Neutral only | None | Caught-Yamame name message, awaiting progression | `0 / 0 / 0` |
+| A only | A at frames 12, 34, 106 | 23 cm size result | `1 / 23 / 1` |
+| Up only | Up at frames 1, 34 | Caught-Yamame name message, awaiting progression | `0 / 0 / 0` |
+| B only | B at frame 23 | Caught-Yamame name message, awaiting progression | `0 / 0 / 0` |
+
+**Player action:** once the caught-name message appears, press A to advance to the size result, then open General Tools → Notebook `05` to check the record. The A-only variant worked without Up or B in this bounded setup. Neutral already displayed that the fish was caught: A is supported as message/result progression here, **not the cause of catching**. This experiment does not establish that all three A taps are necessary, that a single earlier tap works, that B causes escape, or that another variant could never advance with more time.
+
+- [Fresh caught-name screen, neutral endpoint](../research/assets/fight-caught-name.png), SHA-256 `6d0b16fbcf245101071b8c86f1dc1aa83c2c0e4551aa25ebc3ab112b14d06db5`.
+- [Fresh A-only 23 cm result](../research/assets/fight-a-surface-result.png), SHA-256 `8ac39b47e00686b747a9954a216118f0495188065f947c6d99c143d23c1db1b1` (identical pixels to the previously captured size result).
+
+An initial ablation helper reused mutable steps and produced mislabeled neutral inputs. It was corrected to deep-copy each variant, and all four intended variants were rerun; the earlier mislabeled outputs are excluded. Visual review also corrected the initial B-only description: its endpoint does have the caught-name textbox. The distinct B state hash does not override what that screenshot shows.
+
 ## Original-ROM input trace
 
 At `00:DDE7..DDF4`, the game stores held buttons in `$1348` and newly pressed edges in `$134A`. The callback wait at `01:9205` accepts a new A/B/Up edge (`$8880`); this gate alone does not name the subsequent action.

@@ -794,3 +794,35 @@ completion. Full story progression, Thai-patch equivalence, exact rewards and
 scene effects on inventory/HP/money remain unproved. The full-site usefulness
 goal remains active; the separate fight-continuation audit recovered a private
 same-seed controller chain but has not yet replayed it freshly.
+
+## r69 — Continue caught-fish results and choose the right fly maker
+
+The Area 1 Yamame fight panel now separates an experimental press/release
+suggestion from the action after the caught-name message: press A to advance
+to the size result, then check notebook item 05. Setup, timing, captures and
+limitations remain folded as evidence. Three distinct figures are displayed;
+the fresh A result capture remains linked rather than repeating an identical
+23 cm image. All three languages preserve the same scope.
+
+A fresh 524-frame controller replay reproduced the prior private seed chain
+byte for byte. Four 167-frame continuations from the same state distinguish
+message progression from landing: neutral, Up-only and B-only still displayed
+the caught-name message without the recorded notebook update; the A-only
+continuation reached the 23 cm result and update. An initial private statement
+that B removed the message was corrected after inspecting the capture. This
+supports the bounded result-screen action, not a universal fishing rhythm or
+proof that A caused the catch. Private states, core and ROM remain unpublished.
+
+An area without a verified fly maker now offers two explicit destinations:
+Area 1 for Mayfly/Caddis/Terrestrial, Area 2 for Diptera/Stonefly/Terrestrial.
+The previous unconditional Area 2 fallback could send a player to a maker
+without the desired family. Both choices preserve fish, rig, selected fly and
+nested return. Actual Thai mobile and English desktop clicks checked Areas 5
+and 6; Japanese labels were also inspected. Independent guards cover all three
+languages and unavailable Areas 4–6.
+
+The breadth audit inventories all 315 records and page section types. It does
+not establish acceptance of every rendered card, every species or every device
+and language combination. A remaining practical gap is area-first discovery
+of ROM-backed quests and exchanges when the player does not know an item name.
+The full-site usefulness goal remains active.

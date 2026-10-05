@@ -1,0 +1,285 @@
+{
+  "schemaVersion": 1,
+  "evidenceType": "same-seed-controller-replay",
+  "source": "docs/fight-input-research.md",
+  "romSha1": "c2103dd94e2a1a65a495fc02adc2e7d040f31212",
+  "coreSha256": "8ed333ac04544cc6ab67ceb445d095f7600bb17586d4887d99117fbd1ef776f6",
+  "seedSha256": "bb78d1a31ff4e72f5a87d8e59fdd623e17a18a4a11afd7b8025341e10aca1366",
+  "setup": {
+    "fishId": "03",
+    "area": 1,
+    "mode": 0,
+    "rodId": "02",
+    "floatId": "04",
+    "hookId": "06",
+    "hp": 100,
+    "preCastBaitId": "07",
+    "fightSeedActiveBaitId": "00"
+  },
+  "frameAccounting": "Every runner save adds one neutral frame. Event frames are 1-based; unlisted frames are neutral. Flattening explicitly preserves the first three phase-boundary save frames.",
+  "ramWrites": false,
+  "chain": [
+    {
+      "phase": "reel-pause-60x4",
+      "requestedFrames": 320,
+      "actualElapsedFrames": 321,
+      "buttonEvents": [
+        {
+          "startFrame": 1,
+          "heldFrames": 60,
+          "buttons": [
+            "A"
+          ]
+        },
+        {
+          "startFrame": 81,
+          "heldFrames": 60,
+          "buttons": [
+            "A"
+          ]
+        },
+        {
+          "startFrame": 161,
+          "heldFrames": 60,
+          "buttons": [
+            "A"
+          ]
+        },
+        {
+          "startFrame": 241,
+          "heldFrames": 60,
+          "buttons": [
+            "A"
+          ]
+        }
+      ],
+      "stateSha256": "5842b4a324ebecb9cbab44e1d15df8c451ae78346ae1707f3149ded44910dbe7",
+      "rawNotebook": {
+        "callbackCounter": 0,
+        "bestSizeCm": 0,
+        "area": 0
+      },
+      "byteIdenticalToPriorIndexedPhase": true
+    },
+    {
+      "phase": "reel-pause-continue",
+      "requestedFrames": 35,
+      "actualElapsedFrames": 36,
+      "buttonEvents": [
+        {
+          "startFrame": 1,
+          "heldFrames": 30,
+          "buttons": [
+            "A"
+          ]
+        }
+      ],
+      "stateSha256": "4c964b7cdd810c1bdcf98083ac66178fe2ba1e19ad1b108248de8040b31ef910",
+      "rawNotebook": {
+        "callbackCounter": 0,
+        "bestSizeCm": 0,
+        "area": 0
+      },
+      "byteIdenticalToPriorIndexedPhase": true
+    },
+    {
+      "phase": "surface-actions",
+      "requestedFrames": 44,
+      "actualElapsedFrames": 45,
+      "buttonEvents": [
+        {
+          "startFrame": 1,
+          "heldFrames": 1,
+          "buttons": [
+            "Up"
+          ]
+        },
+        {
+          "startFrame": 12,
+          "heldFrames": 1,
+          "buttons": [
+            "A"
+          ]
+        },
+        {
+          "startFrame": 23,
+          "heldFrames": 1,
+          "buttons": [
+            "B"
+          ]
+        },
+        {
+          "startFrame": 34,
+          "heldFrames": 1,
+          "buttons": [
+            "Up",
+            "A"
+          ]
+        }
+      ],
+      "stateSha256": "9be12c769f933c80ab8eafad31364913002e2f97c3c0d176184456e3cea351d2",
+      "rawNotebook": {
+        "callbackCounter": 0,
+        "bestSizeCm": 0,
+        "area": 0
+      },
+      "byteIdenticalToPriorIndexedPhase": true
+    },
+    {
+      "phase": "surface-text-complete",
+      "requestedFrames": 121,
+      "actualElapsedFrames": 122,
+      "buttonEvents": [
+        {
+          "startFrame": 61,
+          "heldFrames": 1,
+          "buttons": [
+            "A"
+          ]
+        }
+      ],
+      "stateSha256": "42bccf24c59d19eef94f613c744227e533bb777ed62d1125830129395bf9b962",
+      "rawNotebook": {
+        "callbackCounter": 1,
+        "bestSizeCm": 23,
+        "area": 1
+      },
+      "byteIdenticalToPriorIndexedPhase": true
+    }
+  ],
+  "flattened": {
+    "requestedFrames": 523,
+    "actualElapsedFrames": 524,
+    "explicitNeutralBoundaryFrames": 3,
+    "runnerNeutralSaveFrames": 1,
+    "stateSha256": "42bccf24c59d19eef94f613c744227e533bb777ed62d1125830129395bf9b962",
+    "byteIdenticalToChainedEndpoint": true,
+    "rawNotebook": {
+      "callbackCounter": 1,
+      "bestSizeCm": 23,
+      "area": 1
+    }
+  },
+  "surfaceSeedSha256": "4c964b7cdd810c1bdcf98083ac66178fe2ba1e19ad1b108248de8040b31ef910",
+  "surfaceVariants": [
+    {
+      "variant": "neutral-only",
+      "requestedFrames": 166,
+      "actualElapsedFrames": 167,
+      "buttonEvents": [],
+      "stateSha256": "34f6b14c096a960da76a9aa61bacfb902552725b6f554734c4242bf4dda4b585",
+      "rawNotebook": {
+        "callbackCounter": 0,
+        "bestSizeCm": 0,
+        "area": 0
+      },
+      "visibleEndpoint": "caught-name-awaiting-progression",
+      "captureSha256": "6d0b16fbcf245101071b8c86f1dc1aa83c2c0e4551aa25ebc3ab112b14d06db5"
+    },
+    {
+      "variant": "a-only",
+      "requestedFrames": 166,
+      "actualElapsedFrames": 167,
+      "buttonEvents": [
+        {
+          "startFrame": 12,
+          "heldFrames": 1,
+          "buttons": [
+            "A"
+          ]
+        },
+        {
+          "startFrame": 34,
+          "heldFrames": 1,
+          "buttons": [
+            "A"
+          ]
+        },
+        {
+          "startFrame": 106,
+          "heldFrames": 1,
+          "buttons": [
+            "A"
+          ]
+        }
+      ],
+      "stateSha256": "a65f975c158b02611dba23358760dfcabe447edd64188149d8c3a47e9744e9a7",
+      "rawNotebook": {
+        "callbackCounter": 1,
+        "bestSizeCm": 23,
+        "area": 1
+      },
+      "visibleEndpoint": "size-result-23cm",
+      "captureSha256": "8ac39b47e00686b747a9954a216118f0495188065f947c6d99c143d23c1db1b1"
+    },
+    {
+      "variant": "up-only",
+      "requestedFrames": 166,
+      "actualElapsedFrames": 167,
+      "buttonEvents": [
+        {
+          "startFrame": 1,
+          "heldFrames": 1,
+          "buttons": [
+            "Up"
+          ]
+        },
+        {
+          "startFrame": 34,
+          "heldFrames": 1,
+          "buttons": [
+            "Up"
+          ]
+        }
+      ],
+      "stateSha256": "34f6b14c096a960da76a9aa61bacfb902552725b6f554734c4242bf4dda4b585",
+      "rawNotebook": {
+        "callbackCounter": 0,
+        "bestSizeCm": 0,
+        "area": 0
+      },
+      "visibleEndpoint": "caught-name-awaiting-progression",
+      "captureSha256": "6d0b16fbcf245101071b8c86f1dc1aa83c2c0e4551aa25ebc3ab112b14d06db5"
+    },
+    {
+      "variant": "b-only",
+      "requestedFrames": 166,
+      "actualElapsedFrames": 167,
+      "buttonEvents": [
+        {
+          "startFrame": 23,
+          "heldFrames": 1,
+          "buttons": [
+            "B"
+          ]
+        }
+      ],
+      "stateSha256": "fe6003492218007176e1bd085f9c866b17b9977fb7da467f0a874241fed8e2fd",
+      "rawNotebook": {
+        "callbackCounter": 0,
+        "bestSizeCm": 0,
+        "area": 0
+      },
+      "visibleEndpoint": "caught-name-awaiting-progression",
+      "captureSha256": "355ce9b94f34e78d277da2874abefce00a1d63b452dcd725a2250d54aed54274"
+    }
+  ],
+  "captures": [
+    {
+      "path": "research/assets/fight-caught-name.png",
+      "sha256": "6d0b16fbcf245101071b8c86f1dc1aa83c2c0e4551aa25ebc3ab112b14d06db5"
+    },
+    {
+      "path": "research/assets/fight-a-surface-result.png",
+      "sha256": "8ac39b47e00686b747a9954a216118f0495188065f947c6d99c143d23c1db1b1"
+    }
+  ],
+  "limits": [
+    "One retained natural encounter; this is a fresh replay, not a new natural encounter.",
+    "A-only advanced the caught-name message to the size result; neutral already showed caught-name, so A is not established as the cause of catching.",
+    "All three A taps being necessary, or one earlier tap sufficing, is unproven.",
+    "Other variants had no notebook record at 167 frames; later progression is not excluded and no escape is inferred.",
+    "No universal rhythm, other-species benefit, gear advantage, Thai-ROM equivalence or increased catch probability is established."
+  ],
+  "methodologyCorrection": "A shared mutable-step bug in the initial ablation helper was corrected with deep copies; all four intended variants were rerun. Earlier mislabeled neutral outputs are excluded. B-only endpoint was visually checked and shows caught-name text, correcting the initial report label."
+}

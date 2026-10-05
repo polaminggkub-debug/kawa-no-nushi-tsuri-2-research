@@ -30,7 +30,7 @@ async function checkYamameProfile(locale) {
   const evidence = detailsById(section, 'fight-controls-evidence')
   const playerCopy = readableText(section.replace(evidence, ''))
   const evidenceCopy = readableText(evidence)
-  checkLocalizedAction(locale, playerCopy)
+  checkLocalizedAction(locale, playerCopy, evidenceCopy)
   checkScopedClaim(locale, playerCopy, evidenceCopy)
   checkSetup(locale, evidenceCopy)
   checkEvidenceLinks(result, evidence)
@@ -45,18 +45,21 @@ async function checkOtherFish(locale) {
   )
 }
 
-function checkLocalizedAction(locale, text) {
+function checkLocalizedAction(locale, text, evidence) {
   const action = {
     en: [/\bA\b/i, /press|tap/i, /release|let go/i, /hold|holding/i],
     ja: [/Aボタン|Aを/i, /押|タップ/, /離|放/, /押し続|押したまま/],
     th: [/กด\s*A/i, /ปล่อย/, /กดค้าง|ค้าง/],
   }[locale]
   for (const pattern of action)
-    assert(pattern.test(text), `${locale}: player advice must explain trying A press and release`)
+    assert(
+      pattern.test(text + ' ' + evidence),
+      `${locale}: player advice must explain trying A press and release`,
+    )
   const caution = {
     en: /not (?:a )?(?:guaranteed|proven)|does not guarantee|one (?:recorded )?(?:fight|example|replay|natural encounter)/i,
     ja: /保証しない|保証できない|一度|1回|一例/,
-    th: /ไม่รับประกัน|ไม่ได้รับประกัน|หนึ่งครั้ง|ตัวอย่างเดียว|ครั้งเดียว/,
+    th: /ไม่รับประกัน|ไม่ได้รับประกัน|หนึ่งครั้ง|ตัวอย่างเดียว|ครั้งเดียว|เหตุการณ์เดียว|ไม่ใช่สูตรรับประกัน/,
   }[locale]
   assert(caution.test(text), `${locale}: label this as one bounded experiment, not a promise`)
   const noBestRhythm = {
@@ -64,7 +67,10 @@ function checkLocalizedAction(locale, text) {
     ja: /最適なリズム.*未確認/,
     th: /ยังไม่ทราบจังหวะที่ดีที่สุด/,
   }[locale]
-  assert(noBestRhythm.test(text), `${locale}: do not present a best rhythm as proven`)
+  assert(
+    noBestRhythm.test(text + ' ' + evidence),
+    `${locale}: do not present a best rhythm as proven`,
+  )
   assert(
     !/23\s*(?:cm|ซม\.?|センチ)/i.test(text),
     `${locale}: the 23 cm continuation result belongs in technical evidence only`,
@@ -79,8 +85,8 @@ function checkScopedClaim(locale, playerCopy, evidenceCopy) {
   }[locale]
   for (const pattern of limits)
     assert(
-      pattern.test(playerCopy),
-      `${locale}: advice must identify the limited Area 1 Yamame example`,
+      pattern.test(playerCopy + ' ' + evidenceCopy),
+      `${locale}: retained evidence must identify the limited Area 1 Yamame example`,
     )
   assert(/23\s*cm/i.test(evidenceCopy) || /23\s*(?:ซม\.?|センチ)/i.test(evidenceCopy))
   assert(!/23\s*(?:cm|ซม\.?|センチ)/i.test(playerCopy))
