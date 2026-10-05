@@ -8,7 +8,7 @@ At the Area 1 fly maker, choose **Caddis (`カディス`)** or **Terrestrial (`�
 - Terrestrial has **16 selectable bodies**. Confirming the body goes directly to the quote: there is no wing or tail choice in this tested menu. Check the displayed price before paying.
 - Two apparent empty Caddis body positions are not extra items: row 3/column 4 clamps to row 3/column 3 (`3F`), and row 4/column 4 clamps to row 4/column 3 (`40`).
 
-This adds 48 real component positions plus two distinct None choices to the existing [40 Mayfly component positions](fly-maker-body-tail-palette-research.md). The positions of Diptera and Stonefly components have not been verified here. No unverified position is assigned to those entries.
+This adds 48 real component positions plus two distinct None choices to the existing [40 Mayfly component positions](fly-maker-body-tail-palette-research.md). Diptera and Stonefly positions are now verified separately in [the even-family menu survey](fly-maker-even-families-menu-research.md), with its controlled-fixture limitation. No unverified position is assigned to other entries.
 
 ## Controller replay and identity
 

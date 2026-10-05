@@ -1,5 +1,6 @@
 export function decisionCard(ctx, d) {
-  return `<article class="decision-card"><h3>${ctx.esc(ctx.local(d.title))}</h3><p class="decision-action">${ctx.esc(ctx.local(d.recommendation))}</p>${d.reason ? `<p>${ctx.esc(ctx.local(d.reason))}</p>` : ''}<div class="decision-items">${(d.items || []).map(ctx.decisionLink).join('')}</div>${d.scope ? `<small>${ctx.esc(ctx.local(d.scope))}</small>` : ''}</article>`
+  const marker = d.id === 'lure_coverage_pair' ? ' data-lure-coverage-pair' : ''
+  return `<article class="decision-card"${marker}><h3>${ctx.esc(ctx.local(d.title))}</h3><p class="decision-action">${ctx.esc(ctx.local(d.recommendation))}</p>${d.reason ? `<p>${ctx.esc(ctx.local(d.reason))}</p>` : ''}<div class="decision-items">${(d.items || []).map(ctx.decisionLink).join('')}</div>${d.scope ? `<small>${ctx.esc(ctx.local(d.scope))}</small>` : ''}</article>`
 }
 
 function renderPlayerDecisionOverview(ctx) {
@@ -36,10 +37,12 @@ function selectCategoryDecisions(ctx, category) {
     fly_rod_path: '8',
   }
   const selectedFish = document.getElementById('fish-filter').value
+  const showLureCoverage = category === 'lure' && !selectedFish
   const categoryChoices = ctx.decisions.filter(
     (d) =>
       !selectedFish &&
       d.category === category &&
+      !(showLureCoverage && d.id === 'lure_coverage_pair') &&
       (category !== 'rod' || !style || decisionStyles[d.id] === style) &&
       !(category === 'flymaker' && selectedFish),
   )
@@ -51,6 +54,10 @@ function renderCategoryDecisionDisclosure(ctx, category, categoryChoices) {
   const previous = box.querySelector?.('#category-recommendations-disclosure')
   const keepOpen = Boolean(previous?.open)
   const flyAdvice = ctx.flyDecision(category)
+  const showLureCoverage = category === 'lure' && !document.getElementById('fish-filter').value
+  const lureCoverage = showLureCoverage
+    ? ctx.decisions.find((decision) => decision.id === 'lure_coverage_pair')
+    : null
   const priceAdvice =
     category === 'float_weight'
       ? ctx.floatPriceGuide()
@@ -64,9 +71,12 @@ function renderCategoryDecisionDisclosure(ctx, category, categoryChoices) {
   ].filter(Boolean)
   const body = sections.join('')
   const count = sections.length
-  box.innerHTML = body
-    ? `<details id="category-recommendations-disclosure" class="overview-disclosure category-recommendations"><summary>${ctx.esc(ctx.cardUi.categoryAdvice(count))}</summary><div class="category-recommendations-content">${body}</div></details>`
-    : ''
+  const visibleLureCard = lureCoverage ? ctx.decisionCard(lureCoverage) : ''
+  box.innerHTML =
+    visibleLureCard +
+    (body
+      ? `<details id="category-recommendations-disclosure" class="overview-disclosure category-recommendations"><summary>${ctx.esc(ctx.cardUi.categoryAdvice(count))}</summary><div class="category-recommendations-content">${body}</div></details>`
+      : '')
   const disclosure = box.querySelector?.('#category-recommendations-disclosure')
   if (
     disclosure &&

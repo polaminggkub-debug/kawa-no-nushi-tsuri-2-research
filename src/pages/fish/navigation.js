@@ -123,7 +123,7 @@ export function fishMapLink(ctx, stage, section = '') {
   const query = new URLSearchParams({ fish: ctx.id })
   if (stage) query.set('stage', String(stage))
   if (/^s[1-6]-c\d+-r\d+$/.test(section)) query.set('section', section)
-  query.set('return', ctx.currentFishPath(stage))
+  query.set('return', `${ctx.currentFishPath(stage)}#fish-area-map`)
   return `${ctx.mapPath()}?${query.toString()}`
 }
 
@@ -140,6 +140,7 @@ export function setNavigation(ctx, stage) {
     const query = new URLSearchParams()
     if (ctx.id) query.set('id', ctx.id)
     if (stage) query.set('stage', stage)
+    if (ctx.requestedMethod) query.set('route', ctx.requestedMethod)
     const localizedReturn = ctx.localizeReturn(ctx.localReturn, lang)
     if (localizedReturn) query.set('return', localizedReturn)
     link.href = `${href}${query.size ? `?${query.toString()}` : ''}${location.hash || ''}`

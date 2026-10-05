@@ -80,7 +80,10 @@ function makeNode(id) {
     hidden: false,
     open: false,
     classList: { add() {}, remove() {}, toggle() {}, contains: () => false },
-    addEventListener() {},
+    listeners: {},
+    addEventListener(name, callback) {
+      this.listeners[name] = callback
+    },
     removeEventListener() {},
     appendChild() {},
     replaceChildren() {},
@@ -139,11 +142,17 @@ function createDocument(lang, initialValues = {}) {
   return { document, nodes, node, languages }
 }
 
-function vmContext(document, location, loading) {
-  return {
+function vmContext(document, location, loading, captureHistory = false) {
+  const history = {
+    replaceState(_state, _title, href) {
+      if (captureHistory) location.href = new URL(href, location).href
+    },
+  }
+  const context = {
     document,
     location,
-    window: { location, addEventListener() {}, history: { replaceState() {} } },
+    window: { location, addEventListener() {}, history },
+    ...(captureHistory ? { history } : {}),
     URL,
     URLSearchParams,
     console,
@@ -160,6 +169,7 @@ function vmContext(document, location, loading) {
               json: async () => (file.includes('fish-locations') ? locations : data),
             }),
   }
+  return context
 }
 
 export async function render(
@@ -231,11 +241,11 @@ export async function galleryForage(lang) {
   }
 }
 
-export async function renderCatalogue(lang, search = '', loading = false) {
+export async function renderCatalogue(lang, search = '', loading = false, captureHistory = false) {
   const suffix = lang === 'en' ? '' : `.${lang}`
   const location = new URL(`https://example.test/catalogue/index${suffix}.html${search}`)
   const { document, nodes } = createDocument(lang, { 'sort-filter': 'id' })
-  const context = vmContext(document, location, loading)
+  const context = vmContext(document, location, loading, captureHistory)
   vm.runInNewContext(sourceBundle('gallery'), context)
   await new Promise((resolve) => setImmediate(resolve))
   assert(context.__testRuntimeContext, 'Catalogue bundle lacks page runtime')

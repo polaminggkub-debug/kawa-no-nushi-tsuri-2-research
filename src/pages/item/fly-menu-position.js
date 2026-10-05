@@ -48,7 +48,12 @@ const mayfly = {
 
 const otherFamilies = {
   en: {
-    family: { カディス: 'Caddis', テレストリアル: 'Terrestrial' },
+    family: {
+      カディス: 'Caddis',
+      テレストリアル: 'Terrestrial',
+      ディプテラ: 'Diptera',
+      ストーンフライ: 'Stonefly',
+    },
     scope: (area, family, familyJa) =>
       `Area ${area} · choose ${family} (${familyJa}) at the fly maker`,
     none: (part, instructions) =>
@@ -57,18 +62,35 @@ const otherFamilies = {
       'After selecting this Terrestrial body, the game skips wing and tail selection and opens the quote.',
     limit: (area, family) =>
       `Verified only in this Area ${area} ${family} menu. Position identifies the component; it does not establish a bite or landing advantage. Check the final quote before paying.`,
+    controlledScope: (family, familyJa) =>
+      `When the maker offers ${family} (${familyJa}), choose that family first.`,
+    controlledLimit:
+      'These positions were independently replayed in a controlled even-area menu fixture. This verifies the palette, not the walking route or natural shop access. No bite or landing advantage is established; check the final quote before paying.',
   },
   ja: {
-    family: { カディス: 'カディス', テレストリアル: 'テレストリアル' },
+    family: {
+      カディス: 'カディス',
+      テレストリアル: 'テレストリアル',
+      ディプテラ: 'ディプテラ',
+      ストーンフライ: 'ストーンフライ',
+    },
     scope: (area, family) => `エリア${area} · 「${family}」のフライを作成`,
     none: (part, instructions) => `「${part}」で「無し」を選ぶ場合：左上から${instructions}`,
     directQuote:
       'このテレストリアル・ボディを選ぶと、ウィングとテールの選択画面を飛ばして見積額へ進みます。',
     limit: (area, family) =>
       `確認したのはエリア${area}の${family}メニューだけです。位置は部品の識別であり、食いつきや取り込み効果を示しません。支払前に見積額を確認してください。`,
+    controlledScope: (family) => `作成メニューに「${family}」がある場合、まずその系統を選びます。`,
+    controlledLimit:
+      '偶数エリアのメニューを再現した制御条件で、部品位置を独立に再確認しました。通常プレイでの店への経路や利用可能時期の証明ではありません。釣果の優位も未確認です。支払前に見積額を確認してください。',
   },
   th: {
-    family: { カディス: 'แคดดิส', テレストリアル: 'เทอเรสเทรียล' },
+    family: {
+      カディス: 'แคดดิส',
+      テレストリアル: 'เทอเรสเทรียล',
+      ディプテラ: 'ดิพเทรา',
+      ストーンフライ: 'สโตนฟลาย',
+    },
     scope: (area, family, familyJa) =>
       `ร้านด่าน ${area} · เลือก${family} (${familyJa}) ตอนประกอบฟลาย`,
     none: (part, instructions) =>
@@ -76,6 +98,10 @@ const otherFamilies = {
     directQuote: 'หลังเลือกบอดี้เทอเรสเทรียลนี้ เกมข้ามเมนูปีกและหาง แล้วไปหน้าเสนอราคาเลย',
     limit: (area, family) =>
       `ยืนยันตำแหน่งเฉพาะเมนู${family}ในร้านด่าน ${area} ตำแหน่งบอกว่าชิ้นไหน ไม่ได้พิสูจน์ว่าปลากินหรือตกขึ้นง่ายกว่า ตรวจราคาสุทธิก่อนจ่าย`,
+    controlledScope: (family, familyJa) =>
+      `เมื่อร้านมีตัวเลือก${family} (${familyJa}) ให้เลือกตระกูลนี้ก่อน`,
+    controlledLimit:
+      'ตรวจตำแหน่งซ้ำอย่างอิสระจากเมนูด่านเลขคู่ที่จำลองในสภาวะควบคุม ยืนยันช่องเลือกชิ้นส่วน แต่ยังไม่ได้ยืนยันเส้นทางเดินหรือการเข้าร้านจากการเล่นปกติ ไม่ได้พิสูจน์ว่าปลากินหรือตกขึ้นง่ายกว่า ตรวจราคาสุทธิก่อนจ่าย',
   },
 }
 
@@ -91,8 +117,10 @@ function otherFamilyCopy(lang, choice) {
   const area = choice.area || 1
   return {
     ...mayfly[lang],
-    scope: copy.scope(area, family, choice.familyJa),
-    limit: copy.limit(area, family),
+    scope: choice.controlledFixture
+      ? copy.controlledScope(family, choice.familyJa)
+      : copy.scope(area, family, choice.familyJa),
+    limit: choice.controlledFixture ? copy.controlledLimit : copy.limit(area, family),
     none: copy.none,
     directQuote: copy.directQuote,
   }

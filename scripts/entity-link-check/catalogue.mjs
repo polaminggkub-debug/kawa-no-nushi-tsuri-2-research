@@ -69,20 +69,25 @@ function checkCardAdvice(card, item, lang, surface) {
   )
   const visible = unescapeHtml(card.slice(0, disclosureStart))
   const disclosure = unescapeHtml(card.slice(disclosureStart))
+  const wing = item.category === 'fly_wing' && ['25', '26', '66', '67'].includes(item.id)
   const marker = item.rodDecision
     ? 'data-rod-decision'
     : item.baitLureDecision
       ? 'data-bait-lure-decision'
       : 'data-gear-decision'
   assert(
-    visible.includes(`${marker}="${item.id}"`),
+    visible.includes(`${wing ? 'data-fly-wing-decision' : marker}="${item.id}"`),
     `${surface}: decision kind missing ${item.category}:${item.id}`,
   )
   assert(
-    visible.includes(advice.label[lang]),
+    item.baitLureDecision
+      ? visible.includes(`data-bait-lure-verdict="${item.category}:${item.id}"`)
+      : wing
+        ? visible.includes(`data-fly-wing-action="${item.id}"`)
+        : visible.includes(advice.label[lang]),
     `${surface}: short verdict is hidden ${item.category}:${item.id}`,
   )
-  for (const field of ['recommendation', 'reason']) {
+  for (const field of wing ? [] : ['recommendation', 'reason']) {
     assert(
       disclosure.includes(advice[field][lang]),
       `${surface}: full ${field} missing ${item.category}:${item.id}`,
@@ -130,7 +135,9 @@ function checkCardActions(card, item, base) {
       if (base.searchParams.has(key))
         assert.equal(target.searchParams.get(key), base.searchParams.get(key))
   } else if (item.category.startsWith('fly')) {
-    assert(card.includes('data-fly-maker') && card.includes('#fly-instructions'))
+    if (item.category === 'fly_wing' && ['25', '26', '66', '67'].includes(item.id))
+      assert(card.includes(`data-fly-wing-action="${item.id}"`))
+    else assert(card.includes('data-fly-maker') && card.includes('#fly-instructions'))
     assert(!card.includes('data-fly-menu-choice'))
   }
 }

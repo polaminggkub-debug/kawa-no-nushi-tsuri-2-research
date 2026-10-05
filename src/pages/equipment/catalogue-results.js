@@ -14,7 +14,7 @@ function updateCatalogueLink(ctx, fish) {
   document.getElementById('generic-lure-kit').hidden = !!fish
 }
 
-function updateCatalogueUrl(category, fish, flyPart) {
+function updateCatalogueUrl(ctx, category, fish, flyPart) {
   if (
     typeof history === 'undefined' ||
     typeof URLSearchParams === 'undefined' ||
@@ -27,13 +27,18 @@ function updateCatalogueUrl(category, fish, flyPart) {
   else query.delete('fish')
   if (category === 'flymaker') query.set('part', flyPart)
   else query.delete('part')
+  const search = document.getElementById('search').value.trim()
+  if (search) query.set('q', search)
+  else query.delete('q')
+  if (ctx.locationStage) query.set('stage', String(ctx.locationStage))
+  query.set('route', ctx.baitRoute)
   history.replaceState(null, '', `?${query.toString()}${location.hash || '#catalogue'}`)
 }
 
 function updatePageContext(ctx, filters) {
   ctx.renderTargetCategories(filters.fish)
   updateCatalogueLink(ctx, filters.fish)
-  updateCatalogueUrl(filters.category, filters.fish, ctx.flyPart)
+  updateCatalogueUrl(ctx, filters.category, filters.fish, ctx.flyPart)
 }
 
 function routeLabels(ctx) {
@@ -191,10 +196,75 @@ function emptyCatalogueMessage(ctx, fish) {
   return 'No verified compatible item matches this category and search. Try another category, or clear the target with ×.'
 }
 
-function renderItemResults(ctx, items, fish) {
+function emptyBaitRouteCandidates(ctx, filters) {
+  if (
+    filters.category !== 'bait' ||
+    !filters.term ||
+    (filters.fish && !ctx.fishVisuals[filters.fish]) ||
+    ctx.baitRoute !== 'sinker'
+  )
+    return []
+  return ctx.allItems.filter((item) => {
+    const routes = item.category === 'bait' ? item.playerUse?.fishIdsByRoute : null
+    if (!Array.isArray(routes?.sinker) || routes.sinker.length) return false
+    if (!Array.isArray(routes.float) || !routes.float.length) return false
+    if (filters.fish && !routes.float.includes(filters.fish)) return false
+    return matchesSearch(ctx, item, filters.term)
+  })
+}
+
+function emptyBaitRouteHref(ctx, filters) {
+  const query = new URLSearchParams(location.search)
+  const search = document.getElementById('search').value.trim()
+  query.set('category', 'bait')
+  query.set('route', 'float')
+  if (search) query.set('q', search)
+  else query.delete('q')
+  if (filters.fish) query.set('fish', filters.fish)
+  else query.delete('fish')
+  if (ctx.locationStage) query.set('stage', String(ctx.locationStage))
+  return `${location.pathname.split('/').pop()}?${query}#catalogue`
+}
+
+function emptyBaitRouteRecovery(ctx, filters) {
+  const candidates = emptyBaitRouteCandidates(ctx, filters)
+  if (!candidates.length) return ''
+  const copy = {
+    th: {
+      text: (count, fish) =>
+        fish
+          ? `คำค้นตรงกับเหยื่อ ${count} รายการ แต่ข้อมูลที่ตรวจไม่มีรายการสายตะกั่วสำหรับปลาที่เลือก ${ctx.fishName(fish)}; ปลานี้อยู่ในรายชื่อสายทุ่นของรายการที่ตรงคำค้น`
+          : `คำค้นตรงกับเหยื่อ ${count} รายการ แต่ยังไม่มีปลาในรายการสายตะกั่วที่บันทึกไว้ จึงไม่แสดงเป็นตัวเลือกสำหรับชุดนี้`,
+      action: 'สลับไปดูชุดทุ่นที่ใช้ได้กับคำค้นนี้',
+    },
+    ja: {
+      text: (count, fish) =>
+        fish
+          ? `検索結果のエサ${count}件には、選択した${ctx.fishName(fish)}のオモリ仕掛け判定が記録されていません。この魚は検索結果のウキ仕掛けリストにあります。`
+          : `検索に一致するエサは${count}件ですが、オモリ仕掛けで通る魚は記録されていないため、この仕掛けの候補には表示しません。`,
+      action: 'ウキ仕掛けでこの検索結果を見る',
+    },
+    en: {
+      text: (count, fish) =>
+        fish
+          ? `${count} bait item(s) match this search, but no Sinker match is recorded for selected ${ctx.fishName(fish)}. This fish is listed for the Float rig among the search matches.`
+          : `${count} bait item(s) match this search, but no fish is recorded for the Sinker rig, so they are not shown as choices for this setup.`,
+      action: 'Switch to Float rig for this search',
+    },
+  }[ctx.lang] || {
+    text: (count) => `${count} bait item(s) match, but no fish is recorded for the Sinker rig.`,
+    action: 'Switch to Float rig',
+  }
+  const fish = filters.fish || ''
+  return `<section class="empty-state" data-empty-bait-route="sinker"><p>${ctx.esc(copy.text(candidates.length, fish))}</p><a class="route-button" data-empty-bait-switch="float" href="${ctx.esc(emptyBaitRouteHref(ctx, filters))}">${ctx.esc(copy.action)} ↗</a></section>`
+}
+
+function renderItemResults(ctx, items, filters) {
   const box = document.getElementById('cards')
   if (!items.length) {
-    box.innerHTML = `<p class="empty-state">${ctx.esc(emptyCatalogueMessage(ctx, fish))}</p>`
+    box.innerHTML =
+      emptyBaitRouteRecovery(ctx, filters) ||
+      `<p class="empty-state">${ctx.esc(emptyCatalogueMessage(ctx, filters.fish))}</p>`
     return
   }
   box.innerHTML = items.map(ctx.renderItemCard).join('')
@@ -214,7 +284,7 @@ function renderResults(ctx, items, filters) {
   ctx.renderFishLocation(filters.fish)
   ctx.renderComparison(filters.category)
   ctx.renderDecisions(filters.category)
-  renderItemResults(ctx, items, filters.fish)
+  renderItemResults(ctx, items, filters)
 }
 
 export function renderCards(ctx) {

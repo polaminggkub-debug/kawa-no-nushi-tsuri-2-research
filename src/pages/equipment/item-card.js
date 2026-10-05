@@ -1,6 +1,38 @@
 import { renderTargetAdvice } from '../../shared/lib/index.js'
 import { questNextActions } from './quest-next-actions.js'
 import { hookTargetLinks } from './hook-target-links.js'
+import { baitLureVerdict } from './bait-lure-verdict.js'
+import { flyWingPlayerDecision, flyWingPlayerLinks } from '../../entities/item/index.js'
+
+function flyWingActionHrefs(ctx, item, decision, fish) {
+  const bodyId = decision.bundle?.body || '01'
+  const body = ctx.allItems.find(
+    (candidate) => candidate.category === 'fly' && candidate.id === bodyId,
+  )
+  const verifiedWing = ctx.allItems
+    .filter(
+      (candidate) =>
+        candidate.category === 'fly_wing' &&
+        candidate.id !== item.id &&
+        candidate.flyMakerMenuChoice,
+    )
+    .sort((a, b) => a.id.localeCompare(b.id))[0]
+  const shopQuery = new URLSearchParams({
+    stage: String(decision.bundle?.stage || 6),
+    place: 'town',
+    category: item.category,
+    id: item.id,
+    return: ctx.sourceReturn(),
+  })
+  if (fish) shopQuery.set('fish', fish)
+  return {
+    shop: `${ctx.detailFile('shops')}?${shopQuery}`,
+    body: body ? ctx.itemHref(body) : '',
+    fish: fish ? ctx.fishHref(fish) : '',
+    starter: body && !decision.bundle ? ctx.itemHref(body) : '',
+    alternative: verifiedWing ? `${ctx.itemHref(verifiedWing)}#fly-menu-position` : '',
+  }
+}
 
 function itemAdvice(item) {
   return item.rodDecision || item.baitLureDecision || item.gearDecision
@@ -61,29 +93,46 @@ function guideEvidenceNote(ctx, use) {
   return `<p class="fish-scope">${ctx.lang === 'th' ? 'คำอธิบายการใช้จากคู่มือผู้เล่น ยังไม่ได้ยืนยันจากโค้ดเกม' : ctx.lang === 'ja' ? '用途はプレイヤーガイドによる報告。ゲームコードでは未確認。' : 'Use reported by a player guide; not yet confirmed in game code.'}</p>`
 }
 
-function renderCardGuidance(ctx, item, use, summary, facts, advice) {
-  const fish = document.getElementById('fish-filter')?.value || ''
-  const targetAdvice = renderTargetAdvice(ctx, item, fish)
-  const label = advice ? ctx.local(advice.label) : summary
+function renderCardDisclosure(ctx, item, use, summary, facts, advice, wingDecision) {
   const factList = facts.length
     ? `<ul class="use-facts">${facts.map((fact) => `<li>${ctx.esc(fact)}</li>`).join('')}</ul>`
     : ''
-  const recommendation = advice
-    ? `<h5>${ctx.esc(ctx.cardUi.fullRecommendation)}</h5><p class="card-full-recommendation">${ctx.esc(ctx.local(advice.recommendation) || summary)}</p>${advice.reason ? `<p class="card-decision-reason">${ctx.esc(ctx.local(advice.reason))}</p>` : ''}`
-    : ''
+  const recommendation = wingDecision
+    ? `<h5>${ctx.esc(ctx.cardUi.fullRecommendation)}</h5><p class="card-full-recommendation">${ctx.esc(wingDecision.recommendation)}</p><p class="card-decision-reason">${ctx.esc(wingDecision.reason)}</p>`
+    : advice
+      ? `<h5>${ctx.esc(ctx.cardUi.fullRecommendation)}</h5><p class="card-full-recommendation">${ctx.esc(ctx.local(advice.recommendation) || summary)}</p>${advice.reason ? `<p class="card-decision-reason">${ctx.esc(ctx.local(advice.reason))}</p>` : ''}`
+      : ''
   const details = [
     recommendation,
     factList,
     guideEvidenceNote(ctx, use),
-    advice ? ctx.rodAlternatives(item) : '',
-    advice ? ctx.gearNextActions(item) : '',
-    advice && !item.flyMakerMenuChoice ? ctx.flyMakerLink(item) : '',
+    !wingDecision && advice ? ctx.rodAlternatives(item) : '',
+    !wingDecision && advice ? ctx.gearNextActions(item) : '',
+    !wingDecision && advice && !item.flyMakerMenuChoice ? ctx.flyMakerLink(item) : '',
   ].join('')
-  const disclosure = ctx.cardDisclosure(
-    advice ? ctx.cardUi.decisionDetails : ctx.cardUi.useDetails,
+  return ctx.cardDisclosure(
+    advice || wingDecision ? ctx.cardUi.decisionDetails : ctx.cardUi.useDetails,
     details,
-    advice ? 'card-decision-disclosure' : 'card-use-disclosure',
+    advice || wingDecision ? 'card-decision-disclosure' : 'card-use-disclosure',
   )
+}
+
+function renderCardGuidance(ctx, item, use, summary, facts, advice) {
+  const fish = document.getElementById('fish-filter')?.value || ''
+  const wingDecision = flyWingPlayerDecision(
+    ctx.lang,
+    item,
+    ctx.allItems,
+    fish,
+    fish ? ctx.fishName(fish) : '',
+  )
+  const targetAdvice = wingDecision ? '' : renderTargetAdvice(ctx, item, fish)
+  const label = wingDecision?.label || (advice ? ctx.local(advice.label) : summary)
+  const lureVerdict = !fish && !wingDecision ? baitLureVerdict(ctx, item) : ''
+  const disclosure = renderCardDisclosure(ctx, item, use, summary, facts, advice, wingDecision)
+  const wingLinks = wingDecision
+    ? flyWingPlayerLinks(ctx, wingDecision, flyWingActionHrefs(ctx, item, wingDecision, fish))
+    : ''
   const actionTitle = targetAdvice
     ? ctx.lang === 'th'
       ? 'คำแนะนำสำหรับปลาที่เลือก'
@@ -91,13 +140,20 @@ function renderCardGuidance(ctx, item, use, summary, facts, advice) {
         ? '選んだ魚への案内'
         : 'Advice for your selected fish'
     : cardActionTitle(ctx, item, advice)
-  const dataDecision = cardDecisionAttribute(ctx, item, advice)
+  const dataDecision = wingDecision
+    ? `data-fly-wing-decision="${ctx.esc(item.id)}"`
+    : cardDecisionAttribute(ctx, item, advice)
   const summaryClass = advice ? 'card-verdict' : 'card-effect'
-  const menuAction = item.flyMakerMenuChoice ? ctx.flyMakerLink(item) : ''
+  const menuAction = wingDecision
+    ? wingLinks
+    : item.flyMakerMenuChoice
+      ? ctx.flyMakerLink(item)
+      : ''
   const hookTargets = hookTargetLinks(ctx, item)
-  const visibleAdvice = targetAdvice
-    ? targetAdvice
-    : `<p class="use-summary ${summaryClass}">${ctx.esc(label)}</p>`
+  const visibleAdvice =
+    targetAdvice || lureVerdict
+      ? targetAdvice || lureVerdict
+      : `<p class="use-summary ${summaryClass}">${ctx.esc(label)}</p>`
   return `<div class="use-block" ${dataDecision}><h4>${ctx.esc(actionTitle)}</h4>${visibleAdvice}${hookTargets}${menuAction}<div class="card-more-content">${disclosure}</div></div>`
 }
 

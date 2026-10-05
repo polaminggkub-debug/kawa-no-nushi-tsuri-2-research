@@ -14,6 +14,18 @@
   });
 
   // src/pages/navigation/context-links.js
+  function equipmentCategory(url, current) {
+    const category = current.searchParams.get("category");
+    if (!category) return;
+    if (["fly", "fly_wing", "fly_tail"].includes(category)) {
+      url.searchParams.set("category", "flymaker");
+      url.searchParams.set("part", category);
+    } else {
+      url.searchParams.set("category", category);
+      if (category === "flymaker" && current.searchParams.has("part"))
+        url.searchParams.set("part", current.searchParams.get("part"));
+    }
+  }
   function updateNavigation(_ctx) {
     const current = new URL(location.href), isFish = /\/fish(?:\.[a-z]+)?\.html$/.test(current.pathname);
     const activeRoute = document.querySelector('[data-route][aria-pressed="true"]');
@@ -29,8 +41,7 @@
       for (const key of ["stage", "route"])
         if (current.searchParams.has(key)) url.searchParams.set(key, current.searchParams.get(key));
       if (fish) url.searchParams.set("fish", fish);
-      if (dest === 0 && current.searchParams.has("category"))
-        url.searchParams.set("category", current.searchParams.get("category"));
+      if (dest === 0) equipmentCategory(url, current);
       if (dest === 1 && current.searchParams.has("map"))
         url.searchParams.set("map", current.searchParams.get("map"));
       if (!current.pathname.includes("/research/")) url.searchParams.set("return", returnTo);

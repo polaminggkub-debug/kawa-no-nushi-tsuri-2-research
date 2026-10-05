@@ -1,5 +1,18 @@
 # Player usefulness audit
 
+## 2026-10-05: visible buying decisions and verified fly selections
+
+The full-site goal remains active. This continuation addresses the equipment and fish-map paths found in the current rendered site; it does not certify every gameplay mechanic.
+
+- Bait/lure cards now state when to keep an owned item, where recorded stock exists, and which lower-price compatible offers to inspect before buying. Recommendations distinguish a whole compatibility list from a recommendation for one selected fish. The existing complete comparisons and ROM evidence remain available in disclosures.
+- The two-lure coverage kit appears above lure results without requiring the player to open the general guide. Coverage means passing the recorded compatibility checks, not a bite or landing guarantee.
+- Four wings without captured maker positions no longer receive a generic maker-selection instruction. Wing 26 has a recorded Area 6 ready-made bundle (body 1E, wing 26, tail 2A, total ¥50). Wings 25/66/67 link to documented alternatives; absence from the inspected menus is not proof of global unavailability.
+- Independent controller replays establish 42 additional real component selections and four None positions for Diptera/Stonefly. The original 256×224 game images and input directions are linked from item details. The even-area family setup is explicitly a controlled fixture; a natural shop progression into these menus is still unverified. See [the bounded menu research](fly-maker-even-families-menu-research.md).
+- Fish → map → return preserves the map section anchor and fishing method. Equipment navigation from individual fly components selects the correct maker part instead of silently opening rods.
+- A matching bait search excluded by the sinker method explains the incompatibility and offers a float-method recovery only when its recorded list supports the selected fish. The action retains the query/area/return, persists through reload, and has a continuous touch-sized hit area when its text wraps. Unknown searches and fish incompatible with both methods retain the ordinary empty state.
+
+Verification separates original-ROM fingerprint checks and independent replay comparisons, generated-data/render guards, and actual browser paths. File/function/FSD limits continue to apply. Remaining research includes the natural even-area maker trigger, the exact fishing outcomes that invoke journal updates, and outcome comparisons needed for a universal catch-success ranking. Net/magnifier work remains deferred at the owner's request.
+
 ## Requirement and completion boundary
 
 The owner's active goal is to review **all information on the website** until each displayed fact helps the player understand a mechanic, make a decision, or take a next action. Gameplay claims must come from the supplied ROM and its controlled observations, not outside guides. Original game images, multilingual names, useful navigation, and expandable evidence remain part of the scope.

@@ -353,6 +353,112 @@
     }).join("")}</section>`;
   }
 
+  // src/entities/item/fly-wing-decision.js
+  var PATH_LIMITED_WINGS = /* @__PURE__ */ new Set(["25", "26", "66", "67"]);
+  function hasUnverifiedFlyWingPath(item) {
+    return item?.category === "fly_wing" && PATH_LIMITED_WINGS.has(item.id);
+  }
+  function recordedBundle(item) {
+    return (item.playerUse?.shops || []).filter((shop) => shop.bundle?.wing === item.id).map((shop) => ({ stage: Number(shop.stage), ...shop.bundle })).sort((a, b) => a.stage - b.stage || a.shopPriceYen - b.shopPriceYen)[0];
+  }
+  function nameForBundleItem(items, category, id) {
+    return (items || []).find((item) => item.category === category && item.id === id);
+  }
+  function noBundleCopy(lang, id, fish) {
+    const copies = {
+      th: {
+        label: `ยังไม่มีตำแหน่งเมนูหรือชุดร้านที่บันทึกไว้สำหรับ ID ${id}`,
+        recommendation: fish ? `เมนูที่ตรวจและรายการชุดสำเร็จรูปของร้านยังไม่มีเส้นทางยืนยันสำหรับปีก ID ${id} อย่าพึ่งว่าหา ID นี้ได้จากเมนูที่มีหลักฐาน ถ้าจะตก${fish} ให้เปิดหน้าปลาเพื่อดูชุดฟลายหรือวิธีอื่นที่มีบันทึก` : `เมนูที่ตรวจและรายการชุดสำเร็จรูปของร้านยังไม่มีเส้นทางยืนยันสำหรับปีก ID ${id} อย่าพึ่งว่าหา ID นี้ได้จากเมนูที่มีหลักฐาน ถ้าจะประกอบฟลายให้เลือกบอดี้ตามปลาเป้าหมาย แล้วใช้ชิ้นส่วนที่มีตำแหน่งเมนูยืนยัน หรือดูชุดเริ่มต้นบอดี้ 01 สำหรับปลาในรายชื่อของบอดี้นั้น`,
+        reason: "นี่หมายถึงยังไม่มีเส้นทางในหลักฐานที่ตรวจ ไม่ได้พิสูจน์ว่าทุกเมนูหรือทุกพื้นที่เลือกชิ้นนี้ไม่ได้ และยังไม่มีหลักฐานโบนัสการกินหรือดึงปลาจากปีกนี้"
+      },
+      en: {
+        label: `No recorded menu position or shop bundle for ID ${id}`,
+        recommendation: fish ? `The captured menus and recorded ready-made offers do not establish a route for wing ID ${id}. Do not assume it can be selected from a documented menu. For ${fish}, open the fish profile to see recorded flies or other methods.` : `The captured menus and recorded ready-made offers do not establish a route for wing ID ${id}. Do not assume it can be selected from a documented menu. For a custom fly, match the body to your target first, then use a component with a recorded menu position; otherwise see the starter body 01 bundle for fish in its list.`,
+        reason: "This means no route is present in the evidence checked; it does not prove the part is unavailable in every menu or area. No bite or landing bonus from this wing is established."
+      },
+      ja: {
+        label: `ID ${id}のメニュー位置・店売りセットは未記録`,
+        recommendation: fish ? `確認したメニューと完成品の店売り記録には、ウィングID ${id}の選択経路がありません。記録済みメニューで選べるとは限りません。${fish}の魚ページで、記録のあるフライや別の釣り方を確認してください。` : `確認したメニューと完成品の店売り記録には、ウィングID ${id}の選択経路がありません。記録済みメニューで選べるとは限りません。自作する場合は先に対象魚に合うボディを選び、選択位置が確認された部品を使ってください。対象魚が未定なら、ボディ01の対象魚リストにある魚向けの入門セットを確認できます。`,
+        reason: "これは確認した証拠に経路がないという意味で、すべてのメニュー・エリアで入手不能という証明ではありません。このウィングの食いつき・取り込みボーナスも確認されていません。"
+      }
+    };
+    return copies[lang] || copies.en;
+  }
+  function bundleCopy(lang, item, bundle, fish, supported) {
+    const result = {
+      th: {
+        label: `ชุดสำเร็จรูปด่าน ${bundle.stage}: บอดี้ ${bundle.body} + ปีก ${bundle.wing} + หาง ${bundle.tail} · ¥${bundle.shopPriceYen} ทั้งชุด`,
+        recommendation: fish ? supported ? `ปลาเป้าหมาย ${fish} อยู่ในรายชื่อของบอดี้ ${bundle.body}; ลองชุดสำเร็จรูปด่าน ${bundle.stage} (${bundle.body}/${bundle.wing}/${bundle.tail}) ได้ในราคา ¥${bundle.shopPriceYen} ทั้งชุด ไม่ใช่ราคาปีกอย่างเดียว` : `ปลาเป้าหมาย ${fish} ไม่อยู่ในรายชื่อที่บันทึกไว้ของบอดี้ ${bundle.body}; อย่าเลือกชุดนี้เป็นตัวเลือกที่รองรับเป้าหมายนี้ เปิดหน้าปลาเพื่อดูชุดและวิธีอื่นที่มีบันทึก` : `ถ้าจะใช้ปีก ${item.id} มีชุดสำเร็จรูปด่าน ${bundle.stage}: บอดี้ ${bundle.body} + ปีก ${bundle.wing} + หาง ${bundle.tail} ราคา ¥${bundle.shopPriceYen} ทั้งชุด ตรวจว่าปลาเป้าหมายอยู่ในรายชื่อบอดี้ ${bundle.body} ก่อนซื้อ`,
+        reason: `นี่คือข้อเสนอชุดสำเร็จรูปในร้าน ไม่ใช่ตำแหน่งเลือกปีก ${item.id} ในเมนูประกอบ และ ¥${bundle.shopPriceYen} คือราคารวมทั้งชุด ยังไม่มีหลักฐานว่าปีกนี้เพิ่มโอกาสปลากินหรือช่วยให้ตกขึ้น`
+      },
+      en: {
+        label: `Area ${bundle.stage} ready-made set: body ${bundle.body} + wing ${bundle.wing} + tail ${bundle.tail} · ¥${bundle.shopPriceYen} total`,
+        recommendation: fish ? supported ? `The target ${fish} is listed for body ${bundle.body}. You can try the area ${bundle.stage} ready-made set (${bundle.body}/${bundle.wing}/${bundle.tail}) for ¥${bundle.shopPriceYen} total, not for the wing alone.` : `The target ${fish} is not in the recorded list for body ${bundle.body}; this set is not a listed profile match. Open the fish page for recorded flies and other methods.` : `If you want wing ${item.id}, the recorded ready-made set is area ${bundle.stage}: body ${bundle.body} + wing ${bundle.wing} + tail ${bundle.tail}, ¥${bundle.shopPriceYen} for the complete set. Check that your target is listed for body ${bundle.body} before buying.`,
+        reason: `This is a ready-made shop offer, not a verified custom-menu position for wing ${item.id}. ¥${bundle.shopPriceYen} is the complete-set price. No bite or landing advantage from this wing is established.`
+      },
+      ja: {
+        label: `エリア${bundle.stage}の完成品：ボディ${bundle.body}＋ウィング${bundle.wing}＋テール${bundle.tail} · セット価格¥${bundle.shopPriceYen}`,
+        recommendation: fish ? supported ? `対象の${fish}はボディ${bundle.body}の記録済みリストにあります。エリア${bundle.stage}の完成品（${bundle.body}/${bundle.wing}/${bundle.tail}）をセット価格¥${bundle.shopPriceYen}で試せます。ウィング単体の価格ではありません。` : `対象の${fish}はボディ${bundle.body}の記録済みリストにありません。このセットは記録上の対象一致ではありません。魚ページで記録のあるフライや別の釣り方を確認してください。` : `ウィング${item.id}を使う店売り完成品は、エリア${bundle.stage}のボディ${bundle.body}＋ウィング${bundle.wing}＋テール${bundle.tail}、セット価格¥${bundle.shopPriceYen}です。購入前に対象魚がボディ${bundle.body}のリストにあるか確認してください。`,
+        reason: `これは店売り完成品で、ウィング${item.id}の自作メニュー位置ではありません。¥${bundle.shopPriceYen}はセット全体の価格です。このウィングによる食いつき・取り込み向上は確認されていません。`
+      }
+    };
+    return result[lang] || result.en;
+  }
+  function flyWingPlayerDecision(lang, item, allItems = [], fishId = "", fishName2 = "") {
+    if (!hasUnverifiedFlyWingPath(item)) return null;
+    const bundle = recordedBundle(item);
+    if (!bundle) return { ...noBundleCopy(lang, item.id, fishName2), bundle: null, itemId: item.id };
+    const body = nameForBundleItem(allItems, "fly", bundle.body);
+    const supported = Boolean(fishId && (body?.playerUse?.fishIds || []).includes(fishId));
+    const copy = bundleCopy(lang, item, bundle, fishName2, supported);
+    return { ...copy, bundle, supported, hasTarget: Boolean(fishId), itemId: item.id };
+  }
+  function actionLabel(lang, key, bundle) {
+    const labels = {
+      shop: {
+        th: `เปิดร้านด่าน ${bundle.stage} และชุดฟลายนี้`,
+        en: `Open area ${bundle.stage} shop and this fly set`,
+        ja: `エリア${bundle.stage}の店とこの完成品を見る`
+      },
+      body: {
+        th: `ตรวจรายชื่อปลาของบอดี้ ${bundle.body}`,
+        en: `Check body ${bundle.body} fish list`,
+        ja: `ボディ${bundle.body}の対象魚リストを確認`
+      },
+      fish: {
+        th: "ดูชุดฟลายและวิธีตกของปลานี้",
+        en: "See this fish’s recorded flies and methods",
+        ja: "この魚のフライ候補と釣り方を見る"
+      },
+      starter: {
+        th: "ดูชุดสำเร็จรูปและรายชื่อปลาของบอดี้ 01",
+        en: "See body 01’s ready-made sets and fish list",
+        ja: "ボディ01の完成品と対象魚リストを見る"
+      },
+      alternative: {
+        th: "ดูปีกชิ้นอื่นที่มีตำแหน่งเมนูยืนยัน",
+        en: "See a wing with a verified menu position",
+        ja: "メニュー位置を確認した別のウィングを見る"
+      }
+    };
+    return labels[key]?.[lang] || labels[key]?.en || "";
+  }
+  function flyWingPlayerLinks(ctx, decision, hrefs = {}) {
+    if (!decision) return "";
+    const links = decision.bundle ? [
+      ...decision.supported === false && decision.hasTarget ? [] : [["shop", hrefs.shop]],
+      ["body", hrefs.body],
+      ...hrefs.fish ? [["fish", hrefs.fish]] : []
+    ] : hrefs.fish ? [["fish", hrefs.fish]] : [
+      ["starter", hrefs.starter],
+      ["alternative", hrefs.alternative]
+    ];
+    const anchors = links.filter(([, href]) => href).map(
+      ([key, href]) => `<a class="route-button" data-fly-wing-route="${key}" data-item-id="${ctx.esc(decision.itemId || "")}" href="${ctx.esc(href)}">${ctx.esc(actionLabel(ctx.lang, key, decision.bundle || {}))} ↗</a>`
+    ).join("");
+    return anchors ? `<div class="fly-wing-player-actions" data-fly-wing-action="${ctx.esc(decision.itemId || "")}">${anchors}</div>` : "";
+  }
+
   // src/pages/item/usage.js
   function decisionUsage(ctx, decision) {
     return {
@@ -375,8 +481,18 @@
     }
     return null;
   }
-  function visibleUsage(ctx, item) {
+  function visibleUsage(ctx, item, allItems = [], fishVisuals = {}) {
     const use = item.playerUse || {};
+    if (item.category === "fly_wing") {
+      const wingDecision = flyWingPlayerDecision(
+        ctx.lang,
+        item,
+        allItems,
+        ctx.selectedFish,
+        ctx.selectedFish ? ctx.fishName(ctx.selectedFish, fishVisuals) : ""
+      );
+      if (wingDecision) return { summary: wingDecision.recommendation, facts: [wingDecision.reason] };
+    }
     const decision = item.baitLureDecision || item.gearDecision || (item.category === "rod" ? item.rodDecision : null);
     if (decision) return decisionUsage(ctx, decision);
     if (item.category === "hook" || item.category === "float_weight")
@@ -927,25 +1043,46 @@
   };
   var otherFamilies = {
     en: {
-      family: { カディス: "Caddis", テレストリアル: "Terrestrial" },
+      family: {
+        カディス: "Caddis",
+        テレストリアル: "Terrestrial",
+        ディプテラ: "Diptera",
+        ストーンフライ: "Stonefly"
+      },
       scope: (area, family, familyJa) => `Area ${area} · choose ${family} (${familyJa}) at the fly maker`,
       none: (part, instructions) => `To choose None for the ${part}, start at top-left: ${instructions} (無し).`,
       directQuote: "After selecting this Terrestrial body, the game skips wing and tail selection and opens the quote.",
-      limit: (area, family) => `Verified only in this Area ${area} ${family} menu. Position identifies the component; it does not establish a bite or landing advantage. Check the final quote before paying.`
+      limit: (area, family) => `Verified only in this Area ${area} ${family} menu. Position identifies the component; it does not establish a bite or landing advantage. Check the final quote before paying.`,
+      controlledScope: (family, familyJa) => `When the maker offers ${family} (${familyJa}), choose that family first.`,
+      controlledLimit: "These positions were independently replayed in a controlled even-area menu fixture. This verifies the palette, not the walking route or natural shop access. No bite or landing advantage is established; check the final quote before paying."
     },
     ja: {
-      family: { カディス: "カディス", テレストリアル: "テレストリアル" },
+      family: {
+        カディス: "カディス",
+        テレストリアル: "テレストリアル",
+        ディプテラ: "ディプテラ",
+        ストーンフライ: "ストーンフライ"
+      },
       scope: (area, family) => `エリア${area} · 「${family}」のフライを作成`,
       none: (part, instructions) => `「${part}」で「無し」を選ぶ場合：左上から${instructions}`,
       directQuote: "このテレストリアル・ボディを選ぶと、ウィングとテールの選択画面を飛ばして見積額へ進みます。",
-      limit: (area, family) => `確認したのはエリア${area}の${family}メニューだけです。位置は部品の識別であり、食いつきや取り込み効果を示しません。支払前に見積額を確認してください。`
+      limit: (area, family) => `確認したのはエリア${area}の${family}メニューだけです。位置は部品の識別であり、食いつきや取り込み効果を示しません。支払前に見積額を確認してください。`,
+      controlledScope: (family) => `作成メニューに「${family}」がある場合、まずその系統を選びます。`,
+      controlledLimit: "偶数エリアのメニューを再現した制御条件で、部品位置を独立に再確認しました。通常プレイでの店への経路や利用可能時期の証明ではありません。釣果の優位も未確認です。支払前に見積額を確認してください。"
     },
     th: {
-      family: { カディス: "แคดดิส", テレストリアル: "เทอเรสเทรียล" },
+      family: {
+        カディス: "แคดดิส",
+        テレストリアル: "เทอเรสเทรียล",
+        ディプテラ: "ดิพเทรา",
+        ストーンフライ: "สโตนฟลาย"
+      },
       scope: (area, family, familyJa) => `ร้านด่าน ${area} · เลือก${family} (${familyJa}) ตอนประกอบฟลาย`,
       none: (part, instructions) => `ถ้าจะเลือก “ไม่มี” (無し) ในเมนู${part} ให้เริ่มจากซ้ายบน: ${instructions}`,
       directQuote: "หลังเลือกบอดี้เทอเรสเทรียลนี้ เกมข้ามเมนูปีกและหาง แล้วไปหน้าเสนอราคาเลย",
-      limit: (area, family) => `ยืนยันตำแหน่งเฉพาะเมนู${family}ในร้านด่าน ${area} ตำแหน่งบอกว่าชิ้นไหน ไม่ได้พิสูจน์ว่าปลากินหรือตกขึ้นง่ายกว่า ตรวจราคาสุทธิก่อนจ่าย`
+      limit: (area, family) => `ยืนยันตำแหน่งเฉพาะเมนู${family}ในร้านด่าน ${area} ตำแหน่งบอกว่าชิ้นไหน ไม่ได้พิสูจน์ว่าปลากินหรือตกขึ้นง่ายกว่า ตรวจราคาสุทธิก่อนจ่าย`,
+      controlledScope: (family, familyJa) => `เมื่อร้านมีตัวเลือก${family} (${familyJa}) ให้เลือกตระกูลนี้ก่อน`,
+      controlledLimit: "ตรวจตำแหน่งซ้ำอย่างอิสระจากเมนูด่านเลขคู่ที่จำลองในสภาวะควบคุม ยืนยันช่องเลือกชิ้นส่วน แต่ยังไม่ได้ยืนยันเส้นทางเดินหรือการเข้าร้านจากการเล่นปกติ ไม่ได้พิสูจน์ว่าปลากินหรือตกขึ้นง่ายกว่า ตรวจราคาสุทธิก่อนจ่าย"
     }
   };
   function instructionsFor(copy, row, column) {
@@ -957,8 +1094,8 @@
     const area = choice.area || 1;
     return {
       ...mayfly[lang],
-      scope: copy.scope(area, family, choice.familyJa),
-      limit: copy.limit(area, family),
+      scope: choice.controlledFixture ? copy.controlledScope(family, choice.familyJa) : copy.scope(area, family, choice.familyJa),
+      limit: choice.controlledFixture ? copy.controlledLimit : copy.limit(area, family),
       none: copy.none,
       directQuote: copy.directQuote
     };
@@ -1423,23 +1560,94 @@
     const items = alternatives.map((ref) => allItems.find((item2) => item2.category === ref.category && item2.id === ref.id)).filter(Boolean);
     return items.length ? `<div class="detail-grid rod-alternatives">${items.map((item2) => ctx.componentLink(item2)).join("")}</div>` : "";
   }
-  function renderDecisionSection(ctx, item, summary, facts, imageNote, allItems, fishVisuals, fishLocations) {
-    const decision = item.rodDecision || item.gearDecision || item.baitLureDecision;
-    const isRod = item.category === "rod";
-    const factList = facts.length ? `<h3>${ctx.esc(decisionReasonTitle(ctx, Boolean(decision)))}</h3><ul>${facts.map((fact) => `<li>${ctx.esc(fact)}</li>`).join("")}</ul>` : "";
-    const verdict = decision ? `<p class="rod-verdict">${ctx.esc(ctx.local(decision.label))}</p>` : "";
-    const dataAttribute = decision ? `${isRod ? "data-rod-decision" : item.baitLureDecision ? "data-bait-lure-decision" : "data-gear-decision"}="${ctx.esc(item.id)}"` : "";
-    const heading = decision ? rodDecisionTitle(ctx, item) : ctx.copy.use;
-    const body = summary || ctx.copy.noFish;
-    const targetAdvice2 = targetAdviceSection(ctx, item, allItems, fishVisuals, fishLocations);
-    const general = `${verdict}<p>${ctx.esc(body)}</p>`;
-    const next = ctx.gearNextActions(item, fishVisuals, fishLocations, allItems);
-    const maker = ctx.flyMakerLink(item);
-    const note = imageNote ? `<p class="muted">${ctx.esc(imageNote)}</p>` : "";
+  function flyWingDetailHrefs(ctx, item, decision, allItems, fishLocations) {
+    const bodyId = decision.bundle?.body || "01";
+    const body = allItems.find((candidate) => candidate.category === "fly" && candidate.id === bodyId);
+    const verifiedWing = allItems.filter(
+      (candidate) => candidate.category === "fly_wing" && candidate.id !== item.id && candidate.flyMakerMenuChoice
+    ).sort((a, b) => a.id.localeCompare(b.id))[0];
+    const query = new URLSearchParams({
+      stage: String(decision.bundle?.stage || 6),
+      place: "town",
+      category: item.category,
+      id: item.id
+    });
+    if (ctx.selectedFish) query.set("fish", ctx.selectedFish);
+    if (ctx.selectedRoute) query.set("route", ctx.selectedRoute);
+    const returned = ctx.safeLocalRoute(ctx.currentLocalRoute());
+    if (returned) query.set("return", returned);
+    return {
+      shop: `${ctx.localePage[ctx.lang].replace("item", "shops")}?${query}`,
+      body: body ? ctx.detailItemLink(body) : "",
+      fish: ctx.selectedFish ? ctx.fishProfileLink(ctx.selectedFish, fishLocations) : "",
+      starter: body && !decision.bundle ? ctx.detailItemLink(body) : "",
+      alternative: verifiedWing ? `${ctx.detailItemLink(verifiedWing)}#fly-menu-position` : ""
+    };
+  }
+  function decisionSectionActions(ctx, item, wingDecision, allItems, fishVisuals, fishLocations) {
+    if (!wingDecision)
+      return ctx.gearNextActions(item, fishVisuals, fishLocations, allItems) + ctx.flyMakerLink(item);
+    const hrefs = flyWingDetailHrefs(ctx, item, wingDecision, allItems, fishLocations);
+    return flyWingPlayerLinks(ctx, wingDecision, hrefs);
+  }
+  function decisionSectionSupport(ctx, item, decision, wingDecision, targetAdvice2, general, factList, allItems) {
     const isFly = ["fly", "fly_wing", "fly_tail"].includes(item.category);
-    const reasons = (targetAdvice2 && !isFly ? general : "") + factList + decisionFacts(ctx, item, allItems);
-    const supporting = decision && reasons ? `<details class="decision-reasons"><summary>${ctx.esc(decisionReasonTitle(ctx, true))}</summary>${reasons}</details>` : reasons;
-    return `<section id="what-to-do" class="decision-panel ${decision ? "rod-decision" : ""}" ${dataAttribute}><h2>${ctx.esc(heading)}</h2>${targetAdvice2 || general}${supporting}${next}${maker}${note}</section>`;
+    const reasons = (targetAdvice2 && !isFly ? general : "") + factList + (wingDecision ? "" : decisionFacts(ctx, item, allItems));
+    if (!decision || !reasons) return reasons;
+    return `<details class="decision-reasons"><summary>${ctx.esc(decisionReasonTitle(ctx, true))}</summary>${reasons}</details>`;
+  }
+  function decisionSectionCopy(ctx, item, decision, wingDecision, facts) {
+    const factList = facts.length ? `<h3>${ctx.esc(decisionReasonTitle(ctx, Boolean(decision)))}</h3><ul>${facts.map((fact) => `<li>${ctx.esc(fact)}</li>`).join("")}</ul>` : "";
+    const verdict = wingDecision ? `<p class="rod-verdict" data-fly-wing-verdict="${ctx.esc(item.id)}">${ctx.esc(wingDecision.label)}</p>` : decision ? `<p class="rod-verdict">${ctx.esc(ctx.local(decision.label))}</p>` : "";
+    const key = item.rodDecision ? "data-rod-decision" : item.baitLureDecision ? "data-bait-lure-decision" : "data-gear-decision";
+    const marker = decision ? `${key}="${ctx.esc(item.id)}"` : "";
+    return {
+      factList,
+      verdict,
+      marker,
+      heading: decision ? rodDecisionTitle(ctx, item) : ctx.copy.use
+    };
+  }
+  function renderDecisionSection(ctx, item, summary, facts, imageNote, data) {
+    const { allItems, fishVisuals, fishLocations } = data;
+    const decision = item.rodDecision || item.gearDecision || item.baitLureDecision;
+    const fishId = ctx.selectedFish || "";
+    const wingDecision = flyWingPlayerDecision(
+      ctx.lang,
+      item,
+      allItems,
+      fishId,
+      fishId ? ctx.fishName(fishId, fishVisuals) : ""
+    );
+    const {
+      factList,
+      verdict,
+      marker: dataAttribute,
+      heading
+    } = decisionSectionCopy(ctx, item, decision, wingDecision, facts);
+    const body = summary || ctx.copy.noFish;
+    const targetAdvice2 = wingDecision ? "" : targetAdviceSection(ctx, item, allItems, fishVisuals, fishLocations);
+    const general = `${verdict}<p>${ctx.esc(body)}</p>`;
+    const actions = decisionSectionActions(
+      ctx,
+      item,
+      wingDecision,
+      allItems,
+      fishVisuals,
+      fishLocations
+    );
+    const note = imageNote ? `<p class="muted">${ctx.esc(imageNote)}</p>` : "";
+    const supporting = decisionSectionSupport(
+      ctx,
+      item,
+      decision,
+      wingDecision,
+      targetAdvice2,
+      general,
+      factList,
+      allItems
+    );
+    return `<section id="what-to-do" class="decision-panel ${decision ? "rod-decision" : ""}" ${dataAttribute}><h2>${ctx.esc(heading)}</h2>${targetAdvice2 || general}${supporting}${actions}${note}</section>`;
   }
   function renderQuickOptions(ctx, item, allItems, fishLocations) {
     const options = [
@@ -1463,7 +1671,7 @@
     ]);
   }
   function renderItemSections(ctx, item, allItems, fishVisuals, fishLocations, decisions) {
-    const usage = ctx.visibleUsage(item);
+    const usage = ctx.visibleUsage(item, allItems, fishVisuals);
     const summary = usage.summary || ctx.local(item.playerUse?.summary) || "";
     const facts = usage.facts || [];
     const name = ctx.imageName(item);
@@ -1474,16 +1682,11 @@
     const target = renderFishTarget(ctx, fishVisuals, fishLocations);
     const baitTarget = renderBaitTarget(ctx, item, fishVisuals, fishLocations);
     const note = item[`imageNote${ctx.lang === "th" ? "Th" : ctx.lang === "ja" ? "Ja" : "En"}`] || "";
-    const action = renderDecisionSection(
-      ctx,
-      item,
-      summary,
-      facts,
-      note,
+    const action = renderDecisionSection(ctx, item, summary, facts, note, {
       allItems,
       fishVisuals,
       fishLocations
-    );
+    });
     const extras = renderQuickOptions(ctx, item, allItems, fishLocations);
     const rodAdvice = item.rodDecision || item.gearDecision || item.baitLureDecision;
     const buying = rodAdvice ? "" : ctx.buyingDecision(item, allItems, decisions);
@@ -1526,7 +1729,7 @@
   function loadCatalogue(ctx) {
     ctx.flyMakerLink = (item) => item.category.startsWith("fly") ? `<p><a class="route-button" data-fly-maker href="${ctx.esc(ctx.currentCategoryLink().split("#")[0] + "#fly-instructions")}">${ctx.lang === "th" ? "ดูขั้นตอนประกอบฟลายเองและตรวจราคาในเกม" : ctx.lang === "ja" ? "自作フライの手順とゲーム内見積額を確認" : "See custom fly steps and check the in-game quote"} ↗</a></p>` : "";
     ctx.setNavigation();
-    fetch("gallery-data.json?v=compendium-20261005-21").then((response) => {
+    fetch("gallery-data.json?v=compendium-20261005-22").then((response) => {
       if (!response.ok) throw new Error("catalogue data unavailable");
       return response.json();
     }).then((data) => {

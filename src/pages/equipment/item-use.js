@@ -1,3 +1,5 @@
+import { flyWingPlayerDecision } from '../../entities/item/index.js'
+
 function fishMealAdvice(ctx) {
   return {
     summary:
@@ -61,6 +63,17 @@ function genericUse(ctx, item, use) {
 export function visibleUse(ctx, item) {
   const use = ctx.useOf(item)
   if (item.category === 'food' && item.id === '08') return fishMealAdvice(ctx)
+  if (item.category === 'fly_wing') {
+    const fish = document.getElementById('fish-filter')?.value || ''
+    const decision = flyWingPlayerDecision(
+      ctx.lang,
+      item,
+      ctx.allItems,
+      fish,
+      fish ? ctx.fishName(fish) : '',
+    )
+    if (decision) return { summary: decision.recommendation, facts: [decision.reason] }
+  }
   const decision = item.baitLureDecision || item.gearDecision || item.rodDecision
   if (decision) return decisionAdvice(ctx, decision)
   if (item.category === 'hook' || item.category === 'float_weight')

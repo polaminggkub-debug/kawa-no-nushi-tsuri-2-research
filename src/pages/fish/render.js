@@ -1,3 +1,14 @@
+const profileAnchors = {
+  '#fish-area-map': 'fish-area-map',
+  '#water-icons': 'water-icons',
+  '#all-compatible': 'all-compatible',
+  '#fly-backup': 'fly-backup',
+}
+
+function profileAnchorId(hash) {
+  return profileAnchors[hash] || ''
+}
+
 function renderMissingProfile(ctx, message) {
   ctx.page.innerHTML = `<h1>${ctx.escapeHtml(ctx.copy.pageTitle)}</h1><p class="empty-state">${ctx.escapeHtml(message)}</p><p><a class="route-button" href="${ctx.escapeHtml(ctx.cataloguePath())}">${ctx.escapeHtml(ctx.copy.catalogue)}</a></p>`
   ctx.setNavigation('')
@@ -85,27 +96,33 @@ function updateAreaChooser(ctx, fishData, locationData, locations) {
   const chooser = document.getElementById('shopping-area')
   chooser.addEventListener('change', () => {
     ctx.requestedStage = ctx.validStage(chooser.value)
-    if (typeof history !== 'undefined')
-      history.replaceState(null, '', ctx.currentFishPath(ctx.requestedStage))
+    if (typeof history !== 'undefined') {
+      const anchor = profileAnchorId(location.hash)
+      const suffix = anchor ? `#${anchor}` : ''
+      history.replaceState(null, '', `${ctx.currentFishPath(ctx.requestedStage)}${suffix}`)
+    }
     ctx.render(fishData, locationData)
   })
 }
 
 function reopenFlyBackup() {
   if (location.hash !== '#fly-backup') return
-  const backup = document.getElementById('fly-backup')
-  backup?.setAttribute('open', '')
-  backup?.scrollIntoView({ block: 'start' })
+  document.getElementById('fly-backup')?.setAttribute('open', '')
 }
 
-function reopenRequestedStarter(ctx) {
+function reopenRequestedStarter(ctx, shouldScroll = true) {
   const anchor = location.hash.match(/^#starter-(float|sinker|lure|fly)$/)?.[1]
   const method = ctx.requestedMethod || anchor
   if (!method) return
   const starter = document.getElementById(`starter-${method}`)
   if (!starter) return
   starter.setAttribute('open', '')
-  starter.scrollIntoView({ block: 'start' })
+  if (shouldScroll) starter.scrollIntoView({ block: 'start' })
+}
+
+function restoreProfileAnchor(anchorId) {
+  if (!anchorId) return
+  document.getElementById(anchorId)?.scrollIntoView({ block: 'start' })
 }
 
 function setFishTitle(ctx, headline) {
@@ -124,8 +141,10 @@ export function render(ctx, fishData, locationData) {
     return
   }
   ctx.page.innerHTML = profileContent(ctx, fishData, fish, state)
-  reopenRequestedStarter(ctx)
+  const anchorId = profileAnchorId(location.hash)
+  reopenRequestedStarter(ctx, !anchorId)
   reopenFlyBackup()
   updateAreaChooser(ctx, fishData, locationData, state.locations)
   setFishTitle(ctx, state.headline)
+  restoreProfileAnchor(anchorId)
 }

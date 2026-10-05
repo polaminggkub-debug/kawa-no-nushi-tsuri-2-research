@@ -109,7 +109,12 @@ function checkHookLinkStyles() {
   const file = new URL('../../src/pages/equipment/styles/part-6.css', import.meta.url)
   const root = postcss.parse(readFileSync(file, 'utf8'), { from: file.pathname })
   const button = root.nodes.find(
-    (node) => node.type === 'rule' && node.selector === '.item-card .route-button',
+    (node) =>
+      node.type === 'rule' &&
+      node.selector
+        .split(',')
+        .map((value) => value.trim())
+        .includes('.item-card .route-button'),
   )
   const label = root.nodes.find(
     (node) => node.type === 'rule' && node.selector === '.hook-target-links > span',

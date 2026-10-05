@@ -120,6 +120,15 @@ function handleBaitRouteClick(ctx, event) {
   ctx.renderCards()
 }
 
+function handleEmptyBaitRouteSwitch(ctx, event) {
+  const link = event.target.closest('[data-empty-bait-switch="float"]')
+  if (!link) return
+  event.preventDefault()
+  ctx.baitRoute = 'float'
+  ctx.renderCards()
+  document.getElementById('catalogue').scrollIntoView({ behavior: 'smooth', block: 'start' })
+}
+
 function handleFlyPartClick(ctx, event) {
   if (event.target.closest('[data-guide]')) {
     event.preventDefault()
@@ -166,6 +175,9 @@ function bindCatalogueEvents(ctx) {
     .getElementById('bait-route-menu')
     .addEventListener('click', (event) => handleBaitRouteClick(ctx, event))
   document
+    .getElementById('cards')
+    .addEventListener('click', (event) => handleEmptyBaitRouteSwitch(ctx, event))
+  document
     .getElementById('fly-part-menu')
     .addEventListener('click', (event) => handleFlyPartClick(ctx, event))
   const locationPanel = document.getElementById('fish-location-panel')
@@ -191,7 +203,7 @@ function initializeLoadedCatalogue(ctx, data) {
 
 export function loadCatalogue(ctx) {
   showCatalogueLoading(ctx)
-  fetch('gallery-data.json?v=compendium-20261005-21')
+  fetch('gallery-data.json?v=compendium-20261005-22')
     .then((response) => {
       if (!response.ok) throw new Error('catalogue unavailable')
       return response.json()

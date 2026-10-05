@@ -2,6 +2,7 @@ import { flyMenuPosition } from './fly-menu-position.js'
 import { notebookAction } from './notebook.js'
 import { questNextActions } from './quest-next-actions.js'
 import { targetAdviceSection } from './target-advice.js'
+import { flyWingPlayerDecision, flyWingPlayerLinks } from '../../entities/item/index.js'
 function renderFishTarget(ctx, fishVisuals, fishLocations) {
   if (!ctx.selectedFish) return ''
   const fish = fishVisuals[ctx.selectedFish]
@@ -107,40 +108,127 @@ function decisionFacts(ctx, item, allItems) {
     : ''
 }
 
-function renderDecisionSection(
+function flyWingDetailHrefs(ctx, item, decision, allItems, fishLocations) {
+  const bodyId = decision.bundle?.body || '01'
+  const body = allItems.find((candidate) => candidate.category === 'fly' && candidate.id === bodyId)
+  const verifiedWing = allItems
+    .filter(
+      (candidate) =>
+        candidate.category === 'fly_wing' &&
+        candidate.id !== item.id &&
+        candidate.flyMakerMenuChoice,
+    )
+    .sort((a, b) => a.id.localeCompare(b.id))[0]
+  const query = new URLSearchParams({
+    stage: String(decision.bundle?.stage || 6),
+    place: 'town',
+    category: item.category,
+    id: item.id,
+  })
+  if (ctx.selectedFish) query.set('fish', ctx.selectedFish)
+  if (ctx.selectedRoute) query.set('route', ctx.selectedRoute)
+  const returned = ctx.safeLocalRoute(ctx.currentLocalRoute())
+  if (returned) query.set('return', returned)
+  return {
+    shop: `${ctx.localePage[ctx.lang].replace('item', 'shops')}?${query}`,
+    body: body ? ctx.detailItemLink(body) : '',
+    fish: ctx.selectedFish ? ctx.fishProfileLink(ctx.selectedFish, fishLocations) : '',
+    starter: body && !decision.bundle ? ctx.detailItemLink(body) : '',
+    alternative: verifiedWing ? `${ctx.detailItemLink(verifiedWing)}#fly-menu-position` : '',
+  }
+}
+
+function decisionSectionActions(ctx, item, wingDecision, allItems, fishVisuals, fishLocations) {
+  if (!wingDecision)
+    return ctx.gearNextActions(item, fishVisuals, fishLocations, allItems) + ctx.flyMakerLink(item)
+  const hrefs = flyWingDetailHrefs(ctx, item, wingDecision, allItems, fishLocations)
+  return flyWingPlayerLinks(ctx, wingDecision, hrefs)
+}
+
+function decisionSectionSupport(
   ctx,
   item,
-  summary,
-  facts,
-  imageNote,
+  decision,
+  wingDecision,
+  targetAdvice,
+  general,
+  factList,
   allItems,
-  fishVisuals,
-  fishLocations,
 ) {
-  const decision = item.rodDecision || item.gearDecision || item.baitLureDecision
-  const isRod = item.category === 'rod'
+  const isFly = ['fly', 'fly_wing', 'fly_tail'].includes(item.category)
+  const reasons =
+    (targetAdvice && !isFly ? general : '') +
+    factList +
+    (wingDecision ? '' : decisionFacts(ctx, item, allItems))
+  if (!decision || !reasons) return reasons
+  return `<details class="decision-reasons"><summary>${ctx.esc(decisionReasonTitle(ctx, true))}</summary>${reasons}</details>`
+}
+
+function decisionSectionCopy(ctx, item, decision, wingDecision, facts) {
   const factList = facts.length
     ? `<h3>${ctx.esc(decisionReasonTitle(ctx, Boolean(decision)))}</h3><ul>${facts.map((fact) => `<li>${ctx.esc(fact)}</li>`).join('')}</ul>`
     : ''
-  const verdict = decision ? `<p class="rod-verdict">${ctx.esc(ctx.local(decision.label))}</p>` : ''
-  const dataAttribute = decision
-    ? `${isRod ? 'data-rod-decision' : item.baitLureDecision ? 'data-bait-lure-decision' : 'data-gear-decision'}="${ctx.esc(item.id)}"`
-    : ''
-  const heading = decision ? rodDecisionTitle(ctx, item) : ctx.copy.use
+  const verdict = wingDecision
+    ? `<p class="rod-verdict" data-fly-wing-verdict="${ctx.esc(item.id)}">${ctx.esc(wingDecision.label)}</p>`
+    : decision
+      ? `<p class="rod-verdict">${ctx.esc(ctx.local(decision.label))}</p>`
+      : ''
+  const key = item.rodDecision
+    ? 'data-rod-decision'
+    : item.baitLureDecision
+      ? 'data-bait-lure-decision'
+      : 'data-gear-decision'
+  const marker = decision ? `${key}="${ctx.esc(item.id)}"` : ''
+  return {
+    factList,
+    verdict,
+    marker,
+    heading: decision ? rodDecisionTitle(ctx, item) : ctx.copy.use,
+  }
+}
+
+function renderDecisionSection(ctx, item, summary, facts, imageNote, data) {
+  const { allItems, fishVisuals, fishLocations } = data
+  const decision = item.rodDecision || item.gearDecision || item.baitLureDecision
+  const fishId = ctx.selectedFish || ''
+  const wingDecision = flyWingPlayerDecision(
+    ctx.lang,
+    item,
+    allItems,
+    fishId,
+    fishId ? ctx.fishName(fishId, fishVisuals) : '',
+  )
+  const {
+    factList,
+    verdict,
+    marker: dataAttribute,
+    heading,
+  } = decisionSectionCopy(ctx, item, decision, wingDecision, facts)
   const body = summary || ctx.copy.noFish
-  const targetAdvice = targetAdviceSection(ctx, item, allItems, fishVisuals, fishLocations)
+  const targetAdvice = wingDecision
+    ? ''
+    : targetAdviceSection(ctx, item, allItems, fishVisuals, fishLocations)
   const general = `${verdict}<p>${ctx.esc(body)}</p>`
-  const next = ctx.gearNextActions(item, fishVisuals, fishLocations, allItems)
-  const maker = ctx.flyMakerLink(item)
+  const actions = decisionSectionActions(
+    ctx,
+    item,
+    wingDecision,
+    allItems,
+    fishVisuals,
+    fishLocations,
+  )
   const note = imageNote ? `<p class="muted">${ctx.esc(imageNote)}</p>` : ''
-  const isFly = ['fly', 'fly_wing', 'fly_tail'].includes(item.category)
-  const reasons =
-    (targetAdvice && !isFly ? general : '') + factList + decisionFacts(ctx, item, allItems)
-  const supporting =
-    decision && reasons
-      ? `<details class="decision-reasons"><summary>${ctx.esc(decisionReasonTitle(ctx, true))}</summary>${reasons}</details>`
-      : reasons
-  return `<section id="what-to-do" class="decision-panel ${decision ? 'rod-decision' : ''}" ${dataAttribute}><h2>${ctx.esc(heading)}</h2>${targetAdvice || general}${supporting}${next}${maker}${note}</section>`
+  const supporting = decisionSectionSupport(
+    ctx,
+    item,
+    decision,
+    wingDecision,
+    targetAdvice,
+    general,
+    factList,
+    allItems,
+  )
+  return `<section id="what-to-do" class="decision-panel ${decision ? 'rod-decision' : ''}" ${dataAttribute}><h2>${ctx.esc(heading)}</h2>${targetAdvice || general}${supporting}${actions}${note}</section>`
 }
 
 function renderQuickOptions(ctx, item, allItems, fishLocations) {
@@ -167,7 +255,7 @@ function renderMoreOptions(ctx, item, allItems, fishLocations) {
 }
 
 function renderItemSections(ctx, item, allItems, fishVisuals, fishLocations, decisions) {
-  const usage = ctx.visibleUsage(item)
+  const usage = ctx.visibleUsage(item, allItems, fishVisuals)
   const summary = usage.summary || ctx.local(item.playerUse?.summary) || ''
   const facts = usage.facts || []
   const name = ctx.imageName(item)
@@ -178,16 +266,11 @@ function renderItemSections(ctx, item, allItems, fishVisuals, fishLocations, dec
   const target = renderFishTarget(ctx, fishVisuals, fishLocations)
   const baitTarget = renderBaitTarget(ctx, item, fishVisuals, fishLocations)
   const note = item[`imageNote${ctx.lang === 'th' ? 'Th' : ctx.lang === 'ja' ? 'Ja' : 'En'}`] || ''
-  const action = renderDecisionSection(
-    ctx,
-    item,
-    summary,
-    facts,
-    note,
+  const action = renderDecisionSection(ctx, item, summary, facts, note, {
     allItems,
     fishVisuals,
     fishLocations,
-  )
+  })
   const extras = renderQuickOptions(ctx, item, allItems, fishLocations)
   const rodAdvice = item.rodDecision || item.gearDecision || item.baitLureDecision
   const buying = rodAdvice ? '' : ctx.buyingDecision(item, allItems, decisions)

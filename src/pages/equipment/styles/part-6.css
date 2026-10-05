@@ -92,7 +92,8 @@
   color: white;
 }
 
-.item-card .route-button {
+.item-card .route-button,
+.empty-state .route-button {
   display: inline-flex;
   align-items: center;
   min-height: 44px;
@@ -107,7 +108,9 @@
 }
 
 .item-card .route-button:hover,
-.item-card .route-button:focus-visible {
+.item-card .route-button:focus-visible,
+.empty-state .route-button:hover,
+.empty-state .route-button:focus-visible {
   border-color: var(--green);
   background: var(--paper);
 }

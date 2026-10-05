@@ -47,6 +47,16 @@ function cardFor(runtime, item) {
   return card
 }
 
+function checkEvidence(evidence, item, advice, locale) {
+  for (const source of advice.sources || [])
+    assert(
+      evidence.includes(escapeHtml(source)),
+      `Decision evidence source missing: ${item.category}:${item.id}/${source}/${locale}`,
+    )
+  if (item.recordBytesHex)
+    assert(evidence.includes(item.recordBytesHex), `ROM bytes missing: ${item.category}:${item.id}`)
+}
+
 function checkAdviceLayers(card, item, locale) {
   const advice = adviceFor(item)
   if (!advice) return false
@@ -59,7 +69,6 @@ function checkAdviceLayers(card, item, locale) {
   )
   const visible = card.slice(0, detailStart)
   const decisionDetails = card.slice(detailStart, evidenceStart)
-  const evidence = card.slice(evidenceStart)
   const label = localizedField(advice, 'label', item, locale)
   const recommendation = localizedField(advice, 'recommendation', item, locale)
   const reason = localizedField(advice, 'reason', item, locale)
@@ -68,29 +77,34 @@ function checkAdviceLayers(card, item, locale) {
     : item.baitLureDecision
       ? 'data-bait-lure-decision'
       : 'data-gear-decision'
+  const scopedWing = item.category === 'fly_wing' && ['25', '26', '66', '67'].includes(item.id)
   assert(
-    visible.includes(`${marker}="${item.id}"`),
+    visible.includes(`${scopedWing ? 'data-fly-wing-decision' : marker}="${item.id}"`),
     `Decision type missing: ${item.category}:${item.id}`,
   )
   assert(
-    visible.includes(`class="use-summary card-verdict">${escapeHtml(label)}</p>`),
+    item.baitLureDecision
+      ? visible.includes(`data-bait-lure-verdict="${item.category}:${item.id}"`)
+      : scopedWing
+        ? visible.includes('class="use-summary card-verdict"')
+        : visible.includes(`class="use-summary card-verdict">${escapeHtml(label)}</p>`),
     `Visible verdict missing: ${item.category}:${item.id}/${locale}`,
   )
   assert(
-    decisionDetails.includes(`class="card-full-recommendation">${escapeHtml(recommendation)}</p>`),
+    scopedWing
+      ? decisionDetails.includes('class="card-full-recommendation"')
+      : decisionDetails.includes(
+          `class="card-full-recommendation">${escapeHtml(recommendation)}</p>`,
+        ),
     `Full recommendation missing: ${item.category}:${item.id}/${locale}`,
   )
   assert(
-    decisionDetails.includes(`class="card-decision-reason">${escapeHtml(reason)}</p>`),
+    scopedWing
+      ? decisionDetails.includes('class="card-decision-reason"')
+      : decisionDetails.includes(`class="card-decision-reason">${escapeHtml(reason)}</p>`),
     `Full reason missing: ${item.category}:${item.id}/${locale}`,
   )
-  for (const source of advice.sources || [])
-    assert(
-      evidence.includes(escapeHtml(source)),
-      `Decision evidence source missing: ${item.category}:${item.id}/${source}`,
-    )
-  if (item.recordBytesHex)
-    assert(evidence.includes(item.recordBytesHex), `ROM bytes missing: ${item.category}:${item.id}`)
+  checkEvidence(card.slice(evidenceStart), item, advice, locale)
   return true
 }
 

@@ -143,15 +143,19 @@ function checkItemSources(item, visible, html, lang) {
 }
 
 function checkGearDecision(item, visible, html, lang) {
+  const scopedWing = item.category === 'fly_wing' && ['25', '26', '66', '67'].includes(item.id)
   if (item.category === 'hook') assert(visible.includes('data-hook-price-guide'))
-  for (const field of ['label', 'recommendation', 'reason']) {
+  for (const field of scopedWing ? [] : ['label', 'recommendation', 'reason']) {
     assert(
       unescapeHtml(visible).includes(item.gearDecision[field][lang]),
       `Gear advice hidden ${item.category}:${item.id}/${field}`,
     )
   }
   for (const id of item.gearDecision.targetFish || []) assert(visible.includes(`id=${id}`))
-  if (item.category.startsWith('fly') && item.category !== 'fly')
+  if (scopedWing) {
+    assert(visible.includes(`data-fly-wing-verdict="${item.id}"`))
+    assert(visible.includes(`data-fly-wing-action="${item.id}"`))
+  } else if (item.category.startsWith('fly') && item.category !== 'fly')
     assert(visible.includes('data-fly-next'))
   for (const fact of item.playerUse.facts?.[lang] || []) assert(unescapeHtml(html).includes(fact))
 }
@@ -214,7 +218,9 @@ function checkAcquisitionDetails(item, visible, lang) {
     if (location.image) assert(visible.includes(`src="${location.image}"`))
     if (location.context === 'town') assertTownLocation(item, visible, location, lang)
   }
-  if (item.category.startsWith('fly'))
+  if (item.category === 'fly_wing' && ['25', '26', '66', '67'].includes(item.id))
+    assert(visible.includes(`data-fly-wing-action="${item.id}"`))
+  else if (item.category.startsWith('fly'))
     assert(visible.includes('data-fly-maker') && visible.includes('#fly-instructions'))
   if (item.category === 'rod') checkRodDetail(item, visible, lang)
 }

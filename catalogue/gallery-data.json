@@ -25132,6 +25132,20 @@
           "data/shop-stock-rom.json"
         ]
       },
+      "flyMakerMenuChoice": {
+        "category": "fly",
+        "part": "body",
+        "id": "4B",
+        "familyJa": "ディプテラ",
+        "area": 2,
+        "controlledFixture": true,
+        "row": 1,
+        "column": 1,
+        "image": "custom/fly-even-menu-positions/diptera-body-c1-r1-cursor.png",
+        "imageSha256": "9ce7d133d13b12d2c5b8a033614c19a2a16a8d657d0660b7edb045ed5e8e3b03",
+        "resultSource": "diptera-body-c1-r1.result.json",
+        "evidenceHref": "../docs/fly-maker-even-families-menu-research.md"
+      },
       "nameTh": null,
       "labelImageTh": "thai-labels/fly-4B.png"
     },
@@ -25304,6 +25318,20 @@
           "data/fish-acceptance.json",
           "data/shop-stock-rom.json"
         ]
+      },
+      "flyMakerMenuChoice": {
+        "category": "fly",
+        "part": "body",
+        "id": "4C",
+        "familyJa": "ディプテラ",
+        "area": 2,
+        "controlledFixture": true,
+        "row": 2,
+        "column": 1,
+        "image": "custom/fly-even-menu-positions/diptera-body-c1-r2-cursor.png",
+        "imageSha256": "490e4b453203061dc33ac5b59cdb62fa909d9abc4c8d0b3713674a0d1b783941",
+        "resultSource": "diptera-body-c1-r2.result.json",
+        "evidenceHref": "../docs/fly-maker-even-families-menu-research.md"
       },
       "nameTh": null,
       "labelImageTh": "thai-labels/fly-4C.png"
@@ -25478,6 +25506,20 @@
           "data/shop-stock-rom.json"
         ]
       },
+      "flyMakerMenuChoice": {
+        "category": "fly",
+        "part": "body",
+        "id": "4D",
+        "familyJa": "ディプテラ",
+        "area": 2,
+        "controlledFixture": true,
+        "row": 3,
+        "column": 1,
+        "image": "custom/fly-even-menu-positions/diptera-body-c1-r3-cursor.png",
+        "imageSha256": "5a9f80fb7876eba9ff01dc1b4f072506ba110994521c006b777f6676cdbb0830",
+        "resultSource": "diptera-body-c1-r3.result.json",
+        "evidenceHref": "../docs/fly-maker-even-families-menu-research.md"
+      },
       "nameTh": null,
       "labelImageTh": "thai-labels/fly-4D.png"
     },
@@ -25650,6 +25692,20 @@
           "data/fish-acceptance.json",
           "data/shop-stock-rom.json"
         ]
+      },
+      "flyMakerMenuChoice": {
+        "category": "fly",
+        "part": "body",
+        "id": "4E",
+        "familyJa": "ディプテラ",
+        "area": 2,
+        "controlledFixture": true,
+        "row": 4,
+        "column": 1,
+        "image": "custom/fly-even-menu-positions/diptera-body-c1-r4-cursor.png",
+        "imageSha256": "9fc013479de94dbdce2b9fa506d9b818c7e75a40526c035098ff3293712c342e",
+        "resultSource": "diptera-body-c1-r4.result.json",
+        "evidenceHref": "../docs/fly-maker-even-families-menu-research.md"
       },
       "nameTh": null,
       "labelImageTh": "thai-labels/fly-4E.png"
@@ -25824,6 +25880,20 @@
           "data/shop-stock-rom.json"
         ]
       },
+      "flyMakerMenuChoice": {
+        "category": "fly",
+        "part": "body",
+        "id": "4F",
+        "familyJa": "ディプテラ",
+        "area": 2,
+        "controlledFixture": true,
+        "row": 1,
+        "column": 2,
+        "image": "custom/fly-even-menu-positions/diptera-body-c2-r1-cursor.png",
+        "imageSha256": "19b10006e13cb1e22e962e86fa6d75003d06a870617f51787449c7ba10a0be6d",
+        "resultSource": "diptera-body-c2-r1.result.json",
+        "evidenceHref": "../docs/fly-maker-even-families-menu-research.md"
+      },
       "nameTh": null,
       "labelImageTh": "thai-labels/fly-4F.png"
     },
@@ -25991,6 +26061,20 @@
           "data/fish-acceptance.json",
           "data/shop-stock-rom.json"
         ]
+      },
+      "flyMakerMenuChoice": {
+        "category": "fly",
+        "part": "body",
+        "id": "56",
+        "familyJa": "ディプテラ",
+        "area": 2,
+        "controlledFixture": true,
+        "row": 2,
+        "column": 2,
+        "image": "custom/fly-even-menu-positions/diptera-body-c2-r2-cursor.png",
+        "imageSha256": "1d1cbe27da38470ab15966c4e71828b6409535f55aec86696a1ac2d92f1f6d4a",
+        "resultSource": "diptera-body-c2-r2.result.json",
+        "evidenceHref": "../docs/fly-maker-even-families-menu-research.md"
       },
       "nameTh": null,
       "labelImageTh": "thai-labels/fly-56.png"
@@ -26160,6 +26244,20 @@
           "data/shop-stock-rom.json"
         ]
       },
+      "flyMakerMenuChoice": {
+        "category": "fly",
+        "part": "body",
+        "id": "57",
+        "familyJa": "ディプテラ",
+        "area": 2,
+        "controlledFixture": true,
+        "row": 3,
+        "column": 2,
+        "image": "custom/fly-even-menu-positions/diptera-body-c2-r3-cursor.png",
+        "imageSha256": "b115df79474219a371997f82843fda78ef42e2e78ea95539fc4b3097fb97c049",
+        "resultSource": "diptera-body-c2-r3.result.json",
+        "evidenceHref": "../docs/fly-maker-even-families-menu-research.md"
+      },
       "nameTh": null,
       "labelImageTh": "thai-labels/fly-57.png"
     },
@@ -26317,6 +26415,20 @@
           "data/shop-stock-rom.json"
         ]
       },
+      "flyMakerMenuChoice": {
+        "category": "fly",
+        "part": "body",
+        "id": "58",
+        "familyJa": "ディプテラ",
+        "area": 2,
+        "controlledFixture": true,
+        "row": 4,
+        "column": 2,
+        "image": "custom/fly-even-menu-positions/diptera-body-c2-r4-cursor.png",
+        "imageSha256": "c6e53cc0dfc4de7adf2bb6e03375e21c9032e8bf763f732299ff49a13a1a7936",
+        "resultSource": "diptera-body-c2-r4.result.json",
+        "evidenceHref": "../docs/fly-maker-even-families-menu-research.md"
+      },
       "nameTh": null,
       "labelImageTh": "thai-labels/fly-58.png"
     },
@@ -26473,6 +26585,20 @@
           "data/fish-acceptance.json",
           "data/shop-stock-rom.json"
         ]
+      },
+      "flyMakerMenuChoice": {
+        "category": "fly",
+        "part": "body",
+        "id": "59",
+        "familyJa": "ディプテラ",
+        "area": 2,
+        "controlledFixture": true,
+        "row": 1,
+        "column": 3,
+        "image": "custom/fly-even-menu-positions/diptera-body-c3-r1-cursor.png",
+        "imageSha256": "6c38d8592d6b1c443148fd89445cb57b3eec320b2be7d90c96126d3eb93374aa",
+        "resultSource": "diptera-body-c3-r1.result.json",
+        "evidenceHref": "../docs/fly-maker-even-families-menu-research.md"
       },
       "nameTh": null,
       "labelImageTh": "thai-labels/fly-59.png"
@@ -26647,6 +26773,20 @@
           "data/shop-stock-rom.json"
         ]
       },
+      "flyMakerMenuChoice": {
+        "category": "fly",
+        "part": "body",
+        "id": "60",
+        "familyJa": "ストーンフライ",
+        "area": 2,
+        "controlledFixture": true,
+        "row": 1,
+        "column": 1,
+        "image": "custom/fly-even-menu-positions/stonefly-body-c1-r1-cursor.png",
+        "imageSha256": "bd5db4475ed16f668ce41431857d14aa243fe3f4882a961b553b6896115668ab",
+        "resultSource": "stonefly-body-c1-r1.result.json",
+        "evidenceHref": "../docs/fly-maker-even-families-menu-research.md"
+      },
       "nameTh": null,
       "labelImageTh": "thai-labels/fly-60.png"
     },
@@ -26820,6 +26960,20 @@
           "data/shop-stock-rom.json"
         ]
       },
+      "flyMakerMenuChoice": {
+        "category": "fly",
+        "part": "body",
+        "id": "61",
+        "familyJa": "ストーンフライ",
+        "area": 2,
+        "controlledFixture": true,
+        "row": 2,
+        "column": 1,
+        "image": "custom/fly-even-menu-positions/stonefly-body-c1-r2-cursor.png",
+        "imageSha256": "c832253471d1d05c0829b04cf9365187aef50f207db1e8a855eba42d7bb9bc9b",
+        "resultSource": "stonefly-body-c1-r2.result.json",
+        "evidenceHref": "../docs/fly-maker-even-families-menu-research.md"
+      },
       "nameTh": null,
       "labelImageTh": "thai-labels/fly-61.png"
     },
@@ -26981,6 +27135,20 @@
           "data/shop-stock-rom.json"
         ]
       },
+      "flyMakerMenuChoice": {
+        "category": "fly",
+        "part": "body",
+        "id": "62",
+        "familyJa": "ストーンフライ",
+        "area": 2,
+        "controlledFixture": true,
+        "row": 3,
+        "column": 1,
+        "image": "custom/fly-even-menu-positions/stonefly-body-c1-r3-cursor.png",
+        "imageSha256": "69d75d445dd35081013fecf2bda5f675036248b7b159154f326b2da55ce1aa6e",
+        "resultSource": "stonefly-body-c1-r3.result.json",
+        "evidenceHref": "../docs/fly-maker-even-families-menu-research.md"
+      },
       "nameTh": null,
       "labelImageTh": "thai-labels/fly-62.png"
     },
@@ -27141,6 +27309,20 @@
           "data/fish-acceptance.json",
           "data/shop-stock-rom.json"
         ]
+      },
+      "flyMakerMenuChoice": {
+        "category": "fly",
+        "part": "body",
+        "id": "63",
+        "familyJa": "ストーンフライ",
+        "area": 2,
+        "controlledFixture": true,
+        "row": 4,
+        "column": 1,
+        "image": "custom/fly-even-menu-positions/stonefly-body-c1-r4-cursor.png",
+        "imageSha256": "81d763717b810e2c6eff3ee7ac41a5a9a0e441035929772277d4384f87e3b97f",
+        "resultSource": "stonefly-body-c1-r4.result.json",
+        "evidenceHref": "../docs/fly-maker-even-families-menu-research.md"
       },
       "nameTh": null,
       "labelImageTh": "thai-labels/fly-63.png"
@@ -27315,6 +27497,20 @@
           "data/shop-stock-rom.json"
         ]
       },
+      "flyMakerMenuChoice": {
+        "category": "fly",
+        "part": "body",
+        "id": "64",
+        "familyJa": "ストーンフライ",
+        "area": 2,
+        "controlledFixture": true,
+        "row": 1,
+        "column": 2,
+        "image": "custom/fly-even-menu-positions/stonefly-body-c2-r1-cursor.png",
+        "imageSha256": "862da12b346ba64a8519bc771b83932cb2861b246a3d42b3063fcaa6f7e317ee",
+        "resultSource": "stonefly-body-c2-r1.result.json",
+        "evidenceHref": "../docs/fly-maker-even-families-menu-research.md"
+      },
       "nameTh": null,
       "labelImageTh": "thai-labels/fly-64.png"
     },
@@ -27488,6 +27684,20 @@
           "data/shop-stock-rom.json"
         ]
       },
+      "flyMakerMenuChoice": {
+        "category": "fly",
+        "part": "body",
+        "id": "65",
+        "familyJa": "ストーンフライ",
+        "area": 2,
+        "controlledFixture": true,
+        "row": 2,
+        "column": 2,
+        "image": "custom/fly-even-menu-positions/stonefly-body-c2-r2-cursor.png",
+        "imageSha256": "73054c9e9995a986f9b0345e7c84f321dc82ff74f0fb9b859452311ff2760195",
+        "resultSource": "stonefly-body-c2-r2.result.json",
+        "evidenceHref": "../docs/fly-maker-even-families-menu-research.md"
+      },
       "nameTh": null,
       "labelImageTh": "thai-labels/fly-65.png"
     },
@@ -27644,6 +27854,20 @@
           "data/fish-acceptance.json",
           "data/shop-stock-rom.json"
         ]
+      },
+      "flyMakerMenuChoice": {
+        "category": "fly",
+        "part": "body",
+        "id": "6C",
+        "familyJa": "ストーンフライ",
+        "area": 2,
+        "controlledFixture": true,
+        "row": 3,
+        "column": 2,
+        "image": "custom/fly-even-menu-positions/stonefly-body-c2-r3-cursor.png",
+        "imageSha256": "334a102a136b9660b267b62164899a1f69d0ed368cf9a1c74ebb8dbf3e20694a",
+        "resultSource": "stonefly-body-c2-r3.result.json",
+        "evidenceHref": "../docs/fly-maker-even-families-menu-research.md"
       },
       "nameTh": null,
       "labelImageTh": "thai-labels/fly-6C.png"
@@ -27802,6 +28026,20 @@
           "data/shop-stock-rom.json"
         ]
       },
+      "flyMakerMenuChoice": {
+        "category": "fly",
+        "part": "body",
+        "id": "6D",
+        "familyJa": "ストーンフライ",
+        "area": 2,
+        "controlledFixture": true,
+        "row": 4,
+        "column": 2,
+        "image": "custom/fly-even-menu-positions/stonefly-body-c2-r4-cursor.png",
+        "imageSha256": "3fbde50748e7b913b2e8bdd5a759f30aafad4e7d40c7c275557064ccfe6e2a7f",
+        "resultSource": "stonefly-body-c2-r4.result.json",
+        "evidenceHref": "../docs/fly-maker-even-families-menu-research.md"
+      },
       "nameTh": null,
       "labelImageTh": "thai-labels/fly-6D.png"
     },
@@ -27947,6 +28185,20 @@
           "data/shop-stock-rom.json"
         ]
       },
+      "flyMakerMenuChoice": {
+        "category": "fly",
+        "part": "body",
+        "id": "6E",
+        "familyJa": "ストーンフライ",
+        "area": 2,
+        "controlledFixture": true,
+        "row": 1,
+        "column": 3,
+        "image": "custom/fly-even-menu-positions/stonefly-body-c3-r1-cursor.png",
+        "imageSha256": "18304c586d48bf39d80c8ffe2b20c6f065536172eff42f8a8993c15e67415ff0",
+        "resultSource": "stonefly-body-c3-r1.result.json",
+        "evidenceHref": "../docs/fly-maker-even-families-menu-research.md"
+      },
       "nameTh": null,
       "labelImageTh": "thai-labels/fly-6E.png"
     },
@@ -28091,6 +28343,20 @@
           "data/fish-acceptance.json",
           "data/shop-stock-rom.json"
         ]
+      },
+      "flyMakerMenuChoice": {
+        "category": "fly",
+        "part": "body",
+        "id": "6F",
+        "familyJa": "ストーンフライ",
+        "area": 2,
+        "controlledFixture": true,
+        "row": 2,
+        "column": 3,
+        "image": "custom/fly-even-menu-positions/stonefly-body-c3-r2-cursor.png",
+        "imageSha256": "b8df47a7d503f3c16659935f9b06655de093ffd22790d4919de14bf60acf0bf7",
+        "resultSource": "stonefly-body-c3-r2.result.json",
+        "evidenceHref": "../docs/fly-maker-even-families-menu-research.md"
       },
       "nameTh": null,
       "labelImageTh": "thai-labels/fly-6F.png"
@@ -49965,6 +50231,24 @@
           "docs/fly-maker-menu-research.md",
           "data/fly-maker-menu-trace.json"
         ]
+      },
+      "flyMakerMenuChoice": {
+        "category": "fly_wing",
+        "part": "wing",
+        "id": "50",
+        "familyJa": "ディプテラ",
+        "area": 2,
+        "controlledFixture": true,
+        "row": 1,
+        "column": 1,
+        "image": "custom/fly-even-menu-positions/diptera-wing-c1-r1-cursor.png",
+        "imageSha256": "908893b11eda9833c91b4b8bb242918f8e19245429fd12c79906fc719954446e",
+        "resultSource": "diptera-wing-c1-r1.result.json",
+        "nonePosition": {
+          "row": 1,
+          "column": 3
+        },
+        "evidenceHref": "../docs/fly-maker-even-families-menu-research.md"
       }
     },
     {
@@ -50106,6 +50390,24 @@
           "docs/fly-maker-menu-research.md",
           "data/fly-maker-menu-trace.json"
         ]
+      },
+      "flyMakerMenuChoice": {
+        "category": "fly_wing",
+        "part": "wing",
+        "id": "51",
+        "familyJa": "ディプテラ",
+        "area": 2,
+        "controlledFixture": true,
+        "row": 2,
+        "column": 1,
+        "image": "custom/fly-even-menu-positions/diptera-wing-c1-r2-cursor.png",
+        "imageSha256": "4fb85161e46f3251ec0e3df8267ab756587ecca24cf5b4ae4e75e9712cfa4202",
+        "resultSource": "diptera-wing-c1-r2.result.json",
+        "nonePosition": {
+          "row": 1,
+          "column": 3
+        },
+        "evidenceHref": "../docs/fly-maker-even-families-menu-research.md"
       }
     },
     {
@@ -50247,6 +50549,24 @@
           "docs/fly-maker-menu-research.md",
           "data/fly-maker-menu-trace.json"
         ]
+      },
+      "flyMakerMenuChoice": {
+        "category": "fly_wing",
+        "part": "wing",
+        "id": "52",
+        "familyJa": "ディプテラ",
+        "area": 2,
+        "controlledFixture": true,
+        "row": 3,
+        "column": 1,
+        "image": "custom/fly-even-menu-positions/diptera-wing-c1-r3-cursor.png",
+        "imageSha256": "fec89ab60eabf8a4803aa22f518e22de681844558a0510e03b2fd574bbfe1065",
+        "resultSource": "diptera-wing-c1-r3.result.json",
+        "nonePosition": {
+          "row": 1,
+          "column": 3
+        },
+        "evidenceHref": "../docs/fly-maker-even-families-menu-research.md"
       }
     },
     {
@@ -50377,6 +50697,24 @@
           "docs/fly-maker-menu-research.md",
           "data/fly-maker-menu-trace.json"
         ]
+      },
+      "flyMakerMenuChoice": {
+        "category": "fly_wing",
+        "part": "wing",
+        "id": "5A",
+        "familyJa": "ディプテラ",
+        "area": 2,
+        "controlledFixture": true,
+        "row": 4,
+        "column": 1,
+        "image": "custom/fly-even-menu-positions/diptera-wing-c1-r4-cursor.png",
+        "imageSha256": "53b6a18acb1dd8dd94287b4cc86bb309c972de7ea08de20b03c11e8ae14faa18",
+        "resultSource": "diptera-wing-c1-r4.result.json",
+        "nonePosition": {
+          "row": 1,
+          "column": 3
+        },
+        "evidenceHref": "../docs/fly-maker-even-families-menu-research.md"
       }
     },
     {
@@ -50507,6 +50845,24 @@
           "docs/fly-maker-menu-research.md",
           "data/fly-maker-menu-trace.json"
         ]
+      },
+      "flyMakerMenuChoice": {
+        "category": "fly_wing",
+        "part": "wing",
+        "id": "5B",
+        "familyJa": "ディプテラ",
+        "area": 2,
+        "controlledFixture": true,
+        "row": 1,
+        "column": 2,
+        "image": "custom/fly-even-menu-positions/diptera-wing-c2-r1-cursor.png",
+        "imageSha256": "dcdfa4cd86248534bd81116b3b0e5b494fa523406a96d8aed88e0f51a40fb8cf",
+        "resultSource": "diptera-wing-c2-r1.result.json",
+        "nonePosition": {
+          "row": 1,
+          "column": 3
+        },
+        "evidenceHref": "../docs/fly-maker-even-families-menu-research.md"
       }
     },
     {
@@ -50648,6 +51004,24 @@
           "docs/fly-maker-menu-research.md",
           "data/fly-maker-menu-trace.json"
         ]
+      },
+      "flyMakerMenuChoice": {
+        "category": "fly_wing",
+        "part": "wing",
+        "id": "5C",
+        "familyJa": "ディプテラ",
+        "area": 2,
+        "controlledFixture": true,
+        "row": 2,
+        "column": 2,
+        "image": "custom/fly-even-menu-positions/diptera-wing-c2-r2-cursor.png",
+        "imageSha256": "214e610fd7c423af9387dd53d8bc288d26a83b9e074f9a72b8b973bee03c67db",
+        "resultSource": "diptera-wing-c2-r2.result.json",
+        "nonePosition": {
+          "row": 1,
+          "column": 3
+        },
+        "evidenceHref": "../docs/fly-maker-even-families-menu-research.md"
       }
     },
     {
@@ -50778,6 +51152,24 @@
           "docs/fly-maker-menu-research.md",
           "data/fly-maker-menu-trace.json"
         ]
+      },
+      "flyMakerMenuChoice": {
+        "category": "fly_wing",
+        "part": "wing",
+        "id": "5D",
+        "familyJa": "ディプテラ",
+        "area": 2,
+        "controlledFixture": true,
+        "row": 3,
+        "column": 2,
+        "image": "custom/fly-even-menu-positions/diptera-wing-c2-r3-cursor.png",
+        "imageSha256": "8d2bf807b5ace53bcf1ea138f65c241df75934e706ebf1f1a519817e65ebcfae",
+        "resultSource": "diptera-wing-c2-r3.result.json",
+        "nonePosition": {
+          "row": 1,
+          "column": 3
+        },
+        "evidenceHref": "../docs/fly-maker-even-families-menu-research.md"
       }
     },
     {
@@ -50908,6 +51300,24 @@
           "docs/fly-maker-menu-research.md",
           "data/fly-maker-menu-trace.json"
         ]
+      },
+      "flyMakerMenuChoice": {
+        "category": "fly_wing",
+        "part": "wing",
+        "id": "5E",
+        "familyJa": "ディプテラ",
+        "area": 2,
+        "controlledFixture": true,
+        "row": 4,
+        "column": 2,
+        "image": "custom/fly-even-menu-positions/diptera-wing-c2-r4-cursor.png",
+        "imageSha256": "4155246450872ad73ea89c8b2393f35f503a3f2715760dfc7e4babb24e42ed75",
+        "resultSource": "diptera-wing-c2-r4.result.json",
+        "nonePosition": {
+          "row": 1,
+          "column": 3
+        },
+        "evidenceHref": "../docs/fly-maker-even-families-menu-research.md"
       }
     },
     {
@@ -51274,6 +51684,24 @@
           "docs/fly-maker-menu-research.md",
           "data/fly-maker-menu-trace.json"
         ]
+      },
+      "flyMakerMenuChoice": {
+        "category": "fly_wing",
+        "part": "wing",
+        "id": "70",
+        "familyJa": "ストーンフライ",
+        "area": 2,
+        "controlledFixture": true,
+        "row": 1,
+        "column": 1,
+        "image": "custom/fly-even-menu-positions/stonefly-wing-c1-r1-cursor.png",
+        "imageSha256": "98debfbb87ea12d4e4dd4edcd233f975b3e13ecbd9a4ce8bc5826f8456aeb800",
+        "resultSource": "stonefly-wing-c1-r1.result.json",
+        "nonePosition": {
+          "row": 1,
+          "column": 2
+        },
+        "evidenceHref": "../docs/fly-maker-even-families-menu-research.md"
       }
     },
     {
@@ -51404,6 +51832,24 @@
           "docs/fly-maker-menu-research.md",
           "data/fly-maker-menu-trace.json"
         ]
+      },
+      "flyMakerMenuChoice": {
+        "category": "fly_wing",
+        "part": "wing",
+        "id": "71",
+        "familyJa": "ストーンフライ",
+        "area": 2,
+        "controlledFixture": true,
+        "row": 2,
+        "column": 1,
+        "image": "custom/fly-even-menu-positions/stonefly-wing-c1-r2-cursor.png",
+        "imageSha256": "0ac7ddb9a50f649507700ab6e1b54b714d5590257f601d5e7072b04287a856a8",
+        "resultSource": "stonefly-wing-c1-r2.result.json",
+        "nonePosition": {
+          "row": 1,
+          "column": 2
+        },
+        "evidenceHref": "../docs/fly-maker-even-families-menu-research.md"
       }
     },
     {
@@ -51522,6 +51968,24 @@
           "docs/fly-maker-menu-research.md",
           "data/fly-maker-menu-trace.json"
         ]
+      },
+      "flyMakerMenuChoice": {
+        "category": "fly_wing",
+        "part": "wing",
+        "id": "72",
+        "familyJa": "ストーンフライ",
+        "area": 2,
+        "controlledFixture": true,
+        "row": 3,
+        "column": 1,
+        "image": "custom/fly-even-menu-positions/stonefly-wing-c1-r3-cursor.png",
+        "imageSha256": "7783bc14ff269042bc066529d14f6f24676d46308ec92d39bf373eee10f1ae90",
+        "resultSource": "stonefly-wing-c1-r3.result.json",
+        "nonePosition": {
+          "row": 1,
+          "column": 2
+        },
+        "evidenceHref": "../docs/fly-maker-even-families-menu-research.md"
       }
     },
     {
@@ -51640,6 +52104,24 @@
           "docs/fly-maker-menu-research.md",
           "data/fly-maker-menu-trace.json"
         ]
+      },
+      "flyMakerMenuChoice": {
+        "category": "fly_wing",
+        "part": "wing",
+        "id": "73",
+        "familyJa": "ストーンフライ",
+        "area": 2,
+        "controlledFixture": true,
+        "row": 4,
+        "column": 1,
+        "image": "custom/fly-even-menu-positions/stonefly-wing-c1-r4-cursor.png",
+        "imageSha256": "0b4a2889d96618e7e0c79fab3f83c89a069eb9d7b55b9baeb61852ebc93af5da",
+        "resultSource": "stonefly-wing-c1-r4.result.json",
+        "nonePosition": {
+          "row": 1,
+          "column": 2
+        },
+        "evidenceHref": "../docs/fly-maker-even-families-menu-research.md"
       }
     },
     {
@@ -53497,6 +53979,24 @@
           "data/fly-customization.json",
           "data/shop-stock-rom.json"
         ]
+      },
+      "flyMakerMenuChoice": {
+        "category": "fly_tail",
+        "part": "tail",
+        "id": "53",
+        "familyJa": "ディプテラ",
+        "area": 2,
+        "controlledFixture": true,
+        "row": 1,
+        "column": 1,
+        "image": "custom/fly-even-menu-positions/diptera-tail-c1-r1-cursor.png",
+        "imageSha256": "6dbe02dc2d3394f84caa319bdb76d2e0e1f20286dc18ba3bd0bbc5170abe079c",
+        "resultSource": "diptera-tail-c1-r1.result.json",
+        "nonePosition": {
+          "row": 1,
+          "column": 2
+        },
+        "evidenceHref": "../docs/fly-maker-even-families-menu-research.md"
       }
     },
     {
@@ -53632,6 +54132,24 @@
           "data/fly-customization.json",
           "data/shop-stock-rom.json"
         ]
+      },
+      "flyMakerMenuChoice": {
+        "category": "fly_tail",
+        "part": "tail",
+        "id": "54",
+        "familyJa": "ディプテラ",
+        "area": 2,
+        "controlledFixture": true,
+        "row": 2,
+        "column": 1,
+        "image": "custom/fly-even-menu-positions/diptera-tail-c1-r2-cursor.png",
+        "imageSha256": "8580ac69c6ef8e10a37f2f818dd7f2293b70b42e98b54a40097bb047f2ebda67",
+        "resultSource": "diptera-tail-c1-r2.result.json",
+        "nonePosition": {
+          "row": 1,
+          "column": 2
+        },
+        "evidenceHref": "../docs/fly-maker-even-families-menu-research.md"
       }
     },
     {
@@ -53767,6 +54285,24 @@
           "data/fly-customization.json",
           "data/shop-stock-rom.json"
         ]
+      },
+      "flyMakerMenuChoice": {
+        "category": "fly_tail",
+        "part": "tail",
+        "id": "55",
+        "familyJa": "ディプテラ",
+        "area": 2,
+        "controlledFixture": true,
+        "row": 3,
+        "column": 1,
+        "image": "custom/fly-even-menu-positions/diptera-tail-c1-r3-cursor.png",
+        "imageSha256": "c4f45bae19664e0b70225e56814ee79641c1c92927bf5ce49f3b53c7709e5853",
+        "resultSource": "diptera-tail-c1-r3.result.json",
+        "nonePosition": {
+          "row": 1,
+          "column": 2
+        },
+        "evidenceHref": "../docs/fly-maker-even-families-menu-research.md"
       }
     },
     {
@@ -53924,6 +54460,24 @@
           "data/fly-customization.json",
           "data/shop-stock-rom.json"
         ]
+      },
+      "flyMakerMenuChoice": {
+        "category": "fly_tail",
+        "part": "tail",
+        "id": "5F",
+        "familyJa": "ディプテラ",
+        "area": 2,
+        "controlledFixture": true,
+        "row": 4,
+        "column": 1,
+        "image": "custom/fly-even-menu-positions/diptera-tail-c1-r4-cursor.png",
+        "imageSha256": "5cd5a1e3fa0279a2c148bda361f08047354089434d0cdb0355df85f51dc3170d",
+        "resultSource": "diptera-tail-c1-r4.result.json",
+        "nonePosition": {
+          "row": 1,
+          "column": 2
+        },
+        "evidenceHref": "../docs/fly-maker-even-families-menu-research.md"
       }
     },
     {
@@ -54048,6 +54602,24 @@
           "data/fly-customization.json",
           "data/shop-stock-rom.json"
         ]
+      },
+      "flyMakerMenuChoice": {
+        "category": "fly_tail",
+        "part": "tail",
+        "id": "68",
+        "familyJa": "ストーンフライ",
+        "area": 2,
+        "controlledFixture": true,
+        "row": 1,
+        "column": 1,
+        "image": "custom/fly-even-menu-positions/stonefly-tail-c1-r1-cursor.png",
+        "imageSha256": "9c37d2628f58534df937a7a1418aec5db90e89f1996da3fbf92cfcf6936d63cc",
+        "resultSource": "stonefly-tail-c1-r1.result.json",
+        "nonePosition": {
+          "row": 4,
+          "column": 2
+        },
+        "evidenceHref": "../docs/fly-maker-even-families-menu-research.md"
       }
     },
     {
@@ -54183,6 +54755,24 @@
           "data/fly-customization.json",
           "data/shop-stock-rom.json"
         ]
+      },
+      "flyMakerMenuChoice": {
+        "category": "fly_tail",
+        "part": "tail",
+        "id": "69",
+        "familyJa": "ストーンフライ",
+        "area": 2,
+        "controlledFixture": true,
+        "row": 2,
+        "column": 1,
+        "image": "custom/fly-even-menu-positions/stonefly-tail-c1-r2-cursor.png",
+        "imageSha256": "4add35ac3d842aecd393cc5ef14d3c79c8ac2342f1d1eea69bb13f72071016f2",
+        "resultSource": "stonefly-tail-c1-r2.result.json",
+        "nonePosition": {
+          "row": 4,
+          "column": 2
+        },
+        "evidenceHref": "../docs/fly-maker-even-families-menu-research.md"
       }
     },
     {
@@ -54307,6 +54897,24 @@
           "data/fly-customization.json",
           "data/shop-stock-rom.json"
         ]
+      },
+      "flyMakerMenuChoice": {
+        "category": "fly_tail",
+        "part": "tail",
+        "id": "6A",
+        "familyJa": "ストーンフライ",
+        "area": 2,
+        "controlledFixture": true,
+        "row": 3,
+        "column": 1,
+        "image": "custom/fly-even-menu-positions/stonefly-tail-c1-r3-cursor.png",
+        "imageSha256": "a7f12d26ded0c12e7c9f8269924989b5b85a5a556ed43d0ceba13c82daf95b95",
+        "resultSource": "stonefly-tail-c1-r3.result.json",
+        "nonePosition": {
+          "row": 4,
+          "column": 2
+        },
+        "evidenceHref": "../docs/fly-maker-even-families-menu-research.md"
       }
     },
     {
@@ -54419,6 +55027,24 @@
           "data/fly-customization.json",
           "data/shop-stock-rom.json"
         ]
+      },
+      "flyMakerMenuChoice": {
+        "category": "fly_tail",
+        "part": "tail",
+        "id": "6B",
+        "familyJa": "ストーンフライ",
+        "area": 2,
+        "controlledFixture": true,
+        "row": 4,
+        "column": 1,
+        "image": "custom/fly-even-menu-positions/stonefly-tail-c1-r4-cursor.png",
+        "imageSha256": "f38adcd5114d9b1f53742a0ad438d7402dcf4dcf0c07a2192cf8d1cbe09d611f",
+        "resultSource": "stonefly-tail-c1-r4.result.json",
+        "nonePosition": {
+          "row": 4,
+          "column": 2
+        },
+        "evidenceHref": "../docs/fly-maker-even-families-menu-research.md"
       }
     },
     {
@@ -54543,6 +55169,24 @@
           "data/fly-customization.json",
           "data/shop-stock-rom.json"
         ]
+      },
+      "flyMakerMenuChoice": {
+        "category": "fly_tail",
+        "part": "tail",
+        "id": "74",
+        "familyJa": "ストーンフライ",
+        "area": 2,
+        "controlledFixture": true,
+        "row": 1,
+        "column": 2,
+        "image": "custom/fly-even-menu-positions/stonefly-tail-c2-r1-cursor.png",
+        "imageSha256": "9373a496a35f51d27e48a5bd4e6609a6e3ef0a1cafc5d762b9e5bd75444c3bb7",
+        "resultSource": "stonefly-tail-c2-r1.result.json",
+        "nonePosition": {
+          "row": 4,
+          "column": 2
+        },
+        "evidenceHref": "../docs/fly-maker-even-families-menu-research.md"
       }
     },
     {
@@ -54667,6 +55311,24 @@
           "data/fly-customization.json",
           "data/shop-stock-rom.json"
         ]
+      },
+      "flyMakerMenuChoice": {
+        "category": "fly_tail",
+        "part": "tail",
+        "id": "75",
+        "familyJa": "ストーンフライ",
+        "area": 2,
+        "controlledFixture": true,
+        "row": 2,
+        "column": 2,
+        "image": "custom/fly-even-menu-positions/stonefly-tail-c2-r2-cursor.png",
+        "imageSha256": "a8d327ec6542d6cd367db15939265d803f360ecbb57e61de7715b122b528d6ba",
+        "resultSource": "stonefly-tail-c2-r2.result.json",
+        "nonePosition": {
+          "row": 4,
+          "column": 2
+        },
+        "evidenceHref": "../docs/fly-maker-even-families-menu-research.md"
       }
     },
     {
@@ -54779,6 +55441,24 @@
           "data/fly-customization.json",
           "data/shop-stock-rom.json"
         ]
+      },
+      "flyMakerMenuChoice": {
+        "category": "fly_tail",
+        "part": "tail",
+        "id": "76",
+        "familyJa": "ストーンフライ",
+        "area": 2,
+        "controlledFixture": true,
+        "row": 3,
+        "column": 2,
+        "image": "custom/fly-even-menu-positions/stonefly-tail-c2-r3-cursor.png",
+        "imageSha256": "f3dcb97f01cac54499cbfa203f696e8e319589b7c48f4e668396374d2e7d17bb",
+        "resultSource": "stonefly-tail-c2-r3.result.json",
+        "nonePosition": {
+          "row": 4,
+          "column": 2
+        },
+        "evidenceHref": "../docs/fly-maker-even-families-menu-research.md"
       }
     }
   ],

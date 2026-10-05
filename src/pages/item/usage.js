@@ -1,3 +1,5 @@
+import { flyWingPlayerDecision } from '../../entities/item/index.js'
+
 function decisionUsage(ctx, decision) {
   return {
     summary: ctx.local(decision.recommendation),
@@ -36,8 +38,18 @@ function specialCategoryUsage(ctx, item, use) {
   return null
 }
 
-export function visibleUsage(ctx, item) {
+export function visibleUsage(ctx, item, allItems = [], fishVisuals = {}) {
   const use = item.playerUse || {}
+  if (item.category === 'fly_wing') {
+    const wingDecision = flyWingPlayerDecision(
+      ctx.lang,
+      item,
+      allItems,
+      ctx.selectedFish,
+      ctx.selectedFish ? ctx.fishName(ctx.selectedFish, fishVisuals) : '',
+    )
+    if (wingDecision) return { summary: wingDecision.recommendation, facts: [wingDecision.reason] }
+  }
   const decision =
     item.baitLureDecision ||
     item.gearDecision ||
