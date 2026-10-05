@@ -65,6 +65,16 @@
       return "";
     }
   }
+  function retainsFishingTarget(ctx) {
+    return ["rod", "hook", "bait", "lure", "fly", "fly_wing", "fly_tail", "float_weight"].includes(
+      ctx.category
+    );
+  }
+  function addFishingTarget(ctx, params) {
+    if (!retainsFishingTarget(ctx)) return;
+    if (ctx.selectedFish) params.set("fish", ctx.selectedFish);
+    if (ctx.selectedRoute) params.set("route", ctx.selectedRoute);
+  }
   function fallbackBack(ctx) {
     const p = new URLSearchParams();
     if (ctx.category)
@@ -73,8 +83,7 @@
         ["fly", "fly_wing", "fly_tail"].includes(ctx.category) ? "flymaker" : ctx.category
       );
     if (["fly", "fly_wing", "fly_tail"].includes(ctx.category)) p.set("part", ctx.category);
-    if (ctx.selectedFish && ["bait", "lure", "fly", "fly_wing", "fly_tail", "float_weight"].includes(ctx.category))
-      p.set("fish", ctx.selectedFish);
+    addFishingTarget(ctx, p);
     if (ctx.selectedStage) p.set("stage", String(ctx.selectedStage));
     return `${ctx.cataloguePage[ctx.lang]}${p.size ? `?${p}` : ""}#catalogue`;
   }
@@ -117,10 +126,8 @@
     const p = new URLSearchParams(), fly = ["fly", "fly_wing", "fly_tail"].includes(ctx.category);
     p.set("category", fly ? "flymaker" : ctx.category || "all");
     if (fly) p.set("part", ctx.category);
-    if (ctx.selectedFish && ["bait", "lure", "fly", "fly_wing", "fly_tail", "float_weight"].includes(ctx.category))
-      p.set("fish", ctx.selectedFish);
+    addFishingTarget(ctx, p);
     if (ctx.selectedStage) p.set("stage", String(ctx.selectedStage));
-    if (ctx.selectedRoute && ctx.category === "bait") p.set("route", ctx.selectedRoute);
     return `${ctx.cataloguePage[ctx.lang]}?${p}#catalogue`;
   }
   function mapLink(ctx, stage, fish = "") {
@@ -258,17 +265,17 @@
       th: [
         "อาหารอื่นที่ซื้อได้ในด่านนี้",
         "เทียบอาหารร้านทั้งหมดและเหตุผลที่ควรเติม HP",
-        "ใช้ของเดิมก่อนซื้อเพิ่ม; อาหารร้านทั้ง 6 แบบราคา 1 เยนต่อ HP เลือกชิ้นที่ฟื้นใกล้ HP ที่ขาด เพราะส่วนที่เกิน HP สูงสุดจะถูกตัดทิ้ง"
+        "ถ้ามีอาหารจากร้านอยู่แล้ว ให้ใช้ก่อนซื้อเพิ่ม; อาหารร้านทั้ง 6 แบบราคา 1 เยนต่อ HP เลือกชิ้นที่ฟื้นใกล้ HP ที่ขาด เพราะส่วนที่เกิน HP สูงสุดจะถูกตัดทิ้ง"
       ],
       ja: [
         "このエリアで買える他の食料",
         "店の食料全体とHP補充の理由を比較",
-        "手持ちを先に使う。店の食料6種はどれも1HPあたり1円。不足HPに近い回復量を選ぶと、最大HPを超えた分を無駄にしない。"
+        "店で買った食料を持っているなら、買い足す前に使ってください。店の食料6種はどれも1HPあたり1円。不足HPに近い回復量を選ぶと、最大HPを超えた分を無駄にしません。"
       ],
       en: [
         "Other foods sold in this area",
         "Compare all shop foods and why to restore HP",
-        "Use food you already own first. All six shop foods cost ¥1 per HP; choose an amount close to your missing HP to avoid recovery wasted above your maximum."
+        "Use shop food you already own before buying more. All six shop foods cost ¥1 per HP; choose an amount close to your missing HP to avoid recovery wasted above your maximum."
       ]
     }[ctx.lang];
   }

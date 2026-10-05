@@ -13,6 +13,18 @@ export function safeLocalRoute(ctx, raw) {
   }
 }
 
+function retainsFishingTarget(ctx) {
+  return ['rod', 'hook', 'bait', 'lure', 'fly', 'fly_wing', 'fly_tail', 'float_weight'].includes(
+    ctx.category,
+  )
+}
+
+function addFishingTarget(ctx, params) {
+  if (!retainsFishingTarget(ctx)) return
+  if (ctx.selectedFish) params.set('fish', ctx.selectedFish)
+  if (ctx.selectedRoute) params.set('route', ctx.selectedRoute)
+}
+
 export function fallbackBack(ctx) {
   const p = new URLSearchParams()
   if (ctx.category)
@@ -21,11 +33,7 @@ export function fallbackBack(ctx) {
       ['fly', 'fly_wing', 'fly_tail'].includes(ctx.category) ? 'flymaker' : ctx.category,
     )
   if (['fly', 'fly_wing', 'fly_tail'].includes(ctx.category)) p.set('part', ctx.category)
-  if (
-    ctx.selectedFish &&
-    ['bait', 'lure', 'fly', 'fly_wing', 'fly_tail', 'float_weight'].includes(ctx.category)
-  )
-    p.set('fish', ctx.selectedFish)
+  addFishingTarget(ctx, p)
   if (ctx.selectedStage) p.set('stage', String(ctx.selectedStage))
   return `${ctx.cataloguePage[ctx.lang]}${p.size ? `?${p}` : ''}#catalogue`
 }
@@ -74,13 +82,8 @@ export function currentCategoryLink(ctx) {
     fly = ['fly', 'fly_wing', 'fly_tail'].includes(ctx.category)
   p.set('category', fly ? 'flymaker' : ctx.category || 'all')
   if (fly) p.set('part', ctx.category)
-  if (
-    ctx.selectedFish &&
-    ['bait', 'lure', 'fly', 'fly_wing', 'fly_tail', 'float_weight'].includes(ctx.category)
-  )
-    p.set('fish', ctx.selectedFish)
+  addFishingTarget(ctx, p)
   if (ctx.selectedStage) p.set('stage', String(ctx.selectedStage))
-  if (ctx.selectedRoute && ctx.category === 'bait') p.set('route', ctx.selectedRoute)
   return `${ctx.cataloguePage[ctx.lang]}?${p}#catalogue`
 }
 

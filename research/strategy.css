@@ -210,6 +210,12 @@ a:focus-visible {
     flex: 0 0 300px;
   }
 }
+.fish-target-action {
+  display: block;
+  margin-top: 10px;
+  padding: 10px 0;
+  font-weight: 700;
+}
 
 /* src/pages/strategy/index.css */
 

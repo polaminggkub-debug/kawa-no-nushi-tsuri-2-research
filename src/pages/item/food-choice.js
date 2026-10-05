@@ -3,17 +3,17 @@ function foodCopy(ctx) {
     th: [
       'อาหารอื่นที่ซื้อได้ในด่านนี้',
       'เทียบอาหารร้านทั้งหมดและเหตุผลที่ควรเติม HP',
-      'ใช้ของเดิมก่อนซื้อเพิ่ม; อาหารร้านทั้ง 6 แบบราคา 1 เยนต่อ HP เลือกชิ้นที่ฟื้นใกล้ HP ที่ขาด เพราะส่วนที่เกิน HP สูงสุดจะถูกตัดทิ้ง',
+      'ถ้ามีอาหารจากร้านอยู่แล้ว ให้ใช้ก่อนซื้อเพิ่ม; อาหารร้านทั้ง 6 แบบราคา 1 เยนต่อ HP เลือกชิ้นที่ฟื้นใกล้ HP ที่ขาด เพราะส่วนที่เกิน HP สูงสุดจะถูกตัดทิ้ง',
     ],
     ja: [
       'このエリアで買える他の食料',
       '店の食料全体とHP補充の理由を比較',
-      '手持ちを先に使う。店の食料6種はどれも1HPあたり1円。不足HPに近い回復量を選ぶと、最大HPを超えた分を無駄にしない。',
+      '店で買った食料を持っているなら、買い足す前に使ってください。店の食料6種はどれも1HPあたり1円。不足HPに近い回復量を選ぶと、最大HPを超えた分を無駄にしません。',
     ],
     en: [
       'Other foods sold in this area',
       'Compare all shop foods and why to restore HP',
-      'Use food you already own first. All six shop foods cost ¥1 per HP; choose an amount close to your missing HP to avoid recovery wasted above your maximum.',
+      'Use shop food you already own before buying more. All six shop foods cost ¥1 per HP; choose an amount close to your missing HP to avoid recovery wasted above your maximum.',
     ],
   }[ctx.lang]
 }

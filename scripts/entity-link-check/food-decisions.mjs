@@ -54,9 +54,9 @@ async function checkLocalChoices(item, lang, stage) {
   const visibleRule = html.match(/data-food-choice><p>([^<]+)<\/p>/)?.[1]
   assert(visibleRule, 'Food decision rule must be visible before any disclosure')
   const rules = {
-    en: [/six shop foods/, /¥1 per HP/, /missing HP/, /maximum/],
-    th: [/อาหารร้านทั้ง 6 แบบ/, /1 เยนต่อ HP/, /HP ที่ขาด/, /HP สูงสุด/],
-    ja: [/店の食料6種/, /1HPあたり1円/, /不足HP/, /最大HP/],
+    en: [/Use shop food/, /six shop foods/, /¥1 per HP/, /missing HP/, /maximum/],
+    th: [/อาหารจากร้าน/, /อาหารร้านทั้ง 6 แบบ/, /1 เยนต่อ HP/, /HP ที่ขาด/, /HP สูงสุด/],
+    ja: [/店で買った食料/, /店の食料6種/, /1HPあたり1円/, /不足HP/, /最大HP/],
   }
   for (const rule of rules[lang]) assert(rule.test(visibleRule))
   const options = html.match(/data-local-food-options>([\s\S]*?)<\/div>/)?.[1]
