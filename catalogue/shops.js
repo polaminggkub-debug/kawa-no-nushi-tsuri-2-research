@@ -721,13 +721,14 @@
     const currentTargetIsBundle = targetItem && ["fly", "fly_wing", "fly_tail"].includes(targetItem.category);
     const stockAnchor = currentTargetIsBundle ? "bundle-stock" : node.kind === "special-rod-shop" ? "special-stock" : "regular-stock";
     const stockCategory = targetItem ? targetItem.category : node.kind === "special-rod-shop" ? "rod" : "all";
-    const stockQuery = ctx.shopsUrl({
+    const stockUrl = ctx.shopsUrl({
       place: "town",
       category: stockCategory,
       id: targetItem ? targetItem.id : "",
       q: ""
     });
-    const actions = `${linkedEntrance ? `<a class="route-button" href="${ctx.esc(fieldHref)}">${ctx.esc(ctx.text.openEntrance)}</a>` : ""}<a class="stock-jump" href="${ctx.esc(stockQuery + "#" + stockAnchor)}">${ctx.esc(ctx.text.viewOffers)}</a>`;
+    const stockHref = `${stockUrl.split("#")[0]}#${stockAnchor}`;
+    const actions = `${linkedEntrance ? `<a class="route-button" href="${ctx.esc(fieldHref)}">${ctx.esc(ctx.text.openEntrance)}</a>` : ""}<a class="stock-jump" href="${ctx.esc(stockHref)}">${ctx.esc(ctx.text.viewOffers)}</a>`;
     return actions;
   }
   function findItem(ctx, items, category, id) {

@@ -504,3 +504,19 @@ switching to food. The Thai postcard map and profile buttons were clicked at
 search and card anchor. Separate buttons use the existing 44px minimum hit area.
 English was inspected at 1200px and Japanese at 320px; the affected card does not
 overflow horizontally, and the English profile link opens the correct fish.
+
+## Seller map-to-stock handoff (2026-10-06)
+
+A separate shop journey review covered all six areas and found one reproducible
+navigation defect: after opening seller locations and changing area, the seller's
+stock link appended a second fragment to the existing `#location-section`. It
+therefore missed the intended stock section. The link now replaces the fragment
+while retaining the selected area, town, target item and return context. Regular,
+special-rod and ready-made fly stock retain their distinct destinations.
+
+Actual local Thai review changed Area 4 rod 0D to Areas 2 and 6 using the visible
+selector and clicked the seller's stock link. Both reached exactly
+`#regular-stock`; the Area 2 stock heading was visible, and the Area 6 path worked
+at 390px without horizontal overflow. The independent guard reproduces the
+original malformed fragment before the fix. This supports the repaired handoff,
+not the completion of every shop interaction or natural in-game purchase.
