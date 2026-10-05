@@ -49,11 +49,15 @@ function makeNode(id) {
     innerHTML: '',
     textContent: '',
     value: '',
+    disabled: ['stage-select', 'category-select', 'item-search', 'clear-filters'].includes(id),
     dataset: {},
     open: false,
     checked: false,
     classList: { add() {}, remove() {}, toggle() {}, contains: () => false },
-    addEventListener() {},
+    listeners: {},
+    addEventListener(name, callback) {
+      this.listeners[name] = callback
+    },
     setAttribute() {},
     removeAttribute() {},
     appendChild() {},
@@ -75,8 +79,13 @@ function makeDocument(lang, place) {
     Object.assign(makeNode(value), {
       value,
       checked: value === (place === 'area' ? 'outdoor' : 'town'),
+      disabled: true,
     }),
   )
+  for (const id of ['stage-select', 'category-select', 'item-search', 'clear-filters']) node(id)
+  const retry = node('shop-retry')
+  node('page-status').querySelector = (selector) =>
+    selector === '[data-shop-retry]' ? retry : null
   const document = {
     documentElement: { dataset: { locale: lang } },
     querySelector(selector) {
@@ -101,16 +110,20 @@ function payloadFor(url, injectedLocations) {
   throw new Error(`Unexpected shops bundle fetch: ${url}`)
 }
 
-async function renderShop(lang, place, entrance = '', injectOutOfBounds = false) {
+async function renderShop(lang, place, entrance = '', injectOutOfBounds = false, fetcher) {
   const suffix = lang === 'en' ? '' : `.${lang}`
   const query = new URLSearchParams({ stage: '6', place })
   if (entrance) query.set('entrance', entrance)
   const url = new URL(
     `https://example.test/kawa-no-nushi-tsuri-2-research/catalogue/shops${suffix}.html?${query}#location-section`,
   )
-  const { document, nodes } = makeDocument(lang, place)
   const selectedLocations = structuredClone(locations)
   if (injectOutOfBounds) addOutOfBoundsFixture(selectedLocations)
+  return renderShopAt(url, lang, fetcher, selectedLocations)
+}
+
+async function renderShopAt(url, lang, fetcher, selectedLocations = locations) {
+  const { document, nodes, radios } = makeDocument(lang, url.searchParams.get('place'))
   const source = fs.readFileSync(path.join(root, 'catalogue/shops.js'), 'utf8')
   assert(/\}\)\(\);\s*$/.test(source), 'Expected generated shops bundle IIFE')
   const instrumented = source.replace(
@@ -127,15 +140,19 @@ async function renderShop(lang, place, entrance = '', injectOutOfBounds = false)
     console,
     setTimeout,
     clearTimeout,
-    fetch: async (request) => ({
-      ok: true,
-      json: async () => payloadFor(String(request), selectedLocations),
-    }),
+    fetch:
+      fetcher ||
+      (async (request) => ({
+        ok: true,
+        json: async () => payloadFor(String(request), selectedLocations),
+      })),
   }
   vm.runInNewContext(instrumented, context)
   await new Promise((resolve) => setImmediate(resolve))
   return {
     html: nodes.get('location-visuals')?.innerHTML || '',
+    nodes,
+    radios,
     summary: nodes.get('location-summary')?.textContent || '',
     url,
   }
@@ -219,11 +236,135 @@ async function checkLocale(lang) {
   )
 }
 
+function shopUrl(lang, includeReturn = true) {
+  const suffix = lang === 'en' ? '' : `.${lang}`
+  const params = new URLSearchParams({ stage: '6', place: 'town', fish: '06', route: 'sinker' })
+  if (includeReturn) params.set('return', `index${suffix}.html?category=bait&fish=06#catalogue`)
+  return new URL(`${articlePath(lang)}?${params}#regular-stock`, 'https://example.test')
+}
+
+async function deferredShop(lang, includeReturn = true) {
+  const url = shopUrl(lang, includeReturn)
+  let reloadCalls = 0
+  url.reload = () => reloadCalls++
+  const requests = []
+  const page = await renderShopAt(url, lang, (request) => {
+    let resolve
+    const promise = new Promise((done) => (resolve = done))
+    requests.push({ request: String(request), promise, resolve })
+    return promise
+  })
+  assert.equal(requests.length, 4, `Shop data requests missing/${lang}`)
+  return { page, requests, url, reloadCalls: () => reloadCalls }
+}
+
+async function resolveShopData(requests, failures = []) {
+  for (const entry of requests) {
+    const filename = entry.request.split('/').at(-1)
+    entry.resolve({
+      ok: !failures.includes(filename),
+      json: async () => payloadFor(entry.request, locations),
+    })
+  }
+  await Promise.all(requests.map((entry) => entry.promise))
+  await new Promise((resolve) => setImmediate(resolve))
+}
+
+function assertShopControlState(page, disabled, context) {
+  const controls = ['stage-select', 'category-select', 'item-search', 'clear-filters']
+  for (const id of controls) {
+    const control = page.nodes.get(id)
+    assert(control, `${context}: missing ${id}; nodes=${[...page.nodes.keys()].join(',')}`)
+    assert.equal(control.disabled, disabled, `${context}/${id}`)
+  }
+  for (const radio of page.radios)
+    assert.equal(radio.disabled, disabled, `${context}/${radio.value}`)
+}
+
+function checkStaticShopControls(lang) {
+  const suffix = lang === 'en' ? '' : `.${lang}`
+  const html = fs.readFileSync(path.join(root, `src/pages/shops/ui/shops${suffix}.html`), 'utf8')
+  for (const id of ['stage-select', 'category-select', 'item-search', 'clear-filters']) {
+    const control = html.match(new RegExp(`<[^>]+\\bid="${id}"[^>]*>`))?.[0] || ''
+    assert.match(control, /\sdisabled(?:\s|=|>)/, `${lang}: ${id} starts enabled`)
+  }
+  for (const value of ['outdoor', 'town'])
+    assert.match(
+      html,
+      new RegExp(`<input[^>]*name="place"[^>]*value="${value}"[^>]*\\sdisabled`),
+      `${lang}: ${value} location toggle starts enabled`,
+    )
+}
+
+function checkShopRetry(page, expectedBack) {
+  const status = page.nodes.get('page-status')
+  assert(status.innerHTML.includes('data-shop-retry'), 'Missing actionable shop retry button')
+  const retry = page.nodes.get('shop-retry')
+  assert.equal(typeof retry.listeners.click, 'function', 'Shop retry button is not bound')
+  const href = status.innerHTML.match(/data-shop-retry[\s\S]*?<a[^>]*href="([^"]+)"/)?.[1]
+  assert(href, 'Shop error state has no safe return action')
+  assert.equal(new URL(unescapeHtml(href), page.url).href, expectedBack)
+  retry.listeners.click()
+}
+
+async function checkShopLoading(lang) {
+  const pending = await deferredShop(lang)
+  assertShopControlState(pending.page, true, `${lang}: pending`)
+  await resolveShopData(pending.requests)
+  assertShopControlState(pending.page, false, `${lang}: ready`)
+  assert.match(pending.page.nodes.get('shop-results').innerHTML, /data-offer=/)
+
+  for (const [failedFile, includeReturn] of [
+    ['gallery-data.json', true],
+    ['shop-stock-rom.json', false],
+  ]) {
+    const failed = await deferredShop(lang, includeReturn)
+    await resolveShopData(failed.requests, [failedFile])
+    assertShopControlState(failed.page, true, `${lang}: ${failedFile} failed`)
+    assert.equal(failed.page.nodes.get('shop-results').innerHTML, '')
+    const fallback = includeReturn
+      ? new URL(
+          `index${lang === 'en' ? '' : `.${lang}`}.html?category=bait&fish=06#catalogue`,
+          failed.url,
+        ).href
+      : new URL(`index${lang === 'en' ? '' : `.${lang}`}.html`, failed.url).href
+    const originalUrl = failed.url.href
+    checkShopRetry(failed.page, fallback)
+    assert.equal(failed.reloadCalls(), 1, `${lang}: retry did not reload the exact shop URL`)
+    assert.equal(failed.url.href, originalUrl, `${lang}: retry changed query or hash`)
+  }
+
+  for (const optionalFile of ['rom-map-manifest.json', 'shop-locations-rom.json']) {
+    const partial = await deferredShop(lang)
+    await resolveShopData(partial.requests, [optionalFile])
+    assertShopControlState(partial.page, false, `${lang}: optional ${optionalFile} failed`)
+    assert.match(partial.page.nodes.get('shop-results').innerHTML, /data-offer=/)
+  }
+  if (lang === 'en') await checkShopBindingFailure()
+}
+
+async function checkShopBindingFailure() {
+  const failed = await deferredShop('en', false)
+  failed.page.nodes.get('item-search').addEventListener = () => {
+    throw new Error('simulated event binding failure')
+  }
+  await resolveShopData(failed.requests)
+  assertShopControlState(failed.page, true, 'en: binding failed')
+  const originalUrl = failed.url.href
+  checkShopRetry(failed.page, new URL(`index.html`, failed.url).href)
+  assert.equal(failed.reloadCalls(), 1)
+  assert.equal(failed.url.href, originalUrl)
+}
+
 async function main() {
   checkDataEvidence()
-  for (const lang of ['en', 'ja', 'th']) await checkLocale(lang)
+  for (const lang of ['en', 'ja', 'th']) {
+    checkStaticShopControls(lang)
+    await checkLocale(lang)
+    await checkShopLoading(lang)
+  }
   console.log(
-    'PASS: Area 6 slot 08 route and localized shop action; focused valid entrance stays clean and an injected out-of-bounds point warns.',
+    'PASS: Area 6 shop routes plus localized load recovery, disabled controls, and stock-only fallback across EN/JA/TH.',
   )
 }
 

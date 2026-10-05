@@ -23,11 +23,15 @@ export function loadMaps(ctx) {
     })
     .catch((error) => {
       console.error(error)
-      ctx.$('pin-help').textContent =
+      const message =
         ctx.lang === 'th'
           ? 'โหลดข้อมูลปลาไม่สำเร็จ กรุณาโหลดหน้าใหม่'
           : ctx.lang === 'ja'
             ? '魚データを読み込めません。ページを再読み込みしてください。'
             : 'Could not load fish map data. Please reload the page.'
+      const retry = { th: 'ลองโหลดแผนที่อีกครั้ง', ja: '地図を再読み込み', en: 'Retry map loading' }
+      ctx.$('pin-help').innerHTML =
+        `<span>${ctx.esc(message)}</span> <button type="button" class="route-button" id="map-retry">${ctx.esc(retry[ctx.lang] || retry.en)} ↻</button>`
+      ctx.$('map-retry')?.addEventListener('click', () => location.reload())
     })
 }

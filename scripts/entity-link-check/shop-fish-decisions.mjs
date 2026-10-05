@@ -58,9 +58,25 @@ for (const lang of ['en', 'th', 'ja']) {
     )
   }
 }
+checkDistinctThaiShopName()
 console.log(
   'Shop fish decisions PASS: all item profiles, both bait routes, three locales, bundle-body checks and contextual actions.',
 )
+
+function checkDistinctThaiShopName() {
+  const fish = data.fishVisuals['3A']
+  assert.deepEqual(fish.nameThVariants, ['อูนางิ / ปลาไหลญี่ปุ่น', 'อูนางิ'])
+  const labelFor = (lang) => {
+    const ctx = context(lang, 'lure')
+    ctx.selectedFish = '3A'
+    const html = shopFishContext(ctx)
+    return unescapeHtml(html.match(/<strong>([^<]+)<\/strong>/)?.[1] || '')
+  }
+  assert.equal(labelFor('th'), 'อูนางิ / ปลาไหลญี่ปุ่น')
+  assert.equal(labelFor('ja'), 'ウナギ')
+  assert.equal(labelFor('en'), 'Unagi')
+  assert.deepEqual(fish.nameThVariants, ['อูนางิ / ปลาไหลญี่ปุ่น', 'อูนางิ'])
+}
 
 function expectedState(item, fish, route) {
   if (!item || !['bait', 'lure', 'fly'].includes(item.category)) return ''

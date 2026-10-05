@@ -3,6 +3,11 @@ export const copy_ja = {
   back: '← 前のページへ戻る',
   invalidTitle: '道具が見つかりません',
   invalidBody: '道具IDがないか、カタログに登録されていません。',
+  loadErrorTitle: '道具の詳細を読み込めませんでした',
+  loadErrorBody:
+    '道具データを読み込めないか、表示できません。もう一度試すか、道具一覧に戻ってください。',
+  retryLoad: 'このページを再読み込み',
+  backToCatalogue: '道具一覧へ戻る',
   category: 'カテゴリ',
   itemId: '道具ID',
   use: 'この道具の使い方',

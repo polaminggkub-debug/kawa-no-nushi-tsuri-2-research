@@ -2,7 +2,11 @@ export const text_en = {
   stockLoaded: 'Shop stock decoded from the original ROM is ready.',
   stockOnly:
     'The stock list is ready. Exact shop and entrance map positions are not available in this data yet.',
-  loadFailed: 'Shop stock could not be loaded. Reload the page or open the item catalogue.',
+  loadFailed: 'Shop stock could not be loaded.',
+  retryLoad: 'Retry this shop search',
+  backToSource: 'Return to the previous page',
+  openCatalogue: 'Open the item catalogue',
+  recoveryActions: 'Recovery actions',
   area: (n) => `Fishing area ${n}`,
   outdoor: (n) => `Area ${n} · town entrances`,
   town: (n) => `Area ${n} · seller positions`,

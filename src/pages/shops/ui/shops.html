@@ -62,16 +62,16 @@
         Choose an area to find where an item is sold. Open the verified town seller positions and
         their paired field entrances on terrain reconstructed from the ROM.
       </p>
-      <p id="page-status" class="status" role="status" aria-live="polite">
+      <div id="page-status" class="status" role="status" aria-live="polite">
         Loading verified shop stock…
-      </p>
+      </div>
 
       <section id="target-status" class="target-status" aria-live="polite"></section>
 
       <section class="filters" aria-label="Shop and item filters">
         <div class="filter-field">
           <label for="stage-select">Fishing area</label>
-          <select id="stage-select">
+          <select id="stage-select" disabled>
             <option value="1">Area 1</option>
             <option value="2">Area 2</option>
             <option value="3">Area 3</option>
@@ -83,16 +83,17 @@
         <fieldset class="place-toggle">
           <legend>View location</legend>
           <label
-            ><input type="radio" name="place" value="outdoor" /> Field map · town entrances</label
+            ><input type="radio" name="place" value="outdoor" disabled /> Field map · town
+            entrances</label
           >
           <label
-            ><input type="radio" name="place" value="town" checked /> Town map · seller
+            ><input type="radio" name="place" value="town" checked disabled /> Town map · seller
             locations</label
           >
         </fieldset>
         <div class="filter-field">
           <label for="category-select">Item type</label>
-          <select id="category-select">
+          <select id="category-select" disabled>
             <option value="all">All item types</option>
             <option value="rod">Fishing rods</option>
             <option value="lure">Lures</option>
@@ -111,11 +112,14 @@
           <input
             id="item-search"
             type="search"
+            disabled
             autocomplete="off"
             placeholder="Try a name or hex ID, such as 2E"
           />
         </div>
-        <button id="clear-filters" type="button" class="quiet-button">Clear item filters</button>
+        <button id="clear-filters" type="button" class="quiet-button" disabled>
+          Clear item filters
+        </button>
       </section>
 
       <details id="shop-map-disclosure" class="overview-disclosure">

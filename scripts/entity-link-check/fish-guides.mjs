@@ -14,6 +14,29 @@ for (const lang of ['en', 'ja', 'th']) {
     }
   }
 }
+for (const lang of ['en', 'ja', 'th']) await checkFishLoadRecovery(lang)
+
+async function checkFishLoadRecovery(lang) {
+  const suffix = lang === 'en' ? '' : `.${lang}`
+  const returnRoute = `maps${suffix}.html?stage=2&fish=06&route=lure&section=s2-c1-r6#map-view`
+  const params = new URLSearchParams({ id: '06', stage: '2', route: 'lure', return: returnRoute })
+  const result = await render('fish', lang, params, undefined, 'failure')
+  assert.match(result.html, /role="alert"/)
+  assert.match(result.html, /id="fish-retry"/)
+  assert.match(result.html, new RegExp(`href="index${suffix}\\.html"`))
+  assert.equal(
+    new URL(result.nodes['fish-back'].href, result.url).href,
+    new URL(returnRoute, result.url).href,
+    `${lang}: fish error lost its map return context`,
+  )
+  let reloadCalls = 0
+  result.url.reload = () => reloadCalls++
+  const exactUrl = result.url.href
+  assert.equal(typeof result.nodes['fish-retry'].listeners.click, 'function')
+  result.nodes['fish-retry'].listeners.click()
+  assert.equal(reloadCalls, 1, `${lang}: fish retry did not reload`)
+  assert.equal(result.url.href, exactUrl, `${lang}: fish retry changed map/fish context`)
+}
 
 function checkAreaDecision(result, lang, fishId, area) {
   const pointCount = area.points?.length || 0

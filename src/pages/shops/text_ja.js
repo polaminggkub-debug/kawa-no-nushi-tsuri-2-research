@@ -1,7 +1,11 @@
 export const text_ja = {
   stockLoaded: 'オリジナルROMから解析した販売品を読み込みました。',
   stockOnly: '販売品は読み込めました。店や入口の正確な位置は、現在のデータでは確認できません。',
-  loadFailed: '販売品を読み込めませんでした。再読み込みするか、アイテム一覧を開いてください。',
+  loadFailed: '販売品データを読み込めませんでした。',
+  retryLoad: '同じ条件でもう一度読み込む',
+  backToSource: '開く前のページに戻る',
+  openCatalogue: 'アイテム一覧を開く',
+  recoveryActions: '読み込み失敗時の操作',
   area: (n) => `釣りエリア${n}`,
   outdoor: (n) => `エリア${n} · 町の入口`,
   town: (n) => `エリア${n} · 店の位置`,

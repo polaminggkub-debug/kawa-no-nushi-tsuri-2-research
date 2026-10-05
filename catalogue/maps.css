@@ -613,13 +613,18 @@ footer p {
   margin: 8px 0 12px;
 }
 .fish-scope-menu button,
-.map-zoom button {
+.map-zoom button,
+#map-retry {
   border: 1px solid #b8cbb7;
   border-radius: 8px;
   padding: 7px 10px;
   background: white;
   color: #254b39;
   cursor: pointer;
+}
+#map-retry {
+  min-height: 44px;
+  margin-top: 8px;
 }
 .fish-scope-menu [aria-pressed=true] {
   background: #245b4a;

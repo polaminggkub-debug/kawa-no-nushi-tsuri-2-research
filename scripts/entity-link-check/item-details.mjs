@@ -7,6 +7,7 @@ for (const lang of ['en', 'ja', 'th']) {
   const suffix = lang === 'en' ? '' : `.${lang}`
   for (const item of data.items) await checkItemDetail(item, lang, suffix)
   await checkInvalidItemTarget(lang)
+  await checkLoadErrorRecovery(lang, suffix)
   await checkRigRouteProfiles(lang)
 }
 
@@ -287,9 +288,79 @@ async function checkInvalidItemTarget(lang) {
   const result = await render(
     'item',
     lang,
-    new URLSearchParams({ category: 'lure', id: '2E', fish: 'FF', stage: '999' }),
+    new URLSearchParams({ category: 'lure', id: 'FF', fish: '06', stage: '4', route: 'lure' }),
   )
-  assert(/class="detail-hero(?:\s|")/.test(result.html) && !result.html.includes('play-target'))
+  const title = { en: 'Item not found', ja: '道具が見つかりません', th: 'ไม่พบไอเท็ม' }[lang]
+  assert(result.html.includes('class="empty-state"') && result.html.includes(title))
+  assert(!result.html.includes('data-item-retry'), `Unknown item became a load error/${lang}`)
+}
+
+async function checkLoadErrorRecovery(lang, suffix) {
+  const returnRoute = `index${suffix}.html?category=rod&fish=06&stage=4&route=float#catalogue`
+  const params = new URLSearchParams({
+    category: 'rod',
+    id: '04',
+    fish: '06',
+    stage: '4',
+    route: 'float',
+    return: returnRoute,
+  })
+  for (const mode of ['failure', 'malformed']) await checkLoadError(lang, params, mode, returnRoute)
+}
+
+async function checkLoadError(lang, params, mode, returnRoute) {
+  let emptyCalls = 0
+  let loadErrorCalls = 0
+  let reloadCalls = 0
+  const suffix = lang === 'en' ? '' : `.${lang}`
+  const exactUrl = new URL(
+    `https://example.test/kawa-no-nushi-tsuri-2-research/catalogue/item${suffix}.html?${params}`,
+  ).href
+  const result = await render('item', lang, params, undefined, mode, (runtime, { url }) => {
+    url.reload = () => reloadCalls++
+    const empty = runtime.emptyState
+    const loadError = runtime.loadErrorState
+    runtime.emptyState = (...args) => {
+      emptyCalls++
+      return empty(...args)
+    }
+    runtime.loadErrorState = (...args) => {
+      loadErrorCalls++
+      return loadError(...args)
+    }
+  })
+  checkLoadErrorMarkup(result, lang)
+  assert.equal(result.url.href, exactUrl, `${mode} changed the original item URL/${lang}`)
+  assert.equal(emptyCalls, 0, `${mode} was reported as an unknown item/${lang}`)
+  assert.equal(loadErrorCalls, 1, `${mode} did not use the retry state/${lang}`)
+  assert.equal(
+    new URL(result.nodes['detail-back'].href, result.url).href,
+    new URL(returnRoute, result.url).href,
+    `Load failure lost the source return/${lang}`,
+  )
+  const retry = result.nodes['item-retry']
+  assert.equal(typeof retry.listeners.click, 'function', `Retry is not bound/${lang}`)
+  retry.listeners.click()
+  assert.equal(reloadCalls, 1, `Retry did not reload/${lang}`)
+  assert.equal(result.url.href, exactUrl, `Retry changed the exact page URL/${lang}`)
+}
+
+function checkLoadErrorMarkup(result, lang) {
+  const title = {
+    en: 'Could not load item details',
+    ja: '道具の詳細を読み込めませんでした',
+    th: 'โหลดรายละเอียดไอเท็มไม่สำเร็จ',
+  }[lang]
+  assert(result.html.includes('role="alert"') && result.html.includes(title))
+  assert(result.html.includes('data-item-retry'))
+  const fallback = result.html.match(/data-item-catalogue-fallback href="([^"]+)"/)?.[1]
+  assert(fallback, `Load failure has no catalogue fallback/${lang}`)
+  const target = new URL(unescapeHtml(fallback), result.url)
+  assert.equal(target.pathname.split('/').pop(), `index${lang === 'en' ? '' : `.${lang}`}.html`)
+  assert.deepEqual(
+    ['category', 'fish', 'stage', 'route'].map((key) => target.searchParams.get(key)),
+    ['rod', '06', '4', 'float'],
+  )
 }
 
 async function checkRigRouteProfiles(lang) {

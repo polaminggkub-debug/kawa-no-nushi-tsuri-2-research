@@ -98,6 +98,9 @@ h3 {
   min-height: 1.8em;
   color: var(--muted);
 }
+.status nav {
+  margin-top: 8px;
+}
 .filters {
   display: grid;
   grid-template-columns: minmax(180px, 0.8fr) minmax(270px, 1.25fr) minmax(200px, 0.9fr) minmax(240px, 1.1fr) auto;

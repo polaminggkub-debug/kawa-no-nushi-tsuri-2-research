@@ -1,5 +1,15 @@
 # Player usefulness audit
 
+## 2026-10-06: usable recovery and concise contextual advice
+
+- Equipment, maps, fish, item details and shops now offer real reload buttons after required data fails. A same-URL link with a fragment did not reload during an actual browser reproduction; button handlers now reload the current URL, retaining selected fish, area, method and source context.
+- Shop filters begin disabled and become usable only after required data, handlers and rendering are ready. Required failures show recovery above the filters; optional map failures do not hide usable stock.
+- Item details distinguish unavailable data from a genuinely unknown item ID. Recovery offers retry plus the existing category/source route.
+- Catalogue recovery moved above the filters after a 390 × 844 browser check found the old retry below the viewport. Map retry uses a touch-sized control. Controlled first-request failures followed by successful button retries were exercised locally for all five page types; this is recovery evidence, not a claim that the public server failed.
+- Thai shop fish labels reuse display-only alias deduplication. Strategy pages state the 38 fish/aquatic-profile compatibility limit once beside the purchase action; original aliases and technical research remain intact.
+
+The full-site player-usefulness goal remains active. Compatibility does not establish bite, hook-up or landing advantages; those comparisons remain a research task. Net and magnifier research remain deferred.
+
 ## 2026-10-05: bait-first fish browsing, local rod choices and safe navigation
 
 - A selected fish in the all-category catalogue now starts with compatible bait, followed by lures and fly bodies, rather than universal floats appearing first in source order. The public Mosugo profile (10) reproduced the reported 16-result float-first view. Dedicated categories and deliberate name/price sorting remain available; no compatibility records are removed.

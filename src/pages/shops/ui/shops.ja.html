@@ -61,16 +61,16 @@
       <p id="shop-page-intro" class="lead">
         エリアを選んで、アイテムの販売場所を探します。ROMから再構成した地形画像で、確認済みの店と対応するフィールド入口を見られます。
       </p>
-      <p id="page-status" class="status" role="status" aria-live="polite">
+      <div id="page-status" class="status" role="status" aria-live="polite">
         ROMで確認した販売品を読み込んでいます…
-      </p>
+      </div>
 
       <section id="target-status" class="target-status" aria-live="polite"></section>
 
       <section class="filters" aria-label="店とアイテムの絞り込み">
         <div class="filter-field">
           <label for="stage-select">釣りエリア</label>
-          <select id="stage-select">
+          <select id="stage-select" disabled>
             <option value="1">エリア 1</option>
             <option value="2">エリア 2</option>
             <option value="3">エリア 3</option>
@@ -82,15 +82,17 @@
         <fieldset class="place-toggle">
           <legend>見る場所</legend>
           <label
-            ><input type="radio" name="place" value="outdoor" /> フィールドマップ · 町の入口</label
+            ><input type="radio" name="place" value="outdoor" disabled /> フィールドマップ ·
+            町の入口</label
           >
           <label
-            ><input type="radio" name="place" value="town" checked /> 町のマップ · 店の位置</label
+            ><input type="radio" name="place" value="town" checked disabled /> 町のマップ ·
+            店の位置</label
           >
         </fieldset>
         <div class="filter-field">
           <label for="category-select">アイテム種別</label>
-          <select id="category-select">
+          <select id="category-select" disabled>
             <option value="all">全種別</option>
             <option value="rod">釣り竿</option>
             <option value="lure">ルアー</option>
@@ -109,11 +111,12 @@
           <input
             id="item-search"
             type="search"
+            disabled
             autocomplete="off"
             placeholder="名前または16進ID（例：2E）"
           />
         </div>
-        <button id="clear-filters" type="button" class="quiet-button">
+        <button id="clear-filters" type="button" class="quiet-button" disabled>
           アイテム絞り込みを解除
         </button>
       </section>

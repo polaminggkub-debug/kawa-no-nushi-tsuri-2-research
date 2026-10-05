@@ -1,3 +1,5 @@
+import { enableShopControls, showShopLoadFailure } from './load-state.js'
+
 export async function init(ctx) {
   const stageSelect = ctx.$('stage-select'),
     categorySelect = ctx.$('category-select'),
@@ -30,8 +32,7 @@ export async function init(ctx) {
   ])
   const [galleryResult, stockResult, mapResult, locationResult] = loc
   if (galleryResult.status !== 'fulfilled' || stockResult.status !== 'fulfilled') {
-    ctx.$('page-status').textContent = ctx.text.loadFailed
-    ctx.$('shop-results').innerHTML = `<p class="empty-state">${ctx.esc(ctx.text.loadFailed)}</p>`
+    showShopLoadFailure(ctx)
     return
   }
   const items = galleryResult.value.items || []
@@ -46,6 +47,7 @@ export async function init(ctx) {
   ctx.bindShopFilters(view, render)
   render()
   scrollRequestedSection(ctx)
+  enableShopControls(ctx)
 }
 
 function scrollRequestedSection(ctx) {

@@ -3760,6 +3760,7 @@
   }
   function showCatalogueLoading(ctx) {
     document.getElementById("category-menu").hidden = true;
+    document.getElementById("catalogue-load-feedback").hidden = true;
     const message = local(ctx, {
       th: "กำลังโหลดรายการและคำแนะนำตามตัวเลือกของคุณ…",
       ja: "選択条件に合うアイテムと案内を読み込み中…",
@@ -3783,7 +3784,11 @@
       en: "The catalogue could not load, so advice for your fish or filters is unavailable. Reload this page, or choose another page from the navigation above."
     });
     const retry = local(ctx, { th: "โหลดหน้าใหม่", ja: "再読み込み", en: "Reload page" });
-    document.getElementById("cards").innerHTML = `<div role="alert" class="empty-state"><p>${ctx.esc(message)}</p><a class="route-button" href="${ctx.esc(location.href)}">${ctx.esc(retry)} ↻</a></div>`;
+    const feedback = document.getElementById("catalogue-load-feedback");
+    feedback.hidden = false;
+    feedback.innerHTML = `<div role="alert" class="empty-state"><p>${ctx.esc(message)}</p><button type="button" class="route-button" id="catalogue-retry">${ctx.esc(retry)} ↻</button></div>`;
+    document.getElementById("cards").innerHTML = "";
+    document.getElementById("catalogue-retry")?.addEventListener("click", () => location.reload());
     document.getElementById("result-count").textContent = "";
   }
 

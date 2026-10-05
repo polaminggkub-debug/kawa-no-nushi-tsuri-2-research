@@ -1290,7 +1290,8 @@
     coords: "Configured coordinates",
     reference: "Compatibility sources",
     legacyName: "Other catalogue names",
-    recovery: "Catalogue data could not be loaded. Return to the catalogue and try again."
+    recovery: "Fish data could not be loaded. Retry this page or return to the catalogue.",
+    retryLoad: "Retry this fish page"
   };
 
   // src/pages/fish/copy_ja.js
@@ -1334,7 +1335,8 @@
     coords: "ゲーム内の設定座標",
     reference: "対応条件の資料",
     legacyName: "カタログの別名",
-    recovery: "カタログを読み込めません。カタログに戻って再度お試しください。"
+    recovery: "魚データを読み込めません。このページを再読み込みするか、カタログに戻ってください。",
+    retryLoad: "この魚ページを再読み込み"
   };
 
   // src/pages/fish/copy_th.js
@@ -1378,7 +1380,8 @@
     coords: "พิกัดที่เกมกำหนด",
     reference: "แหล่งข้อมูลเงื่อนไขเหยื่อ",
     legacyName: "ชื่ออื่นในแคตตาล็อก",
-    recovery: "โหลดข้อมูลไม่สำเร็จ กลับไปหน้าแคตตาล็อกแล้วลองอีกครั้ง"
+    recovery: "โหลดข้อมูลปลาไม่สำเร็จ ลองโหลดหน้านี้อีกครั้ง หรือกลับไปหน้าแคตตาล็อก",
+    retryLoad: "ลองโหลดข้อมูลปลานี้อีกครั้ง"
   };
 
   // src/pages/fish/load-copy.js
@@ -1460,7 +1463,8 @@
     });
   }
   function showLoadError(ctx) {
-    ctx.page.innerHTML = `<h1>${ctx.escapeHtml(ctx.copy.pageTitle)}</h1><p class="empty-state">${ctx.escapeHtml(ctx.copy.recovery)}</p><p><a class="route-button" href="${ctx.escapeHtml(ctx.cataloguePath())}">${ctx.escapeHtml(ctx.copy.catalogue)}</a></p>`;
+    ctx.page.innerHTML = `<section role="alert"><h1>${ctx.escapeHtml(ctx.copy.pageTitle)}</h1><p class="empty-state">${ctx.escapeHtml(ctx.copy.recovery)}</p><p><button type="button" class="route-button" id="fish-retry">${ctx.escapeHtml(ctx.copy.retryLoad)} ↻</button> <a class="route-button" href="${ctx.escapeHtml(ctx.cataloguePath())}">${ctx.escapeHtml(ctx.copy.catalogue)}</a></p></section>`;
+    document.getElementById("fish-retry")?.addEventListener("click", () => location.reload());
   }
 
   // src/pages/fish/setup-locale.js

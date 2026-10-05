@@ -116,6 +116,10 @@ h3 {
   color: var(--muted);
 }
 
+.status nav {
+  margin-top: 8px;
+}
+
 .filters {
   display: grid;
   grid-template-columns:

@@ -378,3 +378,10 @@ export function emptyState(ctx) {
   ctx.$('detail-root').innerHTML =
     `<section class="empty-state"><h1>${ctx.esc(ctx.copy.invalidTitle)}</h1><p>${ctx.esc(ctx.copy.invalidBody)}</p><a class="route-button" href="${ctx.esc(ctx.fallbackBack())}">${ctx.esc(ctx.copy.allItems)} ↗</a></section>`
 }
+
+export function loadErrorState(ctx) {
+  ctx.setNavigation()
+  ctx.$('detail-root').innerHTML =
+    `<section class="empty-state" role="alert"><h1>${ctx.esc(ctx.copy.loadErrorTitle)}</h1><p>${ctx.esc(ctx.copy.loadErrorBody)}</p><p><button class="route-button" type="button" id="item-retry" data-item-retry>${ctx.esc(ctx.copy.retryLoad)} ↻</button> <a class="route-button" data-item-catalogue-fallback href="${ctx.esc(ctx.fallbackBack())}">${ctx.esc(ctx.copy.backToCatalogue)} ↗</a></p></section>`
+  ctx.$('item-retry')?.addEventListener('click', () => location.reload())
+}

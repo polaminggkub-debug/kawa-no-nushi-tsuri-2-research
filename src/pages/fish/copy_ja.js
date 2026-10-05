@@ -42,5 +42,6 @@ export const copy_ja = {
   coords: 'ゲーム内の設定座標',
   reference: '対応条件の資料',
   legacyName: 'カタログの別名',
-  recovery: 'カタログを読み込めません。カタログに戻って再度お試しください。',
+  recovery: '魚データを読み込めません。このページを再読み込みするか、カタログに戻ってください。',
+  retryLoad: 'この魚ページを再読み込み',
 }

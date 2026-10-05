@@ -162,12 +162,14 @@ function vmContext(document, location, loading, captureHistory = false) {
     fetch:
       loading === 'failure'
         ? async () => ({ ok: false })
-        : loading
-          ? () => new Promise(() => {})
-          : async (file) => ({
-              ok: true,
-              json: async () => (file.includes('fish-locations') ? locations : data),
-            }),
+        : loading === 'malformed'
+          ? async () => ({ ok: true, json: async () => ({ items: null }) })
+          : loading
+            ? () => new Promise(() => {})
+            : async (file) => ({
+                ok: true,
+                json: async () => (file.includes('fish-locations') ? locations : data),
+              }),
   }
   return context
 }
@@ -178,15 +180,17 @@ export async function render(
   query,
   prefix = '/kawa-no-nushi-tsuri-2-research',
   loading = false,
+  afterStart,
 ) {
   const suffix = lang === 'en' ? '' : `.${lang}`
   const url = new URL(`https://example.test${prefix}/catalogue/${kind}${suffix}.html?${query}`)
   const { document, nodes, languages } = createDocument(lang)
   const context = vmContext(document, url, loading)
   vm.runInNewContext(sourceBundle(`${kind}-detail`), context)
+  afterStart?.(context.__testRuntimeContext, { document, nodes, url })
   await new Promise((resolve) => setImmediate(resolve))
   const html = nodes[kind === 'fish' ? 'fish-detail' : 'detail-root']?.innerHTML || ''
-  if (loading) return { html, nodes, languages, url }
+  if (loading) return { html, nodes, languages, url, runtime: context.__testRuntimeContext }
   if (kind === 'fish') {
     assert.equal(
       html.includes('data-fish-exchange'),
@@ -208,7 +212,7 @@ export async function render(
     if (node.href) validate(`<a href="${node.href}"></a>`, url, true)
   for (const node of languages) if (node.href) validate(`<a href="${node.href}"></a>`, url, true)
   stats.renders += 1
-  return { html, nodes, languages, url }
+  return { html, nodes, languages, url, runtime: context.__testRuntimeContext }
 }
 
 export async function galleryForage(lang) {

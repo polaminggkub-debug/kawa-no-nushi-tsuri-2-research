@@ -432,6 +432,23 @@
     return `<aside class="shop-walk" data-area6-walk><h4>${ctx.esc(c.title)}</h4><ol>${c.steps.map((step) => `<li>${ctx.esc(step)}</li>`).join("")}</ol><details><summary>${ctx.esc(c.image)}</summary><a href="images/shop-routes/area6-regular-shop.png"><img loading="lazy" src="images/shop-routes/area6-regular-shop.png" alt="${ctx.esc(c.image)}"></a><p><a href="../docs/area6-shop-walking-research.md">${ctx.esc(c.evidence)} ↗</a></p></details></aside>`;
   }
 
+  // src/entities/fish/index.js
+  function nameKey(value) {
+    return String(value || "").normalize("NFKC").trim().replace(/\s+/g, " ").toLocaleLowerCase();
+  }
+  function distinctFishNames(names, headline = "") {
+    const seen = new Set(headline.split("/").map(nameKey).filter(Boolean));
+    seen.add(nameKey(headline));
+    return names.flatMap(
+      (name) => String(name || "").split("/").map((part) => part.trim())
+    ).filter((name) => {
+      const key = nameKey(name);
+      if (!key || seen.has(key)) return false;
+      seen.add(key);
+      return true;
+    });
+  }
+
   // src/pages/shops/player-decision.js
   function shopCompatibility(ctx, item) {
     if (!ctx.selectedFish || !ctx.fishVisuals?.[ctx.selectedFish]) return "";
@@ -476,8 +493,10 @@
     return ["float", "sinker", "lure", "fly"].includes(ctx.selectedRig) ? ctx.selectedRig : "float";
   }
   function fishName(ctx, fish, id) {
-    if (ctx.lang === "th")
-      return fish.nameTh || fish.nameThVariants?.join(" / ") || fish.nameLatin || fish.nameJa || `ปลา ${id}`;
+    if (ctx.lang === "th") {
+      const thaiNames = distinctFishNames(fish.nameTh ? [fish.nameTh] : fish.nameThVariants || []);
+      return thaiNames.join(" / ") || fish.nameLatin || fish.nameJa || `ปลา ${id}`;
+    }
     if (ctx.lang === "ja") return fish.nameJa || `魚 ${id}`;
     return fish.nameEn || fish.nameLatin || fish.nameLatinVariants?.[0] || fish.nameJa || `Fish ${id}`;
   }
@@ -902,6 +921,31 @@
     return (a, b) => Number(ctx.bundleContainsTarget(b, target)) - Number(ctx.bundleContainsTarget(a, target)) || a.shopPriceYen - b.shopPriceYen;
   }
 
+  // src/pages/shops/load-state.js
+  var FILTER_IDS = ["stage-select", "category-select", "item-search", "clear-filters"];
+  function enableShopControls(ctx) {
+    FILTER_IDS.forEach((id) => {
+      ctx.$(id).disabled = false;
+    });
+    document.querySelectorAll('input[name="place"]').forEach((input) => {
+      input.disabled = false;
+    });
+  }
+  function showShopLoadFailure(ctx) {
+    const returnHref = ctx.returnRoute || ctx.pages.index[ctx.lang];
+    const returnLabel = ctx.returnRoute ? ctx.text.backToSource : ctx.text.openCatalogue;
+    const status = ctx.$("page-status");
+    status.innerHTML = `
+    <span>${ctx.esc(ctx.text.loadFailed)}</span>
+    <nav aria-label="${ctx.esc(ctx.text.recoveryActions)}">
+      <button class="route-button" type="button" data-shop-retry>${ctx.esc(ctx.text.retryLoad)} ↻</button>
+      <a class="route-button" href="${ctx.esc(returnHref)}">${ctx.esc(returnLabel)} ↗</a>
+    </nav>
+  `;
+    status.querySelector("[data-shop-retry]")?.addEventListener("click", () => location.reload());
+    ctx.$("shop-results").replaceChildren();
+  }
+
   // src/pages/shops/shop-page.js
   async function init(ctx) {
     const stageSelect = ctx.$("stage-select"), categorySelect = ctx.$("category-select"), search = ctx.$("item-search");
@@ -931,8 +975,7 @@
     ]);
     const [galleryResult, stockResult, mapResult, locationResult] = loc;
     if (galleryResult.status !== "fulfilled" || stockResult.status !== "fulfilled") {
-      ctx.$("page-status").textContent = ctx.text.loadFailed;
-      ctx.$("shop-results").innerHTML = `<p class="empty-state">${ctx.esc(ctx.text.loadFailed)}</p>`;
+      showShopLoadFailure(ctx);
       return;
     }
     const items = galleryResult.value.items || [];
@@ -947,6 +990,7 @@
     ctx.bindShopFilters(view, render);
     render();
     scrollRequestedSection(ctx);
+    enableShopControls(ctx);
   }
   function scrollRequestedSection(ctx) {
     const arrivalTarget = /^#town-arrival-[0-4]$/.test(location.hash);
@@ -1038,7 +1082,11 @@
   var text_en = {
     stockLoaded: "Shop stock decoded from the original ROM is ready.",
     stockOnly: "The stock list is ready. Exact shop and entrance map positions are not available in this data yet.",
-    loadFailed: "Shop stock could not be loaded. Reload the page or open the item catalogue.",
+    loadFailed: "Shop stock could not be loaded.",
+    retryLoad: "Retry this shop search",
+    backToSource: "Return to the previous page",
+    openCatalogue: "Open the item catalogue",
+    recoveryActions: "Recovery actions",
     area: (n) => `Fishing area ${n}`,
     outdoor: (n) => `Area ${n} · town entrances`,
     town: (n) => `Area ${n} · seller positions`,
@@ -1124,7 +1172,11 @@
   var text_th = {
     stockLoaded: "โหลดรายการขายที่แกะจาก ROM ต้นฉบับแล้ว",
     stockOnly: "โหลดรายการขายแล้ว แต่ข้อมูลที่มีตอนนี้ยังไม่มีตำแหน่งร้านและทางเข้าแบบยืนยันจากแผนที่",
-    loadFailed: "โหลดรายการร้านไม่ได้ ลองโหลดหน้าใหม่หรือเปิดคลังไอเท็ม",
+    loadFailed: "โหลดข้อมูลรายการร้านไม่สำเร็จ",
+    retryLoad: "ลองโหลดร้านด้วยตัวเลือกเดิมอีกครั้ง",
+    backToSource: "กลับหน้าที่เปิดร้านนี้",
+    openCatalogue: "เปิดคลังไอเท็ม",
+    recoveryActions: "ทางเลือกเมื่อโหลดข้อมูลไม่สำเร็จ",
     area: (n) => `พื้นที่ตกปลา ${n}`,
     outdoor: (n) => `พื้นที่ ${n} · ทางเข้าเมือง`,
     town: (n) => `พื้นที่ ${n} · ตำแหน่งร้าน`,
@@ -1210,7 +1262,11 @@
   var text_ja = {
     stockLoaded: "オリジナルROMから解析した販売品を読み込みました。",
     stockOnly: "販売品は読み込めました。店や入口の正確な位置は、現在のデータでは確認できません。",
-    loadFailed: "販売品を読み込めませんでした。再読み込みするか、アイテム一覧を開いてください。",
+    loadFailed: "販売品データを読み込めませんでした。",
+    retryLoad: "同じ条件でもう一度読み込む",
+    backToSource: "開く前のページに戻る",
+    openCatalogue: "アイテム一覧を開く",
+    recoveryActions: "読み込み失敗時の操作",
     area: (n) => `釣りエリア${n}`,
     outdoor: (n) => `エリア${n} · 町の入口`,
     town: (n) => `エリア${n} · 店の位置`,
@@ -1332,8 +1388,7 @@
     ctx.searchValue = ctx.params.get("q") || "";
     ctx.init().catch((error) => {
       console.error("Shop page data/render error:", error);
-      ctx.$("page-status").textContent = ctx.text.loadFailed;
-      ctx.$("shop-results").innerHTML = `<p class="empty-state">${ctx.esc(ctx.text.loadFailed)}</p>`;
+      showShopLoadFailure(ctx);
     });
   }
 

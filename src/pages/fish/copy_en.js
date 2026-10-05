@@ -43,5 +43,6 @@ export const copy_en = {
   coords: 'Configured coordinates',
   reference: 'Compatibility sources',
   legacyName: 'Other catalogue names',
-  recovery: 'Catalogue data could not be loaded. Return to the catalogue and try again.',
+  recovery: 'Fish data could not be loaded. Retry this page or return to the catalogue.',
+  retryLoad: 'Retry this fish page',
 }

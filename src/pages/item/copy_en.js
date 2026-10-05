@@ -3,6 +3,11 @@ export const copy_en = {
   back: '← Back to where you came from',
   invalidTitle: 'Item not found',
   invalidBody: 'This item link is incomplete or its ID is not in the catalogue.',
+  loadErrorTitle: 'Could not load item details',
+  loadErrorBody:
+    'The item data could not be loaded or displayed. Retry this page, or return to the item list.',
+  retryLoad: 'Retry this page',
+  backToCatalogue: 'Back to item list',
   category: 'Category',
   itemId: 'Item ID',
   use: 'What it does',

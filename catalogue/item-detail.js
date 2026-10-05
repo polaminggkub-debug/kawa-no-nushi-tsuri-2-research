@@ -37,6 +37,7 @@
     imageName: () => imageName,
     initialize: () => initialize,
     keepnetAlternatives: () => keepnetAlternatives,
+    loadErrorState: () => loadErrorState,
     localizeReturn: () => localizeReturn,
     mapLink: () => mapLink,
     moreOptionsPanel: () => moreOptionsPanel,
@@ -2917,6 +2918,11 @@
     ctx.setNavigation();
     ctx.$("detail-root").innerHTML = `<section class="empty-state"><h1>${ctx.esc(ctx.copy.invalidTitle)}</h1><p>${ctx.esc(ctx.copy.invalidBody)}</p><a class="route-button" href="${ctx.esc(ctx.fallbackBack())}">${ctx.esc(ctx.copy.allItems)} ↗</a></section>`;
   }
+  function loadErrorState(ctx) {
+    ctx.setNavigation();
+    ctx.$("detail-root").innerHTML = `<section class="empty-state" role="alert"><h1>${ctx.esc(ctx.copy.loadErrorTitle)}</h1><p>${ctx.esc(ctx.copy.loadErrorBody)}</p><p><button class="route-button" type="button" id="item-retry" data-item-retry>${ctx.esc(ctx.copy.retryLoad)} ↻</button> <a class="route-button" data-item-catalogue-fallback href="${ctx.esc(ctx.fallbackBack())}">${ctx.esc(ctx.copy.backToCatalogue)} ↗</a></p></section>`;
+    ctx.$("item-retry")?.addEventListener("click", () => location.reload());
+  }
 
   // src/pages/item/load-catalogue.js
   function loadCatalogue(ctx) {
@@ -2926,8 +2932,9 @@
       if (!response.ok) throw new Error("catalogue data unavailable");
       return response.json();
     }).then((data) => {
+      if (!data || !Array.isArray(data.items)) throw new Error("invalid catalogue data");
       if (ctx.selectedFish && !data.fishVisuals?.[ctx.selectedFish]) ctx.selectedFish = "";
-      const item = (data.items || []).find(
+      const item = data.items.find(
         (candidate) => candidate.category === ctx.category && candidate.id === ctx.requestedId
       ) || null;
       if (!item) {
@@ -2936,14 +2943,14 @@
       }
       ctx.render(
         item,
-        data.items || [],
+        data.items,
         data.fishVisuals || {},
         data.fishLocations || {},
         data.playerDecisions?.sections || []
       );
     }).catch((error) => {
       console.error("Item detail failed to load or render.", error);
-      ctx.emptyState();
+      ctx.loadErrorState();
     });
   }
 
@@ -2953,6 +2960,10 @@
     back: "← Back to where you came from",
     invalidTitle: "Item not found",
     invalidBody: "This item link is incomplete or its ID is not in the catalogue.",
+    loadErrorTitle: "Could not load item details",
+    loadErrorBody: "The item data could not be loaded or displayed. Retry this page, or return to the item list.",
+    retryLoad: "Retry this page",
+    backToCatalogue: "Back to item list",
     category: "Category",
     itemId: "Item ID",
     use: "What it does",
@@ -3022,6 +3033,10 @@
     back: "← กลับหน้าที่เข้ามา",
     invalidTitle: "ไม่พบไอเท็ม",
     invalidBody: "ลิงก์นี้ไม่มีรหัสไอเท็มหรือรหัสไม่อยู่ในแค็ตตาล็อก",
+    loadErrorTitle: "โหลดรายละเอียดไอเท็มไม่สำเร็จ",
+    loadErrorBody: "โหลดหรือแสดงข้อมูลไอเท็มไม่ได้ ลองอีกครั้งหรือกลับไปยังรายการไอเท็ม",
+    retryLoad: "ลองโหลดหน้านี้อีกครั้ง",
+    backToCatalogue: "กลับไปหน้ารายการไอเท็ม",
     category: "หมวด",
     itemId: "รหัสไอเท็ม",
     use: "ไอเท็มนี้ใช้ทำอะไร",
@@ -3091,6 +3106,10 @@
     back: "← 前のページへ戻る",
     invalidTitle: "道具が見つかりません",
     invalidBody: "道具IDがないか、カタログに登録されていません。",
+    loadErrorTitle: "道具の詳細を読み込めませんでした",
+    loadErrorBody: "道具データを読み込めないか、表示できません。もう一度試すか、道具一覧に戻ってください。",
+    retryLoad: "このページを再読み込み",
+    backToCatalogue: "道具一覧へ戻る",
     category: "カテゴリ",
     itemId: "道具ID",
     use: "この道具の使い方",

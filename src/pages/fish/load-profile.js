@@ -41,5 +41,6 @@ function loadLocations() {
 }
 
 function showLoadError(ctx) {
-  ctx.page.innerHTML = `<h1>${ctx.escapeHtml(ctx.copy.pageTitle)}</h1><p class="empty-state">${ctx.escapeHtml(ctx.copy.recovery)}</p><p><a class="route-button" href="${ctx.escapeHtml(ctx.cataloguePath())}">${ctx.escapeHtml(ctx.copy.catalogue)}</a></p>`
+  ctx.page.innerHTML = `<section role="alert"><h1>${ctx.escapeHtml(ctx.copy.pageTitle)}</h1><p class="empty-state">${ctx.escapeHtml(ctx.copy.recovery)}</p><p><button type="button" class="route-button" id="fish-retry">${ctx.escapeHtml(ctx.copy.retryLoad)} ↻</button> <a class="route-button" href="${ctx.escapeHtml(ctx.cataloguePath())}">${ctx.escapeHtml(ctx.copy.catalogue)}</a></p></section>`
+  document.getElementById('fish-retry')?.addEventListener('click', () => location.reload())
 }

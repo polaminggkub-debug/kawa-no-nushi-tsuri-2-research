@@ -345,8 +345,21 @@ async function checkPendingNavigation(outputs, locale) {
     assert.equal(shop.searchParams.get('route'), route)
   }
   const failed = await runMapPage(outputs, locale, true, pendingMapQuery('fly'), true)
-  assert.match(failed.nodes.get('pin-help').textContent, /reload|再読み込み|โหลดหน้าใหม่/i)
+  checkMapRetry(failed, locale)
   assertPendingEquipmentLink(failed.nodes, failed.location, 'fly')
+}
+
+function checkMapRetry(failed, locale) {
+  const help = failed.nodes.get('pin-help')
+  assert.match(help.innerHTML, /id="map-retry"/)
+  const retry = failed.nodes.get('map-retry')
+  assert.equal(retry.listeners.click.length, 1, `${locale}: map retry is not bound`)
+  let reloadCalls = 0
+  failed.location.reload = () => reloadCalls++
+  const exactUrl = failed.location.href
+  retry.dispatch('click')
+  assert.equal(reloadCalls, 1, `${locale}: map retry did not reload`)
+  assert.equal(failed.location.href, exactUrl, `${locale}: map retry changed selected state`)
 }
 
 function pendingMapQuery(route) {

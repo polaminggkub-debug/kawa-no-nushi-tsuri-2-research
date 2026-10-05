@@ -10,9 +10,10 @@ export function loadCatalogue(ctx) {
       return response.json()
     })
     .then((data) => {
+      if (!data || !Array.isArray(data.items)) throw new Error('invalid catalogue data')
       if (ctx.selectedFish && !data.fishVisuals?.[ctx.selectedFish]) ctx.selectedFish = ''
       const item =
-        (data.items || []).find(
+        data.items.find(
           (candidate) => candidate.category === ctx.category && candidate.id === ctx.requestedId,
         ) || null
       if (!item) {
@@ -21,7 +22,7 @@ export function loadCatalogue(ctx) {
       }
       ctx.render(
         item,
-        data.items || [],
+        data.items,
         data.fishVisuals || {},
         data.fishLocations || {},
         data.playerDecisions?.sections || [],
@@ -29,6 +30,6 @@ export function loadCatalogue(ctx) {
     })
     .catch((error) => {
       console.error('Item detail failed to load or render.', error)
-      ctx.emptyState()
+      ctx.loadErrorState()
     })
 }

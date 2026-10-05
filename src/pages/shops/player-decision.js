@@ -1,3 +1,5 @@
+import { distinctFishNames } from '../../entities/fish/index.js'
+
 export function shopCompatibility(ctx, item) {
   if (!ctx.selectedFish || !ctx.fishVisuals?.[ctx.selectedFish]) return ''
   const use = item.playerUse || {}
@@ -53,14 +55,10 @@ function selectedMethod(ctx) {
 }
 
 function fishName(ctx, fish, id) {
-  if (ctx.lang === 'th')
-    return (
-      fish.nameTh ||
-      fish.nameThVariants?.join(' / ') ||
-      fish.nameLatin ||
-      fish.nameJa ||
-      `ปลา ${id}`
-    )
+  if (ctx.lang === 'th') {
+    const thaiNames = distinctFishNames(fish.nameTh ? [fish.nameTh] : fish.nameThVariants || [])
+    return thaiNames.join(' / ') || fish.nameLatin || fish.nameJa || `ปลา ${id}`
+  }
   if (ctx.lang === 'ja') return fish.nameJa || `魚 ${id}`
   return fish.nameEn || fish.nameLatin || fish.nameLatinVariants?.[0] || fish.nameJa || `Fish ${id}`
 }
