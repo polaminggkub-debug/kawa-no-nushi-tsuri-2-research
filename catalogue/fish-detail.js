@@ -964,13 +964,13 @@
     const conditional = localConditionalSale(entries, stage);
     const sales = recordedSales(entries, method);
     const fallback = sales[0];
-    const copy2 = missingMethodCopy(ctx, method, stage, entries.length);
+    const copy4 = missingMethodCopy(ctx, method, stage, entries.length);
     const actions = [];
     if (conditional) {
       const item = conditional.entry.item;
       const href = offerLink(ctx, method, conditional.entry, stage, stage);
       actions.push(
-        `<a class="route-button" data-conditional-sale href="${ctx.escapeHtml(href)}">${ctx.escapeHtml(copy2.conditional(ctx.localizedItemName(item)))}</a>`
+        `<a class="route-button" data-conditional-sale href="${ctx.escapeHtml(href)}">${ctx.escapeHtml(copy4.conditional(ctx.localizedItemName(item)))}</a>`
       );
     }
     if (fallback) {
@@ -979,17 +979,17 @@
       const price = Number.isFinite(amount) ? ` · ¥${amount}` : "";
       const href = offerLink(ctx, method, fallback.entry, stage, fallback.shop.stage);
       actions.push(
-        `<a class="route-button" data-recorded-sale href="${ctx.escapeHtml(href)}">${ctx.escapeHtml(copy2.sale(fallback.shop.stage, `${ctx.localizedItemName(item)} (ID ${item.id})`, price))} ↗</a>`
+        `<a class="route-button" data-recorded-sale href="${ctx.escapeHtml(href)}">${ctx.escapeHtml(copy4.sale(fallback.shop.stage, `${ctx.localizedItemName(item)} (ID ${item.id})`, price))} ↗</a>`
       );
     } else if (!conditional) {
       const entry = entries[0];
       const href = compatibleItemLink(ctx, method, entry, stage);
       actions.push(
-        `<a class="route-button" data-acquisition-details href="${ctx.escapeHtml(href)}">${ctx.escapeHtml(copy2.detail(`${ctx.localizedItemName(entry.item)} (ID ${entry.item.id})`))} ↗</a>`
+        `<a class="route-button" data-acquisition-details href="${ctx.escapeHtml(href)}">${ctx.escapeHtml(copy4.detail(`${ctx.localizedItemName(entry.item)} (ID ${entry.item.id})`))} ↗</a>`
       );
     }
-    const noSales = !fallback && !conditional ? `<p class="muted">${ctx.escapeHtml(copy2.noSales)}</p>` : "";
-    return `<article class="detail-section method-no-local-stock" data-method-no-local="${method}"><h3>${ctx.escapeHtml(copy2.title)}</h3><p>${ctx.escapeHtml(copy2.owned)}</p>${noSales}<div class="method-stock-actions">${actions.join("")}</div></article>`;
+    const noSales = !fallback && !conditional ? `<p class="muted">${ctx.escapeHtml(copy4.noSales)}</p>` : "";
+    return `<article class="detail-section method-no-local-stock" data-method-no-local="${method}"><h3>${ctx.escapeHtml(copy4.title)}</h3><p>${ctx.escapeHtml(copy4.owned)}</p>${noSales}<div class="method-stock-actions">${actions.join("")}</div></article>`;
   }
   function missingMethodActions(ctx, entries, offers, stage) {
     const methods = ["float", "sinker", "lure", "fly"];
@@ -1085,31 +1085,31 @@
     if (stage) query.set("stage", String(stage));
     return `${ctx.itemPath()}?${query.toString()}`;
   }
-  function iconFact(copy2, iconClass) {
-    if (iconClass === "small") return copy2.smallFact;
-    if (iconClass === "large") return copy2.largeFact;
-    return copy2.bubbleFact;
+  function iconFact(copy4, iconClass) {
+    if (iconClass === "small") return copy4.smallFact;
+    if (iconClass === "large") return copy4.largeFact;
+    return copy4.bubbleFact;
   }
-  function iconCard(ctx, copy2, waterIcons, profile, iconClass, stage) {
+  function iconCard(ctx, copy4, waterIcons, profile, iconClass, stage) {
     const conditional = profile.growthOnlyClasses?.includes(iconClass) === true;
-    const label = conditional ? copy2.growthLabel : copy2[iconClass];
+    const label = conditional ? copy4.growthLabel : copy4[iconClass];
     const image = ctx.escapeHtml(imageFor(waterIcons, iconClass) + "?v=native-20261005");
-    const fact = ctx.escapeHtml(conditional ? copy2.growthFact : iconFact(copy2, iconClass));
-    const bubbleAction = iconClass === "bubble" && profile.bubble === true ? `<a class="route-button" data-water-bait-link href="${ctx.escapeHtml(potatoBaitLink(ctx, stage))}">${ctx.escapeHtml(copy2.baitAction)} ↗</a>` : "";
+    const fact = ctx.escapeHtml(conditional ? copy4.growthFact : iconFact(copy4, iconClass));
+    const bubbleAction = iconClass === "bubble" && profile.bubble === true ? `<a class="route-button" data-water-bait-link href="${ctx.escapeHtml(potatoBaitLink(ctx, stage))}">${ctx.escapeHtml(copy4.baitAction)} ↗</a>` : "";
     return `<article class="entity-link water-icon-card" data-water-icon="${iconClass}" data-water-class-evidence="${conditional ? "growth-only" : "initial"}"><img loading="lazy" src="${image}" alt="${ctx.escapeHtml(label)}"><span><strong>${ctx.escapeHtml(label)}</strong><small>${fact}</small></span>${bubbleAction}</article>`;
   }
-  function evidenceDetails(ctx, copy2) {
+  function evidenceDetails(ctx, copy4) {
     const href = "https://github.com/polaminggkub-debug/kawa-no-nushi-tsuri-2-research/blob/main/docs/water-surface-icons.md";
-    return `<details class="water-icon-evidence"><summary>${ctx.escapeHtml(copy2.evidence)}</summary><p><a href="${href}">${ctx.escapeHtml(copy2.evidenceLink)} ↗</a></p></details>`;
+    return `<details class="water-icon-evidence"><summary>${ctx.escapeHtml(copy4.evidence)}</summary><p><a href="${href}">${ctx.escapeHtml(copy4.evidenceLink)} ↗</a></p></details>`;
   }
   function renderWaterIcons(ctx, waterIcons, stage) {
     const profile = waterIcons?.profiles?.[ctx.id];
     if (!waterIcons?.romSha1 || !profile) return "";
     const classes = visibleClasses(waterIcons, profile);
     if (!classes.length) return "";
-    const copy2 = copyFor(ctx);
-    const cards = classes.map((iconClass) => iconCard(ctx, copy2, waterIcons, profile, iconClass, stage)).join("");
-    return `<section class="detail-section water-icon-guide" id="water-icons"><h2>${ctx.escapeHtml(copy2.title)}</h2><p class="section-lede">${ctx.escapeHtml(copy2.intro)}</p><div class="detail-grid water-icon-grid">${cards}</div>${evidenceDetails(ctx, copy2)}</section>`;
+    const copy4 = copyFor(ctx);
+    const cards = classes.map((iconClass) => iconCard(ctx, copy4, waterIcons, profile, iconClass, stage)).join("");
+    return `<section class="detail-section water-icon-guide" id="water-icons"><h2>${ctx.escapeHtml(copy4.title)}</h2><p class="section-lede">${ctx.escapeHtml(copy4.intro)}</p><div class="detail-grid water-icon-grid">${cards}</div>${evidenceDetails(ctx, copy4)}</section>`;
   }
 
   // src/pages/fish/fight-controls.js
@@ -1153,6 +1153,122 @@
     const text = copy[ctx.locale] || copy.en;
     const esc = ctx.escapeHtml;
     return `<section id="fight-controls" class="detail-section"><h2>${esc(text.title)}</h2><p><strong>${esc(text.action)}</strong></p><p>${esc(text.result)}</p><details id="fight-controls-evidence"><summary>${esc(text.evidence)}</summary><p>${esc(text.setup)}</p><p>${esc(text.continuation)}</p><p><a href="https://github.com/polaminggkub-debug/kawa-no-nushi-tsuri-2-research/blob/main/docs/fight-input-research.md">${esc(text.trace)} ↗</a></p><div class="fight-captures"><figure><a href="../research/assets/fight-hold-escape.png"><img src="../research/assets/fight-hold-escape.png" alt="${esc(text.escape)}" loading="lazy"></a><figcaption>${esc(text.escape)}</figcaption></figure><figure><a href="../research/assets/fight-release-catch.png"><img src="../research/assets/fight-release-catch.png" alt="${esc(text.catch)}" loading="lazy"></a><figcaption>${esc(text.catch)}</figcaption></figure></div></details></section>`;
+  }
+
+  // src/pages/fish/notebook-status.js
+  var copy2 = {
+    th: {
+      eligibleTitle: "เป้าหมายสมุด · 1 ใน 66 ชนิด",
+      eligibleBody: "ถ้ายังไม่มีชื่อในสมุด ให้ตกปลานี้ ผ่านข้อความจับปลา แล้วตรวจไอเท็ม 05 “สมุดบันทึกการตกปลา”",
+      first: (stage) => `เส้นทางเก็บ 66 ชนิด · ด่าน 1 → 6 · พบครั้งแรกที่ด่าน ${stage}`,
+      repeats: (stages) => `มีจุดของปลาชนิดนี้อีกในด่าน ${stages}`,
+      noRepeats: "ในข้อมูลจุดตกที่ยืนยันได้ ไม่มีด่านอื่นระบุปลาชนิดนี้",
+      recorded: "มีชื่อแล้ว = ไม่ใช่เป้าหมายใหม่; ตัวที่ใหญ่กว่าอาจย้ายรายการไปหน้าด่านอื่น เว็บอ่านเซฟไม่ได้ ให้ตรวจในเกม",
+      map: "ดูแผนที่จุดตกที่เลือก",
+      excludedTitle: "ไม่ใช่เป้าหมายในสมุด 66 ชนิด",
+      excludedBody: "โปรไฟล์นี้แสดงจุดปลาในแผนที่ แต่ไม่ต้องตกชนิดนี้เพื่อเก็บสมุดให้ครบ",
+      unknownTitle: "สถานะในสมุดยังยืนยันไม่ได้",
+      unknownBody: "ข้อมูลที่ยืนยันได้ยังไม่ระบุว่าปลานี้มีช่องในสมุดหรือไม่ โปรดตรวจไอเท็ม 05 ในเกม"
+    },
+    ja: {
+      eligibleTitle: "図鑑の目標 · 全66種の1種",
+      eligibleBody: "まだ記録がなければ、魚を取り込み、取り込み後のメッセージを進めてから道具05「釣りノート」で確認してください。",
+      first: (stage) => `全66種の収集ルート（エリア1→6） · 最初の出現設定：エリア${stage}`,
+      repeats: (stages) => `同じ魚の出現設定：エリア${stages}`,
+      noRepeats: "確認済みの出現設定はこのエリアだけです。",
+      recorded: "記録済みなら新しい収集目標ではありません。より大きな記録で表示エリアが移る場合があります。サイトはセーブを読めないため、ゲーム内で確認してください。",
+      map: "選択中の釣り場マップを見る",
+      excludedTitle: "図鑑66種の対象外",
+      excludedBody: "この魚はマップに出ますが、図鑑を埋めるために釣る必要はありません。",
+      unknownTitle: "図鑑の対象か未確認",
+      unknownBody: "現在確認できるデータでは記録対象か判断できません。ゲーム内の道具05で確認してください。"
+    },
+    en: {
+      eligibleTitle: "Notebook goal · 1 of 66 species",
+      eligibleBody: "If it is not listed, land it, finish the landing text, then check Tool 05 (Fishing Notebook).",
+      first: (stage) => `66-species route (Areas 1 → 6) · First configured in Area ${stage}`,
+      repeats: (stages) => `Also configured in areas ${stages}`,
+      noRepeats: "No other area is listed in the confirmed location data.",
+      recorded: "Already listed means it is not a new target. A larger record may move its notebook area. This site cannot read your save; check in-game.",
+      map: "View the selected area map",
+      excludedTitle: "Not one of the 66 notebook species",
+      excludedBody: "This profile has map locations, but you do not need this species to complete the notebook list.",
+      unknownTitle: "Notebook status unconfirmed",
+      unknownBody: "Available evidence does not confirm whether this fish has a notebook slot. Check Tool 05 in the game."
+    }
+  };
+  function validStage2(value) {
+    return Number.isInteger(Number(value)) && Number(value) >= 1 && Number(value) <= 6;
+  }
+  function notebookState(fishData, id) {
+    const entry = fishData.notebookCompletion?.species?.[id];
+    if (entry?.notebookEligible === true) return { kind: "eligible", entry };
+    if (entry?.notebookEligible === false) return { kind: "excluded", entry };
+    return { kind: "unconfirmed", entry: null };
+  }
+  function renderEligible(ctx, entry, text) {
+    const stages = (entry.stages || []).filter(validStage2).map(Number).sort((a, b) => a - b);
+    const first = Number(entry.firstOccurrenceStage);
+    if (!validStage2(first) || !stages.length) return renderUnconfirmed(ctx, text);
+    const otherStages = stages.filter((stage) => stage !== first);
+    const locations = otherStages.length ? text.repeats(otherStages.join(", ")) : text.noRepeats;
+    return `<section class="decision-panel fish-notebook-goal" data-fish-notebook-status="eligible" data-notebook-first-stage="${first}" data-notebook-stages="${stages.join(",")}"><h2>${ctx.escapeHtml(text.eligibleTitle)}</h2><p>${ctx.escapeHtml(text.eligibleBody)}</p><p><strong>${ctx.escapeHtml(text.first(first))}</strong> · ${ctx.escapeHtml(locations)}</p><p>${ctx.escapeHtml(text.recorded)}</p><a class="route-button" href="#fish-area-map">${ctx.escapeHtml(text.map)} ↓</a></section>`;
+  }
+  function renderExcluded(ctx, text) {
+    return `<section class="decision-panel fish-notebook-goal" data-fish-notebook-status="excluded"><h2>${ctx.escapeHtml(text.excludedTitle)}</h2><p>${ctx.escapeHtml(text.excludedBody)}</p></section>`;
+  }
+  function renderUnconfirmed(ctx, text) {
+    return `<section class="decision-panel fish-notebook-goal" data-fish-notebook-status="unconfirmed"><h2>${ctx.escapeHtml(text.unknownTitle)}</h2><p>${ctx.escapeHtml(text.unknownBody)}</p></section>`;
+  }
+  function renderNotebookStatus(ctx, fishData) {
+    const text = copy2[ctx.locale] || copy2.en;
+    const state = notebookState(fishData, ctx.id);
+    if (state.kind === "eligible") return renderEligible(ctx, state.entry, text);
+    if (state.kind === "excluded") return renderExcluded(ctx, text);
+    return renderUnconfirmed(ctx, text);
+  }
+
+  // src/pages/fish/quest-context.js
+  var EEL_ID = "3B";
+  var EEL_POINT = { stage: 6, x: 41, y: 8 };
+  var copy3 = {
+    th: {
+      title: "ถ้าคำขอจากหมอปรากฏ",
+      body: "ถ้าอ่านโปสต์การ์ดที่ได้รับแล้วเห็นคำขอให้ตกปลาไหลใหญ่ ให้เปิดข้อมูลโปสต์การ์ดเพื่อดูเบาะแสด่าน 6 ก่อนออกไปตก",
+      link: "เปิดข้อมูลโปสต์การ์ดที่ได้รับ",
+      limit: "จุดที่กำหนดอาจไม่มีปลาในรอบนี้; ยังไม่ยืนยันว่าหลังตกได้ต้องส่งให้ใครหรือมีรางวัลอะไร"
+    },
+    ja: {
+      title: "医者の依頼が表示された場合",
+      body: "受け取ったはがきを読み、大ウナギを釣る依頼が表示されたら、釣りに行く前にエリア6の手掛かりをはがき情報で確認してください。",
+      link: "受け取ったはがきの情報を見る",
+      limit: "設定地点に魚がいない状態もあります。釣った後に誰へ渡すか、報酬があるかは未確認です。"
+    },
+    en: {
+      title: "If the doctor’s request appears",
+      body: "If you read Received Postcard 06 and see the doctor’s giant-eel request, open the postcard guidance for the Area 6 clue before fishing.",
+      link: "Open Received Postcard guidance",
+      limit: "The configured spot may be inactive. Who receives the eel after landing, and whether there is a reward, are unverified."
+    }
+  };
+  function eelPointConfigured(locationData) {
+    const fish = locationData?.fish || locationData || {};
+    const locations = fish[EEL_ID]?.locations || [];
+    return locations.some(
+      (location2) => Number(location2.stage) === EEL_POINT.stage && (location2.points || []).some(
+        (point) => Number(point.x) === EEL_POINT.x && Number(point.y) === EEL_POINT.y
+      )
+    );
+  }
+  function postcardHref(ctx) {
+    const query = new URLSearchParams({ category: "general_tool", id: "06", stage: "6" });
+    query.set("return", ctx.currentFishPath("6"));
+    return `${ctx.itemPath()}?${query.toString()}`;
+  }
+  function renderEelQuestContext(ctx, locationData) {
+    if (ctx.id !== EEL_ID || !eelPointConfigured(locationData)) return "";
+    const text = copy3[ctx.locale] || copy3.en;
+    return `<aside class="detail-section fish-quest-context" data-fish-quest-context="postcard-eel"><h2>${ctx.escapeHtml(text.title)}</h2><p>${ctx.escapeHtml(text.body)}</p><p><a class="route-button" data-fish-postcard-link href="${ctx.escapeHtml(postcardHref(ctx))}">${ctx.escapeHtml(text.link)} ↗</a></p><p>${ctx.escapeHtml(text.limit)}</p></aside>`;
   }
 
   // src/pages/fish/render.js
@@ -1221,15 +1337,17 @@
   function compatibleSection(ctx, state) {
     return `<section id="all-compatible" class="detail-section"><h2>${ctx.escapeHtml(ctx.copy.compatible)}</h2><p class="section-lede">${ctx.escapeHtml(ctx.copy.compatibilityNote)}</p><p>${ctx.escapeHtml(compatibilityIntro(ctx))}</p>${ctx.renderCompatibility(state.matches, state.activeStage)}</section>`;
   }
-  function profileContent(ctx, fishData, fish, state) {
-    return `${renderProfileHero(ctx, state)}${renderFirstStep(ctx)}${ctx.renderAreas(state.locations, state.activeStage, fish)}${ctx.renderExchange(fishData.items || [], state.activeStage)}${ctx.renderShopping(state.matches, state.locations, state.activeStage, fishData.items || [], fishData.flyBackupChoices)}${renderFightControls(ctx, state.activeStage)}${compatibleSection(ctx, state)}${ctx.renderWaterIcons(fishData.waterIcons, state.activeStage)}${ctx.renderEvidence(fish, state.locations, state.matches)}`;
+  function profileContent(ctx, fishData, locationData, fish, state) {
+    const notebook = fishData.notebookCompletion?.species?.[ctx.id];
+    const firstStep = notebook?.notebookEligible === true ? "" : renderFirstStep(ctx);
+    return `${renderProfileHero(ctx, state)}${renderNotebookStatus(ctx, fishData)}${renderEelQuestContext(ctx, locationData)}${firstStep}${ctx.renderAreas(state.locations, state.activeStage, fish)}${ctx.renderExchange(fishData.items || [], state.activeStage)}${ctx.renderShopping(state.matches, state.locations, state.activeStage, fishData.items || [], fishData.flyBackupChoices)}${renderFightControls(ctx, state.activeStage)}${compatibleSection(ctx, state)}${ctx.renderWaterIcons(fishData.waterIcons, state.activeStage)}${ctx.renderEvidence(fish, state.locations, state.matches)}`;
   }
-  function unconfirmedProfileContent(ctx, fish, state) {
+  function unconfirmedProfileContent(ctx, fishData, locationData, fish, state) {
     const evidence = ctx.renderEvidence(fish, state.locations, state.matches).replace(
       "</details>",
       '<p><a href="https://github.com/polaminggkub-debug/kawa-no-nushi-tsuri-2-research/blob/main/docs/fish-acceptance-research.md">Fish acceptance research · profile 43 ↗</a></p></details>'
     );
-    return `<div class="detail-hero"><div><p class="muted">${ctx.escapeHtml(ctx.copy.pageTitle)} · ID 43</p><h1>${ctx.escapeHtml(state.headline)}</h1></div></div>${ctx.unconfirmedProfileAction()}${evidence}`;
+    return `<div class="detail-hero"><div><p class="muted">${ctx.escapeHtml(ctx.copy.pageTitle)} · ID 43</p><h1>${ctx.escapeHtml(state.headline)}</h1></div></div>${renderNotebookStatus(ctx, fishData)}${renderEelQuestContext(ctx, locationData)}${ctx.unconfirmedProfileAction()}${evidence}`;
   }
   function updateAreaChooser(ctx, fishData, locationData, locations) {
     if (!locations.length) return;
@@ -1283,11 +1401,11 @@
     resolveProfileStage(ctx, state.activeStage);
     ctx.setNavigation(state.activeStage);
     if (ctx.id === "43") {
-      ctx.page.innerHTML = unconfirmedProfileContent(ctx, fish, state);
+      ctx.page.innerHTML = unconfirmedProfileContent(ctx, fishData, locationData, fish, state);
       setFishTitle(ctx, state.headline);
       return;
     }
-    ctx.page.innerHTML = profileContent(ctx, fishData, fish, state);
+    ctx.page.innerHTML = profileContent(ctx, fishData, locationData, fish, state);
     const anchorId = profileAnchorId(location.hash);
     reopenRequestedStarter(ctx, !anchorId);
     reopenFlyBackup();

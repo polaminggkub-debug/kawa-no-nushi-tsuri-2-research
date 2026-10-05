@@ -109,6 +109,7 @@ await import('./fish-picker-category-scope.mjs')
 
 await import('./magnet-next-action.mjs')
 await import('./fish-player-decision-copy.mjs')
+await import('./fish-notebook-profile.mjs')
 await import('./map-mobile-fish-layout.mjs')
 await import('./food-lottery-decisions.mjs')
 await import('./fight-controls.mjs')

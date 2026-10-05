@@ -555,3 +555,26 @@ Actual local review at 390px opened the Area 3 route, selected Area 4, and
 reloaded: the address and open group both remained Area 4, all six groups and
 the 66-species total remained present, and the page did not overflow. Existing
 manual progress was retained; no game save is read or changed.
+
+## Fish-profile notebook decisions and request context (2026-10-06)
+
+A full 73-profile semantic audit found that following a map fish link lost the
+distinction between the 66 notebook targets and six map-only profiles. Individual
+profiles now say whether to collect this species for the notebook or skip it for
+that goal. The first-area label describes the 1→6 route grouping, while the map
+action keeps the currently selected area. Already-recorded species are not new
+targets; a larger record can still move the notebook area. Profile 43 remains
+unconfirmed, and the website does not infer progress from a game save.
+
+Eligible profiles use this decision panel instead of a second generic map-first
+panel. Excluded profiles retain the ordinary fishing action for people who still
+want to catch them. The giant-eel profile carries the conditional doctor's
+request and links to Received Postcard 06, keeping Area 6 and the original return
+context. The recipient and reward after landing remain unverified.
+
+Actual local review at 390px clicked rainbow trout's map action while Area 3 was
+selected: it stayed in Area 3. The crayfish profile clearly said to skip it for
+the 66-species goal. The eel-to-postcard-to-return journey kept the eel, Area 6,
+and the nested map return. English at 1200px and Japanese at 320px retained the
+excluded-species decision without horizontal overflow. These browser journeys
+do not establish natural quest completion or a new notebook-update trigger.
