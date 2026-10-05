@@ -61,6 +61,8 @@ function checkBreadcrumb(item, visible, base) {
 }
 
 function checkShopActions(item, visible, base) {
+  // Town gathering navigation is verified separately; it is not a shop offer.
+  visible = visible.replace(/<aside[^>]*data-town-paste-bait[\s\S]*?<\/aside>/g, '')
   const routes = [...visible.matchAll(/href="([^"]*shops(?:\.th|\.ja)?\.html[^"]*)"/g)].map(
     (match) => new URL(unescapeHtml(match[1]), base),
   )

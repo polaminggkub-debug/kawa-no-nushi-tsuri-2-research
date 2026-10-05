@@ -48,7 +48,8 @@ export async function init(ctx) {
 }
 
 function scrollRequestedSection(ctx) {
-  if (location.hash === '#location-section') {
+  const arrivalTarget = /^#town-arrival-[0-4]$/.test(location.hash)
+  if (location.hash === '#location-section' || arrivalTarget) {
     const panel = ctx.$('shop-map-disclosure')
     if (panel) panel.open = true
   }
@@ -60,7 +61,7 @@ function scrollRequestedSection(ctx) {
     'bundle-stock',
   ]
   const id = location.hash.slice(1)
-  if (allowed.includes(id)) ctx.$(id)?.scrollIntoView?.({ block: 'start' })
+  if (allowed.includes(id) || arrivalTarget) ctx.$(id)?.scrollIntoView?.({ block: 'start' })
 }
 
 export function renderShopView(ctx, view) {

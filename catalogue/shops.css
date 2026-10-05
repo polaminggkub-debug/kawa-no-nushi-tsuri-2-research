@@ -626,6 +626,9 @@ footer {
 #bundle-stock {
   scroll-margin-top: 130px;
 }
+[id^=town-arrival-] {
+  scroll-margin-top: 130px;
+}
 
 /* src/pages/shops/styles/route-walk.css */
 .shop-walk {

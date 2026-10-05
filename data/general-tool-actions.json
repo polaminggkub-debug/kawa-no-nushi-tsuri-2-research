@@ -356,7 +356,9 @@
         "type": "rom_trace",
         "sources": [
           "docs/general-tool-actions-research.md",
-          "docs/fish-location-research.md"
+          "docs/fish-location-research.md",
+          "docs/notebook-completion-research.md",
+          "data/notebook-natural-landing-evidence.json"
         ]
       },
       "evidenceNotes": {

@@ -52,7 +52,7 @@ This is a browser convenience, not ROM-derived save progress: the website does n
 
 [Dataset](../data/notebook-completion.json) preserves all membership, route additions, repeats and exclusions. [Extractor](../scripts/derive_notebook_completion.py) reproduces it from a matching privately supplied ROM. No ROM or emulator state is published.
 
-The record updater and notebook grouping are established by the traced code. The precise visible event that first calls the updater still requires a natural encounter/landing replay; this guide does not promise that a bite alone is sufficient. Completing the notebook is not asserted to be the same as completing all quests or endings.
+The record updater and notebook grouping are established by the traced code. A natural controller-only Yamame replay now confirms one landed-result path writes its record. The first catch-name screen still had an empty record; the update appeared during later result-message progression. This does not prove the exact exclusive trigger or every fishing outcome; a bite alone is not enough evidence to mark a checklist entry. Completing the notebook is not asserted to be the same as completing all quests or endings.
 
 ## Original-game notebook display check
 
@@ -61,3 +61,21 @@ The record updater and notebook grouping are established by the traced code. The
 The 66 record area words were injected according to this route, then the notebook item was opened with ordinary input. The original renderer displays 6/10/11/17/11/11. This is a display/grouping fixture, not a natural completed playthrough. The cumulative byte boundaries were 12/32/54/88/110/132. [Image provenance](../data/notebook-image-evidence.json). [Exact instruction verifier](../scripts/verify_notebook_records.py) and [verified record evidence](../data/notebook-record-evidence.json) preserve the eligibility/comparison/area-store paths.
 
 A separate eligible-update counter at `$0E4C+2*(id-1)` increments before the size comparison, saturating at 1000. Equal/smaller updates therefore can affect that counter even while the best size and area stay unchanged. `01:D300..D30C` reads it for decimal rendering, but this trace does not establish it as successful landed-catch count. It is not part of the distinct-species checklist.
+
+## Natural landed-result check
+
+**Player action:** land the fish and let the result messages finish, then open the Fishing Notebook before ticking it on the website. Do not mark a species from a bite or the first catch-name message alone.
+
+A fresh-game controller route reached an Area 1 Yamame fight. Holding A for 60 frames and releasing for 20, four times, then ordinary result progression reached these original-game screens. This is a successful example for that fish/state, not a universal fight recipe.
+
+![First catch-name message, record still empty](../catalogue/images/notebook/natural-catch-name.png)
+
+![Later 23 cm message, record updated](../catalogue/images/notebook/natural-catch-size.png)
+
+ID03 best size/area changed from **0/0 to 23/1** during the next 60-neutral-frame observation interval. All 66 slots were compared; only ID03 changed. The raw callback counter changed 0→1, but its player-facing meaning is not claimed. A separate continuous-A escape branch from the same fight seed retained an empty record; this single comparison does not establish all failure outcomes.
+
+The route contained no RAM-write requests. The private chain starts at fresh boot, passes the opening/name inputs, walks from the house to Area1 tile(4,183), chooses Fishing and dismisses its start message, then uses B+Up for8 frames, neutral290, A1 and neutral150 to enter the fight. The runner adds one neutral frame when saving checkpoints. State timing matters; this is archived evidence, not a packaged emulator replay. No ROM/core/state/WRAM is distributed.
+
+[Observed deltas, capture hashes, input provenance and limits](../data/notebook-natural-landing-evidence.json). This updates the former natural-landing research gap; it does not claim that all landings update, all escapes do not, or identify the exact internal trigger frame.
+
+The archived result progression after A30/release5 was: Up1/release10, A1/release10, B1/release10, A+Up1/release10, neutral60, A1, neutral60. The final A1 still displayed the catch-name message with an empty record; the following 60 neutral frames bracket the change. These are the actual recorded inputs, not a claim that each tap is required or a universal recipe.

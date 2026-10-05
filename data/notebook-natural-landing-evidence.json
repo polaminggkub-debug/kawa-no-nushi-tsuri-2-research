@@ -1,0 +1,135 @@
+{
+  "rom": {
+    "sha1": "c2103dd94e2a1a65a495fc02adc2e7d040f31212",
+    "identity": "User-supplied headerless Japanese SFC original"
+  },
+  "core": {
+    "sha256": "8ed333ac04544cc6ab67ceb445d095f7600bb17586d4887d99117fbd1ef776f6"
+  },
+  "fish": {
+    "idHex": "03",
+    "nameJa": "ヤマメ",
+    "nameEnglish": "Yamame",
+    "romProfileFileOffset": "0x028046",
+    "nameSource": "Original-ROM profile extraction in publication/data/fish-acceptance.json; catch screen also visibly says ヤマメ"
+  },
+  "provenance": {
+    "kind": "natural-controller-only",
+    "ramWritesInSuccessRequests": 0,
+    "origin": "Fresh-game title/name/opening inputs and walking; fishing starts Area1 tile4,183. Dip test starts from the dismissed fishing message, not the separate b-cast exploratory branch.",
+    "fightInput": "A60 + release20 repeated4; A30 + release5; ordinary result-message progression",
+    "runnerExtraFrame": "One final neutral frame before each saved checkpoint",
+    "replayLimit": "Archived observations, not a standalone fresh-boot emulator replay package",
+    "resultProgression": [
+      {
+        "buttons": [
+          "Up"
+        ],
+        "frames": 1
+      },
+      {
+        "buttons": [],
+        "frames": 10
+      },
+      {
+        "buttons": [
+          "A"
+        ],
+        "frames": 1
+      },
+      {
+        "buttons": [],
+        "frames": 10
+      },
+      {
+        "buttons": [
+          "B"
+        ],
+        "frames": 1
+      },
+      {
+        "buttons": [],
+        "frames": 10
+      },
+      {
+        "buttons": [
+          "A",
+          "Up"
+        ],
+        "frames": 1
+      },
+      {
+        "buttons": [],
+        "frames": 10
+      },
+      {
+        "buttons": [],
+        "frames": 60
+      },
+      {
+        "buttons": [
+          "A"
+        ],
+        "frames": 1
+      },
+      {
+        "buttons": [],
+        "frames": 60
+      }
+    ]
+  },
+  "positiveObservation": {
+    "before": {
+      "counter": 0,
+      "bestSize": 0,
+      "area": 0
+    },
+    "intermediateAfterA1": {
+      "counter": 0,
+      "bestSize": 0,
+      "area": 0
+    },
+    "afterNext60NeutralFrames": {
+      "counter": 1,
+      "bestSize": 23,
+      "area": 1
+    },
+    "onlyChangedSpeciesId": "03",
+    "visibleNameJa": "ヤマメを釣りあげた。",
+    "visibleSizeJa": "釣りあげた。大きさは23cm。",
+    "beforeWramSha256": "5d42da3e7999a2bf92a96db1137ee616c21385b28e2a283427675222cbfa9973",
+    "afterWramSha256": "6e9a879c906d615df8d182f170e72f9ee80a557ca26ad62f19f8b82b86f7a251",
+    "intermediateVisibleScreen": "Same catch-name message as before; record still empty"
+  },
+  "escapeComparison": {
+    "sameFightSeed": true,
+    "input": "A30 repeated10",
+    "visibleTextJa": "ヤマメに逃げられた。",
+    "counter": 0,
+    "bestSize": 0,
+    "area": 0
+  },
+  "images": [
+    {
+      "image": "catalogue/images/notebook/natural-catch-name.png",
+      "sha256": "d359113539e278e092342fc55d4d758cb3db34698047323a58a7cbf9ff8b7e51",
+      "modified": false
+    },
+    {
+      "image": "catalogue/images/notebook/natural-catch-size.png",
+      "sha256": "8ac39b47e00686b747a9954a216118f0495188065f947c6d99c143d23c1db1b1",
+      "modified": false
+    },
+    {
+      "image": "catalogue/images/notebook/natural-escape.png",
+      "sha256": "e320a52ede47faed194c9efe93ed2a7650b6ba7c06c756453f5e003be9c567b5",
+      "modified": "Existing pixel enlargement of original game capture; no redrawing"
+    }
+  ],
+  "limits": [
+    "This is one naturally reached positive landed-result path, not proof that every landing writes the notebook.",
+    "The record remained empty while the first full catch-name message was visible and changed during the following 60-neutral-frame interval as the 23 cm result appeared; the exact instruction/frame is not isolated.",
+    "One escape comparison with empty fields does not prove all failures or escapes leave the notebook unchanged.",
+    "The callback counter is a raw field whose player-facing meaning is unresolved; do not describe it as a catch tally."
+  ]
+}

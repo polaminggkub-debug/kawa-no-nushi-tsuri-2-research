@@ -118,5 +118,11 @@ globalThis.location.hash = '#bundle-stock'
 onHashChange()
 assert.equal(updated, 2)
 assert.equal(scrolled, 'bundle-stock')
+disclosure.open = false
+globalThis.location.hash = '#town-arrival-1'
+onHashChange()
+assert.equal(updated, 3)
+assert.equal(disclosure.open, true)
+assert.equal(scrolled, 'town-arrival-1')
 delete globalThis.window
 delete globalThis.location

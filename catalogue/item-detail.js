@@ -273,7 +273,7 @@
     }[ctx.lang];
   }
   function foodChoicePanel(ctx, item, allItems, sections) {
-    const copy = foodCopy(ctx);
+    const copy2 = foodCopy(ctx);
     const hpLabel = (hp) => ctx.lang === "th" ? `ฟื้น HP +${hp} หน่วย` : ctx.lang === "ja" ? `HP+${hp}回復` : `Restores +${hp} HP`;
     const foodOption = (other) => {
       const hp = other.playerUse?.hpRecovery?.hp;
@@ -283,12 +283,12 @@
     const alternatives = allItems.filter(
       (other) => other.category === "food" && other.id !== item.id && other.priceYen > 0 && other.playerUse?.shops?.some((shop) => Number(shop.stage) === ctx.selectedStage)
     );
-    const nearby = ctx.selectedStage ? `<h3>${ctx.esc(copy[0])} · ${ctx.selectedStage}</h3><div class="detail-grid" data-local-food-options>${alternatives.map(foodOption).join("")}</div>` : "";
+    const nearby = ctx.selectedStage ? `<h3>${ctx.esc(copy2[0])} · ${ctx.selectedStage}</h3><div class="detail-grid" data-local-food-options>${alternatives.map(foodOption).join("")}</div>` : "";
     const catalogueOptions = allItems.filter((other) => other.category === "food" && other.priceYen > 0 && other.id !== item.id).map(foodOption).join("");
     const full = sections.map(
       (section) => `<h3>${ctx.esc(ctx.local(section.title))}</h3><p>${ctx.esc(ctx.local(section.recommendation))}</p><p class="muted">${ctx.esc(ctx.local(section.scope))}</p>`
     ).join("");
-    return `<section class="detail-section buying-decision" data-food-choice><p>${ctx.esc(copy[2])}</p>${nearby}<details><summary>${ctx.esc(copy[1])}</summary>${full}<div class="detail-grid" data-all-food-options>${catalogueOptions}</div></details></section>`;
+    return `<section class="detail-section buying-decision" data-food-choice><p>${ctx.esc(copy2[2])}</p>${nearby}<details><summary>${ctx.esc(copy2[1])}</summary>${full}<div class="detail-grid" data-all-food-options>${catalogueOptions}</div></details></section>`;
   }
 
   // src/pages/item/purchases.js
@@ -416,8 +416,8 @@
     if (!bundle) return { ...noBundleCopy(lang, item.id, fishName2), bundle: null, itemId: item.id };
     const body = nameForBundleItem(allItems, "fly", bundle.body);
     const supported = Boolean(fishId && (body?.playerUse?.fishIds || []).includes(fishId));
-    const copy = bundleCopy(lang, item, bundle, fishName2, supported);
-    return { ...copy, bundle, supported, hasTarget: Boolean(fishId), itemId: item.id };
+    const copy2 = bundleCopy(lang, item, bundle, fishName2, supported);
+    return { ...copy2, bundle, supported, hasTarget: Boolean(fishId), itemId: item.id };
   }
   function actionLabel(lang, key, bundle) {
     const labels = {
@@ -615,11 +615,11 @@
     const ids = Array.isArray(use.fishIds) ? normalizedFishIds(use.fishIds) : [];
     const categories = ["lure", "fly", "bait", "float_weight", "general_tool"];
     if (!categories.includes(item.category) || !ids.length && !routeKeys.length) return "";
-    const copy = steeringCopy(ctx);
-    const heading = steering ? copy.title : rigRoute ? ctx.copy[`${rigRoute}FishHeading`] : ctx.copy.fish;
+    const copy2 = steeringCopy(ctx);
+    const heading = steering ? copy2.title : rigRoute ? ctx.copy[`${rigRoute}FishHeading`] : ctx.copy.fish;
     const groups = renderCompatibilityGroups(ctx, routes, routeKeys, ids, fishVisuals, fishLocations);
     const accepted = targetAccepted(ctx, routes, routeKeys, ids);
-    const status = ctx.selectedFish ? rigRoute ? routeTargetStatus(ctx, rigRoute, accepted) : targetStatus(ctx, routes, accepted, steering, copy) : "";
+    const status = ctx.selectedFish ? rigRoute ? routeTargetStatus(ctx, rigRoute, accepted) : targetStatus(ctx, routes, accepted, steering, copy2) : "";
     const fishTarget = ctx.selectedFish ? `<p class="play-target"${rigRoute ? ` data-target-route="${rigRoute}"` : ""}><strong>${ctx.esc(ctx.copy.target)} · ${ctx.esc(ctx.fishName(ctx.selectedFish, fishVisuals))} (${ctx.esc(ctx.selectedFish)})</strong><br>${ctx.esc(status)}</p>${acceptedBaitLink(ctx, fishLocations, rigRoute)}` : "";
     const count = routeKeys.length ? new Set(Object.values(routes).flatMap(normalizedFishIds)).size : ids.length;
     const list = `<details class="compatibility-details"><summary>${ctx.esc(compatibilitySummary(ctx, count, steering, rigRoute))}</summary>${groups}</details>`;
@@ -1115,61 +1115,99 @@
       controlledLimit: "ตรวจตำแหน่งซ้ำอย่างอิสระจากเมนูด่านเลขคู่ที่จำลองในสภาวะควบคุม ยืนยันช่องเลือกชิ้นส่วน แต่ยังไม่ได้ยืนยันเส้นทางเดินหรือการเข้าร้านจากการเล่นปกติ ไม่ได้พิสูจน์ว่าปลากินหรือตกขึ้นง่ายกว่า ตรวจราคาสุทธิก่อนจ่าย"
     }
   };
-  function instructionsFor(copy, row, column) {
-    return [column > 1 ? copy.right(column - 1) : "", row > 1 ? copy.down(row - 1) : "", copy.confirm].filter(Boolean).join(" → ");
+  function instructionsFor(copy2, row, column) {
+    return [column > 1 ? copy2.right(column - 1) : "", row > 1 ? copy2.down(row - 1) : "", copy2.confirm].filter(Boolean).join(" → ");
   }
   function otherFamilyCopy(lang, choice) {
-    const copy = otherFamilies[lang] || otherFamilies.en;
-    const family = copy.family[choice.familyJa] || choice.familyJa;
+    const copy2 = otherFamilies[lang] || otherFamilies.en;
+    const family = copy2.family[choice.familyJa] || choice.familyJa;
     const area = choice.area || 1;
     return {
       ...mayfly[lang],
-      scope: choice.controlledFixture ? copy.controlledScope(family, choice.familyJa) : copy.scope(area, family, choice.familyJa),
-      limit: choice.controlledFixture ? copy.controlledLimit : copy.limit(area, family),
-      none: copy.none,
-      directQuote: copy.directQuote
+      scope: choice.controlledFixture ? copy2.controlledScope(family, choice.familyJa) : copy2.scope(area, family, choice.familyJa),
+      limit: choice.controlledFixture ? copy2.controlledLimit : copy2.limit(area, family),
+      none: copy2.none,
+      directQuote: copy2.directQuote
     };
   }
-  function nonePositionInstructions(copy, choice, lang) {
+  function nonePositionInstructions(copy2, choice, lang) {
     const row = choice.nonePosition?.row;
     const column = choice.nonePosition?.column;
     if (!row || !column) return "";
     const movement = [
-      column > 1 ? copy.right(column - 1) : "",
-      row > 1 ? copy.down(row - 1) : "",
-      copy.confirm
+      column > 1 ? copy2.right(column - 1) : "",
+      row > 1 ? copy2.down(row - 1) : "",
+      copy2.confirm
     ].filter(Boolean).join(" → ");
     const part = choice.part === "wing" ? { en: "wing", ja: "ウィング", th: "ปีก" } : { en: "tail", ja: "テール", th: "หาง" };
-    return copy.none(part[lang], movement);
+    return copy2.none(part[lang], movement);
   }
   function flyMenuPosition(ctx, item) {
     const choice = item.flyMakerMenuChoice;
     if (!choice) return "";
     const lang = ctx.lang in mayfly ? ctx.lang : "en";
     const isMayfly = !choice.familyJa || choice.familyJa === "メイフライ";
-    const copy = isMayfly ? mayfly[lang] : otherFamilyCopy(lang, choice);
-    const instructions = instructionsFor(copy, choice.row, choice.column);
-    const position = copy.position(choice.row, choice.column);
-    const noneInstructions = isMayfly && choice.part === "tail" ? `<p class="fly-menu-none-tail">${ctx.esc(copy.noneTail)}</p>` : choice.nonePosition ? `<p class="fly-menu-none-tail">${ctx.esc(nonePositionInstructions(copy, choice, lang))}</p>` : "";
-    const nextStep = choice.nextStep === "quote" ? `<p class="fly-menu-next-step rod-verdict">${ctx.esc(copy.directQuote)}</p>` : "";
-    return `<section id="fly-menu-position" class="detail-section fly-menu-position" data-fly-menu-position="${ctx.esc(item.category)}:${ctx.esc(item.id)}"><h2>${ctx.esc(copy.title)}</h2><p>${ctx.esc(copy.scope)}</p><p><strong>${ctx.esc(position)}</strong> · ${ctx.esc(copy.start)}</p><p class="rod-verdict">${ctx.esc(instructions)}</p>${noneInstructions}${nextStep}<figure><a href="${ctx.esc(choice.image)}" target="_blank" rel="noopener"><img src="${ctx.esc(choice.image)}" alt="${ctx.esc(position)}" width="256" height="224" loading="lazy"></a><figcaption>${ctx.esc(copy.caption)}</figcaption></figure><details><summary>${ctx.esc(copy.evidence)}</summary><p>${ctx.esc(copy.limit)}</p><a href="${ctx.esc(choice.evidenceHref)}">${ctx.esc(copy.notes)} ↗</a></details></section>`;
+    const copy2 = isMayfly ? mayfly[lang] : otherFamilyCopy(lang, choice);
+    const instructions = instructionsFor(copy2, choice.row, choice.column);
+    const position = copy2.position(choice.row, choice.column);
+    const noneInstructions = isMayfly && choice.part === "tail" ? `<p class="fly-menu-none-tail">${ctx.esc(copy2.noneTail)}</p>` : choice.nonePosition ? `<p class="fly-menu-none-tail">${ctx.esc(nonePositionInstructions(copy2, choice, lang))}</p>` : "";
+    const nextStep = choice.nextStep === "quote" ? `<p class="fly-menu-next-step rod-verdict">${ctx.esc(copy2.directQuote)}</p>` : "";
+    return `<section id="fly-menu-position" class="detail-section fly-menu-position" data-fly-menu-position="${ctx.esc(item.category)}:${ctx.esc(item.id)}"><h2>${ctx.esc(copy2.title)}</h2><p>${ctx.esc(copy2.scope)}</p><p><strong>${ctx.esc(position)}</strong> · ${ctx.esc(copy2.start)}</p><p class="rod-verdict">${ctx.esc(instructions)}</p>${noneInstructions}${nextStep}<figure><a href="${ctx.esc(choice.image)}" target="_blank" rel="noopener"><img src="${ctx.esc(choice.image)}" alt="${ctx.esc(position)}" width="256" height="224" loading="lazy"></a><figcaption>${ctx.esc(copy2.caption)}</figcaption></figure><details><summary>${ctx.esc(copy2.evidence)}</summary><p>${ctx.esc(copy2.limit)}</p><a href="${ctx.esc(choice.evidenceHref)}">${ctx.esc(copy2.notes)} ↗</a></details></section>`;
+  }
+
+  // src/pages/item/bait-acquisition.js
+  var copy = {
+    th: {
+      title: "หาเหยื่อ 0D ในเมืองแทนการหาร้านขาย",
+      body: "ถ้ามีแว่นขยาย 03: เข้าเมืองทางเข้าลำดับที่ 2 ซึ่งพามา X7,Y29 หยุดเดินแล้วใช้แว่นขยายบนช่องที่ต่างจากช่องที่ใช้แว่นขยายครั้งก่อน กองเหยื่อเดิมต้องยังไม่เต็ม 9 หรือมีช่องเหยื่อว่าง ได้ 1–4 ชิ้นตามพื้นที่ว่างในกอง สูงสุด 9 ชิ้น ขยับช่องก่อนค้นซ้ำ",
+      limit: "เมืองด่าน 6 ทดลองใช้สำเร็จ อีกห้าเมืองอ้างจากเงื่อนไขตำแหน่งเดียวกันใน ROM ไม่ใช่เส้นทางที่เดินทดลองครบทุกเมือง",
+      town: "ดูทางเข้าเมืองลำดับที่ 2",
+      tool: "ดูไอเท็มแว่นขยาย 03"
+    },
+    en: {
+      title: "Gather bait 0D in town instead of looking for a shop",
+      body: "If you own magnifier 03, enter through the second recorded town entrance (arrival X7,Y29), stop and use it on a tile different from the last magnifier-use tile. Keep room in the existing stack or a free bait slot: the draw is 1–4 pieces, limited by remaining room in a stack capped at 9. Move to another tile before searching again.",
+      limit: "Direct use succeeded in Area 6 town. The other five towns follow the same ROM position check; their walking routes were not all replayed.",
+      town: "Show the second town entrance",
+      tool: "View magnifier 03"
+    },
+    ja: {
+      title: "エサ0Dは店を探す代わりに町で採る",
+      body: "虫めがね03を持っているなら、町の2番目の入口（到着X7,Y29）から入り、前回虫めがねを使ったタイルとは別のタイルで立ち止まって使う。エサ欄に空きを残す。1–4個を得るが、所持上限9までの空き数で制限される。再探索の前に別のタイルへ移動する。",
+      limit: "エリア6の町で使用成功を確認。他の5町は同じROM位置条件に基づく。全ての町の歩行経路を再現したわけではない。",
+      town: "町の2番目の入口を見る",
+      tool: "虫めがね03を見る"
+    }
+  };
+  function townPasteBaitAction(ctx, item) {
+    if (item.category !== "bait" || item.id !== "0D") return "";
+    const text3 = copy[ctx.lang] || copy.en;
+    const stage = String(ctx.selectedStage || 1);
+    const suffix = ctx.lang === "en" ? "" : `.${ctx.lang}`;
+    const query = new URLSearchParams({ stage, place: "town", entrance: "1" });
+    if (ctx.selectedFish) query.set("fish", ctx.selectedFish);
+    if (ctx.selectedRoute) query.set("route", ctx.selectedRoute);
+    query.set("return", ctx.currentLocalRoute());
+    const town = `shops${suffix}.html?${query}#town-arrival-1`;
+    const tool = ctx.detailItemLink({ category: "general_tool", id: "03" });
+    return `<aside class="detail-section" data-town-paste-bait><h2>${ctx.esc(text3.title)}</h2><p>${ctx.esc(text3.body)}</p><p class="muted">${ctx.esc(text3.limit)}</p><a class="route-button" data-paste-town href="${ctx.esc(town)}">${ctx.esc(text3.town)} ↗</a><a class="route-button" href="${ctx.esc(tool)}">${ctx.esc(text3.tool)} ↗</a></aside>`;
   }
 
   // src/pages/item/notebook.js
   var text = {
     th: [
       "เก็บสมุดให้ครบ 66 ชนิด",
-      "สมุดเก็บหนึ่งรายการต่อชนิดปลา ด่านในสมุดคือด่านที่ทำสถิติขนาดใหญ่ที่สุด ตกชนิดเดิมที่ขนาดเท่าเดิมหรือเล็กกว่าจะไม่เพิ่มรายการใหม่",
+      "ตกปลาขึ้นและผ่านข้อความผลให้จบ แล้วเปิดสมุดเช็กก่อนติ๊กบนเว็บ สมุดเก็บหนึ่งรายการต่อชนิดปลา ด่านในสมุดคือด่านที่ทำสถิติขนาดใหญ่ที่สุด ตกชนิดเดิมที่ขนาดเท่าเดิมหรือเล็กกว่าจะไม่เพิ่มรายการใหม่",
       "ดูรายชื่อที่ควรเก็บเพิ่มในแต่ละด่าน"
     ],
     en: [
       "Complete all 66 notebook species",
-      "The notebook keeps one entry per species. Its area is where the largest-size record was set; an equal or smaller duplicate does not add another entry.",
+      "Land the fish and finish the result messages, then check the notebook before ticking the website checklist. The notebook keeps one entry per species. Its area is where the largest-size record was set; an equal or smaller duplicate does not add another entry.",
       "See new collection targets in each area"
     ],
     ja: [
       "釣りノート66種をそろえる",
-      "魚種ごとに1件だけ記録します。表示エリアは最大サイズの記録を作った場所です。同じサイズ以下の同種では別の項目は増えません。",
+      "魚を取り込み、結果メッセージを進めてからノートを確認し、ウェブのチェックを付けます。魚種ごとに1件だけ記録します。表示エリアは最大サイズの記録を作った場所です。同じサイズ以下の同種では別の項目は増えません。",
       "エリア別の未重複収集ルートを見る"
     ]
   };
@@ -1682,6 +1720,7 @@
   function renderQuickOptions(ctx, item, allItems, fishLocations) {
     const options = [
       notebookAction(ctx, item),
+      townPasteBaitAction(ctx, item),
       questNextActions(ctx, item, fishLocations),
       ctx.boatBoardingChoice(item),
       ctx.acquisitionChoice(item),
@@ -1759,7 +1798,7 @@
   function loadCatalogue(ctx) {
     ctx.flyMakerLink = (item) => item.category.startsWith("fly") ? `<p><a class="route-button" data-fly-maker href="${ctx.esc(ctx.currentCategoryLink().split("#")[0] + "#fly-instructions")}">${ctx.lang === "th" ? "ดูขั้นตอนประกอบฟลายเองและตรวจราคาในเกม" : ctx.lang === "ja" ? "自作フライの手順とゲーム内見積額を確認" : "See custom fly steps and check the in-game quote"} ↗</a></p>` : "";
     ctx.setNavigation();
-    fetch("gallery-data.json?v=compendium-20261005-28").then((response) => {
+    fetch("gallery-data.json?v=compendium-20261005-29").then((response) => {
       if (!response.ok) throw new Error("catalogue data unavailable");
       return response.json();
     }).then((data) => {

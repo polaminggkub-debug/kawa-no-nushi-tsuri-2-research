@@ -46,12 +46,12 @@ function starterItem(ctx, offer, stage, text) {
 function starterCard(ctx, offer, stage, allItems, text) {
   const method = offer.method
   const item = offer.entry.item
-  const rod = ctx.renderRodForMethod(method, stage, allItems)
   const rig = ctx.renderRigForMethod(method, stage, allItems, offer.price)
   const aim = aimTip(ctx, method)
   const fly = offer.bundle ? `<p class="muted">${ctx.escapeHtml(text.fly)}</p>` : ''
   const link = starterLink(ctx, offer, stage)
   const total = rig.match(/data-rig-total="(\d+)"/)?.[1]
+  const rod = ctx.renderRodForMethod(method, stage, allItems, offer.price, Number(total))
   const summary = starterSummary(ctx, offer, total)
   const open = ctx.requestedMethod === method ? ' open' : ''
   return `<details class="detail-section starter-offer" id="starter-${method}" data-method="${method}" data-item="${item.category}:${item.id}" data-price="${offer.price}"${open}><summary>${summary}</summary>${starterItem(ctx, offer, stage, text)}${rod}${rig}${aim}${fly}<a class="route-button" href="${ctx.escapeHtml(link)}">${ctx.escapeHtml(text.buy)} ↗</a></details>`

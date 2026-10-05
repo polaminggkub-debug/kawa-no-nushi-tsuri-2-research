@@ -33,7 +33,7 @@ Useful lower-price choices from these exact or broader route-paired gates:
 - `10` is ¥30 in area 5. `0F` is ¥25 in area 5 with the same route-paired profile set; `0E` is also ¥25 in area 4.
 - `14` is ¥30 in areas 2, 4, 5, and 6. Loach `13` has the exact same route-paired profile set for ¥20 in areas 3, 5, and 6. Small fish `12` is ¥20 in all areas and covers a broader route-paired set.
 - Decoy ayu `17` lists only Ayu profile `38`, and its area-3 offer is conditional on selling Ayu. If the goal is only to pass the fish-profile mask check for Ayu, Caddis larva `08` is a lower-priced area-1–3 option whose broader profile set includes `38`. No bite bonus is claimed.
-- `0D` has no decoded shop offer. If it is already owned, it passes the same route-paired gate as `0E`, `0F`, and `10`; the linked stocked peers show the confirmed choices in areas 4 and 5. The ROM record price alone does not prove where `0D` can be obtained.
+- `0D` has no decoded shop offer. If it is already owned, it passes the same route-paired gate as `0E`, `0F`, and `10`; the linked stocked peers show the confirmed choices in areas 4 and 5. Its magnifier acquisition route is now verified: in town, stop on a tile different from the previous magnifier-use tile at Y16–31 and use tool `03`; the second entrance arrives at `(7,29)`. Leave bait inventory room, with stacks capped at 9. Area 6 is directly tested from a controlled fixture; the other towns follow the same ROM branch. See [paste bait acquisition evidence](town-paste-bait-research.md).
 
 ## Lures
 

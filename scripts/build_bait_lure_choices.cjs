@@ -74,6 +74,12 @@ function createCopy(category, item, gate, cheaperOptions, offerStages) {
         th: `${owned.th} ไม่พบ ID นี้ในรายการสินค้าร้านทั้ง 6 ด่าน ช่องราคาในระเบียน ROM จึงยังไม่ยืนยันว่าซื้อที่ไหนได้ เปิดหน้าปลาเพื่อดูชิ้นที่มีตำแหน่งขายยืนยันแล้ว; ไม่อนุมานช่องทางได้มาอื่น`
       }[language];
       if (category === 'bait' && item.id === '0D') {
+        label = { en: 'Gather in town with the magnifier', ja: '町で虫めがねを使って採る', th: 'ใช้แว่นขยายหาเหยื่อนี้ในเมือง' }[language];
+        recommendation = {
+          en: 'If you own magnifier 03, enter town through its second recorded entrance (arrival X7,Y29), stop and use it on a tile different from the last magnifier-use tile. The town Y16–31 band selects this bait; obtain 1–4 pieces, clamped to stack9, with room in the existing stack or a free bait slot. Town6 is directly tested; the other five follow the same ROM branch. No shop offers this ID in the six decoded lists.',
+          ja: '虫めがね03を持っているなら、町の2番目の入口（到着X7,Y29）から入り、前回虫めがねを使ったタイルとは別のタイルで立ち止まって使用する。町のY16–31ではこのエサを選び、エサ欄に空きがあれば1–4個（所持上限9）を得る。エリア6の町で実測し、他の5町は同じROM分岐に基づく。復号した全6エリアの店頭にはこのIDはない。',
+          th: 'ถ้ามีแว่นขยาย 03 ให้เข้าเมืองทางเข้าลำดับที่ 2 (เข้ามาที่ X7,Y29) หยุดเดินแล้วใช้บนช่องที่ต่างจากช่องที่ใช้แว่นขยายครั้งก่อน แถบ Y16–31 ในเมืองเลือกเหยื่อนี้ ได้ 1–4 ชิ้นตามช่องว่างของกอง สูงสุด 9 กองเหยื่อเดิมต้องยังไม่เต็ม 9 หรือมีช่องเหยื่อว่าง ทดสอบตรงในเมืองด่าน 6 แล้ว อีกห้าเมืองอ้างจากเงื่อนไข ROM เดียวกัน ไม่พบ ID นี้ในสต็อกร้านทั้งหกด่าน'
+        }[language];
         recommendation += {
           en: ' For the same route-paired profile set, the stocked peers linked below are ID 0E (¥25, area 4) and ID 0F (¥25, area 5).',
           ja: ' 同じ経路別プロフィール集合を通る店頭品として、下のリンクにID 0E（25円、エリア4）とID 0F（25円、エリア5）を示します。',
@@ -251,7 +257,7 @@ for (const category of ['bait', 'lure']) {
       recommendation: Object.fromEntries(['en', 'ja', 'th'].map(language => [language, copy[language].recommendation])),
       reason: Object.fromEntries(['en', 'ja', 'th'].map(language => [language, copy[language].reason])),
       alternatives: alternatives.slice(0, 3),
-      sources: itemSources(category),
+      sources: [...itemSources(category), ...(category === 'bait' && item.id === '0D' ? ['docs/town-paste-bait-research.md', 'data/town-paste-bait-evidence.json'] : [])],
       exactGatePeers: groups[signature].filter(id => id !== item.id).map(id => refs(category, id)),
       gate: category === 'bait'
         ? { maskHex: gate.maskHex, fishIdsByRoute: { float: gate.float, sinker: gate.sinker } }

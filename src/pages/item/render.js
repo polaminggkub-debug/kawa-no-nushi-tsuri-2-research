@@ -1,4 +1,5 @@
 import { flyMenuPosition } from './fly-menu-position.js'
+import { townPasteBaitAction } from './bait-acquisition.js'
 import { notebookAction } from './notebook.js'
 import { questNextActions } from './quest-next-actions.js'
 import { targetAdviceSection } from './target-advice.js'
@@ -234,6 +235,7 @@ function renderDecisionSection(ctx, item, summary, facts, imageNote, data) {
 function renderQuickOptions(ctx, item, allItems, fishLocations) {
   const options = [
     notebookAction(ctx, item),
+    townPasteBaitAction(ctx, item),
     questNextActions(ctx, item, fishLocations),
     ctx.boatBoardingChoice(item),
     ctx.acquisitionChoice(item),

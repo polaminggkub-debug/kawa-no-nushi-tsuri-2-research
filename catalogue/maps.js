@@ -217,12 +217,12 @@
       id: "ID",
       countNoteTitle: "Why the count in your game journal can differ",
       countNote: (stage, total, added, repeated) => `Available here: ${total} = ${added} first on the route + ${repeated} also found earlier. The game counts species whose largest-size record is assigned to this area. There is no fixed target for each page. Add the six game-page counts to check progress out of 66. Check both fish lists and the other game pages before pursuing a missing species.`,
-      triggerLimit: "The ROM trace confirms the larger-size check, but does not prove which fishing outcomes trigger the journal update.",
+      triggerLimit: "Controller-only replay confirmed an Area 1 Yamame landing: after the landing message progressed, its notebook size/area changed from 0/0 to 23/1. This confirms one landed-catch path; it does not establish every failure or species outcome.",
       evidence: "ROM evidence and method",
       evidenceLink: "Read the notebook record research",
       spawnNote: "These are the game’s configured area candidates. If a point has no fish in your current run, open the map to check whether this species has other recorded points.",
       verifyTitle: "After fishing: check the game journal before ticking this list",
-      verifyBody: "Open Tool 05 (Fishing Notebook) and compare the fish’s name across all six pages. Page totals can move when a larger-size record moves to another area. Seeing a fish bite alone does not confirm that the journal recorded it.",
+      verifyBody: "Land the fish and finish the landing messages, then open Tool 05 (Fishing Notebook) and compare the fish’s name across all six pages. Page totals can move when a larger-size record moves to another area. Seeing a fish bite alone does not confirm that the journal recorded it.",
       verifyLink: "View Tool 05 details · Fishing Notebook",
       empty: "No new species are listed for this area in the route."
     },
@@ -246,12 +246,12 @@
       id: "ID",
       countNoteTitle: "ゲーム内図鑑の数と異なる理由",
       countNote: (stage, total, added, repeated) => `このエリアの対象種: ${total} = ルート初登場${added} + 前エリアにも出現${repeated}。ゲーム内の数は、最大サイズの記録がこのエリアにある魚種数です。各ページに固定の目標数はありません。6ページの数を合計して全66種の進行を確認し、未記録の魚を探す前に下の両一覧と他のページを確認してください。`,
-      triggerLimit: "ROMコードではサイズ比較を確認しましたが、どの釣果で図鑑更新処理が呼ばれるかは確認できていません。",
+      triggerLimit: "通常のコントローラー操作でエリア1のヤマメを取り込み、取り込みメッセージを進めた後に図鑑のサイズ・エリアが0/0から23/1へ変化しました。取り込みによる更新例であり、全魚種・失敗時の挙動を証明するものではありません。",
       evidence: "ROMの根拠と調査方法",
       evidenceLink: "魚図鑑の記録に関する調査を読む",
       spawnNote: "ゲームの設定上、このエリアに出現する魚です。現在のプレイで地点に魚がいないときは、地図を開いて同種の別地点があるか確認してください。",
       verifyTitle: "釣りのあと、ゲーム内の図鑑を確認してからチェック",
-      verifyBody: "道具05「釣りノート」を開き、魚名を6ページすべて確認してください。最大サイズの記録が別エリアに移るとページ別の数も変わります。魚が食いついただけでは、図鑑への記録を確認できません。",
+      verifyBody: "魚を取り込み、取り込みメッセージを進めてから道具05「釣りノート」を開き、魚名を6ページすべて確認してください。最大サイズの記録が別エリアに移るとページ別の数も変わります。魚が食いついただけでは、図鑑への記録を確認できません。",
       verifyLink: "道具05の詳細 · 釣りノート",
       empty: "このエリアにルート上の新しい魚種はありません。"
     },
@@ -275,12 +275,12 @@
       id: "ID",
       countNoteTitle: "ทำไมเลขในสมุดเกมถึงไม่เท่ากับจำนวนในไกด์",
       countNote: (stage, total, added, repeated) => `ด่านนี้มี ${total} ชนิด = ปลาใหม่ตามเส้นทาง ${added} + พบในด่านก่อนด้วย ${repeated} เกมนับชนิดปลาที่สถิติขนาดใหญ่สุดอยู่ในด่านนี้ แต่ละหน้าจึงไม่มียอดเป้าหมายตายตัว บวกเลขทั้ง 6 หน้าในเกมเพื่อเช็กว่าครบ 66 หรือยัง ก่อนตามหาปลาเพิ่ม ให้เทียบชื่อจากทั้งสองรายการด้านล่างกับทุกหน้าในสมุด`,
-      triggerLimit: "โค้ด ROM ยืนยันว่าตรวจค่าขนาดที่มากกว่าสถิติเดิม แต่ยังระบุไม่ได้ว่าผลการตกแบบใดเรียกการอัปเดตสมุด",
+      triggerLimit: "เล่นด้วยปุ่มควบคุมตามปกติแล้วตกยามาเมะในด่าน 1 ขึ้นได้ หลังผ่านข้อความตกสำเร็จ ค่าขนาด/ด่านในสมุดเปลี่ยนจาก 0/0 เป็น 23/1 ยืนยันทางบันทึกจากการตกขึ้นหนึ่งกรณี ยังไม่ได้พิสูจน์ผลของทุกชนิดปลาหรือทุกกรณีที่ตกไม่สำเร็จ",
       evidence: "หลักฐาน ROM และวิธีตรวจสอบ",
       evidenceLink: "อ่านบันทึกการแกะระบบสมุดปลา",
       spawnNote: "รายการนี้คือปลาที่เกมตั้งไว้ในด่าน บางจุดอาจไม่มีปลาในรอบที่เล่น ถ้าจุดที่ไปไม่มีปลา ให้เปิดแผนที่ตรวจว่าปลาชนิดนั้นมีจุดอื่นหรือไม่",
       verifyTitle: "หลังตกปลา ให้เช็กสมุดเกมก่อนติ๊กเช็กลิสต์นี้",
-      verifyBody: "เปิดไอเท็ม 05 “สมุดบันทึกการตกปลา” แล้วเทียบชื่อปลาทั้ง 6 หน้า จำนวนในแต่ละหน้าเปลี่ยนได้เมื่อสถิติขนาดใหญ่สุดย้ายไปอีกด่าน การเห็นปลากัดเบ็ดอย่างเดียวยังยืนยันไม่ได้ว่าสมุดบันทึกปลาแล้ว",
+      verifyBody: "ตกปลาขึ้นและผ่านข้อความตกสำเร็จให้จบ แล้วเปิดไอเท็ม 05 “สมุดบันทึกการตกปลา” เทียบชื่อปลาทั้ง 6 หน้า จำนวนในแต่ละหน้าเปลี่ยนได้เมื่อสถิติขนาดใหญ่สุดย้ายไปอีกด่าน การเห็นปลากัดเบ็ดอย่างเดียวยังยืนยันไม่ได้ว่าสมุดบันทึกปลาแล้ว",
       verifyLink: "ดูรายละเอียดไอเท็ม 05 · สมุดบันทึกการตกปลา",
       empty: "ไม่มีปลาใหม่ตามเส้นทางในด่านนี้"
     }
@@ -1518,7 +1518,7 @@
         if (!r.ok) throw Error("fish locations");
         return r.json();
       }),
-      fetch("gallery-data.json?v=compendium-20261005-28").then((r) => {
+      fetch("gallery-data.json?v=compendium-20261005-29").then((r) => {
         if (!r.ok) throw Error("fish sprites");
         return r.json();
       })

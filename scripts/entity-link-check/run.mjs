@@ -82,3 +82,8 @@ await import('./category-context.mjs')
 await import('./fish-selection-context.mjs')
 
 await import('./shop-target-actions.mjs')
+
+await import('./town-paste-bait.mjs')
+await import('./notebook-natural-evidence.mjs')
+await import('./fish-rod-upgrades.mjs')
+await import('./fish-stage-resolution.mjs')

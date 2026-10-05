@@ -129,11 +129,19 @@ function setFishTitle(ctx, headline) {
   document.title = `${headline} — ${ctx.copy.pageTitle} | Kawa no Nushi Tsuri 2`
 }
 
+export function resolveProfileStage(ctx, activeStage) {
+  if (activeStage === ctx.requestedStage) return
+  ctx.requestedStage = activeStage
+  if (typeof history !== 'undefined')
+    history.replaceState(null, '', `${ctx.currentFishPath(activeStage)}${location.hash}`)
+}
+
 export function render(ctx, fishData, locationData) {
   if (!ctx.id) return renderMissingProfile(ctx, ctx.copy.missing)
   const fish = fishData.fishVisuals?.[ctx.id]
   if (!fish) return renderMissingProfile(ctx, ctx.copy.invalid)
   const state = profileState(ctx, fish, locationData, fishData)
+  resolveProfileStage(ctx, state.activeStage)
   ctx.setNavigation(state.activeStage)
   if (ctx.id === '43') {
     ctx.page.innerHTML = unconfirmedProfileContent(ctx, fish, state)

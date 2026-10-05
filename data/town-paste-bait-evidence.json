@@ -1,0 +1,53 @@
+{
+  "romSha1": "c2103dd94e2a1a65a495fc02adc2e7d040f31212",
+  "kind": "controlled-debug-fixture",
+  "item": {
+    "category": "bait",
+    "id": "0D"
+  },
+  "townMapIds": [
+    7,
+    8,
+    9,
+    10,
+    11,
+    12
+  ],
+  "yBand": [
+    16,
+    31
+  ],
+  "candidate": {
+    "entranceOrdinal": 1,
+    "x": 7,
+    "y": 29
+  },
+  "quantityRange": [
+    1,
+    4
+  ],
+  "stackCap": 9,
+  "runtime": {
+    "mapId": 12,
+    "before": {
+      "id": 0,
+      "count": 0
+    },
+    "after": {
+      "id": 13,
+      "count": 3
+    },
+    "injectedWrites": [
+      [
+        "0x0B5E",
+        [
+          3,
+          0
+        ]
+      ]
+    ],
+    "image": "catalogue/images/bait-acquisition/town-paste.png",
+    "imageSha256": "d804f2017ae219b186b5805bed2ae43d9bcabcf153d1a81ebd642a73e109ffa6"
+  },
+  "limits": "Town 12 directly replayed from debug field fixture with tool03 added; towns7–11 follow code/table, not separate replay. No natural-new-game route or verified Thai-ROM item label."
+}

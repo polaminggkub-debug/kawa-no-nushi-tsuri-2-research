@@ -33,7 +33,8 @@ def main():
              ROOT / 'scripts/derive_water_icons.py',
              ROOT / 'scripts/extract_water_sprites.py',
              ROOT / 'scripts/derive_notebook_completion.py',
-             ROOT / 'scripts/verify_notebook_records.py']
+             ROOT / 'scripts/verify_notebook_records.py',
+             ROOT / 'scripts/verify_town_paste_bait.py']
     paths += sorted((ROOT / 'scripts/magnet-story-gate').rglob('*.py'))
     errors = []
     for path in paths:

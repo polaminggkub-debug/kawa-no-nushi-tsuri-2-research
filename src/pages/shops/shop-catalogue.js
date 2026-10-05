@@ -94,7 +94,7 @@ export function townArrivalCard(ctx, view, entry) {
   const n = Number(entry.ordinal ?? 0)
   const fieldHref = ctx.shopsUrl({ place: 'area', entrance: String(n) })
   const action = `<a class="route-button" href="${ctx.esc(fieldHref)}">${ctx.esc(ctx.text.openEntrance)}</a>`
-  return ctx.mapCard({
+  const card = ctx.mapCard({
     heading: `${ctx.text.entrance(n)} · ${ctx.text.arrival}`,
     role: '',
     note: ctx.text.pairNote,
@@ -105,6 +105,7 @@ export function townArrivalCard(ctx, view, entry) {
     tech: { [ctx.text.entranceOrdinal]: n, [ctx.text.kind]: 'paired field transition' },
     extra: action,
   })
+  return `<div id="town-arrival-${n}">${card}</div>`
 }
 export function townLocationCards(ctx, view, items) {
   const { area, stage, interactions, entrances } = view
