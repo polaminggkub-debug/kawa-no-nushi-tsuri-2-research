@@ -274,15 +274,21 @@
   }
   function foodChoicePanel(ctx, item, allItems, sections) {
     const copy = foodCopy(ctx);
+    const hpLabel = (hp) => ctx.lang === "th" ? `ฟื้น HP +${hp} หน่วย` : ctx.lang === "ja" ? `HP+${hp}回復` : `Restores +${hp} HP`;
+    const foodOption = (other) => {
+      const hp = other.playerUse?.hpRecovery?.hp;
+      if (!Number.isSafeInteger(hp) || hp <= 0) return "";
+      return `<article data-food-option="${ctx.esc(other.id)}" data-food-hp="${hp}">${ctx.componentLink(other)}<p class="food-option-hp">${ctx.esc(hpLabel(hp))}</p><p>${ctx.esc(ctx.copy.price(other.priceYen))}</p></article>`;
+    };
     const alternatives = allItems.filter(
       (other) => other.category === "food" && other.id !== item.id && other.priceYen > 0 && other.playerUse?.shops?.some((shop) => Number(shop.stage) === ctx.selectedStage)
     );
-    const nearby = ctx.selectedStage ? `<h3>${ctx.esc(copy[0])} · ${ctx.selectedStage}</h3><div class="detail-grid" data-local-food-options>${alternatives.map((other) => `<article>${ctx.componentLink(other)}<p>${ctx.esc(ctx.copy.price(other.priceYen))}</p></article>`).join("")}</div>` : "";
-    const catalogueLinks = allItems.filter((other) => other.category === "food" && other.priceYen > 0 && other.id !== item.id).map((other) => ctx.componentLink(other)).join("");
+    const nearby = ctx.selectedStage ? `<h3>${ctx.esc(copy[0])} · ${ctx.selectedStage}</h3><div class="detail-grid" data-local-food-options>${alternatives.map(foodOption).join("")}</div>` : "";
+    const catalogueOptions = allItems.filter((other) => other.category === "food" && other.priceYen > 0 && other.id !== item.id).map(foodOption).join("");
     const full = sections.map(
       (section) => `<h3>${ctx.esc(ctx.local(section.title))}</h3><p>${ctx.esc(ctx.local(section.recommendation))}</p><p class="muted">${ctx.esc(ctx.local(section.scope))}</p>`
     ).join("");
-    return `<section class="detail-section buying-decision" data-food-choice><p>${ctx.esc(copy[2])}</p>${nearby}<details><summary>${ctx.esc(copy[1])}</summary>${full}<div class="detail-grid">${catalogueLinks}</div></details></section>`;
+    return `<section class="detail-section buying-decision" data-food-choice><p>${ctx.esc(copy[2])}</p>${nearby}<details><summary>${ctx.esc(copy[1])}</summary>${full}<div class="detail-grid" data-all-food-options>${catalogueOptions}</div></details></section>`;
   }
 
   // src/pages/item/purchases.js
@@ -457,6 +463,19 @@
       ([key, href]) => `<a class="route-button" data-fly-wing-route="${key}" data-item-id="${ctx.esc(decision.itemId || "")}" href="${ctx.esc(href)}">${ctx.esc(actionLabel(ctx.lang, key, decision.bundle || {}))} ↗</a>`
     ).join("");
     return anchors ? `<div class="fly-wing-player-actions" data-fly-wing-action="${ctx.esc(decision.itemId || "")}">${anchors}</div>` : "";
+  }
+
+  // src/entities/item/price-guide-link.js
+  var GUIDE_CATEGORIES = /* @__PURE__ */ new Set(["float_weight", "hook"]);
+  function categoryGuideLink({ lang, category, fish, stage, route, returnPath } = {}) {
+    if (!GUIDE_CATEGORIES.has(category)) return "";
+    const locale = ["th", "ja"].includes(lang) ? lang : "en";
+    const query = new URLSearchParams({ category });
+    if (/^[\da-f]{2}$/i.test(String(fish || ""))) query.set("fish", fish.toUpperCase());
+    if (/^[1-6]$/.test(String(stage || ""))) query.set("stage", String(stage));
+    if (["float", "sinker"].includes(route)) query.set("route", route);
+    if (typeof returnPath === "string" && returnPath) query.set("return", returnPath);
+    return `index${locale === "en" ? "" : `.${locale}`}.html?${query}#category-decisions`;
   }
 
   // src/pages/item/usage.js
@@ -828,10 +847,21 @@
   }
   function gearNextActions(ctx, item, fishVisuals, fishLocations, allItems) {
     if (!item.gearDecision) return "";
-    if (item.category === "float_weight")
-      return `<p><a class="route-button" data-float-price-guide href="index${ctx.lang === "en" ? "" : "." + ctx.lang}.html?category=float_weight#category-decisions">${ctx.lang === "th" ? "ดูทุ่นและตะกั่วราคาต่ำสุดแยกทั้งหกด่าน" : ctx.lang === "ja" ? "6エリアの最安ウキ・オモリを見る" : "See the cheapest float and sinker in each of six areas"} ↗</a></p>`;
+    const guideLink = (category, marker) => {
+      const href = categoryGuideLink({
+        lang: ctx.lang,
+        category,
+        fish: ctx.selectedFish,
+        stage: ctx.selectedStage,
+        route: ctx.selectedRoute,
+        returnPath: ctx.currentLocalRoute()
+      });
+      const label = category === "hook" ? ctx.lang === "th" ? "เบ็ดหายหรือยังไม่มี? ดูเบ็ดทั่วไปที่ถูกสุดทั้งหกด่าน" : ctx.lang === "ja" ? "針を失った・持っていない？6エリアの最安汎用針を見る" : "Lost your hook or have none? See the cheapest generic hook in each area" : ctx.lang === "th" ? "ดูทุ่นและตะกั่วราคาต่ำสุดแยกทั้งหกด่าน" : ctx.lang === "ja" ? "6エリアの最安ウキ・オモリを見る" : "See the cheapest float and sinker in each of six areas";
+      return `<p><a class="route-button" data-${marker}-price-guide href="${ctx.esc(href)}">${label} ↗</a></p>`;
+    };
+    if (item.category === "float_weight") return guideLink("float_weight", "float");
     const ids = (item.gearDecision.targetFish || []).filter((id) => fishVisuals[id]);
-    const hookBudget = item.category === "hook" ? `<p><a class="route-button" data-hook-price-guide href="index${ctx.lang === "en" ? "" : "." + ctx.lang}.html?category=hook#category-decisions">${ctx.lang === "th" ? "เบ็ดหายหรือยังไม่มี? ดูเบ็ดทั่วไปที่ถูกสุดทั้งหกด่าน" : ctx.lang === "ja" ? "針を失った・持っていない？6エリアの最安汎用針を見る" : "Lost your hook or have none? See the cheapest generic hook in each area"} ↗</a></p>` : "";
+    const hookBudget = item.category === "hook" ? guideLink("hook", "hook") : "";
     if (item.category === "hook" && !ids.length) return hookBudget;
     if (item.category === "hook" && ids.length)
       return hookBudget + `<p>${ctx.lang === "th" ? "ดูเหยื่อและจุดตกของปลาที่ชื่อเบ็ดอ้างถึง (ไม่ได้แนะนำให้ใช้เบ็ดนี้จับง่ายกว่า)" : ctx.lang === "ja" ? "ハリ名が参照する魚のエサ・場所を確認（このハリの優位性を示すものではありません）" : "See bait and locations for the fish named by this hook (not a claim this hook lands it more easily)"}</p>${ids.map((id) => `<a class="route-button" href="${ctx.esc(ctx.fishProfileLink(id, fishLocations))}">${ctx.esc(ctx.fishName(id, fishVisuals))} ↗</a>`).join("")}`;
@@ -1729,7 +1759,7 @@
   function loadCatalogue(ctx) {
     ctx.flyMakerLink = (item) => item.category.startsWith("fly") ? `<p><a class="route-button" data-fly-maker href="${ctx.esc(ctx.currentCategoryLink().split("#")[0] + "#fly-instructions")}">${ctx.lang === "th" ? "ดูขั้นตอนประกอบฟลายเองและตรวจราคาในเกม" : ctx.lang === "ja" ? "自作フライの手順とゲーム内見積額を確認" : "See custom fly steps and check the in-game quote"} ↗</a></p>` : "";
     ctx.setNavigation();
-    fetch("gallery-data.json?v=compendium-20261005-23").then((response) => {
+    fetch("gallery-data.json?v=compendium-20261005-24").then((response) => {
       if (!response.ok) throw new Error("catalogue data unavailable");
       return response.json();
     }).then((data) => {

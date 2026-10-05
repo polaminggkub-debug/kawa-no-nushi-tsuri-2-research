@@ -1,3 +1,5 @@
+import { categoryGuideLink } from '../../entities/item/index.js'
+
 export function baitLurePriceChoices(ctx, item) {
   const rows = Object.entries(item.baitLureDecision?.cheaperByStage || {})
   if (!rows.length) return ''
@@ -220,13 +222,32 @@ export function flyBundlePartFor(ctx, item, fish) {
 
 export function gearNextActions(ctx, item) {
   if (!item.gearDecision) return ''
-  if (item.category === 'float_weight')
-    return `<p><a class="route-button" data-float-price-guide href="index${ctx.lang === 'en' ? '' : '.' + ctx.lang}.html?category=float_weight#category-decisions">${ctx.lang === 'th' ? 'ดูทุ่นและตะกั่วราคาต่ำสุดแยกทั้งหกด่าน' : ctx.lang === 'ja' ? '6エリアの最安ウキ・オモリを見る' : 'See the cheapest float and sinker in each of six areas'} ↗</a></p>`
+  const guideLink = (category, marker) => {
+    const href = categoryGuideLink({
+      lang: ctx.lang,
+      category,
+      fish: document.getElementById('fish-filter')?.value,
+      stage: ctx.locationStage,
+      route: ctx.baitRoute,
+      returnPath: ctx.sourceReturn(),
+    })
+    const label =
+      category === 'hook'
+        ? ctx.lang === 'th'
+          ? 'เบ็ดหายหรือยังไม่มี? ดูเบ็ดทั่วไปที่ถูกสุดทั้งหกด่าน'
+          : ctx.lang === 'ja'
+            ? '針を失った・持っていない？6エリアの最安汎用針を見る'
+            : 'Lost your hook or have none? See the cheapest generic hook in each area'
+        : ctx.lang === 'th'
+          ? 'ดูทุ่นและตะกั่วราคาต่ำสุดแยกทั้งหกด่าน'
+          : ctx.lang === 'ja'
+            ? '6エリアの最安ウキ・オモリを見る'
+            : 'See the cheapest float and sinker in each of six areas'
+    return `<p><a class="route-button" data-${marker}-price-guide href="${ctx.esc(href)}">${label} ↗</a></p>`
+  }
+  if (item.category === 'float_weight') return guideLink('float_weight', 'float')
   const ids = (item.gearDecision.targetFish || []).filter((id) => ctx.fishVisuals[id])
-  const hookBudget =
-    item.category === 'hook'
-      ? `<p><a class="route-button" data-hook-price-guide href="index${ctx.lang === 'en' ? '' : '.' + ctx.lang}.html?category=hook#category-decisions">${ctx.lang === 'th' ? 'เบ็ดหายหรือยังไม่มี? ดูเบ็ดทั่วไปที่ถูกสุดทั้งหกด่าน' : ctx.lang === 'ja' ? '針を失った・持っていない？6エリアの最安汎用針を見る' : 'Lost your hook or have none? See the cheapest generic hook in each area'} ↗</a></p>`
-      : ''
+  const hookBudget = item.category === 'hook' ? guideLink('hook', 'hook') : ''
   if (item.category === 'hook' && !ids.length) return hookBudget
   if (item.category === 'hook' && ids.length)
     return (

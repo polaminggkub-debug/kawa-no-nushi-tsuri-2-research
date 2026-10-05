@@ -68,6 +68,30 @@ function backLabel(locale) {
       : '← Back to fish map'
 }
 
+function previousPageLabel(locale) {
+  return locale === 'th'
+    ? '← กลับไปหน้าก่อนหน้า'
+    : locale === 'ja'
+      ? '← 前のページに戻る'
+      : '← Back to previous page'
+}
+
+function isCurrentPage(route, baseHref) {
+  const current = new URL(baseHref)
+  const target = new URL(route, new URL('.', baseHref))
+  return (
+    target.pathname === current.pathname &&
+    target.search === current.search &&
+    target.hash === current.hash
+  )
+}
+
+export function previousPageAction(rawReturn, locale, baseHref) {
+  const href = localizeSafeReturn(rawReturn, locale, baseHref)
+  if (!href || isCurrentPage(href, baseHref)) return null
+  return { href, label: previousPageLabel(locale) }
+}
+
 function updateLanguageLinks(rawReturn, baseHref) {
   const current = new URL(baseHref)
   document.querySelectorAll('.language-links a').forEach((link) => {
@@ -90,13 +114,15 @@ export function mapReturnAction(rawReturn, locale, baseHref) {
 export function setupReturnAction(ctx) {
   if (typeof window === 'undefined' || typeof document === 'undefined') return
   const rawReturn = new URLSearchParams(window.location.search).get('return') || ''
-  const action = mapReturnAction(rawReturn, ctx.lang, window.location.href)
+  const mapAction = mapReturnAction(rawReturn, ctx.lang, window.location.href)
+  const action = mapAction || previousPageAction(rawReturn, ctx.lang, window.location.href)
   if (!action) return
   const nav = document.querySelector('.hero-meta')
-  if (nav && !document.querySelector('[data-map-return]')) {
+  if (nav && !document.querySelector('[data-previous-page-return]')) {
     const link = document.createElement('a')
-    link.className = 'back-link map-return-link'
-    link.dataset.mapReturn = 'true'
+    link.className = mapAction ? 'back-link map-return-link' : 'back-link previous-page-return-link'
+    link.dataset.previousPageReturn = 'true'
+    if (mapAction) link.dataset.mapReturn = 'true'
     link.href = action.href
     link.textContent = action.label
     nav.prepend(link)

@@ -600,6 +600,19 @@
     return anchors ? `<div class="fly-wing-player-actions" data-fly-wing-action="${ctx.esc(decision.itemId || "")}">${anchors}</div>` : "";
   }
 
+  // src/entities/item/price-guide-link.js
+  var GUIDE_CATEGORIES = /* @__PURE__ */ new Set(["float_weight", "hook"]);
+  function categoryGuideLink({ lang, category, fish, stage, route, returnPath } = {}) {
+    if (!GUIDE_CATEGORIES.has(category)) return "";
+    const locale = ["th", "ja"].includes(lang) ? lang : "en";
+    const query = new URLSearchParams({ category });
+    if (/^[\da-f]{2}$/i.test(String(fish || ""))) query.set("fish", fish.toUpperCase());
+    if (/^[1-6]$/.test(String(stage || ""))) query.set("stage", String(stage));
+    if (["float", "sinker"].includes(route)) query.set("route", route);
+    if (typeof returnPath === "string" && returnPath) query.set("return", returnPath);
+    return `index${locale === "en" ? "" : `.${locale}`}.html?${query}#category-decisions`;
+  }
+
   // src/pages/equipment/item-use.js
   function fishMealAdvice(ctx) {
     return {
@@ -856,10 +869,21 @@
   }
   function gearNextActions(ctx, item) {
     if (!item.gearDecision) return "";
-    if (item.category === "float_weight")
-      return `<p><a class="route-button" data-float-price-guide href="index${ctx.lang === "en" ? "" : "." + ctx.lang}.html?category=float_weight#category-decisions">${ctx.lang === "th" ? "ดูทุ่นและตะกั่วราคาต่ำสุดแยกทั้งหกด่าน" : ctx.lang === "ja" ? "6エリアの最安ウキ・オモリを見る" : "See the cheapest float and sinker in each of six areas"} ↗</a></p>`;
+    const guideLink = (category, marker) => {
+      const href = categoryGuideLink({
+        lang: ctx.lang,
+        category,
+        fish: document.getElementById("fish-filter")?.value,
+        stage: ctx.locationStage,
+        route: ctx.baitRoute,
+        returnPath: ctx.sourceReturn()
+      });
+      const label = category === "hook" ? ctx.lang === "th" ? "เบ็ดหายหรือยังไม่มี? ดูเบ็ดทั่วไปที่ถูกสุดทั้งหกด่าน" : ctx.lang === "ja" ? "針を失った・持っていない？6エリアの最安汎用針を見る" : "Lost your hook or have none? See the cheapest generic hook in each area" : ctx.lang === "th" ? "ดูทุ่นและตะกั่วราคาต่ำสุดแยกทั้งหกด่าน" : ctx.lang === "ja" ? "6エリアの最安ウキ・オモリを見る" : "See the cheapest float and sinker in each of six areas";
+      return `<p><a class="route-button" data-${marker}-price-guide href="${ctx.esc(href)}">${label} ↗</a></p>`;
+    };
+    if (item.category === "float_weight") return guideLink("float_weight", "float");
     const ids = (item.gearDecision.targetFish || []).filter((id) => ctx.fishVisuals[id]);
-    const hookBudget = item.category === "hook" ? `<p><a class="route-button" data-hook-price-guide href="index${ctx.lang === "en" ? "" : "." + ctx.lang}.html?category=hook#category-decisions">${ctx.lang === "th" ? "เบ็ดหายหรือยังไม่มี? ดูเบ็ดทั่วไปที่ถูกสุดทั้งหกด่าน" : ctx.lang === "ja" ? "針を失った・持っていない？6エリアの最安汎用針を見る" : "Lost your hook or have none? See the cheapest generic hook in each area"} ↗</a></p>` : "";
+    const hookBudget = item.category === "hook" ? guideLink("hook", "hook") : "";
     if (item.category === "hook" && !ids.length) return hookBudget;
     if (item.category === "hook" && ids.length)
       return hookBudget + `<p>${ctx.lang === "th" ? "ดูเหยื่อและจุดตกของปลาที่ชื่อเบ็ดอ้างถึง" : ctx.lang === "ja" ? "ハリ名の魚のエサ・場所を見る" : "Bait and locations for the fish named by this hook"}: ${ids.map((id) => `<a href="${ctx.esc(ctx.fishHref(id))}">${ctx.esc(ctx.fishName(id))} ↗</a>`).join(" · ")}</p>`;
@@ -933,6 +957,19 @@
   function backLabel(locale) {
     return locale === "th" ? "← กลับไปแผนที่ปลา" : locale === "ja" ? "← 魚マップに戻る" : "← Back to fish map";
   }
+  function previousPageLabel(locale) {
+    return locale === "th" ? "← กลับไปหน้าก่อนหน้า" : locale === "ja" ? "← 前のページに戻る" : "← Back to previous page";
+  }
+  function isCurrentPage(route, baseHref) {
+    const current = new URL(baseHref);
+    const target = new URL(route, new URL(".", baseHref));
+    return target.pathname === current.pathname && target.search === current.search && target.hash === current.hash;
+  }
+  function previousPageAction(rawReturn, locale, baseHref) {
+    const href = localizeSafeReturn(rawReturn, locale, baseHref);
+    if (!href || isCurrentPage(href, baseHref)) return null;
+    return { href, label: previousPageLabel(locale) };
+  }
   function updateLanguageLinks(rawReturn, baseHref) {
     const current = new URL(baseHref);
     document.querySelectorAll(".language-links a").forEach((link) => {
@@ -953,13 +990,15 @@
   function setupReturnAction(ctx) {
     if (typeof window === "undefined" || typeof document === "undefined") return;
     const rawReturn = new URLSearchParams(window.location.search).get("return") || "";
-    const action = mapReturnAction(rawReturn, ctx.lang, window.location.href);
+    const mapAction = mapReturnAction(rawReturn, ctx.lang, window.location.href);
+    const action = mapAction || previousPageAction(rawReturn, ctx.lang, window.location.href);
     if (!action) return;
     const nav = document.querySelector(".hero-meta");
-    if (nav && !document.querySelector("[data-map-return]")) {
+    if (nav && !document.querySelector("[data-previous-page-return]")) {
       const link = document.createElement("a");
-      link.className = "back-link map-return-link";
-      link.dataset.mapReturn = "true";
+      link.className = mapAction ? "back-link map-return-link" : "back-link previous-page-return-link";
+      link.dataset.previousPageReturn = "true";
+      if (mapAction) link.dataset.mapReturn = "true";
       link.href = action.href;
       link.textContent = action.label;
       nav.prepend(link);
@@ -2906,7 +2945,7 @@
   }
   function loadCatalogue(ctx) {
     showCatalogueLoading(ctx);
-    fetch("gallery-data.json?v=compendium-20261005-23").then((response) => {
+    fetch("gallery-data.json?v=compendium-20261005-24").then((response) => {
       if (!response.ok) throw new Error("catalogue unavailable");
       return response.json();
     }).then((data) => initializeLoadedCatalogue(ctx, data)).catch((error) => {

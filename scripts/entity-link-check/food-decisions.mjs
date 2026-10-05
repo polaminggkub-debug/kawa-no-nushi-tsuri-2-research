@@ -65,5 +65,29 @@ async function checkLocalChoices(item, lang, stage) {
     expected.map((other) => other.id),
   )
   for (const url of links) assert.equal(url.searchParams.get('stage'), String(stage))
+  checkRecoveryOptions(options, expected)
+  const allOptions = html.match(/data-all-food-options>([\s\S]*?)<\/div>/)?.[1]
+  assert(allOptions !== undefined, 'Missing full food recovery comparison')
+  checkRecoveryOptions(
+    allOptions,
+    shopFoods.filter((other) => other.id !== item.id),
+  )
   assert(/<details><summary>/.test(html), 'Keep the full cross-area food guide in a disclosure')
+}
+
+function checkRecoveryOptions(html, expected) {
+  const articles = [...html.matchAll(/<article\b([^>]*)>([\s\S]*?)<\/article>/g)]
+  assert.equal(articles.length, expected.length)
+  for (const item of expected) {
+    const trial = measured.items.find((record) => record.id === `0x${item.id}`)
+    const article = articles.find((match) => match[1].includes(`data-food-option="${item.id}"`))
+    assert(article, `Missing comparison for food ${item.id}`)
+    assert(
+      article[0].includes(`data-food-hp="${trial.hp_delta}"`),
+      `Wrong or missing independently measured recovery for food ${item.id}`,
+    )
+    assert(article[2].includes('HP'), 'Recovery must be visible player text')
+    assert(article[2].includes(String(trial.hp_delta)))
+    assert(article[2].includes(`id=${item.id}`))
+  }
 }

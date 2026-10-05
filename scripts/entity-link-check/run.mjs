@@ -76,3 +76,5 @@ await import('./map-focus-action.mjs')
 
 await import('./shop-fish-decisions.mjs')
 await import('./map-notebook-exclusions.mjs')
+
+await import('./gear-guide-context.mjs')

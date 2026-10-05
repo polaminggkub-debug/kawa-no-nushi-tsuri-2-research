@@ -4,6 +4,7 @@ import {
   mapReturnAction,
   setupReturnAction,
   mapReturnMarkup,
+  previousPageAction,
 } from '../../src/pages/equipment/return-action.js'
 
 const locales = ['en', 'th', 'ja']
@@ -148,6 +149,43 @@ for (const locale of locales) {
   const catalogueUrl = testMapToCatalogue(locale)
   testCatalogueReturnAndLanguages(locale, catalogueUrl)
   testUnsafeReturn(locale)
+  testItemReturn(locale)
+}
+
+function testItemReturn(locale) {
+  const base = new URL(
+    `https://example.test/catalogue/${localizedFile('index', locale)}?category=hook&stage=4`,
+  )
+  const raw = 'item.th.html?category=hook&id=01&fish=0D&stage=4&route=sinker#detail-root'
+  const { document, nav, links } = fakeCatalogueDocument()
+  base.searchParams.set('return', raw)
+  withCatalogueGlobals(base, document, () => setupReturnAction({ lang: locale }))
+  assert.equal(nav.children.length, 1, 'Item return must be visibly mounted')
+  assert.equal(nav.children[0].dataset.previousPageReturn, 'true')
+  const back = new URL(nav.children[0].href, base)
+  assert(back.pathname.endsWith(`/${localizedFile('item', locale)}`))
+  for (const [key, value] of Object.entries({
+    category: 'hook',
+    id: '01',
+    fish: '0D',
+    stage: '4',
+    route: 'sinker',
+  }))
+    assert.equal(back.searchParams.get(key), value)
+  assert.equal(back.hash, '#detail-root')
+  for (const link of links) {
+    const targetLocale = link.getAttribute('hreflang')
+    const target = new URL(link.href, base)
+    const targetBack = new URL(target.searchParams.get('return'), base)
+    assert(targetBack.pathname.endsWith(`/${localizedFile('item', targetLocale)}`))
+  }
+  assert.equal(previousPageAction('https://attacker.example/item.html', locale, base.href), null)
+  assert.equal(previousPageAction('//attacker.example/item.html', locale, base.href), null)
+  assert.equal(previousPageAction('missing.html', locale, base.href), null)
+  const self = new URL(
+    `https://example.test/catalogue/${localizedFile('index', locale)}?category=hook&stage=4`,
+  )
+  assert.equal(previousPageAction(self.pathname + self.search, locale, self.href), null)
 }
 
 console.log(
