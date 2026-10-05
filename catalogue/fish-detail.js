@@ -154,7 +154,7 @@
     back.href = ctx.localReturn || (stage ? mapHref : ctx.cataloguePath());
     back.textContent = ctx.localReturn ? ctx.copy.back : stage ? ctx.copy.map : ctx.copy.catalogue;
     document.getElementById("fish-map-link").href = stage ? mapHref : ctx.cataloguePath();
-    document.getElementById("fish-map-link").hidden = !stage;
+    document.getElementById("fish-map-link").hidden = !stage || !ctx.localReturn;
     for (const lang of ["en", "th", "ja"]) {
       const href = lang === "th" ? "fish.th.html" : lang === "ja" ? "fish.ja.html" : "fish.html";
       const link = document.getElementById(`language-${lang}`);
@@ -1390,7 +1390,7 @@
     });
   }
   function loadGallery() {
-    return fetch("gallery-data.json?v=compendium-20261005-44").then((response) => {
+    return fetch("gallery-data.json?v=compendium-20261005-45").then((response) => {
       if (!response.ok) throw new Error("gallery data unavailable");
       return response.json();
     });

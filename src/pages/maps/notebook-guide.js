@@ -185,7 +185,6 @@ function fishActionLinks(ctx, id, returnPath) {
   })
   const mapHref = `${localizedPage(ctx, 'maps')}?${mapQuery}#map-view`
   const equipmentQuery = new URLSearchParams({
-    category: 'all',
     fish: id,
     stage,
     return: returnPath,

@@ -1,3 +1,4 @@
+import { applyFishEquipmentDefault } from './fish-equipment-default.js'
 import { showCatalogueLoading, showCatalogueError } from './catalogue-load-state.js'
 import { categoryNavigationHref, refreshCategoryNavigationLinks } from './category-navigation.js'
 
@@ -62,6 +63,8 @@ function restoreInitialFilters(ctx) {
   restoreCategoryAndPart(ctx, query)
   restoreFishAndStage(ctx, query)
   restoreTextFilters(ctx, query)
+  const fish = document.getElementById('fish-filter').value
+  if (fish && !query?.has('category')) applyFishEquipmentDefault(ctx, fish)
 }
 
 function syncFishSearchText(ctx) {
@@ -220,7 +223,7 @@ function initializeLoadedCatalogue(ctx, data) {
 
 export function loadCatalogue(ctx) {
   showCatalogueLoading(ctx)
-  fetch('gallery-data.json?v=compendium-20261005-44')
+  fetch('gallery-data.json?v=compendium-20261005-45')
     .then((response) => {
       if (!response.ok) throw new Error('catalogue unavailable')
       return response.json()

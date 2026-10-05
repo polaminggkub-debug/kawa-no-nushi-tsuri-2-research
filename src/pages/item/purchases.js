@@ -33,11 +33,17 @@ function missingAreaNote(ctx, stage, isFly, hasOtherAreas) {
         en: `No ${kind} are recorded in ${area}; other areas with a recorded offer are listed below.`,
       }[ctx.lang]
     : {
-        th: `ไม่พบ${kind}ที่บันทึกไว้ใน${area}หรือด่านอื่นจากข้อมูล ROM ที่ตรวจ`,
+        th: `ไม่พบ${kind}ที่บันทึกไว้ใน${area} หรือด่านอื่นจากข้อมูล ROM ที่ตรวจ`,
         ja: `確認したROMデータには${area}にも他エリアにも${kind}の記録がありません。`,
         en: `No ${kind} are recorded in ${area} or any other area in the checked ROM data.`,
       }[ctx.lang]
   return `<p class="muted selected-area-missing-note" data-selected-area-missing="true">${ctx.esc(message)}</p>`
+}
+
+function noRecordedStockNote(ctx, stage, isFly) {
+  return stage
+    ? missingAreaNote(ctx, stage, isFly, false)
+    : `<p class="muted">${ctx.esc(ctx.copy.noShop)}</p>`
 }
 
 function selectedAreaBadge(ctx, stage) {
@@ -100,7 +106,7 @@ function flyPurchaseCard(ctx, bundle, stage, allItems, fishLocations, selected) 
 function flyPurchaseSection(ctx, item, allItems, fishLocations, selected) {
   const assemblies = ctx.flyAssemblies(item, allItems)
   if (!assemblies.length)
-    return `<section class="detail-section purchase-section"><h2>${ctx.esc(ctx.copy.shop)}</h2>${selected ? missingAreaNote(ctx, selected, true, false) : ''}<p class="muted">${ctx.esc(ctx.copy.noShop)}</p></section>`
+    return `<section class="detail-section purchase-section"><h2>${ctx.esc(ctx.copy.shop)}</h2>${noRecordedStockNote(ctx, selected, true)}</section>`
   const hasSelectedAssembly = assemblies.some(({ stage }) => stage === selected)
   const note = selected && !hasSelectedAssembly ? missingAreaNote(ctx, selected, true, true) : ''
   const usedIn = item.category !== 'fly' ? `<p>${ctx.esc(ctx.copy.usedIn)}</p>` : ''
@@ -135,7 +141,7 @@ function shopOfferCard(ctx, item, stage, offer, fishLocations, selected) {
 function ordinaryPurchaseSection(ctx, item, fishLocations, selected) {
   const shops = item.playerUse?.shops || []
   if (!shops.length)
-    return `<section class="detail-section purchase-section"><h2>${ctx.esc(ctx.copy.shop)}</h2>${selected ? missingAreaNote(ctx, selected, false, false) : ''}<p class="muted">${ctx.esc(ctx.copy.noShop)}</p></section>`
+    return `<section class="detail-section purchase-section"><h2>${ctx.esc(ctx.copy.shop)}</h2>${noRecordedStockNote(ctx, selected, false)}</section>`
   const stages = [
     ...new Set(shops.map((shop) => Number(shop.stage)).filter((stage) => stage >= 1 && stage <= 6)),
   ].sort((a, b) => Number(b === selected) - Number(a === selected) || a - b)

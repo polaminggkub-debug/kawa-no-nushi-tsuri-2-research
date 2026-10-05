@@ -98,7 +98,10 @@ function checkCard(html, id, stage, source, origin, suffix) {
     assert.equal(target.searchParams.get('stage'), String(stage))
     assert.equal(target.searchParams.get('return'), `${source}#notebook-route-${stage}`)
     if (action === 'map') assert.equal(target.hash, '#map-view')
-    if (action === 'equipment') assert.equal(target.searchParams.get('category'), 'all')
+    if (action === 'equipment') {
+      assert.equal(target.searchParams.has('category'), false)
+      assert.equal(target.hash, '#fish-location-panel')
+    }
   }
   checked += 1
 }

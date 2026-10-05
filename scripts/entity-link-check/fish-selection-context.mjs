@@ -1,5 +1,5 @@
 import assert from 'node:assert/strict'
-import { renderCatalogue } from './shared.mjs'
+import { data, renderCatalogue } from './shared.mjs'
 
 for (const lang of ['en', 'ja', 'th']) {
   for (const route of ['float', 'sinker']) await checkSelection(lang, route)
@@ -9,6 +9,9 @@ console.log(
 )
 
 async function checkSelection(lang, route) {
+  assert.equal(hasBaitRoute('01', 'float'), true)
+  assert.equal(hasBaitRoute('01', 'sinker'), false)
+  const expectedRoute = 'float'
   const returnPath = 'maps.th.html?stage=4&fish=0D#map-view'
   const params = new URLSearchParams({
     category: 'bait',
@@ -26,7 +29,7 @@ async function checkSelection(lang, route) {
   assert.equal(url.searchParams.get('fish'), '01')
   assert.equal(url.searchParams.get('stage'), '1')
   assert.equal(result.runtime.locationStage, '1')
-  assert.equal(url.searchParams.get('route'), route)
+  assert.equal(url.searchParams.get('route'), expectedRoute)
   assert.equal(url.searchParams.get('return'), returnPath)
   assert.equal(url.searchParams.get('map'), '0')
   assert.equal(url.searchParams.has('q'), false)
@@ -37,12 +40,20 @@ async function checkSelection(lang, route) {
     const target = new URL(language.href, url)
     assert.equal(target.searchParams.get('fish'), '01')
     assert.equal(target.searchParams.get('stage'), '1')
-    assert.equal(target.searchParams.get('route'), route)
+    assert.equal(target.searchParams.get('route'), expectedRoute)
     assert.equal(target.searchParams.get('map'), '0')
     assert.equal(target.hash, '#fish-location-panel')
   }
   const reload = await renderCatalogue(lang, url.search + url.hash, false, true)
   assert.equal(reload.runtime.locationStage, result.runtime.locationStage)
-  assert.equal(reload.runtime.baitRoute, route)
+  assert.equal(reload.runtime.baitRoute, expectedRoute)
   assert.equal(reload.nodes['fish-filter'].value, '01')
+}
+
+function hasBaitRoute(fish, route) {
+  return data.items.some((item) => {
+    const use = item.category === 'bait' ? item.playerUse || {} : {}
+    const ids = use.fishIdsByRoute?.[route] || use.fishIds || []
+    return ids.includes(fish)
+  })
 }

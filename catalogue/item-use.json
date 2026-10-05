@@ -19947,33 +19947,36 @@
     },
     "general_tool:05": {
       "summary": {
-        "en": "Open the Fishing Notebook to consult fish records and overview pages for the six areas.",
-        "ja": "釣りノートを開いて、6エリアの魚記録と概要ページを見る。",
-        "th": "เปิดสมุดตกปลาเพื่อดูบันทึกปลาและหน้าภาพรวมของทั้ง 6 ด่าน"
+        "en": "Use the Fishing Notebook to check which fish you have recorded.",
+        "ja": "釣りノートで、記録した魚を確認する。",
+        "th": "ใช้สมุดตกปลาเช็กว่าบันทึกปลาชนิดไหนแล้ว"
       },
       "facts": {
         "en": [
-          "Open the Fishing Notebook to consult the fish records organized into six area groups and the corresponding area-overview pages.",
-          "The ROM sorts the entries within each group; this item is for looking up records and does not change fishing equipment."
+          "Switch between the six area groups to view their fish records and overview pages."
         ],
         "ja": [
-          "釣りノートを開くと、魚の記録を6エリア別に整理した一覧と対応するエリア概要を参照できる。",
-          "ROMは各一覧内の記録を並べ替える。記録を調べるための道具で、釣り道具は変更しない。"
+          "6エリアの各グループを切り替え、魚の記録と概要ページを確認できる。"
         ],
         "th": [
-          "เปิดสมุดตกปลาเพื่อดูบันทึกปลาที่จัดเป็นหกพื้นที่ พร้อมหน้าภาพรวมของพื้นที่ตามลำดับ",
-          "เกมเรียงรายการปลาในแต่ละพื้นที่ ไอเท็มนี้ใช้เปิดดูข้อมูล ไม่ได้เปลี่ยนอุปกรณ์ตกปลา"
+          "สลับดูทั้ง 6 ด่านเพื่ออ่านบันทึกปลาและหน้าภาพรวมของแต่ละด่าน"
         ]
       },
       "evidenceNotes": {
         "en": [
-          "The six-page area correspondence is confirmed in the ROM-backed field/notebook render trace. This evidence does not claim that the notebook artwork itself encodes fish spawn coordinates."
+          "The six-page area correspondence is confirmed in the ROM-backed field/notebook render trace. This evidence does not claim that the notebook artwork itself encodes fish spawn coordinates.",
+          "Open the Fishing Notebook to consult the fish records organized into six area groups and the corresponding area-overview pages.",
+          "The ROM sorts the entries within each group; this item is for looking up records and does not change fishing equipment."
         ],
         "ja": [
-          "6ページとエリアの対応はROMのフィールド／ノート描画経路で確認した。ノート画像から魚の出現座標が読めるとは主張しない。"
+          "6ページとエリアの対応はROMのフィールド／ノート描画経路で確認した。ノート画像から魚の出現座標が読めるとは主張しない。",
+          "釣りノートを開くと、魚の記録を6エリア別に整理した一覧と対応するエリア概要を参照できる。",
+          "ROMは各一覧内の記録を並べ替える。記録を調べるための道具で、釣り道具は変更しない。"
         ],
         "th": [
-          "ยืนยันความสัมพันธ์ระหว่างหกหน้ากับพื้นที่จากเส้นทางวาดฉากและสมุดใน ROM แต่ไม่ได้อ้างว่าภาพในสมุดระบุพิกัดเกิดปลาได้"
+          "ยืนยันความสัมพันธ์ระหว่างหกหน้ากับพื้นที่จากเส้นทางวาดฉากและสมุดใน ROM แต่ไม่ได้อ้างว่าภาพในสมุดระบุพิกัดเกิดปลาได้",
+          "เปิดสมุดตกปลาเพื่อดูบันทึกปลาที่จัดเป็นหกพื้นที่ พร้อมหน้าภาพรวมของพื้นที่ตามลำดับ",
+          "เกมเรียงรายการปลาในแต่ละพื้นที่ ไอเท็มนี้ใช้เปิดดูข้อมูล ไม่ได้เปลี่ยนอุปกรณ์ตกปลา"
         ]
       },
       "fishIds": [],

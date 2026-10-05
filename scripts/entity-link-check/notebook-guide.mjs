@@ -2,6 +2,7 @@ import assert from 'node:assert/strict'
 import fs from 'node:fs'
 import path from 'node:path'
 import { fileURLToPath } from 'node:url'
+import { bindMapTargets } from '../../src/pages/maps/bind-map-targets.js'
 import { renderNotebookGuide } from '../../src/pages/maps/notebook-guide.js'
 import { data, unescapeHtml, validate } from './shared.mjs'
 
@@ -11,6 +12,7 @@ const availableCounts = [6, 12, 15, 22, 27, 15]
 const newCounts = [6, 10, 11, 17, 11, 11]
 
 checkDataset()
+checkHeroShortcutTemplates()
 for (const lang of ['en', 'ja', 'th']) await checkLocale(lang)
 console.log(
   'Notebook route guide PASS: master 66-fish route, collapsed help/evidence, areas, repeats and TH/EN/JA states.',
@@ -56,12 +58,121 @@ function checkDataset() {
   assert.equal(seen.size, 66)
 }
 
+function checkHeroShortcutTemplates() {
+  const labels = {
+    en: 'Complete the 66-species journal',
+    ja: '魚手帳を全66種埋める',
+    th: 'เก็บสมุดให้ครบ 66 ชนิด',
+  }
+  for (const lang of ['en', 'ja', 'th']) {
+    const suffix = lang === 'en' ? '' : `.${lang}`
+    for (const base of ['src/pages/maps/ui', 'catalogue']) {
+      const file = path.join(root, base, `maps${suffix}.html`)
+      const source = fs.readFileSync(file, 'utf8')
+      const shortcut = new RegExp(
+        `<a class="quick-guide-link notebook-guide-shortcut" href="#notebook-guide"\\s*>\\s*${labels[lang]}\\s*</a\\s*>`,
+        'g',
+      )
+      assert.equal([...source.matchAll(shortcut)].length, 1, `${file}: missing journal shortcut`)
+      assert(source.includes(`id="shop-browser-link" href="shops${suffix}.html"`))
+      assert(source.includes(`id="notebook-guide"`))
+      assert(
+        source.includes(
+          `data-compendium-destination="1" aria-current="page" href="maps${suffix}.html"`,
+        ),
+      )
+    }
+  }
+}
+
 async function checkLocale(lang) {
+  await checkHeroShortcutClick(lang)
   for (const stage of guide.stages) {
     checkState(lang, stage, { openGuide: false, routeStage: 0 }, 0)
     checkState(lang, stage, { openGuide: true, routeStage: 0 }, stage.stage)
     checkState(lang, stage, { openGuide: true, routeStage: stage.stage }, stage.stage)
   }
+}
+
+async function checkHeroShortcutClick(lang) {
+  const ctx = makeContext(lang, 4, { openGuide: false, routeStage: 0 })
+  const { click, previous, getWritten } = registerShortcutTest(ctx)
+  try {
+    checkShortcutClickResult(ctx, click, getWritten)
+  } finally {
+    for (const [key, value] of Object.entries(previous)) {
+      if (value === undefined) delete globalThis[key]
+      else globalThis[key] = value
+    }
+  }
+}
+
+function registerShortcutTest(ctx) {
+  ctx.returnPath = ''
+  ctx.selectedFish = '0D'
+  ctx.searchTerm = 'carp'
+  ctx.activeWaterMark = 'large'
+  ctx.manualMarks = ['06', '0D']
+  ctx.areaList = { addEventListener() {} }
+  ctx.fishList = { addEventListener() {} }
+  const mapNode = { addEventListener() {} }
+  ctx.$ = (id) => (id === 'notebook-guide' ? ctx.mount : mapNode)
+  ctx.renderNotebookGuide = () => renderNotebookGuide(ctx)
+  ctx.mount.querySelector = (selector) => {
+    if (selector === '.notebook-manual') return { append() {} }
+    if (selector === '.notebook-excluded') return null
+    return { textContent: '', checked: false }
+  }
+  ctx.mount.querySelectorAll = () => []
+  let click
+  let written = false
+  const previous = {
+    document: globalThis.document,
+    window: globalThis.window,
+    location: globalThis.location,
+  }
+  globalThis.window = {
+    localStorage: {
+      getItem: () => JSON.stringify(['06']),
+      setItem: () => {
+        written = true
+      },
+    },
+  }
+  globalThis.location = {
+    pathname: `/catalogue/maps${ctx.suffix}.html`,
+    search: '?stage=4',
+    hash: '',
+  }
+  globalThis.document = shortcutDocument((callback) => (click = callback))
+  bindMapTargets(ctx)
+  return { click, previous, getWritten: () => written }
+}
+
+function shortcutDocument(registerClick) {
+  return {
+    querySelector: (selector) =>
+      selector === '.notebook-guide-shortcut'
+        ? { addEventListener: (_type, callback) => registerClick(callback) }
+        : null,
+    createElement: () => ({ className: '', textContent: '' }),
+  }
+}
+
+function checkShortcutClickResult(ctx, click, getWritten) {
+  let defaultPrevented = false
+  click({ preventDefault: () => (defaultPrevented = true) })
+  assert.equal(defaultPrevented, false)
+  assert.equal(ctx.openNotebookGuide, true)
+  assert.equal(ctx.notebookRouteStage, 4)
+  assert.equal(ctx.mount.hidden, false)
+  assert.match(ctx.mount.innerHTML, /data-notebook-route-total="66"/)
+  assert.match(ctx.mount.innerHTML, /<details id="notebook-route-4"[^>]*\sopen/)
+  assert.equal(ctx.selectedFish, '0D')
+  assert.equal(ctx.searchTerm, 'carp')
+  assert.equal(ctx.activeWaterMark, 'large')
+  assert.deepEqual(ctx.manualMarks, ['06', '0D'])
+  assert.equal(getWritten(), false)
 }
 
 function checkState(lang, stage, state, openGroup) {

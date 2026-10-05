@@ -4,11 +4,13 @@ import { bindSearchActions } from '../../src/pages/maps/bind-search-actions.js'
 
 const previousLocation = Object.getOwnPropertyDescriptor(globalThis, 'location')
 const previousWindow = Object.getOwnPropertyDescriptor(globalThis, 'window')
+const previousDocument = Object.getOwnPropertyDescriptor(globalThis, 'document')
 
 try {
   const scenario = makeScenario()
   globalThis.location = scenario.location
   globalThis.window = { addEventListener() {} }
+  globalThis.document = { querySelector: () => null }
   bindMapTargets(scenario.ctx)
   bindSearchActions(scenario.ctx)
   clickFishFocusTwice(scenario)
@@ -18,6 +20,7 @@ try {
 } finally {
   restoreGlobal('location', previousLocation)
   restoreGlobal('window', previousWindow)
+  restoreGlobal('document', previousDocument)
 }
 
 console.log('PASS: repeated fish focus keeps its target; Show all clears the target and search.')

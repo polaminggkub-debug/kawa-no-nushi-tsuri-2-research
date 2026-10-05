@@ -3,11 +3,63 @@ import { copy_en } from '../../src/pages/item/copy_en.js'
 import { copy_ja } from '../../src/pages/item/copy_ja.js'
 import { copy_th } from '../../src/pages/item/copy_th.js'
 import { flyAssemblies, shopCondition, shopSection } from '../../src/pages/item/purchases.js'
-import { data, locations, unescapeHtml } from './shared.mjs'
+import { data, locations, render, unescapeHtml } from './shared.mjs'
 
 const copyByLocale = { en: copy_en, th: copy_th, ja: copy_ja }
 const areaBadges = { en: 'Selected area', th: 'ด่านที่เลือก', ja: '選択中のエリア' }
 const labels = { en: 'Area', th: 'ด่าน', ja: 'エリア' }
+const contextualNoStock = {
+  en: {
+    ordinary:
+      'No offers for this item are recorded in Area 6 or any other area in the checked ROM data.',
+    fly: 'No ready-made fly sets are recorded in Area 6 or any other area in the checked ROM data.',
+  },
+  ja: {
+    ordinary: '確認したROMデータにはエリア6にも他エリアにもこの道具の店頭在庫の記録がありません。',
+    fly: '確認したROMデータにはエリア6にも他エリアにも店売り毛バリセットの記録がありません。',
+  },
+  th: {
+    ordinary: 'ไม่พบรายการขายไอเท็มนี้ที่บันทึกไว้ในด่าน 6 หรือด่านอื่นจากข้อมูล ROM ที่ตรวจ',
+    fly: 'ไม่พบชุดฟลายสำเร็จรูปที่บันทึกไว้ในด่าน 6 หรือด่านอื่นจากข้อมูล ROM ที่ตรวจ',
+  },
+}
+
+function countExact(text, phrase) {
+  return text.split(phrase).length - 1
+}
+
+async function checkNoStockDetails(lang, category, id, isFly) {
+  for (const stage of ['', '6']) {
+    const query = new URLSearchParams({ category, id })
+    if (stage) query.set('stage', stage)
+    const { html } = await render('item', lang, query)
+    const decoded = unescapeHtml(html)
+    const purchase = decoded.match(
+      /<section\b(?=[^>]*class="[^"]*purchase-section")[\s\S]*?<\/section>/,
+    )?.[0]
+    assert(purchase, `Missing purchase section ${category}:${id}/${lang}/${stage}`)
+    const message = stage
+      ? contextualNoStock[lang][isFly ? 'fly' : 'ordinary']
+      : copyByLocale[lang].noShop
+    assert.equal(countExact(purchase, message), 1)
+    assert.equal(countExact(decoded, message), 1)
+    if (stage) {
+      assert.equal(countExact(purchase, copyByLocale[lang].noShop), 0)
+      assert.equal((purchase.match(/data-selected-area-missing="true"/g) || []).length, 1)
+    } else {
+      assert.equal((purchase.match(/data-selected-area-missing="true"/g) || []).length, 0)
+    }
+    const evidence = decoded.match(/<details class="evidence">[\s\S]*?<\/details>/)?.[0]
+    assert(evidence && /<code>0x[0-9A-F]+<\/code>/.test(evidence))
+    assert(/<code>[0-9A-F]{2}(?: [0-9A-F]{2}){6,}<\/code>/.test(evidence))
+    if (!isFly) assert(evidence.includes('0x02A801'))
+    if (isFly) {
+      assert(decoded.includes('id="fly-menu-position"'))
+      assert(decoded.includes('../docs/fly-maker-access-research.md'))
+      assert(evidence.includes('0x02AAD6'))
+    }
+  }
+}
 
 function makeContext(lang, selectedStage, item) {
   const ctx = {
@@ -226,7 +278,8 @@ for (const lang of ['th', 'en', 'ja']) {
 
   const noStock = renderPurchase(lang, 6, itemBy('rod', '02'))
   assert.deepEqual(checkSelection(noStock, 6, [], lang), [])
-  assert(noStock.includes(copyByLocale[lang].noShop))
+  await checkNoStockDetails(lang, 'rod', '02', false)
+  await checkNoStockDetails(lang, 'fly_wing', '0D', true)
 }
 
 console.log(

@@ -21,6 +21,40 @@ async function checkFishPages(lang, suffix) {
     for (const targetLang of ['en', 'th', 'ja']) checkFishLanguageReturn(result, targetLang)
     if (id === '43') checkUnconfirmedFish(result)
   }
+  await checkMapActions(lang, suffix)
+}
+
+async function checkMapActions(lang, suffix) {
+  const fishId = '0D'
+  const direct = await render('fish', lang, new URLSearchParams({ id: fishId, stage: '4' }))
+  const directBack = new URL(direct.nodes['fish-back'].href, direct.url)
+  assert.equal(direct.nodes['fish-map-link'].hidden, true)
+  assert.equal(direct.nodes['fish-back'].hidden, false)
+  assert.equal(directBack.pathname.endsWith(`/maps${suffix}.html`), true)
+  assert.equal(directBack.searchParams.get('fish'), fishId)
+  assert.equal(directBack.searchParams.get('stage'), '4')
+
+  const returnPath = `maps${suffix}.html?stage=4&section=s4-c1-r6&fish=${fishId}#map-view`
+  const returned = await render(
+    'fish',
+    lang,
+    new URLSearchParams({ id: fishId, stage: '4', return: returnPath }),
+  )
+  const returnedBack = new URL(returned.nodes['fish-back'].href, returned.url)
+  const mapAction = new URL(returned.nodes['fish-map-link'].href, returned.url)
+  assert.equal(returned.nodes['fish-map-link'].hidden, false)
+  assert.equal(returned.nodes['fish-back'].hidden, false)
+  assert.equal(returnedBack.pathname.endsWith(`/maps${suffix}.html`), true)
+  assert.equal(returnedBack.searchParams.get('section'), 's4-c1-r6')
+  assert.equal(returnedBack.hash, '#map-view')
+  assert.equal(mapAction.pathname.endsWith(`/maps${suffix}.html`), true)
+  assert.equal(mapAction.searchParams.get('fish'), fishId)
+  assert.equal(mapAction.searchParams.has('section'), false)
+  assert.notEqual(returnedBack.href, mapAction.href)
+
+  const missing = await render('fish', lang, new URLSearchParams({ id: 'GG', stage: '4' }))
+  assert(missing.html.includes('empty-state'))
+  assert.equal(missing.nodes['fish-map-link'].hidden, true)
 }
 
 function checkFishLanguageReturn(result, targetLang) {

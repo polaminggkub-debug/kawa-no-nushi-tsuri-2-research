@@ -1,0 +1,158 @@
+import assert from 'node:assert/strict'
+import { fishEquipmentDefault } from '../../src/pages/equipment/fish-equipment-default.js'
+import { data, fishIds, renderCatalogue } from './shared.mjs'
+
+const selectableFish = [...fishIds].filter((id) => id !== '43').sort()
+const sourceCategories = ['float_weight', 'rod', 'all', 'general_tool']
+const targetFish = ['01', '06', '0D']
+
+checkAllProfileChoices()
+checkFallbackBranches()
+for (const lang of ['en', 'ja', 'th']) {
+  await checkRuntimeTransitions(lang)
+  await checkInitialAndExplicitCategory(lang)
+  await checkClearAndManualCategory(lang)
+}
+console.log(
+  'Fish equipment defaults PASS: compatible bait and rig for all profiles; category intent, clear, return and locale links preserved.',
+)
+
+function matches(item, fish, route) {
+  const use = item.playerUse || {}
+  const ids = route ? use.fishIdsByRoute?.[route] || use.fishIds || [] : use.fishIds || []
+  return ids.includes(fish)
+}
+
+function expectedChoice(fish, preferred, items = data.items) {
+  const other = preferred === 'float' ? 'sinker' : 'float'
+  for (const route of [preferred, other]) {
+    if (items.some((item) => item.category === 'bait' && matches(item, fish, route)))
+      return { category: 'bait', route }
+  }
+  if (items.some((item) => item.category === 'lure' && matches(item, fish)))
+    return { category: 'lure', route: preferred }
+  if (items.some((item) => item.category === 'fly' && matches(item, fish)))
+    return { category: 'flymaker', route: preferred }
+  return { category: 'bait', route: preferred }
+}
+
+function checkAllProfileChoices() {
+  assert.equal(fishIds.size, 73, 'The canonical catalogue must keep all 73 fish profiles')
+  assert.equal(selectableFish.length, 72, 'Fish 43 remains the single non-selectable profile')
+  for (const fish of fishIds) {
+    for (const route of ['float', 'sinker']) {
+      const actual = fishEquipmentDefault({ allItems: data.items, baitRoute: route }, fish)
+      assert.deepEqual(actual, expectedChoice(fish, route), `${fish} from ${route}`)
+    }
+  }
+  for (const fish of selectableFish) {
+    assert.equal(expectedChoice(fish, 'float').category, 'bait', `${fish} has recorded bait`)
+    assert.equal(expectedChoice(fish, 'sinker').category, 'bait', `${fish} has recorded bait`)
+  }
+}
+
+function checkFallbackBranches() {
+  const lures = data.items.filter((item) => item.category === 'lure')
+  const flies = data.items.filter((item) => item.category === 'fly')
+  assert.deepEqual(fishEquipmentDefault({ allItems: lures, baitRoute: 'sinker' }, '01'), {
+    category: 'lure',
+    route: 'sinker',
+  })
+  assert.deepEqual(fishEquipmentDefault({ allItems: flies, baitRoute: 'sinker' }, '01'), {
+    category: 'flymaker',
+    route: 'sinker',
+  })
+  const unavailable = fishEquipmentDefault({ allItems: data.items, baitRoute: 'float' }, '43')
+  assert.deepEqual(unavailable, { category: 'bait', route: 'float' })
+}
+
+async function checkRuntimeTransitions(lang) {
+  for (const category of sourceCategories) {
+    for (const currentRoute of ['float', 'sinker']) {
+      for (const fish of targetFish) await checkOneTransition(lang, category, currentRoute, fish)
+    }
+  }
+}
+
+async function checkOneTransition(lang, category, currentRoute, fish) {
+  const returnPath = `${mapPage(lang)}?stage=4&fish=0D#map-view`
+  const query = new URLSearchParams({
+    category,
+    route: currentRoute,
+    stage: '4',
+    return: returnPath,
+  })
+  const result = await renderCatalogue(lang, `?${query}`, false, true)
+  result.runtime.selectFish(fish)
+  const expected = expectedChoice(fish, currentRoute)
+  assert.equal(
+    result.nodes['category-filter'].value,
+    expected.category,
+    `${lang} ${category} ${fish}`,
+  )
+  assert.equal(result.runtime.baitRoute, expected.route, `${lang} ${category} ${fish} rig`)
+  assertBaitFirst(result.nodes.cards.innerHTML, lang, fish)
+  checkReturnContext(result, lang, fish, expected.route)
+}
+
+function assertBaitFirst(html, lang, fish) {
+  assert.match(html, /^<article\b[^>]*id="item-bait-/, `${lang} ${fish}: first card should be bait`)
+  assert(!/^<article\b[^>]*id="item-float_weight-/.test(html))
+}
+
+function checkReturnContext(result, lang, fish, route) {
+  const query = result.url.searchParams
+  assert.equal(query.get('fish'), fish)
+  assert.equal(query.get('category'), 'bait')
+  assert.equal(query.get('route'), route)
+  assert.equal(query.get('return'), `${mapPage(lang)}?stage=4&fish=0D#map-view`)
+  for (const link of result.languages) {
+    const target = new URL(link.href, result.url)
+    assert.equal(target.searchParams.get('fish'), fish)
+    assert.equal(target.searchParams.get('category'), 'bait')
+    assert.equal(target.searchParams.get('route'), route)
+    const returned = new URL(target.searchParams.get('return'), target)
+    assert(returned.pathname.endsWith(`/${mapPage(link.getAttribute('hreflang'))}`))
+    assert.equal(returned.searchParams.get('stage'), '4')
+    assert.equal(returned.searchParams.get('fish'), '0D')
+    assert.equal(returned.hash, '#map-view')
+  }
+}
+
+function mapPage(lang) {
+  return `maps${lang === 'en' ? '' : `.${lang}`}.html`
+}
+
+async function checkInitialAndExplicitCategory(lang) {
+  const initial = await renderCatalogue(lang, '?fish=06&route=sinker&stage=4', false, true)
+  assert.equal(initial.nodes['category-filter'].value, 'bait')
+  assert.equal(initial.runtime.baitRoute, 'float')
+  assertBaitFirst(initial.nodes.cards.innerHTML, lang, '06')
+
+  const explicit = await renderCatalogue(
+    lang,
+    '?category=float_weight&fish=06&route=sinker&stage=4',
+    false,
+    true,
+  )
+  assert.equal(explicit.nodes['category-filter'].value, 'float_weight')
+  assert.equal(explicit.url.searchParams.get('category'), 'float_weight')
+}
+
+async function checkClearAndManualCategory(lang) {
+  const result = await renderCatalogue(lang, '?category=rod&route=sinker&stage=4', false, true)
+  result.runtime.selectFish('06')
+  assert.equal(result.nodes['category-filter'].value, 'bait')
+  const event = {
+    target: { closest: () => ({ dataset: { category: 'general_tool' } }) },
+    button: 0,
+    preventDefault() {},
+  }
+  result.nodes['category-menu'].listeners.click(event)
+  assert.equal(result.nodes['category-filter'].value, 'general_tool')
+  assert.equal(result.url.searchParams.get('category'), 'general_tool')
+  result.runtime.selectFish('')
+  assert.equal(result.nodes['category-filter'].value, 'general_tool')
+  assert.equal(result.url.searchParams.has('fish'), false)
+  assert.equal(result.url.searchParams.get('category'), 'general_tool')
+}

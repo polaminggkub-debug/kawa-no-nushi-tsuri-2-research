@@ -1,17 +1,4 @@
-export function bindMapTargets(ctx) {
-  if (ctx.returnPath) {
-    const back = document.createElement('a')
-    back.className = 'back-link'
-    back.id = 'map-source-back'
-    back.href = ctx.returnPath
-    back.textContent =
-      ctx.lang === 'th'
-        ? '← กลับหน้าที่เปิดแผนที่'
-        : ctx.lang === 'ja'
-          ? '← 前のページに戻る'
-          : '← Back to the page that opened this map'
-    document.querySelector('.hero-meta').prepend(back)
-  }
+function bindFishLinks(ctx) {
   ctx.sourceReturn = () =>
     location.pathname.split('/').pop() +
     location.search +
@@ -25,6 +12,32 @@ export function bindMapTargets(ctx) {
     const query = `id=${id}&stage=${ctx.activeStage}&return=${encodeURIComponent(returnPath)}`
     return `${page}?${query}`
   }
+}
+
+function bindNotebookShortcut(ctx) {
+  document.querySelector('.notebook-guide-shortcut')?.addEventListener('click', () => {
+    ctx.openNotebookGuide = true
+    ctx.notebookRouteStage = Number(ctx.activeStage)
+    ctx.renderNotebookGuide()
+  })
+}
+
+export function bindMapTargets(ctx) {
+  bindNotebookShortcut(ctx)
+  if (ctx.returnPath) {
+    const back = document.createElement('a')
+    back.className = 'back-link'
+    back.id = 'map-source-back'
+    back.href = ctx.returnPath
+    back.textContent =
+      ctx.lang === 'th'
+        ? '← กลับหน้าที่เปิดแผนที่'
+        : ctx.lang === 'ja'
+          ? '← 前のページに戻る'
+          : '← Back to the page that opened this map'
+    document.querySelector('.hero-meta').prepend(back)
+  }
+  bindFishLinks(ctx)
   ctx.areaList.addEventListener('click', (event) => {
     const button = event.target.closest('[data-stage]')
     if (!button || button.disabled) return

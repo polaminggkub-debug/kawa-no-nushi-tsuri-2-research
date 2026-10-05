@@ -485,3 +485,11 @@
   font-weight: 700;
   cursor: pointer;
 }
+
+.hero .notebook-guide-shortcut {
+  display: inline-flex;
+  align-items: center;
+  min-height: 44px;
+  font-weight: 700;
+  text-decoration: none;
+}

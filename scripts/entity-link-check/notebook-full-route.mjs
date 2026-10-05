@@ -104,7 +104,7 @@ function checkFishActions(card, id, stage, source, origin, suffix) {
     )
     if (action === 'map') assert.equal(target.hash, '#map-view')
     if (action === 'equipment') {
-      assert.equal(target.searchParams.get('category'), 'all')
+      assert.equal(target.searchParams.has('category'), false)
       assert.equal(target.hash, '#fish-location-panel')
     }
     validate(`<a href="${unescapeHtml(raw)}"></a>`, origin)

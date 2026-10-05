@@ -1,3 +1,5 @@
+import { applyFishEquipmentDefault } from './fish-equipment-default.js'
+
 export function closeFishSuggestions(ctx) {
   document.getElementById('fish-suggestions').hidden = true
   document.getElementById('fish-search').setAttribute('aria-expanded', 'false')
@@ -123,9 +125,7 @@ export function selectFish(ctx, id) {
   document.getElementById('fish-search').value = id ? ctx.fishName(id) : ''
   document.getElementById('fish-search-status').textContent = ''
   ctx.closeFishSuggestions()
-  const category = document.getElementById('category-filter').value
-  if (id && !ctx.fishCategories.includes(category))
-    document.getElementById('category-filter').value = 'all'
+  if (id) applyFishEquipmentDefault(ctx, id)
   ctx.locationStage = ''
   ctx.locationMapIndex = 0
   ctx.renderCards()

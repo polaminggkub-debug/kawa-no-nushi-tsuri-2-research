@@ -156,6 +156,32 @@
     return ctx.lang === "th" && item.labelImageTh ? `<img class="thai-rom-label" loading="lazy" src="${ctx.esc(item.labelImageTh)}" alt="${ctx.esc(item.nameTh || "ชื่อในเกมไทย")}">` : "";
   }
 
+  // src/pages/equipment/fish-equipment-default.js
+  function compatibleWith(item, fish, route) {
+    const use = item.playerUse || {};
+    const ids = route ? use.fishIdsByRoute?.[route] || use.fishIds || [] : use.fishIds || [];
+    return ids.includes(fish);
+  }
+  function fishEquipmentDefault(ctx, fish) {
+    const items = ctx.allItems || [];
+    const preferred = ctx.baitRoute === "sinker" ? "sinker" : "float";
+    for (const route of [preferred, preferred === "float" ? "sinker" : "float"]) {
+      if (items.some((item) => item.category === "bait" && compatibleWith(item, fish, route)))
+        return { category: "bait", route };
+    }
+    if (items.some((item) => item.category === "lure" && compatibleWith(item, fish)))
+      return { category: "lure", route: preferred };
+    if (items.some((item) => item.category === "fly" && compatibleWith(item, fish)))
+      return { category: "flymaker", route: preferred };
+    return { category: "bait", route: preferred };
+  }
+  function applyFishEquipmentDefault(ctx, fish) {
+    const choice = fishEquipmentDefault(ctx, fish);
+    document.getElementById("category-filter").value = choice.category;
+    ctx.baitRoute = choice.route;
+    ctx.flyPart = "fly";
+  }
+
   // src/pages/equipment/fish-picker.js
   function closeFishSuggestions(ctx) {
     document.getElementById("fish-suggestions").hidden = true;
@@ -249,9 +275,7 @@
     document.getElementById("fish-search").value = id ? ctx.fishName(id) : "";
     document.getElementById("fish-search-status").textContent = "";
     ctx.closeFishSuggestions();
-    const category = document.getElementById("category-filter").value;
-    if (id && !ctx.fishCategories.includes(category))
-      document.getElementById("category-filter").value = "all";
+    if (id) applyFishEquipmentDefault(ctx, id);
     ctx.locationStage = "";
     ctx.locationMapIndex = 0;
     ctx.renderCards();
@@ -3782,6 +3806,8 @@
     restoreCategoryAndPart(ctx, query);
     restoreFishAndStage(ctx, query);
     restoreTextFilters(ctx, query);
+    const fish = document.getElementById("fish-filter").value;
+    if (fish && !query?.has("category")) applyFishEquipmentDefault(ctx, fish);
   }
   function syncFishSearchText(ctx) {
     const fish = document.getElementById("fish-filter").value;
@@ -3905,7 +3931,7 @@
   }
   function loadCatalogue(ctx) {
     showCatalogueLoading(ctx);
-    fetch("gallery-data.json?v=compendium-20261005-44").then((response) => {
+    fetch("gallery-data.json?v=compendium-20261005-45").then((response) => {
       if (!response.ok) throw new Error("catalogue unavailable");
       return response.json();
     }).then((data) => initializeLoadedCatalogue(ctx, data)).catch((error) => {
