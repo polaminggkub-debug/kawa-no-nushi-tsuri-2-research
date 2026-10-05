@@ -51,6 +51,14 @@ async function checkLocalChoices(item, lang, stage) {
   )
   const html = unescapeHtml(result.html)
   assert(html.includes(item.playerUse.summary[lang]))
+  const visibleRule = html.match(/data-food-choice><p>([^<]+)<\/p>/)?.[1]
+  assert(visibleRule, 'Food decision rule must be visible before any disclosure')
+  const rules = {
+    en: [/six shop foods/, /¥1 per HP/, /missing HP/, /maximum/],
+    th: [/อาหารร้านทั้ง 6 แบบ/, /1 เยนต่อ HP/, /HP ที่ขาด/, /HP สูงสุด/],
+    ja: [/店の食料6種/, /1HPあたり1円/, /不足HP/, /最大HP/],
+  }
+  for (const rule of rules[lang]) assert(rule.test(visibleRule))
   const options = html.match(/data-local-food-options>([\s\S]*?)<\/div>/)?.[1]
   assert(options !== undefined, `Missing area-specific food choices ${item.id}/${stage}`)
   const links = [...options.matchAll(/href="([^"]+)"/g)].map(

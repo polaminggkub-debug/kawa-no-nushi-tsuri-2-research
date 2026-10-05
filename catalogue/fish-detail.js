@@ -547,7 +547,12 @@
     const decision = rodPurchaseDecision(ctx, localRods, stage, choice);
     const baseTotal = rodSetupTotal(method, starterPrice, localRods, choice, rigTotal);
     const upgrades = renderRodUpgradeChoices(ctx, method, stage, localRods, choice, baseTotal);
-    return `<section class="method-rod" data-method-rod="${method}" data-rod="${choice.id}" data-rod-local="${Boolean(localRods.length)}"><h4>${ctx.escapeHtml(title)}</h4><p>${ctx.escapeHtml(owned)}</p><p>${ctx.escapeHtml(decision)}</p>${ctx.itemLink({ item: choice, routes: [] }, stage)}${upgrades}</section>`;
+    const total = nonBaitSetupTotal(ctx, method, baseTotal);
+    return `<section class="method-rod" data-method-rod="${method}" data-rod="${choice.id}" data-rod-local="${Boolean(localRods.length)}"><h4>${ctx.escapeHtml(title)}</h4><p>${ctx.escapeHtml(owned)}</p><p>${ctx.escapeHtml(decision)}</p>${ctx.itemLink({ item: choice, routes: [] }, stage)}${total}${upgrades}</section>`;
+  }
+  function nonBaitSetupTotal(ctx, method, total) {
+    if (!["lure", "fly"].includes(method) || !Number.isFinite(total)) return "";
+    return `<p class="rig-total" data-method-setup-total="${total}"><strong>${ctx.escapeHtml(setupTotalNote(ctx, total))}</strong></p>`;
   }
   function rodSetupTotal(method, starterPrice, localRods, budgetRod, rigTotal) {
     if (Number.isFinite(rigTotal)) return rigTotal;
@@ -809,14 +814,21 @@
     const link = starterLink(ctx, offer, stage);
     const total = rig.match(/data-rig-total="(\d+)"/)?.[1];
     const rod = ctx.renderRodForMethod(method, stage, allItems, offer.price, Number(total));
-    const summary = starterSummary(ctx, offer, total);
+    const summaryTotal = total || rod.match(/data-method-setup-total="(\d+)"/)?.[1];
+    const summary = starterSummary(ctx, offer, summaryTotal);
     const open = ctx.requestedMethod === method ? " open" : "";
     return `<details class="detail-section starter-offer" id="starter-${method}" data-method="${method}" data-item="${item.category}:${item.id}" data-price="${offer.price}"${open}><summary>${summary}</summary>${starterItem(ctx, offer, stage, text)}${rod}${rig}${aim}${fly}<a class="route-button" href="${ctx.escapeHtml(link)}">${ctx.escapeHtml(text.buy)} ↗</a></details>`;
   }
   function starterSummary(ctx, offer, total) {
     const bait = ctx.localizedItemName(offer.entry.item);
     const fullCost = total ? starterTotalText(ctx, total) : "";
-    return `<strong>${ctx.escapeHtml(offer.label)}:</strong> ${ctx.escapeHtml(bait)} · ¥${offer.price}${fullCost}`;
+    const bundle = offer.bundle ? starterBundleText(ctx) : "";
+    return `<strong>${ctx.escapeHtml(offer.label)}:</strong> ${ctx.escapeHtml(bait)} · ${bundle}¥${offer.price}${fullCost}`;
+  }
+  function starterBundleText(ctx) {
+    if (ctx.locale === "th") return "ชุดฟลายสำเร็จรูป ";
+    if (ctx.locale === "ja") return "完成フライセット ";
+    return "Ready-made fly set ";
   }
   function starterTotalText(ctx, total) {
     if (ctx.locale === "th") return ` · ซื้อใหม่ครบชุด ¥${total}`;

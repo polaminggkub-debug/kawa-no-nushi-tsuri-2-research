@@ -169,7 +169,13 @@ export function renderRodForMethod(ctx, method, stage, items, starterPrice, rigT
   const decision = rodPurchaseDecision(ctx, localRods, stage, choice)
   const baseTotal = rodSetupTotal(method, starterPrice, localRods, choice, rigTotal)
   const upgrades = renderRodUpgradeChoices(ctx, method, stage, localRods, choice, baseTotal)
-  return `<section class="method-rod" data-method-rod="${method}" data-rod="${choice.id}" data-rod-local="${Boolean(localRods.length)}"><h4>${ctx.escapeHtml(title)}</h4><p>${ctx.escapeHtml(owned)}</p><p>${ctx.escapeHtml(decision)}</p>${ctx.itemLink({ item: choice, routes: [] }, stage)}${upgrades}</section>`
+  const total = nonBaitSetupTotal(ctx, method, baseTotal)
+  return `<section class="method-rod" data-method-rod="${method}" data-rod="${choice.id}" data-rod-local="${Boolean(localRods.length)}"><h4>${ctx.escapeHtml(title)}</h4><p>${ctx.escapeHtml(owned)}</p><p>${ctx.escapeHtml(decision)}</p>${ctx.itemLink({ item: choice, routes: [] }, stage)}${total}${upgrades}</section>`
+}
+
+function nonBaitSetupTotal(ctx, method, total) {
+  if (!['lure', 'fly'].includes(method) || !Number.isFinite(total)) return ''
+  return `<p class="rig-total" data-method-setup-total="${total}"><strong>${ctx.escapeHtml(setupTotalNote(ctx, total))}</strong></p>`
 }
 
 function rodSetupTotal(method, starterPrice, localRods, budgetRod, rigTotal) {

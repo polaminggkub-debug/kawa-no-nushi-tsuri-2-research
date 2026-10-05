@@ -1,5 +1,50 @@
 import assert from 'node:assert/strict'
-import { renderCatalogue, unescapeHtml, validate } from './shared.mjs'
+import fs from 'node:fs'
+import path from 'node:path'
+import {
+  root,
+  data,
+  locations,
+  render,
+  renderCatalogue,
+  unescapeHtml,
+  validate,
+} from './shared.mjs'
+
+const backups = JSON.parse(fs.readFileSync(path.join(root, 'data/fly-backup-choices.json')))
+const eligible = [
+  ...new Set(
+    data.items
+      .filter((item) => item.category === 'fly' && item.playerUse?.shops?.length)
+      .flatMap((item) => item.playerUse.fishIds || []),
+  ),
+]
+assert(eligible.every((id) => backups.profiles[id]?.bundles?.length === 3))
+for (const lang of ['en', 'ja', 'th']) {
+  for (const fish of eligible) await checkBackupAction(lang, fish)
+}
+
+async function checkBackupAction(lang, fish) {
+  const suffix = lang === 'en' ? '' : `.${lang}`
+  const stage = String(locations.fish[fish].locations[0].stage)
+  const query = `?category=flymaker&fish=${fish}&stage=${stage}&route=sinker`
+  const { runtime, url } = await renderCatalogue(lang, query)
+  const html = runtime.flyDecision('flymaker')
+  const raw = html.match(/data-fly-backup-action href="([^"]+)"/)?.[1]
+  assert(raw, `No next action for compatible fish ${fish}/${lang}`)
+  const target = new URL(unescapeHtml(raw), url)
+  assert.equal(target.pathname, `/catalogue/fish${suffix}.html`)
+  assert.equal(target.searchParams.get('id'), fish)
+  assert.equal(target.hash, '#fly-backup')
+  const back = new URL(target.searchParams.get('return'), url)
+  assert.equal(back.searchParams.get('fish'), fish)
+  assert.equal(back.searchParams.get('category'), 'flymaker')
+  assert.equal(back.searchParams.get('stage'), stage)
+  assert.equal(back.searchParams.get('route'), 'sinker')
+  const destination = await render('fish', lang, target.searchParams)
+  assert(destination.html.includes('id="fly-backup"'), `Missing linked backup for ${fish}`)
+  validate(html, url)
+}
 
 for (const lang of ['en', 'ja', 'th']) {
   for (const fish of ['15', '1A']) await checkFallback(lang, fish)

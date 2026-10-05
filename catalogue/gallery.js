@@ -321,7 +321,8 @@
   // src/pages/equipment/player-guidance.js
   function decisionCard(ctx, d) {
     const marker = d.id === "lure_coverage_pair" ? " data-lure-coverage-pair" : "";
-    return `<article class="decision-card"${marker}><h3>${ctx.esc(ctx.local(d.title))}</h3><p class="decision-action">${ctx.esc(ctx.local(d.recommendation))}</p>${d.reason ? `<p>${ctx.esc(ctx.local(d.reason))}</p>` : ""}<div class="decision-items">${(d.items || []).map(ctx.decisionLink).join("")}</div>${d.scope ? `<small>${ctx.esc(ctx.local(d.scope))}</small>` : ""}</article>`;
+    const nextAction = d.nextAction?.href ? `<p><a class="route-button" data-fly-backup-action href="${ctx.esc(d.nextAction.href)}">${ctx.esc(ctx.local(d.nextAction.label))} ↗</a></p>` : "";
+    return `<article class="decision-card"${marker}><h3>${ctx.esc(ctx.local(d.title))}</h3><p class="decision-action">${ctx.esc(ctx.local(d.recommendation))}</p>${d.reason ? `<p>${ctx.esc(ctx.local(d.reason))}</p>` : ""}<div class="decision-items">${(d.items || []).map(ctx.decisionLink).join("")}</div>${d.scope ? `<small>${ctx.esc(ctx.local(d.scope))}</small>` : ""}${nextAction}</article>`;
   }
   function renderPlayerDecisionOverview(ctx) {
     const title = ctx.lang === "th" ? "ซื้ออะไร พกอะไร ทำอะไรก่อนตก" : ctx.lang === "ja" ? "買う・持つ・釣る前にすること" : "What to buy, carry and do before fishing";
@@ -487,12 +488,37 @@
       items: refs
     };
   }
+  function hasThreeBundleFlyBackup(ctx, fish) {
+    const bundles = ctx.allItems.filter((item) => item.category === "fly" && (ctx.useOf(item).fishIds || []).includes(fish)).flatMap((item) => (ctx.useOf(item).shops || []).map((shop) => shop.bundle).filter(Boolean));
+    const residue = (id) => Number.parseInt(id, 16) & 3;
+    for (let first = 0; first < bundles.length; first += 1) {
+      for (let second = first + 1; second < bundles.length; second += 1) {
+        for (let third = second + 1; third < bundles.length; third += 1) {
+          const choices = [bundles[first], bundles[second], bundles[third]];
+          if (new Set(choices.map((bundle) => residue(bundle.body))).size === 3 && new Set(choices.map((bundle) => residue(bundle.wing))).size === 3)
+            return true;
+        }
+      }
+    }
+    return false;
+  }
+  function flyBackupAction(ctx, fish) {
+    const labels = {
+      th: "ถ้าชุดเริ่มต้นติดเงื่อนไขซ่อน: ดูชุดสำรองของปลานี้ · ไม่รับประกันว่าปลากิน",
+      en: "If the starter is blocked by the hidden check: see this fish’s backup sets · no bite guarantee",
+      ja: "最初のセットが隠し判定でブロックされたら、この魚の予備セットを見る（食いつき保証ではありません）"
+    };
+    return hasThreeBundleFlyBackup(ctx, fish) ? { href: `${ctx.fishHref(fish)}#fly-backup`, label: labels } : null;
+  }
   function flyDecision(ctx, category) {
     const fish = document.getElementById("fish-filter").value;
     if (!["flymaker", "all"].includes(category) || !fish) return "";
     const stage = Number(ctx.locationStage || (ctx.fishLocations[fish]?.locations || [])[0]?.stage);
     const { offer, sameArea } = findFlyOffer(ctx, fish, stage);
-    return offer ? ctx.decisionCard(flyDecisionCopy(ctx, fish, offer, sameArea)) : noReadyFlyCard(ctx, fish);
+    if (!offer) return noReadyFlyCard(ctx, fish);
+    const decision = flyDecisionCopy(ctx, fish, offer, sameArea);
+    decision.nextAction = flyBackupAction(ctx, fish);
+    return ctx.decisionCard(decision);
   }
   function rodTableAdvice(ctx, item) {
     const linkLabel = ctx.lang === "th" ? "ดูเงื่อนไขซื้อและคันที่เทียบ" : ctx.lang === "ja" ? "購入条件・比較候補を見る" : "See purchase conditions and alternatives";
