@@ -683,3 +683,34 @@ for new article attributes and the newly required localized map-path mock.
 The handoff guard checks 66 eligible profiles in EN/JA/TH, excluded/unknown
 profiles, exact unique cards, selected-area actions, nested returns and manual
 progress behavior. No gate was bypassed to publish this repair.
+
+## Individual food availability and shop advice (r65)
+
+Regular food cards and details now distinguish owning an item from buying it
+in the selected area. The recorded six-area stock matrix drives the advice:
+food that is not sold locally keeps its measured recovery and links to local
+food choices, with the original item route preserved for returning. Available
+food shows local price and recovery before disclosures. Special foods, quests,
+poison warnings and canonical no-area advice remain unchanged.
+
+Shop target-fish guidance now follows the chosen category. Compatibility
+instructions apply to bait, lure and fly bodies; rods explain comparison,
+food explains missing HP, and tools explain actions and quest uses. Wing/tail
+results remain complete fly bundles whose bodies can have compatibility badges.
+
+The full npm run check passed. Independent guards cover six regular foods
+across six areas and three languages, clean local-choice destinations, exact
+returns and special-food fallbacks. Actual TH390 orange Area2 detail -> local
+choices -> onigiri detail -> return succeeded; JA390 and EN1200 food views
+show correct availability with no horizontal overflow. Actual shop food ->
+bait -> rod -> Japanese kept fish06/Area2 and showed category-specific advice.
+
+A wider browser audit exercised maps/fish routes in all six areas with
+representative three-language desktop/mobile journeys, manual marks/reload/
+filter/restoration and profile-to-bait navigation. Another 48 equipment
+category/detail/return journeys passed. These are representative runtime
+checks, not every possible click or every one of the 315 items.
+
+Research data and evidence were preserved. Whole-site usefulness remains
+unproven; the next confirmed issue is repeated notebook explanation and
+stacked headings before its actions.

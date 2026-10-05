@@ -116,3 +116,6 @@ await import('./map-mobile-fish-layout.mjs')
 await import('./food-lottery-decisions.mjs')
 await import('./hp-recovery-action.mjs')
 await import('./fight-controls.mjs')
+
+await import('./food-area-availability.mjs')
+await import('./shop-category-check-scope.mjs')

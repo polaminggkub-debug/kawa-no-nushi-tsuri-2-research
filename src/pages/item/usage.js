@@ -1,4 +1,9 @@
-import { fishMealSummary, fishMealFacts, flyWingPlayerDecision } from '../../entities/item/index.js'
+import {
+  fishMealSummary,
+  fishMealFacts,
+  flyWingPlayerDecision,
+  foodAreaDecision,
+} from '../../entities/item/index.js'
 
 function decisionUsage(ctx, decision) {
   return {
@@ -34,6 +39,8 @@ function specialCategoryUsage(ctx, item, use) {
 
 export function visibleUsage(ctx, item, allItems = [], fishVisuals = {}) {
   const use = item.playerUse || {}
+  const foodDecision = foodAreaDecision(ctx.lang, item, ctx.selectedStage)
+  if (foodDecision) return { summary: foodDecision.summary, facts: use.facts?.[ctx.lang] || [] }
   if (item.category === 'fly_wing') {
     const wingDecision = flyWingPlayerDecision(
       ctx.lang,

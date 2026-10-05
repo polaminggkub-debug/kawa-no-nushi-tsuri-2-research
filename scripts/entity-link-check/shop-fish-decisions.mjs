@@ -104,7 +104,7 @@ function checkCategoryAwareBaitNote() {
         html.includes(copy[lang].bait),
         `${lang}/${category}: missing category-aware bait explanation`,
       )
-      assert(html.includes(copy[lang].profile), `${lang}/${category}: profile guidance missing`)
+      assertCategoryProfile(html, lang, category, copy[lang].profile)
     }
     for (const category of ['lure', 'fly']) {
       const html = fishContextFor(lang, 'sinker', category)
@@ -112,7 +112,7 @@ function checkCategoryAwareBaitNote() {
         !html.includes(copy[lang].bait),
         `${lang}/${category}: bait-only explanation should be omitted`,
       )
-      assert(html.includes(copy[lang].profile), `${lang}/${category}: profile guidance missing`)
+      assertCategoryProfile(html, lang, category, copy[lang].profile)
     }
   }
 }
@@ -170,4 +170,23 @@ function context(lang, route) {
       `<a href="item${suffix}.html?category=${category}&id=${id}">${id}</a>`,
     text: { price: (value) => `${value}`, noPrice: '', stageWord: (value) => `${value}` },
   }
+}
+
+function assertCategoryProfile(html, lang, category, profile) {
+  if (category !== 'all') {
+    assert(html.includes(profile), `${lang}/${category}: profile guidance missing`)
+    return
+  }
+  const rules = {
+    en: [
+      /Fish-check badges apply to bait, lures and fly bodies/,
+      /passing does not guarantee a bite or landing/,
+    ],
+    ja: [/魚の判定表示はエサ・ルアー・毛バリのボディ/, /食いつきや取り込みは保証/],
+    th: [
+      /ป้ายเงื่อนไขปลามีเฉพาะเหยื่อจริง ลัวร์ และบอดี้ฟลาย/,
+      /ไม่รับประกันว่าปลากินหรือตกขึ้นได้/,
+    ],
+  }[lang]
+  for (const rule of rules) assert.match(html, rule, `${lang}/all: scoped check guidance missing`)
 }

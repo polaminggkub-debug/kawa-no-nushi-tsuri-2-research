@@ -1,4 +1,9 @@
-import { fishMealSummary, fishMealFacts, flyWingPlayerDecision } from '../../entities/item/index.js'
+import {
+  fishMealSummary,
+  fishMealFacts,
+  flyWingPlayerDecision,
+  foodAreaDecision,
+} from '../../entities/item/index.js'
 
 function fishMealAdvice(ctx) {
   return {
@@ -51,6 +56,8 @@ function genericUse(ctx, item, use) {
 
 export function visibleUse(ctx, item) {
   const use = ctx.useOf(item)
+  const foodDecision = foodAreaDecision(ctx.lang, item, ctx.locationStage)
+  if (foodDecision) return { summary: foodDecision.summary, facts: use.facts?.[ctx.lang] || [] }
   if (item.category === 'food' && item.id === '08') return fishMealAdvice(ctx)
   if (item.category === 'fly_wing') {
     const fish = document.getElementById('fish-filter')?.value || ''

@@ -1,4 +1,5 @@
 import { distinctFishNames } from '../../entities/fish/index.js'
+import { shopCategoryGuidance } from './shop-category-guidance.js'
 
 export function shopCompatibility(ctx, item) {
   if (!ctx.selectedFish || !ctx.fishVisuals?.[ctx.selectedFish]) return ''
@@ -34,8 +35,9 @@ export function shopFishContext(ctx) {
         : 'Bait labels use the sinker route when selected; otherwise they use float.'
   const copy = contextCopy(ctx.lang)
   const category = ctx.$('category-select')?.value || ctx.startCategory || 'all'
+  const guidance = shopCategoryGuidance(ctx.lang, category, copy.explains)
   const baitRouteNote = ['all', 'bait'].includes(category) ? ` ${baitNote}` : ''
-  return `<aside class="shop-fish-context" data-shop-fish-context data-fish="${ctx.esc(ctx.selectedFish)}" data-stage="${stage}" data-method="${method}"><img src="${ctx.esc(ctx.imagePath(fish.image))}" alt=""><div><p class="shop-fish-context-label">${ctx.esc(copy.target)}</p><a class="shop-fish-profile-link" href="${ctx.esc(href)}"><strong>${ctx.esc(name)}</strong><span>${ctx.esc(copy.profile)} · ID ${ctx.esc(ctx.selectedFish)} · ${ctx.esc(ctx.text.stageWord(stage))} · ${ctx.esc(methodText)} ↗</span></a><p>${ctx.esc(copy.explains)}${ctx.esc(baitRouteNote)}</p></div></aside>`
+  return `<aside class="shop-fish-context" data-shop-fish-context data-shop-context-category="${ctx.esc(category)}" data-fish-check-guidance="${guidance.state}" data-fish="${ctx.esc(ctx.selectedFish)}" data-stage="${stage}" data-method="${method}"><img src="${ctx.esc(ctx.imagePath(fish.image))}" alt=""><div><p class="shop-fish-context-label">${ctx.esc(copy.target)}</p><a class="shop-fish-profile-link" href="${ctx.esc(href)}"><strong>${ctx.esc(name)}</strong><span>${ctx.esc(copy.profile)} · ID ${ctx.esc(ctx.selectedFish)} · ${ctx.esc(ctx.text.stageWord(stage))} · ${ctx.esc(methodText)} ↗</span></a><p>${ctx.esc(guidance.text)}${ctx.esc(baitRouteNote)}</p></div></aside>`
 }
 
 export function shopCompatibilityBadge(ctx, item, state) {

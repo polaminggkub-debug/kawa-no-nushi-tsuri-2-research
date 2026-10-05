@@ -1406,6 +1406,26 @@
     return `<aside data-equal-price-choice><h3>${ctx.esc(c.title)}</h3><p>${ctx.esc(c.advice)}</p><p>${links.join(" · ")}</p>${limit}</aside>`;
   }
 
+  // src/entities/item/food-area-decision.js
+  function recommendation(lang, stage, hp, price, stocked) {
+    if (lang === "th")
+      return stocked ? `ด่าน ${stage} มีขายชิ้นนี้ราคา ¥${price} ฟื้นได้สูงสุด ${hp} HP ถ้ามีอาหารที่เหมาะอยู่แล้วใช้ก่อนซื้อเพิ่ม เลือกปริมาณให้ใกล้ HP ที่ขาด เพราะส่วนที่เกินจะเสียเปล่า` : `ถ้ามีชิ้นนี้อยู่แล้ว ใช้ฟื้นได้สูงสุด ${hp} HP โดยไม่เกิน HP ที่ขาด ด่าน ${stage} ไม่มีรายการขายชิ้นนี้ ถ้าจะซื้อใหม่ ให้เลือกอาหารที่มีขายในด่านนี้แทน`;
+    if (lang === "ja")
+      return stocked ? `エリア${stage}では${price}円で購入でき、最大${hp}HP回復。使える食料を持っていれば先に使い、不足HPに近い量を選んで超過分を無駄にしないでください。` : `持っていれば不足HPを上限に最大${hp}HP回復できます。エリア${stage}の販売記録にはありません。買うならこのエリアで売られている食料を選んでください。`;
+    return stocked ? `Sold in Area ${stage} for ¥${price}; restores up to ${hp} HP. Use suitable food you already own before buying more. Match recovery to missing HP because excess is wasted.` : `If you already own this, use it to restore up to ${hp} HP, capped at missing HP. It is not in Area ${stage}'s recorded stock. If buying food, choose a locally stocked option instead.`;
+  }
+  function foodAreaDecision(lang, item, selectedStage) {
+    const stage = Number(selectedStage);
+    const hp = item.playerUse?.hpRecovery?.hp;
+    if (item.category !== "food" || !/^0[1-6]$/.test(item.id)) return null;
+    if (!Number.isInteger(stage) || stage < 1 || stage > 6) return null;
+    if (!Number.isSafeInteger(hp) || hp <= 0 || !(item.priceYen > 0)) return null;
+    const stocked = (item.playerUse?.shops || []).some(
+      (shop) => Number(shop.stage) === stage && !shop.condition
+    );
+    return { stage, stocked, summary: recommendation(lang, stage, hp, item.priceYen, stocked) };
+  }
+
   // src/entities/item/lure-coverage-kit.js
   var PREFERRED_PAIR_ORDER = /* @__PURE__ */ new Map([
     ["2E+23", 0],
@@ -1592,13 +1612,13 @@
     const stage = hasSelectedArea(ctx);
     const choice = lureCoverageForArea(options, stage || 1);
     if (!choice.pair) return decision;
-    const recommendation = stage ? currentAreaRecommendation(ctx, options, stage, choice) : noStageRecommendation(ctx, options);
+    const recommendation2 = stage ? currentAreaRecommendation(ctx, options, stage, choice) : noStageRecommendation(ctx, options);
     const items = stage ? choice.pair.items : lureCoverageByArea(options).filter((area) => area.isLocal).flatMap((area) => area.pair.items).filter(
       (item, index, all) => all.findIndex((candidate) => candidate.id === item.id) === index
     );
     return {
       ...decision,
-      recommendation: { ...decision.recommendation, [ctx.lang]: recommendation },
+      recommendation: { ...decision.recommendation, [ctx.lang]: recommendation2 },
       items: items.map((item) => ({ category: item.category, id: item.id }))
     };
   }
@@ -1960,6 +1980,8 @@
   }
   function visibleUse(ctx, item) {
     const use = ctx.useOf(item);
+    const foodDecision = foodAreaDecision(ctx.lang, item, ctx.locationStage);
+    if (foodDecision) return { summary: foodDecision.summary, facts: use.facts?.[ctx.lang] || [] };
     if (item.category === "food" && item.id === "08") return fishMealAdvice(ctx);
     if (item.category === "fly_wing") {
       const fish = document.getElementById("fish-filter")?.value || "";
@@ -2535,6 +2557,21 @@
     if (keepMapOpen && disclosure) disclosure.open = true;
   }
 
+  // src/features/food-availability/index.js
+  function foodAreaMarker(lang, item, stage) {
+    const decision = foodAreaDecision(lang, item, stage);
+    return decision ? ` data-food-area-availability="${decision.stage}" data-stock="${decision.stocked ? "available" : "missing"}"` : "";
+  }
+  function foodAreaAction(ctx, item, stage, returnPath) {
+    const decision = foodAreaDecision(ctx.lang, item, stage);
+    if (!decision || decision.stocked) return "";
+    const query = new URLSearchParams({ category: "food", stage: String(decision.stage) });
+    if (returnPath) query.set("return", returnPath);
+    const page = `index${ctx.lang === "en" ? "" : `.${ctx.lang}`}.html`;
+    const label = ctx.lang === "th" ? `เลือกอาหารที่ซื้อได้ในด่าน ${decision.stage}` : ctx.lang === "ja" ? `エリア${decision.stage}で買える食料を選ぶ` : `Choose food sold in Area ${decision.stage}`;
+    return `<p><a data-local-food-choice href="${ctx.esc(`${page}?${query}#category-decisions`)}">${ctx.esc(label)} ↗</a></p>`;
+  }
+
   // src/pages/equipment/quest-next-actions.js
   var AKAME_ID = "37";
   var FIREWORKS_ID = "16";
@@ -3071,9 +3108,9 @@
   }
   function renderCardDisclosure(ctx, item, use, summary, facts2, advice, wingDecision) {
     const factList = facts2.length ? `<ul class="use-facts">${facts2.map((fact) => `<li>${ctx.esc(fact)}</li>`).join("")}</ul>` : "";
-    const recommendation = wingDecision ? `<h5>${ctx.esc(ctx.cardUi.fullRecommendation)}</h5><p class="card-full-recommendation">${ctx.esc(wingDecision.recommendation)}</p><p class="card-decision-reason">${ctx.esc(wingDecision.reason)}</p>` : advice ? `<h5>${ctx.esc(ctx.cardUi.fullRecommendation)}</h5><p class="card-full-recommendation">${ctx.esc(ctx.local(advice.recommendation) || summary)}</p>${advice.reason ? `<p class="card-decision-reason">${ctx.esc(ctx.local(advice.reason))}</p>` : ""}` : "";
+    const recommendation2 = wingDecision ? `<h5>${ctx.esc(ctx.cardUi.fullRecommendation)}</h5><p class="card-full-recommendation">${ctx.esc(wingDecision.recommendation)}</p><p class="card-decision-reason">${ctx.esc(wingDecision.reason)}</p>` : advice ? `<h5>${ctx.esc(ctx.cardUi.fullRecommendation)}</h5><p class="card-full-recommendation">${ctx.esc(ctx.local(advice.recommendation) || summary)}</p>${advice.reason ? `<p class="card-decision-reason">${ctx.esc(ctx.local(advice.reason))}</p>` : ""}` : "";
     const details = [
-      recommendation,
+      recommendation2,
       factList,
       guideEvidenceNote(ctx, use),
       !wingDecision && item.areaRodDecision ? rodAreaAlternativeLinks(ctx, item) : "",
@@ -3109,7 +3146,7 @@
     const hookTargets = hookTargetLinks(ctx, item);
     const visibleAdvice = item.areaRodDecision ? `<p class="use-summary card-verdict">${ctx.esc(label)}</p>` : targetAdvice2 || lureVerdict ? targetAdvice2 || lureVerdict : `<p class="use-summary ${summaryClass}">${ctx.esc(label)}</p>`;
     const areaMarker = item.areaRodDecision ? ` data-rod-area-decision="${item.areaRodDecision.stage}" data-rod-area-status="${ctx.esc(item.areaRodDecision.status)}"` : "";
-    return `<div class="use-block" ${dataDecision}${areaMarker}><h4>${ctx.esc(actionTitle)}</h4>${visibleAdvice}${hookTargets}${menuAction}<div class="card-more-content">${disclosure}</div></div>`;
+    return `<div class="use-block" ${dataDecision}${areaMarker}${foodAreaMarker(ctx.lang, item, ctx.locationStage)}><h4>${ctx.esc(actionTitle)}</h4>${visibleAdvice}${foodAreaAction(ctx, item, ctx.locationStage, ctx.sourceReturn())}${hookTargets}${menuAction}<div class="card-more-content">${disclosure}</div></div>`;
   }
   function renderCardAcquisition(ctx, item) {
     const actions = [

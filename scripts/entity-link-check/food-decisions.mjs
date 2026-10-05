@@ -98,7 +98,7 @@ async function checkLocalChoices(item, lang, stage) {
     }),
   )
   const html = unescapeHtml(result.html)
-  assert(html.includes(item.playerUse.summary[lang]))
+  assert.match(html, new RegExp(`data-food-area-availability="${stage}"`))
   const hero = html.match(/<section id="what-to-do"[\s\S]*?<\/section>/)?.[0]
   assert(hero, 'Food use advice must remain in the visible item hero')
   checkHeroFoodRules(hero, lang)
@@ -136,14 +136,19 @@ async function checkLocalChoices(item, lang, stage) {
 function checkHeroFoodRules(hero, lang) {
   const rules = {
     en: [
-      /Use food you already own before buying more/,
+      /Use suitable food you already own before buying more|If you already own this/,
       /six shop foods cost 1 yen per HP/,
       /Missing about .* HP|missing HP/,
       /maximum/,
     ],
-    ja: [/手持ちの食料があれば先に使/, /店の食料6種.*回復HPあたり1円/, /不足HP/, /最大HP/],
+    ja: [
+      /食料を持っていれば先に使|持っていれば不足HP/,
+      /店の食料6種.*回復HPあたり1円/,
+      /不足HP/,
+      /最大HP/,
+    ],
     th: [
-      /มีอาหารอยู่แล้วใช้ของเดิมก่อน/,
+      /มีอาหารที่เหมาะอยู่แล้วใช้ก่อนซื้อเพิ่ม|ถ้ามีชิ้นนี้อยู่แล้ว/,
       /อาหารร้านทั้ง 6 แบบ.*1 เยนต่อ HP/,
       /HP ที่ขาด/,
       /HP สูงสุด/,

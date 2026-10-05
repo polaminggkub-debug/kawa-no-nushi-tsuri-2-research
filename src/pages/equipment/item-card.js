@@ -1,3 +1,4 @@
+import { foodAreaMarker, foodAreaAction } from '../../features/food-availability/index.js'
 import { renderTargetAdvice } from '../../shared/lib/index.js'
 import { questNextActions } from './quest-next-actions.js'
 import { hookTargetLinks } from './hook-target-links.js'
@@ -242,7 +243,7 @@ function renderCardGuidance(ctx, item, use, summary, facts, advice) {
   const areaMarker = item.areaRodDecision
     ? ` data-rod-area-decision="${item.areaRodDecision.stage}" data-rod-area-status="${ctx.esc(item.areaRodDecision.status)}"`
     : ''
-  return `<div class="use-block" ${dataDecision}${areaMarker}><h4>${ctx.esc(actionTitle)}</h4>${visibleAdvice}${hookTargets}${menuAction}<div class="card-more-content">${disclosure}</div></div>`
+  return `<div class="use-block" ${dataDecision}${areaMarker}${foodAreaMarker(ctx.lang, item, ctx.locationStage)}><h4>${ctx.esc(actionTitle)}</h4>${visibleAdvice}${foodAreaAction(ctx, item, ctx.locationStage, ctx.sourceReturn())}${hookTargets}${menuAction}<div class="card-more-content">${disclosure}</div></div>`
 }
 
 function renderCardAcquisition(ctx, item) {

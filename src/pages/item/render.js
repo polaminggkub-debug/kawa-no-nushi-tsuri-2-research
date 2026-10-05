@@ -1,3 +1,4 @@
+import { foodAreaMarker, foodAreaAction } from '../../features/food-availability/index.js'
 import { equalPriceChoice } from '../../entities/item/index.js'
 import { magnetNextAction } from './magnet-next-action.js'
 import { flyPriceChoice } from './fly-price-choice.js'
@@ -278,7 +279,7 @@ function renderDecisionSection(ctx, item, summary, facts, imageNote, data) {
     allItems,
   )
   const primary = item.areaRodDecision ? general : targetAdvice || general
-  return `<section id="what-to-do" class="decision-panel ${decision ? 'rod-decision' : ''}" ${dataAttribute}><h2>${ctx.esc(heading)}</h2>${primary}${equalPriceChoice(ctx, item, allItems)}${supporting}${actions}${note}</section>`
+  return `<section id="what-to-do" class="decision-panel ${decision ? 'rod-decision' : ''}" ${dataAttribute}${foodAreaMarker(ctx.lang, item, ctx.selectedStage)}><h2>${ctx.esc(heading)}</h2>${primary}${foodAreaAction(ctx, item, ctx.selectedStage, ctx.currentLocalRoute())}${equalPriceChoice(ctx, item, allItems)}${supporting}${actions}${note}</section>`
 }
 
 function renderQuickOptions(ctx, item, allItems, fishLocations) {
