@@ -11,21 +11,9 @@ const guide = JSON.parse(fs.readFileSync(path.join(root, 'data/notebook-completi
 const availableCounts = [6, 12, 15, 22, 27, 15]
 const newCounts = [6, 10, 11, 17, 11, 11]
 const fullRouteScope = {
-  en: [
-    'first area with a configured point',
-    'A point may be inactive in your current run',
-    'choose a fish to check its map points or compatible gear',
-  ],
-  ja: [
-    '設定上の出現地点がある最初のエリア',
-    '地点が有効とは限りません',
-    '魚を選び、地図の地点や対応する道具を確認してください',
-  ],
-  th: [
-    'ด่านแรกที่มีจุดเกิดในข้อมูลเกม',
-    'จุดนั้นอาจไม่มีปลาในรอบที่เล่น',
-    'เลือกปลาเพื่อตรวจจุดบนแผนที่หรือเลือกอุปกรณ์ที่ใช้ได้',
-  ],
+  en: ['first area with a configured point', 'Choose a fish for map points or compatible gear'],
+  ja: ['出現地点が記録された最初のエリア', '魚を選ぶと地図の地点や対応する道具を確認できます'],
+  th: ['ด่านแรกที่มีจุดตกในข้อมูลเกม', 'เลือกปลาเพื่อดูจุดตกหรืออุปกรณ์ที่ใช้ได้'],
 }
 
 checkDataset()
@@ -251,11 +239,14 @@ function checkRoute(html, lang, activeStage, state, openGroup) {
 
 function checkFullRouteScope(html, lang) {
   const route = detailsBlock(html, 'notebook-full-route')
-  const note = unescapeHtml(route.match(/<p>([\s\S]*?)<\/p>/)?.[1] || '')
-  for (const phrase of fullRouteScope[lang])
-    assert(note.includes(phrase), `${lang}: full route scope is missing “${phrase}”`)
   const help = detailsBlock(html, 'notebook-help')
-  assert(!help.includes(note), `${lang}: route scope must stay beside the full route`)
+  const note = unescapeHtml(help.match(/<p data-notebook-route-note>([\s\S]*?)<\/p>/)?.[1] || '')
+  for (const phrase of fullRouteScope[lang])
+    assert(note.includes(phrase), lang + ': folded full route scope is missing ' + phrase)
+  assert(
+    !route.includes(note),
+    lang + ': filing/action explanation must not repeat before fish rows',
+  )
 }
 
 function checkHelp(html, lang, stage) {

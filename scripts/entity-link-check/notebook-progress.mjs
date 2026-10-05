@@ -36,9 +36,7 @@ for (const lang of ['en', 'ja', 'th']) {
   assert(html.includes('aria-live="polite"'))
   assert(
     html.includes(
-      { en: 'does not read or change', ja: '読み書きしません', th: 'ไม่ได้อ่านหรือแก้เซฟเกม' }[
-        lang
-      ],
+      { en: 'does not read or change', ja: '読み書きしません', th: 'ไม่อ่านหรือแก้เซฟเกม' }[lang],
     ),
   )
 }

@@ -1207,18 +1207,11 @@ footer p {
   line-height: 1.4;
 }
 .notebook-count-breakdown {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 7px;
-}
-.notebook-count-breakdown p {
   margin: 0;
-  padding: 5px 8px;
-  border-radius: 999px;
-  background: #e5eddf;
   color: #3d5e4b;
   font-size: 12px;
   font-weight: 700;
+  line-height: 1.5;
 }
 .notebook-intro {
   margin: 8px 0 14px;

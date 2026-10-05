@@ -714,3 +714,25 @@ checks, not every possible click or every one of the 315 items.
 Research data and evidence were preserved. Whole-site usefulness remains
 unproven; the next confirmed issue is repeated notebook explanation and
 stacked headings before its actions.
+
+## Notebook explanation consolidation (r66)
+
+The notebook entry has one checklist heading and one manual count/filter.
+Current-area new/repeated species share a compact line; the available total
+still explicitly differs from a required game-page total. The route opens
+directly into its area groups. The explanation of first-area filing moved
+into existing folded help alongside largest-record movement rules, Tool05
+verification steps, the tool link and area totals. Research remains folded
+and all 66 unique species/action rows remain unchanged.
+
+Actual TH390 Area4 checks verified 22 available =17 route additions+5 earlier,
+manual0->1, reload1, remaining filter hides Koi0D, then restored0. Tool05
+detail/return and language change retained Area4. JA320 and EN1200 have no
+horizontal overflow. Independent guards reject duplicate manual headings,
+reintroduced route-intro paragraphs and split count wrappers while retaining
+existing species, state, focus and navigation checks. Full npm run check passes.
+
+The previous r65 release f3eb1e1 passed quality and deploy (37380425257).
+Actual public TH food01Area2 and target-fish shop food guidance were verified.
+This copy refinement is not a whole-site completion claim. Acquisition of
+Tool05 is still an evidence gap; no purchase path is inferred from its price.

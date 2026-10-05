@@ -1,9 +1,8 @@
 const storageKey = 'kawa-notebook-manual-v1'
 const text = {
   en: {
-    title: 'Your checklist',
     count: (n, total) => `Marked by you: ${n}/${total} species`,
-    note: 'Tick after checking in-game. Shared across areas in this browser; this does not read or change your game save.',
+    note: 'Marks are saved here across areas; this does not read or change your game save.',
     mark: 'Checked in my game journal',
     markShort: 'Recorded',
     temporary: 'Browser storage is unavailable. Ticks last only while this page stays open.',
@@ -11,9 +10,8 @@ const text = {
     empty: 'You have marked every fish in this list. Uncheck the filter to review them.',
   },
   ja: {
-    title: '自分のチェックリスト',
     count: (n, total) => `自分で確認済み: ${n}/${total}種`,
-    note: 'ゲーム内で確認してからチェック。全エリア共通でこのブラウザに保存し、ゲームのセーブは読み書きしません。',
+    note: 'チェックは全エリア共通でこのブラウザに保存し、ゲームのセーブは読み書きしません。',
     mark: 'ゲーム内図鑑で確認済み',
     markShort: '記録済み',
     temporary: 'ブラウザに保存できません。このページを閉じるとチェックは失われます。',
@@ -21,9 +19,8 @@ const text = {
     empty: 'このリストはすべてチェック済みです。フィルターを外すと再確認できます。',
   },
   th: {
-    title: 'รายการที่คุณเช็กเอง',
     count: (n, total) => `คุณติ๊กแล้ว ${n}/${total} ชนิด`,
-    note: 'ติ๊กหลังเช็กในเกม เก็บเครื่องหมายร่วมทุกด่านในเบราว์เซอร์นี้ ไม่ได้อ่านหรือแก้เซฟเกม',
+    note: 'เก็บเครื่องหมายร่วมทุกด่านในเบราว์เซอร์นี้ ไม่อ่านหรือแก้เซฟเกม',
     mark: 'เช็กแล้วว่ามีในสมุดเกม',
     markShort: 'บันทึกแล้ว',
     temporary: 'เบราว์เซอร์ไม่อนุญาตให้บันทึก เครื่องหมายจะอยู่แค่ขณะที่เปิดหน้านี้',
@@ -70,7 +67,7 @@ export function writeNotebookMarks(storage, ids, eligible) {
 
 export function progressMarkup(ctx) {
   const c = text[ctx.lang] || text.en
-  return `<section class="notebook-manual"><h4>${ctx.esc(c.title)}</h4><p class="notebook-manual-count" role="status" aria-live="polite"></p><p>${ctx.esc(c.note)}</p><label class="notebook-remaining"><input type="checkbox" data-notebook-remaining> ${ctx.esc(c.remaining)}</label></section>`
+  return `<section class="notebook-manual"><p class="notebook-manual-count" role="status" aria-live="polite"></p><p data-notebook-browser-note>${ctx.esc(c.note)}</p><label class="notebook-remaining"><input type="checkbox" data-notebook-remaining> ${ctx.esc(c.remaining)}</label></section>`
 }
 
 function storageAccess() {
