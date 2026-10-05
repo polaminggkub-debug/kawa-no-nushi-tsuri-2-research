@@ -3,35 +3,30 @@ import fs from 'node:fs'
 import path from 'node:path'
 import { fileURLToPath } from 'node:url'
 import { renderNotebookGuide } from '../../src/pages/maps/notebook-guide.js'
-import { data, validate } from './shared.mjs'
+import { data, unescapeHtml, validate } from './shared.mjs'
 
 const root = path.resolve(fileURLToPath(new URL('../..', import.meta.url)))
 const guide = JSON.parse(fs.readFileSync(path.join(root, 'data/notebook-completion.json'), 'utf8'))
-const firstCounts = [6, 10, 11, 17, 11, 11]
-const routeCounts = [6, 16, 27, 44, 55, 66]
+const availableCounts = [6, 12, 15, 22, 27, 15]
+const newCounts = [6, 10, 11, 17, 11, 11]
 
 checkDataset()
 for (const lang of ['en', 'ja', 'th']) await checkLocale(lang)
 console.log(
-  'Notebook route guide PASS: 66 unique IDs, six area counts, excludes, repeats, links, and EN/JA/TH.',
+  'Notebook route guide PASS: master 66-fish route, collapsed help/evidence, areas, repeats and TH/EN/JA states.',
 )
 
 function checkDataset() {
   assert.equal(guide.rom.sha1, 'c2103dd94e2a1a65a495fc02adc2e7d040f31212')
   assert.equal(guide.recordRule.notebookSlots, 66)
   assert.equal(guide.totals.notebookEligibleSpecies, 66)
-  assert.equal(guide.stages.length, 6)
   assert.deepEqual(
     guide.stages.map((stage) => stage.recordableSpeciesCount),
-    [6, 12, 15, 22, 27, 15],
+    availableCounts,
   )
   assert.deepEqual(
     guide.stages.map((stage) => stage.firstOccurrenceCount),
-    firstCounts,
-  )
-  assert.deepEqual(
-    guide.stages.map((stage) => stage.firstOccurrenceCount),
-    routeCounts.map((n, i) => n - (routeCounts[i - 1] || 0)),
+    newCounts,
   )
   const seen = new Set()
   for (const stage of guide.stages) {
@@ -49,61 +44,136 @@ function checkDataset() {
 }
 
 async function checkLocale(lang) {
-  let through = 0
   for (const stage of guide.stages) {
-    through += stage.firstOccurrenceCount
-    const ctx = makeContext(lang, stage.stage)
-    renderNotebookGuide(ctx)
-    const html = ctx.mount.innerHTML
-    assert.equal(ctx.mount.hidden, false)
-    assert.match(html, /class="notebook-new"/)
-    assert.match(html, new RegExp(`data-stage="${stage.stage}"`))
-    assert(
-      html.includes(`${through}/${guide.totals.notebookEligibleSpecies}`),
-      `${lang} route total is wrong at Area ${stage.stage}`,
-    )
-    assert(html.includes('notebook-completion-research.md'))
-    checkCountExplanation(html, lang, stage)
-    const newList = html.match(/<details class="notebook-new"[\s\S]*?<\/details>/)?.[0] || ''
-    assert.equal((newList.match(/class="notebook-fish"/g) || []).length, stage.firstOccurrenceCount)
-    if (stage.repeatedFromEarlierStages.length)
-      assert(
-        html.includes('class="notebook-repeated"'),
-        `${lang} repeats are not rendered in Area ${stage.stage}`,
-      )
-    else assert(!html.includes('class="notebook-repeated"'))
-    validate(
-      html,
-      new URL(`https://example.test/catalogue/maps${lang === 'en' ? '' : `.${lang}`}.html`),
-    )
-    checkFishTargets(html, stage)
+    checkState(lang, stage, { openGuide: false, routeStage: 0 }, 0)
+    checkState(lang, stage, { openGuide: true, routeStage: 0 }, stage.stage)
+    checkState(lang, stage, { openGuide: true, routeStage: stage.stage }, stage.stage)
   }
 }
 
-function checkCountExplanation(html, lang, stage) {
-  const expected = [6, 12, 15, 22, 27, 15][stage.stage - 1]
-  assert.match(html, new RegExp(`data-notebook-total="${expected}"`))
-  assert(
-    html.includes(`${expected}${lang === 'th' ? ' ชนิด' : ''} =`),
-    `${lang} lacks the total/additions/repeats explanation`,
+function checkState(lang, stage, state, openGroup) {
+  const ctx = makeContext(lang, stage.stage, state)
+  renderNotebookGuide(ctx)
+  const html = ctx.mount.innerHTML
+  assert.equal(ctx.mount.hidden, false)
+  assert.match(html, new RegExp(`data-stage="${stage.stage}"`))
+  assert.match(html, new RegExp(`data-notebook-total="${availableCounts[stage.stage - 1]}"`))
+  assert.match(html, new RegExp(`data-notebook-new="${newCounts[stage.stage - 1]}"`))
+  assert.match(
+    html,
+    new RegExp(`data-notebook-repeated="${stage.repeatedFromEarlierStages.length}"`),
   )
-  const note = html.indexOf('class="notebook-count-explainer"')
-  assert(note > html.indexOf('class="notebook-count-summary"'))
-  assert(note < html.indexOf('class="notebook-new"'))
-  const statements = {
+  checkRoute(html, lang, stage, state, openGroup)
+  checkHelp(html, lang, stage)
+  checkStageLists(html, stage)
+  checkManualAndEvidence(html, lang)
+  validate(html, new URL(`https://example.test/catalogue/maps${ctx.suffix}.html`))
+}
+
+function checkRoute(html, lang, activeStage, state, openGroup) {
+  assert(
+    !html.includes('class="notebook-new"'),
+    `${lang} Area ${activeStage.stage}: duplicate local new-fish list`,
+  )
+  const route = detailsBlock(html, 'notebook-full-route')
+  const routeOpen = Boolean(state.openGuide || state.routeStage)
+  assert.equal(detailsOpens(route), routeOpen, `${lang}: wrong master-route open state`)
+  assert.match(route, /data-notebook-route-total="66"/)
+  const groups = [
+    ...route.matchAll(/<details id="notebook-route-(\d)"[^>]*>([\s\S]*?)<\/details>/g),
+  ]
+  assert.equal(groups.length, 6, `${lang}: master route must retain all six groups`)
+  const found = []
+  for (const [, stageText, body] of groups) {
+    const stage = Number(stageText)
+    const expected = guide.stages[stage - 1].firstOccurrenceSpecies
+    const cards = [...body.matchAll(/data-notebook-card="([0-9A-F]{2})"/g)].map((match) => match[1])
+    assert.deepEqual(
+      cards,
+      expected,
+      `${lang} Area ${stage}: route IDs differ from the ROM checklist`,
+    )
+    assert.equal(
+      hasOpenAttribute(groups.find(([, id]) => id === stageText)?.[0] || ''),
+      stage === openGroup,
+    )
+    found.push(...cards)
+  }
+  assert.deepEqual(
+    found,
+    guide.stages.flatMap((entry) => entry.firstOccurrenceSpecies),
+  )
+  assert.equal(new Set(found).size, 66, `${lang}: master route repeats a new-fish card`)
+}
+
+function checkHelp(html, lang, stage) {
+  const help = detailsBlock(html, 'notebook-help')
+  assert(!hasOpenAttribute(help), `${lang}: count/verification help must start collapsed`)
+  assert(help.includes('class="notebook-count-explainer"'))
+  assert(help.includes('data-notebook-verification'))
+  assert(help.includes('class="notebook-target-note"'))
+  checkHelpCopy(help, lang)
+  const counts = [...help.matchAll(/data-notebook-area="(\d)" data-notebook-count="(\d+)"/g)]
+  assert.deepEqual(
+    counts.map(([, id, count]) => [Number(id), Number(count)]),
+    availableCounts.map((count, index) => [index + 1, count]),
+  )
+  assert.equal(Number(counts[stage.stage - 1][2]), availableCounts[stage.stage - 1])
+  assert(html.indexOf('class="notebook-count-explainer"') > html.indexOf('class="notebook-help"'))
+  assert(!html.slice(0, html.indexOf('class="notebook-help"')).includes('notebook-count-explainer'))
+}
+
+function checkStageLists(html, stage) {
+  const repeated = stage.repeatedFromEarlierStages.length
+    ? detailsBlock(html, 'notebook-repeated')
+    : ''
+  assert.deepEqual(cardIds(repeated), stage.repeatedFromEarlierStages)
+  const excluded = detailsBlock(html, 'notebook-excluded')
+  assert.deepEqual(cardIds(excluded), stage.excludedFromNotebook)
+  assert(!hasOpenAttribute(repeated), 'Repeated-fish details must stay collapsed')
+  assert(!hasOpenAttribute(excluded), 'Excluded profiles must stay collapsed')
+}
+
+function checkManualAndEvidence(html, lang) {
+  assert(html.includes('class="notebook-manual"'))
+  assert(html.includes('data-notebook-remaining'))
+  assert(html.includes('class="notebook-evidence"'))
+  const evidence = detailsBlock(html, 'notebook-evidence')
+  assert(
+    !hasOpenAttribute(evidence),
+    `${lang}: natural-catch proof must stay in collapsed evidence`,
+  )
+  assert(evidence.includes('notebook-completion-research.md'))
+  assert(evidence.includes('notebook-progress'))
+  const naturalProof = { en: '0/0 to 23/1', ja: '0/0から23/1', th: 'จาก 0/0 เป็น 23/1' }
+  assert(evidence.includes(naturalProof[lang]), `${lang}: natural-catch evidence is missing`)
+}
+
+function checkHelpCopy(help, lang) {
+  const noFixedTarget = {
     en: 'There is no fixed target for each page.',
     ja: '各ページに固定の目標数はありません。',
     th: 'แต่ละหน้าจึงไม่มียอดเป้าหมายตายตัว',
   }
-  assert(html.includes(statements[lang]))
-  assert(!html.includes('class="notebook-route-note"'))
+  assert(
+    help.includes(noFixedTarget[lang]),
+    `${lang}: collapsed help lost the save-count explanation`,
+  )
+  const link = help.match(/data-notebook-open href="([^"]+)"/)
+  assert(link, `${lang}: collapsed help lost the in-game notebook link`)
+  const target = new URL(
+    unescapeHtml(link[1]),
+    `https://example.test/catalogue/maps${lang === 'en' ? '' : `.${lang}`}.html`,
+  )
+  assert(target.pathname.endsWith(`/item${lang === 'en' ? '' : `.${lang}`}.html`))
+  assert.equal(target.searchParams.get('category'), 'general_tool')
+  assert.equal(target.searchParams.get('id'), '05')
 }
 
-function makeContext(lang, stage) {
+function makeContext(lang, stage, state) {
   const suffix = lang === 'en' ? '' : `.${lang}`
-  const fishVisuals = data.fishVisuals
   const species = Object.fromEntries(
-    Object.entries(fishVisuals).map(([id, visual]) => [
+    Object.entries(data.fishVisuals).map(([id, visual]) => [
       id,
       {
         name: visual[`name${lang === 'en' ? 'Latin' : lang === 'ja' ? 'Ja' : 'Th'}`] || id,
@@ -111,20 +181,24 @@ function makeContext(lang, stage) {
       },
     ]),
   )
+  const source = `maps${suffix}.html?stage=${stage}`
   const mount = { innerHTML: '', hidden: true, querySelector: () => null }
   return {
     lang,
+    suffix,
     activeStage: stage,
+    openNotebookGuide: state.openGuide,
+    notebookRouteStage: state.routeStage,
     notebookCompletion: guide,
     species,
     mount,
+    returnPath: source,
     c: {
       area: (number) => `${lang === 'th' ? 'ด่าน' : lang === 'ja' ? 'エリア' : 'Area'} ${number}`,
     },
     idNorm: (id) => String(id).toUpperCase().padStart(2, '0'),
-    sourceReturn: () => `maps${suffix}.html?stage=${stage}`,
-    fishHref: (id) =>
-      `fish${suffix}.html?id=${id}&stage=${stage}&return=${encodeURIComponent(`maps${suffix}.html?stage=${stage}`)}`,
+    sourceReturn: () => source,
+    fishHref: () => '',
     $: (id) => (id === 'notebook-guide' ? mount : null),
     esc: (value) =>
       String(value ?? '').replace(
@@ -134,13 +208,25 @@ function makeContext(lang, stage) {
   }
 }
 
-function checkFishTargets(html, stage) {
-  const newList = html.match(/<details class="notebook-new"[\s\S]*?<\/details>/)?.[0] || ''
-  const targets = [
-    ...newList.matchAll(/href="fish(?:\.th|\.ja)?\.html\?id=([0-9A-F]{2})&amp;stage=(\d+)/g),
-  ]
-    .map((match) => ({ id: match[1], stage: Number(match[2]) }))
-    .filter((target) => target.stage === stage.stage)
-    .map((target) => target.id)
-  assert.deepEqual(targets.sort(), [...stage.firstOccurrenceSpecies].sort())
+function detailsBlock(html, className) {
+  const start = html.indexOf(`<details class="${className}"`)
+  assert(start >= 0, `Missing ${className} details`)
+  let depth = 0
+  for (const match of html.slice(start).matchAll(/<\/?details\b[^>]*>/g)) {
+    depth += match[0].startsWith('</') ? -1 : 1
+    if (depth === 0) return html.slice(start, start + match.index + match[0].length)
+  }
+  throw new Error(`Unclosed ${className} details`)
+}
+
+function cardIds(html) {
+  return [...html.matchAll(/data-notebook-card="([0-9A-F]{2})"/g)].map((match) => match[1])
+}
+
+function hasOpenAttribute(html) {
+  return /<details\b[^>]*\sopen(?:\s|>)/.test(html)
+}
+
+function detailsOpens(html) {
+  return /^<details\b[^>]*\sopen(?:\s|>)/.test(html)
 }

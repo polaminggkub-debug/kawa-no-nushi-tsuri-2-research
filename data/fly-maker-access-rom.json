@@ -1,0 +1,844 @@
+{
+  "schemaVersion": 1,
+  "rom": {
+    "sizeBytes": 1572864,
+    "sha1": "c2103dd94e2a1a65a495fc02adc2e7d040f31212",
+    "sha256": "e0594921a5a2ef1a2613b9d2e29fed066569e3793393c591bf4c4968a54c0b49"
+  },
+  "area1OddFamilyAccess": {
+    "stage": 1,
+    "townMapId": 7,
+    "interactionSlotHex": "10",
+    "makerTile": {
+      "x": 5,
+      "y": 20
+    },
+    "normalShopTile": {
+      "x": 7,
+      "y": 24
+    },
+    "entrance": {
+      "ordinal": 1,
+      "entranceNumber": 2,
+      "fieldTile": {
+        "x": 12,
+        "y": 182
+      },
+      "townArrival": {
+        "mapId": 7,
+        "x": 7,
+        "y": 29
+      }
+    },
+    "familyIds": [
+      0,
+      1,
+      4
+    ],
+    "familyNames": [
+      "Mayfly",
+      "Caddis",
+      "Terrestrial"
+    ],
+    "evidenceHref": "../docs/fly-maker-access-research.md",
+    "limits": {
+      "makerMenuCapturedAtThisStage": true,
+      "naturalWalkVerified": false,
+      "storyUnlockVerified": false,
+      "questGateFoundInMakerDispatch": false,
+      "questGateScope": "Maker dispatch and chooser only; campaign progression is not established."
+    }
+  },
+  "area2DipteraStoneflyAccess": {
+    "stage": 2,
+    "townMapId": 8,
+    "interactionSlotHex": "10",
+    "makerTile": {
+      "x": 5,
+      "y": 24
+    },
+    "normalShopTile": {
+      "x": 7,
+      "y": 23
+    },
+    "entrance": {
+      "ordinal": 1,
+      "entranceNumber": 2,
+      "fieldTile": {
+        "x": 91,
+        "y": 25
+      },
+      "townArrival": {
+        "mapId": 8,
+        "x": 7,
+        "y": 29
+      }
+    },
+    "familyIds": [
+      2,
+      3,
+      4
+    ],
+    "familyNames": [
+      "Diptera",
+      "Stonefly",
+      "Terrestrial"
+    ],
+    "evidenceHref": "../docs/fly-maker-access-research.md",
+    "limits": {
+      "makerMenuCapturedAtThisStage": false,
+      "naturalWalkVerified": false,
+      "storyUnlockVerified": false,
+      "questGateFoundInMakerDispatch": false,
+      "questGateScope": "Maker dispatch and chooser only; campaign progression is not established."
+    },
+    "familyOptionsAtEvenMaker": [
+      {
+        "familyId": "02",
+        "name": "Diptera"
+      },
+      {
+        "familyId": "03",
+        "name": "Stonefly"
+      },
+      {
+        "familyId": "04",
+        "name": "Terrestrial"
+      }
+    ]
+  },
+  "area3OddFamilyAccess": {
+    "stage": 3,
+    "townMapId": 9,
+    "interactionSlotHex": "10",
+    "makerTile": {
+      "x": 10,
+      "y": 22
+    },
+    "normalShopTile": {
+      "x": 7,
+      "y": 24
+    },
+    "entrance": {
+      "ordinal": 1,
+      "entranceNumber": 2,
+      "fieldTile": {
+        "x": 20,
+        "y": 86
+      },
+      "townArrival": {
+        "mapId": 9,
+        "x": 7,
+        "y": 29
+      }
+    },
+    "familyIds": [
+      0,
+      1,
+      4
+    ],
+    "familyNames": [
+      "Mayfly",
+      "Caddis",
+      "Terrestrial"
+    ],
+    "evidenceHref": "../docs/fly-maker-access-research.md",
+    "limits": {
+      "makerMenuCapturedAtThisStage": false,
+      "naturalWalkVerified": false,
+      "storyUnlockVerified": false,
+      "questGateFoundInMakerDispatch": false,
+      "questGateScope": "Maker dispatch and chooser only; campaign progression is not established."
+    }
+  },
+  "accessByStage": {
+    "1": {
+      "stage": 1,
+      "townMapId": 7,
+      "interactionSlotHex": "10",
+      "makerTile": {
+        "x": 5,
+        "y": 20
+      },
+      "normalShopTile": {
+        "x": 7,
+        "y": 24
+      },
+      "entrance": {
+        "ordinal": 1,
+        "entranceNumber": 2,
+        "fieldTile": {
+          "x": 12,
+          "y": 182
+        },
+        "townArrival": {
+          "mapId": 7,
+          "x": 7,
+          "y": 29
+        }
+      },
+      "familyIds": [
+        0,
+        1,
+        4
+      ],
+      "familyNames": [
+        "Mayfly",
+        "Caddis",
+        "Terrestrial"
+      ],
+      "evidenceHref": "../docs/fly-maker-access-research.md",
+      "limits": {
+        "makerMenuCapturedAtThisStage": true,
+        "naturalWalkVerified": false,
+        "storyUnlockVerified": false,
+        "questGateFoundInMakerDispatch": false,
+        "questGateScope": "Maker dispatch and chooser only; campaign progression is not established."
+      }
+    },
+    "2": {
+      "stage": 2,
+      "townMapId": 8,
+      "interactionSlotHex": "10",
+      "makerTile": {
+        "x": 5,
+        "y": 24
+      },
+      "normalShopTile": {
+        "x": 7,
+        "y": 23
+      },
+      "entrance": {
+        "ordinal": 1,
+        "entranceNumber": 2,
+        "fieldTile": {
+          "x": 91,
+          "y": 25
+        },
+        "townArrival": {
+          "mapId": 8,
+          "x": 7,
+          "y": 29
+        }
+      },
+      "familyIds": [
+        2,
+        3,
+        4
+      ],
+      "familyNames": [
+        "Diptera",
+        "Stonefly",
+        "Terrestrial"
+      ],
+      "evidenceHref": "../docs/fly-maker-access-research.md",
+      "limits": {
+        "makerMenuCapturedAtThisStage": false,
+        "naturalWalkVerified": false,
+        "storyUnlockVerified": false,
+        "questGateFoundInMakerDispatch": false,
+        "questGateScope": "Maker dispatch and chooser only; campaign progression is not established."
+      },
+      "familyOptionsAtEvenMaker": [
+        {
+          "familyId": "02",
+          "name": "Diptera"
+        },
+        {
+          "familyId": "03",
+          "name": "Stonefly"
+        },
+        {
+          "familyId": "04",
+          "name": "Terrestrial"
+        }
+      ]
+    },
+    "3": {
+      "stage": 3,
+      "townMapId": 9,
+      "interactionSlotHex": "10",
+      "makerTile": {
+        "x": 10,
+        "y": 22
+      },
+      "normalShopTile": {
+        "x": 7,
+        "y": 24
+      },
+      "entrance": {
+        "ordinal": 1,
+        "entranceNumber": 2,
+        "fieldTile": {
+          "x": 20,
+          "y": 86
+        },
+        "townArrival": {
+          "mapId": 9,
+          "x": 7,
+          "y": 29
+        }
+      },
+      "familyIds": [
+        0,
+        1,
+        4
+      ],
+      "familyNames": [
+        "Mayfly",
+        "Caddis",
+        "Terrestrial"
+      ],
+      "evidenceHref": "../docs/fly-maker-access-research.md",
+      "limits": {
+        "makerMenuCapturedAtThisStage": false,
+        "naturalWalkVerified": false,
+        "storyUnlockVerified": false,
+        "questGateFoundInMakerDispatch": false,
+        "questGateScope": "Maker dispatch and chooser only; campaign progression is not established."
+      }
+    }
+  },
+  "townSlot10Routing": [
+    {
+      "townMapId": 7,
+      "pointer": "0xC082",
+      "pointerFileOffset": "0x003D82",
+      "normalShopTile": {
+        "x": 7,
+        "y": 24
+      },
+      "slot10Tile": {
+        "x": 5,
+        "y": 20
+      },
+      "slot10FileOffset": "0x004092",
+      "slot10Mode": 3,
+      "slot10Handler": "03:9517"
+    },
+    {
+      "townMapId": 8,
+      "pointer": "0xC0C4",
+      "pointerFileOffset": "0x003D84",
+      "normalShopTile": {
+        "x": 7,
+        "y": 23
+      },
+      "slot10Tile": {
+        "x": 5,
+        "y": 24
+      },
+      "slot10FileOffset": "0x0040D4",
+      "slot10Mode": 3,
+      "slot10Handler": "03:9517"
+    },
+    {
+      "townMapId": 9,
+      "pointer": "0xC0DC",
+      "pointerFileOffset": "0x003D86",
+      "normalShopTile": {
+        "x": 7,
+        "y": 24
+      },
+      "slot10Tile": {
+        "x": 10,
+        "y": 22
+      },
+      "slot10FileOffset": "0x0040EC",
+      "slot10Mode": 3,
+      "slot10Handler": "03:9517"
+    },
+    {
+      "townMapId": 10,
+      "pointer": "0xC0F4",
+      "pointerFileOffset": "0x003D88",
+      "normalShopTile": {
+        "x": 7,
+        "y": 23
+      },
+      "slot10Tile": {
+        "x": 8,
+        "y": 74
+      },
+      "slot10FileOffset": "0x004104",
+      "slot10Mode": 7,
+      "slot10Handler": "03:86E1"
+    },
+    {
+      "townMapId": 11,
+      "pointer": "0xC10C",
+      "pointerFileOffset": "0x003D8A",
+      "normalShopTile": {
+        "x": 7,
+        "y": 24
+      },
+      "slot10Tile": {
+        "x": 7,
+        "y": 74
+      },
+      "slot10FileOffset": "0x00411C",
+      "slot10Mode": 7,
+      "slot10Handler": "03:86E1"
+    },
+    {
+      "townMapId": 12,
+      "pointer": "0xC124",
+      "pointerFileOffset": "0x003D8C",
+      "normalShopTile": {
+        "x": 8,
+        "y": 23
+      },
+      "slot10Tile": {
+        "x": 7,
+        "y": 74
+      },
+      "slot10FileOffset": "0x004134",
+      "slot10Mode": 7,
+      "slot10Handler": "03:86E1"
+    }
+  ],
+  "accessByFamily": {
+    "0": {
+      "stage": 1,
+      "townMapId": 7,
+      "interactionSlotHex": "10",
+      "makerTile": {
+        "x": 5,
+        "y": 20
+      },
+      "normalShopTile": {
+        "x": 7,
+        "y": 24
+      },
+      "entrance": {
+        "ordinal": 1,
+        "entranceNumber": 2,
+        "fieldTile": {
+          "x": 12,
+          "y": 182
+        },
+        "townArrival": {
+          "mapId": 7,
+          "x": 7,
+          "y": 29
+        }
+      },
+      "familyIds": [
+        0,
+        1,
+        4
+      ],
+      "familyNames": [
+        "Mayfly",
+        "Caddis",
+        "Terrestrial"
+      ],
+      "evidenceHref": "../docs/fly-maker-access-research.md",
+      "limits": {
+        "makerMenuCapturedAtThisStage": true,
+        "naturalWalkVerified": false,
+        "storyUnlockVerified": false,
+        "questGateFoundInMakerDispatch": false,
+        "questGateScope": "Maker dispatch and chooser only; campaign progression is not established."
+      }
+    },
+    "1": {
+      "stage": 1,
+      "townMapId": 7,
+      "interactionSlotHex": "10",
+      "makerTile": {
+        "x": 5,
+        "y": 20
+      },
+      "normalShopTile": {
+        "x": 7,
+        "y": 24
+      },
+      "entrance": {
+        "ordinal": 1,
+        "entranceNumber": 2,
+        "fieldTile": {
+          "x": 12,
+          "y": 182
+        },
+        "townArrival": {
+          "mapId": 7,
+          "x": 7,
+          "y": 29
+        }
+      },
+      "familyIds": [
+        0,
+        1,
+        4
+      ],
+      "familyNames": [
+        "Mayfly",
+        "Caddis",
+        "Terrestrial"
+      ],
+      "evidenceHref": "../docs/fly-maker-access-research.md",
+      "limits": {
+        "makerMenuCapturedAtThisStage": true,
+        "naturalWalkVerified": false,
+        "storyUnlockVerified": false,
+        "questGateFoundInMakerDispatch": false,
+        "questGateScope": "Maker dispatch and chooser only; campaign progression is not established."
+      }
+    },
+    "4": {
+      "stage": 1,
+      "townMapId": 7,
+      "interactionSlotHex": "10",
+      "makerTile": {
+        "x": 5,
+        "y": 20
+      },
+      "normalShopTile": {
+        "x": 7,
+        "y": 24
+      },
+      "entrance": {
+        "ordinal": 1,
+        "entranceNumber": 2,
+        "fieldTile": {
+          "x": 12,
+          "y": 182
+        },
+        "townArrival": {
+          "mapId": 7,
+          "x": 7,
+          "y": 29
+        }
+      },
+      "familyIds": [
+        0,
+        1,
+        4
+      ],
+      "familyNames": [
+        "Mayfly",
+        "Caddis",
+        "Terrestrial"
+      ],
+      "evidenceHref": "../docs/fly-maker-access-research.md",
+      "limits": {
+        "makerMenuCapturedAtThisStage": true,
+        "naturalWalkVerified": false,
+        "storyUnlockVerified": false,
+        "questGateFoundInMakerDispatch": false,
+        "questGateScope": "Maker dispatch and chooser only; campaign progression is not established."
+      }
+    },
+    "2": {
+      "stage": 2,
+      "townMapId": 8,
+      "interactionSlotHex": "10",
+      "makerTile": {
+        "x": 5,
+        "y": 24
+      },
+      "normalShopTile": {
+        "x": 7,
+        "y": 23
+      },
+      "entrance": {
+        "ordinal": 1,
+        "entranceNumber": 2,
+        "fieldTile": {
+          "x": 91,
+          "y": 25
+        },
+        "townArrival": {
+          "mapId": 8,
+          "x": 7,
+          "y": 29
+        }
+      },
+      "familyIds": [
+        2,
+        3,
+        4
+      ],
+      "familyNames": [
+        "Diptera",
+        "Stonefly",
+        "Terrestrial"
+      ],
+      "evidenceHref": "../docs/fly-maker-access-research.md",
+      "limits": {
+        "makerMenuCapturedAtThisStage": false,
+        "naturalWalkVerified": false,
+        "storyUnlockVerified": false,
+        "questGateFoundInMakerDispatch": false,
+        "questGateScope": "Maker dispatch and chooser only; campaign progression is not established."
+      },
+      "familyOptionsAtEvenMaker": [
+        {
+          "familyId": "02",
+          "name": "Diptera"
+        },
+        {
+          "familyId": "03",
+          "name": "Stonefly"
+        },
+        {
+          "familyId": "04",
+          "name": "Terrestrial"
+        }
+      ]
+    },
+    "3": {
+      "stage": 2,
+      "townMapId": 8,
+      "interactionSlotHex": "10",
+      "makerTile": {
+        "x": 5,
+        "y": 24
+      },
+      "normalShopTile": {
+        "x": 7,
+        "y": 23
+      },
+      "entrance": {
+        "ordinal": 1,
+        "entranceNumber": 2,
+        "fieldTile": {
+          "x": 91,
+          "y": 25
+        },
+        "townArrival": {
+          "mapId": 8,
+          "x": 7,
+          "y": 29
+        }
+      },
+      "familyIds": [
+        2,
+        3,
+        4
+      ],
+      "familyNames": [
+        "Diptera",
+        "Stonefly",
+        "Terrestrial"
+      ],
+      "evidenceHref": "../docs/fly-maker-access-research.md",
+      "limits": {
+        "makerMenuCapturedAtThisStage": false,
+        "naturalWalkVerified": false,
+        "storyUnlockVerified": false,
+        "questGateFoundInMakerDispatch": false,
+        "questGateScope": "Maker dispatch and chooser only; campaign progression is not established."
+      },
+      "familyOptionsAtEvenMaker": [
+        {
+          "familyId": "02",
+          "name": "Diptera"
+        },
+        {
+          "familyId": "03",
+          "name": "Stonefly"
+        },
+        {
+          "familyId": "04",
+          "name": "Terrestrial"
+        }
+      ]
+    }
+  },
+  "familyOptionsByParity": {
+    "selector": "$085A & 1",
+    "odd": [
+      {
+        "familyId": "00",
+        "name": "Mayfly"
+      },
+      {
+        "familyId": "01",
+        "name": "Caddis"
+      },
+      {
+        "familyId": "04",
+        "name": "Terrestrial"
+      }
+    ],
+    "even": [
+      {
+        "familyId": "02",
+        "name": "Diptera"
+      },
+      {
+        "familyId": "03",
+        "name": "Stonefly"
+      },
+      {
+        "familyId": "04",
+        "name": "Terrestrial"
+      }
+    ],
+    "oddLabelCapture": "Area 1 original-ROM runtime capture",
+    "evenLabelCapture": "Controlled $085A=02 fixture, not a natural Area 2 walk.",
+    "cursorFamilyKeys": {
+      "odd": [
+        "00",
+        "01",
+        "04"
+      ],
+      "even": [
+        "02",
+        "03",
+        "04"
+      ],
+      "source": "$03:9581..95FF writes family key $1D3B by cursor and map parity."
+    }
+  },
+  "sources": {
+    "townObjectPointerTable": "$00:BD76; slot 08 starts at object record; slot 10 is +0x10 bytes.",
+    "fieldEntranceTable": "$00:9FB9; groups are 0x18 bytes; Area 1/2/3 entrance #2 at $00:9FBD/$00:9FD5/$00:9FED.",
+    "townArrivalTable": "$00:A049; entrance #2 is $00:A04D.",
+    "makerFamilyBranch": "$03:9521 tests $085A bit 0; even sets chooser state $21, odd sets $22.",
+    "interactionModeDispatch": "$03:8085 routes mode 3 to $03:9517; $03:80B1 routes mode 7 to $03:86E1.",
+    "townMapTransition": "$00:9E16 adds six to the outdoor map ID before storing $085A.",
+    "townNpcModeDispatch": "$00:CF05 sends slot 10 to mode 3 for map IDs below 10; otherwise mode 7.",
+    "dipteraStoneflyROMPartCounts": {
+      "02": {
+        "body": 9,
+        "wing": 8,
+        "tail": 4
+      },
+      "03": {
+        "body": 10,
+        "wing": 4,
+        "tail": 7
+      }
+    },
+    "fingerprints": [
+      {
+        "cpu": "$00:9E16",
+        "fileOffset": "0x001E16",
+        "bytes": "ad 5a 08 69 06 00 8d 5a 08"
+      },
+      {
+        "cpu": "$00:CF05",
+        "fileOffset": "0x004F05",
+        "bytes": "c9 10 00 d0 13 ad 5a 08 c9 0a 00 b0 05 a9 03 00 80 03 a9 07 00 4c 25 cf"
+      },
+      {
+        "cpu": "$03:8085",
+        "fileOffset": "0x018085",
+        "bytes": "c9 03 00 d0 06 20 17 95 4c bc 80"
+      },
+      {
+        "cpu": "$03:80B1",
+        "fileOffset": "0x0180B1",
+        "bytes": "c9 07 00 d0 06 20 e1 86 4c bc 80"
+      },
+      {
+        "cpu": "$03:9521",
+        "fileOffset": "0x019521",
+        "bytes": "ad 5a 08 29 01 00 f0 08 a9 21 00 8d 4e 08 80 06 a9 22 00 8d 4e 08"
+      },
+      {
+        "cpu": "$03:9581",
+        "fileOffset": "0x019581",
+        "bytes": "20 69 cc ad 33 1d c9 00 00 d0 13 ad 5a 08 29 01 00 f0 05 20 dd 95 80 03 20 ea 95"
+      },
+      {
+        "cpu": "$03:959F",
+        "fileOffset": "0x01959F",
+        "bytes": "c9 01 00 d0 13 ad 5a 08 29 01 00 f0 05 20 e2 95 80 03 20 f2 95"
+      },
+      {
+        "cpu": "$03:95B7",
+        "fileOffset": "0x0195B7",
+        "bytes": "c9 02 00 d0 06 20 fa 95 4c c2 95"
+      },
+      {
+        "cpu": "$03:95DD",
+        "fileOffset": "0x0195DD",
+        "bytes": "9c 3b 1d"
+      },
+      {
+        "cpu": "$03:95E2",
+        "fileOffset": "0x0195E2",
+        "bytes": "a9 01 00 8d 3b 1d"
+      },
+      {
+        "cpu": "$03:95EA",
+        "fileOffset": "0x0195EA",
+        "bytes": "a9 02 00 8d 3b 1d"
+      },
+      {
+        "cpu": "$03:95F2",
+        "fileOffset": "0x0195F2",
+        "bytes": "a9 03 00 8d 3b 1d"
+      },
+      {
+        "cpu": "$03:95FA",
+        "fileOffset": "0x0195FA",
+        "bytes": "a9 04 00 8d 3b 1d"
+      },
+      {
+        "cpu": "$00:BD82",
+        "fileOffset": "0x003D82",
+        "bytes": "82 c0"
+      },
+      {
+        "cpu": "$00:BD84",
+        "fileOffset": "0x003D84",
+        "bytes": "c4 c0"
+      },
+      {
+        "cpu": "$00:BD86",
+        "fileOffset": "0x003D86",
+        "bytes": "dc c0"
+      },
+      {
+        "cpu": "$00:C082",
+        "fileOffset": "0x004082",
+        "bytes": "07 00 18 00"
+      },
+      {
+        "cpu": "$00:C092",
+        "fileOffset": "0x004092",
+        "bytes": "05 00 14 00"
+      },
+      {
+        "cpu": "$00:C0C4",
+        "fileOffset": "0x0040C4",
+        "bytes": "07 00 17 00"
+      },
+      {
+        "cpu": "$00:C0D4",
+        "fileOffset": "0x0040D4",
+        "bytes": "05 00 18 00"
+      },
+      {
+        "cpu": "$00:C0EC",
+        "fileOffset": "0x0040EC",
+        "bytes": "0a 00 16 00"
+      },
+      {
+        "cpu": "$00:9FBD",
+        "fileOffset": "0x001FBD",
+        "bytes": "0c 00 b6 00"
+      },
+      {
+        "cpu": "$00:9FD5",
+        "fileOffset": "0x001FD5",
+        "bytes": "5b 00 19 00"
+      },
+      {
+        "cpu": "$00:9FED",
+        "fileOffset": "0x001FED",
+        "bytes": "14 00 56 00"
+      },
+      {
+        "cpu": "$00:A04D",
+        "fileOffset": "0x00204D",
+        "bytes": "07 00 1d 00"
+      }
+    ]
+  }
+}

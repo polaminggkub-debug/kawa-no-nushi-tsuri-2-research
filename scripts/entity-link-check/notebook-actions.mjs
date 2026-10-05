@@ -28,12 +28,20 @@ function checkStage(lang, stage) {
   validate(html, origin)
   checkVerification(html, origin, stage.stage, source, suffix)
   checkAreaLinks(html, origin, nested)
+  const group =
+    html.match(
+      new RegExp(`<details id="notebook-route-${stage.stage}"[^>]*>([\\s\\S]*?)<\\/details>`),
+    )?.[1] || ''
   const cards = [
-    ...html.matchAll(
-      /<article class="notebook-fish" data-notebook-card="([0-9A-F]{2})">([\s\S]*?)<\/article>/g,
+    ...group.matchAll(
+      /<article class="notebook-fish notebook-route-fish" data-notebook-card="([0-9A-F]{2})">([\s\S]*?)<\/article>/g,
     ),
   ]
-  assert.equal(cards.length, stage.speciesIds.length)
+  assert.equal(cards.length, stage.firstOccurrenceCount)
+  assert.deepEqual(
+    cards.map(([, id]) => id),
+    stage.firstOccurrenceSpecies,
+  )
   for (const [, id, card] of cards) checkCard(card, id, stage.stage, source, origin, suffix)
 }
 
@@ -42,7 +50,10 @@ function checkVerification(html, origin, stage, source, suffix) {
     /<section[^>]*data-notebook-verification[^>]*>([\s\S]*?)<\/section>/,
   )?.[1]
   assert(section, 'Missing visible journal verification instruction')
-  assert(html.indexOf('data-notebook-verification') < html.indexOf('class="notebook-manual"'))
+  const help = html.match(/<details class="notebook-help"[^>]*>([\s\S]*?)<\/details>/)?.[0]
+  assert(help, 'Missing collapsed journal help')
+  assert(!/^<details\b[^>]*\sopen(?:\s|>)/.test(help), 'Journal help must start collapsed')
+  assert(help.includes(section), 'Journal verification must be inside collapsed help')
   const link = section.match(/data-notebook-open[^>]*href="([^"]+)"/)
   assert(link, 'Journal verification must link to the notebook item')
   const url = new URL(unescapeHtml(link[1]), origin)
@@ -85,7 +96,7 @@ function checkCard(html, id, stage, source, origin, suffix) {
     assert(target.pathname.endsWith(`/${page}${suffix}.html`))
     assert.equal(target.searchParams.get(action === 'details' ? 'id' : 'fish'), id)
     assert.equal(target.searchParams.get('stage'), String(stage))
-    assert.equal(target.searchParams.get('return'), `${source}#notebook-guide`)
+    assert.equal(target.searchParams.get('return'), `${source}#notebook-route-${stage}`)
     if (action === 'map') assert.equal(target.hash, '#map-view')
     if (action === 'equipment') assert.equal(target.searchParams.get('category'), 'all')
   }

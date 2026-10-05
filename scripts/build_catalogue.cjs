@@ -32,6 +32,7 @@ if(fs.existsSync(thaiCopyPath)&&fs.existsSync(thaiItemsPath)) {
 require('./attach_fly_menu_positions.cjs')(root,data);
 require('./attach_fly_other_families.cjs')(root,data);
 require('./attach_fly_even_families.cjs')(root,data);
+require('./attach_fly_maker_access.cjs')(root,data);
 const flySteps=JSON.parse(fs.readFileSync(path.join(root,'data/fly-maker-player-steps.json'),'utf8'));
 if(flySteps.romSha256!=='e0594921a5a2ef1a2613b9d2e29fed066569e3793393c591bf4c4968a54c0b49')throw new Error('Fly steps use a different ROM');
 data.customizerFrames=flySteps.frames;

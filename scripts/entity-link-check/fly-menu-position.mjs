@@ -316,7 +316,7 @@ function cardFor(html, item) {
 const localeCopy = {
   en: {
     title: 'Find this component in the game menu',
-    scope: 'Area 1 · choose Mayfly (メイフライ) at the fly maker',
+    scope: 'choose Mayfly (メイフライ) at the fly maker',
     start: 'Each part starts at the top-left cursor.',
     right: (count) => `Right ${count} time${count === 1 ? '' : 's'}`,
     down: (count) => `Down ${count} time${count === 1 ? '' : 's'}`,
@@ -331,7 +331,7 @@ const localeCopy = {
   },
   ja: {
     title: 'ゲームのメニューでこの部品を選ぶ',
-    scope: 'エリア1 · 毛バリ作成で「メイフライ」を選択',
+    scope: '毛バリ作成で「メイフライ」を選択',
     start: '各部品の初期カーソルは左上です。',
     right: (count) => `右${count}回`,
     down: (count) => `下${count}回`,
@@ -346,7 +346,7 @@ const localeCopy = {
   },
   th: {
     title: 'เลือกชิ้นนี้ตรงไหนในเมนูเกม?',
-    scope: 'ร้านด่าน 1 · เลือกเมย์ฟลาย (メイフライ) ตอนประกอบฟลาย',
+    scope: 'เลือกเมย์ฟลาย (メイフライ) ตอนประกอบฟลาย',
     start: 'แต่ละเมนูเริ่มจากเคอร์เซอร์ซ้ายบน',
     right: (count) => `ขวา ${count} ครั้ง`,
     down: (count) => `ลง ${count} ครั้ง`,

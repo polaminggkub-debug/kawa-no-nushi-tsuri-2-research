@@ -343,3 +343,33 @@ links. The catalogue omits its redundant “no cheaper” fallback when a same-p
 choice exists. Owned compatible items remain usable; compatibility coverage is
 not described as bite, fight or landing superiority. Technical gates and the
 original cheaper comparisons remain intact. See bait-lure-player-choices.md.
+
+## Independent 66-species coverage recheck
+
+An independent 66-species recheck regenerated the notebook completion data
+directly from the original ROM and matched the published dataset exactly.
+All 198 first-area fish details (66 species in three languages) contained
+valid map and compatible-equipment actions: 576 map previews and 10,854
+compatible item links. The six-area checklist retained all 66 unique IDs,
+with 97 area memberships and 31 repeats. This verifies guide coverage,
+not a natural 66-species landing playthrough.
+
+The maps page now uses that route as the single new-species checklist instead
+of rendering the selected area's new fish twice. Opening the journal guide
+opens the matching route group. Count explanations, the in-game verification
+procedure and cross-area availability totals share one closed help disclosure.
+The main panel retains the area summary, manual progress and fish actions;
+checkbox text is shorter while accessible labels still state in-game checking.
+Repeat species, exclusions, all 66 route entries and ROM evidence remain.
+
+## Fly-maker location decisions
+
+The 134 fly component summaries and supporting actions were audited separately.
+130 have observed menu choices; four unverified wing records retain limited-path
+advice. A real next-action gap remained: even-family instructions named the
+palette condition but did not say where its maker was. An original-ROM trace
+now distinguishes maker slot 10 in towns 7–9 from the special-rod NPC in towns
+10–12, and links the 130 verified choices to matching local maker/entrance
+endpoints in areas 1–3, falling back to the first recorded maker where needed.
+The renderer preserves controller-replay limits and does not imply story access,
+a clear walk, or fishing superiority. See fly-maker-access-research.md.

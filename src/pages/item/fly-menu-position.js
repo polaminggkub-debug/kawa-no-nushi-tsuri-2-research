@@ -1,3 +1,5 @@
+import { flyMakerAccess } from './fly-maker-access.js'
+
 const mayfly = {
   en: {
     title: 'Find this component in the game menu',
@@ -117,9 +119,10 @@ function otherFamilyCopy(lang, choice) {
   const area = choice.area || 1
   return {
     ...mayfly[lang],
-    scope: choice.controlledFixture
-      ? copy.controlledScope(family, choice.familyJa)
-      : copy.scope(area, family, choice.familyJa),
+    scope:
+      choice.controlledFixture && !choice.access
+        ? copy.controlledScope(family, choice.familyJa)
+        : copy.scope(area, family, choice.familyJa),
     limit: choice.controlledFixture ? copy.controlledLimit : copy.limit(area, family),
     none: copy.none,
     directQuote: copy.directQuote,
@@ -152,6 +155,9 @@ export function flyMenuPosition(ctx, item) {
   const copy = isMayfly ? mayfly[lang] : otherFamilyCopy(lang, choice)
   const instructions = instructionsFor(copy, choice.row, choice.column)
   const position = copy.position(choice.row, choice.column)
+  const scope = choice.access
+    ? copy.scope.replace(/^(?:Area \d+|ร้านด่าน \d+|エリア\d+) · /, '')
+    : copy.scope
   const noneInstructions =
     isMayfly && choice.part === 'tail'
       ? `<p class="fly-menu-none-tail">${ctx.esc(copy.noneTail)}</p>`
@@ -162,5 +168,5 @@ export function flyMenuPosition(ctx, item) {
     choice.nextStep === 'quote'
       ? `<p class="fly-menu-next-step rod-verdict">${ctx.esc(copy.directQuote)}</p>`
       : ''
-  return `<section id="fly-menu-position" class="detail-section fly-menu-position" data-fly-menu-position="${ctx.esc(item.category)}:${ctx.esc(item.id)}"><h2>${ctx.esc(copy.title)}</h2><p>${ctx.esc(copy.scope)}</p><p><strong>${ctx.esc(position)}</strong> · ${ctx.esc(copy.start)}</p><p class="rod-verdict">${ctx.esc(instructions)}</p>${noneInstructions}${nextStep}<figure><a href="${ctx.esc(choice.image)}" target="_blank" rel="noopener"><img src="${ctx.esc(choice.image)}" alt="${ctx.esc(position)}" width="256" height="224" loading="lazy"></a><figcaption>${ctx.esc(copy.caption)}</figcaption></figure><details><summary>${ctx.esc(copy.evidence)}</summary><p>${ctx.esc(copy.limit)}</p><a href="${ctx.esc(choice.evidenceHref)}">${ctx.esc(copy.notes)} ↗</a></details></section>`
+  return `<section id="fly-menu-position" class="detail-section fly-menu-position" data-fly-menu-position="${ctx.esc(item.category)}:${ctx.esc(item.id)}"><h2>${ctx.esc(copy.title)}</h2><p>${ctx.esc(scope)}</p>${flyMakerAccess(ctx, item)}<p><strong>${ctx.esc(position)}</strong> · ${ctx.esc(copy.start)}</p><p class="rod-verdict">${ctx.esc(instructions)}</p>${noneInstructions}${nextStep}<figure><a href="${ctx.esc(choice.image)}" target="_blank" rel="noopener"><img src="${ctx.esc(choice.image)}" alt="${ctx.esc(position)}" width="256" height="224" loading="lazy"></a><figcaption>${ctx.esc(copy.caption)}</figcaption></figure><details><summary>${ctx.esc(copy.evidence)}</summary><p>${ctx.esc(copy.limit)}</p><a href="${ctx.esc(choice.evidenceHref)}">${ctx.esc(copy.notes)} ↗</a></details></section>`
 }

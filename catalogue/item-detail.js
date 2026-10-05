@@ -2003,6 +2003,47 @@
     return `<section id="fly-price-choice" class="detail-section fly-price-choice" data-fly-price-choice="${ctx.esc(item.category)}:${ctx.esc(item.id)}"><h2>${ctx.esc(c.title)}</h2><p><strong>${ctx.esc(c.contribution(item.priceYen))}</strong></p><p>${ctx.esc(c.rule)}</p>${comparisons ? `<div class="detail-grid">${comparisons}</div>` : ""}<a class="route-button" href="#fly-menu-position">${ctx.esc(c.menu)} ↘</a><details class="fly-price-evidence"><summary>${ctx.esc(c.evidence)}</summary><p>${ctx.esc(c.limit)}</p><a href="../docs/fly-maker-menu-research.md">${ctx.esc(c.sources)} ↗</a></details></section>`;
   }
 
+  // src/pages/item/fly-maker-access.js
+  var COPY3 = {
+    th: {
+      title: (stage) => `ไปประกอบที่เมืองด่าน ${stage}`,
+      body: (a) => `เข้าเมืองจากทางเข้าลำดับที่ ${a.entrance.ordinal + 1} บนแผนที่ด่าน (X${a.entrance.fieldTile.x},Y${a.entrance.fieldTile.y}) จะมาถึง X${a.entrance.townArrival.x},Y${a.entrance.townArrival.y} ในเมือง จากนั้นหาคนทำฟลายที่ X${a.makerTile.x},Y${a.makerTile.y} เลือกตระกูลนี้แล้วเลือกชิ้นส่วนตามภาพด้านล่าง ไม่ต้องซื้อชิ้นส่วนไปก่อน เหลือช่องฟลายว่างและตรวจราคาสุทธิก่อนจ่าย`,
+      link: "ดูทางเข้าเมืองและตำแหน่งคนทำฟลาย",
+      limit: "ตำแหน่งและตระกูลเมนูมาจาก ROM ยังไม่ได้ทดลองเดินเส้นทางนี้หรือยืนยันขั้นตอนเนื้อเรื่องเพื่อเข้าด่านที่ระบุ"
+    },
+    en: {
+      title: (stage) => `Make this at the Area ${stage} town fly maker`,
+      body: (a) => `Use town entrance ${a.entrance.ordinal + 1} on the area map (X${a.entrance.fieldTile.x},Y${a.entrance.fieldTile.y}), arriving at town X${a.entrance.townArrival.x},Y${a.entrance.townArrival.y}. Find the fly maker at X${a.makerTile.x},Y${a.makerTile.y}, choose this family, then select parts using the pictures below. You do not need to buy loose components first. Keep a free fly slot and check the final quote before paying.`,
+      link: "Show town entrance and fly-maker location",
+      limit: "Location and menu families are established from ROM code. This walking route and story progression into the specified area have not been replayed."
+    },
+    ja: {
+      title: (stage) => `エリア${stage}の町の毛バリ職人で作成する`,
+      body: (a) => `屋外の町入口${a.entrance.ordinal + 1}（X${a.entrance.fieldTile.x},Y${a.entrance.fieldTile.y}）から入り、町のX${a.entrance.townArrival.x},Y${a.entrance.townArrival.y}に到着します。X${a.makerTile.x},Y${a.makerTile.y}の毛バリ職人に話し、この系統を選んで下の画像どおり部品を選択します。部品の事前購入は不要です。フライ欄に空きを残し、支払前に見積額を確認してください。`,
+      link: "町入口と毛バリ職人の場所を見る",
+      limit: "場所とメニュー系統はROMのコードで確認しています。この歩行経路と対象エリアに至るストーリー進行は再現していません。"
+    }
+  };
+  function flyMakerAccess(ctx, item) {
+    const choice = item.flyMakerMenuChoice;
+    const access = choice?.availableAccess?.find((entry) => entry.stage === Number(ctx.selectedStage)) || choice?.access;
+    if (!access || ![1, 2, 3].includes(access.stage)) return "";
+    const text5 = COPY3[ctx.lang] || COPY3.en;
+    const query = new URLSearchParams({
+      stage: String(access.stage),
+      place: "town",
+      maker: "1",
+      entrance: String(access.entrance.ordinal)
+    });
+    if (ctx.selectedFish) query.set("fish", ctx.selectedFish);
+    const route = ctx.selectedRoute || ctx.params?.get("route");
+    if (["float", "sinker", "lure", "fly"].includes(route)) query.set("route", route);
+    query.set("return", ctx.currentLocalRoute());
+    const suffix = ctx.lang === "en" ? "" : `.${ctx.lang}`;
+    const href = `shops${suffix}.html?${query}#fly-maker-location`;
+    return `<aside class="detail-section" data-fly-maker-access><h3>${ctx.esc(text5.title(access.stage))}</h3><p>${ctx.esc(text5.body(access))}</p><a class="route-button" data-fly-maker-location-link href="${ctx.esc(href)}">${ctx.esc(text5.link)} ↗</a><details><summary>${ctx.esc(ctx.lang === "th" ? "หลักฐานและขอบเขต" : ctx.lang === "ja" ? "根拠と確認範囲" : "Evidence and limits")}</summary><p>${ctx.esc(text5.limit)}</p><a href="${ctx.esc(access.evidenceHref)}">ROM ↗</a></details></aside>`;
+  }
+
   // src/pages/item/fly-menu-position.js
   var mayfly = {
     en: {
@@ -2101,7 +2142,7 @@
     const area = choice.area || 1;
     return {
       ...mayfly[lang],
-      scope: choice.controlledFixture ? copy4.controlledScope(family, choice.familyJa) : copy4.scope(area, family, choice.familyJa),
+      scope: choice.controlledFixture && !choice.access ? copy4.controlledScope(family, choice.familyJa) : copy4.scope(area, family, choice.familyJa),
       limit: choice.controlledFixture ? copy4.controlledLimit : copy4.limit(area, family),
       none: copy4.none,
       directQuote: copy4.directQuote
@@ -2127,9 +2168,10 @@
     const copy4 = isMayfly ? mayfly[lang] : otherFamilyCopy(lang, choice);
     const instructions = instructionsFor(copy4, choice.row, choice.column);
     const position = copy4.position(choice.row, choice.column);
+    const scope = choice.access ? copy4.scope.replace(/^(?:Area \d+|ร้านด่าน \d+|エリア\d+) · /, "") : copy4.scope;
     const noneInstructions = isMayfly && choice.part === "tail" ? `<p class="fly-menu-none-tail">${ctx.esc(copy4.noneTail)}</p>` : choice.nonePosition ? `<p class="fly-menu-none-tail">${ctx.esc(nonePositionInstructions(copy4, choice, lang))}</p>` : "";
     const nextStep = choice.nextStep === "quote" ? `<p class="fly-menu-next-step rod-verdict">${ctx.esc(copy4.directQuote)}</p>` : "";
-    return `<section id="fly-menu-position" class="detail-section fly-menu-position" data-fly-menu-position="${ctx.esc(item.category)}:${ctx.esc(item.id)}"><h2>${ctx.esc(copy4.title)}</h2><p>${ctx.esc(copy4.scope)}</p><p><strong>${ctx.esc(position)}</strong> · ${ctx.esc(copy4.start)}</p><p class="rod-verdict">${ctx.esc(instructions)}</p>${noneInstructions}${nextStep}<figure><a href="${ctx.esc(choice.image)}" target="_blank" rel="noopener"><img src="${ctx.esc(choice.image)}" alt="${ctx.esc(position)}" width="256" height="224" loading="lazy"></a><figcaption>${ctx.esc(copy4.caption)}</figcaption></figure><details><summary>${ctx.esc(copy4.evidence)}</summary><p>${ctx.esc(copy4.limit)}</p><a href="${ctx.esc(choice.evidenceHref)}">${ctx.esc(copy4.notes)} ↗</a></details></section>`;
+    return `<section id="fly-menu-position" class="detail-section fly-menu-position" data-fly-menu-position="${ctx.esc(item.category)}:${ctx.esc(item.id)}"><h2>${ctx.esc(copy4.title)}</h2><p>${ctx.esc(scope)}</p>${flyMakerAccess(ctx, item)}<p><strong>${ctx.esc(position)}</strong> · ${ctx.esc(copy4.start)}</p><p class="rod-verdict">${ctx.esc(instructions)}</p>${noneInstructions}${nextStep}<figure><a href="${ctx.esc(choice.image)}" target="_blank" rel="noopener"><img src="${ctx.esc(choice.image)}" alt="${ctx.esc(position)}" width="256" height="224" loading="lazy"></a><figcaption>${ctx.esc(copy4.caption)}</figcaption></figure><details><summary>${ctx.esc(copy4.evidence)}</summary><p>${ctx.esc(copy4.limit)}</p><a href="${ctx.esc(choice.evidenceHref)}">${ctx.esc(copy4.notes)} ↗</a></details></section>`;
   }
 
   // src/pages/item/bait-acquisition.js
@@ -2854,7 +2896,7 @@
   function loadCatalogue(ctx) {
     ctx.flyMakerLink = (item) => item.category.startsWith("fly") ? `<p><a class="route-button" data-fly-maker href="${ctx.esc(ctx.currentCategoryLink().split("#")[0] + "#fly-instructions")}">${ctx.lang === "th" ? "ดูขั้นตอนประกอบฟลายเองและตรวจราคาในเกม" : ctx.lang === "ja" ? "自作フライの手順とゲーム内見積額を確認" : "See custom fly steps and check the in-game quote"} ↗</a></p>` : "";
     ctx.setNavigation();
-    fetch("gallery-data.json?v=compendium-20261005-34").then((response) => {
+    fetch("gallery-data.json?v=compendium-20261005-35").then((response) => {
       if (!response.ok) throw new Error("catalogue data unavailable");
       return response.json();
     }).then((data) => {

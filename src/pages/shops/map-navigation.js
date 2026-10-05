@@ -41,6 +41,7 @@ export function stateParams(ctx, overrides = {}) {
     category: ctx.$('category-select')?.value || ctx.startCategory || 'all',
     id: ctx.targetCategory && ctx.targetId ? ctx.targetId : '',
     entrance: ctx.focusedEntrance === null ? '' : String(ctx.focusedEntrance),
+    maker: ctx.flyMakerIntent ? '1' : '',
     fish: ctx.selectedFish,
     route: ctx.selectedRig,
     q: ctx.$('item-search')?.value || '',

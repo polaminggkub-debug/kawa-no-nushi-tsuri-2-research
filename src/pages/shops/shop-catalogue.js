@@ -1,3 +1,4 @@
+import { flyMakerLocation } from './fly-maker-location.js'
 import { targetActions } from './target-actions.js'
 import { area6Walk } from './area6-walk.js'
 import { shopCompatibility, shopCompatibilityBadge, shopFishContext } from './player-decision.js'
@@ -25,7 +26,7 @@ export function renderLocations(ctx, locations, mapManifest, stage, place, items
       ? view.entrances.map((entry) => ctx.fieldEntranceCard(view, entry))
       : ctx.townLocationCards(view, items)
   visuals.innerHTML =
-    cards.join('') ||
+    (place === 'town' ? flyMakerLocation(ctx, view) : '') + cards.join('') ||
     `<p class="empty-state">${ctx.esc(view.excludedPoints ? ctx.text.noValidPoint : place === 'outdoor' ? ctx.text.mapNoEntrances : ctx.text.noLocations)}</p>`
   ctx.drawMapCanvases()
 }

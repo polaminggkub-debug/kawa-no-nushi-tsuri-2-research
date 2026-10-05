@@ -131,8 +131,7 @@ const localeCopy = {
     confirm: 'A to select',
     part: { wing: 'wing', tail: 'tail' },
     family: { diptera: 'Diptera', stonefly: 'Stonefly' },
-    scope: (family, familyJa) =>
-      `When the maker offers ${family} (${familyJa}), choose that family first.`,
+    scope: (family, familyJa) => `choose ${family} (${familyJa}) at the fly maker`,
     none: (part, moves) => `To choose None for the ${part}, start at top-left: ${moves} (無し).`,
     limit:
       'These positions were independently replayed in a controlled even-area menu fixture. This verifies the palette, not the walking route or natural shop access. No bite or landing advantage is established; check the final quote before paying.',
@@ -147,8 +146,7 @@ const localeCopy = {
     confirm: 'Aで決定',
     part: { wing: 'ウィング', tail: 'テール' },
     family: { diptera: 'ディプテラ', stonefly: 'ストーンフライ' },
-    scope: (_family, familyJa) =>
-      `作成メニューに「${familyJa}」がある場合、まずその系統を選びます。`,
+    scope: (_family, familyJa) => `「${familyJa}」のフライを作成`,
     none: (part, moves) => `「${part}」で「無し」を選ぶ場合：左上から${moves}`,
     limit:
       '偶数エリアのメニューを再現した制御条件で、部品位置を独立に再確認しました。通常プレイでの店への経路や利用可能時期の証明ではありません。釣果の優位も未確認です。支払前に見積額を確認してください。',
@@ -163,7 +161,7 @@ const localeCopy = {
     confirm: 'กด A เลือก',
     part: { wing: 'ปีก', tail: 'หาง' },
     family: { diptera: 'ดิพเทรา', stonefly: 'สโตนฟลาย' },
-    scope: (family, familyJa) => `เมื่อร้านมีตัวเลือก${family} (${familyJa}) ให้เลือกตระกูลนี้ก่อน`,
+    scope: (family, familyJa) => `เลือก${family} (${familyJa}) ตอนประกอบฟลาย`,
     none: (part, moves) => `ถ้าจะเลือก “ไม่มี” (無し) ในเมนู${part} ให้เริ่มจากซ้ายบน: ${moves}`,
     limit:
       'ตรวจตำแหน่งซ้ำอย่างอิสระจากเมนูด่านเลขคู่ที่จำลองในสภาวะควบคุม ยืนยันช่องเลือกชิ้นส่วน แต่ยังไม่ได้ยืนยันเส้นทางเดินหรือการเข้าร้านจากการเล่นปกติ ไม่ได้พิสูจน์ว่าปลากินหรือตกขึ้นง่ายกว่า ตรวจราคาสุทธิก่อนจ่าย',
@@ -404,11 +402,6 @@ function expectedNoneText(lang, choice, copy) {
   return copy.none(copy.part[choice.part], moves)
 }
 
-function localizedScope(lang, choice, copy) {
-  const family = copy.family[choice.familyJa === 'ディプテラ' ? 'diptera' : 'stonefly']
-  return copy.scope(family, choice.familyJa)
-}
-
 function cardFor(html, category, id) {
   const identity = html.indexOf(`id="item-${category}-${id}"`)
   assert(identity >= 0, `Catalogue card missing ${category}:${id}`)
@@ -431,9 +424,16 @@ async function checkRenderedDetail(choice, lang, copy) {
   const sectionStart = result.html.lastIndexOf('<section', start)
   const sectionEnd = result.html.indexOf('</section>', start) + '</section>'.length
   const section = unescapeHtml(result.html.slice(sectionStart, sectionEnd))
+  const scopeStart = section.indexOf('</h2>')
+  const scopeEnd = section.indexOf('</p>', scopeStart)
+  const familyScope = section.slice(scopeStart, scopeEnd)
+  const familyName = choice.familyJa === 'ディプテラ' ? copy.family.diptera : copy.family.stonefly
+  assert(
+    familyScope.includes(copy.scope(familyName, choice.familyJa)),
+    `Missing generic family scope ${choice.familyJa}/${lang}`,
+  )
   const checks = [
     copy.title,
-    localizedScope(lang, choice, copy),
     copy.start,
     copy.position(choice.row, choice.column),
     movement(copy, choice.row, choice.column),
@@ -443,7 +443,7 @@ async function checkRenderedDetail(choice, lang, copy) {
   ]
   for (const text of checks) assert(section.includes(text), `Missing ${lang} detail text: ${text}`)
   if (choice.nonePosition) assert(section.includes(expectedNoneText(lang, choice, copy)))
-  for (const areaText of ['Area 2', 'エリア2', 'ด่าน 2']) assert(!section.includes(areaText))
+  for (const areaText of ['Area 2', 'エリア2', 'ด่าน 2']) assert(!familyScope.includes(areaText))
   assert(!/category=fly_(?:wing|tail)(?:&amp;|&)id=00/.test(section))
 }
 

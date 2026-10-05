@@ -30,10 +30,15 @@ function checkRoute(lang, activeStage) {
   const source = `maps${suffix}.html?stage=${activeStage}&section=s${activeStage}-c2-r3&fish=06&mark=large&q=river&scope=all&return=${encodeURIComponent(nested)}#map-view`
   const origin = new URL(`https://example.test/catalogue/maps${suffix}.html`)
   const html = notebookGuideMarkup(makeContext(lang, activeStage, source))
-  const route = html.match(
-    /<details class="notebook-full-route"[^>]*>[\s\S]*?<\/details><details class="notebook-new"/,
-  )?.[0]
-  assert(route, `${lang} Area ${activeStage}: missing full route before local checklist`)
+  const route = detailsBlock(html, 'notebook-full-route')
+  assert(
+    !html.includes('class="notebook-new"'),
+    `${lang} Area ${activeStage}: duplicated new-fish list`,
+  )
+  assert(
+    detailsOpens(route),
+    `${lang} Area ${activeStage}: explicit route link must open the master list`,
+  )
   assert.match(route, /data-notebook-route-total="66"/)
   const groups = [
     ...route.matchAll(
@@ -41,6 +46,16 @@ function checkRoute(lang, activeStage) {
     ),
   ]
   assert.equal(groups.length, 6, `${lang}: route must show six first-occurrence groups`)
+  const found = checkRouteGroups(groups, lang, activeStage, source, origin, suffix)
+  assert.deepEqual(
+    found.sort(),
+    expectedIds,
+    `${lang}: route must contain every eligible ROM fish exactly once`,
+  )
+  validate(html, origin)
+}
+
+function checkRouteGroups(groups, lang, activeStage, source, origin, suffix) {
   const found = []
   for (const [, stageText, count, attributes, body] of groups) {
     const stage = Number(stageText)
@@ -65,12 +80,7 @@ function checkRoute(lang, activeStage) {
     for (const [, id, card] of cards) checkFishActions(card, id, stage, source, origin, suffix)
     found.push(...ids)
   }
-  assert.deepEqual(
-    found.sort(),
-    expectedIds,
-    `${lang}: route must contain every eligible ROM fish exactly once`,
-  )
-  validate(html, origin)
+  return found
 }
 
 function checkFishActions(card, id, stage, source, origin, suffix) {
@@ -100,6 +110,21 @@ function checkFishActions(card, id, stage, source, origin, suffix) {
     validate(`<a href="${unescapeHtml(raw)}"></a>`, origin)
     linksChecked += 1
   }
+}
+
+function detailsBlock(html, className) {
+  const start = html.indexOf(`<details class="${className}"`)
+  assert(start >= 0, `Missing ${className} details`)
+  let depth = 0
+  for (const match of html.slice(start).matchAll(/<\/?details\b[^>]*>/g)) {
+    depth += match[0].startsWith('</') ? -1 : 1
+    if (depth === 0) return html.slice(start, start + match.index + match[0].length)
+  }
+  throw new Error(`Unclosed ${className} details`)
+}
+
+function detailsOpens(html) {
+  return /^<details\b[^>]*\sopen(?:\s|>)/.test(html)
 }
 
 function makeContext(lang, activeStage, source) {
@@ -165,14 +190,40 @@ function checkSharedProgress() {
   assert.equal(storage.get('kawa-notebook-manual-v1'), '["02"]')
   delete globalThis.document
   delete globalThis.window
+  checkLocalizedMarkLabels()
+}
+
+function checkLocalizedMarkLabels() {
+  const copy = [
+    ['en', 'Recorded', 'Checked in my game journal'],
+    ['ja', '記録済み', 'ゲーム内図鑑で確認済み'],
+    ['th', 'บันทึกแล้ว', 'เช็กแล้วว่ามีในสมุดเกม'],
+  ]
+  for (const [lang, visible, accessible] of copy) checkMarkLabel(lang, visible, accessible)
+}
+
+function checkMarkLabel(lang, visible, accessible) {
+  const controls = createProgressDom(['01'])
+  globalThis.document = controls.document
+  globalThis.window = { localStorage: { getItem: () => null, setItem() {} } }
+  bindNotebookProgress(
+    { lang, species: { '01': { name: 'Fish 1' } }, notebookCompletion: guide, esc: String },
+    controls.mount,
+  )
+  assert.equal(controls.labels[0].children[1].textContent.trim(), visible)
+  assert.equal(controls.checks[0].attributes['aria-label'], `${accessible}: Fish 1`)
+  delete globalThis.document
+  delete globalThis.window
 }
 
 function createProgressDom(ids) {
   const checks = []
+  const labels = []
   const cards = ids.map((id) => ({
     dataset: { notebookCard: id },
     classList: { toggle() {} },
     append(label) {
+      labels.push(label)
       checks.push(label.children.find((node) => node.type === 'checkbox'))
     },
   }))
@@ -198,7 +249,7 @@ function createProgressDom(ids) {
             ? lists
             : [],
   }
-  return { mount, checks, document: createProgressDocument(cards) }
+  return { mount, checks, labels, document: createProgressDocument(cards) }
 }
 
 function createProgressDocument(cards) {
@@ -212,14 +263,17 @@ function createProgressDocument(cards) {
         append(...children) {
           this.children.push(...children)
         },
-        setAttribute() {},
+        attributes: {},
+        setAttribute(key, value) {
+          this.attributes[key] = value
+        },
         matches(selector) {
           return selector === '[data-notebook-mark]' && this.type === 'checkbox'
         },
         closest: () => cards[0],
       }
     },
-    createTextNode: () => ({ type: 'text' }),
+    createTextNode: (textContent) => ({ type: 'text', textContent }),
   }
 }
 

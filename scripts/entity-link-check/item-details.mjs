@@ -66,6 +66,8 @@ function checkShopActions(item, visible, base) {
   const routes = [...visible.matchAll(/href="([^"]*shops(?:\.th|\.ja)?\.html[^"]*)"/g)].map(
     (match) => new URL(unescapeHtml(match[1]), base),
   )
+  const makerRoutes = routes.filter(isFlyMakerRoute)
+  const stockRoutes = routes.filter((route) => !isFlyMakerRoute(route))
   const flyPart = ['fly', 'fly_wing', 'fly_tail'].includes(item.category)
   const offers = flyPart
     ? data.items
@@ -92,16 +94,47 @@ function checkShopActions(item, visible, base) {
     )
   }
   assert.deepEqual(
-    [...new Set(routes.map((route) => route.searchParams.get('stage')))].sort(),
+    [...new Set(stockRoutes.map((route) => route.searchParams.get('stage')))].sort(),
     [...stages].sort(),
     `Missing seller navigation ${item.category}:${item.id}`,
   )
-  for (const route of routes) {
-    assert.equal(route.searchParams.get('place'), 'town')
-    assert.equal(route.searchParams.get('category'), item.category)
-    assert.equal(route.searchParams.get('id'), item.id)
-    assert.equal(new URL(route.searchParams.get('return'), base).searchParams.get('id'), item.id)
-  }
+  for (const route of stockRoutes) checkStockRoute(route, item, base)
+  for (const route of makerRoutes) checkFlyMakerRoute(route, item, base)
+}
+
+function isFlyMakerRoute(route) {
+  return route.searchParams.get('maker') === '1' || route.hash === '#fly-maker-location'
+}
+
+function checkStockRoute(route, item, base) {
+  assert.equal(route.searchParams.get('place'), 'town')
+  assert.equal(route.searchParams.get('category'), item.category)
+  assert.equal(route.searchParams.get('id'), item.id)
+  const back = new URL(route.searchParams.get('return'), base)
+  assert.equal(back.searchParams.get('category'), item.category)
+  assert.equal(back.searchParams.get('id'), item.id)
+}
+
+function checkFlyMakerRoute(route, item, base) {
+  assert(['fly', 'fly_wing', 'fly_tail'].includes(item.category))
+  const choice = item.flyMakerMenuChoice
+  assert(choice && choice.category === item.category && choice.id === item.id)
+  assert.equal(route.searchParams.get('maker'), '1')
+  assert.equal(route.hash, '#fly-maker-location')
+  assert.equal(route.searchParams.get('place'), 'town')
+  assert.equal(route.searchParams.get('category'), null)
+  assert.equal(route.searchParams.get('id'), null)
+  const requestedStage = Number(base.searchParams.get('stage') || 1)
+  const access =
+    choice.availableAccess?.find((entry) => entry.stage === requestedStage) || choice.access
+  assert(access && [1, 2, 3].includes(access.stage))
+  assert.equal(route.searchParams.get('stage'), String(access.stage))
+  for (const key of ['fish', 'route'])
+    assert.equal(route.searchParams.get(key), base.searchParams.get(key))
+  const back = new URL(route.searchParams.get('return'), base)
+  assert.equal(back.pathname, base.pathname)
+  for (const key of ['category', 'id', 'stage', 'fish', 'route', 'return'])
+    assert.equal(back.searchParams.get(key), base.searchParams.get(key))
 }
 
 function checkSpecialItemActions(item, visible, lang) {

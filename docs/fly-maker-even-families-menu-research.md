@@ -65,3 +65,11 @@ Structured positions, original-image hashes, clamped observations and replay fin
 ## 日本語要約
 
 作成メニューにディプテラ／ストーンフライがある場合、その系統を選び、各部品の初期位置（左上）から一覧の右・下・A操作を使います。計42部品と「無し」4箇所を独立に再確認しました。支払前に見積額を確認してください。通常プレイでの店への経路や、釣果が有利になる組合せは確認していません。
+
+## Recorded maker location added
+
+A separate [original-ROM access trace](fly-maker-access-research.md) now identifies
+the Area 2 town maker at X5,Y24 and entrance 2 at outdoor X91,Y25 → town X7,Y29.
+Component pages link to these endpoints. The palette captures above still use
+a controlled fixture; the location trace does not establish a natural walk or
+story unlock.

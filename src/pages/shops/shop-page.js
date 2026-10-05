@@ -50,11 +50,12 @@ export async function init(ctx) {
 
 function scrollRequestedSection(ctx) {
   const arrivalTarget = /^#town-arrival-[0-4]$/.test(location.hash)
-  if (location.hash === '#location-section' || arrivalTarget) {
+  if (['#location-section', '#fly-maker-location'].includes(location.hash) || arrivalTarget) {
     const panel = ctx.$('shop-map-disclosure')
     if (panel) panel.open = true
   }
   const allowed = [
+    'fly-maker-location',
     'shop-fish-context',
     'location-section',
     'regular-stock',

@@ -110,7 +110,9 @@ const localeCopy = {
     down: (n) => `Down ${n} time${n === 1 ? '' : 's'}`,
     confirm: 'A to select',
     family: { カディス: 'Caddis', テレストリアル: 'Terrestrial' },
-    scope: (e, name) => `Area 1 · choose ${name} (${e}) at the fly maker`,
+    scope: (e, name) => `choose ${name} (${e}) at the fly maker`,
+    limit: (area, family) =>
+      `Verified only in this Area ${area} ${family} menu. Position identifies the component; it does not establish a bite or landing advantage. Check the final quote before paying.`,
     direct:
       'After selecting this Terrestrial body, the game skips wing and tail selection and opens the quote.',
   },
@@ -123,7 +125,9 @@ const localeCopy = {
     down: (n) => `下${n}回`,
     confirm: 'Aで決定',
     family: { カディス: 'カディス', テレストリアル: 'テレストリアル' },
-    scope: (e, name) => `エリア1 · 「${name}」のフライを作成`,
+    scope: (_e, name) => `「${name}」のフライを作成`,
+    limit: (area, family) =>
+      `確認したのはエリア${area}の${family}メニューだけです。位置は部品の識別であり、食いつきや取り込み効果を示しません。支払前に見積額を確認してください。`,
     direct:
       'このテレストリアル・ボディを選ぶと、ウィングとテールの選択画面を飛ばして見積額へ進みます。',
   },
@@ -136,7 +140,9 @@ const localeCopy = {
     down: (n) => `ลง ${n} ครั้ง`,
     confirm: 'กด A เลือก',
     family: { カディス: 'แคดดิส', テレストリアル: 'เทอเรสเทรียล' },
-    scope: (e, name) => `ร้านด่าน 1 · เลือก${name} (${e}) ตอนประกอบฟลาย`,
+    scope: (e, name) => `เลือก${name} (${e}) ตอนประกอบฟลาย`,
+    limit: (area, family) =>
+      `ยืนยันตำแหน่งเฉพาะเมนู${family}ในร้านด่าน ${area} ตำแหน่งบอกว่าชิ้นไหน ไม่ได้พิสูจน์ว่าปลากินหรือตกขึ้นง่ายกว่า ตรวจราคาสุทธิก่อนจ่าย`,
     direct: 'หลังเลือกบอดี้เทอเรสเทรียลนี้ เกมข้ามเมนูปีกและหาง แล้วไปหน้าเสนอราคาเลย',
   },
 }
@@ -355,6 +361,7 @@ async function checkRenderedChoice(choice, lang) {
   for (const text of [
     copy.title,
     copy.scope,
+    copy.limit(choice.area, copy.family[choice.familyJa]),
     copy.start,
     copy.position(choice.row, choice.column),
     copy.caption,

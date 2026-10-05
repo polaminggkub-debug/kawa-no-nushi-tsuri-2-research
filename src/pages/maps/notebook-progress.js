@@ -3,8 +3,9 @@ const text = {
   en: {
     title: 'Your checklist',
     count: (n, total) => `Marked by you: ${n}/${total} species`,
-    note: 'Tick only after checking the fish in your game journal. Saved in this browser; this does not read or change your game save. The same fish shares one tick across all areas.',
+    note: 'Tick after checking in-game. Shared across areas in this browser; this does not read or change your game save.',
     mark: 'Checked in my game journal',
+    markShort: 'Recorded',
     temporary: 'Browser storage is unavailable. Ticks last only while this page stays open.',
     remaining: 'Show only unmarked fish',
     empty: 'You have marked every fish in this list. Uncheck the filter to review them.',
@@ -12,8 +13,9 @@ const text = {
   ja: {
     title: '自分のチェックリスト',
     count: (n, total) => `自分で確認済み: ${n}/${total}種`,
-    note: 'ゲーム内図鑑を確認してからチェックしてください。このブラウザに保存され、ゲームのセーブは読み書きしません。同じ魚のチェックは全エリアで共通です。',
+    note: 'ゲーム内で確認してからチェック。全エリア共通でこのブラウザに保存し、ゲームのセーブは読み書きしません。',
     mark: 'ゲーム内図鑑で確認済み',
+    markShort: '記録済み',
     temporary: 'ブラウザに保存できません。このページを閉じるとチェックは失われます。',
     remaining: '未チェックの魚だけ表示',
     empty: 'このリストはすべてチェック済みです。フィルターを外すと再確認できます。',
@@ -21,8 +23,9 @@ const text = {
   th: {
     title: 'รายการที่คุณเช็กเอง',
     count: (n, total) => `คุณติ๊กแล้ว ${n}/${total} ชนิด`,
-    note: 'ติ๊กหลังเช็กว่าปลาอยู่ในสมุดเกมแล้ว จำไว้เฉพาะเบราว์เซอร์นี้ ไม่ได้อ่านหรือแก้เซฟเกม ปลาชนิดเดียวกันใช้เครื่องหมายเดียวกันทุกด่าน',
+    note: 'ติ๊กหลังเช็กในเกม เก็บเครื่องหมายร่วมทุกด่านในเบราว์เซอร์นี้ ไม่ได้อ่านหรือแก้เซฟเกม',
     mark: 'เช็กแล้วว่ามีในสมุดเกม',
+    markShort: 'บันทึกแล้ว',
     temporary: 'เบราว์เซอร์ไม่อนุญาตให้บันทึก เครื่องหมายจะอยู่แค่ขณะที่เปิดหน้านี้',
     remaining: 'แสดงเฉพาะปลาที่ยังไม่ได้ติ๊ก',
     empty: 'ติ๊กครบทุกปลาในรายการนี้แล้ว เอาตัวกรองออกเพื่อดูรายการอีกครั้ง',
@@ -85,7 +88,7 @@ function addCheckbox(ctx, card, id, c) {
   input.type = 'checkbox'
   input.dataset.notebookMark = id
   input.setAttribute('aria-label', `${c.mark}: ${ctx.species[id].name}`)
-  label.append(input, document.createTextNode(` ${c.mark}`))
+  label.append(input, document.createTextNode(` ${c.markShort}`))
   card.append(label)
 }
 

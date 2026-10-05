@@ -1,3 +1,4 @@
+import { setMakerPageCopy } from './fly-maker-location.js'
 import { text_en } from './text_en.js'
 import { text_th } from './text_th.js'
 import { text_ja } from './text_ja.js'
@@ -20,6 +21,8 @@ export function setupContext(ctx) {
       (ch) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' })[ch],
     )
   ctx.params = new URLSearchParams(location.search)
+  ctx.flyMakerIntent = ctx.params.get('maker') === '1' || location.hash === '#fly-maker-location'
+  setMakerPageCopy(ctx)
   ctx.baseDir = location.pathname.slice(0, location.pathname.lastIndexOf('/') + 1)
   ctx.validCategory = (value) => (/^[a-z_]+$/.test(value || '') ? value : '')
   ctx.validId = (value) =>

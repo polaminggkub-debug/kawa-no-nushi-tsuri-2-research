@@ -475,3 +475,13 @@
   outline: 2px solid #668f71;
   outline-offset: 3px;
 }
+
+.notebook-help {
+  margin-block: 12px;
+}
+.notebook-help > summary {
+  padding-block: 10px;
+  color: var(--deep);
+  font-weight: 700;
+  cursor: pointer;
+}

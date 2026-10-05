@@ -31,6 +31,10 @@ async function checkItemShopLinks(item, lang) {
 
 function assertShopContext(href, base, item, relevant) {
   const next = new URL(unescapeHtml(href), base)
+  if (next.searchParams.get('maker') === '1' || next.hash === '#fly-maker-location') {
+    assertFlyMakerContext(next, base, item, relevant)
+    return
+  }
   assert.equal(next.searchParams.get('fish'), relevant ? '06' : null)
   assert.equal(next.searchParams.get('route'), relevant ? 'sinker' : null)
   const back = new URL(next.searchParams.get('return'), base)
@@ -39,4 +43,29 @@ function assertShopContext(href, base, item, relevant) {
   assert.equal(back.searchParams.get('stage'), '3')
   assert.equal(next.searchParams.get('category'), item.category)
   assert.equal(next.searchParams.get('id'), item.id)
+}
+
+function assertFlyMakerContext(next, base, item, relevant) {
+  assert(['fly', 'fly_wing', 'fly_tail'].includes(item.category))
+  const choice = item.flyMakerMenuChoice
+  assert(choice && choice.category === item.category && choice.id === item.id)
+  assert.equal(next.searchParams.get('maker'), '1')
+  assert.equal(next.hash, '#fly-maker-location')
+  assert.equal(next.searchParams.get('place'), 'town')
+  assert.equal(next.searchParams.get('category'), null)
+  assert.equal(next.searchParams.get('id'), null)
+  const requestedStage = Number(base.searchParams.get('stage'))
+  const access =
+    choice.availableAccess?.find((entry) => entry.stage === requestedStage) || choice.access
+  assert(access && [1, 2, 3].includes(access.stage))
+  assert.equal(next.searchParams.get('stage'), String(access.stage))
+  assert.equal(next.searchParams.get('fish'), relevant ? '06' : null)
+  assert.equal(next.searchParams.get('route'), relevant ? 'sinker' : null)
+  const back = new URL(next.searchParams.get('return'), base)
+  assert.equal(back.pathname, base.pathname)
+  assert.equal(back.searchParams.get('category'), item.category)
+  assert.equal(back.searchParams.get('id'), item.id)
+  assert.equal(back.searchParams.get('stage'), base.searchParams.get('stage'))
+  assert.equal(back.searchParams.get('fish'), '06')
+  assert.equal(back.searchParams.get('route'), 'sinker')
 }
