@@ -18,7 +18,8 @@
     "initialSize": "On row initialization, size = floor(profile +0 / 2) + (ROM random byte modulo floor(profile +0 / 2)).",
     "growth": "On a later fish-row refresh, the stored size increments by 1 until profile +1; after it exceeds +1, the row value is cleared.",
     "mapScope": "Map sets change which fish profiles and rows are configured. The traced marker selector uses the profile flag or row size; it has no map-number input.",
-    "refreshLimit": "The marker class is stored when the fish object is created. Size-growth routines update the row value without directly refreshing that class; exact refresh timing after growth is unresolved.",
+    "refreshLimit": "The marker class is stored when the fish object is created. Size-growth routines update the row value without directly refreshing that class. Field setup and a view-distance-gated input path can rebuild objects, but an ordinary growth/rebuild transition and its frequency remain unverified.",
+    "classEvidence": "initialClasses uses only the initialized size range. growthOnlyClasses additionally requires a grown row and a later object rebuild; ordinary-play visibility and frequency are not established by the size cap alone.",
     "interpretationLimit": "Marker classes do not guarantee a bite or catch. The bubble marker identifies potato-bait mask compatibility; bait checks and other fishing conditions still apply."
   },
   "mapSets": [
@@ -2229,6 +2230,12 @@
         "small",
         "large"
       ],
+      "initialClasses": [
+        "small"
+      ],
+      "growthOnlyClasses": [
+        "large"
+      ],
       "potatoBaitMaskCompatible": false,
       "mapStages": [
         "01"
@@ -2363,6 +2370,11 @@
         "small",
         "large"
       ],
+      "initialClasses": [
+        "small",
+        "large"
+      ],
+      "growthOnlyClasses": [],
       "potatoBaitMaskCompatible": false,
       "mapStages": [
         "02"
@@ -2410,6 +2422,10 @@
       "possibleClasses": [
         "small"
       ],
+      "initialClasses": [
+        "small"
+      ],
+      "growthOnlyClasses": [],
       "potatoBaitMaskCompatible": false,
       "mapStages": [
         "01"
@@ -2485,6 +2501,10 @@
       "possibleClasses": [
         "small"
       ],
+      "initialClasses": [
+        "small"
+      ],
+      "growthOnlyClasses": [],
       "potatoBaitMaskCompatible": false,
       "mapStages": [
         "01"
@@ -2566,6 +2586,10 @@
       "possibleClasses": [
         "small"
       ],
+      "initialClasses": [
+        "small"
+      ],
+      "growthOnlyClasses": [],
       "potatoBaitMaskCompatible": false,
       "mapStages": [
         "03"
@@ -2611,6 +2635,12 @@
       "bubble": false,
       "possibleClasses": [
         "small",
+        "large"
+      ],
+      "initialClasses": [
+        "small"
+      ],
+      "growthOnlyClasses": [
         "large"
       ],
       "potatoBaitMaskCompatible": false,
@@ -2719,6 +2749,10 @@
       "possibleClasses": [
         "small"
       ],
+      "initialClasses": [
+        "small"
+      ],
+      "growthOnlyClasses": [],
       "potatoBaitMaskCompatible": false,
       "mapStages": [
         "02"
@@ -2766,6 +2800,12 @@
       "bubble": false,
       "possibleClasses": [
         "small",
+        "large"
+      ],
+      "initialClasses": [
+        "small"
+      ],
+      "growthOnlyClasses": [
         "large"
       ],
       "potatoBaitMaskCompatible": false,
@@ -2823,6 +2863,12 @@
       "bubble": false,
       "possibleClasses": [
         "small",
+        "large"
+      ],
+      "initialClasses": [
+        "small"
+      ],
+      "growthOnlyClasses": [
         "large"
       ],
       "potatoBaitMaskCompatible": false,
@@ -2925,6 +2971,10 @@
       "possibleClasses": [
         "small"
       ],
+      "initialClasses": [
+        "small"
+      ],
+      "growthOnlyClasses": [],
       "potatoBaitMaskCompatible": false,
       "mapStages": [
         "02",
@@ -3023,6 +3073,12 @@
         "small",
         "large"
       ],
+      "initialClasses": [
+        "small"
+      ],
+      "growthOnlyClasses": [
+        "large"
+      ],
       "potatoBaitMaskCompatible": false,
       "mapStages": [
         "02"
@@ -3109,6 +3165,10 @@
       "possibleClasses": [
         "small"
       ],
+      "initialClasses": [
+        "small"
+      ],
+      "growthOnlyClasses": [],
       "potatoBaitMaskCompatible": false,
       "mapStages": [
         "03",
@@ -3200,6 +3260,10 @@
       "possibleClasses": [
         "bubble"
       ],
+      "initialClasses": [
+        "bubble"
+      ],
+      "growthOnlyClasses": [],
       "potatoBaitMaskCompatible": true,
       "mapStages": [
         "04",
@@ -3300,6 +3364,10 @@
       "possibleClasses": [
         "small"
       ],
+      "initialClasses": [
+        "small"
+      ],
+      "growthOnlyClasses": [],
       "potatoBaitMaskCompatible": false,
       "mapStages": [
         "02",
@@ -3356,6 +3424,10 @@
       "possibleClasses": [
         "bubble"
       ],
+      "initialClasses": [
+        "bubble"
+      ],
+      "growthOnlyClasses": [],
       "potatoBaitMaskCompatible": true,
       "mapStages": [
         "03"
@@ -3418,6 +3490,10 @@
       "possibleClasses": [
         "small"
       ],
+      "initialClasses": [
+        "small"
+      ],
+      "growthOnlyClasses": [],
       "potatoBaitMaskCompatible": false,
       "mapStages": [
         "05"
@@ -3459,6 +3535,10 @@
       "possibleClasses": [
         "small"
       ],
+      "initialClasses": [
+        "small"
+      ],
+      "growthOnlyClasses": [],
       "potatoBaitMaskCompatible": false,
       "mapStages": [
         "05"
@@ -3502,6 +3582,10 @@
       "possibleClasses": [
         "small"
       ],
+      "initialClasses": [
+        "small"
+      ],
+      "growthOnlyClasses": [],
       "potatoBaitMaskCompatible": false,
       "mapStages": [
         "04"
@@ -3556,6 +3640,11 @@
         "small",
         "large"
       ],
+      "initialClasses": [
+        "small",
+        "large"
+      ],
+      "growthOnlyClasses": [],
       "potatoBaitMaskCompatible": false,
       "mapStages": [
         "02"
@@ -3598,6 +3687,10 @@
       "possibleClasses": [
         "large"
       ],
+      "initialClasses": [
+        "large"
+      ],
+      "growthOnlyClasses": [],
       "potatoBaitMaskCompatible": false,
       "mapStages": [
         "04"
@@ -3636,6 +3729,10 @@
       "possibleClasses": [
         "bubble"
       ],
+      "initialClasses": [
+        "bubble"
+      ],
+      "growthOnlyClasses": [],
       "potatoBaitMaskCompatible": true,
       "mapStages": [
         "04",
@@ -3689,6 +3786,10 @@
       "possibleClasses": [
         "small"
       ],
+      "initialClasses": [
+        "small"
+      ],
+      "growthOnlyClasses": [],
       "potatoBaitMaskCompatible": false,
       "mapStages": [
         "05"
@@ -3727,6 +3828,10 @@
       "possibleClasses": [
         "small"
       ],
+      "initialClasses": [
+        "small"
+      ],
+      "growthOnlyClasses": [],
       "potatoBaitMaskCompatible": false,
       "mapStages": [
         "04"
@@ -3771,6 +3876,10 @@
       "possibleClasses": [
         "small"
       ],
+      "initialClasses": [
+        "small"
+      ],
+      "growthOnlyClasses": [],
       "potatoBaitMaskCompatible": false,
       "mapStages": [
         "03"
@@ -3812,6 +3921,10 @@
       "possibleClasses": [
         "small"
       ],
+      "initialClasses": [
+        "small"
+      ],
+      "growthOnlyClasses": [],
       "potatoBaitMaskCompatible": false,
       "mapStages": [
         "05"
@@ -3871,6 +3984,10 @@
       "possibleClasses": [
         "small"
       ],
+      "initialClasses": [
+        "small"
+      ],
+      "growthOnlyClasses": [],
       "potatoBaitMaskCompatible": false,
       "mapStages": [
         "04",
@@ -3941,6 +4058,10 @@
       "possibleClasses": [
         "small"
       ],
+      "initialClasses": [
+        "small"
+      ],
+      "growthOnlyClasses": [],
       "potatoBaitMaskCompatible": false,
       "mapStages": [
         "03"
@@ -3998,6 +4119,10 @@
       "possibleClasses": [
         "bubble"
       ],
+      "initialClasses": [
+        "bubble"
+      ],
+      "growthOnlyClasses": [],
       "potatoBaitMaskCompatible": true,
       "mapStages": [
         "05"
@@ -4043,6 +4168,10 @@
       "possibleClasses": [
         "small"
       ],
+      "initialClasses": [
+        "small"
+      ],
+      "growthOnlyClasses": [],
       "potatoBaitMaskCompatible": false,
       "mapStages": [
         "04",
@@ -4097,6 +4226,10 @@
       "possibleClasses": [
         "small"
       ],
+      "initialClasses": [
+        "small"
+      ],
+      "growthOnlyClasses": [],
       "potatoBaitMaskCompatible": false,
       "mapStages": [
         "01",
@@ -4152,6 +4285,10 @@
       "possibleClasses": [
         "small"
       ],
+      "initialClasses": [
+        "small"
+      ],
+      "growthOnlyClasses": [],
       "potatoBaitMaskCompatible": false,
       "mapStages": [
         "05"
@@ -4205,6 +4342,10 @@
       "possibleClasses": [
         "small"
       ],
+      "initialClasses": [
+        "small"
+      ],
+      "growthOnlyClasses": [],
       "potatoBaitMaskCompatible": false,
       "mapStages": [
         "02"
@@ -4256,6 +4397,10 @@
       "possibleClasses": [
         "small"
       ],
+      "initialClasses": [
+        "small"
+      ],
+      "growthOnlyClasses": [],
       "potatoBaitMaskCompatible": false,
       "mapStages": [
         "05"
@@ -4296,6 +4441,10 @@
       "possibleClasses": [
         "small"
       ],
+      "initialClasses": [
+        "small"
+      ],
+      "growthOnlyClasses": [],
       "potatoBaitMaskCompatible": false,
       "mapStages": [
         "02"
@@ -4348,6 +4497,10 @@
       "possibleClasses": [
         "small"
       ],
+      "initialClasses": [
+        "small"
+      ],
+      "growthOnlyClasses": [],
       "potatoBaitMaskCompatible": false,
       "mapStages": [
         "05"
@@ -4393,6 +4546,11 @@
         "small",
         "large"
       ],
+      "initialClasses": [
+        "small",
+        "large"
+      ],
+      "growthOnlyClasses": [],
       "potatoBaitMaskCompatible": false,
       "mapStages": [
         "04",
@@ -4443,6 +4601,10 @@
       "possibleClasses": [
         "bubble"
       ],
+      "initialClasses": [
+        "bubble"
+      ],
+      "growthOnlyClasses": [],
       "potatoBaitMaskCompatible": true,
       "mapStages": [
         "04",
@@ -4530,6 +4692,11 @@
         "small",
         "large"
       ],
+      "initialClasses": [
+        "small",
+        "large"
+      ],
+      "growthOnlyClasses": [],
       "potatoBaitMaskCompatible": false,
       "mapStages": [
         "04",
@@ -4587,6 +4754,10 @@
       "possibleClasses": [
         "small"
       ],
+      "initialClasses": [
+        "small"
+      ],
+      "growthOnlyClasses": [],
       "potatoBaitMaskCompatible": false,
       "mapStages": [
         "06"
@@ -4638,6 +4809,10 @@
       "possibleClasses": [
         "small"
       ],
+      "initialClasses": [
+        "small"
+      ],
+      "growthOnlyClasses": [],
       "potatoBaitMaskCompatible": false,
       "mapStages": [
         "03",
@@ -4687,6 +4862,10 @@
       "possibleClasses": [
         "bubble"
       ],
+      "initialClasses": [
+        "bubble"
+      ],
+      "growthOnlyClasses": [],
       "potatoBaitMaskCompatible": true,
       "mapStages": [
         "04",
@@ -4735,6 +4914,10 @@
       "possibleClasses": [
         "small"
       ],
+      "initialClasses": [
+        "small"
+      ],
+      "growthOnlyClasses": [],
       "potatoBaitMaskCompatible": false,
       "mapStages": [
         "03",
@@ -4823,6 +5006,10 @@
       "possibleClasses": [
         "small"
       ],
+      "initialClasses": [
+        "small"
+      ],
+      "growthOnlyClasses": [],
       "potatoBaitMaskCompatible": false,
       "mapStages": [
         "05"
@@ -4882,6 +5069,10 @@
       "possibleClasses": [
         "small"
       ],
+      "initialClasses": [
+        "small"
+      ],
+      "growthOnlyClasses": [],
       "potatoBaitMaskCompatible": false,
       "mapStages": [
         "03",
@@ -4944,6 +5135,11 @@
         "small",
         "large"
       ],
+      "initialClasses": [
+        "small",
+        "large"
+      ],
+      "growthOnlyClasses": [],
       "potatoBaitMaskCompatible": false,
       "mapStages": [
         "04",
@@ -4994,6 +5190,10 @@
       "possibleClasses": [
         "small"
       ],
+      "initialClasses": [
+        "small"
+      ],
+      "growthOnlyClasses": [],
       "potatoBaitMaskCompatible": false,
       "mapStages": [
         "04"
@@ -5042,6 +5242,10 @@
       "possibleClasses": [
         "bubble"
       ],
+      "initialClasses": [
+        "bubble"
+      ],
+      "growthOnlyClasses": [],
       "potatoBaitMaskCompatible": true,
       "mapStages": [
         "04"
@@ -5081,6 +5285,10 @@
       "possibleClasses": [
         "large"
       ],
+      "initialClasses": [
+        "large"
+      ],
+      "growthOnlyClasses": [],
       "potatoBaitMaskCompatible": false,
       "mapStages": [
         "04"
@@ -5119,6 +5327,12 @@
       "bubble": false,
       "possibleClasses": [
         "small",
+        "large"
+      ],
+      "initialClasses": [
+        "small"
+      ],
+      "growthOnlyClasses": [
         "large"
       ],
       "potatoBaitMaskCompatible": false,
@@ -5186,6 +5400,10 @@
       "possibleClasses": [
         "small"
       ],
+      "initialClasses": [
+        "small"
+      ],
+      "growthOnlyClasses": [],
       "potatoBaitMaskCompatible": false,
       "mapStages": [
         "06"
@@ -5241,6 +5459,12 @@
         "small",
         "large"
       ],
+      "initialClasses": [
+        "small"
+      ],
+      "growthOnlyClasses": [
+        "large"
+      ],
       "potatoBaitMaskCompatible": false,
       "mapStages": [
         "06"
@@ -5289,6 +5513,10 @@
       "possibleClasses": [
         "small"
       ],
+      "initialClasses": [
+        "small"
+      ],
+      "growthOnlyClasses": [],
       "potatoBaitMaskCompatible": false,
       "mapStages": [
         "06"
@@ -5353,6 +5581,11 @@
         "small",
         "large"
       ],
+      "initialClasses": [
+        "small",
+        "large"
+      ],
+      "growthOnlyClasses": [],
       "potatoBaitMaskCompatible": false,
       "mapStages": [
         "06"
@@ -5402,6 +5635,11 @@
         "small",
         "large"
       ],
+      "initialClasses": [
+        "small",
+        "large"
+      ],
+      "growthOnlyClasses": [],
       "potatoBaitMaskCompatible": false,
       "mapStages": [
         "06"
@@ -5460,6 +5698,10 @@
       "possibleClasses": [
         "large"
       ],
+      "initialClasses": [
+        "large"
+      ],
+      "growthOnlyClasses": [],
       "potatoBaitMaskCompatible": false,
       "mapStages": [
         "06"
@@ -5494,6 +5736,10 @@
       "possibleClasses": [
         "small"
       ],
+      "initialClasses": [
+        "small"
+      ],
+      "growthOnlyClasses": [],
       "potatoBaitMaskCompatible": false,
       "mapStages": [
         "03",
@@ -5590,6 +5836,10 @@
       "possibleClasses": [
         "small"
       ],
+      "initialClasses": [
+        "small"
+      ],
+      "growthOnlyClasses": [],
       "potatoBaitMaskCompatible": false,
       "mapStages": [
         "04",
@@ -5662,6 +5912,10 @@
       "possibleClasses": [
         "large"
       ],
+      "initialClasses": [
+        "large"
+      ],
+      "growthOnlyClasses": [],
       "potatoBaitMaskCompatible": false,
       "mapStages": [
         "04",
@@ -5726,6 +5980,10 @@
       "possibleClasses": [
         "large"
       ],
+      "initialClasses": [
+        "large"
+      ],
+      "growthOnlyClasses": [],
       "potatoBaitMaskCompatible": false,
       "mapStages": [
         "06"
@@ -5760,6 +6018,10 @@
       "possibleClasses": [
         "small"
       ],
+      "initialClasses": [
+        "small"
+      ],
+      "growthOnlyClasses": [],
       "potatoBaitMaskCompatible": false,
       "mapStages": [
         "02"
@@ -5813,6 +6075,10 @@
       "possibleClasses": [
         "bubble"
       ],
+      "initialClasses": [
+        "bubble"
+      ],
+      "growthOnlyClasses": [],
       "potatoBaitMaskCompatible": true,
       "mapStages": [
         "06"
@@ -5860,6 +6126,11 @@
         "small",
         "large"
       ],
+      "initialClasses": [
+        "small",
+        "large"
+      ],
+      "growthOnlyClasses": [],
       "potatoBaitMaskCompatible": false,
       "mapStages": [
         "06"
@@ -5922,6 +6193,10 @@
       "possibleClasses": [
         "small"
       ],
+      "initialClasses": [
+        "small"
+      ],
+      "growthOnlyClasses": [],
       "potatoBaitMaskCompatible": false,
       "mapStages": [
         "06"
@@ -5973,6 +6248,10 @@
       "possibleClasses": [
         "small"
       ],
+      "initialClasses": [
+        "small"
+      ],
+      "growthOnlyClasses": [],
       "potatoBaitMaskCompatible": false,
       "mapStages": [
         "05"
@@ -6011,6 +6290,10 @@
       "possibleClasses": [
         "small"
       ],
+      "initialClasses": [
+        "small"
+      ],
+      "growthOnlyClasses": [],
       "potatoBaitMaskCompatible": false,
       "mapStages": [
         "05"
@@ -6063,6 +6346,12 @@
         "small",
         "large"
       ],
+      "initialClasses": [
+        "small"
+      ],
+      "growthOnlyClasses": [
+        "large"
+      ],
       "potatoBaitMaskCompatible": false,
       "mapStages": [
         "03",
@@ -6101,6 +6390,8 @@
       "profileWordPlus15Plus16": "0x0000",
       "bubble": false,
       "possibleClasses": [],
+      "initialClasses": [],
+      "growthOnlyClasses": [],
       "potatoBaitMaskCompatible": false,
       "mapStages": [],
       "mapPlacements": []
@@ -6125,6 +6416,10 @@
       "possibleClasses": [
         "small"
       ],
+      "initialClasses": [
+        "small"
+      ],
+      "growthOnlyClasses": [],
       "potatoBaitMaskCompatible": false,
       "mapStages": [
         "01"
@@ -6169,6 +6464,10 @@
       "possibleClasses": [
         "small"
       ],
+      "initialClasses": [
+        "small"
+      ],
+      "growthOnlyClasses": [],
       "potatoBaitMaskCompatible": false,
       "mapStages": [
         "02"
@@ -6211,6 +6510,10 @@
       "possibleClasses": [
         "small"
       ],
+      "initialClasses": [
+        "small"
+      ],
+      "growthOnlyClasses": [],
       "potatoBaitMaskCompatible": false,
       "mapStages": [
         "03"
@@ -6255,6 +6558,10 @@
       "possibleClasses": [
         "bubble"
       ],
+      "initialClasses": [
+        "bubble"
+      ],
+      "growthOnlyClasses": [],
       "potatoBaitMaskCompatible": true,
       "mapStages": [
         "04"
@@ -6298,6 +6605,10 @@
       "possibleClasses": [
         "small"
       ],
+      "initialClasses": [
+        "small"
+      ],
+      "growthOnlyClasses": [],
       "potatoBaitMaskCompatible": false,
       "mapStages": [
         "05"
@@ -6340,6 +6651,10 @@
       "possibleClasses": [
         "small"
       ],
+      "initialClasses": [
+        "small"
+      ],
+      "growthOnlyClasses": [],
       "potatoBaitMaskCompatible": false,
       "mapStages": [
         "06"
@@ -6399,6 +6714,10 @@
     },
     "sizeAndCatch": {
       "markerSelectorCpu": "04:C369..C3D4",
+      "objectRebuildEntryCpu": "04:C1F8..C288",
+      "viewGuardCpu": "04:C1A3..C1F7",
+      "fieldSetupCallerCpu": "04:BE20..BE32",
+      "fieldInputCallerCpu": "04:BF2A..BF38",
       "sizeInitializationCpu": "03:83AA..83DF",
       "sizeGrowthCpu": "04:EC56..EC8B",
       "profileLoaderCpu": "03:D26D",
@@ -6411,6 +6730,30 @@
         "fileOffset": "0x024369",
         "byteCount": 108,
         "sha256": "1ac7969495a6efd4fe9ad8fdf8188508641826ba667a5c5d373e3f6616b14c7e"
+      },
+      {
+        "cpuRangeInclusive": "04:C1A3..04:C288",
+        "fileOffset": "0x0241A3",
+        "byteCount": 230,
+        "sha256": "7c465fb32750d499c7211d08ec59ce41be10800a73a41f30323cf8c137f04b16"
+      },
+      {
+        "cpuRangeInclusive": "04:BE20..04:BE32",
+        "fileOffset": "0x023E20",
+        "byteCount": 19,
+        "sha256": "12ca8343390756c1247a919b069e226959dad9fed8e5b183398981b47e30ae6a"
+      },
+      {
+        "cpuRangeInclusive": "04:BF2A..04:BF38",
+        "fileOffset": "0x023F2A",
+        "byteCount": 15,
+        "sha256": "9ef306c30230546959f9c21aae6e673a086e52e9ba7d712c16a48df8eb15785e"
+      },
+      {
+        "cpuRangeInclusive": "00:DDE7..00:DE04",
+        "fileOffset": "0x005DE7",
+        "byteCount": 30,
+        "sha256": "8a23bc62f4d93264bc710e03cea4e9eaff8a9fa55442915bff35cacd3a6a955f"
       },
       {
         "cpuRangeInclusive": "03:83AA..03:83DF",

@@ -7,6 +7,7 @@ import { data } from './shared.mjs'
 
 const root = path.resolve(fileURLToPath(new URL('../..', import.meta.url)))
 const bubbleFishIds = ['0D', '0F', '15', '1C', '25', '29', '2F', '3D', '47']
+const growthOnlyFishIds = ['01', '06', '08', '09', '0B', '31', '33', '42']
 
 checkDatasetShape()
 checkRenderPlacement()
@@ -37,8 +38,49 @@ function checkDatasetShape() {
     assert(profile.possibleClasses.every((name) => ['small', 'large', 'bubble'].includes(name)))
     assert.equal(profile.possibleClasses.includes('bubble'), profile.bubble === true)
   }
+  checkDerivedClassCoverage(waterIcons.profiles)
   const potato = data.items.find((item) => item.category === 'bait' && item.id === '11')
   assert.deepEqual(potato?.playerUse?.fishIdsByRoute?.float, bubbleFishIds)
+}
+
+function checkDerivedClassCoverage(profiles) {
+  const growthIds = []
+  for (const [fishId, profile] of Object.entries(profiles)) {
+    const expected = deriveClassEvidence(profile)
+    assert.deepEqual(profile.initialClasses, expected.initial, `${fishId}: initial classes`)
+    assert.deepEqual(profile.growthOnlyClasses, expected.growth, `${fishId}: growth-only classes`)
+    assert.deepEqual(profile.possibleClasses, expected.possible, `${fishId}: all possible classes`)
+    assert.equal(profile.bubble, expected.bubble, `${fishId}: bubble mask`)
+    assert.equal(profile.potatoBaitMaskCompatible, expected.bubble, `${fishId}: potato mask`)
+    if (expected.growth.length) growthIds.push(fishId)
+  }
+  assert.deepEqual(growthIds.sort(), growthOnlyFishIds)
+}
+
+function deriveClassEvidence(profile) {
+  const half = Math.floor(Number(profile.profilePlus0) / 2)
+  const initialMax = half > 0 ? 2 * half - 1 : null
+  const cap = Number(profile.cap)
+  const mask = Number.parseInt(profile.profileWordPlus15Plus16, 16)
+  const bubble = Number.isFinite(mask) && (mask & 0x0100) !== 0
+  assert.deepEqual(
+    profile.initialRawSizeRangeCm,
+    half > 0 ? [half, initialMax] : null,
+    `${profile.fishId}: initialized size range from profile +0`,
+  )
+  if (bubble) return { bubble, initial: ['bubble'], possible: ['bubble'], growth: [] }
+  const initial = []
+  const possible = []
+  if (half > 0 && half < 50) initial.push('small')
+  if (half > 0 && initialMax >= 50) initial.push('large')
+  possible.push(...initial)
+  if (!initial.includes('large') && half > 0 && cap >= 50) possible.push('large')
+  return {
+    bubble,
+    initial,
+    possible,
+    growth: possible.filter((iconClass) => !initial.includes(iconClass)),
+  }
 }
 
 function checkRenderPlacement() {
@@ -82,6 +124,7 @@ async function checkLocalizedCards(locale) {
   assert(html.includes('data-water-bait-link'), `Potato bait action missing (${locale})`)
   assertBubbleMeaning(locale, html)
   assertSizeMeaning(locale, ctx)
+  checkCardEvidenceClasses(locale)
   assertBaitRoute(locale, html, ctx, outerReturn)
 }
 
@@ -140,11 +183,45 @@ function assertSizeMeaning(locale, ctx) {
   }
   const html = renderWaterIcons(ctx, fixture, '4')
   const expected = {
-    en: ['under 50 cm', 'at least 50 cm', 'Size alone cannot identify'],
-    ja: ['50cm未満', '50cm以上', 'サイズだけで魚種は特定できません'],
-    th: ['ต่ำกว่า 50 ซม.', 'ตั้งแต่ 50 ซม.', 'ใช้ขนาดอย่างเดียวระบุชนิดปลาไม่ได้'],
+    en: ['Small fish mark', 'Large fish mark', 'mark alone cannot identify the species'],
+    ja: ['小さい魚影', '大きい魚影', 'マークだけでは魚種を特定できません'],
+    th: [
+      'เครื่องหมายปลาขนาดต่ำกว่า 50 ซม.',
+      'เครื่องหมายปลาขนาดตั้งแต่ 50 ซม.',
+      'เครื่องหมายอย่างเดียวระบุชนิดปลาไม่ได้',
+    ],
   }[locale]
   for (const phrase of expected) assert(html.includes(phrase), `${locale} missing “${phrase}”`)
+}
+
+function checkCardEvidenceClasses(locale) {
+  for (const [fishId, profile] of Object.entries(data.waterIcons.profiles)) {
+    const ctx = makeContext(locale, fishId, 'maps.html?stage=4')
+    const html = renderWaterIcons(ctx, data.waterIcons, profile.mapStages?.[0] || '')
+    const cards = [
+      ...html.matchAll(
+        /data-water-icon="([a-z]+)" data-water-class-evidence="(initial|growth-only)"/g,
+      ),
+    ]
+    const expected = deriveClassEvidence(profile)
+    assert.deepEqual(
+      cards.map((match) => match[1]),
+      expected.possible,
+      `${locale}/${fishId}: cards`,
+    )
+    assert.deepEqual(
+      cards.map((match) => match[2]),
+      expected.possible.map((iconClass) =>
+        expected.growth.includes(iconClass) ? 'growth-only' : 'initial',
+      ),
+      `${locale}/${fishId}: initial versus conditional cards`,
+    )
+    assert.equal(
+      html.includes('data-water-bait-link'),
+      expected.bubble,
+      `${locale}/${fishId}: potato link`,
+    )
+  }
 }
 
 function assertBaitRoute(locale, html, ctx, outerReturn) {

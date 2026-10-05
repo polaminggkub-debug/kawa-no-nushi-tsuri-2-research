@@ -9,13 +9,17 @@ export const copy_en = {
   bait: 'Live bait',
   lure: 'Lures',
   fly: 'Fly bodies',
+  flyCandidates: 'Fly bodies · profile matches only',
+  flyProfileOnly:
+    'This count lists bodies that match the fish profile, not fully accepted fly sets. The body and wing can still fail a hidden condition. Start with a recorded shop set; if it does not get a bite, inspect the three backup sets instead of buying every body.',
+  flyBackupAction: 'Show this fish’s three backup sets',
   firstStep: 'Start with the map, then choose your gear',
   firstStepBody:
     'Choose an area to find fishing points, then choose a tackle setup below for your fishing method.',
   chooseSpots: 'Choose a fishing area',
-  compatible: 'ROM-confirmed compatibility',
+  compatible: 'Choose bait or inspect fly candidates',
   compatibilityNote:
-    'These entries pass the recorded bait, lure, or fly fish check for this profile. That does not guarantee a bite or a landed catch. Rod or hook bonuses for this individual fish are not established here.',
+    'Bait and lures pass this fish’s recorded mask checks. Fly bodies below only match the fish profile; the assembled body/wing set must pass another live condition. None of these checks guarantees a bite or landing.',
   mapAction: 'Open map and fish points',
   configuredPoints: (n) => `${n} configured point${n === 1 ? '' : 's'}`,
   spawnSlots: (n) => `${n} spawn slots in the ROM table`,

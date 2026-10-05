@@ -1,9 +1,14 @@
 function compatibilityGroup(ctx, entries, category, stage) {
   const group = entries.filter((entry) => entry.item.category === category)
   if (!group.length) return ''
-  const title = ctx.copy[category]
+  const title = category === 'fly' ? ctx.copy.flyCandidates : ctx.copy[category]
   const cards = group.map((entry) => ctx.itemLink(entry, stage)).join('')
-  return `<details class="detail-section"><summary><span class="detail-section-title" role="heading" aria-level="2">${ctx.escapeHtml(title)}</span><span class="muted">${group.length}</span></summary><div class="detail-grid">${cards}</div></details>`
+  const condition = category === 'fly' ? flyGroupCondition(ctx) : ''
+  return `<details class="detail-section" data-compatible-group="${category}"><summary><span class="detail-section-title" role="heading" aria-level="2">${ctx.escapeHtml(title)}</span><span class="muted">${group.length}</span></summary>${condition}<div class="detail-grid">${cards}</div></details>`
+}
+
+function flyGroupCondition(ctx) {
+  return `<p data-fly-profile-only>${ctx.escapeHtml(ctx.copy.flyProfileOnly)}</p><a class="route-button" data-fly-backup-link href="#fly-backup">${ctx.escapeHtml(ctx.copy.flyBackupAction)} ↑</a>`
 }
 
 export function renderCompatibility(ctx, entries, stage) {

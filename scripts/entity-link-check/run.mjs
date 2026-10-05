@@ -107,3 +107,5 @@ await import('./catalogue-map-navigation.mjs')
 await import('./fish-picker-category-scope.mjs')
 
 await import('./magnet-next-action.mjs')
+await import('./fish-player-decision-copy.mjs')
+await import('./map-mobile-fish-layout.mjs')

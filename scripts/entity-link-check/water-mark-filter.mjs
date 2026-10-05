@@ -3,6 +3,7 @@ import vm from 'node:vm'
 import { renderFrontendOutputs } from '../build_frontend.mjs'
 import { data, locations } from './shared.mjs'
 import * as mapsApi from '../../src/pages/maps/index.js'
+import { checkGrowthBadges } from './water-mark-growth-badges.mjs'
 
 const locales = ['en', 'th', 'ja']
 const marks = ['small', 'large', 'bubble']
@@ -476,10 +477,12 @@ for (const locale of locales) {
   const page = await runMapPage(outputs, locale, validQuery(locale))
   checkRuntimeBoot(page.runtime, locale)
   checkCandidateMatrix(page.runtime, locale)
+  checkGrowthBadges(page, locale, stages)
   checkListAndMapFiltering(page.runtime, locale)
   checkWaterMarkControls(page, locale)
   checkNavigationContext(page, locale)
 }
+
 await checkInvalidMark(outputs)
 console.log(
   'PASS: bundled water-mark filters match ROM-derived fish candidates in all six areas and three locales; lists, map pins, conflict recovery, clear/toggle, URL, locale, and fish-detail returns retain their defined state.',

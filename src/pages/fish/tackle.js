@@ -1,10 +1,12 @@
+import { distinctFishNames } from './fish-names.js'
+
 export function localizedFishName(ctx, fish, profileId) {
   const latin =
     fish.nameLatin || (fish.nameLatinVariants || []).slice().sort((a, b) => b.length - a.length)[0]
   if (ctx.locale === 'th')
     return (
       fish.nameTh ||
-      (fish.nameThVariants || []).join(' / ') ||
+      distinctFishNames(fish.nameThVariants || []).join(' / ') ||
       latin ||
       fish.nameJa ||
       ctx.copy.unknownName(profileId)

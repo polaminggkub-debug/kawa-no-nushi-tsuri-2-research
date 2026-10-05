@@ -168,11 +168,28 @@
     }
   }
 
+  // src/pages/fish/fish-names.js
+  function nameKey(value) {
+    return String(value || "").normalize("NFKC").trim().replace(/\s+/g, " ").toLocaleLowerCase();
+  }
+  function distinctFishNames(names, headline = "") {
+    const seen = new Set(headline.split("/").map(nameKey).filter(Boolean));
+    seen.add(nameKey(headline));
+    return names.flatMap(
+      (name) => String(name || "").split("/").map((part) => part.trim())
+    ).filter((name) => {
+      const key = nameKey(name);
+      if (!key || seen.has(key)) return false;
+      seen.add(key);
+      return true;
+    });
+  }
+
   // src/pages/fish/tackle.js
   function localizedFishName(ctx, fish, profileId) {
     const latin = fish.nameLatin || (fish.nameLatinVariants || []).slice().sort((a, b) => b.length - a.length)[0];
     if (ctx.locale === "th")
-      return fish.nameTh || (fish.nameThVariants || []).join(" / ") || latin || fish.nameJa || ctx.copy.unknownName(profileId);
+      return fish.nameTh || distinctFishNames(fish.nameThVariants || []).join(" / ") || latin || fish.nameJa || ctx.copy.unknownName(profileId);
     if (ctx.locale === "ja") return fish.nameJa || ctx.copy.unknownFish(profileId);
     return fish.nameEn || latin || fish.nameJa || ctx.copy.unknownFish(profileId);
   }
@@ -775,9 +792,13 @@
   function compatibilityGroup(ctx, entries, category, stage) {
     const group = entries.filter((entry) => entry.item.category === category);
     if (!group.length) return "";
-    const title = ctx.copy[category];
+    const title = category === "fly" ? ctx.copy.flyCandidates : ctx.copy[category];
     const cards = group.map((entry) => ctx.itemLink(entry, stage)).join("");
-    return `<details class="detail-section"><summary><span class="detail-section-title" role="heading" aria-level="2">${ctx.escapeHtml(title)}</span><span class="muted">${group.length}</span></summary><div class="detail-grid">${cards}</div></details>`;
+    const condition = category === "fly" ? flyGroupCondition(ctx) : "";
+    return `<details class="detail-section" data-compatible-group="${category}"><summary><span class="detail-section-title" role="heading" aria-level="2">${ctx.escapeHtml(title)}</span><span class="muted">${group.length}</span></summary>${condition}<div class="detail-grid">${cards}</div></details>`;
+  }
+  function flyGroupCondition(ctx) {
+    return `<p data-fly-profile-only>${ctx.escapeHtml(ctx.copy.flyProfileOnly)}</p><a class="route-button" data-fly-backup-link href="#fly-backup">${ctx.escapeHtml(ctx.copy.flyBackupAction)} ↑</a>`;
   }
   function renderCompatibility(ctx, entries, stage) {
     const groups = ["bait", "lure", "fly"].map((category) => compatibilityGroup(ctx, entries, category, stage)).join("");
@@ -977,12 +998,14 @@
   var labels = {
     en: {
       title: "Read the water marks",
-      intro: "These are the mark types recorded as possible for this fish profile. The size mark is chosen when a fish appears. It can grow afterward, so the icon may not match its size when caught. Size alone cannot identify the species.",
+      intro: "Use these marks to narrow down candidates on the map. A mark records size when the object is built; later growth does not directly update it. The caught size may differ, and a mark alone cannot identify the species.",
       small: "Small fish mark",
       large: "Large fish mark",
       bubble: "Bubble mark",
       smallFact: "For a normal mark, the fish is under 50 cm when the mark is created.",
       largeFact: "For a normal mark, the fish is at least 50 cm when the mark is created.",
+      growthLabel: "Large mark · only after growth and rebuilding",
+      growthFact: "This fish starts below 50 cm. A large mark requires growth to at least 50 cm and a later object rebuild. Do not expect a large mark from its initial size; ordinary-play frequency is not confirmed.",
       bubbleFact: "A bubble mark does not identify the fish or show its size. This profile passes potato bait 11’s float check, but that does not guarantee the mark is this fish or that it will bite.",
       baitAction: "Check potato bait 11 · float condition",
       evidence: "ROM evidence and method",
@@ -990,12 +1013,14 @@
     },
     ja: {
       title: "水面のマークの見分け方",
-      intro: "この魚プロフィールで表示される可能性が確認されたマークです。サイズの魚影は魚が出現した時に選ばれます。その後に成長しても魚影は更新されないため、釣れた時のサイズとは異なる場合があります。サイズだけで魚種は特定できません。",
+      intro: "マークを使って地図の候補を絞り込めます。魚影はオブジェクト作成時のサイズで決まり、その後の成長だけでは直接更新されません。釣れた時のサイズとは異なる場合があり、マークだけでは魚種を特定できません。",
       small: "小さい魚影",
       large: "大きい魚影",
       bubble: "泡のマーク",
       smallFact: "通常のマーク作成時に、魚体サイズが50cm未満です。",
       largeFact: "通常のマーク作成時に、魚体サイズが50cm以上です。",
+      growthLabel: "大魚影・成長後の再作成が必要",
+      growthFact: "この魚の初期サイズは50cm未満です。大魚影には50cm以上への成長と、その後のオブジェクト再作成が必要です。初期サイズから大魚影を期待しないでください。通常プレイでの頻度は未確認です。",
       bubbleFact: "泡のマークは魚種やサイズを示しません。このプロフィールはウキ仕掛けでイモエサ11の判定を通りますが、マークの魚がこの魚であることや食いつきを保証しません。",
       baitAction: "イモエサ11のウキ判定を確認",
       evidence: "ROM根拠と調査方法",
@@ -1003,12 +1028,14 @@
     },
     th: {
       title: "ดูเครื่องหมายบนผิวน้ำ",
-      intro: "ปลาชนิดนี้แสดงเครื่องหมายด้านล่างได้ เกมเลือกเครื่องหมายขนาดตอนปลาเกิด ปลาขนาดเพิ่มได้ภายหลังแต่เครื่องหมายไม่อัปเดต จึงไม่รับประกันว่าขนาดตอนตกได้จะตรงกับเครื่องหมาย ใช้ขนาดอย่างเดียวระบุชนิดปลาไม่ได้",
+      intro: "ใช้เครื่องหมายช่วยกรองชนิดปลาในแผนที่ เกมเลือกเครื่องหมายจากขนาดตอนสร้างวัตถุปลา การโตภายหลังไม่ได้เปลี่ยนเครื่องหมายเดิมโดยตรง ขนาดตอนตกได้จึงอาจต่างออกไป และเครื่องหมายอย่างเดียวระบุชนิดปลาไม่ได้",
       small: "เครื่องหมายปลาขนาดต่ำกว่า 50 ซม.",
       large: "เครื่องหมายปลาขนาดตั้งแต่ 50 ซม.",
       bubble: "เครื่องหมายฟองอากาศ",
       smallFact: "ถ้าเป็นเครื่องหมายปกติ ตอนเกมสร้างเครื่องหมายปลามีขนาดต่ำกว่า 50 ซม.",
       largeFact: "ถ้าเป็นเครื่องหมายปกติ ตอนเกมสร้างเครื่องหมายปลามีขนาดตั้งแต่ 50 ซม. ขึ้นไป",
+      growthLabel: "เครื่องหมายใหญ่ · ต้องโตและสร้างเครื่องหมายใหม่",
+      growthFact: "ปลานี้เริ่มต้นต่ำกว่า 50 ซม. เครื่องหมายใหญ่ต้องให้ปลาโตถึง 50 ซม. แล้วเกมสร้างวัตถุปลาใหม่ จึงอย่าคาดว่าจะเห็นภาพใหญ่จากขนาดเริ่มต้น ยังไม่ได้ยืนยันความถี่ในการเล่นปกติ",
       bubbleFact: "เครื่องหมายฟองไม่ได้บอกชนิดหรือขนาดปลา ปลาชนิดนี้ผ่านเงื่อนไขเหยื่อหัวมัน 11 เมื่อใช้ชุดทุ่น แต่ไม่ได้ยืนยันว่าปลาที่เห็นเป็นตัวนี้หรือจะกินเหยื่อ",
       baitAction: "ดูเงื่อนไขชุดทุ่นของเหยื่อหัวมัน 11",
       evidence: "หลักฐาน ROM และวิธีตรวจสอบ",
@@ -1045,11 +1072,12 @@
     return copy.bubbleFact;
   }
   function iconCard(ctx, copy, waterIcons, profile, iconClass, stage) {
-    const label = copy[iconClass];
+    const conditional = profile.growthOnlyClasses?.includes(iconClass) === true;
+    const label = conditional ? copy.growthLabel : copy[iconClass];
     const image = ctx.escapeHtml(imageFor(waterIcons, iconClass) + "?v=native-20261005");
-    const fact = ctx.escapeHtml(iconFact(copy, iconClass));
+    const fact = ctx.escapeHtml(conditional ? copy.growthFact : iconFact(copy, iconClass));
     const bubbleAction = iconClass === "bubble" && profile.bubble === true ? `<a class="route-button" data-water-bait-link href="${ctx.escapeHtml(potatoBaitLink(ctx, stage))}">${ctx.escapeHtml(copy.baitAction)} ↗</a>` : "";
-    return `<article class="entity-link water-icon-card" data-water-icon="${iconClass}"><img loading="lazy" src="${image}" alt="${ctx.escapeHtml(label)}"><span><strong>${ctx.escapeHtml(label)}</strong><small>${fact}</small></span>${bubbleAction}</article>`;
+    return `<article class="entity-link water-icon-card" data-water-icon="${iconClass}" data-water-class-evidence="${conditional ? "growth-only" : "initial"}"><img loading="lazy" src="${image}" alt="${ctx.escapeHtml(label)}"><span><strong>${ctx.escapeHtml(label)}</strong><small>${fact}</small></span>${bubbleAction}</article>`;
   }
   function evidenceDetails(ctx, copy) {
     const href = "https://github.com/polaminggkub-debug/kawa-no-nushi-tsuri-2-research/blob/main/docs/water-surface-icons.md";
@@ -1087,7 +1115,7 @@
       ...fish.nameLatinVariants || [],
       ...fish.nameThVariants || []
     ];
-    return [...new Set(names.filter(Boolean).filter((other) => other !== name))];
+    return distinctFishNames(names, name);
   }
   function fishHeadline(ctx, fish, name) {
     const hasName = fish.nameJa || fish.nameEn || fish.nameLatin || (fish.nameThVariants || []).length;
@@ -1122,10 +1150,10 @@
   }
   function compatibilityIntro(ctx) {
     if (ctx.locale === "th")
-      return "รายการด้านล่างเป็นทางเลือก ไม่จำเป็นต้องซื้อทั้งหมด ทุกชิ้นผ่านเงื่อนไขของปลาที่กำลังดู กดรายละเอียดเพื่อเปรียบเทียบวิธีใช้และด่านที่ขาย";
+      return "เลือกเพียงหนึ่งทางเลือกเพื่อเริ่มตก ไม่จำเป็นต้องซื้อทั้งหมด กดรายละเอียดเพื่อเทียบวิธีใช้และด่านที่ขาย";
     if (ctx.locale === "ja")
-      return "以下は代替候補で、全部買う必要はない。各項目は表示中の魚の判定を通る。詳細で使い方と販売エリアを比較できる。";
-    return "The lists below are alternatives; you do not need to buy every entry. Each passes the shown fish’s check. Open details to compare use and purchase areas.";
+      return "最初は候補を1つ選び、全部買う必要はありません。詳細で使い方と販売エリアを比較できます。";
+    return "Choose one alternative to start; you do not need every entry. Open details to compare use and purchase areas.";
   }
   function compatibleSection(ctx, state) {
     return `<section id="all-compatible" class="detail-section"><h2>${ctx.escapeHtml(ctx.copy.compatible)}</h2><p class="section-lede">${ctx.escapeHtml(ctx.copy.compatibilityNote)}</p><p>${ctx.escapeHtml(compatibilityIntro(ctx))}</p>${ctx.renderCompatibility(state.matches, state.activeStage)}</section>`;
@@ -1156,6 +1184,11 @@
   function reopenFlyBackup() {
     if (location.hash !== "#fly-backup") return;
     document.getElementById("fly-backup")?.setAttribute("open", "");
+  }
+  function bindFlyBackupAction(ctx) {
+    ctx.page.querySelector?.("[data-fly-backup-link]")?.addEventListener("click", () => {
+      document.getElementById("fly-backup")?.setAttribute("open", "");
+    });
   }
   function reopenRequestedStarter(ctx, shouldScroll = true) {
     const anchor = location.hash.match(/^#starter-(float|sinker|lure|fly)$/)?.[1];
@@ -1195,6 +1228,7 @@
     const anchorId = profileAnchorId(location.hash);
     reopenRequestedStarter(ctx, !anchorId);
     reopenFlyBackup();
+    bindFlyBackupAction(ctx);
     updateAreaChooser(ctx, fishData, locationData, state.locations);
     setFishTitle(ctx, state.headline);
     restoreProfileAnchor(anchorId);
@@ -1212,11 +1246,14 @@
     bait: "Live bait",
     lure: "Lures",
     fly: "Fly bodies",
+    flyCandidates: "Fly bodies · profile matches only",
+    flyProfileOnly: "This count lists bodies that match the fish profile, not fully accepted fly sets. The body and wing can still fail a hidden condition. Start with a recorded shop set; if it does not get a bite, inspect the three backup sets instead of buying every body.",
+    flyBackupAction: "Show this fish’s three backup sets",
     firstStep: "Start with the map, then choose your gear",
     firstStepBody: "Choose an area to find fishing points, then choose a tackle setup below for your fishing method.",
     chooseSpots: "Choose a fishing area",
-    compatible: "ROM-confirmed compatibility",
-    compatibilityNote: "These entries pass the recorded bait, lure, or fly fish check for this profile. That does not guarantee a bite or a landed catch. Rod or hook bonuses for this individual fish are not established here.",
+    compatible: "Choose bait or inspect fly candidates",
+    compatibilityNote: "Bait and lures pass this fish’s recorded mask checks. Fly bodies below only match the fish profile; the assembled body/wing set must pass another live condition. None of these checks guarantees a bite or landing.",
     mapAction: "Open map and fish points",
     configuredPoints: (n) => `${n} configured point${n === 1 ? "" : "s"}`,
     spawnSlots: (n) => `${n} spawn slots in the ROM table`,
@@ -1253,11 +1290,14 @@
     bait: "エサ",
     lure: "ルアー",
     fly: "フライ本体",
+    flyCandidates: "フライ本体・プロフィール一致のみ",
+    flyProfileOnly: "この数は魚プロフィールと一致する本体数で、判定をすべて通る完成フライ数ではありません。本体・ウィングは隠れた条件で遮断される場合があります。まず店売りセットを選び、反応しない場合は本体を全部買うのではなく予備3セットを確認してください。",
+    flyBackupAction: "この魚の予備3セットを見る",
     firstStep: "まずマップを見てから道具を選ぶ",
     firstStepBody: "エリアを選んで釣りポイントを確認し、下から自分の釣り方に合う道具セットを選んでください。",
     chooseSpots: "釣るエリアを選ぶ",
-    compatible: "ROMで確認した対応条件",
-    compatibilityNote: "各項目は、このプロフィールに対するエサ・ルアー・フライの魚判定を通過します。食いつきや取り込みを保証しません。この魚だけに有効な竿やハリのボーナスも確認していません。",
+    compatible: "エサを選ぶ・フライ候補を調べる",
+    compatibilityNote: "エサとルアーはこの魚の記録済みマスク判定を通ります。下のフライ本体は魚プロフィールとの一致のみで、完成セットの本体・ウィングには別の動的条件があります。食いつきや取り込みの保証ではありません。",
     mapAction: "マップと魚の位置を開く",
     configuredPoints: (n) => `設定されたポイント ${n}か所`,
     spawnSlots: (n) => `ROMテーブルの出現枠 ${n}`,
@@ -1294,11 +1334,14 @@
     bait: "เหยื่อจริง",
     lure: "เหยื่อปลอม",
     fly: "ตัวฟลาย",
+    flyCandidates: "บอดี้ฟลาย · ตรงกับโปรไฟล์ปลาเท่านั้น",
+    flyProfileOnly: "จำนวนนี้นับบอดี้ที่ตรงกับโปรไฟล์ปลา ไม่ใช่จำนวนชุดฟลายที่ผ่านทุกเงื่อนไข บอดี้กับปีกยังอาจถูกบล็อกจากเงื่อนไขซ่อน เริ่มด้วยชุดที่มีขายในร้าน ถ้าไม่กิน ให้ดูชุดสำรองสามชุดแทนการซื้อบอดี้ทุกชิ้น",
+    flyBackupAction: "ดูชุดฟลายสำรองสามชุดของปลานี้",
     firstStep: "เริ่มจากดูแผนที่ แล้วค่อยเลือกอุปกรณ์",
     firstStepBody: "เลือกด่านเพื่อดูจุดตก แล้วเลือกชุดอุปกรณ์ด้านล่างตามวิธีที่คุณเล่น",
     chooseSpots: "เลือกด่านที่จะไปตก",
-    compatible: "เหยื่อที่ผ่านเงื่อนไขใน ROM",
-    compatibilityNote: "รายการนี้ผ่านด่านตรวจเหยื่อจริง เหยื่อปลอม หรือตัวฟลายของโปรไฟล์ปลานี้ ไม่ได้รับประกันว่าปลาจะกินหรือดึงขึ้นมาได้ และยังไม่มีหลักฐานว่าคันหรือตะขอได้โบนัสเฉพาะปลาชนิดนี้",
+    compatible: "เลือกเหยื่อหรือดูตัวเลือกฟลาย",
+    compatibilityNote: "เหยื่อจริงและเหยื่อปลอมผ่านเงื่อนไขความเข้ากันได้ที่บันทึกไว้ของปลานี้ ส่วนบอดี้ฟลายด้านล่างตรงกับโปรไฟล์ปลาเท่านั้น ชุดบอดี้/ปีกยังมีเงื่อนไขซ่อนเพิ่มเติม ไม่รับประกันว่าปลาจะกินหรือตกขึ้นได้",
     mapAction: "เปิดแผนที่และจุดของปลา",
     configuredPoints: (n) => `${n} จุดที่เกมกำหนด`,
     spawnSlots: (n) => `${n} ช่องเกิดปลาในตาราง ROM`,
@@ -1390,7 +1433,7 @@
     });
   }
   function loadGallery() {
-    return fetch("gallery-data.json?v=compendium-20261005-45").then((response) => {
+    return fetch("gallery-data.json?v=compendium-20261005-46").then((response) => {
       if (!response.ok) throw new Error("gallery data unavailable");
       return response.json();
     });

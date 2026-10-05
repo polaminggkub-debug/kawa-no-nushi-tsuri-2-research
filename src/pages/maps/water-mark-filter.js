@@ -14,6 +14,30 @@ export function waterMarkFishIds(ctx, stage, mark = ctx.activeWaterMark) {
   return [...ids].filter((id) => fishMatchesWaterMark(ctx, id, mark))
 }
 
+export function classifyWaterMarkFish(ctx, ids, mark) {
+  return ids.reduce(
+    (groups, id) => {
+      const profile = ctx.waterIcons?.profiles?.[id]
+      const hasClassification =
+        Array.isArray(profile?.initialClasses) && Array.isArray(profile?.growthOnlyClasses)
+      if (!hasClassification) groups.unclassified.push(id)
+      else if (profile.initialClasses.includes(mark)) groups.initial.push(id)
+      else if (profile.growthOnlyClasses.includes(mark)) groups.growthOnly.push(id)
+      else groups.unclassified.push(id)
+      if (hasClassification) groups.classified += 1
+      return groups
+    },
+    { initial: [], growthOnly: [], unclassified: [], classified: 0 },
+  )
+}
+
+export function isGrowthOnlyWaterMark(ctx, id, mark = ctx.activeWaterMark) {
+  const profile = ctx.waterIcons?.profiles?.[id]
+  return Boolean(
+    profile?.growthOnlyClasses?.includes(mark) && !profile?.initialClasses?.includes(mark),
+  )
+}
+
 export function visibleMapFishIds(ctx, ids) {
   return ids.filter(
     (id) => (!ctx.selectedFish || id === ctx.selectedFish) && fishMatchesWaterMark(ctx, id),

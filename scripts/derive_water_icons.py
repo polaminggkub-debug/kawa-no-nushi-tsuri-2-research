@@ -88,6 +88,15 @@ def size_rng_cycle() -> list[int]:
     return outputs
 
 
+def initial_marker_classes(bubble: bool, minimum: int | None, maximum: int | None) -> list[str]:
+    if bubble:
+        return ["bubble"]
+    classes = ["small"] if minimum is not None and minimum < SIZE_THRESHOLD else []
+    if maximum is not None and maximum >= SIZE_THRESHOLD:
+        classes.append("large")
+    return classes
+
+
 def profile_data(rom: bytes, fish_id: int) -> dict:
     offset = PROFILE_BASE + (fish_id - 1) * PROFILE_STRIDE
     profile = rom[offset : offset + PROFILE_STRIDE]
@@ -95,6 +104,7 @@ def profile_data(rom: bytes, fish_id: int) -> dict:
     base_half, initial_max, cap = phase_range(profile)
     initial_min = base_half
     bubble, classes = marker_class(profile, initial_min, initial_max, cap)
+    initial_classes = initial_marker_classes(bubble, initial_min, initial_max)
     mask = read_word(profile, 15)
     return {
         "fishId": f"{fish_id:02X}",
@@ -108,6 +118,8 @@ def profile_data(rom: bytes, fish_id: int) -> dict:
         "profileWordPlus15Plus16": f"0x{mask:04X}",
         "bubble": bubble,
         "possibleClasses": classes,
+        "initialClasses": initial_classes,
+        "growthOnlyClasses": [value for value in classes if value not in initial_classes],
         "potatoBaitMaskCompatible": bubble,
     }
 
@@ -189,6 +201,10 @@ def build_evidence(rom: bytes, potato_offset: int, potato_mask: int) -> dict:
         },
         "sizeAndCatch": {
             "markerSelectorCpu": "04:C369..C3D4",
+            "objectRebuildEntryCpu": "04:C1F8..C288",
+            "viewGuardCpu": "04:C1A3..C1F7",
+            "fieldSetupCallerCpu": "04:BE20..BE32",
+            "fieldInputCallerCpu": "04:BF2A..BF38",
             "sizeInitializationCpu": "03:83AA..83DF",
             "sizeGrowthCpu": "04:EC56..EC8B",
             "profileLoaderCpu": "03:D26D",
@@ -197,6 +213,10 @@ def build_evidence(rom: bytes, potato_offset: int, potato_mask: int) -> dict:
         },
         "byteFingerprints": [
             fingerprint(rom, 4, 0xC369, 0xC3D5),
+            fingerprint(rom, 4, 0xC1A3, 0xC289),
+            fingerprint(rom, 4, 0xBE20, 0xBE33),
+            fingerprint(rom, 4, 0xBF2A, 0xBF39),
+            fingerprint(rom, 0, 0xDDE7, 0xDE05),
             fingerprint(rom, 3, 0x83AA, 0x83E0),
             fingerprint(rom, 4, 0xEC56, 0xEC8C),
             fingerprint(rom, 0, 0xEEFA, 0xEF1A),
@@ -233,7 +253,8 @@ def extract(rom: bytes) -> dict:
             "initialSize": "On row initialization, size = floor(profile +0 / 2) + (ROM random byte modulo floor(profile +0 / 2)).",
             "growth": "On a later fish-row refresh, the stored size increments by 1 until profile +1; after it exceeds +1, the row value is cleared.",
             "mapScope": "Map sets change which fish profiles and rows are configured. The traced marker selector uses the profile flag or row size; it has no map-number input.",
-            "refreshLimit": "The marker class is stored when the fish object is created. Size-growth routines update the row value without directly refreshing that class; exact refresh timing after growth is unresolved.",
+            "refreshLimit": "The marker class is stored when the fish object is created. Size-growth routines update the row value without directly refreshing that class. Field setup and a view-distance-gated input path can rebuild objects, but an ordinary growth/rebuild transition and its frequency remain unverified.",
+            "classEvidence": "initialClasses uses only the initialized size range. growthOnlyClasses additionally requires a grown row and a later object rebuild; ordinary-play visibility and frequency are not established by the size cap alone.",
             "interpretationLimit": "Marker classes do not guarantee a bite or catch. The bubble marker identifies potato-bait mask compatibility; bait checks and other fishing conditions still apply.",
         },
         "mapSets": maps,

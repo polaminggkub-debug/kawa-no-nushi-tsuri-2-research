@@ -1,3 +1,5 @@
+import { distinctFishNames } from './fish-names.js'
+
 const profileAnchors = {
   '#fish-area-map': 'fish-area-map',
   '#water-icons': 'water-icons',
@@ -22,7 +24,7 @@ function alternateFishNames(fish, name) {
     ...(fish.nameLatinVariants || []),
     ...(fish.nameThVariants || []),
   ]
-  return [...new Set(names.filter(Boolean).filter((other) => other !== name))]
+  return distinctFishNames(names, name)
 }
 
 function fishHeadline(ctx, fish, name) {
@@ -67,10 +69,10 @@ function renderFirstStep(ctx) {
 
 function compatibilityIntro(ctx) {
   if (ctx.locale === 'th')
-    return 'รายการด้านล่างเป็นทางเลือก ไม่จำเป็นต้องซื้อทั้งหมด ทุกชิ้นผ่านเงื่อนไขของปลาที่กำลังดู กดรายละเอียดเพื่อเปรียบเทียบวิธีใช้และด่านที่ขาย'
+    return 'เลือกเพียงหนึ่งทางเลือกเพื่อเริ่มตก ไม่จำเป็นต้องซื้อทั้งหมด กดรายละเอียดเพื่อเทียบวิธีใช้และด่านที่ขาย'
   if (ctx.locale === 'ja')
-    return '以下は代替候補で、全部買う必要はない。各項目は表示中の魚の判定を通る。詳細で使い方と販売エリアを比較できる。'
-  return 'The lists below are alternatives; you do not need to buy every entry. Each passes the shown fish’s check. Open details to compare use and purchase areas.'
+    return '最初は候補を1つ選び、全部買う必要はありません。詳細で使い方と販売エリアを比較できます。'
+  return 'Choose one alternative to start; you do not need every entry. Open details to compare use and purchase areas.'
 }
 
 function compatibleSection(ctx, state) {
@@ -108,6 +110,12 @@ function updateAreaChooser(ctx, fishData, locationData, locations) {
 function reopenFlyBackup() {
   if (location.hash !== '#fly-backup') return
   document.getElementById('fly-backup')?.setAttribute('open', '')
+}
+
+function bindFlyBackupAction(ctx) {
+  ctx.page.querySelector?.('[data-fly-backup-link]')?.addEventListener('click', () => {
+    document.getElementById('fly-backup')?.setAttribute('open', '')
+  })
 }
 
 function reopenRequestedStarter(ctx, shouldScroll = true) {
@@ -152,6 +160,7 @@ export function render(ctx, fishData, locationData) {
   const anchorId = profileAnchorId(location.hash)
   reopenRequestedStarter(ctx, !anchorId)
   reopenFlyBackup()
+  bindFlyBackupAction(ctx)
   updateAreaChooser(ctx, fishData, locationData, state.locations)
   setFishTitle(ctx, state.headline)
   restoreProfileAnchor(anchorId)

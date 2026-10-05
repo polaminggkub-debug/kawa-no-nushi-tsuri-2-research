@@ -1,4 +1,5 @@
 import { notebookStatus } from './notebook-status.js'
+import { renderGrowthOnlyFishBadge } from './water-icons.js'
 
 export function safeReturn(ctx, raw) {
   if (!raw || raw.startsWith('//') || raw.includes('\\') || /^[a-z][a-z0-9+.-]*:/i.test(raw))
@@ -434,5 +435,6 @@ export function fishChoice(ctx, id, term, sectionIds) {
   const sub = term
     ? `${ctx.c.areasPrefix} ${availability}`
     : `${ctx.c.point(pointCount)}${item.visual.nameJa && ctx.lang !== 'ja' ? ` · ${item.visual.nameJa}` : ''}`
-  return `<div class="fish-choice-row ${ctx.selectedFish === id ? 'selected' : ''}"><a class="fish-portrait-link" href="${ctx.esc(ctx.fishHref(id))}" aria-label="${ctx.esc(item.name)} — ${ctx.detailLabel}">${img ? `<img loading="lazy" src="${ctx.esc(img)}" alt="${ctx.esc(item.name)}">` : ''}</a><button class="fish-choice" type="button" data-fish="${id}" aria-pressed="${ctx.selectedFish === id}"><span>${ctx.esc(item.name)}<small>${ctx.esc(sub)}</small><small class="filter-action">${ctx.lang === 'th' ? 'เน้นบนแผนที่' : ctx.lang === 'ja' ? '地図で絞り込む' : 'Focus on map'}</small></span></button><a class="fish-details-link" href="${ctx.esc(ctx.fishHref(id))}">${ctx.detailLabel} ↗</a>${notebookStatus(ctx, id)}</div>`
+  const growthBadge = renderGrowthOnlyFishBadge(ctx, id)
+  return `<div class="fish-choice-row ${ctx.selectedFish === id ? 'selected' : ''}"><a class="fish-portrait-link" href="${ctx.esc(ctx.fishHref(id))}" aria-label="${ctx.esc(item.name)} — ${ctx.detailLabel}">${img ? `<img loading="lazy" src="${ctx.esc(img)}" alt="${ctx.esc(item.name)}">` : ''}</a><button class="fish-choice" type="button" data-fish="${id}" aria-pressed="${ctx.selectedFish === id}"><span>${ctx.esc(item.name)}<small>${ctx.esc(sub)}</small>${growthBadge}<small class="filter-action">${ctx.lang === 'th' ? 'เน้นบนแผนที่' : ctx.lang === 'ja' ? '地図で絞り込む' : 'Focus on map'}</small></span></button><a class="fish-details-link" href="${ctx.esc(ctx.fishHref(id))}">${ctx.detailLabel} ↗</a>${notebookStatus(ctx, id)}</div>`
 }

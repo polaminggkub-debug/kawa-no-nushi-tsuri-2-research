@@ -1,3 +1,5 @@
+import { classifyWaterMarkFish, isGrowthOnlyWaterMark } from './water-mark-filter.js'
+
 const copy = {
   th: {
     title: 'สัญลักษณ์บนผิวน้ำในเกม',
@@ -9,6 +11,14 @@ const copy = {
     idle: 'เลือกสัญลักษณ์เพื่อดูชนิดปลาที่มีโอกาสแสดงภาพแบบนั้นในด่านนี้',
     count: (n, area, mark) =>
       `ด่าน ${area}: มีปลา ${n} ชนิดที่ข้อมูล ROM ระบุว่าอาจใช้สัญลักษณ์ “${mark}”`,
+    initialCount: (n) => `แสดงสัญลักษณ์นี้ได้ตั้งแต่ขนาดเริ่มต้น: ${n} ชนิด`,
+    growthCount: (n) => `มีอีก ${n} ชนิดที่เข้าเงื่อนไขปลาใหญ่หลังโต`,
+    growthNote:
+      'กลุ่มนี้ต้องโตถึง 50 ซม. และเกมต้องสร้างไอคอนใหม่หลังจากนั้น จึงจะแสดงเป็นปลาใหญ่ได้; ยังไม่ยืนยันว่าเกิดบ่อยเพียงใดในการเล่นปกติ',
+    growthBadge: 'เงื่อนไข: โตถึง 50 ซม. แล้วสร้างไอคอนใหม่',
+    unknownCount: (n) => `ยังไม่มีข้อมูลแบ่งตามช่วงขนาดสำหรับปลาอีก ${n} ชนิด`,
+    markPossible: 'เป็นไปได้กับปลาที่เลือก',
+    markGrowthOnly: 'เมื่อโตถึง 50 ซม. และเกมสร้างไอคอนใหม่',
     none: (area) =>
       `ไม่พบชนิดปลาที่ใช้สัญลักษณ์นี้ในข้อมูลของด่าน ${area} ลองเลือกด่านอื่นหรือล้างตัวกรอง`,
     resultLimit: 'รายการนี้แสดงความเป็นไปได้จากข้อมูล ROM ไม่ใช่โอกาสหรือเปอร์เซ็นต์ที่จะเจอปลา',
@@ -39,6 +49,14 @@ const copy = {
     idle: 'Choose a mark to see which species can show it in this area.',
     count: (n, area, mark) =>
       `Area ${area}: ROM data lists ${n} species that may use the “${mark}” mark.`,
+    initialCount: (n) => `Can show this mark at initial size: ${n} species.`,
+    growthCount: (n) => `${n} more are conditional large-mark candidates after growth.`,
+    growthNote:
+      'These candidates require the fish to reach 50 cm and a later icon build. How often normal play reaches that state is unverified.',
+    growthBadge: 'Conditional: 50 cm + a new icon build',
+    unknownCount: (n) => `ROM size-phase data is unavailable for ${n} more species.`,
+    markPossible: 'Possible for selected fish',
+    markGrowthOnly: 'Only after 50 cm and a later icon build',
     none: (area) =>
       `No species with this mark are listed for Area ${area}. Try another area or clear the filter.`,
     resultLimit:
@@ -70,6 +88,14 @@ const copy = {
     idle: 'マークを選ぶと、このエリアで表示される可能性がある魚種を確認できます。',
     count: (n, area, mark) =>
       `エリア${area}：ROM上で「${mark}」を使う可能性がある魚種は${n}種です。`,
+    initialCount: (n) => `初期サイズからこのマークを表示できる魚：${n}種`,
+    growthCount: (n) => `成長後に大魚影となる条件付き候補：さらに${n}種`,
+    growthNote:
+      'この候補は魚が50cmに達し、その後にアイコンが再生成される必要があります。通常プレイでどの程度起きるかは未確認です。',
+    growthBadge: '条件：50cm以上＋アイコン再生成',
+    unknownCount: (n) => `サイズ段階の分類データがない魚：${n}種`,
+    markPossible: '選択中の魚に該当',
+    markGrowthOnly: '50cm到達後、アイコン再生成時のみ',
     none: (area) =>
       `エリア${area}にはこのマークに該当する魚種がありません。別のエリアを選ぶか、絞り込みを解除してください。`,
     resultLimit: 'ROMから確認できる可能性の一覧で、遭遇確率や割合ではありません。',
@@ -114,8 +140,10 @@ function renderHeader(labels) {
 function markButton(ctx, labels, data, key, profile) {
   const active = ctx.activeWaterMark === key,
     possible = profile?.possibleClasses?.includes(key),
+    growthOnly = isGrowthOnlyWaterMark(ctx, ctx.selectedFish, key),
     image = `${data.classes[key].image}?v=native-20261005`
-  return `<button type="button" id="water-mark-${key}" class="water-mark-button${active ? ' is-active' : ''}" data-water-mark="${key}" aria-pressed="${active}" aria-controls="fish-list map-view" aria-label="${ctx.esc(labels[key])}"><img src="${ctx.esc(image)}" alt=""><span>${ctx.esc(labels[key])}${possible ? `<small>${ctx.lang === 'th' ? 'เป็นไปได้กับปลาที่เลือก' : ctx.lang === 'ja' ? '選択中の魚に該当' : 'Possible for selected fish'}</small>` : ''}</span></button>`
+  const hint = growthOnly ? labels.markGrowthOnly : possible ? labels.markPossible : ''
+  return `<button type="button" id="water-mark-${key}" class="water-mark-button${active ? ' is-active' : ''}" data-water-mark="${key}" aria-pressed="${active}" aria-controls="fish-list map-view" aria-label="${ctx.esc(labels[key])}"><img src="${ctx.esc(image)}" alt=""><span>${ctx.esc(labels[key])}${hint ? `<small>${ctx.esc(hint)}</small>` : ''}</span></button>`
 }
 
 function renderMarkResults(ctx, labels) {
@@ -124,10 +152,26 @@ function renderMarkResults(ctx, labels) {
     return `<div class="water-mark-results" id="water-mark-results"><p>${ctx.esc(labels.idle)}</p></div>`
   const ids = ctx.waterMarkFishIds(ctx.activeStage, mark),
     label = labels[mark],
-    count = ids.length,
-    status = count ? labels.count(count, ctx.activeStage, label) : labels.none(ctx.activeStage),
+    status = ids.length
+      ? labels.count(ids.length, ctx.activeStage, label)
+      : labels.none(ctx.activeStage),
     conflict = ctx.selectedFish && !ctx.fishMatchesWaterMark(ctx.selectedFish, mark)
-  return `<div class="water-mark-results" id="water-mark-results"><p class="water-mark-count" aria-live="polite">${ctx.esc(status)}</p><p>${ctx.esc(labels.resultLimit)}</p>${conflict ? `<p class="water-mark-conflict" data-water-mark-conflict role="status">${ctx.esc(labels.conflict(ctx.fishName(ctx.selectedFish), label))}</p>` : ''}<div class="water-mark-actions"><a href="#fish-list">${ctx.esc(labels.listLink)} ↘</a>${ctx.selectedFish ? `<button type="button" data-action="show-mark-candidates">${ctx.esc(labels.clearTarget)}</button>` : ''}<button type="button" data-action="clear-water-mark">${ctx.esc(labels.clearFilter)}</button></div></div>`
+  return `<div class="water-mark-results" id="water-mark-results"><p class="water-mark-count" aria-live="polite">${ctx.esc(status)}</p>${renderClassCounts(ctx, labels, ids, mark)}<p>${ctx.esc(labels.resultLimit)}</p>${conflict ? `<p class="water-mark-conflict" data-water-mark-conflict role="status">${ctx.esc(labels.conflict(ctx.fishName(ctx.selectedFish), label))}</p>` : ''}<div class="water-mark-actions"><a href="#fish-list">${ctx.esc(labels.listLink)} ↘</a>${ctx.selectedFish ? `<button type="button" data-action="show-mark-candidates">${ctx.esc(labels.clearTarget)}</button>` : ''}<button type="button" data-action="clear-water-mark">${ctx.esc(labels.clearFilter)}</button></div></div>`
+}
+
+function renderClassCounts(ctx, labels, ids, mark) {
+  const groups = classifyWaterMarkFish(ctx, ids, mark)
+  if (!groups.classified) return ''
+  const growth = groups.growthOnly.length
+    ? `<p>${ctx.esc(labels.growthCount(groups.growthOnly.length))}</p><p>${ctx.esc(labels.growthNote)}</p>`
+    : ''
+  return `<div class="water-mark-class-counts"><p>${ctx.esc(labels.initialCount(groups.initial.length))}</p>${growth}${groups.unclassified.length ? `<p>${ctx.esc(labels.unknownCount(groups.unclassified.length))}</p>` : ''}</div>`
+}
+
+export function renderGrowthOnlyFishBadge(ctx, id) {
+  if (ctx.activeWaterMark !== 'large' || !isGrowthOnlyWaterMark(ctx, id, 'large')) return ''
+  const label = copy[ctx.lang].growthBadge
+  return `<small class="water-mark-growth-badge">${ctx.esc(label)}</small>`
 }
 
 export function waterMarkAreaText(ctx, stage) {
