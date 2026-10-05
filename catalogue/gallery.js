@@ -1176,7 +1176,7 @@
     const isAreaRod = area && category === "rod";
     return {
       label: categoryLabel(ctx, category, count, area, isAreaRod),
-      note: categoryNote(ctx, area, isAreaRod)
+      note: categoryNote(ctx, area, isAreaRod || Boolean(area && category === "all"))
     };
   }
   function categoryLabel(ctx, category, count, area, isAreaRod) {
@@ -1188,18 +1188,25 @@
   function categoryNote(ctx, area, isAreaRod) {
     if (!isAreaRod) return "";
     if (ctx.lang === "th")
-      return "<p>ส่วนนี้เป็นคำแนะนำเส้นทางเดิม ตารางเทียบด้านล่างคัดรายการขายตามด่านที่เลือก</p>";
+      return `<p>คำแนะนำคันเบ็ดนี้เป็นเส้นทางทั่วไป ไม่ได้คัดสินค้าตามด่าน ${area} เปิดหน้าร้านเพื่อดูรายการขายในด่านที่เลือก</p>`;
     if (ctx.lang === "ja")
-      return "<p>この欄は一般ルート案内です。下の比較表は選択エリアの販売記録で比較します。</p>";
-    return "<p>These are general route recommendations. The comparison table below uses recorded offers for the selected area.</p>";
+      return `<p>竿の一般ルート案内で、エリア${area}の店頭在庫に限定した案内ではありません。選択エリアの販売品はショップページで確認してください。</p>`;
+    return `<p>These rod recommendations are general routes, not stock choices for Area ${area}. Open Shops to see recorded offers in your selected area.</p>`;
   }
 
   // src/pages/equipment/player-guidance.js
   function decisionCard(ctx, d) {
     const marker = d.id === "lure_coverage_pair" ? " data-lure-coverage-pair" : "";
+    const lureGuide = d.id === "lure_coverage_pair" ? lureCoverageGuide(ctx) : "";
     const nextAction = d.nextAction?.href ? `<p><a class="route-button" data-fly-backup-action href="${ctx.esc(d.nextAction.href)}">${ctx.esc(ctx.local(d.nextAction.label))} ↗</a></p>` : "";
-    const rodScope = d.category === "rod" && hasSelectedArea(ctx) ? ctx.lang === "th" ? `<p class="fish-scope">คำแนะนำเส้นทางทั่วไป ไม่ได้คัดจากสต็อกด่าน ${hasSelectedArea(ctx)}</p>` : ctx.lang === "ja" ? `<p class="fish-scope">一般ルート案内です。エリア${hasSelectedArea(ctx)}の販売記録に基づく案内ではありません。</p>` : `<p class="fish-scope">General route advice; not selected-area stock advice for Area ${hasSelectedArea(ctx)}.</p>` : "";
-    return `<article class="decision-card"${marker}><h3>${ctx.esc(ctx.local(d.title))}</h3>${rodScope}<p class="decision-action">${ctx.esc(ctx.local(d.recommendation))}</p>${d.reason ? `<p>${ctx.esc(ctx.local(d.reason))}</p>` : ""}<div class="decision-items">${(d.items || []).map(ctx.decisionLink).join("")}</div>${d.scope ? `<small>${ctx.esc(ctx.local(d.scope))}</small>` : ""}${nextAction}</article>`;
+    return `<article class="decision-card"${marker}><h3>${ctx.esc(ctx.local(d.title))}</h3><p class="decision-action">${ctx.esc(ctx.local(d.recommendation))}</p>${d.reason ? `<p>${ctx.esc(ctx.local(d.reason))}</p>` : ""}<div class="decision-items">${(d.items || []).map(ctx.decisionLink).join("")}</div>${d.scope ? `<small>${ctx.esc(ctx.local(d.scope))}</small>` : ""}${lureGuide}${nextAction}</article>`;
+  }
+  function lureCoverageGuide(ctx) {
+    const link = document.getElementById("kit-link");
+    const href = link?.getAttribute?.("href") || "";
+    const label = ctx.player?.kitLink;
+    if (!href || !label) return "";
+    return `<p><a class="route-button" data-lure-coverage-guide href="${ctx.esc(href)}">${ctx.esc(label)} ↗</a></p>`;
   }
   function renderPlayerDecisionOverview(ctx) {
     const title = ctx.lang === "th" ? "ซื้ออะไร พกอะไร ทำอะไรก่อนตก" : ctx.lang === "ja" ? "買う・持つ・釣る前にすること" : "What to buy, carry and do before fishing";
@@ -2826,14 +2833,18 @@
       style: document.getElementById("style-filter").value
     };
   }
-  function updateCatalogueLink(ctx, fish) {
+  function updateCatalogueLink(ctx, category, fish) {
     const maps = ctx.lang === "th" ? "maps.th.html" : ctx.lang === "ja" ? "maps.ja.html" : "maps.html";
     const query = new URLSearchParams({ return: ctx.sourceReturn(), route: ctx.baitRoute });
     if (fish) query.set("fish", fish);
     if (ctx.locationStage) query.set("stage", String(ctx.locationStage));
     query.set("map", String(ctx.locationMapIndex));
     document.getElementById("map-browser-link").href = `${maps}?${query}`;
-    document.getElementById("generic-lure-kit").hidden = !!fish;
+    const hasCanonicalCoverage = (ctx.decisions || []).some(
+      (decision) => decision.id === "lure_coverage_pair"
+    );
+    const coverageShownInCategory = ["all", "lure"].includes(category) && hasCanonicalCoverage;
+    document.getElementById("generic-lure-kit").hidden = Boolean(fish || coverageShownInCategory);
   }
   function updateCatalogueUrl(ctx, category, fish, flyPart) {
     if (typeof history === "undefined" || typeof URLSearchParams === "undefined" || typeof location === "undefined")
@@ -2860,7 +2871,7 @@
   function updatePageContext(ctx, filters) {
     ctx.renderTargetCategories(filters.fish);
     updateCatalogueUrl(ctx, filters.category, filters.fish, ctx.flyPart);
-    updateCatalogueLink(ctx, filters.fish);
+    updateCatalogueLink(ctx, filters.category, filters.fish);
     ctx.refreshLanguageLinks?.();
   }
   function routeLabels(ctx) {

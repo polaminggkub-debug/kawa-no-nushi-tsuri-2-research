@@ -13,14 +13,18 @@ function readFilters() {
   }
 }
 
-function updateCatalogueLink(ctx, fish) {
+function updateCatalogueLink(ctx, category, fish) {
   const maps = ctx.lang === 'th' ? 'maps.th.html' : ctx.lang === 'ja' ? 'maps.ja.html' : 'maps.html'
   const query = new URLSearchParams({ return: ctx.sourceReturn(), route: ctx.baitRoute })
   if (fish) query.set('fish', fish)
   if (ctx.locationStage) query.set('stage', String(ctx.locationStage))
   query.set('map', String(ctx.locationMapIndex))
   document.getElementById('map-browser-link').href = `${maps}?${query}`
-  document.getElementById('generic-lure-kit').hidden = !!fish
+  const hasCanonicalCoverage = (ctx.decisions || []).some(
+    (decision) => decision.id === 'lure_coverage_pair',
+  )
+  const coverageShownInCategory = ['all', 'lure'].includes(category) && hasCanonicalCoverage
+  document.getElementById('generic-lure-kit').hidden = Boolean(fish || coverageShownInCategory)
 }
 
 function updateCatalogueUrl(ctx, category, fish, flyPart) {
@@ -53,7 +57,7 @@ function updateCatalogueUrl(ctx, category, fish, flyPart) {
 function updatePageContext(ctx, filters) {
   ctx.renderTargetCategories(filters.fish)
   updateCatalogueUrl(ctx, filters.category, filters.fish, ctx.flyPart)
-  updateCatalogueLink(ctx, filters.fish)
+  updateCatalogueLink(ctx, filters.category, filters.fish)
   ctx.refreshLanguageLinks?.()
 }
 

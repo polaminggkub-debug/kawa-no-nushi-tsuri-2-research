@@ -1,5 +1,5 @@
 import assert from 'node:assert/strict'
-import { data } from './shared.mjs'
+import { data, renderCatalogue, unescapeHtml } from './shared.mjs'
 import { renderDecisions } from '../../src/pages/equipment/player-guidance.js'
 
 const canonical = data.playerDecisions.sections
@@ -30,6 +30,7 @@ for (const lang of ['en', 'ja', 'th']) {
   const noAdvice = renderCase(lang, 'bait')
   assert.equal(noAdvice.categoryHtml, '')
   assert.doesNotMatch(noAdvice.playerHtml, /data-player-decisions-link/)
+  await checkRodScopeNote(lang)
 }
 
 const canonicalIds = canonical.map((decision) => decision.id)
@@ -126,4 +127,25 @@ function assertDecisionIds(html, expected) {
     [...expected].sort(),
     'Canonical category advice was lost or added',
   )
+}
+
+async function checkRodScopeNote(lang) {
+  const note = {
+    en: 'These rod recommendations are general routes, not stock choices for Area 3. Open Shops to see recorded offers in your selected area.',
+    ja: '竿の一般ルート案内で、エリア3の店頭在庫に限定した案内ではありません。選択エリアの販売品はショップページで確認してください。',
+    th: 'คำแนะนำคันเบ็ดนี้เป็นเส้นทางทั่วไป ไม่ได้คัดสินค้าตามด่าน 3 เปิดหน้าร้านเพื่อดูรายการขายในด่านที่เลือก',
+  }[lang]
+  const oldWarnings = {
+    en: 'General route advice; not selected-area stock advice for Area 3.',
+    ja: '一般ルート案内です。エリア3の販売記録に基づく案内ではありません。',
+    th: 'คำแนะนำเส้นทางทั่วไป ไม่ได้คัดจากสต็อกด่าน 3',
+  }[lang]
+  for (const category of ['rod', 'all']) {
+    const result = await renderCatalogue(lang, `?category=${category}&stage=3`)
+    const html = unescapeHtml(result.nodes['category-decisions'].innerHTML)
+    assert.equal(html.split(note).length - 1, 1, `${category}/${lang} needs one rod scope note`)
+    assert(!html.includes(oldWarnings), `${category}/${lang} repeats per-card stock warnings`)
+    assert(html.indexOf(note) < html.indexOf('class="decision-card"'))
+    assert.doesNotMatch(note, /table below|下の比較表|ตารางเทียบด้านล่าง/)
+  }
 }

@@ -396,3 +396,25 @@ link opening four rod recommendations, and fish 06's map-before-shopping flow.
 Mobile shop rendering was also inspected at 390px. This is a bounded improvement;
 the full-site usefulness goal remains active, and these checks are not a natural
 playthrough or proof that every research uncertainty has been resolved.
+
+## 2026-10-05: preserve decisions while reducing repeated guidance
+
+Food details 01–06 now lead their comparison panel with the local alternatives,
+without repeating the owned-food, equal-cost and missing-HP rules already in the
+visible item advice. Recovery labels state an upper limit. The closed full
+comparison still includes the HP-100 aiming advice and area-by-area food choices.
+Other foods and milk retain their distinct effects, hazards and quest actions.
+
+All/Lure catalogue views keep one canonical coverage recommendation and its
+localized link to the illustrated kit/species table. The generic quick-guide kit
+is hidden in those views, retained on other categories, and remains hidden for
+targeted-fish browsing as before. The general rod-route scope is stated once per
+category block when an area is selected. Ordinary purchase captions no longer
+expose the ROM field label; prices, recorded sellers and raw technical evidence
+remain available.
+
+Actual local browser review covered the food detail comparison at 390px, opening
+its full comparison, the canonical Thai lure-kit link to research, Japanese
+Rod→Lure filter changes with the quick guide open, and All with Area 4 selected.
+These checks support this release's flows and do not certify the entire site's
+usefulness or a natural gameplay run. The full-site goal remains active.

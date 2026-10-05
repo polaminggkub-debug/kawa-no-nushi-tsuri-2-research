@@ -29,7 +29,7 @@ export function categoryDecisionCopy(ctx, category, count) {
   const isAreaRod = area && category === 'rod'
   return {
     label: categoryLabel(ctx, category, count, area, isAreaRod),
-    note: categoryNote(ctx, area, isAreaRod),
+    note: categoryNote(ctx, area, isAreaRod || Boolean(area && category === 'all')),
   }
 }
 
@@ -43,8 +43,8 @@ function categoryLabel(ctx, category, count, area, isAreaRod) {
 function categoryNote(ctx, area, isAreaRod) {
   if (!isAreaRod) return ''
   if (ctx.lang === 'th')
-    return '<p>ส่วนนี้เป็นคำแนะนำเส้นทางเดิม ตารางเทียบด้านล่างคัดรายการขายตามด่านที่เลือก</p>'
+    return `<p>คำแนะนำคันเบ็ดนี้เป็นเส้นทางทั่วไป ไม่ได้คัดสินค้าตามด่าน ${area} เปิดหน้าร้านเพื่อดูรายการขายในด่านที่เลือก</p>`
   if (ctx.lang === 'ja')
-    return '<p>この欄は一般ルート案内です。下の比較表は選択エリアの販売記録で比較します。</p>'
-  return '<p>These are general route recommendations. The comparison table below uses recorded offers for the selected area.</p>'
+    return `<p>竿の一般ルート案内で、エリア${area}の店頭在庫に限定した案内ではありません。選択エリアの販売品はショップページで確認してください。</p>`
+  return `<p>These rod recommendations are general routes, not stock choices for Area ${area}. Open Shops to see recorded offers in your selected area.</p>`
 }

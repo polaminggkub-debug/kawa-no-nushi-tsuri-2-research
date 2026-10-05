@@ -9,18 +9,19 @@ import {
 
 export function decisionCard(ctx, d) {
   const marker = d.id === 'lure_coverage_pair' ? ' data-lure-coverage-pair' : ''
+  const lureGuide = d.id === 'lure_coverage_pair' ? lureCoverageGuide(ctx) : ''
   const nextAction = d.nextAction?.href
     ? `<p><a class="route-button" data-fly-backup-action href="${ctx.esc(d.nextAction.href)}">${ctx.esc(ctx.local(d.nextAction.label))} ↗</a></p>`
     : ''
-  const rodScope =
-    d.category === 'rod' && hasSelectedArea(ctx)
-      ? ctx.lang === 'th'
-        ? `<p class="fish-scope">คำแนะนำเส้นทางทั่วไป ไม่ได้คัดจากสต็อกด่าน ${hasSelectedArea(ctx)}</p>`
-        : ctx.lang === 'ja'
-          ? `<p class="fish-scope">一般ルート案内です。エリア${hasSelectedArea(ctx)}の販売記録に基づく案内ではありません。</p>`
-          : `<p class="fish-scope">General route advice; not selected-area stock advice for Area ${hasSelectedArea(ctx)}.</p>`
-      : ''
-  return `<article class="decision-card"${marker}><h3>${ctx.esc(ctx.local(d.title))}</h3>${rodScope}<p class="decision-action">${ctx.esc(ctx.local(d.recommendation))}</p>${d.reason ? `<p>${ctx.esc(ctx.local(d.reason))}</p>` : ''}<div class="decision-items">${(d.items || []).map(ctx.decisionLink).join('')}</div>${d.scope ? `<small>${ctx.esc(ctx.local(d.scope))}</small>` : ''}${nextAction}</article>`
+  return `<article class="decision-card"${marker}><h3>${ctx.esc(ctx.local(d.title))}</h3><p class="decision-action">${ctx.esc(ctx.local(d.recommendation))}</p>${d.reason ? `<p>${ctx.esc(ctx.local(d.reason))}</p>` : ''}<div class="decision-items">${(d.items || []).map(ctx.decisionLink).join('')}</div>${d.scope ? `<small>${ctx.esc(ctx.local(d.scope))}</small>` : ''}${lureGuide}${nextAction}</article>`
+}
+
+function lureCoverageGuide(ctx) {
+  const link = document.getElementById('kit-link')
+  const href = link?.getAttribute?.('href') || ''
+  const label = ctx.player?.kitLink
+  if (!href || !label) return ''
+  return `<p><a class="route-button" data-lure-coverage-guide href="${ctx.esc(href)}">${ctx.esc(label)} ↗</a></p>`
 }
 
 function renderPlayerDecisionOverview(ctx) {

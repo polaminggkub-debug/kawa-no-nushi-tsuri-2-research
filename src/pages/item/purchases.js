@@ -144,7 +144,7 @@ function ordinaryPurchaseSection(ctx, item, fishLocations, selected) {
     selected && !hasSelectedOffer ? missingAreaNote(ctx, selected, false, stages.length > 0) : ''
   const price =
     item.priceYen != null
-      ? `<p><strong>${ctx.esc(ctx.copy.price(item.priceYen))}</strong> <span class="muted">· ${ctx.esc(ctx.copy.stockAt)} · ${ctx.esc(ctx.copy.priceFromRom)}</span></p>`
+      ? `<p><strong>${ctx.esc(ctx.copy.price(item.priceYen))}</strong> <span class="muted">· ${ctx.esc(ctx.copy.stockAt)}</span></p>`
       : ''
   const cards = stages
     .map((stage) =>

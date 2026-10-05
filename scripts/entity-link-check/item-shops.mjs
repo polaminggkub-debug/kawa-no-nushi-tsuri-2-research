@@ -26,7 +26,41 @@ async function checkItemShopLinks(item, lang) {
     (item.category === 'general_tool' && ['03', '04', '08', '09', '0A', '0E'].includes(item.id))
   const links = [...result.html.matchAll(/href="([^"]*shops(?:\.th|\.ja)?\.html[^"]*)"/g)]
   assert(links.length, `Recorded item has no seller action ${item.category}:${item.id}`)
+  checkRecordedPrices(item, lang, result.html)
   for (const match of links) assertShopContext(match[1], result.url, item, relevant)
+}
+
+function checkRecordedPrices(item, lang, html) {
+  if (item.priceYen == null || ['fly', 'fly_wing', 'fly_tail'].includes(item.category)) return
+  const sourceLabel = {
+    en: 'Price field in ROM',
+    ja: 'ROM内の価格欄',
+    th: 'ช่องราคาใน ROM',
+  }[lang]
+  const text = unescapeHtml(html)
+  assert(
+    text.includes(`${sourceLabel}:</strong> ¥${item.priceYen}`),
+    `Technical price evidence disappeared ${item.category}:${item.id}/${lang}`,
+  )
+  const expectedPrice =
+    lang === 'ja'
+      ? `${item.priceYen}円`
+      : lang === 'th'
+        ? `${item.priceYen} เยน`
+        : `¥${item.priceYen}`
+  for (const shop of item.playerUse.shops) {
+    const stage = Number(shop.stage)
+    const offer = text.match(
+      new RegExp(
+        `<article class="detail-section" data-purchase-stage="${stage}"[^>]*>[\\s\\S]*?<\\/article>`,
+      ),
+    )?.[0]
+    assert(offer, `Missing visible stage offer ${item.category}:${item.id}/${stage}`)
+    assert(
+      offer.includes(expectedPrice),
+      `Stage offer price changed ${item.category}:${item.id}/${stage}/${lang}`,
+    )
+  }
 }
 
 function assertShopContext(href, base, item, relevant) {

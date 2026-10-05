@@ -38,6 +38,7 @@ for (const lang of ['en', 'ja', 'th']) {
     for (const stage of [1, 2, 3, 4, 5, 6]) await checkLocalChoices(item, lang, stage)
   }
 }
+checkDuplicateIntroProbes()
 
 const fishMeal = data.items.find((item) => item.category === 'food' && item.id === '08')
 const mealClaims = {
@@ -82,14 +83,14 @@ async function checkLocalChoices(item, lang, stage) {
   )
   const html = unescapeHtml(result.html)
   assert(html.includes(item.playerUse.summary[lang]))
-  const visibleRule = html.match(/data-food-choice><p>([^<]+)<\/p>/)?.[1]
-  assert(visibleRule, 'Food decision rule must be visible before any disclosure')
-  const rules = {
-    en: [/Use shop food/, /six shop foods/, /¥1 per HP/, /missing HP/, /maximum/],
-    th: [/อาหารจากร้าน/, /อาหารร้านทั้ง 6 แบบ/, /1 เยนต่อ HP/, /HP ที่ขาด/, /HP สูงสุด/],
-    ja: [/店で買った食料/, /店の食料6種/, /1HPあたり1円/, /不足HP/, /最大HP/],
-  }
-  for (const rule of rules[lang]) assert(rule.test(visibleRule))
+  const hero = html.match(/<section id="what-to-do"[\s\S]*?<\/section>/)?.[0]
+  assert(hero, 'Food use advice must remain in the visible item hero')
+  checkHeroFoodRules(hero, lang)
+  const choicePanel = html.match(
+    /<section class="detail-section buying-decision" data-food-choice>[\s\S]*?<\/section>/,
+  )?.[0]
+  assert(choicePanel, 'Food alternatives panel is missing')
+  assertNoRepeatedFoodIntro(choicePanel, lang)
   const options = html.match(/data-local-food-options>([\s\S]*?)<\/div>/)?.[1]
   assert(options !== undefined, `Missing area-specific food choices ${item.id}/${stage}`)
   const links = [...options.matchAll(/href="([^"]+)"/g)].map(
@@ -104,17 +105,67 @@ async function checkLocalChoices(item, lang, stage) {
     expected.map((other) => other.id),
   )
   for (const url of links) assert.equal(url.searchParams.get('stage'), String(stage))
-  checkRecoveryOptions(options, expected)
-  const allOptions = html.match(/data-all-food-options>([\s\S]*?)<\/div>/)?.[1]
+  checkRecoveryOptions(options, expected, lang)
+  const fullComparison = choicePanel.match(/<details>([\s\S]*?)<\/details>/)
+  assert(fullComparison, 'Full-area comparison must stay in a collapsed disclosure')
+  const allOptions = fullComparison[1].match(/data-all-food-options>([\s\S]*?)<\/div>/)?.[1]
   assert(allOptions !== undefined, 'Missing full food recovery comparison')
   checkRecoveryOptions(
     allOptions,
     shopFoods.filter((other) => other.id !== item.id),
+    lang,
   )
-  assert(/<details><summary>/.test(html), 'Keep the full cross-area food guide in a disclosure')
 }
 
-function checkRecoveryOptions(html, expected) {
+function checkHeroFoodRules(hero, lang) {
+  const rules = {
+    en: [
+      /Use food you already own before buying more/,
+      /six shop foods cost 1 yen per HP/,
+      /Missing about .* HP|missing HP/,
+      /maximum/,
+    ],
+    ja: [/手持ちの食料があれば先に使/, /店の食料6種.*回復HPあたり1円/, /不足HP/, /最大HP/],
+    th: [
+      /มีอาหารอยู่แล้วใช้ของเดิมก่อน/,
+      /อาหารร้านทั้ง 6 แบบ.*1 เยนต่อ HP/,
+      /HP ที่ขาด/,
+      /HP สูงสุด/,
+    ],
+  }
+  for (const rule of rules[lang]) assert(rule.test(hero), `Food hero misses ${rule} (${lang})`)
+}
+
+function assertNoRepeatedFoodIntro(panel, lang) {
+  const intro = {
+    en: /Use shop food you already own before buying more|All six shop foods cost ¥1 per HP/,
+    ja: /店で買った食料を持っているなら|店の食料6種はどれも1HPあたり1円/,
+    th: /ถ้ามีอาหารจากร้านอยู่แล้ว|อาหารร้านทั้ง 6 แบบราคา 1 เยนต่อ HP/,
+  }[lang]
+  const visiblePrefix = panel.split('<details')[0]
+  assert.doesNotMatch(
+    visiblePrefix,
+    intro,
+    `Food hero guidance is duplicated above the full comparison (${lang})`,
+  )
+}
+
+function checkDuplicateIntroProbes() {
+  const oldIntros = {
+    en: 'Use shop food you already own before buying more. All six shop foods cost ¥1 per HP; choose an amount close to your missing HP.',
+    ja: '店で買った食料を持っているなら、買い足す前に使ってください。店の食料6種はどれも1HPあたり1円。',
+    th: 'ถ้ามีอาหารจากร้านอยู่แล้ว ให้ใช้ก่อนซื้อเพิ่ม; อาหารร้านทั้ง 6 แบบราคา 1 เยนต่อ HP',
+  }
+  for (const lang of ['en', 'ja', 'th']) {
+    const visiblePrefix = `<section data-food-choice><p>${oldIntros[lang]}</p><details><p>Full comparison</p></details></section>`
+    assert.throws(
+      () => assertNoRepeatedFoodIntro(visiblePrefix, lang),
+      (error) => error.code === 'ERR_ASSERTION' && error.message.includes('duplicated'),
+    )
+  }
+}
+
+function checkRecoveryOptions(html, expected, lang) {
   const articles = [...html.matchAll(/<article\b([^>]*)>([\s\S]*?)<\/article>/g)]
   assert.equal(articles.length, expected.length)
   for (const item of expected) {
@@ -127,6 +178,12 @@ function checkRecoveryOptions(html, expected) {
     )
     assert(article[2].includes('HP'), 'Recovery must be visible player text')
     assert(article[2].includes(String(trial.hp_delta)))
+    const label = {
+      en: `Restores up to ${trial.hp_delta} HP`,
+      ja: `最大${trial.hp_delta} HP回復`,
+      th: `ฟื้นได้สูงสุด ${trial.hp_delta} HP`,
+    }[lang]
+    assert(article[2].includes(label), `Missing qualified recovery label ${item.id}/${lang}`)
     assert(article[2].includes(`id=${item.id}`))
   }
 }
