@@ -185,6 +185,8 @@ function checkBackAnchor(returnPath, locale) {
     styles,
     /@media \(max-width: 700px\)\s*\{\s*\[id\]\s*\{\s*scroll-margin-top:\s*144px;/,
   )
+  const mapStyles = fs.readFileSync(path.join(root, 'src/pages/maps/styles/part-1.css'), 'utf8')
+  assert.match(mapStyles, /html\s*\{\s*scroll-behavior:\s*auto;/)
 }
 
 function checkMapsLink(url, base, suffix, hash) {
