@@ -9,7 +9,7 @@ export function safeReturn(ctx, raw) {
   try {
     const base = new URL('.', location.href),
       target = new URL(raw, base)
-    const allowed = ['index', 'maps', 'fish', 'item', 'shops'].flatMap((name) =>
+    const allowed = ['index', 'maps', 'fish', 'item', 'shops', 'quests'].flatMap((name) =>
       ['', '.th', '.ja'].map((suffix) => {
         const route = `${name}${suffix}.html`
         return { route, pathname: new URL(route, base).pathname }
@@ -34,7 +34,7 @@ export function localizeReturn(ctx, raw, toLang, depth = 0) {
   const base = new URL('.', location.href),
     url = new URL(safe, base)
   url.pathname = url.pathname.replace(
-    /(index|maps|fish|item|shops)(?:\.th|\.ja)?\.html$/,
+    /(index|maps|fish|item|shops|quests)(?:\.th|\.ja)?\.html$/,
     `$1${toLang === 'en' ? '' : '.' + toLang}.html`,
   )
   if (url.searchParams.has('return')) {

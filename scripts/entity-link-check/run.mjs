@@ -128,3 +128,7 @@ await import('./giant-eel-return-route.mjs')
 
 await import('./fight-surface-progression.mjs')
 await import('./fly-maker-recovery.mjs')
+
+await import('./area-quests.mjs')
+
+await import('./shared-layout-invariants.mjs')

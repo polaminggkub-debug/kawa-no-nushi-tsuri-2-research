@@ -826,3 +826,47 @@ not establish acceptance of every rendered card, every species or every device
 and language combination. A remaining practical gap is area-first discovery
 of ROM-backed quests and exchanges when the player does not know an item name.
 The full-site usefulness goal remains active.
+
+## r70 — Find verified quests and exchanges by area
+
+A dedicated three-language quest/exchange page groups the existing ROM-backed
+findings by area, rather than requiring a player to know an item name first.
+The six town-chest rewards, Hariyo-to-tub exchange, bottle/milk/canoe chain,
+Yamanokami-to-daikon exchange, fireworks alternatives, optional lottery and
+candle/reunion event are indexed. The conditional giant-eel request/return
+uses one transaction identity across its Area 6 and Area 1 views. This is an
+index of verified findings, not a claim that every story quest is decoded.
+
+Each card gives the input, action, established result and material warning
+before its links. The milk chain is one card; the fox branch does not force a
+tofu prerequisite for direct fireworks use. Full-inventory fish loss, food
+inventory overwrite, consumed ticket/food and conditional story outcomes stay
+visible. Precise canonical source fields and proof limits remain folded.
+External guide stage narratives are excluded; existing research is retained.
+The key prerequisite now includes the already-recorded purchase alternative:
+key 17 costs ¥100 in Areas 1/2/4/6. The initial plan had overlooked canonical
+shop stock and called its acquisition unknown. Independent original-ROM
+stock re-extraction and inspection of the shop price/grant path corrected that
+claim before publication; players who already own it need not buy another.
+
+The new global destination appears in the same position on all page families.
+Details, fish profiles and maps return to the originating card, with localized
+nested return and area context. Primary quest links no longer inherit an
+unrelated selected fish: doing so had put Yamame on a bottle page and could
+make a Hariyo profile navigate onward as Yamame. The original target remains
+in the return route. Town chests link to existing town-location evidence;
+field quest targets use the existing map/location views.
+
+Browser review covered English desktop six-area views and eleven primary
+transaction journeys, representative Japanese 320px language/map returns,
+and Thai 390px milk/cow, Hariyo, fireworks and conditional eel-marker returns.
+It found a 320px overflow from the footer ROM hash; the shared footer now wraps
+it. Shared anchor spacing also removes the doubled header allowance: the
+mobile destination is readable below the navigation, instead of leaving a
+second header-sized gap. Independent source guards supplement these bounded
+browser checks; they do not prove every page/button/device of the whole site.
+
+Natural full-campaign completion, character-specific catch-to-story
+sufficiency, exact ending rewards and Thai-patch equivalence remain research
+limitations. The whole-site usefulness
+goal remains active; this index does not close those questions.

@@ -42,6 +42,9 @@ export function safeLocalReturn(ctx, value) {
     'shops.html',
     'shops.th.html',
     'shops.ja.html',
+    'quests.html',
+    'quests.th.html',
+    'quests.ja.html',
   ]
   const researchNames = ['index.html', 'index.th.html', 'index.ja.html']
   const allowed = new Set([
@@ -67,7 +70,7 @@ export function localizeReturn(ctx, value, targetLocale, depth = 0) {
   }
   const basename = target.pathname.split('/').pop()
   const root = basename.replace(/(?:\.(?:th|ja))?\.html$/, '')
-  if (['index', 'maps', 'fish', 'item', 'shops'].includes(root)) {
+  if (['index', 'maps', 'fish', 'item', 'shops', 'quests'].includes(root)) {
     const directory = target.pathname.slice(0, target.pathname.lastIndexOf('/') + 1)
     target.pathname = `${directory}${root}${targetLocale === 'en' ? '' : `.${targetLocale}`}.html`
   }

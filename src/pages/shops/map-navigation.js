@@ -15,11 +15,11 @@ export function localizeRoute(ctx, raw, locale, depth = 0) {
   if (!safe) return ''
   const url = new URL(safe, location.origin)
   const match = url.pathname.match(
-    /\/(?:catalogue|research)\/(index|maps|fish|item|shops)(?:\.th|\.ja)?\.html$/,
+    /\/(?:catalogue|research)\/(index|maps|fish|item|shops|quests)(?:\.th|\.ja)?\.html$/,
   )
   if (!match) return ''
   url.pathname = url.pathname.replace(
-    /(index|maps|fish|item|shops)(?:\.th|\.ja)?\.html$/,
+    /(index|maps|fish|item|shops|quests)(?:\.th|\.ja)?\.html$/,
     ctx.pages[match[1]][locale],
   )
   if (url.searchParams.has('return')) {

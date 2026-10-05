@@ -97,7 +97,7 @@
     const url = new URL(route, location.href);
     const basename = url.pathname.split("/").pop();
     const root = basename.replace(/(?:\.(?:th|ja))?\.html$/, "");
-    if (["index", "maps", "fish", "item", "shops"].includes(root)) {
+    if (["index", "maps", "fish", "item", "shops", "quests"].includes(root)) {
       const directory = url.pathname.slice(0, url.pathname.lastIndexOf("/") + 1);
       url.pathname = `${directory}${root}${toLang === "en" ? "" : `.${toLang}`}.html`;
     }
@@ -435,7 +435,7 @@
   function ordinaryPurchaseSection(ctx, item, fishLocations, selected) {
     const shops = item.playerUse?.shops || [];
     if (!shops.length)
-      return `<section class="detail-section purchase-section"><h2>${ctx.esc(ctx.copy.shop)}</h2>${noRecordedStockNote(ctx, selected, false)}</section>`;
+      return `<section id="item-shops" class="detail-section purchase-section"><h2>${ctx.esc(ctx.copy.shop)}</h2>${noRecordedStockNote(ctx, selected, false)}</section>`;
     const stages = [
       ...new Set(shops.map((shop) => Number(shop.stage)).filter((stage) => stage >= 1 && stage <= 6))
     ].sort((a, b) => Number(b === selected) - Number(a === selected) || a - b);
@@ -452,7 +452,7 @@
         selected
       )
     ).join("");
-    return `<section class="detail-section purchase-section"><h2>${ctx.esc(ctx.copy.shop)}</h2>${price}${note}<div class="detail-grid">${cards}</div><p class="muted">${ctx.esc(ctx.copy.mapNote)}</p></section>`;
+    return `<section id="item-shops" class="detail-section purchase-section"><h2>${ctx.esc(ctx.copy.shop)}</h2>${price}${note}<div class="detail-grid">${cards}</div><p class="muted">${ctx.esc(ctx.copy.mapNote)}</p></section>`;
   }
   function shopSection(ctx, item, allItems, fishLocations) {
     if (item.category === "general_tool" && item.id === "05" && item.playerUse?.startingEquipment?.type === "starting_equipment" && !item.playerUse?.shops?.length)
@@ -3105,14 +3105,15 @@
     return `${intro}${hero}${target}${baitTarget}${kit}${action}${flyPriceChoice(ctx, item, allItems)}${flyMenuPosition(ctx, item)}${extras}${buying}${ctx.shopSection(item, allItems, fishLocations)}${ctx.useLocationSection(item, fishLocations, allItems)}${ctx.fishSection(item, fishVisuals, fishLocations)}${more}${back}${ctx.technicalSection(item)}<p class="muted">${ctx.esc(ctx.copy.sourced)}</p>`;
   }
   function scrollToItemAnchor() {
-    if (location.hash === "#fly-menu-position")
-      document.getElementById("fly-menu-position")?.scrollIntoView({ block: "start" });
-    if (location.hash.startsWith("#compass-exit-"))
-      document.getElementById(location.hash.slice(1))?.scrollIntoView({ block: "start" });
-    if (location.hash.startsWith("#forage-stage-"))
-      document.getElementById(location.hash.slice(1))?.scrollIntoView({ block: "start" });
-    if (location.hash === "#use-locations")
-      document.getElementById("use-locations")?.scrollIntoView({ block: "start" });
+    const exact = [
+      "#fly-menu-position",
+      "#item-shops",
+      "#what-to-do",
+      "#fly-purchases",
+      "#use-locations"
+    ];
+    const supported = exact.includes(location.hash) || location.hash.startsWith("#compass-exit-") || location.hash.startsWith("#forage-stage-");
+    if (supported) document.getElementById(location.hash.slice(1))?.scrollIntoView({ block: "start" });
   }
   function render(ctx, item, allItems, fishVisuals, fishLocations, decisions) {
     ctx.setNavigation();
@@ -3415,7 +3416,7 @@
     ctx.selectedRoute = ["float", "sinker", "lure", "fly"].includes(ctx.params.get("route")) ? ctx.params.get("route") : "";
     ctx.baseDir = location.pathname.slice(0, location.pathname.lastIndexOf("/") + 1);
     ctx.routeFiles = {
-      catalogue: /^\/(?:[^/]+\/)?catalogue\/(?:index(?:\.th|\.ja)?|maps(?:\.th|\.ja)?|fish(?:\.th|\.ja)?|item(?:\.th|\.ja)?|shops(?:\.th|\.ja)?)\.html$/,
+      catalogue: /^\/(?:[^/]+\/)?catalogue\/(?:index(?:\.th|\.ja)?|maps(?:\.th|\.ja)?|fish(?:\.th|\.ja)?|item(?:\.th|\.ja)?|shops(?:\.th|\.ja)?|quests(?:\.th|\.ja)?)\.html$/,
       research: /^\/(?:[^/]+\/)?research\/index(?:\.th|\.ja)?\.html$/
     };
   }

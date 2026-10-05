@@ -344,14 +344,18 @@ function renderItemSections(ctx, item, allItems, fishVisuals, fishLocations, dec
 }
 
 function scrollToItemAnchor() {
-  if (location.hash === '#fly-menu-position')
-    document.getElementById('fly-menu-position')?.scrollIntoView({ block: 'start' })
-  if (location.hash.startsWith('#compass-exit-'))
-    document.getElementById(location.hash.slice(1))?.scrollIntoView({ block: 'start' })
-  if (location.hash.startsWith('#forage-stage-'))
-    document.getElementById(location.hash.slice(1))?.scrollIntoView({ block: 'start' })
-  if (location.hash === '#use-locations')
-    document.getElementById('use-locations')?.scrollIntoView({ block: 'start' })
+  const exact = [
+    '#fly-menu-position',
+    '#item-shops',
+    '#what-to-do',
+    '#fly-purchases',
+    '#use-locations',
+  ]
+  const supported =
+    exact.includes(location.hash) ||
+    location.hash.startsWith('#compass-exit-') ||
+    location.hash.startsWith('#forage-stage-')
+  if (supported) document.getElementById(location.hash.slice(1))?.scrollIntoView({ block: 'start' })
 }
 
 export function render(ctx, item, allItems, fishVisuals, fishLocations, decisions) {

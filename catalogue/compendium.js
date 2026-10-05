@@ -53,6 +53,7 @@
       if (dest === 1 && current.searchParams.has("map"))
         url.searchParams.set("map", current.searchParams.get("map"));
       if (!current.pathname.includes("/research/")) url.searchParams.set("return", returnTo);
+      else if (dest === 4) url.searchParams.set("return", `../research/${returnTo}`);
       link.href = url.pathname + url.search + url.hash;
     });
   }

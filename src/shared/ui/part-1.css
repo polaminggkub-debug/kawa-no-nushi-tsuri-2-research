@@ -182,6 +182,10 @@ main {
   padding: 22px 24px 48px;
 }
 
+footer code {
+  overflow-wrap: anywhere;
+}
+
 footer {
   max-width: 1240px;
   margin-inline: auto;

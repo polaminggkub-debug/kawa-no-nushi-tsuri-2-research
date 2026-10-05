@@ -2244,7 +2244,7 @@
   }
 
   // src/pages/equipment/return-action.js
-  var pageRoots = ["index", "maps", "fish", "item", "shops"];
+  var pageRoots = ["index", "maps", "fish", "item", "shops", "quests"];
   var locales = ["en", "th", "ja"];
   function routeForTarget(target, base) {
     if (target.pathname.startsWith(base.pathname))
@@ -2279,7 +2279,7 @@
     if (!safe) return "";
     const base = new URL(".", baseHref);
     const target = new URL(safe, base);
-    const root = target.pathname.split("/").pop().match(/^(index|maps|fish|item|shops)(?:\.(?:th|ja))?\.html$/)?.[1];
+    const root = target.pathname.split("/").pop().match(/^(index|maps|fish|item|shops|quests)(?:\.(?:th|ja))?\.html$/)?.[1];
     if (root) {
       const directory = target.pathname.slice(0, target.pathname.lastIndexOf("/") + 1);
       target.pathname = `${directory}${root}${targetLocale === "en" ? "" : `.${targetLocale}`}.html`;

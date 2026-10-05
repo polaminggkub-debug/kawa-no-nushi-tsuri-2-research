@@ -136,7 +136,7 @@ async function checkDetail(lang, expected) {
   assert(hero, `Missing visible action for ${expected.id}/${lang}`)
   checkVisibleCopy(unescapeHtml(hero), actionSource.items[expected.id], expected, lang)
   const purchase = result.html.match(
-    /<section class="detail-section purchase-section">([\s\S]*?)<\/section>/,
+    /<section\b(?=[^>]*class="detail-section purchase-section")[^>]*>([\s\S]*?)<\/section>/,
   )?.[0]
   const noShop = {
     en: 'No shop stock for this item is recorded in the current ROM data.',

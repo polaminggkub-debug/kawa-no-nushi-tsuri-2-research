@@ -14,6 +14,7 @@ export const scripts = {
   shops: 'catalogue/shops.js',
   strategy: 'research/search.js',
   navigation: 'catalogue/compendium.js',
+  quests: 'catalogue/quests.js',
 }
 export const styles = {
   equipment: 'catalogue/style.css',
@@ -22,6 +23,7 @@ export const styles = {
   shops: 'catalogue/shops.css',
   compendium: 'catalogue/compendium.css',
   strategy: 'research/strategy.css',
+  quests: 'catalogue/quests.css',
 }
 
 async function compile(entry, extension) {
@@ -196,7 +198,7 @@ export async function renderFrontendOutputs() {
     outputs.set(output, await compile(entry, 'js'))
   for (const [entry, output] of Object.entries(styles))
     outputs.set(output, await compile(entry, 'css'))
-  for (const slice of ['equipment', 'item', 'fish', 'maps', 'shops', 'strategy']) {
+  for (const slice of ['equipment', 'item', 'fish', 'maps', 'shops', 'strategy', 'quests']) {
     for (const { file, source } of templateFiles(slice)) {
       const locale = file.includes('.th.') ? 'th' : file.includes('.ja.') ? 'ja' : 'en'
       const html =

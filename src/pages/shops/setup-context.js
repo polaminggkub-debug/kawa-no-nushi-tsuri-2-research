@@ -7,6 +7,7 @@ export function setupContext(ctx) {
     ? document.documentElement.dataset.locale
     : 'en'
   ctx.pages = {
+    quests: { en: 'quests.html', th: 'quests.th.html', ja: 'quests.ja.html' },
     shops: { en: 'shops.html', th: 'shops.th.html', ja: 'shops.ja.html' },
     item: { en: 'item.html', th: 'item.th.html', ja: 'item.ja.html' },
     fish: { en: 'fish.html', th: 'fish.th.html', ja: 'fish.ja.html' },

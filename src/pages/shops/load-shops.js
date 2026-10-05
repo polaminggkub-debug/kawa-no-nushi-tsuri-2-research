@@ -5,7 +5,7 @@ export function loadShops(ctx) {
     ? Number(ctx.params.get('entrance'))
     : null
   ctx.allowedReturn =
-    /^\/(?:[^/]+\/)?(?:catalogue\/(?:index|maps|fish|item|shops)|research\/index)(?:\.th|\.ja)?\.html$/
+    /^\/(?:[^/]+\/)?(?:catalogue\/(?:index|maps|fish|item|shops|quests)|research\/index)(?:\.th|\.ja)?\.html$/
   ctx.returnRoute = ctx.safeReturn(ctx.params.get('return'))
   ctx.searchValue = ctx.params.get('q') || ''
   ctx.init().catch((error) => {

@@ -38,7 +38,7 @@ export function setupContext(ctx) {
   ctx.baseDir = location.pathname.slice(0, location.pathname.lastIndexOf('/') + 1)
   ctx.routeFiles = {
     catalogue:
-      /^\/(?:[^/]+\/)?catalogue\/(?:index(?:\.th|\.ja)?|maps(?:\.th|\.ja)?|fish(?:\.th|\.ja)?|item(?:\.th|\.ja)?|shops(?:\.th|\.ja)?)\.html$/,
+      /^\/(?:[^/]+\/)?catalogue\/(?:index(?:\.th|\.ja)?|maps(?:\.th|\.ja)?|fish(?:\.th|\.ja)?|item(?:\.th|\.ja)?|shops(?:\.th|\.ja)?|quests(?:\.th|\.ja)?)\.html$/,
     research: /^\/(?:[^/]+\/)?research\/index(?:\.th|\.ja)?\.html$/,
   }
 }

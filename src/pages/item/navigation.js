@@ -48,7 +48,7 @@ export function localizeReturn(ctx, raw, toLang, depth = 0) {
   const url = new URL(route, location.href)
   const basename = url.pathname.split('/').pop()
   const root = basename.replace(/(?:\.(?:th|ja))?\.html$/, '')
-  if (['index', 'maps', 'fish', 'item', 'shops'].includes(root)) {
+  if (['index', 'maps', 'fish', 'item', 'shops', 'quests'].includes(root)) {
     const directory = url.pathname.slice(0, url.pathname.lastIndexOf('/') + 1)
     url.pathname = `${directory}${root}${toLang === 'en' ? '' : `.${toLang}`}.html`
   }

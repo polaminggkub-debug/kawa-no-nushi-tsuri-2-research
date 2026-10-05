@@ -66,11 +66,11 @@
     if (!safe) return "";
     const url = new URL(safe, location.origin);
     const match = url.pathname.match(
-      /\/(?:catalogue|research)\/(index|maps|fish|item|shops)(?:\.th|\.ja)?\.html$/
+      /\/(?:catalogue|research)\/(index|maps|fish|item|shops|quests)(?:\.th|\.ja)?\.html$/
     );
     if (!match) return "";
     url.pathname = url.pathname.replace(
-      /(index|maps|fish|item|shops)(?:\.th|\.ja)?\.html$/,
+      /(index|maps|fish|item|shops|quests)(?:\.th|\.ja)?\.html$/,
       ctx.pages[match[1]][locale]
     );
     if (url.searchParams.has("return")) {
@@ -1426,6 +1426,7 @@
   function setupContext(ctx) {
     ctx.lang = ["th", "ja"].includes(document.documentElement.dataset.locale) ? document.documentElement.dataset.locale : "en";
     ctx.pages = {
+      quests: { en: "quests.html", th: "quests.th.html", ja: "quests.ja.html" },
       shops: { en: "shops.html", th: "shops.th.html", ja: "shops.ja.html" },
       item: { en: "item.html", th: "item.th.html", ja: "item.ja.html" },
       fish: { en: "fish.html", th: "fish.th.html", ja: "fish.ja.html" },
@@ -1457,7 +1458,7 @@
   // src/pages/shops/load-shops.js
   function loadShops(ctx) {
     ctx.focusedEntrance = /^(?:0|[1-4])$/.test(ctx.params.get("entrance") || "") ? Number(ctx.params.get("entrance")) : null;
-    ctx.allowedReturn = /^\/(?:[^/]+\/)?(?:catalogue\/(?:index|maps|fish|item|shops)|research\/index)(?:\.th|\.ja)?\.html$/;
+    ctx.allowedReturn = /^\/(?:[^/]+\/)?(?:catalogue\/(?:index|maps|fish|item|shops|quests)|research\/index)(?:\.th|\.ja)?\.html$/;
     ctx.returnRoute = ctx.safeReturn(ctx.params.get("return"));
     ctx.searchValue = ctx.params.get("q") || "";
     ctx.init().catch((error) => {

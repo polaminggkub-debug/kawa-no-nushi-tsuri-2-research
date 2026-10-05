@@ -180,10 +180,16 @@ function checkBackAnchor(returnPath, locale) {
     else delete globalThis.document
   }
   const styles = fs.readFileSync(path.join(root, 'src/shared/ui/part-4.css'), 'utf8')
-  assert.match(styles, /\[id\]\s*\{\s*scroll-margin-top:\s*88px;/)
+  assert.match(styles, /\[id\]\s*\{\s*scroll-margin-top:\s*12px;/)
   assert.match(
     styles,
-    /@media \(max-width: 700px\)\s*\{\s*\[id\]\s*\{\s*scroll-margin-top:\s*144px;/,
+    /@media \(max-width: 700px\)\s*\{\s*\[id\]\s*\{\s*scroll-margin-top:\s*12px;/,
+  )
+  const baseStyles = fs.readFileSync(path.join(root, 'src/shared/ui/part-1.css'), 'utf8')
+  assert.match(baseStyles, /html\s*\{\s*scroll-padding-top:\s*92px;/)
+  assert.match(
+    styles,
+    /@media \(max-width: 700px\)\s*\{\s*html\s*\{\s*scroll-padding-top:\s*170px;/,
   )
   const mapStyles = fs.readFileSync(path.join(root, 'src/pages/maps/styles/part-1.css'), 'utf8')
   assert.match(mapStyles, /html\s*\{\s*scroll-behavior:\s*auto;/)

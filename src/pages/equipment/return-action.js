@@ -1,4 +1,4 @@
-const pageRoots = ['index', 'maps', 'fish', 'item', 'shops']
+const pageRoots = ['index', 'maps', 'fish', 'item', 'shops', 'quests']
 const locales = ['en', 'th', 'ja']
 
 function routeForTarget(target, base) {
@@ -40,7 +40,7 @@ export function localizeSafeReturn(raw, targetLocale, baseHref, depth = 0) {
   const root = target.pathname
     .split('/')
     .pop()
-    .match(/^(index|maps|fish|item|shops)(?:\.(?:th|ja))?\.html$/)?.[1]
+    .match(/^(index|maps|fish|item|shops|quests)(?:\.(?:th|ja))?\.html$/)?.[1]
   if (root) {
     const directory = target.pathname.slice(0, target.pathname.lastIndexOf('/') + 1)
     target.pathname = `${directory}${root}${targetLocale === 'en' ? '' : `.${targetLocale}`}.html`

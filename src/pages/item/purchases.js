@@ -142,7 +142,7 @@ function shopOfferCard(ctx, item, stage, offer, fishLocations, selected) {
 function ordinaryPurchaseSection(ctx, item, fishLocations, selected) {
   const shops = item.playerUse?.shops || []
   if (!shops.length)
-    return `<section class="detail-section purchase-section"><h2>${ctx.esc(ctx.copy.shop)}</h2>${noRecordedStockNote(ctx, selected, false)}</section>`
+    return `<section id="item-shops" class="detail-section purchase-section"><h2>${ctx.esc(ctx.copy.shop)}</h2>${noRecordedStockNote(ctx, selected, false)}</section>`
   const stages = [
     ...new Set(shops.map((shop) => Number(shop.stage)).filter((stage) => stage >= 1 && stage <= 6)),
   ].sort((a, b) => Number(b === selected) - Number(a === selected) || a - b)
@@ -165,7 +165,7 @@ function ordinaryPurchaseSection(ctx, item, fishLocations, selected) {
       ),
     )
     .join('')
-  return `<section class="detail-section purchase-section"><h2>${ctx.esc(ctx.copy.shop)}</h2>${price}${note}<div class="detail-grid">${cards}</div><p class="muted">${ctx.esc(ctx.copy.mapNote)}</p></section>`
+  return `<section id="item-shops" class="detail-section purchase-section"><h2>${ctx.esc(ctx.copy.shop)}</h2>${price}${note}<div class="detail-grid">${cards}</div><p class="muted">${ctx.esc(ctx.copy.mapNote)}</p></section>`
 }
 
 export function shopSection(ctx, item, allItems, fishLocations) {
