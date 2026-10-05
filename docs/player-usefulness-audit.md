@@ -1,5 +1,14 @@
 # Player usefulness audit
 
+## 2026-10-05: bait-first fish browsing, local rod choices and safe navigation
+
+- A selected fish in the all-category catalogue now starts with compatible bait, followed by lures and fly bodies, rather than universal floats appearing first in source order. The public Mosugo profile (10) reproduced the reported 16-result float-first view. Dedicated categories and deliberate name/price sorting remain available; no compatibility records are removed.
+- The strategy rod section starts with area-specific advice actions for all six areas. They open per-rod local purchase decisions; the global comparisons remain visible as upgrade candidates, with their recorded sellers preserved.
+- Lottery advice identifies the spare foods that can improve more draw outcomes than orange: Hinomaru bento 06 and daikon 07. The food is consumed; the cap can make their effects equal near the limit. No guaranteed prize, ticket odds or expected payout is claimed, and the one-time daikon acquisition is not recommended solely for a draw. The original threshold trace remains under evidence.
+- Map navigation before data has loaded now retains the requested fishing method alongside fish, area and return context. The existing loading link can be used safely, including after a fetch failure; the search stays disabled until the data is ready.
+
+These changes were selected from actual player paths and original-ROM evidence. The full-site semantic acceptance goal remains active; these bounded outcomes do not certify every guide or game mechanic.
+
 ## 2026-10-05: consistent fishing decisions across navigation
 
 The equipment global map action now follows the lure/fly category even when a previous float/sinker rig remains in the return context. Clicking the shared navigation previously overwrote the correct embedded action. Map equipment actions with an explicit lure/fly method reopen that equipment category; an ordinary fish selection still starts with compatible bait. Lure and fly item cards carry their own method; item details accept all four methods and preserve them when opening fish profiles or maps. Bait rigs and unrelated food/tool contexts retain their existing behavior. The Thai rod table also uses the existing Mabuna rod display label instead of the missing-value text “None”. These changes preserve the method of the advice, not a new claim about bite or landing odds. The strategy audit still found a global rod recommendation without early-area alternatives and a lottery food comparison to translate into player-facing advice; these remain open rather than being treated as complete.

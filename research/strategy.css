@@ -88,6 +88,38 @@ p {
   object-fit: contain;
   image-rendering: pixelated;
 }
+.rod-area-start {
+  margin: 20px 0;
+  padding: 16px 18px;
+  border: 1px solid #b8cbb7;
+  border-radius: 12px;
+  background: #eef3e9;
+}
+.rod-area-start h3 {
+  margin: 0 0 6px;
+}
+.rod-area-start p {
+  margin: 0 0 14px;
+}
+.rod-area-links {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 8px;
+}
+.rod-area-links a {
+  display: flex;
+  min-height: 48px;
+  align-items: center;
+  justify-content: center;
+  padding: 8px 10px;
+  border: 1px solid #b8cbb7;
+  border-radius: 8px;
+  background: white;
+  font-weight: 650;
+  line-height: 1.35;
+  text-align: center;
+  text-decoration: none;
+}
 .price {
   font-weight: 700;
   color: #76520c;
@@ -162,6 +194,9 @@ footer {
   .kit-grid,
   .rod-grid {
     grid-template-columns: 1fr;
+  }
+  .rod-area-links {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
   }
   th,
   td {

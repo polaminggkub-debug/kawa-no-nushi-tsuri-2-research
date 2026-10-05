@@ -17,6 +17,10 @@ function assertMapMarkup(locale) {
   assert.match(html, /aria-controls="fish-suggestions"/, `${locale}: listbox is not associated`)
   assert.match(html, /id="fish-suggestions"[^>]*role="listbox"/, `${locale}: listbox is missing`)
   assert.match(html, /id="fish-search-help"/, `${locale}: search instructions are missing`)
+  const equipment = html.match(/<a id="catalogue-fish-link"[^>]*>/)?.[0]
+  assert(equipment, `${locale}: pending equipment action is missing`)
+  assert(!/\shidden(?:\s|>)/.test(equipment), `${locale}: pending equipment action is hidden`)
+  assert.match(equipment, new RegExp(`href="index${suffix}\\.html"`))
   assert.match(html, /maps\.js\?v=[\w-]+/)
   assert.match(html, /maps\.css\?v=[\w-]+/)
 }
@@ -157,7 +161,7 @@ function exposeRuntime(bundle) {
   return bundle.replace(/\}\)\(\);\s*$/, `globalThis.__mapRuntime=${contextName};\n})();`)
 }
 
-async function runMapPage(outputs, locale, pending = false, query = '') {
+async function runMapPage(outputs, locale, pending = false, query = '', failFetch = false) {
   const links = makeLanguageLinks()
   const { document, nodes } = createHarnessDocument(locale, links)
   const location = makeLocation(query)
@@ -175,6 +179,7 @@ async function runMapPage(outputs, locale, pending = false, query = '') {
     clearTimeout,
     queueMicrotask,
     fetch: async (file) => {
+      if (pending && failFetch) return { ok: false, json: async () => ({}) }
       if (pending) return new Promise(() => {})
       return {
         ok: true,
@@ -184,7 +189,7 @@ async function runMapPage(outputs, locale, pending = false, query = '') {
   }
   vm.runInNewContext(exposeRuntime(outputs.get('catalogue/maps.js')), context)
   await new Promise((resolve) => setImmediate(resolve))
-  assert.equal(errors.length, 0, `Map page logged load errors in ${locale}`)
+  assert.equal(errors.length, failFetch ? 1 : 0, `Unexpected map load error in ${locale}`)
   assert(context.__mapRuntime, 'Bundled map page did not expose its runtime for behavior checks')
   return { runtime: context.__mapRuntime, nodes, links, location, history }
 }
@@ -327,17 +332,36 @@ async function checkNotebookRouteHashes(outputs, locale) {
 await main()
 
 async function checkPendingNavigation(outputs, locale) {
-  const query = 'stage=2&section=s2-c1-r6&fish=06&return=fish.th.html%3Fid%3D06%26stage%3D2'
-  const { runtime, nodes, location } = await runMapPage(outputs, locale, true, query)
-  assert.equal(Object.keys(runtime.species).length, 0, 'Pending test accidentally loaded map data')
-  const equipment = new URL(nodes.get('catalogue-fish-link').href, location.href)
+  for (const route of ['float', 'sinker', 'lure', 'fly']) {
+    const query = pendingMapQuery(route)
+    const { runtime, nodes, location } = await runMapPage(outputs, locale, true, query)
+    assert.equal(
+      Object.keys(runtime.species).length,
+      0,
+      'Pending test accidentally loaded map data',
+    )
+    assertPendingEquipmentLink(nodes, location, route)
+    const shop = new URL(nodes.get('shop-browser-link').href, location.href)
+    assert.equal(shop.searchParams.get('route'), route)
+  }
+  const failed = await runMapPage(outputs, locale, true, pendingMapQuery('fly'), true)
+  assert.match(failed.nodes.get('pin-help').textContent, /reload|再読み込み|โหลดหน้าใหม่/i)
+  assertPendingEquipmentLink(failed.nodes, failed.location, 'fly')
+}
+
+function pendingMapQuery(route) {
+  return `stage=2&section=s2-c1-r6&fish=06&route=${route}&return=fish.th.html%3Fid%3D06%26stage%3D2`
+}
+
+function assertPendingEquipmentLink(nodes, location, route) {
+  const link = nodes.get('catalogue-fish-link')
+  assert.equal(link.hidden, false, 'Pending gear action must remain usable')
+  const equipment = new URL(link.href, location.href)
   assert.equal(equipment.searchParams.get('fish'), '06')
   assert.equal(equipment.searchParams.get('stage'), '2')
+  assert.equal(equipment.searchParams.get('route'), route)
+  assert.equal(equipment.hash, '#fish-location-panel')
   const returned = new URL(equipment.searchParams.get('return'), location.href)
   assert.equal(returned.searchParams.get('section'), 's2-c1-r6')
   assert.equal(returned.searchParams.get('return'), 'fish.th.html?id=06&stage=2')
-  const shop = new URL(nodes.get('shop-browser-link').href, location.href)
-  assert.equal(shop.searchParams.get('stage'), '2')
-  assert.equal(shop.searchParams.get('fish'), '06')
-  assert.equal(shop.searchParams.get('return'), equipment.searchParams.get('return'))
 }

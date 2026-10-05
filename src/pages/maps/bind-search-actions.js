@@ -36,9 +36,12 @@ function renderPendingNavigation(ctx) {
   const stage = Number(ctx.loadingParams.get('stage'))
   const rawFish = ctx.loadingParams.get('fish') || ''
   const selectedFish = /^(?:0x)?[0-9a-f]{1,2}$/i.test(rawFish) ? ctx.idNorm(rawFish) : ''
+  const rawRoute = ctx.loadingParams.get('route')
+  const selectedRoute = ['float', 'sinker', 'lure', 'fly'].includes(rawRoute) ? rawRoute : ''
   renderMapNavigation({
     ...ctx,
     activeStage: Number.isInteger(stage) && stage >= 1 && stage <= 6 ? stage : 1,
     selectedFish,
+    selectedRoute,
   })
 }

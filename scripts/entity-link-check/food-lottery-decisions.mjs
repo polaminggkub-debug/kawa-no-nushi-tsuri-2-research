@@ -59,18 +59,53 @@ async function checkItemRender(locale, category, id) {
 async function checkTicketRender(locale) {
   const result = await checkItemRender(locale, 'general_tool', '11')
   const summary = ticket.playerUse.summary[locale]
+  checkLotteryChoiceAdvice(summary, locale)
   assert(summary.replace(/\s/g, '').includes('49,22'))
   assert(summary.replace(/\s/g, '').includes('54,22'))
-  const before = { en: 'Before', th: 'ก่อน', ja: '前' }[locale]
-  assert(summary.includes(before), `${locale}: offering must precede spending the ticket`)
+  const ordering = {
+    en: ['offer Hinomaru bento', 'drawing at the counter'],
+    th: ['นำข้าวกล่องบ๊วย', 'ก่อนขึ้นสลาก'],
+    ja: ['お地蔵さま', '供えてから'],
+  }[locale]
+  assert(summary.indexOf(ordering[0]) < summary.indexOf(ordering[1]))
   const notes = ticket.playerUse.evidenceNotes[locale].join(' ')
-  for (const raw of ['40', '5', '255', '7E:0C22'])
+  for (const raw of ['+40', '+5', '255', '7E:0C22'])
     assert(notes.includes(raw), `${locale}: preserve threshold evidence ${raw}`)
+  const probabilityCaveat = {
+    en: 'does not establish a uniform win percentage',
+    th: 'ไม่ได้พิสูจน์เปอร์เซ็นต์ชนะ',
+    ja: '均一な当選率',
+  }[locale]
+  assert(notes.includes(probabilityCaveat), `${locale}: retain chance limitation`)
   const visible = unescapeHtml(result.html.split('<details class="evidence"')[0])
   for (const amount of ['100', '1,000', '5,000'])
     assert(visible.includes(amount), `${locale}: preserve possible prize ${amount}`)
   assert(visible.includes('maps/tool-use-jizo.png'))
   assert(visible.includes('maps/tool-use-lottery-counter.png'))
+}
+
+function checkLotteryChoiceAdvice(summary, locale) {
+  const markers = {
+    en: [
+      'food to spare',
+      'Hinomaru bento (06)',
+      'daikon (07)',
+      'orange (01)',
+      'consumed',
+      'never guaranteed',
+    ],
+    th: [
+      'อาหารเหลือที่ยอมสละได้',
+      'ข้าวกล่องบ๊วย (06)',
+      'หัวไชเท้า (07)',
+      'ส้ม (01)',
+      'ถูกใช้',
+      'ไม่รับประกันรางวัล',
+    ],
+    ja: ['余った食料', '日の丸弁当（06）', '大根（07）', 'みかん（01）', '消費', '保証されません'],
+  }
+  for (const marker of markers[locale]) assert(summary.includes(marker), `${locale}: ${marker}`)
+  assert(!/\d+(?:\.\d+)?\s*%/.test(summary), `${locale}: invented draw percentage`)
 }
 
 console.log(

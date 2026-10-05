@@ -42,6 +42,23 @@ function checkLocale(locale) {
     assert(html.includes(`href="#${anchor}"`))
     assert(html.includes(`id="${anchor}"`))
   }
+  checkRodAreaLinks(html, base, suffix)
+}
+
+function checkRodAreaLinks(html, base, suffix) {
+  const section = sectionContent(html, 'rod-choice', 'technical-evidence')
+  const links = [...section.matchAll(/<a\b[^>]*href="([^"]+)"[^>]*>/g)]
+    .map(([, href]) => new URL(unescapeHtml(href), base))
+    .filter((target) => target.pathname === `/catalogue/index${suffix}.html`)
+  assert.equal(links.length, 6, `${suffix || 'en'}: need one area advice link per stage`)
+  assert.deepEqual(
+    links.map((target) => target.searchParams.get('stage')),
+    ['1', '2', '3', '4', '5', '6'],
+  )
+  for (const target of links) {
+    assert.equal(target.searchParams.get('category'), 'rod')
+    assertReturnTopic(target, base, 'rod-choice')
+  }
 }
 
 function sectionContent(html, id, nextId) {

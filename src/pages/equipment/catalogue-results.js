@@ -1,5 +1,7 @@
 import { navigationRoute } from './navigation-route.js'
 
+const fishCompatibleCategoryOrder = { bait: 0, lure: 1, fly: 2, float_weight: 3 }
+
 function readFilters() {
   const category = document.getElementById('category-filter').value
   if (['food', 'general_tool'].includes(category)) {
@@ -153,7 +155,8 @@ function filterCatalogueItems(ctx, filters) {
   return ctx.allItems.filter((item) => matchesFilters(ctx, item, filters))
 }
 
-function sortCatalogueItems(ctx, items, order) {
+function sortCatalogueItems(ctx, items, filters) {
+  const { order, category, fish } = filters
   if (order === 'name')
     return items.sort(
       (a, b) =>
@@ -162,6 +165,12 @@ function sortCatalogueItems(ctx, items, order) {
   if (order === 'price')
     return items.sort(
       (a, b) => (a.priceYen ?? Infinity) - (b.priceYen ?? Infinity) || a.id.localeCompare(b.id),
+    )
+  if (category === 'all' && fish)
+    return items.sort(
+      (a, b) =>
+        (fishCompatibleCategoryOrder[a.category] ?? 4) -
+          (fishCompatibleCategoryOrder[b.category] ?? 4) || a.id.localeCompare(b.id),
     )
   return items
 }
@@ -175,9 +184,11 @@ function categoryTitle(ctx, category, fish) {
 
 function categoryDescription(ctx, category, fish) {
   if (!fish || category !== 'all') return ctx.player.desc[category] || ctx.player.lead
-  if (ctx.lang === 'th') return 'แสดงเฉพาะรายการที่ผ่านเงื่อนไขปลานี้จาก ROM'
-  if (ctx.lang === 'ja') return 'この魚のROM適合判定を通るアイテムのみ表示。'
-  return 'Only items that pass this fish’s ROM compatibility checks are shown.'
+  if (ctx.lang === 'th')
+    return 'แสดงเฉพาะรายการที่ผ่านเงื่อนไขจาก ROM ของปลานี้ โดยลำดับเริ่มต้นแบบ ID จะแสดงเหยื่อจริงก่อน ตามด้วยลัวร์/ฟลาย แล้วจึงทุ่นและตะกั่ว'
+  if (ctx.lang === 'ja')
+    return 'この魚のROM適合判定を通るアイテムのみ表示。初期設定のID順では、エサ、ルアー／フライ、ウキ・オモリの順に表示します。'
+  return 'Only items that pass this fish’s ROM compatibility checks are shown. By default, the ID order shows bait first, then lures and flies, followed by floats and sinkers.'
 }
 
 function fishStatus(ctx, filters) {
@@ -324,7 +335,7 @@ export function renderCards(ctx) {
   const filters = readFilters()
   updatePageContext(ctx, filters)
   renderCategoryControls(ctx, filters.category)
-  const items = sortCatalogueItems(ctx, filterCatalogueItems(ctx, filters), filters.order)
+  const items = sortCatalogueItems(ctx, filterCatalogueItems(ctx, filters), filters)
   renderResults(ctx, items, filters)
   updatePageContext(ctx, filters)
 }

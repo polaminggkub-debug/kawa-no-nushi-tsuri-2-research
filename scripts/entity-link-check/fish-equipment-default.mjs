@@ -11,6 +11,7 @@ checkFallbackBranches()
 for (const lang of ['en', 'ja', 'th']) {
   await checkRuntimeTransitions(lang)
   await checkInitialAndExplicitCategory(lang)
+  await checkAllFishCatalogueOrdering(lang)
   await checkClearAndManualCategory(lang)
 }
 console.log(
@@ -170,6 +171,34 @@ async function checkMethodRoundTrip(lang, route, category) {
   assert.equal(returned.searchParams.get('category'), category)
   assert.equal(returned.searchParams.get('fish'), '06')
   assert.equal(returned.searchParams.get('return'), mapReturn)
+}
+
+async function checkAllFishCatalogueOrdering(lang) {
+  const byId = await renderCatalogue(lang, '?category=all&fish=10&sort=id', false, true)
+  const ids = [...byId.nodes.cards.innerHTML.matchAll(/<article\b[^>]*id="([^"]+)"/g)].map(
+    ([, id]) => id,
+  )
+  assert.equal(ids.length, 16, `${lang}: retain all 16 compatible profiles`)
+  assert.match(ids[0], /^item-bait-/, `${lang}: show compatible bait before floats`)
+  assert.equal(byId.nodes['category-filter'].value, 'all', `${lang}: do not override category`)
+  const byName = await renderCatalogue(lang, '?category=all&fish=10&sort=name', false, true)
+  const names = [...byName.nodes.cards.innerHTML.matchAll(/<article\b[^>]*id="([^"]+)"/g)].map(
+    ([, id]) => id,
+  )
+  const candidates = byName.runtime.allItems.filter(
+    (item) =>
+      ['bait', 'lure', 'fly', 'float_weight'].includes(item.category) && matches(item, '10'),
+  )
+  const expectedNames = candidates.sort(
+    (a, b) =>
+      byName.runtime.itemName(a).localeCompare(byName.runtime.itemName(b), lang) ||
+      a.id.localeCompare(b.id),
+  )
+  assert.deepEqual(new Set(names), new Set(ids), `${lang}: name sort retains the same profiles`)
+  assert.deepEqual(
+    names,
+    expectedNames.map((item) => `item-${item.category}-${item.id}`),
+  )
 }
 
 async function checkClearAndManualCategory(lang) {

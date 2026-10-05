@@ -53726,9 +53726,9 @@
       "renderSha256": "5da683387c128b3230e7b1b74d782e7da1b869f907ee27eaa3b8b965b7fd731d",
       "playerUse": {
         "summary": {
-          "en": "Before spending your ticket at the area-5 counter (54,22), offer food you already have to spare at the nearby Jizo (49,22). This can move some draw results from a loss to a prize branch, but it does not guarantee a win. You do not need to buy food just for the ticket. The ticket is consumed when drawn.",
-          "ja": "エリア5の抽選所（54,22）で券を使う前に、余っている食料があれば近くのお地蔵さま（49,22）へ供えてください。供えると、以前ならはずれた一部の抽選値が賞品分岐に入るようになりますが、当選が保証されるわけではありません。くじのためだけに食料を買う必要はありません。抽選で券は消費されます。",
-          "th": "ก่อนใช้สลากที่เคาน์เตอร์ด่าน 5 (54,22) ถ้ามีอาหารเหลือ ให้นำไปถวายรูปปั้นจิโซใกล้กัน (49,22): การถวายทำให้ผลจับสลากบางค่าที่เดิมแพ้เปลี่ยนเป็นผลที่ได้รางวัลได้ แต่ก็ยังไม่รับประกันว่าจะถูกรางวัล ไม่ต้องซื้ออาหารมาเพื่อสลากโดยเฉพาะ เมื่อขึ้นสลากแล้วไอเท็มจะถูกใช้ทิ้ง"
+          "en": "If you have food to spare, offer Hinomaru bento (06) or daikon (07) at the area-5 Jizo (49,22) before drawing at the counter (54,22), instead of orange (01). They can turn more losing draws into prizes than orange. Food can help only so much; near the limit, all three may help equally. The food and ticket are consumed, and a prize is never guaranteed. Don't buy food or trade a Yamanokami for daikon just for the lottery.",
+          "ja": "余った食料があれば、エリア5のお地蔵さま（49,22）へ日の丸弁当（06）か大根（07）を供えてから、抽選所（54,22）でくじを引いてください。みかん（01）より多くのはずれを賞品に変えられます。食料の効果には上限があり、上限近くでは3種類とも同じになることがあります。供え物と抽選券は消費され、当選は保証されません。くじのためだけに食料を買ったり、ヤマノカミを大根に交換したりしないでください。",
+          "th": "ถ้ามีอาหารเหลือที่ยอมสละได้ ให้นำข้าวกล่องบ๊วย (06) หรือหัวไชเท้า (07) ไปถวายรูปปั้นจิโซด่าน 5 (49,22) ก่อนขึ้นสลากที่ (54,22) แทนส้ม (01) สองอย่างนี้ช่วยเปลี่ยนผลแพ้เป็นรางวัลได้มากกว่าส้ม ผลของอาหารมีเพดาน; เมื่อใกล้เต็ม ทั้งสามชนิดอาจช่วยได้เท่ากัน อาหารที่ถวายและสลากถูกใช้ และไม่รับประกันรางวัล อย่าซื้ออาหารหรือแลกปลายามาโนะคามิเพื่อเอาหัวไชเท้าแค่ขึ้นสลาก"
         },
         "facts": {
           "en": [
