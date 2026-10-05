@@ -1,3 +1,5 @@
+import { distinctFishNames } from '../../entities/fish/index.js'
+
 export function imageName(ctx, item) {
   return ctx.lang === 'th'
     ? item.nameTh || item.playerUse?.displayName?.th || item.nameJa || item.nameEn || item.id
@@ -10,8 +12,7 @@ export function fishName(ctx, id, fishVisuals) {
   const fish = fishVisuals[id] || {}
   if (ctx.lang === 'th')
     return (
-      fish.nameTh ||
-      fish.nameThVariants?.join(' / ') ||
+      distinctFishNames(fish.nameTh ? [fish.nameTh] : fish.nameThVariants || []).join(' / ') ||
       fish.nameLatin ||
       fish.nameJa ||
       `ปลา ${id}`

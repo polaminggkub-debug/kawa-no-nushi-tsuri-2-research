@@ -148,6 +148,23 @@
     return `fish${ctx.lang === "en" ? "" : `.${ctx.lang}`}.html?${p}`;
   }
 
+  // src/entities/fish/index.js
+  function nameKey(value) {
+    return String(value || "").normalize("NFKC").trim().replace(/\s+/g, " ").toLocaleLowerCase();
+  }
+  function distinctFishNames(names, headline = "") {
+    const seen = new Set(headline.split("/").map(nameKey).filter(Boolean));
+    seen.add(nameKey(headline));
+    return names.flatMap(
+      (name) => String(name || "").split("/").map((part) => part.trim())
+    ).filter((name) => {
+      const key = nameKey(name);
+      if (!key || seen.has(key)) return false;
+      seen.add(key);
+      return true;
+    });
+  }
+
   // src/pages/item/names.js
   function imageName(ctx, item) {
     return ctx.lang === "th" ? item.nameTh || item.playerUse?.displayName?.th || item.nameJa || item.nameEn || item.id : ctx.lang === "ja" ? item.playerUse?.displayName?.ja || item.nameJa || item.nameEn || item.id : item.playerUse?.displayName?.en || item.nameEn || item.nameJa || item.id;
@@ -155,7 +172,7 @@
   function fishName(ctx, id, fishVisuals) {
     const fish = fishVisuals[id] || {};
     if (ctx.lang === "th")
-      return fish.nameTh || fish.nameThVariants?.join(" / ") || fish.nameLatin || fish.nameJa || `ปลา ${id}`;
+      return distinctFishNames(fish.nameTh ? [fish.nameTh] : fish.nameThVariants || []).join(" / ") || fish.nameLatin || fish.nameJa || `ปลา ${id}`;
     if (ctx.lang === "ja") return fish.nameJa || `魚 ${id}`;
     return fish.nameEn || fish.nameLatin || fish.nameLatinVariants?.slice().sort((a, b) => b.length - a.length)[0] || fish.nameJa || `Fish ${id}`;
   }

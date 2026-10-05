@@ -1,3 +1,5 @@
+import { distinctFishNames } from '../../entities/fish/index.js'
+
 export function setupDataAccess(ctx) {
   ctx.fishSearchText = (id) =>
     [
@@ -18,7 +20,10 @@ export function setupDataAccess(ctx) {
     const latin =
       f.nameLatin || (f.nameLatinVariants || []).slice().sort((a, b) => b.length - a.length)[0]
     return ctx.lang === 'th'
-      ? f.nameTh || (f.nameThVariants || []).join(' / ') || latin || f.nameJa || id
+      ? distinctFishNames(f.nameTh ? [f.nameTh] : f.nameThVariants || []).join(' / ') ||
+          latin ||
+          f.nameJa ||
+          id
       : ctx.lang === 'en'
         ? f.nameEn || latin || f.nameJa || id
         : f.nameJa || id

@@ -730,6 +730,23 @@
     return `<a class="notebook-excluded-badge" data-notebook-excluded="${ctx.esc(id)}" href="#notebook-guide" aria-label="${ctx.esc(text2.reason)}">${ctx.esc(text2.badge)}</a>`;
   }
 
+  // src/entities/fish/index.js
+  function nameKey(value) {
+    return String(value || "").normalize("NFKC").trim().replace(/\s+/g, " ").toLocaleLowerCase();
+  }
+  function distinctFishNames(names, headline = "") {
+    const seen = new Set(headline.split("/").map(nameKey).filter(Boolean));
+    seen.add(nameKey(headline));
+    return names.flatMap(
+      (name) => String(name || "").split("/").map((part) => part.trim())
+    ).filter((name) => {
+      const key = nameKey(name);
+      if (!key || seen.has(key)) return false;
+      seen.add(key);
+      return true;
+    });
+  }
+
   // src/pages/maps/fish-search.js
   function safeReturn(ctx, raw) {
     if (!raw || raw.startsWith("//") || raw.includes("\\") || /^[a-z][a-z0-9+.-]*:/i.test(raw))
@@ -787,7 +804,10 @@
       ...visual.nameLatinVariants || [],
       ...visual.nameJapaneseVariants || []
     ];
-    const name = ctx.lang === "ja" ? visual.nameJa || record.nameJa : ctx.lang === "th" ? visual.nameTh || visual.nameThVariants?.join(" / ") || `${record.nameJa} · ID ${id}` : visual.nameLatin || visual.nameLatinVariants?.slice().sort((a, b) => b.length - a.length)[0] || visual.nameEn || `${record.nameJa} · ID ${id}`;
+    const thaiNames = distinctFishNames(
+      visual.nameTh ? [visual.nameTh] : visual.nameThVariants || []
+    ).join(" / ");
+    const name = ctx.lang === "ja" ? visual.nameJa || record.nameJa : ctx.lang === "th" ? thaiNames || `${record.nameJa} · ID ${id}` : visual.nameLatin || visual.nameLatinVariants?.slice().sort((a, b) => b.length - a.length)[0] || visual.nameEn || `${record.nameJa} · ID ${id}`;
     const aliases = [
       id,
       record.nameJa,

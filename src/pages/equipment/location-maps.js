@@ -1,3 +1,4 @@
+import { navigationRoute } from './navigation-route.js'
 import { mapReturnMarkup } from './return-action.js'
 function itemLocationMarkers(ctx, item, location) {
   const refs =
@@ -286,7 +287,11 @@ function stageButtons(ctx, locations, stageWord) {
 }
 
 function fishMapHref(ctx, labels, id, location) {
-  const query = new URLSearchParams({ fish: id, return: ctx.sourceReturn() })
+  const query = new URLSearchParams({
+    fish: id,
+    route: navigationRoute(ctx),
+    return: ctx.sourceReturn(),
+  })
   if (location) query.set('stage', String(location.stage))
   return `${labels.page}?${query}`
 }

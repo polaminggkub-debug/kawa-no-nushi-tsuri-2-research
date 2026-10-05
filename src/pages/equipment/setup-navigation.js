@@ -1,4 +1,5 @@
 import { setupReturnAction, updateLanguageLinks } from './return-action.js'
+import { navigationRoute } from './navigation-route.js'
 
 export function setupNavigation(ctx) {
   ctx.refreshLanguageLinks = () => {
@@ -44,6 +45,6 @@ export function setupNavigation(ctx) {
     return `${ctx.detailFile('item')}?${q}`
   }
   ctx.fishHref = (id) =>
-    `${ctx.detailFile('fish')}?id=${encodeURIComponent(id)}${ctx.locationStage ? '&stage=' + ctx.locationStage : ''}&return=${encodeURIComponent(ctx.sourceReturn())}`
+    `${ctx.detailFile('fish')}?id=${encodeURIComponent(id)}&route=${encodeURIComponent(navigationRoute(ctx))}${ctx.locationStage ? '&stage=' + ctx.locationStage : ''}&return=${encodeURIComponent(ctx.sourceReturn())}`
   setupReturnAction(ctx)
 }

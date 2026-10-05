@@ -8,6 +8,9 @@ import { render as renderFishProfile } from '../../src/pages/fish/render.js'
 import { renderCompatibility } from '../../src/pages/fish/shopping.js'
 import { localizedFishName, matchingItems } from '../../src/pages/fish/tackle.js'
 import { renderFlyFallback } from '../../src/pages/fish/fly-backup.js'
+import { speciesRecord } from '../../src/pages/maps/fish-search.js'
+import { setupDataAccess } from '../../src/pages/equipment/setup-data-access.js'
+import { fishName as localizedItemFishName } from '../../src/pages/item/names.js'
 import { data, locations, root } from './shared.mjs'
 
 const locales = { en: copy_en, ja: copy_ja, th: copy_th }
@@ -28,6 +31,7 @@ const earlierThaiDuplicateIds = [
 const acceptance = JSON.parse(fs.readFileSync(`${root}/data/fish-acceptance.json`, 'utf8'))
 
 checkThaiFishNames()
+checkEelNameSurfaces()
 const flyProfileIds = checkFlyProfileData()
 for (const locale of Object.keys(locales)) checkLocalizedFlyGroups(locale, flyProfileIds)
 checkBackupActionOpensDetails()
@@ -56,6 +60,43 @@ function checkThaiFishNames() {
   )
   assert(koiAliases.includes('コイ'), 'Keep the Japanese ROM name as a useful alias')
   assert(koiAliases.includes('Koi'), 'Keep the Latin name as a useful alias')
+}
+
+function checkEelNameSurfaces() {
+  const id = '3A'
+  const expected = 'อูนางิ / ปลาไหลญี่ปุ่น'
+  const visual = data.fishVisuals[id]
+  assert(visual, 'Missing eel profile 3A')
+  assert.equal(
+    localizedFishName(makeNameContext('th'), visual, id),
+    expected,
+    'Fish detail must show the deduplicated Thai eel name',
+  )
+
+  const aliases = fishAliases(visual, expected)
+  assert(aliases.includes('ウナギ'), 'Fish detail must retain the Japanese eel alias')
+  assert(aliases.includes('Unagi'), 'Fish detail must retain the Latin eel alias')
+
+  const mapEntry = speciesRecord({ lang: 'th' }, id, locations.fish[id], visual)
+  assert.equal(mapEntry.name, expected, 'Map species label must match the fish detail')
+  for (const alias of ['ウナギ', 'Unagi', 'อูนางิ / ปลาไหลญี่ปุ่น', 'อูนางิ'])
+    assert(
+      mapEntry.aliases.includes(alias.toLocaleLowerCase()),
+      `Map lost eel search alias ${alias}`,
+    )
+
+  assert.equal(
+    localizedItemFishName({ lang: 'th' }, id, data.fishVisuals),
+    expected,
+    'Item detail fish label must match the fish detail',
+  )
+
+  const equipment = { lang: 'th', fishVisuals: data.fishVisuals }
+  setupDataAccess(equipment)
+  assert.equal(equipment.fishName(id), expected, 'Equipment fish label must match the fish detail')
+  const search = equipment.fishSearchText(id)
+  for (const alias of ['ウナギ', 'Unagi', 'อูนางิ / ปลาไหลญี่ปุ่น', 'อูนางิ'])
+    assert(search.includes(alias.toLocaleLowerCase()), `Equipment fish search lost alias ${alias}`)
 }
 
 function makeNameContext(locale) {

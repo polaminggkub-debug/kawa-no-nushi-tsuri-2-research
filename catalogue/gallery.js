@@ -1778,6 +1778,14 @@
     return "";
   }
 
+  // src/pages/equipment/navigation-route.js
+  function navigationRoute(ctx) {
+    const category = document.getElementById("category-filter").value;
+    if (category === "lure") return "lure";
+    if (category === "flymaker") return "fly";
+    return ctx.baitRoute;
+  }
+
   // src/pages/equipment/return-action.js
   var pageRoots = ["index", "maps", "fish", "item", "shops"];
   var locales = ["en", "th", "ja"];
@@ -2028,7 +2036,11 @@
     ).join("");
   }
   function fishMapHref(ctx, labels, id, location2) {
-    const query = new URLSearchParams({ fish: id, return: ctx.sourceReturn() });
+    const query = new URLSearchParams({
+      fish: id,
+      route: navigationRoute(ctx),
+      return: ctx.sourceReturn()
+    });
     if (location2) query.set("stage", String(location2.stage));
     return `${labels.page}?${query}`;
   }
@@ -3634,6 +3646,23 @@
     }[ctx.lang];
   }
 
+  // src/entities/fish/index.js
+  function nameKey(value) {
+    return String(value || "").normalize("NFKC").trim().replace(/\s+/g, " ").toLocaleLowerCase();
+  }
+  function distinctFishNames(names, headline = "") {
+    const seen = new Set(headline.split("/").map(nameKey).filter(Boolean));
+    seen.add(nameKey(headline));
+    return names.flatMap(
+      (name) => String(name || "").split("/").map((part) => part.trim())
+    ).filter((name) => {
+      const key = nameKey(name);
+      if (!key || seen.has(key)) return false;
+      seen.add(key);
+      return true;
+    });
+  }
+
   // src/pages/equipment/setup-data-access.js
   function setupDataAccess(ctx) {
     ctx.fishSearchText = (id) => [
@@ -3646,7 +3675,7 @@
     ctx.fishName = (id) => {
       const f = ctx.fishVisuals[id] || {};
       const latin = f.nameLatin || (f.nameLatinVariants || []).slice().sort((a, b) => b.length - a.length)[0];
-      return ctx.lang === "th" ? f.nameTh || (f.nameThVariants || []).join(" / ") || latin || f.nameJa || id : ctx.lang === "en" ? f.nameEn || latin || f.nameJa || id : f.nameJa || id;
+      return ctx.lang === "th" ? distinctFishNames(f.nameTh ? [f.nameTh] : f.nameThVariants || []).join(" / ") || latin || f.nameJa || id : ctx.lang === "en" ? f.nameEn || latin || f.nameJa || id : f.nameJa || id;
     };
     ctx.fishIdsFor = (item) => item.category === "bait" ? ctx.useOf(item).fishIdsByRoute?.[ctx.baitRoute] || ctx.useOf(item).fishIds || [] : ctx.useOf(item).fishIds || [];
     ctx.detailFile = (type) => `${type}${ctx.lang === "en" ? "" : "." + ctx.lang}.html`;
@@ -3694,7 +3723,7 @@
       if (ctx.locationStage) q.set("stage", String(ctx.locationStage));
       return `${ctx.detailFile("item")}?${q}`;
     };
-    ctx.fishHref = (id) => `${ctx.detailFile("fish")}?id=${encodeURIComponent(id)}${ctx.locationStage ? "&stage=" + ctx.locationStage : ""}&return=${encodeURIComponent(ctx.sourceReturn())}`;
+    ctx.fishHref = (id) => `${ctx.detailFile("fish")}?id=${encodeURIComponent(id)}&route=${encodeURIComponent(navigationRoute(ctx))}${ctx.locationStage ? "&stage=" + ctx.locationStage : ""}&return=${encodeURIComponent(ctx.sourceReturn())}`;
     setupReturnAction(ctx);
   }
 

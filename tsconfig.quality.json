@@ -18,6 +18,7 @@
     "scripts/check_map_combobox.cjs",
     "scripts/check_shop_conditions.cjs",
     "scripts/code-quality/**/*.mjs",
-    "scripts/entity-link-check/**/*.mjs"
+    "scripts/entity-link-check/**/*.mjs",
+    ".quality-probe-*/**/*.mjs"
   ]
 }

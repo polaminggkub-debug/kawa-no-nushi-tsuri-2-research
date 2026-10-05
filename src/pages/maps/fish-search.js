@@ -1,5 +1,6 @@
 import { notebookStatus } from './notebook-status.js'
 import { renderGrowthOnlyFishBadge } from './water-icons.js'
+import { distinctFishNames } from '../../entities/fish/index.js'
 
 export function safeReturn(ctx, raw) {
   if (!raw || raw.startsWith('//') || raw.includes('\\') || /^[a-z][a-z0-9+.-]*:/i.test(raw))
@@ -63,11 +64,14 @@ export function speciesRecord(ctx, id, record, visual) {
     ...(visual.nameLatinVariants || []),
     ...(visual.nameJapaneseVariants || []),
   ]
+  const thaiNames = distinctFishNames(
+    visual.nameTh ? [visual.nameTh] : visual.nameThVariants || [],
+  ).join(' / ')
   const name =
     ctx.lang === 'ja'
       ? visual.nameJa || record.nameJa
       : ctx.lang === 'th'
-        ? visual.nameTh || visual.nameThVariants?.join(' / ') || `${record.nameJa} · ID ${id}`
+        ? thaiNames || `${record.nameJa} · ID ${id}`
         : visual.nameLatin ||
           visual.nameLatinVariants?.slice().sort((a, b) => b.length - a.length)[0] ||
           visual.nameEn ||

@@ -1,17 +1,114 @@
 import assert from 'node:assert/strict'
-import { data, locations, render } from './shared.mjs'
+import { data, locations, render, unescapeHtml } from './shared.mjs'
 
 for (const lang of ['en', 'ja', 'th']) {
   for (const [fishId, record] of Object.entries(locations.fish)) {
     for (const area of record.locations || []) {
       const stage = String(area.stage)
       const result = await render('fish', lang, new URLSearchParams({ id: fishId, stage }))
+      checkAreaDecision(result, lang, fishId, area)
       checkReusableKit(result, fishId, stage)
       checkFlyBackup(result, fishId)
       checkVisibleFishEvidence(result)
       await checkStarterOffers(result, fishId, stage)
     }
   }
+}
+
+function checkAreaDecision(result, lang, fishId, area) {
+  const pointCount = area.points?.length || 0
+  const currentArea = result.html.match(
+    /<article class="detail-section area-card current-area" data-active="true">([\s\S]*?)<\/article>/,
+  )?.[1]
+  assert(currentArea, `${lang}/${fishId}/${area.stage}: current area missing`)
+  assert(
+    currentArea.includes(configuredPointLabel(lang, pointCount)),
+    `${lang}/${fishId}/${area.stage}: configured point count missing or wrong`,
+  )
+  checkEmptyPointAdvice(currentArea, lang, fishId, area.stage, pointCount)
+  checkFishMapLinks(currentArea, result, lang, fishId, area)
+}
+
+function configuredPointLabel(lang, count) {
+  if (lang === 'th') return `${count} จุดที่เกมกำหนด`
+  if (lang === 'ja') return `設定されたポイント ${count}か所`
+  return `${count} configured point${count === 1 ? '' : 's'}`
+}
+
+function checkEmptyPointAdvice(html, lang, fishId, stage, count) {
+  const advice = html.match(/<p class="section-lede">([\s\S]*?)<\/p>/)?.[1]
+  assert(advice, `${lang}/${fishId}/${stage}: missing empty-point advice`)
+  if (count === 1) {
+    const wording = {
+      en: ['records only one spot', 'nearby water', 'another marked spot'],
+      ja: ['地点は1か所だけ', '周辺', '別の表示地点'],
+      th: ['จุดที่เกมกำหนดไว้เพียงจุดเดียว', 'บริเวณใกล้', 'จุดอื่นที่แสดงไว้'],
+    }[lang]
+    assert(advice.includes(wording[0]), `${lang}/${fishId}/${stage}: single spot is unclear`)
+    assert(advice.includes(wording[1]), `${lang}/${fishId}/${stage}: no nearby search action`)
+    assert(
+      !advice.includes(wording[2]),
+      `${lang}/${fishId}/${stage}: single spot advises trying another marked spot`,
+    )
+    return
+  }
+  assert(count > 1, `${lang}/${fishId}/${stage}: unexpected zero-point area`)
+  const tryAnother = {
+    en: 'try another marked spot',
+    ja: '別の表示地点も試',
+    th: 'ลองจุดอื่นที่แสดงไว้',
+  }[lang]
+  assert(advice.includes(tryAnother), `${lang}/${fishId}/${stage}: no alternate spot action`)
+}
+
+function checkFishMapLinks(html, result, lang, fishId, area) {
+  const previews = [...html.matchAll(/<a\b([^>]*class="area-map-preview"[^>]*)>([\s\S]*?)<\/a>/g)]
+  const maps = (area.maps || []).filter((map) => map.image)
+  assert.equal(previews.length, maps.length, `${lang}/${fishId}/${area.stage}: map preview count`)
+  for (const [index, preview] of previews.entries()) {
+    const attributes = preview[1]
+    const href = attributes.match(/\bhref="([^"]+)"/)?.[1]
+    const section = attributes.match(/\bdata-map-section="([^"]*)"/)?.[1]
+    assert(href && section !== undefined, `${lang}/${fishId}/${area.stage}: incomplete map link`)
+    const url = new URL(unescapeHtml(href), result.url)
+    assert.equal(url.pathname.split('/').pop(), mapPage(lang))
+    assert.equal(url.searchParams.get('fish'), fishId)
+    assert.equal(url.searchParams.get('stage'), String(area.stage))
+    assert.equal(url.searchParams.get('section') || '', unescapeHtml(section))
+    checkMapReturn(url.searchParams.get('return'), result.url, lang, fishId, area.stage)
+    assert.match(section, /^(?:|s[1-6]-c\d+-r\d+)$/)
+    assert.equal(
+      [...preview[2].matchAll(/class="area-map-pin"/g)].length,
+      maps[index].pins.length,
+      `${lang}/${fishId}/${area.stage}: preview pin count`,
+    )
+  }
+
+  const routeHref = html.match(/<a class="route-button" href="([^"]+)"/)?.[1]
+  assert(routeHref, `${lang}/${fishId}/${area.stage}: full map action missing`)
+  const route = new URL(unescapeHtml(routeHref), result.url)
+  assert.equal(route.pathname.split('/').pop(), mapPage(lang))
+  assert.equal(route.searchParams.get('fish'), fishId)
+  assert.equal(route.searchParams.get('stage'), String(area.stage))
+  assert.equal(route.searchParams.has('section'), false)
+  checkMapReturn(route.searchParams.get('return'), result.url, lang, fishId, area.stage)
+}
+
+function checkMapReturn(rawReturn, base, lang, fishId, stage) {
+  assert(rawReturn, `${lang}/${fishId}/${stage}: map link does not return to fish page`)
+  const returned = new URL(rawReturn, base)
+  assert.equal(returned.pathname.split('/').pop(), fishPage(lang))
+  assert.equal(returned.searchParams.get('id'), fishId)
+  assert.equal(returned.searchParams.get('stage'), String(stage))
+  assert.equal(returned.hash, '#fish-area-map')
+}
+
+function mapPage(lang) {
+  return `maps${lang === 'en' ? '' : `.${lang}`}.html`
+}
+
+function fishPage(lang) {
+  return `fish${lang === 'en' ? '' : `.${lang}`}.html`
 }
 
 function checkReusableKit(result, fishId, stage) {

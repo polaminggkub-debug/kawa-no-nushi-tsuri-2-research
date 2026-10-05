@@ -37,6 +37,21 @@ export function renderAreaMap(ctx, map, location, fish) {
   return `<a class="area-map-preview" data-map-section="${ctx.escapeHtml(section)}" href="${ctx.escapeHtml(href)}" aria-label="${ctx.escapeHtml(label)}"><span class="area-map-canvas"><img class="area-map-ground" loading="lazy" src="${ctx.escapeHtml(map.image)}" alt=""><span aria-hidden="true">${markers}</span></span><span class="area-map-caption"><strong>${ctx.escapeHtml(mapName)}</strong><small>${ctx.escapeHtml(ctx.copy.configuredPoints(pins.length))}</small></span></a>`
 }
 
+function emptyPointAdvice(ctx, count) {
+  if (count === 1) {
+    if (ctx.locale === 'th')
+      return 'ด่านนี้มีจุดที่เกมกำหนดไว้เพียงจุดเดียว ถ้าไม่พบปลา ช่องเกิดนี้อาจไม่ทำงานในรอบนี้ หรือปลาอาจเคลื่อนที่ไปแล้ว ลองตรวจบริเวณใกล้จุดนี้'
+    if (ctx.locale === 'ja')
+      return 'このエリアでゲームに設定された地点は1か所だけです。魚がいなければ、この出現枠が無効な状態か、魚が移動した可能性があります。周辺を探してください。'
+    return 'The game records only one spot for this area. If no fish appears there, its spawn slot may be inactive in this state or the fish may have moved; check the nearby water.'
+  }
+  if (ctx.locale === 'th')
+    return 'ถ้าจุดหนึ่งไม่มีปลา ให้ลองจุดอื่นที่แสดงไว้ ปลาเคลื่อนที่ได้และจุดเกิดบางแห่งอาจไม่ทำงานในรอบนั้น'
+  if (ctx.locale === 'ja')
+    return '魚がいなければ別の表示地点も試してください。魚は移動し、出現枠が無効の場合もあります。'
+  return 'If a point is empty, try another marked spot. Fish move, and some spawn slots may be inactive in that state.'
+}
+
 export function renderAreas(ctx, locations, activeStage, fish) {
   if (!locations.length)
     return `<section class="detail-section fish-where-to-go"><h2>${ctx.escapeHtml(ctx.copy.areas)}</h2><p class="empty-state">${ctx.escapeHtml(ctx.copy.unknownArea)}</p></section>`
@@ -45,11 +60,6 @@ export function renderAreas(ctx, locations, activeStage, fish) {
   const stage = String(selected.stage),
     name = selected.stageName?.[ctx.locale] || selected.stageName?.en || ctx.copy.stage(stage)
   const maps = (selected.maps || []).map((map) => ctx.renderAreaMap(map, selected, fish)).join('')
-  const caution =
-    ctx.locale === 'th'
-      ? 'ถ้าจุดหนึ่งไม่มีปลา ให้ลองจุดอื่นที่แสดงไว้ ปลาเคลื่อนที่ได้และจุดเกิดบางแห่งอาจไม่ทำงานในรอบนั้น'
-      : ctx.locale === 'ja'
-        ? '魚がいなければ別の表示地点も試してください。魚は移動し、出現枠が無効の場合もあります。'
-        : 'If a point is empty, try another marked spot. Fish move, and some spawn slots may be inactive in that state.'
+  const caution = emptyPointAdvice(ctx, pointCount(ctx, selected))
   return `<section class="detail-section fish-where-to-go" id="fish-area-map"><h2>${ctx.escapeHtml(ctx.copy.areas)}</h2><label class="area-select-label" for="shopping-area">${ctx.escapeHtml(ctx.shoppingCopy.area)}</label><select id="shopping-area" class="area-select">${locations.map((location) => `<option value="${ctx.escapeHtml(location.stage)}" ${String(location.stage) === stage ? 'selected' : ''}>${ctx.escapeHtml(ctx.copy.stage(location.stage))} · ${ctx.escapeHtml(location.stageName?.[ctx.locale] || location.stageName?.en || '')}</option>`).join('')}</select><article class="detail-section area-card current-area" data-active="true"><h3>${ctx.escapeHtml(ctx.copy.stage(stage))} · ${ctx.escapeHtml(name)}</h3><p class="area-point-count">${ctx.escapeHtml(ctx.copy.configuredPoints(ctx.pointCount(selected)))}</p><p class="section-lede">${ctx.escapeHtml(caution)}</p>${maps ? `<div class="detail-grid area-map-grid">${maps}</div>` : ''}<a class="route-button" href="${ctx.escapeHtml(ctx.fishMapLink(stage))}">${ctx.escapeHtml(ctx.copy.mapAction)} ↗</a></article></section>`
 }

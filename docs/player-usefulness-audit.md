@@ -1,5 +1,15 @@
 # Player usefulness audit
 
+## 2026-10-05: route continuity and truthful location advice
+
+A fresh semantic review covered the 72 located fish profiles, the map/shop/notebook renderers in all six areas, and bait/lure/food/tool decisions. Source and rendered checks remain separate from ordinary gameplay observations. Net and magnifier research remain deferred.
+
+- Equipment-page fish portraits, profile links, embedded map actions and area links retain the selected float/sinker rig, or the lure/fly method of the current equipment category. Previously only the global navigation retained it, so another route could change the next advice.
+- A fish with one configured point directs the player to check the nearby water; it no longer tells them to try another marked point that does not exist. This does not claim a spawn or quest trigger is solved.
+- Thai fish-name display deduplication is shared by the fish, map, equipment and item pages. Original name variants and search aliases remain intact.
+
+The review did not justify a new bait/lure catch-success ranking. Compatibility, prices and shop availability answer different questions from bite or landing odds. Likewise, configured giant-eel coordinates do not prove the ordinary story prerequisite. These limits remain in the relevant research evidence; the full-site goal is not completion-certified by this bounded release.
+
 ## 2026-10-05: visible buying decisions and verified fly selections
 
 The full-site goal remains active. This continuation addresses the equipment and fish-map paths found in the current rendered site; it does not certify every gameplay mechanic.

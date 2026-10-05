@@ -1,5 +1,5 @@
 import { createHash } from 'node:crypto'
-import { readFileSync, unlinkSync, writeFileSync } from 'node:fs'
+import { mkdtempSync, readFileSync, rmSync, writeFileSync } from 'node:fs'
 import { resolve } from 'node:path'
 import { fileURLToPath, pathToFileURL } from 'node:url'
 import tseslint from 'typescript-eslint'
@@ -151,11 +151,15 @@ function probeBoundaries() {
 }
 
 async function probePromiseGuard(eslint) {
-  const badFile = resolve(root, 'scripts/entity-link-check/promise-probe-bad.mjs')
-  const goodFile = resolve(root, 'scripts/entity-link-check/promise-probe-good.mjs')
-  writeFileSync(badFile, 'async function work() { await Promise.resolve() }\nwork()\nvoid work()\n')
-  writeFileSync(goodFile, 'async function work() { await Promise.resolve() }\nawait work()\n')
+  const probeDirectory = mkdtempSync(resolve(root, '.quality-probe-'))
+  const badFile = resolve(probeDirectory, 'promise-probe-bad.mjs')
+  const goodFile = resolve(probeDirectory, 'promise-probe-good.mjs')
   try {
+    writeFileSync(
+      badFile,
+      'async function work() { await Promise.resolve() }\nwork()\nvoid work()\n',
+    )
+    writeFileSync(goodFile, 'async function work() { await Promise.resolve() }\nawait work()\n')
     const bad = await eslint.lintFiles([badFile])
     const good = await eslint.lintFiles([goodFile])
     const violations = bad
@@ -167,8 +171,7 @@ async function probePromiseGuard(eslint) {
     assertProbe(violations.length >= 2, 'dropped and voided Promise calls')
     assertProbe(allowed.length === 0, 'awaited Promise call')
   } finally {
-    unlinkSync(badFile)
-    unlinkSync(goodFile)
+    rmSync(probeDirectory, { recursive: true, force: true })
   }
 }
 
