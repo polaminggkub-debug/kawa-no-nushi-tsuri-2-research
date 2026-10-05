@@ -1603,13 +1603,64 @@
     };
   }
 
+  // src/pages/equipment/food-area-guidance.js
+  function stageFoodItems(items, stage) {
+    return items.filter((item) => {
+      const hp = item.playerUse?.hpRecovery?.hp;
+      const stocked = (item.playerUse?.shops || []).some(
+        (shop) => Number(shop.stage) === stage && !shop.condition
+      );
+      return item.category === "food" && Number.isSafeInteger(hp) && hp > 0 && Number.isFinite(item.priceYen) && item.priceYen > 0 && stocked;
+    }).sort(
+      (first, second) => first.playerUse.hpRecovery.hp - second.playerUse.hpRecovery.hp || first.priceYen - second.priceYen || first.id.localeCompare(second.id)
+    );
+  }
+  function foodItemNote(ctx, item) {
+    const hp = item.playerUse.hpRecovery.hp;
+    const note = ctx.lang === "ja" ? `${hp}HP回復 · ${item.priceYen}円` : ctx.lang === "th" ? `ฟื้น ${hp} HP · ¥${item.priceYen}` : `Restores ${hp} HP · ¥${item.priceYen}`;
+    return { [ctx.lang]: note };
+  }
+  function foodValueNote(ctx, foods) {
+    const samePricePerHp = foods.every((item) => item.priceYen === item.playerUse.hpRecovery.hp);
+    if (!samePricePerHp) return "";
+    if (ctx.lang === "th") return "ทุกชิ้นราคา ¥1 ต่อ HP";
+    if (ctx.lang === "ja") return "すべて1HPあたり1円";
+    return "All cost ¥1 per HP";
+  }
+  function areaFoodRecommendation(ctx, stage, foods) {
+    const valueNote = foodValueNote(ctx, foods);
+    if (ctx.lang === "th")
+      return `อาหารที่มีขายปกติในด่าน ${stage}${valueNote ? ` ${valueNote}` : ""} ถ้ามีอาหารที่เหมาะอยู่แล้วให้ใช้ก่อน แล้วเลือกอาหารหรือรวมหลายชิ้นให้ฟื้นใกล้ HP ที่ขาดที่สุด เพราะส่วนที่ฟื้นเกินจะเสียเปล่า`;
+    if (ctx.lang === "ja")
+      return `エリア${stage}の通常販売食料${valueNote ? `：${valueNote}` : ""}。使える食料を持っていれば先に使い、不足HPに近い量を選ぶか組み合わせてください。超過分は無駄になります。`;
+    return `Regular foods stocked in Area ${stage}${valueNote ? `: ${valueNote}` : ""}. Use suitable food you already own first, then choose or combine servings close to your missing HP; excess recovery is wasted.`;
+  }
+  function contextualFoodDecision(ctx, decision) {
+    if (decision.id !== "food_hp_choice") return decision;
+    const stage = Number(ctx.locationStage);
+    if (!Number.isInteger(stage) || stage < 1 || stage > 6) return decision;
+    const foods = stageFoodItems(ctx.allItems || [], stage);
+    if (!foods.length) return decision;
+    return {
+      ...decision,
+      foodAreaStage: stage,
+      recommendation: {
+        ...decision.recommendation,
+        [ctx.lang]: areaFoodRecommendation(ctx, stage, foods)
+      },
+      items: foods.map((item) => ({ category: "food", id: item.id, note: foodItemNote(ctx, item) }))
+    };
+  }
+
   // src/pages/equipment/player-guidance.js
   function decisionCard(ctx, d) {
     d = d.id === "lure_coverage_pair" ? contextualLureCoverageDecision(ctx, d) : d;
-    const marker = d.id === "lure_coverage_pair" ? " data-lure-coverage-pair" : "";
+    d = contextualFoodDecision(ctx, d);
+    const marker = d.foodAreaStage ? ` data-food-area-choice="${d.foodAreaStage}"` : d.id === "lure_coverage_pair" ? " data-lure-coverage-pair" : "";
     const lureGuide = d.id === "lure_coverage_pair" ? lureCoverageGuide(ctx) : "";
     const nextAction = d.nextAction?.href ? `<p><a class="route-button" data-fly-backup-action href="${ctx.esc(d.nextAction.href)}">${ctx.esc(ctx.local(d.nextAction.label))} ↗</a></p>` : "";
-    return `<article class="decision-card"${marker}><h3>${ctx.esc(ctx.local(d.title))}</h3><p class="decision-action">${ctx.esc(ctx.local(d.recommendation))}</p>${d.reason ? `<p>${ctx.esc(ctx.local(d.reason))}</p>` : ""}<div class="decision-items">${(d.items || []).map(ctx.decisionLink).join("")}</div>${d.scope ? `<small>${ctx.esc(ctx.local(d.scope))}</small>` : ""}${lureGuide}${nextAction}</article>`;
+    const choices = `<div class="decision-items">${(d.items || []).map(ctx.decisionLink).join("")}</div>`;
+    return `<article class="decision-card"${marker}><h3>${ctx.esc(ctx.local(d.title))}</h3>${d.foodAreaStage ? choices : ""}<p class="decision-action">${ctx.esc(ctx.local(d.recommendation))}</p>${d.reason ? `<p>${ctx.esc(ctx.local(d.reason))}</p>` : ""}${d.foodAreaStage ? "" : choices}${d.scope ? `<small>${ctx.esc(ctx.local(d.scope))}</small>` : ""}${lureGuide}${nextAction}</article>`;
   }
   function lureCoverageGuide(ctx) {
     const link = document.getElementById("kit-link");
@@ -3997,7 +4048,7 @@
     ctx.detailLabel = ctx.lang === "th" ? "ดูรายละเอียด" : ctx.lang === "ja" ? "詳細を見る" : "View details";
     ctx.decisionLink = (ref) => {
       const item = ctx.allItems.find((i) => i.category === ref.category && i.id === ref.id);
-      return item ? `<a class="decision-item" href="${ctx.esc(ctx.itemHref(item))}"><img src="${ctx.esc(item.image)}" alt=""><span>${ctx.esc(ctx.itemName(item))}</span></a>` : "";
+      return item ? `<a class="decision-item" href="${ctx.esc(ctx.itemHref(item))}"><img src="${ctx.esc(item.image)}" alt=""><span>${ctx.esc(ctx.itemName(item))}${ref.note ? `<small>${ctx.esc(ctx.local(ref.note))}</small>` : ""}</span></a>` : "";
     };
     ctx.matchCategory = (item, category) => category === "all" || (category === "flymaker" ? item.category.startsWith("fly") : item.category === category);
     ctx.rodAdviceTitle = ctx.lang === "th" ? "ควรเลือกคันนี้เมื่อไร?" : ctx.lang === "ja" ? "この竿を選ぶときは？" : "When should I choose this rod?";

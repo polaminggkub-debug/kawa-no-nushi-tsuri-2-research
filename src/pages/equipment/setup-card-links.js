@@ -14,7 +14,7 @@ export function setupCardLinks(ctx) {
   ctx.decisionLink = (ref) => {
     const item = ctx.allItems.find((i) => i.category === ref.category && i.id === ref.id)
     return item
-      ? `<a class="decision-item" href="${ctx.esc(ctx.itemHref(item))}"><img src="${ctx.esc(item.image)}" alt=""><span>${ctx.esc(ctx.itemName(item))}</span></a>`
+      ? `<a class="decision-item" href="${ctx.esc(ctx.itemHref(item))}"><img src="${ctx.esc(item.image)}" alt=""><span>${ctx.esc(ctx.itemName(item))}${ref.note ? `<small>${ctx.esc(ctx.local(ref.note))}</small>` : ''}</span></a>`
       : ''
   }
   ctx.matchCategory = (item, category) =>

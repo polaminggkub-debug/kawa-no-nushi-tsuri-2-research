@@ -1,6 +1,7 @@
 import { rodAreaDecision } from '../../entities/item/index.js'
 import { catalogueHpRecoveryAction } from './hp-recovery-tip.js'
 import { contextualLureCoverageDecision } from './lure-coverage-guidance.js'
+import { contextualFoodDecision } from './food-area-guidance.js'
 import {
   areaLabel,
   categoryDecisionCopy,
@@ -11,12 +12,18 @@ import {
 
 export function decisionCard(ctx, d) {
   d = d.id === 'lure_coverage_pair' ? contextualLureCoverageDecision(ctx, d) : d
-  const marker = d.id === 'lure_coverage_pair' ? ' data-lure-coverage-pair' : ''
+  d = contextualFoodDecision(ctx, d)
+  const marker = d.foodAreaStage
+    ? ` data-food-area-choice="${d.foodAreaStage}"`
+    : d.id === 'lure_coverage_pair'
+      ? ' data-lure-coverage-pair'
+      : ''
   const lureGuide = d.id === 'lure_coverage_pair' ? lureCoverageGuide(ctx) : ''
   const nextAction = d.nextAction?.href
     ? `<p><a class="route-button" data-fly-backup-action href="${ctx.esc(d.nextAction.href)}">${ctx.esc(ctx.local(d.nextAction.label))} ↗</a></p>`
     : ''
-  return `<article class="decision-card"${marker}><h3>${ctx.esc(ctx.local(d.title))}</h3><p class="decision-action">${ctx.esc(ctx.local(d.recommendation))}</p>${d.reason ? `<p>${ctx.esc(ctx.local(d.reason))}</p>` : ''}<div class="decision-items">${(d.items || []).map(ctx.decisionLink).join('')}</div>${d.scope ? `<small>${ctx.esc(ctx.local(d.scope))}</small>` : ''}${lureGuide}${nextAction}</article>`
+  const choices = `<div class="decision-items">${(d.items || []).map(ctx.decisionLink).join('')}</div>`
+  return `<article class="decision-card"${marker}><h3>${ctx.esc(ctx.local(d.title))}</h3>${d.foodAreaStage ? choices : ''}<p class="decision-action">${ctx.esc(ctx.local(d.recommendation))}</p>${d.reason ? `<p>${ctx.esc(ctx.local(d.reason))}</p>` : ''}${d.foodAreaStage ? '' : choices}${d.scope ? `<small>${ctx.esc(ctx.local(d.scope))}</small>` : ''}${lureGuide}${nextAction}</article>`
 }
 
 function lureCoverageGuide(ctx) {

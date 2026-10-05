@@ -621,3 +621,29 @@ also reviewed: selecting Aouo from floats opens four compatible bait cards,
 then item detail and its explicit return retain bait, fish and area.
 Publication remains separate from passing local checks. The selected-area food
 advice still needs to foreground local stock; it is recorded as follow-up work.
+
+### Food choices in the selected area
+
+A mobile review of the Area 2 food page found its advice led with Area 5 bento
+and linked rods and foods from every area. The selected-area advice now starts
+with actionable local food choices, each showing its measured HP recovery and
+price. Area 1 offers 01/02; Area 2 offers 02/03; Area 3 offers 02/04; Area 4
+offers 02/05; Areas 5 and 6 offer 03/06. Choices derive from regular shop stock
+and confirmed item effects. Advice says to use suitable owned food first and
+match servings to missing HP to avoid wasted recovery. No universal winner is
+claimed. The canonical unselected-area advice, food records and technical
+proof remain available, including the milk-for-canoe caution.
+
+The first mobile draft still buried choices below a paragraph; a second visual
+pass moved food images, names, HP and prices directly below the title and
+removed their duplicate paragraph listing. Independent verification captured
+a missing-choice baseline before wiring, then checked all six areas in three
+languages, detail links, return context and canonical invalid/no-area fallback.
+Actual TH 390px clicks followed Area 2 Dango to its detail and recorded seller,
+then back twice to the same local choices. EN 1200px and JA 390px views retain
+the selected area and show no horizontal overflow.
+
+The previous area-lure release (1837a83) passed GitHub quality and deployment.
+A current public TH Area 2 fish-to-lure-24 click verified pair 17+24 / ¥55 and
+its 38-profile kit context on item detail. New food publication remains a
+separate release step; this work does not establish whole-site completion.
