@@ -41,7 +41,7 @@ export function renderFilters(ctx) {
       .join('')
   ctx.set('#style-filter-label', ctx.player.style)
   document.getElementById('sort-filter').innerHTML =
-    `<option value="id">${ctx.esc(ctx.copy.sortId)}</option><option value="name">${ctx.esc(ctx.copy.sortName)}</option>`
+    `<option value="id">${ctx.esc(ctx.copy.sortId)}</option><option value="name">${ctx.esc(ctx.copy.sortName)}</option><option value="buy-price">${ctx.esc(ctx.copy.sortBuyPrice)}</option><option value="price">${ctx.esc(ctx.copy.sortPrice)}</option>`
   document.getElementById('category-menu').innerHTML = ctx.groups
     .map((c) => {
       const i = ctx.allItems.find((i) => ctx.groupOf(i) === c)

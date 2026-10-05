@@ -1,6 +1,8 @@
 import { navigationRoute } from './navigation-route.js'
 import { targetAdviceScope } from '../../shared/lib/index.js'
 import { baitLureEvidenceScope } from './bait-lure-verdict.js'
+import { sortItemsByShopAvailability } from '../../entities/item/index.js'
+import { purchaseSortCopy, rawPriceSortCopy } from './purchase-sort-copy.js'
 
 const fishCompatibleCategoryOrder = { bait: 0, lure: 1, fly: 2, float_weight: 3 }
 
@@ -159,6 +161,7 @@ function filterCatalogueItems(ctx, filters) {
 
 function sortCatalogueItems(ctx, items, filters) {
   const { order, category, fish } = filters
+  if (order === 'buy-price') return sortItemsByShopAvailability(items, ctx.locationStage)
   if (order === 'name')
     return items.sort(
       (a, b) =>
@@ -322,6 +325,16 @@ function renderItemResults(ctx, items, filters) {
 
 function renderResults(ctx, items, filters) {
   ctx.set('#result-count', ctx.copy.results(items.length))
+  const sortNote = document.getElementById('purchase-sort-note')
+  if (sortNote) {
+    sortNote.hidden = !['buy-price', 'price'].includes(filters.order)
+    sortNote.textContent =
+      filters.order === 'buy-price'
+        ? purchaseSortCopy(ctx.lang, ctx.locationStage)
+        : filters.order === 'price'
+          ? rawPriceSortCopy(ctx.lang)
+          : ''
+  }
   updateCatalogueHeadings(ctx, filters)
   document
     .querySelectorAll('[data-category]')

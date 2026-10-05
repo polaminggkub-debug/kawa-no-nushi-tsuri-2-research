@@ -110,9 +110,13 @@ function requiredItem(loc, allItems) {
   )
 }
 
-function itemReference(ctx, target, current) {
+function itemReference(ctx, target, current, stage) {
   if (isCurrentItem(target, current)) return ctx.esc(ctx.imageName(target))
-  return `<a href="${ctx.esc(ctx.detailItemLink(target))}">${ctx.esc(ctx.imageName(target))} ↗</a>`
+  const [page, search = ''] = ctx.detailItemLink(target).split('?')
+  const params = new URLSearchParams(search)
+  if (Number.isInteger(Number(stage)) && Number(stage) >= 1 && Number(stage) <= 6)
+    params.set('stage', String(stage))
+  return `<a href="${ctx.esc(`${page}?${params}`)}">${ctx.esc(ctx.imageName(target))} ↗</a>`
 }
 
 function requirementLabel(ctx) {
@@ -135,13 +139,13 @@ function rewardLabel(ctx, loc) {
 function renderRequirement(ctx, loc, item, allItems) {
   const required = requiredItem(loc, allItems)
   if (!required) return ''
-  return `<p>${ctx.esc(requirementLabel(ctx))} ${itemReference(ctx, required, item)}</p>`
+  return `<p>${ctx.esc(requirementLabel(ctx))} ${itemReference(ctx, required, item, loc.stage)}</p>`
 }
 
 function renderReward(ctx, loc, item, allItems) {
   const reward = rewardItem(loc, allItems)
   if (!reward) return ''
-  return `<p>${ctx.esc(rewardLabel(ctx, loc))} ${itemReference(ctx, reward, item)}</p>`
+  return `<p>${ctx.esc(rewardLabel(ctx, loc))} ${itemReference(ctx, reward, item, loc.stage)}</p>`
 }
 
 function townLabel(ctx, loc) {

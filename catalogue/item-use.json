@@ -21525,9 +21525,9 @@
     },
     "general_tool:17": {
       "summary": {
-        "en": "Use it by interacting with locked chests in the towns for areas 1, 2, 4 and 6. It is not consumed. The rewards are potato bait, waxworm bait, a small lure rod and a candle.",
-        "ja": "エリア1・2・4・6の町の鍵付き宝箱を調べると開く。カギは消費されない。報酬はイモ、ブドウムシ、小型ルアーロッド、ロウソク。",
-        "th": "เดินไปตรวจหีบที่ล็อกในเมืองของพื้นที่ 1, 2, 4 และ 6 เพื่อเปิด กุญแจไม่หาย รางวัลคือเหยื่อมันฝรั่ง หนอนองุ่น คันลัวร์เล็ก และเทียน"
+        "th": "ถ้ามีกุญแจแล้ว ใช้ต่อได้ ไม่ต้องซื้อซ้ำ ถ้ายังไม่มี ซื้อราคา ¥100 ที่ร้านด่าน 1, 2, 4 หรือ 6 แล้วเดินไปกดตรวจหีบที่ล็อกในเมือง ไม่ต้องเลือกใช้กุญแจจากเมนู กุญแจไม่หายหลังเปิดหีบ เว้นช่องกระเป๋าหมวดรางวัลไว้ก่อนเปิด",
+        "en": "Already own a key? Keep using it; do not buy another. If not, buy one for ¥100 at an Area 1, 2, 4 or 6 shop, then interact with the locked town chest rather than selecting the key from the item menu. Opening a chest does not consume the key. Leave room in the reward inventory before opening.",
+        "ja": "カギを持っていれば買い直さず、そのまま使えます。未所持ならエリア1・2・4・6の店で100円で購入し、道具メニューで使うのではなく町の鍵付き宝箱を調べてください。開けてもカギは消費されません。開ける前に報酬用の所持欄に空きを作ってください。"
       },
       "facts": {
         "en": [

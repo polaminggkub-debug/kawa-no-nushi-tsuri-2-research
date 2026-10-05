@@ -8,6 +8,7 @@ export { fishMealSummary, fishMealFacts } from './fish-meal-copy.js'
 export { rodAreaDecision } from './rod-area-decision.js'
 export { equalPriceChoice } from './equal-price-choice.js'
 export { foodAreaDecision } from './food-area-decision.js'
+export { itemShopSortState, sortItemsByShopAvailability } from './shop-availability-sort.js'
 export {
   lureCoverageByArea,
   lureCoverageForArea,

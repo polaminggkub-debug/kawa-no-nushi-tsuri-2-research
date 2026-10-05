@@ -1673,9 +1673,13 @@
     if (!ref) return null;
     return allItems.find((candidate) => candidate.category === ref.category && candidate.id === ref.id) || null;
   }
-  function itemReference(ctx, target, current) {
+  function itemReference(ctx, target, current, stage) {
     if (isCurrentItem(target, current)) return ctx.esc(ctx.imageName(target));
-    return `<a href="${ctx.esc(ctx.detailItemLink(target))}">${ctx.esc(ctx.imageName(target))} ↗</a>`;
+    const [page, search = ""] = ctx.detailItemLink(target).split("?");
+    const params = new URLSearchParams(search);
+    if (Number.isInteger(Number(stage)) && Number(stage) >= 1 && Number(stage) <= 6)
+      params.set("stage", String(stage));
+    return `<a href="${ctx.esc(`${page}?${params}`)}">${ctx.esc(ctx.imageName(target))} ↗</a>`;
   }
   function requirementLabel(ctx) {
     if (ctx.lang === "th") return "ต้องพก:";
@@ -1695,12 +1699,12 @@
   function renderRequirement(ctx, loc, item, allItems) {
     const required = requiredItem(loc, allItems);
     if (!required) return "";
-    return `<p>${ctx.esc(requirementLabel(ctx))} ${itemReference(ctx, required, item)}</p>`;
+    return `<p>${ctx.esc(requirementLabel(ctx))} ${itemReference(ctx, required, item, loc.stage)}</p>`;
   }
   function renderReward(ctx, loc, item, allItems) {
     const reward = rewardItem(loc, allItems);
     if (!reward) return "";
-    return `<p>${ctx.esc(rewardLabel(ctx, loc))} ${itemReference(ctx, reward, item)}</p>`;
+    return `<p>${ctx.esc(rewardLabel(ctx, loc))} ${itemReference(ctx, reward, item, loc.stage)}</p>`;
   }
   function townLabel(ctx, loc) {
     if (loc.context !== "town") return "";
@@ -2613,6 +2617,17 @@
     };
   }
 
+  // src/pages/item/key-purchase-choice.js
+  function keyPurchaseChoice(ctx, item) {
+    if (item?.category !== "general_tool" || item.id !== "17") return "";
+    const label = {
+      th: "ยังไม่มีกุญแจ? ดูร้านที่ขายและทางไป",
+      en: "Need a key? Find the sellers and how to reach them",
+      ja: "カギがない？ 販売店と行き方を確認"
+    }[ctx.lang];
+    return `<p class="key-purchase-choice"><a class="route-button" data-key-purchase-action href="#item-shops">${ctx.esc(label)} ↓</a></p>`;
+  }
+
   // src/pages/item/milk-canoe-choice.js
   function milkChoiceCopy(lang) {
     return {
@@ -2827,6 +2842,7 @@
       postcardNextAction(ctx, item, fishLocations),
       tofuAlternative(ctx, item),
       milkCanoeChoice(ctx, item),
+      keyPurchaseChoice(ctx, item),
       candleAction(ctx, item, fishLocations),
       fireworksAction(ctx, item)
     ].filter(Boolean).join("");

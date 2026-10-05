@@ -549,7 +549,7 @@
       ctx.lang === "th" ? { 1: "ทุ่น / อายุ", 2: "ตีเหยื่อ", 4: "ลัวร์", 8: "ฟลาย" } : ctx.lang === "ja" ? { 1: "ウキ・アユ", 2: "投げ", 4: "ルアー", 8: "フライ" } : { 1: "Float / Ayu", 2: "Casting", 4: "Lure", 8: "Fly" }
     ).map(([k, v]) => `<option value="${k}">${ctx.esc(v)}</option>`).join("");
     ctx.set("#style-filter-label", ctx.player.style);
-    document.getElementById("sort-filter").innerHTML = `<option value="id">${ctx.esc(ctx.copy.sortId)}</option><option value="name">${ctx.esc(ctx.copy.sortName)}</option>`;
+    document.getElementById("sort-filter").innerHTML = `<option value="id">${ctx.esc(ctx.copy.sortId)}</option><option value="name">${ctx.esc(ctx.copy.sortName)}</option><option value="buy-price">${ctx.esc(ctx.copy.sortBuyPrice)}</option><option value="price">${ctx.esc(ctx.copy.sortPrice)}</option>`;
     document.getElementById("category-menu").innerHTML = ctx.groups.map((c) => {
       const i = ctx.allItems.find((i2) => ctx.groupOf(i2) === c);
       return `<a class="category-button" href="${ctx.esc(categoryNavigationHref(ctx, c, document.getElementById("fish-filter").value))}" data-category="${c}"><img src="${ctx.esc(i?.image)}" alt=""><span><strong>${ctx.esc(ctx.player.cat[c])}</strong><small>${ctx.allItems.filter((i2) => ctx.groupOf(i2) === c).length}</small></span></a>`;
@@ -1414,8 +1414,8 @@
       return stocked ? `エリア${stage}では${price}円で購入でき、最大${hp}HP回復。使える食料を持っていれば先に使い、不足HPに近い量を選んで超過分を無駄にしないでください。` : `持っていれば不足HPを上限に最大${hp}HP回復できます。エリア${stage}の販売記録にはありません。買うならこのエリアで売られている食料を選んでください。`;
     return stocked ? `Sold in Area ${stage} for ¥${price}; restores up to ${hp} HP. Use suitable food you already own before buying more. Match recovery to missing HP because excess is wasted.` : `If you already own this, use it to restore up to ${hp} HP, capped at missing HP. It is not in Area ${stage}'s recorded stock. If buying food, choose a locally stocked option instead.`;
   }
-  function foodAreaDecision(lang, item, selectedStage) {
-    const stage = Number(selectedStage);
+  function foodAreaDecision(lang, item, selectedStage2) {
+    const stage = Number(selectedStage2);
     const hp = item.playerUse?.hpRecovery?.hp;
     if (item.category !== "food" || !/^0[1-6]$/.test(item.id)) return null;
     if (!Number.isInteger(stage) || stage < 1 || stage > 6) return null;
@@ -1424,6 +1424,34 @@
       (shop) => Number(shop.stage) === stage && !shop.condition
     );
     return { stage, stocked, summary: recommendation(lang, stage, hp, item.priceYen, stocked) };
+  }
+
+  // src/entities/item/shop-availability-sort.js
+  function selectedStage(value) {
+    const stage = Number(value);
+    return Number.isInteger(stage) && stage >= 1 && stage <= 6 ? stage : 0;
+  }
+  function ordinaryOffers(item, stage) {
+    if (["fly", "fly_wing", "fly_tail"].includes(item.category)) return [];
+    return (item.playerUse?.shops || []).filter((offer) => {
+      const area = selectedStage(offer.stage);
+      return area && (!stage || area === stage) && offer.shop !== "fly_bundle" && !offer.bundle;
+    });
+  }
+  function itemShopSortState(item, selectedArea) {
+    const stage = selectedStage(selectedArea);
+    const offers = ordinaryOffers(item, stage);
+    const knownPrice = Number.isFinite(item.priceYen) && item.priceYen >= 0;
+    if (!knownPrice || !offers.length) return { rank: 2, price: Infinity, stage };
+    const regular = offers.some((offer) => !offer.condition);
+    return { rank: regular ? 0 : 1, price: item.priceYen, stage };
+  }
+  function sortItemsByShopAvailability(items, selectedArea) {
+    return [...items].sort((first, second) => {
+      const a = itemShopSortState(first, selectedArea);
+      const b = itemShopSortState(second, selectedArea);
+      return a.rank - b.rank || (a.rank < 2 ? a.price - b.price : 0) || first.category.localeCompare(second.category) || first.id.localeCompare(second.id);
+    });
   }
 
   // src/entities/item/lure-coverage-kit.js
@@ -2861,13 +2889,13 @@
       (candidate) => candidate.category === ref.category && candidate.id === ref.id
     );
   }
-  function collectCheaperOffers(ctx, item, selectedStage = 0) {
+  function collectCheaperOffers(ctx, item, selectedStage2 = 0) {
     const offers = /* @__PURE__ */ new Map();
     const itemPrice = Number(item.priceYen);
     if (!Number.isFinite(itemPrice) || itemPrice <= 0) return [];
     for (const [stageText, refs] of Object.entries(item.baitLureDecision?.cheaperByStage || {})) {
       const stage = stageNumber(stageText);
-      if (!stage || selectedStage && stage !== selectedStage) continue;
+      if (!stage || selectedStage2 && stage !== selectedStage2) continue;
       for (const ref of refs) {
         const target = findItem(ctx, ref);
         const price = Number(ref.priceYen);
@@ -3205,6 +3233,28 @@
     return `<article class="item-card item-card-compact ${poison}" id="item-${view.category}-${view.id}"${offerMarker}>${identity}${guidance}${questNextActions(ctx, view)}${details}</article>`;
   }
 
+  // src/pages/equipment/purchase-sort-copy.js
+  function purchaseSortCopy(lang, stage) {
+    const area = /^[1-6]$/.test(String(stage || "")) ? Number(stage) : 0;
+    if (lang === "th") {
+      const scope2 = area ? `ด่าน ${area}` : "ทุกด่าน (ยังไม่ได้เลือกด่าน)";
+      return `เรียงจากของที่มีรายการขายปกติใน${scope2} ราคาต่ำก่อน ตามด้วยของขายแบบมีเงื่อนไข แล้วจึงของที่ไม่มีข้อเสนอขายปกติพร้อมราคาที่เทียบได้ในขอบเขตนี้ ฟลายต้องซื้อเป็นชุดหรือประกอบ จึงไม่ใช้ราคาชิ้นส่วนมาเทียบ ตรวจเงื่อนไขและราคาในหน้าร้านก่อนซื้อ`;
+    }
+    if (lang === "ja") {
+      const scope2 = area ? `エリア${area}` : "全エリア（エリア未指定）";
+      return `${scope2}の通常販売記録を安い順に表示し、条件付き販売、比較できる通常販売価格のないアイテムが続きます。フライはセット購入・作成が必要なため、部品価格で比較しません。購入前に店の条件と価格を確認してください。`;
+    }
+    const scope = area ? `Area ${area}` : "all areas (no area selected)";
+    return `Regular shop offers in ${scope}, cheapest first; conditional offers follow, then entries without a comparable ordinary offer in this scope. Flies require a bundle or recipe, so component prices are not compared. Check the shop conditions and quote before buying.`;
+  }
+  function rawPriceSortCopy(lang) {
+    if (lang === "th")
+      return "เรียงช่องราคาใน ROM สำหรับตรวจหลักฐานเท่านั้น ไม่ใช่รายการที่ซื้อได้หรือราคาเต็มของชุดฟลาย หากกำลังเลือกซื้อ ให้ใช้ “มีขายก่อน แล้วเรียงราคา”";
+    if (lang === "ja")
+      return "ROM価格欄の検証用順序です。購入可能性やフライセットの総額を示しません。購入する道具を選ぶには「販売記録→価格」を使ってください。";
+    return "ROM price-field order is for inspecting evidence; it does not establish availability or a complete fly price. To choose a purchase, use “Shop availability, then price”.";
+  }
+
   // src/pages/equipment/catalogue-results.js
   var fishCompatibleCategoryOrder = { bait: 0, lure: 1, fly: 2, float_weight: 3 };
   function readFilters() {
@@ -3318,6 +3368,7 @@
   }
   function sortCatalogueItems(ctx, items, filters) {
     const { order, category, fish } = filters;
+    if (order === "buy-price") return sortItemsByShopAvailability(items, ctx.locationStage);
     if (order === "name")
       return items.sort(
         (a, b) => ctx.itemName(a).localeCompare(ctx.itemName(b), ctx.lang) || a.id.localeCompare(b.id)
@@ -3450,6 +3501,11 @@
   }
   function renderResults(ctx, items, filters) {
     ctx.set("#result-count", ctx.copy.results(items.length));
+    const sortNote = document.getElementById("purchase-sort-note");
+    if (sortNote) {
+      sortNote.hidden = !["buy-price", "price"].includes(filters.order);
+      sortNote.textContent = filters.order === "buy-price" ? purchaseSortCopy(ctx.lang, ctx.locationStage) : filters.order === "price" ? rawPriceSortCopy(ctx.lang) : "";
+    }
     updateCatalogueHeadings(ctx, filters);
     document.querySelectorAll("[data-category]").forEach(
       (node) => node.setAttribute(
@@ -3497,7 +3553,8 @@
     all: "All categories",
     sortId: "Item ID",
     sortName: "Name",
-    sortPrice: "Price field",
+    sortPrice: "ROM price field (evidence)",
+    sortBuyPrice: "Shop availability, then price",
     results: (n) => `${n} entries shown`,
     empty: "No matching entries. Try another name or ID.",
     noPrice: "No price field",
@@ -3576,7 +3633,8 @@
     all: "ทุกประเภท",
     sortId: "ID ไอเท็ม",
     sortName: "ชื่อ",
-    sortPrice: "ช่องราคา",
+    sortPrice: "ช่องราคา ROM (หลักฐาน)",
+    sortBuyPrice: "มีขายก่อน แล้วเรียงราคา",
     results: "แสดง {n} รายการ",
     empty: "ไม่พบรายการที่ตรงกัน ลองค้นด้วยชื่อหรือ ID อื่น",
     noPrice: "ไม่มีช่องราคา",
@@ -3686,7 +3744,8 @@
     all: "すべてのカテゴリ",
     sortId: "アイテムID",
     sortName: "名前",
-    sortPrice: "価格欄",
+    sortPrice: "ROM価格欄（検証用）",
+    sortBuyPrice: "販売記録→価格",
     results: (n) => `${n}件を表示`,
     empty: "一致するアイテムはありません。名前かIDを変えてください。",
     noPrice: "価格欄なし",
@@ -4192,7 +4251,7 @@
   function restoreTextFilters(ctx, query) {
     if (!query) return;
     document.getElementById("search").value = query.get("q") || "";
-    if (["id", "name", "price"].includes(query.get("sort")))
+    if (["id", "name", "price", "buy-price"].includes(query.get("sort")))
       document.getElementById("sort-filter").value = query.get("sort");
     if (["1", "2", "4", "8"].includes(query.get("style")))
       document.getElementById("style-filter").value = query.get("style");

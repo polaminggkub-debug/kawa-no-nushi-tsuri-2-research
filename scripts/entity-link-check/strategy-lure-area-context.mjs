@@ -17,8 +17,41 @@ for (const locale of ['en', 'th', 'ja']) {
   const suffix = locale === 'en' ? '' : `.${locale}`
   const html = fs.readFileSync(path.join(root, `research/index${suffix}.html`), 'utf8')
   checkStrategyLureAreaHtml(html, locale)
+  await checkStarterHero(html, locale)
   checkRejectionProbes(html, locale)
   await checkKitNavigation(html, locale)
+}
+
+export async function checkStarterHero(html, locale) {
+  const hero = html.match(/<article class="kit-card">[\s\S]*?<\/article>/)?.[0]
+  assert(
+    hero && hero.includes('data-strategy-starter-area="1"'),
+    'Starter pair explicitly belongs to Area 1',
+  )
+  const targets = [...hero.matchAll(/href="([^"]+)"/g)].map((match) =>
+    checkItemLink(match[1], '1', locale),
+  )
+  assert.deepEqual(
+    targets.map((target) => target.searchParams.get('id')),
+    ['2E', '23'],
+  )
+  for (const target of targets) {
+    assert.equal(target.searchParams.get('kit'), '23+2E')
+    assertStock(target.searchParams.get('id'), '1')
+    const result = await render('item', locale, target.searchParams)
+    assert(
+      result.html
+        .match(/data-lure-kit-context="([^"]+)"/)?.[1]
+        .split('+')
+        .sort()
+        .join('+') === '23+2E',
+      'Hero item opens the intended pair decision',
+    )
+    assert(result.html.includes('<details class="detail-section" data-kit-item-comparison>'))
+  }
+  assertCoverage(['2E', '23'])
+  assert.equal(lure('2E').priceYen + lure('23').priceYen, 55)
+  assert.throws(() => checkItemLink(targets[0].href.replace('stage=1', 'stage=6'), '1', locale))
 }
 console.log(
   'PASS: six distinct strategy lure rows preserve exact purchase area, ROM stock, pair prices, and localized topic returns; malformed contexts are rejected.',

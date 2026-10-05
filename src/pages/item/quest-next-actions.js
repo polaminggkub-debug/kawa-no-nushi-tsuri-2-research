@@ -1,3 +1,4 @@
+import { keyPurchaseChoice } from './key-purchase-choice.js'
 import { milkCanoeChoice } from './milk-canoe-choice.js'
 import { tofuAlternative } from './tofu-alternative.js'
 import { postcardNextAction } from './postcard-next-action.js'
@@ -98,6 +99,7 @@ export function questNextActions(ctx, item, fishLocations) {
     postcardNextAction(ctx, item, fishLocations),
     tofuAlternative(ctx, item),
     milkCanoeChoice(ctx, item),
+    keyPurchaseChoice(ctx, item),
     candleAction(ctx, item, fishLocations),
     fireworksAction(ctx, item),
   ]

@@ -50,7 +50,7 @@ function restoreFishAndStage(ctx, query) {
 function restoreTextFilters(ctx, query) {
   if (!query) return
   document.getElementById('search').value = query.get('q') || ''
-  if (['id', 'name', 'price'].includes(query.get('sort')))
+  if (['id', 'name', 'price', 'buy-price'].includes(query.get('sort')))
     document.getElementById('sort-filter').value = query.get('sort')
   if (['1', '2', '4', '8'].includes(query.get('style')))
     document.getElementById('style-filter').value = query.get('style')

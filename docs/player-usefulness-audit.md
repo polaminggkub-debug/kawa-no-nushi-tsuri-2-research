@@ -947,3 +947,38 @@ facts are retained in one closed disclosure. Healing, optional dialogue/trade,
 consumption and refill warnings remain in the visible choice itself. Ordinary
 items keep their existing layout. Thai 390px settled anchor position was 182px
 with document width 390px; this is bounded visual evidence, not all-device proof.
+
+## r73 — Preserve purchase decisions across sorting and links
+
+The key's canonical summary now says to reuse an owned key, or buy one for
+¥100 from the existing recorded Area 1, 2, 4 or 6 sellers. A direct action leads
+to those sellers. Chest interaction, reward inventory space, non-consumption,
+all facts and technical traces remain intact. An Area 3 visit visibly explains
+the lack of a recorded local offer rather than implying a local purchase.
+
+Equipment gains a separate shop-availability price sort. Regular offers in the
+selected area come first by price, then conditional offers, then entries without
+a comparable ordinary offer. Without a valid area it explicitly compares all
+areas. Fly parts and bundle offers are excluded from bare-price comparison;
+the old raw-price ordering remains labelled as evidence with its own caveat.
+This sorting compares recorded offers, not fish-catching performance.
+
+The prominent starter-pair portraits now identify Area 1 and retain both lure
+IDs when opening a detail. The complete-pair decision survives the click;
+individual comparisons remain folded and the exact strategy topic return is
+preserved. Generic component stock cards remain individual-item references.
+
+Use-location requirement and reward links now use the actual location's area,
+while preserving the original source in their nested return. A key detail opened
+with Area 3 context correctly opens the Area 1 potato-bait chest reward with
+Area 1 context instead of carrying the unrelated Area 3 purchase scope.
+
+Independent guards pin retained key evidence; cover all 315 items in valid,
+absent and invalid sorting scopes; reject conditional, bundle and unknown-price
+false positives; cover all localized starter portraits; and inspect canonical
+use-location references across languages and source areas. Baseline rejection
+checks demonstrate the new contracts do not silently accept the prior defects.
+Actual local review followed the Thai starter portrait and chest reward, checked
+Area 3 conditional bait stock, changed the sort control to raw evidence order,
+and inspected English invalid-area and Japanese fly exclusion views at 390px.
+No gameplay result or complete campaign decoding is inferred from these checks.

@@ -139,3 +139,7 @@ await import('./shop-purchase-verdicts.mjs')
 await import('./tofu-direct-fireworks.mjs')
 
 await import('./milk-canoe-choice.mjs')
+
+await import('./key-purchase-decision.mjs')
+await import('./shop-availability-sort.mjs')
+await import('./location-reference-area.mjs')
