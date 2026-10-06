@@ -160,7 +160,7 @@ const localeCopy = {
     down: (count) => `ลง ${count} ครั้ง`,
     confirm: 'กด A เลือก',
     part: { wing: 'ปีก', tail: 'หาง' },
-    family: { diptera: 'ดิพเทรา', stonefly: 'สโตนฟลาย' },
+    family: { diptera: 'ดิปเทอรา', stonefly: 'สโตนฟลาย' },
     scope: (family, familyJa) => `เลือก${family} (${familyJa}) ตอนประกอบฟลาย`,
     none: (part, moves) => `ถ้าจะเลือก “ไม่มี” (無し) ในเมนู${part} ให้เริ่มจากซ้ายบน: ${moves}`,
     limit:

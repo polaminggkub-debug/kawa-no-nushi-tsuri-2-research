@@ -59,7 +59,7 @@ def stage_fish_names():
 
 STYLE = {
     1: loc("Float / Ayu", "ウキ・アユ", "สายทุ่น / ปลาอายุ"),
-    2: loc("Casting", "投げ釣り", "ตีเหยื่อแบบคาสติ้ง"),
+    2: loc("Casting", "投げ釣り", "หวด"),
     4: loc("Lure", "ルアー", "ลัวร์"),
     8: loc("Fly", "毛バリ", "ฟลาย"),
 }
@@ -73,7 +73,7 @@ GENERAL_TOOL_COPY = {
     "0B": (loc("The ROM label specifies a 10-fish basket; its capacity check has not yet been traced.", "ROM名は10匹用のびく。容量判定は未追跡。", "ชื่อใน ROM ระบุว่าเป็นกระชัง 10 ตัว; ยังไม่ได้ถอดโค้ดตรวจความจุ"), []),
     "0C": (loc("The ROM label specifies a 20-fish basket; its capacity check has not yet been traced.", "ROM名は20匹用のびく。容量判定は未追跡。", "ชื่อใน ROM ระบุว่าเป็นกระชัง 20 ตัว; ยังไม่ได้ถอดโค้ดตรวจความจุ"), []),
     "0D": (loc("The ROM label specifies a 30-fish basket; its capacity check has not yet been traced.", "ROM名は30匹用のびく。容量判定は未追跡。", "ชื่อใน ROM ระบุว่าเป็นกระชัง 30 ตัว; ยังไม่ได้ถอดโค้ดตรวจความจุ"), []),
-    "0E": (loc("A magnet inventory item.", "磁石のアイテム。", "ไอเท็มแม่เหล็ก"), []),
+    "0E": (loc("A compass inventory item.", "磁石（方位磁石）のアイテム。", "ไอเท็มเข็มทิศ"), []),
     "11": (loc("Lottery ticket; the prize result is not decoded.", "富くじ。賞品の内容は未解明。", "สลาก; ยังไม่พบผลรางวัล"), []),
     "13": (loc("Menu label: stereo. The setting handler has not yet been traced.", "メニュー名はステレオ。設定処理は未追跡。", "ชื่อเมนูคือสเตอริโอ; ยังไม่ได้ถอดโค้ดการตั้งค่า"), []),
     "14": (loc("Menu label: monaural. The setting handler has not yet been traced.", "メニュー名はモノラル。設定処理は未追跡。", "ชื่อเมนูคือโมโน; ยังไม่ได้ถอดโค้ดการตั้งค่า"), []),
@@ -85,7 +85,7 @@ BAIT_NAME_TH = {
     "05": "หนอนเลือด", "06": "หนอนทะเล", "07": "แมลงน้ำ", "08": "ตัวอ่อนแมลงหนอนปลอกน้ำ",
     "09": "ไข่ปลาแซลมอน", "0A": "ไส้เดือนใหญ่", "0B": "หนอนองุ่น", "0C": "ตัวอ่อนผึ้ง",
     "0D": "เหยื่อปั้น", "0E": "เหยื่อปั้นเฮระ", "0F": "เหยื่อปั้นปลาคาร์ป",
-    "10": "เหยื่อปั้นข้าวกวน", "11": "เหยื่อหัวมัน", "12": "ปลาเล็ก", "13": "ปลาโดโจ",
+    "11": "เหยื่อหัวมัน", "12": "ปลาเล็ก", "13": "ปลาโดโจ",
     "14": "กบ", "15": "กุ้ง", "16": "เนื้อหอย", "17": "ปลาอายุเหยื่อล่อ",
 }
 
@@ -101,48 +101,54 @@ TH_DIRECT_NAMES = {
         "0B": "เบ็ดปลาทานาโกะ", "0C": "เบ็ดปลาอิวานะ", "0D": "เบ็ดปลายามาเมะ",
     },
     "float_weight": {
-        "01": "ทุ่นเฮระ", "02": "ทุ่นชิโมริทรงกลม", "03": "ทุ่นชิโมริทรงเรียว",
+        "01": "ทุ่นเฮระ",
         "04": "ทุ่นลูกบอล", "05": "ทุ่นแท่ง", "06": "ทุ่นลูกโอ๊ก", "07": "ทุ่นพริก",
-        "08": "เครื่องหมายบนสาย", "09": "ตะกั่วทรงรี", "0A": "ตะกั่วทรงนัตสึเมะ",
+        "08": "เครื่องหมายบนสาย", "09": "ตะกั่วทรงรี",
     },
     "general_tool": {
         "01": "กะละมัง", "02": "เรือแคนู", "03": "แว่นขยาย", "04": "ตาข่ายสีทอง",
         "05": "สมุดบันทึกการตกปลา", "06": "ไปรษณียบัตรที่ได้รับ", "07": "ไปรษณียบัตร",
         "08": "เหยื่อโปรยเรียกปลา 1", "09": "เหยื่อโปรยเรียกปลา 2", "0A": "เหยื่อโปรยเรียกปลา 3",
         "0B": "ข้องใส่ปลา ความจุ 10 ตัว", "0C": "ข้องใส่ปลา ความจุ 20 ตัว", "0D": "ข้องใส่ปลา ความจุ 30 ตัว",
-        "0E": "แม่เหล็ก", "0F": "ขวดนม", "10": "นม", "11": "สลาก", "12": "เทียน",
+        "0F": "ขวดนม", "10": "นม", "11": "สลาก", "12": "เทียน",
         "13": "สเตอริโอ", "14": "โมโน", "15": "เต้าหู้ทอด", "16": "ดอกไม้ไฟ", "17": "กุญแจ",
     },
-    "food": {"08": "ปลา"},
 }
 
 
-FLY_FAMILY_TH = {
-    "Mayfly": "แมลงชีปะขาว", "Caddis": "แมลงหนอนปลอกน้ำ",
-    "Diptera": "แมลงปีกคู่", "Stonefly": "แมลงสโตนฟลาย",
+ITEM_NAMES = load(DATA / "item-names.json")["items"]
+FIXED_NAME_NOTE = {
+    "fly": "ชื่อกลุ่มตามป้ายในแพตช์ไทย ต่อท้ายด้วยรหัสเพื่อแยกชิ้นที่ชื่อซ้ำกัน",
+    "fly_wing": "ในเกมไม่มีชื่อชิ้นส่วนนี้ คู่มือตั้งชื่อตามตระกูล แบบเปียก/แห้ง ประเภทชิ้นส่วน และลักษณะที่เห็นในภาพ",
+    "fly_tail": "ในเกมไม่มีชื่อชิ้นส่วนนี้ คู่มือตั้งชื่อตามตระกูล แบบเปียก/แห้ง ประเภทชิ้นส่วน และลักษณะที่เห็นในภาพ",
 }
 
 
-def display_name(category, item, fly_customizer=None):
+def display_name(category, item):
+    """Names from data/item-names.json win; then Thai patch labels; then direct translations."""
     item_id = item["id"].upper()
-    if category == "food" and item_id == "0A":
-        return {"th": "เห็ด (ชนิดมีพิษ)"}, {"th": "คำขยายเพื่อแยกจากชื่อเมนูภาษาไทยที่แสดงว่า เห็ด"}
+    fixed = ITEM_NAMES.get(key(category, item_id), {}).get("displayName")
+    if fixed:
+        note = FIXED_NAME_NOTE.get(category, "ชื่อที่คู่มือกำหนดให้ชัดเจนขึ้น ไม่ใช่ภาพป้ายจากแพตช์ไทย")
+        return dict(fixed), {"th": note}
     # A Thai patch label exists for these records and remains the preferred wording.
     if item.get("nameTh"):
         return None, None
-    if category == "fly":
-        family = item["nameEn"].split()[0]
-        wet_dry = "แบบเปียก" if "wet" in item["nameEn"].lower() else "แบบแห้ง"
-        return {"th": f"บอดี้ฟลาย{FLY_FAMILY_TH.get(family, family)}{wet_dry} {item_id}"}, {"th": "คำแปลชื่อญี่ปุ่นโดยตรง ไม่ใช่ภาพป้ายจากแพตช์ไทย"}
-    if category in ("fly_wing", "fly_tail"):
-        family = item["nameEn"].split(" · ")[0]
-        wet_dry = "แบบเปียก" if "Wet" in item["nameEn"] else "แบบแห้ง"
-        part = "ปีกฟลาย" if category == "fly_wing" else "หางฟลาย"
-        return {"th": f"{part} {FLY_FAMILY_TH.get(family, family)}{wet_dry} {item_id}"}, {"th": "คำแปลชื่อญี่ปุ่นโดยตรง ไม่ใช่ภาพป้ายจากแพตช์ไทย"}
     translated = TH_DIRECT_NAMES.get(category, {}).get(item_id)
     if translated:
         return {"th": translated}, {"th": "คำแปลชื่อญี่ปุ่นโดยตรง ไม่ใช่ภาพป้ายจากแพตช์ไทย"}
     return None, None
+
+
+def apply_name_fixes(entry, category, item_id):
+    """Overrides from data/item-names.json: replace summary/facts/evidenceNotes, append factsAdd."""
+    fixes = ITEM_NAMES.get(key(category, item_id), {})
+    for field in ("summary", "facts", "evidenceNotes"):
+        if field in fixes:
+            entry[field] = fixes[field]
+    for lang, extra in fixes.get("factsAdd", {}).items():
+        entry.setdefault("facts", {}).setdefault(lang, [])
+        entry["facts"][lang] = entry["facts"][lang] + [fact for fact in extra if fact not in entry["facts"][lang]]
 
 
 def build():
@@ -635,6 +641,7 @@ def build():
                         entry[field] = {lang: list(dict.fromkeys(entry.get(field, {}).get(lang, []) + finding[field].get(lang, []))) for lang in ("en", "ja", "th")}
                     else:
                         entry[field] = finding[field]
+        apply_name_fixes(entry, category, item_id)
         if (DATA / "shop-stock-rom.json").exists():
             entry["shops"] = shop_stock.get(key(category, item_id), [])
         item_data[key(category, item_id)] = entry

@@ -39,8 +39,8 @@ Two different selectors appear in the code; keep them separate:
 
 | Record +0 | Items in that branch | Safe interpretation |
 | --- | --- | --- |
-| `0` | 02 丸型シモリ, 03 流線シモリ | Shimori state/drawing path. |
-| `1` | 01 ヘラウキ, 04 玉ウキ, 05 棒ウキ, 06 どんぐりウキ, 07 トウガラシウキ, 0A ナツメ型おもり | Float-model state/drawing path. Note that the natsume sinker record shares this code. |
+| `0` | 02 丸型シモリ, 03 流線シモリ | Bead-float (shimori) state/drawing path. |
+| `1` | 01 ヘラウキ, 04 玉ウキ, 05 棒ウキ, 06 どんぐりウキ, 07 トウガラシウキ, 0A ナツメ型おもり | Float-model state/drawing path. Note that the jujube-shaped (natsume) sinker record shares this code. |
 | `2` | 08 目印, 09 小判型おもり | Marker/oval-sinker state/drawing path. |
 
 These byte groups tell us how the game selects its state/drawing routine. They are not a ranking. The ROM trace does not establish that a particular float catches more fish, works at a particular depth, or changes bite sensitivity. The table of fish-accepted baits is the evidence to consult for bait choice.

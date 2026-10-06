@@ -279,10 +279,7 @@
       note: (family, point) => `คนนี้ประกอบ${family} เข้ามาทางเข้าลำดับที่ 2 จะเริ่มที่ X7,Y29 แล้วหาจุด X${point.x},Y${point.y} ตามรูป ตรวจช่องฟลายว่างและราคาก่อนยืนยัน ตำแหน่งมาจาก ROM ยังไม่ได้ทดลองเดินเส้นทางนี้`,
       field: "ดูทางเข้าเมืองบนแผนที่ด่าน",
       unavailable: "ยังไม่มีตำแหน่งคนทำฟลายที่ยืนยันในด่านนี้ เลือกเมืองตามตระกูลฟลายที่ต้องการประกอบ",
-      recovery: [
-        "ด่าน 1 · เมย์ฟลาย / แคดดิส / เทอเรสเทรียล",
-        "ด่าน 2 · ดิพเทรา / สโตนฟลาย / เทอเรสเทรียล"
-      ]
+      recovery: ["ด่าน 1 · เมย์ฟลาย / แคดดิส / แมลงบก", "ด่าน 2 · ดิปเทอรา / สโตนฟลาย / แมลงบก"]
     },
     en: {
       title: (stage) => `Fly maker · Area ${stage} town`,
@@ -307,11 +304,11 @@
   };
   function familyName(lang, stage) {
     const names = stage % 2 ? {
-      th: "เมย์ฟลาย คัดดิส และเทเรสเทรียล",
+      th: "เมย์ฟลาย แคดดิส และแมลงบก",
       en: "Mayfly, Caddis and Terrestrial flies",
       ja: "メイフライ・カディス・テレストリアル"
     } : {
-      th: "ดิพเทรา สโตนฟลาย และเทเรสเทรียล",
+      th: "ดิปเทอรา สโตนฟลาย และแมลงบก",
       en: "Diptera, Stonefly and Terrestrial flies",
       ja: "ディプテラ・ストーンフライ・テレストリアル"
     };
@@ -642,6 +639,20 @@
     return localizedCopy[lang] || localizedCopy.en;
   }
 
+  // src/entities/item/stack-price-note.js
+  var STACK_CATEGORIES = /* @__PURE__ */ new Set(["bait", "hook"]);
+  var NOTE = {
+    th: "ราคานี้ต่อ 1 ชุด (9 ชิ้น) ถ้าเหลืออยู่ 8 ก็ยังจ่ายเต็มราคา แล้วเกมเติมให้ครบ 9",
+    en: "This price is per stack of 9. With 8 left you still pay it in full and are topped up to 9.",
+    ja: "価格は9個1組分。8個残っていても全額かかり、9個まで補充されます。"
+  };
+  function sellsByStack(item) {
+    return STACK_CATEGORIES.has(item?.category);
+  }
+  function stackPriceNote(lang, item) {
+    return sellsByStack(item) ? NOTE[lang] || NOTE.en : "";
+  }
+
   // src/entities/item/rod-ref-name.js
   var rods = /* @__PURE__ */ new Map();
   var GENERIC_ROD_NAME = /^(?:Small|Medium|Large|Heavy-fish|Two-handed) /;
@@ -735,7 +746,7 @@
       }
     },
     th: {
-      styles: { 1: "สายทุ่น/อายุ", 2: "ตีเหยื่อ", 4: "ลัวร์", 8: "ฟลาย" },
+      styles: { 1: "สายทุ่น/อายุ", 2: "หวด", 4: "ลัวร์", 8: "ฟลาย" },
       labels: {
         only: "ด่าน {stage}: ร้านขายคันแบบนี้คันเดียว",
         dominated: "ด่าน {stage}: ซื้อ {otherId} แทน — {betterReason}{hpNote}",
@@ -794,7 +805,7 @@
         tradeoffChoice: "เลือก {id} ในราคาเต็มซื้อใหม่ {price} เพราะ{comparison}{hpNote} {higherLine} ถ้ามีคันเดิมอยู่แล้วใช้ต่อได้ ไม่ต้องซื้อใหม่ ส่วนผลกับปลาแต่ละชนิดยังไม่ยืนยัน",
         noHigher: "",
         scope: "สิ่งที่เทียบ: คันแบบเดียวกันที่ร้านขาย ราคาเต็มซื้อใหม่ เวลาเล็ง และความยากที่สายจะขาด (ปลาดึงหนีได้ไกลกว่าก่อนอุปกรณ์หลุด) ไม่ได้จัดอันดับโอกาสที่ปลากินเหยื่อหรือจับขึ้น{hp}{fly}",
-        hp: " เวลาเล็งของคันลัวร์/ตีเหยื่อวัดที่ HP 100 และสั้นลงเมื่อ HP ต่ำกว่า 100",
+        hp: " เวลาเล็งของคันลัวร์/คันหวดวัดที่ HP 100 และสั้นลงเมื่อ HP ต่ำกว่า 100",
         fly: " ไม่รวมค่าที่สองของคันฟลาย เพราะยังไม่รู้ว่ามีผลอะไร",
         noHp: "",
         noFly: "",
@@ -1523,6 +1534,10 @@
     if (!item) return "";
     return `<a href="${ctx.esc(ctx.itemHref(item))}">${ctx.esc(ctx.itemName(item))} · ID ${ctx.esc(item.id)} ↗</a>`;
   }
+  function stackNote(ctx, item) {
+    const note = stackPriceNote(ctx.lang, item);
+    return note ? `<p class="price-note">${ctx.esc(note)}</p>` : "";
+  }
   function offerCard(ctx, item, options = {}) {
     const target = options.target === true;
     const special = options.special === true;
@@ -1543,7 +1558,7 @@
       <a class="offer-image-link" href="${ctx.esc(ctx.itemHref(item))}"><img loading="lazy" src="${ctx.esc(image)}" alt="${ctx.esc(name)}"></a>
       <p class="small-id">${ctx.esc(ctx.catName(item.category))} · ID ${ctx.esc(item.id)}</p>
       <h4><a href="${ctx.esc(ctx.itemHref(item))}">${ctx.esc(name)}</a></h4>
-      <p class="price">${ctx.esc(price)}</p>${recovery}${shopCompatibilityBadge(ctx, item, compatibility)}${shopPurchaseDecision(ctx, item, options.stage, options.items || [])}${canHaveCondition ? `<p class="condition-label">${ctx.esc(ctx.text.soldConditional)}</p>` : ""}${extra}
+      <p class="price">${ctx.esc(price)}</p>${stackNote(ctx, item)}${recovery}${shopCompatibilityBadge(ctx, item, compatibility)}${shopPurchaseDecision(ctx, item, options.stage, options.items || [])}${canHaveCondition ? `<p class="condition-label">${ctx.esc(ctx.text.soldConditional)}</p>` : ""}${extra}
     </article>`;
   }
   function bundleCard(ctx, bundle, stage, items, target) {
@@ -1726,7 +1741,97 @@
     ctx.$("shop-results").replaceChildren();
   }
 
+  // src/pages/shops/shop-facts.js
+  var NEVER_SOLD = [
+    ["rod", "02"],
+    ["rod", "06"],
+    ["rod", "0B"],
+    ["rod", "11"],
+    ["fly_wing", "25"],
+    ["fly_wing", "66"],
+    ["fly_wing", "67"],
+    ["food", "09"],
+    ["food", "0A"],
+    ["general_tool", "01"],
+    ["general_tool", "02"]
+  ];
+  var COPY3 = {
+    th: {
+      heading: "ข้อควรรู้ก่อนซื้อ",
+      stack: "<strong>เหยื่อและเบ็ดคิดราคาต่อ 1 ชุด (9 ชิ้น)</strong> ถ้าเหลืออยู่ 8 ชิ้นก็ยังจ่ายเต็มราคา แล้วเกมเติมให้ครบ 9",
+      special: "<strong>บางด่านมีร้านคันเบ็ดพิเศษเพิ่มอีกร้านในเมือง</strong> ขายคันที่ร้านทั่วไปไม่มี:",
+      stage: (n) => `ด่าน ${n}`,
+      price: (n) => `¥${n}`,
+      flyRod: "<strong>ด่าน 6 ไม่มีขายคันฟลาย</strong> ให้ซื้อในด่าน 1–5 ก่อน",
+      decoy: "<strong>ปลาอายุเหยื่อล่อ</strong>จะโผล่ในร้านด่าน 3 หลังจากขายปลาอายุจากข้องไปอย่างน้อย 1 ตัวเท่านั้น",
+      maker: "<strong>ฟลายประกอบเอง</strong>มีช่างทำเฉพาะในเมืองด่าน 1–3 และคิดราคาบอดี้ + ปีก + หาง ส่วนฟลายสำเร็จรูปคิดแค่ราคาบอดี้ (ด่าน 4–6 มีเฉพาะสำเร็จรูป)",
+      never: "<strong>ไม่มีขายที่ไหนเลย:</strong>",
+      neverHow: "เห็ดหาได้จากการใช้แว่นขยายค้นหา ส่วนกะละมังกับเรือแคนูได้จากการแลกของในเควสต์"
+    },
+    en: {
+      heading: "Good to know before you buy",
+      stack: "<strong>Bait and hooks are priced per stack of 9.</strong> With 8 left you still pay in full, and the game tops you up to 9.",
+      special: "<strong>Some areas have a second, special rod merchant in town.</strong> It sells rods the regular shop does not:",
+      stage: (n) => `Area ${n}`,
+      price: (n) => `¥${n.toLocaleString("en-US")}`,
+      flyRod: "<strong>Area 6 sells no fly rod.</strong> Buy yours in Areas 1 to 5.",
+      decoy: "<strong>Decoy Ayu</strong> appears in the Area 3 shop only after you have sold an Ayu from your keepnet.",
+      maker: "<strong>Custom flies</strong> are built only by the fly makers in the Area 1 to 3 towns, and cost body + wing + tail. A ready-made fly set costs only its body price (Areas 4 to 6 have ready-made sets only).",
+      never: "<strong>Never sold anywhere:</strong>",
+      neverHow: "Mushrooms come from searching with the magnifying glass; the wash tub and the canoe come from quest trades."
+    },
+    ja: {
+      heading: "購入前に知っておくこと",
+      stack: "<strong>エサとハリの値段は9個1組の価格です。</strong>8個残っていても全額かかり、9個まで補充されます。",
+      special: "<strong>町に専用竿の店がもう1軒あるエリアがあります。</strong>通常の店にない竿を売っています：",
+      stage: (n) => `エリア${n}`,
+      price: (n) => `${n.toLocaleString("ja-JP")}円`,
+      flyRod: "<strong>エリア6にはフライロッドが売っていません。</strong>エリア1〜5で買ってください。",
+      decoy: "<strong>おとりアユ</strong>は、びくのアユを1匹以上売ったあとにだけエリア3の店に並びます。",
+      maker: "<strong>自作の毛バリ</strong>はエリア1〜3の町の職人だけが作れて、ボディ＋ウィング＋テールの合計がかかります。完成品セットはボディの値段だけです（エリア4〜6は完成品のみ）。",
+      never: "<strong>どこでも売っていない物：</strong>",
+      neverHow: "キノコは虫メガネで探して入手し、タライとカヌーはイベントの交換で入手します。"
+    }
+  };
+  function itemLink(ctx, item) {
+    return `<a href="${ctx.esc(ctx.itemHref(item))}">${ctx.esc(ctx.itemName(item))}</a>`;
+  }
+  function specialMerchants(ctx, c, items) {
+    const byStage = /* @__PURE__ */ new Map();
+    for (const item of items)
+      for (const shop of item.playerUse?.shops || [])
+        if (shop.shop === "special_rod_shop") {
+          const stage = Number(shop.stage);
+          byStage.set(stage, [...byStage.get(stage) || [], item]);
+        }
+    return [...byStage.entries()].sort(([a], [b]) => a - b).map(
+      ([stage, rods2]) => `<li>${ctx.esc(c.stage(stage))}: ${rods2.map((rod) => `${itemLink(ctx, rod)} ${ctx.esc(c.price(rod.priceYen))}`).join(" · ")}</li>`
+    ).join("");
+  }
+  function shopFactsHtml(ctx, items) {
+    const c = COPY3[ctx.lang] || COPY3.en;
+    const never = NEVER_SOLD.map(([category, id]) => ctx.findItem(items, category, id)).filter(Boolean).map((item) => `${itemLink(ctx, item)} <small>(ID ${ctx.esc(item.id)})</small>`).join(" · ");
+    return `<h2 id="shop-facts-heading">${ctx.esc(c.heading)}</h2><ul class="fact-list">
+    <li>${c.stack}</li>
+    <li>${c.special}<ul>${specialMerchants(ctx, c, items)}</ul></li>
+    <li>${c.flyRod}</li>
+    <li>${c.decoy}</li>
+    <li>${c.maker}</li>
+    <li>${c.never} ${never} <span class="muted">${ctx.esc(c.neverHow)}</span></li>
+  </ul>`;
+  }
+  function renderShopFacts(ctx, items) {
+    const box = ctx.$("shop-facts");
+    if (box) box.innerHTML = shopFactsHtml(ctx, items);
+  }
+
   // src/pages/shops/shop-page.js
+  function fetchJson(url, label) {
+    return fetch(url).then((r) => {
+      if (!r.ok) throw new Error(label);
+      return r.json();
+    });
+  }
   async function init(ctx) {
     const stageSelect = ctx.$("stage-select"), categorySelect = ctx.$("category-select"), search = ctx.$("item-search");
     stageSelect.value = String(ctx.startStage);
@@ -1736,22 +1841,10 @@
     document.querySelectorAll('input[name="place"]').forEach((input) => input.checked = input.value === ctx.startPlace);
     ctx.updateLanguageLinks();
     const loc = await Promise.allSettled([
-      fetch("gallery-data.json").then((r) => {
-        if (!r.ok) throw new Error("gallery");
-        return r.json();
-      }),
-      fetch("../data/shop-stock-rom.json").then((r) => {
-        if (!r.ok) throw new Error("stock");
-        return r.json();
-      }),
-      fetch("maps/rom-map-manifest.json").then((r) => {
-        if (!r.ok) throw new Error("maps");
-        return r.json();
-      }),
-      fetch("../data/shop-locations-rom.json").then((r) => {
-        if (!r.ok) throw new Error("locations");
-        return r.json();
-      })
+      fetchJson("gallery-data.json", "gallery"),
+      fetchJson("../data/shop-stock-rom.json", "stock"),
+      fetchJson("maps/rom-map-manifest.json", "maps"),
+      fetchJson("../data/shop-locations-rom.json", "locations")
     ]);
     const [galleryResult, stockResult, mapResult, locationResult] = loc;
     if (galleryResult.status !== "fulfilled" || stockResult.status !== "fulfilled") {
@@ -1762,6 +1855,7 @@
     ctx.fishVisuals = galleryResult.value.fishVisuals || {};
     applyFishRouteCategoryDefault(ctx, categorySelect);
     window.__shopItems = items;
+    renderShopFacts(ctx, items);
     const stock = stockResult.value;
     const mapManifest = mapResult.status === "fulfilled" ? mapResult.value : null;
     const locations = locationResult.status === "fulfilled" ? locationResult.value : null;
@@ -1963,19 +2057,19 @@
     backToSource: "กลับหน้าที่เปิดร้านนี้",
     openCatalogue: "เปิดคลังไอเท็ม",
     recoveryActions: "ทางเลือกเมื่อโหลดข้อมูลไม่สำเร็จ",
-    area: (n) => `พื้นที่ตกปลา ${n}`,
-    outdoor: (n) => `พื้นที่ ${n} · ทางเข้าเมือง`,
-    town: (n) => `พื้นที่ ${n} · ตำแหน่งร้าน`,
-    townSummary: (n) => `พื้นที่ตกปลา ${n} · เมืองที่คู่กัน`,
+    area: (n) => `ด่าน ${n}`,
+    outdoor: (n) => `ด่าน ${n} · ทางเข้าเมือง`,
+    town: (n) => `ด่าน ${n} · ตำแหน่งร้าน`,
+    townSummary: (n) => `ด่าน ${n} · เมืองที่คู่กัน`,
     mapSetEvidence: (place, n) => `${place === "outdoor" ? "แผนที่พื้นที่กลางแจ้ง" : "แผนที่ภายในเมือง"} · ชุดแผนที่ ${n}`,
     fieldHeading: "ควรเข้าทางไหน?",
     townHeading: "ไปร้านไหน / เข้าทางไหน?",
     focusedEntrance: (n) => `กำลังเน้นทางเข้า ${n + 1} ซึ่งเชื่อมกับร้านที่เลือก`,
     mapUnavailable: "ไม่มีภาพภูมิประเทศที่สร้างจาก ROM สำหรับแผนที่ชุดนี้",
     invalidPoints: "พิกัดบางรายการอยู่นอกแผนที่ที่ใช้ได้ จึงซ่อนหมุดเหล่านั้นแทนการเดาตำแหน่ง",
-    noValidPoint: "พื้นที่นี้ไม่มีพิกัดบนแผนที่ที่ใช้ได้ หน้านี้จะไม่เดาตำแหน่ง",
+    noValidPoint: "ด่านนี้ไม่มีพิกัดบนแผนที่ที่ใช้ได้ หน้านี้จะไม่เดาตำแหน่ง",
     fullMap: "เปิดภาพภูมิประเทศทั้งแผนที่ ↗",
-    noLocations: "ยืนยันรายการขายของพื้นที่นี้ได้ แต่ข้อมูลตำแหน่งที่มีอยู่ยังไม่ระบุจุดร้านและทางเข้าแบบเจาะจง",
+    noLocations: "ยืนยันรายการขายของด่านนี้ได้ แต่ข้อมูลตำแหน่งที่มีอยู่ยังไม่ระบุจุดร้านและทางเข้าแบบเจาะจง",
     mapNoEntrances: "ข้อมูลตำแหน่งที่มีอยู่ยังไม่บันทึกทางเข้าจากพื้นที่ไปเมืองนี้",
     entrance: (n) => `ทางเข้า ${n + 1}`,
     outside: "ทางเข้าจากพื้นที่กลางแจ้ง",
@@ -1995,14 +2089,14 @@
     regularNote: "จุดนี้เปิดเมนูเลือกหมวดและซื้อไอเท็มทั่วไป",
     specialNote: "จุดนี้เปิดรายการคันเบ็ดพิเศษที่กำหนดไว้",
     filtered: (n) => `ตรงตัวกรอง ${n} รายการ`,
-    targetFound: "มีรายการนี้ขายในพื้นที่ที่เลือก",
-    targetNotHere: "ไม่มีรายการนี้ในสต็อกของพื้นที่ที่เลือก",
-    soldElsewhere: "พื้นที่ที่มีข้อมูลว่าขาย:",
+    targetFound: "มีรายการนี้ขายในด่านที่เลือก",
+    targetNotHere: "ไม่มีรายการนี้ในสต็อกของด่านที่เลือก",
+    soldElsewhere: "ด่านที่มีข้อมูลว่าขาย:",
     soldConditional: "รายการนี้มีเงื่อนไขซื้อ ให้อ่านวิธีปลดล็อกบนการ์ดก่อนตามหาในร้าน",
     none: "ไม่พบรายการที่ตรงกับตัวกรองนี้",
-    noCategory: "พื้นที่นี้ไม่มีไอเท็มประเภทที่ตรงกับตัวกรอง",
+    noCategory: "ด่านนี้ไม่มีไอเท็มประเภทที่ตรงกับตัวกรอง",
     noTarget: "ไม่พบ ID นี้ในคลังไอเท็ม",
-    browseArea: (n) => `ดูพื้นที่ ${n}`,
+    browseArea: (n) => `ดูด่าน ${n}`,
     categoryAll: "ทุกประเภท",
     types: {
       rod: "คันเบ็ด",
@@ -2023,7 +2117,7 @@
     parts: "ชิ้นส่วนในชุดนี้",
     included: "ขายรวมอยู่ในชุดสำเร็จรูปนี้",
     conditionTitle: "วิธีปลดล็อกรายการนี้",
-    ayu: "ขายปลาอายุจากข้องอย่างน้อย 1 ตัวก่อน แล้วเหยื่อล่อปลาอายุจะปรากฏในร้านพื้นที่ 3 เมื่อซื้อ จำนวนในช่องจะเต็มเป็น 9 ชิ้น และจำนวนปลาอายุที่ขายไปจะลดลง 9 (ต่ำสุด 0) ถ้ารายการหายไปอีก ให้ขายปลาอายุเพิ่มก่อนลองซื้อ",
+    ayu: "ขายปลาอายุจากข้องอย่างน้อย 1 ตัวก่อน แล้วเหยื่อล่อปลาอายุจะปรากฏในร้านด่าน 3 เมื่อซื้อ จำนวนในช่องจะเต็มเป็น 9 ชิ้น และจำนวนปลาอายุที่ขายไปจะลดลง 9 (ต่ำสุด 0) ถ้ารายการหายไปอีก ให้ขายปลาอายุเพิ่มก่อนลองซื้อ",
     ayuFish: "ดูจุดตกปลาอายุ ↗",
     noPrice: "ยังไม่มีราคาขายแยกที่ยืนยันได้",
     price: (n) => `${n} เยน`,
@@ -2031,7 +2125,7 @@
     returnItem: "← กลับหน้าที่เปิดร้านนี้",
     returnCatalogue: "← คลังไอเท็ม",
     technical: "หลักฐานจาก ROM",
-    evidenceStock: "รายการด้านล่างมาจากอาร์เรย์สต็อกหกพื้นที่ที่แกะจาก ROM ช่องราคาพื้นฐานของไอเท็มเพียงอย่างเดียวไม่ถือเป็นหลักฐานว่าร้านขาย",
+    evidenceStock: "รายการด้านล่างมาจากอาร์เรย์สต็อกหกด่านที่แกะจาก ROM ช่องราคาพื้นฐานของไอเท็มเพียงอย่างเดียวไม่ถือเป็นหลักฐานว่าร้านขาย",
     evidenceBundles: "ข้อมูลบอดี้ ปีก และหางฟลายถูกแกะเป็นชุดสำเร็จรูปเดียว ราคาที่แสดงคือราคารวมทั้งชุด ไม่ได้แยกชิ้นส่วนเป็นรายการขาย",
     evidenceLocations: "หมุดแสดงจุดเปลี่ยนพื้นที่และจุดโต้ตอบร้านที่แกะจาก ROM ได้ จุดโต้ตอบร้านไม่ได้ยืนยันเส้นทางเดิน",
     source: "ระเบียนหลักฐาน",
@@ -2039,7 +2133,7 @@
     kind: "ประเภทร้านที่ยืนยันได้",
     mode: "โหมดโต้ตอบดิบ",
     slot: "ช่องใน ROM",
-    stageWord: (n) => `พื้นที่ ${n}`,
+    stageWord: (n) => `ด่าน ${n}`,
     warningLocations: "โหลดรายการขายได้ แต่โหลดข้อมูลตำแหน่งบนแผนที่ไม่ได้ หน้านี้จะไม่เดาเส้นทางให้",
     language: "ภาษา"
   };

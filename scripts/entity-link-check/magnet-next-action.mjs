@@ -10,13 +10,13 @@ const notebook = readJson('data/notebook-completion.json')
 const quest = readJson('data/quest-tool-use.json')
 const copy = {
   en: {
-    title: 'No Magnet heading in Area 6: what next?',
-    buy: 'Do not buy another Magnet yet.',
+    title: 'No Compass heading in Area 6: what next?',
+    buy: 'Do not buy another Compass yet.',
     count: 'At least 65 distinct species records out of 66 are required, not 65 catches.',
     prerequisite: '65 records alone do not guarantee a heading.',
     readerAction: 'After checking the notebook, read Received postcard 06 in the game.',
     trigger:
-      'If the doctor’s giant-eel request appears, that read enables the Area 6 Magnet heading.',
+      'If the doctor’s giant-eel request appears, that read enables the Area 6 Compass heading.',
     missing: 'If it does not appear, the story prerequisite may still be missing.',
     pages: 'all six in-game notebook pages',
     limit: 'complete ordinary-play sequence',
@@ -34,12 +34,12 @@ const copy = {
     limit: '通常プレイの全手順',
   },
   th: {
-    title: 'ด่าน 6 ใช้แม่เหล็กแล้วไม่บอกทิศ: ทำอะไรต่อ?',
-    buy: 'ยังไม่ต้องซื้อแม่เหล็กเพิ่ม',
+    title: 'ด่าน 6 ใช้เข็มทิศแล้วไม่บอกทิศ: ทำอะไรต่อ?',
+    buy: 'ยังไม่ต้องซื้อเข็มทิศเพิ่ม',
     count: 'ต้องบันทึกอย่างน้อย 65 ชนิดที่ต่างกันจาก 66 ชนิด ไม่ใช่ตก 65 ครั้ง',
     prerequisite: 'ครบ 65 ชนิดอย่างเดียวจึงไม่รับประกันว่าจะบอกทิศ',
     readerAction: 'หลังเทียบสมุด ให้อ่านไปรษณียบัตรที่ได้รับ (06) ในเกม',
-    trigger: 'ถ้าข้อความหมอขอปลาไหลใหญ่ปรากฏ การอ่านครั้งนั้นจะเปิดทิศแม่เหล็กด่าน 6',
+    trigger: 'ถ้าข้อความหมอขอปลาไหลใหญ่ปรากฏ การอ่านครั้งนั้นจะเปิดทิศของเข็มทิศด่าน 6',
     missing: 'ถ้ายังไม่ปรากฏ เงื่อนไขเรื่องราวอาจยังไม่ครบ',
     pages: 'ทั้ง 6 หน้า',
     limit: 'ลำดับการเล่นตามปกติ',
@@ -49,7 +49,7 @@ const copy = {
 checkEvidence()
 for (const locale of locales) await checkLocale(locale)
 console.log(
-  'Magnet next action PASS: Area 6-only advice, six-page/65-record caveat, safe links, and EN/JA/TH.',
+  'Compass next action PASS: Area 6-only advice, six-page/65-record caveat, safe links, and EN/JA/TH.',
 )
 
 function readJson(relativePath) {
@@ -104,7 +104,7 @@ function extractPanel(html) {
     html.match(
       /<section\b(?=[^>]*id="what-to-do")(?=[^>]*data-magnet-next-action)[^>]*>[\s\S]*?<\/section>/g,
     ) || []
-  assert.equal(panels.length, 1, 'Magnet advice must render exactly once for Area 6 item 0E')
+  assert.equal(panels.length, 1, 'Compass advice must render exactly once for Area 6 item 0E')
   assert.equal(
     (html.match(/id="what-to-do"/g) || []).length,
     1,
@@ -128,7 +128,7 @@ function checkPreservedUse(panel, locale) {
   const details = panel.match(/<details class="magnet-general-use">[\s\S]*?<\/details>/)?.[0]
   assert(
     item && details,
-    `${locale}: original Magnet use guidance must remain collapsed in the panel`,
+    `${locale}: original Compass use guidance must remain collapsed in the panel`,
   )
   assert(!/<details\b[^>]*\bopen(?:\s|=|>)/.test(details))
   const text = unescapeHtml(panel)
@@ -247,9 +247,9 @@ async function checkLocationGrouping(locale, area6Html) {
 
 function locationGroups(html) {
   const section = html.match(/<section\b[^>]*id="use-locations"[\s\S]*?<\/section>/)?.[0]
-  assert(section, 'Magnet location section must render')
+  assert(section, 'Compass location section must render')
   const match = section.match(/<details class="magnet-other-exits">[\s\S]*?<\/details>/)
-  assert(match, 'Other-area Magnet exits must be grouped in a disclosure')
+  assert(match, 'Other-area Compass exits must be grouped in a disclosure')
   assert(!/<details\b[^>]*\bopen(?:\s|=|>)/.test(match[0]), 'Other-area exits must start closed')
   const ids = (value) => [...value.matchAll(/id="compass-exit-(\d)"/g)].map((entry) => entry[1])
   return { visible: ids(section.slice(0, match.index)), collapsed: ids(match[0]) }
@@ -268,7 +268,7 @@ async function checkHiddenCases(locale) {
     const detail = await render('item', locale, query)
     assert(
       !detail.html.includes('data-magnet-next-action'),
-      `${locale}: Magnet panel shown outside Area 6`,
+      `${locale}: Compass panel shown outside Area 6`,
     )
   }
   for (const [category, id] of [

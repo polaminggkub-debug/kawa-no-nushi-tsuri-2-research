@@ -3,9 +3,9 @@ import { data, render, renderCatalogue, unescapeHtml, validate } from './shared.
 
 const ids = ['25', '26', '66', '67']
 const scope = {
-  en: 'No recorded menu position or shop bundle',
-  ja: 'メニュー位置・店売りセットは未記録',
-  th: 'ยังไม่มีตำแหน่งเมนูหรือชุดร้านที่บันทึกไว้',
+  en: 'Not sold anywhere',
+  ja: 'どこでも入手できない',
+  th: 'ไม่มีขายที่ไหนเลย',
 }
 
 function actionUrls(html, base) {
@@ -67,7 +67,7 @@ for (const lang of ['en', 'ja', 'th']) {
   await checkDetailRoutes(lang)
 }
 console.log(
-  'PASS: four unverified wing routes use bounded evidence and actionable verified alternatives; Area 6 set is ¥50 total (EN/JA/TH).',
+  'PASS: four unverified wing routes say they are not sold anywhere and give actionable verified alternatives; Area 6 set is ¥50 total (EN/JA/TH).',
 )
 
 async function checkDetailRoutes(lang) {

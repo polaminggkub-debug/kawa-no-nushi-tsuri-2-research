@@ -175,7 +175,7 @@
       "facts": {
         "en": [
           "Search the field location you are standing at. Searching the same tile again without moving returns nothing.",
-          "In the six main areas, the search can yield worm, maggot, large earthworm, waxworm, insect or bee larva, depending on the ground context. Area 3 also has a potato-bait context.",
+          "In the six main areas, the search can yield worm, maggot, large earthworm, grapevine larva, insect or bee larva, depending on the ground context. Area 3 also has a potato-bait context.",
           "A coordinate band in town maps yields kneaded bait. The connecting route can yield large earthworm or mushrooms. Poisonous mushrooms are possible; the find message does not distinguish them.",
           "Bait rewards are 1–4 at a time, up to 9 per bait type. Mushrooms need an empty food slot.",
           "Do not search while standing in shallow water or riding a tub/canoe; those modes reject the magnifier action.",
@@ -262,7 +262,7 @@
       "summary": {
         "en": "Use the gold net on a new shallow-water tile to catch the bait type assigned to that area.",
         "ja": "浅瀬の新しいタイルで金アミを使い、エリアごとに決まったエサを採る。",
-        "th": "ใช้ตาข่ายสีทองที่ช่องน้ำตื้นช่องใหม่ เพื่อเก็บเหยื่อชนิดที่กำหนดไว้สำหรับพื้นที่นั้น"
+        "th": "ใช้ตาข่ายสีทองที่ช่องน้ำตื้นช่องใหม่ เพื่อเก็บเหยื่อชนิดที่กำหนดไว้สำหรับด่านนั้น"
       },
       "facts": {
         "en": [
@@ -379,9 +379,9 @@
           "初期所持は日本語原版ROMの4人分の初期化コードで確認。新しい操作再現やタイ語パッチの独立確認ではなく、再入手方法も未確認です。"
         ],
         "th": [
-          "ยืนยันความสัมพันธ์ระหว่างหกหน้ากับพื้นที่จากเส้นทางวาดฉากและสมุดใน ROM แต่ไม่ได้อ้างว่าภาพในสมุดระบุพิกัดเกิดปลาได้",
-          "เปิดสมุดตกปลาเพื่อดูบันทึกปลาที่จัดเป็นหกพื้นที่ พร้อมหน้าภาพรวมของพื้นที่ตามลำดับ",
-          "เกมเรียงรายการปลาในแต่ละพื้นที่ ไอเท็มนี้ใช้เปิดดูข้อมูล ไม่ได้เปลี่ยนอุปกรณ์ตกปลา",
+          "ยืนยันความสัมพันธ์ระหว่างหกหน้ากับด่านจากเส้นทางวาดฉากและสมุดใน ROM แต่ไม่ได้อ้างว่าภาพในสมุดระบุพิกัดเกิดปลาได้",
+          "เปิดสมุดตกปลาเพื่อดูบันทึกปลาที่จัดเป็นหกด่าน พร้อมหน้าภาพรวมของด่านตามลำดับ",
+          "เกมเรียงรายการปลาในแต่ละด่าน ไอเท็มนี้ใช้เปิดดูข้อมูล ไม่ได้เปลี่ยนอุปกรณ์ตกปลา",
           "ยืนยันการมีสมุดเริ่มต้นจากโค้ด ROM ญี่ปุ่นของทั้ง 4 ตัวละคร ไม่ใช่การเล่นทดสอบใหม่หรือการตรวจแพตช์ไทยแยก และยังไม่ได้ยืนยันวิธีรับทดแทน"
         ]
       },
@@ -406,9 +406,9 @@
       "id": "0E",
       "nameJa": "磁石",
       "summary": {
-        "en": "Use the magnet as a compass toward the area's exit/connecting route; it also reports your current area and subregion.",
+        "en": "Use the compass toward the area's exit/connecting route; it also reports your current area and subregion.",
         "ja": "磁石でエリア出口・連絡路の方向を調べ、現在のエリアと区画を確認する。",
-        "th": "ใช้แม่เหล็กดูทิศไปทางทางออกหรือทางเชื่อมของพื้นที่ พร้อมดูพื้นที่และช่วงที่ยืนอยู่"
+        "th": "ใช้เข็มทิศดูทิศไปทางทางออกหรือทางเชื่อมของด่าน พร้อมดูด่านและช่วงที่ยืนอยู่"
       },
       "facts": {
         "en": [
@@ -422,7 +422,7 @@
           "エリア6の方角表示には物語の進行条件があり、それ以前は現在地だけを表示する。町では屋外の出口座標ではなく固定の方角を使う。"
         ],
         "th": [
-          "ใช้ดูทิศไปทางทางออกหรือทางเชื่อม และดูพื้นที่กับช่วงที่ยืนอยู่",
+          "ใช้ดูทิศไปทางทางออกหรือทางเชื่อม และดูด่านกับช่วงที่ยืนอยู่",
           "เมื่อถึงจุดเป้าหมาย เข็มจะหยุด ข้อความบอกทิศกับตำแหน่งปัจจุบัน แต่ไม่บอกชื่อปลายทาง",
           "ด่าน 6 ต้องผ่านเงื่อนไขเนื้อเรื่องก่อนจึงบอกทิศได้ ก่อนหน้านั้นบอกแค่ตำแหน่ง ส่วนในเมืองใช้ทิศที่เกมกำหนดไว้ตายตัว"
         ]

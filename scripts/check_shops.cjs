@@ -32,7 +32,7 @@ async function renderPage({locale='en', query='', category='all', search='', sta
   const ids = [
     'stage-select','category-select','item-search','clear-filters','page-status','shop-results',
     'target-status','offer-count','location-section','location-area','location-map-id','location-heading',
-    'location-summary','location-visuals','back-link','language-en','language-th','language-ja'
+    'location-summary','location-visuals','back-link','language-en','language-th','language-ja','shop-facts'
   ];
   const elements = Object.fromEntries(ids.map(id => [id, new Element()]));
   elements['stage-select'].value = String(stage);
@@ -79,6 +79,7 @@ function itemInStock(stage, category, id) {
 
 async function main() {
   await checkSearchReplacesTarget();
+  await checkShopFacts();
   assert.equal(stock.areas.length, 6, 'six area stock sets are present');
   for(const locale of ['en','th','ja']){
     const suffix=locale==='en'?'':'.'+locale;
@@ -221,6 +222,38 @@ async function checkSearchReplacesTarget() {
     assert.doesNotMatch(bookmarked.elements['target-status'].innerHTML,/ID 2E/,'A bookmarked search must not retain an unrelated target');
     assert.match(bookmarked.elements['shop-results'].innerHTML,/data-offer="lure:23"/);
     assert.equal(new URL(bookmarked.location.href).searchParams.get('id'),null);
+  }
+}
+
+// Shop rules written for players must stay true to the decoded stock and the maker menus.
+async function checkShopFacts() {
+  const items=gallery.items,find=(category,id)=>items.find(item=>item.category===category&&item.id===id);
+  const neverSold=[['rod','02'],['rod','06'],['rod','0B'],['rod','11'],['fly_wing','25'],['fly_wing','66'],['fly_wing','67'],['food','09'],['food','0A'],['general_tool','01'],['general_tool','02']];
+  for(const [category,id] of neverSold){
+    const item=find(category,id);
+    assert(item,`Never-sold item ${category}:${id} exists`);
+    assert.equal((item.playerUse.shops||[]).length,0,`${category}:${id} must have no shop offer`);
+    assert(!item.flyMakerMenuChoice,`${category}:${id} must not be a fly maker choice`);
+  }
+  const area6Rods=stock.areas.find(area=>area.stage===6).items.filter(item=>item.category==='rod');
+  assert(area6Rods.every(rod=>find('rod',rod.id).decodedFields.styleCode!==8),'Area 6 sells no fly rod');
+  const special=items.filter(item=>(item.playerUse.shops||[]).some(shop=>shop.shop==='special_rod_shop'));
+  assert.deepEqual(special.map(item=>`${item.playerUse.shops.find(shop=>shop.shop==='special_rod_shop').stage}:${item.id}:${item.priceYen}`).sort(),['4:0D:650','5:01:500','5:08:1500','6:10:1500']);
+  const bundles=stock.areas.filter(area=>area.stage>=4).flatMap(area=>area.flyBundles||[]);
+  assert(bundles.length,'Areas 4-6 sell ready-made fly bundles');
+  for(const locale of ['en','th','ja']){
+    const page=await renderPage({locale,stage:3,query:'stage=3&place=town'});
+    const facts=page.elements['shop-facts'].innerHTML;
+    for(const [category,id] of neverSold)assert(facts.includes(`category=${category}&amp;id=${id}`),`${locale} facts list ${category}:${id}`);
+    for(const price of ['650','500'])assert(facts.includes(price),`${locale} facts name special rod price ${price}`);
+    assert(/1,?500/.test(facts),`${locale} facts name the ¥1,500 rods`);
+    assert(facts.includes('9'),`${locale} facts mention the stack of 9`);
+    const baitPage=await renderPage({locale,stage:1,category:'bait',query:'stage=1&place=town&category=bait'});
+    assert(baitPage.elements['shop-results'].innerHTML.includes('class="price-note"'),`${locale} bait cards say the price is per stack of 9`);
+    const hookPage=await renderPage({locale,stage:1,category:'hook',query:'stage=1&place=town&category=hook'});
+    assert(hookPage.elements['shop-results'].innerHTML.includes('class="price-note"'),`${locale} hook cards say the price is per stack of 9`);
+    const rodPage=await renderPage({locale,stage:1,category:'rod',query:'stage=1&place=town&category=rod'});
+    assert(!rodPage.elements['shop-results'].innerHTML.includes('class="price-note"'),`${locale} rod cards have no stack note`);
   }
 }
 

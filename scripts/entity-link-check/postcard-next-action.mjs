@@ -13,7 +13,7 @@ import {
 
 const locales = ['en', 'ja', 'th']
 const quest = readJson('data/quest-tool-use.json')
-const magnet = readJson('data/magnet-story-gate.json')
+const compass = readJson('data/magnet-story-gate.json')
 const eelId = '3B'
 const eel = locations.fish[eelId]
 const copy = {
@@ -21,19 +21,19 @@ const copy = {
     condition: 'Once this request appears',
     map: 'Area 6 point · X 41, Y 8',
     limit: 'The configured fishing point may be inactive.',
-    magnet: 'Magnet heading',
+    compass: 'Compass heading',
   },
   ja: {
     condition: 'この依頼を見たら',
     map: 'エリア6の地点 · X 41, Y 8',
     limit: '設定された釣り場に魚がいない場合もあります。',
-    magnet: '磁石のオオウナギ項目',
+    compass: '磁石のオオウナギ項目',
   },
   th: {
     condition: 'ถ้าพบข้อความนี้แล้ว',
     map: 'ดูจุดด่าน 6 · X 41, Y 8',
     limit: 'จุดตกที่กำหนดอาจไม่มีปลาในรอบนี้',
-    magnet: 'แม่เหล็ก',
+    compass: 'เข็มทิศ',
   },
 }
 
@@ -42,7 +42,7 @@ checkResearchDetails()
 for (const locale of locales) await checkCatalogueCard(locale)
 for (const locale of locales) await checkLocale(locale)
 console.log(
-  'Postcard action PASS: catalogue and detail actions, three localized safe links, conditional caveats and collapsed ROM evidence agree with the fish and magnet traces.',
+  'Postcard action PASS: catalogue and detail actions, three localized safe links, conditional caveats and collapsed ROM evidence agree with the fish and compass traces.',
 )
 
 function readJson(relativePath) {
@@ -50,10 +50,10 @@ function readJson(relativePath) {
 }
 
 function checkRomEvidence() {
-  const story = magnet.storyGate
-  const target = magnet.area6MagnetTarget
-  assert.equal(quest.rom.sha1, magnet.rom.sha1)
-  assert.equal(magnet.rom.sha1, locations.rom.sha1)
+  const story = compass.storyGate
+  const target = compass.area6MagnetTarget
+  assert.equal(quest.rom.sha1, compass.rom.sha1)
+  assert.equal(compass.rom.sha1, locations.rom.sha1)
   assert.equal(story.prerequisiteMask, '0x02')
   assert.equal(story.headingMask, '0x04')
   assert.equal(story.recordArray.entryCount, 66)
@@ -265,7 +265,7 @@ function checkPlayerCopy(panel, locale) {
   )
   assert(text.includes(copy[locale].map))
   assert(text.includes(copy[locale].limit), `${locale}: do not promise quest completion or reward`)
-  assert(text.includes(copy[locale].magnet))
+  assert(text.includes(copy[locale].compass))
   assert(!/\b65\b|0x41/.test(text), `${locale}: keep the hidden gate out of player-facing advice`)
 }
 

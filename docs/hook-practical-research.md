@@ -51,8 +51,8 @@ The route is the practical equipment choice: IDs 01–08 choose float bait fishi
 
 | +0 state/display code | Items |
 | ---: | --- |
-| 0 | 02 Round shimori, 03 Streamlined shimori |
-| 1 | 01 Hera float, 04 Ball float, 05 Stick float, 06 Acorn float, 07 Chili float, 0A Natsume sinker |
+| 0 | 02 Round bead float, 03 Streamlined bead float |
+| 1 | 01 Hera float, 04 Ball float, 05 Stick float, 06 Acorn float, 07 Chili float, 0A Jujube-shaped sinker |
 | 2 | 08 Marker, 09 Oval sinker |
 
 Two cautions:

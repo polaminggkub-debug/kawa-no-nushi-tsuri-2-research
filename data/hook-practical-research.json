@@ -742,8 +742,8 @@
     },
     "float_weight:02": {
       "summary": {
-        "th": "ทุ่นชิโมริทรงกลม: ใช้กับชุดตกเหยื่อติดทุ่น; เลือกจากปลาที่เหยื่อนั้นผ่านเงื่อนไข ไม่ใช่จากชื่อปลาในรุ่นทุ่น",
-        "en": "round shimori float: use with float bait fishing; choose by the fish that accepts your bait, not by a fish-specific float bonus.",
+        "th": "ทุ่นเม็ดเล็กทรงกลม: ใช้กับชุดตกเหยื่อติดทุ่น; เลือกจากปลาที่เหยื่อนั้นผ่านเงื่อนไข ไม่ใช่จากชื่อปลาในรุ่นทุ่น",
+        "en": "round bead float: use with float bait fishing; choose by the fish that accepts your bait, not by a fish-specific float bonus.",
         "ja": "丸型シモリ。ウキのエサ釣り用。対象魚はウキ名ではなくエサ適合表で選ぶ。"
       },
       "facts": {
@@ -789,8 +789,8 @@
     },
     "float_weight:03": {
       "summary": {
-        "th": "ทุ่นชิโมริทรงเรียว: ใช้กับชุดตกเหยื่อติดทุ่น; เลือกจากปลาที่เหยื่อนั้นผ่านเงื่อนไข ไม่ใช่จากชื่อปลาในรุ่นทุ่น",
-        "en": "streamlined shimori float: use with float bait fishing; choose by the fish that accepts your bait, not by a fish-specific float bonus.",
+        "th": "ทุ่นเม็ดเล็กทรงเรียว: ใช้กับชุดตกเหยื่อติดทุ่น; เลือกจากปลาที่เหยื่อนั้นผ่านเงื่อนไข ไม่ใช่จากชื่อปลาในรุ่นทุ่น",
+        "en": "streamlined bead float: use with float bait fishing; choose by the fish that accepts your bait, not by a fish-specific float bonus.",
         "ja": "流線シモリ。ウキのエサ釣り用。対象魚はウキ名ではなくエサ適合表で選ぶ。"
       },
       "facts": {
@@ -1118,8 +1118,8 @@
     },
     "float_weight:0A": {
       "summary": {
-        "th": "ตะกั่วทรงนัตสึเมะ: ใช้กับชุดตกเหยื่อติดตะกั่ว; ตรวจตารางว่าปลาที่เล็งผ่านเงื่อนไขเพิ่มของชุดนี้หรือไม่",
-        "en": "natsume-shaped sinker: use with sinker bait fishing; check whether your target passes this route’s extra fish-profile condition.",
+        "th": "ตะกั่วทรงพุทรา: ใช้กับชุดตกเหยื่อติดตะกั่ว; ตรวจตารางว่าปลาที่เล็งผ่านเงื่อนไขเพิ่มของชุดนี้หรือไม่",
+        "en": "jujube-shaped sinker: use with sinker bait fishing; check whether your target passes this route’s extra fish-profile condition.",
         "ja": "ナツメ型おもり。オモリのエサ釣り用。狙う魚が追加プロフィール条件を通るか適合表で確認。"
       },
       "facts": {
