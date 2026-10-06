@@ -49,6 +49,7 @@ import { setupDataAccess } from './setup-data-access.js'
 import { setupNavigation } from './setup-navigation.js'
 import { setupCardLinks } from './setup-card-links.js'
 import { loadCatalogue } from './load-catalogue.js'
+import { collapseRefineOnPhone } from './refine-disclosure.js'
 
 export function initialize(ctx) {
   if (typeof document === 'undefined' || !document.getElementById('cards')) return
@@ -59,5 +60,6 @@ export function initialize(ctx) {
   setupDataAccess(ctx)
   setupNavigation(ctx)
   setupCardLinks(ctx)
+  collapseRefineOnPhone()
   loadCatalogue(ctx)
 }
