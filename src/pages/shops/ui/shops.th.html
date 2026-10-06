@@ -83,17 +83,6 @@
             <option value="6">พื้นที่ 6</option>
           </select>
         </div>
-        <fieldset class="place-toggle">
-          <legend>ดูตำแหน่งแบบไหน</legend>
-          <label
-            ><input type="radio" name="place" value="outdoor" disabled /> แผนที่ด่าน ·
-            ทางเข้าเมือง</label
-          >
-          <label
-            ><input type="radio" name="place" value="town" checked disabled /> แผนที่เมือง ·
-            ตำแหน่งร้าน</label
-          >
-        </fieldset>
         <div class="filter-field">
           <label for="category-select">ประเภทไอเท็ม</label>
           <select id="category-select" disabled>
@@ -133,6 +122,17 @@
             <span id="location-area" class="map-id"></span>
           </div>
           <p id="location-summary"></p>
+          <fieldset class="place-toggle">
+            <legend>ดูตำแหน่งแบบไหน</legend>
+            <label
+              ><input type="radio" name="place" value="outdoor" disabled /> แผนที่ด่าน ·
+              ทางเข้าเมือง</label
+            >
+            <label
+              ><input type="radio" name="place" value="town" checked disabled /> แผนที่เมือง ·
+              ตำแหน่งร้าน</label
+            >
+          </fieldset>
           <div id="location-visuals" class="location-visuals"></div>
           <details class="map-evidence">
             <summary>รหัสชุดแผนที่</summary>

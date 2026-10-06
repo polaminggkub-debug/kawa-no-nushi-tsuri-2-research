@@ -278,43 +278,43 @@
     if (returned) target.searchParams.set("return", `${returned.split("#")[0]}#wing-palette-title`);
     return `${target.pathname.split("/").pop()}${target.search}${target.hash}`;
   }
-  function renderColumnHeaders(ctx, palette, copy2) {
+  function renderColumnHeaders(ctx, palette, copy3) {
     const columns = Array.from({ length: palette.menu.columns }, (_, index) => index + 1);
-    return columns.map((column) => `<th scope="col">${ctx.esc(copy2.column)} ${column}</th>`).join("");
+    return columns.map((column) => `<th scope="col">${ctx.esc(copy3.column)} ${column}</th>`).join("");
   }
-  function renderChoice(ctx, position, copy2) {
+  function renderChoice(ctx, position, copy3) {
     const item = findWingItem(ctx, position.wingId);
     const name = itemDisplayName(ctx, item);
-    const location2 = `${copy2.column} ${position.column}, ${copy2.row} ${position.row}`;
-    const label = `${copy2.openItem}: ${name}, ID ${position.wingId}; ${location2}`;
-    return `<td data-wing-cell="${position.wingId}"><a class="wing-palette__choice" data-wing-choice="${position.wingId}" data-wing-row="${position.row}" data-wing-column="${position.column}" href="${ctx.esc(wingItemHref(ctx, item))}" aria-label="${ctx.esc(label)}"><img loading="lazy" src="${ctx.esc(item.image)}" alt=""><span class="wing-palette__choice-id">${ctx.esc(position.wingId)}</span><span class="wing-palette__choice-name">${ctx.esc(name)}</span><span class="wing-palette__choice-open"><span class="wing-palette__choice-open-label">${ctx.esc(copy2.openItem)}</span> ↗</span></a></td>`;
+    const location2 = `${copy3.column} ${position.column}, ${copy3.row} ${position.row}`;
+    const label = `${copy3.openItem}: ${name}, ID ${position.wingId}; ${location2}`;
+    return `<td data-wing-cell="${position.wingId}"><a class="wing-palette__choice" data-wing-choice="${position.wingId}" data-wing-row="${position.row}" data-wing-column="${position.column}" href="${ctx.esc(wingItemHref(ctx, item))}" aria-label="${ctx.esc(label)}"><img loading="lazy" src="${ctx.esc(item.image)}" alt=""><span class="wing-palette__choice-id">${ctx.esc(position.wingId)}</span><span class="wing-palette__choice-name">${ctx.esc(name)}</span><span class="wing-palette__choice-open"><span class="wing-palette__choice-open-label">${ctx.esc(copy3.openItem)}</span> ↗</span></a></td>`;
   }
-  function renderRow(ctx, palette, row, copy2) {
+  function renderRow(ctx, palette, row, copy3) {
     const cells = Array.from({ length: palette.menu.columns }, (_, index) => {
       const column = index + 1;
       const position = palette.positions.find((entry) => entry.column === column && entry.row === row);
       if (!position) throw new Error(`Missing verified Mayfly wing at row ${row}, column ${column}`);
-      return renderChoice(ctx, position, copy2);
+      return renderChoice(ctx, position, copy3);
     });
-    return `<tr><th scope="row">${ctx.esc(copy2.row)} ${row}</th>${cells.join("")}</tr>`;
+    return `<tr><th scope="row">${ctx.esc(copy3.row)} ${row}</th>${cells.join("")}</tr>`;
   }
-  function renderGrid(ctx, palette, copy2) {
+  function renderGrid(ctx, palette, copy3) {
     const rows = Array.from({ length: palette.menu.rows }, (_, index) => index + 1);
-    return `<div class="wing-palette__table-wrap"><table class="wing-palette__table"><caption>${ctx.esc(copy2.gridCaption)}</caption><thead><tr><th scope="col" class="wing-palette__corner"></th>${renderColumnHeaders(ctx, palette, copy2)}</tr></thead><tbody>${rows.map((row) => renderRow(ctx, palette, row, copy2)).join("")}</tbody></table></div>`;
+    return `<div class="wing-palette__table-wrap"><table class="wing-palette__table"><caption>${ctx.esc(copy3.gridCaption)}</caption><thead><tr><th scope="col" class="wing-palette__corner"></th>${renderColumnHeaders(ctx, palette, copy3)}</tr></thead><tbody>${rows.map((row) => renderRow(ctx, palette, row, copy3)).join("")}</tbody></table></div>`;
   }
-  function renderScreenshot(ctx, palette, copy2) {
+  function renderScreenshot(ctx, palette, copy3) {
     const shot = palette.screenshot;
-    return `<figure class="wing-palette__screenshot"><a href="${ctx.esc(shot.path)}" target="_blank" rel="noopener"><img loading="lazy" src="${ctx.esc(shot.path)}" alt="${ctx.esc(copy2.screenshotTitle)}"></a><figcaption>${ctx.esc(shot.caption[ctx.lang] || shot.caption.en)}</figcaption></figure>`;
+    return `<figure class="wing-palette__screenshot"><a href="${ctx.esc(shot.path)}" target="_blank" rel="noopener"><img loading="lazy" src="${ctx.esc(shot.path)}" alt="${ctx.esc(copy3.screenshotTitle)}"></a><figcaption>${ctx.esc(shot.caption[ctx.lang] || shot.caption.en)}</figcaption></figure>`;
   }
-  function renderTechnicalEvidence(ctx, palette, copy2) {
-    const evidenceLink = `<p><a href="${ctx.esc(readableEvidenceHref(palette.evidenceHref))}" target="_blank" rel="noopener">${ctx.esc(copy2.evidenceLink)} ↗</a></p>`;
-    return `<details class="wing-palette__technical"><summary>${ctx.esc(copy2.technicalTitle)}</summary><div><p>${ctx.esc(copy2.rightEdge)}</p><p>${ctx.esc(copy2.noRanking)}</p><p>${ctx.esc(copy2.evidence)}</p>${evidenceLink}</div></details>`;
+  function renderTechnicalEvidence(ctx, palette, copy3) {
+    const evidenceLink = `<p><a href="${ctx.esc(readableEvidenceHref(palette.evidenceHref))}" target="_blank" rel="noopener">${ctx.esc(copy3.evidenceLink)} ↗</a></p>`;
+    return `<details class="wing-palette__technical"><summary>${ctx.esc(copy3.technicalTitle)}</summary><div><p>${ctx.esc(copy3.rightEdge)}</p><p>${ctx.esc(copy3.noRanking)}</p><p>${ctx.esc(copy3.evidence)}</p>${evidenceLink}</div></details>`;
   }
   function wingPaletteMarkup(ctx, palette) {
     if (!palette?.positions?.length || !ctx.allItems?.length || !ctx.itemHref) return "";
-    const copy2 = palette.copy[ctx.lang] || palette.copy.en;
+    const copy3 = palette.copy[ctx.lang] || palette.copy.en;
     const titleId = "wing-palette-title";
-    return `<section class="wing-palette" data-wing-palette aria-labelledby="${titleId}"><header class="wing-palette__header"><p class="wing-palette__eyebrow">${ctx.esc(copy2.eyebrow)}</p><h3 id="${titleId}">${ctx.esc(copy2.title)}</h3><p class="wing-palette__intro">${ctx.esc(copy2.intro)}</p><p class="wing-palette__controls" id="wing-palette-controls">${ctx.esc(copy2.controls)}</p></header><div class="wing-palette__layout">${renderScreenshot(ctx, palette, copy2)}${renderGrid(ctx, palette, copy2)}</div>${renderTechnicalEvidence(ctx, palette, copy2)}</section>`;
+    return `<section class="wing-palette" data-wing-palette aria-labelledby="${titleId}"><header class="wing-palette__header"><p class="wing-palette__eyebrow">${ctx.esc(copy3.eyebrow)}</p><h3 id="${titleId}">${ctx.esc(copy3.title)}</h3><p class="wing-palette__intro">${ctx.esc(copy3.intro)}</p><p class="wing-palette__controls" id="wing-palette-controls">${ctx.esc(copy3.controls)}</p></header><div class="wing-palette__layout">${renderScreenshot(ctx, palette, copy3)}${renderGrid(ctx, palette, copy3)}</div>${renderTechnicalEvidence(ctx, palette, copy3)}</section>`;
   }
 
   // src/pages/equipment/evidence-display.js
@@ -535,7 +535,7 @@
     const select = document.getElementById("category-filter"), current = select.value;
     select.innerHTML = `<option value="all">${ctx.esc(ctx.player.all)}</option>` + available.map((c) => `<option value="${c}">${ctx.esc(ctx.player.cat[c])}</option>`).join("");
     select.value = !fish || ctx.fishCategories.includes(current) ? current : "all";
-    document.getElementById("category-menu").innerHTML = available.map((c) => {
+    document.getElementById("category-menu").innerHTML = `<a class="category-button" href="${ctx.esc(categoryNavigationHref(ctx, "all", fish))}" data-category="all"><span><strong>${ctx.esc(ctx.player.all)}</strong></span></a>` + available.map((c) => {
       const item = ctx.allItems.find((i) => ctx.groupOf(i) === c);
       const count = ctx.allItems.filter(
         (i) => fish && ["rod", "hook"].includes(c) ? ctx.groupOf(i) === c : ctx.groupOf(i) === c && (!fish || ctx.fishIdsFor(i).includes(fish) || ["fly_wing", "fly_tail"].includes(i.category) && ctx.flyBundlePartFor(i, fish))
@@ -613,8 +613,8 @@
     if (!bundle) return { ...noBundleCopy(lang, item.id, fishName), bundle: null, itemId: item.id };
     const body = nameForBundleItem(allItems, "fly", bundle.body);
     const supported = Boolean(fishId && (body?.playerUse?.fishIds || []).includes(fishId));
-    const copy2 = bundleCopy(lang, item, bundle, fishName, supported);
-    return { ...copy2, bundle, supported, hasTarget: Boolean(fishId), itemId: item.id };
+    const copy3 = bundleCopy(lang, item, bundle, fishName, supported);
+    return { ...copy3, bundle, supported, hasTarget: Boolean(fishId), itemId: item.id };
   }
   function actionLabel(lang, key, bundle) {
     const labels2 = {
@@ -952,7 +952,7 @@
     const names = ["id", "benefits", "price", "comparison", "hpNote"];
     const placeholders = Object.fromEntries(names.map((name) => [name, `%%${name}%%`]));
     return Object.entries(placeholders).reduce(
-      (copy2, [name, marker]) => copy2.replaceAll(marker, `{${name}}`),
+      (copy3, [name, marker]) => copy3.replaceAll(marker, `{${name}}`),
       text2(lang, "comparison", key, placeholders)
     );
   }
@@ -1243,9 +1243,9 @@
     return source ? localStyleOffers(source, allItems, stage) : [];
   }
   function nextRecordedStage(allItems, style, stage) {
-    const stages = allItems.filter((item) => item.category === "rod" && styleCode(item) === style).flatMap((item) => (item.playerUse?.shops || []).map((offer) => Number(offer.stage))).filter((area) => Number.isInteger(area) && area >= 1 && area <= 6).sort((a, b) => a - b);
-    const next = stages.find((area) => area > stage);
-    return next || stages.filter((area) => area < stage).at(-1) || 0;
+    const stages2 = allItems.filter((item) => item.category === "rod" && styleCode(item) === style).flatMap((item) => (item.playerUse?.shops || []).map((offer) => Number(offer.stage))).filter((area) => Number.isInteger(area) && area >= 1 && area <= 6).sort((a, b) => a - b);
+    const next = stages2.find((area) => area > stage);
+    return next || stages2.filter((area) => area < stage).at(-1) || 0;
   }
   function localeOptions(lang, choices) {
     return choices.map((choice) => `${choice.id} (${offerStats(lang, choice)})`).join(lang === "ja" ? "、" : "; ");
@@ -1588,11 +1588,11 @@
   }
 
   // src/pages/equipment/lure-coverage-guidance.js
-  function areaNames(ctx, stages) {
-    if (ctx.lang === "th") return `ด่าน ${stages.join(", ")}`;
-    if (ctx.lang === "ja") return `エリア${stages.join("・")}`;
-    if (stages.length === 1) return `Area ${stages[0]}`;
-    return `Areas ${stages.slice(0, -1).join(", ")} and ${stages.at(-1)}`;
+  function areaNames(ctx, stages2) {
+    if (ctx.lang === "th") return `ด่าน ${stages2.join(", ")}`;
+    if (ctx.lang === "ja") return `エリア${stages2.join("・")}`;
+    if (stages2.length === 1) return `Area ${stages2[0]}`;
+    return `Areas ${stages2.slice(0, -1).join(", ")} and ${stages2.at(-1)}`;
   }
   function pairSummary(ctx, pair) {
     const price = ctx.lang === "ja" ? `${pair.totalYen}円` : `¥${pair.totalYen}`;
@@ -1765,8 +1765,8 @@
     const body = sections.join("");
     const count = sections.length;
     const visibleLureCard = lureCoverage ? ctx.decisionCard(lureCoverage) : "";
-    const copy2 = categoryDecisionCopy(ctx, category, count);
-    box.innerHTML = visibleLureCard + (body ? `<details id="category-recommendations-disclosure" class="overview-disclosure category-recommendations"><summary>${ctx.esc(copy2.label)}</summary><div class="category-recommendations-content">${copy2.note}${body}</div></details>` : "");
+    const copy3 = categoryDecisionCopy(ctx, category, count);
+    box.innerHTML = visibleLureCard + (body ? `<details id="category-recommendations-disclosure" class="overview-disclosure category-recommendations"><summary>${ctx.esc(copy3.label)}</summary><div class="category-recommendations-content">${copy3.note}${body}</div></details>` : "");
     const disclosure = box.querySelector?.("#category-recommendations-disclosure");
     if (disclosure && (keepOpen || typeof location !== "undefined" && location.hash === "#category-decisions"))
       disclosure.open = true;
@@ -2065,8 +2065,8 @@
     return `<a href="${ctx.esc(href)}">${ctx.esc(area + " " + stage)} ↗</a>`;
   }
   function stageLinks(ctx, item, shops, predicate, area) {
-    const stages = [...new Set(shops.filter(predicate).map((shop) => shop.stage))];
-    return stages.map((stage) => shopLink(ctx, item, stage, area)).join(" · ");
+    const stages2 = [...new Set(shops.filter(predicate).map((shop) => shop.stage))];
+    return stages2.map((stage) => shopLink(ctx, item, stage, area)).join(" · ");
   }
   function shopCondition(ctx, shops) {
     if (!shops.some((shop) => shop.condition)) return "";
@@ -2186,9 +2186,9 @@
     const points = (glass?.playerUse?.useLocations || []).filter(
       (loc) => loc.forage && (loc.markerItems || []).some((ref) => ref.category === "bait" && ref.id === item.id)
     );
-    const stages = [...new Set(points.map((loc) => Number(loc.stage)))];
-    if (!stages.length) return "";
-    const shown = ctx.locationStage && stages.includes(Number(ctx.locationStage)) ? [Number(ctx.locationStage)] : stages;
+    const stages2 = [...new Set(points.map((loc) => Number(loc.stage)))];
+    if (!stages2.length) return "";
+    const shown = ctx.locationStage && stages2.includes(Number(ctx.locationStage)) ? [Number(ctx.locationStage)] : stages2;
     const note = ctx.lang === "th" ? "ถ้ามีแว่นขยายอยู่แล้ว ลองหาเหยื่อนี้แทนการซื้อเพิ่ม: ไปถึงช่องตัวอย่างแล้วใช้แว่นขยาย ขยับช่องก่อนค้นซ้ำ บางช่องมีผลลัพธ์ได้สองชนิด จึงไม่รับประกันว่าจะได้ชนิดนี้ทุกครั้ง" : ctx.lang === "ja" ? "虫メガネを持っているなら、追加購入の代わりに探索できます。地点例で使い、再探索前に移動してください。2種類の候補がある地点では毎回このエサが出るとは限りません。" : "If you already own the magnifying glass, try gathering instead of buying more: use it at an example tile and move before searching again. Some tiles have two possible results, so this bait is not guaranteed every time.";
     return `<aside class="forage-bait-choice" data-forage-bait-choice><p>${ctx.esc(note)}</p>${shown.map((stage) => {
       const loc = points.find((point) => Number(point.stage) === stage);
@@ -2423,8 +2423,8 @@
     return `<section class="location-map"><h4>${area} ${location2.stage} · ${context} · ${ctx.esc(location2.forage ? names : ctx.local(location2.name))}</h4><div class="map-canvas" style="aspect-ratio:${location2.width}/${location2.height}"><img class="map-background" loading="lazy" src="${ctx.esc(location2.image)}" alt="${ctx.esc(ctx.local(location2.name))}"><span class="map-pin" style="left:${location2.pin.x * 100}%;top:${location2.pin.y * 100}%">${pins}</span></div><p class="fish-scope">${ctx.esc(itemLocationNote(ctx, location2))} · X ${location2.tileX}, Y ${location2.tileY}</p>${location2.action ? `<p class="acquisition-action">${ctx.esc(ctx.local(location2.action))}</p>` : ""}${location2.description ? `<p class="fish-scope">${ctx.esc(ctx.local(location2.description))}</p>` : ""}${location2.useWindow ? `<p>${ctx.lang === "th" ? "ใช้ดอกไม้ไฟขณะยืนในช่วง" : ctx.lang === "ja" ? "花火の使用範囲" : "Fireworks activation tiles"} X ${location2.useWindow.xMin}–${location2.useWindow.xMax}, Y ${location2.useWindow.yMin}–${location2.useWindow.yMax}</p>` : ""}<a href="${ctx.esc(location2.fullImage)}" target="_blank" rel="noopener">${fullLabel} ↗</a>${location2.context === "town" ? ` · <a href="${ctx.esc(ctx.itemHref(item))}#use-locations">${ctx.esc(stepLabel)} ↗</a>` : ""}</section>`;
   }
   function forageLocationGroups(ctx, item, locations, area, open) {
-    const stages = [...new Set(locations.map((location2) => location2.stage))];
-    return stages.map((stage) => {
+    const stages2 = [...new Set(locations.map((location2) => location2.stage))];
+    return stages2.map((stage) => {
       const sections = locations.filter((location2) => location2.stage === stage).map((location2) => itemLocationSection(ctx, item, location2, area, open)).join("");
       return `<details class="forage-stage"><summary>${area} ${stage}</summary>${sections}</details>`;
     }).join("");
@@ -2565,8 +2565,12 @@
     const maps = renderFishMaps(ctx, id, fish, mapChoices, labels2);
     const mapContent = chosenStageContent(ctx, chosen, locations, labels2, overview, mapMenu, maps);
     const mapLabel = chosen ? `${labels2.mapDetails} · ${labels2.stage} ${chosen.stage} · ${ctx.local(chosen.stageName)}` : labels2.mapDetails;
-    const disclosure = locations.length ? ctx.cardDisclosure(mapLabel, mapContent, "fish-location-details") : "";
-    return `${fishLocationHeader(ctx, id, fish, labels2.title, labels2, chosen)}${renderFishAreaLinks(ctx, id, locations, labels2)}${disclosure}`;
+    const disclosure = locations.length ? ctx.cardDisclosure(
+      mapLabel,
+      renderFishAreaLinks(ctx, id, locations, labels2) + mapContent,
+      "fish-location-details"
+    ) : "";
+    return `${fishLocationHeader(ctx, id, fish, labels2.title, labels2, chosen)}${disclosure}`;
   }
   function renderFishLocation(ctx, id) {
     const labels2 = fishMapLabels(ctx);
@@ -3233,6 +3237,51 @@
     return `<article class="item-card item-card-compact ${poison}" id="item-${view.category}-${view.id}"${offerMarker}>${identity}${guidance}${questNextActions(ctx, view)}${details}</article>`;
   }
 
+  // src/pages/equipment/catalogue-stage.js
+  var stages = ["1", "2", "3", "4", "5", "6"];
+  var copy2 = {
+    th: {
+      all: "ทุกด่าน",
+      area: "ด่าน",
+      note: "เลือกได้เฉพาะด่านที่พบปลานี้; ใช้ด่านเดียวกันในการดูร้านและราคา"
+    },
+    ja: {
+      all: "全エリア",
+      area: "エリア",
+      note: "この魚がいるエリアを選択。購入場所と価格にも同じエリアを使います。"
+    },
+    en: {
+      all: "All areas",
+      area: "Area",
+      note: "Choose an area where this fish occurs. Purchase advice and prices use the same area."
+    }
+  };
+  function syncCatalogueStage(ctx, fish) {
+    const select = document.getElementById("catalogue-stage");
+    if (!select) return;
+    const text4 = copy2[ctx.lang] || copy2.en;
+    const locations = ctx.fishLocations?.[fish]?.locations || [];
+    const available = fish ? locations.map((entry) => String(entry.stage)) : stages;
+    const options = fish ? [] : [`<option value="">${ctx.esc(text4.all)}</option>`];
+    for (const stage of [...new Set(available)]) {
+      const name = locations.find((entry) => String(entry.stage) === stage)?.stageName;
+      const label = `${text4.area} ${stage}${name ? " · " + ctx.local(name) : ""}`;
+      options.push(`<option value="${stage}">${ctx.esc(label)}</option>`);
+    }
+    select.innerHTML = options.join("");
+    select.value = String(ctx.locationStage || "");
+    select.disabled = false;
+    const note = document.getElementById("catalogue-stage-note");
+    if (note) note.textContent = fish ? text4.note : "";
+  }
+  function bindCatalogueStage(ctx) {
+    document.getElementById("catalogue-stage")?.addEventListener("change", (event) => {
+      ctx.locationStage = event.target.value;
+      ctx.locationMapIndex = 0;
+      ctx.renderCards();
+    });
+  }
+
   // src/pages/equipment/purchase-sort-copy.js
   function purchaseSortCopy(lang, stage) {
     const area = /^[1-6]$/.test(String(stage || "")) ? Number(stage) : 0;
@@ -3471,7 +3520,7 @@
   function emptyBaitRouteRecovery(ctx, filters) {
     const candidates = emptyBaitRouteCandidates(ctx, filters);
     if (!candidates.length) return "";
-    const copy2 = {
+    const copy3 = {
       th: {
         text: (count, fish2) => fish2 ? `คำค้นตรงกับเหยื่อ ${count} รายการ แต่ข้อมูลที่ตรวจไม่มีรายการสายตะกั่วสำหรับปลาที่เลือก ${ctx.fishName(fish2)}; ปลานี้อยู่ในรายชื่อสายทุ่นของรายการที่ตรงคำค้น` : `คำค้นตรงกับเหยื่อ ${count} รายการ แต่ยังไม่มีปลาในรายการสายตะกั่วที่บันทึกไว้ จึงไม่แสดงเป็นตัวเลือกสำหรับชุดนี้`,
         action: "สลับไปดูชุดทุ่นที่ใช้ได้กับคำค้นนี้"
@@ -3489,7 +3538,7 @@
       action: "Switch to Float rig"
     };
     const fish = filters.fish || "";
-    return `<section class="empty-state" data-empty-bait-route="sinker"><p>${ctx.esc(copy2.text(candidates.length, fish))}</p><a class="route-button" data-empty-bait-switch="float" href="${ctx.esc(emptyBaitRouteHref(ctx, filters))}">${ctx.esc(copy2.action)} ↗</a></section>`;
+    return `<section class="empty-state" data-empty-bait-route="sinker"><p>${ctx.esc(copy3.text(candidates.length, fish))}</p><a class="route-button" data-empty-bait-switch="float" href="${ctx.esc(emptyBaitRouteHref(ctx, filters))}">${ctx.esc(copy3.action)} ↗</a></section>`;
   }
   function renderItemResults(ctx, items, filters) {
     const box = document.getElementById("cards");
@@ -3513,7 +3562,6 @@
         node.dataset.category === filters.category ? "true" : "false"
       )
     );
-    ctx.renderFishLocation(filters.fish);
     ctx.renderComparison(filters.category);
     ctx.renderDecisions(filters.category);
     renderItemResults(ctx, items, filters);
@@ -3522,6 +3570,8 @@
     const filters = readFilters();
     updatePageContext(ctx, filters);
     renderCategoryControls(ctx, filters.category);
+    ctx.renderFishLocation(filters.fish);
+    syncCatalogueStage(ctx, filters.fish);
     const items = sortCatalogueItems(ctx, filterCatalogueItems(ctx, filters), filters);
     renderResults(ctx, items, filters);
     updatePageContext(ctx, filters);
@@ -4290,8 +4340,10 @@
   function openInitialContext() {
     openFlyGuideFromHash();
     scrollCategoryAdviceFromHash();
-    if (typeof window !== "undefined" && window.location.hash === "#fish-location-panel")
-      document.getElementById("fish-location-panel")?.scrollIntoView({ block: "start" });
+    if (typeof window === "undefined") return;
+    const targets = ["#catalogue", "#cards", "#fish-location-panel"];
+    if (targets.includes(window.location.hash))
+      document.querySelector(window.location.hash)?.scrollIntoView({ behavior: "instant", block: "start" });
   }
   function handleCategoryClick(ctx, event) {
     const link = event.target.closest("[data-category]");
@@ -4348,9 +4400,7 @@
     if (!button) return;
     ctx.locationStage = button.dataset.locationStage;
     ctx.locationMapIndex = 0;
-    ctx.renderFishLocation(document.getElementById("fish-filter").value);
-    ctx.renderDecisions(document.getElementById("category-filter").value);
-    refreshCategoryNavigationLinks(ctx, document.getElementById("fish-filter").value);
+    ctx.renderCards();
   }
   function handleLocationMapChange(ctx, event) {
     if (event.target.id !== "location-map-select") return;
@@ -4375,6 +4425,7 @@
     locationPanel.addEventListener("click", (event) => handleLocationStageClick(ctx, event));
     locationPanel.addEventListener("change", (event) => handleLocationMapChange(ctx, event));
     bindFilterInputs(ctx);
+    bindCatalogueStage(ctx);
   }
   function renderInitialCatalogue(ctx) {
     syncFishSearchText(ctx);

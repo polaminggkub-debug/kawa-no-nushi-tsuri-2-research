@@ -29,7 +29,7 @@
     />
     <link rel="stylesheet" href="shops.css?v=cc7c85679335a797" />
     <script src="shops.js?v=afa4ff5962edcf6c" defer></script>
-    <link rel="stylesheet" href="compendium.css?v=f0a06eafb430ccbe" />
+    <link rel="stylesheet" href="compendium.css?v=944b2e768f29779c" />
     <script src="compendium.js?v=32e98c10f8dca80a" defer></script>
   </head>
   <body>
@@ -81,17 +81,6 @@
             <option value="6">Area 6</option>
           </select>
         </div>
-        <fieldset class="place-toggle">
-          <legend>View location</legend>
-          <label
-            ><input type="radio" name="place" value="outdoor" disabled /> Field map · town
-            entrances</label
-          >
-          <label
-            ><input type="radio" name="place" value="town" checked disabled /> Town map · seller
-            locations</label
-          >
-        </fieldset>
         <div class="filter-field">
           <label for="category-select">Item type</label>
           <select id="category-select" disabled>
@@ -131,6 +120,17 @@
             <span id="location-area" class="map-id"></span>
           </div>
           <p id="location-summary"></p>
+          <fieldset class="place-toggle">
+            <legend>View location</legend>
+            <label
+              ><input type="radio" name="place" value="outdoor" disabled /> Field map · town
+              entrances</label
+            >
+            <label
+              ><input type="radio" name="place" value="town" checked disabled /> Town map · seller
+              locations</label
+            >
+          </fieldset>
           <div id="location-visuals" class="location-visuals"></div>
           <details class="map-evidence">
             <summary>Map-set IDs</summary>

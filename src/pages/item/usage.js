@@ -213,7 +213,7 @@ export function fishSection(ctx, item, fishVisuals, fishLocations) {
     ? ctx.copy[`${rigRoute}FishScope`]
     : ctx.local(use.fishScope) || ctx.copy.fishScope
   const caveat = rigRoute ? '' : `<p class="muted">${ctx.esc(steeringScope(ctx, steering))}</p>`
-  return `<section class="detail-section compatibility-section"${rigRoute ? ` data-compatibility-route="${rigRoute}"` : ''}><h2>${ctx.esc(heading)} · ${count}</h2>${fishTarget}<p class="section-lede">${ctx.esc(scope)}</p>${list}${caveat}</section>`
+  return `<section id="item-compatible" class="detail-section compatibility-section"${rigRoute ? ` data-compatibility-route="${rigRoute}"` : ''}><h2>${ctx.esc(heading)} · ${count}</h2>${fishTarget}<p class="section-lede">${ctx.esc(scope)}</p>${list}${caveat}</section>`
 }
 
 export function technicalSection(ctx, item) {
@@ -259,5 +259,5 @@ export function technicalSection(ctx, item) {
       ? `<h3>${ctx.lang === 'th' ? 'การทำงานที่แกะได้' : ctx.lang === 'ja' ? '解読した動作' : 'Decoded mechanics'}</h3><p>${ctx.esc(ctx.local(use.summary))}</p><ul>${(use.facts?.[ctx.lang] || []).map((fact) => `<li>${ctx.esc(fact)}</li>`).join('')}</ul>`
       : ''
   const notes = noteArray.map((note) => `<li>${ctx.esc(note)}</li>`).join('')
-  return `<details class="evidence"><summary>${ctx.esc(ctx.copy.tech)}</summary><div class="detail-content"><p><strong>${ctx.esc(ctx.copy.itemPrice)}:</strong> ${item.priceYen == null ? '—' : `¥${ctx.esc(item.priceYen)}`}</p><p><strong>${ctx.esc(ctx.copy.offset)}:</strong> <code>${ctx.esc(item.fileOffset || '—')}</code></p><p><strong>${ctx.esc(ctx.copy.bytes)}:</strong> <code>${ctx.esc(item.recordBytesHex || '—')}</code></p>${techTargets}${rodMechanics}${renderedDecoded ? `<h3>${ctx.esc(ctx.copy.fields)}</h3><dl>${renderedDecoded}</dl>` : ''}${rawFields ? `<h3>${ctx.esc(ctx.copy.raw)}</h3><dl>${rawFields}</dl>` : ''}${notes ? `<h3>${ctx.esc(ctx.copy.evidenceNotes)}</h3><ul>${notes}</ul>` : ''}${sources.length ? `<h3>${ctx.esc(ctx.copy.source)}</h3><ul>${sourceLinks}</ul>` : ''}<a href="${ctx.esc(item.frame || item.image)}" target="_blank" rel="noopener">${ctx.esc(ctx.copy.openFrame)}</a></div></details>`
+  return `<details class="evidence"><summary id="item-evidence">${ctx.esc(ctx.copy.tech)}</summary><div class="detail-content"><p><strong>${ctx.esc(ctx.copy.itemPrice)}:</strong> ${item.priceYen == null ? '—' : `¥${ctx.esc(item.priceYen)}`}</p><p><strong>${ctx.esc(ctx.copy.offset)}:</strong> <code>${ctx.esc(item.fileOffset || '—')}</code></p><p><strong>${ctx.esc(ctx.copy.bytes)}:</strong> <code>${ctx.esc(item.recordBytesHex || '—')}</code></p>${techTargets}${rodMechanics}${renderedDecoded ? `<h3>${ctx.esc(ctx.copy.fields)}</h3><dl>${renderedDecoded}</dl>` : ''}${rawFields ? `<h3>${ctx.esc(ctx.copy.raw)}</h3><dl>${rawFields}</dl>` : ''}${notes ? `<h3>${ctx.esc(ctx.copy.evidenceNotes)}</h3><ul>${notes}</ul>` : ''}${sources.length ? `<h3>${ctx.esc(ctx.copy.source)}</h3><ul>${sourceLinks}</ul>` : ''}<a href="${ctx.esc(item.frame || item.image)}" target="_blank" rel="noopener">${ctx.esc(ctx.copy.openFrame)}</a></div></details>`
 }

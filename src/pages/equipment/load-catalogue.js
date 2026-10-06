@@ -1,3 +1,4 @@
+import { bindCatalogueStage } from './catalogue-stage.js'
 import { applyFishEquipmentDefault } from './fish-equipment-default.js'
 import { showCatalogueLoading, showCatalogueError } from './catalogue-load-state.js'
 import { categoryNavigationHref, refreshCategoryNavigationLinks } from './category-navigation.js'
@@ -100,8 +101,12 @@ function scrollCategoryAdviceFromHash() {
 function openInitialContext() {
   openFlyGuideFromHash()
   scrollCategoryAdviceFromHash()
-  if (typeof window !== 'undefined' && window.location.hash === '#fish-location-panel')
-    document.getElementById('fish-location-panel')?.scrollIntoView({ block: 'start' })
+  if (typeof window === 'undefined') return
+  const targets = ['#catalogue', '#cards', '#fish-location-panel']
+  if (targets.includes(window.location.hash))
+    document
+      .querySelector(window.location.hash)
+      ?.scrollIntoView({ behavior: 'instant', block: 'start' })
 }
 
 function handleCategoryClick(ctx, event) {
@@ -169,9 +174,7 @@ function handleLocationStageClick(ctx, event) {
   if (!button) return
   ctx.locationStage = button.dataset.locationStage
   ctx.locationMapIndex = 0
-  ctx.renderFishLocation(document.getElementById('fish-filter').value)
-  ctx.renderDecisions(document.getElementById('category-filter').value)
-  refreshCategoryNavigationLinks(ctx, document.getElementById('fish-filter').value)
+  ctx.renderCards()
 }
 
 function handleLocationMapChange(ctx, event) {
@@ -207,6 +210,7 @@ function bindCatalogueEvents(ctx) {
   locationPanel.addEventListener('click', (event) => handleLocationStageClick(ctx, event))
   locationPanel.addEventListener('change', (event) => handleLocationMapChange(ctx, event))
   bindFilterInputs(ctx)
+  bindCatalogueStage(ctx)
 }
 
 function renderInitialCatalogue(ctx) {

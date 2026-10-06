@@ -1,3 +1,4 @@
+import { syncCatalogueStage } from './catalogue-stage.js'
 import { navigationRoute } from './navigation-route.js'
 import { targetAdviceScope } from '../../shared/lib/index.js'
 import { baitLureEvidenceScope } from './bait-lure-verdict.js'
@@ -344,7 +345,6 @@ function renderResults(ctx, items, filters) {
         node.dataset.category === filters.category ? 'true' : 'false',
       ),
     )
-  ctx.renderFishLocation(filters.fish)
   ctx.renderComparison(filters.category)
   ctx.renderDecisions(filters.category)
   renderItemResults(ctx, items, filters)
@@ -354,6 +354,8 @@ export function renderCards(ctx) {
   const filters = readFilters()
   updatePageContext(ctx, filters)
   renderCategoryControls(ctx, filters.category)
+  ctx.renderFishLocation(filters.fish)
+  syncCatalogueStage(ctx, filters.fish)
   const items = sortCatalogueItems(ctx, filterCatalogueItems(ctx, filters), filters)
   renderResults(ctx, items, filters)
   updatePageContext(ctx, filters)

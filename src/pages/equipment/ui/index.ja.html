@@ -140,107 +140,122 @@
     </header>
 
     <main id="main-content">
-      <section class="equipment-menu">
-        <h2 id="category-menu-title">
-          <!-- prerender:category-menu-title --><!-- /prerender:category-menu-title -->
-        </h2>
-        <div id="category-menu" class="category-menu" hidden>
-          <!-- prerender:category-menu --><!-- /prerender:category-menu -->
-        </div>
-      </section>
-
       <section class="catalogue-section" id="catalogue">
-        <div class="section-heading catalogue-heading">
-          <div>
-            <p class="eyebrow dark" data-t="catalogue-kicker">全アイテム一覧</p>
-            <h2 id="category-title">
-              <!-- prerender:category-title --><!-- /prerender:category-title -->
-            </h2>
-          </div>
-          <p class="section-copy" id="category-description">
-            <!-- prerender:category-description --><!-- /prerender:category-description -->
-          </p>
-        </div>
-        <div id="catalogue-load-feedback" hidden></div>
-        <div id="bait-route-menu" class="part-menu"></div>
-        <div id="fly-part-menu" class="part-menu"></div>
-        <div class="filters" role="search">
-          <label id="style-label"
-            ><span id="style-filter-label"
-              ><!-- prerender:style-filter-label --><!-- /prerender:style-filter-label --></span
-            ><select id="style-filter" disabled>
-              <!-- prerender:style-filter --><!-- /prerender:style-filter -->
-            </select></label
-          >
-          <div id="fish-picker" class="fish-picker">
-            <label for="fish-search"
-              ><span id="fish-filter-label"
-                ><!-- prerender:fish-filter-label --><!-- /prerender:fish-filter-label --></span
-              ></label
-            >
-            <div class="fish-combobox">
-              <input id="fish-filter" type="hidden" value="" />
-              <div class="fish-input-row">
-                <input
-                  id="fish-search"
-                  type="text"
-                  disabled
-                  role="combobox"
-                  aria-autocomplete="list"
-                  aria-expanded="false"
-                  aria-controls="fish-suggestions"
-                  autocomplete="off"
-                /><button id="fish-clear" type="button" disabled aria-label="Clear target fish">
-                  ×
-                </button>
+        <div class="catalogue-workspace">
+          <div id="catalogue-load-feedback" hidden></div>
+          <aside class="catalogue-tools" aria-label="対象の魚とエリア">
+            <div class="target-controls">
+              <div id="fish-picker" class="fish-picker">
+                <label for="fish-search"
+                  ><span id="fish-filter-label"
+                    ><!-- prerender:fish-filter-label --><!-- /prerender:fish-filter-label --></span
+                  ></label
+                >
+                <div class="fish-combobox">
+                  <input id="fish-filter" type="hidden" value="" />
+                  <div class="fish-input-row">
+                    <input
+                      id="fish-search"
+                      type="text"
+                      disabled
+                      role="combobox"
+                      aria-autocomplete="list"
+                      aria-expanded="false"
+                      aria-controls="fish-suggestions"
+                      autocomplete="off"
+                    /><button id="fish-clear" type="button" disabled aria-label="Clear target fish">
+                      ×
+                    </button>
+                  </div>
+                  <div
+                    id="fish-suggestions"
+                    class="fish-suggestions"
+                    role="listbox"
+                    aria-labelledby="fish-filter-label"
+                    hidden
+                  ></div>
+                </div>
+                <p id="fish-search-status" class="fish-search-status" role="status"></p>
               </div>
-              <div
-                id="fish-suggestions"
-                class="fish-suggestions"
-                role="listbox"
-                aria-labelledby="fish-filter-label"
-                hidden
-              ></div>
+              <label class="catalogue-area-label" for="catalogue-stage">釣り・購入エリア</label>
+              <select id="catalogue-stage" disabled>
+                <option value="">全エリア</option>
+              </select>
+              <p id="catalogue-stage-note" class="control-note"></p>
             </div>
-            <p id="fish-search-status" class="fish-search-status" role="status"></p>
+            <section class="equipment-menu">
+              <h2 id="category-menu-title">
+                <!-- prerender:category-menu-title --><!-- /prerender:category-menu-title -->
+              </h2>
+              <div id="category-menu" class="category-menu" hidden>
+                <!-- prerender:category-menu --><!-- /prerender:category-menu -->
+              </div>
+            </section>
+            <div id="bait-route-menu" class="part-menu"></div>
+            <div id="fly-part-menu" class="part-menu"></div>
+            <details class="catalogue-refine" open>
+              <summary>アイテム検索・並び替え</summary>
+              <div class="filters" role="search">
+                <label id="style-label"
+                  ><span id="style-filter-label"
+                    ><!-- prerender:style-filter-label --><!-- /prerender:style-filter-label --></span
+                  ><select id="style-filter" disabled>
+                    <!-- prerender:style-filter --><!-- /prerender:style-filter -->
+                  </select></label
+                >
+                <label class="search-label"
+                  ><span data-t="search-label">検索</span
+                  ><input
+                    id="search"
+                    disabled
+                    type="search"
+                    autocomplete="off"
+                    placeholder="例: 「rod」「トップウォータ」「0D」"
+                /></label>
+                <label hidden
+                  ><span data-t="category-label">カテゴリ</span
+                  ><select id="category-filter" disabled>
+                    <!-- prerender:category-filter --><!-- /prerender:category-filter -->
+                  </select></label
+                >
+                <label
+                  ><span data-t="sort-label">並び順</span
+                  ><select id="sort-filter" disabled>
+                    <!-- prerender:sort-filter --><!-- /prerender:sort-filter -->
+                  </select></label
+                >
+              </div>
+            </details>
+          </aside>
+          <div class="catalogue-results">
+            <div class="section-heading catalogue-heading">
+              <div>
+                <p class="eyebrow dark" data-t="catalogue-kicker">全アイテム一覧</p>
+                <h2 id="category-title">
+                  <!-- prerender:category-title --><!-- /prerender:category-title -->
+                </h2>
+              </div>
+              <p class="section-copy" id="category-description">
+                <!-- prerender:category-description --><!-- /prerender:category-description -->
+              </p>
+            </div>
+            <section id="fish-location-panel" hidden class="fish-location-panel" aria-live="polite">
+              <!-- prerender:fish-location-panel --><!-- /prerender:fish-location-panel -->
+            </section>
+            <p id="fish-status" class="fish-scope"></p>
+            <div id="category-decisions" class="category-decisions">
+              <!-- prerender:category-decisions --><!-- /prerender:category-decisions -->
+            </div>
+            <div id="rod-comparison">
+              <!-- prerender:rod-comparison --><!-- /prerender:rod-comparison -->
+            </div>
+            <p id="purchase-sort-note" class="fish-scope" hidden aria-live="polite"></p>
+            <p id="result-count" class="result-count" aria-live="polite">
+              <!-- prerender:result-count --><!-- /prerender:result-count -->
+            </p>
+            <div id="cards" class="cards"><!-- prerender:cards --><!-- /prerender:cards --></div>
           </div>
-          <label class="search-label"
-            ><span data-t="search-label">検索</span
-            ><input
-              id="search"
-              disabled
-              type="search"
-              autocomplete="off"
-              placeholder="例: 「rod」「トップウォータ」「0D」"
-          /></label>
-          <label
-            ><span data-t="category-label">カテゴリ</span
-            ><select id="category-filter" disabled>
-              <!-- prerender:category-filter --><!-- /prerender:category-filter -->
-            </select></label
-          >
-          <label
-            ><span data-t="sort-label">並び順</span
-            ><select id="sort-filter" disabled>
-              <!-- prerender:sort-filter --><!-- /prerender:sort-filter -->
-            </select></label
-          >
         </div>
-        <section id="fish-location-panel" hidden class="fish-location-panel" aria-live="polite">
-          <!-- prerender:fish-location-panel --><!-- /prerender:fish-location-panel -->
-        </section>
-        <p id="fish-status" class="fish-scope"></p>
-        <div id="category-decisions" class="category-decisions">
-          <!-- prerender:category-decisions --><!-- /prerender:category-decisions -->
-        </div>
-        <div id="rod-comparison">
-          <!-- prerender:rod-comparison --><!-- /prerender:rod-comparison -->
-        </div>
-        <p id="purchase-sort-note" class="fish-scope" hidden aria-live="polite"></p>
-        <p id="result-count" class="result-count" aria-live="polite">
-          <!-- prerender:result-count --><!-- /prerender:result-count -->
-        </p>
-        <div id="cards" class="cards"><!-- prerender:cards --><!-- /prerender:cards --></div>
       </section>
 
       <details class="guide-overview" id="quick-guide">

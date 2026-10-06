@@ -361,9 +361,13 @@ function renderFishLocationContent(ctx, id, fish, chosen, locations, labels) {
     ? `${labels.mapDetails} · ${labels.stage} ${chosen.stage} · ${ctx.local(chosen.stageName)}`
     : labels.mapDetails
   const disclosure = locations.length
-    ? ctx.cardDisclosure(mapLabel, mapContent, 'fish-location-details')
+    ? ctx.cardDisclosure(
+        mapLabel,
+        renderFishAreaLinks(ctx, id, locations, labels) + mapContent,
+        'fish-location-details',
+      )
     : ''
-  return `${fishLocationHeader(ctx, id, fish, labels.title, labels, chosen)}${renderFishAreaLinks(ctx, id, locations, labels)}${disclosure}`
+  return `${fishLocationHeader(ctx, id, fish, labels.title, labels, chosen)}${disclosure}`
 }
 
 export function renderFishLocation(ctx, id) {

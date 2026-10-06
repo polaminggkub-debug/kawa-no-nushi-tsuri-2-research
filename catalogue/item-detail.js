@@ -290,7 +290,7 @@
       en: ["Other foods sold in this area", "Compare all shop foods and why to restore HP"]
     }[ctx.lang];
   }
-  function foodChoicePanel(ctx, item, allItems, sections) {
+  function foodChoicePanel(ctx, item, allItems, sections2) {
     const copy6 = foodCopy(ctx);
     const hpLabel = (hp) => ctx.lang === "th" ? `ฟื้นได้สูงสุด ${hp} HP` : ctx.lang === "ja" ? `最大${hp} HP回復` : `Restores up to ${hp} HP`;
     const foodOption = (other) => {
@@ -303,7 +303,7 @@
     );
     const nearby = ctx.selectedStage ? `<h3>${ctx.esc(copy6[0])} · ${ctx.selectedStage}</h3><div class="detail-grid" data-local-food-options>${alternatives.map(foodOption).join("")}</div>` : "";
     const catalogueOptions = allItems.filter((other) => other.category === "food" && other.priceYen > 0 && other.id !== item.id).map(foodOption).join("");
-    const full = sections.map(
+    const full = sections2.map(
       (section) => `<h3>${ctx.esc(ctx.local(section.title))}</h3><p>${ctx.esc(ctx.local(section.recommendation))}</p><p class="muted">${ctx.esc(ctx.local(section.scope))}</p>`
     ).join("");
     return `<section class="detail-section buying-decision" data-food-choice>${nearby}<details><summary>${ctx.esc(copy6[1])}</summary>${full}<div class="detail-grid" data-all-food-options>${catalogueOptions}</div></details></section>`;
@@ -480,12 +480,12 @@
       8: "fly_rod_path"
     };
     const path = item.category === "rod" ? rodPaths[item.decodedFields?.styleCode] : item.category === "hook" ? "hook_purchase_caution" : "";
-    const sections = decisions.filter(
+    const sections2 = decisions.filter(
       (section) => path ? section.id === path : !ctx.selectedFish && section.category === item.category && ["lure", "food"].includes(item.category) && (section.items || []).some((ref) => ref.category === item.category && ref.id === item.id)
     );
-    if (!sections.length) return "";
-    if (item.category === "food") return foodChoicePanel(ctx, item, allItems, sections);
-    return `<section class="detail-section buying-decision"><h2>${ctx.lang === "th" ? "ควรซื้อหรือเปลี่ยนมาใช้อันนี้ไหม?" : ctx.lang === "ja" ? "買う・替えるべき？" : "Should I buy or switch to this?"}</h2>${sections.map((section) => {
+    if (!sections2.length) return "";
+    if (item.category === "food") return foodChoicePanel(ctx, item, allItems, sections2);
+    return `<section class="detail-section buying-decision"><h2>${ctx.lang === "th" ? "ควรซื้อหรือเปลี่ยนมาใช้อันนี้ไหม?" : ctx.lang === "ja" ? "買う・替えるべき？" : "Should I buy or switch to this?"}</h2>${sections2.map((section) => {
       const refs = (section.items || []).filter((ref) => ref.category === item.category && ref.id !== item.id).map((ref) => allItems.find((i) => i.category === ref.category && i.id === ref.id)).filter(Boolean);
       return `<h3>${ctx.esc(ctx.local(section.title))}</h3><p>${ctx.esc(ctx.local(section.recommendation))}</p>${refs.length ? `<div class="detail-grid">${refs.map((ref) => ctx.componentLink(ref)).join("")}</div>` : ""}<p class="muted">${ctx.esc(ctx.local(section.scope))}</p>`;
     }).join("")}</section>`;
@@ -1567,7 +1567,7 @@
     const list = `<details class="compatibility-details"><summary>${ctx.esc(compatibilitySummary(ctx, count, steering, rigRoute))}</summary>${groups}</details>`;
     const scope = rigRoute ? ctx.copy[`${rigRoute}FishScope`] : ctx.local(use.fishScope) || ctx.copy.fishScope;
     const caveat = rigRoute ? "" : `<p class="muted">${ctx.esc(steeringScope(ctx, steering))}</p>`;
-    return `<section class="detail-section compatibility-section"${rigRoute ? ` data-compatibility-route="${rigRoute}"` : ""}><h2>${ctx.esc(heading)} · ${count}</h2>${fishTarget}<p class="section-lede">${ctx.esc(scope)}</p>${list}${caveat}</section>`;
+    return `<section id="item-compatible" class="detail-section compatibility-section"${rigRoute ? ` data-compatibility-route="${rigRoute}"` : ""}><h2>${ctx.esc(heading)} · ${count}</h2>${fishTarget}<p class="section-lede">${ctx.esc(scope)}</p>${list}${caveat}</section>`;
   }
   function technicalSection(ctx, item) {
     const use = item.playerUse || {}, sources = [
@@ -1592,7 +1592,7 @@
     ).join("");
     const rodMechanics = item.category === "rod" || item.gearDecision ? `<h3>${ctx.lang === "th" ? "การทำงานที่แกะได้" : ctx.lang === "ja" ? "解読した動作" : "Decoded mechanics"}</h3><p>${ctx.esc(ctx.local(use.summary))}</p><ul>${(use.facts?.[ctx.lang] || []).map((fact) => `<li>${ctx.esc(fact)}</li>`).join("")}</ul>` : "";
     const notes = noteArray.map((note) => `<li>${ctx.esc(note)}</li>`).join("");
-    return `<details class="evidence"><summary>${ctx.esc(ctx.copy.tech)}</summary><div class="detail-content"><p><strong>${ctx.esc(ctx.copy.itemPrice)}:</strong> ${item.priceYen == null ? "—" : `¥${ctx.esc(item.priceYen)}`}</p><p><strong>${ctx.esc(ctx.copy.offset)}:</strong> <code>${ctx.esc(item.fileOffset || "—")}</code></p><p><strong>${ctx.esc(ctx.copy.bytes)}:</strong> <code>${ctx.esc(item.recordBytesHex || "—")}</code></p>${techTargets}${rodMechanics}${renderedDecoded ? `<h3>${ctx.esc(ctx.copy.fields)}</h3><dl>${renderedDecoded}</dl>` : ""}${rawFields ? `<h3>${ctx.esc(ctx.copy.raw)}</h3><dl>${rawFields}</dl>` : ""}${notes ? `<h3>${ctx.esc(ctx.copy.evidenceNotes)}</h3><ul>${notes}</ul>` : ""}${sources.length ? `<h3>${ctx.esc(ctx.copy.source)}</h3><ul>${sourceLinks}</ul>` : ""}<a href="${ctx.esc(item.frame || item.image)}" target="_blank" rel="noopener">${ctx.esc(ctx.copy.openFrame)}</a></div></details>`;
+    return `<details class="evidence"><summary id="item-evidence">${ctx.esc(ctx.copy.tech)}</summary><div class="detail-content"><p><strong>${ctx.esc(ctx.copy.itemPrice)}:</strong> ${item.priceYen == null ? "—" : `¥${ctx.esc(item.priceYen)}`}</p><p><strong>${ctx.esc(ctx.copy.offset)}:</strong> <code>${ctx.esc(item.fileOffset || "—")}</code></p><p><strong>${ctx.esc(ctx.copy.bytes)}:</strong> <code>${ctx.esc(item.recordBytesHex || "—")}</code></p>${techTargets}${rodMechanics}${renderedDecoded ? `<h3>${ctx.esc(ctx.copy.fields)}</h3><dl>${renderedDecoded}</dl>` : ""}${rawFields ? `<h3>${ctx.esc(ctx.copy.raw)}</h3><dl>${rawFields}</dl>` : ""}${notes ? `<h3>${ctx.esc(ctx.copy.evidenceNotes)}</h3><ul>${notes}</ul>` : ""}${sources.length ? `<h3>${ctx.esc(ctx.copy.source)}</h3><ul>${sourceLinks}</ul>` : ""}<a href="${ctx.esc(item.frame || item.image)}" target="_blank" rel="noopener">${ctx.esc(ctx.copy.openFrame)}</a></div></details>`;
   }
 
   // src/pages/item/locations.js
@@ -1982,6 +1982,33 @@
     if (!content) return "";
     const title = ctx.lang === "th" ? "ตัวเลือกเพิ่มเติมและรายละเอียดเฉพาะทาง" : ctx.lang === "ja" ? "追加の選択肢・個別情報" : "More options and item-specific details";
     return `<details class="more-options"><summary>${ctx.esc(title)}</summary><div class="detail-content">${content}</div></details>`;
+  }
+
+  // src/pages/item/section-index.js
+  var sections = [
+    ["what-to-do", "ควรใช้เมื่อไร", "使うとき", "When to use"],
+    ["item-shops", "ซื้อที่ไหน", "購入場所", "Where to buy"],
+    ["fly-purchases", "ชุดที่มีขาย", "販売セット", "Shop bundles"],
+    ["use-locations", "จุดและวิธีใช้", "使用場所", "Where to use"],
+    ["item-compatible", "ปลาที่ใช้ด้วยได้", "対応する魚", "Compatible fish"],
+    ["item-evidence", "หลักฐาน", "根拠", "Evidence"]
+  ];
+  function renderSectionIndex(ctx, markup) {
+    const locale = ctx.locale || ctx.lang || "en";
+    const column = locale === "th" ? 1 : locale === "ja" ? 2 : 3;
+    const esc = ctx.escapeHtml || ctx.esc;
+    const label = locale === "th" ? "หัวข้อในหน้านี้" : locale === "ja" ? "このページの項目" : "On this page";
+    const links = sections.filter(([id]) => markup.includes(`id="${id}"`)).map(([id, ...names]) => `<a href="#${id}">${esc(names[column - 1])}</a>`).join("");
+    return links ? `<nav class="page-section-index" aria-label="${esc(label)}"><strong>${esc(label)}</strong>${links}</nav>` : "";
+  }
+  function bindSectionIndex(root) {
+    root.querySelector?.(".page-section-index")?.addEventListener("click", (event) => {
+      const href = event.target.closest("a")?.getAttribute("href");
+      if (!href?.startsWith("#")) return;
+      const target = document.getElementById(href.slice(1));
+      const disclosure = target?.tagName === "DETAILS" ? target : target?.closest("details");
+      if (disclosure) disclosure.open = true;
+    });
   }
 
   // src/features/food-availability/index.js
@@ -3226,7 +3253,8 @@
     const buying = rodAdvice ? "" : ctx.buyingDecision(item, allItems, decisions);
     const more = renderMoreOptions(ctx, item, allItems, fishLocations);
     const back = `<p class="detail-back-to-list"><a class="route-button" href="${ctx.esc(categoryHref)}">${ctx.esc(ctx.copy.allItems)} · ${ctx.esc(categoryText)} ↗</a></p>`;
-    return `${intro}${hero}${target}${baitTarget}${kit}${choices.action}${flyPriceChoice(ctx, item, allItems)}${flyMenuPosition(ctx, item)}${choices.extras}${buying}${ctx.shopSection(item, allItems, fishLocations)}${ctx.useLocationSection(item, fishLocations, allItems)}${ctx.fishSection(item, fishVisuals, fishLocations)}${more}${back}${ctx.technicalSection(item)}<p class="muted">${ctx.esc(ctx.copy.sourced)}</p>`;
+    const content = `${target}${baitTarget}${kit}${choices.action}${flyPriceChoice(ctx, item, allItems)}${flyMenuPosition(ctx, item)}${choices.extras}${buying}${ctx.shopSection(item, allItems, fishLocations)}${ctx.useLocationSection(item, fishLocations, allItems)}${ctx.fishSection(item, fishVisuals, fishLocations)}${more}${back}${ctx.technicalSection(item)}<p class="muted">${ctx.esc(ctx.copy.sourced)}</p>`;
+    return `${intro}${hero}${renderSectionIndex(ctx, content)}${content}`;
   }
   function scrollToItemAnchor() {
     const exact = [
@@ -3234,7 +3262,9 @@
       "#item-shops",
       "#what-to-do",
       "#fly-purchases",
-      "#use-locations"
+      "#use-locations",
+      "#item-compatible",
+      "#item-evidence"
     ];
     const supported = exact.includes(location.hash) || location.hash.startsWith("#compass-exit-") || location.hash.startsWith("#forage-stage-");
     if (supported) document.getElementById(location.hash.slice(1))?.scrollIntoView({ block: "start" });
@@ -3249,6 +3279,9 @@
       fishLocations,
       decisions
     );
+    bindSectionIndex(ctx.$("detail-root"));
+    if (location.hash === "#item-evidence")
+      document.getElementById("item-evidence").closest("details").open = true;
     scrollToItemAnchor();
     const name = ctx.imageName(item);
     const category = ctx.categoryLabel(item);

@@ -8,20 +8,22 @@ export function renderTargetCategories(ctx, fish) {
     `<option value="all">${ctx.esc(ctx.player.all)}</option>` +
     available.map((c) => `<option value="${c}">${ctx.esc(ctx.player.cat[c])}</option>`).join('')
   select.value = !fish || ctx.fishCategories.includes(current) ? current : 'all'
-  document.getElementById('category-menu').innerHTML = available
-    .map((c) => {
-      const item = ctx.allItems.find((i) => ctx.groupOf(i) === c)
-      const count = ctx.allItems.filter((i) =>
-        fish && ['rod', 'hook'].includes(c)
-          ? ctx.groupOf(i) === c
-          : ctx.groupOf(i) === c &&
-            (!fish ||
-              ctx.fishIdsFor(i).includes(fish) ||
-              (['fly_wing', 'fly_tail'].includes(i.category) && ctx.flyBundlePartFor(i, fish))),
-      ).length
-      return `<a class="category-button" href="${ctx.esc(categoryNavigationHref(ctx, c, fish))}" data-category="${c}"><img src="${ctx.esc(item?.image)}" alt=""><span><strong>${ctx.esc(ctx.player.cat[c])}</strong><small>${count}</small></span></a>`
-    })
-    .join('')
+  document.getElementById('category-menu').innerHTML =
+    `<a class="category-button" href="${ctx.esc(categoryNavigationHref(ctx, 'all', fish))}" data-category="all"><span><strong>${ctx.esc(ctx.player.all)}</strong></span></a>` +
+    available
+      .map((c) => {
+        const item = ctx.allItems.find((i) => ctx.groupOf(i) === c)
+        const count = ctx.allItems.filter((i) =>
+          fish && ['rod', 'hook'].includes(c)
+            ? ctx.groupOf(i) === c
+            : ctx.groupOf(i) === c &&
+              (!fish ||
+                ctx.fishIdsFor(i).includes(fish) ||
+                (['fly_wing', 'fly_tail'].includes(i.category) && ctx.flyBundlePartFor(i, fish))),
+        ).length
+        return `<a class="category-button" href="${ctx.esc(categoryNavigationHref(ctx, c, fish))}" data-category="${c}"><img src="${ctx.esc(item?.image)}" alt=""><span><strong>${ctx.esc(ctx.player.cat[c])}</strong><small>${count}</small></span></a>`
+      })
+      .join('')
 }
 
 export function renderFilters(ctx) {

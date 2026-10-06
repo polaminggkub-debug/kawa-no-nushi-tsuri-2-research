@@ -1,3 +1,4 @@
+import { renderSectionIndex, bindSectionIndex } from './section-index.js'
 import { distinctFishNames } from './fish-names.js'
 import { renderFightControls } from './fight-controls.js'
 import { renderNotebookStatus } from './notebook-status.js'
@@ -9,6 +10,9 @@ const profileAnchors = {
   '#all-compatible': 'all-compatible',
   '#fly-backup': 'fly-backup',
   '#fight-controls': 'fight-controls',
+  '#fish-shopping': 'fish-shopping',
+  '#fish-notebook': 'fish-notebook',
+  '#fish-evidence': 'fish-evidence',
 }
 
 function profileAnchorId(hash) {
@@ -86,7 +90,8 @@ function compatibleSection(ctx, state) {
 function profileContent(ctx, fishData, locationData, fish, state) {
   const notebook = fishData.notebookCompletion?.species?.[ctx.id]
   const firstStep = notebook?.notebookEligible === true ? '' : renderFirstStep(ctx)
-  return `${renderProfileHero(ctx, state)}${renderNotebookStatus(ctx, fishData)}${renderEelQuestContext(ctx, locationData)}${firstStep}${ctx.renderAreas(state.locations, state.activeStage, fish)}${ctx.renderExchange(fishData.items || [], state.activeStage)}${ctx.renderShopping(state.matches, state.locations, state.activeStage, fishData.items || [], fishData.flyBackupChoices)}${renderFightControls(ctx, state.activeStage)}${compatibleSection(ctx, state)}${ctx.renderWaterIcons(fishData.waterIcons, state.activeStage)}${ctx.renderEvidence(fish, state.locations, state.matches)}`
+  const content = `${renderEelQuestContext(ctx, locationData)}${firstStep}${ctx.renderAreas(state.locations, state.activeStage, fish)}${ctx.renderExchange(fishData.items || [], state.activeStage)}${ctx.renderShopping(state.matches, state.locations, state.activeStage, fishData.items || [], fishData.flyBackupChoices)}${renderFightControls(ctx, state.activeStage)}${renderNotebookStatus(ctx, fishData)}${compatibleSection(ctx, state)}${ctx.renderWaterIcons(fishData.waterIcons, state.activeStage)}${ctx.renderEvidence(fish, state.locations, state.matches)}`
+  return `${renderProfileHero(ctx, state)}${renderSectionIndex(ctx, content)}${content}`
 }
 
 function unconfirmedProfileContent(ctx, fishData, locationData, fish, state) {
@@ -96,7 +101,8 @@ function unconfirmedProfileContent(ctx, fishData, locationData, fish, state) {
       '</details>',
       '<p><a href="https://github.com/polaminggkub-debug/kawa-no-nushi-tsuri-2-research/blob/main/docs/fish-acceptance-research.md">Fish acceptance research · profile 43 ↗</a></p></details>',
     )
-  return `<div class="detail-hero"><div><p class="muted">${ctx.escapeHtml(ctx.copy.pageTitle)} · ID 43</p><h1>${ctx.escapeHtml(state.headline)}</h1></div></div>${renderNotebookStatus(ctx, fishData)}${renderEelQuestContext(ctx, locationData)}${ctx.unconfirmedProfileAction()}${evidence}`
+  const content = `${renderNotebookStatus(ctx, fishData)}${renderEelQuestContext(ctx, locationData)}${ctx.unconfirmedProfileAction()}${evidence}`
+  return `<div class="detail-hero"><div><p class="muted">${ctx.escapeHtml(ctx.copy.pageTitle)} · ID 43</p><h1>${ctx.escapeHtml(state.headline)}</h1></div></div>${renderSectionIndex(ctx, content)}${content}`
 }
 
 function updateAreaChooser(ctx, fishData, locationData, locations) {
@@ -157,13 +163,19 @@ export function render(ctx, fishData, locationData) {
   const state = profileState(ctx, fish, locationData, fishData)
   resolveProfileStage(ctx, state.activeStage)
   ctx.setNavigation(state.activeStage)
+  ctx.page.innerHTML =
+    ctx.id === '43'
+      ? unconfirmedProfileContent(ctx, fishData, locationData, fish, state)
+      : profileContent(ctx, fishData, locationData, fish, state)
+  bindSectionIndex(ctx.page)
+  if (location.hash === '#fish-evidence')
+    document.getElementById('fish-evidence').closest('details').open = true
+  const anchorId = profileAnchorId(location.hash)
   if (ctx.id === '43') {
-    ctx.page.innerHTML = unconfirmedProfileContent(ctx, fishData, locationData, fish, state)
     setFishTitle(ctx, state.headline)
+    restoreProfileAnchor(anchorId)
     return
   }
-  ctx.page.innerHTML = profileContent(ctx, fishData, locationData, fish, state)
-  const anchorId = profileAnchorId(location.hash)
   reopenRequestedStarter(ctx, !anchorId)
   reopenFlyBackup()
   bindFlyBackupAction(ctx)

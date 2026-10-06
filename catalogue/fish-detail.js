@@ -855,7 +855,7 @@
       const coords = (location2.points || []).map((point) => `(${point.x}, ${point.y})`).join(" · ");
       return `<li><strong>${ctx.escapeHtml(ctx.copy.stage(stage))}:</strong> ${ctx.escapeHtml(ctx.copy.configuredPoints(ctx.pointCount(location2)))} · ${ctx.escapeHtml(ctx.copy.spawnSlots(ctx.slotCount(location2)))}<br>${ctx.escapeHtml(coords || "—")}</li>`;
     }).join("");
-    return `<details class="evidence"><summary>${ctx.escapeHtml(ctx.copy.evidence)}</summary><p>${ctx.escapeHtml(ctx.copy.evidenceIntro)}</p><dl><dt>${ctx.escapeHtml(ctx.copy.profile)}</dt><dd>${ctx.escapeHtml(ctx.id)}</dd>${profileOffset ? `<dt>${ctx.escapeHtml(ctx.copy.profileOffset)}</dt><dd>${ctx.escapeHtml(profileOffset)}</dd>` : ""}<dt>${ctx.escapeHtml(ctx.copy.source)}</dt><dd>${evidenceFileLink(ctx, "data/rom-fish-locations.json")}</dd>${sourceSet.size ? `<dt>${ctx.escapeHtml(ctx.copy.reference)}</dt><dd><ul class="evidence-sources">${[...sourceSet].map((source) => `<li>${evidenceFileLink(ctx, source)}</li>`).join("")}</ul></dd>` : ""}</dl>${locationDetails ? `<h3>${ctx.escapeHtml(ctx.copy.coords)}</h3><ul>${locationDetails}</ul>` : ""}</details>`;
+    return `<details class="evidence"><summary id="fish-evidence">${ctx.escapeHtml(ctx.copy.evidence)}</summary><p>${ctx.escapeHtml(ctx.copy.evidenceIntro)}</p><dl><dt>${ctx.escapeHtml(ctx.copy.profile)}</dt><dd>${ctx.escapeHtml(ctx.id)}</dd>${profileOffset ? `<dt>${ctx.escapeHtml(ctx.copy.profileOffset)}</dt><dd>${ctx.escapeHtml(profileOffset)}</dd>` : ""}<dt>${ctx.escapeHtml(ctx.copy.source)}</dt><dd>${evidenceFileLink(ctx, "data/rom-fish-locations.json")}</dd>${sourceSet.size ? `<dt>${ctx.escapeHtml(ctx.copy.reference)}</dt><dd><ul class="evidence-sources">${[...sourceSet].map((source) => `<li>${evidenceFileLink(ctx, source)}</li>`).join("")}</ul></dd>` : ""}</dl>${locationDetails ? `<h3>${ctx.escapeHtml(ctx.copy.coords)}</h3><ul>${locationDetails}</ul>` : ""}</details>`;
   }
   function renderExchange(ctx, items, stage) {
     const rewards = items.filter((item) => item.exchangeFishId === ctx.id);
@@ -1103,7 +1103,7 @@
     const area = selectedArea(ctx, locations, stage, text);
     const kit = ctx.renderReusableKit(allItems, stage);
     const fallback = ctx.renderFlyFallback(allItems, stage, flyChoices);
-    return `<section class="detail-section shopping-plan"><h2>${ctx.escapeHtml(text.title)}</h2>${area}<p>${ctx.escapeHtml(text.intro)}</p>${offers.length ? `<div class="detail-grid">${cards}</div>` : noOffer}${missingMethods ? `<div class="detail-grid missing-method-grid">${missingMethods}</div>` : ""}<p class="muted">${ctx.escapeHtml(text.scope)}</p><a href="#all-compatible">${ctx.escapeHtml(text.all)} ↓</a>${kit}${fallback}</section>`;
+    return `<section id="fish-shopping" class="detail-section shopping-plan"><h2>${ctx.escapeHtml(text.title)}</h2>${area}<p>${ctx.escapeHtml(text.intro)}</p>${offers.length ? `<div class="detail-grid">${cards}</div>` : noOffer}${missingMethods ? `<div class="detail-grid missing-method-grid">${missingMethods}</div>` : ""}<p class="muted">${ctx.escapeHtml(text.scope)}</p><a href="#all-compatible">${ctx.escapeHtml(text.all)} ↓</a>${kit}${fallback}</section>`;
   }
 
   // src/pages/fish/water-icons.js
@@ -1204,6 +1204,32 @@
     const copy4 = copyFor(ctx);
     const cards = classes.map((iconClass) => iconCard(ctx, copy4, waterIcons, profile, iconClass, stage)).join("");
     return `<section class="detail-section water-icon-guide" id="water-icons"><h2>${ctx.escapeHtml(copy4.title)}</h2><p class="section-lede">${ctx.escapeHtml(copy4.intro)}</p><div class="detail-grid water-icon-grid">${cards}</div>${evidenceDetails(ctx, copy4)}</section>`;
+  }
+
+  // src/pages/fish/section-index.js
+  var sections = [
+    ["fish-area-map", "จุดตกปลา", "釣り場", "Fishing spots"],
+    ["fish-shopping", "ชุดเริ่มตก", "最初の仕掛け", "Fishing setup"],
+    ["fish-notebook", "สมุดปลา", "釣りノート", "Notebook"],
+    ["all-compatible", "เหยื่อทางเลือก", "エサの候補", "Bait alternatives"],
+    ["fish-evidence", "หลักฐาน", "根拠", "Evidence"]
+  ];
+  function renderSectionIndex(ctx, markup) {
+    const locale = ctx.locale || ctx.lang || "en";
+    const column = locale === "th" ? 1 : locale === "ja" ? 2 : 3;
+    const esc = ctx.escapeHtml || ctx.esc;
+    const label = locale === "th" ? "หัวข้อในหน้านี้" : locale === "ja" ? "このページの項目" : "On this page";
+    const links = sections.filter(([id]) => markup.includes(`id="${id}"`)).map(([id, ...names]) => `<a href="#${id}">${esc(names[column - 1])}</a>`).join("");
+    return links ? `<nav class="page-section-index" aria-label="${esc(label)}"><strong>${esc(label)}</strong>${links}</nav>` : "";
+  }
+  function bindSectionIndex(root) {
+    root.querySelector?.(".page-section-index")?.addEventListener("click", (event) => {
+      const href = event.target.closest("a")?.getAttribute("href");
+      if (!href?.startsWith("#")) return;
+      const target = document.getElementById(href.slice(1));
+      const disclosure = target?.tagName === "DETAILS" ? target : target?.closest("details");
+      if (disclosure) disclosure.open = true;
+    });
   }
 
   // src/pages/fish/fight-controls.js
@@ -1347,13 +1373,13 @@
     if (!validStage2(first) || !stages.length) return renderUnconfirmed(ctx, text);
     const otherStages = stages.filter((stage) => stage !== first);
     const locations = otherStages.length ? text.repeats(otherStages.join(", ")) : text.noRepeats;
-    return `<section class="decision-panel fish-notebook-goal" data-fish-notebook-status="eligible" data-notebook-first-stage="${first}" data-notebook-stages="${stages.join(",")}"><h2>${ctx.escapeHtml(text.eligibleTitle)}</h2><p>${ctx.escapeHtml(text.eligibleBody)}</p><p><strong>${ctx.escapeHtml(text.first(first))}</strong> · ${ctx.escapeHtml(locations)}</p><p>${ctx.escapeHtml(text.recorded)}</p><a class="route-button" href="#fish-area-map">${ctx.escapeHtml(text.map)} ↓</a><p>${notebookChecklistLink(ctx, first)}</p></section>`;
+    return `<section id="fish-notebook" class="decision-panel fish-notebook-goal" data-fish-notebook-status="eligible" data-notebook-first-stage="${first}" data-notebook-stages="${stages.join(",")}"><h2>${ctx.escapeHtml(text.eligibleTitle)}</h2><p>${ctx.escapeHtml(text.eligibleBody)}</p><p><strong>${ctx.escapeHtml(text.first(first))}</strong> · ${ctx.escapeHtml(locations)}</p><p>${ctx.escapeHtml(text.recorded)}</p><a class="route-button" href="#fish-area-map">${ctx.escapeHtml(text.map)} ↑</a><p>${notebookChecklistLink(ctx, first)}</p></section>`;
   }
   function renderExcluded(ctx, text) {
-    return `<section class="decision-panel fish-notebook-goal" data-fish-notebook-status="excluded"><h2>${ctx.escapeHtml(text.excludedTitle)}</h2><p>${ctx.escapeHtml(text.excludedBody)}</p></section>`;
+    return `<section id="fish-notebook" class="decision-panel fish-notebook-goal" data-fish-notebook-status="excluded"><h2>${ctx.escapeHtml(text.excludedTitle)}</h2><p>${ctx.escapeHtml(text.excludedBody)}</p></section>`;
   }
   function renderUnconfirmed(ctx, text) {
-    return `<section class="decision-panel fish-notebook-goal" data-fish-notebook-status="unconfirmed"><h2>${ctx.escapeHtml(text.unknownTitle)}</h2><p>${ctx.escapeHtml(text.unknownBody)}</p></section>`;
+    return `<section id="fish-notebook" class="decision-panel fish-notebook-goal" data-fish-notebook-status="unconfirmed"><h2>${ctx.escapeHtml(text.unknownTitle)}</h2><p>${ctx.escapeHtml(text.unknownBody)}</p></section>`;
   }
   function renderNotebookStatus(ctx, fishData) {
     const text = copy2[ctx.locale] || copy2.en;
@@ -1423,7 +1449,10 @@
     "#water-icons": "water-icons",
     "#all-compatible": "all-compatible",
     "#fly-backup": "fly-backup",
-    "#fight-controls": "fight-controls"
+    "#fight-controls": "fight-controls",
+    "#fish-shopping": "fish-shopping",
+    "#fish-notebook": "fish-notebook",
+    "#fish-evidence": "fish-evidence"
   };
   function profileAnchorId(hash) {
     return profileAnchors[hash] || "";
@@ -1486,14 +1515,16 @@
   function profileContent(ctx, fishData, locationData, fish, state) {
     const notebook = fishData.notebookCompletion?.species?.[ctx.id];
     const firstStep = notebook?.notebookEligible === true ? "" : renderFirstStep(ctx);
-    return `${renderProfileHero(ctx, state)}${renderNotebookStatus(ctx, fishData)}${renderEelQuestContext(ctx, locationData)}${firstStep}${ctx.renderAreas(state.locations, state.activeStage, fish)}${ctx.renderExchange(fishData.items || [], state.activeStage)}${ctx.renderShopping(state.matches, state.locations, state.activeStage, fishData.items || [], fishData.flyBackupChoices)}${renderFightControls(ctx, state.activeStage)}${compatibleSection(ctx, state)}${ctx.renderWaterIcons(fishData.waterIcons, state.activeStage)}${ctx.renderEvidence(fish, state.locations, state.matches)}`;
+    const content = `${renderEelQuestContext(ctx, locationData)}${firstStep}${ctx.renderAreas(state.locations, state.activeStage, fish)}${ctx.renderExchange(fishData.items || [], state.activeStage)}${ctx.renderShopping(state.matches, state.locations, state.activeStage, fishData.items || [], fishData.flyBackupChoices)}${renderFightControls(ctx, state.activeStage)}${renderNotebookStatus(ctx, fishData)}${compatibleSection(ctx, state)}${ctx.renderWaterIcons(fishData.waterIcons, state.activeStage)}${ctx.renderEvidence(fish, state.locations, state.matches)}`;
+    return `${renderProfileHero(ctx, state)}${renderSectionIndex(ctx, content)}${content}`;
   }
   function unconfirmedProfileContent(ctx, fishData, locationData, fish, state) {
     const evidence = ctx.renderEvidence(fish, state.locations, state.matches).replace(
       "</details>",
       '<p><a href="https://github.com/polaminggkub-debug/kawa-no-nushi-tsuri-2-research/blob/main/docs/fish-acceptance-research.md">Fish acceptance research · profile 43 ↗</a></p></details>'
     );
-    return `<div class="detail-hero"><div><p class="muted">${ctx.escapeHtml(ctx.copy.pageTitle)} · ID 43</p><h1>${ctx.escapeHtml(state.headline)}</h1></div></div>${renderNotebookStatus(ctx, fishData)}${renderEelQuestContext(ctx, locationData)}${ctx.unconfirmedProfileAction()}${evidence}`;
+    const content = `${renderNotebookStatus(ctx, fishData)}${renderEelQuestContext(ctx, locationData)}${ctx.unconfirmedProfileAction()}${evidence}`;
+    return `<div class="detail-hero"><div><p class="muted">${ctx.escapeHtml(ctx.copy.pageTitle)} · ID 43</p><h1>${ctx.escapeHtml(state.headline)}</h1></div></div>${renderSectionIndex(ctx, content)}${content}`;
   }
   function updateAreaChooser(ctx, fishData, locationData, locations) {
     if (!locations.length) return;
@@ -1546,13 +1577,16 @@
     const state = profileState(ctx, fish, locationData, fishData);
     resolveProfileStage(ctx, state.activeStage);
     ctx.setNavigation(state.activeStage);
+    ctx.page.innerHTML = ctx.id === "43" ? unconfirmedProfileContent(ctx, fishData, locationData, fish, state) : profileContent(ctx, fishData, locationData, fish, state);
+    bindSectionIndex(ctx.page);
+    if (location.hash === "#fish-evidence")
+      document.getElementById("fish-evidence").closest("details").open = true;
+    const anchorId = profileAnchorId(location.hash);
     if (ctx.id === "43") {
-      ctx.page.innerHTML = unconfirmedProfileContent(ctx, fishData, locationData, fish, state);
       setFishTitle(ctx, state.headline);
+      restoreProfileAnchor(anchorId);
       return;
     }
-    ctx.page.innerHTML = profileContent(ctx, fishData, locationData, fish, state);
-    const anchorId = profileAnchorId(location.hash);
     reopenRequestedStarter(ctx, !anchorId);
     reopenFlyBackup();
     bindFlyBackupAction(ctx);

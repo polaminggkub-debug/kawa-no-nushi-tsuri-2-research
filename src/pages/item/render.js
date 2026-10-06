@@ -1,3 +1,4 @@
+import { renderSectionIndex, bindSectionIndex } from './section-index.js'
 import { foodAreaMarker, foodAreaAction } from '../../features/food-availability/index.js'
 import { equalPriceChoice } from '../../entities/item/index.js'
 import { magnetNextAction } from './magnet-next-action.js'
@@ -343,7 +344,8 @@ function renderItemSections(ctx, item, allItems, fishVisuals, fishLocations, dec
   const buying = rodAdvice ? '' : ctx.buyingDecision(item, allItems, decisions)
   const more = renderMoreOptions(ctx, item, allItems, fishLocations)
   const back = `<p class="detail-back-to-list"><a class="route-button" href="${ctx.esc(categoryHref)}">${ctx.esc(ctx.copy.allItems)} · ${ctx.esc(categoryText)} ↗</a></p>`
-  return `${intro}${hero}${target}${baitTarget}${kit}${choices.action}${flyPriceChoice(ctx, item, allItems)}${flyMenuPosition(ctx, item)}${choices.extras}${buying}${ctx.shopSection(item, allItems, fishLocations)}${ctx.useLocationSection(item, fishLocations, allItems)}${ctx.fishSection(item, fishVisuals, fishLocations)}${more}${back}${ctx.technicalSection(item)}<p class="muted">${ctx.esc(ctx.copy.sourced)}</p>`
+  const content = `${target}${baitTarget}${kit}${choices.action}${flyPriceChoice(ctx, item, allItems)}${flyMenuPosition(ctx, item)}${choices.extras}${buying}${ctx.shopSection(item, allItems, fishLocations)}${ctx.useLocationSection(item, fishLocations, allItems)}${ctx.fishSection(item, fishVisuals, fishLocations)}${more}${back}${ctx.technicalSection(item)}<p class="muted">${ctx.esc(ctx.copy.sourced)}</p>`
+  return `${intro}${hero}${renderSectionIndex(ctx, content)}${content}`
 }
 
 function scrollToItemAnchor() {
@@ -353,6 +355,8 @@ function scrollToItemAnchor() {
     '#what-to-do',
     '#fly-purchases',
     '#use-locations',
+    '#item-compatible',
+    '#item-evidence',
   ]
   const supported =
     exact.includes(location.hash) ||
@@ -371,6 +375,9 @@ export function render(ctx, item, allItems, fishVisuals, fishLocations, decision
     fishLocations,
     decisions,
   )
+  bindSectionIndex(ctx.$('detail-root'))
+  if (location.hash === '#item-evidence')
+    document.getElementById('item-evidence').closest('details').open = true
   scrollToItemAnchor()
   const name = ctx.imageName(item)
   const category = ctx.categoryLabel(item)

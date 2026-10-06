@@ -1367,6 +1367,239 @@ body:has(.kit-grid) main > details code {
   }
 }
 
+/* src/shared/ui/workspace.css */
+.catalogue-workspace {
+  display: grid;
+  grid-template-columns: 272px minmax(0, 1fr);
+  gap: 28px;
+  align-items: start;
+}
+#catalogue-load-feedback {
+  grid-column: 1/-1;
+}
+.catalogue-tools {
+  min-width: 0;
+  padding: 18px;
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  background: var(--card);
+}
+.catalogue-tools .target-controls {
+  display: grid;
+  gap: 8px;
+  padding-bottom: 16px;
+  border-bottom: 1px solid var(--line);
+  margin-bottom: 16px;
+}
+.catalogue-tools label {
+  font-size: 13px;
+  font-weight: 700;
+  color: var(--muted);
+}
+.catalogue-tools select,
+.catalogue-tools input {
+  width: 100%;
+  min-width: 0;
+  height: 44px;
+  font-size: 16px;
+  padding: 8px 10px;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  background: white;
+  color: var(--ink);
+}
+.catalogue-tools .fish-input-row input {
+  border: 0;
+}
+.catalogue-tools .fish-search-status:empty,
+.control-note:empty {
+  display: none;
+}
+.control-note {
+  margin: 0;
+  color: var(--muted);
+  font-size: 12px;
+  line-height: 1.55;
+}
+.catalogue-tools .category-menu {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 5px;
+}
+.catalogue-tools .category-menu a {
+  min-height: 44px;
+  padding: 7px 9px;
+}
+.catalogue-tools .category-menu a > span {
+  flex: 1;
+  justify-content: space-between;
+}
+.catalogue-tools .filters {
+  grid-template-columns: 1fr;
+  padding: 12px 0 0;
+  border: 0;
+  background: none;
+}
+.catalogue-tools .part-menu {
+  margin-top: 12px;
+  gap: 5px;
+}
+.catalogue-tools .part-menu button,
+.catalogue-tools .part-menu a {
+  font-size: 13px;
+  padding: 8px;
+}
+.catalogue-refine {
+  border-top: 1px solid var(--line);
+  margin-top: 14px;
+  padding-top: 12px;
+}
+.catalogue-refine > summary {
+  font-size: 13px;
+  font-weight: 650;
+}
+.catalogue-results {
+  min-width: 0;
+}
+.catalogue-results .catalogue-heading {
+  display: block;
+  margin: 0 0 16px;
+}
+.catalogue-results .catalogue-heading .section-copy {
+  max-width: 65ch;
+  margin-top: 6px;
+}
+.catalogue-results .cards {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+.catalogue-results .fish-location-panel {
+  padding: 14px 16px;
+  margin: 0 0 16px;
+  border: 1px solid var(--line);
+  border-radius: 10px;
+}
+.catalogue-results .location-heading {
+  gap: 12px;
+}
+.catalogue-results .location-heading > a {
+  flex: 0 0 72px;
+}
+.catalogue-results .location-heading > a > img {
+  width: 72px;
+  height: 54px;
+}
+.catalogue-results .fish-location-panel h2 {
+  font-size: 18px;
+  margin: 0 0 4px;
+}
+.catalogue-results .location-heading p {
+  font-size: 13px;
+}
+.catalogue-results .fish-location-links {
+  align-items: center;
+  margin: 8px 0;
+}
+.catalogue-results .fish-location-links a {
+  margin: 0;
+  padding: 7px 10px;
+  min-height: 44px;
+  font-size: 13px;
+}
+.catalogue-results .fish-area-links {
+  margin-top: 10px;
+  font-size: 13px;
+}
+.page-section-index {
+  display: flex;
+  gap: 6px;
+  flex-wrap: wrap;
+  padding: 10px 0;
+  margin: 0 0 20px;
+  border-block: 1px solid var(--line);
+}
+.page-section-index a,
+.water-filter-jump {
+  display: inline-flex;
+  align-items: center;
+  min-height: 44px;
+  padding: 8px 12px;
+  border-radius: 8px;
+  background: var(--soft);
+  text-decoration: none;
+  font-size: 14px;
+  font-weight: 650;
+}
+#location-section > .place-toggle {
+  margin: 0 0 14px;
+}
+@media (max-width: 1000px) {
+  .catalogue-workspace {
+    grid-template-columns: 230px minmax(0, 1fr);
+    gap: 18px;
+  }
+  .catalogue-results .cards {
+    grid-template-columns: 1fr;
+  }
+}
+@media (max-width: 700px) {
+  html {
+    scroll-padding-top: 114px;
+  }
+  .compendium-links {
+    display: flex;
+    flex-wrap: nowrap;
+    overflow-x: auto;
+    scrollbar-width: thin;
+    gap: 4px;
+  }
+  .compendium-links a {
+    flex: 0 0 auto;
+    white-space: nowrap;
+    padding: 9px 11px;
+    min-height: 44px;
+  }
+  .catalogue-workspace {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 18px;
+  }
+  .catalogue-tools {
+    padding: 14px;
+  }
+  .catalogue-tools .category-menu {
+    display: flex;
+    overflow-x: auto;
+    flex-wrap: nowrap;
+  }
+  .catalogue-tools .category-menu a > span {
+    gap: 6px;
+  }
+  .catalogue-tools .filters {
+    grid-template-columns: 1fr 1fr;
+  }
+  .catalogue-tools .filters .search-label {
+    grid-column: 1/-1;
+  }
+  .catalogue-results .location-heading {
+    align-items: flex-start;
+  }
+  .catalogue-results .fish-location-links {
+    flex-wrap: wrap;
+  }
+  .page-section-index {
+    flex-wrap: wrap;
+  }
+  .page-section-index a {
+    flex: 0 0 auto;
+    white-space: nowrap;
+  }
+}
+.page-section-index > strong {
+  align-self: center;
+  font-size: 12px;
+  color: var(--muted);
+  white-space: nowrap;
+}
+
 /* src/shared/ui/index.css */
 
 /* src/pages/quests/index.css */

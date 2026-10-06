@@ -1016,3 +1016,49 @@ shops, quest use points, conditional stock, fly making, strategy equipment and
 technical disclosures. These are rendered interaction checks, separate from
 the canonical record coverage above; they do not establish every natural game
 outcome, catch probability or a fully decoded campaign.
+
+## r75 — Arrange the guide around one task
+
+This round changes the organization of existing information. Equipment now has
+one workspace: fish and fishing/purchase area, a single visible category
+chooser, method and search/sort refinements, then matching advice and results.
+The retained category select is the internal state holder, not a second visible
+chooser. An explicit All category action preserves browsing every category.
+Desktop puts controls beside results; mobile uses a single column with contained
+category scrolling. Translation provenance moves into retained research detail.
+
+Area changes now redraw cards, recommendations, comparisons, purchase sorting
+and the URL together. Fish-area resolution occurs before sorting, so prices and
+visible purchase decisions use the same area. Fish targets list their configured
+areas; untargeted browsing permits all six areas or all-area comparison.
+Loading recovery remains before the disabled controls.
+
+Fish and item pages have a localized, nonsticky section index linking only to
+sections actually rendered. Fishing spots and starter equipment precede the
+full notebook explanation. The unconfirmed profile only links its real notebook
+and evidence sections. Evidence links open the retained disclosure. Map terrain
+precedes the supporting water-symbol key, with a shortcut to its filter. Shop
+town/outdoor presentation controls sit inside the map disclosure.
+
+Mobile primary navigation uses one scrollable row, freeing space for the task.
+Section indexes wrap so their destinations remain visible. Original portraits,
+ROM findings, technical details, return links and controller identities remain.
+No game records or catch-success claims are changed.
+
+Actual local review followed a Thai area change from 1 to 2 with purchase-price
+sorting, verified the URL, price note and first card all changed to Area 2,
+followed the fish setup shortcut, and opened evidence through the section index.
+Desktop workspace and 390px fish/item/map layouts were inspected visually.
+A reproduced mobile grid overflow was corrected and document width matched
+390px. Automated coverage and final publication are recorded separately.
+
+Final local checks: full `npm run check` passed, plus format and source-quality
+checks after the final anchor guard. Independent hierarchy contracts cover all
+315 item and 73 visual-profile records across three languages (72 profiles have
+configured map data; the additional unconfirmed profile has a limited index).
+Area controls and post-load anchor restoration are exercised in generated
+runtime cases, with baseline rejection and false-pass probes. Actual Japanese
+320px catalogue landing settled at 121px below the 113px header with document
+width 320px. English shop-map disclosure and town/field switching retained the
+Area 2 scope. These checks support this bounded arrangement change, rather than
+new claims about game mechanics or owner acceptance.

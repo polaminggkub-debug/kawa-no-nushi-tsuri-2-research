@@ -39,7 +39,7 @@
       content="Browse fish configured spawn locations on maps decoded from the original Japanese SFC ROM."
     />
     <link rel="stylesheet" href="maps.css?v=24736e4f4fc2797d" />
-    <link rel="stylesheet" href="compendium.css?v=f0a06eafb430ccbe" />
+    <link rel="stylesheet" href="compendium.css?v=944b2e768f29779c" />
     <script src="compendium.js?v=32e98c10f8dca80a" defer></script>
   </head>
   <body>
@@ -160,8 +160,8 @@
               hidden
             ></nav>
 
-            <section id="water-icon-key" class="water-icon-key" hidden></section>
             <div id="area-overview" class="map-overview"></div>
+            <a class="water-filter-jump" href="#water-icon-key">Filter by water mark ↓</a>
             <div class="map-zoom">
               <button id="zoom-out" type="button" aria-label="Zoom out">−</button
               ><button id="zoom-fit" type="button">Fit</button
@@ -170,6 +170,7 @@
             <p id="pin-help" class="pin-help" aria-live="polite">Loading fish and map data…</p>
             <div class="map-scroll"><div id="map-view" class="map-view"></div></div>
             <div id="pin-details" class="pin-details" hidden></div>
+            <section id="water-icon-key" class="water-icon-key" hidden></section>
             <p class="map-note">
               These are configured spawn positions from the ROM. A point can be inactive in a
               particular game state, and a fish may move after it bites.

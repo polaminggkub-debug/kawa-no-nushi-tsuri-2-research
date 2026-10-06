@@ -145,3 +145,6 @@ await import('./shop-availability-sort.mjs')
 await import('./location-reference-area.mjs')
 await import('./fly-bundle-area-links.mjs')
 await import('./targeted-map-landing.mjs')
+
+await import('./page-hierarchy.mjs')
+await import('./catalogue-area-workspace.mjs')

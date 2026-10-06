@@ -169,7 +169,17 @@ function checkVisibleBlock(pageHtml, block, label) {
   const close = pageHtml.lastIndexOf('</details>', block.index)
   assert(open <= close, `${label}: component must not be trapped in collapsed evidence`)
   const mapIndex = pageHtml.indexOf('id="fish-area-map"')
-  if (mapIndex >= 0) assert(block.index < mapIndex, `${label}: show status before the map decision`)
+  if (mapIndex < 0) return
+  if (block.html.includes('data-fish-notebook-status'))
+    assert(
+      mapIndex < block.index,
+      `${label}: show fishing location before secondary notebook status`,
+    )
+  else
+    assert(
+      block.index < mapIndex,
+      `${label}: show actionable quest context before the map decision`,
+    )
 }
 
 function visibleText(html) {
