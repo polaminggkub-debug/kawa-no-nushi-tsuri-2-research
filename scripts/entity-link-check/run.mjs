@@ -128,6 +128,7 @@ await import('./notebook-starting-inventory.mjs')
 await import('./giant-eel-return-route.mjs')
 
 await import('./fight-surface-progression.mjs')
+await import('./fight-engine.mjs')
 await import('./fly-maker-recovery.mjs')
 
 await import('./area-quests.mjs')

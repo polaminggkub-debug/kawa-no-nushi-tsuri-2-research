@@ -1,0 +1,2862 @@
+{
+  "schema_version": 2,
+  "rom": {
+    "size_bytes": 1572864,
+    "sha1": "c2103dd94e2a1a65a495fc02adc2e7d040f31212"
+  },
+  "scope": "Numeric inputs of the ported fight loop only: named ROM profile and item selector fields plus two small helper tables. Derived by scripts/extract_fight_tables.py.",
+  "sources": {
+    "fish_profile": "05:8018 stride 23 (loader 03:D26D), id 1..73",
+    "rod": "05:A7F5 stride 12 (loader 03:D11F), id 1..21",
+    "hook": "05:A068 stride 9 (loader 03:D1C3), id 1..13",
+    "bait": "05:9E67 stride 12 (loader 03:D030), id 1..23",
+    "lure": "05:A1D8 stride 12 (loader 03:D083), id 1..81",
+    "fly": "05:AA52 stride 11 (loader 03:D0D9), id 1..134",
+    "random_table": "00:EDFA, 256 bytes, indexed by the low byte of the counter at $16AE",
+    "scene_step_mask": "04:B89E, 16-bit words indexed by scene type ($0850), types 0..13"
+  },
+  "rng": {
+    "table": [
+      63,
+      171,
+      5,
+      138,
+      113,
+      120,
+      56,
+      127,
+      22,
+      134,
+      11,
+      124,
+      73,
+      203,
+      33,
+      3,
+      225,
+      129,
+      52,
+      81,
+      24,
+      197,
+      152,
+      10,
+      186,
+      67,
+      143,
+      85,
+      180,
+      16,
+      192,
+      95,
+      150,
+      70,
+      89,
+      161,
+      132,
+      1,
+      210,
+      116,
+      248,
+      41,
+      240,
+      91,
+      38,
+      104,
+      147,
+      48,
+      218,
+      103,
+      36,
+      200,
+      32,
+      188,
+      19,
+      169,
+      13,
+      235,
+      122,
+      78,
+      68,
+      176,
+      107,
+      60,
+      178,
+      8,
+      238,
+      94,
+      206,
+      75,
+      141,
+      87,
+      158,
+      26,
+      223,
+      118,
+      212,
+      29,
+      136,
+      208,
+      45,
+      155,
+      148,
+      62,
+      145,
+      233,
+      99,
+      228,
+      163,
+      47,
+      190,
+      231,
+      114,
+      54,
+      167,
+      220,
+      21,
+      252,
+      84,
+      244,
+      109,
+      51,
+      214,
+      106,
+      193,
+      59,
+      154,
+      7,
+      133,
+      79,
+      242,
+      43,
+      165,
+      98,
+      230,
+      72,
+      18,
+      137,
+      195,
+      65,
+      111,
+      34,
+      101,
+      174,
+      184,
+      40,
+      69,
+      160,
+      39,
+      157,
+      126,
+      222,
+      57,
+      237,
+      28,
+      182,
+      204,
+      15,
+      202,
+      93,
+      25,
+      199,
+      187,
+      17,
+      245,
+      131,
+      254,
+      115,
+      31,
+      215,
+      4,
+      172,
+      83,
+      191,
+      55,
+      217,
+      140,
+      23,
+      128,
+      119,
+      90,
+      226,
+      12,
+      247,
+      142,
+      53,
+      207,
+      64,
+      229,
+      239,
+      80,
+      251,
+      110,
+      243,
+      76,
+      253,
+      236,
+      61,
+      211,
+      77,
+      224,
+      117,
+      232,
+      44,
+      249,
+      151,
+      30,
+      156,
+      0,
+      97,
+      246,
+      102,
+      241,
+      168,
+      42,
+      139,
+      216,
+      6,
+      88,
+      159,
+      135,
+      14,
+      227,
+      105,
+      35,
+      149,
+      9,
+      183,
+      146,
+      255,
+      49,
+      175,
+      112,
+      74,
+      198,
+      100,
+      2,
+      177,
+      123,
+      205,
+      86,
+      234,
+      71,
+      173,
+      121,
+      196,
+      50,
+      108,
+      181,
+      144,
+      20,
+      153,
+      201,
+      58,
+      46,
+      194,
+      162,
+      92,
+      130,
+      209,
+      96,
+      250,
+      125,
+      219,
+      27,
+      166,
+      82,
+      185,
+      189,
+      37,
+      179,
+      164,
+      213,
+      66,
+      170,
+      221
+    ],
+    "note": "counter $16AE += 1, value = table[counter & 255]; LFSR state is $16B0/$16B2."
+  },
+  "sceneStepMask": [
+    63,
+    63,
+    63,
+    7,
+    7,
+    31,
+    31,
+    7,
+    7,
+    7,
+    7,
+    7,
+    7,
+    7
+  ],
+  "fish": [
+    {
+      "id": 1,
+      "sizeLow": 40,
+      "sizeHigh": 55,
+      "approach": 72,
+      "biteMax": 50,
+      "biteMin": 35,
+      "restBase": 25,
+      "staminaBase": 30,
+      "beatMask": 3,
+      "idleSpread": 50,
+      "fightStart": 3,
+      "pullMask": 1,
+      "flags": 5
+    },
+    {
+      "id": 2,
+      "sizeLow": 60,
+      "sizeHigh": 70,
+      "approach": 72,
+      "biteMax": 50,
+      "biteMin": 35,
+      "restBase": 20,
+      "staminaBase": 30,
+      "beatMask": 3,
+      "idleSpread": 50,
+      "fightStart": 7,
+      "pullMask": 0,
+      "flags": 1
+    },
+    {
+      "id": 3,
+      "sizeLow": 30,
+      "sizeHigh": 35,
+      "approach": 156,
+      "biteMax": 50,
+      "biteMin": 35,
+      "restBase": 20,
+      "staminaBase": 48,
+      "beatMask": 1,
+      "idleSpread": 80,
+      "fightStart": 1,
+      "pullMask": 0,
+      "flags": 7
+    },
+    {
+      "id": 4,
+      "sizeLow": 20,
+      "sizeHigh": 25,
+      "approach": 66,
+      "biteMax": 50,
+      "biteMin": 35,
+      "restBase": 30,
+      "staminaBase": 60,
+      "beatMask": 3,
+      "idleSpread": 60,
+      "fightStart": 3,
+      "pullMask": 3,
+      "flags": 7
+    },
+    {
+      "id": 5,
+      "sizeLow": 15,
+      "sizeHigh": 17,
+      "approach": 219,
+      "biteMax": 40,
+      "biteMin": 24,
+      "restBase": 13,
+      "staminaBase": 35,
+      "beatMask": 1,
+      "idleSpread": 40,
+      "fightStart": 1,
+      "pullMask": 0,
+      "flags": 9
+    },
+    {
+      "id": 6,
+      "sizeLow": 40,
+      "sizeHigh": 70,
+      "approach": 99,
+      "biteMax": 60,
+      "biteMin": 48,
+      "restBase": 50,
+      "staminaBase": 50,
+      "beatMask": 7,
+      "idleSpread": 194,
+      "fightStart": 7,
+      "pullMask": 1,
+      "flags": 1
+    },
+    {
+      "id": 7,
+      "sizeLow": 30,
+      "sizeHigh": 45,
+      "approach": 153,
+      "biteMax": 60,
+      "biteMin": 48,
+      "restBase": 72,
+      "staminaBase": 65,
+      "beatMask": 7,
+      "idleSpread": 130,
+      "fightStart": 7,
+      "pullMask": 1,
+      "flags": 7
+    },
+    {
+      "id": 8,
+      "sizeLow": 50,
+      "sizeHigh": 100,
+      "approach": 180,
+      "biteMax": 50,
+      "biteMin": 35,
+      "restBase": 43,
+      "staminaBase": 43,
+      "beatMask": 3,
+      "idleSpread": 86,
+      "fightStart": 3,
+      "pullMask": 0,
+      "flags": 21
+    },
+    {
+      "id": 9,
+      "sizeLow": 40,
+      "sizeHigh": 53,
+      "approach": 234,
+      "biteMax": 50,
+      "biteMin": 35,
+      "restBase": 35,
+      "staminaBase": 35,
+      "beatMask": 3,
+      "idleSpread": 70,
+      "fightStart": 3,
+      "pullMask": 0,
+      "flags": 21
+    },
+    {
+      "id": 10,
+      "sizeLow": 14,
+      "sizeHigh": 15,
+      "approach": 75,
+      "biteMax": 40,
+      "biteMin": 24,
+      "restBase": 9,
+      "staminaBase": 30,
+      "beatMask": 1,
+      "idleSpread": 20,
+      "fightStart": 0,
+      "pullMask": 0,
+      "flags": 7
+    },
+    {
+      "id": 11,
+      "sizeLow": 50,
+      "sizeHigh": 83,
+      "approach": 51,
+      "biteMax": 60,
+      "biteMin": 48,
+      "restBase": 56,
+      "staminaBase": 51,
+      "beatMask": 3,
+      "idleSpread": 102,
+      "fightStart": 3,
+      "pullMask": 3,
+      "flags": 23
+    },
+    {
+      "id": 12,
+      "sizeLow": 30,
+      "sizeHigh": 45,
+      "approach": 81,
+      "biteMax": 50,
+      "biteMin": 35,
+      "restBase": 20,
+      "staminaBase": 35,
+      "beatMask": 1,
+      "idleSpread": 60,
+      "fightStart": 1,
+      "pullMask": 1,
+      "flags": 7
+    },
+    {
+      "id": 13,
+      "sizeLow": 60,
+      "sizeHigh": 115,
+      "approach": 210,
+      "biteMax": 60,
+      "biteMin": 48,
+      "restBase": 100,
+      "staminaBase": 100,
+      "beatMask": 7,
+      "idleSpread": 160,
+      "fightStart": 7,
+      "pullMask": 7,
+      "flags": 9
+    },
+    {
+      "id": 14,
+      "sizeLow": 25,
+      "sizeHigh": 25,
+      "approach": 60,
+      "biteMax": 40,
+      "biteMin": 24,
+      "restBase": 13,
+      "staminaBase": 40,
+      "beatMask": 1,
+      "idleSpread": 30,
+      "fightStart": 1,
+      "pullMask": 1,
+      "flags": 9
+    },
+    {
+      "id": 15,
+      "sizeLow": 15,
+      "sizeHigh": 18,
+      "approach": 54,
+      "biteMax": 40,
+      "biteMin": 24,
+      "restBase": 14,
+      "staminaBase": 40,
+      "beatMask": 1,
+      "idleSpread": 32,
+      "fightStart": 1,
+      "pullMask": 1,
+      "flags": 7
+    },
+    {
+      "id": 16,
+      "sizeLow": 8,
+      "sizeHigh": 8,
+      "approach": 87,
+      "biteMax": 30,
+      "biteMin": 15,
+      "restBase": 6,
+      "staminaBase": 52,
+      "beatMask": 1,
+      "idleSpread": 16,
+      "fightStart": 0,
+      "pullMask": 0,
+      "flags": 15
+    },
+    {
+      "id": 17,
+      "sizeLow": 8,
+      "sizeHigh": 8,
+      "approach": 90,
+      "biteMax": 30,
+      "biteMin": 15,
+      "restBase": 6,
+      "staminaBase": 52,
+      "beatMask": 1,
+      "idleSpread": 16,
+      "fightStart": 0,
+      "pullMask": 0,
+      "flags": 9
+    },
+    {
+      "id": 18,
+      "sizeLow": 30,
+      "sizeHigh": 30,
+      "approach": 48,
+      "biteMax": 50,
+      "biteMin": 35,
+      "restBase": 30,
+      "staminaBase": 48,
+      "beatMask": 3,
+      "idleSpread": 60,
+      "fightStart": 3,
+      "pullMask": 3,
+      "flags": 9
+    },
+    {
+      "id": 19,
+      "sizeLow": 60,
+      "sizeHigh": 60,
+      "approach": 135,
+      "biteMax": 60,
+      "biteMin": 48,
+      "restBase": 66,
+      "staminaBase": 88,
+      "beatMask": 3,
+      "idleSpread": 120,
+      "fightStart": 3,
+      "pullMask": 3,
+      "flags": 7
+    },
+    {
+      "id": 20,
+      "sizeLow": 100,
+      "sizeHigh": 160,
+      "approach": 150,
+      "biteMax": 70,
+      "biteMin": 63,
+      "restBase": 100,
+      "staminaBase": 120,
+      "beatMask": 7,
+      "idleSpread": 200,
+      "fightStart": 7,
+      "pullMask": 7,
+      "flags": 1
+    },
+    {
+      "id": 21,
+      "sizeLow": 100,
+      "sizeHigh": 100,
+      "approach": 60,
+      "biteMax": 70,
+      "biteMin": 63,
+      "restBase": 100,
+      "staminaBase": 120,
+      "beatMask": 7,
+      "idleSpread": 200,
+      "fightStart": 7,
+      "pullMask": 7,
+      "flags": 1
+    },
+    {
+      "id": 22,
+      "sizeLow": 15,
+      "sizeHigh": 15,
+      "approach": 210,
+      "biteMax": 40,
+      "biteMin": 24,
+      "restBase": 13,
+      "staminaBase": 40,
+      "beatMask": 1,
+      "idleSpread": 30,
+      "fightStart": 1,
+      "pullMask": 1,
+      "flags": 7
+    },
+    {
+      "id": 23,
+      "sizeLow": 14,
+      "sizeHigh": 17,
+      "approach": 120,
+      "biteMax": 40,
+      "biteMin": 24,
+      "restBase": 9,
+      "staminaBase": 48,
+      "beatMask": 1,
+      "idleSpread": 20,
+      "fightStart": 0,
+      "pullMask": 0,
+      "flags": 3
+    },
+    {
+      "id": 24,
+      "sizeLow": 16,
+      "sizeHigh": 17,
+      "approach": 69,
+      "biteMax": 40,
+      "biteMin": 24,
+      "restBase": 13,
+      "staminaBase": 38,
+      "beatMask": 1,
+      "idleSpread": 30,
+      "fightStart": 1,
+      "pullMask": 1,
+      "flags": 11
+    },
+    {
+      "id": 25,
+      "sizeLow": 12,
+      "sizeHigh": 12,
+      "approach": 102,
+      "biteMax": 40,
+      "biteMin": 24,
+      "restBase": 16,
+      "staminaBase": 34,
+      "beatMask": 1,
+      "idleSpread": 36,
+      "fightStart": 1,
+      "pullMask": 1,
+      "flags": 9
+    },
+    {
+      "id": 26,
+      "sizeLow": 14,
+      "sizeHigh": 14,
+      "approach": 48,
+      "biteMax": 30,
+      "biteMin": 15,
+      "restBase": 6,
+      "staminaBase": 48,
+      "beatMask": 1,
+      "idleSpread": 16,
+      "fightStart": 0,
+      "pullMask": 0,
+      "flags": 3
+    },
+    {
+      "id": 27,
+      "sizeLow": 15,
+      "sizeHigh": 20,
+      "approach": 84,
+      "biteMax": 40,
+      "biteMin": 24,
+      "restBase": 14,
+      "staminaBase": 36,
+      "beatMask": 1,
+      "idleSpread": 32,
+      "fightStart": 1,
+      "pullMask": 1,
+      "flags": 7
+    },
+    {
+      "id": 28,
+      "sizeLow": 15,
+      "sizeHigh": 20,
+      "approach": 90,
+      "biteMax": 40,
+      "biteMin": 24,
+      "restBase": 14,
+      "staminaBase": 36,
+      "beatMask": 1,
+      "idleSpread": 32,
+      "fightStart": 1,
+      "pullMask": 1,
+      "flags": 9
+    },
+    {
+      "id": 29,
+      "sizeLow": 25,
+      "sizeHigh": 30,
+      "approach": 120,
+      "biteMax": 50,
+      "biteMin": 35,
+      "restBase": 30,
+      "staminaBase": 46,
+      "beatMask": 3,
+      "idleSpread": 60,
+      "fightStart": 3,
+      "pullMask": 3,
+      "flags": 9
+    },
+    {
+      "id": 30,
+      "sizeLow": 10,
+      "sizeHigh": 15,
+      "approach": 33,
+      "biteMax": 40,
+      "biteMin": 24,
+      "restBase": 9,
+      "staminaBase": 46,
+      "beatMask": 1,
+      "idleSpread": 20,
+      "fightStart": 3,
+      "pullMask": 0,
+      "flags": 25
+    },
+    {
+      "id": 31,
+      "sizeLow": 2,
+      "sizeHigh": 4,
+      "approach": 57,
+      "biteMax": 15,
+      "biteMin": 5,
+      "restBase": 3,
+      "staminaBase": 54,
+      "beatMask": 0,
+      "idleSpread": 15,
+      "fightStart": 0,
+      "pullMask": 0,
+      "flags": 7
+    },
+    {
+      "id": 32,
+      "sizeLow": 25,
+      "sizeHigh": 35,
+      "approach": 96,
+      "biteMax": 50,
+      "biteMin": 35,
+      "restBase": 25,
+      "staminaBase": 38,
+      "beatMask": 3,
+      "idleSpread": 50,
+      "fightStart": 3,
+      "pullMask": 3,
+      "flags": 7
+    },
+    {
+      "id": 33,
+      "sizeLow": 13,
+      "sizeHigh": 13,
+      "approach": 45,
+      "biteMax": 40,
+      "biteMin": 24,
+      "restBase": 12,
+      "staminaBase": 42,
+      "beatMask": 1,
+      "idleSpread": 26,
+      "fightStart": 1,
+      "pullMask": 1,
+      "flags": 7
+    },
+    {
+      "id": 34,
+      "sizeLow": 5,
+      "sizeHigh": 7,
+      "approach": 30,
+      "biteMax": 15,
+      "biteMin": 10,
+      "restBase": 4,
+      "staminaBase": 54,
+      "beatMask": 1,
+      "idleSpread": 15,
+      "fightStart": 0,
+      "pullMask": 0,
+      "flags": 11
+    },
+    {
+      "id": 35,
+      "sizeLow": 5,
+      "sizeHigh": 5,
+      "approach": 60,
+      "biteMax": 30,
+      "biteMin": 15,
+      "restBase": 4,
+      "staminaBase": 48,
+      "beatMask": 1,
+      "idleSpread": 15,
+      "fightStart": 0,
+      "pullMask": 0,
+      "flags": 11
+    },
+    {
+      "id": 36,
+      "sizeLow": 60,
+      "sizeHigh": 121,
+      "approach": 90,
+      "biteMax": 60,
+      "biteMin": 48,
+      "restBase": 66,
+      "staminaBase": 80,
+      "beatMask": 3,
+      "idleSpread": 120,
+      "fightStart": 3,
+      "pullMask": 3,
+      "flags": 25
+    },
+    {
+      "id": 37,
+      "sizeLow": 35,
+      "sizeHigh": 45,
+      "approach": 75,
+      "biteMax": 60,
+      "biteMin": 48,
+      "restBase": 55,
+      "staminaBase": 68,
+      "beatMask": 3,
+      "idleSpread": 100,
+      "fightStart": 3,
+      "pullMask": 3,
+      "flags": 10
+    },
+    {
+      "id": 38,
+      "sizeLow": 60,
+      "sizeHigh": 100,
+      "approach": 63,
+      "biteMax": 50,
+      "biteMin": 35,
+      "restBase": 40,
+      "staminaBase": 40,
+      "beatMask": 7,
+      "idleSpread": 100,
+      "fightStart": 3,
+      "pullMask": 7,
+      "flags": 25
+    },
+    {
+      "id": 39,
+      "sizeLow": 20,
+      "sizeHigh": 30,
+      "approach": 24,
+      "biteMax": 40,
+      "biteMin": 24,
+      "restBase": 13,
+      "staminaBase": 34,
+      "beatMask": 1,
+      "idleSpread": 30,
+      "fightStart": 1,
+      "pullMask": 1,
+      "flags": 6
+    },
+    {
+      "id": 40,
+      "sizeLow": 30,
+      "sizeHigh": 35,
+      "approach": 42,
+      "biteMax": 50,
+      "biteMin": 35,
+      "restBase": 30,
+      "staminaBase": 40,
+      "beatMask": 3,
+      "idleSpread": 60,
+      "fightStart": 3,
+      "pullMask": 3,
+      "flags": 7
+    },
+    {
+      "id": 41,
+      "sizeLow": 30,
+      "sizeHigh": 30,
+      "approach": 81,
+      "biteMax": 50,
+      "biteMin": 35,
+      "restBase": 30,
+      "staminaBase": 40,
+      "beatMask": 3,
+      "idleSpread": 60,
+      "fightStart": 3,
+      "pullMask": 3,
+      "flags": 7
+    },
+    {
+      "id": 42,
+      "sizeLow": 20,
+      "sizeHigh": 20,
+      "approach": 96,
+      "biteMax": 50,
+      "biteMin": 35,
+      "restBase": 20,
+      "staminaBase": 28,
+      "beatMask": 1,
+      "idleSpread": 40,
+      "fightStart": 1,
+      "pullMask": 1,
+      "flags": 9
+    },
+    {
+      "id": 43,
+      "sizeLow": 10,
+      "sizeHigh": 10,
+      "approach": 69,
+      "biteMax": 40,
+      "biteMin": 24,
+      "restBase": 9,
+      "staminaBase": 40,
+      "beatMask": 1,
+      "idleSpread": 20,
+      "fightStart": 0,
+      "pullMask": 0,
+      "flags": 9
+    },
+    {
+      "id": 44,
+      "sizeLow": 14,
+      "sizeHigh": 15,
+      "approach": 99,
+      "biteMax": 40,
+      "biteMin": 24,
+      "restBase": 9,
+      "staminaBase": 40,
+      "beatMask": 1,
+      "idleSpread": 20,
+      "fightStart": 0,
+      "pullMask": 0,
+      "flags": 9
+    },
+    {
+      "id": 45,
+      "sizeLow": 80,
+      "sizeHigh": 85,
+      "approach": 30,
+      "biteMax": 60,
+      "biteMin": 48,
+      "restBase": 94,
+      "staminaBase": 129,
+      "beatMask": 7,
+      "idleSpread": 170,
+      "fightStart": 7,
+      "pullMask": 7,
+      "flags": 25
+    },
+    {
+      "id": 46,
+      "sizeLow": 20,
+      "sizeHigh": 22,
+      "approach": 45,
+      "biteMax": 50,
+      "biteMin": 35,
+      "restBase": 25,
+      "staminaBase": 39,
+      "beatMask": 3,
+      "idleSpread": 50,
+      "fightStart": 3,
+      "pullMask": 3,
+      "flags": 9
+    },
+    {
+      "id": 47,
+      "sizeLow": 100,
+      "sizeHigh": 140,
+      "approach": 18,
+      "biteMax": 70,
+      "biteMin": 63,
+      "restBase": 100,
+      "staminaBase": 100,
+      "beatMask": 7,
+      "idleSpread": 200,
+      "fightStart": 7,
+      "pullMask": 7,
+      "flags": 1
+    },
+    {
+      "id": 48,
+      "sizeLow": 100,
+      "sizeHigh": 130,
+      "approach": 60,
+      "biteMax": 70,
+      "biteMin": 63,
+      "restBase": 100,
+      "staminaBase": 100,
+      "beatMask": 7,
+      "idleSpread": 200,
+      "fightStart": 7,
+      "pullMask": 7,
+      "flags": 9
+    },
+    {
+      "id": 49,
+      "sizeLow": 50,
+      "sizeHigh": 50,
+      "approach": 33,
+      "biteMax": 50,
+      "biteMin": 35,
+      "restBase": 45,
+      "staminaBase": 69,
+      "beatMask": 3,
+      "idleSpread": 90,
+      "fightStart": 3,
+      "pullMask": 3,
+      "flags": 9
+    },
+    {
+      "id": 50,
+      "sizeLow": 25,
+      "sizeHigh": 25,
+      "approach": 54,
+      "biteMax": 50,
+      "biteMin": 35,
+      "restBase": 20,
+      "staminaBase": 30,
+      "beatMask": 1,
+      "idleSpread": 40,
+      "fightStart": 1,
+      "pullMask": 1,
+      "flags": 7
+    },
+    {
+      "id": 51,
+      "sizeLow": 40,
+      "sizeHigh": 50,
+      "approach": 60,
+      "biteMax": 50,
+      "biteMin": 35,
+      "restBase": 30,
+      "staminaBase": 45,
+      "beatMask": 3,
+      "idleSpread": 60,
+      "fightStart": 3,
+      "pullMask": 3,
+      "flags": 11
+    },
+    {
+      "id": 52,
+      "sizeLow": 25,
+      "sizeHigh": 45,
+      "approach": 39,
+      "biteMax": 50,
+      "biteMin": 35,
+      "restBase": 30,
+      "staminaBase": 45,
+      "beatMask": 3,
+      "idleSpread": 60,
+      "fightStart": 3,
+      "pullMask": 3,
+      "flags": 9
+    },
+    {
+      "id": 53,
+      "sizeLow": 60,
+      "sizeHigh": 60,
+      "approach": 48,
+      "biteMax": 60,
+      "biteMin": 48,
+      "restBase": 88,
+      "staminaBase": 120,
+      "beatMask": 7,
+      "idleSpread": 160,
+      "fightStart": 7,
+      "pullMask": 7,
+      "flags": 7
+    },
+    {
+      "id": 54,
+      "sizeLow": 80,
+      "sizeHigh": 100,
+      "approach": 66,
+      "biteMax": 70,
+      "biteMin": 63,
+      "restBase": 100,
+      "staminaBase": 110,
+      "beatMask": 7,
+      "idleSpread": 200,
+      "fightStart": 7,
+      "pullMask": 7,
+      "flags": 19
+    },
+    {
+      "id": 55,
+      "sizeLow": 120,
+      "sizeHigh": 150,
+      "approach": 90,
+      "biteMax": 50,
+      "biteMin": 40,
+      "restBase": 100,
+      "staminaBase": 90,
+      "beatMask": 7,
+      "idleSpread": 200,
+      "fightStart": 7,
+      "pullMask": 7,
+      "flags": 17
+    },
+    {
+      "id": 56,
+      "sizeLow": 30,
+      "sizeHigh": 30,
+      "approach": 30,
+      "biteMax": 20,
+      "biteMin": 10,
+      "restBase": 30,
+      "staminaBase": 60,
+      "beatMask": 3,
+      "idleSpread": 60,
+      "fightStart": 3,
+      "pullMask": 3,
+      "flags": 7
+    },
+    {
+      "id": 57,
+      "sizeLow": 10,
+      "sizeHigh": 10,
+      "approach": 60,
+      "biteMax": 10,
+      "biteMin": 5,
+      "restBase": 10,
+      "staminaBase": 30,
+      "beatMask": 1,
+      "idleSpread": 15,
+      "fightStart": 0,
+      "pullMask": 0,
+      "flags": 1
+    },
+    {
+      "id": 58,
+      "sizeLow": 100,
+      "sizeHigh": 130,
+      "approach": 30,
+      "biteMax": 40,
+      "biteMin": 15,
+      "restBase": 100,
+      "staminaBase": 124,
+      "beatMask": 7,
+      "idleSpread": 240,
+      "fightStart": 7,
+      "pullMask": 7,
+      "flags": 9
+    },
+    {
+      "id": 59,
+      "sizeLow": 220,
+      "sizeHigh": 220,
+      "approach": 15,
+      "biteMax": 30,
+      "biteMin": 10,
+      "restBase": 100,
+      "staminaBase": 80,
+      "beatMask": 7,
+      "idleSpread": 250,
+      "fightStart": 7,
+      "pullMask": 7,
+      "flags": 25
+    },
+    {
+      "id": 60,
+      "sizeLow": 13,
+      "sizeHigh": 13,
+      "approach": 30,
+      "biteMax": 55,
+      "biteMin": 35,
+      "restBase": 20,
+      "staminaBase": 70,
+      "beatMask": 1,
+      "idleSpread": 60,
+      "fightStart": 1,
+      "pullMask": 1,
+      "flags": 7
+    },
+    {
+      "id": 61,
+      "sizeLow": 60,
+      "sizeHigh": 60,
+      "approach": 60,
+      "biteMax": 35,
+      "biteMin": 20,
+      "restBase": 88,
+      "staminaBase": 128,
+      "beatMask": 7,
+      "idleSpread": 160,
+      "fightStart": 7,
+      "pullMask": 7,
+      "flags": 17
+    },
+    {
+      "id": 62,
+      "sizeLow": 95,
+      "sizeHigh": 95,
+      "approach": 78,
+      "biteMax": 30,
+      "biteMin": 12,
+      "restBase": 45,
+      "staminaBase": 69,
+      "beatMask": 3,
+      "idleSpread": 90,
+      "fightStart": 3,
+      "pullMask": 3,
+      "flags": 9
+    },
+    {
+      "id": 63,
+      "sizeLow": 15,
+      "sizeHigh": 15,
+      "approach": 60,
+      "biteMax": 40,
+      "biteMin": 20,
+      "restBase": 20,
+      "staminaBase": 30,
+      "beatMask": 1,
+      "idleSpread": 40,
+      "fightStart": 1,
+      "pullMask": 1,
+      "flags": 7
+    },
+    {
+      "id": 64,
+      "sizeLow": 7,
+      "sizeHigh": 7,
+      "approach": 54,
+      "biteMax": 34,
+      "biteMin": 12,
+      "restBase": 30,
+      "staminaBase": 45,
+      "beatMask": 3,
+      "idleSpread": 60,
+      "fightStart": 3,
+      "pullMask": 3,
+      "flags": 7
+    },
+    {
+      "id": 65,
+      "sizeLow": 12,
+      "sizeHigh": 20,
+      "approach": 45,
+      "biteMax": 50,
+      "biteMin": 35,
+      "restBase": 20,
+      "staminaBase": 28,
+      "beatMask": 1,
+      "idleSpread": 40,
+      "fightStart": 1,
+      "pullMask": 1,
+      "flags": 9
+    },
+    {
+      "id": 66,
+      "sizeLow": 25,
+      "sizeHigh": 50,
+      "approach": 135,
+      "biteMax": 60,
+      "biteMin": 48,
+      "restBase": 66,
+      "staminaBase": 96,
+      "beatMask": 3,
+      "idleSpread": 120,
+      "fightStart": 3,
+      "pullMask": 3,
+      "flags": 7
+    },
+    {
+      "id": 67,
+      "sizeLow": 0,
+      "sizeHigh": 0,
+      "approach": 0,
+      "biteMax": 0,
+      "biteMin": 0,
+      "restBase": 0,
+      "staminaBase": 0,
+      "beatMask": 0,
+      "idleSpread": 0,
+      "fightStart": 0,
+      "pullMask": 0,
+      "flags": 7
+    },
+    {
+      "id": 68,
+      "sizeLow": 10,
+      "sizeHigh": 10,
+      "approach": 42,
+      "biteMax": 40,
+      "biteMin": 24,
+      "restBase": 20,
+      "staminaBase": 70,
+      "beatMask": 1,
+      "idleSpread": 30,
+      "fightStart": 7,
+      "pullMask": 3,
+      "flags": 7
+    },
+    {
+      "id": 69,
+      "sizeLow": 10,
+      "sizeHigh": 10,
+      "approach": 129,
+      "biteMax": 40,
+      "biteMin": 24,
+      "restBase": 20,
+      "staminaBase": 60,
+      "beatMask": 1,
+      "idleSpread": 22,
+      "fightStart": 7,
+      "pullMask": 3,
+      "flags": 4
+    },
+    {
+      "id": 70,
+      "sizeLow": 5,
+      "sizeHigh": 5,
+      "approach": 108,
+      "biteMax": 40,
+      "biteMin": 24,
+      "restBase": 20,
+      "staminaBase": 48,
+      "beatMask": 1,
+      "idleSpread": 22,
+      "fightStart": 7,
+      "pullMask": 3,
+      "flags": 9
+    },
+    {
+      "id": 71,
+      "sizeLow": 25,
+      "sizeHigh": 30,
+      "approach": 30,
+      "biteMax": 40,
+      "biteMin": 24,
+      "restBase": 15,
+      "staminaBase": 30,
+      "beatMask": 3,
+      "idleSpread": 36,
+      "fightStart": 7,
+      "pullMask": 3,
+      "flags": 7
+    },
+    {
+      "id": 72,
+      "sizeLow": 30,
+      "sizeHigh": 40,
+      "approach": 36,
+      "biteMax": 70,
+      "biteMin": 63,
+      "restBase": 15,
+      "staminaBase": 30,
+      "beatMask": 7,
+      "idleSpread": 32,
+      "fightStart": 7,
+      "pullMask": 7,
+      "flags": 7
+    },
+    {
+      "id": 73,
+      "sizeLow": 4,
+      "sizeHigh": 4,
+      "approach": 30,
+      "biteMax": 35,
+      "biteMin": 20,
+      "restBase": 80,
+      "staminaBase": 80,
+      "beatMask": 1,
+      "idleSpread": 120,
+      "fightStart": 7,
+      "pullMask": 3,
+      "flags": 7
+    }
+  ],
+  "rod": [
+    {
+      "id": 1,
+      "style": 1,
+      "reach": 3,
+      "fishMatch": 57,
+      "selector": 0
+    },
+    {
+      "id": 2,
+      "style": 1,
+      "reach": 8,
+      "fishMatch": 1,
+      "selector": 1
+    },
+    {
+      "id": 3,
+      "style": 1,
+      "reach": 5,
+      "fishMatch": 0,
+      "selector": 1
+    },
+    {
+      "id": 4,
+      "style": 1,
+      "reach": 7,
+      "fishMatch": 0,
+      "selector": 1
+    },
+    {
+      "id": 5,
+      "style": 1,
+      "reach": 6,
+      "fishMatch": 3,
+      "selector": 1
+    },
+    {
+      "id": 6,
+      "style": 1,
+      "reach": 4,
+      "fishMatch": 29,
+      "selector": 0
+    },
+    {
+      "id": 7,
+      "style": 1,
+      "reach": 9,
+      "fishMatch": 56,
+      "selector": 1
+    },
+    {
+      "id": 8,
+      "style": 1,
+      "reach": 24,
+      "fishMatch": 13,
+      "selector": 2
+    },
+    {
+      "id": 9,
+      "style": 1,
+      "reach": 12,
+      "fishMatch": 37,
+      "selector": 1
+    },
+    {
+      "id": 10,
+      "style": 4,
+      "reach": 15,
+      "fishMatch": 0,
+      "selector": 0
+    },
+    {
+      "id": 11,
+      "style": 4,
+      "reach": 18,
+      "fishMatch": 0,
+      "selector": 0
+    },
+    {
+      "id": 12,
+      "style": 4,
+      "reach": 21,
+      "fishMatch": 0,
+      "selector": 1
+    },
+    {
+      "id": 13,
+      "style": 4,
+      "reach": 24,
+      "fishMatch": 38,
+      "selector": 2
+    },
+    {
+      "id": 14,
+      "style": 2,
+      "reach": 18,
+      "fishMatch": 0,
+      "selector": 0
+    },
+    {
+      "id": 15,
+      "style": 2,
+      "reach": 21,
+      "fishMatch": 0,
+      "selector": 1
+    },
+    {
+      "id": 16,
+      "style": 2,
+      "reach": 24,
+      "fishMatch": 55,
+      "selector": 2
+    },
+    {
+      "id": 17,
+      "style": 8,
+      "reach": 15,
+      "fishMatch": 0,
+      "selector": 0
+    },
+    {
+      "id": 18,
+      "style": 8,
+      "reach": 18,
+      "fishMatch": 0,
+      "selector": 1
+    },
+    {
+      "id": 19,
+      "style": 8,
+      "reach": 21,
+      "fishMatch": 0,
+      "selector": 2
+    },
+    {
+      "id": 20,
+      "style": 1,
+      "reach": 15,
+      "fishMatch": 56,
+      "selector": 1
+    },
+    {
+      "id": 21,
+      "style": 1,
+      "reach": 24,
+      "fishMatch": 37,
+      "selector": 1
+    }
+  ],
+  "hook": [
+    {
+      "id": 1,
+      "selector": 2,
+      "fishMatch": 55
+    },
+    {
+      "id": 2,
+      "selector": 1,
+      "fishMatch": 59
+    },
+    {
+      "id": 3,
+      "selector": 2,
+      "fishMatch": 54
+    },
+    {
+      "id": 4,
+      "selector": 2,
+      "fishMatch": 13
+    },
+    {
+      "id": 5,
+      "selector": 1,
+      "fishMatch": 37
+    },
+    {
+      "id": 6,
+      "selector": 1,
+      "fishMatch": 0
+    },
+    {
+      "id": 7,
+      "selector": 0,
+      "fishMatch": 0
+    },
+    {
+      "id": 8,
+      "selector": 0,
+      "fishMatch": 0
+    },
+    {
+      "id": 9,
+      "selector": 1,
+      "fishMatch": 0
+    },
+    {
+      "id": 10,
+      "selector": 3,
+      "fishMatch": 56
+    },
+    {
+      "id": 11,
+      "selector": 0,
+      "fishMatch": 57
+    },
+    {
+      "id": 12,
+      "selector": 1,
+      "fishMatch": 1
+    },
+    {
+      "id": 13,
+      "selector": 1,
+      "fishMatch": 3
+    }
+  ],
+  "bait": [
+    {
+      "id": 1,
+      "fishMatch": 0
+    },
+    {
+      "id": 2,
+      "fishMatch": 0
+    },
+    {
+      "id": 3,
+      "fishMatch": 7
+    },
+    {
+      "id": 4,
+      "fishMatch": 0
+    },
+    {
+      "id": 5,
+      "fishMatch": 0
+    },
+    {
+      "id": 6,
+      "fishMatch": 0
+    },
+    {
+      "id": 7,
+      "fishMatch": 0
+    },
+    {
+      "id": 8,
+      "fishMatch": 0
+    },
+    {
+      "id": 9,
+      "fishMatch": 0
+    },
+    {
+      "id": 10,
+      "fishMatch": 0
+    },
+    {
+      "id": 11,
+      "fishMatch": 0
+    },
+    {
+      "id": 12,
+      "fishMatch": 0
+    },
+    {
+      "id": 13,
+      "fishMatch": 0
+    },
+    {
+      "id": 14,
+      "fishMatch": 37
+    },
+    {
+      "id": 15,
+      "fishMatch": 13
+    },
+    {
+      "id": 16,
+      "fishMatch": 57
+    },
+    {
+      "id": 17,
+      "fishMatch": 13
+    },
+    {
+      "id": 18,
+      "fishMatch": 0
+    },
+    {
+      "id": 19,
+      "fishMatch": 0
+    },
+    {
+      "id": 20,
+      "fishMatch": 38
+    },
+    {
+      "id": 21,
+      "fishMatch": 0
+    },
+    {
+      "id": 22,
+      "fishMatch": 0
+    },
+    {
+      "id": 23,
+      "fishMatch": 56
+    }
+  ],
+  "lure": [
+    {
+      "id": 1,
+      "action": 2,
+      "selector": 2,
+      "fishMatch": 0
+    },
+    {
+      "id": 2,
+      "action": 2,
+      "selector": 1,
+      "fishMatch": 0
+    },
+    {
+      "id": 3,
+      "action": 2,
+      "selector": 1,
+      "fishMatch": 0
+    },
+    {
+      "id": 4,
+      "action": 2,
+      "selector": 1,
+      "fishMatch": 0
+    },
+    {
+      "id": 5,
+      "action": 2,
+      "selector": 1,
+      "fishMatch": 0
+    },
+    {
+      "id": 6,
+      "action": 2,
+      "selector": 1,
+      "fishMatch": 0
+    },
+    {
+      "id": 7,
+      "action": 2,
+      "selector": 1,
+      "fishMatch": 0
+    },
+    {
+      "id": 8,
+      "action": 2,
+      "selector": 2,
+      "fishMatch": 0
+    },
+    {
+      "id": 9,
+      "action": 2,
+      "selector": 2,
+      "fishMatch": 0
+    },
+    {
+      "id": 10,
+      "action": 2,
+      "selector": 2,
+      "fishMatch": 0
+    },
+    {
+      "id": 11,
+      "action": 2,
+      "selector": 2,
+      "fishMatch": 0
+    },
+    {
+      "id": 12,
+      "action": 2,
+      "selector": 2,
+      "fishMatch": 0
+    },
+    {
+      "id": 13,
+      "action": 2,
+      "selector": 2,
+      "fishMatch": 0
+    },
+    {
+      "id": 14,
+      "action": 3,
+      "selector": 2,
+      "fishMatch": 0
+    },
+    {
+      "id": 15,
+      "action": 5,
+      "selector": 2,
+      "fishMatch": 0
+    },
+    {
+      "id": 16,
+      "action": 5,
+      "selector": 2,
+      "fishMatch": 0
+    },
+    {
+      "id": 17,
+      "action": 2,
+      "selector": 1,
+      "fishMatch": 0
+    },
+    {
+      "id": 18,
+      "action": 9,
+      "selector": 2,
+      "fishMatch": 11
+    },
+    {
+      "id": 19,
+      "action": 2,
+      "selector": 1,
+      "fishMatch": 0
+    },
+    {
+      "id": 20,
+      "action": 3,
+      "selector": 2,
+      "fishMatch": 0
+    },
+    {
+      "id": 21,
+      "action": 4,
+      "selector": 2,
+      "fishMatch": 0
+    },
+    {
+      "id": 22,
+      "action": 5,
+      "selector": 2,
+      "fishMatch": 0
+    },
+    {
+      "id": 23,
+      "action": 5,
+      "selector": 0,
+      "fishMatch": 0
+    },
+    {
+      "id": 24,
+      "action": 5,
+      "selector": 0,
+      "fishMatch": 0
+    },
+    {
+      "id": 25,
+      "action": 3,
+      "selector": 1,
+      "fishMatch": 0
+    },
+    {
+      "id": 26,
+      "action": 3,
+      "selector": 1,
+      "fishMatch": 0
+    },
+    {
+      "id": 27,
+      "action": 4,
+      "selector": 1,
+      "fishMatch": 0
+    },
+    {
+      "id": 28,
+      "action": 4,
+      "selector": 1,
+      "fishMatch": 0
+    },
+    {
+      "id": 29,
+      "action": 3,
+      "selector": 2,
+      "fishMatch": 0
+    },
+    {
+      "id": 30,
+      "action": 4,
+      "selector": 2,
+      "fishMatch": 0
+    },
+    {
+      "id": 31,
+      "action": 5,
+      "selector": 2,
+      "fishMatch": 0
+    },
+    {
+      "id": 32,
+      "action": 7,
+      "selector": 2,
+      "fishMatch": 0
+    },
+    {
+      "id": 33,
+      "action": 7,
+      "selector": 2,
+      "fishMatch": 38
+    },
+    {
+      "id": 34,
+      "action": 7,
+      "selector": 2,
+      "fishMatch": 0
+    },
+    {
+      "id": 35,
+      "action": 8,
+      "selector": 1,
+      "fishMatch": 0
+    },
+    {
+      "id": 36,
+      "action": 8,
+      "selector": 1,
+      "fishMatch": 0
+    },
+    {
+      "id": 37,
+      "action": 8,
+      "selector": 2,
+      "fishMatch": 0
+    },
+    {
+      "id": 38,
+      "action": 9,
+      "selector": 2,
+      "fishMatch": 0
+    },
+    {
+      "id": 39,
+      "action": 9,
+      "selector": 2,
+      "fishMatch": 0
+    },
+    {
+      "id": 40,
+      "action": 9,
+      "selector": 2,
+      "fishMatch": 0
+    },
+    {
+      "id": 41,
+      "action": 6,
+      "selector": 2,
+      "fishMatch": 0
+    },
+    {
+      "id": 42,
+      "action": 6,
+      "selector": 2,
+      "fishMatch": 0
+    },
+    {
+      "id": 43,
+      "action": 6,
+      "selector": 1,
+      "fishMatch": 0
+    },
+    {
+      "id": 44,
+      "action": 6,
+      "selector": 1,
+      "fishMatch": 0
+    },
+    {
+      "id": 45,
+      "action": 6,
+      "selector": 1,
+      "fishMatch": 0
+    },
+    {
+      "id": 46,
+      "action": 1,
+      "selector": 0,
+      "fishMatch": 0
+    },
+    {
+      "id": 47,
+      "action": 1,
+      "selector": 0,
+      "fishMatch": 0
+    },
+    {
+      "id": 48,
+      "action": 1,
+      "selector": 0,
+      "fishMatch": 0
+    },
+    {
+      "id": 49,
+      "action": 1,
+      "selector": 0,
+      "fishMatch": 0
+    },
+    {
+      "id": 50,
+      "action": 1,
+      "selector": 1,
+      "fishMatch": 0
+    },
+    {
+      "id": 51,
+      "action": 1,
+      "selector": 1,
+      "fishMatch": 0
+    },
+    {
+      "id": 52,
+      "action": 1,
+      "selector": 1,
+      "fishMatch": 0
+    },
+    {
+      "id": 53,
+      "action": 1,
+      "selector": 1,
+      "fishMatch": 0
+    },
+    {
+      "id": 54,
+      "action": 1,
+      "selector": 1,
+      "fishMatch": 0
+    },
+    {
+      "id": 55,
+      "action": 1,
+      "selector": 1,
+      "fishMatch": 0
+    },
+    {
+      "id": 56,
+      "action": 1,
+      "selector": 1,
+      "fishMatch": 0
+    },
+    {
+      "id": 57,
+      "action": 3,
+      "selector": 1,
+      "fishMatch": 0
+    },
+    {
+      "id": 58,
+      "action": 1,
+      "selector": 2,
+      "fishMatch": 0
+    },
+    {
+      "id": 59,
+      "action": 1,
+      "selector": 2,
+      "fishMatch": 0
+    },
+    {
+      "id": 60,
+      "action": 1,
+      "selector": 2,
+      "fishMatch": 0
+    },
+    {
+      "id": 61,
+      "action": 1,
+      "selector": 2,
+      "fishMatch": 0
+    },
+    {
+      "id": 62,
+      "action": 1,
+      "selector": 2,
+      "fishMatch": 0
+    },
+    {
+      "id": 63,
+      "action": 1,
+      "selector": 2,
+      "fishMatch": 0
+    },
+    {
+      "id": 64,
+      "action": 1,
+      "selector": 2,
+      "fishMatch": 0
+    },
+    {
+      "id": 65,
+      "action": 1,
+      "selector": 1,
+      "fishMatch": 0
+    },
+    {
+      "id": 66,
+      "action": 1,
+      "selector": 2,
+      "fishMatch": 0
+    },
+    {
+      "id": 67,
+      "action": 1,
+      "selector": 2,
+      "fishMatch": 0
+    },
+    {
+      "id": 68,
+      "action": 1,
+      "selector": 2,
+      "fishMatch": 0
+    },
+    {
+      "id": 69,
+      "action": 1,
+      "selector": 2,
+      "fishMatch": 0
+    },
+    {
+      "id": 70,
+      "action": 0,
+      "selector": 1,
+      "fishMatch": 0
+    },
+    {
+      "id": 71,
+      "action": 0,
+      "selector": 1,
+      "fishMatch": 0
+    },
+    {
+      "id": 72,
+      "action": 0,
+      "selector": 1,
+      "fishMatch": 0
+    },
+    {
+      "id": 73,
+      "action": 0,
+      "selector": 1,
+      "fishMatch": 0
+    },
+    {
+      "id": 74,
+      "action": 0,
+      "selector": 1,
+      "fishMatch": 0
+    },
+    {
+      "id": 75,
+      "action": 0,
+      "selector": 1,
+      "fishMatch": 0
+    },
+    {
+      "id": 76,
+      "action": 0,
+      "selector": 1,
+      "fishMatch": 0
+    },
+    {
+      "id": 77,
+      "action": 0,
+      "selector": 1,
+      "fishMatch": 0
+    },
+    {
+      "id": 78,
+      "action": 0,
+      "selector": 1,
+      "fishMatch": 0
+    },
+    {
+      "id": 79,
+      "action": 0,
+      "selector": 1,
+      "fishMatch": 0
+    },
+    {
+      "id": 80,
+      "action": 0,
+      "selector": 1,
+      "fishMatch": 0
+    },
+    {
+      "id": 81,
+      "action": 5,
+      "selector": 2,
+      "fishMatch": 55
+    }
+  ],
+  "fly": [
+    {
+      "id": 1,
+      "flag": 0,
+      "selector": 0
+    },
+    {
+      "id": 2,
+      "flag": 0,
+      "selector": 0
+    },
+    {
+      "id": 3,
+      "flag": 0,
+      "selector": 0
+    },
+    {
+      "id": 4,
+      "flag": 0,
+      "selector": 0
+    },
+    {
+      "id": 5,
+      "flag": 0,
+      "selector": 0
+    },
+    {
+      "id": 6,
+      "flag": 0,
+      "selector": 0
+    },
+    {
+      "id": 7,
+      "flag": 0,
+      "selector": 0
+    },
+    {
+      "id": 8,
+      "flag": 0,
+      "selector": 0
+    },
+    {
+      "id": 9,
+      "flag": 0,
+      "selector": 0
+    },
+    {
+      "id": 10,
+      "flag": 0,
+      "selector": 0
+    },
+    {
+      "id": 11,
+      "flag": 0,
+      "selector": 0
+    },
+    {
+      "id": 12,
+      "flag": 0,
+      "selector": 0
+    },
+    {
+      "id": 13,
+      "flag": 0,
+      "selector": 0
+    },
+    {
+      "id": 14,
+      "flag": 0,
+      "selector": 0
+    },
+    {
+      "id": 15,
+      "flag": 0,
+      "selector": 0
+    },
+    {
+      "id": 16,
+      "flag": 0,
+      "selector": 0
+    },
+    {
+      "id": 17,
+      "flag": 0,
+      "selector": 0
+    },
+    {
+      "id": 18,
+      "flag": 0,
+      "selector": 0
+    },
+    {
+      "id": 19,
+      "flag": 0,
+      "selector": 0
+    },
+    {
+      "id": 20,
+      "flag": 0,
+      "selector": 0
+    },
+    {
+      "id": 21,
+      "flag": 0,
+      "selector": 0
+    },
+    {
+      "id": 22,
+      "flag": 0,
+      "selector": 0
+    },
+    {
+      "id": 23,
+      "flag": 0,
+      "selector": 0
+    },
+    {
+      "id": 24,
+      "flag": 1,
+      "selector": 0
+    },
+    {
+      "id": 25,
+      "flag": 1,
+      "selector": 0
+    },
+    {
+      "id": 26,
+      "flag": 1,
+      "selector": 0
+    },
+    {
+      "id": 27,
+      "flag": 1,
+      "selector": 0
+    },
+    {
+      "id": 28,
+      "flag": 1,
+      "selector": 0
+    },
+    {
+      "id": 29,
+      "flag": 1,
+      "selector": 0
+    },
+    {
+      "id": 30,
+      "flag": 1,
+      "selector": 0
+    },
+    {
+      "id": 31,
+      "flag": 1,
+      "selector": 0
+    },
+    {
+      "id": 32,
+      "flag": 1,
+      "selector": 0
+    },
+    {
+      "id": 33,
+      "flag": 1,
+      "selector": 0
+    },
+    {
+      "id": 34,
+      "flag": 1,
+      "selector": 0
+    },
+    {
+      "id": 35,
+      "flag": 1,
+      "selector": 0
+    },
+    {
+      "id": 36,
+      "flag": 1,
+      "selector": 0
+    },
+    {
+      "id": 37,
+      "flag": 1,
+      "selector": 0
+    },
+    {
+      "id": 38,
+      "flag": 1,
+      "selector": 0
+    },
+    {
+      "id": 39,
+      "flag": 1,
+      "selector": 0
+    },
+    {
+      "id": 40,
+      "flag": 1,
+      "selector": 0
+    },
+    {
+      "id": 41,
+      "flag": 1,
+      "selector": 0
+    },
+    {
+      "id": 42,
+      "flag": 1,
+      "selector": 0
+    },
+    {
+      "id": 43,
+      "flag": 0,
+      "selector": 1
+    },
+    {
+      "id": 44,
+      "flag": 0,
+      "selector": 1
+    },
+    {
+      "id": 45,
+      "flag": 0,
+      "selector": 1
+    },
+    {
+      "id": 46,
+      "flag": 0,
+      "selector": 1
+    },
+    {
+      "id": 47,
+      "flag": 0,
+      "selector": 1
+    },
+    {
+      "id": 48,
+      "flag": 0,
+      "selector": 1
+    },
+    {
+      "id": 49,
+      "flag": 0,
+      "selector": 1
+    },
+    {
+      "id": 50,
+      "flag": 0,
+      "selector": 1
+    },
+    {
+      "id": 51,
+      "flag": 0,
+      "selector": 1
+    },
+    {
+      "id": 52,
+      "flag": 0,
+      "selector": 0
+    },
+    {
+      "id": 53,
+      "flag": 0,
+      "selector": 0
+    },
+    {
+      "id": 54,
+      "flag": 0,
+      "selector": 0
+    },
+    {
+      "id": 55,
+      "flag": 0,
+      "selector": 0
+    },
+    {
+      "id": 56,
+      "flag": 0,
+      "selector": 0
+    },
+    {
+      "id": 57,
+      "flag": 0,
+      "selector": 0
+    },
+    {
+      "id": 58,
+      "flag": 0,
+      "selector": 0
+    },
+    {
+      "id": 59,
+      "flag": 0,
+      "selector": 0
+    },
+    {
+      "id": 60,
+      "flag": 0,
+      "selector": 0
+    },
+    {
+      "id": 61,
+      "flag": 0,
+      "selector": 0
+    },
+    {
+      "id": 62,
+      "flag": 1,
+      "selector": 1
+    },
+    {
+      "id": 63,
+      "flag": 1,
+      "selector": 1
+    },
+    {
+      "id": 64,
+      "flag": 1,
+      "selector": 1
+    },
+    {
+      "id": 65,
+      "flag": 1,
+      "selector": 1
+    },
+    {
+      "id": 66,
+      "flag": 1,
+      "selector": 1
+    },
+    {
+      "id": 67,
+      "flag": 1,
+      "selector": 0
+    },
+    {
+      "id": 68,
+      "flag": 1,
+      "selector": 0
+    },
+    {
+      "id": 69,
+      "flag": 1,
+      "selector": 0
+    },
+    {
+      "id": 70,
+      "flag": 1,
+      "selector": 0
+    },
+    {
+      "id": 71,
+      "flag": 1,
+      "selector": 0
+    },
+    {
+      "id": 72,
+      "flag": 1,
+      "selector": 0
+    },
+    {
+      "id": 73,
+      "flag": 1,
+      "selector": 0
+    },
+    {
+      "id": 74,
+      "flag": 1,
+      "selector": 0
+    },
+    {
+      "id": 75,
+      "flag": 0,
+      "selector": 0
+    },
+    {
+      "id": 76,
+      "flag": 0,
+      "selector": 0
+    },
+    {
+      "id": 77,
+      "flag": 0,
+      "selector": 0
+    },
+    {
+      "id": 78,
+      "flag": 0,
+      "selector": 0
+    },
+    {
+      "id": 79,
+      "flag": 0,
+      "selector": 0
+    },
+    {
+      "id": 80,
+      "flag": 0,
+      "selector": 0
+    },
+    {
+      "id": 81,
+      "flag": 0,
+      "selector": 0
+    },
+    {
+      "id": 82,
+      "flag": 0,
+      "selector": 0
+    },
+    {
+      "id": 83,
+      "flag": 0,
+      "selector": 0
+    },
+    {
+      "id": 84,
+      "flag": 0,
+      "selector": 0
+    },
+    {
+      "id": 85,
+      "flag": 0,
+      "selector": 0
+    },
+    {
+      "id": 86,
+      "flag": 1,
+      "selector": 0
+    },
+    {
+      "id": 87,
+      "flag": 1,
+      "selector": 0
+    },
+    {
+      "id": 88,
+      "flag": 1,
+      "selector": 0
+    },
+    {
+      "id": 89,
+      "flag": 1,
+      "selector": 0
+    },
+    {
+      "id": 90,
+      "flag": 1,
+      "selector": 0
+    },
+    {
+      "id": 91,
+      "flag": 1,
+      "selector": 0
+    },
+    {
+      "id": 92,
+      "flag": 1,
+      "selector": 0
+    },
+    {
+      "id": 93,
+      "flag": 1,
+      "selector": 0
+    },
+    {
+      "id": 94,
+      "flag": 1,
+      "selector": 0
+    },
+    {
+      "id": 95,
+      "flag": 1,
+      "selector": 0
+    },
+    {
+      "id": 96,
+      "flag": 0,
+      "selector": 0
+    },
+    {
+      "id": 97,
+      "flag": 0,
+      "selector": 0
+    },
+    {
+      "id": 98,
+      "flag": 0,
+      "selector": 0
+    },
+    {
+      "id": 99,
+      "flag": 0,
+      "selector": 0
+    },
+    {
+      "id": 100,
+      "flag": 0,
+      "selector": 0
+    },
+    {
+      "id": 101,
+      "flag": 0,
+      "selector": 0
+    },
+    {
+      "id": 102,
+      "flag": 0,
+      "selector": 0
+    },
+    {
+      "id": 103,
+      "flag": 0,
+      "selector": 0
+    },
+    {
+      "id": 104,
+      "flag": 0,
+      "selector": 0
+    },
+    {
+      "id": 105,
+      "flag": 0,
+      "selector": 0
+    },
+    {
+      "id": 106,
+      "flag": 0,
+      "selector": 0
+    },
+    {
+      "id": 107,
+      "flag": 0,
+      "selector": 0
+    },
+    {
+      "id": 108,
+      "flag": 1,
+      "selector": 0
+    },
+    {
+      "id": 109,
+      "flag": 1,
+      "selector": 0
+    },
+    {
+      "id": 110,
+      "flag": 1,
+      "selector": 0
+    },
+    {
+      "id": 111,
+      "flag": 1,
+      "selector": 0
+    },
+    {
+      "id": 112,
+      "flag": 1,
+      "selector": 0
+    },
+    {
+      "id": 113,
+      "flag": 1,
+      "selector": 0
+    },
+    {
+      "id": 114,
+      "flag": 1,
+      "selector": 0
+    },
+    {
+      "id": 115,
+      "flag": 1,
+      "selector": 0
+    },
+    {
+      "id": 116,
+      "flag": 1,
+      "selector": 0
+    },
+    {
+      "id": 117,
+      "flag": 1,
+      "selector": 0
+    },
+    {
+      "id": 118,
+      "flag": 1,
+      "selector": 0
+    },
+    {
+      "id": 119,
+      "flag": 1,
+      "selector": 0
+    },
+    {
+      "id": 120,
+      "flag": 1,
+      "selector": 0
+    },
+    {
+      "id": 121,
+      "flag": 1,
+      "selector": 0
+    },
+    {
+      "id": 122,
+      "flag": 1,
+      "selector": 0
+    },
+    {
+      "id": 123,
+      "flag": 1,
+      "selector": 0
+    },
+    {
+      "id": 124,
+      "flag": 1,
+      "selector": 0
+    },
+    {
+      "id": 125,
+      "flag": 1,
+      "selector": 0
+    },
+    {
+      "id": 126,
+      "flag": 1,
+      "selector": 0
+    },
+    {
+      "id": 127,
+      "flag": 1,
+      "selector": 0
+    },
+    {
+      "id": 128,
+      "flag": 1,
+      "selector": 0
+    },
+    {
+      "id": 129,
+      "flag": 1,
+      "selector": 0
+    },
+    {
+      "id": 130,
+      "flag": 1,
+      "selector": 0
+    },
+    {
+      "id": 131,
+      "flag": 1,
+      "selector": 1
+    },
+    {
+      "id": 132,
+      "flag": 1,
+      "selector": 1
+    },
+    {
+      "id": 133,
+      "flag": 1,
+      "selector": 1
+    },
+    {
+      "id": 134,
+      "flag": 1,
+      "selector": 0
+    }
+  ]
+}
