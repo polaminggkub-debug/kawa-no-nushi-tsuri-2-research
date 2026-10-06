@@ -19,7 +19,7 @@ export const copy_en = {
   catalogueKicker: 'THE FULL INDEX',
   catalogueTitle: 'Browse all 315 listed entries',
   catalogueCopy:
-    'Search either language, an item ID, or a stat. Open any card for its raw ROM bytes and record offset.',
+    'Search either language, an item ID, or a stat. Open any card for its details, including the raw game data for anyone who wants to check.',
   search: 'Search',
   searchPlaceholder: 'Try “rod”, “トップウォータ”, or “0D”',
   category: 'Category',
@@ -27,7 +27,7 @@ export const copy_en = {
   all: 'All categories',
   sortId: 'Item ID',
   sortName: 'Name',
-  sortPrice: 'ROM price field (evidence)',
+  sortPrice: 'Price in game data',
   sortBuyPrice: 'Shop availability, then price',
   results: (n) => `${n} entries shown`,
   empty: 'No matching entries. Try another name or ID.',

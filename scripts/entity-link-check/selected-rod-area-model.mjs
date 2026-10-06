@@ -1,9 +1,13 @@
 import assert from 'node:assert/strict'
 import fs from 'node:fs'
 import path from 'node:path'
-import { rodAreaDecision } from '../../src/entities/item/index.js'
+import { rodAreaDecision, rodRefName } from '../../src/entities/item/index.js'
 import { data, root } from './shared.mjs'
 
+// Advice names rods instead of quoting hex IDs, so assertions look for the rod's name.
+export const rodName = (lang, id) => rodRefName(lang, id)
+// An English name may open a sentence ("The large fly rod"), so names are matched ignoring case.
+const mentions = (text, lang, id) => text.toLowerCase().includes(rodName(lang, id).toLowerCase())
 export const requireValue = (value, message) => assert.ok(value, message)
 export const requireEqual = (actual, expected, message) => assert.equal(actual, expected, message)
 const shopStock = JSON.parse(fs.readFileSync(path.join(root, 'data/shop-stock-rom.json'), 'utf8'))
@@ -126,7 +130,7 @@ function expectedDecision(item, stage) {
 function hasMetric(copy, lang, field, value) {
   if (field === 'price') return copy.includes(lang === 'ja' ? `${value}円` : `¥${value}`)
   if (field === 'boundary') return copy.includes(`×${value}`)
-  const label = lang === 'th' ? 'เวลาเล็ง' : lang === 'ja' ? '照準' : 'aim'
+  const label = lang === 'th' ? 'เวลาเล็ง' : lang === 'ja' ? '狙う時間' : 'aim'
   let position = copy.indexOf(label)
   while (position >= 0) {
     const values = copy.slice(position, position + 32).match(/\d+(?:\.\d+)?/g) || []
@@ -137,7 +141,8 @@ function hasMetric(copy, lang, field, value) {
 }
 
 function hasMetricNearId(copy, lang, id, field, value) {
-  const positions = [...copy.matchAll(new RegExp(`(?<!\\d)${id}(?!\\d)`, 'g'))].map(
+  const name = rodName(lang, id)
+  const positions = [...copy.matchAll(new RegExp(escapeRegExp(name), 'gi'))].map(
     (match) => match.index,
   )
   return positions.some((position) =>
@@ -145,31 +150,26 @@ function hasMetricNearId(copy, lang, id, field, value) {
   )
 }
 
+function escapeRegExp(value) {
+  return value.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')
+}
+
 function directionPattern(lang, field, direction) {
   const patterns = {
     en: {
-      aim: { more: /more time|longer.{0,20}time/i, less: /less time|shorter.{0,20}time/i },
+      aim: { more: /more time to aim/i, less: /less time to aim/i },
       boundary: {
-        more: /fish.{0,30}farther|farther.{0,30}fish/i,
-        less: /fish.{0,60}closer|closer.{0,60}fish/i,
+        more: /breaks less easily|hardest-to-break/i,
+        less: /breaks more easily/i,
       },
     },
     th: {
-      aim: {
-        more: /เวลาขยับเป้าได้นานกว่า|เล็งได้นานกว่า/,
-        less: /เวลาขยับเป้าได้น้อยกว่า|เล็งได้น้อยกว่า/,
-      },
-      boundary: {
-        more: /ปลาออกไปได้ไกลกว่า|ขอบเขต.{0,20}สูงกว่า/,
-        less: /ปลา.{0,80}ใกล้กว่า|ขอบเขต.{0,20}ต่ำกว่า/,
-      },
+      aim: { more: /มีเวลาเล็งนานกว่า/, less: /มีเวลาเล็งน้อยกว่า/ },
+      boundary: { more: /สายขาดยากกว่า/, less: /สายขาดง่ายกว่า/ },
     },
     ja: {
-      aim: { more: /照準時間が長|時間が延び/, less: /照準時間が短|時間が減り/ },
-      boundary: {
-        more: /魚が遠く(?:へ|まで)|境界.{0,10}大き/,
-        less: /魚が近い位置|境界.{0,10}小さ/,
-      },
+      aim: { more: /狙う時間が長/, less: /狙う時間が短/ },
+      boundary: { more: /糸が切れにくい/, less: /糸が切れやすい/ },
     },
   }
   return patterns[lang][field][direction]
@@ -194,13 +194,14 @@ function checkDirectionalDifference(copy, lang, subject, other, stage, subjectId
   }
 }
 
-function clauseAfterId(copy, id) {
-  const escaped = id.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')
-  const positions = [...copy.matchAll(new RegExp(`(?<![A-Za-z0-9])${escaped}(?![A-Za-z0-9])`, 'g'))]
+function clauseAfterId(copy, lang, id) {
+  const escaped = escapeRegExp(rodName(lang, id))
+  const positions = [...copy.matchAll(new RegExp(escaped, 'gi'))]
   const position = positions.at(-1)?.index ?? -1
   if (position < 0) return ''
   const clause = copy.slice(position)
-  const end = clause.search(/[.!?。！？]/)
+  // A full stop inside a rod name ("5.3 m") does not end the clause.
+  const end = clause.search(/[.!?。！？](?=\s|$)/)
   return end < 0 ? clause : clause.slice(0, end)
 }
 
@@ -295,7 +296,7 @@ function checkAimRecommendation(decision, lang, stage, expected, candidate) {
     .sort((a, b) => a.price - b.price || a.id.localeCompare(b.id))[0]
   requireValue(cheaper, `Aim leader has no cheaper comparator: ${lang}/${stage}/${candidate.id}`)
   requireValue(
-    decision.recommendation[lang].includes(cheaper.id) &&
+    mentions(decision.recommendation[lang], lang, cheaper.id) &&
       hasMetric(decision.recommendation[lang], lang, 'price', cheaper.price) &&
       directionPattern(lang, 'aim', 'more').test(decision.recommendation[lang]) &&
       !directionPattern(lang, 'aim', 'less').test(decision.recommendation[lang]),
@@ -306,9 +307,9 @@ function checkAimRecommendation(decision, lang, stage, expected, candidate) {
 function checkBoundaryRecommendation(decision, lang, stage, candidate) {
   const copy = `${decision.label[lang]} ${decision.recommendation[lang]}`
   const farthest = {
-    en: /farthest|largest.{0,45}(?:limit|boundary)|(?:limit|boundary).{0,45}largest/i,
-    th: /ไกลสุด|สูงสุด|ขอบเขต.{0,20}มากที่สุด/,
-    ja: /最遠|遠くへ動ける値|最大.{0,10}境界/,
+    en: /least easily|hardest-to-break|strongest line/i,
+    th: /สายขาดยากสุด/,
+    ja: /最も切れにくい/,
   }[lang]
   requireValue(
     farthest.test(copy),
@@ -353,16 +354,17 @@ function checkTradeoffRecommendation(decision, lang, item, stage, expected) {
   const dearer = priceNeighbor(expected.localChoices, candidate, 1)
   if (cheaper) {
     requireValue(
-      decision.label[lang].includes(cheaper.id) && cheaperPattern(lang).test(decision.label[lang]),
+      mentions(decision.label[lang], lang, cheaper.id) &&
+        cheaperPattern(lang).test(decision.label[lang]),
       `Cheaper local alternative not identified: ${lang}/${stage}/${item.id}/${cheaper.id}`,
     )
     checkDirectionalDifference(decision.label[lang], lang, candidate, cheaper, stage, item.id)
   }
   if (dearer) {
     const copy = decision.recommendation[lang]
-    const comparison = clauseAfterId(copy, dearer.id)
+    const comparison = clauseAfterId(copy, lang, dearer.id)
     requireValue(
-      copy.includes(dearer.id) && hasMetric(comparison, lang, 'price', dearer.price),
+      mentions(copy, lang, dearer.id) && hasMetric(comparison, lang, 'price', dearer.price),
       `Higher-priced rod omitted: ${lang}/${stage}/${item.id}/${dearer.id}`,
     )
     checkDirectionalDifference(comparison, lang, dearer, candidate, stage, item.id)
@@ -373,7 +375,7 @@ function checkUnstockedRecommendations(decision, lang, item, stage, expected) {
   if (expected.status !== 'item-unstocked' && !expected.status.startsWith('style-')) return
   for (const choice of expected.choices)
     requireValue(
-      decision.recommendation[lang].includes(choice.id),
+      mentions(decision.recommendation[lang], lang, choice.id),
       `Recorded local alternative omitted: ${lang}/${stage}/${item.id}/${choice.id}`,
     )
 }
@@ -396,7 +398,7 @@ function checkArea5Tradeoff(decision, lang, item) {
   requireValue(candidate.price > cheapRod.price && candidate.aim > cheapRod.aim)
   requireValue(candidate.boundary < cheapRod.boundary)
   requireValue(
-    copy.includes('09') &&
+    mentions(copy, lang, '09') &&
       directionPattern(lang, 'aim', 'more').test(copy) &&
       directionPattern(lang, 'boundary', 'less').test(copy) &&
       !directionPattern(lang, 'aim', 'less').test(copy) &&
@@ -407,7 +409,7 @@ function checkArea5Tradeoff(decision, lang, item) {
 function checkClaimScope(decision, lang, item, stage) {
   const copy = `${decision.recommendation[lang]} ${decision.reason[lang]} ${decision.scope[lang]}`
   requireValue(
-    /does not rank bites, landed fish|ไม่ได้จัดอันดับปลากิน จับขึ้น|食いつき、取り込み、魚別の優位性は順位付けしません/.test(
+    /Bite rate, catch rate and fish-specific advantages are not ranked|ไม่ได้จัดอันดับโอกาสที่ปลากินเหยื่อหรือจับขึ้น|食いつきや釣れやすさ、魚ごとの相性は順位付けしていません/.test(
       decision.scope[lang],
     ),
     `Catch scope missing: ${lang}/${stage}/${item.id}`,
@@ -420,7 +422,7 @@ function checkClaimScope(decision, lang, item, stage) {
     const aimWords = {
       en: /aim/i,
       th: /เวลาเล็ง/,
-      ja: /照準/,
+      ja: /狙う時間/,
     }
     const hp100 = /HP\s*100/i
     requireValue(

@@ -83,9 +83,9 @@
         "aimRankAt100Hp": 11,
         "reachRank": 11,
         "of": 11,
-        "en": "Within Float / Ayu rods: aim window 11/11 at full HP; fish-position loss limit 11/11. Rank 1 is longest/highest in that dimension.",
-        "ja": "ウキ・アユ用の竿11本中、HP満タン時の照準時間は11位、道具喪失の魚位置境界は11位。1位が最長・最大。",
-        "th": "ในกลุ่มคันสายทุ่น / ปลาอายุ 11 คัน: ช่วงเล็ง 11/11 เมื่อ HP เต็ม; ขอบเขตก่อนเสียอุปกรณ์ 11/11; อันดับ 1 คือเวลานาน/ขอบเขตสูงสุด"
+        "en": "Within Float / Ayu rods: time to aim ranks 11/11 at full HP; line strength ranks 11/11. Rank 1 is longest/highest in that dimension.",
+        "ja": "ウキ・アユ用の竿11本中、HP満タン時の狙う時間は11位、糸の切れにくさは11位。1位が最長・最大。",
+        "th": "ในกลุ่มคันสายทุ่น / ปลาอายุ 11 คัน: เวลาเล็งอันดับ 11/11 เมื่อ HP เต็ม; สายขาดยากอันดับ 11/11; อันดับ 1 คือดีที่สุด"
       },
       "targetMatches": [
         {
@@ -171,9 +171,9 @@
         "aimRankAt100Hp": 3,
         "reachRank": 6,
         "of": 11,
-        "en": "Within Float / Ayu rods: aim window 3/11 at full HP; fish-position loss limit 6/11. Rank 1 is longest/highest in that dimension.",
-        "ja": "ウキ・アユ用の竿11本中、HP満タン時の照準時間は3位、道具喪失の魚位置境界は6位。1位が最長・最大。",
-        "th": "ในกลุ่มคันสายทุ่น / ปลาอายุ 11 คัน: ช่วงเล็ง 3/11 เมื่อ HP เต็ม; ขอบเขตก่อนเสียอุปกรณ์ 6/11; อันดับ 1 คือเวลานาน/ขอบเขตสูงสุด"
+        "en": "Within Float / Ayu rods: time to aim ranks 3/11 at full HP; line strength ranks 6/11. Rank 1 is longest/highest in that dimension.",
+        "ja": "ウキ・アユ用の竿11本中、HP満タン時の狙う時間は3位、糸の切れにくさは6位。1位が最長・最大。",
+        "th": "ในกลุ่มคันสายทุ่น / ปลาอายุ 11 คัน: เวลาเล็งอันดับ 3/11 เมื่อ HP เต็ม; สายขาดยากอันดับ 6/11; อันดับ 1 คือดีที่สุด"
       },
       "targetMatches": [
         {
@@ -254,9 +254,9 @@
         "aimRankAt100Hp": 8,
         "reachRank": 9,
         "of": 11,
-        "en": "Within Float / Ayu rods: aim window 8/11 at full HP; fish-position loss limit 9/11. Rank 1 is longest/highest in that dimension.",
-        "ja": "ウキ・アユ用の竿11本中、HP満タン時の照準時間は8位、道具喪失の魚位置境界は9位。1位が最長・最大。",
-        "th": "ในกลุ่มคันสายทุ่น / ปลาอายุ 11 คัน: ช่วงเล็ง 8/11 เมื่อ HP เต็ม; ขอบเขตก่อนเสียอุปกรณ์ 9/11; อันดับ 1 คือเวลานาน/ขอบเขตสูงสุด"
+        "en": "Within Float / Ayu rods: time to aim ranks 8/11 at full HP; line strength ranks 9/11. Rank 1 is longest/highest in that dimension.",
+        "ja": "ウキ・アユ用の竿11本中、HP満タン時の狙う時間は8位、糸の切れにくさは9位。1位が最長・最大。",
+        "th": "ในกลุ่มคันสายทุ่น / ปลาอายุ 11 คัน: เวลาเล็งอันดับ 8/11 เมื่อ HP เต็ม; สายขาดยากอันดับ 9/11; อันดับ 1 คือดีที่สุด"
       },
       "evidence": {
         "type": "rom_trace",
@@ -338,9 +338,9 @@
         "aimRankAt100Hp": 5,
         "reachRank": 7,
         "of": 11,
-        "en": "Within Float / Ayu rods: aim window 5/11 at full HP; fish-position loss limit 7/11. Rank 1 is longest/highest in that dimension.",
-        "ja": "ウキ・アユ用の竿11本中、HP満タン時の照準時間は5位、道具喪失の魚位置境界は7位。1位が最長・最大。",
-        "th": "ในกลุ่มคันสายทุ่น / ปลาอายุ 11 คัน: ช่วงเล็ง 5/11 เมื่อ HP เต็ม; ขอบเขตก่อนเสียอุปกรณ์ 7/11; อันดับ 1 คือเวลานาน/ขอบเขตสูงสุด"
+        "en": "Within Float / Ayu rods: time to aim ranks 5/11 at full HP; line strength ranks 7/11. Rank 1 is longest/highest in that dimension.",
+        "ja": "ウキ・アユ用の竿11本中、HP満タン時の狙う時間は5位、糸の切れにくさは7位。1位が最長・最大。",
+        "th": "ในกลุ่มคันสายทุ่น / ปลาอายุ 11 คัน: เวลาเล็งอันดับ 5/11 เมื่อ HP เต็ม; สายขาดยากอันดับ 7/11; อันดับ 1 คือดีที่สุด"
       },
       "evidence": {
         "type": "rom_trace",
@@ -425,9 +425,9 @@
         "aimRankAt100Hp": 6,
         "reachRank": 8,
         "of": 11,
-        "en": "Within Float / Ayu rods: aim window 6/11 at full HP; fish-position loss limit 8/11. Rank 1 is longest/highest in that dimension.",
-        "ja": "ウキ・アユ用の竿11本中、HP満タン時の照準時間は6位、道具喪失の魚位置境界は8位。1位が最長・最大。",
-        "th": "ในกลุ่มคันสายทุ่น / ปลาอายุ 11 คัน: ช่วงเล็ง 6/11 เมื่อ HP เต็ม; ขอบเขตก่อนเสียอุปกรณ์ 8/11; อันดับ 1 คือเวลานาน/ขอบเขตสูงสุด"
+        "en": "Within Float / Ayu rods: time to aim ranks 6/11 at full HP; line strength ranks 8/11. Rank 1 is longest/highest in that dimension.",
+        "ja": "ウキ・アユ用の竿11本中、HP満タン時の狙う時間は6位、糸の切れにくさは8位。1位が最長・最大。",
+        "th": "ในกลุ่มคันสายทุ่น / ปลาอายุ 11 คัน: เวลาเล็งอันดับ 6/11 เมื่อ HP เต็ม; สายขาดยากอันดับ 8/11; อันดับ 1 คือดีที่สุด"
       },
       "targetMatches": [
         {
@@ -521,9 +521,9 @@
         "aimRankAt100Hp": 10,
         "reachRank": 10,
         "of": 11,
-        "en": "Within Float / Ayu rods: aim window 10/11 at full HP; fish-position loss limit 10/11. Rank 1 is longest/highest in that dimension.",
-        "ja": "ウキ・アユ用の竿11本中、HP満タン時の照準時間は10位、道具喪失の魚位置境界は10位。1位が最長・最大。",
-        "th": "ในกลุ่มคันสายทุ่น / ปลาอายุ 11 คัน: ช่วงเล็ง 10/11 เมื่อ HP เต็ม; ขอบเขตก่อนเสียอุปกรณ์ 10/11; อันดับ 1 คือเวลานาน/ขอบเขตสูงสุด"
+        "en": "Within Float / Ayu rods: time to aim ranks 10/11 at full HP; line strength ranks 10/11. Rank 1 is longest/highest in that dimension.",
+        "ja": "ウキ・アユ用の竿11本中、HP満タン時の狙う時間は10位、糸の切れにくさは10位。1位が最長・最大。",
+        "th": "ในกลุ่มคันสายทุ่น / ปลาอายุ 11 คัน: เวลาเล็งอันดับ 10/11 เมื่อ HP เต็ม; สายขาดยากอันดับ 10/11; อันดับ 1 คือดีที่สุด"
       },
       "targetMatches": [
         {
@@ -604,9 +604,9 @@
         "aimRankAt100Hp": 2,
         "reachRank": 5,
         "of": 11,
-        "en": "Within Float / Ayu rods: aim window 2/11 at full HP; fish-position loss limit 5/11. Rank 1 is longest/highest in that dimension.",
-        "ja": "ウキ・アユ用の竿11本中、HP満タン時の照準時間は2位、道具喪失の魚位置境界は5位。1位が最長・最大。",
-        "th": "ในกลุ่มคันสายทุ่น / ปลาอายุ 11 คัน: ช่วงเล็ง 2/11 เมื่อ HP เต็ม; ขอบเขตก่อนเสียอุปกรณ์ 5/11; อันดับ 1 คือเวลานาน/ขอบเขตสูงสุด"
+        "en": "Within Float / Ayu rods: time to aim ranks 2/11 at full HP; line strength ranks 5/11. Rank 1 is longest/highest in that dimension.",
+        "ja": "ウキ・アユ用の竿11本中、HP満タン時の狙う時間は2位、糸の切れにくさは5位。1位が最長・最大。",
+        "th": "ในกลุ่มคันสายทุ่น / ปลาอายุ 11 คัน: เวลาเล็งอันดับ 2/11 เมื่อ HP เต็ม; สายขาดยากอันดับ 5/11; อันดับ 1 คือดีที่สุด"
       },
       "targetMatches": [
         {
@@ -694,9 +694,9 @@
         "aimRankAt100Hp": 6,
         "reachRank": 1,
         "of": 11,
-        "en": "Within Float / Ayu rods: aim window 6/11 at full HP; fish-position loss limit 1/11. Rank 1 is longest/highest in that dimension.",
-        "ja": "ウキ・アユ用の竿11本中、HP満タン時の照準時間は6位、道具喪失の魚位置境界は1位。1位が最長・最大。",
-        "th": "ในกลุ่มคันสายทุ่น / ปลาอายุ 11 คัน: ช่วงเล็ง 6/11 เมื่อ HP เต็ม; ขอบเขตก่อนเสียอุปกรณ์ 1/11; อันดับ 1 คือเวลานาน/ขอบเขตสูงสุด"
+        "en": "Within Float / Ayu rods: time to aim ranks 6/11 at full HP; line strength ranks 1/11. Rank 1 is longest/highest in that dimension.",
+        "ja": "ウキ・アユ用の竿11本中、HP満タン時の狙う時間は6位、糸の切れにくさは1位。1位が最長・最大。",
+        "th": "ในกลุ่มคันสายทุ่น / ปลาอายุ 11 คัน: เวลาเล็งอันดับ 6/11 เมื่อ HP เต็ม; สายขาดยากอันดับ 1/11; อันดับ 1 คือดีที่สุด"
       },
       "targetMatches": [
         {
@@ -782,9 +782,9 @@
         "aimRankAt100Hp": 8,
         "reachRank": 4,
         "of": 11,
-        "en": "Within Float / Ayu rods: aim window 8/11 at full HP; fish-position loss limit 4/11. Rank 1 is longest/highest in that dimension.",
-        "ja": "ウキ・アユ用の竿11本中、HP満タン時の照準時間は8位、道具喪失の魚位置境界は4位。1位が最長・最大。",
-        "th": "ในกลุ่มคันสายทุ่น / ปลาอายุ 11 คัน: ช่วงเล็ง 8/11 เมื่อ HP เต็ม; ขอบเขตก่อนเสียอุปกรณ์ 4/11; อันดับ 1 คือเวลานาน/ขอบเขตสูงสุด"
+        "en": "Within Float / Ayu rods: time to aim ranks 8/11 at full HP; line strength ranks 4/11. Rank 1 is longest/highest in that dimension.",
+        "ja": "ウキ・アユ用の竿11本中、HP満タン時の狙う時間は8位、糸の切れにくさは4位。1位が最長・最大。",
+        "th": "ในกลุ่มคันสายทุ่น / ปลาอายุ 11 คัน: เวลาเล็งอันดับ 8/11 เมื่อ HP เต็ม; สายขาดยากอันดับ 4/11; อันดับ 1 คือดีที่สุด"
       },
       "targetMatches": [
         {
@@ -875,9 +875,9 @@
         "aimRankAt100Hp": 4,
         "reachRank": 4,
         "of": 4,
-        "en": "Within Lure rods: aim window 4/4 at full HP; fish-position loss limit 4/4. Rank 1 is longest/highest in that dimension.",
-        "ja": "ルアー用の竿4本中、HP満タン時の照準時間は4位、道具喪失の魚位置境界は4位。1位が最長・最大。",
-        "th": "ในกลุ่มคันลัวร์ 4 คัน: ช่วงเล็ง 4/4 เมื่อ HP เต็ม; ขอบเขตก่อนเสียอุปกรณ์ 4/4; อันดับ 1 คือเวลานาน/ขอบเขตสูงสุด"
+        "en": "Within Lure rods: time to aim ranks 4/4 at full HP; line strength ranks 4/4. Rank 1 is longest/highest in that dimension.",
+        "ja": "ルアー用の竿4本中、HP満タン時の狙う時間は4位、糸の切れにくさは4位。1位が最長・最大。",
+        "th": "ในกลุ่มคันลัวร์ 4 คัน: เวลาเล็งอันดับ 4/4 เมื่อ HP เต็ม; สายขาดยากอันดับ 4/4; อันดับ 1 คือดีที่สุด"
       },
       "evidence": {
         "type": "rom_trace",
@@ -965,9 +965,9 @@
         "aimRankAt100Hp": 3,
         "reachRank": 3,
         "of": 4,
-        "en": "Within Lure rods: aim window 3/4 at full HP; fish-position loss limit 3/4. Rank 1 is longest/highest in that dimension.",
-        "ja": "ルアー用の竿4本中、HP満タン時の照準時間は3位、道具喪失の魚位置境界は3位。1位が最長・最大。",
-        "th": "ในกลุ่มคันลัวร์ 4 คัน: ช่วงเล็ง 3/4 เมื่อ HP เต็ม; ขอบเขตก่อนเสียอุปกรณ์ 3/4; อันดับ 1 คือเวลานาน/ขอบเขตสูงสุด"
+        "en": "Within Lure rods: time to aim ranks 3/4 at full HP; line strength ranks 3/4. Rank 1 is longest/highest in that dimension.",
+        "ja": "ルアー用の竿4本中、HP満タン時の狙う時間は3位、糸の切れにくさは3位。1位が最長・最大。",
+        "th": "ในกลุ่มคันลัวร์ 4 คัน: เวลาเล็งอันดับ 3/4 เมื่อ HP เต็ม; สายขาดยากอันดับ 3/4; อันดับ 1 คือดีที่สุด"
       },
       "evidence": {
         "type": "rom_trace",
@@ -1039,9 +1039,9 @@
         "aimRankAt100Hp": 2,
         "reachRank": 2,
         "of": 4,
-        "en": "Within Lure rods: aim window 2/4 at full HP; fish-position loss limit 2/4. Rank 1 is longest/highest in that dimension.",
-        "ja": "ルアー用の竿4本中、HP満タン時の照準時間は2位、道具喪失の魚位置境界は2位。1位が最長・最大。",
-        "th": "ในกลุ่มคันลัวร์ 4 คัน: ช่วงเล็ง 2/4 เมื่อ HP เต็ม; ขอบเขตก่อนเสียอุปกรณ์ 2/4; อันดับ 1 คือเวลานาน/ขอบเขตสูงสุด"
+        "en": "Within Lure rods: time to aim ranks 2/4 at full HP; line strength ranks 2/4. Rank 1 is longest/highest in that dimension.",
+        "ja": "ルアー用の竿4本中、HP満タン時の狙う時間は2位、糸の切れにくさは2位。1位が最長・最大。",
+        "th": "ในกลุ่มคันลัวร์ 4 คัน: เวลาเล็งอันดับ 2/4 เมื่อ HP เต็ม; สายขาดยากอันดับ 2/4; อันดับ 1 คือดีที่สุด"
       },
       "evidence": {
         "type": "rom_trace",
@@ -1129,9 +1129,9 @@
         "aimRankAt100Hp": 1,
         "reachRank": 1,
         "of": 4,
-        "en": "Within Lure rods: aim window 1/4 at full HP; fish-position loss limit 1/4. Rank 1 is longest/highest in that dimension.",
-        "ja": "ルアー用の竿4本中、HP満タン時の照準時間は1位、道具喪失の魚位置境界は1位。1位が最長・最大。",
-        "th": "ในกลุ่มคันลัวร์ 4 คัน: ช่วงเล็ง 1/4 เมื่อ HP เต็ม; ขอบเขตก่อนเสียอุปกรณ์ 1/4; อันดับ 1 คือเวลานาน/ขอบเขตสูงสุด"
+        "en": "Within Lure rods: time to aim ranks 1/4 at full HP; line strength ranks 1/4. Rank 1 is longest/highest in that dimension.",
+        "ja": "ルアー用の竿4本中、HP満タン時の狙う時間は1位、糸の切れにくさは1位。1位が最長・最大。",
+        "th": "ในกลุ่มคันลัวร์ 4 คัน: เวลาเล็งอันดับ 1/4 เมื่อ HP เต็ม; สายขาดยากอันดับ 1/4; อันดับ 1 คือดีที่สุด"
       },
       "targetMatches": [
         {
@@ -1220,9 +1220,9 @@
         "aimRankAt100Hp": 3,
         "reachRank": 3,
         "of": 3,
-        "en": "Within Casting rods: aim window 3/3 at full HP; fish-position loss limit 3/3. Rank 1 is longest/highest in that dimension.",
-        "ja": "投げ釣り用の竿3本中、HP満タン時の照準時間は3位、道具喪失の魚位置境界は3位。1位が最長・最大。",
-        "th": "ในกลุ่มคันตีเหยื่อแบบคาสติ้ง 3 คัน: ช่วงเล็ง 3/3 เมื่อ HP เต็ม; ขอบเขตก่อนเสียอุปกรณ์ 3/3; อันดับ 1 คือเวลานาน/ขอบเขตสูงสุด"
+        "en": "Within Casting rods: time to aim ranks 3/3 at full HP; line strength ranks 3/3. Rank 1 is longest/highest in that dimension.",
+        "ja": "投げ釣り用の竿3本中、HP満タン時の狙う時間は3位、糸の切れにくさは3位。1位が最長・最大。",
+        "th": "ในกลุ่มคันตีเหยื่อแบบคาสติ้ง 3 คัน: เวลาเล็งอันดับ 3/3 เมื่อ HP เต็ม; สายขาดยากอันดับ 3/3; อันดับ 1 คือดีที่สุด"
       },
       "evidence": {
         "type": "rom_trace",
@@ -1310,9 +1310,9 @@
         "aimRankAt100Hp": 2,
         "reachRank": 2,
         "of": 3,
-        "en": "Within Casting rods: aim window 2/3 at full HP; fish-position loss limit 2/3. Rank 1 is longest/highest in that dimension.",
-        "ja": "投げ釣り用の竿3本中、HP満タン時の照準時間は2位、道具喪失の魚位置境界は2位。1位が最長・最大。",
-        "th": "ในกลุ่มคันตีเหยื่อแบบคาสติ้ง 3 คัน: ช่วงเล็ง 2/3 เมื่อ HP เต็ม; ขอบเขตก่อนเสียอุปกรณ์ 2/3; อันดับ 1 คือเวลานาน/ขอบเขตสูงสุด"
+        "en": "Within Casting rods: time to aim ranks 2/3 at full HP; line strength ranks 2/3. Rank 1 is longest/highest in that dimension.",
+        "ja": "投げ釣り用の竿3本中、HP満タン時の狙う時間は2位、糸の切れにくさは2位。1位が最長・最大。",
+        "th": "ในกลุ่มคันตีเหยื่อแบบคาสติ้ง 3 คัน: เวลาเล็งอันดับ 2/3 เมื่อ HP เต็ม; สายขาดยากอันดับ 2/3; อันดับ 1 คือดีที่สุด"
       },
       "evidence": {
         "type": "rom_trace",
@@ -1397,9 +1397,9 @@
         "aimRankAt100Hp": 1,
         "reachRank": 1,
         "of": 3,
-        "en": "Within Casting rods: aim window 1/3 at full HP; fish-position loss limit 1/3. Rank 1 is longest/highest in that dimension.",
-        "ja": "投げ釣り用の竿3本中、HP満タン時の照準時間は1位、道具喪失の魚位置境界は1位。1位が最長・最大。",
-        "th": "ในกลุ่มคันตีเหยื่อแบบคาสติ้ง 3 คัน: ช่วงเล็ง 1/3 เมื่อ HP เต็ม; ขอบเขตก่อนเสียอุปกรณ์ 1/3; อันดับ 1 คือเวลานาน/ขอบเขตสูงสุด"
+        "en": "Within Casting rods: time to aim ranks 1/3 at full HP; line strength ranks 1/3. Rank 1 is longest/highest in that dimension.",
+        "ja": "投げ釣り用の竿3本中、HP満タン時の狙う時間は1位、糸の切れにくさは1位。1位が最長・最大。",
+        "th": "ในกลุ่มคันตีเหยื่อแบบคาสติ้ง 3 คัน: เวลาเล็งอันดับ 1/3 เมื่อ HP เต็ม; สายขาดยากอันดับ 1/3; อันดับ 1 คือดีที่สุด"
       },
       "targetMatches": [
         {
@@ -1485,9 +1485,9 @@
         "aimRankAt100Hp": 3,
         "reachRank": 3,
         "of": 3,
-        "en": "Within Fly rods: aim window 3/3 at full HP; fish-position loss limit 3/3. Rank 1 is longest/highest in that dimension.",
-        "ja": "毛バリ用の竿3本中、HP満タン時の照準時間は3位、道具喪失の魚位置境界は3位。1位が最長・最大。",
-        "th": "ในกลุ่มคันฟลาย 3 คัน: ช่วงเล็ง 3/3 เมื่อ HP เต็ม; ขอบเขตก่อนเสียอุปกรณ์ 3/3; อันดับ 1 คือเวลานาน/ขอบเขตสูงสุด"
+        "en": "Within Fly rods: time to aim ranks 3/3 at full HP; line strength ranks 3/3. Rank 1 is longest/highest in that dimension.",
+        "ja": "毛バリ用の竿3本中、HP満タン時の狙う時間は3位、糸の切れにくさは3位。1位が最長・最大。",
+        "th": "ในกลุ่มคันฟลาย 3 คัน: เวลาเล็งอันดับ 3/3 เมื่อ HP เต็ม; สายขาดยากอันดับ 3/3; อันดับ 1 คือดีที่สุด"
       },
       "evidence": {
         "type": "rom_trace",
@@ -1556,9 +1556,9 @@
         "aimRankAt100Hp": 2,
         "reachRank": 2,
         "of": 3,
-        "en": "Within Fly rods: aim window 2/3 at full HP; fish-position loss limit 2/3. Rank 1 is longest/highest in that dimension.",
-        "ja": "毛バリ用の竿3本中、HP満タン時の照準時間は2位、道具喪失の魚位置境界は2位。1位が最長・最大。",
-        "th": "ในกลุ่มคันฟลาย 3 คัน: ช่วงเล็ง 2/3 เมื่อ HP เต็ม; ขอบเขตก่อนเสียอุปกรณ์ 2/3; อันดับ 1 คือเวลานาน/ขอบเขตสูงสุด"
+        "en": "Within Fly rods: time to aim ranks 2/3 at full HP; line strength ranks 2/3. Rank 1 is longest/highest in that dimension.",
+        "ja": "毛バリ用の竿3本中、HP満タン時の狙う時間は2位、糸の切れにくさは2位。1位が最長・最大。",
+        "th": "ในกลุ่มคันฟลาย 3 คัน: เวลาเล็งอันดับ 2/3 เมื่อ HP เต็ม; สายขาดยากอันดับ 2/3; อันดับ 1 คือดีที่สุด"
       },
       "evidence": {
         "type": "rom_trace",
@@ -1640,9 +1640,9 @@
         "aimRankAt100Hp": 1,
         "reachRank": 1,
         "of": 3,
-        "en": "Within Fly rods: aim window 1/3 at full HP; fish-position loss limit 1/3. Rank 1 is longest/highest in that dimension.",
-        "ja": "毛バリ用の竿3本中、HP満タン時の照準時間は1位、道具喪失の魚位置境界は1位。1位が最長・最大。",
-        "th": "ในกลุ่มคันฟลาย 3 คัน: ช่วงเล็ง 1/3 เมื่อ HP เต็ม; ขอบเขตก่อนเสียอุปกรณ์ 1/3; อันดับ 1 คือเวลานาน/ขอบเขตสูงสุด"
+        "en": "Within Fly rods: time to aim ranks 1/3 at full HP; line strength ranks 1/3. Rank 1 is longest/highest in that dimension.",
+        "ja": "毛バリ用の竿3本中、HP満タン時の狙う時間は1位、糸の切れにくさは1位。1位が最長・最大。",
+        "th": "ในกลุ่มคันฟลาย 3 คัน: เวลาเล็งอันดับ 1/3 เมื่อ HP เต็ม; สายขาดยากอันดับ 1/3; อันดับ 1 คือดีที่สุด"
       },
       "evidence": {
         "type": "rom_trace",
@@ -1724,9 +1724,9 @@
         "aimRankAt100Hp": 1,
         "reachRank": 3,
         "of": 11,
-        "en": "Within Float / Ayu rods: aim window 1/11 at full HP; fish-position loss limit 3/11. Rank 1 is longest/highest in that dimension.",
-        "ja": "ウキ・アユ用の竿11本中、HP満タン時の照準時間は1位、道具喪失の魚位置境界は3位。1位が最長・最大。",
-        "th": "ในกลุ่มคันสายทุ่น / ปลาอายุ 11 คัน: ช่วงเล็ง 1/11 เมื่อ HP เต็ม; ขอบเขตก่อนเสียอุปกรณ์ 3/11; อันดับ 1 คือเวลานาน/ขอบเขตสูงสุด"
+        "en": "Within Float / Ayu rods: time to aim ranks 1/11 at full HP; line strength ranks 3/11. Rank 1 is longest/highest in that dimension.",
+        "ja": "ウキ・アユ用の竿11本中、HP満タン時の狙う時間は1位、糸の切れにくさは3位。1位が最長・最大。",
+        "th": "ในกลุ่มคันสายทุ่น / ปลาอายุ 11 คัน: เวลาเล็งอันดับ 1/11 เมื่อ HP เต็ม; สายขาดยากอันดับ 3/11; อันดับ 1 คือดีที่สุด"
       },
       "targetMatches": [
         {
@@ -1817,9 +1817,9 @@
         "aimRankAt100Hp": 3,
         "reachRank": 1,
         "of": 11,
-        "en": "Within Float / Ayu rods: aim window 3/11 at full HP; fish-position loss limit 1/11. Rank 1 is longest/highest in that dimension.",
-        "ja": "ウキ・アユ用の竿11本中、HP満タン時の照準時間は3位、道具喪失の魚位置境界は1位。1位が最長・最大。",
-        "th": "ในกลุ่มคันสายทุ่น / ปลาอายุ 11 คัน: ช่วงเล็ง 3/11 เมื่อ HP เต็ม; ขอบเขตก่อนเสียอุปกรณ์ 1/11; อันดับ 1 คือเวลานาน/ขอบเขตสูงสุด"
+        "en": "Within Float / Ayu rods: time to aim ranks 3/11 at full HP; line strength ranks 1/11. Rank 1 is longest/highest in that dimension.",
+        "ja": "ウキ・アユ用の竿11本中、HP満タン時の狙う時間は3位、糸の切れにくさは1位。1位が最長・最大。",
+        "th": "ในกลุ่มคันสายทุ่น / ปลาอายุ 11 คัน: เวลาเล็งอันดับ 3/11 เมื่อ HP เต็ม; สายขาดยากอันดับ 1/11; อันดับ 1 คือดีที่สุด"
       },
       "targetMatches": [
         {
@@ -18828,7 +18828,7 @@
           "เหยื่อได้ครั้งละ 1–4 ชิ้น สูงสุดชนิดละ 9 ชิ้น ส่วนเห็ดต้องมีช่องอาหารว่าง",
           "ใช้แว่นขยายไม่ได้ขณะยืนในน้ำตื้นหรืออยู่บนกะละมัง/แคนู",
           "เปิดแผนที่ด้านล่าง เลือกด่าน แล้วเดินไปยืนตรงรูปเหยื่อเพื่อค้นหา เป็นตัวอย่างจุดจากชนิดพื้นใน ROM ไม่ใช่จุดหาได้เพียงจุดเดียว",
-          "ไม่มีพิกัดที่รับประกันเห็ดฟื้นพลังในแขนงที่ตรวจ: เกมสุ่มชนิดเห็ดจากลำดับร่วม ไม่ได้กำหนดตามช่องที่ยืน ข้อความพบเห็ดไม่แยกเห็ดพิษ ถ้าแยกชนิดไม่ได้ ใช้อาหารจากร้านเติม HP แทน"
+          "ไม่มีพิกัดที่รับประกันเห็ดฟื้นพลังในส่วนที่ตรวจแล้ว: เกมสุ่มชนิดเห็ดจากลำดับร่วม ไม่ได้กำหนดตามช่องที่ยืน ข้อความพบเห็ดไม่แยกเห็ดพิษ ถ้าแยกชนิดไม่ได้ ใช้อาหารจากร้านเติม HP แทน"
         ]
       },
       "evidenceNotes": {
@@ -19944,9 +19944,9 @@
     },
     "general_tool:05": {
       "summary": {
-        "en": "All four characters start with the Fishing Notebook; no purchase or quest is needed for the initial copy. Open general tools and select 05 to check your recorded fish.",
-        "ja": "4人とも最初から釣りノートを持っています。最初の1冊に購入やイベントは不要です。道具一覧で05を選び、記録した魚を確認してください。",
-        "th": "ตัวละครทั้ง 4 คนมีสมุดตกปลาตั้งแต่เริ่ม ไม่ต้องซื้อหรือทำเควสต์เพื่อรับเล่มแรก เปิดรายการเครื่องมือแล้วเลือก 05 เพื่อเช็กปลาที่บันทึกไว้"
+        "en": "All four characters start with the Fishing Notebook; no purchase or quest is needed for the initial copy. Open general tools and select the Fishing Notebook to check your recorded fish.",
+        "ja": "4人とも最初から釣りノートを持っています。最初の1冊に購入やイベントは不要です。道具一覧で釣りノートを選び、記録した魚を確認してください。",
+        "th": "ตัวละครทั้ง 4 คนมีสมุดตกปลาตั้งแต่เริ่ม ไม่ต้องซื้อหรือทำเควสต์เพื่อรับเล่มแรก เปิดรายการเครื่องมือแล้วเลือกสมุดบันทึกการตกปลา เพื่อเช็กปลาที่บันทึกไว้"
       },
       "facts": {
         "en": [
@@ -20155,7 +20155,7 @@
           "ใช้ได้ 3 ครั้ง; โปรยสำเร็จครั้งแรกแล้วเหลือ 2 ครั้ง",
           "วางจุดไว้ตรงที่อยากให้ปลาเข้าหา; ผลจะลดลงตามความคืบหน้าการตกปลา และหยุดเมื่อจุดออกนอกพื้นที่ที่ยังทำงานอยู่",
           "โค้ดยืนยันว่าหันทิศการเคลื่อนที่ของปลา แต่ไม่ได้ยืนยันว่าเพิ่มอัตรากัดหรือโอกาสตกสำเร็จ",
-          "ถ้าเกมบอกว่าโปรยไปแล้ว การลองซ้ำจะไม่เสียจำนวนครั้งที่เหลือ ถ้าจะวางจุดใหม่ ให้ตกต่อจนจุดเดิมหมดผล ขยับจนจุดเดิมพ้นขอบเขตที่เกมติดตามระหว่างตกปลา หรือเปลี่ยนด่าน"
+          "ถ้าเกมบอกว่าโปรยไปแล้ว การลองซ้ำจะไม่เสียจำนวนครั้งที่เหลือ ถ้าจะวางจุดใหม่ ให้ตกต่อจนจุดเดิมหมดผล ขยับจนจุดเดิมออกนอกพื้นที่ที่เกมจำไว้ระหว่างตกปลา หรือเปลี่ยนด่าน"
         ]
       },
       "evidenceNotes": {
@@ -20283,8 +20283,8 @@
         ],
         "th": [
           "เหลือ 2 ครั้ง; โปรยสำเร็จครั้งถัดไปแล้วจะเหลือ 1 ครั้ง",
-          "ตั้งจุดและหันทิศปลาตามเงื่อนไขเดียวกับ ID 08; หมดผลจากความคืบหน้าการตกปลาหรือย้ายออกจากขอบเขตพื้นที่",
-          "ถ้าเกมบอกว่าโปรยไปแล้ว การลองซ้ำจะไม่เสียจำนวนครั้งที่เหลือ ถ้าจะวางจุดใหม่ ให้ตกต่อจนจุดเดิมหมดผล ขยับจนจุดเดิมพ้นขอบเขตที่เกมติดตามระหว่างตกปลา หรือเปลี่ยนด่าน"
+          "ตั้งจุดและหันทิศปลาตามเงื่อนไขเดียวกับ ID 08; หมดผลจากความคืบหน้าการตกปลาหรือย้ายออกจากพื้นที่นั้น",
+          "ถ้าเกมบอกว่าโปรยไปแล้ว การลองซ้ำจะไม่เสียจำนวนครั้งที่เหลือ ถ้าจะวางจุดใหม่ ให้ตกต่อจนจุดเดิมหมดผล ขยับจนจุดเดิมออกนอกพื้นที่ที่เกมจำไว้ระหว่างตกปลา หรือเปลี่ยนด่าน"
         ]
       },
       "evidenceNotes": {
@@ -20389,8 +20389,8 @@
         ],
         "th": [
           "เหลือ 1 ครั้ง; โปรยสำเร็จแล้วไอเท็มจะถูกใช้หมด",
-          "ตั้งจุดและหันทิศปลาตามเงื่อนไขเดียวกับ ID 08; หมดผลจากความคืบหน้าการตกปลาหรือย้ายออกจากขอบเขตพื้นที่",
-          "ถ้าเกมบอกว่าโปรยไปแล้ว การลองซ้ำจะไม่เสียจำนวนครั้งที่เหลือ ถ้าจะวางจุดใหม่ ให้ตกต่อจนจุดเดิมหมดผล ขยับจนจุดเดิมพ้นขอบเขตที่เกมติดตามระหว่างตกปลา หรือเปลี่ยนด่าน"
+          "ตั้งจุดและหันทิศปลาตามเงื่อนไขเดียวกับ ID 08; หมดผลจากความคืบหน้าการตกปลาหรือย้ายออกจากพื้นที่นั้น",
+          "ถ้าเกมบอกว่าโปรยไปแล้ว การลองซ้ำจะไม่เสียจำนวนครั้งที่เหลือ ถ้าจะวางจุดใหม่ ให้ตกต่อจนจุดเดิมหมดผล ขยับจนจุดเดิมออกนอกพื้นที่ที่เกมจำไว้ระหว่างตกปลา หรือเปลี่ยนด่าน"
         ]
       },
       "evidenceNotes": {
@@ -20989,7 +20989,7 @@
           "エリア5の町の宝箱（4,6）に券がある。カギは不要。抽選所（54,22）では100・1,000・5,000円の賞品分岐と賞品なしの分岐がある。地蔵（49,22）は近くにある。"
         ],
         "th": [
-          "หีบในเมืองด่าน 5 พิกัด (4,6) มีสลากโดยไม่ต้องใช้กุญแจ เคาน์เตอร์ (54,22) มีแขนงรางวัล 100, 1,000 และ 5,000 เยน รวมถึงแขนงที่ไม่ได้รางวัล รูปปั้นจิโซอยู่ใกล้กันที่ (49,22)"
+          "หีบในเมืองด่าน 5 พิกัด (4,6) มีสลากโดยไม่ต้องใช้กุญแจ เคาน์เตอร์ (54,22) มีผลรางวัล 100, 1,000 และ 5,000 เยน รวมถึงผลที่ไม่ได้รางวัล รูปปั้นจิโซอยู่ใกล้กันที่ (49,22)"
         ]
       },
       "evidenceNotes": {
@@ -21351,7 +21351,7 @@
           "NPCは油揚げがおいしいが、動くにはもっと食べる必要があると話す。同じイベント分岐では次に花火を渡せる。花火の直接使用ルートにはこの手順は不要。"
         ],
         "th": [
-          "NPC บอกว่าเต้าหู้อร่อยแต่ต้องกินเพิ่มจึงจะขยับได้ แขนงเควสต์เดียวกันรับดอกไม้ไฟต่อได้ แต่เส้นทางใช้ดอกไม้ไฟโดยตรงไม่ต้องผ่านขั้นนี้ก่อน"
+          "NPC บอกว่าเต้าหู้อร่อยแต่ต้องกินเพิ่มจึงจะขยับได้ เควสต์เดียวกันนี้รับดอกไม้ไฟต่อได้ แต่เส้นทางใช้ดอกไม้ไฟโดยตรงไม่ต้องผ่านขั้นนี้ก่อน"
         ]
       },
       "evidenceNotes": {

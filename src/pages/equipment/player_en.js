@@ -10,8 +10,8 @@ export const player_en = {
   more: 'Show all fish',
   evidence: 'Technical evidence',
   compare: 'Compare rods within a fishing style',
-  aim: 'Aim window',
-  reach: 'Fish-position loss limit',
+  aim: 'Time to aim',
+  reach: 'Line strength',
   style: 'Fishing style',
   titleByCategory: 'Equipment in this category',
   noFish: 'This category is not filtered by fish species',
@@ -19,7 +19,7 @@ export const player_en = {
   basePrice: 'Base price',
   kit: 'A lure set covering the compatible species',
   kitText:
-    'Choose by area: 2E+23 costs ¥55 in Area 1, 17+24 costs ¥55 in Areas 2–3, and 17+23 costs ¥50 in Area 4. Areas 5–6 have no complete local pair; carry one you own or buy 17+23 in Area 4. Each pair covers the same 38 lure-compatible profiles, not a guaranteed bite or catch.',
+    'Choose by area: Spoon 2E + Soft worm 23 costs ¥55 in Area 1, Sinking lure 17 + Soft worm 24 costs ¥55 in Areas 2–3, and Sinking lure 17 + Soft worm 23 costs ¥50 in Area 4. Areas 5–6 sell no complete pair; carry one you own or buy Sinking lure 17 + Soft worm 23 in Area 4. Each pair covers the same 38 lure-compatible profiles, not a guaranteed bite or catch.',
   kitLink: 'See the illustrated set and fish table',
   guide: 'Make a fly in the game',
   research: 'Research details and sources',
@@ -34,7 +34,7 @@ export const player_en = {
     general_tool: 'Tools / quest items',
   },
   desc: {
-    rod: 'Choose a fishing style, then compare time to aim and the fish-position limit before the traced tackle-loss escape.',
+    rod: 'Choose a fishing style, then compare time to aim and line strength.',
     lure: 'Choose a target fish to filter lures by the hook-acceptance condition.',
     flymaker: 'Browse bodies, wings and tails, with conditions that affect hooking.',
     bait: 'Choose a fish to see baits that pass the bait-mode conditions.',

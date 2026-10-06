@@ -45,5 +45,5 @@ export function flyMakerAccess(ctx, item) {
   query.set('return', ctx.currentLocalRoute())
   const suffix = ctx.lang === 'en' ? '' : `.${ctx.lang}`
   const href = `shops${suffix}.html?${query}#fly-maker-location`
-  return `<aside class="detail-section" data-fly-maker-access><h3>${ctx.esc(text.title(access.stage))}</h3><p>${ctx.esc(text.body(access))}</p><a class="route-button" data-fly-maker-location-link href="${ctx.esc(href)}">${ctx.esc(text.link)} ↗</a><details><summary>${ctx.esc(ctx.lang === 'th' ? 'หลักฐานและขอบเขต' : ctx.lang === 'ja' ? '根拠と確認範囲' : 'Evidence and limits')}</summary><p>${ctx.esc(text.limit)}</p><a href="${ctx.esc(readableEvidenceHref(access.evidenceHref))}">ROM ↗</a></details></aside>`
+  return `<aside class="detail-section" data-fly-maker-access><h3>${ctx.esc(text.title(access.stage))}</h3><p>${ctx.esc(text.body(access))}</p><a class="route-button" data-fly-maker-location-link href="${ctx.esc(href)}">${ctx.esc(text.link)} ↗</a><details><summary>${ctx.esc(ctx.lang === 'th' ? 'หลักฐานและข้อจำกัด' : ctx.lang === 'ja' ? '根拠と確認範囲' : 'Evidence and limits')}</summary><p>${ctx.esc(text.limit)}</p><a href="${ctx.esc(readableEvidenceHref(access.evidenceHref))}">ROM ↗</a></details></aside>`
 }

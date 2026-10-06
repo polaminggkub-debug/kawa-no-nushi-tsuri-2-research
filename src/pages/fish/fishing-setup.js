@@ -251,22 +251,20 @@ function rodUpgradeLeaders(rods, budgetRod) {
 
 function upgradeHeadline(ctx, dimensions) {
   if (ctx.locale === 'th') {
-    if (dimensions.length === 2) return 'ช่วงเล็งและขอบเขตตำแหน่งปลาสูงสุดในร้านด่านนี้'
-    return dimensions[0] === 'aim'
-      ? 'ช่วงเล็งยาวที่สุดในร้านด่านนี้'
-      : 'ขอบเขตตำแหน่งปลาสูงที่สุดในร้านด่านนี้'
+    if (dimensions.length === 2) return 'มีเวลาเล็งนานสุดและสายขาดยากสุดในร้านด่านนี้'
+    return dimensions[0] === 'aim' ? 'มีเวลาเล็งนานสุดในร้านด่านนี้' : 'สายขาดยากสุดในร้านด่านนี้'
   }
   if (ctx.locale === 'ja') {
-    if (dimensions.length === 2) return 'このエリアの店頭で照準時間と魚位置境界が最大'
+    if (dimensions.length === 2) return 'このエリアの店頭で狙う時間が最長、糸も最も切れにくい'
     return dimensions[0] === 'aim'
-      ? 'このエリアの店頭で照準時間が最長'
-      : 'このエリアの店頭で魚位置境界が最大'
+      ? 'このエリアの店頭で狙う時間が最長'
+      : 'このエリアの店頭で糸が最も切れにくい'
   }
   if (dimensions.length === 2)
-    return 'Longest aim window and highest fish-position boundary in this area'
+    return 'Most time to aim and the line that breaks least easily in this area'
   return dimensions[0] === 'aim'
-    ? 'Longest aim window in this area'
-    : 'Highest fish-position boundary in this area'
+    ? 'Most time to aim in this area'
+    : 'The line that breaks least easily in this area'
 }
 
 function upgradeEffect(ctx, dimension, item, budgetRod) {
@@ -277,23 +275,23 @@ function upgradeEffect(ctx, dimension, item, budgetRod) {
   const style = item.decodedFields?.styleCode
   if (dimension === 'aim' && [2, 4].includes(style)) {
     if (ctx.locale === 'th')
-      return `ที่ HP 100 ช่วงเล็ง ${aim} เทียบกับ ${baseAim}; HP ต่ำกว่า 100 ทำให้ช่วงเล็งสั้นลง`
+      return `ที่ HP 100 มีเวลาเล็ง ${aim} เทียบกับ ${baseAim} ของคันราคาต่ำสุด; ถ้า HP ต่ำกว่า 100 เวลาเล็งจะสั้นลง`
     if (ctx.locale === 'ja')
-      return `HP100時の照準時間は${aim}、最安竿は${baseAim}。HP100未満では短くなります。`
-    return `At 100 HP, aim cutoff ${aim} vs ${baseAim}; HP below 100 shortens the aim window.`
+      return `HP100のときの狙う時間は${aim}、最安竿は${baseAim}。HPが100未満だと短くなります。`
+    return `At 100 HP, aim time ${aim} vs ${baseAim} for the cheapest rod; below 100 HP you get less time to aim.`
   }
   if (dimension === 'aim') {
     if (ctx.locale === 'th')
-      return `ช่วงเล็ง ${aim} เทียบกับคันราคาต่ำสุด ${baseAim} ให้เวลาขยับเป้าก่อนเกมตรวจจุดตกมากขึ้น`
+      return `เวลาเล็ง ${aim} เทียบกับ ${baseAim} ของคันราคาต่ำสุด จึงมีเวลาขยับเป้านานขึ้นก่อนเกมตัดสินว่าเหยื่อตกตรงไหน`
     if (ctx.locale === 'ja')
-      return `照準上限は${aim}、最安竿は${baseAim}。投げ先を動かす時間が長くなります。`
-    return `Aim cutoff ${aim} vs ${baseAim} gives you longer to adjust the target before the game checks the spot.`
+      return `狙う時間は${aim}、最安竿は${baseAim}。投げ先を動かす時間が長くなります。`
+    return `Aim time ${aim} vs ${baseAim} for the cheapest rod gives you longer to move the target before the game decides where the cast lands.`
   }
   if (ctx.locale === 'th')
-    return `ตัวคูณขอบเขตปลา ×${reach} เทียบกับ ×${baseReach}; ปลาไปได้ไกลขึ้นก่อนเข้าเส้นทางหนีที่ทำให้อุปกรณ์หายหนึ่งแบบ`
+    return `สายขาดยาก ×${reach} เทียบกับ ×${baseReach}; ปลาดึงหนีได้ไกลกว่าก่อนอุปกรณ์หลุด`
   if (ctx.locale === 'ja')
-    return `魚位置境界の倍率は×${reach}、最安竿は×${baseReach}。この特定の道具喪失逃走分岐まで魚に余裕があります。`
-  return `Fish-position boundary ×${reach} vs ×${baseReach} gives more room before one traced tackle-loss escape branch.`
+    return `糸の切れにくさは×${reach}、最安竿は×${baseReach}。魚が遠くまで引いても道具を失いにくくなります。`
+  return `Line strength ×${reach} vs ×${baseReach}: the fish can pull farther before tackle is lost.`
 }
 
 function upgradeCost(ctx, item, budgetRod) {
@@ -330,16 +328,16 @@ function renderRodUpgradeChoices(ctx, method, stage, rods, budgetRod, baseTotal)
   if (!choices.length) return ''
   const title =
     ctx.locale === 'th'
-      ? 'ถ้าต้องการช่วงเล็งหรือขอบเขตที่มากขึ้น'
+      ? 'ถ้าต้องการเวลาเล็งนานขึ้นหรือสายขาดยากขึ้น'
       : ctx.locale === 'ja'
-        ? '照準時間や魚位置境界を増やしたい場合'
-        : 'If you want more aim time or fish-position room'
+        ? '狙う時間や糸の切れにくさを上げたい場合'
+        : 'If you want more time to aim or a line that breaks less easily'
   const scope =
     ctx.locale === 'th'
-      ? 'ตัวคูณขอบเขตนี้เกี่ยวกับเส้นทางหนีที่ทำให้อุปกรณ์หายหนึ่งแบบเท่านั้น ไม่ได้พิสูจน์ว่าปลากินหรือจับง่ายขึ้น; คันนี้ต้องซื้อใหม่ราคาเต็ม'
+      ? 'สายขาดยากช่วยป้องกันอุปกรณ์หลุดแค่แบบเดียวเท่านั้น ไม่ได้แปลว่าปลากินหรือจับง่ายขึ้น; คันนี้ต้องซื้อใหม่ราคาเต็ม'
       : ctx.locale === 'ja'
-        ? 'この境界は特定の道具喪失を伴う逃走分岐だけに関係します。食いつきや釣り上げやすさは証明されておらず、新品価格が必要です。'
-        : 'This boundary applies to one tackle-loss escape branch only. It does not prove easier bites or catches; the rod costs its full new-purchase price.'
+        ? 'この切れにくさは、道具を失う逃げ方のうち1つにだけ関係します。食いつきや釣り上げやすさは証明されておらず、新品の全額が必要です。'
+        : 'Line strength only helps against one way of losing tackle. It does not prove easier bites or catches; the rod costs its full new-purchase price.'
   return `<div class="method-rod-upgrades" data-rod-upgrades-for="${method}"><h5>${ctx.escapeHtml(title)}</h5><div class="detail-grid">${choices.map((choice) => upgradeCard(ctx, method, stage, choice, budgetRod, baseTotal)).join('')}</div><p class="muted">${ctx.escapeHtml(scope)}</p></div>`
 }
 

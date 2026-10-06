@@ -182,6 +182,8 @@ if(!fs.existsSync(acquisitionPath))throw new Error('Missing town acquisition dat
     item.playerUse.useLocations=[...entries,...previous.filter(loc=>!entries.some(entry=>entry.context===loc.context&&entry.mapId===loc.mapId&&entry.tileX===loc.tileX&&entry.tileY===loc.tileY))];
   }
 }
+// Player-facing advice names the items it points to instead of quoting their hex IDs.
+require('./item_refs.cjs').resolveItemRefs(data);
 fs.writeFileSync(path.join(root,'catalogue/gallery-data.json'),JSON.stringify(data,null,2)+'\n');
 async function build(locale, filename) {
   const nodes = {};

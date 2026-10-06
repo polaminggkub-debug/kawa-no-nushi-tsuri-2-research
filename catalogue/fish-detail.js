@@ -443,7 +443,7 @@
   }
   function backupAction(ctx) {
     if (ctx.locale === "th")
-      return "สลับลองสามชุดในฉากที่โหลดอยู่เดิม โดยไม่พักโรงแรมหรือออกไปโหลดฉากใหม่ ตามโค้ดอย่างน้อยหนึ่งชุดจะไม่ติดเงื่อนไขซ่อนที่บล็อกจากบอดี้หรือปีก เมื่อค่าซ่อนคงเดิม การตีชุดเดิมซ้ำไม่ได้สุ่มค่านี้ใหม่";
+      return "สลับลองสามชุดในฉากที่โหลดอยู่เดิม โดยไม่พักโรงแรมหรือออกไปโหลดฉากใหม่ ตามที่เกมทำงาน อย่างน้อยหนึ่งชุดจะไม่ติดเงื่อนไขที่บล็อกเพราะบอดี้กับปีกซ้ำกัน ตราบใดที่ค่าซ่อนในเกมไม่เปลี่ยน การตีชุดเดิมซ้ำไม่ได้สุ่มค่านี้ใหม่";
     if (ctx.locale === "ja")
       return "宿泊やフィールド再生成を挟まず、同じ読み込み済みフィールドで3セットを切り替えます。隠れた値が一定なら、コード上は少なくとも1セットがボディ・ウィングの一致による遮断を避けます。同じセットの投げ直しはこの値を再抽選しません。";
     return "Switch among the three sets in the same loaded field, without an inn stay or field reload. With the stored hidden values unchanged, the code guarantees at least one avoids the body/wing equality block. Recasting the same set does not reroll those values.";
@@ -693,16 +693,16 @@
   }
   function upgradeHeadline(ctx, dimensions) {
     if (ctx.locale === "th") {
-      if (dimensions.length === 2) return "ช่วงเล็งและขอบเขตตำแหน่งปลาสูงสุดในร้านด่านนี้";
-      return dimensions[0] === "aim" ? "ช่วงเล็งยาวที่สุดในร้านด่านนี้" : "ขอบเขตตำแหน่งปลาสูงที่สุดในร้านด่านนี้";
+      if (dimensions.length === 2) return "มีเวลาเล็งนานสุดและสายขาดยากสุดในร้านด่านนี้";
+      return dimensions[0] === "aim" ? "มีเวลาเล็งนานสุดในร้านด่านนี้" : "สายขาดยากสุดในร้านด่านนี้";
     }
     if (ctx.locale === "ja") {
-      if (dimensions.length === 2) return "このエリアの店頭で照準時間と魚位置境界が最大";
-      return dimensions[0] === "aim" ? "このエリアの店頭で照準時間が最長" : "このエリアの店頭で魚位置境界が最大";
+      if (dimensions.length === 2) return "このエリアの店頭で狙う時間が最長、糸も最も切れにくい";
+      return dimensions[0] === "aim" ? "このエリアの店頭で狙う時間が最長" : "このエリアの店頭で糸が最も切れにくい";
     }
     if (dimensions.length === 2)
-      return "Longest aim window and highest fish-position boundary in this area";
-    return dimensions[0] === "aim" ? "Longest aim window in this area" : "Highest fish-position boundary in this area";
+      return "Most time to aim and the line that breaks least easily in this area";
+    return dimensions[0] === "aim" ? "Most time to aim in this area" : "The line that breaks least easily in this area";
   }
   function upgradeEffect(ctx, dimension, item, budgetRod) {
     const aim = rodMetric(item, "aimCutoffAt100Hp");
@@ -712,23 +712,23 @@
     const style = item.decodedFields?.styleCode;
     if (dimension === "aim" && [2, 4].includes(style)) {
       if (ctx.locale === "th")
-        return `ที่ HP 100 ช่วงเล็ง ${aim} เทียบกับ ${baseAim}; HP ต่ำกว่า 100 ทำให้ช่วงเล็งสั้นลง`;
+        return `ที่ HP 100 มีเวลาเล็ง ${aim} เทียบกับ ${baseAim} ของคันราคาต่ำสุด; ถ้า HP ต่ำกว่า 100 เวลาเล็งจะสั้นลง`;
       if (ctx.locale === "ja")
-        return `HP100時の照準時間は${aim}、最安竿は${baseAim}。HP100未満では短くなります。`;
-      return `At 100 HP, aim cutoff ${aim} vs ${baseAim}; HP below 100 shortens the aim window.`;
+        return `HP100のときの狙う時間は${aim}、最安竿は${baseAim}。HPが100未満だと短くなります。`;
+      return `At 100 HP, aim time ${aim} vs ${baseAim} for the cheapest rod; below 100 HP you get less time to aim.`;
     }
     if (dimension === "aim") {
       if (ctx.locale === "th")
-        return `ช่วงเล็ง ${aim} เทียบกับคันราคาต่ำสุด ${baseAim} ให้เวลาขยับเป้าก่อนเกมตรวจจุดตกมากขึ้น`;
+        return `เวลาเล็ง ${aim} เทียบกับ ${baseAim} ของคันราคาต่ำสุด จึงมีเวลาขยับเป้านานขึ้นก่อนเกมตัดสินว่าเหยื่อตกตรงไหน`;
       if (ctx.locale === "ja")
-        return `照準上限は${aim}、最安竿は${baseAim}。投げ先を動かす時間が長くなります。`;
-      return `Aim cutoff ${aim} vs ${baseAim} gives you longer to adjust the target before the game checks the spot.`;
+        return `狙う時間は${aim}、最安竿は${baseAim}。投げ先を動かす時間が長くなります。`;
+      return `Aim time ${aim} vs ${baseAim} for the cheapest rod gives you longer to move the target before the game decides where the cast lands.`;
     }
     if (ctx.locale === "th")
-      return `ตัวคูณขอบเขตปลา ×${reach} เทียบกับ ×${baseReach}; ปลาไปได้ไกลขึ้นก่อนเข้าเส้นทางหนีที่ทำให้อุปกรณ์หายหนึ่งแบบ`;
+      return `สายขาดยาก ×${reach} เทียบกับ ×${baseReach}; ปลาดึงหนีได้ไกลกว่าก่อนอุปกรณ์หลุด`;
     if (ctx.locale === "ja")
-      return `魚位置境界の倍率は×${reach}、最安竿は×${baseReach}。この特定の道具喪失逃走分岐まで魚に余裕があります。`;
-    return `Fish-position boundary ×${reach} vs ×${baseReach} gives more room before one traced tackle-loss escape branch.`;
+      return `糸の切れにくさは×${reach}、最安竿は×${baseReach}。魚が遠くまで引いても道具を失いにくくなります。`;
+    return `Line strength ×${reach} vs ×${baseReach}: the fish can pull farther before tackle is lost.`;
   }
   function upgradeCost(ctx, item, budgetRod) {
     const difference = item.priceYen - budgetRod.priceYen;
@@ -757,8 +757,8 @@
   function renderRodUpgradeChoices(ctx, method, stage, rods, budgetRod, baseTotal) {
     const choices = rodUpgradeLeaders(rods, budgetRod);
     if (!choices.length) return "";
-    const title = ctx.locale === "th" ? "ถ้าต้องการช่วงเล็งหรือขอบเขตที่มากขึ้น" : ctx.locale === "ja" ? "照準時間や魚位置境界を増やしたい場合" : "If you want more aim time or fish-position room";
-    const scope = ctx.locale === "th" ? "ตัวคูณขอบเขตนี้เกี่ยวกับเส้นทางหนีที่ทำให้อุปกรณ์หายหนึ่งแบบเท่านั้น ไม่ได้พิสูจน์ว่าปลากินหรือจับง่ายขึ้น; คันนี้ต้องซื้อใหม่ราคาเต็ม" : ctx.locale === "ja" ? "この境界は特定の道具喪失を伴う逃走分岐だけに関係します。食いつきや釣り上げやすさは証明されておらず、新品価格が必要です。" : "This boundary applies to one tackle-loss escape branch only. It does not prove easier bites or catches; the rod costs its full new-purchase price.";
+    const title = ctx.locale === "th" ? "ถ้าต้องการเวลาเล็งนานขึ้นหรือสายขาดยากขึ้น" : ctx.locale === "ja" ? "狙う時間や糸の切れにくさを上げたい場合" : "If you want more time to aim or a line that breaks less easily";
+    const scope = ctx.locale === "th" ? "สายขาดยากช่วยป้องกันอุปกรณ์หลุดแค่แบบเดียวเท่านั้น ไม่ได้แปลว่าปลากินหรือจับง่ายขึ้น; คันนี้ต้องซื้อใหม่ราคาเต็ม" : ctx.locale === "ja" ? "この切れにくさは、道具を失う逃げ方のうち1つにだけ関係します。食いつきや釣り上げやすさは証明されておらず、新品の全額が必要です。" : "Line strength only helps against one way of losing tackle. It does not prove easier bites or catches; the rod costs its full new-purchase price.";
     return `<div class="method-rod-upgrades" data-rod-upgrades-for="${method}"><h5>${ctx.escapeHtml(title)}</h5><div class="detail-grid">${choices.map((choice) => upgradeCard(ctx, method, stage, choice, budgetRod, baseTotal)).join("")}</div><p class="muted">${ctx.escapeHtml(scope)}</p></div>`;
   }
   function rodPurchaseDecision(ctx, localRods, stage, choice) {
@@ -866,7 +866,7 @@
   }
   function unconfirmedProfileAction(ctx) {
     const title = ctx.locale === "th" ? "ไม่ต้องจัดชุดตกสำหรับรายการ 43" : ctx.locale === "ja" ? "プロフィール43用の仕掛けを買う必要はありません" : "Do not buy a fishing setup for profile 43";
-    const text = ctx.locale === "th" ? "เลือกปลาที่มีชื่อและจุดตกยืนยันแล้วแทน รายการนี้ไม่มีจุดเกิดที่ยืนยันในตารางที่ถอด และไม่มีเหยื่อจริง ลัวร์ หรือตัวฟลายผ่านเงื่อนไขของมัน การมีระเบียนใน ROM ไม่ได้ยืนยันว่าเป็นปลาที่พบและตกได้ตามปกติ" : ctx.locale === "ja" ? "名前と確認済みの釣り場がある魚を選んでください。この項目には抽出した出現表の確認済み地点がなく、エサ・ルアー・フライ本体の判定を通る候補もありません。ROMに行があるだけでは、通常出現して釣れる魚とは確認できません。" : "Choose a named fish with confirmed fishing spots instead. This entry has no confirmed point in the extracted spawn table, and no bait, lure or fly body passes its recorded check. A row in the ROM does not establish that it normally appears and can be caught.";
+    const text = ctx.locale === "th" ? "เลือกปลาที่มีชื่อและจุดตกยืนยันแล้วแทน รายการนี้ไม่มีจุดที่ปลาปรากฏที่ยืนยันแล้ว และไม่มีเหยื่อจริง ลัวร์ หรือตัวฟลายที่ใช้ได้กับมัน การมีข้อมูลอยู่ในเกมไม่ได้แปลว่าเป็นปลาที่พบและตกได้ตามปกติ" : ctx.locale === "ja" ? "名前と確認済みの釣り場がある魚を選んでください。この項目には抽出した出現表の確認済み地点がなく、エサ・ルアー・フライ本体の判定を通る候補もありません。ROMに行があるだけでは、通常出現して釣れる魚とは確認できません。" : "Choose a named fish with confirmed fishing spots instead. This entry has no confirmed point in the extracted spawn table, and no bait, lure or fly body passes its recorded check. A row in the ROM does not establish that it normally appears and can be caught.";
     return `<section class="detail-section" data-unconfirmed-profile-action><h2>${ctx.escapeHtml(title)}</h2><p>${ctx.escapeHtml(text)}</p><a class="route-button" href="${ctx.escapeHtml(ctx.cataloguePath())}?category=all#catalogue">${ctx.locale === "th" ? "เลือกปลาอื่นจากช่องค้นหา" : ctx.locale === "ja" ? "検索欄で別の魚を選ぶ" : "Choose another fish in the search field"} ↗</a></section>`;
   }
 
@@ -911,7 +911,7 @@
   }
   function aimTip(ctx, method, stage) {
     if (!["lure", "sinker"].includes(method)) return "";
-    const text = ctx.locale === "th" ? "ก่อนใช้คันลัวร์หรือคันหวด เติม HP ให้ถึง 100 เพื่อให้ได้เวลาเล็งเต็มของคันนั้น ไม่ใช่โบนัสโอกาสปลากิน" : ctx.locale === "ja" ? "ルアー竿・投げ竿を使う前にHPを100まで回復すると、竿本来の照準時間になります。食いつき率のボーナスではありません。" : "Restore HP to 100 before lure or casting fishing to get the rod’s full aim window. This does not add a bite-rate bonus.";
+    const text = ctx.locale === "th" ? "ก่อนใช้คันลัวร์หรือคันหวด เติม HP ให้ถึง 100 เพื่อให้ได้เวลาเล็งเต็มของคันนั้น ไม่ใช่โบนัสโอกาสปลากิน" : ctx.locale === "ja" ? "ルアー竿・投げ竿を使う前にHPを100まで回復すると、竿本来の狙う時間になります。食いつき率のボーナスではありません。" : "Restore HP to 100 before lure or casting fishing to get the rod’s full time to aim. This does not add a bite-rate bonus.";
     const action = hpRecoveryAction({
       locale: ctx.locale,
       cataloguePath: ctx.cataloguePath(),
@@ -1237,14 +1237,14 @@
     th: {
       title: "ยามาเมะด่าน 1: สู้ปลาและดูผล",
       action: "ลองกด A แล้วปล่อยคั่นเป็นช่วง ๆ สำหรับยามาเมะด่าน 1: เป็นข้อเสนอทดลองจากเหตุการณ์เดียวและชุดที่ระบุ ไม่ใช่สูตรรับประกัน",
-      surface: "เมื่อขึ้นข้อความว่าตกยามาเมะได้แล้ว กด A เพื่อไปต่อจนเห็นขนาด จากนั้นเปิดสมุด 05 ตรวจบันทึก — A ตรงนี้เลื่อนข้อความผล ไม่ได้พิสูจน์ว่าเป็นปุ่มที่ทำให้จับได้",
-      notebook: "เปิดข้อมูลสมุด 05",
+      surface: "เมื่อขึ้นข้อความว่าตกยามาเมะได้แล้ว กด A เพื่อไปต่อจนเห็นขนาด จากนั้นเปิดสมุดบันทึกการตกปลาตรวจบันทึก — A ตรงนี้เลื่อนข้อความผล ไม่ได้พิสูจน์ว่าเป็นปุ่มที่ทำให้จับได้",
+      notebook: "เปิดข้อมูลสมุดบันทึกการตกปลา (ไอเท็ม 05)",
       surfaceEvidence: "การเล่นซ้ำจากเซฟเหตุการณ์เดิมให้ผล 23 ซม. ตรงกันทั้งแบบต่อ 4 ช่วงและแบบรวม ในการเทียบช่วงผิวน้ำ 167 เฟรมเท่ากัน แบบกดเฉพาะ A ไปถึงผลและบันทึก 1/23/1 ส่วนไม่กดปุ่ม/กดเฉพาะขึ้น/กดเฉพาะ B ยังอยู่หน้าชื่อปลาที่จับได้และบันทึก 0/0/0 ไม่ใช่หลักฐานว่าปุ่มอื่นทำให้ปลาหนีหรือไม่มีวันไปต่อ",
       caughtName: "หน้าชื่อปลาที่จับได้ ก่อนเลื่อนไปผลขนาด",
       surfaceResult: "ผล 23 ซม. หลังใช้เฉพาะ A ในช่วงผิวน้ำ",
       result: "จากเหตุการณ์ธรรมชาติหนึ่งครั้ง เมื่อเวลาเล่นรวมและเวลาที่กด A รวมเท่ากัน แบบแบ่งกด/ปล่อยทำให้ปลายังอยู่ ส่วนแบบค้างยาวครั้งเดียวแล้วปล่อยจบด้วยปลาหนี ยังไม่ทราบจังหวะที่ดีที่สุดหรือสูตรที่รับประกันจับได้",
       evidence: "ดูชุดที่ทดลองและหลักฐาน",
-      setup: "ชุดที่ทดลอง: คัน 02 · ทุ่น 04 · ตะขอ 06 · เหยื่อ 07 ก่อนโยน · HP 100 เกมอ่านการกด A/B ค้างกับการปล่อยต่างกันในแขนงที่ตรวจ ขณะปลายังไม่ถึงขอบเขตของคัน",
+      setup: "ชุดที่ทดลอง: คัน 02 (คันคาร์บอนลำธาร 6m) · ทุ่น 04 (ทุ่นลูกบอล) · เบ็ด 06 (เบ็ดทั่วไป) · เหยื่อ 07 (แมลงน้ำ) ก่อนโยน · HP 100 ตามที่เกมทำงาน การกด A/B ค้างกับการปล่อยให้ผลต่างกัน ตราบที่ปลายังไม่ถึงค่าสายขาดยากของคัน",
       continuation: "ผล 23 ซม. มาจากการเล่นต่อด้วยปุ่มเพิ่มเติมหลังการเปรียบเทียบ ไม่ใช่ผลจับได้ทันทีจากจังหวะข้างต้น และยังไม่ยืนยันว่าช่วยเพิ่มโอกาสจับในชุดอื่น",
       trace: "อ่านวิธีทดลอง ข้อจำกัด และโค้ดที่ตรวจ",
       escape: "ภาพผลปลาหนีจากการกดค้าง",
@@ -1253,14 +1253,14 @@
     en: {
       title: "Area 1 Yamame: fight and result controls",
       action: "Try A presses with release intervals for Area 1 Yamame: an experimental option from one encounter and the listed setup, not a guaranteed rhythm.",
-      surface: "Once the caught-Yamame message appears, press A to advance to the size result, then check Notebook 05. Here A advances the result message; it is not proven to cause the catch.",
-      notebook: "Open Notebook 05 details",
+      surface: "Once the caught-Yamame message appears, press A to advance to the size result, then check the Fishing Notebook. Here A advances the result message; it is not proven to cause the catch.",
+      notebook: "Open Fishing Notebook (Tool 05) details",
       surfaceEvidence: "A fresh replay of the retained encounter reproduced 23 cm with identical four-phase and flattened endpoints. At equal 167-frame surface time, A-only reached the result and record 1/23/1; neutral, Up-only and B-only remained at the caught-name message with record 0/0/0. This does not show other buttons cause escape or can never advance later.",
       caughtName: "Caught-name message before the size result",
       surfaceResult: "23 cm result after A-only surface inputs",
       result: "In one natural encounter, schedules with the same total time and A-held time left the fish in the fight when split into presses and releases; one long hold followed by release ended in escape. No best rhythm or guaranteed catch is established.",
       evidence: "Tested setup and evidence",
-      setup: "Tested setup: rod 02 · float 04 · hook 06 · bait 07 before casting · HP 100. The traced game branch treats held A/B and released input differently while the fish remains below the rod boundary.",
+      setup: "Tested setup: rod 02 (Mountain stream carbon rod 6 m) · float 04 (Ball float) · hook 06 (Generic hook) · bait 07 (Aquatic insect) before casting · HP 100. In the game, holding A/B and releasing them give different results while the fish has not yet reached the rod’s line-strength limit.",
       continuation: "The 23 cm catch required a separate continuation with additional inputs after the comparison. It was not an immediate catch from the pattern above, and no catch advantage is established for other setups.",
       trace: "Read the experiment, limitations and code trace",
       escape: "Hold-input escape result",
@@ -1269,14 +1269,14 @@
     ja: {
       title: "エリア1のヤマメ：ファイトと釣果表示",
       action: "エリア1のヤマメではAを押して離す操作を試せます。同じ1回の遭遇と記載装備に限る実験的な提案で、確実に釣れるリズムではありません。",
-      surface: "ヤマメを釣りあげたメッセージが出たら、Aで大きさの結果まで進め、手帳05で記録を確認してください。ここでのAは結果表示を進める操作で、釣れた原因とは証明されていません。",
-      notebook: "手帳05の詳細を開く",
+      surface: "ヤマメを釣りあげたメッセージが出たら、Aで大きさの結果まで進め、釣りノートで記録を確認してください。ここでのAは結果表示を進める操作で、釣れた原因とは証明されていません。",
+      notebook: "釣りノート（道具05）の詳細を開く",
       surfaceEvidence: "保存した同じ遭遇の再実行で、4段階と連結実行の終了状態は一致し23cmを再現しました。水面側の167フレーム比較ではAのみが結果と記録1/23/1に進み、無入力・上のみ・Bのみは釣れた魚の名前表示で記録0/0/0でした。他のボタンで逃げる、または後で進めないという証明ではありません。",
       caughtName: "大きさの結果前の釣れた魚の名前表示",
       surfaceResult: "水面側でAのみを使った後の23cm結果",
       result: "自然発生した1回のファイトで、経過時間とAを押した合計時間を同じにすると、押す・離すを分けた操作では魚が残り、長く1回押してから離す操作では逃げられました。最適なリズムや必ず釣れる操作は未確認です。",
       evidence: "実験した装備と根拠",
-      setup: "実験装備：竿02・ウキ04・ハリ06・投げる前のエサ07・HP100。調べたゲーム分岐では、魚が竿の境界に達するまではA/Bを押している状態と離した状態を別に処理します。",
+      setup: "実験装備：竿02（渓流カーボン竿6m）・ウキ04（玉ウキ）・ハリ06（ハリ）・投げる前のエサ07（カワムシ）・HP100。ゲームでは、魚が竿の切れにくさの限界に達するまでは、A/Bを押している状態と離した状態を別に処理します。",
       continuation: "23cmの釣果は比較後に別の追加操作を行った結果です。上のリズムだけで直ちに釣れた結果ではなく、他の装備で釣果が上がることも未確認です。",
       trace: "実験方法・制限・コードを読む",
       escape: "押し続けた操作の逃走結果",
@@ -1329,7 +1329,7 @@
       excludedTitle: "ไม่ใช่เป้าหมายในสมุด 66 ชนิด",
       excludedBody: "โปรไฟล์นี้แสดงจุดปลาในแผนที่ แต่ไม่ต้องตกชนิดนี้เพื่อเก็บสมุดให้ครบ",
       unknownTitle: "สถานะในสมุดยังยืนยันไม่ได้",
-      unknownBody: "ข้อมูลที่ยืนยันได้ยังไม่ระบุว่าปลานี้มีช่องในสมุดหรือไม่ โปรดตรวจไอเท็ม 05 ในเกม"
+      unknownBody: "ข้อมูลที่ยืนยันได้ยังไม่ระบุว่าปลานี้มีช่องในสมุดหรือไม่ โปรดตรวจสมุดบันทึกการตกปลา (ไอเท็ม 05) ในเกม"
     },
     ja: {
       eligibleTitle: "図鑑の目標 · 全66種の1種",
@@ -1342,7 +1342,7 @@
       excludedTitle: "図鑑66種の対象外",
       excludedBody: "この魚はマップに出ますが、図鑑を埋めるために釣る必要はありません。",
       unknownTitle: "図鑑の対象か未確認",
-      unknownBody: "現在確認できるデータでは記録対象か判断できません。ゲーム内の道具05で確認してください。"
+      unknownBody: "現在確認できるデータでは記録対象か判断できません。ゲーム内の釣りノート（道具05）で確認してください。"
     },
     en: {
       eligibleTitle: "Notebook goal · 1 of 66 species",
@@ -1355,7 +1355,7 @@
       excludedTitle: "Not one of the 66 notebook species",
       excludedBody: "This profile has map locations, but you do not need this species to complete the notebook list.",
       unknownTitle: "Notebook status unconfirmed",
-      unknownBody: "Available evidence does not confirm whether this fish has a notebook slot. Check Tool 05 in the game."
+      unknownBody: "Available evidence does not confirm whether this fish has a notebook slot. Check the Fishing Notebook (Tool 05) in the game."
     }
   };
   function validStage2(value) {
@@ -1709,10 +1709,10 @@
     configuredPoints: (n) => `${n} จุดที่เกมกำหนด`,
     spawnSlots: (n) => `${n} ช่องเกิดปลาในตาราง ROM`,
     stage: (n) => `ด่าน ${n}`,
-    unknownArea: "ยังไม่พบตำแหน่งเกิดปลาที่ยืนยันได้ในตารางตำแหน่งที่ถอดจาก ROM",
+    unknownArea: "ยังไม่พบตำแหน่งที่ปลาปรากฏที่ยืนยันได้ในข้อมูลของเกม",
     unknownFish: (id) => `โปรไฟล์ปลาที่ยังระบุชนิดไม่ได้ · ID ${id}`,
     unknownName: (id) => `โปรไฟล์ปลา ${id}`,
-    noSprite: "ยังไม่มีรูปปลาที่ถอดจากโปรไฟล์นี้",
+    noSprite: "ยังไม่มีรูปปลาของโปรไฟล์นี้",
     chooseArea: "เลือกด่านเพื่อเปิดแผนที่",
     float: "ชุดทุ่น",
     sinker: "ชุดตะกั่ว",
@@ -1797,7 +1797,7 @@
     });
   }
   function loadGallery() {
-    return fetch("gallery-data.json?v=eel-ending-20261006-68").then((response) => {
+    return fetch("gallery-data.json?v=thai-plain-20261007-69").then((response) => {
       if (!response.ok) throw new Error("gallery data unavailable");
       return response.json();
     });

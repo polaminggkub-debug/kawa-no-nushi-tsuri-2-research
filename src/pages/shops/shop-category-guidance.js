@@ -1,7 +1,7 @@
 const categoryAdvice = {
   th: {
     all: 'ป้ายเงื่อนไขปลามีเฉพาะเหยื่อจริง ลัวร์ และบอดี้ฟลาย: ดูป้ายก่อนซื้อ การผ่านเงื่อนไขไม่รับประกันว่าปลากินหรือตกขึ้นได้ ของหมวดอื่นให้ดูคำแนะนำการใช้ในรายละเอียด',
-    rod: 'เลือกวิธีตกก่อน แล้วดูคำแนะนำซื้อใต้คันแต่ละรุ่นของด่านนี้ เปรียบเทียบราคา เวลาเล็ง และขอบเขตที่ตรวจแล้ว ไม่ใช่อันดับโอกาสตกสำเร็จ',
+    rod: 'เลือกวิธีตกก่อน แล้วดูคำแนะนำซื้อใต้คันแต่ละรุ่นของด่านนี้ เทียบราคา เวลาเล็ง และสายขาดยาก ไม่ใช่อันดับโอกาสตกสำเร็จ',
     hook: 'เลือกเบ็ดให้ตรงกับชุดที่ใช้ แล้วดูคำแนะนำและราคาในรายละเอียดไอเท็มก่อนซื้อ',
     float_weight: 'เลือกทุ่นหรือตะกั่วตามชุดที่ใช้ แล้วเปรียบเทียบราคาและคำแนะนำในรายละเอียดไอเท็ม',
     food: 'เลือกอาหารตาม HP ที่ต้องเติมและราคา เปิดรายละเอียดเพื่อดู HP ที่ฟื้นและเงื่อนไขเควสต์ก่อนกิน',
@@ -15,7 +15,7 @@ const categoryAdvice = {
   },
   en: {
     all: 'Fish-check badges apply to bait, lures and fly bodies. Check them before buying; passing does not guarantee a bite or landing. For other categories, read the use advice in item details.',
-    rod: 'Choose your fishing method, then read each rod’s buying advice for this area. The comparison covers price, aiming time and the traced boundary, not catch success.',
+    rod: 'Choose your fishing method, then read each rod’s buying advice for this area. The comparison covers price, time to aim and line strength, not catch success.',
     hook: 'Choose a hook for your setup, then check its use advice and price in item details before buying.',
     float_weight:
       'Choose a float or sinker for your setup, then compare prices and use advice in item details.',
@@ -30,7 +30,7 @@ const categoryAdvice = {
   },
   ja: {
     all: '魚の判定表示はエサ・ルアー・毛バリのボディに付きます。購入前に確認してください。判定を通っても食いつきや取り込みは保証されません。他の種類は詳細ページの使い方で選んでください。',
-    rod: '釣り方を選び、このエリアの各竿の購入アドバイスを確認してください。価格・照準時間・確認した距離境界の比較で、釣果の順位ではありません。',
+    rod: '釣り方を選び、このエリアの各竿の購入アドバイスを確認してください。比べるのは価格・狙う時間・糸の切れにくさで、釣果の順位ではありません。',
     hook: '仕掛けに合う針を選び、詳細ページで使い方と価格を確認してから購入してください。',
     float_weight: '仕掛けに合うウキやオモリを選び、詳細ページで価格と使い方を比較してください。',
     food: '回復したいHPと価格で食べ物を選んでください。食べる前に詳細ページで確認済みの回復量とイベント用途を確認してください。',

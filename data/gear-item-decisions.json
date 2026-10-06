@@ -80,7 +80,7 @@
       },
       "reason": {
         "en": "A fish-name match in the item record is not evidence of more bites or easier landing, so it is not a reason to pay for an upgrade.",
-        "th": "ชื่อปลาที่ตรงในระเบียนไอเท็มไม่ได้ยืนยันว่าปลากินหรือดึงขึ้นง่ายกว่า จึงไม่ใช่เหตุให้จ่ายซื้อเปลี่ยน",
+        "th": "ชื่อปลาที่ตรงตามข้อมูลของไอเท็มไม่ได้ยืนยันว่าปลากินหรือดึงขึ้นง่ายกว่า จึงไม่ใช่เหตุให้จ่ายซื้อเปลี่ยน",
         "ja": "道具レコードの魚名一致は、食いつきや取り込みやすさの証明ではありません。買い替えの理由にはなりません。"
       },
       "targetFish": [
@@ -107,7 +107,7 @@
       },
       "reason": {
         "en": "A fish-name match in the item record is not evidence of more bites or easier landing, so it is not a reason to pay for an upgrade.",
-        "th": "ชื่อปลาที่ตรงในระเบียนไอเท็มไม่ได้ยืนยันว่าปลากินหรือดึงขึ้นง่ายกว่า จึงไม่ใช่เหตุให้จ่ายซื้อเปลี่ยน",
+        "th": "ชื่อปลาที่ตรงตามข้อมูลของไอเท็มไม่ได้ยืนยันว่าปลากินหรือดึงขึ้นง่ายกว่า จึงไม่ใช่เหตุให้จ่ายซื้อเปลี่ยน",
         "ja": "道具レコードの魚名一致は、食いつきや取り込みやすさの証明ではありません。買い替えの理由にはなりません。"
       },
       "targetFish": [
@@ -134,7 +134,7 @@
       },
       "reason": {
         "en": "A fish-name match in the item record is not evidence of more bites or easier landing, so it is not a reason to pay for an upgrade.",
-        "th": "ชื่อปลาที่ตรงในระเบียนไอเท็มไม่ได้ยืนยันว่าปลากินหรือดึงขึ้นง่ายกว่า จึงไม่ใช่เหตุให้จ่ายซื้อเปลี่ยน",
+        "th": "ชื่อปลาที่ตรงตามข้อมูลของไอเท็มไม่ได้ยืนยันว่าปลากินหรือดึงขึ้นง่ายกว่า จึงไม่ใช่เหตุให้จ่ายซื้อเปลี่ยน",
         "ja": "道具レコードの魚名一致は、食いつきや取り込みやすさの証明ではありません。買い替えの理由にはなりません。"
       },
       "targetFish": [
@@ -161,7 +161,7 @@
       },
       "reason": {
         "en": "A fish-name match in the item record is not evidence of more bites or easier landing, so it is not a reason to pay for an upgrade. For Koi, the compatible fish-matched baits are linked below: its fish match runs the same opening-fight branch before the hook check. Do not buy this hook just to trigger that branch again. This does not prove equal landing results for the whole setup or rule out other hook effects.",
-        "th": "ชื่อปลาที่ตรงในระเบียนไอเท็มไม่ได้ยืนยันว่าปลากินหรือดึงขึ้นง่ายกว่า จึงไม่ใช่เหตุให้จ่ายซื้อเปลี่ยน สำหรับปลาคาร์ป ถ้าใช้เหยื่อที่ตรงกับปลาในลิงก์ด้านล่างอยู่แล้ว ไม่ต้องซื้อเบ็ดนี้เพื่อหวังเพิ่มผลเฉพาะปลานี้ซ้ำ เพราะเกมใช้ผลนั้นจากเหยื่อก่อนตรวจเบ็ด ข้อนี้ไม่ได้พิสูจน์ว่าชุดตกทั้งหมดดึงปลาขึ้นง่ายเท่ากัน หรือเบ็ดไม่มีผลด้านอื่น",
+        "th": "ชื่อปลาที่ตรงตามข้อมูลของไอเท็มไม่ได้ยืนยันว่าปลากินหรือดึงขึ้นง่ายกว่า จึงไม่ใช่เหตุให้จ่ายซื้อเปลี่ยน สำหรับปลาคาร์ป ถ้าใช้เหยื่อที่ตรงกับปลาในลิงก์ด้านล่างอยู่แล้ว ไม่ต้องซื้อเบ็ดนี้เพื่อหวังเพิ่มผลเฉพาะปลานี้ซ้ำ เพราะเกมใช้ผลนั้นจากเหยื่อก่อนตรวจเบ็ด ข้อนี้ไม่ได้พิสูจน์ว่าชุดตกทั้งหมดดึงปลาขึ้นง่ายเท่ากัน หรือเบ็ดไม่มีผลด้านอื่น",
         "ja": "道具レコードの魚名一致は、食いつきや取り込みやすさの証明ではありません。買い替えの理由にはなりません。コイ向けの魚別エサは下のリンクです。適合するエサ側の魚ID一致により、針の判定より先に同じファイト開始分岐が実行されます。その分岐をもう一度起こすためだけにこの針を買う必要はありません。釣り全体の取り込み結果が同じ、または針に他の効果がないと証明するものではありません。"
       },
       "targetFish": [
@@ -198,7 +198,7 @@
       },
       "reason": {
         "en": "A fish-name match in the item record is not evidence of more bites or easier landing, so it is not a reason to pay for an upgrade. For Herabuna, the compatible fish-matched bait is linked below: its fish match runs the same opening-fight branch before the hook check. Do not buy this hook just to trigger that branch again. This does not prove equal landing results for the whole setup or rule out other hook effects.",
-        "th": "ชื่อปลาที่ตรงในระเบียนไอเท็มไม่ได้ยืนยันว่าปลากินหรือดึงขึ้นง่ายกว่า จึงไม่ใช่เหตุให้จ่ายซื้อเปลี่ยน สำหรับปลาเฮระบูนะ ถ้าใช้เหยื่อที่ตรงกับปลาในลิงก์ด้านล่างอยู่แล้ว ไม่ต้องซื้อเบ็ดนี้เพื่อหวังเพิ่มผลเฉพาะปลานี้ซ้ำ เพราะเกมใช้ผลนั้นจากเหยื่อก่อนตรวจเบ็ด ข้อนี้ไม่ได้พิสูจน์ว่าชุดตกทั้งหมดดึงปลาขึ้นง่ายเท่ากัน หรือเบ็ดไม่มีผลด้านอื่น",
+        "th": "ชื่อปลาที่ตรงตามข้อมูลของไอเท็มไม่ได้ยืนยันว่าปลากินหรือดึงขึ้นง่ายกว่า จึงไม่ใช่เหตุให้จ่ายซื้อเปลี่ยน สำหรับปลาเฮระบูนะ ถ้าใช้เหยื่อที่ตรงกับปลาในลิงก์ด้านล่างอยู่แล้ว ไม่ต้องซื้อเบ็ดนี้เพื่อหวังเพิ่มผลเฉพาะปลานี้ซ้ำ เพราะเกมใช้ผลนั้นจากเหยื่อก่อนตรวจเบ็ด ข้อนี้ไม่ได้พิสูจน์ว่าชุดตกทั้งหมดดึงปลาขึ้นง่ายเท่ากัน หรือเบ็ดไม่มีผลด้านอื่น",
         "ja": "道具レコードの魚名一致は、食いつきや取り込みやすさの証明ではありません。買い替えの理由にはなりません。ヘラブナ向けの魚別エサは下のリンクです。適合するエサ側の魚ID一致により、針の判定より先に同じファイト開始分岐が実行されます。その分岐をもう一度起こすためだけにこの針を買う必要はありません。釣り全体の取り込み結果が同じ、または針に他の効果がないと証明するものではありません。"
       },
       "targetFish": [
@@ -231,7 +231,7 @@
       },
       "reason": {
         "en": "A fish-name match in the item record is not evidence of more bites or easier landing, so it is not a reason to pay for an upgrade.",
-        "th": "ชื่อปลาที่ตรงในระเบียนไอเท็มไม่ได้ยืนยันว่าปลากินหรือดึงขึ้นง่ายกว่า จึงไม่ใช่เหตุให้จ่ายซื้อเปลี่ยน",
+        "th": "ชื่อปลาที่ตรงตามข้อมูลของไอเท็มไม่ได้ยืนยันว่าปลากินหรือดึงขึ้นง่ายกว่า จึงไม่ใช่เหตุให้จ่ายซื้อเปลี่ยน",
         "ja": "道具レコードの魚名一致は、食いつきや取り込みやすさの証明ではありません。買い替えの理由にはなりません。"
       },
       "sources": [
@@ -255,7 +255,7 @@
       },
       "reason": {
         "en": "A fish-name match in the item record is not evidence of more bites or easier landing, so it is not a reason to pay for an upgrade.",
-        "th": "ชื่อปลาที่ตรงในระเบียนไอเท็มไม่ได้ยืนยันว่าปลากินหรือดึงขึ้นง่ายกว่า จึงไม่ใช่เหตุให้จ่ายซื้อเปลี่ยน",
+        "th": "ชื่อปลาที่ตรงตามข้อมูลของไอเท็มไม่ได้ยืนยันว่าปลากินหรือดึงขึ้นง่ายกว่า จึงไม่ใช่เหตุให้จ่ายซื้อเปลี่ยน",
         "ja": "道具レコードの魚名一致は、食いつきや取り込みやすさの証明ではありません。買い替えの理由にはなりません。"
       },
       "sources": [
@@ -279,7 +279,7 @@
       },
       "reason": {
         "en": "A fish-name match in the item record is not evidence of more bites or easier landing, so it is not a reason to pay for an upgrade.",
-        "th": "ชื่อปลาที่ตรงในระเบียนไอเท็มไม่ได้ยืนยันว่าปลากินหรือดึงขึ้นง่ายกว่า จึงไม่ใช่เหตุให้จ่ายซื้อเปลี่ยน",
+        "th": "ชื่อปลาที่ตรงตามข้อมูลของไอเท็มไม่ได้ยืนยันว่าปลากินหรือดึงขึ้นง่ายกว่า จึงไม่ใช่เหตุให้จ่ายซื้อเปลี่ยน",
         "ja": "道具レコードの魚名一致は、食いつきや取り込みやすさの証明ではありません。買い替えの理由にはなりません。"
       },
       "sources": [
@@ -303,7 +303,7 @@
       },
       "reason": {
         "en": "A fish-name match in the item record is not evidence of more bites or easier landing, so it is not a reason to pay for an upgrade.",
-        "th": "ชื่อปลาที่ตรงในระเบียนไอเท็มไม่ได้ยืนยันว่าปลากินหรือดึงขึ้นง่ายกว่า จึงไม่ใช่เหตุให้จ่ายซื้อเปลี่ยน",
+        "th": "ชื่อปลาที่ตรงตามข้อมูลของไอเท็มไม่ได้ยืนยันว่าปลากินหรือดึงขึ้นง่ายกว่า จึงไม่ใช่เหตุให้จ่ายซื้อเปลี่ยน",
         "ja": "道具レコードの魚名一致は、食いつきや取り込みやすさの証明ではありません。買い替えの理由にはなりません。"
       },
       "sources": [
@@ -327,7 +327,7 @@
       },
       "reason": {
         "en": "A fish-name match in the item record is not evidence of more bites or easier landing, so it is not a reason to pay for an upgrade. For Ayu, the compatible fish-matched bait is linked below: its fish match runs the same opening-fight branch before the hook check. Do not buy this hook just to trigger that branch again. This does not prove equal landing results for the whole setup or rule out other hook effects.",
-        "th": "ชื่อปลาที่ตรงในระเบียนไอเท็มไม่ได้ยืนยันว่าปลากินหรือดึงขึ้นง่ายกว่า จึงไม่ใช่เหตุให้จ่ายซื้อเปลี่ยน สำหรับปลาอายุ ถ้าใช้เหยื่อที่ตรงกับปลาในลิงก์ด้านล่างอยู่แล้ว ไม่ต้องซื้อเบ็ดนี้เพื่อหวังเพิ่มผลเฉพาะปลานี้ซ้ำ เพราะเกมใช้ผลนั้นจากเหยื่อก่อนตรวจเบ็ด ข้อนี้ไม่ได้พิสูจน์ว่าชุดตกทั้งหมดดึงปลาขึ้นง่ายเท่ากัน หรือเบ็ดไม่มีผลด้านอื่น",
+        "th": "ชื่อปลาที่ตรงตามข้อมูลของไอเท็มไม่ได้ยืนยันว่าปลากินหรือดึงขึ้นง่ายกว่า จึงไม่ใช่เหตุให้จ่ายซื้อเปลี่ยน สำหรับปลาอายุ ถ้าใช้เหยื่อที่ตรงกับปลาในลิงก์ด้านล่างอยู่แล้ว ไม่ต้องซื้อเบ็ดนี้เพื่อหวังเพิ่มผลเฉพาะปลานี้ซ้ำ เพราะเกมใช้ผลนั้นจากเหยื่อก่อนตรวจเบ็ด ข้อนี้ไม่ได้พิสูจน์ว่าชุดตกทั้งหมดดึงปลาขึ้นง่ายเท่ากัน หรือเบ็ดไม่มีผลด้านอื่น",
         "ja": "道具レコードの魚名一致は、食いつきや取り込みやすさの証明ではありません。買い替えの理由にはなりません。アユ向けの魚別エサは下のリンクです。適合するエサ側の魚ID一致により、針の判定より先に同じファイト開始分岐が実行されます。その分岐をもう一度起こすためだけにこの針を買う必要はありません。釣り全体の取り込み結果が同じ、または針に他の効果がないと証明するものではありません。"
       },
       "targetFish": [
@@ -360,7 +360,7 @@
       },
       "reason": {
         "en": "A fish-name match in the item record is not evidence of more bites or easier landing, so it is not a reason to pay for an upgrade. For Tanago, the compatible fish-matched bait is linked below: its fish match runs the same opening-fight branch before the hook check. Do not buy this hook just to trigger that branch again. This does not prove equal landing results for the whole setup or rule out other hook effects.",
-        "th": "ชื่อปลาที่ตรงในระเบียนไอเท็มไม่ได้ยืนยันว่าปลากินหรือดึงขึ้นง่ายกว่า จึงไม่ใช่เหตุให้จ่ายซื้อเปลี่ยน สำหรับปลาทานาโกะ ถ้าใช้เหยื่อที่ตรงกับปลาในลิงก์ด้านล่างอยู่แล้ว ไม่ต้องซื้อเบ็ดนี้เพื่อหวังเพิ่มผลเฉพาะปลานี้ซ้ำ เพราะเกมใช้ผลนั้นจากเหยื่อก่อนตรวจเบ็ด ข้อนี้ไม่ได้พิสูจน์ว่าชุดตกทั้งหมดดึงปลาขึ้นง่ายเท่ากัน หรือเบ็ดไม่มีผลด้านอื่น",
+        "th": "ชื่อปลาที่ตรงตามข้อมูลของไอเท็มไม่ได้ยืนยันว่าปลากินหรือดึงขึ้นง่ายกว่า จึงไม่ใช่เหตุให้จ่ายซื้อเปลี่ยน สำหรับปลาทานาโกะ ถ้าใช้เหยื่อที่ตรงกับปลาในลิงก์ด้านล่างอยู่แล้ว ไม่ต้องซื้อเบ็ดนี้เพื่อหวังเพิ่มผลเฉพาะปลานี้ซ้ำ เพราะเกมใช้ผลนั้นจากเหยื่อก่อนตรวจเบ็ด ข้อนี้ไม่ได้พิสูจน์ว่าชุดตกทั้งหมดดึงปลาขึ้นง่ายเท่ากัน หรือเบ็ดไม่มีผลด้านอื่น",
         "ja": "道具レコードの魚名一致は、食いつきや取り込みやすさの証明ではありません。買い替えの理由にはなりません。タナゴ向けの魚別エサは下のリンクです。適合するエサ側の魚ID一致により、針の判定より先に同じファイト開始分岐が実行されます。その分岐をもう一度起こすためだけにこの針を買う必要はありません。釣り全体の取り込み結果が同じ、または針に他の効果がないと証明するものではありません。"
       },
       "targetFish": [
@@ -393,7 +393,7 @@
       },
       "reason": {
         "en": "A fish-name match in the item record is not evidence of more bites or easier landing, so it is not a reason to pay for an upgrade.",
-        "th": "ชื่อปลาที่ตรงในระเบียนไอเท็มไม่ได้ยืนยันว่าปลากินหรือดึงขึ้นง่ายกว่า จึงไม่ใช่เหตุให้จ่ายซื้อเปลี่ยน",
+        "th": "ชื่อปลาที่ตรงตามข้อมูลของไอเท็มไม่ได้ยืนยันว่าปลากินหรือดึงขึ้นง่ายกว่า จึงไม่ใช่เหตุให้จ่ายซื้อเปลี่ยน",
         "ja": "道具レコードの魚名一致は、食いつきや取り込みやすさの証明ではありません。買い替えの理由にはなりません。"
       },
       "targetFish": [
@@ -420,7 +420,7 @@
       },
       "reason": {
         "en": "A fish-name match in the item record is not evidence of more bites or easier landing, so it is not a reason to pay for an upgrade.",
-        "th": "ชื่อปลาที่ตรงในระเบียนไอเท็มไม่ได้ยืนยันว่าปลากินหรือดึงขึ้นง่ายกว่า จึงไม่ใช่เหตุให้จ่ายซื้อเปลี่ยน",
+        "th": "ชื่อปลาที่ตรงตามข้อมูลของไอเท็มไม่ได้ยืนยันว่าปลากินหรือดึงขึ้นง่ายกว่า จึงไม่ใช่เหตุให้จ่ายซื้อเปลี่ยน",
         "ja": "道具レコードの魚名一致は、食いつきや取り込みやすさの証明ではありません。買い替えの理由にはなりません。"
       },
       "targetFish": [
@@ -441,8 +441,8 @@
         "ja": "所持品を継続、購入は価格で選ぶ"
       },
       "recommendation": {
-        "en": "If you already own any float (IDs 01–08), keep it. These models select the same float route; if buying, choose the cheapest model stocked in your current area from the area price guide. Then check that the target passes the float-route fish list and choose a bait it accepts. Its ¥250 price is not a Herabuna bonus: the fish-ID-looking field has no traced reader in the bait path.",
-        "th": "ถ้ามีทุ่น ID 01–08 อยู่แล้ว ใช้ต่อได้ ทุกรุ่นเลือกชุดทุ่นเดียวกัน ถ้าจะซื้อ ให้เลือกตัวที่ราคาต่ำสุดในสต็อกของด่านปัจจุบันจากตารางราคา แล้วตรวจว่าปลาเป้าหมายอยู่ในรายชื่อชุดทุ่นและเลือกเหยื่อที่ปลารับได้ ราคา ¥250 ไม่ใช่โบนัสปลาเฮระบุนะ; ยังไม่พบโค้ดอ่านฟิลด์ ID ปลานี้ในเส้นทางเหยื่อ",
+        "en": "If you already own any float (IDs 01–08), keep it. These models select the same float route; if buying, choose the cheapest model stocked in your current area from the area price guide. Then check that the target passes the float-route fish list and choose a bait it accepts. Its ¥250 price is not a Herabuna bonus: the game does not use that fish-looking value when it checks bait.",
+        "th": "ถ้ามีทุ่น ID 01–08 อยู่แล้ว ใช้ต่อได้ ทุกรุ่นเลือกชุดทุ่นเดียวกัน ถ้าจะซื้อ ให้เลือกตัวที่ราคาต่ำสุดในสต็อกของด่านปัจจุบันจากตารางราคา แล้วตรวจว่าปลาเป้าหมายอยู่ในรายชื่อชุดทุ่นและเลือกเหยื่อที่ปลารับได้ ราคา ¥250 ไม่ใช่โบนัสปลาเฮระบุนะ; และเกมไม่ได้ใช้ค่าที่คล้ายชื่อปลานี้ตอนเลือกเหยื่อ",
         "ja": "ウキID01–08のどれかを持っているなら継続できます。すべて同じウキ経路を選びます。購入する場合はエリア別価格表から現在地の最安在庫を選び、対象魚がウキの対応リストにあることと、エサが適合することを確認してください。 250円はヘラブナ向けボーナスではありません。魚IDに見える欄をエサ釣り経路で読むコードは確認できません。"
       },
       "reason": {
@@ -3529,9 +3529,9 @@
         "ja": "見た目が好みでゲーム内の最終見積額に納得できる場合に選びます。選択肢に「無し」があれば省略できます。今の見た目に満足しているなら所持品を使い続け、釣りのボーナスを期待して追加料金を払わないでください。"
       },
       "reason": {
-        "en": "No tail-specific fishing advantage is established in the ROM findings used for this guide; appearance and the displayed quote are the usable choice criteria.",
-        "th": "หลักฐาน ROM ในคู่มือนี้ยังไม่ยืนยันข้อได้เปรียบด้านการตกจากหาง ใช้รูปลักษณ์และราคาเสนอที่เกมแสดงเป็นเกณฑ์เลือก",
-        "ja": "このガイドで調べたROM範囲では、テール固有の釣り効果は確認されていません。見た目と画面の見積額で選べます。"
+        "en": "No advantage in catching fish has been shown for tails; choose by appearance and the price the game shows.",
+        "th": "ยังไม่มีหลักฐานว่าหางช่วยให้ตกง่ายขึ้น ให้เลือกตามรูปลักษณ์และราคาที่เกมแสดง",
+        "ja": "テールに釣果面の利点は確認されていません。見た目と画面に出る見積額で選べます。"
       },
       "sources": [
         "docs/fly-practical-research.md",
@@ -3552,9 +3552,9 @@
         "ja": "見た目が好みでゲーム内の最終見積額に納得できる場合に選びます。選択肢に「無し」があれば省略できます。今の見た目に満足しているなら所持品を使い続け、釣りのボーナスを期待して追加料金を払わないでください。"
       },
       "reason": {
-        "en": "No tail-specific fishing advantage is established in the ROM findings used for this guide; appearance and the displayed quote are the usable choice criteria.",
-        "th": "หลักฐาน ROM ในคู่มือนี้ยังไม่ยืนยันข้อได้เปรียบด้านการตกจากหาง ใช้รูปลักษณ์และราคาเสนอที่เกมแสดงเป็นเกณฑ์เลือก",
-        "ja": "このガイドで調べたROM範囲では、テール固有の釣り効果は確認されていません。見た目と画面の見積額で選べます。"
+        "en": "No advantage in catching fish has been shown for tails; choose by appearance and the price the game shows.",
+        "th": "ยังไม่มีหลักฐานว่าหางช่วยให้ตกง่ายขึ้น ให้เลือกตามรูปลักษณ์และราคาที่เกมแสดง",
+        "ja": "テールに釣果面の利点は確認されていません。見た目と画面に出る見積額で選べます。"
       },
       "sources": [
         "docs/fly-practical-research.md",
@@ -3575,9 +3575,9 @@
         "ja": "見た目が好みでゲーム内の最終見積額に納得できる場合に選びます。選択肢に「無し」があれば省略できます。今の見た目に満足しているなら所持品を使い続け、釣りのボーナスを期待して追加料金を払わないでください。"
       },
       "reason": {
-        "en": "No tail-specific fishing advantage is established in the ROM findings used for this guide; appearance and the displayed quote are the usable choice criteria.",
-        "th": "หลักฐาน ROM ในคู่มือนี้ยังไม่ยืนยันข้อได้เปรียบด้านการตกจากหาง ใช้รูปลักษณ์และราคาเสนอที่เกมแสดงเป็นเกณฑ์เลือก",
-        "ja": "このガイドで調べたROM範囲では、テール固有の釣り効果は確認されていません。見た目と画面の見積額で選べます。"
+        "en": "No advantage in catching fish has been shown for tails; choose by appearance and the price the game shows.",
+        "th": "ยังไม่มีหลักฐานว่าหางช่วยให้ตกง่ายขึ้น ให้เลือกตามรูปลักษณ์และราคาที่เกมแสดง",
+        "ja": "テールに釣果面の利点は確認されていません。見た目と画面に出る見積額で選べます。"
       },
       "sources": [
         "docs/fly-practical-research.md",
@@ -3598,9 +3598,9 @@
         "ja": "見た目が好みでゲーム内の最終見積額に納得できる場合に選びます。選択肢に「無し」があれば省略できます。今の見た目に満足しているなら所持品を使い続け、釣りのボーナスを期待して追加料金を払わないでください。"
       },
       "reason": {
-        "en": "No tail-specific fishing advantage is established in the ROM findings used for this guide; appearance and the displayed quote are the usable choice criteria.",
-        "th": "หลักฐาน ROM ในคู่มือนี้ยังไม่ยืนยันข้อได้เปรียบด้านการตกจากหาง ใช้รูปลักษณ์และราคาเสนอที่เกมแสดงเป็นเกณฑ์เลือก",
-        "ja": "このガイドで調べたROM範囲では、テール固有の釣り効果は確認されていません。見た目と画面の見積額で選べます。"
+        "en": "No advantage in catching fish has been shown for tails; choose by appearance and the price the game shows.",
+        "th": "ยังไม่มีหลักฐานว่าหางช่วยให้ตกง่ายขึ้น ให้เลือกตามรูปลักษณ์และราคาที่เกมแสดง",
+        "ja": "テールに釣果面の利点は確認されていません。見た目と画面に出る見積額で選べます。"
       },
       "sources": [
         "docs/fly-practical-research.md",
@@ -3621,9 +3621,9 @@
         "ja": "見た目が好みでゲーム内の最終見積額に納得できる場合に選びます。選択肢に「無し」があれば省略できます。今の見た目に満足しているなら所持品を使い続け、釣りのボーナスを期待して追加料金を払わないでください。"
       },
       "reason": {
-        "en": "No tail-specific fishing advantage is established in the ROM findings used for this guide; appearance and the displayed quote are the usable choice criteria.",
-        "th": "หลักฐาน ROM ในคู่มือนี้ยังไม่ยืนยันข้อได้เปรียบด้านการตกจากหาง ใช้รูปลักษณ์และราคาเสนอที่เกมแสดงเป็นเกณฑ์เลือก",
-        "ja": "このガイドで調べたROM範囲では、テール固有の釣り効果は確認されていません。見た目と画面の見積額で選べます。"
+        "en": "No advantage in catching fish has been shown for tails; choose by appearance and the price the game shows.",
+        "th": "ยังไม่มีหลักฐานว่าหางช่วยให้ตกง่ายขึ้น ให้เลือกตามรูปลักษณ์และราคาที่เกมแสดง",
+        "ja": "テールに釣果面の利点は確認されていません。見た目と画面に出る見積額で選べます。"
       },
       "sources": [
         "docs/fly-practical-research.md",
@@ -3644,9 +3644,9 @@
         "ja": "見た目が好みでゲーム内の最終見積額に納得できる場合に選びます。選択肢に「無し」があれば省略できます。今の見た目に満足しているなら所持品を使い続け、釣りのボーナスを期待して追加料金を払わないでください。"
       },
       "reason": {
-        "en": "No tail-specific fishing advantage is established in the ROM findings used for this guide; appearance and the displayed quote are the usable choice criteria.",
-        "th": "หลักฐาน ROM ในคู่มือนี้ยังไม่ยืนยันข้อได้เปรียบด้านการตกจากหาง ใช้รูปลักษณ์และราคาเสนอที่เกมแสดงเป็นเกณฑ์เลือก",
-        "ja": "このガイドで調べたROM範囲では、テール固有の釣り効果は確認されていません。見た目と画面の見積額で選べます。"
+        "en": "No advantage in catching fish has been shown for tails; choose by appearance and the price the game shows.",
+        "th": "ยังไม่มีหลักฐานว่าหางช่วยให้ตกง่ายขึ้น ให้เลือกตามรูปลักษณ์และราคาที่เกมแสดง",
+        "ja": "テールに釣果面の利点は確認されていません。見た目と画面に出る見積額で選べます。"
       },
       "sources": [
         "docs/fly-practical-research.md",
@@ -3667,9 +3667,9 @@
         "ja": "見た目が好みでゲーム内の最終見積額に納得できる場合に選びます。選択肢に「無し」があれば省略できます。今の見た目に満足しているなら所持品を使い続け、釣りのボーナスを期待して追加料金を払わないでください。"
       },
       "reason": {
-        "en": "No tail-specific fishing advantage is established in the ROM findings used for this guide; appearance and the displayed quote are the usable choice criteria.",
-        "th": "หลักฐาน ROM ในคู่มือนี้ยังไม่ยืนยันข้อได้เปรียบด้านการตกจากหาง ใช้รูปลักษณ์และราคาเสนอที่เกมแสดงเป็นเกณฑ์เลือก",
-        "ja": "このガイドで調べたROM範囲では、テール固有の釣り効果は確認されていません。見た目と画面の見積額で選べます。"
+        "en": "No advantage in catching fish has been shown for tails; choose by appearance and the price the game shows.",
+        "th": "ยังไม่มีหลักฐานว่าหางช่วยให้ตกง่ายขึ้น ให้เลือกตามรูปลักษณ์และราคาที่เกมแสดง",
+        "ja": "テールに釣果面の利点は確認されていません。見た目と画面に出る見積額で選べます。"
       },
       "sources": [
         "docs/fly-practical-research.md",
@@ -3690,9 +3690,9 @@
         "ja": "見た目が好みでゲーム内の最終見積額に納得できる場合に選びます。選択肢に「無し」があれば省略できます。今の見た目に満足しているなら所持品を使い続け、釣りのボーナスを期待して追加料金を払わないでください。"
       },
       "reason": {
-        "en": "No tail-specific fishing advantage is established in the ROM findings used for this guide; appearance and the displayed quote are the usable choice criteria.",
-        "th": "หลักฐาน ROM ในคู่มือนี้ยังไม่ยืนยันข้อได้เปรียบด้านการตกจากหาง ใช้รูปลักษณ์และราคาเสนอที่เกมแสดงเป็นเกณฑ์เลือก",
-        "ja": "このガイドで調べたROM範囲では、テール固有の釣り効果は確認されていません。見た目と画面の見積額で選べます。"
+        "en": "No advantage in catching fish has been shown for tails; choose by appearance and the price the game shows.",
+        "th": "ยังไม่มีหลักฐานว่าหางช่วยให้ตกง่ายขึ้น ให้เลือกตามรูปลักษณ์และราคาที่เกมแสดง",
+        "ja": "テールに釣果面の利点は確認されていません。見た目と画面に出る見積額で選べます。"
       },
       "sources": [
         "docs/fly-practical-research.md",
@@ -3713,9 +3713,9 @@
         "ja": "見た目が好みでゲーム内の最終見積額に納得できる場合に選びます。選択肢に「無し」があれば省略できます。今の見た目に満足しているなら所持品を使い続け、釣りのボーナスを期待して追加料金を払わないでください。"
       },
       "reason": {
-        "en": "No tail-specific fishing advantage is established in the ROM findings used for this guide; appearance and the displayed quote are the usable choice criteria.",
-        "th": "หลักฐาน ROM ในคู่มือนี้ยังไม่ยืนยันข้อได้เปรียบด้านการตกจากหาง ใช้รูปลักษณ์และราคาเสนอที่เกมแสดงเป็นเกณฑ์เลือก",
-        "ja": "このガイドで調べたROM範囲では、テール固有の釣り効果は確認されていません。見た目と画面の見積額で選べます。"
+        "en": "No advantage in catching fish has been shown for tails; choose by appearance and the price the game shows.",
+        "th": "ยังไม่มีหลักฐานว่าหางช่วยให้ตกง่ายขึ้น ให้เลือกตามรูปลักษณ์และราคาที่เกมแสดง",
+        "ja": "テールに釣果面の利点は確認されていません。見た目と画面に出る見積額で選べます。"
       },
       "sources": [
         "docs/fly-practical-research.md",
@@ -3736,9 +3736,9 @@
         "ja": "見た目が好みでゲーム内の最終見積額に納得できる場合に選びます。選択肢に「無し」があれば省略できます。今の見た目に満足しているなら所持品を使い続け、釣りのボーナスを期待して追加料金を払わないでください。"
       },
       "reason": {
-        "en": "No tail-specific fishing advantage is established in the ROM findings used for this guide; appearance and the displayed quote are the usable choice criteria.",
-        "th": "หลักฐาน ROM ในคู่มือนี้ยังไม่ยืนยันข้อได้เปรียบด้านการตกจากหาง ใช้รูปลักษณ์และราคาเสนอที่เกมแสดงเป็นเกณฑ์เลือก",
-        "ja": "このガイドで調べたROM範囲では、テール固有の釣り効果は確認されていません。見た目と画面の見積額で選べます。"
+        "en": "No advantage in catching fish has been shown for tails; choose by appearance and the price the game shows.",
+        "th": "ยังไม่มีหลักฐานว่าหางช่วยให้ตกง่ายขึ้น ให้เลือกตามรูปลักษณ์และราคาที่เกมแสดง",
+        "ja": "テールに釣果面の利点は確認されていません。見た目と画面に出る見積額で選べます。"
       },
       "sources": [
         "docs/fly-practical-research.md",
@@ -3759,9 +3759,9 @@
         "ja": "見た目が好みでゲーム内の最終見積額に納得できる場合に選びます。選択肢に「無し」があれば省略できます。今の見た目に満足しているなら所持品を使い続け、釣りのボーナスを期待して追加料金を払わないでください。"
       },
       "reason": {
-        "en": "No tail-specific fishing advantage is established in the ROM findings used for this guide; appearance and the displayed quote are the usable choice criteria.",
-        "th": "หลักฐาน ROM ในคู่มือนี้ยังไม่ยืนยันข้อได้เปรียบด้านการตกจากหาง ใช้รูปลักษณ์และราคาเสนอที่เกมแสดงเป็นเกณฑ์เลือก",
-        "ja": "このガイドで調べたROM範囲では、テール固有の釣り効果は確認されていません。見た目と画面の見積額で選べます。"
+        "en": "No advantage in catching fish has been shown for tails; choose by appearance and the price the game shows.",
+        "th": "ยังไม่มีหลักฐานว่าหางช่วยให้ตกง่ายขึ้น ให้เลือกตามรูปลักษณ์และราคาที่เกมแสดง",
+        "ja": "テールに釣果面の利点は確認されていません。見た目と画面に出る見積額で選べます。"
       },
       "sources": [
         "docs/fly-practical-research.md",
@@ -3782,9 +3782,9 @@
         "ja": "見た目が好みでゲーム内の最終見積額に納得できる場合に選びます。選択肢に「無し」があれば省略できます。今の見た目に満足しているなら所持品を使い続け、釣りのボーナスを期待して追加料金を払わないでください。"
       },
       "reason": {
-        "en": "No tail-specific fishing advantage is established in the ROM findings used for this guide; appearance and the displayed quote are the usable choice criteria.",
-        "th": "หลักฐาน ROM ในคู่มือนี้ยังไม่ยืนยันข้อได้เปรียบด้านการตกจากหาง ใช้รูปลักษณ์และราคาเสนอที่เกมแสดงเป็นเกณฑ์เลือก",
-        "ja": "このガイドで調べたROM範囲では、テール固有の釣り効果は確認されていません。見た目と画面の見積額で選べます。"
+        "en": "No advantage in catching fish has been shown for tails; choose by appearance and the price the game shows.",
+        "th": "ยังไม่มีหลักฐานว่าหางช่วยให้ตกง่ายขึ้น ให้เลือกตามรูปลักษณ์และราคาที่เกมแสดง",
+        "ja": "テールに釣果面の利点は確認されていません。見た目と画面に出る見積額で選べます。"
       },
       "sources": [
         "docs/fly-practical-research.md",
@@ -3805,9 +3805,9 @@
         "ja": "見た目が好みでゲーム内の最終見積額に納得できる場合に選びます。選択肢に「無し」があれば省略できます。今の見た目に満足しているなら所持品を使い続け、釣りのボーナスを期待して追加料金を払わないでください。"
       },
       "reason": {
-        "en": "No tail-specific fishing advantage is established in the ROM findings used for this guide; appearance and the displayed quote are the usable choice criteria.",
-        "th": "หลักฐาน ROM ในคู่มือนี้ยังไม่ยืนยันข้อได้เปรียบด้านการตกจากหาง ใช้รูปลักษณ์และราคาเสนอที่เกมแสดงเป็นเกณฑ์เลือก",
-        "ja": "このガイドで調べたROM範囲では、テール固有の釣り効果は確認されていません。見た目と画面の見積額で選べます。"
+        "en": "No advantage in catching fish has been shown for tails; choose by appearance and the price the game shows.",
+        "th": "ยังไม่มีหลักฐานว่าหางช่วยให้ตกง่ายขึ้น ให้เลือกตามรูปลักษณ์และราคาที่เกมแสดง",
+        "ja": "テールに釣果面の利点は確認されていません。見た目と画面に出る見積額で選べます。"
       },
       "sources": [
         "docs/fly-practical-research.md",
@@ -3828,9 +3828,9 @@
         "ja": "見た目が好みでゲーム内の最終見積額に納得できる場合に選びます。選択肢に「無し」があれば省略できます。今の見た目に満足しているなら所持品を使い続け、釣りのボーナスを期待して追加料金を払わないでください。"
       },
       "reason": {
-        "en": "No tail-specific fishing advantage is established in the ROM findings used for this guide; appearance and the displayed quote are the usable choice criteria.",
-        "th": "หลักฐาน ROM ในคู่มือนี้ยังไม่ยืนยันข้อได้เปรียบด้านการตกจากหาง ใช้รูปลักษณ์และราคาเสนอที่เกมแสดงเป็นเกณฑ์เลือก",
-        "ja": "このガイドで調べたROM範囲では、テール固有の釣り効果は確認されていません。見た目と画面の見積額で選べます。"
+        "en": "No advantage in catching fish has been shown for tails; choose by appearance and the price the game shows.",
+        "th": "ยังไม่มีหลักฐานว่าหางช่วยให้ตกง่ายขึ้น ให้เลือกตามรูปลักษณ์และราคาที่เกมแสดง",
+        "ja": "テールに釣果面の利点は確認されていません。見た目と画面に出る見積額で選べます。"
       },
       "sources": [
         "docs/fly-practical-research.md",
@@ -3851,9 +3851,9 @@
         "ja": "見た目が好みでゲーム内の最終見積額に納得できる場合に選びます。選択肢に「無し」があれば省略できます。今の見た目に満足しているなら所持品を使い続け、釣りのボーナスを期待して追加料金を払わないでください。"
       },
       "reason": {
-        "en": "No tail-specific fishing advantage is established in the ROM findings used for this guide; appearance and the displayed quote are the usable choice criteria.",
-        "th": "หลักฐาน ROM ในคู่มือนี้ยังไม่ยืนยันข้อได้เปรียบด้านการตกจากหาง ใช้รูปลักษณ์และราคาเสนอที่เกมแสดงเป็นเกณฑ์เลือก",
-        "ja": "このガイドで調べたROM範囲では、テール固有の釣り効果は確認されていません。見た目と画面の見積額で選べます。"
+        "en": "No advantage in catching fish has been shown for tails; choose by appearance and the price the game shows.",
+        "th": "ยังไม่มีหลักฐานว่าหางช่วยให้ตกง่ายขึ้น ให้เลือกตามรูปลักษณ์และราคาที่เกมแสดง",
+        "ja": "テールに釣果面の利点は確認されていません。見た目と画面に出る見積額で選べます。"
       },
       "sources": [
         "docs/fly-practical-research.md",
@@ -3874,9 +3874,9 @@
         "ja": "見た目が好みでゲーム内の最終見積額に納得できる場合に選びます。選択肢に「無し」があれば省略できます。今の見た目に満足しているなら所持品を使い続け、釣りのボーナスを期待して追加料金を払わないでください。"
       },
       "reason": {
-        "en": "No tail-specific fishing advantage is established in the ROM findings used for this guide; appearance and the displayed quote are the usable choice criteria.",
-        "th": "หลักฐาน ROM ในคู่มือนี้ยังไม่ยืนยันข้อได้เปรียบด้านการตกจากหาง ใช้รูปลักษณ์และราคาเสนอที่เกมแสดงเป็นเกณฑ์เลือก",
-        "ja": "このガイドで調べたROM範囲では、テール固有の釣り効果は確認されていません。見た目と画面の見積額で選べます。"
+        "en": "No advantage in catching fish has been shown for tails; choose by appearance and the price the game shows.",
+        "th": "ยังไม่มีหลักฐานว่าหางช่วยให้ตกง่ายขึ้น ให้เลือกตามรูปลักษณ์และราคาที่เกมแสดง",
+        "ja": "テールに釣果面の利点は確認されていません。見た目と画面に出る見積額で選べます。"
       },
       "sources": [
         "docs/fly-practical-research.md",
@@ -3897,9 +3897,9 @@
         "ja": "見た目が好みでゲーム内の最終見積額に納得できる場合に選びます。選択肢に「無し」があれば省略できます。今の見た目に満足しているなら所持品を使い続け、釣りのボーナスを期待して追加料金を払わないでください。"
       },
       "reason": {
-        "en": "No tail-specific fishing advantage is established in the ROM findings used for this guide; appearance and the displayed quote are the usable choice criteria.",
-        "th": "หลักฐาน ROM ในคู่มือนี้ยังไม่ยืนยันข้อได้เปรียบด้านการตกจากหาง ใช้รูปลักษณ์และราคาเสนอที่เกมแสดงเป็นเกณฑ์เลือก",
-        "ja": "このガイドで調べたROM範囲では、テール固有の釣り効果は確認されていません。見た目と画面の見積額で選べます。"
+        "en": "No advantage in catching fish has been shown for tails; choose by appearance and the price the game shows.",
+        "th": "ยังไม่มีหลักฐานว่าหางช่วยให้ตกง่ายขึ้น ให้เลือกตามรูปลักษณ์และราคาที่เกมแสดง",
+        "ja": "テールに釣果面の利点は確認されていません。見た目と画面に出る見積額で選べます。"
       },
       "sources": [
         "docs/fly-practical-research.md",
@@ -3920,9 +3920,9 @@
         "ja": "見た目が好みでゲーム内の最終見積額に納得できる場合に選びます。選択肢に「無し」があれば省略できます。今の見た目に満足しているなら所持品を使い続け、釣りのボーナスを期待して追加料金を払わないでください。"
       },
       "reason": {
-        "en": "No tail-specific fishing advantage is established in the ROM findings used for this guide; appearance and the displayed quote are the usable choice criteria.",
-        "th": "หลักฐาน ROM ในคู่มือนี้ยังไม่ยืนยันข้อได้เปรียบด้านการตกจากหาง ใช้รูปลักษณ์และราคาเสนอที่เกมแสดงเป็นเกณฑ์เลือก",
-        "ja": "このガイドで調べたROM範囲では、テール固有の釣り効果は確認されていません。見た目と画面の見積額で選べます。"
+        "en": "No advantage in catching fish has been shown for tails; choose by appearance and the price the game shows.",
+        "th": "ยังไม่มีหลักฐานว่าหางช่วยให้ตกง่ายขึ้น ให้เลือกตามรูปลักษณ์และราคาที่เกมแสดง",
+        "ja": "テールに釣果面の利点は確認されていません。見た目と画面に出る見積額で選べます。"
       },
       "sources": [
         "docs/fly-practical-research.md",
@@ -3943,9 +3943,9 @@
         "ja": "見た目が好みでゲーム内の最終見積額に納得できる場合に選びます。選択肢に「無し」があれば省略できます。今の見た目に満足しているなら所持品を使い続け、釣りのボーナスを期待して追加料金を払わないでください。"
       },
       "reason": {
-        "en": "No tail-specific fishing advantage is established in the ROM findings used for this guide; appearance and the displayed quote are the usable choice criteria.",
-        "th": "หลักฐาน ROM ในคู่มือนี้ยังไม่ยืนยันข้อได้เปรียบด้านการตกจากหาง ใช้รูปลักษณ์และราคาเสนอที่เกมแสดงเป็นเกณฑ์เลือก",
-        "ja": "このガイドで調べたROM範囲では、テール固有の釣り効果は確認されていません。見た目と画面の見積額で選べます。"
+        "en": "No advantage in catching fish has been shown for tails; choose by appearance and the price the game shows.",
+        "th": "ยังไม่มีหลักฐานว่าหางช่วยให้ตกง่ายขึ้น ให้เลือกตามรูปลักษณ์และราคาที่เกมแสดง",
+        "ja": "テールに釣果面の利点は確認されていません。見た目と画面に出る見積額で選べます。"
       },
       "sources": [
         "docs/fly-practical-research.md",
@@ -3966,9 +3966,9 @@
         "ja": "見た目が好みでゲーム内の最終見積額に納得できる場合に選びます。選択肢に「無し」があれば省略できます。今の見た目に満足しているなら所持品を使い続け、釣りのボーナスを期待して追加料金を払わないでください。"
       },
       "reason": {
-        "en": "No tail-specific fishing advantage is established in the ROM findings used for this guide; appearance and the displayed quote are the usable choice criteria.",
-        "th": "หลักฐาน ROM ในคู่มือนี้ยังไม่ยืนยันข้อได้เปรียบด้านการตกจากหาง ใช้รูปลักษณ์และราคาเสนอที่เกมแสดงเป็นเกณฑ์เลือก",
-        "ja": "このガイドで調べたROM範囲では、テール固有の釣り効果は確認されていません。見た目と画面の見積額で選べます。"
+        "en": "No advantage in catching fish has been shown for tails; choose by appearance and the price the game shows.",
+        "th": "ยังไม่มีหลักฐานว่าหางช่วยให้ตกง่ายขึ้น ให้เลือกตามรูปลักษณ์และราคาที่เกมแสดง",
+        "ja": "テールに釣果面の利点は確認されていません。見た目と画面に出る見積額で選べます。"
       },
       "sources": [
         "docs/fly-practical-research.md",
@@ -3989,9 +3989,9 @@
         "ja": "見た目が好みでゲーム内の最終見積額に納得できる場合に選びます。選択肢に「無し」があれば省略できます。今の見た目に満足しているなら所持品を使い続け、釣りのボーナスを期待して追加料金を払わないでください。"
       },
       "reason": {
-        "en": "No tail-specific fishing advantage is established in the ROM findings used for this guide; appearance and the displayed quote are the usable choice criteria.",
-        "th": "หลักฐาน ROM ในคู่มือนี้ยังไม่ยืนยันข้อได้เปรียบด้านการตกจากหาง ใช้รูปลักษณ์และราคาเสนอที่เกมแสดงเป็นเกณฑ์เลือก",
-        "ja": "このガイドで調べたROM範囲では、テール固有の釣り効果は確認されていません。見た目と画面の見積額で選べます。"
+        "en": "No advantage in catching fish has been shown for tails; choose by appearance and the price the game shows.",
+        "th": "ยังไม่มีหลักฐานว่าหางช่วยให้ตกง่ายขึ้น ให้เลือกตามรูปลักษณ์และราคาที่เกมแสดง",
+        "ja": "テールに釣果面の利点は確認されていません。見た目と画面に出る見積額で選べます。"
       },
       "sources": [
         "docs/fly-practical-research.md",
@@ -4012,9 +4012,9 @@
         "ja": "見た目が好みでゲーム内の最終見積額に納得できる場合に選びます。選択肢に「無し」があれば省略できます。今の見た目に満足しているなら所持品を使い続け、釣りのボーナスを期待して追加料金を払わないでください。"
       },
       "reason": {
-        "en": "No tail-specific fishing advantage is established in the ROM findings used for this guide; appearance and the displayed quote are the usable choice criteria.",
-        "th": "หลักฐาน ROM ในคู่มือนี้ยังไม่ยืนยันข้อได้เปรียบด้านการตกจากหาง ใช้รูปลักษณ์และราคาเสนอที่เกมแสดงเป็นเกณฑ์เลือก",
-        "ja": "このガイドで調べたROM範囲では、テール固有の釣り効果は確認されていません。見た目と画面の見積額で選べます。"
+        "en": "No advantage in catching fish has been shown for tails; choose by appearance and the price the game shows.",
+        "th": "ยังไม่มีหลักฐานว่าหางช่วยให้ตกง่ายขึ้น ให้เลือกตามรูปลักษณ์และราคาที่เกมแสดง",
+        "ja": "テールに釣果面の利点は確認されていません。見た目と画面に出る見積額で選べます。"
       },
       "sources": [
         "docs/fly-practical-research.md",
@@ -4035,9 +4035,9 @@
         "ja": "見た目が好みでゲーム内の最終見積額に納得できる場合に選びます。選択肢に「無し」があれば省略できます。今の見た目に満足しているなら所持品を使い続け、釣りのボーナスを期待して追加料金を払わないでください。"
       },
       "reason": {
-        "en": "No tail-specific fishing advantage is established in the ROM findings used for this guide; appearance and the displayed quote are the usable choice criteria.",
-        "th": "หลักฐาน ROM ในคู่มือนี้ยังไม่ยืนยันข้อได้เปรียบด้านการตกจากหาง ใช้รูปลักษณ์และราคาเสนอที่เกมแสดงเป็นเกณฑ์เลือก",
-        "ja": "このガイドで調べたROM範囲では、テール固有の釣り効果は確認されていません。見た目と画面の見積額で選べます。"
+        "en": "No advantage in catching fish has been shown for tails; choose by appearance and the price the game shows.",
+        "th": "ยังไม่มีหลักฐานว่าหางช่วยให้ตกง่ายขึ้น ให้เลือกตามรูปลักษณ์และราคาที่เกมแสดง",
+        "ja": "テールに釣果面の利点は確認されていません。見た目と画面に出る見積額で選べます。"
       },
       "sources": [
         "docs/fly-practical-research.md",

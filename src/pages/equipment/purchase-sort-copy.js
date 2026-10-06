@@ -2,7 +2,7 @@ export function purchaseSortCopy(lang, stage) {
   const area = /^[1-6]$/.test(String(stage || '')) ? Number(stage) : 0
   if (lang === 'th') {
     const scope = area ? `ด่าน ${area}` : 'ทุกด่าน (ยังไม่ได้เลือกด่าน)'
-    return `เรียงจากของที่มีรายการขายปกติใน${scope} ราคาต่ำก่อน ตามด้วยของขายแบบมีเงื่อนไข แล้วจึงของที่ไม่มีข้อเสนอขายปกติพร้อมราคาที่เทียบได้ในขอบเขตนี้ ฟลายต้องซื้อเป็นชุดหรือประกอบ จึงไม่ใช้ราคาชิ้นส่วนมาเทียบ ตรวจเงื่อนไขและราคาในหน้าร้านก่อนซื้อ`
+    return `เรียงจากของที่มีรายการขายปกติใน${scope} ราคาต่ำก่อน ตามด้วยของขายแบบมีเงื่อนไข แล้วจึงของที่ไม่มีรายการขายปกติให้เทียบราคา ฟลายต้องซื้อเป็นชุดหรือประกอบ จึงไม่ใช้ราคาชิ้นส่วนมาเทียบ ตรวจเงื่อนไขและราคาในหน้าร้านก่อนซื้อ`
   }
   if (lang === 'ja') {
     const scope = area ? `エリア${area}` : '全エリア（エリア未指定）'
@@ -14,8 +14,8 @@ export function purchaseSortCopy(lang, stage) {
 
 export function rawPriceSortCopy(lang) {
   if (lang === 'th')
-    return 'เรียงช่องราคาใน ROM สำหรับตรวจหลักฐานเท่านั้น ไม่ใช่รายการที่ซื้อได้หรือราคาเต็มของชุดฟลาย หากกำลังเลือกซื้อ ให้ใช้ “มีขายก่อน แล้วเรียงราคา”'
+    return 'เรียงตามราคาในข้อมูลเกม ใช้ตรวจสอบเท่านั้น ไม่ได้บอกว่าซื้อได้จริงหรือราคาเต็มของชุดฟลาย หากกำลังเลือกซื้อ ให้ใช้ “มีขายก่อน แล้วเรียงราคา”'
   if (lang === 'ja')
-    return 'ROM価格欄の検証用順序です。購入可能性やフライセットの総額を示しません。購入する道具を選ぶには「販売記録→価格」を使ってください。'
-  return 'ROM price-field order is for inspecting evidence; it does not establish availability or a complete fly price. To choose a purchase, use “Shop availability, then price”.'
+    return 'ゲームデータ内の価格順で、確認用です。実際に買えるかやフライセットの総額は示しません。購入する道具を選ぶには「販売記録→価格」を使ってください。'
+  return 'Sorted by the price stored in the game data, for checking only; it does not show what you can really buy or a complete fly price. To choose a purchase, use “Shop availability, then price”.'
 }

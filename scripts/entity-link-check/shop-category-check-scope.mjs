@@ -11,7 +11,7 @@ const instructions = {
 }
 const categoryAdvice = {
   en: {
-    rod: /(?=.*fishing method)(?=.*buying advice for this area)(?=.*price)(?=.*aiming time)(?=.*traced boundary)(?=.*not catch success)/,
+    rod: /(?=.*fishing method)(?=.*buying advice for this area)(?=.*price)(?=.*time to aim)(?=.*line strength)(?=.*not catch success)/,
     hook: /hook for your setup.*use advice.*price/,
     float_weight: /float or sinker.*compare prices/,
     food: /HP.*price.*recovery.*quest/,
@@ -20,7 +20,7 @@ const categoryAdvice = {
     fly_tail: /ready-made fly bundles.*whole bundle/,
   },
   ja: {
-    rod: /(?=.*釣り方)(?=.*このエリア)(?=.*購入アドバイス)(?=.*価格)(?=.*照準時間)(?=.*距離境界)(?=.*釣果の順位ではありません)/,
+    rod: /(?=.*釣り方)(?=.*このエリア)(?=.*購入アドバイス)(?=.*価格)(?=.*狙う時間)(?=.*糸の切れにくさ)(?=.*釣果の順位ではありません)/,
     hook: /仕掛け.*使い方と価格/,
     float_weight: /ウキやオモリ.*価格と使い方/,
     food: /HPと価格.*回復量.*イベント用途/,
@@ -29,7 +29,7 @@ const categoryAdvice = {
     fly_tail: /完成毛バリ.*セット全体/,
   },
   th: {
-    rod: /(?=.*วิธีตก)(?=.*คำแนะนำซื้อ)(?=.*ด่านนี้)(?=.*ราคา)(?=.*เวลาเล็ง)(?=.*ขอบเขตที่ตรวจแล้ว)(?=.*ไม่ใช่อันดับโอกาสตกสำเร็จ)/,
+    rod: /(?=.*วิธีตก)(?=.*คำแนะนำซื้อ)(?=.*ด่านนี้)(?=.*ราคา)(?=.*เวลาเล็ง)(?=.*สายขาดยาก)(?=.*ไม่ใช่อันดับโอกาสตกสำเร็จ)/,
     hook: /เบ็ด.*ชุด.*คำแนะนำและราคา/,
     float_weight: /ทุ่นหรือตะกั่ว.*ราคาและคำแนะนำ/,
     food: /HP.*ราคา.*ฟื้น.*เควสต์/,

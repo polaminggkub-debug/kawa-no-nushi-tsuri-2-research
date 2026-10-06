@@ -342,10 +342,10 @@ function chosenStageContent(ctx, chosen, locations, labels, overviewHtml, mapMen
         : 'Spawn coordinates'
   const provenance =
     ctx.lang === 'th'
-      ? 'ตำแหน่งและชนิดปลาถอดจาก ROM; เปิดรายละเอียดเพื่อดูตารางและโค้ดที่ใช้ตรวจสอบ'
+      ? 'ตำแหน่งและชนิดปลามาจากข้อมูลในเกม; ดูที่มาในรายละเอียดการค้นคว้า'
       : ctx.lang === 'ja'
-        ? '場所と魚種はROMから抽出。根拠の表とコードは調査詳細を参照。'
-        : 'Locations and species are extracted from ROM; research notes identify the source tables and code.'
+        ? '場所と魚種はゲームデータから取り出したものです。出典は調査詳細を参照。'
+        : 'Locations and species come from the game data; the research notes show the sources.'
   return `<nav class="part-menu location-stages" aria-label="${labels.stage}">${stageButtons(ctx, locations, labels.stage)}</nav><h3>${labels.stage} ${chosen.stage} · ${ctx.esc(ctx.local(chosen.stageName))}</h3><p>${ctx.esc(ctx.local(chosen.description))}</p>${access}${overviewHtml}${mapMenu}<div class="location-maps">${maps}</div>${noMap}<details class="spawn-coordinates"><summary>${pointLabel}</summary><p>${points}</p></details><p class="location-provenance">${provenance}</p>`
 }
 

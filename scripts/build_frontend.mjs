@@ -4,6 +4,7 @@ import { resolve, relative } from 'node:path'
 import { fileURLToPath } from 'node:url'
 import vm from 'node:vm'
 import { versionAssetReferences } from './code-quality/asset-versions.mjs'
+import { addGoatCounter } from './code-quality/analytics.mjs'
 
 const root = fileURLToPath(new URL('../', import.meta.url))
 export const scripts = {
@@ -208,9 +209,10 @@ export async function renderFrontendOutputs() {
             ? strategyTables(file, source)
             : source
       const outputPath = `${slice === 'strategy' ? 'research' : 'catalogue'}/${file}`
-      outputs.set(outputPath, versionAssetReferences(html, outputPath, outputs))
+      outputs.set(outputPath, addGoatCounter(versionAssetReferences(html, outputPath, outputs)))
     }
   }
+  outputs.set('index.html', addGoatCounter(readFileSync(resolve(root, 'index.html'), 'utf8')))
   return outputs
 }
 

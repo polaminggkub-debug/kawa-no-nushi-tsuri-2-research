@@ -2,7 +2,7 @@ import assert from 'node:assert/strict'
 import { createHash } from 'node:crypto'
 import fs from 'node:fs'
 import path from 'node:path'
-import { data, locations, root } from './shared.mjs'
+import { data, itemRefs, locations, root } from './shared.mjs'
 
 checkCacheRevisions()
 
@@ -59,9 +59,10 @@ for (const item of data.items.filter((entry) => entry.baitLureDecision)) {
   const advice = source.items[`${item.category}:${item.id}`]
   assert(advice, `Missing full bait/lure evidence ${item.category}:${item.id}`)
   for (const key of ['label', 'recommendation', 'reason', 'alternatives', 'cheaperByStage']) {
+    // The payload names items instead of quoting their hex IDs; compare against that rendering.
     assert.deepEqual(
       item.baitLureDecision[key],
-      advice[key],
+      itemRefs.resolveValue(item, 'baitLureDecision', advice[key]),
       `Advice mismatch ${item.category}:${item.id}/${key}`,
     )
   }
@@ -141,7 +142,7 @@ function checkAcquisitions() {
           (location) =>
             location.context === 'town' &&
             location.mapId === entry.mapId &&
-            location.action?.en === entry.action.en,
+            location.action?.en === itemRefs.resolveValue(item, 'playerUse', entry.action).en,
         ),
         `Missing actionable acquisition ${key}`,
       )
@@ -225,7 +226,7 @@ function checkGeneralTools() {
 function checkNetLocations(netSource, net) {
   const source = JSON.parse(fs.readFileSync(path.join(root, 'data/gold-net-location.json'), 'utf8'))
   const points = net.playerUse.useLocations
-  assert.deepEqual(points, source.items['general_tool:04'])
+  assert.deepEqual(points, itemRefs.resolveValue(net, 'playerUse', source.items['general_tool:04']))
   assert.equal(points.length, 1)
   assert.equal(points[0].access.naturalWalkingRouteConfirmed, false)
   assert.deepEqual([points[0].stage, points[0].tileX, points[0].tileY], [1, 9, 105])

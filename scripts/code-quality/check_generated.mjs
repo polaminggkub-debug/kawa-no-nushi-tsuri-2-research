@@ -1,5 +1,6 @@
 import assert from 'node:assert/strict'
 import { createHash } from 'node:crypto'
+import { goatCounterScript } from './analytics.mjs'
 import { versionAssetReferences } from './asset-versions.mjs'
 import { existsSync, readFileSync } from 'node:fs'
 import { isAbsolute, resolve, sep } from 'node:path'
@@ -35,6 +36,8 @@ function verifyOutputs(outputs) {
     }
     const current = readFileSync(target, 'utf8')
     if (current !== generated) errors.push(`Generated artifact is stale: ${file}`)
+    if (file.endsWith('.html') && current.split(goatCounterScript()).length !== 2)
+      errors.push(`Visitor-statistics script must appear exactly once: ${file}`)
   }
   errors.push(...verifyAssetVersions(outputs))
   return errors

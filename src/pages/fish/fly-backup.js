@@ -33,7 +33,7 @@ function backupIntro(ctx, total) {
 
 function backupAction(ctx) {
   if (ctx.locale === 'th')
-    return 'สลับลองสามชุดในฉากที่โหลดอยู่เดิม โดยไม่พักโรงแรมหรือออกไปโหลดฉากใหม่ ตามโค้ดอย่างน้อยหนึ่งชุดจะไม่ติดเงื่อนไขซ่อนที่บล็อกจากบอดี้หรือปีก เมื่อค่าซ่อนคงเดิม การตีชุดเดิมซ้ำไม่ได้สุ่มค่านี้ใหม่'
+    return 'สลับลองสามชุดในฉากที่โหลดอยู่เดิม โดยไม่พักโรงแรมหรือออกไปโหลดฉากใหม่ ตามที่เกมทำงาน อย่างน้อยหนึ่งชุดจะไม่ติดเงื่อนไขที่บล็อกเพราะบอดี้กับปีกซ้ำกัน ตราบใดที่ค่าซ่อนในเกมไม่เปลี่ยน การตีชุดเดิมซ้ำไม่ได้สุ่มค่านี้ใหม่'
   if (ctx.locale === 'ja')
     return '宿泊やフィールド再生成を挟まず、同じ読み込み済みフィールドで3セットを切り替えます。隠れた値が一定なら、コード上は少なくとも1セットがボディ・ウィングの一致による遮断を避けます。同じセットの投げ直しはこの値を再抽選しません。'
   return 'Switch among the three sets in the same loaded field, without an inn stay or field reload. With the stored hidden values unchanged, the code guarantees at least one avoids the body/wing equality block. Recasting the same set does not reroll those values.'

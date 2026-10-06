@@ -27,7 +27,7 @@ function fetchProfile(ctx) {
 }
 
 function loadGallery() {
-  return fetch('gallery-data.json?v=eel-ending-20261006-68').then((response) => {
+  return fetch('gallery-data.json?v=thai-plain-20261007-69').then((response) => {
     if (!response.ok) throw new Error('gallery data unavailable')
     return response.json()
   })

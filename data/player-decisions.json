@@ -12,19 +12,19 @@
         "ja": "ウキ釣り：最初にどの竿を買う？"
       },
       "recommendation": {
-        "th": "ด่าน 1 เลือกคันคาร์บอนน้ำใส 5.3 ม. (04) ราคา ¥500: ให้เวลาขยับจุดเล็งและพื้นที่ตำแหน่งปลาก่อนเข้าเส้นทางเบ็ดหายมากกว่าคัน 03 ราคา ¥350; คัน 05 ราคา ¥750 แพงกว่าแต่ไม่ได้ให้เวลาขยับจุดเล็งมากกว่า 04. เมื่อถึงด่าน 3 และต้องการเวลาขยับจุดเล็งมากขึ้นในสายทุ่น ถ้ากำลังเลือกซื้อคันใหม่ คันอายุคาร์บอน 10 ม. (14) ราคาเต็ม ¥1,500 ให้เวลาเล็งและพื้นที่ตำแหน่งปลาก่อนเส้นทางเบ็ดหายมากกว่าคันอายุ 7 ม. (07) ในราคาเดียวกัน",
-        "en": "In area 1, choose the clear-stream carbon rod, 5.3 m (04), for ¥500: it gives more aim time and more fish-position room before the traced hook-loss branch than rod 03 at ¥350. Rod 05 costs ¥750 but does not give more aim time than 04. In area 3, if you want the longest aim window among float rods, when choosing a new rod, the 10 m carbon Ayu rod (14) costs ¥1,500—the same full price as rod 07—and gives more aiming time and fish-position room before that branch.",
-        "ja": "エリア1では、清流カーボン竿5.3m（04）を500円で選択。350円の03より照準時間が長く、ハリ損失分岐までに許容される魚位置も遠くなります。750円の05は04より照準時間が長くありません。エリア3でウキ竿の照準時間を最長にしたい場合、新たに買うなら、アユ竿カーボン10m（14）は07と同じ販売価格1,500円で、照準時間が長く、同分岐までに許容される魚位置も遠くなります。"
+        "th": "ด่าน 1 เลือกคัน 04 ราคา ¥500: มีเวลาเล็งนานกว่าและสายขาดยากกว่าคัน 03 ราคา ¥350 ส่วนคัน 05 ราคา ¥750 แพงกว่าแต่มีเวลาเล็งไม่นานกว่าคัน 04 พอถึงด่าน 3 ถ้าจะซื้อคันใหม่และอยากมีเวลาเล็งนานสุดในสายทุ่น คัน 14 ราคาเต็ม ¥1,500 มีเวลาเล็งนานกว่าและสายขาดยากกว่าคัน 07 ที่ราคาเท่ากัน",
+        "en": "In area 1, choose rod 04 for ¥500: it gives more time to aim and a line that breaks less easily than rod 03 at ¥350. Rod 05 costs ¥750 but does not give more time to aim than rod 04. In area 3, if you want the most time to aim among float rods and are buying new, rod 14 costs ¥1,500, the same full price as rod 07, and is better on both counts.",
+        "ja": "エリア1では、04を500円で選びます。350円の03より狙う時間が長く、糸も切れにくくなります。750円の05は高いのに、04より狙う時間は長くありません。エリア3でウキ竿の狙う時間を最長にしたい場合、新しく買うなら、14が07と同じ1,500円で、狙う時間も糸の切れにくさも上です。"
       },
       "reason": {
-        "th": "ช่วงเล็งที่มากขึ้นให้เวลาขยับช่องเป้าหมายก่อนเกมตรวจจุดตก; ขอบเขตของคันมีผลกับเส้นทางหนึ่งที่ปลาหนีและทำให้เบ็ดหายเท่านั้น",
-        "en": "A longer aim window gives you more time to move the target tile. A higher fish-position threshold gives the fish more room before one traced branch can take away the hook.",
-        "ja": "照準時間が長いほど、投げ先を動かす時間が増えます。魚位置のしきい値が高いほど、針を失う特定の分岐に入るまで魚に余裕があります。"
+        "th": "เวลาเล็งนานขึ้นทำให้มีเวลาขยับช่องเป้าหมายมากขึ้นก่อนเกมตัดสินว่าเหยื่อตกตรงไหน ส่วนสายขาดยากหมายถึงปลาดึงหนีได้ไกลกว่าก่อนอุปกรณ์หลุด (ช่วยกันอุปกรณ์หลุดแค่แบบเดียว)",
+        "en": "More time to aim gives you longer to move the target before the game decides where the cast lands. A line that breaks less easily lets the fish pull farther before tackle is lost (this covers only one way of losing tackle).",
+        "ja": "狙う時間が長いほど、投げ先が決まる前にターゲットを動かせる時間が増えます。糸が切れにくいほど、魚が遠くまで引いても道具を失いにくくなります（道具を失う逃げ方のうち1つだけに関係します）。"
       },
       "scope": {
-        "th": "ร้านด่าน 1 มี 03/04/05; ร้านด่าน 3 มี 07/14. นี่ไม่ใช่อันดับโอกาสกินหรือจับปลา และปลาอาจหนีด้วยเส้นทางอื่นได้",
-        "en": "Area 1 stocks 03/04/05; area 3 stocks 07/14. This does not rank bite or landing odds, and fish have other escape routes.",
-        "ja": "エリア1の在庫は03/04/05、エリア3は07/14。食いつき率や釣り上げ率の順位ではなく、別の逃走分岐もあります。"
+        "th": "ร้านด่าน 1 ขายคัน 03, 04 และ 05; ร้านด่าน 3 ขายคัน 07 และ 14 นี่ไม่ใช่อันดับโอกาสกินหรือจับปลา และปลายังหนีด้วยวิธีอื่นได้",
+        "en": "Area 1 sells rods 03, 04 and 05; area 3 sells 07 and 14. This does not rank bite or catch odds, and fish can escape other ways.",
+        "ja": "エリア1では03、04、05、エリア3では07、14を売っています。食いつき率や釣り上げ率の順位ではなく、他の逃げ方もあります。"
       },
       "items": [
         {
@@ -46,19 +46,19 @@
         "ja": "ルアー釣り：どこで竿を強化する？"
       },
       "recommendation": {
-        "th": "ด่าน 1 ตอนเลือกซื้อใหม่ ถ้าเงินพอ เลือกคันลัวร์ใหญ่ 0C ราคาเต็ม ¥600 แทนคันเล็ก 0A ราคา ¥500; ถ้ามี 0A อยู่แล้วและยังเล็งได้พอ ให้ใช้ต่อ. เมื่อถึงด่าน 4 คันลัวร์ปลาใหญ่ 0D ราคาเต็ม ¥650 ให้เวลาขยับจุดเล็งมากที่สุดและมีพื้นที่ตำแหน่งปลาก่อนเส้นทางลัวร์หายมากที่สุด ซื้อเมื่ออยากได้ผลสองข้อนี้ ไม่ใช่เพื่อหวังว่าปลาจะกินง่ายขึ้น",
-        "en": "In area 1, when buying a rod, choose the large lure rod (0C) at its full ¥600 price instead of the small rod (0A) at ¥500 if you can afford the extra ¥100. If you already own 0A and its aim time is enough, keep using it. In area 4, the heavy-fish lure rod (0D) costs ¥650 and has the longest lure-rod aim window and gives the most fish-position room before the traced lost-lure branch. Buy it for those two effects, not on the expectation of easier bites.",
-        "ja": "エリア1で新しく買うとき、100円多く出せるなら小ルアーロッド（0A、500円）ではなく大ルアーロッド（0C、販売価格600円）を選択。すでに0Aを持ち、照準時間が足りているならそのまま使ってください。エリア4の大物用ルアーロッド（0D）は650円で、ルアー竿中もっとも長い照準時間と、ルアー損失分岐までの魚位置の余裕があります。この効果を求める場合に選び、食いつきやすさは期待しないでください。"
+        "th": "ด่าน 1 ถ้าซื้อใหม่และเงินพอ เลือกคัน 0C ราคาเต็ม ¥600 แทนคัน 0A ราคา ¥500; ถ้ามีคัน 0A อยู่แล้วและเวลาเล็งพอ ใช้ต่อได้ ไม่ต้องซื้อใหม่ ด่าน 4 คัน 0D ราคาเต็ม ¥650 มีเวลาเล็งนานสุดและสายขาดยากสุดในกลุ่มคันลัวร์ ซื้อเมื่ออยากได้สองข้อนี้ ไม่ใช่เพื่อหวังว่าปลาจะกินง่ายขึ้น",
+        "en": "In area 1, when buying new, choose rod 0C at ¥600 instead of rod 0A at ¥500 if you can afford the extra ¥100. If you already own rod 0A and its aim time is enough, keep using it. In area 4, rod 0D costs ¥650 and has the most time to aim and the line that breaks least easily among lure rods. Buy it for those two things, not for easier bites.",
+        "ja": "エリア1で新しく買うとき、100円多く出せるなら0A（500円）ではなく0C（600円）を選びます。すでに0Aを持ち、狙う時間が足りているならそのまま使ってください。エリア4の0Dは650円で、ルアー竿の中で狙う時間が最長、糸も最も切れにくい竿です。この2点を求める場合に選び、食いつきやすさは期待しないでください。"
       },
       "reason": {
-        "th": "คัน 0C เพิ่มเวลาปรับช่องจาก 0A; คัน 0D เพิ่มทั้งเวลาและพื้นที่ตำแหน่งปลาก่อนเข้าเส้นทางลัวร์หายที่ตรวจได้",
-        "en": "Rod 0C gives more aim time than 0A; 0D extends aim time and gives more fish-position room before the traced lost-lure branch.",
-        "ja": "0Cは0Aより照準時間が長く、0Dは照準時間とルアー損失分岐までの魚位置の余裕がさらに大きくなります。"
+        "th": "คัน 0C มีเวลาเล็งนานกว่าคัน 0A; คัน 0D มีทั้งเวลาเล็งนานกว่าและสายขาดยากกว่า",
+        "en": "0C gives more time to aim than 0A; 0D adds both more time to aim and a line that breaks less easily.",
+        "ja": "0Cは0Aより狙う時間が長く、0Dは狙う時間も糸の切れにくさもさらに上です。"
       },
       "scope": {
-        "th": "เทียบคันในสภาพ HP 100; HP ต่ำลดช่วงเล็งของคันลัวร์/คันหวด. สถิตินี้ไม่พิสูจน์โอกาสกินหรือจับ",
-        "en": "Compare at 100 HP; low HP shortens the aim window for lure and casting rods. These stats do not prove bite or catch odds.",
-        "ja": "HP100での比較です。HPが低いとルアー竿・投げ竿の照準時間が短くなります。食いつき率や釣果は証明していません。"
+        "th": "เทียบที่ HP 100 ถ้า HP ต่ำกว่า 100 เวลาเล็งของคันลัวร์/คันหวดจะสั้นลง ตัวเลขนี้ไม่ได้บอกโอกาสที่ปลาจะกินหรือจับขึ้น",
+        "en": "Compared at 100 HP; below 100 HP lure and casting rods get less time to aim. These numbers do not prove bite or catch odds.",
+        "ja": "HP100での比較です。HPが低いとルアー竿・投げ竿の狙う時間は短くなります。食いつき率や釣果は証明していません。"
       },
       "items": [
         {
@@ -84,19 +84,19 @@
         "ja": "投げ釣り：安く始めて必要なら強化"
       },
       "recommendation": {
-        "th": "ด่าน 1 คันหวดเล็ก 0E ราคา ¥250 เป็นทางเข้าที่ถูกสุด; ถ้าต้องการเวลาขยับจุดเล็งเพิ่ม ให้ข้ามไปซื้อคันหวดกลาง 0F ราคา ¥600 ที่ด่าน 2. คันหวดสองมือ 10 ราคา ¥1,500 ที่ด่าน 6 เป็นตัวเลือกช่วงเล็งสูงสุดของสายนี้ แต่ไม่จำเป็นต้องซื้อถ้าคันกลางพอใช้งานแล้ว",
-        "en": "The small casting rod (0E) is the ¥250 entry option in area 1. If you need more time to adjust your cast, skip to the medium rod (0F) for ¥600 in area 2. The two-handed rod (10) at ¥1,500 in area 6 has the longest aim window in this style, but it is optional if the medium rod is enough for you.",
-        "ja": "エリア1では小投げ竿（0E）が250円の入門用です。投げ先を調整する時間を増やしたければ、エリア2で中投げ竿（0F）を600円で購入。エリア6の両手投げ竿（10）は1,500円でこの系統の照準時間が最長ですが、中竿で十分なら買い替えは不要です。"
+        "th": "ด่าน 1 คัน 0E ราคา ¥250 เป็นคันเริ่มต้นที่ถูกสุด; ถ้าอยากมีเวลาเล็งนานขึ้น ให้ข้ามไปซื้อคัน 0F ราคา ¥600 ที่ด่าน 2 คัน 10 ราคา ¥1,500 ที่ด่าน 6 มีเวลาเล็งนานสุดของสายนี้ แต่ไม่จำเป็นต้องซื้อถ้าคัน 0F ใช้พอแล้ว",
+        "en": "Rod 0E is the ¥250 starting choice in area 1. If you want more time to aim, skip to rod 0F for ¥600 in area 2. Rod 10 at ¥1,500 in area 6 has the most time to aim in this style, but you do not need it if rod 0F is enough.",
+        "ja": "エリア1では0Eが250円の入門用です。狙う時間を増やしたければ、エリア2で0Fを600円で購入します。エリア6の10は1,500円でこの系統の狙う時間が最長ですが、0Fで十分なら買い替えは不要です。"
       },
       "reason": {
-        "th": "คันกลางให้เวลาปรับเป้าหมายมากกว่าคันเล็ก ส่วนคันสองมือขยับได้มากที่สุดในคันหวดที่ตรวจ",
-        "en": "The medium rod gives more time to adjust the target than the small one; the two-handed rod gives the most in the traced casting line.",
-        "ja": "中竿は小竿より狙い位置を調整する時間が長く、確認した投げ竿の中では両手竿が最長です。"
+        "th": "คัน 0F มีเวลาเล็งนานกว่าคัน 0E ส่วนคัน 10 นานสุดในกลุ่มคันหวด",
+        "en": "Rod 0F gives more time to aim than rod 0E; rod 10 gives the most among casting rods.",
+        "ja": "0Fは0Eより狙う時間が長く、投げ竿の中では10が最長です。"
       },
       "scope": {
-        "th": "ร้านตามด่าน 1/2/6 มีคันตามที่ระบุ; ซื้อเพิ่มเมื่อประโยชน์ด้านเวลาสำคัญกับวิธีเล่นของคุณ ไม่ใช่อันดับโอกาสจับปลา",
-        "en": "The listed rods are stocked in areas 1/2/6 respectively. Upgrade when the extra aiming time matters to your play; this is not a catch-rate ranking.",
-        "ja": "記載した竿はそれぞれエリア1/2/6で販売。照準時間が必要になったときに強化してください。釣果率の順位ではありません。"
+        "th": "ร้านด่าน 1/2/6 ขายคันตามที่ระบุ; ซื้อเพิ่มเมื่อเวลาเล็งที่นานขึ้นสำคัญกับวิธีเล่นของคุณ ไม่ใช่อันดับโอกาสจับปลา",
+        "en": "The listed rods are sold in areas 1, 2 and 6. Upgrade when the extra time to aim matters to how you play; this is not a catch-rate ranking.",
+        "ja": "記載した竿はそれぞれエリア1・2・6で販売しています。狙う時間が必要になったときに強化してください。釣果の順位ではありません。"
       },
       "items": [
         {
@@ -122,19 +122,19 @@
         "ja": "フライ釣り：最初から大竿を買う？"
       },
       "recommendation": {
-        "th": "ถ้าจะตกฟลายและกำลังเลือกซื้อคันใหม่ ซื้อคันฟลายใหญ่ 13 ราคาเต็ม ¥450 ที่ด่าน 1 ได้เลย; คันกลางราคาเต็ม ¥400 แต่คันใหญ่ให้เวลาปรับจุดเล็ง/พื้นที่ตำแหน่งปลาก่อนเส้นทางฟลายหายมากที่สุด. ถ้ามีคันกลางอยู่แล้ว ไม่ได้หมายความว่าขายคืนหรืออัปเกรดแล้วจ่ายแค่ส่วนต่าง ¥50",
-        "en": "If you plan to fly-fish and are choosing a new rod, buy the large fly rod (13) for its full ¥450 price in area 1. The medium rod's full price is ¥400; the large rod gives the most aim time and fish-position room before the traced lost-fly branch. This is not a ¥50 trade-in or upgrade price if you already own the medium rod.",
-        "ja": "フライ釣りをする予定で新しい竿を選ぶなら、エリア1で大フライロッド（13）を販売価格450円で購入。中竿の販売価格は400円で、大竿は照準時間とフライ損失分岐までの魚位置の余裕が最も大きくなります。中竿を持っている場合に差額50円で交換できる、という意味ではありません。"
+        "th": "ถ้าจะตกฟลายและกำลังเลือกซื้อคันใหม่ ซื้อคัน 13 ราคาเต็ม ¥450 ที่ด่าน 1 ได้เลย คัน 12 ราคาเต็ม ¥400 แต่คัน 13 มีเวลาเล็งนานสุดและสายขาดยากสุด ถ้ามีคัน 12 อยู่แล้ว ไม่ได้แปลว่าเอาไปแลกหรืออัปเกรดแล้วจ่ายแค่ส่วนต่าง ¥50",
+        "en": "If you plan to fly-fish and are buying a new rod, buy rod 13 for ¥450 in area 1. Rod 12 costs ¥400, but rod 13 has the most time to aim and the line that breaks least easily. This is not a ¥50 trade-in or upgrade price if you already own rod 12.",
+        "ja": "フライ釣りをする予定で新しい竿を選ぶなら、エリア1で13を450円で購入します。12は400円ですが、13は狙う時間が最長で、糸も最も切れにくい竿です。12を持っていても、差額50円で交換できるわけではありません。"
       },
       "reason": {
-        "th": "คันใหญ่ 13 ราคา ¥450 กับคันกลาง 12 ราคา ¥400 ต่างกันที่เวลาปรับเป้าหมายกับขอบเขตของเส้นทางนี้",
-        "en": "The large rod costs ¥450 and the medium ¥400; the measured differences affect target-adjustment time and this one escape boundary.",
-        "ja": "大竿は450円、中竿は400円。確認した差は狙い位置の調整時間と、この逃走分岐のしきい値です。"
+        "th": "คัน 13 ราคา ¥450 กับคัน 12 ราคา ¥400 ต่างกันที่เวลาเล็งกับสายขาดยาก",
+        "en": "The large rod (13) costs ¥450 and the medium rod (12) ¥400; they differ in time to aim and line strength.",
+        "ja": "13は450円、12は400円。違いは狙う時間と糸の切れにくさです。"
       },
       "scope": {
-        "th": "ร้านด่าน 1 มีคันกลาง 12 และคันใหญ่ 13; ไม่ได้ยืนยันว่าคันใหญ่ทำให้ปลากินหรือขึ้นฝั่งง่ายกว่า",
-        "en": "Area 1 stocks the medium rod 12 and large rod 13. The large rod is not proven to improve bites or landing success.",
-        "ja": "エリア1では中竿12と大竿13を販売。大竿が食いつきや釣り上げを改善する証拠はありません。"
+        "th": "ร้านด่าน 1 ขายคัน 12 และคัน 13; ไม่ได้ยืนยันว่าคัน 13 ทำให้ปลากินหรือขึ้นฝั่งง่ายกว่า",
+        "en": "Area 1 sells rod 12 and rod 13. Rod 13 is not proven to improve bites or landings.",
+        "ja": "エリア1では中竿12と大竿13を販売しています。大竿が食いつきや釣り上げを改善する証拠はありません。"
       },
       "items": [
         {
@@ -157,12 +157,12 @@
         "ja": "エリア1で新しく揃えるなら、スプーン2E（25円）とソフト・ワーム23（30円）で合計55円。エリア4で新しく揃えるなら、シンキング17（20円）とワーム23で合計50円です。すでにスプーンとワームを持っている場合、シンキングを買い足しても5円節約にはなりません。"
       },
       "reason": {
-        "th": "คู่นี้ผ่านเงื่อนไขความเข้ากันได้ของ lure ครบ 38 โปรไฟล์ปลาในตาราง ROM; ช่วยลดจำนวนชิ้นที่ต้องพก",
-        "en": "This pair passes the ROM lure-compatibility check for all 38 profiles in the lure table, so you can cover that verified set with two items.",
-        "ja": "この組み合わせはROMのルアー適合判定で、ルアー表の38魚プロフィールすべてを通過します。確認済みの範囲を2種類でカバーできます。"
+        "th": "คู่นี้ใช้ได้กับปลาที่ตกด้วยลัวร์ได้ครบทั้ง 38 โปรไฟล์ ช่วยลดจำนวนชิ้นที่ต้องพก",
+        "en": "This pair works with all 38 lure-compatible fish profiles, so two items cover that confirmed set.",
+        "ja": "この組み合わせはルアーが使える38の魚プロフィールすべてに対応します。2種類で確認済みの範囲をカバーできます。"
       },
       "scope": {
-        "th": "เป็นการผ่านเงื่อนไขชนิดเหยื่อ ไม่ใช่อัตรากินหรือรับประกันตกได้; เลือกด่าน/ตำแหน่งปลาจากแผนที่ปลาด้วย",
+        "th": "นี่คือความเข้ากันได้ของชนิดเหยื่อ ไม่ใช่โอกาสที่ปลาจะกินหรือรับประกันว่าจะตกได้ ควรดูจุดตกปลาจากแผนที่ด้วย",
         "en": "This is bait-type compatibility, not a bite rate or a guarantee of landing a fish; still use the fish-location map.",
         "ja": "エサの種類チェックを通るという意味で、食いつき率や釣果の保証ではありません。魚の出現場所も確認してください。"
       },
@@ -195,12 +195,12 @@
         "ja": "狙う魚がウェットボディの魚リストにあるなら、エリア1の完成品（ボディ01・ウィング09・テール13）を5円で購入できます。対象魚がウェットの33プロフィールにない場合は、適合するエサや別の釣り方に切り替えてください。通常のフライでその対象に適合するボディは確認されていません。釣果を上げるウィングやテールも証明されていません。"
       },
       "reason": {
-        "th": "บอดี้เปียกผ่านเงื่อนไข 33 โปรไฟล์; บอดี้แห้งผ่าน 17 โปรไฟล์ซึ่งเป็นส่วนหนึ่งของกลุ่มเปียก. หากปลาไม่อยู่ใน 33 โปรไฟล์นี้ ให้ใช้เหยื่อหรือวิธีอื่น; ไม่มีอันดับปีก/หาง",
+        "th": "บอดี้เปียกใช้ได้กับปลา 33 โปรไฟล์ บอดี้แห้งใช้ได้กับ 17 โปรไฟล์ ซึ่งอยู่ในกลุ่มเปียกทั้งหมด ถ้าปลาไม่อยู่ใน 33 โปรไฟล์นี้ ให้ใช้เหยื่อหรือวิธีอื่น ยังไม่มีอันดับของปีกหรือหาง",
         "en": "Wet bodies pass 33 profile checks; dry bodies pass 17, all inside the wet set. If a fish is absent from those 33 profiles, use bait or another fishing style. No wing/tail ranking is established.",
         "ja": "ウェットボディは33プロフィール、ドライはそのうち17プロフィールの判定を通ります。対象魚が33種にない場合は別のエサ・釣り方を選んでください。ウィング／テールの順位は確認されていません。"
       },
       "scope": {
-        "th": "รายชื่อปลาเป็นเพียงเงื่อนไขผ่านด่านตรวจ ไม่ใช่อัตรากิน. ยังไม่มีปีกหรือหางที่พิสูจน์ว่าเป็นตัวดีที่สุด; ชุดสำเร็จรูปที่ระบุเป็นตัวอย่างราคาถูกที่มีขายจริง",
+        "th": "รายชื่อปลาบอกแค่ว่าใช้ได้หรือไม่ ไม่ใช่โอกาสกิน ยังไม่มีปีกหรือหางที่พิสูจน์ว่าดีที่สุด ชุดสำเร็จรูปที่ยกมาเป็นตัวอย่างราคาถูกที่ร้านขายจริง",
         "en": "The fish list is a compatibility gate, not a bite rate. No wing or tail is proven best; the cited bundle is a verified low-price shop offer.",
         "ja": "魚リストは適合条件で、食いつき率ではありません。最良のウィング／テールは証明されていません。記載セットは実際の店頭在庫と価格を確認した安価な例です。"
       },
@@ -228,19 +228,19 @@
         "ja": "HPが低いときは釣る前に回復し、必要分だけ買う"
       },
       "recommendation": {
-        "th": "ก่อนตกด้วยคันลัวร์หรือคันหวด เติม HP ให้ถึง 100: เมื่อ HP ต่ำกว่า 100 เกมลดเวลาช่วงเล็งของคันสองสายนี้. อาหารร้านทุกชนิดคิด ¥1 ต่อ HP; ถ้าต้องการฟื้นต่อมื้อให้ได้มากสุด เลือกข้าวกล่องบ๊วย 06 ฟื้น 40 HP ราคา ¥40 (มีตั้งแต่ด่าน 5). ถ้าจะให้ถึง 100 ให้เลือกอาหารหนึ่งชิ้นหรือหลายชิ้นรวมกันให้พอฟื้น HP ที่ขาด: ด่าน1 ส้ม 01 ฟื้น 5/¥5 หรือข้าวปั้น 02 ฟื้น 10/¥10; ด่าน2 ดังโงะ 03 ฟื้น 15/¥15; ด่าน3 กล้วย 04 ฟื้น 20/¥20; ด่าน4 องุ่น 05 ฟื้น 30/¥30. ส่วนฟื้นที่เกิน HP สูงสุดจะเสียเปล่า",
-        "en": "Before lure or casting fishing, restore HP to 100: below 100 HP the game shortens the aim window for those two styles. All shop foods cost ¥1 per HP. For the most recovery from one serving, choose the 40-HP bento (06) for ¥40, stocked from area 5. To reach 100, choose one food or combine servings for at least your missing HP: area 1 orange 01 restores 5 for ¥5 or rice ball 02 restores 10 for ¥10; area 2 dango 03 restores 15 for ¥15; area 3 banana 04 restores 20 for ¥20; area 4 grapes 05 restores 30 for ¥30. Any recovery beyond maximum HP is wasted.",
+        "th": "ก่อนตกด้วยคันลัวร์หรือคันหวด เติม HP ให้ถึง 100: ถ้า HP ต่ำกว่า 100 เวลาเล็งของคันสองแบบนี้จะสั้นลง. อาหารร้านทุกชนิดคิด ¥1 ต่อ HP; ถ้าต้องการฟื้นต่อมื้อให้ได้มากสุด เลือกข้าวกล่องบ๊วย 06 ฟื้น 40 HP ราคา ¥40 (มีตั้งแต่ด่าน 5). ถ้าจะให้ถึง 100 ให้เลือกอาหารหนึ่งชิ้นหรือหลายชิ้นรวมกันให้พอฟื้น HP ที่ขาด: ด่าน1 ส้ม 01 ฟื้น 5/¥5 หรือข้าวปั้น 02 ฟื้น 10/¥10; ด่าน2 ดังโงะ 03 ฟื้น 15/¥15; ด่าน3 กล้วย 04 ฟื้น 20/¥20; ด่าน4 องุ่น 05 ฟื้น 30/¥30. ส่วนฟื้นที่เกิน HP สูงสุดจะเสียเปล่า",
+        "en": "Before lure or casting fishing, restore HP to 100: below 100 HP those two styles get less time to aim. All shop foods cost ¥1 per HP. For the most recovery from one serving, choose the 40-HP bento (06) for ¥40, stocked from area 5. To reach 100, choose one food or combine servings for at least your missing HP: area 1 orange 01 restores 5 for ¥5 or rice ball 02 restores 10 for ¥10; area 2 dango 03 restores 15 for ¥15; area 3 banana 04 restores 20 for ¥20; area 4 grapes 05 restores 30 for ¥30. Any recovery beyond maximum HP is wasted.",
         "ja": "ルアーまたは投げ釣りの前にHPを100まで回復してください。HP100未満ではこの2系統の照準時間が短くなります。店の食料はすべてHP1につき1円です。一食で最も多く回復するなら、エリア5から販売される日の丸弁当06（40回復/40円）。HP100にするには、不足分以上を回復できる食料を選ぶか組み合わせます。エリア1：ミカン01は5回復/5円、おむすび02は10回復/10円。エリア2：だんご03は15/15円。エリア3：バナナ04は20/20円。エリア4：ブドウ05は30/30円。最大HPを超える回復分は無駄になります。"
       },
       "reason": {
-        "th": "HP 100 คืนช่วงเล็งสูงสุดที่คันลัวร์/คันหวดตัวนั้นทำได้; ฟื้นเกิน HP ที่ขาดจะสูญเปล่า และเมื่อ HP เต็มแล้วเกมไม่ให้กินอาหาร. นมที่มีอยู่ฟื้น HP เต็มได้และเติมกลับที่วัวด่าน 3 แต่ถ้าจะแลกเรือแคนูให้เก็บนมไว้ก่อน",
-        "en": "At 100 HP, the rod has its full aim window. Recovery beyond missing HP is wasted, and the game refuses food when HP is full. Milk restores HP to its maximum and can be refilled at the area 3 cow, but save it if you still want to trade for the canoe.",
-        "ja": "HP100なら竿本来の照準時間になります。不足HPを超える回復分は無駄になり、HP満タン時は食事できません。牛乳はHPを最大まで回復し、エリア3の牛で補充できますが、カヌーと交換したいなら先に渡してください。"
+        "th": "HP 100 ทำให้คันลัวร์/คันหวดมีเวลาเล็งเต็มที่; ฟื้นเกิน HP ที่ขาดจะสูญเปล่า และเมื่อ HP เต็มแล้วเกมไม่ให้กินอาหาร. นมที่มีอยู่ฟื้น HP เต็มได้และเติมกลับที่วัวด่าน 3 แต่ถ้าจะแลกเรือแคนูให้เก็บนมไว้ก่อน",
+        "en": "At 100 HP, the rod has its full time to aim. Recovery beyond missing HP is wasted, and the game refuses food when HP is full. Milk restores HP to its maximum and can be refilled at the area 3 cow, but save it if you still want to trade for the canoe.",
+        "ja": "HP100なら竿本来の狙う時間になります。不足HPを超える回復分は無駄になり、HP満タン時は食事できません。牛乳はHPを最大まで回復し、エリア3の牛で補充できますが、カヌーと交換したいなら先に渡してください。"
       },
       "scope": {
-        "th": "ผลลดช่วงเล็งยืนยันเฉพาะคันลัวร์/คันหวด; รายการอาหารและพื้นที่ขายอ้างจากสต็อก ROM",
-        "en": "Aim-time scaling is confirmed for lure and casting rods only; food locations and prices come from ROM shop stock and item effects.",
-        "ja": "照準時間の低下を確認したのはルアー竿・投げ竿です。食料の販売場所と価格はROMの在庫・効果データに基づきます。"
+        "th": "ยืนยันเรื่องเวลาเล็งที่สั้นลงเฉพาะคันลัวร์/คันหวด; รายการอาหารและราคามาจากรายการร้านและผลของอาหารในเกม",
+        "en": "The drop in aim time is confirmed for lure and casting rods only; food locations and prices come from the shop lists and the foods' effects in the game.",
+        "ja": "狙う時間が短くなることを確認したのはルアー竿・投げ竿です。食料の販売場所と価格は店の品ぞろえとゲームの効果データに基づきます。"
       },
       "items": [
         {
@@ -296,7 +296,7 @@
         "th": "ดื่มนมแล้วไอเท็มจะเปลี่ยนเป็นขวดเปล่า แต่กลับไปเติมที่วัวด่าน 3 ได้ จึงแค่ต้องกลับมาเติมใหม่ก่อนแลกแคนู ไม่ได้ปิดทางแลกถาวร"
       },
       "scope": {
-        "th": "ตำแหน่งและผลเหล่านี้มาจากเงื่อนไข NPC/หีบใน ROM; ไฟประทัดตรงจุดกับเส้นเรื่องเต้าหู้เป็นคนละทาง",
+        "th": "ตำแหน่งและผลเหล่านี้มาจากข้อมูลเงื่อนไขของ NPC/หีบในเกม; ใช้ประทัดตรงจุดกับเรื่องเต้าหู้เป็นคนละทางกัน",
         "en": "These locations and outcomes come from ROM chest/NPC branches. Direct fireworks use and the tofu story step are separate routes.",
         "ja": "場所と結果はROMの宝箱・NPC分岐に基づきます。花火の直接使用と豆腐のイベント手順は別ルートです。"
       },
@@ -340,17 +340,17 @@
         "ja": "カギ1個で4エリアの宝箱を開ける。券は購入前に宝箱から取る"
       },
       "recommendation": {
-        "th": "ซื้อกุญแจ 17 หนึ่งดอกจากร้านด่าน 1 ราคา ¥100; สต็อกมีในด่าน 1, 2, 4 และ 6 และกุญแจไม่หายเมื่อเปิดหีบ จึงใช้ดอกเดิมกับหีบล็อกในเมืองทั้งสี่ด่านได้ เว้นช่องของรางวัลหมวดเหยื่อ/คัน/อุปกรณ์ให้ว่างก่อนเปิด. สลาก 11 รับจากหีบเมืองด่าน 5 ที่ (4,6) โดยไม่ต้องใช้กุญแจ แล้วนำไปขึ้นที่เคาน์เตอร์กลางแจ้ง (54,22) ก่อนซื้อสลากเพิ่ม. ถ้าจะเพิ่มเกณฑ์ถูกรางวัล ถวายอาหารที่รูปปั้นจิโซ (49,22): ข้าวกล่อง 06 เพิ่ม 40 หน่วย; ส้ม 01 เพิ่ม 5; ตัวเลขนี้ไม่ใช่เปอร์เซ็นต์",
+        "th": "ซื้อกุญแจ 17 หนึ่งดอกจากร้านด่าน 1 ราคา ¥100; สต็อกมีในด่าน 1, 2, 4 และ 6 และกุญแจไม่หายเมื่อเปิดหีบ จึงใช้ดอกเดิมกับหีบล็อกในเมืองทั้งสี่ด่านได้ เว้นช่องของรางวัลหมวดเหยื่อ/คัน/อุปกรณ์ให้ว่างก่อนเปิด. สลาก 11 รับจากหีบเมืองด่าน 5 ที่ (4,6) โดยไม่ต้องใช้กุญแจ แล้วนำไปขึ้นที่เคาน์เตอร์กลางแจ้ง (54,22) ก่อนซื้อสลากเพิ่ม. ถ้าจะเพิ่มค่าตัดสินรางวัล ถวายอาหารที่รูปปั้นจิโซ (49,22): ข้าวกล่อง 06 เพิ่ม 40 หน่วย; ส้ม 01 เพิ่ม 5; ตัวเลขนี้ไม่ใช่เปอร์เซ็นต์",
         "en": "Buy one key (17) for ¥100 in area 1; recorded shop stock also includes it in areas 2, 4 and 6. It is retained after opening a chest, so the same key opens the locked town chests in areas 1, 2, 4 and 6. Leave space in the matching bait, rod or tool inventory before opening each chest. Take ticket 11 from the area-5 town chest at (4,6) without a key, then use it at the outdoor counter (54,22) before buying another ticket. If you want to raise the lottery threshold, offer food at the Jizo (49,22): bento 06 adds 40, orange 01 adds 5. These values are not percentages.",
         "ja": "エリア1の店でカギ17を1個、100円で購入します。記録された店頭在庫はエリア2・4・6にもあります。宝箱を開けてもカギは消費されないため、同じ1個でエリア1・2・4・6の町の鍵付き宝箱を開けられます。各宝箱を開ける前に、対応するエサ・竿・道具欄を空けてください。富くじ11はエリア5の町の宝箱（4,6）からカギなしで入手し、追加購入の前に屋外の抽選所（54,22）で使います。当選しきい値を上げたい場合は地蔵（49,22）に食べ物を供えます。日の丸弁当06は40、みかん01は5を加算します。確率のパーセント値ではありません。"
       },
       "reason": {
-        "th": "หีบแต่ละใบให้รางวัลหมวดต่างกันและตรวจช่องว่างก่อนรับของ; ส่วนสลากถูกใช้ที่เคาน์เตอร์และมีแขนงแพ้ด้วย จึงควรเก็บใบจากหีบก่อนจ่ายเงิน",
+        "th": "หีบแต่ละใบให้รางวัลหมวดต่างกันและตรวจช่องว่างก่อนรับของ; ส่วนสลากถูกใช้ที่เคาน์เตอร์และมีผลแพ้ด้วย จึงควรเก็บใบจากหีบก่อนจ่ายเงิน",
         "en": "Each chest checks room in a different inventory before granting its reward. The counter consumes the ticket and includes a losing branch, so use the chest ticket before paying for another.",
         "ja": "宝箱は報酬ごとに所持欄の空きを確認します。抽選所では券が消費され、はずれ分岐もあるため、追加購入の前に宝箱の券を使ってください。"
       },
       "scope": {
-        "th": "อาหารเพิ่มค่าเกณฑ์ แต่ยังไม่ใช่เปอร์เซ็นต์หรือกำไรคาดหวัง; หัวไชเท้า 07 เพิ่ม 40 เช่นกัน รับจากการแลกปลายามาโนคามิด่าน 3 โดยทับอาหารเดิมทั้ง 16 ช่อง อ่านหน้าหัวไชเท้าก่อนแลก",
+        "th": "อาหารเพิ่มค่าตัดสินรางวัล แต่ยังไม่ใช่เปอร์เซ็นต์หรือกำไรคาดหวัง; หัวไชเท้า 07 เพิ่ม 40 เช่นกัน รับจากการแลกปลายามาโนคามิด่าน 3 โดยทับอาหารเดิมทั้ง 16 ช่อง อ่านหน้าหัวไชเท้าก่อนแลก",
         "en": "Food raises the threshold, not a verified percentage or expected payout. Daikon 07 also adds 40; obtain it through the area-3 Yamanokami trade, which overwrites all 16 food slots. Read its item page before trading.",
         "ja": "食料は判定値を上げるが、確率や期待払い戻し率ではない。大根07も40加算する。エリア3のヤマノカミ交換で入手できるが、食料全16枠を上書きするため、先にアイテムページを確認する。"
       },

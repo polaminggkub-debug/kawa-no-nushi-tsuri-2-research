@@ -1,7 +1,7 @@
 import assert from 'node:assert/strict'
 import fs from 'node:fs'
 import path from 'node:path'
-import { data, render, root, unescapeHtml } from './shared.mjs'
+import { data, itemRefs, render, root, unescapeHtml } from './shared.mjs'
 
 for (const lang of ['en', 'ja', 'th']) {
   const suffix = lang === 'en' ? '' : `.${lang}`
@@ -215,14 +215,14 @@ function checkCompassActions(item, visible, lang) {
     assert(visible.includes(`id="compass-exit-${index + 1}"`))
   })
   const source = readJson('data/compass-locations.json')
-  for (const location of source.items['general_tool:0E'])
+  for (const location of itemRefs.resolveValue(item, 'playerUse', source.items['general_tool:0E']))
     assert(unescapeHtml(visible).includes(location.description[lang]))
   assert(item.playerUse.useLocations.length)
 }
 
 function checkKeepnetCopy(item, visible, lang) {
   const source = readJson('data/chum-basket-use.json')
-  const facts = source.items[item.id].facts[lang]
+  const facts = itemRefs.resolveValue(item, 'playerUse', source.items[item.id].facts)[lang]
   assert(
     facts.some((fact) =>
       fact.includes(

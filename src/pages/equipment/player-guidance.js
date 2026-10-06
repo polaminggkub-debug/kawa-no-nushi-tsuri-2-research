@@ -45,14 +45,14 @@ function renderPlayerDecisionOverview(ctx) {
     ctx.lang === 'th'
       ? 'ใช้ลัวร์หรือตีเหยื่อ: เติม HP ให้ถึง 100 ก่อน ถ้าอยากได้เวลาเล็งเต็มของคัน'
       : ctx.lang === 'ja'
-        ? 'ルアー・投げ釣り：照準時間を最大にするには、先にHPを100まで回復する。'
-        : 'Lure / casting: restore HP to 100 first to get your rod’s full aiming time.'
+        ? 'ルアー・投げ釣り：狙う時間を最大にするには、先にHPを100まで回復する。'
+        : 'Lure / casting: restore HP to 100 first to get your rod’s full time to aim.'
   const scope =
     ctx.lang === 'th'
       ? 'หลักฐานนี้ยืนยันผลเรื่องเวลาเล็ง ยังไม่ได้ยืนยันโบนัสโอกาสปลากินเหยื่อ'
       : ctx.lang === 'ja'
-        ? '照準時間への効果を確認。食いつき率ボーナスは未確認。'
-        : 'This restores aiming time; a bite-rate bonus is not established.'
+        ? '狙う時間への効果は確認済み。食いつき率ボーナスは未確認。'
+        : 'This restores time to aim; a bite-rate bonus is not established.'
   const categoryLink =
     ctx.lang === 'th'
       ? 'ดูคำแนะนำของหมวดที่เลือกด้านบน'
@@ -466,7 +466,7 @@ export function renderComparison(ctx, category) {
       : ctx.lang === 'ja'
         ? { 1: 'ウキ・アユ', 2: '投げ', 4: 'ルアー', 8: 'フライ' }
         : { 1: 'Float / Ayu', 2: 'Casting', 4: 'Lure', 8: 'Fly' }
-  box.innerHTML = `<details id="rod-comparison-details" class="overview-disclosure comparison"${wasOpen ? ' open' : ''}><summary>${ctx.esc(ctx.player.compare)} · ${rods.length}</summary><p>${ctx.lang === 'th' ? 'เวลาเล็งสูง = ขยับจุดเป้าหมายได้นานขึ้น; ขอบเขตสูง = ปลาออกไปไกลกว่าเดิมก่อนเข้าเงื่อนไขหนีและเสียอุปกรณ์ที่แกะได้ ตัวเลขเป็นหน่วยเปรียบเทียบภายใน ไม่ใช่เมตรหรือคะแนนพลัง และปลาอาจหนีด้วยเงื่อนไขอื่น' : ctx.lang === 'ja' ? '照準時間が大きいほど狙いを動かせる時間が長い。魚位置の境界が大きいほど、追跡した道具喪失分岐に入るまで魚が遠くに行ける。内部比較値であり、メートル・強さではない。別条件の逃げもある。' : 'More aim time lets you move the target longer. A higher fish-position limit allows the fish farther out before the traced tackle-loss escape condition. Values are internal comparisons, not metres or power. Other escape conditions still apply.'}</p><div class="table-wrap"><table><thead><tr><th>${ctx.esc(ctx.copy.item)}</th><th>${ctx.esc(ctx.player.style)}</th><th>${ctx.esc(ctx.player.aim)}</th><th>${ctx.esc(ctx.player.reach)}</th><th>${ctx.lang === 'th' ? 'ราคาซื้อ' : ctx.lang === 'ja' ? '購入価格' : 'Purchase price'}</th><th>${ctx.lang === 'th' ? 'คำแนะนำ' : ctx.lang === 'ja' ? '選び方' : 'Recommendation'}</th></tr></thead><tbody>${rods
+  box.innerHTML = `<details id="rod-comparison-details" class="overview-disclosure comparison"${wasOpen ? ' open' : ''}><summary>${ctx.esc(ctx.player.compare)} · ${rods.length}</summary><p>${ctx.lang === 'th' ? 'เวลาเล็งมาก = ขยับเป้าหมายได้นานขึ้น; สายขาดยากมาก = ปลาดึงหนีได้ไกลกว่าก่อนอุปกรณ์หลุด ตัวเลขใช้เทียบกันเท่านั้น ไม่ใช่เมตรหรือคะแนนพลัง และปลายังหนีด้วยวิธีอื่นได้' : ctx.lang === 'ja' ? '狙う時間が大きいほど、狙いを動かせる時間が長い。糸の切れにくさが大きいほど、魚が遠くまで引いても道具を失いにくい。数値は比べるためのもので、メートルや強さではない。他の逃げ方もある。' : 'More aim time lets you move the target longer. A higher line strength means the fish can pull farther before tackle is lost. The numbers are only for comparing rods, not metres or power. Fish can still escape other ways.'}</p><div class="table-wrap"><table><thead><tr><th>${ctx.esc(ctx.copy.item)}</th><th>${ctx.esc(ctx.player.style)}</th><th>${ctx.esc(ctx.player.aim)}</th><th>${ctx.esc(ctx.player.reach)}</th><th>${ctx.lang === 'th' ? 'ราคาซื้อ' : ctx.lang === 'ja' ? '購入価格' : 'Purchase price'}</th><th>${ctx.lang === 'th' ? 'คำแนะนำ' : ctx.lang === 'ja' ? '選び方' : 'Recommendation'}</th></tr></thead><tbody>${rods
     .slice()
     .sort(
       (a, b) =>

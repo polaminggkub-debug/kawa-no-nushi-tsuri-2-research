@@ -46,7 +46,7 @@ export function unconfirmedProfileAction(ctx) {
         : 'Do not buy a fishing setup for profile 43'
   const text =
     ctx.locale === 'th'
-      ? 'เลือกปลาที่มีชื่อและจุดตกยืนยันแล้วแทน รายการนี้ไม่มีจุดเกิดที่ยืนยันในตารางที่ถอด และไม่มีเหยื่อจริง ลัวร์ หรือตัวฟลายผ่านเงื่อนไขของมัน การมีระเบียนใน ROM ไม่ได้ยืนยันว่าเป็นปลาที่พบและตกได้ตามปกติ'
+      ? 'เลือกปลาที่มีชื่อและจุดตกยืนยันแล้วแทน รายการนี้ไม่มีจุดที่ปลาปรากฏที่ยืนยันแล้ว และไม่มีเหยื่อจริง ลัวร์ หรือตัวฟลายที่ใช้ได้กับมัน การมีข้อมูลอยู่ในเกมไม่ได้แปลว่าเป็นปลาที่พบและตกได้ตามปกติ'
       : ctx.locale === 'ja'
         ? '名前と確認済みの釣り場がある魚を選んでください。この項目には抽出した出現表の確認済み地点がなく、エサ・ルアー・フライ本体の判定を通る候補もありません。ROMに行があるだけでは、通常出現して釣れる魚とは確認できません。'
         : 'Choose a named fish with confirmed fishing spots instead. This entry has no confirmed point in the extracted spawn table, and no bait, lure or fly body passes its recorded check. A row in the ROM does not establish that it normally appears and can be caught.'

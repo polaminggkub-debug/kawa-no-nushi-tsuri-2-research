@@ -19,7 +19,7 @@ export const copy_ja = {
   catalogueKicker: '全アイテム一覧',
   catalogueTitle: '掲載315件を検索',
   catalogueCopy:
-    '英語・日本語、アイテムID、数値で検索できます。各カードを開くとROM生データとファイル位置を確認できます。',
+    '英語・日本語、アイテムID、数値で検索できます。各カードを開くと詳細を確認できます。確認したい人向けにゲームの生データも載せています。',
   search: '検索',
   searchPlaceholder: '例: 「rod」「トップウォータ」「0D」',
   category: 'カテゴリ',
@@ -27,7 +27,7 @@ export const copy_ja = {
   all: 'すべてのカテゴリ',
   sortId: 'アイテムID',
   sortName: '名前',
-  sortPrice: 'ROM価格欄（検証用）',
+  sortPrice: 'ゲームデータ内の価格',
   sortBuyPrice: '販売記録→価格',
   results: (n) => `${n}件を表示`,
   empty: '一致するアイテムはありません。名前かIDを変えてください。',

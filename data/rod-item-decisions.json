@@ -6,26 +6,26 @@
     "identity": "User-supplied headerless original Japanese SFC ROM"
   },
   "scope": {
-    "en": "These are purchase/use decisions based only on the rod records, the effects traced in code, and the six ROM-extracted shop lists. The +2 cutoff is time to adjust the target tile before resolution; for lure/casting rods it is scaled below 100 HP, while float/Ayu rods use it directly. Fly rods also set a second half-value threshold whose separate effect is unresolved. The +3 multiplier raises the fish-position threshold before one traced tackle-loss escape branch; it is not a distance in meters and does not prevent other escapes. Prices are full new-purchase quotes, not trade-in upgrade costs. A rod name or picture that includes a fish, plus response codes and fish-ID match fields, does not establish a species pairing or easier catch. No bite-rate or overall catch-success ranking is claimed.",
-    "th": "คำแนะนำนี้ใช้ระเบียนคันเบ็ด ผลที่ตามโค้ดได้ และรายการร้าน 6 ด่านที่ถอดจาก ROM เท่านั้น ค่า +2 คือช่วงที่ขยับช่องเป้าหมายก่อนเกมตรวจจุด; คันลัวร์/คันหวดจะลดค่านี้เมื่อ HP ต่ำกว่า 100 ส่วนคันสายทุ่น/อายุใช้ค่าดิบ คันฟลายยังตั้งค่าครึ่งหนึ่งเพิ่มอีกชุดหนึ่ง แต่ยังระบุผลแยกไม่ได้ ตัวคูณ +3 เพิ่มเกณฑ์ตำแหน่งปลาก่อนเข้าเส้นทางหนีหนึ่งแบบที่ทำให้อุปกรณ์หาย ไม่ใช่ระยะเป็นเมตรและไม่กันปลาหนีทางอื่น ราคาที่บอกคือราคาเต็มสำหรับซื้อใหม่ ไม่ใช่ค่าจ่ายส่วนต่างตอนอัปเกรด ชื่อหรือรูปคันที่มีชื่อปลา รวมทั้งรหัสตอบสนองและรหัสปลา ไม่ได้พิสูจน์ว่าเป็นคันเฉพาะปลาหรือทำให้จับง่ายขึ้น ไม่มีการจัดอันดับโอกาสกินหรือจับสำเร็จโดยรวม",
-    "ja": "購入・使用の判断は、竿レコード、コードで確認した効果、ROMから抽出した全6エリアの店頭在庫だけに基づきます。+2の上限は、判定前に狙うタイルを動かせる時間です。ルアー竿・投げ竿はHP100未満で短縮され、ウキ・アユ竿は記録値をそのまま使います。フライ竿には半分の値を使う別のしきい値もありますが、その効果は未解明です。+3の倍率は、特定の道具損失を伴う逃走分岐までの魚位置しきい値を上げます。メートル換算ではなく、別の逃走も防ぎません。価格は新品を買う場合の全額で、下取り後の強化費用ではありません。魚名の入った竿名や画像、応答コード、魚ID一致欄は、専用竿や釣りやすさの証明ではありません。食いつき率や総合的な釣果の順位は付けていません。"
+    "en": "These choices use only the rod data, effects checked in the game code, and the six areas' shop lists. Time to aim is how long you can move the target before the game decides where the cast lands; for lure and casting rods it gets shorter below 100 HP, and float/Ayu rods use the plain value. Fly rods have a second hidden value whose effect is unknown, so it is left out. Line strength is how far a fish can pull before tackle is lost (the line breaks less easily); it is not a distance in meters and does not stop other ways fish escape. Prices are full new-purchase prices, not upgrade costs. A rod name or picture that includes a fish, or matching codes, does not mean the rod suits that fish or makes it easier to catch. No bite-rate or overall catch-success ranking is claimed.",
+    "th": "คำแนะนำนี้ดูจากข้อมูลคันเบ็ด ผลที่ตรวจจากโค้ดเกมได้ และรายการสินค้าของร้านทั้ง 6 ด่านเท่านั้น เวลาเล็ง คือเวลาที่ขยับช่องเป้าหมายได้ก่อนเกมตัดสินว่าเหยื่อตกตรงไหน คันลัวร์/คันหวดจะมีเวลาเล็งสั้นลงเมื่อ HP ต่ำกว่า 100 ส่วนคันสายทุ่น/อายุใช้ค่าเดิม คันฟลายมีอีกค่าหนึ่งที่ยังไม่รู้ว่ามีผลอะไร จึงไม่รวม สายขาดยาก คือปลาดึงหนีได้ไกลกว่าก่อนอุปกรณ์หลุด (ไม่ใช่ระยะเป็นเมตร และไม่ได้กันปลาหนีทางอื่น) ราคาที่ใช้คือราคาเต็มซื้อใหม่ ไม่ใช่ส่วนต่างตอนอัปเกรด ชื่อหรือรูปคันที่มีชื่อปลา รวมทั้งรหัสตอบสนองและรหัสปลา ไม่ได้แปลว่าเป็นคันเฉพาะปลานั้นหรือทำให้จับง่ายขึ้น และไม่ได้จัดอันดับว่าปลากินง่ายหรือจับสำเร็จง่ายแค่ไหนโดยรวม",
+    "ja": "購入・使用の判断は、竿のデータ、ゲームコードで確認した効果、全6エリアの店の品ぞろえだけに基づきます。狙う時間は、投げた先が決まる前にターゲットを動かせる時間です。ルアー竿・投げ竿はHP100未満で短くなり、ウキ・アユ竿はそのままの値です。フライ竿にはもう1つ隠れた値がありますが、効果が分からないため含めていません。糸の切れにくさは、魚が遠くまで引いても道具を失いにくいことを表します（距離のメートル数ではなく、他の逃げ方も防ぎません）。価格は新品の全額で、下取り後の強化費用ではありません。魚名の入った竿名や画像、一致するコードは、その魚専用や釣りやすさの証明ではありません。食いつき率や総合的な釣果の順位は付けていません。"
   },
   "items": {
     "10": {
       "label": {
-        "en": "Area 6: buy for longer aim and a farther loss boundary; keep 0F if enough",
-        "th": "ด่าน 6: ซื้อเพื่อเล็งนานและปลามีพื้นที่ก่อนเสียอุปกรณ์มากขึ้น; 0F พอแล้วใช้ต่อ",
-        "ja": "エリア6：照準時間・道具喪失境界を増やすなら購入、0Fで十分なら継続"
+        "en": "Area 6: buy for more time to aim and a line that breaks less easily; if you already own 0F, keep using it",
+        "th": "ด่าน 6: ซื้อถ้าอยากมีเวลาเล็งนานกว่าและสายขาดยากกว่า; ถ้ามีคัน 0F อยู่แล้วใช้ต่อได้ ไม่ต้องซื้อใหม่",
+        "ja": "エリア6：狙う時間を長く、糸を切れにくくしたいなら購入。0Fを持っていればそのまま使えます"
       },
       "recommendation": {
-        "en": "Area 6 lists 10 for full ¥1,500. It has the casting group's largest aim cutoff (120) and threshold multiplier (×24). Compared with 0F at full ¥600, it adds 20 aim units and ×3 for ¥900 more between new-purchase quotes. Buy it for those effects only; already owning 0F does not lower its full purchase price.",
-        "th": "ด่าน 6 มีคัน 10 ราคาเต็ม ¥1,500 เป็นคันหวดที่มีช่วงเล็งสูงสุด (120) และตัวคูณเกณฑ์สูงสุด (×24) เทียบกับคัน 0F ราคาเต็ม ¥600 จะเพิ่มช่วงเล็ง 20 หน่วยและตัวคูณ ×3 ต่างกัน ¥900 ระหว่างราคาซื้อใหม่ ซื้อเพราะสองผลนี้เท่านั้น; การมี 0F อยู่แล้วไม่ได้ลดราคาเต็มของคัน 10",
-        "ja": "エリア6で10は全額1,500円です。投げ竿中で照準上限120、しきい値倍率×24が最大です。全額600円の0Fに対して照準が20、倍率が3上がり、新品価格の差は900円です。この効果を目的に選びます。0Fを持っていても購入額は下がりません。"
+        "en": "Area 6 sells 10 for ¥1,500. It is the casting rod with the most time to aim (120) and the line that breaks least easily (×24). Compared with 0F at ¥600, you get 20 more aim and ×3 more line strength for ¥900 more (new-purchase prices). Buy it only for those two things; already owning 0F does not make 10 cheaper.",
+        "th": "ด่าน 6 มีคัน 10 ราคาเต็ม ¥1,500 เป็นคันหวดที่มีเวลาเล็งนานสุด (120) และสายขาดยากสุด (×24) เทียบกับคัน 0F ราคาเต็ม ¥600 จะได้เวลาเล็งเพิ่ม 20 และสายขาดยากขึ้น ×3 แต่ต้องจ่ายเพิ่ม ¥900 (เทียบราคาซื้อใหม่ทั้งคู่) ซื้อเพราะสองข้อนี้เท่านั้น การมีคัน 0F อยู่แล้วไม่ทำให้คัน 10 ถูกลง",
+        "ja": "エリア6で売っている10は1,500円。投げ竿の中で狙う時間が最長（120）で、糸も最も切れにくい（×24）竿です。600円の0Fと比べると、狙う時間が20、切れにくさが×3上がり、新品価格の差は900円です。この2点が目的のときだけ選んでください。0Fを持っていても10が安くなるわけではありません。"
       },
       "reason": {
-        "en": "The maximum applies to casting aim and the one traced tackle-loss boundary, not catch probability. The aim comparison assumes 100 HP.",
-        "th": "ค่าสูงสุดนี้ใช้กับช่วงเล็งสายหวดและขอบเขตอุปกรณ์หายหนึ่งแบบ ไม่ใช่ความน่าจะเป็นจับปลา การเทียบช่วงเล็งใช้ HP 100",
-        "ja": "最大なのは投げ竿の照準と特定の道具損失境界で、釣れる確率ではありません。照準比較はHP100時です。"
+        "en": "The maximum only covers time to aim and how hard the line is to break, not how well fish bite. Aim time is compared at 100 HP.",
+        "th": "ค่าสูงสุดนี้พูดถึงแค่เวลาเล็งกับความยากที่สายจะขาด ไม่ได้บอกว่าปลากินง่ายขึ้น เวลาเล็งเทียบที่ HP 100",
+        "ja": "最大なのは狙う時間と糸の切れにくさだけで、魚が食いつきやすくなるわけではありません。狙う時間はHP100のときの比較です。"
       },
       "alternatives": [
         {
@@ -42,19 +42,19 @@
     },
     "11": {
       "label": {
-        "en": "Keep if enough; buy 12 or 13 for longer aim and a farther loss boundary",
-        "th": "มีแล้วใช้ต่อถ้าพอ; ซื้อ 12 หรือ 13 เพื่อเล็งนานและปลามีพื้นที่ก่อนเสียอุปกรณ์มากขึ้น",
-        "ja": "十分なら継続、照準時間・道具喪失境界を増やすなら12か13"
+        "en": "If you already own 11, keep using it; to buy new, 12 or 13 give more time to aim and a line that breaks less easily",
+        "th": "ถ้ามีคัน 11 อยู่แล้วใช้ต่อได้ ไม่ต้องซื้อใหม่; ถ้าจะซื้อ คัน 12 หรือคัน 13 มีเวลาเล็งนานกว่าและสายขาดยากกว่า",
+        "ja": "そのまま使えるなら継続。買うなら12か13で、狙う時間が長く糸も切れにくくなります"
       },
       "recommendation": {
-        "th": "มีคัน 11 แล้วเล็งทันให้ใช้ต่อ ไม่พบร้านขายคันนี้ในสต็อก 6 ด่าน ถ้าซื้อใหม่ที่ด่าน 1–3 และมี ¥450 เลือก 13 เพื่อเล็งนานกว่าและปลามีพื้นที่ก่อนเสียอุปกรณ์มากกว่า; งบมีเพียง ¥400 เลือก 12 ด่าน 4 มีขาย 13 ส่วนด่าน 5 มีขาย 12",
-        "en": "Keep 11 if its aim time is sufficient; none of the six area stocks sells it. Buying new in areas 1–3 with ¥450, choose 13 for longer recorded aim and a farther traced tackle-loss boundary; with only ¥400, choose 12. Area 4 sells 13; area 5 sells 12.",
-        "ja": "11の照準時間で足りるなら継続します。全6エリアの店頭在庫に販売記録はありません。エリア1〜3で新品を買い450円出せるなら、記録上の照準時間と道具喪失境界が上の13を選びます。予算400円なら12。エリア4は13、5は12を販売します。"
+        "th": "ถ้ามีคัน 11 อยู่แล้วและเล็งทัน ใช้ต่อได้ ไม่ต้องซื้อใหม่ ร้านทั้ง 6 ด่านไม่ได้ขายคันนี้ ถ้าจะซื้อใหม่ที่ด่าน 1–3 และมี ¥450 เลือกคัน 13 จะมีเวลาเล็งนานกว่าและสายขาดยากกว่า ถ้ามีแค่ ¥400 เลือกคัน 12 ด่าน 4 ขายคัน 13 ส่วนด่าน 5 ขายคัน 12",
+        "en": "If you already own 11 and its aim time is enough, keep using it; no shop in the six areas sells it. Buying new in areas 1–3 with ¥450, choose 13 for more time to aim and a line that breaks less easily; with only ¥400, choose 12. Area 4 sells 13; area 5 sells 12.",
+        "ja": "11を持っていて狙う時間が足りるなら、そのまま使えます。11は全6エリアの店で売っていません。エリア1〜3で新品を買い450円出せるなら13がおすすめで、狙う時間が長く、糸も切れにくくなります。予算が400円なら12です。エリア4は13、エリア5は12を売っています。"
       },
       "reason": {
-        "th": "คัน 12 ให้เวลาเล็ง/ขอบเขต 60/×18 และคัน 13 ให้ 70/×21 ทั้งคู่สูงกว่า 50/×15 ของคัน 11 คัน 13 ราคาใหม่สูงกว่า 12 ¥50 แต่ถ้ามีคันอยู่แล้วต้องจ่ายราคาเต็ม ¥450 เพื่อซื้อ 13",
-        "en": "12 gives aim/boundary 60/×18 and 13 gives 70/×21, both above 11’s 50/×15. A new 13 costs ¥50 more than a new 12; buying 13 while already owning a rod still costs its full ¥450.",
-        "ja": "12は照準・境界が60・×18、13は70・×21で、どちらも11の50・×15を上回ります。新品13は新品12より50円高く、すでに竿を持っていても13の購入には全額450円が必要です。"
+        "th": "คัน 12 ได้เวลาเล็ง 60 และสายขาดยาก ×18 คัน 13 ได้ 70 และ ×21 ทั้งคู่ดีกว่าคัน 11 ที่ได้ 50 และ ×15 คัน 13 แพงกว่าคัน 12 ¥50 แต่ต่อให้มีคัน 11 อยู่แล้วก็ต้องจ่ายราคาเต็ม ¥450 อยู่ดี",
+        "en": "12 has aim 60 and line strength ×18; 13 has 70 and ×21. Both beat 11 (50 and ×15). A new 13 costs ¥50 more than a new 12, and even if you own a rod you still pay the full ¥450 for 13.",
+        "ja": "12は狙う時間60・切れにくさ×18、13は70・×21で、どちらも11（50・×15）より上です。新品の13は12より50円高く、竿を持っていても13は450円の全額が必要です。"
       },
       "alternatives": [
         {
@@ -75,19 +75,19 @@
     },
     "12": {
       "label": {
-        "en": "Area 5: stocked fly option; areas 1–3: compare 13 before buying",
-        "th": "ด่าน 5 ซื้อฟลายได้คันนี้; ด่าน 1–3 เทียบ 13 ก่อนซื้อ",
-        "ja": "エリア5の店頭フライ竿、エリア1〜3は13と比較"
+        "en": "Area 5: the fly rod the shop sells; areas 1–3: compare with 13 before buying",
+        "th": "ด่าน 5 ซื้อคันฟลายได้คันนี้; ด่าน 1–3 ลองเทียบคัน 13 ก่อนซื้อ",
+        "ja": "エリア5で売っているフライ竿。エリア1〜3は13と比べてから買う"
       },
       "recommendation": {
-        "en": "In area 5, 12 is the fly rod listed in the shop. In areas 1–3, 13 costs a full ¥450 versus 12's full ¥400 and raises the cutoff from 60 to 70 and multiplier from ×18 to ×21; that is ¥50 between new-purchase quotes, not a trade-in upgrade. Keep 12 if those increments are not worth buying 13 at full price.",
-        "th": "ที่ด่าน 5 คัน 12 เป็นคันฟลายที่ลงขายในร้าน ในด่าน 1–3 คัน 13 ราคาเต็ม ¥450 เทียบกับคัน 12 ราคาเต็ม ¥400 และเพิ่มช่วงเล็งจาก 60 เป็น 70 กับตัวคูณจาก ×18 เป็น ×21 ต่างกัน ¥50 ระหว่างราคาซื้อใหม่ ไม่ใช่ค่าแลกอัปเกรด ใช้คัน 12 ต่อถ้าการเพิ่มสองค่านี้ไม่คุ้มกับการซื้อคัน 13 ราคาเต็ม",
-        "ja": "エリア5で店頭にあるフライ竿は12です。エリア1〜3では、13は全額450円、12は全額400円で、照準上限60から70、倍率×18から×21に上がります。新品価格の差50円で、下取り後の強化費用ではありません。その効果が全額購入に見合わないなら12を使い続けます。"
+        "en": "In area 5, 12 is the only fly rod the shop sells. In areas 1–3, 13 costs ¥450 against ¥400 for 12 and raises aim time from 60 to 70 and line strength from ×18 to ×21. The ¥50 is the difference between two new-purchase prices, not an upgrade fee. If that is not worth the full price of 13, keep using 12.",
+        "th": "ด่าน 5 ร้านขายคันฟลายคันนี้คันเดียว ด่าน 1–3 มีคัน 13 ราคาเต็ม ¥450 แพงกว่าคัน 12 (¥400) อยู่ ¥50 แต่เวลาเล็งเพิ่มจาก 60 เป็น 70 และสายขาดยากขึ้นจาก ×18 เป็น ×21 (¥50 นี้คือส่วนต่างราคาซื้อใหม่ ไม่ใช่ค่าอัปเกรด) ถ้าสองข้อนี้ไม่คุ้มกับราคาเต็มของคัน 13 ก็ใช้คัน 12 ต่อได้",
+        "ja": "エリア5で売っているフライ竿は12です。エリア1〜3では13が450円、12が400円で、狙う時間が60から70、切れにくさが×18から×21に上がります。50円の差は新品どうしの価格差で、下取りの強化費用ではありません。その上がり幅が全額に見合わないなら12を使い続けてください。"
       },
       "reason": {
-        "en": "12 is stocked in areas 1–3 and 5. Compared with 13, it saves ¥50 on a new purchase but has cutoff 60/×18 instead of 70/×21; in area 5 it is the recorded fly-rod option.",
-        "th": "คัน 12 มีขายในด่าน 1–3 และ 5 เมื่อเทียบกับคัน 13 ราคาซื้อใหม่ถูกกว่า ¥50 แต่ได้ 60/×18 แทน 70/×21 และที่ด่าน 5 เป็นคันฟลายที่มีรายการขาย",
-        "ja": "12はエリア1〜3・5で販売されています。13より新品価格が50円安い一方、値は60・×18で、13の70・×21を下回ります。エリア5で記録されているフライ竿は12です。"
+        "en": "12 is sold in areas 1–3 and 5. It is ¥50 cheaper than 13 but has aim 60 and ×18 instead of 70 and ×21. In area 5 it is the only fly rod in stock.",
+        "th": "คัน 12 ขายในด่าน 1–3 และ 5 ถูกกว่าคัน 13 อยู่ ¥50 แต่ได้เวลาเล็ง 60 และสายขาดยาก ×18 แทน 70 และ ×21 ส่วนด่าน 5 เป็นคันฟลายที่ร้านขายคันเดียว",
+        "ja": "12はエリア1〜3と5で売っています。13より新品が50円安い一方、60・×18で、13の70・×21を下回ります。エリア5で売っているフライ竿は12だけです。"
       },
       "alternatives": [
         {
@@ -108,19 +108,19 @@
     },
     "13": {
       "label": {
-        "en": "Areas 1–4: longest recorded fly aim and farthest traced tackle-loss boundary",
-        "th": "ด่าน 1–4: ฟลายที่เล็งนานสุดและปลามีพื้นที่ก่อนเสียอุปกรณ์มากสุด",
-        "ja": "エリア1〜4：フライの記録上最長照準・最大道具喪失境界"
+        "en": "Areas 1–4: the fly rod with the most time to aim and the line that breaks least easily",
+        "th": "ด่าน 1–4: คันฟลายที่มีเวลาเล็งนานสุดและสายขาดยากสุด",
+        "ja": "エリア1〜4：フライ竿で狙う時間が最長、糸も最も切れにくい"
       },
       "recommendation": {
-        "en": "Choose 13 when buying a fly rod in areas 1–4 if you want the longest recorded fly aim cutoff and largest main threshold in that style. In areas 1–3, it costs a full ¥450—¥50 more than 12—and changes the values from 60/×18 to 70/×21. Area 5 does not list 13; its recorded fly rod is 12.",
-        "th": "เลือกคัน 13 เมื่อซื้อคันฟลายในด่าน 1–4 หากต้องการช่วงเล็งที่บันทึกไว้ยาวสุดและเกณฑ์หลักสูงสุดในกลุ่ม ด่าน 1–3 ราคาเต็ม ¥450 มากกว่าคัน 12 ¥50 และเปลี่ยนค่าจาก 60/×18 เป็น 70/×21 ด่าน 5 ไม่มีคัน 13; คันฟลายที่ลงขายคือ 12",
-        "ja": "エリア1〜4でフライ竿を買う際、記録上最長の照準上限と最大の主しきい値を求めるなら13を選びます。エリア1〜3では全額450円で、12より50円高く、60・×18から70・×21に上がります。エリア5には13がなく、販売記録のあるフライ竿は12です。"
+        "en": "If you are buying a fly rod in areas 1–4 and want the most time to aim and the line that breaks least easily in this style, choose 13. In areas 1–3 it costs ¥450, ¥50 more than 12, and raises the values from 60/×18 to 70/×21. Area 5 does not sell 13; its fly rod is 12.",
+        "th": "ถ้าจะซื้อคันฟลายในด่าน 1–4 และอยากได้เวลาเล็งนานสุดกับสายขาดยากสุดในกลุ่มนี้ ให้เลือกคัน 13 ด่าน 1–3 ราคาเต็ม ¥450 แพงกว่าคัน 12 อยู่ ¥50 และเวลาเล็งกับสายขาดยากเพิ่มจาก 60/×18 เป็น 70/×21 ด่าน 5 ไม่ขายคัน 13 คันฟลายที่ขายคือคัน 12",
+        "ja": "エリア1〜4でフライ竿を買うとき、狙う時間が最長で糸も最も切れにくい竿がよければ13を選びます。エリア1〜3では450円で、12より50円高く、60・×18から70・×21に上がります。エリア5には13がなく、売っているフライ竿は12です。"
       },
       "reason": {
-        "en": "13 has the fly style’s largest values on these two decoded effects. That is a scoped comparison, not a catch-rate ranking.",
-        "th": "คัน 13 มีค่าสูงสุดของสายฟลายในสองผลที่ถอดความหมายได้ การเปรียบเทียบนี้จำกัดอยู่แค่สองด้าน ไม่ใช่อันดับโอกาสจับปลา",
-        "ja": "13はフライ竿の中で、解読した2効果の値が最大です。この比較は対象を限定したもので、釣果率の順位ではありません。"
+        "en": "13 has the highest time to aim and line strength among fly rods. This compares only those two things, not catch success.",
+        "th": "คัน 13 มีเวลาเล็งนานสุดและสายขาดยากสุดในกลุ่มคันฟลาย เป็นการเทียบแค่สองข้อนี้ ไม่ใช่อันดับโอกาสจับปลา",
+        "ja": "13はフライ竿の中で、狙う時間と切れにくさがどちらも最大です。比べているのはこの2点だけで、釣れやすさの順位ではありません。"
       },
       "alternatives": [
         {
@@ -137,19 +137,19 @@
     },
     "14": {
       "label": {
-        "en": "Choose for longest float aim; 15 allows a farther fish boundary",
-        "th": "เลือกเพื่อเล็งนานสุดสายทุ่น; อยากได้ขอบเขตสูงกว่าเลือก 15",
-        "ja": "ウキ竿の最長照準なら14、魚位置境界なら15"
+        "en": "Choose for the most time to aim among float rods; for a line that breaks less easily, choose 15",
+        "th": "เลือกถ้าอยากมีเวลาเล็งนานสุดในสายทุ่น; ถ้าอยากให้สายขาดยากสุดเลือกคัน 15",
+        "ja": "ウキ竿で狙う時間が最長なら14、糸が最も切れにくいのは15"
       },
       "recommendation": {
-        "en": "If buying a Float/Ayu rod in area 3, 14 costs the same full ¥1,500 as 07 and improves both measured values: cutoff 80 vs 70 and multiplier ×15 vs ×9. It has the group's longest aim cutoff. Rod 15 trades 20 aim units away for the group's maximum ×24 threshold; choose 15 instead only when that threshold matters more.",
-        "th": "ถ้าซื้อคันสายทุ่น/อายุที่ด่าน 3 คัน 14 ราคาเต็ม ¥1,500 เท่าคัน 07 และเพิ่มค่าที่วัดได้ทั้งคู่: ช่วงเล็ง 80 เทียบกับ 70 และตัวคูณ ×15 เทียบกับ ×9 คัน 14 มีช่วงเล็งยาวสุดในกลุ่ม คัน 15 แลกช่วงเล็งที่น้อยลง 20 หน่วยเพื่อได้เกณฑ์สูงสุด ×24; เลือก 15 เมื่อเกณฑ์นี้สำคัญกว่า",
-        "ja": "エリア3でウキ・アユ竿を買うなら、14は07と同じ全額1,500円で、照準上限80対70、倍率×15対×9と両効果が上がります。14はグループ最長の照準上限です。15は照準を20下げて最大の×24を得る竿で、そのしきい値を重視する場合に選びます。"
+        "en": "If you are buying a Float/Ayu rod in area 3, 14 costs the same ¥1,500 as 07 and is better on both counts: aim 80 versus 70, line strength ×15 versus ×9. It has the most time to aim in the group. 15 gives up 20 aim for the strongest line (×24); choose 15 when that matters more.",
+        "th": "ถ้าซื้อคันสายทุ่น/อายุที่ด่าน 3 คัน 14 ราคาเต็ม ¥1,500 เท่ากับคัน 07 แต่ดีกว่าทั้งสองข้อ: เวลาเล็ง 80 (คัน 07 ได้ 70) และสายขาดยาก ×15 (คัน 07 ได้ ×9) คัน 14 มีเวลาเล็งนานสุดในกลุ่ม ส่วนคัน 15 ยอมมีเวลาเล็งน้อยลง 20 เพื่อแลกกับสายขาดยากสุด ×24 เลือกคัน 15 เมื่อสายขาดยากสำคัญกว่า",
+        "ja": "エリア3でウキ・アユ竿を買うなら、14は07と同じ1,500円で、狙う時間が80対70、切れにくさが×15対×9とどちらも上です。14は狙う時間がグループ最長です。15は狙う時間を20下げて、最大の切れにくさ×24を得る竿で、切れにくさを重視するときに選びます。"
       },
       "reason": {
-        "en": "Rod 14 leads the Float/Ayu group on aim time, not on the tackle-loss threshold. At areas 4 and 6, compare it with 15 as a real time-versus-threshold tradeoff.",
-        "th": "คัน 14 เด่นสุดในกลุ่มสายทุ่นด้านเวลาเล็ง ไม่ใช่เกณฑ์ก่อนอุปกรณ์หาย ที่ด่าน 4 และ 6 ให้เทียบกับคัน 15 ในฐานะการแลกกันระหว่างเวลาปรับเป้ากับเกณฑ์ตำแหน่งปลา",
-        "ja": "14はウキ・アユ竿の照準時間が最長で、道具損失しきい値が最大ではありません。エリア4・6では15と時間・しきい値のトレードオフを比べてください。"
+        "en": "14 leads the float rods on time to aim, not on line strength. In areas 4 and 6, compare it with 15: you trade aim time for line strength.",
+        "th": "คัน 14 เด่นสุดที่เวลาเล็ง ไม่ได้เด่นที่ความยากที่สายจะขาด ที่ด่าน 4 และ 6 ให้เทียบกับคัน 15 เพราะต้องเลือกระหว่างเวลาเล็งกับสายขาดยาก",
+        "ja": "14はウキ・アユ竿で狙う時間が最長ですが、切れにくさは最大ではありません。エリア4・6では、狙う時間と切れにくさのどちらを取るか15と比べてください。"
       },
       "alternatives": [
         {
@@ -170,19 +170,19 @@
     },
     "15": {
       "label": {
-        "en": "Choose for maximum float boundary; 14 gives longer aim",
-        "th": "เลือกเพื่อขอบเขตสูงสุดสายทุ่น; อยากเล็งนานสุดเลือก 14",
-        "ja": "ウキ竿の最大魚位置境界なら15、照準時間なら14"
+        "en": "Choose for the line that breaks least easily among float rods; 14 gives more time to aim",
+        "th": "เลือกถ้าอยากให้สายขาดยากสุดในสายทุ่น; ถ้าอยากมีเวลาเล็งนานสุดเลือกคัน 14",
+        "ja": "ウキ竿で糸が最も切れにくいのは15、狙う時間が最長なら14"
       },
       "recommendation": {
-        "en": "Choose 15 in areas 4–6 when the Float/Ayu group's largest threshold (×24) matters more than its longest aim window. In areas 4 and 6, 14 costs full ¥1,500 and gives more aim (80 vs 60) but a lower ×15 threshold. In area 5, 08 costs full ¥1,500 with the same ×24 but has cutoff 40; 15 has a full ¥2,000 quote, a ¥500 difference between the two new-purchase prices, for cutoff 60.",
-        "th": "เลือกคัน 15 ในด่าน 4–6 เมื่อให้ความสำคัญกับเกณฑ์สูงสุดของสายทุ่น/อายุ (×24) มากกว่าช่วงเล็งที่ยาวที่สุด ที่ด่าน 4 และ 6 คัน 14 ราคาเต็ม ¥1,500 เล็งได้นานกว่า (80 เทียบกับ 60) แต่มีเกณฑ์ ×15 ต่ำกว่า ที่ด่าน 5 คัน 08 ราคาเต็ม ¥1,500 ได้ ×24 เท่ากันแต่ช่วงเล็ง 40 ส่วนคัน 15 ราคาเต็ม ¥2,000 ต่างกัน ¥500 ระหว่างราคาซื้อใหม่ เพื่อช่วงเล็ง 60",
-        "ja": "エリア4〜6で、ウキ・アユ竿の最大しきい値×24を最長照準より重視するなら15を選びます。エリア4・6で14は全額1,500円、照準上限80（15は60）ですが倍率は×15です。エリア5の08は全額1,500円で同じ×24、照準上限40です。15は全額2,000円で、照準上限60です。新品価格の差は500円です。"
+        "en": "Choose 15 in areas 4–6 when the strongest Float/Ayu line (×24) matters more than the longest aim time. In areas 4 and 6, 14 costs ¥1,500 and gives more time to aim (80 versus 60) but a line that breaks more easily (×15). In area 5, 08 costs ¥1,500 with the same ×24 but only 40 aim; 15 costs ¥2,000, ¥500 more between new-purchase prices, for aim 60.",
+        "th": "เลือกคัน 15 ในด่าน 4–6 ถ้าสายขาดยากสุดของสายทุ่น/อายุ (×24) สำคัญกว่าเวลาเล็งนานสุด ที่ด่าน 4 และ 6 คัน 14 ราคาเต็ม ¥1,500 มีเวลาเล็งนานกว่า (80 เทียบกับ 60) แต่สายขาดง่ายกว่า (×15) ที่ด่าน 5 คัน 08 ราคาเต็ม ¥1,500 ได้สายขาดยาก ×24 เท่ากัน แต่เวลาเล็งแค่ 40 ส่วนคัน 15 ราคาเต็ม ¥2,000 (แพงกว่า ¥500 เมื่อเทียบราคาซื้อใหม่) แลกกับเวลาเล็ง 60",
+        "ja": "エリア4〜6で、最長の狙う時間より、ウキ・アユ竿で最大の切れにくさ×24を重視するなら15を選びます。エリア4・6の14は1,500円で、狙う時間は80（15は60）ですが、切れにくさは×15です。エリア5の08は1,500円で同じ×24、狙う時間は40です。15は2,000円で、狙う時間は60。新品価格の差は500円です。"
       },
       "reason": {
-        "en": "Rod 15 leads the Float/Ayu group on the threshold tied to one tackle-loss escape branch, while 14 leads on aim time. Choose according to which situation you want to improve; neither is an overall best rod.",
-        "th": "คัน 15 เด่นสุดในกลุ่มสายทุ่นด้านเกณฑ์ของเส้นทางหนีที่ทำให้อุปกรณ์หายหนึ่งแบบ ส่วนคัน 14 เด่นด้านเวลาเล็ง เลือกตามสถานการณ์ที่ต้องการปรับปรุง ไม่มีคันใดดีที่สุดโดยรวมจากสองค่านี้",
-        "ja": "15は特定の道具損失逃走分岐に関わるしきい値が最大で、照準時間は14が最長です。改善したい状況で選び、どちらかを総合最強とはしません。"
+        "en": "15 leads the float rods on line strength and 14 leads on time to aim. Pick the one that fixes your problem; neither is best overall.",
+        "th": "คัน 15 เด่นสุดในสายทุ่นเรื่องสายขาดยาก ส่วนคัน 14 เด่นเรื่องเวลาเล็ง ให้เลือกตามข้อที่อยากให้ดีขึ้น ไม่มีคันไหนดีที่สุดโดยรวม",
+        "ja": "15は糸の切れにくさが最大で、狙う時間が最長なのは14です。良くしたい点で選び、どちらかが総合で最強というわけではありません。"
       },
       "alternatives": [
         {
@@ -203,19 +203,19 @@
     },
     "01": {
       "label": {
-        "en": "Skip buying: 04 costs the same, with longer aim and a farther loss boundary",
-        "th": "ไม่แนะนำซื้อ: 04 ราคาเท่ากัน เล็งนานกว่าและปลามีพื้นที่ก่อนเสียอุปกรณ์มากกว่า",
-        "ja": "購入は04へ：同額で照準時間と道具喪失までの境界が上"
+        "en": "Skip buying: 04 costs the same and gives more time to aim and a line that breaks less easily",
+        "th": "ไม่แนะนำซื้อ: คัน 04 ราคาเท่ากัน มีเวลาเล็งนานกว่าและสายขาดยากกว่า",
+        "ja": "購入は04へ：同じ値段で、狙う時間が長く糸も切れにくい"
       },
       "recommendation": {
-        "en": "Do not buy this for a longer aim window or more room before the traced hook-loss branch. In area 5, the Clear-stream carbon rod (04) is also listed for the same full ¥500 and improves both measured values: cutoff 50 and multiplier ×7, versus 10 and ×3 here. Use 01 if you already own it; buying 04 is a full-price replacement, not a trade-in.",
-        "th": "อย่าซื้อคันนี้ถ้าต้องการช่วงเล็งยาวขึ้นหรือพื้นที่ก่อนเข้าเส้นทางเบ็ดหาย ที่ด่าน 5 มีคันคาร์บอนน้ำใส (04) ขายในราคาเต็ม ¥500 เท่ากัน แต่ได้ค่าที่วัดได้ดีกว่าทั้งคู่: ช่วงเล็ง 50 และตัวคูณ ×7 เทียบกับ 10 และ ×3 ของคันนี้ ใช้คัน 01 ต่อได้ถ้ามีอยู่แล้ว; การซื้อคัน 04 คือจ่ายราคาเต็ม ไม่ใช่แลกอัปเกรด",
-        "ja": "照準時間や、ハリ損失分岐までの余裕を求めて買う竿ではありません。エリア5では清流カーボン竿（04）も全額500円で販売され、照準上限50・倍率×7と、この竿の10・×3より両方上です。すでに01を持っているなら使えますが、04への変更は下取りではなく全額購入です。"
+        "en": "Do not buy this rod if you want more time to aim or a line that breaks less easily. In area 5, 04 is sold for the same ¥500 and is better on both counts: aim 50 and line strength ×7, against 10 and ×3 here. If you already own 01, keep using it. Buying 04 means paying the full price; it is not a trade-in.",
+        "th": "อย่าซื้อคันนี้ถ้าอยากได้เวลาเล็งนานขึ้นหรือสายขาดยากขึ้น ที่ด่าน 5 มีคัน 04 ขายราคาเต็ม ¥500 เท่ากัน แต่ดีกว่าทั้งสองข้อ: เวลาเล็ง 50 และสายขาดยาก ×7 (คันนี้ได้ 10 และ ×3) ถ้ามีคัน 01 อยู่แล้วใช้ต่อได้ ไม่ต้องซื้อใหม่ การซื้อคัน 04 คือจ่ายราคาเต็ม ไม่ใช่แลกอัปเกรด",
+        "ja": "狙う時間や糸の切れにくさを求めて買う竿ではありません。エリア5では04も同じ500円で売っていて、狙う時間50・切れにくさ×7と、この竿の10・×3よりどちらも上です。01を持っているならそのまま使えます。04への買い替えは下取りではなく全額購入です。"
       },
       "reason": {
-        "en": "Within the Float/Ayu style, 01 has the lowest recorded aim cutoff and fish-position multiplier. Its fish-named label does not establish a special pairing.",
-        "th": "ในคันสายทุ่น/อายุ ค่าเล็งและตัวคูณตำแหน่งปลาของคัน 01 ต่ำสุด ชื่อคันที่มีชื่อปลาไม่ได้ยืนยันว่าเป็นคู่คันเฉพาะปลา",
-        "ja": "ウキ・アユ竿の中で、01は照準上限と魚位置倍率が最小です。魚名を含む竿名は専用竿の証明ではありません。"
+        "en": "Among Float/Ayu rods, 01 has the lowest aim time and line strength. A fish name in the rod's name does not mean it suits that fish.",
+        "th": "ในกลุ่มคันสายทุ่น/อายุ คัน 01 มีเวลาเล็งและสายขาดยากต่ำสุด ชื่อคันที่มีชื่อปลาอยู่ ไม่ได้แปลว่าเป็นคันที่เหมาะกับปลาชนิดนั้นโดยเฉพาะ",
+        "ja": "ウキ・アユ竿の中で、01は狙う時間も切れにくさも最小です。魚名が入った竿名は、その魚専用という意味ではありません。"
       },
       "alternatives": [
         {
@@ -232,19 +232,19 @@
     },
     "02": {
       "label": {
-        "en": "Keep it: 04 shortens aim and reduces the loss boundary",
-        "th": "มีแล้วใช้ต่อ: 04 เล็งสั้นกว่าและปลามีพื้นที่ก่อนเสียอุปกรณ์น้อยกว่า",
-        "ja": "継続：04では照準時間と道具喪失までの境界が下がる"
+        "en": "If you already own it, keep using it: 04 gives less time to aim and a line that breaks more easily",
+        "th": "ถ้ามีอยู่แล้วใช้ต่อได้ ไม่ต้องซื้อใหม่: คัน 04 มีเวลาเล็งน้อยกว่าและสายขาดง่ายกว่า",
+        "ja": "そのまま使えます：04は狙う時間が短く、糸も切れやすくなる"
       },
       "recommendation": {
-        "en": "If you own 02 and its aim time is enough, keep it. Do not buy 04 as an upgrade: 04 gives less aim time (50 versus 60) and a lower fish-position boundary (×7 versus ×8). No seller for 02 appears in the six extracted shop lists. If you do not own it, buy stocked 04 in area 1; in area 3 compare 14 when you want to improve both effects.",
-        "th": "ถ้ามี 02 และเล็งทัน ให้ใช้ต่อ ไม่ควรซื้อ 04 เพื่ออัปเกรด เพราะเล็งได้สั้นลง (50 เทียบกับ 60) และขอบเขตตำแหน่งปลาต่ำลง (×7 เทียบกับ ×8) ไม่พบร้านขาย 02 ในรายการทั้ง 6 ด่าน ถ้ายังไม่มี ให้เลือก 04 ที่ซื้อได้ในด่าน 1; เมื่อถึงด่าน 3 เทียบคัน 14 ถ้าต้องการเพิ่มทั้งสองด้าน",
-        "ja": "02を持っていて照準時間が十分なら、そのまま使います。04は照準50対60、魚位置境界×7対×8と両方下がるため、強化として買いません。全6エリアの在庫に02の販売記録はありません。未所持ならエリア1の店頭04を選び、エリア3で両効果を伸ばしたい場合は14を比較します。"
+        "en": "If you own 02 and its aim time is enough, keep using it. Do not buy 04 as an upgrade: it gives less time to aim (50 versus 60) and a line that breaks more easily (×7 versus ×8). No shop in the six areas sells 02. If you do not own it, buy 04 in area 1; from area 3, look at 14 if you want both to improve.",
+        "th": "ถ้ามีคัน 02 และเล็งทัน ให้ใช้ต่อ อย่าซื้อคัน 04 เพื่อเปลี่ยน เพราะมีเวลาเล็งน้อยลง (50 เทียบกับ 60) และสายขาดง่ายขึ้น (×7 เทียบกับ ×8) ร้านทั้ง 6 ด่านไม่ได้ขายคัน 02 ถ้ายังไม่มี ให้ซื้อคัน 04 ที่ด่าน 1 พอถึงด่าน 3 ค่อยดูคัน 14 ถ้าอยากได้ดีขึ้นทั้งสองข้อ",
+        "ja": "02を持っていて狙う時間が足りるなら、そのまま使ってください。04は狙う時間が50対60、切れにくさが×7対×8とどちらも下がるので、強化目的では買いません。02は全6エリアの店で売っていません。持っていなければエリア1で04を買い、エリア3で両方を伸ばしたいなら14を比べてください。"
       },
       "reason": {
-        "en": "02 is tied third of 11 on float aim time and sixth of 11 on the fish-position boundary. Keep it over 04 for both effects; shop-listed 14 from area 3 improves both over 02.",
-        "th": "คัน 02 เล็งได้นานเป็นอันดับร่วม 3 จาก 11 และขอบเขตตำแหน่งปลาอันดับ 6 จาก 11 ในสายทุ่น จึงยังมีเหตุผลให้ใช้ต่อ: ดีกว่า 04 ทั้งสองด้าน แต่คัน 14 ที่ซื้อได้ตั้งแต่ด่าน 3 เพิ่มทั้งเวลาเล็งและพื้นที่ก่อนเสียอุปกรณ์จาก 02",
-        "ja": "02はウキ竿11本で照準時間が同率3位、魚位置境界が6位です。両効果で04より上なので継続する理由があります。エリア3以降の店頭14は02の両効果を上回ります。"
+        "en": "02 is tied for 3rd of 11 on time to aim and 6th of 11 on line strength among float rods, so it is still worth keeping: it beats 04 on both. 14, sold from area 3, beats 02 on both.",
+        "th": "คัน 02 มีเวลาเล็งนานเป็นอันดับ 3 ร่วมจาก 11 คัน และสายขาดยากเป็นอันดับ 6 จาก 11 คัน ในกลุ่มสายทุ่น จึงใช้ต่อได้: ดีกว่าคัน 04 ทั้งสองข้อ แต่คัน 14 ที่ซื้อได้ตั้งแต่ด่าน 3 ดีกว่าคัน 02 ทั้งเวลาเล็งและสายขาดยาก",
+        "ja": "02はウキ竿11本の中で、狙う時間が3位タイ、切れにくさが6位です。どちらも04より上なので、使い続ける価値があります。エリア3以降で売っている14は、02よりどちらも上です。"
       },
       "alternatives": [
         {
@@ -265,19 +265,19 @@
     },
     "03": {
       "label": {
-        "en": "Buy on a tight area-1 budget; choose 04 for more adjustment time",
-        "th": "งบด่าน 1 จำกัดซื้อ 03; อยากเล็งนานขึ้นเลือก 04",
-        "ja": "エリア1で節約なら03、照準時間なら04"
+        "en": "Tight budget in area 1: buy 03; for more time to aim, choose 04",
+        "th": "ด่าน 1 งบน้อยซื้อคัน 03; อยากมีเวลาเล็งนานขึ้นเลือกคัน 04",
+        "ja": "エリア1で節約なら03、狙う時間を伸ばすなら04"
       },
       "recommendation": {
-        "en": "For an area-1 float rod on a budget, choose 03 at its full ¥350 quote: it is the least expensive float rod listed there. If more aim time and threshold room matter, 04 costs a full ¥500, or ¥150 more between the two new-purchase quotes, and raises the values from 30/×5 to 50/×7.",
-        "th": "ถ้าจะเริ่มสายทุ่นที่ด่าน 1 แบบประหยัด เลือกคัน 03 ราคาเต็ม ¥350 ซึ่งถูกสุดในคันสายทุ่นที่ร้านด่านนี้ลงไว้ ถ้าต้องการช่วงเล็งและพื้นที่ตำแหน่งปลามากขึ้น คัน 04 ราคาเต็ม ¥500 ต่างกัน ¥150 ระหว่างราคาซื้อใหม่ และเพิ่มค่าจาก 30/×5 เป็น 50/×7",
-        "ja": "エリア1で安くウキ釣りを始めるなら、店頭のウキ竿で最安の03を全額350円で選びます。照準時間としきい値の余裕が必要なら、04は全額500円で、新品価格の差150円により30・×5から50・×7へ上がります。"
+        "en": "For a budget float rod in area 1, choose 03 at ¥350, the cheapest float rod sold there. If you want more time to aim and a line that breaks less easily, 04 costs ¥500 (¥150 more between new-purchase prices) and raises the values from 30/×5 to 50/×7.",
+        "th": "ถ้าจะเริ่มเล่นสายทุ่นที่ด่าน 1 แบบประหยัด เลือกคัน 03 ราคาเต็ม ¥350 ถูกสุดในบรรดาคันสายทุ่นที่ร้านด่านนี้ขาย ถ้าอยากได้เวลาเล็งนานขึ้นและสายขาดยากขึ้น คัน 04 ราคาเต็ม ¥500 (แพงกว่า ¥150 เมื่อเทียบราคาซื้อใหม่) เวลาเล็งกับสายขาดยากเพิ่มจาก 30/×5 เป็น 50/×7",
+        "ja": "エリア1で安くウキ釣りを始めるなら、店で売っているウキ竿で最安の03（350円）を選びます。狙う時間と糸の切れにくさを上げたいなら、04は500円（新品価格の差150円）で、30・×5から50・×7に上がります。"
       },
       "reason": {
-        "en": "Rod 03 is a genuine low-price entry, not a top-stat choice. Rod 04 is available in the same area and improves both measured Float/Ayu effects; 05 costs more while providing less of both than 04.",
-        "th": "คัน 03 เป็นตัวเริ่มที่ราคาต่ำจริง ไม่ใช่ตัวเด่นด้านค่าสถิติ คัน 04 มีขายในด่านเดียวกันและเพิ่มผลที่วัดได้ทั้งสองด้าน ส่วนคัน 05 แพงกว่าแต่ได้ค่าน้อยกว่า 04 ทั้งคู่",
-        "ja": "03は安く始める選択肢で、数値上の最上位ではありません。同じエリアで買える04は確認済みの両効果が上がります。05は04より高価なのに両方の値が低いです。"
+        "en": "03 is a real budget starter, not a top performer. 04 is sold in the same area and is better on both counts; 05 costs more but is worse than 04 on both.",
+        "th": "คัน 03 เป็นตัวเริ่มราคาถูกจริง แต่ตัวเลขไม่ได้เด่น คัน 04 ขายในด่านเดียวกันและดีกว่าทั้งสองข้อ ส่วนคัน 05 แพงกว่าแต่ได้น้อยกว่าคัน 04 ทั้งคู่",
+        "ja": "03は安く始めるための竿で、数値が高いわけではありません。同じエリアで買える04は、どちらの値も上です。05は04より高いのに、どちらの値も低いです。"
       },
       "alternatives": [
         {
@@ -298,19 +298,19 @@
     },
     "04": {
       "label": {
-        "en": "Area 1: choose for longer aim and a farther loss boundary; 03 for lower cost",
-        "th": "ด่าน 1: เล็งนานและปลามีพื้นที่ก่อนเสียอุปกรณ์มากสุดในร้าน; งบน้อยเลือก 03",
-        "ja": "エリア1の店では照準時間・道具喪失境界が最大、節約なら03"
+        "en": "Area 1: the most time to aim and the line that breaks least easily in the shop; 03 if money is tight",
+        "th": "ด่าน 1: มีเวลาเล็งนานสุดและสายขาดยากสุดในร้าน; งบน้อยเลือกคัน 03",
+        "ja": "エリア1の店では狙う時間も糸の切れにくさも最高。節約なら03"
       },
       "recommendation": {
-        "en": "In area 1, choose 04 for ¥500 if the extra aim time and threshold over 03 matter: cutoff 50/×7 versus 30/×5, a ¥150 difference between full new-purchase prices. It also beats 05 on both values while costing ¥250 less. At area 5 it is the same full price as 01 and improves both effects.",
-        "th": "ที่ด่าน 1 เลือกคัน 04 ราคา ¥500 ถ้าต้องการช่วงเล็งและเกณฑ์ที่สูงกว่าคัน 03: ค่า 50/×7 เทียบกับ 30/×5 ต่างกัน ¥150 ระหว่างราคาซื้อใหม่เต็มจำนวน และยังได้ค่าทั้งสองด้านดีกว่าคัน 05 ในราคาถูกกว่า ¥250 ที่ด่าน 5 ราคาเต็มเท่าคัน 01 แต่ผลทั้งสองด้านดีกว่า",
-        "ja": "エリア1で03より長い照準時間と高いしきい値が必要なら、04を500円で選びます。30・×5に対して50・×7で、新品全額の差は150円です。05より両方の値が高く、価格は250円安いです。エリア5では01と同じ全額で、確認済みの両効果が上です。"
+        "en": "In area 1, choose 04 at ¥500 if you want more time to aim and a line that breaks less easily than 03: 50/×7 versus 30/×5, ¥150 more between full new-purchase prices. It is also better than 05 on both counts and ¥250 cheaper. In area 5 it costs the same as 01 but is better on both counts.",
+        "th": "ที่ด่าน 1 เลือกคัน 04 ราคา ¥500 ถ้าอยากได้เวลาเล็งนานกว่าและสายขาดยากกว่าคัน 03: ได้ 50/×7 เทียบกับ 30/×5 แพงกว่า ¥150 (เทียบราคาซื้อใหม่เต็มจำนวน) และยังดีกว่าคัน 05 ทั้งสองข้อ ในราคาถูกกว่า ¥250 ที่ด่าน 5 คันนี้ราคาเต็มเท่าคัน 01 แต่ดีกว่าทั้งสองข้อ",
+        "ja": "エリア1で03より狙う時間が長く、糸も切れにくい竿がほしいなら、04（500円）を選びます。30・×5に対して50・×7で、新品価格の差は150円です。05よりどちらも上で、価格は250円安いです。エリア5では01と同じ価格で、どちらの値も上です。"
       },
       "reason": {
-        "en": "Among the area-1 Float/Ayu stock, 04 offers the largest aim cutoff and threshold. The comparison describes target adjustment time and one tackle-loss boundary, not catch odds.",
-        "th": "ในสต็อกสายทุ่น/อายุของด่าน 1 คัน 04 มีทั้งช่วงเล็งและเกณฑ์สูงสุด ข้อมูลนี้หมายถึงเวลาขยับเป้ากับขอบเขตของเส้นทางอุปกรณ์หายหนึ่งแบบ ไม่ใช่โอกาสจับปลา",
-        "ja": "エリア1のウキ・アユ在庫では、04の照準上限としきい値が最大です。示しているのは狙いを調整する時間と特定の道具損失境界で、釣果率ではありません。"
+        "en": "Among the float rods sold in area 1, 04 has the most time to aim and the strongest line. This compares only aim time and line strength, not catch odds.",
+        "th": "ในร้านด่าน 1 คัน 04 มีเวลาเล็งนานสุดและสายขาดยากสุดในกลุ่มสายทุ่น/อายุ นี่เทียบแค่เวลาเล็งกับความยากที่สายจะขาด ไม่ใช่โอกาสจับปลา",
+        "ja": "エリア1で売っているウキ・アユ竿の中で、04は狙う時間も切れにくさも最大です。比べているのはこの2点だけで、釣れる確率ではありません。"
       },
       "alternatives": [
         {
@@ -335,19 +335,19 @@
     },
     "05": {
       "label": {
-        "en": "Skip buying: 04 is cheaper, with longer aim and a farther loss boundary",
-        "th": "ไม่แนะนำซื้อ: 04 ถูกกว่า เล็งนานกว่าและปลามีพื้นที่ก่อนเสียอุปกรณ์มากกว่า",
-        "ja": "購入は04へ：安く、照準時間と道具喪失境界が上"
+        "en": "Skip buying: 04 is cheaper and gives more time to aim and a line that breaks less easily",
+        "th": "ไม่แนะนำซื้อ: คัน 04 ถูกกว่า มีเวลาเล็งนานกว่าและสายขาดยากกว่า",
+        "ja": "購入は04へ：安くて、狙う時間が長く糸も切れにくい"
       },
       "recommendation": {
-        "en": "Skip 05 if buying for the decoded aim and threshold effects. In areas 1 and 2, 04 is listed for full ¥500 while 05 costs full ¥750; 04 also gives cutoff 50/×7 instead of 40/×6. If you already own 05, no special catch benefit is established; buy 04 only if those two measured improvements are worth its full price.",
-        "th": "ข้ามคัน 05 ถ้าจะซื้อเพราะผลเรื่องเล็งและเกณฑ์ที่แกะได้ ในด่าน 1 และ 2 คัน 04 ขายราคาเต็ม ¥500 ส่วนคัน 05 ราคาเต็ม ¥750; คัน 04 ยังได้ 50/×7 แทน 40/×6 ถ้ามีคัน 05 อยู่แล้ว ยังไม่มีหลักฐานว่าได้โบนัสจับปลาเฉพาะอย่าง ซื้อ 04 เมื่อการเพิ่มสองค่านี้คุ้มกับราคาเต็ม",
-        "ja": "照準としきい値の確認済み効果を目的に買うなら05は見送り、エリア1・2で全額500円の04を選びます。05は全額750円で、04は40・×6ではなく50・×7です。すでに05を持っていても、特別な釣果効果は確認されていません。2つの効果向上が全額購入に見合う場合だけ04を買います。"
+        "en": "Skip 05 if you are buying for more time to aim or a line that breaks less easily. In areas 1 and 2, 04 costs ¥500 and 05 costs ¥750, and 04 still gives 50/×7 instead of 40/×6. If you already own 05, keep using it; there is no evidence of a special catch bonus. Buy 04 only if those two improvements are worth its full price.",
+        "th": "ข้ามคัน 05 ถ้าซื้อเพราะอยากได้เวลาเล็งนานขึ้นหรือสายขาดยากขึ้น ในด่าน 1 และ 2 คัน 04 ราคาเต็ม ¥500 ส่วนคัน 05 ราคาเต็ม ¥750 และคัน 04 ยังได้ 50/×7 แทน 40/×6 ถ้ามีคัน 05 อยู่แล้ว ใช้ต่อได้ ไม่ต้องซื้อใหม่ ไม่มีหลักฐานว่ามีโบนัสจับปลาพิเศษ ซื้อคัน 04 เมื่อเห็นว่าสองข้อที่ดีขึ้นนี้คุ้มกับราคาเต็ม",
+        "ja": "狙う時間や糸の切れにくさが目的なら05は見送り、エリア1・2で500円の04を選びます。05は750円で、04は40・×6ではなく50・×7です。05を持っていればそのまま使えます。特別な釣果効果は確認されていません。2点の向上が全額に見合うときだけ04を買ってください。"
       },
       "reason": {
-        "en": "Rod 04 is stocked in the same areas and is strictly better on both traced Float/Ayu values for less money.",
-        "th": "คัน 04 มีขายในด่านเดียวกันและดีกว่าคัน 05 ทั้งสองค่าที่ตามโค้ดได้ ในราคาถูกกว่า",
-        "ja": "04は同じエリアで販売され、追跡済みのウキ・アユ用2効果が05より両方高く、価格も安いです。"
+        "en": "04 is sold in the same areas and is better than 05 on both counts for less money.",
+        "th": "คัน 04 ขายในด่านเดียวกันและดีกว่าคัน 05 ทั้งสองข้อ ในราคาที่ถูกกว่า",
+        "ja": "04は同じエリアで売っていて、狙う時間も切れにくさも05より上なのに、価格は安いです。"
       },
       "alternatives": [
         {
@@ -364,19 +364,19 @@
     },
     "06": {
       "label": {
-        "en": "Keep if sufficient; buy 03 or 04 for more adjustment time",
-        "th": "มีแล้วใช้ต่อถ้าเล็งทัน; จะซื้อใหม่เลือก 03 หรือ 04",
-        "ja": "照準が間に合うなら継続、購入は03か04"
+        "en": "If you already own it and aim time is enough, keep using it; to buy new, choose 03 or 04",
+        "th": "ถ้ามีอยู่แล้วและเล็งทัน ใช้ต่อได้ ไม่ต้องซื้อใหม่; ถ้าจะซื้อใหม่เลือกคัน 03 หรือคัน 04",
+        "ja": "狙う時間が足りるならそのまま使えます。買うなら03か04"
       },
       "recommendation": {
-        "th": "มีคัน 06 แล้วเล็งทันให้ใช้ต่อ ไม่พบร้านขายคันนี้ในสต็อก 6 ด่าน ถ้าต้องการซื้อคันใหม่: ด่าน 1/2/6 งบน้อยเลือก 03 ราคา ¥350; ถ้าจ่าย ¥500 ได้เลือก 04 เพื่อเล็งนานกว่าและปลามีพื้นที่ก่อนเสียอุปกรณ์มากกว่า ด่าน 4 มี 03 ส่วนด่าน 3/5 มี 04",
-        "en": "Keep 06 if its aim time is sufficient; none of the six area stocks sells it. For a new purchase in areas 1/2/6, choose 03 at ¥350 on a tight budget, or 04 at ¥500 for longer aim and a farther traced tackle-loss boundary. Area 4 stocks 03; areas 3/5 stock 04.",
-        "ja": "06の照準時間で足りるなら継続します。全6エリアの店頭在庫に販売記録はありません。エリア1・2・6で新品を買うなら、節約は03の350円、照準時間と道具喪失境界を増やすなら04の500円です。エリア4は03、3・5は04を販売します。"
+        "th": "ถ้ามีคัน 06 และเล็งทัน ใช้ต่อได้ ร้านทั้ง 6 ด่านไม่ได้ขายคันนี้ ถ้าจะซื้อใหม่: ด่าน 1/2/6 งบน้อยเลือกคัน 03 ราคา ¥350 ถ้าจ่าย ¥500 ได้ เลือกคัน 04 จะมีเวลาเล็งนานกว่าและสายขาดยากกว่า ด่าน 4 ขายคัน 03 ส่วนด่าน 3 และ 5 ขายคัน 04",
+        "en": "If you own 06 and its aim time is enough, keep using it; no shop in the six areas sells it. To buy new: in areas 1, 2 and 6, choose 03 at ¥350 on a tight budget, or 04 at ¥500 for more time to aim and a line that breaks less easily. Area 4 sells 03; areas 3 and 5 sell 04.",
+        "ja": "06の狙う時間で足りるなら、そのまま使えます。06は全6エリアの店で売っていません。エリア1・2・6で新品を買うなら、節約は03（350円）、狙う時間と切れにくさを上げるなら04（500円）です。エリア4は03、エリア3・5は04を売っています。"
       },
       "reason": {
-        "th": "คัน 03 เพิ่มเวลาเล็งและขอบเขตจาก 20/×4 ของคัน 06 เป็น 30/×5; คัน 04 เพิ่มเป็น 50/×7 ราคาเต็มซื้อใหม่ของ 04 สูงกว่า 03 ¥150 แต่ถ้ามีคันอยู่แล้วต้องจ่ายราคาเต็มของคันที่จะซื้อ",
-        "en": "03 improves 06’s 20/×4 to 30/×5; 04 improves it to 50/×7. A new 04 costs ¥150 more than a new 03. Owning a rod does not reduce the full price of the replacement.",
-        "ja": "03は06の20・×4を30・×5に、04は50・×7に上げます。新品04は新品03より150円高く、手持ちの竿があっても買い替え先の全額が必要です。"
+        "th": "คัน 03 ดีกว่าคัน 06 (จาก 20/×4 เป็น 30/×5) คัน 04 ดีขึ้นอีกเป็น 50/×7 คัน 04 ราคาซื้อใหม่แพงกว่าคัน 03 อยู่ ¥150 และต่อให้มีคันเดิมอยู่แล้วก็ต้องจ่ายราคาเต็มของคันที่จะซื้อ",
+        "en": "03 improves on 06's 20/×4 with 30/×5; 04 improves it to 50/×7. A new 04 costs ¥150 more than a new 03. Owning a rod does not lower the full price of the one you buy.",
+        "ja": "03は06の20・×4を30・×5に、04は50・×7に上げます。新品の04は新品の03より150円高く、竿を持っていても買い替え先の全額が必要です。"
       },
       "alternatives": [
         {
@@ -397,19 +397,19 @@
     },
     "07": {
       "label": {
-        "en": "Area 3: buy 14; area 5: choose 07 for longer aim than 08",
-        "th": "ด่าน 3 ซื้อ 14 แทน; ด่าน 5 เลือก 07 ถ้าอยากเล็งนานกว่า 08",
-        "ja": "エリア3は14、エリア5で照準時間なら07"
+        "en": "Area 3: buy 14; area 5: choose 07 for more time to aim than 08",
+        "th": "ด่าน 3 ซื้อคัน 14 แทน; ด่าน 5 เลือกคัน 07 ถ้าอยากมีเวลาเล็งนานกว่าคัน 08",
+        "ja": "エリア3は14、エリア5で狙う時間を伸ばすなら07"
       },
       "recommendation": {
-        "en": "If buying a Float/Ayu rod in area 3, choose 14 over 07: both have the same full ¥1,500 quote, but 14 raises the cutoff from 70 to 80 and the multiplier from ×9 to ×15. Area 5 does not list 14; there, choose 07 for more aim time than rod 08, or 08 for the highest threshold at the same full price.",
-        "th": "ถ้าซื้อคันสายทุ่น/อายุที่ด่าน 3 ให้เลือก 14 แทน 07: ทั้งคู่ราคาเต็ม ¥1,500 เท่ากัน แต่คัน 14 เพิ่มช่วงเล็งจาก 70 เป็น 80 และตัวคูณจาก ×9 เป็น ×15 ด่าน 5 ไม่มีคัน 14; ที่นั่นเลือก 07 ถ้าต้องการช่วงเล็งมากกว่าคัน 08 หรือเลือก 08 ถ้าต้องการเกณฑ์สูงสุดในราคาเต็มเท่ากัน",
-        "ja": "エリア3でウキ・アユ竿を買うなら07より14を選びます。どちらも全額1,500円ですが、14は照準上限が70から80、倍率が×9から×15に上がります。エリア5には14がないため、08より長い照準時間なら07、同じ全額で最大しきい値なら08を選びます。"
+        "en": "If you are buying a Float/Ayu rod in area 3, choose 14 over 07: both cost ¥1,500, but 14 raises aim time from 70 to 80 and line strength from ×9 to ×15. Area 5 does not sell 14; there, choose 07 for more time to aim than 08, or 08 for the strongest line at the same price.",
+        "th": "ถ้าซื้อคันสายทุ่น/อายุที่ด่าน 3 ให้เลือกคัน 14 แทนคัน 07: ราคาเต็ม ¥1,500 เท่ากัน แต่คัน 14 เวลาเล็งเพิ่มจาก 70 เป็น 80 และสายขาดยากขึ้นจาก ×9 เป็น ×15 ด่าน 5 ไม่ขายคัน 14 ที่นั่นเลือกคัน 07 ถ้าอยากมีเวลาเล็งนานกว่าคัน 08 หรือเลือกคัน 08 ถ้าอยากให้สายขาดยากสุดในราคาเต็มเท่ากัน",
+        "ja": "エリア3でウキ・アユ竿を買うなら07より14を選びます。どちらも1,500円ですが、14は狙う時間が70から80、切れにくさが×9から×15に上がります。エリア5には14がないので、08より狙う時間を伸ばしたいなら07、同じ価格で糸が最も切れにくいのは08です。"
       },
       "reason": {
-        "en": "At area 3, 14 improves both measured effects for the same new-purchase price. At area 5, the local choice changes to a real aim-versus-threshold tradeoff between 07 and 08.",
-        "th": "ที่ด่าน 3 คัน 14 เพิ่มค่าที่วัดได้ทั้งสองด้านในราคาซื้อใหม่เท่ากัน แต่ตัวเลือกในด่าน 5 เป็นการแลกกันจริงระหว่างช่วงเล็งของ 07 กับเกณฑ์ตำแหน่งปลาของ 08",
-        "ja": "エリア3では同じ新品価格で14の確認済み効果が両方上がります。エリア5では07の照準時間と08の魚位置しきい値を比べる選択に変わります。"
+        "en": "In area 3, 14 is better on both counts at the same price. In area 5 you must choose between 07's aim time and 08's line strength.",
+        "th": "ที่ด่าน 3 คัน 14 ดีกว่าทั้งสองข้อในราคาซื้อใหม่เท่ากัน แต่ที่ด่าน 5 ต้องเลือกระหว่างเวลาเล็งของคัน 07 กับสายขาดยากของคัน 08",
+        "ja": "エリア3では同じ新品価格で14がどちらの値も上です。エリア5では、07の狙う時間と08の切れにくさのどちらを取るかの選択になります。"
       },
       "alternatives": [
         {
@@ -430,19 +430,19 @@
     },
     "08": {
       "label": {
-        "en": "Area 5: cheaper maximum boundary; 15 adds aim time",
-        "th": "ด่าน 5: ขอบเขตสูงสุดราคาต่ำกว่า 15 แต่เล็งสั้นกว่า",
-        "ja": "エリア5：最大境界を安く、照準時間は15に劣る"
+        "en": "Area 5: the strongest line at a lower price than 15, but less time to aim",
+        "th": "ด่าน 5: สายขาดยากสุดในราคาถูกกว่าคัน 15 แต่มีเวลาเล็งน้อยกว่า",
+        "ja": "エリア5：15より安く糸が最も切れにくい。ただし狙う時間は短い"
       },
       "recommendation": {
-        "en": "In area 5, choose 08 at its full ¥1,500 quote when the largest Float/Ayu fish-position threshold matters: its multiplier ×24 is the group maximum. Rod 15 costs full ¥2,000 for the same ×24 plus 20 more aim units (60 vs 40). At the same ¥1,500, rod 07 gives more aim (70) but a lower ×9 threshold.",
-        "th": "ที่ด่าน 5 เลือกคัน 08 ราคาเต็ม ¥1,500 เมื่อให้ความสำคัญกับเกณฑ์ตำแหน่งปลาสูงสุดของสายทุ่น/อายุ: ตัวคูณ ×24 สูงสุดในกลุ่ม คัน 15 ราคาเต็ม ¥2,000 ได้ ×24 เท่ากันแต่ช่วงเล็งมากกว่า 20 หน่วย (60 เทียบกับ 40) ส่วนคัน 07 ราคาเต็มเท่ากันที่ ¥1,500 แต่เล็งได้นานกว่า (70) และมีเกณฑ์ ×9 ต่ำกว่า",
-        "ja": "エリア5でウキ・アユ竿の魚位置しきい値を最大にしたいなら、08を全額1,500円で選びます。倍率×24はグループ最大です。15は全額2,000円で同じ×24に加え、照準上限が20高い（60対40）竿です。同じ全額1,500円の07は照準上限70ですが、しきい値は×9です。"
+        "en": "In area 5, choose 08 at ¥1,500 if you want the line that breaks least easily among float rods (×24). 15 costs ¥2,000 for the same ×24 plus 20 more aim (60 versus 40). 07 costs the same ¥1,500 and gives more time to aim (70) but a line that breaks more easily (×9).",
+        "th": "ที่ด่าน 5 เลือกคัน 08 ราคาเต็ม ¥1,500 ถ้าอยากให้สายขาดยากสุดของสายทุ่น/อายุ (×24) คัน 15 ราคาเต็ม ¥2,000 ได้ ×24 เท่ากันแต่เวลาเล็งมากกว่า 20 (60 เทียบกับ 40) ส่วนคัน 07 ราคาเต็มเท่ากันที่ ¥1,500 มีเวลาเล็งนานกว่า (70) แต่สายขาดง่ายกว่า (×9)",
+        "ja": "エリア5でウキ・アユ竿の糸を最も切れにくくしたいなら、08（1,500円）を選びます。切れにくさ×24はグループ最大です。15は2,000円で、同じ×24に加えて狙う時間が20長い（60対40）竿です。同じ1,500円の07は狙う時間が70ですが、切れにくさは×9です。"
       },
       "reason": {
-        "en": "Rod 08 trades away aim time to reach the float group’s largest threshold at a lower full price than 15. Choose by whether tile adjustment or that single tackle-loss boundary matters more.",
-        "th": "คัน 08 แลกช่วงเล็งที่สั้นกว่าเพื่อให้ถึงเกณฑ์สูงสุดของสายทุ่นในราคาเต็มต่ำกว่าคัน 15 เลือกจากว่าต้องการเวลาปรับช่องเป้าหมายหรือพื้นที่ก่อนเส้นทางอุปกรณ์หายแบบนั้นมากกว่า",
-        "ja": "08は照準時間を抑え、15より低い全額でウキ竿最大のしきい値を得ます。タイル調整時間と、特定の道具損失境界のどちらを重視するかで選んでください。"
+        "en": "08 gives up some aim time to reach the strongest float-rod line at a lower price than 15. Choose by whether aim time or line strength matters more to you.",
+        "th": "คัน 08 ยอมมีเวลาเล็งน้อยลงเพื่อให้สายขาดยากสุดของสายทุ่น ในราคาเต็มถูกกว่าคัน 15 ให้เลือกตามว่าอยากได้เวลาเล็งหรือสายขาดยากมากกว่า",
+        "ja": "08は狙う時間を抑えて、15より安い価格でウキ竿最大の切れにくさを得る竿です。狙う時間と糸の切れにくさのどちらを重視するかで選んでください。"
       },
       "alternatives": [
         {
@@ -463,19 +463,19 @@
     },
     "09": {
       "label": {
-        "en": "Areas 4–5: budget float rod; longer aim: 14 in area 4, 04 in area 5",
-        "th": "ด่าน 4–5: สายทุ่นประหยัด; เล็งนานขึ้นเลือก 14 ด่าน 4 หรือ 04 ด่าน 5",
-        "ja": "エリア4・5の節約用、照準時間はエリア4で14、5で04"
+        "en": "Areas 4–5: budget float rod; for more time to aim, 14 in area 4 or 04 in area 5",
+        "th": "ด่าน 4–5: สายทุ่นราคาประหยัด; อยากมีเวลาเล็งนานขึ้นเลือกคัน 14 (ด่าน 4) หรือคัน 04 (ด่าน 5)",
+        "ja": "エリア4・5の節約用。狙う時間を伸ばすならエリア4は14、エリア5は04"
       },
       "recommendation": {
-        "en": "In areas 4 and 5, buy 09 for a low-cost float setup at full ¥200 (aim 30, boundary ×12). In area 4, 04 is not sold: choose 14 at full ¥1,500 for more aim time (80) and a higher boundary (×15), or 15 at full ¥2,000 for boundary ×24 with aim 60. In area 5, 04 at full ¥500 gives more aim time (50) but a lower boundary (×7); choose it when target adjustment time matters more than that boundary. Keep 09 if its aim time is sufficient.",
-        "th": "ด่าน 4 และ 5 ซื้อคัน 09 ราคาเต็ม ¥200 เมื่ออยากเริ่มสายทุ่นแบบประหยัด (เวลาเล็ง 30, ขอบเขต ×12) ด่าน 4 ไม่มีคัน 04 ขาย: ถ้าต้องการเล็งนานขึ้นและขอบเขตเพิ่ม เลือก 14 ราคาเต็ม ¥1,500 (80/×15); ถ้าต้องการขอบเขตสูงสุด เลือก 15 ราคาเต็ม ¥2,000 (60/×24) ด่าน 5 มีคัน 04 ราคาเต็ม ¥500 ซึ่งเล็งนานกว่า (50) แต่ขอบเขตต่ำกว่า (×7) เลือกเมื่อเวลาขยับเป้าสำคัญกว่าขอบเขตนี้ ถ้ามี 09 และเล็งทันแล้ว ให้ใช้ต่อ",
-        "ja": "エリア4・5で安くウキ釣りを始めるなら、09を全額200円で購入（照準30、境界×12）。エリア4では04は販売されません。照準時間と境界を伸ばすなら14を全額1,500円（80・×15）、最大境界なら15を全額2,000円（60・×24）で選びます。エリア5の04は全額500円で照準50と長い一方、境界は×7と低くなります。境界より狙いを調整する時間を重視する場合に選び、09の照準で十分なら使い続けます。"
+        "en": "In areas 4 and 5, buy 09 at ¥200 for a budget float setup (aim 30, line strength ×12). Area 4 does not sell 04: for more time to aim and a line that breaks less easily, choose 14 at ¥1,500 (80/×15), or 15 at ¥2,000 (60/×24) for the strongest line. In area 5, 04 at ¥500 gives more time to aim (50) but a line that breaks more easily (×7); choose it when aim time matters more. If you own 09 and its aim time is enough, keep using it.",
+        "th": "ด่าน 4 และ 5 ซื้อคัน 09 ราคาเต็ม ¥200 ถ้าอยากเริ่มสายทุ่นแบบประหยัด (เวลาเล็ง 30 สายขาดยาก ×12) ด่าน 4 ไม่ขายคัน 04 ถ้าอยากมีเวลาเล็งนานขึ้นและสายขาดยากขึ้น เลือกคัน 14 ราคาเต็ม ¥1,500 (80/×15) ถ้าอยากให้สายขาดยากสุด เลือกคัน 15 ราคาเต็ม ¥2,000 (60/×24) ด่าน 5 มีคัน 04 ราคาเต็ม ¥500 ซึ่งมีเวลาเล็งนานกว่า (50) แต่สายขาดง่ายกว่า (×7) เลือกเมื่อเวลาเล็งสำคัญกว่า ถ้ามีคัน 09 อยู่แล้วและเล็งทัน ใช้ต่อได้ ไม่ต้องซื้อใหม่",
+        "ja": "エリア4・5で安くウキ釣りを始めるなら、09（200円、狙う時間30、切れにくさ×12）を買います。エリア4には04がありません。狙う時間と切れにくさを伸ばすなら14（1,500円、80・×15）、糸が最も切れにくい竿なら15（2,000円、60・×24）です。エリア5の04は500円で狙う時間が50と長い一方、切れにくさは×7に下がります。切れにくさより狙う時間を重視する場合に選んでください。09の狙う時間で足りるなら使い続けられます。"
       },
       "reason": {
-        "en": "09 is inexpensive but does not lead on aim time. Area-4 rod 14 improves both traced effects at a much higher full price; area-5 rod 04 trades a lower boundary for more aim time. These effects are separate, not an overall catch-success ranking.",
-        "th": "คัน 09 ราคาต่ำแต่ไม่ได้เด่นด้านเวลาเล็ง ด่าน 4 คัน 14 เพิ่มผลที่ตามโค้ดได้ทั้งสองด้านแต่ราคาเต็มสูงกว่ามาก ส่วนด่าน 5 คัน 04 แลกขอบเขตที่ต่ำลงกับเวลาเล็งที่มากขึ้น สองผลนี้แยกกัน จึงไม่ใช่อันดับความสำเร็จในการจับปลา",
-        "ja": "09は安価ですが照準時間では最上位ではありません。エリア4の14は両効果が上がる一方で全額価格が大幅に高く、エリア5の04は境界を下げて照準時間を増やす選択です。別々の効果であり、総合的な釣果順位ではありません。"
+        "en": "09 is cheap but not strong on aim time. In area 4, 14 is better on both counts but much more expensive. In area 5, 04 gives up line strength for more time to aim. The two are separate, not a catch-success ranking.",
+        "th": "คัน 09 ราคาถูกแต่เวลาเล็งไม่ได้เด่น ด่าน 4 คัน 14 ดีกว่าทั้งสองข้อแต่แพงกว่ามาก ส่วนด่าน 5 คัน 04 ยอมให้สายขาดง่ายกว่าเพื่อแลกกับเวลาเล็งที่นานกว่า สองข้อนี้แยกกัน ไม่ใช่อันดับว่าจับปลาสำเร็จง่ายแค่ไหน",
+        "ja": "09は安いですが、狙う時間は最上位ではありません。エリア4の14はどちらの値も上ですが、価格が大きく上がります。エリア5の04は切れにくさを下げて狙う時間を増やす選択です。別々の効果で、釣果の総合順位ではありません。"
       },
       "alternatives": [
         {
@@ -500,19 +500,19 @@
     },
     "0A": {
       "label": {
-        "en": "Keep if sufficient; collect it in area 4 before buying a duplicate",
-        "th": "มีแล้วใช้ต่อถ้าเล็งทัน; ด่าน 4 รับจากหีบก่อนซื้อซ้ำ",
-        "ja": "照準が足りれば継続、エリア4は重複購入前に宝箱へ"
+        "en": "If you already own it and aim time is enough, keep using it; in area 4, collect it from the chest before buying a second",
+        "th": "ถ้ามีอยู่แล้วและเล็งทัน ใช้ต่อได้ ไม่ต้องซื้อใหม่; ด่าน 4 ไปรับจากหีบก่อนซื้อซ้ำ",
+        "ja": "狙う時間が足りれば継続。エリア4は重複して買う前に宝箱へ"
       },
       "recommendation": {
-        "en": "Keep 0A if its aiming time is enough for you. In area 4, claim it from the unopened locked town chest with key 17 and a free rod slot before buying another copy. If you need a lure rod earlier, 0A costs ¥500; where both are stocked, choose 0C at ¥600 if the longer aiming time and higher fish-position loss limit are worth paying for. In area 5, 0A is the recorded local lure-rod offer and 0C is not stocked.",
-        "ja": "照準時間が足りているなら0Aを使い続けてください。エリア4の施錠宝箱が未開封なら、カギ17と竿欄の空きを用意して受け取り、重複購入を避けられます。それ以前にルアー竿が必要なら0Aは500円。両方を売るエリアでは、照準時間と道具喪失の魚位置境界を増やしたいときに600円の0Cを選びます。エリア5の記録上のルアー竿は0Aで、0Cは在庫にありません。",
-        "th": "ถ้ามี 0A อยู่แล้วและเวลาเล็งพอ ใช้ต่อได้ ด่าน 4 ถ้าหีบล็อกในเมืองยังไม่เปิด ให้พกกุญแจ 17 และเว้นช่องคันเบ็ดไปรับคันนี้ก่อนซื้อซ้ำ ถ้าต้องใช้ลัวร์ก่อนถึงด่านนั้น 0A ราคา ¥500 เป็นตัวเริ่ม; ในด่านที่มีขายทั้งคู่ เลือก 0C ราคา ¥600 เมื่ออยากได้เวลาเล็งและขอบเขตตำแหน่งปลาก่อนเสียอุปกรณ์เพิ่ม ด่าน 5 มีรายการขาย 0A แต่ไม่มี 0C"
+        "en": "If you own 0A and its aim time is enough, keep using it. In area 4, if the locked town chest is still unopened, bring key 17 and leave a rod slot free to collect this rod before buying another. If you need a lure rod earlier, 0A costs ¥500; where both are sold, choose 0C at ¥600 if more time to aim and a line that breaks less easily are worth the extra. Area 5 sells 0A but not 0C.",
+        "ja": "狙う時間が足りているなら0Aを使い続けてください。エリア4の施錠された宝箱がまだ開いていなければ、カギ17を持ち、竿の欄に空きを作って受け取ると、重複購入を避けられます。それ以前にルアー竿が必要なら0Aは500円です。両方を売っているエリアでは、狙う時間と切れにくさを上げたいときに600円の0Cを選びます。エリア5で売っているルアー竿は0Aだけで、0Cはありません。",
+        "th": "ถ้ามีคัน 0A อยู่แล้วและเวลาเล็งพอ ใช้ต่อได้ ด่าน 4 ถ้าหีบล็อกในเมืองยังไม่เปิด ให้พกกุญแจ 17 และเว้นช่องคันเบ็ดไว้ไปรับคันนี้ก่อนซื้อซ้ำ ถ้าต้องใช้ลัวร์ก่อนถึงด่านนั้น คัน 0A ราคา ¥500 เป็นตัวเริ่ม ในด่านที่มีขายทั้งสองคัน เลือกคัน 0C ราคา ¥600 ถ้าอยากได้เวลาเล็งนานขึ้นและสายขาดยากขึ้น ด่าน 5 ร้านขายคัน 0A แต่ไม่มีคัน 0C"
       },
       "reason": {
-        "en": "Rod 0A is the cheaper listed entry, not the strongest lure rod. Its low aim rank is based on the full-HP cutoff; HP below 100 shortens the lure-rod aim window.",
-        "th": "คัน 0A เป็นตัวเริ่มที่มีราคาต่ำกว่า ไม่ใช่คันลัวร์ที่ค่าสูงสุด อันดับช่วงเล็งเทียบที่ HP เต็ม และ HP ต่ำกว่า 100 จะลดช่วงเล็งของคันลัวร์",
-        "ja": "0Aは安価な販売開始枠で、ルアー竿の最大値ではありません。照準順位はHP満タン時の上限に基づき、HP100未満ではルアー竿の照準時間が短縮されます。"
+        "en": "0A is the cheap starter, not the strongest lure rod. Its aim rank is at full HP; below 100 HP lure rods get less time to aim.",
+        "th": "คัน 0A เป็นตัวเริ่มราคาถูก ไม่ใช่คันลัวร์ที่ตัวเลขสูงสุด อันดับเวลาเล็งเทียบที่ HP เต็ม ถ้า HP ต่ำกว่า 100 เวลาเล็งของคันลัวร์จะสั้นลง",
+        "ja": "0Aは安く始めるための竿で、ルアー竿の中で最強ではありません。狙う時間の順位はHP満タンのときの値で、HPが100未満だとルアー竿の狙う時間は短くなります。"
       },
       "alternatives": [
         {
@@ -531,19 +531,19 @@
     },
     "0B": {
       "label": {
-        "en": "Keep if enough; buy stocked 0C for longer aim and a farther loss boundary",
-        "th": "มีแล้วใช้ต่อถ้าพอ; ซื้อ 0C เพื่อเล็งนานและปลามีพื้นที่ก่อนเสียอุปกรณ์มากขึ้น",
-        "ja": "十分なら継続、購入は照準時間・道具喪失境界が上の0C"
+        "en": "If you already own it and it is enough, keep using it; to buy, 0C gives more time to aim and a line that breaks less easily",
+        "th": "ถ้ามีอยู่แล้วและพอ ใช้ต่อได้ ไม่ต้องซื้อใหม่; ถ้าจะซื้อ คัน 0C มีเวลาเล็งนานกว่าและสายขาดยากกว่า",
+        "ja": "足りるなら継続。買うなら狙う時間が長く糸も切れにくい0C"
       },
       "recommendation": {
-        "en": "Use 0B only if you already have it; no purchase location appears in the six extracted area-shop lists. If buying a lure rod, 0C is listed in area 1 and gives a longer cutoff (100 vs 80) and a higher multiplier (×21 vs ×18).",
-        "th": "ใช้คัน 0B เฉพาะเมื่อมีอยู่แล้ว เพราะไม่พบจุดขายในรายการร้านทั้ง 6 ด่านที่ถอดไว้ ถ้าจะซื้อคันลัวร์ คัน 0C มีขายที่ด่าน 1 และให้ช่วงเล็งยาวกว่า (100 เทียบกับ 80) กับตัวคูณสูงกว่า (×21 เทียบกับ ×18)",
-        "ja": "0Bはすでに持っている場合だけ使ってください。抽出した全6エリアの店頭一覧に販売場所がありません。ルアー竿を買うなら、エリア1で販売される0Cは照準上限100（0Bは80）、倍率×21（0Bは×18）です。"
+        "en": "Use 0B only if you already own it; no shop in the six areas sells it. If you are buying a lure rod, 0C is sold in area 1 and gives more time to aim (100 versus 80) and a line that breaks less easily (×21 versus ×18).",
+        "th": "ใช้คัน 0B เฉพาะเมื่อมีอยู่แล้ว เพราะไม่พบว่าร้านทั้ง 6 ด่านขายคันนี้ ถ้าจะซื้อคันลัวร์ คัน 0C มีขายที่ด่าน 1 และมีเวลาเล็งนานกว่า (100 เทียบกับ 80) กับสายขาดยากกว่า (×21 เทียบกับ ×18)",
+        "ja": "0Bはすでに持っている場合だけ使ってください。全6エリアの店では売っていません。ルアー竿を買うなら、エリア1で売っている0Cは狙う時間が100（0Bは80）、切れにくさが×21（0Bは×18）です。"
       },
       "reason": {
-        "en": "The record's stored price does not prove a shop offer. The listed 0C is the next available higher-stat option in the ROM shop stock.",
-        "th": "ราคาที่เก็บในระเบียนไม่ได้ยืนยันว่าร้านขาย คัน 0C เป็นตัวเลือกที่มีขายและมีค่าสองด้านสูงกว่าในสต็อกร้านที่ถอดจาก ROM",
-        "ja": "レコード内の価格だけでは店頭販売を証明しません。店頭在庫で確認できる0Cは、効果値が高い次の選択肢です。"
+        "en": "The price stored in the game data does not prove a shop sells the rod. 0C is the nearest rod that shops do sell and it is better on both counts.",
+        "th": "ราคาที่เก็บไว้ในข้อมูลเกมไม่ได้แปลว่าร้านขายจริง คัน 0C เป็นตัวเลือกที่ร้านขายและได้ดีกว่าทั้งสองข้อ",
+        "ja": "ゲームデータに入っている価格だけでは、店で売っている証拠になりません。店で買える0Cは、どちらの値も上の次の候補です。"
       },
       "alternatives": [
         {
@@ -560,19 +560,19 @@
     },
     "0C": {
       "label": {
-        "en": "Area 1: more aim and boundary than 0A; area 4: compare 0D",
-        "th": "ด่าน 1: เล็งนานและปลามีพื้นที่ก่อนเสียอุปกรณ์มากกว่า 0A; ด่าน 4 เทียบ 0D",
-        "ja": "エリア1では0Aより照準時間・道具喪失境界が上、4では0Dと比較"
+        "en": "Area 1: more time to aim and a line that breaks less easily than 0A; area 4: compare 0D",
+        "th": "ด่าน 1: มีเวลาเล็งนานกว่าและสายขาดยากกว่าคัน 0A; ด่าน 4 ดูคัน 0D",
+        "ja": "エリア1では0Aより狙う時間が長く糸も切れにくい。エリア4は0Dと比較"
       },
       "recommendation": {
-        "en": "In area 1, choose 0C at full ¥600 if you want more aim time and threshold than 0A: cutoff 100/×21 versus 70/×15, a ¥100 difference between new-purchase quotes. In area 4, 0D costs full ¥650 and raises those values to 120/×24; that is ¥50 more between new quotes, but buying it while you own 0C still costs the full ¥650.",
-        "th": "ที่ด่าน 1 เลือกคัน 0C ราคาเต็ม ¥600 ถ้าต้องการช่วงเล็งและเกณฑ์สูงกว่าคัน 0A: 100/×21 เทียบกับ 70/×15 ต่างกัน ¥100 ระหว่างราคาซื้อใหม่ ที่ด่าน 4 คัน 0D ราคาเต็ม ¥650 เพิ่มเป็น 120/×24 ต่างกัน ¥50 ระหว่างราคาซื้อใหม่ แต่ถ้ามี 0C อยู่แล้ว การซื้อ 0D ก็ยังต้องจ่ายเต็ม ¥650",
-        "ja": "エリア1で0Aより照準時間としきい値を上げたいなら、0Cを全額600円で選びます。70・×15に対して100・×21で、新品価格の差は100円です。エリア4の0Dは全額650円で120・×24になります。新品価格の差は50円ですが、0Cを持っていても0Dの購入は全額650円です。"
+        "en": "In area 1, choose 0C at ¥600 if you want more time to aim and a line that breaks less easily than 0A: 100/×21 versus 70/×15, ¥100 more between new-purchase prices. In area 4, 0D costs ¥650 and gives 120/×24, ¥50 more; but even if you own 0C, buying 0D still costs the full ¥650.",
+        "th": "ที่ด่าน 1 เลือกคัน 0C ราคาเต็ม ¥600 ถ้าอยากได้เวลาเล็งนานกว่าและสายขาดยากกว่าคัน 0A: 100/×21 เทียบกับ 70/×15 แพงกว่า ¥100 เมื่อเทียบราคาซื้อใหม่ ที่ด่าน 4 คัน 0D ราคาเต็ม ¥650 ได้ 120/×24 แพงกว่า ¥50 เมื่อเทียบราคาซื้อใหม่ แต่ต่อให้มีคัน 0C อยู่แล้ว การซื้อคัน 0D ก็ยังต้องจ่ายเต็ม ¥650",
+        "ja": "エリア1で0Aより狙う時間が長く、糸も切れにくい竿がほしいなら、0C（600円）を選びます。70・×15に対して100・×21で、新品価格の差は100円です。エリア4の0Dは650円で120・×24になります。新品価格の差は50円ですが、0Cを持っていても0Dは650円の全額が必要です。"
       },
       "reason": {
-        "en": "Rod 0C is the second-highest lure rod on both traced effects and is widely stocked. The +2 comparison assumes 100 HP; low HP shortens this rod's aim window.",
-        "th": "คัน 0C มีค่าสองอย่างที่ตามโค้ดได้เป็นอันดับรองจากคันลัวร์สูงสุด และมีขายหลายด่าน การเทียบช่วงเล็งใช้ HP 100; HP ต่ำจะลดช่วงเล็งของคันนี้",
-        "ja": "0Cは追跡したルアー竿の2効果で2番目です。複数エリアで販売されます。照準比較はHP100で、HPが低いと照準時間が短縮されます。"
+        "en": "0C is second-best among lure rods on both counts and is sold in many areas. Aim time is compared at 100 HP; at lower HP it gets shorter.",
+        "th": "คัน 0C ดีเป็นอันดับสองในกลุ่มคันลัวร์ทั้งสองข้อ และขายหลายด่าน เวลาเล็งเทียบที่ HP 100 ถ้า HP ต่ำเวลาเล็งของคันนี้จะสั้นลง",
+        "ja": "0Cはルアー竿の中で、2つの値がどちらも2番目に高く、多くのエリアで売っています。狙う時間はHP100のときの比較で、HPが低いと短くなります。"
       },
       "alternatives": [
         {
@@ -593,19 +593,19 @@
     },
     "0D": {
       "label": {
-        "en": "Area 4: longest lure aim and farthest traced tackle-loss boundary",
-        "th": "ด่าน 4: ลัวร์ที่เล็งนานสุดและปลามีพื้นที่ก่อนเสียอุปกรณ์มากสุด",
-        "ja": "エリア4：ルアーの最長照準・最大道具喪失境界"
+        "en": "Area 4: the lure rod with the most time to aim and the line that breaks least easily",
+        "th": "ด่าน 4: คันลัวร์ที่มีเวลาเล็งนานสุดและสายขาดยากสุด",
+        "ja": "エリア4：ルアー竿で狙う時間が最長、糸も最も切れにくい"
       },
       "recommendation": {
-        "en": "Area 4 lists 0D for a full ¥650. It has the lure group's largest aim cutoff (120) and threshold multiplier (×24). Compared with a new 0C at full ¥600, that is +20 aim units and +3 multiplier for ¥50 more between new-purchase quotes; if you already own 0C, 0D still costs ¥650, not ¥50.",
-        "th": "ด่าน 4 มีคัน 0D ราคาเต็ม ¥650 เป็นคันลัวร์ที่มีช่วงเล็งสูงสุด (120) และตัวคูณเกณฑ์สูงสุด (×24) เมื่อเทียบกับราคาซื้อใหม่ของคัน 0C ที่ ¥600 จะเพิ่มช่วงเล็ง 20 หน่วยและตัวคูณ 3 ในราคาเพิ่ม ¥50 แต่ถ้ามี 0C อยู่แล้ว คัน 0D ยังราคาเต็ม ¥650 ไม่ใช่ ¥50",
-        "ja": "エリア4で0Dは全額650円です。ルアー竿中で照準上限120、しきい値倍率×24が最大です。新品の0C全額600円と比べ、新品価格の差50円で照準が20、倍率が3上がります。すでに0Cを持っていても0Dは650円で、50円の交換費ではありません。"
+        "en": "Area 4 sells 0D for ¥650. It has the most time to aim (120) and the strongest line (×24) of the lure rods. Compared with a new 0C at ¥600, you get 20 more aim and ×3 more line strength for ¥50 more; if you already own 0C, 0D still costs the full ¥650, not ¥50.",
+        "th": "ด่าน 4 ขายคัน 0D ราคาเต็ม ¥650 เป็นคันลัวร์ที่มีเวลาเล็งนานสุด (120) และสายขาดยากสุด (×24) เทียบกับคัน 0C ราคาซื้อใหม่ ¥600 จะได้เวลาเล็งเพิ่ม 20 และสายขาดยากขึ้น ×3 โดยจ่ายเพิ่ม ¥50 แต่ถ้ามีคัน 0C อยู่แล้ว คัน 0D ก็ยังต้องจ่ายเต็ม ¥650 ไม่ใช่ ¥50",
+        "ja": "エリア4で0Dは650円です。ルアー竿の中で狙う時間が最長（120）、切れにくさも最大（×24）です。新品の0C（600円）と比べると、新品価格の差50円で、狙う時間が20、切れにくさが×3上がります。0Cを持っていても0Dは650円で、50円の差額で買えるわけではありません。"
       },
       "reason": {
-        "en": "This is a maximum for the two named code-backed lure effects, not a claim of more bites or an overall best rod. The aim figure assumes 100 HP.",
-        "th": "ค่านี้สูงสุดเฉพาะผลของคันลัวร์สองด้านที่ยืนยันจากโค้ด ไม่ได้แปลว่าปลากินมากขึ้นหรือเป็นคันดีที่สุดโดยรวม ช่วงเล็งเทียบที่ HP 100",
-        "ja": "最大なのはコードで確認したルアー竿の2効果で、食いつき増加や総合最強を意味しません。照準値はHP100時の比較です。"
+        "en": "This is the maximum for just those two lure-rod values. It does not mean more bites or the best rod overall. Aim time is compared at 100 HP.",
+        "th": "ตัวเลขนี้สูงสุดเฉพาะสองข้อของคันลัวร์ คือเวลาเล็งกับความยากที่สายจะขาด ไม่ได้แปลว่าปลากินมากขึ้นหรือเป็นคันที่ดีที่สุดโดยรวม เวลาเล็งเทียบที่ HP 100",
+        "ja": "最大なのは狙う時間と糸の切れにくさの2点だけで、食いつきが増える、総合で最強という意味ではありません。狙う時間はHP100のときの比較です。"
       },
       "alternatives": [
         {
@@ -622,19 +622,19 @@
     },
     "0E": {
       "label": {
-        "en": "Buy for a low casting budget; keep if aim time is sufficient",
-        "th": "ซื้อเมื่อเริ่มสายหวดงบน้อย; มีแล้วใช้ต่อถ้าเล็งทัน",
-        "ja": "投げ釣りを安く開始、照準時間が足りれば継続"
+        "en": "Buy for a low-budget casting start; if you already own it and aim time is enough, keep using it",
+        "th": "ซื้อถ้าเริ่มสายหวดด้วยงบน้อย; ถ้ามีอยู่แล้วและเล็งทัน ใช้ต่อได้ ไม่ต้องซื้อใหม่",
+        "ja": "投げ釣りを安く始めるなら。狙う時間が足りれば継続"
       },
       "recommendation": {
-        "en": "For area-1 casting, start with 0E at full ¥250; it is the listed casting rod there. In areas 4–6 both 0E and 0F are stocked: 0F costs a full ¥600 and raises cutoff 70/×18 to 100/×21, a ¥350 difference between new quotes. Choose 0E when the lower price matters more than that extra aim time and threshold.",
-        "th": "ถ้าจะเริ่มสายหวดที่ด่าน 1 เลือกคัน 0E ราคาเต็ม ¥250 ซึ่งเป็นคันหวดที่ลงไว้ในร้านด่านนั้น ที่ด่าน 4–6 มีทั้ง 0E และ 0F; คัน 0F ราคาเต็ม ¥600 เพิ่มค่าจาก 70/×18 เป็น 100/×21 ต่างกัน ¥350 ระหว่างราคาซื้อใหม่ เลือก 0E เมื่อราคาต่ำสำคัญกว่าช่วงเล็งและเกณฑ์ที่เพิ่มขึ้น",
-        "ja": "エリア1で投げ釣りを始めるなら、店頭にある0Eを全額250円で選びます。エリア4〜6には0Eと0Fがあり、0Fは全額600円で70・×18から100・×21に上がります。新品価格の差350円を払うかは、照準時間としきい値の向上が必要かで決めます。"
+        "en": "To start casting in area 1, choose 0E at ¥250, the casting rod sold there. Areas 4–6 sell both 0E and 0F: 0F costs ¥600 and raises 70/×18 to 100/×21, ¥350 more between new-purchase prices. Choose 0E if the low price matters more than the extra aim time and line strength.",
+        "th": "ถ้าจะเริ่มสายหวดที่ด่าน 1 เลือกคัน 0E ราคาเต็ม ¥250 ซึ่งเป็นคันหวดที่ร้านด่านนั้นขาย ที่ด่าน 4–6 มีทั้งคัน 0E และคัน 0F คัน 0F ราคาเต็ม ¥600 ดีขึ้นจาก 70/×18 เป็น 100/×21 แพงกว่า ¥350 เมื่อเทียบราคาซื้อใหม่ เลือกคัน 0E ถ้าราคาถูกสำคัญกว่าเวลาเล็งและสายขาดยากที่เพิ่มขึ้น",
+        "ja": "エリア1で投げ釣りを始めるなら、店で売っている0E（250円）を選びます。エリア4〜6には0Eと0Fがあり、0Fは600円で70・×18から100・×21に上がります。新品価格の差350円を払うかどうかは、狙う時間と切れにくさの向上が必要かで決めます。"
       },
       "reason": {
-        "en": "0E is the lowest-priced casting rod in area 1. The group comparison is at full HP; casting aim cutoffs are shortened below 100 HP.",
-        "th": "คัน 0E เป็นคันหวดราคาต่ำสุดที่ด่าน 1 การเทียบในกลุ่มใช้ HP เต็ม และช่วงเล็งของคันหวดจะสั้นลงเมื่อ HP ต่ำกว่า 100",
-        "ja": "0Eはエリア1の投げ竿で最安です。グループ比較はHP満タン時で、HP100未満では投げ竿の照準時間が短縮されます。"
+        "en": "0E is the cheapest casting rod in area 1. The group comparison is at full HP; below 100 HP casting rods get less time to aim.",
+        "th": "คัน 0E เป็นคันหวดที่ถูกสุดในด่าน 1 การเทียบในกลุ่มใช้ HP เต็ม ถ้า HP ต่ำกว่า 100 เวลาเล็งของคันหวดจะสั้นลง",
+        "ja": "0Eはエリア1で売っている投げ竿の中で最安です。グループの比較はHP満タンのときで、HPが100未満だと投げ竿の狙う時間は短くなります。"
       },
       "alternatives": [
         {
@@ -651,19 +651,19 @@
     },
     "0F": {
       "label": {
-        "en": "Buy from area 2 for longer aim than 0E; keep if sufficient",
-        "th": "ด่าน 2 เป็นต้นไป: ซื้อเพื่อเล็งนานกว่า 0E; พอแล้วใช้ต่อ",
-        "ja": "エリア2以降で0Eより長い照準、十分なら継続"
+        "en": "From area 2: buy for more time to aim than 0E; if you already own it, keep using it",
+        "th": "ด่าน 2 เป็นต้นไป: ซื้อถ้าอยากมีเวลาเล็งนานกว่าคัน 0E; ถ้าพอแล้วใช้ต่อได้ ไม่ต้องซื้อใหม่",
+        "ja": "エリア2以降：0Eより狙う時間を伸ばしたいなら。足りれば継続"
       },
       "recommendation": {
-        "en": "Area 2 first lists 0F at full ¥600. Where 0E is also stocked, 0F raises cutoff 70/×18 to 100/×21; compare the full quotes, not a presumed trade-in. In area 6, 10 costs full ¥1,500 for 120/×24—another ¥900 between new quotes—so keep 0F if its window is enough.",
-        "th": "ด่าน 2 เป็นด่านแรกที่ลงขายคัน 0F ราคาเต็ม ¥600 ในด่านที่มี 0E ด้วย คัน 0F เพิ่มค่าจาก 70/×18 เป็น 100/×21 ให้เทียบราคาเต็ม ไม่ใช่สมมติว่ามีส่วนลดแลกคันเก่า ที่ด่าน 6 คัน 10 ราคาเต็ม ¥1,500 ได้ 120/×24 ต่างกันอีก ¥900 ระหว่างราคาซื้อใหม่ ใช้ 0F ต่อถ้าช่วงเล็งพอแล้ว",
-        "ja": "エリア2で初めて販売される0Fは全額600円です。0Eもあるエリアでは70・×18から100・×21に上がります。下取りを想定せず全額同士で比較してください。エリア6の10は全額1,500円で120・×24になり、新品価格の差はさらに900円です。0Fで足りるなら使い続けてください。"
+        "en": "Area 2 is the first to sell 0F, at ¥600. Where 0E is also sold, 0F raises 70/×18 to 100/×21; compare full prices, and do not assume a trade-in discount. In area 6, 10 costs ¥1,500 for 120/×24, another ¥900 more between new-purchase prices. Keep using 0F if its aim time is enough.",
+        "th": "ด่าน 2 เป็นด่านแรกที่ร้านขายคัน 0F ราคาเต็ม ¥600 ในด่านที่มีคัน 0E ด้วย คัน 0F ดีขึ้นจาก 70/×18 เป็น 100/×21 ให้เทียบราคาเต็ม อย่าคิดว่าจะมีส่วนลดเมื่อเอาคันเก่าไปแลก ที่ด่าน 6 คัน 10 ราคาเต็ม ¥1,500 ได้ 120/×24 แพงกว่าอีก ¥900 เมื่อเทียบราคาซื้อใหม่ ถ้าเวลาเล็งของคัน 0F พอแล้ว ใช้ต่อได้ ไม่ต้องซื้อใหม่",
+        "ja": "エリア2で初めて売られる0Fは600円です。0Eもあるエリアでは、70・×18から100・×21に上がります。下取りは考えず、全額どうしで比べてください。エリア6の10は1,500円で120・×24になり、新品価格の差はさらに900円です。0Fで足りるなら使い続けてください。"
       },
       "reason": {
-        "en": "0F is the middle of three casting rods: a measurable step above 0E without paying the full quote for the maximum 10.",
-        "th": "คัน 0F อยู่กลางกลุ่มหวดสามคัน เพิ่มผลที่วัดได้จาก 0E โดยยังไม่ต้องจ่ายราคาเต็มของคันสูงสุด 10",
-        "ja": "0Fは投げ竿3本の中間です。10の全額を払わず、0Eから確認済み効果を上げられます。"
+        "en": "0F is the middle of the three casting rods: a clear step above 0E without paying the full price of the best one, 10.",
+        "th": "คัน 0F อยู่กลางกลุ่มคันหวดสามคัน ดีกว่าคัน 0E ชัดเจนโดยไม่ต้องจ่ายราคาเต็มของคัน 10 ที่ดีที่สุด",
+        "ja": "0Fは投げ竿3本の中間です。10の全額を払わずに、0Eより効果をはっきり上げられます。"
       },
       "alternatives": [
         {

@@ -9,13 +9,13 @@ const starting = {
   en: [
     /All four characters start with the Fishing Notebook/,
     /no purchase or quest is needed for the initial copy/,
-    /general tools.*05/,
+    /general tools.*Fishing Notebook/,
   ],
-  ja: [/4人とも最初から釣りノート/, /最初の1冊に購入やイベントは不要/, /道具一覧で05/],
+  ja: [/4人とも最初から釣りノート/, /最初の1冊に購入やイベントは不要/, /道具一覧で釣りノート/],
   th: [
     /ตัวละครทั้ง 4 คนมีสมุดตกปลาตั้งแต่เริ่ม/,
     /ไม่ต้องซื้อหรือทำเควสต์เพื่อรับเล่มแรก/,
-    /รายการเครื่องมือ.*05/,
+    /รายการเครื่องมือ.*สมุดบันทึกการตกปลา/,
   ],
 }
 checkProvenance()

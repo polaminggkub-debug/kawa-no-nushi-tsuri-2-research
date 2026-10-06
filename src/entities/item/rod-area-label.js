@@ -1,4 +1,5 @@
 import { rodAreaCopy } from './rod-area-copy.js'
+import { rodRefName } from './rod-ref-name.js'
 
 const AIM_STYLES = [2, 4]
 
@@ -12,11 +13,7 @@ function offerPrice(lang, price) {
 
 function aimCondition(lang, item) {
   if (!AIM_STYLES.includes(Number(item.decodedFields?.styleCode))) return ''
-  return lang === 'th'
-    ? ' (HP 100 ใช้กับเวลาเล็งเท่านั้น)'
-    : lang === 'ja'
-      ? '（HP100は照準値のみ）'
-      : ' (HP 100 applies to aim only)'
+  return lang === 'th' ? ' (ที่ HP 100)' : lang === 'ja' ? '（HP100のとき）' : ' (at HP 100)'
 }
 
 function leader(choices, field) {
@@ -53,7 +50,9 @@ export function tradeoffDescription(lang, subject, other) {
         ? 'boundaryLess'
         : ''
   const keys = [aimKey, boundaryKey].filter(Boolean)
-  const phrases = keys.map((key) => relationCopy(lang, key).replace('{id}', other.id))
+  const phrases = keys.map((key) =>
+    relationCopy(lang, key).replace('{id}', rodRefName(lang, other.id)),
+  )
   const opposing =
     keys.length === 2 && subject.aim > other.aim !== subject.boundary > other.boundary
   const joiner = opposing ? relationCopy(lang, 'but') : relationCopy(lang, 'and')
@@ -62,7 +61,7 @@ export function tradeoffDescription(lang, subject, other) {
 
 export function higherPriceDescription(lang, subject, other) {
   return relationCopy(lang, 'higherPrice')
-    .replace('{id}', subject.id)
+    .replace('{id}', rodRefName(lang, subject.id))
     .replace('{price}', offerPrice(lang, subject.price))
     .replace('{comparison}', tradeoffDescription(lang, subject, other))
     .replace('{hpNote}', aimCondition(lang, subject.item))
@@ -79,7 +78,7 @@ export function dominatedReason(lang, candidate, better) {
   if (better.aim > candidate.aim) keys.push('aimMoreAny')
   if (better.boundary > candidate.boundary) keys.push('boundaryMoreAny')
   return keys
-    .map((key) => relationCopy(lang, key).replace('{id}', candidate.id))
+    .map((key) => relationCopy(lang, key).replace('{id}', rodRefName(lang, candidate.id)))
     .join(relationCopy(lang, 'and'))
 }
 

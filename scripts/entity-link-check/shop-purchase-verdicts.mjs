@@ -10,9 +10,9 @@ import { text_ja } from '../../src/pages/shops/text_ja.js'
 
 const labels = { en: text_en, th: text_th, ja: text_ja }
 const scope = {
-  en: 'Compares new-purchase price, aim and the traced boundary, not catch success.',
-  th: 'เทียบราคาซื้อใหม่ เวลาเล็ง และขอบเขตที่ตรวจแล้ว ไม่ใช่อันดับโอกาสตกสำเร็จ',
-  ja: '新品価格・照準時間・確認した距離境界の比較で、釣果の順位ではありません。',
+  en: 'Compares new-purchase price, time to aim and line strength, not catch success.',
+  th: 'เทียบราคาซื้อใหม่ เวลาเล็ง และสายขาดยาก ไม่ใช่อันดับโอกาสตกสำเร็จ',
+  ja: '新品価格・狙う時間・糸の切れにくさの比較で、釣果の順位ではありません。',
 }
 for (const locale of ['en', 'th', 'ja']) checkLocale(locale)
 console.log(
@@ -26,24 +26,17 @@ function checkLocale(locale) {
     en: [
       'buying advice for this area',
       'price',
-      'aiming time',
-      'traced boundary',
+      'time to aim',
+      'line strength',
       'not catch success',
     ],
-    th: [
-      'คำแนะนำซื้อ',
-      'ด่านนี้',
-      'ราคา',
-      'เวลาเล็ง',
-      'ขอบเขตที่ตรวจแล้ว',
-      'ไม่ใช่อันดับโอกาสตกสำเร็จ',
-    ],
+    th: ['คำแนะนำซื้อ', 'ด่านนี้', 'ราคา', 'เวลาเล็ง', 'สายขาดยาก', 'ไม่ใช่อันดับโอกาสตกสำเร็จ'],
     ja: [
       'このエリア',
       '購入アドバイス',
       '価格',
-      '照準時間',
-      '確認した距離境界',
+      '狙う時間',
+      '糸の切れにくさ',
       '釣果の順位ではありません',
     ],
   }[locale]

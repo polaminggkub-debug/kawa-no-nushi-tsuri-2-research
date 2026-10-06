@@ -249,19 +249,19 @@ def build():
             else:
                 hp_detail = None
             entry["summary"] = loc(
-                f"Use for {style['en']} fishing; a longer aim window gives you more time to position the cast.",
-                f"{style['ja']}釣り用。照準時間が長いほど投げる位置を調整できる。",
-                f"ใช้ตกแบบ{style['th']}; ช่วงเล็งที่นานขึ้นให้เวลาปรับจุดปล่อยเหยื่อมากขึ้น",
+                f"Use for {style['en']} fishing; more time to aim gives you longer to position the cast.",
+                f"{style['ja']}釣り用。狙う時間が長いほど投げる位置を調整できる。",
+                f"ใช้ตกแบบ{style['th']}; มีเวลาเล็งนานขึ้นจะมีเวลาปรับจุดปล่อยเหยื่อมากขึ้น",
             )
             entry["facts"] = loc_lists(
-                [f"Aim window ranks {aim_rank}/{group_count} among this style at full HP; rank 1 is longest."],
-                [f"HP満タン時の照準時間は同系統{group_count}本中{aim_rank}位。1位が最長。"],
-                [f"เมื่อ HP เต็ม ช่วงเล็งอยู่ลำดับ {aim_rank}/{group_count} ในคันชนิดเดียวกัน; อันดับ 1 นานที่สุด"],
+                [f"Time to aim ranks {aim_rank}/{group_count} among this style at full HP; rank 1 is longest."],
+                [f"HP満タン時の狙う時間は同系統{group_count}本中{aim_rank}位。1位が最長。"],
+                [f"เมื่อ HP เต็ม เวลาเล็งอยู่ลำดับ {aim_rank}/{group_count} ในคันแบบเดียวกัน; อันดับ 1 คือนานที่สุด"],
             )
             if hp_detail:
-                entry["facts"]["en"].append("Casting and lure rods give you a shorter aim window when HP is below 100.")
-                entry["facts"]["ja"].append("キャスティング・ルアー竿はHP100未満で照準時間が短くなる。")
-                entry["facts"]["th"].append("คันคาสติ้งและคันลัวร์มีช่วงเล็งสั้นลงเมื่อ HP ต่ำกว่า 100")
+                entry["facts"]["en"].append("Casting and lure rods give you less time to aim when HP is below 100.")
+                entry["facts"]["ja"].append("投げ竿・ルアー竿はHP100未満で狙う時間が短くなる。")
+                entry["facts"]["th"].append("คันหวดและคันลัวร์มีเวลาเล็งสั้นลงเมื่อ HP ต่ำกว่า 100")
             entry["evidenceNotes"] = loc_lists(
                 [f"At 100 HP the cutoff is {cutoff} game counter ticks. The later reach threshold is {range_units} internal position units ({range_mult} × 336), not meters. These are handling values, not catch power."],
                 [f"HP100時の上限はゲーム内カウンター{cutoff}。後段の到達しきい値は{range_units}内部位置単位（{range_mult} × 336）で、メートルではない。釣果の強さを示す値ではない。"],
@@ -284,9 +284,9 @@ def build():
                 "aimRankAt100Hp": aim_rank,
                 "reachRank": range_rank,
                 "of": group_count,
-                "en": f"Within {style['en']} rods: aim window {aim_rank}/{group_count} at full HP; fish-position loss limit {range_rank}/{group_count}. Rank 1 is longest/highest in that dimension.",
-                "ja": f"{style['ja']}用の竿{group_count}本中、HP満タン時の照準時間は{aim_rank}位、道具喪失の魚位置境界は{range_rank}位。1位が最長・最大。",
-                "th": f"ในกลุ่มคัน{style['th']} {group_count} คัน: ช่วงเล็ง {aim_rank}/{group_count} เมื่อ HP เต็ม; ขอบเขตก่อนเสียอุปกรณ์ {range_rank}/{group_count}; อันดับ 1 คือเวลานาน/ขอบเขตสูงสุด",
+                "en": f"Within {style['en']} rods: time to aim ranks {aim_rank}/{group_count} at full HP; line strength ranks {range_rank}/{group_count}. Rank 1 is longest/highest in that dimension.",
+                "ja": f"{style['ja']}用の竿{group_count}本中、HP満タン時の狙う時間は{aim_rank}位、糸の切れにくさは{range_rank}位。1位が最長・最大。",
+                "th": f"ในกลุ่มคัน{style['th']} {group_count} คัน: เวลาเล็งอันดับ {aim_rank}/{group_count} เมื่อ HP เต็ม; สายขาดยากอันดับ {range_rank}/{group_count}; อันดับ 1 คือดีที่สุด",
             }
             match_code = (rod.get("fish_id_match_label") or {}).get("id_hex")
             if match_code:
@@ -427,7 +427,7 @@ def build():
             entry["facts"] = loc_lists(
                 ["The tracked fish check uses the body and wing; it does not read this tail part."],
                 ["追跡した魚判定はボディとウィングを使い、このテール部品は読まない。"],
-                ["เงื่อนไขปลาที่แกะได้ตรวจบอดี้กับปีก ไม่ได้อ่านชิ้นส่วนหางนี้"],
+                ["เกมตรวจเงื่อนไขของปลาจากบอดี้กับปีก ไม่ได้ดูชิ้นส่วนหางนี้"],
             )
 
         elif category == "hook":

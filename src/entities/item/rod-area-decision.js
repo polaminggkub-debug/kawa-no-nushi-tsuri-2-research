@@ -1,4 +1,5 @@
 import { rodAreaCopy, rodAreaScope } from './rod-area-copy.js'
+import { rememberRod, rodRefName } from './rod-ref-name.js'
 import {
   areaRodLabel,
   boundaryPeerContext,
@@ -26,7 +27,9 @@ function rodMetrics(item) {
     aim: Number(item.decodedFields?.castAimHoldCutoffInternal),
     boundary: Number(item.decodedFields?.rangeMultiplier),
   }
-  return Object.values(values).every(Number.isFinite) ? { ...values, id: item.id, item } : null
+  if (!Object.values(values).every(Number.isFinite)) return null
+  rememberRod(item)
+  return { ...values, id: item.id, item }
 }
 
 function localStyleOffers(item, allItems, stage) {
@@ -77,19 +80,15 @@ function offerPrice(lang, price) {
 function offerStats(lang, choice) {
   const hpNote = aimCondition(lang, choice.item)
   if (lang === 'th')
-    return `${offerPrice(lang, choice.price)} · เวลาเล็ง ${choice.aim}${hpNote} · ขอบเขต ×${choice.boundary}`
+    return `${offerPrice(lang, choice.price)} · เวลาเล็ง ${choice.aim}${hpNote} · สายขาดยาก ×${choice.boundary}`
   if (lang === 'ja')
-    return `${offerPrice(lang, choice.price)}・照準${choice.aim}${hpNote}・境界×${choice.boundary}`
-  return `${offerPrice(lang, choice.price)} · aim ${choice.aim}${hpNote} · limit ×${choice.boundary}`
+    return `${offerPrice(lang, choice.price)}・狙う時間${choice.aim}${hpNote}・切れにくさ×${choice.boundary}`
+  return `${offerPrice(lang, choice.price)} · aim ${choice.aim}${hpNote} · line strength ×${choice.boundary}`
 }
 
 function aimCondition(lang, item) {
   if (![2, 4].includes(styleCode(item))) return ''
-  return lang === 'th'
-    ? ' (HP 100 ใช้กับเวลาเล็งเท่านั้น)'
-    : lang === 'ja'
-      ? '（HP100は照準値のみ）'
-      : ' (HP 100 applies to aim only)'
+  return lang === 'th' ? ' (ที่ HP 100)' : lang === 'ja' ? '（HP100のとき）' : ' (at HP 100)'
 }
 
 function localized(valueForLocale) {
@@ -280,7 +279,7 @@ function nextRecordedStage(allItems, style, stage) {
 
 function localeOptions(lang, choices) {
   return choices
-    .map((choice) => `${choice.id} (${offerStats(lang, choice)})`)
+    .map((choice) => `${rodRefName(lang, choice.id)} (${offerStats(lang, choice)})`)
     .join(lang === 'ja' ? '、' : '; ')
 }
 
@@ -380,6 +379,7 @@ function noStyleStock(item, allItems, stage, style) {
 }
 
 export function rodAreaDecision(_lang, item, allItems, selectedArea) {
+  rememberRod(item)
   const stage = validStage(selectedArea)
   const style = styleCode(item)
   if (!stage || item.category !== 'rod' || !style) return null

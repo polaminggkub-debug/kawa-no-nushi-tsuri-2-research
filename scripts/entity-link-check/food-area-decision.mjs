@@ -1,7 +1,5 @@
 import assert from 'node:assert/strict'
-import fs from 'node:fs'
-import path from 'node:path'
-import { data, renderCatalogue, root, unescapeHtml } from './shared.mjs'
+import { data, renderCatalogue, unescapeHtml } from './shared.mjs'
 
 const locales = ['en', 'ja', 'th']
 const stages = {
@@ -13,9 +11,8 @@ const stages = {
   6: ['03', '06'],
 }
 const foods = data.items.filter((item) => item.category === 'food' && item.id <= '06')
-const canonical = JSON.parse(
-  fs.readFileSync(path.join(root, 'data/player-decisions.json'), 'utf8'),
-).sections.find((entry) => entry.id === 'food_hp_choice')
+// The payload carries the source advice with item IDs already replaced by item names.
+const canonical = data.playerDecisions.sections.find((entry) => entry.id === 'food_hp_choice')
 
 assert.equal(foods.length, 6)
 checkShopMatrix()

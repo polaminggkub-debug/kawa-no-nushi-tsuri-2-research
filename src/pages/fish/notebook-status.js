@@ -14,7 +14,8 @@ const copy = {
     excludedTitle: 'ไม่ใช่เป้าหมายในสมุด 66 ชนิด',
     excludedBody: 'โปรไฟล์นี้แสดงจุดปลาในแผนที่ แต่ไม่ต้องตกชนิดนี้เพื่อเก็บสมุดให้ครบ',
     unknownTitle: 'สถานะในสมุดยังยืนยันไม่ได้',
-    unknownBody: 'ข้อมูลที่ยืนยันได้ยังไม่ระบุว่าปลานี้มีช่องในสมุดหรือไม่ โปรดตรวจไอเท็ม 05 ในเกม',
+    unknownBody:
+      'ข้อมูลที่ยืนยันได้ยังไม่ระบุว่าปลานี้มีช่องในสมุดหรือไม่ โปรดตรวจสมุดบันทึกการตกปลา (ไอเท็ม 05) ในเกม',
   },
   ja: {
     eligibleTitle: '図鑑の目標 · 全66種の1種',
@@ -30,7 +31,7 @@ const copy = {
     excludedBody: 'この魚はマップに出ますが、図鑑を埋めるために釣る必要はありません。',
     unknownTitle: '図鑑の対象か未確認',
     unknownBody:
-      '現在確認できるデータでは記録対象か判断できません。ゲーム内の道具05で確認してください。',
+      '現在確認できるデータでは記録対象か判断できません。ゲーム内の釣りノート（道具05）で確認してください。',
   },
   en: {
     eligibleTitle: 'Notebook goal · 1 of 66 species',
@@ -47,7 +48,7 @@ const copy = {
       'This profile has map locations, but you do not need this species to complete the notebook list.',
     unknownTitle: 'Notebook status unconfirmed',
     unknownBody:
-      'Available evidence does not confirm whether this fish has a notebook slot. Check Tool 05 in the game.',
+      'Available evidence does not confirm whether this fish has a notebook slot. Check the Fishing Notebook (Tool 05) in the game.',
   },
 }
 

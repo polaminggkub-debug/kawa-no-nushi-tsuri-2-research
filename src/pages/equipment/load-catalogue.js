@@ -231,7 +231,7 @@ function initializeLoadedCatalogue(ctx, data) {
 
 export function loadCatalogue(ctx) {
   showCatalogueLoading(ctx)
-  fetch('gallery-data.json?v=eel-ending-20261006-68')
+  fetch('gallery-data.json?v=thai-plain-20261007-69')
     .then((response) => {
       if (!response.ok) throw new Error('catalogue unavailable')
       return response.json()

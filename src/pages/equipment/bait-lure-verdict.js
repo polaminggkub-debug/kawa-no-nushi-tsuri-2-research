@@ -21,7 +21,7 @@ const COPY = {
     soldHere: (stage, price) => `This item is listed in Area ${stage} for ¥${price}.`,
     soldElsewhere: (areas) => `This item is listed for sale in ${areas}.`,
     noOffer:
-      'No sale for this item is recorded in the six area shop lists; its ROM price field does not confirm a place to buy it.',
+      'No sale for this item is recorded in the six area shop lists; the price stored in the game data does not show where to buy it.',
     conditional: (stage) =>
       `Area ${stage} offer: sell at least one Ayu from your keepnet before buying.`,
     noRouteFish: (route) => `No fish are recorded as compatible with this bait on the ${route}.`,
@@ -51,7 +51,7 @@ const COPY = {
     soldHere: (stage, price) => `エリア${stage}で${price}円で販売されています。`,
     soldElsewhere: (areas) => `${areas}で販売されています。`,
     noOffer:
-      '6エリアの店頭リストに販売記録がありません。ROMの価格欄だけでは購入場所を確認できません。',
+      '6エリアの店頭リストに販売記録がありません。ゲームデータ内の価格だけでは、買える店とは言えません。',
     conditional: (stage) => `エリア${stage}の販売条件：購入前にびくのアユを1匹以上売ってください。`,
     noRouteFish: (route) => `このエサは${route}仕掛けで対応する魚が記録されていません。`,
     switchRoute: (route) => `${route}仕掛けの対応魚を見る`,
@@ -76,7 +76,7 @@ const COPY = {
       `ด่าน ${stage} ไม่มีขาย; รายการขายแบบมีเงื่อนไขอยู่ด่าน ${saleStage}`,
     soldHere: (stage, price) => `มีรายการขายชิ้นนี้ในด่าน ${stage} ราคา ¥${price}`,
     soldElsewhere: (areas) => `มีรายการขายชิ้นนี้ที่${areas}`,
-    noOffer: 'ไม่พบชิ้นนี้ในรายการร้านทั้ง 6 ด่าน; ช่องราคาใน ROM ยังไม่ยืนยันว่าซื้อได้ที่ไหน',
+    noOffer: 'ไม่พบชิ้นนี้ในรายการร้านทั้ง 6 ด่าน; ราคาในข้อมูลเกมยังไม่ยืนยันว่าซื้อได้ที่ไหน',
     conditional: (stage) =>
       `ด่าน ${stage} มีเงื่อนไขขาย: ต้องขายปลาอายุจากข้องอย่างน้อย 1 ตัวก่อนซื้อ`,
     noRouteFish: (route) => `ไม่พบปลาที่บันทึกว่าใช้เหยื่อนี้ได้กับ${route}`,

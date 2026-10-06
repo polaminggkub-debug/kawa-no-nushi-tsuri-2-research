@@ -2,6 +2,7 @@ import assert from 'node:assert/strict'
 import fs from 'node:fs'
 import path from 'node:path'
 import vm from 'node:vm'
+import { createRequire } from 'node:module'
 import { fileURLToPath } from 'node:url'
 
 export const root = path.resolve(fileURLToPath(new URL('../..', import.meta.url)))
@@ -10,6 +11,10 @@ export const data = JSON.parse(
 )
 export const locations = JSON.parse(
   fs.readFileSync(path.join(root, 'catalogue/fish-locations.json'), 'utf8'),
+)
+// Advice in the payload names items instead of quoting hex IDs; tests render source text the same way.
+export const itemRefs = createRequire(import.meta.url)('../item_refs.cjs').createResolver(
+  data.items,
 )
 export const itemKeys = new Set(data.items.map((item) => `${item.category}:${item.id}`))
 export const fishIds = new Set(Object.keys(data.fishVisuals))
