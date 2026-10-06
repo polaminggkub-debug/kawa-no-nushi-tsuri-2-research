@@ -123,3 +123,68 @@
   display: block;
   margin-bottom: 8px;
 }
+
+/* Loading skeleton cards shown while gallery-data.json downloads. */
+.visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+  padding: 0;
+  overflow: hidden;
+  clip-path: inset(50%);
+  white-space: nowrap;
+  border: 0;
+}
+
+.skeleton-block {
+  background: var(--soft);
+  border-radius: 8px;
+  animation: skeleton-pulse 1.6s ease-in-out infinite;
+}
+
+.skeleton-image {
+  min-height: 210px;
+}
+
+.skeleton-line {
+  height: 14px;
+  margin-top: 12px;
+}
+
+.skeleton-tag {
+  width: 30%;
+  height: 10px;
+  margin-top: 0;
+}
+
+.skeleton-title {
+  width: 70%;
+  height: 22px;
+  margin-top: 14px;
+}
+
+.skeleton-price {
+  width: 40%;
+}
+
+.skeleton-text {
+  width: 90%;
+}
+
+.skeleton-button {
+  height: 40px;
+  border-radius: 10px;
+}
+
+@keyframes skeleton-pulse {
+  50% {
+    opacity: 0.55;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .skeleton-block {
+    animation: none;
+  }
+}

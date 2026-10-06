@@ -2,6 +2,22 @@ function local(ctx, values) {
   return values[ctx.lang] || values.en
 }
 
+const SKELETON_COUNT = 4
+
+// Placeholder card that reuses the real card layout classes so the grid does not jump.
+const SKELETON_CARD = `<article class="item-card skeleton-card" aria-hidden="true">
+  <div class="card-main">
+    <div class="skeleton-block skeleton-image"></div>
+    <div class="card-text">
+      <div class="skeleton-block skeleton-line skeleton-tag"></div>
+      <div class="skeleton-block skeleton-line skeleton-title"></div>
+      <div class="skeleton-block skeleton-line skeleton-price"></div>
+      <div class="skeleton-block skeleton-line skeleton-text"></div>
+    </div>
+  </div>
+  <div class="card-actions"><div class="skeleton-block skeleton-button"></div></div>
+</article>`
+
 export function showCatalogueLoading(ctx) {
   document.getElementById('category-menu').hidden = true
   document.getElementById('catalogue-load-feedback').hidden = true
@@ -17,7 +33,9 @@ export function showCatalogueLoading(ctx) {
     ja: '選択条件の一覧',
     en: 'Your selected items',
   })
-  document.getElementById('cards').innerHTML = `<p role="status">${ctx.esc(message)}</p>`
+  document.getElementById('cards').innerHTML =
+    `<p role="status" class="visually-hidden">${ctx.esc(message)}</p>` +
+    SKELETON_CARD.repeat(SKELETON_COUNT)
   document.getElementById('result-count').textContent = ''
 }
 
