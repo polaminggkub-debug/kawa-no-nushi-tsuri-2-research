@@ -31,7 +31,7 @@ export default {
       lost: 'Line broke (hook lost, 1 to 4 HP)',
       unfinished: 'Still going after 100 s',
     },
-    baselines: 'How other ways of pressing A do',
+    baselines: 'How the recommended rhythm does',
     base: {
       hold: 'Hold A the whole time',
       mash: 'Mash A (about 10 presses a second)',

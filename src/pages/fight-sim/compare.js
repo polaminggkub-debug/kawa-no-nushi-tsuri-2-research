@@ -18,7 +18,7 @@ function tableRow(label, cells, css = '') {
     .join('')}</tr>`
 }
 
-/** Hold, mash and the recommended rhythm for the Yamame and the giant eel. */
+/** The recommended rhythm for the Yamame and the giant eel. */
 export function renderComparison(ctx) {
   const cases = Object.values(COMPARED).map((id) => comparedCase(ctx, id))
   const words = ctx.text.compare
@@ -26,14 +26,6 @@ export function renderComparison(ctx) {
     (item) => `<th scope="col">${escapeHtml(fishLabel(ctx, item.fishId))}</th>`,
   )
   const rows = [
-    tableRow(
-      words.hold,
-      cases.map((item) => item.record.base.hold.c),
-    ),
-    tableRow(
-      words.mash,
-      cases.map((item) => item.record.base.mash.c),
-    ),
     tableRow(
       words.rhythm,
       cases.map((item) => item.record.plain.m.c),

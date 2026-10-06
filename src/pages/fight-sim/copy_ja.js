@@ -30,7 +30,7 @@ export default {
       lost: 'ライン切れ（ハリを失う・HP1〜4減）',
       unfinished: '100秒たっても決着せず',
     },
-    baselines: '他の押し方との比較',
+    baselines: 'おすすめのリズムの結果',
     base: {
       hold: 'Aを押しっぱなし',
       mash: 'Aを連打（1秒に約10回）',

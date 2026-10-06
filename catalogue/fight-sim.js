@@ -41,7 +41,7 @@
         lost: "Line broke (hook lost, 1 to 4 HP)",
         unfinished: "Still going after 100 s"
       },
-      baselines: "How other ways of pressing A do",
+      baselines: "How the recommended rhythm does",
       base: {
         hold: "Hold A the whole time",
         mash: "Mash A (about 10 presses a second)",
@@ -160,7 +160,7 @@
         lost: "สายขาด (เบ็ดหาย เสีย HP 1–4)",
         unfinished: "ยังสู้กันอยู่หลังผ่านไป 100 วินาที"
       },
-      baselines: "เทียบกับวิธีกดแบบอื่น",
+      baselines: "ผลของจังหวะที่แนะนำ",
       base: {
         hold: "กด A ค้างตลอด",
         mash: "กด A รัว ๆ (ประมาณ 10 ครั้งต่อวินาที)",
@@ -279,7 +279,7 @@
         lost: "ライン切れ（ハリを失う・HP1〜4減）",
         unfinished: "100秒たっても決着せず"
       },
-      baselines: "他の押し方との比較",
+      baselines: "おすすめのリズムの結果",
       base: {
         hold: "Aを押しっぱなし",
         mash: "Aを連打（1秒に約10回）",
@@ -1578,14 +1578,6 @@
     );
     const rows = [
       tableRow(
-        words.hold,
-        cases.map((item) => item.record.base.hold.c)
-      ),
-      tableRow(
-        words.mash,
-        cases.map((item) => item.record.base.mash.c)
-      ),
-      tableRow(
         words.rhythm,
         cases.map((item) => item.record.plain.m.c),
         "fs-rec"
@@ -1734,8 +1726,6 @@ ${headline(plain, text)}${steps(plain.spec, text)}${outcomeBar(plain.m, text)}${
     const words = text.finder;
     const head = SEGMENTS.map(([, name]) => `<th scope="col">${escapeHtml(words.column[name])}</th>`);
     const rows = [
-      row(words.base.hold, record.base.hold, text),
-      row(words.base.mash, record.base.mash, text),
       row(words.base.plain, record.plain.m, text, "fs-rec"),
       row(words.base.reference, record.base.reference, text, "fs-ref")
     ];

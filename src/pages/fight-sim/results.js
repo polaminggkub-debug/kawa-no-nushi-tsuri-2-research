@@ -49,13 +49,11 @@ function row(label, m, text, css = '') {
   return `<tr class="${css}"><th scope="row">${escapeHtml(label)}</th>${cells}</tr>`
 }
 
-/** Hold, mash, the best rhythm and the hidden-stamina reference side by side. */
+/** The best rhythm next to the hidden-stamina reference. */
 export function baselineCard(record, text) {
   const words = text.finder
   const head = SEGMENTS.map(([, name]) => `<th scope="col">${escapeHtml(words.column[name])}</th>`)
   const rows = [
-    row(words.base.hold, record.base.hold, text),
-    row(words.base.mash, record.base.mash, text),
     row(words.base.plain, record.plain.m, text, 'fs-rec'),
     row(words.base.reference, record.base.reference, text, 'fs-ref'),
   ]
