@@ -13,6 +13,7 @@ import {
   readStored,
   verifyCombo,
 } from '../build_fight_policies.mjs'
+import { verifyGearEffects } from '../gear-effects/verify.mjs'
 
 const root = resolve(fileURLToPath(new URL('../..', import.meta.url)))
 
@@ -115,7 +116,10 @@ function verifyFightPolicies() {
 export async function checkGeneratedOutputs() {
   verifyVersionMutation()
   const outputs = await renderFrontendOutputs()
-  return { outputs: outputs.size, errors: [...verifyOutputs(outputs), ...verifyFightPolicies()] }
+  return {
+    outputs: outputs.size,
+    errors: [...verifyOutputs(outputs), ...verifyFightPolicies(), ...verifyGearEffects(root)],
+  }
 }
 
 async function main() {
