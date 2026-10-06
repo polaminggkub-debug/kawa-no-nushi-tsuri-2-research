@@ -148,10 +148,10 @@ export function forageBaitChoice(ctx, item, items) {
     ctx.selectedStage && stages.includes(ctx.selectedStage) ? [ctx.selectedStage] : stages
   const note =
     ctx.lang === 'th'
-      ? 'ถ้ามีแว่นขยายอยู่แล้ว ลองหาเหยื่อนี้แทนการซื้อเพิ่ม: ไปถึงช่องตัวอย่างแล้วใช้แว่นขยาย ขยับช่องก่อนค้นซ้ำ บางช่องมีผลลัพธ์ได้สองชนิด จึงไม่รับประกันว่าจะได้ชนิดนี้ทุกครั้ง'
+      ? 'ถ้ามีแว่นขยายอยู่แล้ว ลองหาเหยื่อนี้แทนการซื้อเพิ่ม: ยืนบนพื้นดินแห้งที่ช่องตัวอย่างแล้วใช้แว่นขยาย ในน้ำใช้ไม่ได้ ขยับช่องก่อนค้นซ้ำ บางช่องมีผลลัพธ์ได้สองชนิด จึงไม่รับประกันว่าจะได้ชนิดนี้ทุกครั้ง'
       : ctx.lang === 'ja'
-        ? '虫メガネを持っているなら、追加購入の代わりに探索できます。地点例で使い、再探索前に移動してください。2種類の候補がある地点では毎回このエサが出るとは限りません。'
-        : 'If you already own the magnifying glass, try gathering instead of buying more: use it at an example tile and move before searching again. Some tiles have two possible results, so this bait is not guaranteed every time.'
+        ? '虫メガネを持っているなら、追加購入の代わりに探索できます。陸地の地点で使い（水の中では使えません）、再探索前に移動してください。2種類の候補がある地点では毎回このエサが出るとは限りません。'
+        : 'If you already own the magnifying glass, try gathering instead of buying more: stand on dry land at one of the listed tiles (it does not work in water) and move before searching again. Some tiles have two possible results, so this bait is not guaranteed every time.'
   return `<aside class="detail-section forage-bait-choice" data-forage-bait-choice><p>${ctx.esc(note)}</p>${shown
     .map((stage) => {
       const loc = points.find((point) => Number(point.stage) === stage)

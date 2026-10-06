@@ -1,5 +1,7 @@
 # Map and fish browser
 
+> **Corrected 2026-10-07:** a pin is a fish's start position, not a spawn chance, and an "inactive slot" is simply an empty one (not yet filled, landed, or escaped until the inn). Repeated slots at one tile are stacked fish. See [fish-location-research.md](fish-location-research.md).
+
 The [map page](../catalogue/maps.html) offers an area-first route alongside the existing equipment catalogue. Its inputs are the published `catalogue/fish-locations.json` and the ROM-extracted portraits and published translated name aliases in `catalogue/gallery-data.json`. It does not use third-party fish-guide map placements.
 
 ## Player workflow
@@ -17,7 +19,7 @@ A species is listed once in a filtered species list. A species at the same tile 
 
 Terrain is stitched from captures of the same original ROM. World tile centres are `(16x + 8, 16y + 8)`, as established in [fish-location-research.md](fish-location-research.md). Existing per-fish crops can have different origins even when their names mention the same column/row; their `tileBounds` fields describe their fish points, not crop boundaries. Any combined view must retain each image's actual coordinate projection.
 
-These are configured spawn positions. Population state can leave a slot inactive, so a marker tells the player where to look rather than guaranteeing a live fish. The page does not rank bite rates or landing odds.
+These are fish start positions after loading. Fish wander (most stay within 1–2 tiles), and about 1 pin in 4 is empty on a new save. A landed fish leaves its pin empty and an escaped fish is gone until the area's inn or a restart, so a marker tells the player where to look rather than guaranteeing a live fish. The page carries a plain "How fish on the map work" explainer for this. The page does not rank bite rates or landing odds.
 
 ## Published coverage
 
