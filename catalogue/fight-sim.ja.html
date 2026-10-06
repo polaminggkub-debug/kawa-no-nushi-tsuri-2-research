@@ -1,0 +1,206 @@
+<!doctype html>
+<html lang="ja" data-locale="ja">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>釣り上げシミュレーター — Kawa no Nushi Tsuri 2</title>
+    <meta
+      name="description"
+      content="魚がかかったときのAボタンのいちばんよい押し方を調べ、ゲームと1フレームも違わないシミュレーションで自分でもファイトできます。"
+    />
+    <link
+      rel="canonical"
+      href="https://polaminggkub-debug.github.io/kawa-no-nushi-tsuri-2-research/catalogue/fight-sim.ja.html"
+    />
+    <link
+      rel="alternate"
+      hreflang="en"
+      href="https://polaminggkub-debug.github.io/kawa-no-nushi-tsuri-2-research/catalogue/fight-sim.html"
+    />
+    <link
+      rel="alternate"
+      hreflang="ja"
+      href="https://polaminggkub-debug.github.io/kawa-no-nushi-tsuri-2-research/catalogue/fight-sim.ja.html"
+    />
+    <link
+      rel="alternate"
+      hreflang="th"
+      href="https://polaminggkub-debug.github.io/kawa-no-nushi-tsuri-2-research/catalogue/fight-sim.th.html"
+    />
+    <link rel="stylesheet" href="fight-sim.css?v=d695a1177d21962a" />
+    <script src="fight-sim.js?v=2fd7cdd8827cb985" defer></script>
+    <link rel="stylesheet" href="compendium.css?v=944b2e768f29779c" />
+    <script src="compendium.js?v=db0957a69654351f" defer></script>
+  <script data-goatcounter="https://polamin.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script></head>
+  <body>
+    <a class="skip-link" href="#main-content">本文へ移動</a>
+    <nav class="compendium-nav" aria-label="メインナビゲーション">
+      <a class="compendium-brand" href="index.ja.html"
+        ><span class="brand-mark" aria-hidden="true">川</span
+        ><span>川のぬし釣り2<small>SFC / SNES · FIELD GUIDE</small></span></a
+      >
+      <div class="compendium-links">
+        <a data-compendium-destination="0" href="index.ja.html#catalogue">道具を選ぶ</a
+        ><a data-compendium-destination="1" href="maps.ja.html">魚とマップ</a
+        ><a data-compendium-destination="2" href="shops.ja.html">店を探す</a
+        ><a data-compendium-destination="4" href="quests.ja.html">依頼・交換</a
+        ><a data-compendium-destination="5" aria-current="page" href="fight-sim.ja.html"
+          >釣り上げシミュレーター</a
+        ><a data-compendium-destination="3" href="../research/index.ja.html">攻略・研究</a>
+      </div>
+    </nav>
+    <header class="site-header">
+      <nav class="site-nav" aria-label="メインナビゲーション">
+        <a id="back-link" href="index.ja.html">← アイテム一覧へ戻る</a>
+      </nav>
+      <nav class="language-nav" aria-label="言語">
+        <a id="language-en" href="fight-sim.html" lang="en" hreflang="en">English</a>
+        <a id="language-ja" href="fight-sim.ja.html" lang="ja" hreflang="ja">日本語</a>
+        <a id="language-th" href="fight-sim.th.html" lang="th" hreflang="th">ไทย</a>
+      </nav>
+    </header>
+    <main id="main-content">
+      <header class="fs-heading">
+        <h1>釣り上げシミュレーター</h1>
+        <p class="lead">
+          魚がかかったあとのAボタンの押し方を調べ、ゲーム本体のコードをフレームごとに再現したシミュレーターで自分でも魚と戦えます。
+        </p>
+      </header>
+      <p id="page-status" class="status" role="status" aria-live="polite">
+        ファイトのデータを読み込み中…
+      </p>
+      <section id="tldr" class="fs-card fs-tldr" aria-labelledby="tldr-title">
+        <p class="fs-tag">要点</p>
+        <h2 id="tldr-title">Aボタンのいちばんよい押し方</h2>
+        <p>
+          ゲームと1フレームも違わないファイトのコピーで、Aの押し方を変えながらランダムなファイトを何千回も試しました。以下のコツは、画面で見えること（魚が逃げている・近づいてくる・止まっている）だけを使っています。
+        </p>
+        <ol class="fs-rules">
+          <li>
+            <strong>Aを押しっぱなしにしない、連打もしない。</strong>
+            どちらもヤマメでもほぼ釣れません。魚が走っている間に押しっぱなしや連打をすると、ラインの負荷メーターが満タンになるだけです。
+          </li>
+          <li><strong>魚は走らせておく。</strong> 逃げている間は、Aから指を離す。</li>
+          <li>
+            <strong>魚が止まって休んだら、Aを1回押してそのまま押し続ける。</strong>
+            休みがチャンスで、押し直すと巻き上げが始まります（休む前から押しっぱなしだと何も起きないので、先に離しておく）。
+          </li>
+          <li>
+            <strong>魚が近づかなくなった瞬間にAを離す</strong
+            >（またはほとんど進まなくなったら）。次の休みを待って繰り返す。そこを過ぎて押し続けると魚を逃がします。
+          </li>
+          <li>
+            <strong>オオウナギも同じリズム。ただしとても根気がいります。</strong>
+            シミュレーションでは100秒以内に釣り上げまで進むのは約<span data-fill="eel-plain">…</span
+            >、<span data-fill="eel-unfinished">…</span
+            >はまだ続いています。魚が全力で走る間にAを小刻みに押すと<span data-fill="eel-trick"
+              >…</span
+            >まで上がりますが、よく見る必要があり逃げられることも増えます。フレーム単位で完璧に押せる場合は<span
+              data-fill="eel-ceiling"
+              >…</span
+            >まで届きます。
+          </li>
+        </ol>
+        <div id="fs-compare"></div>
+      </section>
+      <section id="finder" class="fs-section" aria-labelledby="finder-title">
+        <h2 id="finder-title">押し方の自動探索</h2>
+        <p class="lead">
+          魚と道具を選んでください。ランダムな千回のファイトでAの押し方を数多く試し、人が実際に真似できる中でいちばんよいものを残しています。
+        </p>
+        <div id="fs-setup" class="fs-form" role="group" aria-labelledby="finder-title">
+          <div class="fs-field">
+            <label for="fs-fish">魚</label
+            ><select id="fs-fish"></select>
+          </div>
+          <div class="fs-field">
+            <label for="fs-method">竿の種類</label
+            ><select id="fs-method"></select>
+          </div>
+          <div class="fs-field">
+            <label for="fs-rod">竿</label
+            ><select id="fs-rod"></select>
+          </div>
+          <div class="fs-field">
+            <label for="fs-hook">ハリ</label
+            ><select id="fs-hook"></select>
+          </div>
+          <div class="fs-field">
+            <label for="fs-bait">エサ</label
+            ><select id="fs-bait"></select>
+          </div>
+          <div class="fs-field fs-reset">
+            <button id="fs-reset" type="button" class="route-button">
+              この魚に合う最良の道具にする
+            </button>
+          </div>
+        </div>
+        <p id="fs-facts" class="fs-note"></p>
+        <div id="fs-results" aria-live="polite"></div>
+      </section>
+      <section id="play" class="fs-section" aria-labelledby="play-title">
+        <h2 id="play-title">自分でやってみる</h2>
+        <p class="lead">
+          本物のゲームと同じ毎秒60回のタイマーで魚と戦います。大きなAボタン、またはキーボードのSpace・Z・Aを押し続けてください。
+        </p>
+        <p class="fs-summary">
+          <strong id="play-setup"></strong> · <a href="#finder">セットを変える</a>
+        </p>
+        <canvas
+          id="fight-canvas"
+          class="fs-canvas"
+          role="img"
+          aria-label="水中を横から見た図。左の自分と右の竿の限界線のあいだを魚が泳ぎます。"
+        ></canvas>
+        <p id="fight-phase" class="fs-phase" role="status" aria-live="polite"></p>
+        <div class="fs-actions">
+          <button id="fight-start" type="button" class="route-button fs-primary">
+            ファイトを始める
+          </button>
+          <button id="fight-retry" type="button" class="route-button" hidden>
+            同じファイトをもう一度
+          </button>
+          <button id="fight-giveup" type="button" class="route-button" disabled>あきらめる</button>
+        </div>
+        <button id="a-button" class="fs-abutton" type="button" aria-pressed="false">A</button>
+        <p class="fs-note fs-keys">
+          大きなボタン（またはSpace・Z・A）を押し続けるとAを押し続け、離すとAを離します。ファイトが始まった時点で魚はすでに走っています。
+        </p>
+        <div class="fs-toggles">
+          <label><input type="checkbox" id="show-hidden" /> 隠れた値を表示</label>
+          <label
+            ><input type="checkbox" id="show-ghost" checked />
+            ゴーストを表示（おすすめのリズムで同じファイトを再現）</label
+          >
+        </div>
+        <dl id="hidden-values" class="fs-hidden" hidden></dl>
+        <div id="fight-result" aria-live="assertive"></div>
+      </section>
+      <details id="how-we-know" class="fs-how">
+        <summary>どうしてわかるのか</summary>
+        <p>
+          このページのファイト計算は、ゲーム本体の魚とのやりとりのコードを1フレームずつ忠実に移したものです。エミュレーターで動かした原版のゲームから記録した本物のファイト96回と照合し、追跡した値がすべてのフレームで一致し、結果（釣り上げ・逃げられた・ライン切れ）も毎回一致しました。<a
+            href="https://github.com/polaminggkub-debug/kawa-no-nushi-tsuri-2-research/blob/main/docs/fight-model.md"
+            >完全なモデルはGitHubで読めます</a
+          >。
+        </p>
+        <p>
+          この96回のうち28回はゲームに何も手を加えていません（エリア1のヤマメ）。残り68回は、ハリをかける前に魚・竿・ハリ・エサ・場面・乱数をエミュレーターのメモリに書き込む方法で設定し、投げ竿・ルアー・毛バリのファイトも同じ方法でモードを指定しました。コードが正しいことの証明であり、実際のプレイがすべて同じになる保証ではありません。
+        </p>
+        <p>
+          割合はランダムな開始条件でのシミュレーション結果です。1セットにつき1000回、見えない乱数・タイミング・投げた距離・魚の大きさを固定した一覧で計算しています。個々のファイトの保証ではありません。「決着せず」は6000フレーム（約100秒）たっても続いていたことを指します。反応には8フレーム（約0.13秒）かかると仮定し、画面で見えることだけを使っています。
+        </p>
+        <p>
+          HPはファイトに影響しません。ゲームは一度も読みません。HPが関係するのは後だけで、ラインが切れるとHPが1〜4減ります。
+        </p>
+        <p>
+          ルアー、毛バリ、ともづり（おとりアユ）はこのページではまだ扱っていません。速い走りと遅い走りを実際の画面で人が見分けられるかは確認していません。
+        </p>
+      </details>
+    </main>
+    <footer>
+      原版の日本語ROM · SHA-1 <code>c2103dd94e2a1a65a495fc02adc2e7d040f31212</code> ·
+      ROMは含まれていません。
+    </footer>
+  </body>
+</html>

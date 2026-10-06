@@ -78,6 +78,7 @@ await import('./fly-maker-access.mjs')
 await import('./fly-wing-acquisition.mjs')
 await import('./area6-shop-actions.mjs')
 await import('./hook-target-links.mjs')
+await import('./fight-sim.mjs')
 await import('./map-focus-action.mjs')
 
 await import('./shop-fish-decisions.mjs')

@@ -6,6 +6,13 @@ import { existsSync, readFileSync } from 'node:fs'
 import { isAbsolute, resolve, sep } from 'node:path'
 import { fileURLToPath, pathToFileURL } from 'node:url'
 import { renderFrontendOutputs, scripts, styles } from '../build_frontend.mjs'
+import {
+  buildNames,
+  currentInputs,
+  listJobs,
+  readStored,
+  verifyCombo,
+} from '../build_fight_policies.mjs'
 
 const root = resolve(fileURLToPath(new URL('../..', import.meta.url)))
 
@@ -78,10 +85,37 @@ function verifyVersionMutation() {
   assert.ok(after.includes('https://example.com/external.js?v=old'))
 }
 
+const readJson = (file) => JSON.parse(readFileSync(resolve(root, file), 'utf8'))
+
+// data/fight-policies.json takes minutes to rebuild, so it is kept in sync by fingerprint: the ROM
+// tables, the engine and the finder source must hash to what was stored, the localized names must
+// match the catalogue, and a few stored combinations are recomputed exactly.
+function verifyFightPolicies() {
+  const regenerate = 'run node scripts/build_fight_policies.mjs'
+  const stored = readStored()
+  const errors = []
+  const inputs = currentInputs()
+  for (const key of Object.keys(inputs))
+    if (stored.inputs[key] !== inputs[key])
+      errors.push(`data/fight-policies.json is stale (${key} changed): ${regenerate}`)
+  const tables = readJson('data/fight-tables.json')
+  const names = buildNames(tables, readJson('catalogue/gallery-data.json'))
+  if (JSON.stringify(names) !== JSON.stringify(stored.names))
+    errors.push(`data/fight-policies.json names are stale: ${regenerate} --names`)
+  const jobs = listJobs(tables)
+  const missing = jobs.filter((job) => !stored.combos[job.key])
+  if (missing.length || Object.keys(stored.combos).length !== jobs.length)
+    errors.push(`data/fight-policies.json does not cover every fish and method: ${regenerate}`)
+  const probes = [jobs[0], ...jobs.filter((job) => [3, 59].includes(job.fishId))]
+  if (!errors.length)
+    for (const job of probes) errors.push(...verifyCombo(tables, job.key, stored.combos[job.key]))
+  return errors
+}
+
 export async function checkGeneratedOutputs() {
   verifyVersionMutation()
   const outputs = await renderFrontendOutputs()
-  return { outputs: outputs.size, errors: verifyOutputs(outputs) }
+  return { outputs: outputs.size, errors: [...verifyOutputs(outputs), ...verifyFightPolicies()] }
 }
 
 async function main() {

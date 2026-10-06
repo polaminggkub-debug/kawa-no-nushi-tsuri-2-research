@@ -1,0 +1,224 @@
+<!doctype html>
+<html lang="en" data-locale="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Fight simulator — Kawa no Nushi Tsuri 2</title>
+    <meta
+      name="description"
+      content="Find the best way to press A when a fish is hooked, and try a frame-exact simulation of the fight yourself."
+    />
+    <link
+      rel="canonical"
+      href="https://polaminggkub-debug.github.io/kawa-no-nushi-tsuri-2-research/catalogue/fight-sim.html"
+    />
+    <link
+      rel="alternate"
+      hreflang="en"
+      href="https://polaminggkub-debug.github.io/kawa-no-nushi-tsuri-2-research/catalogue/fight-sim.html"
+    />
+    <link
+      rel="alternate"
+      hreflang="ja"
+      href="https://polaminggkub-debug.github.io/kawa-no-nushi-tsuri-2-research/catalogue/fight-sim.ja.html"
+    />
+    <link
+      rel="alternate"
+      hreflang="th"
+      href="https://polaminggkub-debug.github.io/kawa-no-nushi-tsuri-2-research/catalogue/fight-sim.th.html"
+    />
+    <link rel="stylesheet" href="fight-sim.css?v=d695a1177d21962a" />
+    <script src="fight-sim.js?v=2fd7cdd8827cb985" defer></script>
+    <link rel="stylesheet" href="compendium.css?v=944b2e768f29779c" />
+    <script src="compendium.js?v=db0957a69654351f" defer></script>
+  <script data-goatcounter="https://polamin.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script></head>
+  <body>
+    <a class="skip-link" href="#main-content">Skip to content</a>
+    <nav class="compendium-nav" aria-label="Main navigation">
+      <a class="compendium-brand" href="index.html"
+        ><span class="brand-mark" aria-hidden="true">川</span
+        ><span>Kawa no Nushi Tsuri 2<small>SFC / SNES · FIELD GUIDE</small></span></a
+      >
+      <div class="compendium-links">
+        <a data-compendium-destination="0" href="index.html#catalogue">Equipment</a
+        ><a data-compendium-destination="1" href="maps.html">Fish & maps</a
+        ><a data-compendium-destination="2" href="shops.html">Shops</a
+        ><a data-compendium-destination="4" href="quests.html">Quests & exchanges</a
+        ><a data-compendium-destination="5" aria-current="page" href="fight-sim.html"
+          >Fight simulator</a
+        ><a data-compendium-destination="3" href="../research/index.html">Strategy & evidence</a>
+      </div>
+    </nav>
+    <header class="site-header">
+      <nav class="site-nav" aria-label="Main navigation">
+        <a id="back-link" href="index.html">← Item catalogue</a>
+      </nav>
+      <nav class="language-nav" aria-label="Language">
+        <a id="language-en" href="fight-sim.html" lang="en" hreflang="en">English</a>
+        <a id="language-ja" href="fight-sim.ja.html" lang="ja" hreflang="ja">日本語</a>
+        <a id="language-th" href="fight-sim.th.html" lang="th" hreflang="th">ไทย</a>
+      </nav>
+    </header>
+    <main id="main-content">
+      <header class="fs-heading">
+        <h1>Fight simulator</h1>
+        <p class="lead">
+          See how to press A once a fish is hooked, and fight fish yourself in a simulator that
+          follows the game’s own code frame by frame.
+        </p>
+      </header>
+      <p id="page-status" class="status" role="status" aria-live="polite">
+        Loading the fight data…
+      </p>
+      <section id="tldr" class="fs-card fs-tldr" aria-labelledby="tldr-title">
+        <p class="fs-tag">TL;DR</p>
+        <h2 id="tldr-title">Best way to press A</h2>
+        <p>
+          We let a frame-exact copy of the game’s fight run thousands of random fights with
+          different ways of pressing A. Every tip uses only what you can see: the fish running away,
+          coming closer or standing still.
+        </p>
+        <ol class="fs-rules">
+          <li>
+            <strong>Don’t hold A the whole time, and don’t mash it.</strong> Both lose almost every
+            fish, even the Yamame. Holding or mashing while the fish runs only fills the line-strain
+            meter.
+          </li>
+          <li><strong>Let the fish run.</strong> While it swims away, keep your thumb off A.</li>
+          <li>
+            <strong>When it stops to rest, press A once and keep holding.</strong> The pause is your
+            window; a fresh press starts the reeling. (Holding from before the pause does nothing,
+            so let go first.)
+          </li>
+          <li>
+            <strong>Let go the moment it stops coming closer</strong> (or slows to a crawl). Then
+            wait for the next rest and repeat. Holding past that point is what loses fish.
+          </li>
+          <li>
+            <strong>The giant eel needs the same rhythm and a lot of patience.</strong> Only about
+            <span data-fill="eel-plain">…</span> of simulated eel fights end in a catch within 100
+            seconds, and <span data-fill="eel-unfinished">…</span> are still going. Tapping A while
+            it sprints lifts that to <span data-fill="eel-trick">…</span>, but it needs sharp eyes
+            and more eels get away. With frame-perfect timing the simulator reaches
+            <span data-fill="eel-ceiling">…</span>.
+          </li>
+        </ol>
+        <div id="fs-compare"></div>
+      </section>
+      <section id="finder" class="fs-section" aria-labelledby="finder-title">
+        <h2 id="finder-title">Auto-finder</h2>
+        <p class="lead">
+          Choose a fish and tackle. The finder tried many ways of pressing A on a thousand random
+          fights and kept the best one a player can actually follow.
+        </p>
+        <div id="fs-setup" class="fs-form" role="group" aria-labelledby="finder-title">
+          <div class="fs-field">
+            <label for="fs-fish">Fish</label
+            ><select id="fs-fish"></select>
+          </div>
+          <div class="fs-field">
+            <label for="fs-method">Rod type</label
+            ><select id="fs-method"></select>
+          </div>
+          <div class="fs-field">
+            <label for="fs-rod">Rod</label
+            ><select id="fs-rod"></select>
+          </div>
+          <div class="fs-field">
+            <label for="fs-hook">Hook</label
+            ><select id="fs-hook"></select>
+          </div>
+          <div class="fs-field">
+            <label for="fs-bait">Bait</label
+            ><select id="fs-bait"></select>
+          </div>
+          <div class="fs-field fs-reset">
+            <button id="fs-reset" type="button" class="route-button">
+              Best tackle for this fish
+            </button>
+          </div>
+        </div>
+        <p id="fs-facts" class="fs-note"></p>
+        <div id="fs-results" aria-live="polite"></div>
+      </section>
+      <section id="play" class="fs-section" aria-labelledby="play-title">
+        <h2 id="play-title">Play it yourself</h2>
+        <p class="lead">
+          Fight the fish with the same 60 Hz timer as the real game. Hold the big A button, or
+          Space, Z or A on a keyboard.
+        </p>
+        <p class="fs-summary">
+          <strong id="play-setup"></strong> · <a href="#finder">Change the setup</a>
+        </p>
+        <canvas
+          id="fight-canvas"
+          class="fs-canvas"
+          role="img"
+          aria-label="Side view of the water. The fish swims between you on the left and the rod range line on the right."
+        ></canvas>
+        <p id="fight-phase" class="fs-phase" role="status" aria-live="polite"></p>
+        <div class="fs-actions">
+          <button id="fight-start" type="button" class="route-button fs-primary">
+            Start a fight
+          </button>
+          <button id="fight-retry" type="button" class="route-button" hidden>
+            Same fight again
+          </button>
+          <button id="fight-giveup" type="button" class="route-button" disabled>Give up</button>
+        </div>
+        <button id="a-button" class="fs-abutton" type="button" aria-pressed="false">A</button>
+        <p class="fs-note fs-keys">
+          Press and hold the big button (or Space, Z or A) to hold A; let go to release. The fish is
+          already running when a fight begins.
+        </p>
+        <div class="fs-toggles">
+          <label><input type="checkbox" id="show-hidden" /> Show hidden values</label>
+          <label
+            ><input type="checkbox" id="show-ghost" checked /> Show the ghost (the recommended
+            rhythm on the same fight)</label
+          >
+        </div>
+        <dl id="hidden-values" class="fs-hidden" hidden></dl>
+        <div id="fight-result" aria-live="assertive"></div>
+      </section>
+      <details id="how-we-know" class="fs-how">
+        <summary>How we know</summary>
+        <p>
+          The fight engine on this page is a frame-exact port of the game’s own fish-fighting code.
+          It was checked against 96 real fights recorded from the original game running in an
+          emulator: every tracked value matched on every frame, and the result (caught, got away,
+          line broke) matched every time.
+          <a
+            href="https://github.com/polaminggkub-debug/kawa-no-nushi-tsuri-2-research/blob/main/docs/fight-model.md"
+            >Read the full model on GitHub</a
+          >.
+        </p>
+        <p>
+          Of those 96 checks, 28 changed nothing in the game (the Area 1 Yamame). The other 68 used
+          RAM-modified set-ups: the fish, rod, hook, bait, scene or random numbers were written into
+          the emulator’s memory before the hook was set, and casting, lure and fly fights were
+          forced the same way. They prove the code, not that every real playthrough will match.
+        </p>
+        <p>
+          The percentages are shares of simulated random starts: 1000 different fights per setup,
+          with a fixed list of hidden random numbers, timing, cast distance and fish size. They are
+          not a promise for any single fight. “Unfinished” means the fight was still going after
+          6000 frames (about 100 seconds). The finder assumes a reaction time of 8 frames (about
+          0.13 s) and only uses what is visible on screen.
+        </p>
+        <p>
+          Your HP does not matter in the fight; the game never reads it. HP only matters afterwards:
+          losing the tackle costs 1 to 4 HP.
+        </p>
+        <p>
+          Not covered here: lures, flies and decoy-ayu fishing. Whether a person can tell a fast run
+          from a slow one on the real screen has not been tested.
+        </p>
+      </details>
+    </main>
+    <footer>
+      Original Japanese ROM · SHA-1 <code>c2103dd94e2a1a65a495fc02adc2e7d040f31212</code> · No ROM
+      included.
+    </footer>
+  </body>
+</html>

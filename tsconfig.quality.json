@@ -14,6 +14,7 @@
   "include": [
     "src/**/*.js",
     "scripts/build_frontend.mjs",
+    "scripts/build_fight_policies.mjs",
     "scripts/check_entity_links.cjs",
     "scripts/check_map_combobox.cjs",
     "scripts/check_shop_conditions.cjs",

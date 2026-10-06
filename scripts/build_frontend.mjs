@@ -3,7 +3,7 @@ import { readdirSync, readFileSync, writeFileSync } from 'node:fs'
 import { resolve, relative } from 'node:path'
 import { fileURLToPath } from 'node:url'
 import vm from 'node:vm'
-import { versionAssetReferences } from './code-quality/asset-versions.mjs'
+import { assetVersion, versionAssetReferences } from './code-quality/asset-versions.mjs'
 import { addGoatCounter } from './code-quality/analytics.mjs'
 
 const root = fileURLToPath(new URL('../', import.meta.url))
@@ -16,6 +16,8 @@ export const scripts = {
   strategy: 'research/search.js',
   navigation: 'catalogue/compendium.js',
   quests: 'catalogue/quests.js',
+  'fight-sim-worker': 'catalogue/fight-sim-worker.js',
+  'fight-sim': 'catalogue/fight-sim.js',
 }
 export const styles = {
   equipment: 'catalogue/style.css',
@@ -25,6 +27,7 @@ export const styles = {
   compendium: 'catalogue/compendium.css',
   strategy: 'research/strategy.css',
   quests: 'catalogue/quests.css',
+  'fight-sim': 'catalogue/fight-sim.css',
 }
 
 async function compile(entry, extension) {
@@ -193,13 +196,30 @@ function populateTemplate(source, nodes, runtime) {
   return html
 }
 
+// The simulator page starts its worker by file name; the placeholder becomes the worker's content hash.
+function pinWorkerVersion(outputs) {
+  const version = assetVersion(outputs.get(scripts['fight-sim-worker']))
+  const page = outputs.get(scripts['fight-sim'])
+  outputs.set(scripts['fight-sim'], page.replaceAll('__FIGHT_WORKER_VERSION__', version))
+}
+
 export async function renderFrontendOutputs() {
   const outputs = new Map()
   for (const [entry, output] of Object.entries(scripts))
     outputs.set(output, await compile(entry, 'js'))
+  pinWorkerVersion(outputs)
   for (const [entry, output] of Object.entries(styles))
     outputs.set(output, await compile(entry, 'css'))
-  for (const slice of ['equipment', 'item', 'fish', 'maps', 'shops', 'strategy', 'quests']) {
+  for (const slice of [
+    'equipment',
+    'item',
+    'fish',
+    'maps',
+    'shops',
+    'strategy',
+    'quests',
+    'fight-sim',
+  ]) {
     for (const { file, source } of templateFiles(slice)) {
       const locale = file.includes('.th.') ? 'th' : file.includes('.ja.') ? 'ja' : 'en'
       const html =

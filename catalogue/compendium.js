@@ -43,7 +43,7 @@
     document.querySelectorAll("[data-compendium-destination]").forEach((link) => {
       link.dataset.baseHref = link.dataset.baseHref || link.getAttribute("href");
       const dest = Number(link.dataset.compendiumDestination), url = new URL(link.dataset.baseHref, location.href);
-      if (dest === 3) return;
+      if (dest === 3 || dest === 5) return;
       if (current.searchParams.has("stage"))
         url.searchParams.set("stage", current.searchParams.get("stage"));
       const route = fishingRoute(current);
