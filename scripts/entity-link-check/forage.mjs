@@ -9,9 +9,9 @@ async function checkForage(lang) {
   const anchored = await render(
     'item',
     lang,
-    `category=general_tool&id=03&stage=3&fish=06&route=sinker#forage-stage-3-context-1`,
+    `category=general_tool&id=03&stage=3&fish=06&route=sinker#forage-stage-3-context-5`,
   )
-  assert(anchored.nodes['forage-stage-3-context-1']?.scrolled)
+  assert(anchored.nodes['forage-stage-3-context-5']?.scrolled)
   const result = await render(
     'item',
     lang,

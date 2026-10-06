@@ -43,4 +43,4 @@ Seven event locations across seven item cards use NPC coordinates read from the 
 
 ## Practical follow-up audit
 
-The later [player-value audit](player-value-audit.md) adds [purchase areas for all six stocks](shop-stock-research.md), [30 example magnifying-glass context tiles](forage-location-research.md) with bait icons on ROM terrain, and the [tub/canoe movement difference](boat-movement-research.md). The [food consumer trace](food-practical-research.md) also corrects the basket advice: eating consumes the first stored fish, and Kusafugu sets HP to zero.
+The later [player-value audit](player-value-audit.md) adds [purchase areas for all six stocks](shop-stock-research.md), [5 verified dry-land magnifying-glass tiles](forage-location-research.md) with bait icons on ROM terrain, and the [tub/canoe movement difference](boat-movement-research.md). The [food consumer trace](food-practical-research.md) also corrects the basket advice: eating consumes the first stored fish, and Kusafugu sets HP to zero.
