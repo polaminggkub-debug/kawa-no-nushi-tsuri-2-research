@@ -4735,7 +4735,7 @@
           "family_code": 5,
           "component_code": 0,
           "wet_dry_code": 0,
-          "classification_note": "Special wing graphics; exact maker UI-to-ID mapping remains unconfirmed."
+          "classification_note": "Leech-family (code 5) body-type record; absent from every shop stock table, fly bundle and fly maker palette that was checked."
         },
         {
           "id_hex": "67",
@@ -4758,7 +4758,7 @@
           "family_code": 5,
           "component_code": 0,
           "wet_dry_code": 0,
-          "classification_note": "Special wing graphics; exact maker UI-to-ID mapping remains unconfirmed."
+          "classification_note": "Leech-family (code 5) body-type record; absent from every shop stock table, fly bundle and fly maker palette that was checked."
         },
         {
           "id_hex": "68",

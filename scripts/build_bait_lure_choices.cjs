@@ -92,7 +92,7 @@ function createCopy(category, item, gate, cheaperOptions, offerStages) {
       recommendation = {
         en: `${owned.en} If you are buying to cover the same fish, the cheaper shop choices are ${list}. The area-by-area list shows the lowest qualifying offer for each stage.`,
         ja: `${owned.ja} 同じ魚をカバーするために買うなら、安い候補は${list}です。エリア別一覧に各エリアで最安の該当品を示します。`,
-        th: `${owned.th} ถ้าจะซื้อเพื่อให้ตรงกับรายชื่อปลาชุดนี้ ตัวเลือกที่ราคาต่ำกว่าคือ ${list} รายการแยกพื้นที่แสดงตัวเลือกที่ถูกที่สุดซึ่งครอบคลุมเงื่อนไขชนิดปลานี้`
+        th: `${owned.th} ถ้าจะซื้อเพื่อให้ตรงกับรายชื่อปลาชุดนี้ ตัวเลือกที่ราคาต่ำกว่าคือ ${list} รายการแยกตามด่านแสดงตัวเลือกที่ถูกที่สุดซึ่งครอบคลุมเงื่อนไขชนิดปลานี้`
       }[language];
     } else {
       label = { en: 'Use it if your target fish passes; no cheaper option covers the same fish', ja: '対象が適合すれば使用、同じ魚をカバーする安い店売りなし', th: 'ใช้ถ้าปลาเป้าหมายผ่าน; ไม่พบตัวเลือกถูกกว่าที่ครอบคลุมทั้งชุด' }[language];

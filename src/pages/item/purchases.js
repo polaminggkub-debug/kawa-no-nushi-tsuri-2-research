@@ -1,5 +1,6 @@
 import { foodChoicePanel } from './food-choice.js'
 import { fishMealRecovery } from './fish-meal-recovery.js'
+import { stackPriceNote } from '../../entities/item/index.js'
 
 function selectedStage(ctx) {
   const stage = Number(ctx.selectedStage)
@@ -149,6 +150,11 @@ function shopOfferCard(ctx, item, stage, offer, fishLocations, selected) {
   return `<article class="detail-section" data-purchase-stage="${stage}"${isSelected ? ' data-selected-area-offer="true"' : ''}><h3>${ctx.esc(ctx.stageName(stage, fishLocations))}${selectedAreaBadge(ctx, stage)}</h3><p>${ctx.esc(shopSeller(ctx, offer))}${itemPrice}</p>${ctx.shopCondition(item, offer, fishLocations)}${ctx.stageButton(stage, fishLocations)}</article>`
 }
 
+function stackNote(ctx, item) {
+  const note = stackPriceNote(ctx.lang, item)
+  return note ? `<p class="muted price-note">${ctx.esc(note)}</p>` : ''
+}
+
 function ordinaryPurchaseSection(ctx, item, fishLocations, selected) {
   const shops = item.playerUse?.shops || []
   if (!shops.length)
@@ -161,7 +167,7 @@ function ordinaryPurchaseSection(ctx, item, fishLocations, selected) {
     selected && !hasSelectedOffer ? missingAreaNote(ctx, selected, false, stages.length > 0) : ''
   const price =
     item.priceYen != null
-      ? `<p><strong>${ctx.esc(ctx.copy.price(item.priceYen))}</strong> <span class="muted">· ${ctx.esc(ctx.copy.stockAt)}</span></p>`
+      ? `<p><strong>${ctx.esc(ctx.copy.price(item.priceYen))}</strong> <span class="muted">· ${ctx.esc(ctx.copy.stockAt)}</span></p>${stackNote(ctx, item)}`
       : ''
   const cards = stages
     .map((stage) =>

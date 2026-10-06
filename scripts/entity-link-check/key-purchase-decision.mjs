@@ -72,16 +72,17 @@ function checkEvidence() {
     key.rawTrace.chests.map((chest) => [chest.visibleArea, chest.reward]),
     [
       [1, 'bait 11 potato bait'],
-      [2, 'bait 0B waxworm'],
+      [2, 'bait 0B grapevine larva'],
       [4, 'rod 0A small lure rod'],
       [6, 'candle 12'],
     ],
   )
+  // Hashes were refreshed once for the wording change waxworm -> grapevine larva and magnet -> compass.
   const hashes = {
-    facts: '4c4aedede2d9c2923f53e600ef90f9c9a432a89a110782d39be22627e3da609a',
+    facts: '03d7b1d05ebb300c006001760261855cf2e6efaa42e97402ce9e4666ede12e1e',
     evidence: '06c6f4c204f5004c4fe70c4b80bb75bb44659e96cce75bc9a540071b58e945e7',
-    evidenceNotes: 'fbc04a277f5fa4a576d8cf75286c49b4d49a305feb87650a7c2ed69acb4a00b0',
-    rawTrace: '26b3207f2172324e523c47e84c428b8840fe2f388ff64df8dc72ddd8a1badcf4',
+    evidenceNotes: '2cb78a05430d9769817b684fa353e119a368e73d639ccb1dc5621c9652f59030',
+    rawTrace: '432834687bc466185d466e6f0e558211e77cf7847aa5402b1bb980c94b5ad87b',
     record: 'ff4ad40e868729be445eb008d4b2f0ce51f13e7a7e93348624eebaf89a1105b9',
   }
   for (const [field, expected] of Object.entries(hashes)) {

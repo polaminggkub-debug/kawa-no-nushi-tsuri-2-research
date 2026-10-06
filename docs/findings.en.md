@@ -52,10 +52,10 @@ The observed custom-fly interaction is a **fly** maker, not a lure-customization
 | Mayfly body palette | 15 | One shop capture |
 | Caddis body palette | 14 | One shop capture |
 | Terrestrial body palette | 16 | One shop capture |
-| Wing palette | 20 | Two special-looking final icons correspond to records `0x66`/`0x67` by component ordering; the UI did not expose those IDs |
+| Wing palette | 16 | Area 1 Mayfly menu, checked with controller input. The last two icons are wings `0x23` and `0x24`; records `0x66`/`0x67` are leech body records that no menu or shop offers |
 | Tail palette | 9, plus `無し` (none) | One Mayfly sequence |
 
-The ROM component index classifies 134 records as 64 body entries, 47 wing entries, and 23 tail entries. The palette counts are visible choices in one shop and do not map one-to-one to every ROM ID: the interface does not display internal IDs, and some of the last wing-ID correspondence is inferred from record ordering. The first shop's palette and the full ROM table are different evidence sets. This work does not assign a hidden gameplay bonus to a fly part merely because it has a higher price.
+The ROM component index lists 134 records; this guide groups them as 64 body entries, 47 wing entries, and 23 tail entries (the two unobtainable leech records `0x66`/`0x67` sit in the wing group, although the game data marks them body-type). The palette counts are visible choices in one shop and do not map one-to-one to every ROM ID: the interface does not display internal IDs. The first shop's palette and the full ROM table are different evidence sets. This work does not assign a hidden gameplay bonus to a fly part merely because it has a higher price.
 
 The Japanese manual groups flies into wet/dry Mayfly and Caddis families and terrestrial patterns, with descriptions and diagrams rather than numerical part stats (printed pages 22–23). [Manual](https://gamemanual.midnightmeattrain.com/entry/%E5%B7%9D%E3%81%AE%E3%81%AC%E3%81%97%E9%87%A3%E3%82%8A2) · [early-shop screenshot source](https://evaandmaicy.blogspot.com/2014/11/sfc-2_18.html)
 

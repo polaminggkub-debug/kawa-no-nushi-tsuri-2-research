@@ -7,13 +7,13 @@
     "rom_size_bytes": 1572864
   },
   "scope": {
-    "summary": "One original-ROM shop menu was observed. The observation proves only which rod rows appeared in that captured menu context; it does not establish a six-stage shop map.",
+    "summary": "Historical one-menu capture. Its 渓流 menu is Area 1's regular shop; the rod rows below match Area 1 in data/shop-stock-rom.json. The full six-area stock replaced this file as the shop source.",
     "observed_shop_contexts": 1,
-    "stage_number": null,
+    "stage_number": 1,
     "region_text_japanese": "渓流",
-    "region_to_stage_mapping": "not established",
+    "region_to_stage_mapping": "渓流 = Area 1 (confirmed by opening all six regular shops in the game and comparing their rod rows with data/shop-stock-rom.json)",
     "stock_table_rom_offset": null,
-    "stock_table_note": "No ROM stock table or routine offset has been identified. The item-record tables contain names and base prices, not demonstrated shop availability flags."
+    "stock_table_note": "Superseded: the six per-area stock arrays are decoded from the compressed field blocks (Area 1 block at 0x1137FB) and stored in data/shop-stock-rom.json; docs/shop-stock-research.md explains the layout. The item-record tables alone hold names and base prices, not availability."
   },
   "runtime_observation": {
     "category_japanese": "サオ",
@@ -57,7 +57,7 @@
   "limitations": [
     "A ROM base-price field does not prove an item is sold by a particular shop or available in a particular stage.",
     "Only the rod category was traversed in this shop context. Lure IDs 17, 18, 2E, 2F, 30, 31, 23, and 24 were not observed in its menu.",
-    "The visible region text 渓流 has not been mapped to one of the six guide stages from ROM evidence.",
-    "No other shop, shop category, progression flag, time condition, or alternate stock set was tested."
+    "The visible region text 渓流 is Area 1; this file does not cover the other five areas (see data/shop-stock-rom.json).",
+    "This single capture tested no other shop, category, progression flag, time condition or alternate stock set; later work covers them in data/shop-stock-rom.json."
   ]
 }

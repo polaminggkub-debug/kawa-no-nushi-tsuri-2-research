@@ -230,11 +230,11 @@
       limit: "Exchange behavior was checked with supplied inventory. This does not establish a natural Hariyo catch or catch rate."
     },
     "waxworm-chest": {
-      title: "Use the key to collect waxworm bait",
+      title: "Use the key to collect grapevine larva bait",
       steps: [
         "Already have key 17? Keep it. Otherwise buy one for ¥100 at the Area 2 regular shop, then leave a free bait slot.",
         "Use the field entrance at (85,28); the chest is inside the town at (4,6).",
-        "Open the locked chest for waxworm bait 0B; the key remains."
+        "Open the locked chest for grapevine larva bait 0B; the key remains."
       ],
       warning: "Leave bait space before opening the chest.",
       limit: "Town coordinates are separate from outdoor coordinates. Entrance pairing and key stock/quote are ROM evidence, not a new natural travel or key-purchase replay."

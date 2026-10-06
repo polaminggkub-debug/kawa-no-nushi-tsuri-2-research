@@ -119,7 +119,7 @@ function postcardCardAction(ctx, item) {
   const text = {
     th: {
       title: 'เมื่ออ่านแล้วพบจดหมายจากหมอให้ตกปลาไหลใหญ่',
-      body: 'ถ้าพบข้อความนี้แล้ว ใช้แม่เหล็กในด่าน 6 ดูทิศทาง หรือเปิดจุดบนแผนที่ด้านล่าง เลือกเหยื่อและอุปกรณ์จากหน้าปลาไหลใหญ่ก่อนออกไปตก',
+      body: 'ถ้าพบข้อความนี้แล้ว ใช้เข็มทิศในด่าน 6 ดูทิศทาง หรือเปิดจุดบนแผนที่ด้านล่าง เลือกเหยื่อและอุปกรณ์จากหน้าปลาไหลใหญ่ก่อนออกไปตก',
       afterCatch:
         'จับตามคำขอได้แล้ว ให้เก็บปลาไหลไว้และกลับหมู่บ้านเริ่มต้น หากเงื่อนไขเนื้อเรื่องครบ เกมจะเริ่มฉากช่วยหมอและฉากจบอัตโนมัติ',
       returnMap: 'ดูทางกลับหมู่บ้าน · ด่าน 1 (12,189)',
@@ -139,7 +139,7 @@ function postcardCardAction(ctx, item) {
     },
     en: {
       title: 'After reading the doctor’s request for a giant eel',
-      body: 'Once this request appears, use its Area 6 Magnet heading or open the map point below. Choose compatible bait and equipment from the fish profile before fishing.',
+      body: 'Once this request appears, use its Area 6 Compass heading or open the map point below. Choose compatible bait and equipment from the fish profile before fishing.',
       afterCatch:
         'After catching the requested eel, keep it and return to the starting village. When the story conditions are complete, the doctor-recovery and ending scene starts automatically.',
       returnMap: 'Starting-village entrance · Area 1 (12,189)',

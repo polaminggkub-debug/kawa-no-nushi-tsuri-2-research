@@ -337,160 +337,6 @@
     return `<section class="detail-section" data-fish-meal-recovery><h2>${ctx.esc(title)}</h2><p>${ctx.esc(description)}</p><a class="route-button" href="${ctx.esc(href)}">${ctx.esc(action)} ↗</a></section>`;
   }
 
-  // src/pages/item/purchases.js
-  function selectedStage(ctx) {
-    const stage = Number(ctx.selectedStage);
-    return Number.isInteger(stage) && stage >= 1 && stage <= 6 ? stage : 0;
-  }
-  function selectedAreaLabel(ctx) {
-    return {
-      th: "ด่านที่เลือก",
-      ja: "選択中のエリア",
-      en: "Selected area"
-    }[ctx.lang];
-  }
-  function missingAreaNote(ctx, stage, isFly, hasOtherAreas) {
-    const area = ctx.copy.shopArea(stage);
-    const kind = isFly ? {
-      th: "ชุดฟลายสำเร็จรูป",
-      ja: "店売り毛バリセット",
-      en: "ready-made fly sets"
-    }[ctx.lang] : {
-      th: "รายการขายไอเท็มนี้",
-      ja: "この道具の店頭在庫",
-      en: "offers for this item"
-    }[ctx.lang];
-    const message = hasOtherAreas ? {
-      th: `ไม่พบ${kind}ที่บันทึกไว้ใน${area}; แสดงด่านอื่นที่มีรายการไว้ด้านล่าง`,
-      ja: `${area}に${kind}の記録はありません。記録のある他エリアを下に表示しています。`,
-      en: `No ${kind} are recorded in ${area}; other areas with a recorded offer are listed below.`
-    }[ctx.lang] : {
-      th: `ไม่พบ${kind}ที่บันทึกไว้ใน${area} หรือด่านอื่นจากข้อมูล ROM ที่ตรวจ`,
-      ja: `確認したROMデータには${area}にも他エリアにも${kind}の記録がありません。`,
-      en: `No ${kind} are recorded in ${area} or any other area in the checked ROM data.`
-    }[ctx.lang];
-    return `<p class="muted selected-area-missing-note" data-selected-area-missing="true">${ctx.esc(message)}</p>`;
-  }
-  function noRecordedStockNote(ctx, stage, isFly) {
-    return stage ? missingAreaNote(ctx, stage, isFly, false) : `<p class="muted">${ctx.esc(ctx.copy.noShop)}</p>`;
-  }
-  function selectedAreaBadge(ctx, stage) {
-    return Number(stage) === selectedStage(ctx) ? ` <span class="detail-badge" data-selected-area-badge>${ctx.esc(selectedAreaLabel(ctx))}</span>` : "";
-  }
-  function flyAssemblies(ctx, item, allItems) {
-    const id = item.id, parts = [];
-    for (const body of allItems.filter((i) => i.category === "fly"))
-      for (const shop of body.playerUse?.shops || []) {
-        const b = shop.bundle;
-        if (!b) continue;
-        const belongs = item.category === "fly" && b.body === id || item.category === "fly_wing" && b.wing === id || item.category === "fly_tail" && b.tail === id;
-        if (!belongs) continue;
-        const key = [shop.stage, b.body, b.wing, b.tail, b.shopPriceYen].join("|");
-        if (parts.some((p) => p.key === key)) continue;
-        parts.push({ key, stage: Number(shop.stage), bundle: b, body });
-      }
-    const selected = selectedStage(ctx);
-    return parts.sort(
-      (a, b) => Number(b.stage === selected) - Number(a.stage === selected) || a.stage - b.stage || a.bundle.shopPriceYen - b.bundle.shopPriceYen
-    );
-  }
-  function shopCondition(ctx, item, offer, fishLocations) {
-    if (!offer?.condition) return "";
-    const knownAyuCondition = item.category === "bait" && item.id === "17" && offer.condition.includes("sell at least one Ayu");
-    const message = knownAyuCondition ? ctx.copy.ayuOffer : ctx.copy.unknownShopCondition;
-    const action = knownAyuCondition ? `<a class="route-button" href="${ctx.esc(ctx.fishProfileLink("38", fishLocations))}">${ctx.esc(ctx.lang === "th" ? "ดูจุดตกและเหยื่อสำหรับปลาอายุ" : ctx.lang === "ja" ? "アユの釣り場と対応エサを見る" : "Find Ayu fishing spots and compatible bait")} ↗</a>` : "";
-    return `<p class="shop-condition"><strong>${ctx.esc(ctx.copy.unlock)}</strong> ${ctx.esc(message)}</p>${action}`;
-  }
-  function bundleComponentLink(ctx, part, stage) {
-    const markup = ctx.componentLink(part);
-    const href = ctx.detailItemLink(part);
-    const [page, query = ""] = href.split("?");
-    const params = new URLSearchParams(query);
-    params.set("stage", String(stage));
-    const target = `${page}?${params}`;
-    return markup.replace(`href="${ctx.esc(href)}"`, `href="${ctx.esc(target)}"`);
-  }
-  function flyPurchaseCard(ctx, bundle, stage, allItems, fishLocations, selected) {
-    const refs = [
-      ["fly", bundle.body],
-      ["fly_wing", bundle.wing],
-      ["fly_tail", bundle.tail]
-    ].filter(([, id]) => id && id !== "00").map(([category, id]) => allItems.find((i) => i.category === category && i.id === id)).filter(Boolean);
-    const isSelected = stage === selected;
-    return `<article class="detail-section" data-purchase-stage="${stage}"${isSelected ? ' data-selected-area-offer="true"' : ""}><h3>${ctx.esc(ctx.copy.bundleAt(stage))}${selectedAreaBadge(ctx, stage)}</h3><p><strong>${ctx.esc(ctx.copy.completePrice)} · ${ctx.esc(ctx.copy.price(bundle.shopPriceYen))}</strong></p><div class="detail-grid">${refs.map((part) => bundleComponentLink(ctx, part, stage)).join("")}</div>${ctx.stageButton(stage, fishLocations)}<p class="muted">${ctx.esc(ctx.copy.mapNote)}</p></article>`;
-  }
-  function flyPurchaseSection(ctx, item, allItems, fishLocations, selected) {
-    const assemblies = ctx.flyAssemblies(item, allItems);
-    if (!assemblies.length)
-      return `<section class="detail-section purchase-section"><h2>${ctx.esc(ctx.copy.shop)}</h2>${noRecordedStockNote(ctx, selected, true)}</section>`;
-    const hasSelectedAssembly = assemblies.some(({ stage }) => stage === selected);
-    const note = selected && !hasSelectedAssembly ? missingAreaNote(ctx, selected, true, true) : "";
-    const usedIn = item.category !== "fly" ? `<p>${ctx.esc(ctx.copy.usedIn)}</p>` : "";
-    const cards = assemblies.map(
-      ({ stage, bundle }) => flyPurchaseCard(ctx, bundle, stage, allItems, fishLocations, selected)
-    ).join("");
-    return `<section id="fly-purchases" class="detail-section purchase-section"><h2>${ctx.esc(ctx.copy.shop)}</h2>${usedIn}${note}<div class="detail-grid">${cards}</div></section>`;
-  }
-  function shopSeller(ctx, offer) {
-    if (offer?.shop === "special_rod_shop")
-      return ctx.lang === "th" ? "ร้านคันเบ็ดพิเศษในเมือง" : ctx.lang === "ja" ? "町の専用竿店" : "Special rod shop";
-    return ctx.lang === "th" ? "ร้านในด่านนี้" : ctx.lang === "ja" ? "エリア内の店" : "Store stock in this area";
-  }
-  function shopOfferCard(ctx, item, stage, offer, fishLocations, selected) {
-    const isSelected = stage === selected;
-    const itemPrice = item.priceYen != null ? ` · ${ctx.esc(ctx.copy.price(item.priceYen))}` : "";
-    return `<article class="detail-section" data-purchase-stage="${stage}"${isSelected ? ' data-selected-area-offer="true"' : ""}><h3>${ctx.esc(ctx.stageName(stage, fishLocations))}${selectedAreaBadge(ctx, stage)}</h3><p>${ctx.esc(shopSeller(ctx, offer))}${itemPrice}</p>${ctx.shopCondition(item, offer, fishLocations)}${ctx.stageButton(stage, fishLocations)}</article>`;
-  }
-  function ordinaryPurchaseSection(ctx, item, fishLocations, selected) {
-    const shops = item.playerUse?.shops || [];
-    if (!shops.length)
-      return `<section id="item-shops" class="detail-section purchase-section"><h2>${ctx.esc(ctx.copy.shop)}</h2>${noRecordedStockNote(ctx, selected, false)}</section>`;
-    const stages = [
-      ...new Set(shops.map((shop) => Number(shop.stage)).filter((stage) => stage >= 1 && stage <= 6))
-    ].sort((a, b) => Number(b === selected) - Number(a === selected) || a - b);
-    const hasSelectedOffer = stages.includes(selected);
-    const note = selected && !hasSelectedOffer ? missingAreaNote(ctx, selected, false, stages.length > 0) : "";
-    const price = item.priceYen != null ? `<p><strong>${ctx.esc(ctx.copy.price(item.priceYen))}</strong> <span class="muted">· ${ctx.esc(ctx.copy.stockAt)}</span></p>` : "";
-    const cards = stages.map(
-      (stage) => shopOfferCard(
-        ctx,
-        item,
-        stage,
-        shops.find((shop) => Number(shop.stage) === stage),
-        fishLocations,
-        selected
-      )
-    ).join("");
-    return `<section id="item-shops" class="detail-section purchase-section"><h2>${ctx.esc(ctx.copy.shop)}</h2>${price}${note}<div class="detail-grid">${cards}</div><p class="muted">${ctx.esc(ctx.copy.mapNote)}</p></section>`;
-  }
-  function shopSection(ctx, item, allItems, fishLocations) {
-    if (item.category === "general_tool" && item.id === "05" && item.playerUse?.startingEquipment?.type === "starting_equipment" && !item.playerUse?.shops?.length)
-      return "";
-    const selected = selectedStage(ctx);
-    if (item.category === "food" && item.id === "08") return fishMealRecovery(ctx, selected);
-    if (["fly", "fly_wing", "fly_tail"].includes(item.category))
-      return flyPurchaseSection(ctx, item, allItems, fishLocations, selected);
-    return ordinaryPurchaseSection(ctx, item, fishLocations, selected);
-  }
-  function buyingDecision(ctx, item, allItems, decisions) {
-    const rodPaths = {
-      1: "float_rod_path",
-      2: "casting_rod_path",
-      4: "lure_rod_path",
-      8: "fly_rod_path"
-    };
-    const path = item.category === "rod" ? rodPaths[item.decodedFields?.styleCode] : item.category === "hook" ? "hook_purchase_caution" : "";
-    const sections2 = decisions.filter(
-      (section) => path ? section.id === path : !ctx.selectedFish && section.category === item.category && ["lure", "food"].includes(item.category) && (section.items || []).some((ref) => ref.category === item.category && ref.id === item.id)
-    );
-    if (!sections2.length) return "";
-    if (item.category === "food") return foodChoicePanel(ctx, item, allItems, sections2);
-    return `<section class="detail-section buying-decision"><h2>${ctx.lang === "th" ? "ควรซื้อหรือเปลี่ยนมาใช้อันนี้ไหม?" : ctx.lang === "ja" ? "買う・替えるべき？" : "Should I buy or switch to this?"}</h2>${sections2.map((section) => {
-      const refs = (section.items || []).filter((ref) => ref.category === item.category && ref.id !== item.id).map((ref) => allItems.find((i) => i.category === ref.category && i.id === ref.id)).filter(Boolean);
-      return `<h3>${ctx.esc(ctx.local(section.title))}</h3><p>${ctx.esc(ctx.local(section.recommendation))}</p>${refs.length ? `<div class="detail-grid">${refs.map((ref) => ctx.componentLink(ref)).join("")}</div>` : ""}<p class="muted">${ctx.esc(ctx.local(section.scope))}</p>`;
-    }).join("")}</section>`;
-  }
-
   // src/entities/item/fly-wing-decision.js
   var PATH_LIMITED_WINGS = /* @__PURE__ */ new Set(["25", "26", "66", "67"]);
   function hasUnverifiedFlyWingPath(item) {
@@ -505,19 +351,19 @@
   function noBundleCopy(lang, id, fish) {
     const copies = {
       th: {
-        label: `ยังไม่มีตำแหน่งเมนูหรือชุดร้านที่บันทึกไว้สำหรับ ID ${id}`,
-        recommendation: fish ? `เมนูที่ตรวจและรายการชุดสำเร็จรูปของร้านยังไม่มีเส้นทางยืนยันสำหรับปีก ID ${id} อย่าพึ่งว่าหา ID นี้ได้จากเมนูที่มีหลักฐาน ถ้าจะตก${fish} ให้เปิดหน้าปลาเพื่อดูชุดฟลายหรือวิธีอื่นที่มีบันทึก` : `เมนูที่ตรวจและรายการชุดสำเร็จรูปของร้านยังไม่มีเส้นทางยืนยันสำหรับปีก ID ${id} อย่าพึ่งว่าหา ID นี้ได้จากเมนูที่มีหลักฐาน ถ้าจะประกอบฟลายให้เลือกบอดี้ตามปลาเป้าหมาย แล้วใช้ชิ้นส่วนที่มีตำแหน่งเมนูยืนยัน หรือดูชุดเริ่มต้นบอดี้ 01 สำหรับปลาในรายชื่อของบอดี้นั้น`,
-        reason: "นี่หมายถึงยังไม่มีเส้นทางในหลักฐานที่ตรวจ ไม่ได้พิสูจน์ว่าทุกเมนูหรือทุกพื้นที่เลือกชิ้นนี้ไม่ได้ และยังไม่มีหลักฐานโบนัสการกินหรือดึงปลาจากปีกนี้"
+        label: `ไม่มีขายที่ไหนเลย (ID ${id})`,
+        recommendation: fish ? `ร้าน ชุดสำเร็จรูป และเมนูช่างประกอบฟลายไม่มีชิ้นส่วน ID ${id} จึงเลือกใช้ไม่ได้ ถ้าจะตก${fish} ให้เปิดหน้าปลาเพื่อดูชุดฟลายหรือวิธีอื่นที่มีบันทึก` : `ร้าน ชุดสำเร็จรูป และเมนูช่างประกอบฟลายไม่มีชิ้นส่วน ID ${id} จึงเลือกใช้ไม่ได้ ถ้าจะประกอบฟลายให้เลือกบอดี้ตามปลาเป้าหมาย แล้วใช้ปีกที่ช่างแสดงให้เลือก หรือดูชุดเริ่มต้นบอดี้ 01 สำหรับปลาในรายชื่อของบอดี้นั้น`,
+        reason: "เปิดร้านทั้งหกด่านและเมนูช่างประกอบฟลายในเกมแล้วไม่พบชิ้นนี้ที่ไหน และยังไม่มีหลักฐานโบนัสการกินหรือดึงปลาจากชิ้นนี้"
       },
       en: {
-        label: `No recorded menu position or shop bundle for ID ${id}`,
-        recommendation: fish ? `The captured menus and recorded ready-made offers do not establish a route for wing ID ${id}. Do not assume it can be selected from a documented menu. For ${fish}, open the fish profile to see recorded flies or other methods.` : `The captured menus and recorded ready-made offers do not establish a route for wing ID ${id}. Do not assume it can be selected from a documented menu. For a custom fly, match the body to your target first, then use a component with a recorded menu position; otherwise see the starter body 01 bundle for fish in its list.`,
-        reason: "This means no route is present in the evidence checked; it does not prove the part is unavailable in every menu or area. No bite or landing bonus from this wing is established."
+        label: `Not sold anywhere (ID ${id})`,
+        recommendation: fish ? `No shop, ready-made set or fly maker menu offers part ID ${id}, so you cannot choose it. For ${fish}, open the fish profile to see recorded flies or other methods.` : `No shop, ready-made set or fly maker menu offers part ID ${id}, so you cannot choose it. For a custom fly, match the body to your target first, then pick a wing the maker shows; otherwise see the starter body 01 bundle for fish in its list.`,
+        reason: "All six shops and the fly makers were opened in the game and none lists this part. No bite or landing bonus from it is established."
       },
       ja: {
-        label: `ID ${id}のメニュー位置・店売りセットは未記録`,
-        recommendation: fish ? `確認したメニューと完成品の店売り記録には、ウィングID ${id}の選択経路がありません。記録済みメニューで選べるとは限りません。${fish}の魚ページで、記録のあるフライや別の釣り方を確認してください。` : `確認したメニューと完成品の店売り記録には、ウィングID ${id}の選択経路がありません。記録済みメニューで選べるとは限りません。自作する場合は先に対象魚に合うボディを選び、選択位置が確認された部品を使ってください。対象魚が未定なら、ボディ01の対象魚リストにある魚向けの入門セットを確認できます。`,
-        reason: "これは確認した証拠に経路がないという意味で、すべてのメニュー・エリアで入手不能という証明ではありません。このウィングの食いつき・取り込みボーナスも確認されていません。"
+        label: `どこでも入手できない（ID ${id}）`,
+        recommendation: fish ? `店・完成品セット・毛バリ職人のどこにも部品ID ${id}は出ないため、選べません。${fish}の魚ページで、記録のあるフライや別の釣り方を確認してください。` : `店・完成品セット・毛バリ職人のどこにも部品ID ${id}は出ないため、選べません。自作する場合は先に対象魚に合うボディを選び、職人が表示するウィングを使ってください。対象魚が未定なら、ボディ01の対象魚リストにある魚向けの入門セットを確認できます。`,
+        reason: "6つの店と毛バリ職人をゲーム内で開いて確認しましたが、この部品はどこにもありません。食いつき・取り込みボーナスも確認されていません。"
       }
     };
     return copies[lang] || copies.en;
@@ -527,17 +373,17 @@
       th: {
         label: `ชุดสำเร็จรูปด่าน ${bundle.stage}: บอดี้ ${bundle.body} + ปีก ${bundle.wing} + หาง ${bundle.tail} · ¥${bundle.shopPriceYen} ทั้งชุด`,
         recommendation: fish ? supported ? `ปลาเป้าหมาย ${fish} อยู่ในรายชื่อของบอดี้ ${bundle.body}; ลองชุดสำเร็จรูปด่าน ${bundle.stage} (${bundle.body}/${bundle.wing}/${bundle.tail}) ได้ในราคา ¥${bundle.shopPriceYen} ทั้งชุด ไม่ใช่ราคาปีกอย่างเดียว` : `ปลาเป้าหมาย ${fish} ไม่อยู่ในรายชื่อที่บันทึกไว้ของบอดี้ ${bundle.body}; อย่าเลือกชุดนี้เป็นตัวเลือกที่รองรับเป้าหมายนี้ เปิดหน้าปลาเพื่อดูชุดและวิธีอื่นที่มีบันทึก` : `ถ้าจะใช้ปีก ${item.id} มีชุดสำเร็จรูปด่าน ${bundle.stage}: บอดี้ ${bundle.body} + ปีก ${bundle.wing} + หาง ${bundle.tail} ราคา ¥${bundle.shopPriceYen} ทั้งชุด ตรวจว่าปลาเป้าหมายอยู่ในรายชื่อบอดี้ ${bundle.body} ก่อนซื้อ`,
-        reason: `นี่คือข้อเสนอชุดสำเร็จรูปในร้าน ไม่ใช่ตำแหน่งเลือกปีก ${item.id} ในเมนูประกอบ และ ¥${bundle.shopPriceYen} คือราคารวมทั้งชุด ยังไม่มีหลักฐานว่าปีกนี้เพิ่มโอกาสปลากินหรือช่วยให้ตกขึ้น`
+        reason: `ปีก ${item.id} มีเฉพาะในชุดสำเร็จรูปนี้ ไม่อยู่ในเมนูช่างประกอบฟลาย และ ¥${bundle.shopPriceYen} คือราคารวมทั้งชุด (คิดเท่าราคาบอดี้) ยังไม่มีหลักฐานว่าปีกนี้เพิ่มโอกาสปลากินหรือช่วยให้ตกขึ้น`
       },
       en: {
         label: `Area ${bundle.stage} ready-made set: body ${bundle.body} + wing ${bundle.wing} + tail ${bundle.tail} · ¥${bundle.shopPriceYen} total`,
         recommendation: fish ? supported ? `The target ${fish} is listed for body ${bundle.body}. You can try the area ${bundle.stage} ready-made set (${bundle.body}/${bundle.wing}/${bundle.tail}) for ¥${bundle.shopPriceYen} total, not for the wing alone.` : `The target ${fish} is not in the recorded list for body ${bundle.body}; this set is not a listed profile match. Open the fish page for recorded flies and other methods.` : `If you want wing ${item.id}, the recorded ready-made set is area ${bundle.stage}: body ${bundle.body} + wing ${bundle.wing} + tail ${bundle.tail}, ¥${bundle.shopPriceYen} for the complete set. Check that your target is listed for body ${bundle.body} before buying.`,
-        reason: `This is a ready-made shop offer, not a verified custom-menu position for wing ${item.id}. ¥${bundle.shopPriceYen} is the complete-set price. No bite or landing advantage from this wing is established.`
+        reason: `Wing ${item.id} appears only in this ready-made set and is not in the fly maker menu. ¥${bundle.shopPriceYen} is the complete-set price (the body's price). No bite or landing advantage from this wing is established.`
       },
       ja: {
         label: `エリア${bundle.stage}の完成品：ボディ${bundle.body}＋ウィング${bundle.wing}＋テール${bundle.tail} · セット価格¥${bundle.shopPriceYen}`,
         recommendation: fish ? supported ? `対象の${fish}はボディ${bundle.body}の記録済みリストにあります。エリア${bundle.stage}の完成品（${bundle.body}/${bundle.wing}/${bundle.tail}）をセット価格¥${bundle.shopPriceYen}で試せます。ウィング単体の価格ではありません。` : `対象の${fish}はボディ${bundle.body}の記録済みリストにありません。このセットは記録上の対象一致ではありません。魚ページで記録のあるフライや別の釣り方を確認してください。` : `ウィング${item.id}を使う店売り完成品は、エリア${bundle.stage}のボディ${bundle.body}＋ウィング${bundle.wing}＋テール${bundle.tail}、セット価格¥${bundle.shopPriceYen}です。購入前に対象魚がボディ${bundle.body}のリストにあるか確認してください。`,
-        reason: `これは店売り完成品で、ウィング${item.id}の自作メニュー位置ではありません。¥${bundle.shopPriceYen}はセット全体の価格です。このウィングによる食いつき・取り込み向上は確認されていません。`
+        reason: `ウィング${item.id}はこの完成品セットにだけ入っていて、毛バリ職人のメニューにはありません。¥${bundle.shopPriceYen}はセット全体の価格（ボディの値段）です。このウィングによる食いつき・取り込み向上は確認されていません。`
       }
     };
     return result[lang] || result.en;
@@ -608,6 +454,20 @@
     if (["float", "sinker"].includes(route)) query.set("route", route);
     if (typeof returnPath === "string" && returnPath) query.set("return", returnPath);
     return `index${locale === "en" ? "" : `.${locale}`}.html?${query}#category-decisions`;
+  }
+
+  // src/entities/item/stack-price-note.js
+  var STACK_CATEGORIES = /* @__PURE__ */ new Set(["bait", "hook"]);
+  var NOTE = {
+    th: "ราคานี้ต่อ 1 ชุด (9 ชิ้น) ถ้าเหลืออยู่ 8 ก็ยังจ่ายเต็มราคา แล้วเกมเติมให้ครบ 9",
+    en: "This price is per stack of 9. With 8 left you still pay it in full and are topped up to 9.",
+    ja: "価格は9個1組分。8個残っていても全額かかり、9個まで補充されます。"
+  };
+  function sellsByStack(item) {
+    return STACK_CATEGORIES.has(item?.category);
+  }
+  function stackPriceNote(lang, item) {
+    return sellsByStack(item) ? NOTE[lang] || NOTE.en : "";
   }
 
   // src/entities/item/fish-meal-copy.js
@@ -730,7 +590,7 @@
       }
     },
     th: {
-      styles: { 1: "สายทุ่น/อายุ", 2: "ตีเหยื่อ", 4: "ลัวร์", 8: "ฟลาย" },
+      styles: { 1: "สายทุ่น/อายุ", 2: "หวด", 4: "ลัวร์", 8: "ฟลาย" },
       labels: {
         only: "ด่าน {stage}: ร้านขายคันแบบนี้คันเดียว",
         dominated: "ด่าน {stage}: ซื้อ {otherId} แทน — {betterReason}{hpNote}",
@@ -789,7 +649,7 @@
         tradeoffChoice: "เลือก {id} ในราคาเต็มซื้อใหม่ {price} เพราะ{comparison}{hpNote} {higherLine} ถ้ามีคันเดิมอยู่แล้วใช้ต่อได้ ไม่ต้องซื้อใหม่ ส่วนผลกับปลาแต่ละชนิดยังไม่ยืนยัน",
         noHigher: "",
         scope: "สิ่งที่เทียบ: คันแบบเดียวกันที่ร้านขาย ราคาเต็มซื้อใหม่ เวลาเล็ง และความยากที่สายจะขาด (ปลาดึงหนีได้ไกลกว่าก่อนอุปกรณ์หลุด) ไม่ได้จัดอันดับโอกาสที่ปลากินเหยื่อหรือจับขึ้น{hp}{fly}",
-        hp: " เวลาเล็งของคันลัวร์/ตีเหยื่อวัดที่ HP 100 และสั้นลงเมื่อ HP ต่ำกว่า 100",
+        hp: " เวลาเล็งของคันลัวร์/คันหวดวัดที่ HP 100 และสั้นลงเมื่อ HP ต่ำกว่า 100",
         fly: " ไม่รวมค่าที่สองของคันฟลาย เพราะยังไม่รู้ว่ามีผลอะไร",
         noHp: "",
         noFly: "",
@@ -1450,6 +1310,164 @@
     return { coverageCount: expected.size, pairs: pairs.sort(pairOrder) };
   }
 
+  // src/pages/item/purchases.js
+  function selectedStage(ctx) {
+    const stage = Number(ctx.selectedStage);
+    return Number.isInteger(stage) && stage >= 1 && stage <= 6 ? stage : 0;
+  }
+  function selectedAreaLabel(ctx) {
+    return {
+      th: "ด่านที่เลือก",
+      ja: "選択中のエリア",
+      en: "Selected area"
+    }[ctx.lang];
+  }
+  function missingAreaNote(ctx, stage, isFly, hasOtherAreas) {
+    const area = ctx.copy.shopArea(stage);
+    const kind = isFly ? {
+      th: "ชุดฟลายสำเร็จรูป",
+      ja: "店売り毛バリセット",
+      en: "ready-made fly sets"
+    }[ctx.lang] : {
+      th: "รายการขายไอเท็มนี้",
+      ja: "この道具の店頭在庫",
+      en: "offers for this item"
+    }[ctx.lang];
+    const message = hasOtherAreas ? {
+      th: `ไม่พบ${kind}ที่บันทึกไว้ใน${area}; แสดงด่านอื่นที่มีรายการไว้ด้านล่าง`,
+      ja: `${area}に${kind}の記録はありません。記録のある他エリアを下に表示しています。`,
+      en: `No ${kind} are recorded in ${area}; other areas with a recorded offer are listed below.`
+    }[ctx.lang] : {
+      th: `ไม่พบ${kind}ที่บันทึกไว้ใน${area} หรือด่านอื่นจากข้อมูล ROM ที่ตรวจ`,
+      ja: `確認したROMデータには${area}にも他エリアにも${kind}の記録がありません。`,
+      en: `No ${kind} are recorded in ${area} or any other area in the checked ROM data.`
+    }[ctx.lang];
+    return `<p class="muted selected-area-missing-note" data-selected-area-missing="true">${ctx.esc(message)}</p>`;
+  }
+  function noRecordedStockNote(ctx, stage, isFly) {
+    return stage ? missingAreaNote(ctx, stage, isFly, false) : `<p class="muted">${ctx.esc(ctx.copy.noShop)}</p>`;
+  }
+  function selectedAreaBadge(ctx, stage) {
+    return Number(stage) === selectedStage(ctx) ? ` <span class="detail-badge" data-selected-area-badge>${ctx.esc(selectedAreaLabel(ctx))}</span>` : "";
+  }
+  function flyAssemblies(ctx, item, allItems) {
+    const id = item.id, parts = [];
+    for (const body of allItems.filter((i) => i.category === "fly"))
+      for (const shop of body.playerUse?.shops || []) {
+        const b = shop.bundle;
+        if (!b) continue;
+        const belongs = item.category === "fly" && b.body === id || item.category === "fly_wing" && b.wing === id || item.category === "fly_tail" && b.tail === id;
+        if (!belongs) continue;
+        const key = [shop.stage, b.body, b.wing, b.tail, b.shopPriceYen].join("|");
+        if (parts.some((p) => p.key === key)) continue;
+        parts.push({ key, stage: Number(shop.stage), bundle: b, body });
+      }
+    const selected = selectedStage(ctx);
+    return parts.sort(
+      (a, b) => Number(b.stage === selected) - Number(a.stage === selected) || a.stage - b.stage || a.bundle.shopPriceYen - b.bundle.shopPriceYen
+    );
+  }
+  function shopCondition(ctx, item, offer, fishLocations) {
+    if (!offer?.condition) return "";
+    const knownAyuCondition = item.category === "bait" && item.id === "17" && offer.condition.includes("sell at least one Ayu");
+    const message = knownAyuCondition ? ctx.copy.ayuOffer : ctx.copy.unknownShopCondition;
+    const action = knownAyuCondition ? `<a class="route-button" href="${ctx.esc(ctx.fishProfileLink("38", fishLocations))}">${ctx.esc(ctx.lang === "th" ? "ดูจุดตกและเหยื่อสำหรับปลาอายุ" : ctx.lang === "ja" ? "アユの釣り場と対応エサを見る" : "Find Ayu fishing spots and compatible bait")} ↗</a>` : "";
+    return `<p class="shop-condition"><strong>${ctx.esc(ctx.copy.unlock)}</strong> ${ctx.esc(message)}</p>${action}`;
+  }
+  function bundleComponentLink(ctx, part, stage) {
+    const markup = ctx.componentLink(part);
+    const href = ctx.detailItemLink(part);
+    const [page, query = ""] = href.split("?");
+    const params = new URLSearchParams(query);
+    params.set("stage", String(stage));
+    const target = `${page}?${params}`;
+    return markup.replace(`href="${ctx.esc(href)}"`, `href="${ctx.esc(target)}"`);
+  }
+  function flyPurchaseCard(ctx, bundle, stage, allItems, fishLocations, selected) {
+    const refs = [
+      ["fly", bundle.body],
+      ["fly_wing", bundle.wing],
+      ["fly_tail", bundle.tail]
+    ].filter(([, id]) => id && id !== "00").map(([category, id]) => allItems.find((i) => i.category === category && i.id === id)).filter(Boolean);
+    const isSelected = stage === selected;
+    return `<article class="detail-section" data-purchase-stage="${stage}"${isSelected ? ' data-selected-area-offer="true"' : ""}><h3>${ctx.esc(ctx.copy.bundleAt(stage))}${selectedAreaBadge(ctx, stage)}</h3><p><strong>${ctx.esc(ctx.copy.completePrice)} · ${ctx.esc(ctx.copy.price(bundle.shopPriceYen))}</strong></p><div class="detail-grid">${refs.map((part) => bundleComponentLink(ctx, part, stage)).join("")}</div>${ctx.stageButton(stage, fishLocations)}<p class="muted">${ctx.esc(ctx.copy.mapNote)}</p></article>`;
+  }
+  function flyPurchaseSection(ctx, item, allItems, fishLocations, selected) {
+    const assemblies = ctx.flyAssemblies(item, allItems);
+    if (!assemblies.length)
+      return `<section class="detail-section purchase-section"><h2>${ctx.esc(ctx.copy.shop)}</h2>${noRecordedStockNote(ctx, selected, true)}</section>`;
+    const hasSelectedAssembly = assemblies.some(({ stage }) => stage === selected);
+    const note = selected && !hasSelectedAssembly ? missingAreaNote(ctx, selected, true, true) : "";
+    const usedIn = item.category !== "fly" ? `<p>${ctx.esc(ctx.copy.usedIn)}</p>` : "";
+    const cards = assemblies.map(
+      ({ stage, bundle }) => flyPurchaseCard(ctx, bundle, stage, allItems, fishLocations, selected)
+    ).join("");
+    return `<section id="fly-purchases" class="detail-section purchase-section"><h2>${ctx.esc(ctx.copy.shop)}</h2>${usedIn}${note}<div class="detail-grid">${cards}</div></section>`;
+  }
+  function shopSeller(ctx, offer) {
+    if (offer?.shop === "special_rod_shop")
+      return ctx.lang === "th" ? "ร้านคันเบ็ดพิเศษในเมือง" : ctx.lang === "ja" ? "町の専用竿店" : "Special rod shop";
+    return ctx.lang === "th" ? "ร้านในด่านนี้" : ctx.lang === "ja" ? "エリア内の店" : "Store stock in this area";
+  }
+  function shopOfferCard(ctx, item, stage, offer, fishLocations, selected) {
+    const isSelected = stage === selected;
+    const itemPrice = item.priceYen != null ? ` · ${ctx.esc(ctx.copy.price(item.priceYen))}` : "";
+    return `<article class="detail-section" data-purchase-stage="${stage}"${isSelected ? ' data-selected-area-offer="true"' : ""}><h3>${ctx.esc(ctx.stageName(stage, fishLocations))}${selectedAreaBadge(ctx, stage)}</h3><p>${ctx.esc(shopSeller(ctx, offer))}${itemPrice}</p>${ctx.shopCondition(item, offer, fishLocations)}${ctx.stageButton(stage, fishLocations)}</article>`;
+  }
+  function stackNote(ctx, item) {
+    const note = stackPriceNote(ctx.lang, item);
+    return note ? `<p class="muted price-note">${ctx.esc(note)}</p>` : "";
+  }
+  function ordinaryPurchaseSection(ctx, item, fishLocations, selected) {
+    const shops = item.playerUse?.shops || [];
+    if (!shops.length)
+      return `<section id="item-shops" class="detail-section purchase-section"><h2>${ctx.esc(ctx.copy.shop)}</h2>${noRecordedStockNote(ctx, selected, false)}</section>`;
+    const stages = [
+      ...new Set(shops.map((shop) => Number(shop.stage)).filter((stage) => stage >= 1 && stage <= 6))
+    ].sort((a, b) => Number(b === selected) - Number(a === selected) || a - b);
+    const hasSelectedOffer = stages.includes(selected);
+    const note = selected && !hasSelectedOffer ? missingAreaNote(ctx, selected, false, stages.length > 0) : "";
+    const price = item.priceYen != null ? `<p><strong>${ctx.esc(ctx.copy.price(item.priceYen))}</strong> <span class="muted">· ${ctx.esc(ctx.copy.stockAt)}</span></p>${stackNote(ctx, item)}` : "";
+    const cards = stages.map(
+      (stage) => shopOfferCard(
+        ctx,
+        item,
+        stage,
+        shops.find((shop) => Number(shop.stage) === stage),
+        fishLocations,
+        selected
+      )
+    ).join("");
+    return `<section id="item-shops" class="detail-section purchase-section"><h2>${ctx.esc(ctx.copy.shop)}</h2>${price}${note}<div class="detail-grid">${cards}</div><p class="muted">${ctx.esc(ctx.copy.mapNote)}</p></section>`;
+  }
+  function shopSection(ctx, item, allItems, fishLocations) {
+    if (item.category === "general_tool" && item.id === "05" && item.playerUse?.startingEquipment?.type === "starting_equipment" && !item.playerUse?.shops?.length)
+      return "";
+    const selected = selectedStage(ctx);
+    if (item.category === "food" && item.id === "08") return fishMealRecovery(ctx, selected);
+    if (["fly", "fly_wing", "fly_tail"].includes(item.category))
+      return flyPurchaseSection(ctx, item, allItems, fishLocations, selected);
+    return ordinaryPurchaseSection(ctx, item, fishLocations, selected);
+  }
+  function buyingDecision(ctx, item, allItems, decisions) {
+    const rodPaths = {
+      1: "float_rod_path",
+      2: "casting_rod_path",
+      4: "lure_rod_path",
+      8: "fly_rod_path"
+    };
+    const path = item.category === "rod" ? rodPaths[item.decodedFields?.styleCode] : item.category === "hook" ? "hook_purchase_caution" : "";
+    const sections2 = decisions.filter(
+      (section) => path ? section.id === path : !ctx.selectedFish && section.category === item.category && ["lure", "food"].includes(item.category) && (section.items || []).some((ref) => ref.category === item.category && ref.id === item.id)
+    );
+    if (!sections2.length) return "";
+    if (item.category === "food") return foodChoicePanel(ctx, item, allItems, sections2);
+    return `<section class="detail-section buying-decision"><h2>${ctx.lang === "th" ? "ควรซื้อหรือเปลี่ยนมาใช้อันนี้ไหม?" : ctx.lang === "ja" ? "買う・替えるべき？" : "Should I buy or switch to this?"}</h2>${sections2.map((section) => {
+      const refs = (section.items || []).filter((ref) => ref.category === item.category && ref.id !== item.id).map((ref) => allItems.find((i) => i.category === ref.category && i.id === ref.id)).filter(Boolean);
+      return `<h3>${ctx.esc(ctx.local(section.title))}</h3><p>${ctx.esc(ctx.local(section.recommendation))}</p>${refs.length ? `<div class="detail-grid">${refs.map((ref) => ctx.componentLink(ref)).join("")}</div>` : ""}<p class="muted">${ctx.esc(ctx.local(section.scope))}</p>`;
+    }).join("")}</section>`;
+  }
+
   // src/pages/item/usage.js
   function decisionUsage(ctx, decision) {
     return {
@@ -1887,7 +1905,7 @@
     const locations = item.playerUse?.useLocations || [];
     if (!locations.length) return "";
     const label = ctx.lang === "th" ? "หลงทาง? ดูจุดออกของด่านที่อยู่" : ctx.lang === "ja" ? "迷ったら現在エリアの出口地点を見る" : "Lost? See the exit point for your current area";
-    return `<aside class="detail-section compass-exit-choice" data-compass-exit-choice><h3>${label}</h3><p>${ctx.lang === "th" ? "เลือกด่าน แล้วดูรูปแม่เหล็กที่ชี้จุดทางเชื่อม เข็มจะหยุดเมื่อถึงช่องเป้าหมาย แต่คำบอกทิศไม่ใช่เส้นทางหลบสิ่งกีดขวาง" : ctx.lang === "ja" ? "エリアを選び、磁石画像が示す連絡路の地点を確認します。目標タイルで針が止まりますが、方角表示は障害物を避ける経路案内ではありません。" : "Choose an area and find the connecting-route point marked by the magnet portrait. The needle stops at its target tile; the heading does not supply a route around obstacles."}</p>${locations.map((loc) => `<p><a data-compass-location href="${ctx.esc(ctx.areaItemLink(item, loc.stage, "#compass-exit-" + loc.stage))}">${ctx.lang === "th" ? "ด่าน" : ctx.lang === "ja" ? "エリア" : "Area"} ${loc.stage} · ${ctx.lang === "th" ? "ดูจุดที่เข็มหยุด" : ctx.lang === "ja" ? "針が止まる地点を見る" : "See where the needle stops"} ↗</a></p>`).join("")}</aside>`;
+    return `<aside class="detail-section compass-exit-choice" data-compass-exit-choice><h3>${label}</h3><p>${ctx.lang === "th" ? "เลือกด่าน แล้วดูรูปเข็มทิศที่ชี้จุดทางเชื่อม เข็มจะหยุดเมื่อถึงช่องเป้าหมาย แต่คำบอกทิศไม่ใช่เส้นทางหลบสิ่งกีดขวาง" : ctx.lang === "ja" ? "エリアを選び、磁石画像が示す連絡路の地点を確認します。目標タイルで針が止まりますが、方角表示は障害物を避ける経路案内ではありません。" : "Choose an area and find the connecting-route point marked by the compass picture. The needle stops at its target tile; the heading does not supply a route around obstacles."}</p>${locations.map((loc) => `<p><a data-compass-location href="${ctx.esc(ctx.areaItemLink(item, loc.stage, "#compass-exit-" + loc.stage))}">${ctx.lang === "th" ? "ด่าน" : ctx.lang === "ja" ? "エリア" : "Area"} ${loc.stage} · ${ctx.lang === "th" ? "ดูจุดที่เข็มหยุด" : ctx.lang === "ja" ? "針が止まる地点を見る" : "See where the needle stops"} ↗</a></p>`).join("")}</aside>`;
   }
   function gatheredBaitChoices(ctx, item, allItems) {
     if (!item.gatheredBaitByArea) return "";
@@ -2060,32 +2078,32 @@
   // src/pages/item/magnet-next-action.js
   var copy2 = {
     th: {
-      title: "ด่าน 6 ใช้แม่เหล็กแล้วไม่บอกทิศ: ทำอะไรต่อ?",
-      action: "ยังไม่ต้องซื้อแม่เหล็กเพิ่ม ใช้แผนที่เลือกปลาและจุดตกได้เลยระหว่างตรวจความคืบหน้าเรื่องราว",
+      title: "ด่าน 6 ใช้เข็มทิศแล้วไม่บอกทิศ: ทำอะไรต่อ?",
+      action: "ยังไม่ต้องซื้อเข็มทิศเพิ่ม ใช้แผนที่เลือกปลาและจุดตกได้เลยระหว่างตรวจความคืบหน้าเรื่องราว",
       notebook: "รวมจำนวนจากสมุดเกมทั้ง 6 หน้า ต้องบันทึกอย่างน้อย 65 ชนิดที่ต่างกันจาก 66 ชนิด ไม่ใช่ตก 65 ครั้ง และยังมีเงื่อนไขเรื่องราวอีกด้วย ครบ 65 ชนิดอย่างเดียวจึงไม่รับประกันว่าจะบอกทิศ",
       checklist: "เทียบชื่อปลากับเช็กลิสต์สมุด",
       map: "เลือกจุดตกด่าน 6 บนแผนที่",
-      postcard: "หลังเทียบสมุด ให้อ่านไปรษณียบัตรที่ได้รับ (06) ในเกม ถ้าข้อความหมอขอปลาไหลใหญ่ปรากฏ การอ่านครั้งนั้นจะเปิดทิศแม่เหล็กด่าน 6 ถ้ายังไม่ปรากฏ เงื่อนไขเรื่องราวอาจยังไม่ครบ",
+      postcard: "หลังเทียบสมุด ให้อ่านไปรษณียบัตรที่ได้รับ (06) ในเกม ถ้าข้อความหมอขอปลาไหลใหญ่ปรากฏ การอ่านครั้งนั้นจะเปิดทิศของเข็มทิศด่าน 6 ถ้ายังไม่ปรากฏ เงื่อนไขเรื่องราวอาจยังไม่ครบ",
       mail: "ดูคำแนะนำไปรษณียบัตรและจุดปลาไหลใหญ่",
       evidence: "เงื่อนไขที่ยืนยันและสิ่งที่ยังต้องค้นคว้า",
       limit: "ROM ยืนยันจำนวนช่องสมุดและเงื่อนไขเรื่องราว แต่ยังไม่มีลำดับการเล่นตามปกติที่ยืนยันครบเพื่อเปิดเงื่อนไขนั้น เช็กลิสต์เว็บไม่อ่านเซฟเกมและไม่ปลดล็อกเกม",
       source: "อ่านหลักฐานเงื่อนไขเรื่องราว",
       noticeSource: "หลักฐานการอ่านไปรษณียบัตร",
-      general: "วิธีใช้แม่เหล็กทั่วไปและคำแนะนำซื้อ"
+      general: "วิธีใช้เข็มทิศทั่วไปและคำแนะนำซื้อ"
     },
     en: {
-      title: "No Magnet heading in Area 6: what next?",
-      action: "Do not buy another Magnet yet. Use the map to choose fish and fishing spots while checking story progress.",
+      title: "No Compass heading in Area 6: what next?",
+      action: "Do not buy another Compass yet. Use the map to choose fish and fishing spots while checking story progress.",
       notebook: "Add the counts on all six in-game notebook pages. At least 65 distinct species records out of 66 are required, not 65 catches. A story prerequisite is also required, so 65 records alone do not guarantee a heading.",
       checklist: "Compare fish names with the notebook checklist",
       map: "Choose Area 6 fishing spots on the map",
-      postcard: "After checking the notebook, read Received postcard 06 in the game. If the doctor’s giant-eel request appears, that read enables the Area 6 Magnet heading. If it does not appear, the story prerequisite may still be missing.",
+      postcard: "After checking the notebook, read Received postcard 06 in the game. If the doctor’s giant-eel request appears, that read enables the Area 6 Compass heading. If it does not appear, the story prerequisite may still be missing.",
       mail: "See postcard guidance and the giant-eel point",
       evidence: "Verified conditions and remaining research",
       limit: "ROM evidence establishes the notebook count and story gate, but a complete ordinary-play sequence to unlock the prerequisite is not yet verified. The web checklist does not read your save or unlock the game.",
       source: "Read the story-gate evidence",
       noticeSource: "Postcard reader evidence",
-      general: "General Magnet use and buying advice"
+      general: "General Compass use and buying advice"
     },
     ja: {
       title: "エリア6で磁石が方角を示さないときは？",
@@ -2549,13 +2567,13 @@
     th: {
       family: {
         カディス: "แคดดิส",
-        テレストリアル: "เทอเรสเทรียล",
-        ディプテラ: "ดิพเทรา",
+        テレストリアル: "แมลงบก",
+        ディプテラ: "ดิปเทอรา",
         ストーンフライ: "สโตนฟลาย"
       },
       scope: (area, family, familyJa) => `ร้านด่าน ${area} · เลือก${family} (${familyJa}) ตอนประกอบฟลาย`,
       none: (part, instructions) => `ถ้าจะเลือก “ไม่มี” (無し) ในเมนู${part} ให้เริ่มจากซ้ายบน: ${instructions}`,
-      directQuote: "หลังเลือกบอดี้เทอเรสเทรียลนี้ เกมข้ามเมนูปีกและหาง แล้วไปหน้าเสนอราคาเลย",
+      directQuote: "หลังเลือกบอดี้แมลงบกนี้ เกมข้ามเมนูปีกและหาง แล้วไปหน้าเสนอราคาเลย",
       limit: (area, family) => `ยืนยันตำแหน่งเฉพาะเมนู${family}ในร้านด่าน ${area} ตำแหน่งบอกว่าชิ้นไหน ไม่ได้พิสูจน์ว่าปลากินหรือตกขึ้นง่ายกว่า ตรวจราคาสุทธิก่อนจ่าย`,
       controlledScope: (family, familyJa) => `เมื่อร้านมีตัวเลือก${family} (${familyJa}) ให้เลือกตระกูลนี้ก่อน`,
       controlledLimit: "ตรวจตำแหน่งซ้ำอย่างอิสระจากเมนูด่านเลขคู่ที่จำลองในสภาวะควบคุม ยืนยันช่องเลือกชิ้นส่วน แต่ยังไม่ได้ยืนยันเส้นทางเดินหรือการเข้าร้านจากการเล่นปกติ ไม่ได้พิสูจน์ว่าปลากินหรือตกขึ้นง่ายกว่า ตรวจราคาสุทธิก่อนจ่าย"
@@ -2772,7 +2790,7 @@
     return {
       th: {
         title: "เมื่ออ่านแล้วพบจดหมายจากหมอให้ตกปลาไหลใหญ่",
-        body: "ถ้าพบข้อความนี้แล้ว ใช้แม่เหล็กในด่าน 6 ดูทิศทาง หรือเปิดจุดบนแผนที่ด้านล่าง เลือกเหยื่อและอุปกรณ์จากหน้าปลาไหลใหญ่ก่อนออกไปตก",
+        body: "ถ้าพบข้อความนี้แล้ว ใช้เข็มทิศในด่าน 6 ดูทิศทาง หรือเปิดจุดบนแผนที่ด้านล่าง เลือกเหยื่อและอุปกรณ์จากหน้าปลาไหลใหญ่ก่อนออกไปตก",
         afterCatch: "จับตามคำขอได้แล้ว ให้เก็บปลาไหลไว้และกลับหมู่บ้านเริ่มต้น หากเงื่อนไขเนื้อเรื่องครบ เกมจะเริ่มฉากช่วยหมอและฉากจบอัตโนมัติ",
         returnMap: "ดูทางกลับหมู่บ้าน · ด่าน 1 (12,189)",
         limit: "จุดตกที่กำหนดอาจไม่มีปลาในรอบนี้",
@@ -2790,7 +2808,7 @@
       },
       en: {
         title: "After reading the doctor’s request for a giant eel",
-        body: "Once this request appears, use its Area 6 Magnet heading or open the map point below. Choose compatible bait and equipment from the fish profile before fishing.",
+        body: "Once this request appears, use its Area 6 Compass heading or open the map point below. Choose compatible bait and equipment from the fish profile before fishing.",
         afterCatch: "After catching the requested eel, keep it and return to the starting village. When the story conditions are complete, the doctor-recovery and ending scene starts automatically.",
         returnMap: "Starting-village entrance · Area 1 (12,189)",
         limit: "The configured fishing point may be inactive.",

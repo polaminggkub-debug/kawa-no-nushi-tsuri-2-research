@@ -432,7 +432,7 @@
             "itemCategory": "bait",
             "itemId": "0B",
             "requiresKey": true,
-            "itemName": "Waxworm bait"
+            "itemName": "Grapevine larva bait"
           },
           "source": {
             "coordinateFileOffset": "0x0040D0"

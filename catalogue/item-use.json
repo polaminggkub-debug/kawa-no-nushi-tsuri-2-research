@@ -834,7 +834,7 @@
         ],
         "th": [
           "ช่วงเล็งที่นานขึ้นให้เวลาขยับช่องเป้าหมายมากขึ้นก่อนเกมตรวจจุดตก",
-          "คันตีเหยื่อ/ลัวร์: เมื่อ HP ต่ำกว่า 100 ช่วงเล็งจะสั้นลง; ฟื้น HP ให้ถึง 100 เพื่อกลับมาใช้ช่วงเต็ม",
+          "คันหวดและคันลัวร์: เมื่อ HP ต่ำกว่า 100 ช่วงเล็งจะสั้นลง; ฟื้น HP ให้ถึง 100 เพื่อกลับมาใช้ช่วงเต็ม",
           "ขอบเขตตำแหน่งปลาที่สูงขึ้นให้ปลาไปได้ไกลขึ้นก่อนเข้าเส้นทางหนีที่ทำให้ลัวร์หาย; เมื่อเข้าเส้นทางนี้ เกมระบุว่าลัวร์ถูกขโมยและปลาหนี และปลายังหนีด้วยทางอื่นได้"
         ]
       },
@@ -924,7 +924,7 @@
         ],
         "th": [
           "ช่วงเล็งที่นานขึ้นให้เวลาขยับช่องเป้าหมายมากขึ้นก่อนเกมตรวจจุดตก",
-          "คันตีเหยื่อ/ลัวร์: เมื่อ HP ต่ำกว่า 100 ช่วงเล็งจะสั้นลง; ฟื้น HP ให้ถึง 100 เพื่อกลับมาใช้ช่วงเต็ม",
+          "คันหวดและคันลัวร์: เมื่อ HP ต่ำกว่า 100 ช่วงเล็งจะสั้นลง; ฟื้น HP ให้ถึง 100 เพื่อกลับมาใช้ช่วงเต็ม",
           "ขอบเขตตำแหน่งปลาที่สูงขึ้นให้ปลาไปได้ไกลขึ้นก่อนเข้าเส้นทางหนีที่ทำให้ลัวร์หาย; เมื่อเข้าเส้นทางนี้ เกมระบุว่าลัวร์ถูกขโมยและปลาหนี และปลายังหนีด้วยทางอื่นได้"
         ]
       },
@@ -998,7 +998,7 @@
         ],
         "th": [
           "ช่วงเล็งที่นานขึ้นให้เวลาขยับช่องเป้าหมายมากขึ้นก่อนเกมตรวจจุดตก",
-          "คันตีเหยื่อ/ลัวร์: เมื่อ HP ต่ำกว่า 100 ช่วงเล็งจะสั้นลง; ฟื้น HP ให้ถึง 100 เพื่อกลับมาใช้ช่วงเต็ม",
+          "คันหวดและคันลัวร์: เมื่อ HP ต่ำกว่า 100 ช่วงเล็งจะสั้นลง; ฟื้น HP ให้ถึง 100 เพื่อกลับมาใช้ช่วงเต็ม",
           "ขอบเขตตำแหน่งปลาที่สูงขึ้นให้ปลาไปได้ไกลขึ้นก่อนเข้าเส้นทางหนีที่ทำให้ลัวร์หาย; เมื่อเข้าเส้นทางนี้ เกมระบุว่าลัวร์ถูกขโมยและปลาหนี และปลายังหนีด้วยทางอื่นได้"
         ]
       },
@@ -1088,7 +1088,7 @@
         ],
         "th": [
           "ช่วงเล็งที่นานขึ้นให้เวลาขยับช่องเป้าหมายมากขึ้นก่อนเกมตรวจจุดตก",
-          "คันตีเหยื่อ/ลัวร์: เมื่อ HP ต่ำกว่า 100 ช่วงเล็งจะสั้นลง; ฟื้น HP ให้ถึง 100 เพื่อกลับมาใช้ช่วงเต็ม",
+          "คันหวดและคันลัวร์: เมื่อ HP ต่ำกว่า 100 ช่วงเล็งจะสั้นลง; ฟื้น HP ให้ถึง 100 เพื่อกลับมาใช้ช่วงเต็ม",
           "ขอบเขตตำแหน่งปลาที่สูงขึ้นให้ปลาไปได้ไกลขึ้นก่อนเข้าเส้นทางหนีที่ทำให้ลัวร์หาย; เมื่อเข้าเส้นทางนี้ เกมระบุว่าลัวร์ถูกขโมยและปลาหนี และปลายังหนีด้วยทางอื่นได้"
         ]
       },
@@ -1164,7 +1164,7 @@
       "summary": {
         "en": "Use for casting fishing. Move the target tile with the directions; release the cast button or let the aim window expire to check that spot.",
         "ja": "キャスティング釣り用。方向キーで狙うタイルを動かし、投げるボタンを離すか照準時間が切れると、その場所を判定する。",
-        "th": "ใช้ตกแบบคาสติ้ง ระหว่างเล็งกดทิศทางเพื่อย้ายช่องเป้าหมาย; ปล่อยปุ่มตกปลาหรือรอจนช่วงเล็งหมดเพื่อให้เกมตรวจจุดนั้น"
+        "th": "ใช้ตกแบบหวด ระหว่างเล็งกดทิศทางเพื่อย้ายช่องเป้าหมาย; ปล่อยปุ่มตกปลาหรือรอจนช่วงเล็งหมดเพื่อให้เกมตรวจจุดนั้น"
       },
       "facts": {
         "en": [
@@ -1179,7 +1179,7 @@
         ],
         "th": [
           "ช่วงเล็งที่นานขึ้นให้เวลาขยับช่องเป้าหมายมากขึ้นก่อนเกมตรวจจุดตก",
-          "คันตีเหยื่อ/ลัวร์: เมื่อ HP ต่ำกว่า 100 ช่วงเล็งจะสั้นลง; ฟื้น HP ให้ถึง 100 เพื่อกลับมาใช้ช่วงเต็ม",
+          "คันหวดและคันลัวร์: เมื่อ HP ต่ำกว่า 100 ช่วงเล็งจะสั้นลง; ฟื้น HP ให้ถึง 100 เพื่อกลับมาใช้ช่วงเต็ม",
           "ขอบเขตตำแหน่งปลาที่สูงขึ้นให้ปลาไปได้ไกลขึ้นก่อนเข้าเส้นทางหนีที่ทำให้เบ็ดหาย; เมื่อเข้าเส้นทางนี้ เกมระบุว่าเบ็ดถูกขโมยและปลาหนี ส่วนเหยื่อปลาอายุแบบล่อมีข้อความแยก และปลายังหนีด้วยทางอื่นได้"
         ]
       },
@@ -1203,7 +1203,7 @@
         "style": {
           "en": "Casting",
           "ja": "投げ釣り",
-          "th": "ตีเหยื่อแบบคาสติ้ง"
+          "th": "หวด"
         },
         "aimCutoffRaw": 70,
         "aimCutoffAt100Hp": 70,
@@ -1215,14 +1215,14 @@
         "group": {
           "en": "Casting",
           "ja": "投げ釣り",
-          "th": "ตีเหยื่อแบบคาสติ้ง"
+          "th": "หวด"
         },
         "aimRankAt100Hp": 3,
         "reachRank": 3,
         "of": 3,
         "en": "Within Casting rods: time to aim ranks 3/3 at full HP; line strength ranks 3/3. Rank 1 is longest/highest in that dimension.",
         "ja": "投げ釣り用の竿3本中、HP満タン時の狙う時間は3位、糸の切れにくさは3位。1位が最長・最大。",
-        "th": "ในกลุ่มคันตีเหยื่อแบบคาสติ้ง 3 คัน: เวลาเล็งอันดับ 3/3 เมื่อ HP เต็ม; สายขาดยากอันดับ 3/3; อันดับ 1 คือดีที่สุด"
+        "th": "ในกลุ่มคันหวด 3 คัน: เวลาเล็งอันดับ 3/3 เมื่อ HP เต็ม; สายขาดยากอันดับ 3/3; อันดับ 1 คือดีที่สุด"
       },
       "evidence": {
         "type": "rom_trace",
@@ -1254,7 +1254,7 @@
       "summary": {
         "en": "Use for casting fishing. Move the target tile with the directions; release the cast button or let the aim window expire to check that spot.",
         "ja": "キャスティング釣り用。方向キーで狙うタイルを動かし、投げるボタンを離すか照準時間が切れると、その場所を判定する。",
-        "th": "ใช้ตกแบบคาสติ้ง ระหว่างเล็งกดทิศทางเพื่อย้ายช่องเป้าหมาย; ปล่อยปุ่มตกปลาหรือรอจนช่วงเล็งหมดเพื่อให้เกมตรวจจุดนั้น"
+        "th": "ใช้ตกแบบหวด ระหว่างเล็งกดทิศทางเพื่อย้ายช่องเป้าหมาย; ปล่อยปุ่มตกปลาหรือรอจนช่วงเล็งหมดเพื่อให้เกมตรวจจุดนั้น"
       },
       "facts": {
         "en": [
@@ -1269,7 +1269,7 @@
         ],
         "th": [
           "ช่วงเล็งที่นานขึ้นให้เวลาขยับช่องเป้าหมายมากขึ้นก่อนเกมตรวจจุดตก",
-          "คันตีเหยื่อ/ลัวร์: เมื่อ HP ต่ำกว่า 100 ช่วงเล็งจะสั้นลง; ฟื้น HP ให้ถึง 100 เพื่อกลับมาใช้ช่วงเต็ม",
+          "คันหวดและคันลัวร์: เมื่อ HP ต่ำกว่า 100 ช่วงเล็งจะสั้นลง; ฟื้น HP ให้ถึง 100 เพื่อกลับมาใช้ช่วงเต็ม",
           "ขอบเขตตำแหน่งปลาที่สูงขึ้นให้ปลาไปได้ไกลขึ้นก่อนเข้าเส้นทางหนีที่ทำให้เบ็ดหาย; เมื่อเข้าเส้นทางนี้ เกมระบุว่าเบ็ดถูกขโมยและปลาหนี ส่วนเหยื่อปลาอายุแบบล่อมีข้อความแยก และปลายังหนีด้วยทางอื่นได้"
         ]
       },
@@ -1293,7 +1293,7 @@
         "style": {
           "en": "Casting",
           "ja": "投げ釣り",
-          "th": "ตีเหยื่อแบบคาสติ้ง"
+          "th": "หวด"
         },
         "aimCutoffRaw": 100,
         "aimCutoffAt100Hp": 100,
@@ -1305,14 +1305,14 @@
         "group": {
           "en": "Casting",
           "ja": "投げ釣り",
-          "th": "ตีเหยื่อแบบคาสติ้ง"
+          "th": "หวด"
         },
         "aimRankAt100Hp": 2,
         "reachRank": 2,
         "of": 3,
         "en": "Within Casting rods: time to aim ranks 2/3 at full HP; line strength ranks 2/3. Rank 1 is longest/highest in that dimension.",
         "ja": "投げ釣り用の竿3本中、HP満タン時の狙う時間は2位、糸の切れにくさは2位。1位が最長・最大。",
-        "th": "ในกลุ่มคันตีเหยื่อแบบคาสติ้ง 3 คัน: เวลาเล็งอันดับ 2/3 เมื่อ HP เต็ม; สายขาดยากอันดับ 2/3; อันดับ 1 คือดีที่สุด"
+        "th": "ในกลุ่มคันหวด 3 คัน: เวลาเล็งอันดับ 2/3 เมื่อ HP เต็ม; สายขาดยากอันดับ 2/3; อันดับ 1 คือดีที่สุด"
       },
       "evidence": {
         "type": "rom_trace",
@@ -1341,7 +1341,7 @@
       "summary": {
         "en": "Use for casting fishing. Move the target tile with the directions; release the cast button or let the aim window expire to check that spot.",
         "ja": "キャスティング釣り用。方向キーで狙うタイルを動かし、投げるボタンを離すか照準時間が切れると、その場所を判定する。",
-        "th": "ใช้ตกแบบคาสติ้ง ระหว่างเล็งกดทิศทางเพื่อย้ายช่องเป้าหมาย; ปล่อยปุ่มตกปลาหรือรอจนช่วงเล็งหมดเพื่อให้เกมตรวจจุดนั้น"
+        "th": "ใช้ตกแบบหวด ระหว่างเล็งกดทิศทางเพื่อย้ายช่องเป้าหมาย; ปล่อยปุ่มตกปลาหรือรอจนช่วงเล็งหมดเพื่อให้เกมตรวจจุดนั้น"
       },
       "facts": {
         "en": [
@@ -1356,7 +1356,7 @@
         ],
         "th": [
           "ช่วงเล็งที่นานขึ้นให้เวลาขยับช่องเป้าหมายมากขึ้นก่อนเกมตรวจจุดตก",
-          "คันตีเหยื่อ/ลัวร์: เมื่อ HP ต่ำกว่า 100 ช่วงเล็งจะสั้นลง; ฟื้น HP ให้ถึง 100 เพื่อกลับมาใช้ช่วงเต็ม",
+          "คันหวดและคันลัวร์: เมื่อ HP ต่ำกว่า 100 ช่วงเล็งจะสั้นลง; ฟื้น HP ให้ถึง 100 เพื่อกลับมาใช้ช่วงเต็ม",
           "ขอบเขตตำแหน่งปลาที่สูงขึ้นให้ปลาไปได้ไกลขึ้นก่อนเข้าเส้นทางหนีที่ทำให้เบ็ดหาย; เมื่อเข้าเส้นทางนี้ เกมระบุว่าเบ็ดถูกขโมยและปลาหนี ส่วนเหยื่อปลาอายุแบบล่อมีข้อความแยก และปลายังหนีด้วยทางอื่นได้"
         ]
       },
@@ -1380,7 +1380,7 @@
         "style": {
           "en": "Casting",
           "ja": "投げ釣り",
-          "th": "ตีเหยื่อแบบคาสติ้ง"
+          "th": "หวด"
         },
         "aimCutoffRaw": 120,
         "aimCutoffAt100Hp": 120,
@@ -1392,14 +1392,14 @@
         "group": {
           "en": "Casting",
           "ja": "投げ釣り",
-          "th": "ตีเหยื่อแบบคาสติ้ง"
+          "th": "หวด"
         },
         "aimRankAt100Hp": 1,
         "reachRank": 1,
         "of": 3,
         "en": "Within Casting rods: time to aim ranks 1/3 at full HP; line strength ranks 1/3. Rank 1 is longest/highest in that dimension.",
         "ja": "投げ釣り用の竿3本中、HP満タン時の狙う時間は1位、糸の切れにくさは1位。1位が最長・最大。",
-        "th": "ในกลุ่มคันตีเหยื่อแบบคาสติ้ง 3 คัน: เวลาเล็งอันดับ 1/3 เมื่อ HP เต็ม; สายขาดยากอันดับ 1/3; อันดับ 1 คือดีที่สุด"
+        "th": "ในกลุ่มคันหวด 3 คัน: เวลาเล็งอันดับ 1/3 เมื่อ HP เต็ม; สายขาดยากอันดับ 1/3; อันดับ 1 คือดีที่สุด"
       },
       "targetMatches": [
         {
@@ -7644,10 +7644,10 @@
         "45"
       ],
       "displayName": {
-        "th": "บอดี้ฟลายแมลงชีปะขาวแบบเปียก 01"
+        "th": "บอดี้เมย์ฟลาย แบบเปียก 01"
       },
       "displayNameSource": {
-        "th": "คำแปลชื่อญี่ปุ่นโดยตรง ไม่ใช่ภาพป้ายจากแพตช์ไทย"
+        "th": "ชื่อกลุ่มตามป้ายในแพตช์ไทย ต่อท้ายด้วยรหัสเพื่อแยกชิ้นที่ชื่อซ้ำกัน"
       },
       "fishScope": {
         "en": "The linked fish list shows profiles passing only this body-selected check; other fish and fight conditions still apply.",
@@ -7747,10 +7747,10 @@
         "45"
       ],
       "displayName": {
-        "th": "บอดี้ฟลายแมลงชีปะขาวแบบเปียก 02"
+        "th": "บอดี้เมย์ฟลาย แบบเปียก 02"
       },
       "displayNameSource": {
-        "th": "คำแปลชื่อญี่ปุ่นโดยตรง ไม่ใช่ภาพป้ายจากแพตช์ไทย"
+        "th": "ชื่อกลุ่มตามป้ายในแพตช์ไทย ต่อท้ายด้วยรหัสเพื่อแยกชิ้นที่ชื่อซ้ำกัน"
       },
       "fishScope": {
         "en": "The linked fish list shows profiles passing only this body-selected check; other fish and fight conditions still apply.",
@@ -7850,10 +7850,10 @@
         "45"
       ],
       "displayName": {
-        "th": "บอดี้ฟลายแมลงชีปะขาวแบบเปียก 03"
+        "th": "บอดี้เมย์ฟลาย แบบเปียก 03"
       },
       "displayNameSource": {
-        "th": "คำแปลชื่อญี่ปุ่นโดยตรง ไม่ใช่ภาพป้ายจากแพตช์ไทย"
+        "th": "ชื่อกลุ่มตามป้ายในแพตช์ไทย ต่อท้ายด้วยรหัสเพื่อแยกชิ้นที่ชื่อซ้ำกัน"
       },
       "fishScope": {
         "en": "The linked fish list shows profiles passing only this body-selected check; other fish and fight conditions still apply.",
@@ -7953,10 +7953,10 @@
         "45"
       ],
       "displayName": {
-        "th": "บอดี้ฟลายแมลงชีปะขาวแบบเปียก 04"
+        "th": "บอดี้เมย์ฟลาย แบบเปียก 04"
       },
       "displayNameSource": {
-        "th": "คำแปลชื่อญี่ปุ่นโดยตรง ไม่ใช่ภาพป้ายจากแพตช์ไทย"
+        "th": "ชื่อกลุ่มตามป้ายในแพตช์ไทย ต่อท้ายด้วยรหัสเพื่อแยกชิ้นที่ชื่อซ้ำกัน"
       },
       "fishScope": {
         "en": "The linked fish list shows profiles passing only this body-selected check; other fish and fight conditions still apply.",
@@ -8056,10 +8056,10 @@
         "45"
       ],
       "displayName": {
-        "th": "บอดี้ฟลายแมลงชีปะขาวแบบเปียก 05"
+        "th": "บอดี้เมย์ฟลาย แบบเปียก 05"
       },
       "displayNameSource": {
-        "th": "คำแปลชื่อญี่ปุ่นโดยตรง ไม่ใช่ภาพป้ายจากแพตช์ไทย"
+        "th": "ชื่อกลุ่มตามป้ายในแพตช์ไทย ต่อท้ายด้วยรหัสเพื่อแยกชิ้นที่ชื่อซ้ำกัน"
       },
       "fishScope": {
         "en": "The linked fish list shows profiles passing only this body-selected check; other fish and fight conditions still apply.",
@@ -8147,10 +8147,10 @@
         "45"
       ],
       "displayName": {
-        "th": "บอดี้ฟลายแมลงชีปะขาวแบบเปียก 06"
+        "th": "บอดี้เมย์ฟลาย แบบเปียก 06"
       },
       "displayNameSource": {
-        "th": "คำแปลชื่อญี่ปุ่นโดยตรง ไม่ใช่ภาพป้ายจากแพตช์ไทย"
+        "th": "ชื่อกลุ่มตามป้ายในแพตช์ไทย ต่อท้ายด้วยรหัสเพื่อแยกชิ้นที่ชื่อซ้ำกัน"
       },
       "fishScope": {
         "en": "The linked fish list shows profiles passing only this body-selected check; other fish and fight conditions still apply.",
@@ -8250,10 +8250,10 @@
         "45"
       ],
       "displayName": {
-        "th": "บอดี้ฟลายแมลงชีปะขาวแบบเปียก 07"
+        "th": "บอดี้เมย์ฟลาย แบบเปียก 07"
       },
       "displayNameSource": {
-        "th": "คำแปลชื่อญี่ปุ่นโดยตรง ไม่ใช่ภาพป้ายจากแพตช์ไทย"
+        "th": "ชื่อกลุ่มตามป้ายในแพตช์ไทย ต่อท้ายด้วยรหัสเพื่อแยกชิ้นที่ชื่อซ้ำกัน"
       },
       "fishScope": {
         "en": "The linked fish list shows profiles passing only this body-selected check; other fish and fight conditions still apply.",
@@ -8341,10 +8341,10 @@
         "45"
       ],
       "displayName": {
-        "th": "บอดี้ฟลายแมลงชีปะขาวแบบเปียก 08"
+        "th": "บอดี้เมย์ฟลาย แบบเปียก 08"
       },
       "displayNameSource": {
-        "th": "คำแปลชื่อญี่ปุ่นโดยตรง ไม่ใช่ภาพป้ายจากแพตช์ไทย"
+        "th": "ชื่อกลุ่มตามป้ายในแพตช์ไทย ต่อท้ายด้วยรหัสเพื่อแยกชิ้นที่ชื่อซ้ำกัน"
       },
       "fishScope": {
         "en": "The linked fish list shows profiles passing only this body-selected check; other fish and fight conditions still apply.",
@@ -8428,10 +8428,10 @@
         "45"
       ],
       "displayName": {
-        "th": "บอดี้ฟลายแมลงชีปะขาวแบบแห้ง 18"
+        "th": "บอดี้เมย์ฟลาย แบบแห้ง 18"
       },
       "displayNameSource": {
-        "th": "คำแปลชื่อญี่ปุ่นโดยตรง ไม่ใช่ภาพป้ายจากแพตช์ไทย"
+        "th": "ชื่อกลุ่มตามป้ายในแพตช์ไทย ต่อท้ายด้วยรหัสเพื่อแยกชิ้นที่ชื่อซ้ำกัน"
       },
       "fishScope": {
         "en": "The linked fish list shows profiles passing only this body-selected check; other fish and fight conditions still apply.",
@@ -8515,10 +8515,10 @@
         "45"
       ],
       "displayName": {
-        "th": "บอดี้ฟลายแมลงชีปะขาวแบบแห้ง 19"
+        "th": "บอดี้เมย์ฟลาย แบบแห้ง 19"
       },
       "displayNameSource": {
-        "th": "คำแปลชื่อญี่ปุ่นโดยตรง ไม่ใช่ภาพป้ายจากแพตช์ไทย"
+        "th": "ชื่อกลุ่มตามป้ายในแพตช์ไทย ต่อท้ายด้วยรหัสเพื่อแยกชิ้นที่ชื่อซ้ำกัน"
       },
       "fishScope": {
         "en": "The linked fish list shows profiles passing only this body-selected check; other fish and fight conditions still apply.",
@@ -8602,10 +8602,10 @@
         "45"
       ],
       "displayName": {
-        "th": "บอดี้ฟลายแมลงชีปะขาวแบบแห้ง 1A"
+        "th": "บอดี้เมย์ฟลาย แบบแห้ง 1A"
       },
       "displayNameSource": {
-        "th": "คำแปลชื่อญี่ปุ่นโดยตรง ไม่ใช่ภาพป้ายจากแพตช์ไทย"
+        "th": "ชื่อกลุ่มตามป้ายในแพตช์ไทย ต่อท้ายด้วยรหัสเพื่อแยกชิ้นที่ชื่อซ้ำกัน"
       },
       "fishScope": {
         "en": "The linked fish list shows profiles passing only this body-selected check; other fish and fight conditions still apply.",
@@ -8689,10 +8689,10 @@
         "45"
       ],
       "displayName": {
-        "th": "บอดี้ฟลายแมลงชีปะขาวแบบแห้ง 1B"
+        "th": "บอดี้เมย์ฟลาย แบบแห้ง 1B"
       },
       "displayNameSource": {
-        "th": "คำแปลชื่อญี่ปุ่นโดยตรง ไม่ใช่ภาพป้ายจากแพตช์ไทย"
+        "th": "ชื่อกลุ่มตามป้ายในแพตช์ไทย ต่อท้ายด้วยรหัสเพื่อแยกชิ้นที่ชื่อซ้ำกัน"
       },
       "fishScope": {
         "en": "The linked fish list shows profiles passing only this body-selected check; other fish and fight conditions still apply.",
@@ -8776,10 +8776,10 @@
         "45"
       ],
       "displayName": {
-        "th": "บอดี้ฟลายแมลงชีปะขาวแบบแห้ง 1C"
+        "th": "บอดี้เมย์ฟลาย แบบแห้ง 1C"
       },
       "displayNameSource": {
-        "th": "คำแปลชื่อญี่ปุ่นโดยตรง ไม่ใช่ภาพป้ายจากแพตช์ไทย"
+        "th": "ชื่อกลุ่มตามป้ายในแพตช์ไทย ต่อท้ายด้วยรหัสเพื่อแยกชิ้นที่ชื่อซ้ำกัน"
       },
       "fishScope": {
         "en": "The linked fish list shows profiles passing only this body-selected check; other fish and fight conditions still apply.",
@@ -8851,10 +8851,10 @@
         "45"
       ],
       "displayName": {
-        "th": "บอดี้ฟลายแมลงชีปะขาวแบบแห้ง 1D"
+        "th": "บอดี้เมย์ฟลาย แบบแห้ง 1D"
       },
       "displayNameSource": {
-        "th": "คำแปลชื่อญี่ปุ่นโดยตรง ไม่ใช่ภาพป้ายจากแพตช์ไทย"
+        "th": "ชื่อกลุ่มตามป้ายในแพตช์ไทย ต่อท้ายด้วยรหัสเพื่อแยกชิ้นที่ชื่อซ้ำกัน"
       },
       "fishScope": {
         "en": "The linked fish list shows profiles passing only this body-selected check; other fish and fight conditions still apply.",
@@ -8938,10 +8938,10 @@
         "45"
       ],
       "displayName": {
-        "th": "บอดี้ฟลายแมลงชีปะขาวแบบแห้ง 1E"
+        "th": "บอดี้เมย์ฟลาย แบบแห้ง 1E"
       },
       "displayNameSource": {
-        "th": "คำแปลชื่อญี่ปุ่นโดยตรง ไม่ใช่ภาพป้ายจากแพตช์ไทย"
+        "th": "ชื่อกลุ่มตามป้ายในแพตช์ไทย ต่อท้ายด้วยรหัสเพื่อแยกชิ้นที่ชื่อซ้ำกัน"
       },
       "fishScope": {
         "en": "The linked fish list shows profiles passing only this body-selected check; other fish and fight conditions still apply.",
@@ -9041,10 +9041,10 @@
         "45"
       ],
       "displayName": {
-        "th": "บอดี้ฟลายแมลงหนอนปลอกน้ำแบบเปียก 2B"
+        "th": "บอดี้แคดดิส แบบเปียก 2B"
       },
       "displayNameSource": {
-        "th": "คำแปลชื่อญี่ปุ่นโดยตรง ไม่ใช่ภาพป้ายจากแพตช์ไทย"
+        "th": "ชื่อกลุ่มตามป้ายในแพตช์ไทย ต่อท้ายด้วยรหัสเพื่อแยกชิ้นที่ชื่อซ้ำกัน"
       },
       "fishScope": {
         "en": "The linked fish list shows profiles passing only this body-selected check; other fish and fight conditions still apply.",
@@ -9144,10 +9144,10 @@
         "45"
       ],
       "displayName": {
-        "th": "บอดี้ฟลายแมลงหนอนปลอกน้ำแบบเปียก 2C"
+        "th": "บอดี้แคดดิส แบบเปียก 2C"
       },
       "displayNameSource": {
-        "th": "คำแปลชื่อญี่ปุ่นโดยตรง ไม่ใช่ภาพป้ายจากแพตช์ไทย"
+        "th": "ชื่อกลุ่มตามป้ายในแพตช์ไทย ต่อท้ายด้วยรหัสเพื่อแยกชิ้นที่ชื่อซ้ำกัน"
       },
       "fishScope": {
         "en": "The linked fish list shows profiles passing only this body-selected check; other fish and fight conditions still apply.",
@@ -9247,10 +9247,10 @@
         "45"
       ],
       "displayName": {
-        "th": "บอดี้ฟลายแมลงหนอนปลอกน้ำแบบเปียก 2D"
+        "th": "บอดี้แคดดิส แบบเปียก 2D"
       },
       "displayNameSource": {
-        "th": "คำแปลชื่อญี่ปุ่นโดยตรง ไม่ใช่ภาพป้ายจากแพตช์ไทย"
+        "th": "ชื่อกลุ่มตามป้ายในแพตช์ไทย ต่อท้ายด้วยรหัสเพื่อแยกชิ้นที่ชื่อซ้ำกัน"
       },
       "fishScope": {
         "en": "The linked fish list shows profiles passing only this body-selected check; other fish and fight conditions still apply.",
@@ -9350,10 +9350,10 @@
         "45"
       ],
       "displayName": {
-        "th": "บอดี้ฟลายแมลงหนอนปลอกน้ำแบบเปียก 2E"
+        "th": "บอดี้แคดดิส แบบเปียก 2E"
       },
       "displayNameSource": {
-        "th": "คำแปลชื่อญี่ปุ่นโดยตรง ไม่ใช่ภาพป้ายจากแพตช์ไทย"
+        "th": "ชื่อกลุ่มตามป้ายในแพตช์ไทย ต่อท้ายด้วยรหัสเพื่อแยกชิ้นที่ชื่อซ้ำกัน"
       },
       "fishScope": {
         "en": "The linked fish list shows profiles passing only this body-selected check; other fish and fight conditions still apply.",
@@ -9453,10 +9453,10 @@
         "45"
       ],
       "displayName": {
-        "th": "บอดี้ฟลายแมลงหนอนปลอกน้ำแบบเปียก 2F"
+        "th": "บอดี้แคดดิส แบบเปียก 2F"
       },
       "displayNameSource": {
-        "th": "คำแปลชื่อญี่ปุ่นโดยตรง ไม่ใช่ภาพป้ายจากแพตช์ไทย"
+        "th": "ชื่อกลุ่มตามป้ายในแพตช์ไทย ต่อท้ายด้วยรหัสเพื่อแยกชิ้นที่ชื่อซ้ำกัน"
       },
       "fishScope": {
         "en": "The linked fish list shows profiles passing only this body-selected check; other fish and fight conditions still apply.",
@@ -9556,10 +9556,10 @@
         "45"
       ],
       "displayName": {
-        "th": "บอดี้ฟลายแมลงหนอนปลอกน้ำแบบเปียก 30"
+        "th": "บอดี้แคดดิส แบบเปียก 30"
       },
       "displayNameSource": {
-        "th": "คำแปลชื่อญี่ปุ่นโดยตรง ไม่ใช่ภาพป้ายจากแพตช์ไทย"
+        "th": "ชื่อกลุ่มตามป้ายในแพตช์ไทย ต่อท้ายด้วยรหัสเพื่อแยกชิ้นที่ชื่อซ้ำกัน"
       },
       "fishScope": {
         "en": "The linked fish list shows profiles passing only this body-selected check; other fish and fight conditions still apply.",
@@ -9647,10 +9647,10 @@
         "45"
       ],
       "displayName": {
-        "th": "บอดี้ฟลายแมลงหนอนปลอกน้ำแบบเปียก 31"
+        "th": "บอดี้แคดดิส แบบเปียก 31"
       },
       "displayNameSource": {
-        "th": "คำแปลชื่อญี่ปุ่นโดยตรง ไม่ใช่ภาพป้ายจากแพตช์ไทย"
+        "th": "ชื่อกลุ่มตามป้ายในแพตช์ไทย ต่อท้ายด้วยรหัสเพื่อแยกชิ้นที่ชื่อซ้ำกัน"
       },
       "fishScope": {
         "en": "The linked fish list shows profiles passing only this body-selected check; other fish and fight conditions still apply.",
@@ -9750,10 +9750,10 @@
         "45"
       ],
       "displayName": {
-        "th": "บอดี้ฟลายแมลงหนอนปลอกน้ำแบบเปียก 32"
+        "th": "บอดี้แคดดิส แบบเปียก 32"
       },
       "displayNameSource": {
-        "th": "คำแปลชื่อญี่ปุ่นโดยตรง ไม่ใช่ภาพป้ายจากแพตช์ไทย"
+        "th": "ชื่อกลุ่มตามป้ายในแพตช์ไทย ต่อท้ายด้วยรหัสเพื่อแยกชิ้นที่ชื่อซ้ำกัน"
       },
       "fishScope": {
         "en": "The linked fish list shows profiles passing only this body-selected check; other fish and fight conditions still apply.",
@@ -9841,10 +9841,10 @@
         "45"
       ],
       "displayName": {
-        "th": "บอดี้ฟลายแมลงหนอนปลอกน้ำแบบเปียก 33"
+        "th": "บอดี้แคดดิส แบบเปียก 33"
       },
       "displayNameSource": {
-        "th": "คำแปลชื่อญี่ปุ่นโดยตรง ไม่ใช่ภาพป้ายจากแพตช์ไทย"
+        "th": "ชื่อกลุ่มตามป้ายในแพตช์ไทย ต่อท้ายด้วยรหัสเพื่อแยกชิ้นที่ชื่อซ้ำกัน"
       },
       "fishScope": {
         "en": "The linked fish list shows profiles passing only this body-selected check; other fish and fight conditions still apply.",
@@ -9928,10 +9928,10 @@
         "45"
       ],
       "displayName": {
-        "th": "บอดี้ฟลายแมลงหนอนปลอกน้ำแบบแห้ง 3E"
+        "th": "บอดี้แคดดิส แบบแห้ง 3E"
       },
       "displayNameSource": {
-        "th": "คำแปลชื่อญี่ปุ่นโดยตรง ไม่ใช่ภาพป้ายจากแพตช์ไทย"
+        "th": "ชื่อกลุ่มตามป้ายในแพตช์ไทย ต่อท้ายด้วยรหัสเพื่อแยกชิ้นที่ชื่อซ้ำกัน"
       },
       "fishScope": {
         "en": "The linked fish list shows profiles passing only this body-selected check; other fish and fight conditions still apply.",
@@ -10015,10 +10015,10 @@
         "45"
       ],
       "displayName": {
-        "th": "บอดี้ฟลายแมลงหนอนปลอกน้ำแบบแห้ง 3F"
+        "th": "บอดี้แคดดิส แบบแห้ง 3F"
       },
       "displayNameSource": {
-        "th": "คำแปลชื่อญี่ปุ่นโดยตรง ไม่ใช่ภาพป้ายจากแพตช์ไทย"
+        "th": "ชื่อกลุ่มตามป้ายในแพตช์ไทย ต่อท้ายด้วยรหัสเพื่อแยกชิ้นที่ชื่อซ้ำกัน"
       },
       "fishScope": {
         "en": "The linked fish list shows profiles passing only this body-selected check; other fish and fight conditions still apply.",
@@ -10113,10 +10113,10 @@
         "45"
       ],
       "displayName": {
-        "th": "บอดี้ฟลายแมลงหนอนปลอกน้ำแบบแห้ง 40"
+        "th": "บอดี้แคดดิส แบบแห้ง 40"
       },
       "displayNameSource": {
-        "th": "คำแปลชื่อญี่ปุ่นโดยตรง ไม่ใช่ภาพป้ายจากแพตช์ไทย"
+        "th": "ชื่อกลุ่มตามป้ายในแพตช์ไทย ต่อท้ายด้วยรหัสเพื่อแยกชิ้นที่ชื่อซ้ำกัน"
       },
       "fishScope": {
         "en": "The linked fish list shows profiles passing only this body-selected check; other fish and fight conditions still apply.",
@@ -10200,10 +10200,10 @@
         "45"
       ],
       "displayName": {
-        "th": "บอดี้ฟลายแมลงหนอนปลอกน้ำแบบแห้ง 41"
+        "th": "บอดี้แคดดิส แบบแห้ง 41"
       },
       "displayNameSource": {
-        "th": "คำแปลชื่อญี่ปุ่นโดยตรง ไม่ใช่ภาพป้ายจากแพตช์ไทย"
+        "th": "ชื่อกลุ่มตามป้ายในแพตช์ไทย ต่อท้ายด้วยรหัสเพื่อแยกชิ้นที่ชื่อซ้ำกัน"
       },
       "fishScope": {
         "en": "The linked fish list shows profiles passing only this body-selected check; other fish and fight conditions still apply.",
@@ -10287,10 +10287,10 @@
         "45"
       ],
       "displayName": {
-        "th": "บอดี้ฟลายแมลงหนอนปลอกน้ำแบบแห้ง 42"
+        "th": "บอดี้แคดดิส แบบแห้ง 42"
       },
       "displayNameSource": {
-        "th": "คำแปลชื่อญี่ปุ่นโดยตรง ไม่ใช่ภาพป้ายจากแพตช์ไทย"
+        "th": "ชื่อกลุ่มตามป้ายในแพตช์ไทย ต่อท้ายด้วยรหัสเพื่อแยกชิ้นที่ชื่อซ้ำกัน"
       },
       "fishScope": {
         "en": "The linked fish list shows profiles passing only this body-selected check; other fish and fight conditions still apply.",
@@ -10390,10 +10390,10 @@
         "45"
       ],
       "displayName": {
-        "th": "บอดี้ฟลายแมลงปีกคู่แบบเปียก 4B"
+        "th": "บอดี้ดิปเทอรา แบบเปียก 4B"
       },
       "displayNameSource": {
-        "th": "คำแปลชื่อญี่ปุ่นโดยตรง ไม่ใช่ภาพป้ายจากแพตช์ไทย"
+        "th": "ชื่อกลุ่มตามป้ายในแพตช์ไทย ต่อท้ายด้วยรหัสเพื่อแยกชิ้นที่ชื่อซ้ำกัน"
       },
       "fishScope": {
         "en": "The linked fish list shows profiles passing only this body-selected check; other fish and fight conditions still apply.",
@@ -10504,10 +10504,10 @@
         "45"
       ],
       "displayName": {
-        "th": "บอดี้ฟลายแมลงปีกคู่แบบเปียก 4C"
+        "th": "บอดี้ดิปเทอรา แบบเปียก 4C"
       },
       "displayNameSource": {
-        "th": "คำแปลชื่อญี่ปุ่นโดยตรง ไม่ใช่ภาพป้ายจากแพตช์ไทย"
+        "th": "ชื่อกลุ่มตามป้ายในแพตช์ไทย ต่อท้ายด้วยรหัสเพื่อแยกชิ้นที่ชื่อซ้ำกัน"
       },
       "fishScope": {
         "en": "The linked fish list shows profiles passing only this body-selected check; other fish and fight conditions still apply.",
@@ -10607,10 +10607,10 @@
         "45"
       ],
       "displayName": {
-        "th": "บอดี้ฟลายแมลงปีกคู่แบบเปียก 4D"
+        "th": "บอดี้ดิปเทอรา แบบเปียก 4D"
       },
       "displayNameSource": {
-        "th": "คำแปลชื่อญี่ปุ่นโดยตรง ไม่ใช่ภาพป้ายจากแพตช์ไทย"
+        "th": "ชื่อกลุ่มตามป้ายในแพตช์ไทย ต่อท้ายด้วยรหัสเพื่อแยกชิ้นที่ชื่อซ้ำกัน"
       },
       "fishScope": {
         "en": "The linked fish list shows profiles passing only this body-selected check; other fish and fight conditions still apply.",
@@ -10710,10 +10710,10 @@
         "45"
       ],
       "displayName": {
-        "th": "บอดี้ฟลายแมลงปีกคู่แบบเปียก 4E"
+        "th": "บอดี้ดิปเทอรา แบบเปียก 4E"
       },
       "displayNameSource": {
-        "th": "คำแปลชื่อญี่ปุ่นโดยตรง ไม่ใช่ภาพป้ายจากแพตช์ไทย"
+        "th": "ชื่อกลุ่มตามป้ายในแพตช์ไทย ต่อท้ายด้วยรหัสเพื่อแยกชิ้นที่ชื่อซ้ำกัน"
       },
       "fishScope": {
         "en": "The linked fish list shows profiles passing only this body-selected check; other fish and fight conditions still apply.",
@@ -10813,10 +10813,10 @@
         "45"
       ],
       "displayName": {
-        "th": "บอดี้ฟลายแมลงปีกคู่แบบเปียก 4F"
+        "th": "บอดี้ดิปเทอรา แบบเปียก 4F"
       },
       "displayNameSource": {
-        "th": "คำแปลชื่อญี่ปุ่นโดยตรง ไม่ใช่ภาพป้ายจากแพตช์ไทย"
+        "th": "ชื่อกลุ่มตามป้ายในแพตช์ไทย ต่อท้ายด้วยรหัสเพื่อแยกชิ้นที่ชื่อซ้ำกัน"
       },
       "fishScope": {
         "en": "The linked fish list shows profiles passing only this body-selected check; other fish and fight conditions still apply.",
@@ -10900,10 +10900,10 @@
         "45"
       ],
       "displayName": {
-        "th": "บอดี้ฟลายแมลงปีกคู่แบบแห้ง 56"
+        "th": "บอดี้ดิปเทอรา แบบแห้ง 56"
       },
       "displayNameSource": {
-        "th": "คำแปลชื่อญี่ปุ่นโดยตรง ไม่ใช่ภาพป้ายจากแพตช์ไทย"
+        "th": "ชื่อกลุ่มตามป้ายในแพตช์ไทย ต่อท้ายด้วยรหัสเพื่อแยกชิ้นที่ชื่อซ้ำกัน"
       },
       "fishScope": {
         "en": "The linked fish list shows profiles passing only this body-selected check; other fish and fight conditions still apply.",
@@ -10998,10 +10998,10 @@
         "45"
       ],
       "displayName": {
-        "th": "บอดี้ฟลายแมลงปีกคู่แบบแห้ง 57"
+        "th": "บอดี้ดิปเทอรา แบบแห้ง 57"
       },
       "displayNameSource": {
-        "th": "คำแปลชื่อญี่ปุ่นโดยตรง ไม่ใช่ภาพป้ายจากแพตช์ไทย"
+        "th": "ชื่อกลุ่มตามป้ายในแพตช์ไทย ต่อท้ายด้วยรหัสเพื่อแยกชิ้นที่ชื่อซ้ำกัน"
       },
       "fishScope": {
         "en": "The linked fish list shows profiles passing only this body-selected check; other fish and fight conditions still apply.",
@@ -11096,10 +11096,10 @@
         "45"
       ],
       "displayName": {
-        "th": "บอดี้ฟลายแมลงปีกคู่แบบแห้ง 58"
+        "th": "บอดี้ดิปเทอรา แบบแห้ง 58"
       },
       "displayNameSource": {
-        "th": "คำแปลชื่อญี่ปุ่นโดยตรง ไม่ใช่ภาพป้ายจากแพตช์ไทย"
+        "th": "ชื่อกลุ่มตามป้ายในแพตช์ไทย ต่อท้ายด้วยรหัสเพื่อแยกชิ้นที่ชื่อซ้ำกัน"
       },
       "fishScope": {
         "en": "The linked fish list shows profiles passing only this body-selected check; other fish and fight conditions still apply.",
@@ -11183,10 +11183,10 @@
         "45"
       ],
       "displayName": {
-        "th": "บอดี้ฟลายแมลงปีกคู่แบบแห้ง 59"
+        "th": "บอดี้ดิปเทอรา แบบแห้ง 59"
       },
       "displayNameSource": {
-        "th": "คำแปลชื่อญี่ปุ่นโดยตรง ไม่ใช่ภาพป้ายจากแพตช์ไทย"
+        "th": "ชื่อกลุ่มตามป้ายในแพตช์ไทย ต่อท้ายด้วยรหัสเพื่อแยกชิ้นที่ชื่อซ้ำกัน"
       },
       "fishScope": {
         "en": "The linked fish list shows profiles passing only this body-selected check; other fish and fight conditions still apply.",
@@ -11286,10 +11286,10 @@
         "45"
       ],
       "displayName": {
-        "th": "บอดี้ฟลายแมลงสโตนฟลายแบบเปียก 60"
+        "th": "บอดี้สโตนฟลาย แบบเปียก 60"
       },
       "displayNameSource": {
-        "th": "คำแปลชื่อญี่ปุ่นโดยตรง ไม่ใช่ภาพป้ายจากแพตช์ไทย"
+        "th": "ชื่อกลุ่มตามป้ายในแพตช์ไทย ต่อท้ายด้วยรหัสเพื่อแยกชิ้นที่ชื่อซ้ำกัน"
       },
       "fishScope": {
         "en": "The linked fish list shows profiles passing only this body-selected check; other fish and fight conditions still apply.",
@@ -11389,10 +11389,10 @@
         "45"
       ],
       "displayName": {
-        "th": "บอดี้ฟลายแมลงสโตนฟลายแบบเปียก 61"
+        "th": "บอดี้สโตนฟลาย แบบเปียก 61"
       },
       "displayNameSource": {
-        "th": "คำแปลชื่อญี่ปุ่นโดยตรง ไม่ใช่ภาพป้ายจากแพตช์ไทย"
+        "th": "ชื่อกลุ่มตามป้ายในแพตช์ไทย ต่อท้ายด้วยรหัสเพื่อแยกชิ้นที่ชื่อซ้ำกัน"
       },
       "fishScope": {
         "en": "The linked fish list shows profiles passing only this body-selected check; other fish and fight conditions still apply.",
@@ -11492,10 +11492,10 @@
         "45"
       ],
       "displayName": {
-        "th": "บอดี้ฟลายแมลงสโตนฟลายแบบเปียก 62"
+        "th": "บอดี้สโตนฟลาย แบบเปียก 62"
       },
       "displayNameSource": {
-        "th": "คำแปลชื่อญี่ปุ่นโดยตรง ไม่ใช่ภาพป้ายจากแพตช์ไทย"
+        "th": "ชื่อกลุ่มตามป้ายในแพตช์ไทย ต่อท้ายด้วยรหัสเพื่อแยกชิ้นที่ชื่อซ้ำกัน"
       },
       "fishScope": {
         "en": "The linked fish list shows profiles passing only this body-selected check; other fish and fight conditions still apply.",
@@ -11583,10 +11583,10 @@
         "45"
       ],
       "displayName": {
-        "th": "บอดี้ฟลายแมลงสโตนฟลายแบบเปียก 63"
+        "th": "บอดี้สโตนฟลาย แบบเปียก 63"
       },
       "displayNameSource": {
-        "th": "คำแปลชื่อญี่ปุ่นโดยตรง ไม่ใช่ภาพป้ายจากแพตช์ไทย"
+        "th": "ชื่อกลุ่มตามป้ายในแพตช์ไทย ต่อท้ายด้วยรหัสเพื่อแยกชิ้นที่ชื่อซ้ำกัน"
       },
       "fishScope": {
         "en": "The linked fish list shows profiles passing only this body-selected check; other fish and fight conditions still apply.",
@@ -11674,10 +11674,10 @@
         "45"
       ],
       "displayName": {
-        "th": "บอดี้ฟลายแมลงสโตนฟลายแบบเปียก 64"
+        "th": "บอดี้สโตนฟลาย แบบเปียก 64"
       },
       "displayNameSource": {
-        "th": "คำแปลชื่อญี่ปุ่นโดยตรง ไม่ใช่ภาพป้ายจากแพตช์ไทย"
+        "th": "ชื่อกลุ่มตามป้ายในแพตช์ไทย ต่อท้ายด้วยรหัสเพื่อแยกชิ้นที่ชื่อซ้ำกัน"
       },
       "fishScope": {
         "en": "The linked fish list shows profiles passing only this body-selected check; other fish and fight conditions still apply.",
@@ -11777,10 +11777,10 @@
         "45"
       ],
       "displayName": {
-        "th": "บอดี้ฟลายแมลงสโตนฟลายแบบเปียก 65"
+        "th": "บอดี้สโตนฟลาย แบบเปียก 65"
       },
       "displayNameSource": {
-        "th": "คำแปลชื่อญี่ปุ่นโดยตรง ไม่ใช่ภาพป้ายจากแพตช์ไทย"
+        "th": "ชื่อกลุ่มตามป้ายในแพตช์ไทย ต่อท้ายด้วยรหัสเพื่อแยกชิ้นที่ชื่อซ้ำกัน"
       },
       "fishScope": {
         "en": "The linked fish list shows profiles passing only this body-selected check; other fish and fight conditions still apply.",
@@ -11864,10 +11864,10 @@
         "45"
       ],
       "displayName": {
-        "th": "บอดี้ฟลายแมลงสโตนฟลายแบบแห้ง 6C"
+        "th": "บอดี้สโตนฟลาย แบบแห้ง 6C"
       },
       "displayNameSource": {
-        "th": "คำแปลชื่อญี่ปุ่นโดยตรง ไม่ใช่ภาพป้ายจากแพตช์ไทย"
+        "th": "ชื่อกลุ่มตามป้ายในแพตช์ไทย ต่อท้ายด้วยรหัสเพื่อแยกชิ้นที่ชื่อซ้ำกัน"
       },
       "fishScope": {
         "en": "The linked fish list shows profiles passing only this body-selected check; other fish and fight conditions still apply.",
@@ -11951,10 +11951,10 @@
         "45"
       ],
       "displayName": {
-        "th": "บอดี้ฟลายแมลงสโตนฟลายแบบแห้ง 6D"
+        "th": "บอดี้สโตนฟลาย แบบแห้ง 6D"
       },
       "displayNameSource": {
-        "th": "คำแปลชื่อญี่ปุ่นโดยตรง ไม่ใช่ภาพป้ายจากแพตช์ไทย"
+        "th": "ชื่อกลุ่มตามป้ายในแพตช์ไทย ต่อท้ายด้วยรหัสเพื่อแยกชิ้นที่ชื่อซ้ำกัน"
       },
       "fishScope": {
         "en": "The linked fish list shows profiles passing only this body-selected check; other fish and fight conditions still apply.",
@@ -12038,10 +12038,10 @@
         "45"
       ],
       "displayName": {
-        "th": "บอดี้ฟลายแมลงสโตนฟลายแบบแห้ง 6E"
+        "th": "บอดี้สโตนฟลาย แบบแห้ง 6E"
       },
       "displayNameSource": {
-        "th": "คำแปลชื่อญี่ปุ่นโดยตรง ไม่ใช่ภาพป้ายจากแพตช์ไทย"
+        "th": "ชื่อกลุ่มตามป้ายในแพตช์ไทย ต่อท้ายด้วยรหัสเพื่อแยกชิ้นที่ชื่อซ้ำกัน"
       },
       "fishScope": {
         "en": "The linked fish list shows profiles passing only this body-selected check; other fish and fight conditions still apply.",
@@ -12113,10 +12113,10 @@
         "45"
       ],
       "displayName": {
-        "th": "บอดี้ฟลายแมลงสโตนฟลายแบบแห้ง 6F"
+        "th": "บอดี้สโตนฟลาย แบบแห้ง 6F"
       },
       "displayNameSource": {
-        "th": "คำแปลชื่อญี่ปุ่นโดยตรง ไม่ใช่ภาพป้ายจากแพตช์ไทย"
+        "th": "ชื่อกลุ่มตามป้ายในแพตช์ไทย ต่อท้ายด้วยรหัสเพื่อแยกชิ้นที่ชื่อซ้ำกัน"
       },
       "fishScope": {
         "en": "The linked fish list shows profiles passing only this body-selected check; other fish and fight conditions still apply.",
@@ -12188,10 +12188,10 @@
         "45"
       ],
       "displayName": {
-        "th": "บอดี้ฟลายTerrestrialแบบแห้ง 77"
+        "th": "บอดี้แมลงบก (มด) 77"
       },
       "displayNameSource": {
-        "th": "คำแปลชื่อญี่ปุ่นโดยตรง ไม่ใช่ภาพป้ายจากแพตช์ไทย"
+        "th": "ชื่อกลุ่มตามป้ายในแพตช์ไทย ต่อท้ายด้วยรหัสเพื่อแยกชิ้นที่ชื่อซ้ำกัน"
       },
       "fishScope": {
         "en": "The linked fish list shows profiles passing only this body-selected check; other fish and fight conditions still apply.",
@@ -12275,10 +12275,10 @@
         "45"
       ],
       "displayName": {
-        "th": "บอดี้ฟลายTerrestrialแบบแห้ง 78"
+        "th": "บอดี้แมลงบก (มด) 78"
       },
       "displayNameSource": {
-        "th": "คำแปลชื่อญี่ปุ่นโดยตรง ไม่ใช่ภาพป้ายจากแพตช์ไทย"
+        "th": "ชื่อกลุ่มตามป้ายในแพตช์ไทย ต่อท้ายด้วยรหัสเพื่อแยกชิ้นที่ชื่อซ้ำกัน"
       },
       "fishScope": {
         "en": "The linked fish list shows profiles passing only this body-selected check; other fish and fight conditions still apply.",
@@ -12350,10 +12350,10 @@
         "45"
       ],
       "displayName": {
-        "th": "บอดี้ฟลายTerrestrialแบบแห้ง 79"
+        "th": "บอดี้แมลงบก (มด) 79"
       },
       "displayNameSource": {
-        "th": "คำแปลชื่อญี่ปุ่นโดยตรง ไม่ใช่ภาพป้ายจากแพตช์ไทย"
+        "th": "ชื่อกลุ่มตามป้ายในแพตช์ไทย ต่อท้ายด้วยรหัสเพื่อแยกชิ้นที่ชื่อซ้ำกัน"
       },
       "fishScope": {
         "en": "The linked fish list shows profiles passing only this body-selected check; other fish and fight conditions still apply.",
@@ -12425,10 +12425,10 @@
         "45"
       ],
       "displayName": {
-        "th": "บอดี้ฟลายTerrestrialแบบแห้ง 7A"
+        "th": "บอดี้แมลงบก (มด) 7A"
       },
       "displayNameSource": {
-        "th": "คำแปลชื่อญี่ปุ่นโดยตรง ไม่ใช่ภาพป้ายจากแพตช์ไทย"
+        "th": "ชื่อกลุ่มตามป้ายในแพตช์ไทย ต่อท้ายด้วยรหัสเพื่อแยกชิ้นที่ชื่อซ้ำกัน"
       },
       "fishScope": {
         "en": "The linked fish list shows profiles passing only this body-selected check; other fish and fight conditions still apply.",
@@ -12500,10 +12500,10 @@
         "45"
       ],
       "displayName": {
-        "th": "บอดี้ฟลายTerrestrialแบบแห้ง 7B"
+        "th": "บอดี้แมลงบก (มด) 7B"
       },
       "displayNameSource": {
-        "th": "คำแปลชื่อญี่ปุ่นโดยตรง ไม่ใช่ภาพป้ายจากแพตช์ไทย"
+        "th": "ชื่อกลุ่มตามป้ายในแพตช์ไทย ต่อท้ายด้วยรหัสเพื่อแยกชิ้นที่ชื่อซ้ำกัน"
       },
       "fishScope": {
         "en": "The linked fish list shows profiles passing only this body-selected check; other fish and fight conditions still apply.",
@@ -12575,10 +12575,10 @@
         "45"
       ],
       "displayName": {
-        "th": "บอดี้ฟลายTerrestrialแบบแห้ง 7C"
+        "th": "บอดี้แมลงบก (ด้วง) 7C"
       },
       "displayNameSource": {
-        "th": "คำแปลชื่อญี่ปุ่นโดยตรง ไม่ใช่ภาพป้ายจากแพตช์ไทย"
+        "th": "ชื่อกลุ่มตามป้ายในแพตช์ไทย ต่อท้ายด้วยรหัสเพื่อแยกชิ้นที่ชื่อซ้ำกัน"
       },
       "fishScope": {
         "en": "The linked fish list shows profiles passing only this body-selected check; other fish and fight conditions still apply.",
@@ -12650,10 +12650,10 @@
         "45"
       ],
       "displayName": {
-        "th": "บอดี้ฟลายTerrestrialแบบแห้ง 7D"
+        "th": "บอดี้แมลงบก (ด้วง) 7D"
       },
       "displayNameSource": {
-        "th": "คำแปลชื่อญี่ปุ่นโดยตรง ไม่ใช่ภาพป้ายจากแพตช์ไทย"
+        "th": "ชื่อกลุ่มตามป้ายในแพตช์ไทย ต่อท้ายด้วยรหัสเพื่อแยกชิ้นที่ชื่อซ้ำกัน"
       },
       "fishScope": {
         "en": "The linked fish list shows profiles passing only this body-selected check; other fish and fight conditions still apply.",
@@ -12725,10 +12725,10 @@
         "45"
       ],
       "displayName": {
-        "th": "บอดี้ฟลายTerrestrialแบบแห้ง 7E"
+        "th": "บอดี้แมลงบก (ด้วง) 7E"
       },
       "displayNameSource": {
-        "th": "คำแปลชื่อญี่ปุ่นโดยตรง ไม่ใช่ภาพป้ายจากแพตช์ไทย"
+        "th": "ชื่อกลุ่มตามป้ายในแพตช์ไทย ต่อท้ายด้วยรหัสเพื่อแยกชิ้นที่ชื่อซ้ำกัน"
       },
       "fishScope": {
         "en": "The linked fish list shows profiles passing only this body-selected check; other fish and fight conditions still apply.",
@@ -12800,10 +12800,10 @@
         "45"
       ],
       "displayName": {
-        "th": "บอดี้ฟลายTerrestrialแบบแห้ง 7F"
+        "th": "บอดี้แมลงบก (ด้วง) 7F"
       },
       "displayNameSource": {
-        "th": "คำแปลชื่อญี่ปุ่นโดยตรง ไม่ใช่ภาพป้ายจากแพตช์ไทย"
+        "th": "ชื่อกลุ่มตามป้ายในแพตช์ไทย ต่อท้ายด้วยรหัสเพื่อแยกชิ้นที่ชื่อซ้ำกัน"
       },
       "fishScope": {
         "en": "The linked fish list shows profiles passing only this body-selected check; other fish and fight conditions still apply.",
@@ -12887,10 +12887,10 @@
         "45"
       ],
       "displayName": {
-        "th": "บอดี้ฟลายTerrestrialแบบแห้ง 80"
+        "th": "บอดี้แมลงบก (หนอน) 80"
       },
       "displayNameSource": {
-        "th": "คำแปลชื่อญี่ปุ่นโดยตรง ไม่ใช่ภาพป้ายจากแพตช์ไทย"
+        "th": "ชื่อกลุ่มตามป้ายในแพตช์ไทย ต่อท้ายด้วยรหัสเพื่อแยกชิ้นที่ชื่อซ้ำกัน"
       },
       "fishScope": {
         "en": "The linked fish list shows profiles passing only this body-selected check; other fish and fight conditions still apply.",
@@ -12962,10 +12962,10 @@
         "45"
       ],
       "displayName": {
-        "th": "บอดี้ฟลายTerrestrialแบบแห้ง 81"
+        "th": "บอดี้แมลงบก (หนอน) 81"
       },
       "displayNameSource": {
-        "th": "คำแปลชื่อญี่ปุ่นโดยตรง ไม่ใช่ภาพป้ายจากแพตช์ไทย"
+        "th": "ชื่อกลุ่มตามป้ายในแพตช์ไทย ต่อท้ายด้วยรหัสเพื่อแยกชิ้นที่ชื่อซ้ำกัน"
       },
       "fishScope": {
         "en": "The linked fish list shows profiles passing only this body-selected check; other fish and fight conditions still apply.",
@@ -13037,10 +13037,10 @@
         "45"
       ],
       "displayName": {
-        "th": "บอดี้ฟลายTerrestrialแบบแห้ง 82"
+        "th": "บอดี้แมลงบก (หนอน) 82"
       },
       "displayNameSource": {
-        "th": "คำแปลชื่อญี่ปุ่นโดยตรง ไม่ใช่ภาพป้ายจากแพตช์ไทย"
+        "th": "ชื่อกลุ่มตามป้ายในแพตช์ไทย ต่อท้ายด้วยรหัสเพื่อแยกชิ้นที่ชื่อซ้ำกัน"
       },
       "fishScope": {
         "en": "The linked fish list shows profiles passing only this body-selected check; other fish and fight conditions still apply.",
@@ -13124,10 +13124,10 @@
         "45"
       ],
       "displayName": {
-        "th": "บอดี้ฟลายTerrestrialแบบแห้ง 83"
+        "th": "บอดี้แมลงบก (ตั๊กแตน) 83"
       },
       "displayNameSource": {
-        "th": "คำแปลชื่อญี่ปุ่นโดยตรง ไม่ใช่ภาพป้ายจากแพตช์ไทย"
+        "th": "ชื่อกลุ่มตามป้ายในแพตช์ไทย ต่อท้ายด้วยรหัสเพื่อแยกชิ้นที่ชื่อซ้ำกัน"
       },
       "fishScope": {
         "en": "The linked fish list shows profiles passing only this body-selected check; other fish and fight conditions still apply.",
@@ -13199,10 +13199,10 @@
         "45"
       ],
       "displayName": {
-        "th": "บอดี้ฟลายTerrestrialแบบแห้ง 84"
+        "th": "บอดี้แมลงบก (ตั๊กแตน) 84"
       },
       "displayNameSource": {
-        "th": "คำแปลชื่อญี่ปุ่นโดยตรง ไม่ใช่ภาพป้ายจากแพตช์ไทย"
+        "th": "ชื่อกลุ่มตามป้ายในแพตช์ไทย ต่อท้ายด้วยรหัสเพื่อแยกชิ้นที่ชื่อซ้ำกัน"
       },
       "fishScope": {
         "en": "The linked fish list shows profiles passing only this body-selected check; other fish and fight conditions still apply.",
@@ -13274,10 +13274,10 @@
         "45"
       ],
       "displayName": {
-        "th": "บอดี้ฟลายTerrestrialแบบแห้ง 85"
+        "th": "บอดี้แมลงบก (ตั๊กแตน) 85"
       },
       "displayNameSource": {
-        "th": "คำแปลชื่อญี่ปุ่นโดยตรง ไม่ใช่ภาพป้ายจากแพตช์ไทย"
+        "th": "ชื่อกลุ่มตามป้ายในแพตช์ไทย ต่อท้ายด้วยรหัสเพื่อแยกชิ้นที่ชื่อซ้ำกัน"
       },
       "fishScope": {
         "en": "The linked fish list shows profiles passing only this body-selected check; other fish and fight conditions still apply.",
@@ -13361,10 +13361,10 @@
         "45"
       ],
       "displayName": {
-        "th": "บอดี้ฟลายTerrestrialแบบแห้ง 86"
+        "th": "บอดี้แมลงบก (แมงมุม) 86"
       },
       "displayNameSource": {
-        "th": "คำแปลชื่อญี่ปุ่นโดยตรง ไม่ใช่ภาพป้ายจากแพตช์ไทย"
+        "th": "ชื่อกลุ่มตามป้ายในแพตช์ไทย ต่อท้ายด้วยรหัสเพื่อแยกชิ้นที่ชื่อซ้ำกัน"
       },
       "fishScope": {
         "en": "The linked fish list shows profiles passing only this body-selected check; other fish and fight conditions still apply.",
@@ -14486,25 +14486,28 @@
     },
     "float_weight:02": {
       "summary": {
-        "th": "ทุ่นชิโมริทรงกลม: ใช้กับชุดตกเหยื่อติดทุ่น; เลือกจากปลาที่เหยื่อนั้นผ่านเงื่อนไข ไม่ใช่จากชื่อปลาในรุ่นทุ่น",
-        "en": "round shimori float: use with float bait fishing; choose by the fish that accepts your bait, not by a fish-specific float bonus.",
+        "th": "ทุ่นเม็ดเล็กทรงกลม: ใช้กับชุดตกเหยื่อติดทุ่น; เลือกจากปลาที่เหยื่อนั้นผ่านเงื่อนไข ไม่ใช่จากชื่อปลาในรุ่นทุ่น",
+        "en": "round bead float: use with float bait fishing; choose by the fish that accepts your bait, not by a fish-specific float bonus.",
         "ja": "丸型シモリ。ウキのエサ釣り用。対象魚はウキ名ではなくエサ適合表で選ぶ。"
       },
       "facts": {
         "th": [
           "ไอเท็ม 01–08 เลือกชุดเหยื่อติดทุ่น ซึ่งมีรายชื่อปลาในเงื่อนไขรับเหยื่อกว้างกว่าชุดตะกั่ว",
           "เปลี่ยนทุ่นรุ่นไหนก็ไม่เปลี่ยน ID เหยื่อหรือรายชื่อปลาที่ผ่านหน้ากากเหยื่อ; รุ่นย่อยเปลี่ยนรูปแบบสัญญาณทุ่นบนจอ",
-          "ROM ไม่ยืนยันว่ารุ่นใดลึกกว่า ไวกว่า หรือทำให้ปลากัดมากกว่า; ถ้าเล็งปลา ให้ดูรายชื่อในตารางเหยื่อที่ปลารับได้"
+          "ROM ไม่ยืนยันว่ารุ่นใดลึกกว่า ไวกว่า หรือทำให้ปลากัดมากกว่า; ถ้าเล็งปลา ให้ดูรายชื่อในตารางเหยื่อที่ปลารับได้",
+          "ทุ่นแบบชิโมริ คือทุ่นเม็ดเล็กๆ ที่ร้อยอยู่บนสายเบ็ด รุ่นนี้เป็นทรงกลม"
         ],
         "en": [
           "IDs 01–08 select float bait fishing, whose fish-profile checks cover a broader set than the sinker route.",
           "Changing the float model does not change the bait ID or bait-mask matches; the model changes the on-screen float-indicator pattern.",
-          "The ROM does not establish depth, sensitivity or bite chance by float model. Check the bait-acceptance table for your target fish."
+          "The ROM does not establish depth, sensitivity or bite chance by float model. Check the bait-acceptance table for your target fish.",
+          "A shimori float: a small bead-type float that sits on the line. This one is round."
         ],
         "ja": [
           "ID 01–08はウキのエサ釣り経路で、オモリ経路より魚プロフィール条件の対象が広い。",
           "ウキ形状を変えてもエサIDと適合マスクは変わらない。画面のウキ表示パターンが変わる。",
-          "形状ごとの深さ・感度・食いつき率は確認できない。対象魚はエサ適合表を参照。"
+          "形状ごとの深さ・感度・食いつき率は確認できない。対象魚はエサ適合表を参照。",
+          "シモリ（小さな玉状のウキ）の丸い型。"
         ]
       },
       "evidenceNotes": {
@@ -14596,10 +14599,10 @@
         "49"
       ],
       "displayName": {
-        "th": "ทุ่นชิโมริทรงกลม"
+        "th": "ทุ่นเม็ดเล็กทรงกลม"
       },
       "displayNameSource": {
-        "th": "คำแปลชื่อญี่ปุ่นโดยตรง ไม่ใช่ภาพป้ายจากแพตช์ไทย"
+        "th": "ชื่อที่คู่มือกำหนดให้ชัดเจนขึ้น ไม่ใช่ภาพป้ายจากแพตช์ไทย"
       },
       "fishScope": {
         "en": "This float is not tied to a particular fish. The fish still has to pass the selected bait and fishing checks.",
@@ -14627,25 +14630,28 @@
     },
     "float_weight:03": {
       "summary": {
-        "th": "ทุ่นชิโมริทรงเรียว: ใช้กับชุดตกเหยื่อติดทุ่น; เลือกจากปลาที่เหยื่อนั้นผ่านเงื่อนไข ไม่ใช่จากชื่อปลาในรุ่นทุ่น",
-        "en": "streamlined shimori float: use with float bait fishing; choose by the fish that accepts your bait, not by a fish-specific float bonus.",
+        "th": "ทุ่นเม็ดเล็กทรงเรียว: ใช้กับชุดตกเหยื่อติดทุ่น; เลือกจากปลาที่เหยื่อนั้นผ่านเงื่อนไข ไม่ใช่จากชื่อปลาในรุ่นทุ่น",
+        "en": "streamlined bead float: use with float bait fishing; choose by the fish that accepts your bait, not by a fish-specific float bonus.",
         "ja": "流線シモリ。ウキのエサ釣り用。対象魚はウキ名ではなくエサ適合表で選ぶ。"
       },
       "facts": {
         "th": [
           "ไอเท็ม 01–08 เลือกชุดเหยื่อติดทุ่น ซึ่งมีรายชื่อปลาในเงื่อนไขรับเหยื่อกว้างกว่าชุดตะกั่ว",
           "เปลี่ยนทุ่นรุ่นไหนก็ไม่เปลี่ยน ID เหยื่อหรือรายชื่อปลาที่ผ่านหน้ากากเหยื่อ; รุ่นย่อยเปลี่ยนรูปแบบสัญญาณทุ่นบนจอ",
-          "ROM ไม่ยืนยันว่ารุ่นใดลึกกว่า ไวกว่า หรือทำให้ปลากัดมากกว่า; ถ้าเล็งปลา ให้ดูรายชื่อในตารางเหยื่อที่ปลารับได้"
+          "ROM ไม่ยืนยันว่ารุ่นใดลึกกว่า ไวกว่า หรือทำให้ปลากัดมากกว่า; ถ้าเล็งปลา ให้ดูรายชื่อในตารางเหยื่อที่ปลารับได้",
+          "ทุ่นแบบชิโมริ คือทุ่นเม็ดเล็กๆ ที่ร้อยอยู่บนสายเบ็ด รุ่นนี้เป็นทรงเรียวลู่น้ำ"
         ],
         "en": [
           "IDs 01–08 select float bait fishing, whose fish-profile checks cover a broader set than the sinker route.",
           "Changing the float model does not change the bait ID or bait-mask matches; the model changes the on-screen float-indicator pattern.",
-          "The ROM does not establish depth, sensitivity or bite chance by float model. Check the bait-acceptance table for your target fish."
+          "The ROM does not establish depth, sensitivity or bite chance by float model. Check the bait-acceptance table for your target fish.",
+          "A shimori float: a small bead-type float that sits on the line. This one has a slim, streamlined shape."
         ],
         "ja": [
           "ID 01–08はウキのエサ釣り経路で、オモリ経路より魚プロフィール条件の対象が広い。",
           "ウキ形状を変えてもエサIDと適合マスクは変わらない。画面のウキ表示パターンが変わる。",
-          "形状ごとの深さ・感度・食いつき率は確認できない。対象魚はエサ適合表を参照。"
+          "形状ごとの深さ・感度・食いつき率は確認できない。対象魚はエサ適合表を参照。",
+          "シモリ（小さな玉状のウキ）の流線型。"
         ]
       },
       "evidenceNotes": {
@@ -14737,10 +14743,10 @@
         "49"
       ],
       "displayName": {
-        "th": "ทุ่นชิโมริทรงเรียว"
+        "th": "ทุ่นเม็ดเล็กทรงเรียว"
       },
       "displayNameSource": {
-        "th": "คำแปลชื่อญี่ปุ่นโดยตรง ไม่ใช่ภาพป้ายจากแพตช์ไทย"
+        "th": "ชื่อที่คู่มือกำหนดให้ชัดเจนขึ้น ไม่ใช่ภาพป้ายจากแพตช์ไทย"
       },
       "fishScope": {
         "en": "This float is not tied to a particular fish. The fish still has to pass the selected bait and fishing checks.",
@@ -15558,25 +15564,28 @@
     },
     "float_weight:0A": {
       "summary": {
-        "th": "ตะกั่วทรงนัตสึเมะ: ใช้กับชุดตกเหยื่อติดตะกั่ว; ตรวจตารางว่าปลาที่เล็งผ่านเงื่อนไขเพิ่มของชุดนี้หรือไม่",
-        "en": "natsume-shaped sinker: use with sinker bait fishing; check whether your target passes this route’s extra fish-profile condition.",
+        "th": "ตะกั่วทรงพุทรา: ใช้กับชุดตกเหยื่อติดตะกั่ว; ตรวจตารางว่าปลาที่เล็งผ่านเงื่อนไขเพิ่มของชุดนี้หรือไม่",
+        "en": "jujube-shaped sinker: use with sinker bait fishing; check whether your target passes this route’s extra fish-profile condition.",
         "ja": "ナツメ型おもり。オモリのエサ釣り用。狙う魚が追加プロフィール条件を通るか適合表で確認。"
       },
       "facts": {
         "th": [
           "ไอเท็ม 09–0A เลือกชุดเหยื่อติดตะกั่ว; เกมเพิ่มเงื่อนไขข้อมูลปลาก่อนตรวจว่าเหยื่อเข้ากับปลาหรือไม่",
           "ตะกั่ว 09 กับ 0A ใช้เงื่อนไขปลาชุดเดียวกัน; เลือกตามอุปกรณ์ที่ต้องการ ไม่ใช่หวังว่าทรงใดจะเรียกปลาคนละชนิด",
-          "รูปแบบการขยับ/แสดงตัวบอกสถานะต่างกันตามรุ่น; ROM ไม่ยืนยันความลึก ความไว หรือโอกาสกัดที่เพิ่มขึ้น"
+          "รูปแบบการขยับ/แสดงตัวบอกสถานะต่างกันตามรุ่น; ROM ไม่ยืนยันความลึก ความไว หรือโอกาสกัดที่เพิ่มขึ้น",
+          "นัตสึเมะคือผลพุทราจีน ตะกั่วรุ่นนี้จึงเป็นทรงรีปลายค่อนข้างเรียว"
         ],
         "en": [
           "IDs 09–0A select sinker bait fishing; the game applies an extra fish-profile condition before checking bait compatibility.",
           "Both sinker models use the same fish-route condition; choose by gear preference, not to target different species.",
-          "The on-screen indicator pattern differs by model; the ROM does not establish extra depth, sensitivity or bite chance."
+          "The on-screen indicator pattern differs by model; the ROM does not establish extra depth, sensitivity or bite chance.",
+          "Natsume means jujube (Chinese date): an oval sinker with slightly tapered ends."
         ],
         "ja": [
           "ID 09–0Aはオモリのエサ釣り経路を選び、エサ適合前に魚プロフィール条件を追加する。",
           "両方のオモリは同じ魚条件を使う。別の魚種を狙うために形を変える必要はない。",
-          "形状でウキ表示パターンは変わるが、深さ・感度・食いつき率の向上は確認できない。"
+          "形状でウキ表示パターンは変わるが、深さ・感度・食いつき率の向上は確認できない。",
+          "ナツメ（棗）の実の形をした、両端がやや細い楕円形のオモリ。"
         ]
       },
       "evidenceNotes": {
@@ -15626,10 +15635,10 @@
         "46"
       ],
       "displayName": {
-        "th": "ตะกั่วทรงนัตสึเมะ"
+        "th": "ตะกั่วทรงพุทรา"
       },
       "displayNameSource": {
-        "th": "คำแปลชื่อญี่ปุ่นโดยตรง ไม่ใช่ภาพป้ายจากแพตช์ไทย"
+        "th": "ชื่อที่คู่มือกำหนดให้ชัดเจนขึ้น ไม่ใช่ภาพป้ายจากแพตช์ไทย"
       },
       "fishScope": {
         "en": "Fish shown can enter the sinker route; the selected bait must also work for that fish.",
@@ -17352,9 +17361,15 @@
         "th": "ใช้ตกแบบทุ่นหรือตะกั่ว; เลือกปลาจากรูปด้านล่าง โดยชุดตะกั่วมีเป้าหมายน้อยกว่า"
       },
       "facts": {
-        "en": [],
-        "ja": [],
-        "th": []
+        "en": [
+          "A kneaded paste bait made from rice porridge (okayu)."
+        ],
+        "ja": [
+          "おかゆを練って作る練りエサ。"
+        ],
+        "th": [
+          "เหยื่อปั้นที่นวดจากโจ๊กข้าว (โอกายุ) ให้เป็นก้อน"
+        ]
       },
       "evidenceNotes": {
         "en": [
@@ -17387,10 +17402,10 @@
         "44"
       ],
       "displayName": {
-        "th": "เหยื่อปั้นข้าวกวน"
+        "th": "เหยื่อปั้นโจ๊ก"
       },
       "displayNameSource": {
-        "th": "คำแปลชื่อญี่ปุ่นโดยตรง ไม่ใช่ภาพป้ายจากแพตช์ไทย"
+        "th": "ชื่อที่คู่มือกำหนดให้ชัดเจนขึ้น ไม่ใช่ภาพป้ายจากแพตช์ไทย"
       },
       "fishIdsByRoute": {
         "float": [
@@ -18552,10 +18567,10 @@
       },
       "fishIds": [],
       "displayName": {
-        "th": "ปลา"
+        "th": "ปลาที่ตกได้"
       },
       "displayNameSource": {
-        "th": "คำแปลชื่อญี่ปุ่นโดยตรง ไม่ใช่ภาพป้ายจากแพตช์ไทย"
+        "th": "ชื่อที่คู่มือกำหนดให้ชัดเจนขึ้น ไม่ใช่ภาพป้ายจากแพตช์ไทย"
       },
       "hpRecovery": {
         "formula": "floor(raw stored fish size / 4)",
@@ -18584,13 +18599,16 @@
       },
       "facts": {
         "en": [
-          "In the tested menu, both IDs display “きのこ” but have opposite effects: +10 HP versus HP 0."
+          "In the tested menu, both IDs display “きのこ” but have opposite effects: +10 HP versus HP 0.",
+          "The game shows both mushrooms under the same name, きのこ. Tell them apart by the icon: a tan, flat cap is the safe one (+10 HP); red with yellow spots is poison (HP to 0)."
         ],
         "ja": [
-          "確認したメニューでは両IDとも「きのこ」と表示されるが、効果は+10HPとHP0で異なる。"
+          "確認したメニューでは両IDとも「きのこ」と表示されるが、効果は+10HPとHP0で異なる。",
+          "ゲームでは2種類とも「きのこ」と表示される。見分けはアイコン：茶色の平たい形は安全（HP+10）、赤に黄色い点は毒（HPが0になる）。"
         ],
         "th": [
-          "เมนูที่ทดสอบแสดงทั้งสอง ID ว่า “きのこ” แต่ผลต่างกัน: ฟื้น 10 HP กับทำให้ HP เหลือ 0"
+          "เมนูที่ทดสอบแสดงทั้งสอง ID ว่า “きのこ” แต่ผลต่างกัน: ฟื้น 10 HP กับทำให้ HP เหลือ 0",
+          "ในเกมเห็ดสองชนิดใช้ชื่อเดียวกันว่า きのこ ให้ดูที่ไอคอน: หมวกแบนสีน้ำตาลอ่อนคือกินได้ (+10 HP) ส่วนสีแดงจุดเหลืองคือเห็ดพิษ (HP เหลือ 0)"
         ]
       },
       "evidenceNotes": {
@@ -18599,6 +18617,13 @@
         "th": []
       },
       "fishIds": [],
+      "displayName": {
+        "th": "เห็ด (หมวกแบนสีน้ำตาลอ่อน)",
+        "ja": "きのこ（茶色の平たい形）"
+      },
+      "displayNameSource": {
+        "th": "ชื่อที่คู่มือกำหนดให้ชัดเจนขึ้น ไม่ใช่ภาพป้ายจากแพตช์ไทย"
+      },
       "evidence": {
         "type": "rom_trace",
         "sources": [
@@ -18617,13 +18642,16 @@
       },
       "facts": {
         "en": [
-          "In the tested menu, both IDs display “きのこ” but have opposite effects: +10 HP versus HP 0."
+          "In the tested menu, both IDs display “きのこ” but have opposite effects: +10 HP versus HP 0.",
+          "The game shows both mushrooms under the same name, きのこ. Tell them apart by the icon: a tan, flat cap is the safe one (+10 HP); red with yellow spots is poison (HP to 0)."
         ],
         "ja": [
-          "確認したメニューでは両IDとも「きのこ」と表示されるが、効果は+10HPとHP0で異なる。"
+          "確認したメニューでは両IDとも「きのこ」と表示されるが、効果は+10HPとHP0で異なる。",
+          "ゲームでは2種類とも「きのこ」と表示される。見分けはアイコン：茶色の平たい形は安全（HP+10）、赤に黄色い点は毒（HPが0になる）。"
         ],
         "th": [
-          "เมนูที่ทดสอบแสดงทั้งสอง ID ว่า “きのこ” แต่ผลต่างกัน: ฟื้น 10 HP กับทำให้ HP เหลือ 0"
+          "เมนูที่ทดสอบแสดงทั้งสอง ID ว่า “きのこ” แต่ผลต่างกัน: ฟื้น 10 HP กับทำให้ HP เหลือ 0",
+          "ในเกมเห็ดสองชนิดใช้ชื่อเดียวกันว่า きのこ ให้ดูที่ไอคอน: หมวกแบนสีน้ำตาลอ่อนคือกินได้ (+10 HP) ส่วนสีแดงจุดเหลืองคือเห็ดพิษ (HP เหลือ 0)"
         ]
       },
       "evidenceNotes": {
@@ -18633,10 +18661,11 @@
       },
       "fishIds": [],
       "displayName": {
-        "th": "เห็ด (ชนิดมีพิษ)"
+        "th": "เห็ด (สีแดงจุดเหลือง มีพิษ)",
+        "ja": "きのこ（赤に黄色い点・毒）"
       },
       "displayNameSource": {
-        "th": "คำขยายเพื่อแยกจากชื่อเมนูภาษาไทยที่แสดงว่า เห็ด"
+        "th": "ชื่อที่คู่มือกำหนดให้ชัดเจนขึ้น ไม่ใช่ภาพป้ายจากแพตช์ไทย"
       },
       "hpRecovery": {
         "effect": "sets current HP to 0"
@@ -18805,7 +18834,7 @@
       "facts": {
         "en": [
           "Search the field location you are standing at. Searching the same tile again without moving returns nothing.",
-          "In the six main areas, the search can yield worm, maggot, large earthworm, waxworm, insect or bee larva, depending on the ground context. Area 3 also has a potato-bait context.",
+          "In the six main areas, the search can yield worm, maggot, large earthworm, grapevine larva, insect or bee larva, depending on the ground context. Area 3 also has a potato-bait context.",
           "A coordinate band in town maps yields kneaded bait. The connecting route can yield large earthworm or mushrooms. Poisonous mushrooms are possible; the find message does not distinguish them.",
           "Bait rewards are 1–4 at a time, up to 9 per bait type. Mushrooms need an empty food slot.",
           "Do not search while standing in shallow water or riding a tub/canoe; those modes reject the magnifier action.",
@@ -19890,7 +19919,7 @@
       "summary": {
         "en": "Use the gold net on a new shallow-water tile to catch the bait type assigned to that area.",
         "ja": "浅瀬の新しいタイルで金アミを使い、エリアごとに決まったエサを採る。",
-        "th": "ใช้ตาข่ายสีทองที่ช่องน้ำตื้นช่องใหม่ เพื่อเก็บเหยื่อชนิดที่กำหนดไว้สำหรับพื้นที่นั้น"
+        "th": "ใช้ตาข่ายสีทองที่ช่องน้ำตื้นช่องใหม่ เพื่อเก็บเหยื่อชนิดที่กำหนดไว้สำหรับด่านนั้น"
       },
       "facts": {
         "en": [
@@ -19973,9 +20002,9 @@
           "初期所持は日本語原版ROMの4人分の初期化コードで確認。新しい操作再現やタイ語パッチの独立確認ではなく、再入手方法も未確認です。"
         ],
         "th": [
-          "ยืนยันความสัมพันธ์ระหว่างหกหน้ากับพื้นที่จากเส้นทางวาดฉากและสมุดใน ROM แต่ไม่ได้อ้างว่าภาพในสมุดระบุพิกัดเกิดปลาได้",
-          "เปิดสมุดตกปลาเพื่อดูบันทึกปลาที่จัดเป็นหกพื้นที่ พร้อมหน้าภาพรวมของพื้นที่ตามลำดับ",
-          "เกมเรียงรายการปลาในแต่ละพื้นที่ ไอเท็มนี้ใช้เปิดดูข้อมูล ไม่ได้เปลี่ยนอุปกรณ์ตกปลา",
+          "ยืนยันความสัมพันธ์ระหว่างหกหน้ากับด่านจากเส้นทางวาดฉากและสมุดใน ROM แต่ไม่ได้อ้างว่าภาพในสมุดระบุพิกัดเกิดปลาได้",
+          "เปิดสมุดตกปลาเพื่อดูบันทึกปลาที่จัดเป็นหกด่าน พร้อมหน้าภาพรวมของด่านตามลำดับ",
+          "เกมเรียงรายการปลาในแต่ละด่าน ไอเท็มนี้ใช้เปิดดูข้อมูล ไม่ได้เปลี่ยนอุปกรณ์ตกปลา",
           "ยืนยันการมีสมุดเริ่มต้นจากโค้ด ROM ญี่ปุ่นของทั้ง 4 ตัวละคร ไม่ใช่การเล่นทดสอบใหม่หรือการตรวจแพตช์ไทยแยก และยังไม่ได้ยืนยันวิธีรับทดแทน"
         ]
       },
@@ -20031,7 +20060,7 @@
           "The item handler sets action state 09. The state table routes to the read-mail handler, which searches four saved-character mail blocks using the current-character selector. The read path does not consume ID 06 or modify HP or money.",
           "For message 041E, 01:DE89..DEB1 requires $0C18 bit 0x02, bit 0x04 clear, and at least 0x41 (65) nonzero two-byte records among $0DC8..$0E4A. The reader sets bit 0x04 at 01:DEB3..DEB9, then copies ROM message 041E into the display buffer beginning at 01:DECC. This check sets the Magnet-heading flag; it does not mark the eel as caught or grant an item reward.",
           "Bit 0x02 is set separately after the automatic profile-specific return scene at 02:E643..E649. The scene is queued by the Area 1 return transition when $0C18 == 1 at 00:9E43..9E5F; the matching transition maps Area 1 tile (8,183) to map selector 7 tile (7,13). The earlier fishing callback matches a selected profile to an active fish-table row but does not test a landed-catch result, so the exact ordinary-play trigger timing remains unverified.",
-          "The Magnet's Area 6 dynamic target is separately traced in docs/magnet-story-gate-research.md: it matches fish-table row 1, giant eel ID 3B, at (41,8).",
+          "The compass's Area 6 dynamic target is separately traced in docs/magnet-story-gate-research.md: it matches fish-table row 1, giant eel ID 3B, at (41,8).",
           "The successful-storage branch 01:85E4..85FC calls story-bit producer01:917A before storing the active fish at01:8AC3. At $0C18==000F, return via Area1(12,189) to internal village7(7,77) queues the automatic scene. Messages03C8/03CC describe doctor recovery and the ending. This is original-Japanese-ROM code/dialogue evidence, not a natural completion replay; exact rewards, consumption/helper effects and Thai-patch equivalence are unverified."
         ],
         "ja": [
@@ -20043,9 +20072,9 @@
         ],
         "th": [
           "โค้ดใช้ไอเท็มตั้งสถานะการกระทำ 09 แล้วตารางสถานะส่งไปยังตัวอ่านจดหมาย ซึ่งค้นหาพื้นที่จดหมายของตัวละครที่เซฟไว้ 4 ช่องด้วยค่าตัวละครปัจจุบัน การอ่านไม่ใช้ ID 06 ทิ้งและไม่เปลี่ยน HP หรือเงิน",
-          "เงื่อนไขข้อความ 041E ที่ 01:DE89..DEB1 คือต้องมีบิต 0x02 ใน $0C18, บิต 0x04 ยังไม่ถูกตั้ง และมีช่องบันทึกปลาที่ไม่เป็นศูนย์อย่างน้อย 0x41 (65) จากช่องสองไบต์ 66 ช่องใน $0DC8..$0E4A ตัวอ่านตั้งบิต 0x04 ที่ 01:DEB3..DEB9 แล้วคัดลอกข้อความ ROM 041E ลงบัฟเฟอร์เริ่มที่ 01:DECC เงื่อนไขนี้เปิดทิศทางของแม่เหล็ก ไม่ได้บันทึกว่าตกปลาไหลยักษ์ได้แล้วหรือให้รางวัลเป็นไอเท็ม",
+          "เงื่อนไขข้อความ 041E ที่ 01:DE89..DEB1 คือต้องมีบิต 0x02 ใน $0C18, บิต 0x04 ยังไม่ถูกตั้ง และมีช่องบันทึกปลาที่ไม่เป็นศูนย์อย่างน้อย 0x41 (65) จากช่องสองไบต์ 66 ช่องใน $0DC8..$0E4A ตัวอ่านตั้งบิต 0x04 ที่ 01:DEB3..DEB9 แล้วคัดลอกข้อความ ROM 041E ลงบัฟเฟอร์เริ่มที่ 01:DECC เงื่อนไขนี้เปิดทิศทางของเข็มทิศ ไม่ได้บันทึกว่าตกปลาไหลยักษ์ได้แล้วหรือให้รางวัลเป็นไอเท็ม",
           "บิต 0x02 ถูกตั้งแยกต่างหากหลังฉากกลับอัตโนมัติของตัวละครที่เลือก เมื่อ $0C18 == 1 ทางกลับในด่าน 1 จะพิกัด (8,183) ไปยังแผนที่เมืองรหัส 7 พิกัด (7,13) และเริ่มฉาก (00:9E43..9E5F); ช่วงท้ายฉากที่ 02:E643..E649 ตั้งบิต 0x02 คอลแบ็กตกปลาก่อนหน้านี้ตรวจตัวละครที่เลือกเทียบกับแถวปลาที่กำลังทำงาน แต่ไม่ได้ตรวจผลว่าตกขึ้นมาได้แล้วหรือไม่ จึงยังยืนยันไม่ได้ว่าเงื่อนไขเกิดขึ้นตอนไหนในการเล่นปกติ",
-          "เป้าหมายแบบไดนามิกของแม่เหล็กในด่าน 6 มีหลักฐานแยกใน docs/magnet-story-gate-research.md: ตรงกับปลาไหลยักษ์ ID 3B แถวที่ 1 ของตารางปลา ที่พิกัด (41,8)",
+          "เป้าหมายแบบไดนามิกของเข็มทิศในด่าน 6 มีหลักฐานแยกใน docs/magnet-story-gate-research.md: ตรงกับปลาไหลยักษ์ ID 3B แถวที่ 1 ของตารางปลา ที่พิกัด (41,8)",
           "แขนงเก็บปลาสำเร็จ01:85E4..85FC เรียก01:917A ตั้งบิตเนื้อเรื่องก่อนเก็บปลาที่01:8AC3 เมื่อ$0C18==000F การกลับจากด่าน1(12,189)ไปหมู่บ้านรหัส7(7,77)เริ่มฉากอัตโนมัติ ข้อความ03C8/03CCเล่าว่าหมอหายและเรื่องจบ หลักฐานนี้มาจากโค้ดและบทพูด ROM ญี่ปุ่น ไม่ใช่การเล่นจบตามปกติ ยังไม่ยืนยันรางวัล การใช้ปลาทิ้งหรือผลทุกฟังก์ชันย่อย และความตรงกันของแพตช์ไทย"
         ]
       },
@@ -20694,9 +20723,9 @@
     },
     "general_tool:0E": {
       "summary": {
-        "en": "Use the magnet as a compass toward the area's exit/connecting route; it also reports your current area and subregion.",
+        "en": "Use the compass toward the area's exit/connecting route; it also reports your current area and subregion.",
         "ja": "磁石でエリア出口・連絡路の方向を調べ、現在のエリアと区画を確認する。",
-        "th": "ใช้แม่เหล็กดูทิศไปทางทางออกหรือทางเชื่อมของพื้นที่ พร้อมดูพื้นที่และช่วงที่ยืนอยู่"
+        "th": "ใช้เข็มทิศดูทิศไปทางทางออกหรือทางเชื่อมของด่าน พร้อมดูด่านและช่วงที่ยืนอยู่"
       },
       "facts": {
         "en": [
@@ -20710,7 +20739,7 @@
           "エリア6の方角表示には物語の進行条件があり、それ以前は現在地だけを表示する。町では屋外の出口座標ではなく固定の方角を使う。"
         ],
         "th": [
-          "ใช้ดูทิศไปทางทางออกหรือทางเชื่อม และดูพื้นที่กับช่วงที่ยืนอยู่",
+          "ใช้ดูทิศไปทางทางออกหรือทางเชื่อม และดูด่านกับช่วงที่ยืนอยู่",
           "เมื่อถึงจุดเป้าหมาย เข็มจะหยุด ข้อความบอกทิศกับตำแหน่งปัจจุบัน แต่ไม่บอกชื่อปลายทาง",
           "ด่าน 6 ต้องผ่านเงื่อนไขเนื้อเรื่องก่อนจึงบอกทิศได้ ก่อนหน้านั้นบอกแค่ตำแหน่ง ส่วนในเมืองใช้ทิศที่เกมกำหนดไว้ตายตัว"
         ]
@@ -20728,10 +20757,10 @@
       },
       "fishIds": [],
       "displayName": {
-        "th": "แม่เหล็ก"
+        "th": "เข็มทิศ"
       },
       "displayNameSource": {
-        "th": "คำแปลชื่อญี่ปุ่นโดยตรง ไม่ใช่ภาพป้ายจากแพตช์ไทย"
+        "th": "ชื่อที่คู่มือกำหนดให้ชัดเจนขึ้น ไม่ใช่ภาพป้ายจากแพตช์ไทย"
       },
       "evidence": {
         "type": "rom_trace",
@@ -20770,7 +20799,7 @@
           "ビンを受け取る前に道具欄に空きを1つ作る。満杯だと受け取れない。"
         ],
         "th": [
-          "หีบในเมืองของพื้นที่ 3 พิกัด (6,4) ให้ขวดเปล่าและเปิดทางให้แลกกับวัว วัวเปลี่ยนขวดเป็นนม",
+          "หีบในเมืองของด่าน 3 พิกัด (6,4) ให้ขวดเปล่าและเปิดทางให้แลกกับวัว วัวเปลี่ยนขวดเป็นนม",
           "ก่อนรับขวด ให้เว้นช่องในช่องเก็บของทั่วไป 1 ช่อง ถ้าช่องเต็มจะรับขวดไม่ได้"
         ]
       },
@@ -20782,7 +20811,7 @@
           "直接使用処理03:C4D9はメッセージ0168のみを表示する。町の宝箱処理00:D0EA..D113は00:D1D4..D207の付与処理でID0Fを渡し、付与成功時に限り7E:0C1Aのbit0を設定する。共通付与処理は最後の道具欄7E:0B78を確認し、埋まっている場合はメッセージ0196を表示して状態1で戻るため、宝箱処理はフラグ設定前に終了する。満杯状態で試した後の保存・再試行動作はこの追跡では確認していない。エリア3のNPCスロット0C（6,103）、00:C804はそのフラグとID0Fを確認して、見つかった所持欄をID10に置き換える。"
         ],
         "th": [
-          "ตัวใช้โดยตรง 03:C4D9 แสดงข้อความ 0168 เท่านั้น ทางหีบเมือง 00:D0EA..D113 ส่ง ID 0F ผ่านฟังก์ชันให้ของ 00:D1D4..D207 แล้วตั้งบิต 0 ของ 7E:0C1A เฉพาะเมื่อให้ของสำเร็จ ฟังก์ชันกลางตรวจช่องของทั่วไปช่องสุดท้ายที่ 7E:0B78; หากมีของอยู่จะแสดงข้อความ 0196 แล้วคืนสถานะ 1 ทำให้ตัวเปิดหีบจบก่อนตั้งธง โค้ดที่ตรวจยังไม่ยืนยันว่าหลังโหลดเซฟใหม่จะเกิดอะไรขึ้นกับความพยายามตอนช่องเต็ม ส่วน NPC ช่อง 0C ในพื้นที่ 3 (6,103) ที่ 00:C804 ตรวจธงนี้กับ ID 0F แล้วเขียน ID 10 ทับช่องไอเท็มที่พบ"
+          "ตัวใช้โดยตรง 03:C4D9 แสดงข้อความ 0168 เท่านั้น ทางหีบเมือง 00:D0EA..D113 ส่ง ID 0F ผ่านฟังก์ชันให้ของ 00:D1D4..D207 แล้วตั้งบิต 0 ของ 7E:0C1A เฉพาะเมื่อให้ของสำเร็จ ฟังก์ชันกลางตรวจช่องของทั่วไปช่องสุดท้ายที่ 7E:0B78; หากมีของอยู่จะแสดงข้อความ 0196 แล้วคืนสถานะ 1 ทำให้ตัวเปิดหีบจบก่อนตั้งธง โค้ดที่ตรวจยังไม่ยืนยันว่าหลังโหลดเซฟใหม่จะเกิดอะไรขึ้นกับความพยายามตอนช่องเต็ม ส่วน NPC ช่อง 0C ในด่าน 3 (6,103) ที่ 00:C804 ตรวจธงนี้กับ ID 0F แล้วเขียน ID 10 ทับช่องไอเท็มที่พบ"
         ]
       },
       "fishIds": [],
@@ -20823,7 +20852,7 @@
           "action": {
             "en": "Take the empty bottle, then bring it to the area-3 cow at (6,103).",
             "ja": "空きビンを取り、エリア3の牛（6,103）へ持っていく。",
-            "th": "รับขวดเปล่า แล้วนำไปหาวัวในพื้นที่ 3 พิกัด (6,103)"
+            "th": "รับขวดเปล่า แล้วนำไปหาวัวในด่าน 3 พิกัด (6,103)"
           },
           "source": {
             "objectSlotHex": "0E",
@@ -21129,7 +21158,7 @@
       "summary": {
         "en": "Give the candle to the NPC in area 6 (47,36) to complete the signal/reunion event. A follow-up line for saved character 1 mentions a huge red-eyed Akame in the lake's deep northwest.",
         "ja": "エリア6（47,36）のNPCに渡すと、合図と再会のイベントが進む。セーブキャラクター1の追加台詞では、湖の北西の深場にいる巨大な赤い目のアカメに触れる。",
-        "th": "เอาเทียนไปให้ NPC ในพื้นที่ 6 (47,36) เพื่อทำเควสต์ส่งสัญญาณและให้ตัวละครกลับมาพบกัน บทพูดต่อของตัวละครเซฟหมายเลข 1 กล่าวถึงอาคาเมะตาแดงตัวใหญ่ในน้ำลึกทางตะวันตกเฉียงเหนือของทะเลสาบ"
+        "th": "เอาเทียนไปให้ NPC ในด่าน 6 (47,36) เพื่อทำเควสต์ส่งสัญญาณและให้ตัวละครกลับมาพบกัน บทพูดต่อของตัวละครเซฟหมายเลข 1 กล่าวถึงอาคาเมะตาแดงตัวใหญ่ในน้ำลึกทางตะวันตกเฉียงเหนือของทะเลสาบ"
       },
       "facts": {
         "en": [
@@ -21139,7 +21168,7 @@
           "エリア6の町の鍵付き宝箱（4,6）にロウソクがある。屋外NPCはこれを消費し、合図と再会のイベントを進める。"
         ],
         "th": [
-          "หีบล็อกในเมืองพื้นที่ 6 พิกัด (4,6) มีเทียน NPC กลางแจ้งใช้เทียนทิ้งเพื่อเดินเหตุการณ์ส่งสัญญาณและพบกัน"
+          "หีบล็อกในเมืองด่าน 6 พิกัด (4,6) มีเทียน NPC กลางแจ้งใช้เทียนทิ้งเพื่อเดินเหตุการณ์ส่งสัญญาณและพบกัน"
         ]
       },
       "evidenceNotes": {
@@ -21362,7 +21391,7 @@
           "直接使用03:C5C0は最大HP7E:0864を現在HP7E:0862へコピーし、選択アイテム一覧を詰めて消費する。メッセージ016Cは食べたことを示す。エリア4イベント00:CA1CはID15を確認・削除し、7E:0C1Cのbit0を立てる。返答はメッセージ02FE。基本価格50円だけでは店頭在庫を証明しない。"
         ],
         "th": [
-          "ใช้โดยตรงที่ 03:C5C0 จะคัดลอก HP สูงสุด 7E:0864 ไปยัง HP ปัจจุบัน 7E:0862 และเลื่อนรายการไอเท็มเพื่อใช้ทิ้ง ข้อความ 016C ยืนยันว่ากินแล้ว เหตุการณ์พื้นที่ 4 ที่ 00:CA1C ตรวจ ID 15 ใช้ทิ้ง และตั้งบิต 0 ของ 7E:0C1C คำตอบ NPC คือข้อความ 02FE ราคาพื้นฐาน 50 เยนไม่ได้ยืนยันว่ามีขายในร้าน"
+          "ใช้โดยตรงที่ 03:C5C0 จะคัดลอก HP สูงสุด 7E:0864 ไปยัง HP ปัจจุบัน 7E:0862 และเลื่อนรายการไอเท็มเพื่อใช้ทิ้ง ข้อความ 016C ยืนยันว่ากินแล้ว เหตุการณ์ด่าน 4 ที่ 00:CA1C ตรวจ ID 15 ใช้ทิ้ง และตั้งบิต 0 ของ 7E:0C1C คำตอบ NPC คือข้อความ 02FE ราคาพื้นฐาน 50 เยนไม่ได้ยืนยันว่ามีขายในร้าน"
         ]
       },
       "fishIds": [],
@@ -21421,7 +21450,7 @@
       "summary": {
         "en": "In area 4, directly use fireworks at X=31–33, Y=42–43 before the fox scene has happened. The fox appears startled and runs away; fireworks are consumed. This shortcut works without first giving the NPC fried tofu.",
         "ja": "エリア4の座標X=31～33・Y=42～43で、キツネの場面が起きる前に花火を直接使う。キツネが驚いて姿を見せ、逃げていく。花火は消費される。NPCに油揚げを渡す前でも使える。",
-        "th": "ใช้ดอกไม้ไฟโดยตรงที่ X=31–33, Y=42–43 ในพื้นที่ 4 ก่อนฉากจิ้งจอกเกิด จิ้งจอกจะเผยตัวด้วยท่าทีตกใจแล้วหนีไป ดอกไม้ไฟถูกใช้ทิ้ง ใช้ทางลัดนี้ได้โดยไม่ต้องเอาเต้าหู้ทอดไปให้ NPC ก่อน"
+        "th": "ใช้ดอกไม้ไฟโดยตรงที่ X=31–33, Y=42–43 ในด่าน 4 ก่อนฉากจิ้งจอกเกิด จิ้งจอกจะเผยตัวด้วยท่าทีตกใจแล้วหนีไป ดอกไม้ไฟถูกใช้ทิ้ง ใช้ทางลัดนี้ได้โดยไม่ต้องเอาเต้าหู้ทอดไปให้ NPC ก่อน"
       },
       "facts": {
         "en": [
@@ -21433,7 +21462,7 @@
           "他の使用可能な屋外位置では通常の花火の場面になり、花火は消費される。タライ・カヌーに乗っている時は使えない。"
         ],
         "th": [
-          "NPC เควสต์พื้นที่ 4 (32,42) รับดอกไม้ไฟหลังขั้นเต้าหู้ทอดและเริ่มฉากจิ้งจอก ส่วน NPC อีกคน (62,32) รับดอกไม้ไฟโดยไม่ต้องผ่านขั้นเต้าหู้และให้คำใบ้ การใช้โดยตรงที่พิกัดที่ระบุก็เริ่มฉากได้โดยไม่ต้องทำขั้นเต้าหู้ก่อน",
+          "NPC เควสต์ด่าน 4 (32,42) รับดอกไม้ไฟหลังขั้นเต้าหู้ทอดและเริ่มฉากจิ้งจอก ส่วน NPC อีกคน (62,32) รับดอกไม้ไฟโดยไม่ต้องผ่านขั้นเต้าหู้และให้คำใบ้ การใช้โดยตรงที่พิกัดที่ระบุก็เริ่มฉากได้โดยไม่ต้องทำขั้นเต้าหู้ก่อน",
           "ใช้ในจุดกลางแจ้งอื่นที่ใช้ได้จะเป็นฉากดอกไม้ไฟทั่วไปและยังเสียไอเท็ม ใช้ไม่ได้ขณะอยู่บนกะละมังหรือแคนู"
         ]
       },
@@ -21445,7 +21474,7 @@
           "直接使用03:C5F6は許可されたフィールド状態・エリア1～6でのみ動作する。選択品を消費し通常は状態0Fにする。エリア4で7E:0C1Aのbit7が未設定、プレイヤー座標がX=31～33・Y=42～43なら状態0Eを選び02:DF9Cへ進む。このイベントは7E:0C1Aのbit7と7E:0C1Cのbit0を設定する。メッセージ0300/0302は花火使用、キツネの出現・驚き・逃走を示す。直接使用処理に油揚げ条件はない。別のイベントNPCスロット0C（32,42）も油揚げイベント後に花火を消費して02:DF9Cを起動する。ヒントNPCスロット1E（62,32）は油揚げ条件なしで00:CAFBによりアイテムを消費してメッセージ02E6を表示する。この助言だけではキツネ出現イベントの発生を証明しない。"
         ],
         "th": [
-          "ใช้โดยตรงที่ 03:C5F6 ได้เฉพาะสถานะภาคสนามที่กำหนดและพื้นที่ 1–6 โดยใช้ไอเท็มที่เลือกทิ้งและปกติตั้งสถานะ 0F ในพื้นที่ 4 หากบิต 7 ของ 7E:0C1A ยังไม่ถูกตั้ง และพิกัดผู้เล่นอยู่ในกรอบ X=31–33, Y=42–43 จะเลือกสถานะ 0E แล้วไปที่ 02:DF9C เหตุการณ์นี้ตั้งบิต 7 ของ 7E:0C1A และบิต 0 ของ 7E:0C1C ข้อความ 0300/0302 บอกว่าใช้ดอกไม้ไฟ จิ้งจอกเผยตัว ตกใจและหนีไป การใช้โดยตรงไม่ต้องมีธงเต้าหู้ทอด NPC เควสต์ช่อง 0C (32,42) เป็นอีกเส้นทาง หลังขั้นเต้าหู้ทอดจะใช้ดอกไม้ไฟทิ้งแล้วเรียก 02:DF9C ส่วน NPC ให้คำใบ้ช่อง 1E (62,32) ใช้ทาง 00:CAFB โดยไม่ต้องผ่านขั้นเต้าหู้ ใช้ไอเท็มทิ้งและแสดงข้อความ 02E6 ข้อความคำแนะนำอย่างเดียวไม่ยืนยันว่าฉากจิ้งจอกเกิดแล้ว"
+          "ใช้โดยตรงที่ 03:C5F6 ได้เฉพาะสถานะภาคสนามที่กำหนดและด่าน 1–6 โดยใช้ไอเท็มที่เลือกทิ้งและปกติตั้งสถานะ 0F ในด่าน 4 หากบิต 7 ของ 7E:0C1A ยังไม่ถูกตั้ง และพิกัดผู้เล่นอยู่ในกรอบ X=31–33, Y=42–43 จะเลือกสถานะ 0E แล้วไปที่ 02:DF9C เหตุการณ์นี้ตั้งบิต 7 ของ 7E:0C1A และบิต 0 ของ 7E:0C1C ข้อความ 0300/0302 บอกว่าใช้ดอกไม้ไฟ จิ้งจอกเผยตัว ตกใจและหนีไป การใช้โดยตรงไม่ต้องมีธงเต้าหู้ทอด NPC เควสต์ช่อง 0C (32,42) เป็นอีกเส้นทาง หลังขั้นเต้าหู้ทอดจะใช้ดอกไม้ไฟทิ้งแล้วเรียก 02:DF9C ส่วน NPC ให้คำใบ้ช่อง 1E (62,32) ใช้ทาง 00:CAFB โดยไม่ต้องผ่านขั้นเต้าหู้ ใช้ไอเท็มทิ้งและแสดงข้อความ 02E6 ข้อความคำแนะนำอย่างเดียวไม่ยืนยันว่าฉากจิ้งจอกเกิดแล้ว"
         ]
       },
       "fishIds": [],
@@ -21532,7 +21561,7 @@
       "facts": {
         "en": [
           "Selecting the key by itself only displays its description. The actual effect is checked during chest interaction.",
-          "Chest rewards by area: 1 potato bait; 2 waxworm bait; 4 small lure rod; 6 candle.",
+          "Chest rewards by area: 1 potato bait; 2 grapevine larva bait; 4 small lure rod; 6 candle.",
           "Leave room in the relevant inventory before opening a chest; the reward routines check available slots."
         ],
         "ja": [
@@ -21548,7 +21577,7 @@
       },
       "evidenceNotes": {
         "en": [
-          "The selected-use branch at 03:BD1B displays message 0172 only. The chest handler 00:CFB1..D059 checks for the key in the towns attached to outdoor areas 1, 2, 4 and 6 (internal map IDs 7, 8, 10 and 12), changes the chest graphic to its opened state, and grants the listed reward. That branch does not remove the key. The rewards are potato bait, waxworm bait, a small lure rod and a candle. An already-open chest displays message 0262; a locked chest without the key displays 0270. Coordinates are internal map7 (5,68), map8 (4,6), map10 (4,6), map12 (4,6). Inventory space is checked separately for the bait/rod/general-tool reward; message 0196 is the no-room response. The chest is marked open before the capacity check, but persistence of a no-room result after reload has not been traced. The 100-yen item-record price does not establish shop availability."
+          "The selected-use branch at 03:BD1B displays message 0172 only. The chest handler 00:CFB1..D059 checks for the key in the towns attached to outdoor areas 1, 2, 4 and 6 (internal map IDs 7, 8, 10 and 12), changes the chest graphic to its opened state, and grants the listed reward. That branch does not remove the key. The rewards are potato bait, grapevine larva bait, a small lure rod and a candle. An already-open chest displays message 0262; a locked chest without the key displays 0270. Coordinates are internal map7 (5,68), map8 (4,6), map10 (4,6), map12 (4,6). Inventory space is checked separately for the bait/rod/general-tool reward; message 0196 is the no-room response. The chest is marked open before the capacity check, but persistence of a no-room result after reload has not been traced. The 100-yen item-record price does not establish shop availability."
         ],
         "ja": [
           "選択使用分岐03:BD1Bはメッセージ0172のみ。宝箱処理00:CFB1..D059は屋外エリア1・2・4・6に対応する町（内部マップID7・8・10・12）でカギを確認し、宝箱グラフィックを開いた状態に変更して報酬を渡す。この分岐でカギは削除されない。報酬はイモ、ブドウムシ、小型ルアーロッド、ロウソク。開いた宝箱は0262、カギがない施錠箱は0270を表示。座標は内部マップ7（5,68）、8（4,6）、10（4,6）、12（4,6）。エサ・竿・一般道具の空き欄を別途確認し、空きがない場合は0196を表示する。容量確認より先に宝箱を開いた状態にするが、空きなしの結果が再読込後も保持されるかは未追跡。基本価格100円だけでは店頭在庫を証明しない。"
@@ -21635,7 +21664,7 @@
           "mapId": 8,
           "context": "town",
           "name": {
-            "en": "Locked town chest: waxworm bait",
+            "en": "Locked town chest: grapevine larva bait",
             "ja": "施錠された町の宝箱：ブドウムシ",
             "th": "หีบล็อกในเมือง: หนอนองุ่น"
           },
@@ -21850,10 +21879,10 @@
       },
       "fishIds": [],
       "displayName": {
-        "th": "ปีกฟลาย แมลงชีปะขาวแบบเปียก 09"
+        "th": "ปีกเมย์ฟลาย แบบเปียก (สีเขียวมะกอก เส้นบางๆ ปัดไปด้านหลัง)"
       },
       "displayNameSource": {
-        "th": "คำแปลชื่อญี่ปุ่นโดยตรง ไม่ใช่ภาพป้ายจากแพตช์ไทย"
+        "th": "ในเกมไม่มีชื่อชิ้นส่วนนี้ คู่มือตั้งชื่อตามตระกูล แบบเปียก/แห้ง ประเภทชิ้นส่วน และลักษณะที่เห็นในภาพ"
       },
       "wingGateClass": 1,
       "evidence": {
@@ -21916,10 +21945,10 @@
       },
       "fishIds": [],
       "displayName": {
-        "th": "ปีกฟลาย แมลงชีปะขาวแบบเปียก 0A"
+        "th": "ปีกเมย์ฟลาย แบบเปียก (สีเหลืองอ่อนกับเขียวมะกอก ปัดไปด้านหลัง)"
       },
       "displayNameSource": {
-        "th": "คำแปลชื่อญี่ปุ่นโดยตรง ไม่ใช่ภาพป้ายจากแพตช์ไทย"
+        "th": "ในเกมไม่มีชื่อชิ้นส่วนนี้ คู่มือตั้งชื่อตามตระกูล แบบเปียก/แห้ง ประเภทชิ้นส่วน และลักษณะที่เห็นในภาพ"
       },
       "wingGateClass": 2,
       "evidence": {
@@ -21982,10 +22011,10 @@
       },
       "fishIds": [],
       "displayName": {
-        "th": "ปีกฟลาย แมลงชีปะขาวแบบเปียก 0B"
+        "th": "ปีกเมย์ฟลาย แบบเปียก (สีเขียวมะกอก ฟูเป็นพุ่ม ปัดไปด้านหลัง)"
       },
       "displayNameSource": {
-        "th": "คำแปลชื่อญี่ปุ่นโดยตรง ไม่ใช่ภาพป้ายจากแพตช์ไทย"
+        "th": "ในเกมไม่มีชื่อชิ้นส่วนนี้ คู่มือตั้งชื่อตามตระกูล แบบเปียก/แห้ง ประเภทชิ้นส่วน และลักษณะที่เห็นในภาพ"
       },
       "wingGateClass": 3,
       "evidence": {
@@ -22048,10 +22077,10 @@
       },
       "fishIds": [],
       "displayName": {
-        "th": "ปีกฟลาย แมลงชีปะขาวแบบเปียก 0C"
+        "th": "ปีกเมย์ฟลาย แบบเปียก (สีเทา ตั้งขึ้น)"
       },
       "displayNameSource": {
-        "th": "คำแปลชื่อญี่ปุ่นโดยตรง ไม่ใช่ภาพป้ายจากแพตช์ไทย"
+        "th": "ในเกมไม่มีชื่อชิ้นส่วนนี้ คู่มือตั้งชื่อตามตระกูล แบบเปียก/แห้ง ประเภทชิ้นส่วน และลักษณะที่เห็นในภาพ"
       },
       "wingGateClass": 0,
       "evidence": {
@@ -22114,10 +22143,10 @@
       },
       "fishIds": [],
       "displayName": {
-        "th": "ปีกฟลาย แมลงชีปะขาวแบบเปียก 0D"
+        "th": "ปีกเมย์ฟลาย แบบเปียก (สีเขียวมะกอกกับเหลือง เป็นกระจุกตั้งขึ้น)"
       },
       "displayNameSource": {
-        "th": "คำแปลชื่อญี่ปุ่นโดยตรง ไม่ใช่ภาพป้ายจากแพตช์ไทย"
+        "th": "ในเกมไม่มีชื่อชิ้นส่วนนี้ คู่มือตั้งชื่อตามตระกูล แบบเปียก/แห้ง ประเภทชิ้นส่วน และลักษณะที่เห็นในภาพ"
       },
       "wingGateClass": 1,
       "evidence": {
@@ -22168,10 +22197,10 @@
       },
       "fishIds": [],
       "displayName": {
-        "th": "ปีกฟลาย แมลงชีปะขาวแบบเปียก 0E"
+        "th": "ปีกเมย์ฟลาย แบบเปียก (สีเทา ลายจุด เป็นพัด)"
       },
       "displayNameSource": {
-        "th": "คำแปลชื่อญี่ปุ่นโดยตรง ไม่ใช่ภาพป้ายจากแพตช์ไทย"
+        "th": "ในเกมไม่มีชื่อชิ้นส่วนนี้ คู่มือตั้งชื่อตามตระกูล แบบเปียก/แห้ง ประเภทชิ้นส่วน และลักษณะที่เห็นในภาพ"
       },
       "wingGateClass": 2,
       "evidence": {
@@ -22222,10 +22251,10 @@
       },
       "fishIds": [],
       "displayName": {
-        "th": "ปีกฟลาย แมลงชีปะขาวแบบเปียก 0F"
+        "th": "ปีกเมย์ฟลาย แบบเปียก (สีเขียวมะกอก เฉียง)"
       },
       "displayNameSource": {
-        "th": "คำแปลชื่อญี่ปุ่นโดยตรง ไม่ใช่ภาพป้ายจากแพตช์ไทย"
+        "th": "ในเกมไม่มีชื่อชิ้นส่วนนี้ คู่มือตั้งชื่อตามตระกูล แบบเปียก/แห้ง ประเภทชิ้นส่วน และลักษณะที่เห็นในภาพ"
       },
       "wingGateClass": 3,
       "evidence": {
@@ -22276,10 +22305,10 @@
       },
       "fishIds": [],
       "displayName": {
-        "th": "ปีกฟลาย แมลงชีปะขาวแบบเปียก 10"
+        "th": "ปีกเมย์ฟลาย แบบเปียก (สีเทากับชมพู เฉียง)"
       },
       "displayNameSource": {
-        "th": "คำแปลชื่อญี่ปุ่นโดยตรง ไม่ใช่ภาพป้ายจากแพตช์ไทย"
+        "th": "ในเกมไม่มีชื่อชิ้นส่วนนี้ คู่มือตั้งชื่อตามตระกูล แบบเปียก/แห้ง ประเภทชิ้นส่วน และลักษณะที่เห็นในภาพ"
       },
       "wingGateClass": 0,
       "evidence": {
@@ -22330,10 +22359,10 @@
       },
       "fishIds": [],
       "displayName": {
-        "th": "ปีกฟลาย แมลงชีปะขาวแบบเปียก 11"
+        "th": "ปีกเมย์ฟลาย แบบเปียก (สีเทากับดำ ตั้งขึ้น)"
       },
       "displayNameSource": {
-        "th": "คำแปลชื่อญี่ปุ่นโดยตรง ไม่ใช่ภาพป้ายจากแพตช์ไทย"
+        "th": "ในเกมไม่มีชื่อชิ้นส่วนนี้ คู่มือตั้งชื่อตามตระกูล แบบเปียก/แห้ง ประเภทชิ้นส่วน และลักษณะที่เห็นในภาพ"
       },
       "wingGateClass": 1,
       "evidence": {
@@ -22396,10 +22425,10 @@
       },
       "fishIds": [],
       "displayName": {
-        "th": "ปีกฟลาย แมลงชีปะขาวแบบเปียก 12"
+        "th": "ปีกเมย์ฟลาย แบบเปียก (สีเขียวมะกอกกับส้ม ฟูเป็นพุ่ม)"
       },
       "displayNameSource": {
-        "th": "คำแปลชื่อญี่ปุ่นโดยตรง ไม่ใช่ภาพป้ายจากแพตช์ไทย"
+        "th": "ในเกมไม่มีชื่อชิ้นส่วนนี้ คู่มือตั้งชื่อตามตระกูล แบบเปียก/แห้ง ประเภทชิ้นส่วน และลักษณะที่เห็นในภาพ"
       },
       "wingGateClass": 2,
       "evidence": {
@@ -22462,10 +22491,10 @@
       },
       "fishIds": [],
       "displayName": {
-        "th": "ปีกฟลาย แมลงชีปะขาวแบบแห้ง 1F"
+        "th": "ปีกเมย์ฟลาย แบบแห้ง (สีเทากับดำ ตั้งขึ้น)"
       },
       "displayNameSource": {
-        "th": "คำแปลชื่อญี่ปุ่นโดยตรง ไม่ใช่ภาพป้ายจากแพตช์ไทย"
+        "th": "ในเกมไม่มีชื่อชิ้นส่วนนี้ คู่มือตั้งชื่อตามตระกูล แบบเปียก/แห้ง ประเภทชิ้นส่วน และลักษณะที่เห็นในภาพ"
       },
       "wingGateClass": 3,
       "evidence": {
@@ -22528,10 +22557,10 @@
       },
       "fishIds": [],
       "displayName": {
-        "th": "ปีกฟลาย แมลงชีปะขาวแบบแห้ง 20"
+        "th": "ปีกเมย์ฟลาย แบบแห้ง (สีเขียวมะกอก เป็นกระจุกตั้งขึ้น)"
       },
       "displayNameSource": {
-        "th": "คำแปลชื่อญี่ปุ่นโดยตรง ไม่ใช่ภาพป้ายจากแพตช์ไทย"
+        "th": "ในเกมไม่มีชื่อชิ้นส่วนนี้ คู่มือตั้งชื่อตามตระกูล แบบเปียก/แห้ง ประเภทชิ้นส่วน และลักษณะที่เห็นในภาพ"
       },
       "wingGateClass": 0,
       "evidence": {
@@ -22594,10 +22623,10 @@
       },
       "fishIds": [],
       "displayName": {
-        "th": "ปีกฟลาย แมลงชีปะขาวแบบแห้ง 21"
+        "th": "ปีกเมย์ฟลาย แบบแห้ง (สีเทา เป็นก้อนเหลี่ยมตั้งขึ้น)"
       },
       "displayNameSource": {
-        "th": "คำแปลชื่อญี่ปุ่นโดยตรง ไม่ใช่ภาพป้ายจากแพตช์ไทย"
+        "th": "ในเกมไม่มีชื่อชิ้นส่วนนี้ คู่มือตั้งชื่อตามตระกูล แบบเปียก/แห้ง ประเภทชิ้นส่วน และลักษณะที่เห็นในภาพ"
       },
       "wingGateClass": 1,
       "evidence": {
@@ -22660,10 +22689,10 @@
       },
       "fishIds": [],
       "displayName": {
-        "th": "ปีกฟลาย แมลงชีปะขาวแบบแห้ง 22"
+        "th": "ปีกเมย์ฟลาย แบบแห้ง (สีเทาอ่อน เป็นก้อนเหลี่ยมเอียง)"
       },
       "displayNameSource": {
-        "th": "คำแปลชื่อญี่ปุ่นโดยตรง ไม่ใช่ภาพป้ายจากแพตช์ไทย"
+        "th": "ในเกมไม่มีชื่อชิ้นส่วนนี้ คู่มือตั้งชื่อตามตระกูล แบบเปียก/แห้ง ประเภทชิ้นส่วน และลักษณะที่เห็นในภาพ"
       },
       "wingGateClass": 2,
       "evidence": {
@@ -22726,10 +22755,10 @@
       },
       "fishIds": [],
       "displayName": {
-        "th": "ปีกฟลาย แมลงชีปะขาวแบบแห้ง 23"
+        "th": "ปีกเมย์ฟลาย แบบแห้ง (สีเหลือง แหลมกระจาย)"
       },
       "displayNameSource": {
-        "th": "คำแปลชื่อญี่ปุ่นโดยตรง ไม่ใช่ภาพป้ายจากแพตช์ไทย"
+        "th": "ในเกมไม่มีชื่อชิ้นส่วนนี้ คู่มือตั้งชื่อตามตระกูล แบบเปียก/แห้ง ประเภทชิ้นส่วน และลักษณะที่เห็นในภาพ"
       },
       "wingGateClass": 3,
       "evidence": {
@@ -22780,10 +22809,10 @@
       },
       "fishIds": [],
       "displayName": {
-        "th": "ปีกฟลาย แมลงชีปะขาวแบบแห้ง 24"
+        "th": "ปีกเมย์ฟลาย แบบแห้ง (สีเทา เฉียง)"
       },
       "displayNameSource": {
-        "th": "คำแปลชื่อญี่ปุ่นโดยตรง ไม่ใช่ภาพป้ายจากแพตช์ไทย"
+        "th": "ในเกมไม่มีชื่อชิ้นส่วนนี้ คู่มือตั้งชื่อตามตระกูล แบบเปียก/แห้ง ประเภทชิ้นส่วน และลักษณะที่เห็นในภาพ"
       },
       "wingGateClass": 0,
       "evidence": {
@@ -22819,17 +22848,20 @@
         "en": [
           "No fish-specific wing list or catch advantage is proven. The ROM checks wing ID in a hidden pass/skip gate.",
           "A different wing ID may avoid the wing-side match; a matching body ID can still block the event. Other no-bite causes remain possible.",
-          "The game shows pictures and a quote, not the hidden value."
+          "The game shows pictures and a quote, not the hidden value.",
+          "No shop, ready-made set or fly maker offers this wing, so you cannot get it in normal play."
         ],
         "ja": [
           "魚種別の対象表や釣果上の利点は確認できない。ROMはウィングIDを隠し通過／停止判定に使う。",
           "別IDでウィング側の一致を避けられる場合があるが、ボディ側の一致で止まることもある。食いつかない原因は他にもある。",
-          "画面は画像と見積額を表示し、隠し値は表示しない。"
+          "画面は画像と見積額を表示し、隠し値は表示しない。",
+          "店・完成品セット・毛バリ職人のどこにも出ないウィング。通常のプレイでは入手できない。"
         ],
         "th": [
           "ยังไม่มีรายชื่อปลาเฉพาะหรือข้อได้เปรียบที่พิสูจน์ได้ ROM ตรวจ รหัสชิ้นส่วน ปีกในตัวกรองผ่าน/หยุดที่ซ่อนอยู่",
           "รหัสชิ้นส่วน ปีกอื่นอาจหลบการตรงกันฝั่งปีกได้ แต่ถ้า รหัสชิ้นส่วน บอดี้ตรงเหตุการณ์ก็ยังถูกปิด และการไม่กินเหยื่อมีสาเหตุอื่นได้",
-          "หน้าจอแสดงรูปกับราคาเสนอ ไม่แสดงค่าซ่อน"
+          "หน้าจอแสดงรูปกับราคาเสนอ ไม่แสดงค่าซ่อน",
+          "ไม่มีร้าน ชุดสำเร็จรูป หรือช่างประกอบฟลายที่ขายปีกนี้ จึงหาไม่ได้ในการเล่นปกติ"
         ]
       },
       "evidenceNotes": {
@@ -22846,10 +22878,10 @@
       },
       "fishIds": [],
       "displayName": {
-        "th": "ปีกฟลาย แมลงชีปะขาวแบบแห้ง 25"
+        "th": "ปีกเมย์ฟลาย แบบแห้ง (สีขาว เป็นก้อนกลมฟู)"
       },
       "displayNameSource": {
-        "th": "คำแปลชื่อญี่ปุ่นโดยตรง ไม่ใช่ภาพป้ายจากแพตช์ไทย"
+        "th": "ในเกมไม่มีชื่อชิ้นส่วนนี้ คู่มือตั้งชื่อตามตระกูล แบบเปียก/แห้ง ประเภทชิ้นส่วน และลักษณะที่เห็นในภาพ"
       },
       "wingGateClass": 1,
       "evidence": {
@@ -22873,17 +22905,20 @@
         "en": [
           "No fish-specific wing list or catch advantage is proven. The ROM checks wing ID in a hidden pass/skip gate.",
           "A different wing ID may avoid the wing-side match; a matching body ID can still block the event. Other no-bite causes remain possible.",
-          "The game shows pictures and a quote, not the hidden value."
+          "The game shows pictures and a quote, not the hidden value.",
+          "Sold only inside one ready-made set: Area 6 (body 1E + wing 26 + tail 2A, ¥50 for the whole set). It is not in the fly maker menu."
         ],
         "ja": [
           "魚種別の対象表や釣果上の利点は確認できない。ROMはウィングIDを隠し通過／停止判定に使う。",
           "別IDでウィング側の一致を避けられる場合があるが、ボディ側の一致で止まることもある。食いつかない原因は他にもある。",
-          "画面は画像と見積額を表示し、隠し値は表示しない。"
+          "画面は画像と見積額を表示し、隠し値は表示しない。",
+          "エリア6の完成品セット1つにだけ入っている（ボディ1E＋ウィング26＋テール2A、セット全体で50円）。毛バリ職人のメニューにはない。"
         ],
         "th": [
           "ยังไม่มีรายชื่อปลาเฉพาะหรือข้อได้เปรียบที่พิสูจน์ได้ ROM ตรวจ รหัสชิ้นส่วน ปีกในตัวกรองผ่าน/หยุดที่ซ่อนอยู่",
           "รหัสชิ้นส่วน ปีกอื่นอาจหลบการตรงกันฝั่งปีกได้ แต่ถ้า รหัสชิ้นส่วน บอดี้ตรงเหตุการณ์ก็ยังถูกปิด และการไม่กินเหยื่อมีสาเหตุอื่นได้",
-          "หน้าจอแสดงรูปกับราคาเสนอ ไม่แสดงค่าซ่อน"
+          "หน้าจอแสดงรูปกับราคาเสนอ ไม่แสดงค่าซ่อน",
+          "มีเฉพาะในชุดสำเร็จรูปชุดเดียวของด่าน 6 (บอดี้ 1E + ปีก 26 + หาง 2A ราคาทั้งชุด 50 เยน) ไม่อยู่ในเมนูช่างประกอบฟลาย"
         ]
       },
       "evidenceNotes": {
@@ -22900,10 +22935,10 @@
       },
       "fishIds": [],
       "displayName": {
-        "th": "ปีกฟลาย แมลงชีปะขาวแบบแห้ง 26"
+        "th": "ปีกเมย์ฟลาย แบบแห้ง (สีเขียวมะกอก ฟูเป็นพุ่ม)"
       },
       "displayNameSource": {
-        "th": "คำแปลชื่อญี่ปุ่นโดยตรง ไม่ใช่ภาพป้ายจากแพตช์ไทย"
+        "th": "ในเกมไม่มีชื่อชิ้นส่วนนี้ คู่มือตั้งชื่อตามตระกูล แบบเปียก/แห้ง ประเภทชิ้นส่วน และลักษณะที่เห็นในภาพ"
       },
       "wingGateClass": 2,
       "evidence": {
@@ -22966,10 +23001,10 @@
       },
       "fishIds": [],
       "displayName": {
-        "th": "ปีกฟลาย แมลงหนอนปลอกน้ำแบบเปียก 34"
+        "th": "ปีกแคดดิส แบบเปียก (สีเขียวมะกอกกับส้ม ฟูเป็นพุ่ม)"
       },
       "displayNameSource": {
-        "th": "คำแปลชื่อญี่ปุ่นโดยตรง ไม่ใช่ภาพป้ายจากแพตช์ไทย"
+        "th": "ในเกมไม่มีชื่อชิ้นส่วนนี้ คู่มือตั้งชื่อตามตระกูล แบบเปียก/แห้ง ประเภทชิ้นส่วน และลักษณะที่เห็นในภาพ"
       },
       "wingGateClass": 0,
       "evidence": {
@@ -23032,10 +23067,10 @@
       },
       "fishIds": [],
       "displayName": {
-        "th": "ปีกฟลาย แมลงหนอนปลอกน้ำแบบเปียก 35"
+        "th": "ปีกแคดดิส แบบเปียก (สีเทากับดำ ฟูเป็นพุ่ม)"
       },
       "displayNameSource": {
-        "th": "คำแปลชื่อญี่ปุ่นโดยตรง ไม่ใช่ภาพป้ายจากแพตช์ไทย"
+        "th": "ในเกมไม่มีชื่อชิ้นส่วนนี้ คู่มือตั้งชื่อตามตระกูล แบบเปียก/แห้ง ประเภทชิ้นส่วน และลักษณะที่เห็นในภาพ"
       },
       "wingGateClass": 1,
       "evidence": {
@@ -23098,10 +23133,10 @@
       },
       "fishIds": [],
       "displayName": {
-        "th": "ปีกฟลาย แมลงหนอนปลอกน้ำแบบเปียก 36"
+        "th": "ปีกแคดดิส แบบเปียก (สีเหลือง ตั้งขึ้น)"
       },
       "displayNameSource": {
-        "th": "คำแปลชื่อญี่ปุ่นโดยตรง ไม่ใช่ภาพป้ายจากแพตช์ไทย"
+        "th": "ในเกมไม่มีชื่อชิ้นส่วนนี้ คู่มือตั้งชื่อตามตระกูล แบบเปียก/แห้ง ประเภทชิ้นส่วน และลักษณะที่เห็นในภาพ"
       },
       "wingGateClass": 2,
       "evidence": {
@@ -23164,10 +23199,10 @@
       },
       "fishIds": [],
       "displayName": {
-        "th": "ปีกฟลาย แมลงหนอนปลอกน้ำแบบเปียก 37"
+        "th": "ปีกแคดดิส แบบเปียก (สีเขียวมะกอกกับส้ม เป็นจุดๆ)"
       },
       "displayNameSource": {
-        "th": "คำแปลชื่อญี่ปุ่นโดยตรง ไม่ใช่ภาพป้ายจากแพตช์ไทย"
+        "th": "ในเกมไม่มีชื่อชิ้นส่วนนี้ คู่มือตั้งชื่อตามตระกูล แบบเปียก/แห้ง ประเภทชิ้นส่วน และลักษณะที่เห็นในภาพ"
       },
       "wingGateClass": 3,
       "evidence": {
@@ -23230,10 +23265,10 @@
       },
       "fishIds": [],
       "displayName": {
-        "th": "ปีกฟลาย แมลงหนอนปลอกน้ำแบบเปียก 38"
+        "th": "ปีกแคดดิส แบบเปียก (สีดำกับขาว แหลมกระจาย)"
       },
       "displayNameSource": {
-        "th": "คำแปลชื่อญี่ปุ่นโดยตรง ไม่ใช่ภาพป้ายจากแพตช์ไทย"
+        "th": "ในเกมไม่มีชื่อชิ้นส่วนนี้ คู่มือตั้งชื่อตามตระกูล แบบเปียก/แห้ง ประเภทชิ้นส่วน และลักษณะที่เห็นในภาพ"
       },
       "wingGateClass": 0,
       "evidence": {
@@ -23296,10 +23331,10 @@
       },
       "fishIds": [],
       "displayName": {
-        "th": "ปีกฟลาย แมลงหนอนปลอกน้ำแบบเปียก 39"
+        "th": "ปีกแคดดิส แบบเปียก (สีแดง เส้นบางๆ)"
       },
       "displayNameSource": {
-        "th": "คำแปลชื่อญี่ปุ่นโดยตรง ไม่ใช่ภาพป้ายจากแพตช์ไทย"
+        "th": "ในเกมไม่มีชื่อชิ้นส่วนนี้ คู่มือตั้งชื่อตามตระกูล แบบเปียก/แห้ง ประเภทชิ้นส่วน และลักษณะที่เห็นในภาพ"
       },
       "wingGateClass": 1,
       "evidence": {
@@ -23362,10 +23397,10 @@
       },
       "fishIds": [],
       "displayName": {
-        "th": "ปีกฟลาย แมลงหนอนปลอกน้ำแบบเปียก 3A"
+        "th": "ปีกแคดดิส แบบเปียก (สีทอง แบนยาว)"
       },
       "displayNameSource": {
-        "th": "คำแปลชื่อญี่ปุ่นโดยตรง ไม่ใช่ภาพป้ายจากแพตช์ไทย"
+        "th": "ในเกมไม่มีชื่อชิ้นส่วนนี้ คู่มือตั้งชื่อตามตระกูล แบบเปียก/แห้ง ประเภทชิ้นส่วน และลักษณะที่เห็นในภาพ"
       },
       "wingGateClass": 2,
       "evidence": {
@@ -23416,10 +23451,10 @@
       },
       "fishIds": [],
       "displayName": {
-        "th": "ปีกฟลาย แมลงหนอนปลอกน้ำแบบเปียก 3B"
+        "th": "ปีกแคดดิส แบบเปียก (สีเขียวมะกอก กลมแน่น)"
       },
       "displayNameSource": {
-        "th": "คำแปลชื่อญี่ปุ่นโดยตรง ไม่ใช่ภาพป้ายจากแพตช์ไทย"
+        "th": "ในเกมไม่มีชื่อชิ้นส่วนนี้ คู่มือตั้งชื่อตามตระกูล แบบเปียก/แห้ง ประเภทชิ้นส่วน และลักษณะที่เห็นในภาพ"
       },
       "wingGateClass": 3,
       "evidence": {
@@ -23470,10 +23505,10 @@
       },
       "fishIds": [],
       "displayName": {
-        "th": "ปีกฟลาย แมลงหนอนปลอกน้ำแบบเปียก 3C"
+        "th": "ปีกแคดดิส แบบเปียก (สีเทาอ่อน ลายจุด)"
       },
       "displayNameSource": {
-        "th": "คำแปลชื่อญี่ปุ่นโดยตรง ไม่ใช่ภาพป้ายจากแพตช์ไทย"
+        "th": "ในเกมไม่มีชื่อชิ้นส่วนนี้ คู่มือตั้งชื่อตามตระกูล แบบเปียก/แห้ง ประเภทชิ้นส่วน และลักษณะที่เห็นในภาพ"
       },
       "wingGateClass": 0,
       "evidence": {
@@ -23536,10 +23571,10 @@
       },
       "fishIds": [],
       "displayName": {
-        "th": "ปีกฟลาย แมลงหนอนปลอกน้ำแบบแห้ง 43"
+        "th": "ปีกแคดดิส แบบแห้ง (สีเหลืองอ่อน แบนยาว)"
       },
       "displayNameSource": {
-        "th": "คำแปลชื่อญี่ปุ่นโดยตรง ไม่ใช่ภาพป้ายจากแพตช์ไทย"
+        "th": "ในเกมไม่มีชื่อชิ้นส่วนนี้ คู่มือตั้งชื่อตามตระกูล แบบเปียก/แห้ง ประเภทชิ้นส่วน และลักษณะที่เห็นในภาพ"
       },
       "wingGateClass": 3,
       "evidence": {
@@ -23613,10 +23648,10 @@
       },
       "fishIds": [],
       "displayName": {
-        "th": "ปีกฟลาย แมลงหนอนปลอกน้ำแบบแห้ง 44"
+        "th": "ปีกแคดดิส แบบแห้ง (สีเขียวมะกอก เป็นกระจุกตั้งขึ้น แบนยาว)"
       },
       "displayNameSource": {
-        "th": "คำแปลชื่อญี่ปุ่นโดยตรง ไม่ใช่ภาพป้ายจากแพตช์ไทย"
+        "th": "ในเกมไม่มีชื่อชิ้นส่วนนี้ คู่มือตั้งชื่อตามตระกูล แบบเปียก/แห้ง ประเภทชิ้นส่วน และลักษณะที่เห็นในภาพ"
       },
       "wingGateClass": 0,
       "evidence": {
@@ -23679,10 +23714,10 @@
       },
       "fishIds": [],
       "displayName": {
-        "th": "ปีกฟลาย แมลงหนอนปลอกน้ำแบบแห้ง 45"
+        "th": "ปีกแคดดิส แบบแห้ง (สีเขียวมะกอกกับเทา เป็นกระจุกตั้งขึ้น แบนยาว)"
       },
       "displayNameSource": {
-        "th": "คำแปลชื่อญี่ปุ่นโดยตรง ไม่ใช่ภาพป้ายจากแพตช์ไทย"
+        "th": "ในเกมไม่มีชื่อชิ้นส่วนนี้ คู่มือตั้งชื่อตามตระกูล แบบเปียก/แห้ง ประเภทชิ้นส่วน และลักษณะที่เห็นในภาพ"
       },
       "wingGateClass": 1,
       "evidence": {
@@ -23745,10 +23780,10 @@
       },
       "fishIds": [],
       "displayName": {
-        "th": "ปีกฟลาย แมลงหนอนปลอกน้ำแบบแห้ง 46"
+        "th": "ปีกแคดดิส แบบแห้ง (สีเขียวมะกอก เป็นกระจุกตั้งขึ้น)"
       },
       "displayNameSource": {
-        "th": "คำแปลชื่อญี่ปุ่นโดยตรง ไม่ใช่ภาพป้ายจากแพตช์ไทย"
+        "th": "ในเกมไม่มีชื่อชิ้นส่วนนี้ คู่มือตั้งชื่อตามตระกูล แบบเปียก/แห้ง ประเภทชิ้นส่วน และลักษณะที่เห็นในภาพ"
       },
       "wingGateClass": 2,
       "evidence": {
@@ -23799,10 +23834,10 @@
       },
       "fishIds": [],
       "displayName": {
-        "th": "ปีกฟลาย แมลงหนอนปลอกน้ำแบบแห้ง 47"
+        "th": "ปีกแคดดิส แบบแห้ง (สีขาวกับเหลือง แบนยาว)"
       },
       "displayNameSource": {
-        "th": "คำแปลชื่อญี่ปุ่นโดยตรง ไม่ใช่ภาพป้ายจากแพตช์ไทย"
+        "th": "ในเกมไม่มีชื่อชิ้นส่วนนี้ คู่มือตั้งชื่อตามตระกูล แบบเปียก/แห้ง ประเภทชิ้นส่วน และลักษณะที่เห็นในภาพ"
       },
       "wingGateClass": 3,
       "evidence": {
@@ -23865,10 +23900,10 @@
       },
       "fishIds": [],
       "displayName": {
-        "th": "ปีกฟลาย แมลงหนอนปลอกน้ำแบบแห้ง 48"
+        "th": "ปีกแคดดิส แบบแห้ง (สีเขียวมะกอก กางกว้าง)"
       },
       "displayNameSource": {
-        "th": "คำแปลชื่อญี่ปุ่นโดยตรง ไม่ใช่ภาพป้ายจากแพตช์ไทย"
+        "th": "ในเกมไม่มีชื่อชิ้นส่วนนี้ คู่มือตั้งชื่อตามตระกูล แบบเปียก/แห้ง ประเภทชิ้นส่วน และลักษณะที่เห็นในภาพ"
       },
       "wingGateClass": 0,
       "evidence": {
@@ -23931,10 +23966,10 @@
       },
       "fishIds": [],
       "displayName": {
-        "th": "ปีกฟลาย แมลงปีกคู่แบบเปียก 50"
+        "th": "ปีกดิปเทอรา แบบเปียก (สีเทาอ่อน แบนยาว)"
       },
       "displayNameSource": {
-        "th": "คำแปลชื่อญี่ปุ่นโดยตรง ไม่ใช่ภาพป้ายจากแพตช์ไทย"
+        "th": "ในเกมไม่มีชื่อชิ้นส่วนนี้ คู่มือตั้งชื่อตามตระกูล แบบเปียก/แห้ง ประเภทชิ้นส่วน และลักษณะที่เห็นในภาพ"
       },
       "wingGateClass": 0,
       "evidence": {
@@ -24008,10 +24043,10 @@
       },
       "fishIds": [],
       "displayName": {
-        "th": "ปีกฟลาย แมลงปีกคู่แบบเปียก 51"
+        "th": "ปีกดิปเทอรา แบบเปียก (สีแดง เป็นก้อนกลมฟู)"
       },
       "displayNameSource": {
-        "th": "คำแปลชื่อญี่ปุ่นโดยตรง ไม่ใช่ภาพป้ายจากแพตช์ไทย"
+        "th": "ในเกมไม่มีชื่อชิ้นส่วนนี้ คู่มือตั้งชื่อตามตระกูล แบบเปียก/แห้ง ประเภทชิ้นส่วน และลักษณะที่เห็นในภาพ"
       },
       "wingGateClass": 1,
       "evidence": {
@@ -24085,10 +24120,10 @@
       },
       "fishIds": [],
       "displayName": {
-        "th": "ปีกฟลาย แมลงปีกคู่แบบเปียก 52"
+        "th": "ปีกดิปเทอรา แบบเปียก (สีเขียวมะกอก เป็นก้อนกลมฟู)"
       },
       "displayNameSource": {
-        "th": "คำแปลชื่อญี่ปุ่นโดยตรง ไม่ใช่ภาพป้ายจากแพตช์ไทย"
+        "th": "ในเกมไม่มีชื่อชิ้นส่วนนี้ คู่มือตั้งชื่อตามตระกูล แบบเปียก/แห้ง ประเภทชิ้นส่วน และลักษณะที่เห็นในภาพ"
       },
       "wingGateClass": 2,
       "evidence": {
@@ -24162,10 +24197,10 @@
       },
       "fishIds": [],
       "displayName": {
-        "th": "ปีกฟลาย แมลงปีกคู่แบบแห้ง 5A"
+        "th": "ปีกดิปเทอรา แบบแห้ง (สีฟ้าอ่อน แบนยาว)"
       },
       "displayNameSource": {
-        "th": "คำแปลชื่อญี่ปุ่นโดยตรง ไม่ใช่ภาพป้ายจากแพตช์ไทย"
+        "th": "ในเกมไม่มีชื่อชิ้นส่วนนี้ คู่มือตั้งชื่อตามตระกูล แบบเปียก/แห้ง ประเภทชิ้นส่วน และลักษณะที่เห็นในภาพ"
       },
       "wingGateClass": 2,
       "evidence": {
@@ -24228,10 +24263,10 @@
       },
       "fishIds": [],
       "displayName": {
-        "th": "ปีกฟลาย แมลงปีกคู่แบบแห้ง 5B"
+        "th": "ปีกดิปเทอรา แบบแห้ง (สีเทา เป็นก้อนเหลี่ยมตั้งขึ้น)"
       },
       "displayNameSource": {
-        "th": "คำแปลชื่อญี่ปุ่นโดยตรง ไม่ใช่ภาพป้ายจากแพตช์ไทย"
+        "th": "ในเกมไม่มีชื่อชิ้นส่วนนี้ คู่มือตั้งชื่อตามตระกูล แบบเปียก/แห้ง ประเภทชิ้นส่วน และลักษณะที่เห็นในภาพ"
       },
       "wingGateClass": 3,
       "evidence": {
@@ -24294,10 +24329,10 @@
       },
       "fishIds": [],
       "displayName": {
-        "th": "ปีกฟลาย แมลงปีกคู่แบบแห้ง 5C"
+        "th": "ปีกดิปเทอรา แบบแห้ง (สีขาวกับเทา ลายจุด)"
       },
       "displayNameSource": {
-        "th": "คำแปลชื่อญี่ปุ่นโดยตรง ไม่ใช่ภาพป้ายจากแพตช์ไทย"
+        "th": "ในเกมไม่มีชื่อชิ้นส่วนนี้ คู่มือตั้งชื่อตามตระกูล แบบเปียก/แห้ง ประเภทชิ้นส่วน และลักษณะที่เห็นในภาพ"
       },
       "wingGateClass": 0,
       "evidence": {
@@ -24371,10 +24406,10 @@
       },
       "fishIds": [],
       "displayName": {
-        "th": "ปีกฟลาย แมลงปีกคู่แบบแห้ง 5D"
+        "th": "ปีกดิปเทอรา แบบแห้ง (สีขาวกับเทา เป็นกระจุกตั้งขึ้น)"
       },
       "displayNameSource": {
-        "th": "คำแปลชื่อญี่ปุ่นโดยตรง ไม่ใช่ภาพป้ายจากแพตช์ไทย"
+        "th": "ในเกมไม่มีชื่อชิ้นส่วนนี้ คู่มือตั้งชื่อตามตระกูล แบบเปียก/แห้ง ประเภทชิ้นส่วน และลักษณะที่เห็นในภาพ"
       },
       "wingGateClass": 1,
       "evidence": {
@@ -24437,10 +24472,10 @@
       },
       "fishIds": [],
       "displayName": {
-        "th": "ปีกฟลาย แมลงปีกคู่แบบแห้ง 5E"
+        "th": "ปีกดิปเทอรา แบบแห้ง (สีเหลือง เป็นกระจุกตั้งขึ้น)"
       },
       "displayNameSource": {
-        "th": "คำแปลชื่อญี่ปุ่นโดยตรง ไม่ใช่ภาพป้ายจากแพตช์ไทย"
+        "th": "ในเกมไม่มีชื่อชิ้นส่วนนี้ คู่มือตั้งชื่อตามตระกูล แบบเปียก/แห้ง ประเภทชิ้นส่วน และลักษณะที่เห็นในภาพ"
       },
       "wingGateClass": 2,
       "evidence": {
@@ -24468,45 +24503,38 @@
     },
     "fly_wing:66": {
       "summary": {
-        "en": "This is a fly customization choice, not a proven species match or catch upgrade. A hidden check can block its ID; casting again does not reroll the stored value.",
-        "ja": "毛バリ作成用の部品。魚種専用や釣果向上は証明されていない。隠し判定でIDが止められる場合があり、投げ直しでは保存値は再抽選されない。",
-        "th": "ปีกนี้เป็นชิ้นส่วนประกอบฟลาย ยังไม่มีหลักฐานว่าเหมาะกับปลาชนิดใดหรือจับปลาได้ดีกว่า เกมมีเงื่อนไขซ่อนที่อาจหยุดการตรวจปลาเมื่อใช้ปีกนี้; การเหวี่ยงซ้ำไม่สุ่มค่าใหม่"
+        "en": "A leech-pattern fly body from the game data. No shop, ready-made set or fly maker offers it, so you cannot get it in normal play.",
+        "ja": "ゲームデータにあるリーチ（ヒル型）の毛バリボディ。店・完成品セット・毛バリ職人のどこにも出ないため、通常のプレイでは入手できない。",
+        "th": "บอดี้ฟลายแบบลีช (รูปปลิง) ที่มีอยู่ในข้อมูลเกม แต่ไม่มีร้าน ชุดสำเร็จรูป หรือช่างประกอบฟลายที่เสนอชิ้นนี้ จึงหาไม่ได้ในการเล่นปกติ"
       },
       "facts": {
         "en": [
-          "No fish-specific wing list or catch advantage is proven. The ROM checks wing ID in a hidden pass/skip gate.",
-          "A different wing ID may avoid the wing-side match; a matching body ID can still block the event. Other no-bite causes remain possible.",
-          "The game shows pictures and a quote, not the hidden value."
+          "In the game data this record is a body-type part (leech family). The guide keeps it in the wing list so older links still work."
         ],
         "ja": [
-          "魚種別の対象表や釣果上の利点は確認できない。ROMはウィングIDを隠し通過／停止判定に使う。",
-          "別IDでウィング側の一致を避けられる場合があるが、ボディ側の一致で止まることもある。食いつかない原因は他にもある。",
-          "画面は画像と見積額を表示し、隠し値は表示しない。"
+          "ゲームデータ上は体（ボディ）型の部品（リーチ系統）。古いリンクが切れないよう、このガイドではウィング一覧に残している。"
         ],
         "th": [
-          "ยังไม่มีรายชื่อปลาเฉพาะหรือข้อได้เปรียบที่พิสูจน์ได้ ROM ตรวจ รหัสชิ้นส่วน ปีกในตัวกรองผ่าน/หยุดที่ซ่อนอยู่",
-          "รหัสชิ้นส่วน ปีกอื่นอาจหลบการตรงกันฝั่งปีกได้ แต่ถ้า รหัสชิ้นส่วน บอดี้ตรงเหตุการณ์ก็ยังถูกปิด และการไม่กินเหยื่อมีสาเหตุอื่นได้",
-          "หน้าจอแสดงรูปกับราคาเสนอ ไม่แสดงค่าซ่อน"
+          "ในข้อมูลเกมชิ้นนี้เป็นชิ้นส่วนแบบบอดี้ (ตระกูลลีช) คู่มือนี้เก็บไว้ในรายการปีกเพื่อไม่ให้ลิงก์เก่าเสีย"
         ]
       },
       "evidenceNotes": {
         "en": [
-          "04:D4AF..D4CD compares (body ID & 3) with 7F:1E86 and (wing ID & 3) with 7F:1E88; either match clears 1FA7. 04:E6C9 ANDs it into a mode-3 fish event. Values are seeded by setup at 04:EDA0..EDB2 and by inn/rest at 03:80C7..838x (PRNG & 3). Recast compares but does not reroll; overnight may update values, not guaranteed to change them."
+          "Family code 5 (leech) with the body-type part code. The record is missing from every shop stock table, ready-made fly set and fly maker palette that was checked."
         ],
         "ja": [
-          "04:D4AF..D4CDは(ボディID & 3)を7F:1E86、(ウィングID & 3)を7F:1E88と比較し、一致すると1FA7を消す。04:E6C9はこれをモード3判定にANDする。値は04:EDA0..EDB2の初期化と03:80C7..838xの宿泊／休憩（乱数&3）で書かれる。投げ直しは比較のみで再抽選しない。宿泊で値が変わることはあるが別値の保証はない。"
+          "系統コード5（リーチ）、部品コードはボディ型。確認した店の在庫表・完成品セット・毛バリ職人のパレットのどれにも載っていない。"
         ],
         "th": [
-          "04:D4AF..D4CD เทียบ (ID บอดี้ & 3) กับ 7F:1E86 และ (ID ปีก & 3) กับ 7F:1E88 ถ้าตรงกันจะล้าง 1FA7; 04:E6C9 นำไป AND ในเหตุการณ์โหมด 3 ค่าเริ่มจาก 04:EDA0..EDB2 และการพักโรงแรม 03:80C7..838x (สุ่ม & 3) เหวี่ยงซ้ำตรวจค่าเดิมแต่ไม่สุ่มใหม่ การพักอาจเปลี่ยนค่าแต่ไม่รับประกันว่าจะได้ค่าอื่น",
-          "ช่องราคาของชิ้นส่วนไม่ใช่ราคาฟลายสำเร็จรูปที่ยืนยันแล้ว ให้ดูราคาเสนอในหน้าทำฟลาย"
+          "รหัสตระกูล 5 (ลีช) และรหัสชิ้นส่วนแบบบอดี้ ระเบียนนี้ไม่อยู่ในตารางสต็อกร้าน ชุดสำเร็จรูป หรือพาเลตต์ของช่างประกอบฟลายที่ตรวจ"
         ]
       },
       "fishIds": [],
       "displayName": {
-        "th": "ปีกฟลาย Special wing component 66แบบแห้ง 66"
+        "th": "บอดี้ลีช (ปลิง) 66"
       },
       "displayNameSource": {
-        "th": "คำแปลชื่อญี่ปุ่นโดยตรง ไม่ใช่ภาพป้ายจากแพตช์ไทย"
+        "th": "ในเกมไม่มีชื่อชิ้นส่วนนี้ คู่มือตั้งชื่อตามตระกูล แบบเปียก/แห้ง ประเภทชิ้นส่วน และลักษณะที่เห็นในภาพ"
       },
       "wingGateClass": 2,
       "evidence": {
@@ -24522,45 +24550,38 @@
     },
     "fly_wing:67": {
       "summary": {
-        "en": "This is a fly customization choice, not a proven species match or catch upgrade. A hidden check can block its ID; casting again does not reroll the stored value.",
-        "ja": "毛バリ作成用の部品。魚種専用や釣果向上は証明されていない。隠し判定でIDが止められる場合があり、投げ直しでは保存値は再抽選されない。",
-        "th": "ปีกนี้เป็นชิ้นส่วนประกอบฟลาย ยังไม่มีหลักฐานว่าเหมาะกับปลาชนิดใดหรือจับปลาได้ดีกว่า เกมมีเงื่อนไขซ่อนที่อาจหยุดการตรวจปลาเมื่อใช้ปีกนี้; การเหวี่ยงซ้ำไม่สุ่มค่าใหม่"
+        "en": "A leech-pattern fly body from the game data. No shop, ready-made set or fly maker offers it, so you cannot get it in normal play.",
+        "ja": "ゲームデータにあるリーチ（ヒル型）の毛バリボディ。店・完成品セット・毛バリ職人のどこにも出ないため、通常のプレイでは入手できない。",
+        "th": "บอดี้ฟลายแบบลีช (รูปปลิง) ที่มีอยู่ในข้อมูลเกม แต่ไม่มีร้าน ชุดสำเร็จรูป หรือช่างประกอบฟลายที่เสนอชิ้นนี้ จึงหาไม่ได้ในการเล่นปกติ"
       },
       "facts": {
         "en": [
-          "No fish-specific wing list or catch advantage is proven. The ROM checks wing ID in a hidden pass/skip gate.",
-          "A different wing ID may avoid the wing-side match; a matching body ID can still block the event. Other no-bite causes remain possible.",
-          "The game shows pictures and a quote, not the hidden value."
+          "In the game data this record is a body-type part (leech family). The guide keeps it in the wing list so older links still work."
         ],
         "ja": [
-          "魚種別の対象表や釣果上の利点は確認できない。ROMはウィングIDを隠し通過／停止判定に使う。",
-          "別IDでウィング側の一致を避けられる場合があるが、ボディ側の一致で止まることもある。食いつかない原因は他にもある。",
-          "画面は画像と見積額を表示し、隠し値は表示しない。"
+          "ゲームデータ上は体（ボディ）型の部品（リーチ系統）。古いリンクが切れないよう、このガイドではウィング一覧に残している。"
         ],
         "th": [
-          "ยังไม่มีรายชื่อปลาเฉพาะหรือข้อได้เปรียบที่พิสูจน์ได้ ROM ตรวจ รหัสชิ้นส่วน ปีกในตัวกรองผ่าน/หยุดที่ซ่อนอยู่",
-          "รหัสชิ้นส่วน ปีกอื่นอาจหลบการตรงกันฝั่งปีกได้ แต่ถ้า รหัสชิ้นส่วน บอดี้ตรงเหตุการณ์ก็ยังถูกปิด และการไม่กินเหยื่อมีสาเหตุอื่นได้",
-          "หน้าจอแสดงรูปกับราคาเสนอ ไม่แสดงค่าซ่อน"
+          "ในข้อมูลเกมชิ้นนี้เป็นชิ้นส่วนแบบบอดี้ (ตระกูลลีช) คู่มือนี้เก็บไว้ในรายการปีกเพื่อไม่ให้ลิงก์เก่าเสีย"
         ]
       },
       "evidenceNotes": {
         "en": [
-          "04:D4AF..D4CD compares (body ID & 3) with 7F:1E86 and (wing ID & 3) with 7F:1E88; either match clears 1FA7. 04:E6C9 ANDs it into a mode-3 fish event. Values are seeded by setup at 04:EDA0..EDB2 and by inn/rest at 03:80C7..838x (PRNG & 3). Recast compares but does not reroll; overnight may update values, not guaranteed to change them."
+          "Family code 5 (leech) with the body-type part code. The record is missing from every shop stock table, ready-made fly set and fly maker palette that was checked."
         ],
         "ja": [
-          "04:D4AF..D4CDは(ボディID & 3)を7F:1E86、(ウィングID & 3)を7F:1E88と比較し、一致すると1FA7を消す。04:E6C9はこれをモード3判定にANDする。値は04:EDA0..EDB2の初期化と03:80C7..838xの宿泊／休憩（乱数&3）で書かれる。投げ直しは比較のみで再抽選しない。宿泊で値が変わることはあるが別値の保証はない。"
+          "系統コード5（リーチ）、部品コードはボディ型。確認した店の在庫表・完成品セット・毛バリ職人のパレットのどれにも載っていない。"
         ],
         "th": [
-          "04:D4AF..D4CD เทียบ (ID บอดี้ & 3) กับ 7F:1E86 และ (ID ปีก & 3) กับ 7F:1E88 ถ้าตรงกันจะล้าง 1FA7; 04:E6C9 นำไป AND ในเหตุการณ์โหมด 3 ค่าเริ่มจาก 04:EDA0..EDB2 และการพักโรงแรม 03:80C7..838x (สุ่ม & 3) เหวี่ยงซ้ำตรวจค่าเดิมแต่ไม่สุ่มใหม่ การพักอาจเปลี่ยนค่าแต่ไม่รับประกันว่าจะได้ค่าอื่น",
-          "ช่องราคาของชิ้นส่วนไม่ใช่ราคาฟลายสำเร็จรูปที่ยืนยันแล้ว ให้ดูราคาเสนอในหน้าทำฟลาย"
+          "รหัสตระกูล 5 (ลีช) และรหัสชิ้นส่วนแบบบอดี้ ระเบียนนี้ไม่อยู่ในตารางสต็อกร้าน ชุดสำเร็จรูป หรือพาเลตต์ของช่างประกอบฟลายที่ตรวจ"
         ]
       },
       "fishIds": [],
       "displayName": {
-        "th": "ปีกฟลาย Special wing component 67แบบแห้ง 67"
+        "th": "บอดี้ลีช (ปลิง) 67"
       },
       "displayNameSource": {
-        "th": "คำแปลชื่อญี่ปุ่นโดยตรง ไม่ใช่ภาพป้ายจากแพตช์ไทย"
+        "th": "ในเกมไม่มีชื่อชิ้นส่วนนี้ คู่มือตั้งชื่อตามตระกูล แบบเปียก/แห้ง ประเภทชิ้นส่วน และลักษณะที่เห็นในภาพ"
       },
       "wingGateClass": 3,
       "evidence": {
@@ -24611,10 +24632,10 @@
       },
       "fishIds": [],
       "displayName": {
-        "th": "ปีกฟลาย แมลงสโตนฟลายแบบแห้ง 70"
+        "th": "ปีกสโตนฟลาย แบบแห้ง (สีเขียวมะกอก กางกว้าง)"
       },
       "displayNameSource": {
-        "th": "คำแปลชื่อญี่ปุ่นโดยตรง ไม่ใช่ภาพป้ายจากแพตช์ไทย"
+        "th": "ในเกมไม่มีชื่อชิ้นส่วนนี้ คู่มือตั้งชื่อตามตระกูล แบบเปียก/แห้ง ประเภทชิ้นส่วน และลักษณะที่เห็นในภาพ"
       },
       "wingGateClass": 0,
       "evidence": {
@@ -24677,10 +24698,10 @@
       },
       "fishIds": [],
       "displayName": {
-        "th": "ปีกฟลาย แมลงสโตนฟลายแบบแห้ง 71"
+        "th": "ปีกสโตนฟลาย แบบแห้ง (สีเหลือง กางกว้าง)"
       },
       "displayNameSource": {
-        "th": "คำแปลชื่อญี่ปุ่นโดยตรง ไม่ใช่ภาพป้ายจากแพตช์ไทย"
+        "th": "ในเกมไม่มีชื่อชิ้นส่วนนี้ คู่มือตั้งชื่อตามตระกูล แบบเปียก/แห้ง ประเภทชิ้นส่วน และลักษณะที่เห็นในภาพ"
       },
       "wingGateClass": 1,
       "evidence": {
@@ -24743,10 +24764,10 @@
       },
       "fishIds": [],
       "displayName": {
-        "th": "ปีกฟลาย แมลงสโตนฟลายแบบแห้ง 72"
+        "th": "ปีกสโตนฟลาย แบบแห้ง (สีเขียวมะกอก เป็นกระจุกตั้งขึ้น)"
       },
       "displayNameSource": {
-        "th": "คำแปลชื่อญี่ปุ่นโดยตรง ไม่ใช่ภาพป้ายจากแพตช์ไทย"
+        "th": "ในเกมไม่มีชื่อชิ้นส่วนนี้ คู่มือตั้งชื่อตามตระกูล แบบเปียก/แห้ง ประเภทชิ้นส่วน และลักษณะที่เห็นในภาพ"
       },
       "wingGateClass": 2,
       "evidence": {
@@ -24797,10 +24818,10 @@
       },
       "fishIds": [],
       "displayName": {
-        "th": "ปีกฟลาย แมลงสโตนฟลายแบบแห้ง 73"
+        "th": "ปีกสโตนฟลาย แบบแห้ง (สีเทากับดำ กางกว้าง)"
       },
       "displayNameSource": {
-        "th": "คำแปลชื่อญี่ปุ่นโดยตรง ไม่ใช่ภาพป้ายจากแพตช์ไทย"
+        "th": "ในเกมไม่มีชื่อชิ้นส่วนนี้ คู่มือตั้งชื่อตามตระกูล แบบเปียก/แห้ง ประเภทชิ้นส่วน และลักษณะที่เห็นในภาพ"
       },
       "wingGateClass": 3,
       "evidence": {
@@ -24848,10 +24869,10 @@
       },
       "fishIds": [],
       "displayName": {
-        "th": "หางฟลาย แมลงชีปะขาวแบบเปียก 13"
+        "th": "หางเมย์ฟลาย แบบเปียก (สีเขียวมะกอก เรียวบาง)"
       },
       "displayNameSource": {
-        "th": "คำแปลชื่อญี่ปุ่นโดยตรง ไม่ใช่ภาพป้ายจากแพตช์ไทย"
+        "th": "ในเกมไม่มีชื่อชิ้นส่วนนี้ คู่มือตั้งชื่อตามตระกูล แบบเปียก/แห้ง ประเภทชิ้นส่วน และลักษณะที่เห็นในภาพ"
       },
       "evidence": {
         "type": "rom_trace",
@@ -24921,10 +24942,10 @@
       },
       "fishIds": [],
       "displayName": {
-        "th": "หางฟลาย แมลงชีปะขาวแบบเปียก 14"
+        "th": "หางเมย์ฟลาย แบบเปียก (สีทอง เรียวบาง)"
       },
       "displayNameSource": {
-        "th": "คำแปลชื่อญี่ปุ่นโดยตรง ไม่ใช่ภาพป้ายจากแพตช์ไทย"
+        "th": "ในเกมไม่มีชื่อชิ้นส่วนนี้ คู่มือตั้งชื่อตามตระกูล แบบเปียก/แห้ง ประเภทชิ้นส่วน และลักษณะที่เห็นในภาพ"
       },
       "evidence": {
         "type": "rom_trace",
@@ -24983,10 +25004,10 @@
       },
       "fishIds": [],
       "displayName": {
-        "th": "หางฟลาย แมลงชีปะขาวแบบเปียก 15"
+        "th": "หางเมย์ฟลาย แบบเปียก (สีเทา)"
       },
       "displayNameSource": {
-        "th": "คำแปลชื่อญี่ปุ่นโดยตรง ไม่ใช่ภาพป้ายจากแพตช์ไทย"
+        "th": "ในเกมไม่มีชื่อชิ้นส่วนนี้ คู่มือตั้งชื่อตามตระกูล แบบเปียก/แห้ง ประเภทชิ้นส่วน และลักษณะที่เห็นในภาพ"
       },
       "evidence": {
         "type": "rom_trace",
@@ -25045,10 +25066,10 @@
       },
       "fishIds": [],
       "displayName": {
-        "th": "หางฟลาย แมลงชีปะขาวแบบเปียก 16"
+        "th": "หางเมย์ฟลาย แบบเปียก (สีขาว)"
       },
       "displayNameSource": {
-        "th": "คำแปลชื่อญี่ปุ่นโดยตรง ไม่ใช่ภาพป้ายจากแพตช์ไทย"
+        "th": "ในเกมไม่มีชื่อชิ้นส่วนนี้ คู่มือตั้งชื่อตามตระกูล แบบเปียก/แห้ง ประเภทชิ้นส่วน และลักษณะที่เห็นในภาพ"
       },
       "evidence": {
         "type": "rom_trace",
@@ -25107,10 +25128,10 @@
       },
       "fishIds": [],
       "displayName": {
-        "th": "หางฟลาย แมลงชีปะขาวแบบเปียก 17"
+        "th": "หางเมย์ฟลาย แบบเปียก (สีเขียวมะกอก หนา)"
       },
       "displayNameSource": {
-        "th": "คำแปลชื่อญี่ปุ่นโดยตรง ไม่ใช่ภาพป้ายจากแพตช์ไทย"
+        "th": "ในเกมไม่มีชื่อชิ้นส่วนนี้ คู่มือตั้งชื่อตามตระกูล แบบเปียก/แห้ง ประเภทชิ้นส่วน และลักษณะที่เห็นในภาพ"
       },
       "evidence": {
         "type": "rom_trace",
@@ -25169,10 +25190,10 @@
       },
       "fishIds": [],
       "displayName": {
-        "th": "หางฟลาย แมลงชีปะขาวแบบแห้ง 27"
+        "th": "หางเมย์ฟลาย แบบแห้ง (สีเทากับดำ)"
       },
       "displayNameSource": {
-        "th": "คำแปลชื่อญี่ปุ่นโดยตรง ไม่ใช่ภาพป้ายจากแพตช์ไทย"
+        "th": "ในเกมไม่มีชื่อชิ้นส่วนนี้ คู่มือตั้งชื่อตามตระกูล แบบเปียก/แห้ง ประเภทชิ้นส่วน และลักษณะที่เห็นในภาพ"
       },
       "evidence": {
         "type": "rom_trace",
@@ -25242,10 +25263,10 @@
       },
       "fishIds": [],
       "displayName": {
-        "th": "หางฟลาย แมลงชีปะขาวแบบแห้ง 28"
+        "th": "หางเมย์ฟลาย แบบแห้ง (สีเขียวมะกอก)"
       },
       "displayNameSource": {
-        "th": "คำแปลชื่อญี่ปุ่นโดยตรง ไม่ใช่ภาพป้ายจากแพตช์ไทย"
+        "th": "ในเกมไม่มีชื่อชิ้นส่วนนี้ คู่มือตั้งชื่อตามตระกูล แบบเปียก/แห้ง ประเภทชิ้นส่วน และลักษณะที่เห็นในภาพ"
       },
       "evidence": {
         "type": "rom_trace",
@@ -25315,10 +25336,10 @@
       },
       "fishIds": [],
       "displayName": {
-        "th": "หางฟลาย แมลงชีปะขาวแบบแห้ง 29"
+        "th": "หางเมย์ฟลาย แบบแห้ง (สีเทา แยกเป็นแฉก)"
       },
       "displayNameSource": {
-        "th": "คำแปลชื่อญี่ปุ่นโดยตรง ไม่ใช่ภาพป้ายจากแพตช์ไทย"
+        "th": "ในเกมไม่มีชื่อชิ้นส่วนนี้ คู่มือตั้งชื่อตามตระกูล แบบเปียก/แห้ง ประเภทชิ้นส่วน และลักษณะที่เห็นในภาพ"
       },
       "evidence": {
         "type": "rom_trace",
@@ -25377,10 +25398,10 @@
       },
       "fishIds": [],
       "displayName": {
-        "th": "หางฟลาย แมลงชีปะขาวแบบแห้ง 2A"
+        "th": "หางเมย์ฟลาย แบบแห้ง (สีดำ แยกเป็นแฉก)"
       },
       "displayNameSource": {
-        "th": "คำแปลชื่อญี่ปุ่นโดยตรง ไม่ใช่ภาพป้ายจากแพตช์ไทย"
+        "th": "ในเกมไม่มีชื่อชิ้นส่วนนี้ คู่มือตั้งชื่อตามตระกูล แบบเปียก/แห้ง ประเภทชิ้นส่วน และลักษณะที่เห็นในภาพ"
       },
       "evidence": {
         "type": "rom_trace",
@@ -25439,10 +25460,10 @@
       },
       "fishIds": [],
       "displayName": {
-        "th": "หางฟลาย แมลงหนอนปลอกน้ำแบบเปียก 3D"
+        "th": "หางแคดดิส แบบเปียก (สีเขียวมะกอก)"
       },
       "displayNameSource": {
-        "th": "คำแปลชื่อญี่ปุ่นโดยตรง ไม่ใช่ภาพป้ายจากแพตช์ไทย"
+        "th": "ในเกมไม่มีชื่อชิ้นส่วนนี้ คู่มือตั้งชื่อตามตระกูล แบบเปียก/แห้ง ประเภทชิ้นส่วน และลักษณะที่เห็นในภาพ"
       },
       "evidence": {
         "type": "rom_trace",
@@ -25512,10 +25533,10 @@
       },
       "fishIds": [],
       "displayName": {
-        "th": "หางฟลาย แมลงหนอนปลอกน้ำแบบแห้ง 49"
+        "th": "หางแคดดิส แบบแห้ง (สีเขียวมะกอก)"
       },
       "displayNameSource": {
-        "th": "คำแปลชื่อญี่ปุ่นโดยตรง ไม่ใช่ภาพป้ายจากแพตช์ไทย"
+        "th": "ในเกมไม่มีชื่อชิ้นส่วนนี้ คู่มือตั้งชื่อตามตระกูล แบบเปียก/แห้ง ประเภทชิ้นส่วน และลักษณะที่เห็นในภาพ"
       },
       "evidence": {
         "type": "rom_trace",
@@ -25596,10 +25617,10 @@
       },
       "fishIds": [],
       "displayName": {
-        "th": "หางฟลาย แมลงหนอนปลอกน้ำแบบแห้ง 4A"
+        "th": "หางแคดดิส แบบแห้ง (สีเทา)"
       },
       "displayNameSource": {
-        "th": "คำแปลชื่อญี่ปุ่นโดยตรง ไม่ใช่ภาพป้ายจากแพตช์ไทย"
+        "th": "ในเกมไม่มีชื่อชิ้นส่วนนี้ คู่มือตั้งชื่อตามตระกูล แบบเปียก/แห้ง ประเภทชิ้นส่วน และลักษณะที่เห็นในภาพ"
       },
       "evidence": {
         "type": "rom_trace",
@@ -25669,10 +25690,10 @@
       },
       "fishIds": [],
       "displayName": {
-        "th": "หางฟลาย แมลงปีกคู่แบบเปียก 53"
+        "th": "หางดิปเทอรา แบบเปียก (สีแดงเข้ม ยาว)"
       },
       "displayNameSource": {
-        "th": "คำแปลชื่อญี่ปุ่นโดยตรง ไม่ใช่ภาพป้ายจากแพตช์ไทย"
+        "th": "ในเกมไม่มีชื่อชิ้นส่วนนี้ คู่มือตั้งชื่อตามตระกูล แบบเปียก/แห้ง ประเภทชิ้นส่วน และลักษณะที่เห็นในภาพ"
       },
       "evidence": {
         "type": "rom_trace",
@@ -25731,10 +25752,10 @@
       },
       "fishIds": [],
       "displayName": {
-        "th": "หางฟลาย แมลงปีกคู่แบบเปียก 54"
+        "th": "หางดิปเทอรา แบบเปียก (สีเขียวมะกอก เรียวบาง)"
       },
       "displayNameSource": {
-        "th": "คำแปลชื่อญี่ปุ่นโดยตรง ไม่ใช่ภาพป้ายจากแพตช์ไทย"
+        "th": "ในเกมไม่มีชื่อชิ้นส่วนนี้ คู่มือตั้งชื่อตามตระกูล แบบเปียก/แห้ง ประเภทชิ้นส่วน และลักษณะที่เห็นในภาพ"
       },
       "evidence": {
         "type": "rom_trace",
@@ -25804,10 +25825,10 @@
       },
       "fishIds": [],
       "displayName": {
-        "th": "หางฟลาย แมลงปีกคู่แบบเปียก 55"
+        "th": "หางดิปเทอรา แบบเปียก (สีเขียว เป็นก้อนกลมฟู)"
       },
       "displayNameSource": {
-        "th": "คำแปลชื่อญี่ปุ่นโดยตรง ไม่ใช่ภาพป้ายจากแพตช์ไทย"
+        "th": "ในเกมไม่มีชื่อชิ้นส่วนนี้ คู่มือตั้งชื่อตามตระกูล แบบเปียก/แห้ง ประเภทชิ้นส่วน และลักษณะที่เห็นในภาพ"
       },
       "evidence": {
         "type": "rom_trace",
@@ -25877,10 +25898,10 @@
       },
       "fishIds": [],
       "displayName": {
-        "th": "หางฟลาย แมลงปีกคู่แบบแห้ง 5F"
+        "th": "หางดิปเทอรา แบบแห้ง (สีเขียวมะกอก)"
       },
       "displayNameSource": {
-        "th": "คำแปลชื่อญี่ปุ่นโดยตรง ไม่ใช่ภาพป้ายจากแพตช์ไทย"
+        "th": "ในเกมไม่มีชื่อชิ้นส่วนนี้ คู่มือตั้งชื่อตามตระกูล แบบเปียก/แห้ง ประเภทชิ้นส่วน และลักษณะที่เห็นในภาพ"
       },
       "evidence": {
         "type": "rom_trace",
@@ -25972,10 +25993,10 @@
       },
       "fishIds": [],
       "displayName": {
-        "th": "หางฟลาย แมลงสโตนฟลายแบบเปียก 68"
+        "th": "หางสโตนฟลาย แบบเปียก (สีแดงเข้ม)"
       },
       "displayNameSource": {
-        "th": "คำแปลชื่อญี่ปุ่นโดยตรง ไม่ใช่ภาพป้ายจากแพตช์ไทย"
+        "th": "ในเกมไม่มีชื่อชิ้นส่วนนี้ คู่มือตั้งชื่อตามตระกูล แบบเปียก/แห้ง ประเภทชิ้นส่วน และลักษณะที่เห็นในภาพ"
       },
       "evidence": {
         "type": "rom_trace",
@@ -26034,10 +26055,10 @@
       },
       "fishIds": [],
       "displayName": {
-        "th": "หางฟลาย แมลงสโตนฟลายแบบเปียก 69"
+        "th": "หางสโตนฟลาย แบบเปียก (สีเขียวมะกอก เรียวบาง)"
       },
       "displayNameSource": {
-        "th": "คำแปลชื่อญี่ปุ่นโดยตรง ไม่ใช่ภาพป้ายจากแพตช์ไทย"
+        "th": "ในเกมไม่มีชื่อชิ้นส่วนนี้ คู่มือตั้งชื่อตามตระกูล แบบเปียก/แห้ง ประเภทชิ้นส่วน และลักษณะที่เห็นในภาพ"
       },
       "evidence": {
         "type": "rom_trace",
@@ -26107,10 +26128,10 @@
       },
       "fishIds": [],
       "displayName": {
-        "th": "หางฟลาย แมลงสโตนฟลายแบบเปียก 6A"
+        "th": "หางสโตนฟลาย แบบเปียก (สีเทาเข้ม)"
       },
       "displayNameSource": {
-        "th": "คำแปลชื่อญี่ปุ่นโดยตรง ไม่ใช่ภาพป้ายจากแพตช์ไทย"
+        "th": "ในเกมไม่มีชื่อชิ้นส่วนนี้ คู่มือตั้งชื่อตามตระกูล แบบเปียก/แห้ง ประเภทชิ้นส่วน และลักษณะที่เห็นในภาพ"
       },
       "evidence": {
         "type": "rom_trace",
@@ -26169,10 +26190,10 @@
       },
       "fishIds": [],
       "displayName": {
-        "th": "หางฟลาย แมลงสโตนฟลายแบบเปียก 6B"
+        "th": "หางสโตนฟลาย แบบเปียก (สีเขียวมะกอกกับเหลือง หนา)"
       },
       "displayNameSource": {
-        "th": "คำแปลชื่อญี่ปุ่นโดยตรง ไม่ใช่ภาพป้ายจากแพตช์ไทย"
+        "th": "ในเกมไม่มีชื่อชิ้นส่วนนี้ คู่มือตั้งชื่อตามตระกูล แบบเปียก/แห้ง ประเภทชิ้นส่วน และลักษณะที่เห็นในภาพ"
       },
       "evidence": {
         "type": "rom_trace",
@@ -26219,10 +26240,10 @@
       },
       "fishIds": [],
       "displayName": {
-        "th": "หางฟลาย แมลงสโตนฟลายแบบแห้ง 74"
+        "th": "หางสโตนฟลาย แบบแห้ง (สีเขียวมะกอก สั้น)"
       },
       "displayNameSource": {
-        "th": "คำแปลชื่อญี่ปุ่นโดยตรง ไม่ใช่ภาพป้ายจากแพตช์ไทย"
+        "th": "ในเกมไม่มีชื่อชิ้นส่วนนี้ คู่มือตั้งชื่อตามตระกูล แบบเปียก/แห้ง ประเภทชิ้นส่วน และลักษณะที่เห็นในภาพ"
       },
       "evidence": {
         "type": "rom_trace",
@@ -26281,10 +26302,10 @@
       },
       "fishIds": [],
       "displayName": {
-        "th": "หางฟลาย แมลงสโตนฟลายแบบแห้ง 75"
+        "th": "หางสโตนฟลาย แบบแห้ง (สีเทาเข้ม)"
       },
       "displayNameSource": {
-        "th": "คำแปลชื่อญี่ปุ่นโดยตรง ไม่ใช่ภาพป้ายจากแพตช์ไทย"
+        "th": "ในเกมไม่มีชื่อชิ้นส่วนนี้ คู่มือตั้งชื่อตามตระกูล แบบเปียก/แห้ง ประเภทชิ้นส่วน และลักษณะที่เห็นในภาพ"
       },
       "evidence": {
         "type": "rom_trace",
@@ -26343,10 +26364,10 @@
       },
       "fishIds": [],
       "displayName": {
-        "th": "หางฟลาย แมลงสโตนฟลายแบบแห้ง 76"
+        "th": "หางสโตนฟลาย แบบแห้ง (สีเขียวมะกอก หนา)"
       },
       "displayNameSource": {
-        "th": "คำแปลชื่อญี่ปุ่นโดยตรง ไม่ใช่ภาพป้ายจากแพตช์ไทย"
+        "th": "ในเกมไม่มีชื่อชิ้นส่วนนี้ คู่มือตั้งชื่อตามตระกูล แบบเปียก/แห้ง ประเภทชิ้นส่วน และลักษณะที่เห็นในภาพ"
       },
       "evidence": {
         "type": "rom_trace",
