@@ -11,7 +11,7 @@ export function setupPickerState(ctx) {
   ctx.activeSuggestion = -1
   ctx.pickerCopy = {
     th: {
-      placeholder: 'ชื่อปลา / fish name / ID',
+      placeholder: 'ชื่อปลา หรือ ID',
       clear: 'ล้างปลาเป้าหมาย',
       none: 'ไม่พบปลา ลองชื่อไทย อังกฤษ ญี่ปุ่น หรือ ID',
       count: (n) => `พบ ${n} ชนิด ใช้ปุ่มลูกศรแล้วกด Enter หรือกดชื่อปลา`,
