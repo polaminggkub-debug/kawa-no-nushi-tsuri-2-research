@@ -128,7 +128,7 @@ export function fishMapLink(ctx, stage, section = '') {
   if (ctx.requestedMethod) query.set('route', ctx.requestedMethod)
   if (/^s[1-6]-c\d+-r\d+$/.test(section)) query.set('section', section)
   query.set('return', `${ctx.currentFishPath(stage)}#fish-area-map`)
-  return `${ctx.mapPath()}?${query.toString()}`
+  return `${ctx.mapPath()}?${query.toString()}#map-view`
 }
 
 export function setNavigation(ctx, stage) {

@@ -982,3 +982,37 @@ Actual local review followed the Thai starter portrait and chest reward, checked
 Area 3 conditional bait stock, changed the sort control to raw evidence order,
 and inspected English invalid-area and Japanese fly exclusion views at 390px.
 No gameplay result or complete campaign decoding is inferred from these checks.
+
+## r74 — Close targeted navigation and review catalogue coverage
+
+Targeted fish actions now land at `#map-view` across equipment location links,
+filtered catalogue navigation, fish section previews, item map links and the
+candle's Akame next action. Generic area browsing still opens the overview.
+Canonical fish, area, map section and exact nested return context are preserved.
+
+Ready-made fly bundle component cards now open the component in the bundle's
+actual selling area. An Area 2 bundle viewed from Area 4 therefore opens its
+body with Area 2 purchase evidence, retaining the Area 4 source as the return.
+No item statistics, game facts or research evidence changed.
+
+Independent coverage review found localized player guidance and retained
+evidence for all 315 entries: 282 equipment decision records plus 33 food/tool
+action records. All 66 notebook species occur exactly once in the first-area
+collection route, and all have mapped locations. Local record counts remain
+separate from new-species counts because larger catches can move a record.
+The 72 map profiles and notebook eligibility remain distinct.
+
+Independent guards reject both original defects at the previous HEAD. They
+check 5,562 canonical fly component links and 2,517 targeted map links across
+three languages, including absent/invalid source areas, canonical sections and
+exact returns. Existing entity contracts and source quality also pass.
+
+Actual browser review covered Thai keyboard fish suggestions and bait-first
+results, Thai 320px equipment-to-map and fly component purchase journeys,
+Japanese 320px candle-to-Akame map, English section-specific fish navigation,
+map zoom and a shared Iwana/Kawamasu marker followed to the fish detail.
+Prior unchanged renderer journeys include notebook checkbox persistence,
+shops, quest use points, conditional stock, fly making, strategy equipment and
+technical disclosures. These are rendered interaction checks, separate from
+the canonical record coverage above; they do not establish every natural game
+outcome, catch probability or a fully decoded campaign.

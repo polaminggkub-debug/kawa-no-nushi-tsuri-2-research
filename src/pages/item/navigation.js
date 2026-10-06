@@ -94,7 +94,7 @@ export function mapLink(ctx, stage, fish = '') {
   if (retainsFishingTarget(ctx) && ctx.selectedRoute) p.set('route', ctx.selectedRoute)
   const returnRoute = ctx.safeLocalRoute(ctx.currentLocalRoute())
   if (returnRoute) p.set('return', returnRoute)
-  return `${ctx.mapsPage[ctx.lang]}?${p}`
+  return `${ctx.mapsPage[ctx.lang]}?${p}${fish ? '#map-view' : ''}`
 }
 
 export function fishProfileLink(ctx, id, fishLocations) {

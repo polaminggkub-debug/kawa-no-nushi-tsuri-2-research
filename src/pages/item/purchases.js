@@ -91,6 +91,16 @@ export function shopCondition(ctx, item, offer, fishLocations) {
   return `<p class="shop-condition"><strong>${ctx.esc(ctx.copy.unlock)}</strong> ${ctx.esc(message)}</p>${action}`
 }
 
+function bundleComponentLink(ctx, part, stage) {
+  const markup = ctx.componentLink(part)
+  const href = ctx.detailItemLink(part)
+  const [page, query = ''] = href.split('?')
+  const params = new URLSearchParams(query)
+  params.set('stage', String(stage))
+  const target = `${page}?${params}`
+  return markup.replace(`href="${ctx.esc(href)}"`, `href="${ctx.esc(target)}"`)
+}
+
 function flyPurchaseCard(ctx, bundle, stage, allItems, fishLocations, selected) {
   const refs = [
     ['fly', bundle.body],
@@ -101,7 +111,7 @@ function flyPurchaseCard(ctx, bundle, stage, allItems, fishLocations, selected) 
     .map(([category, id]) => allItems.find((i) => i.category === category && i.id === id))
     .filter(Boolean)
   const isSelected = stage === selected
-  return `<article class="detail-section" data-purchase-stage="${stage}"${isSelected ? ' data-selected-area-offer="true"' : ''}><h3>${ctx.esc(ctx.copy.bundleAt(stage))}${selectedAreaBadge(ctx, stage)}</h3><p><strong>${ctx.esc(ctx.copy.completePrice)} · ${ctx.esc(ctx.copy.price(bundle.shopPriceYen))}</strong></p><div class="detail-grid">${refs.map((part) => ctx.componentLink(part)).join('')}</div>${ctx.stageButton(stage, fishLocations)}<p class="muted">${ctx.esc(ctx.copy.mapNote)}</p></article>`
+  return `<article class="detail-section" data-purchase-stage="${stage}"${isSelected ? ' data-selected-area-offer="true"' : ''}><h3>${ctx.esc(ctx.copy.bundleAt(stage))}${selectedAreaBadge(ctx, stage)}</h3><p><strong>${ctx.esc(ctx.copy.completePrice)} · ${ctx.esc(ctx.copy.price(bundle.shopPriceYen))}</strong></p><div class="detail-grid">${refs.map((part) => bundleComponentLink(ctx, part, stage)).join('')}</div>${ctx.stageButton(stage, fishLocations)}<p class="muted">${ctx.esc(ctx.copy.mapNote)}</p></article>`
 }
 
 function flyPurchaseSection(ctx, item, allItems, fishLocations, selected) {

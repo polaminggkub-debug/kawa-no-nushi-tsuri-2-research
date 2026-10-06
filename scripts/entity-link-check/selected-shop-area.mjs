@@ -82,6 +82,7 @@ function makeContext(lang, selectedStage, item) {
       `<a data-test-map-link="${stage}" href="shops.${lang}.html?stage=${stage}">${labels[lang]} ${stage}</a>`,
     componentLink: (part) =>
       `<a data-test-component="${part.category}:${part.id}" href="item.${lang}.html?category=${part.category}&amp;id=${part.id}">${part.id}</a>`,
+    detailItemLink: (part) => `item.${lang}.html?category=${part.category}&id=${part.id}`,
     fishProfileLink: (id) => `fish.${lang}.html?id=${id}`,
   }
   ctx.flyAssemblies = (part, allItems) => flyAssemblies(ctx, part, allItems)

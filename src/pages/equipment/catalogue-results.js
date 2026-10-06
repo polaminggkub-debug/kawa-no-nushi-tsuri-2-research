@@ -27,7 +27,7 @@ function updateCatalogueLink(ctx, category, fish) {
   if (fish) query.set('fish', fish)
   if (ctx.locationStage) query.set('stage', String(ctx.locationStage))
   query.set('map', String(ctx.locationMapIndex))
-  document.getElementById('map-browser-link').href = `${maps}?${query}`
+  document.getElementById('map-browser-link').href = `${maps}?${query}${fish ? '#map-view' : ''}`
   const hasCanonicalCoverage = (ctx.decisions || []).some(
     (decision) => decision.id === 'lure_coverage_pair',
   )

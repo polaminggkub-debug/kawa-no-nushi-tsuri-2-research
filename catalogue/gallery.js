@@ -2527,7 +2527,7 @@
       return: ctx.sourceReturn()
     });
     if (location2) query.set("stage", String(location2.stage));
-    return `${labels2.page}?${query}`;
+    return `${labels2.page}?${query}#map-view`;
   }
   function renderFishAreaLinks(ctx, id, locations, labels2) {
     if (!locations.length) return `<p>${ctx.esc(labels2.unknown)}</p>`;
@@ -3277,7 +3277,7 @@
     if (fish) query.set("fish", fish);
     if (ctx.locationStage) query.set("stage", String(ctx.locationStage));
     query.set("map", String(ctx.locationMapIndex));
-    document.getElementById("map-browser-link").href = `${maps}?${query}`;
+    document.getElementById("map-browser-link").href = `${maps}?${query}${fish ? "#map-view" : ""}`;
     const hasCanonicalCoverage = (ctx.decisions || []).some(
       (decision) => decision.id === "lure_coverage_pair"
     );

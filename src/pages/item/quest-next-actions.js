@@ -28,7 +28,7 @@ function mapsHref(ctx, point) {
   })
   const returned = safeReturn(ctx)
   if (returned) query.set('return', returned)
-  return `${ctx.mapsPage[ctx.lang]}?${query}`
+  return `${ctx.mapsPage[ctx.lang]}?${query}#map-view`
 }
 
 function shopHref(ctx) {

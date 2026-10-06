@@ -293,7 +293,7 @@ function fishMapHref(ctx, labels, id, location) {
     return: ctx.sourceReturn(),
   })
   if (location) query.set('stage', String(location.stage))
-  return `${labels.page}?${query}`
+  return `${labels.page}?${query}#map-view`
 }
 
 function renderFishAreaLinks(ctx, id, locations, labels) {

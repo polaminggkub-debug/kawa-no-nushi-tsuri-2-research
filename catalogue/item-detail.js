@@ -138,7 +138,7 @@
     if (retainsFishingTarget(ctx) && ctx.selectedRoute) p.set("route", ctx.selectedRoute);
     const returnRoute = ctx.safeLocalRoute(ctx.currentLocalRoute());
     if (returnRoute) p.set("return", returnRoute);
-    return `${ctx.mapsPage[ctx.lang]}?${p}`;
+    return `${ctx.mapsPage[ctx.lang]}?${p}${fish ? "#map-view" : ""}`;
   }
   function fishProfileLink(ctx, id, fishLocations) {
     const locations = fishLocations[id]?.locations || [];
@@ -401,6 +401,15 @@
     const action = knownAyuCondition ? `<a class="route-button" href="${ctx.esc(ctx.fishProfileLink("38", fishLocations))}">${ctx.esc(ctx.lang === "th" ? "ดูจุดตกและเหยื่อสำหรับปลาอายุ" : ctx.lang === "ja" ? "アユの釣り場と対応エサを見る" : "Find Ayu fishing spots and compatible bait")} ↗</a>` : "";
     return `<p class="shop-condition"><strong>${ctx.esc(ctx.copy.unlock)}</strong> ${ctx.esc(message)}</p>${action}`;
   }
+  function bundleComponentLink(ctx, part, stage) {
+    const markup = ctx.componentLink(part);
+    const href = ctx.detailItemLink(part);
+    const [page, query = ""] = href.split("?");
+    const params = new URLSearchParams(query);
+    params.set("stage", String(stage));
+    const target = `${page}?${params}`;
+    return markup.replace(`href="${ctx.esc(href)}"`, `href="${ctx.esc(target)}"`);
+  }
   function flyPurchaseCard(ctx, bundle, stage, allItems, fishLocations, selected) {
     const refs = [
       ["fly", bundle.body],
@@ -408,7 +417,7 @@
       ["fly_tail", bundle.tail]
     ].filter(([, id]) => id && id !== "00").map(([category, id]) => allItems.find((i) => i.category === category && i.id === id)).filter(Boolean);
     const isSelected = stage === selected;
-    return `<article class="detail-section" data-purchase-stage="${stage}"${isSelected ? ' data-selected-area-offer="true"' : ""}><h3>${ctx.esc(ctx.copy.bundleAt(stage))}${selectedAreaBadge(ctx, stage)}</h3><p><strong>${ctx.esc(ctx.copy.completePrice)} · ${ctx.esc(ctx.copy.price(bundle.shopPriceYen))}</strong></p><div class="detail-grid">${refs.map((part) => ctx.componentLink(part)).join("")}</div>${ctx.stageButton(stage, fishLocations)}<p class="muted">${ctx.esc(ctx.copy.mapNote)}</p></article>`;
+    return `<article class="detail-section" data-purchase-stage="${stage}"${isSelected ? ' data-selected-area-offer="true"' : ""}><h3>${ctx.esc(ctx.copy.bundleAt(stage))}${selectedAreaBadge(ctx, stage)}</h3><p><strong>${ctx.esc(ctx.copy.completePrice)} · ${ctx.esc(ctx.copy.price(bundle.shopPriceYen))}</strong></p><div class="detail-grid">${refs.map((part) => bundleComponentLink(ctx, part, stage)).join("")}</div>${ctx.stageButton(stage, fishLocations)}<p class="muted">${ctx.esc(ctx.copy.mapNote)}</p></article>`;
   }
   function flyPurchaseSection(ctx, item, allItems, fishLocations, selected) {
     const assemblies = ctx.flyAssemblies(item, allItems);
@@ -2775,7 +2784,7 @@
     });
     const returned = safeReturn(ctx);
     if (returned) query.set("return", returned);
-    return `${ctx.mapsPage[ctx.lang]}?${query}`;
+    return `${ctx.mapsPage[ctx.lang]}?${query}#map-view`;
   }
   function shopHref(ctx) {
     const query = new URLSearchParams({
