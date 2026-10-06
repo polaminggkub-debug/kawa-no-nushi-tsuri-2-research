@@ -5,6 +5,7 @@ import { fileURLToPath } from 'node:url'
 import vm from 'node:vm'
 import { assetVersion, versionAssetReferences } from './code-quality/asset-versions.mjs'
 import { addGoatCounter } from './code-quality/analytics.mjs'
+import { renderGearGuide, renderGuideNames } from './gear-guide/render.mjs'
 
 const root = fileURLToPath(new URL('../', import.meta.url))
 export const scripts = {
@@ -18,6 +19,7 @@ export const scripts = {
   quests: 'catalogue/quests.js',
   'fight-sim-worker': 'catalogue/fight-sim-worker.js',
   'fight-sim': 'catalogue/fight-sim.js',
+  'gear-guide': 'catalogue/gear-guide.js',
 }
 export const styles = {
   equipment: 'catalogue/style.css',
@@ -28,6 +30,7 @@ export const styles = {
   strategy: 'research/strategy.css',
   quests: 'catalogue/quests.css',
   'fight-sim': 'catalogue/fight-sim.css',
+  'gear-guide': 'catalogue/gear-guide.css',
 }
 
 async function compile(entry, extension) {
@@ -219,6 +222,7 @@ export async function renderFrontendOutputs() {
     'strategy',
     'quests',
     'fight-sim',
+    'gear-guide',
   ]) {
     for (const { file, source } of templateFiles(slice)) {
       const locale = file.includes('.th.') ? 'th' : file.includes('.ja.') ? 'ja' : 'en'
@@ -227,11 +231,14 @@ export async function renderFrontendOutputs() {
           ? await renderEquipment(source, locale, outputs.get(scripts.equipment))
           : slice === 'strategy'
             ? strategyTables(file, source)
-            : source
+            : slice === 'gear-guide'
+              ? renderGearGuide(file, source)
+              : source
       const outputPath = `${slice === 'strategy' ? 'research' : 'catalogue'}/${file}`
       outputs.set(outputPath, addGoatCounter(versionAssetReferences(html, outputPath, outputs)))
     }
   }
+  outputs.set('catalogue/gear-guide-names.json', renderGuideNames())
   outputs.set('index.html', addGoatCounter(readFileSync(resolve(root, 'index.html'), 'utf8')))
   return outputs
 }

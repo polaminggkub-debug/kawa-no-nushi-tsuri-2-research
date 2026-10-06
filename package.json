@@ -5,8 +5,8 @@
   "type": "module",
   "scripts": {
     "build:frontend": "node scripts/build_frontend.mjs",
-    "format": "prettier --write src scripts/code-quality scripts/entity-link-check scripts/check_entity_links.cjs scripts/check_map_combobox.cjs scripts/check_shop_conditions.cjs scripts/build_frontend.mjs scripts/build_fight_policies.mjs scripts/build_gear_effects.mjs scripts/gear-effects prettier.config.mjs tsconfig.quality.json package.json",
-    "format:check": "prettier --check src scripts/code-quality scripts/entity-link-check scripts/check_entity_links.cjs scripts/check_map_combobox.cjs scripts/check_shop_conditions.cjs scripts/build_frontend.mjs scripts/build_fight_policies.mjs scripts/build_gear_effects.mjs scripts/gear-effects prettier.config.mjs tsconfig.quality.json package.json",
+    "format": "prettier --write src scripts/code-quality scripts/entity-link-check scripts/check_entity_links.cjs scripts/check_map_combobox.cjs scripts/check_shop_conditions.cjs scripts/build_frontend.mjs scripts/build_fight_policies.mjs scripts/build_gear_effects.mjs scripts/gear-effects scripts/gear-guide prettier.config.mjs tsconfig.quality.json package.json",
+    "format:check": "prettier --check src scripts/code-quality scripts/entity-link-check scripts/check_entity_links.cjs scripts/check_map_combobox.cjs scripts/check_shop_conditions.cjs scripts/build_frontend.mjs scripts/build_fight_policies.mjs scripts/build_gear_effects.mjs scripts/gear-effects scripts/gear-guide prettier.config.mjs tsconfig.quality.json package.json",
     "check:quality": "node scripts/code-quality/check.mjs",
     "check:publication": "node scripts/code-quality/check-publication.mjs",
     "check:generated": "node scripts/code-quality/check_generated.mjs",
