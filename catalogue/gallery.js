@@ -4127,7 +4127,7 @@
     ctx.activeSuggestion = -1;
     ctx.pickerCopy = {
       th: {
-        placeholder: "ชื่อปลา / fish name / ID",
+        placeholder: "ชื่อปลา หรือ ID",
         clear: "ล้างปลาเป้าหมาย",
         none: "ไม่พบปลา ลองชื่อไทย อังกฤษ ญี่ปุ่น หรือ ID",
         count: (n) => `พบ ${n} ชนิด ใช้ปุ่มลูกศรแล้วกด Enter หรือกดชื่อปลา`
@@ -4254,6 +4254,19 @@
   function local(ctx, values) {
     return values[ctx.lang] || values.en;
   }
+  var SKELETON_COUNT = 4;
+  var SKELETON_CARD = `<div class="item-card skeleton-card" aria-hidden="true">
+  <div class="card-main">
+    <div class="skeleton-block skeleton-image"></div>
+    <div class="card-text">
+      <div class="skeleton-block skeleton-line skeleton-tag"></div>
+      <div class="skeleton-block skeleton-line skeleton-title"></div>
+      <div class="skeleton-block skeleton-line skeleton-price"></div>
+      <div class="skeleton-block skeleton-line skeleton-text"></div>
+    </div>
+  </div>
+  <div class="card-actions"><div class="skeleton-block skeleton-button"></div></div>
+</div>`;
   function showCatalogueLoading(ctx) {
     document.getElementById("category-menu").hidden = true;
     document.getElementById("catalogue-load-feedback").hidden = true;
@@ -4269,7 +4282,7 @@
       ja: "選択条件の一覧",
       en: "Your selected items"
     });
-    document.getElementById("cards").innerHTML = `<p role="status">${ctx.esc(message)}</p>`;
+    document.getElementById("cards").innerHTML = `<p role="status" class="visually-hidden">${ctx.esc(message)}</p>` + SKELETON_CARD.repeat(SKELETON_COUNT);
     document.getElementById("result-count").textContent = "";
   }
   function showCatalogueError(ctx) {
@@ -4483,6 +4496,20 @@
     });
   }
 
+  // src/pages/equipment/refine-disclosure.js
+  var phoneWidth = "(max-width: 640px)";
+  function urlNeedsRefine(query) {
+    const sort = query.get("sort");
+    return Boolean(query.get("q") || query.get("style") || sort && sort !== "id");
+  }
+  function collapseRefineOnPhone() {
+    if (typeof document === "undefined" || typeof window === "undefined") return;
+    const refine = document.querySelector(".catalogue-refine");
+    if (!refine || !window.matchMedia?.(phoneWidth).matches) return;
+    if (urlNeedsRefine(new URLSearchParams(window.location.search))) return;
+    refine.open = false;
+  }
+
   // src/pages/equipment/index.js
   function initialize(ctx) {
     if (typeof document === "undefined" || !document.getElementById("cards")) return;
@@ -4493,6 +4520,7 @@
     setupDataAccess(ctx);
     setupNavigation(ctx);
     setupCardLinks(ctx);
+    collapseRefineOnPhone();
     loadCatalogue(ctx);
   }
 

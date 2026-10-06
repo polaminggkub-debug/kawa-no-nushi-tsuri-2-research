@@ -5,7 +5,7 @@ function local(ctx, values) {
 const SKELETON_COUNT = 4
 
 // Placeholder card that reuses the real card layout classes so the grid does not jump.
-const SKELETON_CARD = `<article class="item-card skeleton-card" aria-hidden="true">
+const SKELETON_CARD = `<div class="item-card skeleton-card" aria-hidden="true">
   <div class="card-main">
     <div class="skeleton-block skeleton-image"></div>
     <div class="card-text">
@@ -16,7 +16,7 @@ const SKELETON_CARD = `<article class="item-card skeleton-card" aria-hidden="tru
     </div>
   </div>
   <div class="card-actions"><div class="skeleton-block skeleton-button"></div></div>
-</article>`
+</div>`
 
 export function showCatalogueLoading(ctx) {
   document.getElementById('category-menu').hidden = true

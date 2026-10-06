@@ -2,6 +2,11 @@
 
 ![川のぬし釣り2 / Kawa no Nushi Tsuri 2 title screen](catalogue/assets/kawa-no-nushi-tsuri-2-title-screen.png)
 
+> **Owner note (หมายเหตุเจ้าของโปรเจกต์)**
+> - โปรเจกต์นี้คือ "ตกปลาทาโร่ 2" (Kawa no Nushi Tsuri 2, SFC) — ไกด์ไอเท็ม/ปลา/แผนที่ ที่ถอดจาก ROM จริง เพื่อตอบคำถามที่ค้างมาตั้งแต่เด็กว่าของแต่ละอย่างในเกมคืออะไร ปิดงานและปล่อยไว้ตั้งแต่ 2026-10-07
+> - **มีตัวนับผู้เข้าชม (GoatCounter) ฝังอยู่ทุกหน้า** — ดูสถิติ (จำนวนคน / ประเทศ) ที่ https://polamin.goatcounter.com · login account: `polamin` (รหัสผ่านไม่เก็บไว้ที่นี่)
+> - ชื่อบัญชีตั้งไว้จุดเดียวที่ `scripts/code-quality/analytics.mjs` แล้วรัน `npm run build:frontend`
+
 An independent, source-linked study of the Japanese Super Famicom release of **Kawa no Nushi Tsuri 2** (『川のぬし釣り2』). The project documents item records, the parts used to make flies, and a small set of effects confirmed by running the game. It does not distribute the game.
 
 **Languages:** [ไทย — item catalogue](https://polaminggkub-debug.github.io/kawa-no-nushi-tsuri-2-research/catalogue/index.th.html) · [日本語](README.ja.md) · [Findings (English)](docs/findings.en.md) · [調査結果（日本語）](docs/findings.ja.md) · [English item catalogue](catalogue/index.html) · [日本語アイテムカタログ](catalogue/index.ja.html)
