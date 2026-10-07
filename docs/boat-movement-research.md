@@ -12,6 +12,8 @@ The current-sensitive selectors differ: the canoe uses state `10` in both alignm
 
 The old statement that boat speed had not been traced is superseded by this specific comparison. Both boat cards now state the actionable no-current advantage and preserve the scope.
 
+> **Audit 2026-10-07:** rowing the tub or canoe costs 1 HP per tile and swimming costs 1 HP per 32 frames; walking is free. The canoe 14-step versus tub 10-step schedule was confirmed. The canoe maker refuses the milk trade when you already own a canoe.
+
 ## Tested owned-canoe placement and boarding (2026-10-05)
 
 The bounded controller replay in [canoe-boarding.json](../data/canoe-boarding.json) starts from a fresh-game walking route: leave the Area 1 house at `(8,183)` and hold Left for 64 frames to reach `(4,183)`. That approach has no coordinate, terrain, inventory or story writes. For the use experiment only, one initial write puts Canoe `02 00` in the empty general-tool slot `7E:0B5E`. This isolates **already-owned canoe use**, and does not establish ordinary-play acquisition.

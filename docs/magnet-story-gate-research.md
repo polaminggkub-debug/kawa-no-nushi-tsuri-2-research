@@ -35,6 +35,10 @@ A separate later transition pairs Area 1 `(12,189)` with map 7 `(7,77)` and queu
 
 The Area 6 compass-target table contains a `0x00FF` sentinel. Its dynamic words resolve to fish-location row 1: ID `0x3B`, オオウナギ (giant eel), at `(41,8)`. This target is distinct from the four selector-linked rows in the table above. The equality is ROM-backed; it does not by itself prove the eel is a quest objective or identify how to make it appear.
 
+## Audit 2026-10-07: the ending route
+
+An independent emulator audit drove the ending with the story flags set directly in RAM. It confirmed: bit `0x08` is set at the giant-eel catch (only after bit `0x01` from the character's own special fish), so the eel does not have to be kept; the ending plays when the Area 1 village door `(12,189)` is entered with `$0C18 == 0x0F`; it gives no item, HP or money and play continues. The whole chain from a fresh save was not replayed.
+
 ## What remains unproven
 
 - The callback checks a valid active fish/table-row context, but no inspected branch tests an explicit landed-catch result. The trace does not establish whether a bite, active encounter, fight result, or landed fish is required.

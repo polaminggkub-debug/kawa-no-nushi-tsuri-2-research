@@ -60,6 +60,25 @@ for(const file of ['thai-rod-transcriptions.json','thai-lure-transcriptions.json
   }
 }
 for(const item of data.items){if(!item.labelImageTh)continue;const imagePath=path.resolve(root,'catalogue',item.labelImageTh);if(fs.existsSync(imagePath)){const key=crypto.createHash('sha256').update(fs.readFileSync(imagePath)).digest('hex');if(verifiedNamesByImage.has(key))item.nameTh=verifiedNamesByImage.get(key);}}
+// Player-facing names that differ from the raw extracted tables live in data/item-names.json.
+const itemNames=JSON.parse(fs.readFileSync(path.join(root,'data/item-names.json'),'utf8')).items;
+for(const item of data.items){
+  const fix=itemNames[item.category+':'+item.id];if(!fix)continue;
+  const old=[item.nameJa,item.nameEn];
+  if(fix.nameEn)item.nameEn=fix.nameEn;
+  if(fix.nameJa){item.nameJa=fix.nameJa;if(item.nameJapanese)item.nameJapanese=fix.nameJa;}
+  if(fix.nameTh)item.nameTh=fix.nameTh;
+  if(fix.imageNote){item.imageNoteEn=fix.imageNote.en;item.imageNoteJa=fix.imageNote.ja;item.imageNoteTh=fix.imageNote.th;}
+  if(item.search&&(fix.nameEn||fix.nameJa)){
+    item.search=item.search.split(old[0]).join(item.nameJa).split(old[1]).join(item.nameEn);
+    if(!item.search.includes(item.nameEn))item.search=`${item.id} ${item.nameJa} ${item.nameEn} ${item.search}`;
+  }
+  const thai=fix.nameTh||fix.displayName?.th;
+  if(thai&&item.search){
+    item.search=item.search.replace(/[\u0E00-\u0E7F]+(?: [\u0E00-\u0E7F]+)*/g,'').replace(/ {2,}/g,' ').trim();
+    item.search=item.search.replace(item.nameEn,item.nameEn+' '+thai);
+  }
+}
 const fishFood=data.items.find(item=>item.category==='food'&&item.id==='08');if(fishFood&&fishFood.labelImageTh)fishFood.labelContextTh='ตัวอย่างชื่อปลาที่ถือ: เรนโบว์เทราต์ (รหัสชนิด06 ขนาดดิบ30) ชื่อนี้เปลี่ยนตามปลาที่ถือ ไม่ใช่ชื่ออาหารตายตัว';
 fs.writeFileSync(path.join(root,'catalogue/gallery-data.json'),JSON.stringify(data,null,2)+'\n');
 // Merge player-facing explanations and verified fish art into the delivered payload.
@@ -123,6 +142,7 @@ if(!fs.existsSync(gearPath))throw new Error('Missing per-item gear decisions');
     const choice=gear.items[item.category+':'+item.id];if(!choice)throw new Error('Missing gear decision '+item.category+':'+item.id);
     item.gearDecision=choice;
   }
+  for(const item of data.items){const fix=itemNames[item.category+':'+item.id];if(fix?.gearDecision)item.gearDecision=fix.gearDecision;}
 }
 const daikon=JSON.parse(fs.readFileSync(path.join(root,'data/daikon-acquisition.json'),'utf8'));
 const daikonLocation=JSON.parse(fs.readFileSync(path.join(root,'data/daikon-location.json'),'utf8'));

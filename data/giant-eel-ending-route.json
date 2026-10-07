@@ -34,6 +34,14 @@
     "scene": "00:825E -> 02:DF94 -> 02:EC10 -> 02:EC43",
     "completionBitWriter": "02:EFAE..EFB4"
   },
+  "audit20261007": {
+    "keepEelRequiredForEnding": false,
+    "storyBitEightSetAt": "the catch (01:917A), only after story bit 0x01 was set by the character's own special fish",
+    "endingGate": "$0C18 == 0x0F and entering the Area 1 village door at (12,189)",
+    "rewardObserved": "none: no item, HP or money change; play continues",
+    "foodMenuHidesFirstEel": "03:B871 -> 03:A2BA while story bit 0x10 is clear, restored at 03:B8B3; a second eel is not hidden",
+    "method": "emulator run with the story flags set directly in RAM, not a full replay from a fresh save"
+  },
   "limitations": [
     "Original Japanese ROM static control flow and dialogue, not a natural completion replay.",
     "Full ordinary-save progression and Thai-patch equivalence were not independently verified.",

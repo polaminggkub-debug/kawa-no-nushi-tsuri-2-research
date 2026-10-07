@@ -45,8 +45,12 @@ def _decision(facts, module, number, extra):
 def rod_decisions(facts, current):
     current["scope"] = dict(ROD_SCOPE)
     for number in facts.rods:
-        loss = facts.rods[number]["use"][facts.rods[number]["method"]]["loss"]
-        current["items"][f"{number:02X}"] = _decision(facts, rod_copy, number, {"startLoss": loss})
+        use = facts.rods[number]["use"][facts.rods[number]["method"]]
+        # Fish ids (decimal, as in the gear-effects data) the fish pages check a rod against.
+        fight = {key: use.get(key, []) for key in ("best", "bad", "short")}
+        current["items"][f"{number:02X}"] = _decision(
+            facts, rod_copy, number, {"startLoss": use["loss"], "fight": fight}
+        )
     return current
 
 

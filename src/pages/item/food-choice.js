@@ -36,7 +36,7 @@ export function foodChoicePanel(ctx, item, allItems, sections) {
   const full = sections
     .map(
       (section) =>
-        `<h3>${ctx.esc(ctx.local(section.title))}</h3><p>${ctx.esc(ctx.local(section.recommendation))}</p><p class="muted">${ctx.esc(ctx.local(section.scope))}</p>`,
+        `<h3>${ctx.esc(ctx.local(section.title))}</h3><p>${ctx.esc(ctx.local(section.recommendation))}</p>${section.reason ? `<p data-hp-basics>${ctx.esc(ctx.local(section.reason))}</p>` : ''}<p class="muted">${ctx.esc(ctx.local(section.scope))}</p>`,
     )
     .join('')
   return `<section class="detail-section buying-decision" data-food-choice>${nearby}<details><summary>${ctx.esc(copy[1])}</summary>${full}<div class="detail-grid" data-all-food-options>${catalogueOptions}</div></details></section>`

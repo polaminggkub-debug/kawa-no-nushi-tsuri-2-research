@@ -28,7 +28,7 @@ The guide starts with equipment categories, then explains each item's use. Bait/
 - [Fly parts](docs/fly-practical-research.md): body coverage, hidden body/wing conditions, overnight changes, and the distinction between a ready-made bundle and custom parts.
 - [Shop stock across all six areas](docs/shop-stock-research.md): exact purchase areas, special rod merchants, and the sold-Ayu condition for live bait.
 - [Bait-search locations](docs/forage-location-research.md): example magnifying-glass tiles on real ROM terrain, with bait images marking the results.
-- [Food decisions](docs/food-practical-research.md): HP recovery, consumption, the first fish in the basket, and the deadly Kusafugu exception.
+- [Food decisions](docs/food-practical-research.md): HP recovery, consumption, the first fish in the basket (the menu skips your first giant eel), the Kusafugu exception (0 HP is only a blackout), the two mushrooms (tell them apart by icon) and maximum HP (100 to about 190).
 - [Tub versus canoe movement](docs/boat-movement-research.md): the canoe makes 40% more movement steps in the traced no-current branch.
 
 ## New equipment research — 2026-10-04

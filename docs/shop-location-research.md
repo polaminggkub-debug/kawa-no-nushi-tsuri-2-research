@@ -53,7 +53,7 @@ The same object pointer table places chest slot `0E` on interior maps, which is 
 | Town map | Chest tile | ROM result |
 |---:|---:|---|
 | 7 | `(5,68)` | Potato bait `11` (key required) |
-| 8 | `(4,6)` | Waxworm bait `0B` (key required) |
+| 8 | `(4,6)` | Grapevine larva bait `0B` (key required) |
 | 9 | `(6,4)` | Empty milk bottle `0F` (no key) |
 | 10 | `(4,6)` | Small lure rod `0A` (key required) |
 | 11 | `(4,6)` | Lottery ticket `11` (no key) |

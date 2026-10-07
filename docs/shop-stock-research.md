@@ -45,6 +45,19 @@ Town NPC slot `10` selects shop mode 7 in towns 10–12 (`00:CF05..CF1A`). `03:8
 
 Bait `17` is removed from the menu when `7F:1E84` is zero (`03:8DCE..8DF1`). Bulk fish sales call `03:A3C0` at `03:A27C` before clearing the basket: each stored fish with species ID `38` (Ayu) increments that counter. A purchase of live Ayu bait fills its stack to nine and subtracts nine from the counter, floored at zero (`03:8FD5..8FEE`). Thus selling at least one Ayu allows a stocked shop to offer this bait; buying it can hide it again until another Ayu is sold. This is a stock condition, not a catch-probability claim.
 
+## In-game confirmation (2026-10-07 audit)
+
+All six regular shops, the three special rod merchants and the Area 1 to 3 fly makers were opened in the running game and their menus read back off the screen. Findings used by the guide:
+
+- The decoded stock matches the stock the game loads in all six shops, for all 315 items, and stays the same across about 2,000 save states. Every offer shows the ROM price and a purchase deducts exactly that price.
+- **Bait and hooks are priced per stack of 9.** Buying with 8 of 9 held still costs the full price and tops the stack up to 9. The guide says so on shop cards, item pages and the shops page.
+- **Never sold anywhere:** rods `02`, `06`, `0B`, `11`; fly parts `25`, `66`, `67`; both mushrooms `09`/`0A`; the wash tub and the canoe. Part `26` appears only in one Area 6 ready-made set (body `1E` + wing `26` + tail `2A`, ¥50).
+- **Special rod merchants** (towns of Areas 4 to 6): Area 4 heavy-fish lure rod ¥650; Area 5 carp rod ¥1,500 and bitterling rod ¥500; Area 6 two-handed casting rod ¥1,500. Area 6 sells no fly rod.
+- **Decoy Ayu** (bait `17`) shows up in the Area 3 shop only after an Ayu has been sold from the keepnet.
+- **Fly makers** exist only in the towns of Areas 1 to 3 (map IDs 7 to 9). A custom fly costs body + wing + tail (default part price ¥25, cap ¥10,000); a ready-made bundle costs only its body price. 130 of the 134 fly parts can be picked in a maker; the other four are `25`, `26`, `66` and `67`. Areas 4 to 6 sell ready-made bundles only.
+- The `渓流` menu of the early single-menu capture is Area 1.
+- Records `66` and `67` are leech-family (code 5) body-type records. They are in no stock table, bundle or maker palette.
+
 ## Reproduction
 
 ```sh

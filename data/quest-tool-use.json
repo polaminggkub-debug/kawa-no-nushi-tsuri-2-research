@@ -20,19 +20,25 @@
         "basePriceYen": 0
       },
       "summary": {
-        "en": "Keep the received postcard and read it as the story progresses to check requests, including the doctor’s giant-eel request. Reading keeps the item.",
-        "ja": "届いた絵はがきを残し、物語が進んだら医者のオオウナギ依頼などの用件を確認してください。読んでもアイテムは残ります。",
-        "th": "เก็บไปรษณียบัตรไว้และเปิดอ่านเมื่อเนื้อเรื่องคืบหน้า เพื่อตรวจคำขอที่เกมส่งมา เช่นคำขอปลาไหลยักษ์จากหมอ อ่านแล้วไอเท็มยังอยู่ในช่องเก็บของ"
+        "en": "Do you need it? Only if you want the story ending. Keep it, and read it from the item menu once your notebook has 65 of the 66 fish kinds. If a note from the doctor asking you to catch the giant eel appears, the Area 6 compass starts pointing to the eel. Reading never uses the postcard up.",
+        "ja": "必要か？ エンディングを見たい場合だけ。残しておき、図鑑が66種類のうち65種類以上になったらアイテムメニューから読む。医者の「オオウナギを釣ってほしい」という文面が出たら、エリア6の磁石がオオウナギの場所を指すようになる。読んでもハガキは消えない。",
+        "th": "ต้องใช้ไหม? เฉพาะตอนอยากดูฉากจบ เก็บไว้ แล้วเปิดอ่านจากเมนูไอเท็มเมื่อสมุดมีปลาครบ 65 จาก 66 ชนิด ถ้ามีข้อความจากหมอขอให้ตกปลาไหลยักษ์ เข็มทิศในด่าน 6 จะเริ่มชี้ไปหาปลาไหลตัวนั้น อ่านแล้วไปรษณียบัตรไม่หาย"
       },
       "facts": {
         "en": [
-          "The ROM generates story notices from this save's progress when ID 06 is read; they do not require another local saved character to send them (unlike postcard ID 07)."
+          "The postcard writes its notes from your own save. You do not need another saved character to send it (the plain postcard does).",
+          "The doctor's note needs two things. First, 65 of the 66 fish kinds recorded in your notebook (kinds, not catches). Second, the village scene must already have played: catch your own character's special fish, then walk into the Area 1 village at field (8,183). If the note does not appear, one of the two is still missing.",
+          "Reading gives no item, money or HP."
         ],
         "ja": [
-          "ID 06を読むと、このセーブの進行状況から物語メッセージが表示される。別のローカルセーブキャラクターから送ってもらう必要はない（はがきID 07の送信とは異なる）。"
+          "ハガキの文面はあなたのセーブの進行から作られる。別のセーブキャラクターから送ってもらう必要はない（普通の絵はがきは必要）。",
+          "医者の文面が出る条件は2つ。1つ目は図鑑に66種類のうち65種類が記録されていること（釣った回数ではなく種類）。2つ目は村の場面が済んでいること：自分のキャラクター専用の魚を釣り、フィールド（8,183）からエリア1の村へ入る。文面が出ないときは、どちらかがまだ足りない。",
+          "読んでもアイテム・お金・HPは増えない。"
         ],
         "th": [
-          "เมื่ออ่าน ID 06 เกมสร้างข้อความเนื้อเรื่องจากความคืบหน้าในเซฟนี้เอง ไม่ต้องมีตัวละครเซฟช่องอื่นส่งมาให้ (ต่างจากไปรษณียบัตร ID 07 ที่ต้องส่ง)"
+          "ไปรษณียบัตรสร้างข้อความจากความคืบหน้าในเซฟของคุณเอง ไม่ต้องมีตัวละครเซฟช่องอื่นส่งให้ (ต่างจากไปรษณียบัตรธรรมดาที่ต้องส่ง)",
+          "ข้อความของหมอต้องมีสองอย่าง อย่างแรก สมุดบันทึกปลาครบ 65 จาก 66 ชนิด (นับชนิด ไม่ใช่จำนวนครั้งที่ตก) อย่างที่สอง ฉากในหมู่บ้านต้องเล่นไปแล้ว คือตกปลาประจำตัวละครของคุณ แล้วเดินเข้าหมู่บ้านด่าน 1 ทางสนาม (8,183) ถ้าข้อความไม่ขึ้น แสดงว่ายังขาดอย่างใดอย่างหนึ่ง",
+          "อ่านแล้วไม่ได้ไอเท็ม เงิน หรือ HP"
         ]
       },
       "evidence": {
@@ -51,22 +57,22 @@
           "The item handler sets action state 09. The state table routes to the read-mail handler, which searches four saved-character mail blocks using the current-character selector. The read path does not consume ID 06 or modify HP or money.",
           "For message 041E, 01:DE89..DEB1 requires $0C18 bit 0x02, bit 0x04 clear, and at least 0x41 (65) nonzero two-byte records among $0DC8..$0E4A. The reader sets bit 0x04 at 01:DEB3..DEB9, then copies ROM message 041E into the display buffer beginning at 01:DECC. This check sets the Magnet-heading flag; it does not mark the eel as caught or grant an item reward.",
           "Bit 0x02 is set separately after the automatic profile-specific return scene at 02:E643..E649. The scene is queued by the Area 1 return transition when $0C18 == 1 at 00:9E43..9E5F; the matching transition maps Area 1 tile (8,183) to map selector 7 tile (7,13). The earlier fishing callback matches a selected profile to an active fish-table row but does not test a landed-catch result, so the exact ordinary-play trigger timing remains unverified.",
-          "The Magnet's Area 6 dynamic target is separately traced in docs/magnet-story-gate-research.md: it matches fish-table row 1, giant eel ID 3B, at (41,8).",
-          "The successful-storage branch 01:85E4..85FC calls story-bit producer01:917A before storing the active fish at01:8AC3. At $0C18==000F, return via Area1(12,189) to internal village7(7,77) queues the automatic scene. Messages03C8/03CC describe doctor recovery and the ending. This is original-Japanese-ROM code/dialogue evidence, not a natural completion replay; exact rewards, consumption/helper effects and Thai-patch equivalence are unverified."
+          "The compass's Area 6 dynamic target is separately traced in docs/magnet-story-gate-research.md: it matches fish-table row 1, giant eel ID 3B, at (41,8).",
+          "Audit 2026-10-07: the successful-storage branch 01:85E4..85FC calls the story-bit producer 01:917A before storing the fish at 01:8AC3, so bit 0x08 is set at the catch itself (and only if bit 0x01 was already set by your character's own special fish). You do not have to keep the eel. At $0C18==000F, entering the Area 1 village door at (12,189) (internal village map 7, (7,77)) queues the automatic ending scene. Messages 03C8/03CC describe the doctor's recovery and the shared meal. The scene gives no item, HP or money, and play continues afterwards. The scene was driven in the emulator with the story flags set directly in RAM; the full chain from a fresh save was not replayed, and Thai-patch equivalence is unverified."
         ],
         "ja": [
           "アイテム処理はアクション状態09を設定する。状態テーブルは受信メール処理へ進み、現在のキャラクター選択値で4つのセーブメール領域を検索する。読取処理でID 06は消費されず、HP・所持金も変化しない。",
           "メッセージ041Eの条件は01:DE89..DEB1。$0C18のビット0x02が立ち、ビット0x04が未設定で、$0DC8..$0E4Aの2バイト魚種記録66枠中65枠以上が非ゼロであること。読取処理は01:DEB3..DEB9でビット0x04を設定し、01:DECCからROMメッセージ041Eを表示バッファへコピーする。この判定は磁石の方向表示を有効にするが、オオウナギを釣った記録やアイテム報酬を付与するものではない。",
           "ビット0x02は別の処理で設定される。$0C18 == 1のとき、エリア1の帰還遷移がエリア1の(8,183)からマップ選択値7の(7,13)へ移り、キャラクター別の自動シーンを開始する（00:9E43..9E5F）。シーン後半の02:E643..E649でビット0x02を設定する。先行する釣りコールバックは選択キャラクターとアクティブな魚テーブル行を照合するが、釣り上げ結果を明示的には検査しないため、通常プレイでいつ条件が成立するかは未確認。",
           "磁石のエリア6動的目標はdocs/magnet-story-gate-research.mdで別途追跡済み。魚テーブル1行目のオオウナギ（魚ID 3B）、座標(41,8)と一致する。",
-          "格納成功分岐01:85E4..85FCは01:917Aで物語ビットを設定してから01:8AC3で魚を格納する。$0C18==000Fのときエリア1(12,189)から村マップ7(7,77)への帰還で自動シーンを開始し、03C8/03CCが医者の回復と結末を述べる。日本語原版ROMのコード・台詞による根拠であり、通常プレイ完走の再現ではない。具体的報酬・消費や補助処理の効果・タイ語パッチとの一致は未確認。"
+          "2026-10-07監査：格納成功分岐01:85E4..85FCは01:8AC3で魚を格納する前に01:917Aで物語ビットを設定する。つまりビット0x08は釣り上げた時点で立つ（自分のキャラクター専用の魚でビット0x01が先に立っている場合のみ）。オオウナギを残しておく必要はない。$0C18==000Fのとき、エリア1の村の入口（12,189）（内部の村マップ7、(7,77)）に入ると自動のエンディングシーンが始まる。03C8/03CCが医者の回復と皆での食事を述べる。アイテム・HP・お金の報酬はなく、その後もプレイを続けられる。エミュレーターで物語フラグをRAMへ直接設定して確認したもので、新規セーブからの全工程の通し再現ではない。タイ語パッチとの一致は未確認。"
         ],
         "th": [
           "โค้ดใช้ไอเท็มตั้งสถานะการกระทำ 09 แล้วตารางสถานะส่งไปยังตัวอ่านจดหมาย ซึ่งค้นหาพื้นที่จดหมายของตัวละครที่เซฟไว้ 4 ช่องด้วยค่าตัวละครปัจจุบัน การอ่านไม่ใช้ ID 06 ทิ้งและไม่เปลี่ยน HP หรือเงิน",
-          "เงื่อนไขข้อความ 041E ที่ 01:DE89..DEB1 คือต้องมีบิต 0x02 ใน $0C18, บิต 0x04 ยังไม่ถูกตั้ง และมีช่องบันทึกปลาที่ไม่เป็นศูนย์อย่างน้อย 0x41 (65) จากช่องสองไบต์ 66 ช่องใน $0DC8..$0E4A ตัวอ่านตั้งบิต 0x04 ที่ 01:DEB3..DEB9 แล้วคัดลอกข้อความ ROM 041E ลงบัฟเฟอร์เริ่มที่ 01:DECC เงื่อนไขนี้เปิดทิศทางของแม่เหล็ก ไม่ได้บันทึกว่าตกปลาไหลยักษ์ได้แล้วหรือให้รางวัลเป็นไอเท็ม",
+          "เงื่อนไขข้อความ 041E ที่ 01:DE89..DEB1 คือต้องมีบิต 0x02 ใน $0C18, บิต 0x04 ยังไม่ถูกตั้ง และมีช่องบันทึกปลาที่ไม่เป็นศูนย์อย่างน้อย 0x41 (65) จากช่องสองไบต์ 66 ช่องใน $0DC8..$0E4A ตัวอ่านตั้งบิต 0x04 ที่ 01:DEB3..DEB9 แล้วคัดลอกข้อความ ROM 041E ลงบัฟเฟอร์เริ่มที่ 01:DECC เงื่อนไขนี้เปิดทิศทางของเข็มทิศ ไม่ได้บันทึกว่าตกปลาไหลยักษ์ได้แล้วหรือให้รางวัลเป็นไอเท็ม",
           "บิต 0x02 ถูกตั้งแยกต่างหากหลังฉากกลับอัตโนมัติของตัวละครที่เลือก เมื่อ $0C18 == 1 ทางกลับในด่าน 1 จะพิกัด (8,183) ไปยังแผนที่เมืองรหัส 7 พิกัด (7,13) และเริ่มฉาก (00:9E43..9E5F); ช่วงท้ายฉากที่ 02:E643..E649 ตั้งบิต 0x02 คอลแบ็กตกปลาก่อนหน้านี้ตรวจตัวละครที่เลือกเทียบกับแถวปลาที่กำลังทำงาน แต่ไม่ได้ตรวจผลว่าตกขึ้นมาได้แล้วหรือไม่ จึงยังยืนยันไม่ได้ว่าเงื่อนไขเกิดขึ้นตอนไหนในการเล่นปกติ",
-          "เป้าหมายแบบไดนามิกของแม่เหล็กในด่าน 6 มีหลักฐานแยกใน docs/magnet-story-gate-research.md: ตรงกับปลาไหลยักษ์ ID 3B แถวที่ 1 ของตารางปลา ที่พิกัด (41,8)",
-          "แขนงเก็บปลาสำเร็จ01:85E4..85FC เรียก01:917A ตั้งบิตเนื้อเรื่องก่อนเก็บปลาที่01:8AC3 เมื่อ$0C18==000F การกลับจากด่าน1(12,189)ไปหมู่บ้านรหัส7(7,77)เริ่มฉากอัตโนมัติ ข้อความ03C8/03CCเล่าว่าหมอหายและเรื่องจบ หลักฐานนี้มาจากโค้ดและบทพูด ROM ญี่ปุ่น ไม่ใช่การเล่นจบตามปกติ ยังไม่ยืนยันรางวัล การใช้ปลาทิ้งหรือผลทุกฟังก์ชันย่อย และความตรงกันของแพตช์ไทย"
+          "เป้าหมายแบบไดนามิกของเข็มทิศในด่าน 6 มีหลักฐานแยกใน docs/magnet-story-gate-research.md: ตรงกับปลาไหลยักษ์ ID 3B แถวที่ 1 ของตารางปลา ที่พิกัด (41,8)",
+          "การตรวจ 2026-10-07: แขนงเก็บปลาสำเร็จ 01:85E4..85FC เรียกตัวตั้งบิตเนื้อเรื่อง 01:917A ก่อนเก็บปลาที่ 01:8AC3 บิต 0x08 จึงถูกตั้งตั้งแต่ตกปลาไหลได้ (และเฉพาะเมื่อบิต 0x01 ถูกตั้งแล้วจากปลาประจำตัวละคร) ไม่จำเป็นต้องเก็บปลาไหลไว้ เมื่อ $0C18==000F การเดินเข้าประตูหมู่บ้านด่าน 1 ที่ (12,189) (แผนที่หมู่บ้านภายใน 7 พิกัด (7,77)) เริ่มฉากจบอัตโนมัติ ข้อความ 03C8/03CC เล่าว่าหมอหายและทุกคนกินปลาด้วยกัน ฉากนี้ไม่ให้ไอเท็ม HP หรือเงิน และเล่นต่อได้ ทดสอบในอีมูเลเตอร์โดยตั้งแฟล็กเนื้อเรื่องใน RAM โดยตรง ไม่ได้เล่นซ้ำตั้งแต่เซฟใหม่จนจบ และยังไม่ยืนยันความตรงกันของแพตช์ไทย"
         ]
       },
       "rawTrace": {
@@ -182,22 +188,25 @@
         "basePriceYen": 0
       },
       "summary": {
-        "en": "Before opening the area-3 town chest at (6,4), leave one space in the general-tool inventory; a full inventory rejects the bottle. Take it to the cow at (6,103) to get milk. Selecting the bottle alone only shows its description.",
-        "ja": "エリア3の町の宝箱（6,4）を開ける前に、道具欄に空きを1つ作る。満杯だとビンを受け取れない。入手したビンを牛（6,103）へ持っていくと牛乳になる。ビンをメニューで使うだけでは説明が出る。",
-        "th": "ก่อนเปิดหีบในเมืองด่าน 3 พิกัด (6,4) ให้เว้นช่องว่างในช่องเก็บของทั่วไป 1 ช่อง ถ้าช่องเก็บของเต็ม เกมจะไม่ให้ขวด จากนั้นเอาขวดไปหาวัวที่ (6,103) เพื่อแลกเป็นนม ถ้าเลือกใช้ขวดจากเมนูอย่างเดียวจะขึ้นแค่คำอธิบาย"
+        "en": "Do you need it? Yes, if you want free healing or the canoe. Take the empty bottle from the Area 3 town chest at (6,4); no key is needed, but free a tool slot first. Carry it to the cow at (6,103) to turn it into milk. Selecting the empty bottle only shows its description.",
+        "ja": "必要か？ 無料の回復かカヌーが欲しいなら必要。エリア3の町の宝箱（6,4）から空きビンを取る。カギは不要だが、先に道具欄を1つ空ける。牛（6,103）に持っていくと牛乳になる。空きビンをメニューで選んでも説明が出るだけ。",
+        "th": "ต้องใช้ไหม? ต้องใช้ถ้าอยากได้ฟื้น HP ฟรีหรืออยากได้แคนู รับขวดเปล่าจากหีบในเมืองด่าน 3 ที่ (6,4) ไม่ต้องใช้กุญแจ แต่ต้องเว้นช่องอุปกรณ์ทั่วไปไว้ก่อน เอาขวดไปหาวัวที่ (6,103) เพื่อเปลี่ยนเป็นนม ถ้าเลือกขวดเปล่าจากเมนูจะขึ้นแค่คำอธิบาย"
       },
       "facts": {
         "en": [
-          "The town chest for area 3 at (6,4) grants the empty bottle and enables the cow interaction. The cow replaces the bottle with milk.",
-          "Leave one free space in the general-tool inventory before taking the bottle; a full inventory cannot receive it."
+          "The chest at (6,4) gives the empty bottle. No key is needed.",
+          "The cow at (6,103) fills the bottle with milk, and it refills the bottle as often as you like, for free.",
+          "A full tool bag cannot take the bottle, so free one tool slot before you open the chest."
         ],
         "ja": [
-          "エリア3の町の宝箱（6,4）で空きビンを入手し、牛との交換イベントが使えるようになる。牛はビンを牛乳に置き換える。",
-          "ビンを受け取る前に道具欄に空きを1つ作る。満杯だと受け取れない。"
+          "(6,4)の宝箱から空きビンが手に入る。カギは不要。",
+          "牛（6,103）がビンを牛乳で満たす。何度でも無料で補充してくれる。",
+          "道具欄が満杯だとビンを受け取れない。宝箱を開ける前に道具欄を1つ空ける。"
         ],
         "th": [
-          "หีบในเมืองของพื้นที่ 3 พิกัด (6,4) ให้ขวดเปล่าและเปิดทางให้แลกกับวัว วัวเปลี่ยนขวดเป็นนม",
-          "ก่อนรับขวด ให้เว้นช่องในช่องเก็บของทั่วไป 1 ช่อง ถ้าช่องเต็มจะรับขวดไม่ได้"
+          "หีบที่ (6,4) ให้ขวดเปล่า ไม่ต้องใช้กุญแจ",
+          "วัวที่ (6,103) เติมนมให้ขวด และเติมให้ฟรีกี่ครั้งก็ได้",
+          "ถ้าช่องอุปกรณ์ทั่วไปเต็ม จะรับขวดไม่ได้ ให้เว้นช่องไว้ก่อนเปิดหีบ"
         ]
       },
       "evidence": {
@@ -215,7 +224,7 @@
           "直接使用処理03:C4D9はメッセージ0168のみを表示する。町の宝箱処理00:D0EA..D113は00:D1D4..D207の付与処理でID0Fを渡し、付与成功時に限り7E:0C1Aのbit0を設定する。共通付与処理は最後の道具欄7E:0B78を確認し、埋まっている場合はメッセージ0196を表示して状態1で戻るため、宝箱処理はフラグ設定前に終了する。満杯状態で試した後の保存・再試行動作はこの追跡では確認していない。エリア3のNPCスロット0C（6,103）、00:C804はそのフラグとID0Fを確認して、見つかった所持欄をID10に置き換える。"
         ],
         "th": [
-          "ตัวใช้โดยตรง 03:C4D9 แสดงข้อความ 0168 เท่านั้น ทางหีบเมือง 00:D0EA..D113 ส่ง ID 0F ผ่านฟังก์ชันให้ของ 00:D1D4..D207 แล้วตั้งบิต 0 ของ 7E:0C1A เฉพาะเมื่อให้ของสำเร็จ ฟังก์ชันกลางตรวจช่องของทั่วไปช่องสุดท้ายที่ 7E:0B78; หากมีของอยู่จะแสดงข้อความ 0196 แล้วคืนสถานะ 1 ทำให้ตัวเปิดหีบจบก่อนตั้งธง โค้ดที่ตรวจยังไม่ยืนยันว่าหลังโหลดเซฟใหม่จะเกิดอะไรขึ้นกับความพยายามตอนช่องเต็ม ส่วน NPC ช่อง 0C ในพื้นที่ 3 (6,103) ที่ 00:C804 ตรวจธงนี้กับ ID 0F แล้วเขียน ID 10 ทับช่องไอเท็มที่พบ"
+          "ตัวใช้โดยตรง 03:C4D9 แสดงข้อความ 0168 เท่านั้น ทางหีบเมือง 00:D0EA..D113 ส่ง ID 0F ผ่านฟังก์ชันให้ของ 00:D1D4..D207 แล้วตั้งบิต 0 ของ 7E:0C1A เฉพาะเมื่อให้ของสำเร็จ ฟังก์ชันกลางตรวจช่องของทั่วไปช่องสุดท้ายที่ 7E:0B78; หากมีของอยู่จะแสดงข้อความ 0196 แล้วคืนสถานะ 1 ทำให้ตัวเปิดหีบจบก่อนตั้งธง โค้ดที่ตรวจยังไม่ยืนยันว่าหลังโหลดเซฟใหม่จะเกิดอะไรขึ้นกับความพยายามตอนช่องเต็ม ส่วน NPC ช่อง 0C ในด่าน 3 (6,103) ที่ 00:C804 ตรวจธงนี้กับ ID 0F แล้วเขียน ID 10 ทับช่องไอเท็มที่พบ"
         ]
       },
       "rawTrace": {
@@ -260,22 +269,22 @@
         "basePriceYen": 0
       },
       "summary": {
-        "en": "Want a canoe and do not own one? Reserve the fresh milk for the Area 3 canoe maker at (28,39). Otherwise drink it when you need HP: it restores current HP to maximum and becomes an empty bottle you can refill at the cow (6,103). Drinking first means refilling before the canoe trade.",
-        "ja": "カヌーが欲しく、まだ持っていないなら、牛乳をエリア3（28,39）の船大工との交換用に残してください。それ以外はHPが必要なときに飲むと最大HPまで回復し、空きビンになる。牛（6,103）で補充できます。先に飲んだ場合、カヌー交換の前に補充が必要です。",
-        "th": "ถ้าอยากได้แคนูและยังไม่มี ให้เก็บนมสดไว้แลกกับช่างทำเรือด่าน 3 (28,39) ถ้าไม่แลก ใช้ดื่มเมื่อขาด HP เพื่อฟื้นจนเต็มตามค่าสูงสุด แล้วนำขวดเปล่ากลับไปเติมกับวัว (6,103) ถ้าดื่มก่อน ต้องเติมนมใหม่ก่อนแลกเรือ"
+        "en": "Milk is a free, unlimited full heal. Drink it from the item menu and it restores current HP to maximum; you keep an empty bottle, and the cow at (6,103) in Area 3 refills it for free, as often as you like. Want the canoe instead? If you do not own one, give fresh milk to the canoe maker at (28,39). That trade uses the milk up, so refill the bottle first if you already drank it.",
+        "ja": "牛乳は無料で何度でも使える全回復。アイテムメニューで飲むと最大HPまで回復し、空きビンが残る。エリア3の牛（6,103）が何度でも無料で牛乳を補充してくれる。カヌーが欲しくてまだ持っていないなら、船大工（28,39）に新しい牛乳を渡す。この交換で牛乳は消費されるので、先に飲んでしまったら牛で補充してから渡す。",
+        "th": "นมคือการฟื้น HP เต็มแบบฟรีและไม่จำกัด ดื่มจากเมนูไอเท็มแล้ว HP ฟื้นจนเต็มตามค่าสูงสุด เหลือขวดเปล่า แล้วนำกลับไปให้วัวด่าน 3 ที่ (6,103) เติมนมให้ฟรีกี่ครั้งก็ได้ ถ้าอยากได้แคนูและยังไม่มี ให้นำนมสดไปให้ช่างทำเรือที่ (28,39) การแลกนี้ใช้นมหมดไป ถ้าดื่มไปแล้วต้องเติมนมใหม่ก่อนแลก"
       },
       "facts": {
         "en": [
-          "Drinking restores HP to maximum and leaves an empty bottle; take it back to the area-3 cow to refill.",
-          "The canoe maker at (28,39) trades the milk for a canoe if you do not already own one."
+          "Drinking sets HP to your maximum (not always 100) and leaves an empty bottle. Take it back to the Area 3 cow to refill.",
+          "The canoe maker at (28,39) trades milk for a canoe only if you do not already own one."
         ],
         "ja": [
-          "飲むとHPが最大まで回復し、空きビンが残る。エリア3の牛に戻れば牛乳に替えられる。",
-          "船大工（28,39）は、カヌーを未所持なら牛乳とカヌーを交換する。"
+          "飲むとHPが最大値まで回復する（最大値は100とは限らない）。空きビンが残り、エリア3の牛に戻れば牛乳に替えられる。",
+          "船大工（28,39）は、カヌーを持っていないときだけ牛乳とカヌーを交換する。"
         ],
         "th": [
-          "ดื่มแล้ว HP เต็มและเหลือขวดเปล่า นำกลับไปหาวัวด่าน 3 เพื่อเติมนมอีกได้",
-          "ถ้ายังไม่มีแคนู เอานมไปคุยกับช่างทำเรือที่ (28,39) เพื่อแลกแคนู"
+          "ดื่มแล้ว HP เต็มตามค่าสูงสุด (ไม่จำเป็นต้องเป็น 100) เหลือขวดเปล่า นำกลับไปหาวัวด่าน 3 เพื่อเติมนมอีกได้",
+          "ช่างทำเรือที่ (28,39) แลกนมเป็นแคนูเฉพาะเมื่อคุณยังไม่มีแคนู"
         ]
       },
       "evidence": {
@@ -287,13 +296,16 @@
       },
       "evidenceNotes": {
         "en": [
-          "The use handler 03:C4EA copies 7E:0864 (maximum HP) to 7E:0862 (current HP), replaces the selected menu item with ID 0F and renders message 016A. The canoe exchange is 00:C8EC..C8FD; its text 02B8 requests fresh milk and 02BA confirms the canoe. The item record's zero base price does not establish free availability."
+          "The use handler 03:C4EA copies 7E:0864 (maximum HP) to 7E:0862 (current HP), replaces the selected menu item with ID 0F and renders message 016A. The canoe exchange is 00:C8EC..C8FD; its text 02B8 requests fresh milk and 02BA confirms the canoe. The item record's zero base price does not establish free availability.",
+          "Audit 2026-10-07: the cow refills the bottle with no limit, so milk is an unlimited free full heal. The canoe maker refuses the trade when you already own a canoe."
         ],
         "ja": [
-          "使用処理03:C4EAは7E:0864（最大HP）を7E:0862（現在HP）へコピーし、選択中のアイテムをID0Fに置き換えてメッセージ016Aを表示する。カヌー交換は00:C8EC..C8FD。メッセージ02B8は牛乳を求め、02BAでカヌーを渡す。レコード基本価格0円は無料入手の証明ではない。"
+          "使用処理03:C4EAは7E:0864（最大HP）を7E:0862（現在HP）へコピーし、選択中のアイテムをID0Fに置き換えてメッセージ016Aを表示する。カヌー交換は00:C8EC..C8FD。メッセージ02B8は牛乳を求め、02BAでカヌーを渡す。レコード基本価格0円は無料入手の証明ではない。",
+          "2026-10-07監査：牛は回数制限なくビンを補充するため、牛乳は無制限の無料全回復。すでにカヌーを持っていると船大工は交換を断る。"
         ],
         "th": [
-          "ตัวใช้ 03:C4EA คัดลอก 7E:0864 (HP สูงสุด) ไปยัง 7E:0862 (HP ปัจจุบัน) แทนไอเท็มที่เลือกด้วย ID 0F แล้วแสดงข้อความ 016A จุดแลกเรืออยู่ที่ 00:C8EC..C8FD ข้อความ 02B8 ขอ fresh milk และ 02BA ยืนยันว่าให้เรือ ราคา 0 เยนในเรกคอร์ดไม่ได้แปลว่าได้ฟรี"
+          "ตัวใช้ 03:C4EA คัดลอก 7E:0864 (HP สูงสุด) ไปยัง 7E:0862 (HP ปัจจุบัน) แทนไอเท็มที่เลือกด้วย ID 0F แล้วแสดงข้อความ 016A จุดแลกเรืออยู่ที่ 00:C8EC..C8FD ข้อความ 02B8 ขอ fresh milk และ 02BA ยืนยันว่าให้เรือ ราคา 0 เยนในเรกคอร์ดไม่ได้แปลว่าได้ฟรี",
+          "การตรวจ 2026-10-07: วัวเติมนมให้ขวดโดยไม่จำกัดครั้ง นมจึงเป็นการฟื้น HP เต็มฟรีไม่จำกัด และช่างทำเรือปฏิเสธการแลกถ้าคุณมีแคนูอยู่แล้ว"
         ]
       },
       "rawTrace": {
@@ -331,19 +343,28 @@
         "basePriceYen": 100
       },
       "summary": {
-        "en": "If you have food to spare, offer Hinomaru bento (06) or daikon (07) at the area-5 Jizo (49,22) before drawing at the counter (54,22), instead of orange (01). They can turn more losing draws into prizes than orange. Food can help only so much; near the limit, all three may help equally. The food and ticket are consumed, and a prize is never guaranteed. Don't buy food or trade a Yamanokami for daikon just for the lottery.",
-        "ja": "余った食料があれば、エリア5のお地蔵さま（49,22）へ日の丸弁当（06）か大根（07）を供えてから、抽選所（54,22）でくじを引いてください。みかん（01）より多くのはずれを賞品に変えられます。食料の効果には上限があり、上限近くでは3種類とも同じになることがあります。供え物と抽選券は消費され、当選は保証されません。くじのためだけに食料を買ったり、ヤマノカミを大根に交換したりしないでください。",
-        "th": "ถ้ามีอาหารเหลือที่ยอมสละได้ ให้นำข้าวกล่องบ๊วย (06) หรือหัวไชเท้า (07) ไปถวายรูปปั้นจิโซด่าน 5 (49,22) ก่อนขึ้นสลากที่ (54,22) แทนส้ม (01) สองอย่างนี้ช่วยเปลี่ยนผลแพ้เป็นรางวัลได้มากกว่าส้ม ผลของอาหารมีเพดาน; เมื่อใกล้เต็ม ทั้งสามชนิดอาจช่วยได้เท่ากัน อาหารที่ถวายและสลากถูกใช้ และไม่รับประกันรางวัล อย่าซื้ออาหารหรือแลกปลายามาโนะคามิเพื่อเอาหัวไชเท้าแค่ขึ้นสลาก"
+        "en": "An optional gamble for ¥100, ¥1,000 or ¥5,000. It can only win after you offer food to the Jizo. Take the free ticket from the Area 5 town chest at (4,6), offer Hinomaru bento or daikon at the Jizo (49,22), then hand the ticket in at the counter (54,22). Each bento or daikon adds 40 to your offering (orange adds 5); six or seven is the most that counts. Food and ticket are used up either way, and a prize is never guaranteed. Do not buy food or trade a Yamanokami for daikon only for the lottery. A big offering also protects your gear after you land a fish (see below).",
+        "ja": "100円・1,000円・5,000円が当たる任意のくじ。先にお地蔵さまへ食べ物を供えないと当たらない。エリア5の町の宝箱（4,6）で無料の券を取り、お地蔵さま（49,22）に日の丸弁当か大根を供えてから、抽選所（54,22）で券を出す。日の丸弁当か大根は1個で供え物が40増え（みかんは5）、数えられるのは6〜7個分まで。供えた食べ物も券も、当たってもはずれても消費され、当選は保証されない。くじのためだけに食べ物を買ったり、ヤマノカミを大根に交換したりしないこと。大きな供え物には、魚を釣り上げた後に道具を失いにくくする効果もある（下記）。",
+        "th": "สลากเป็นของเสริมไว้เสี่ยงโชค รางวัลคือ ¥100, ¥1,000 หรือ ¥5,000 แต่จะถูกได้ก็ต่อเมื่อถวายอาหารที่รูปปั้นจิโซก่อน รับสลากฟรีจากหีบในเมืองด่าน 5 ที่ (4,6) ไปถวายข้าวกล่องบ๊วยหรือหัวไชเท้าที่จิโซ (49,22) แล้วค่อยนำสลากไปส่งที่เคาน์เตอร์ (54,22) ข้าวกล่องบ๊วยหรือหัวไชเท้า 1 ชิ้นเพิ่มค่าถวาย 40 (ส้มเพิ่ม 5) นับได้สูงสุดประมาณ 6-7 ชิ้น อาหารที่ถวายและสลากถูกใช้หมดไม่ว่าจะถูกหรือไม่ และไม่รับประกันรางวัล อย่าซื้ออาหารหรือแลกปลายามาโนะคามิเป็นหัวไชเท้าเพื่อสลากอย่างเดียว ค่าถวายที่สูงยังช่วยปกป้องอุปกรณ์หลังตกปลาขึ้นด้วย (ดูด้านล่าง)"
       },
       "facts": {
         "en": [
-          "A chest in the area-5 town at (4,6) contains a ticket; no key is needed. The ticket is used at the counter (54,22), which has 100-, 1,000- and 5,000-yen prize branches plus a no-prize branch. The Jizo at (49,22) is nearby."
+          "The ticket is free. Take it from the chest in the Area 5 town at (4,6). No key is needed.",
+          "The offering is what makes winning possible. Each food adds its own number to a hidden total (bento and daikon 40, orange 5), capped at 255. The counter draws a random number, and you can only win if it is below your total. With a total of 0 you can never win.",
+          "Prizes are ¥100, ¥1,000 or ¥5,000, or nothing. After a ¥1,000 or ¥5,000 win the total goes back to 0, so offer again before the next ticket.",
+          "The same total also protects your gear. After you land a fish, the chance of losing the hook or lure drops from about 6% to about 4% at best, and the chance of losing a fly drops from about 12% to about 7% at best. The total stays until a big win resets it."
         ],
         "ja": [
-          "エリア5の町の宝箱（4,6）に券がある。カギは不要。抽選所（54,22）では100・1,000・5,000円の賞品分岐と賞品なしの分岐がある。地蔵（49,22）は近くにある。"
+          "券は無料。エリア5の町（4,6）の宝箱から取る。カギは不要。",
+          "当たるには供え物が必要。食べ物ごとに決まった数が見えない合計に加算される（弁当・大根は40、みかんは5）。上限は255。抽選所は乱数を引き、その数が合計より小さいときだけ当たる。合計が0なら絶対に当たらない。",
+          "賞品は100円・1,000円・5,000円、またははずれ。1,000円か5,000円が当たると合計が0に戻るので、次の券の前にまた供える。",
+          "同じ合計は道具の保護にも効く。魚を釣り上げた後にハリやルアーを失う確率は、最大でおよそ6%から4%へ、毛バリを失う確率はおよそ12%から7%へ下がる。大当たりで0に戻るまで続く。"
         ],
         "th": [
-          "หีบในเมืองด่าน 5 พิกัด (4,6) มีสลากโดยไม่ต้องใช้กุญแจ เคาน์เตอร์ (54,22) มีผลรางวัล 100, 1,000 และ 5,000 เยน รวมถึงผลที่ไม่ได้รางวัล รูปปั้นจิโซอยู่ใกล้กันที่ (49,22)"
+          "สลากรับฟรีจากหีบในเมืองด่าน 5 ที่ (4,6) ไม่ต้องใช้กุญแจ",
+          "การถวายคือสิ่งที่ทำให้ถูกรางวัลได้ อาหารแต่ละชนิดเพิ่มตัวเลขของมันเข้าไปในยอดรวมที่มองไม่เห็น (ข้าวกล่องบ๊วยและหัวไชเท้า 40 ส้ม 5) สูงสุด 255 เคาน์เตอร์สุ่มตัวเลขหนึ่งค่า จะถูกก็ต่อเมื่อค่าที่สุ่มได้ต่ำกว่ายอดรวมของคุณ ถ้ายอดรวมเป็น 0 จะไม่มีทางถูกเลย",
+          "รางวัลคือ ¥100, ¥1,000, ¥5,000 หรือไม่ได้อะไร ถ้าถูก ¥1,000 หรือ ¥5,000 ยอดรวมจะกลับเป็น 0 ต้องถวายใหม่ก่อนใช้สลากใบต่อไป",
+          "ยอดรวมเดียวกันนี้ช่วยปกป้องอุปกรณ์ด้วย หลังตกปลาขึ้นมาได้ โอกาสเสียเบ็ดหรือลัวร์ลดจากประมาณ 6% เหลือประมาณ 4% ในกรณีดีที่สุด และโอกาสเสียฟลายลดจากประมาณ 12% เหลือประมาณ 7% ยอดรวมอยู่จนกว่าจะถูกรางวัลใหญ่แล้วกลับเป็น 0"
         ]
       },
       "evidence": {
@@ -355,13 +376,13 @@
       },
       "evidenceNotes": {
         "en": [
-          "The area-5 counter is NPC slot 18 at (54,22), 00:CB6B..CBD9. It checks ID 11, removes the ticket, and compares a table-driven RNG byte with threshold 7E:0C22: a byte below the threshold enters a prize branch; a byte at or above it loses. Messages 0328/0326/0324 are the 100/1,000/5,000-yen branches; 032A is the losing branch. Jizo offering at 03:A3DF adds the selected food record's first byte to 7E:0C22, capped at 255; ROM examples are +40 for bento/daikon and +5 for orange. This expands the values that pass the comparison but does not establish a uniform win percentage or expected payout. The item record's 100-yen base price does not prove shop stock."
+          "Corrected 2026-10-07: earlier text treated the Jizo offering as an optional boost. It is required. The area-5 counter is NPC slot 18 at (54,22), 00:CB6B..CBD9. It checks ID 11, removes the ticket, and compares a table-driven RNG byte with threshold 7E:0C22: a byte below the threshold enters a prize branch; a byte at or above it loses. 7E:0C22 starts at 0, so no ticket can win until food is offered. Messages 0328/0326/0324 are the 100/1,000/5,000-yen branches; 032A is the losing branch. A 1,000- or 5,000-yen win resets 7E:0C22 to 0. Jizo offering at 03:A3DF adds the selected food record's first byte to 7E:0C22, capped at 255; ROM examples are +40 for bento/daikon and +5 for orange. The same value is read after a fish is landed (01:84B7 -> 01:8613): hook/lure loss falls from 6.25% to about 3.9% and fly loss from 12.5% to about 6.6% (figures from the 2026-10-07 audit, best case). This does not establish a uniform win percentage or expected payout. The item record's 100-yen base price does not prove shop stock."
         ],
         "ja": [
-          "エリア5の抽選所はNPCスロット18（54,22）、00:CB6B..CBD9。ID11を確認して券を消費し、テーブル参照式の乱数値と判定値7E:0C22を比較する。乱数値が判定値未満なら賞品分岐、以上ならはずれ。メッセージ0328/0326/0324は100・1,000・5,000円の分岐、032Aははずれ。地蔵の供え物処理03:A3DFは選択食料レコードの先頭バイトを7E:0C22へ加算し、上限は255。ROM表の例では弁当・大根が+40、みかんが+5。この加算は比較を通る値の範囲を広げるが、均一な当選率や期待払戻額は証明しない。基本価格100円だけでは店頭在庫を証明しない。"
+          "2026-10-07訂正：以前は地蔵への供え物を任意の底上げとして説明していたが、実際は必須。エリア5の抽選所はNPCスロット18（54,22）、00:CB6B..CBD9。ID11を確認して券を消費し、テーブル参照式の乱数値と判定値7E:0C22を比較する。乱数値が判定値未満なら賞品分岐、以上ならはずれ。7E:0C22は0から始まるため、食べ物を供えるまで券は当たらない。メッセージ0328/0326/0324は100・1,000・5,000円の分岐、032Aははずれ。1,000円か5,000円が当たると7E:0C22は0に戻る。地蔵の供え物処理03:A3DFは選択食料レコードの先頭バイトを7E:0C22へ加算し、上限は255。ROM表の例では弁当・大根が+40、みかんが+5。同じ値は魚を釣り上げた後の処理（01:84B7 -> 01:8613）でも読まれ、ハリ・ルアーの損失は6.25%から約3.9%、毛バリの損失は12.5%から約6.6%へ下がる（2026-10-07の監査での最良時の値）。この加算は均一な当選率や期待払戻額は証明しない。基本価格100円だけでは店頭在庫を証明しない。"
         ],
         "th": [
-          "เคาน์เตอร์ด่าน 5 อยู่ช่อง NPC 18 ที่ (54,22), 00:CB6B..CBD9 ตรวจ ID 11 และใช้สลาก จากนั้นเทียบไบต์สุ่มจากตารางกับเกณฑ์ 7E:0C22: ค่าที่ต่ำกว่าเข้าแขนงรางวัล ส่วนค่าที่เท่ากับหรือสูงกว่าแพ้ ข้อความ 0328/0326/0324 คือแขนง 100/1,000/5,000 เยน และ 032A คือแขนงแพ้ การถวายอาหารที่รูปปั้นจิโซ 03:A3DF บวกไบต์แรกของเรกคอร์ดอาหารที่เลือกเข้า 7E:0C22 โดยมีค่าสูงสุด 255; ตัวอย่างจากตาราง ROM คือข้าวกล่อง/หัวไชเท้า +40 และส้ม +5 การเพิ่มนี้ขยายช่วงค่าที่ผ่านการเปรียบเทียบ แต่ไม่ได้พิสูจน์เปอร์เซ็นต์ชนะที่แน่นอนหรือเงินรางวัลคาดหวัง ราคาพื้นฐาน 100 เยนไม่ได้ยืนยันว่ามีขายในร้าน"
+          "แก้ไข 2026-10-07: ก่อนหน้านี้อธิบายว่าการถวายที่รูปปั้นจิโซเป็นตัวช่วยเสริม แต่จริง ๆ แล้วจำเป็น เคาน์เตอร์ด่าน 5 อยู่ช่อง NPC 18 ที่ (54,22), 00:CB6B..CBD9 ตรวจ ID 11 และใช้สลาก จากนั้นเทียบไบต์สุ่มจากตารางกับเกณฑ์ 7E:0C22: ค่าที่ต่ำกว่าเข้าแขนงรางวัล ส่วนค่าที่เท่ากับหรือสูงกว่าแพ้ 7E:0C22 เริ่มที่ 0 จึงไม่มีสลากใบไหนถูกได้จนกว่าจะถวายอาหาร ข้อความ 0328/0326/0324 คือแขนง 100/1,000/5,000 เยน และ 032A คือแขนงแพ้ ถ้าถูก 1,000 หรือ 5,000 เยน 7E:0C22 จะกลับเป็น 0 การถวายอาหารที่รูปปั้นจิโซ 03:A3DF บวกไบต์แรกของเรกคอร์ดอาหารที่เลือกเข้า 7E:0C22 โดยมีค่าสูงสุด 255; ตัวอย่างจากตาราง ROM คือข้าวกล่อง/หัวไชเท้า +40 และส้ม +5 ค่าเดียวกันนี้ถูกอ่านหลังตกปลาขึ้น (01:84B7 -> 01:8613): โอกาสเสียเบ็ด/ลัวร์ลดจาก 6.25% เหลือประมาณ 3.9% และเสียฟลายลดจาก 12.5% เหลือประมาณ 6.6% (ตัวเลขจากการตรวจ 2026-10-07 กรณีดีที่สุด) การบวกนี้ไม่ได้พิสูจน์เปอร์เซ็นต์ชนะที่แน่นอนหรือเงินรางวัลคาดหวัง ราคาพื้นฐาน 100 เยนไม่ได้ยืนยันว่ามีขายในร้าน"
         ]
       },
       "rawTrace": {
@@ -389,7 +410,14 @@
           "cpu": "03:A3DF..A490",
           "threshold": "7E:0C22",
           "foodTable": "05:B1DF",
-          "cap": 255
+          "cap": 255,
+          "required": true,
+          "initialValue": 0,
+          "resetOnPrizeYen": [
+            1000,
+            5000
+          ],
+          "gearLossReadAt": "01:84B7 -> 01:8613"
         },
         "rng": "00:DA92 -> 00:EDE9",
         "thresholdComparison": "random byte >= 7E:0C22 loses; lower enters prize selection",
@@ -419,19 +447,22 @@
         "basePriceYen": 0
       },
       "summary": {
-        "en": "Give the candle to the NPC in area 6 (47,36) to complete the signal/reunion event. A follow-up line for saved character 1 mentions a huge red-eyed Akame in the lake's deep northwest.",
-        "ja": "エリア6（47,36）のNPCに渡すと、合図と再会のイベントが進む。セーブキャラクター1の追加台詞では、湖の北西の深場にいる巨大な赤い目のアカメに触れる。",
-        "th": "เอาเทียนไปให้ NPC ในพื้นที่ 6 (47,36) เพื่อทำเควสต์ส่งสัญญาณและให้ตัวละครกลับมาพบกัน บทพูดต่อของตัวละครเซฟหมายเลข 1 กล่าวถึงอาคาเมะตาแดงตัวใหญ่ในน้ำลึกทางตะวันตกเฉียงเหนือของทะเลสาบ"
+        "en": "Do you need it? Only for the Area 6 reunion scene, which nothing else depends on. Take the candle from the locked chest in the Area 6 town at (4,6) (a key, ¥100, is used up), then give it to the NPC in Area 6 at (47,36). If you play as the top-left character (the brother, Taro), the NPC then mentions a huge red-eyed Akame in the lake's deep northwest.",
+        "ja": "必要か？ エリア6の再会の場面を見たいときだけで、ほかには使わない。エリア6の町（4,6）の鍵付き宝箱からロウソクを取り（カギ100円を1個消費）、エリア6（47,36）の人物に渡す。左上のキャラクター（兄の太郎）で遊んでいると、そのあと湖の北西の深場にいる赤い目の巨大アカメの話が出る。",
+        "th": "ต้องใช้ไหม? เฉพาะตอนอยากดูฉากพบกันในด่าน 6 ซึ่งไม่มีอะไรอื่นต้องใช้เทียน รับเทียนจากหีบล็อกในเมืองด่าน 6 ที่ (4,6) (ใช้กุญแจ ¥100 หมดไปหนึ่งดอก) แล้วนำไปให้ NPC ในด่าน 6 ที่ (47,36) ถ้าเล่นเป็นตัวละครซ้ายบน (พี่ชายทาโร่) NPC จะพูดถึงอาคาเมะตาแดงตัวใหญ่ในน้ำลึกทางตะวันตกเฉียงเหนือของทะเลสาบ"
       },
       "facts": {
         "en": [
-          "A locked chest in the area-6 town at (4,6) contains the candle. The outdoor NPC consumes it to complete the signal/reunion scene."
+          "The candle is in a locked chest in the Area 6 town at (4,6). Opening it uses up one key. Free a tool slot first.",
+          "The NPC outside takes the candle and plays the signal and reunion scene."
         ],
         "ja": [
-          "エリア6の町の鍵付き宝箱（4,6）にロウソクがある。屋外NPCはこれを消費し、合図と再会のイベントを進める。"
+          "ロウソクはエリア6の町（4,6）の鍵付き宝箱にある。開けるとカギが1個なくなる。先に道具欄を1つ空ける。",
+          "屋外の人物がロウソクを受け取り、合図と再会の場面が進む。"
         ],
         "th": [
-          "หีบล็อกในเมืองพื้นที่ 6 พิกัด (4,6) มีเทียน NPC กลางแจ้งใช้เทียนทิ้งเพื่อเดินเหตุการณ์ส่งสัญญาณและพบกัน"
+          "เทียนอยู่ในหีบล็อกในเมืองด่าน 6 ที่ (4,6) เปิดหีบแล้วกุญแจหมดไปหนึ่งดอก เว้นช่องอุปกรณ์ทั่วไปไว้ก่อน",
+          "NPC กลางแจ้งรับเทียนแล้วเริ่มฉากส่งสัญญาณและพบกัน"
         ]
       },
       "evidence": {
@@ -531,7 +562,7 @@
           "直接使用03:C5C0は最大HP7E:0864を現在HP7E:0862へコピーし、選択アイテム一覧を詰めて消費する。メッセージ016Cは食べたことを示す。エリア4イベント00:CA1CはID15を確認・削除し、7E:0C1Cのbit0を立てる。返答はメッセージ02FE。基本価格50円だけでは店頭在庫を証明しない。"
         ],
         "th": [
-          "ใช้โดยตรงที่ 03:C5C0 จะคัดลอก HP สูงสุด 7E:0864 ไปยัง HP ปัจจุบัน 7E:0862 และเลื่อนรายการไอเท็มเพื่อใช้ทิ้ง ข้อความ 016C ยืนยันว่ากินแล้ว เหตุการณ์พื้นที่ 4 ที่ 00:CA1C ตรวจ ID 15 ใช้ทิ้ง และตั้งบิต 0 ของ 7E:0C1C คำตอบ NPC คือข้อความ 02FE ราคาพื้นฐาน 50 เยนไม่ได้ยืนยันว่ามีขายในร้าน"
+          "ใช้โดยตรงที่ 03:C5C0 จะคัดลอก HP สูงสุด 7E:0864 ไปยัง HP ปัจจุบัน 7E:0862 และเลื่อนรายการไอเท็มเพื่อใช้ทิ้ง ข้อความ 016C ยืนยันว่ากินแล้ว เหตุการณ์ด่าน 4 ที่ 00:CA1C ตรวจ ID 15 ใช้ทิ้ง และตั้งบิต 0 ของ 7E:0C1C คำตอบ NPC คือข้อความ 02FE ราคาพื้นฐาน 50 เยนไม่ได้ยืนยันว่ามีขายในร้าน"
         ]
       },
       "rawTrace": {
@@ -569,7 +600,7 @@
       "summary": {
         "en": "In area 4, directly use fireworks at X=31–33, Y=42–43 before the fox scene has happened. The fox appears startled and runs away; fireworks are consumed. This shortcut works without first giving the NPC fried tofu.",
         "ja": "エリア4の座標X=31～33・Y=42～43で、キツネの場面が起きる前に花火を直接使う。キツネが驚いて姿を見せ、逃げていく。花火は消費される。NPCに油揚げを渡す前でも使える。",
-        "th": "ใช้ดอกไม้ไฟโดยตรงที่ X=31–33, Y=42–43 ในพื้นที่ 4 ก่อนฉากจิ้งจอกเกิด จิ้งจอกจะเผยตัวด้วยท่าทีตกใจแล้วหนีไป ดอกไม้ไฟถูกใช้ทิ้ง ใช้ทางลัดนี้ได้โดยไม่ต้องเอาเต้าหู้ทอดไปให้ NPC ก่อน"
+        "th": "ใช้ดอกไม้ไฟโดยตรงที่ X=31–33, Y=42–43 ในด่าน 4 ก่อนฉากจิ้งจอกเกิด จิ้งจอกจะเผยตัวด้วยท่าทีตกใจแล้วหนีไป ดอกไม้ไฟถูกใช้ทิ้ง ใช้ทางลัดนี้ได้โดยไม่ต้องเอาเต้าหู้ทอดไปให้ NPC ก่อน"
       },
       "facts": {
         "en": [
@@ -581,7 +612,7 @@
           "他の使用可能な屋外位置では通常の花火の場面になり、花火は消費される。タライ・カヌーに乗っている時は使えない。"
         ],
         "th": [
-          "NPC เควสต์พื้นที่ 4 (32,42) รับดอกไม้ไฟหลังขั้นเต้าหู้ทอดและเริ่มฉากจิ้งจอก ส่วน NPC อีกคน (62,32) รับดอกไม้ไฟโดยไม่ต้องผ่านขั้นเต้าหู้และให้คำใบ้ การใช้โดยตรงที่พิกัดที่ระบุก็เริ่มฉากได้โดยไม่ต้องทำขั้นเต้าหู้ก่อน",
+          "NPC เควสต์ด่าน 4 (32,42) รับดอกไม้ไฟหลังขั้นเต้าหู้ทอดและเริ่มฉากจิ้งจอก ส่วน NPC อีกคน (62,32) รับดอกไม้ไฟโดยไม่ต้องผ่านขั้นเต้าหู้และให้คำใบ้ การใช้โดยตรงที่พิกัดที่ระบุก็เริ่มฉากได้โดยไม่ต้องทำขั้นเต้าหู้ก่อน",
           "ใช้ในจุดกลางแจ้งอื่นที่ใช้ได้จะเป็นฉากดอกไม้ไฟทั่วไปและยังเสียไอเท็ม ใช้ไม่ได้ขณะอยู่บนกะละมังหรือแคนู"
         ]
       },
@@ -601,7 +632,7 @@
           "直接使用03:C5F6は許可されたフィールド状態・エリア1～6でのみ動作する。選択品を消費し通常は状態0Fにする。エリア4で7E:0C1Aのbit7が未設定、プレイヤー座標がX=31～33・Y=42～43なら状態0Eを選び02:DF9Cへ進む。このイベントは7E:0C1Aのbit7と7E:0C1Cのbit0を設定する。メッセージ0300/0302は花火使用、キツネの出現・驚き・逃走を示す。直接使用処理に油揚げ条件はない。別のイベントNPCスロット0C（32,42）も油揚げイベント後に花火を消費して02:DF9Cを起動する。ヒントNPCスロット1E（62,32）は油揚げ条件なしで00:CAFBによりアイテムを消費してメッセージ02E6を表示する。この助言だけではキツネ出現イベントの発生を証明しない。"
         ],
         "th": [
-          "ใช้โดยตรงที่ 03:C5F6 ได้เฉพาะสถานะภาคสนามที่กำหนดและพื้นที่ 1–6 โดยใช้ไอเท็มที่เลือกทิ้งและปกติตั้งสถานะ 0F ในพื้นที่ 4 หากบิต 7 ของ 7E:0C1A ยังไม่ถูกตั้ง และพิกัดผู้เล่นอยู่ในกรอบ X=31–33, Y=42–43 จะเลือกสถานะ 0E แล้วไปที่ 02:DF9C เหตุการณ์นี้ตั้งบิต 7 ของ 7E:0C1A และบิต 0 ของ 7E:0C1C ข้อความ 0300/0302 บอกว่าใช้ดอกไม้ไฟ จิ้งจอกเผยตัว ตกใจและหนีไป การใช้โดยตรงไม่ต้องมีธงเต้าหู้ทอด NPC เควสต์ช่อง 0C (32,42) เป็นอีกเส้นทาง หลังขั้นเต้าหู้ทอดจะใช้ดอกไม้ไฟทิ้งแล้วเรียก 02:DF9C ส่วน NPC ให้คำใบ้ช่อง 1E (62,32) ใช้ทาง 00:CAFB โดยไม่ต้องผ่านขั้นเต้าหู้ ใช้ไอเท็มทิ้งและแสดงข้อความ 02E6 ข้อความคำแนะนำอย่างเดียวไม่ยืนยันว่าฉากจิ้งจอกเกิดแล้ว"
+          "ใช้โดยตรงที่ 03:C5F6 ได้เฉพาะสถานะภาคสนามที่กำหนดและด่าน 1–6 โดยใช้ไอเท็มที่เลือกทิ้งและปกติตั้งสถานะ 0F ในด่าน 4 หากบิต 7 ของ 7E:0C1A ยังไม่ถูกตั้ง และพิกัดผู้เล่นอยู่ในกรอบ X=31–33, Y=42–43 จะเลือกสถานะ 0E แล้วไปที่ 02:DF9C เหตุการณ์นี้ตั้งบิต 7 ของ 7E:0C1A และบิต 0 ของ 7E:0C1C ข้อความ 0300/0302 บอกว่าใช้ดอกไม้ไฟ จิ้งจอกเผยตัว ตกใจและหนีไป การใช้โดยตรงไม่ต้องมีธงเต้าหู้ทอด NPC เควสต์ช่อง 0C (32,42) เป็นอีกเส้นทาง หลังขั้นเต้าหู้ทอดจะใช้ดอกไม้ไฟทิ้งแล้วเรียก 02:DF9C ส่วน NPC ให้คำใบ้ช่อง 1E (62,32) ใช้ทาง 00:CAFB โดยไม่ต้องผ่านขั้นเต้าหู้ ใช้ไอเท็มทิ้งและแสดงข้อความ 02E6 ข้อความคำแนะนำอย่างเดียวไม่ยืนยันว่าฉากจิ้งจอกเกิดแล้ว"
         ]
       },
       "rawTrace": {
@@ -668,25 +699,28 @@
         "basePriceYen": 100
       },
       "summary": {
-        "th": "ถ้ามีกุญแจแล้ว ใช้ต่อได้ ไม่ต้องซื้อซ้ำ ถ้ายังไม่มี ซื้อราคา ¥100 ที่ร้านด่าน 1, 2, 4 หรือ 6 แล้วเดินไปกดตรวจหีบที่ล็อกในเมือง ไม่ต้องเลือกใช้กุญแจจากเมนู กุญแจไม่หายหลังเปิดหีบ เว้นช่องกระเป๋าหมวดรางวัลไว้ก่อนเปิด",
-        "en": "Already own a key? Keep using it; do not buy another. If not, buy one for ¥100 at an Area 1, 2, 4 or 6 shop, then interact with the locked town chest rather than selecting the key from the item menu. Opening a chest does not consume the key. Leave room in the reward inventory before opening.",
-        "ja": "カギを持っていれば買い直さず、そのまま使えます。未所持ならエリア1・2・4・6の店で100円で購入し、道具メニューで使うのではなく町の鍵付き宝箱を調べてください。開けてもカギは消費されません。開ける前に報酬用の所持欄に空きを作ってください。"
+        "th": "ใช้เปิดหีบล็อกในเมืองด่าน 1, 2, 4 และ 6 เปิดหีบหนึ่งใบ กุญแจหมดไปหนึ่งดอก ซื้อกุญแจ (¥100) เท่าจำนวนหีบที่อยากได้ของข้างใน หีบที่เหลือข้ามได้ เดินเข้าเมืองแล้วกดตรวจหีบ ไม่ต้องเลือกกุญแจจากเมนู ถ้าเกมไม่ให้เปิดเพราะช่องเก็บของเต็ม กุญแจจะยังอยู่ ให้เว้นช่อง เดินออกจากเมืองแล้วเข้าใหม่ แล้วเปิดอีกครั้ง",
+        "en": "Opens the locked town chests in Areas 1, 2, 4 and 6. Each chest you open uses up one key. Buy one key (¥100) for each chest whose prize you want, and skip the others. Walk into the town and examine the chest; do not pick the key from the item menu. If the chest refuses because your bag is full, you keep the key: free a slot, leave the town, come back in and open it again.",
+        "ja": "町の鍵付き宝箱（エリア1・2・4・6）を開けるカギ。宝箱を1つ開けるたびにカギが1個なくなる。欲しい中身の分だけカギ（100円）を買い、不要な宝箱は飛ばしてよい。町に入って宝箱を調べる（道具メニューでカギを選んでも開かない）。所持欄がいっぱいで開けられなかったときはカギが残る。欄を1つ空け、町を出て入り直してから、もう一度開ける。"
       },
       "facts": {
         "en": [
-          "Selecting the key by itself only displays its description. The actual effect is checked during chest interaction.",
-          "Chest rewards by area: 1 potato bait; 2 waxworm bait; 4 small lure rod; 6 candle.",
-          "Leave room in the relevant inventory before opening a chest; the reward routines check available slots."
+          "Selecting the key in the item menu only shows its description. It works when you examine a locked chest.",
+          "Each chest you open uses up one key. If the opening is refused (bag full, or the chest is already open), you keep the key.",
+          "Chest prizes: Area 1 potato bait, Area 2 grapevine larva bait, Area 4 small lure rod, Area 6 candle. The chests in Areas 3 and 5 hold the bottle and the lottery ticket and need no key.",
+          "Make room first: a bait slot for Areas 1 and 2, a rod slot for Area 4, a tool slot for Area 6. If the chest refuses, free a slot, leave the town and walk back in, then open it again."
         ],
         "ja": [
-          "カギを選んで使うだけでは説明表示のみ。実際の効果は宝箱との会話処理で確認される。",
-          "宝箱の中身：エリア1イモ、2ブドウムシ、4小型ルアーロッド、6ロウソク。",
-          "開ける前に該当する所持欄に空きを作る。報酬処理は空き枠を確認する。"
+          "道具メニューでカギを選んでも説明が出るだけ。宝箱を調べたときに使われる。",
+          "宝箱を1つ開けるたびにカギが1個なくなる。開けられなかったとき（所持欄がいっぱい、またはすでに開封済み）はカギが残る。",
+          "宝箱の中身：エリア1はイモエサ、エリア2はブドウムシ、エリア4はルアーロッド小、エリア6はロウソク。エリア3（空きビン）とエリア5（富くじ）の宝箱はカギ不要。",
+          "先に空きを作る：エリア1・2はエサ欄、エリア4は竿欄、エリア6は道具欄。開けられなかったら、欄を空けて町を出て入り直し、もう一度開ける。"
         ],
         "th": [
-          "เลือกใช้กุญแจจากเมนูเปล่าๆ จะแสดงแค่คำอธิบาย ผลจริงเกิดตอนกดตรวจหีบ",
-          "รางวัลตามด่าน: 1 เหยื่อมันฝรั่ง; 2 หนอนองุ่น; 4 คันลัวร์เล็ก; 6 เทียน",
-          "เว้นที่ว่างในกระเป๋าหมวดที่รับรางวัลก่อนเปิดหีบ เพราะโค้ดเช็กช่องว่างก่อนให้ของ"
+          "เลือกกุญแจจากเมนูไอเท็มจะขึ้นแค่คำอธิบาย กุญแจทำงานตอนกดตรวจหีบล็อก",
+          "เปิดหีบสำเร็จหนึ่งใบ กุญแจหมดไปหนึ่งดอก ถ้าเปิดไม่สำเร็จ (ช่องเก็บของเต็ม หรือหีบเปิดไปแล้ว) กุญแจไม่หาย",
+          "ของในหีบ: ด่าน 1 เหยื่อมันฝรั่ง ด่าน 2 หนอนองุ่น ด่าน 4 คันลัวร์เล็ก ด่าน 6 เทียน ส่วนหีบด่าน 3 (ขวดเปล่า) และด่าน 5 (สลาก) ไม่ต้องใช้กุญแจ",
+          "เว้นช่องก่อนเปิด: ด่าน 1 และ 2 ช่องเหยื่อ ด่าน 4 ช่องคันเบ็ด ด่าน 6 ช่องอุปกรณ์ทั่วไป ถ้าหีบไม่ยอมเปิด ให้เว้นช่อง เดินออกจากเมืองแล้วเข้าใหม่ จากนั้นเปิดอีกครั้ง"
         ]
       },
       "evidence": {
@@ -699,13 +733,13 @@
       },
       "evidenceNotes": {
         "en": [
-          "The selected-use branch at 03:BD1B displays message 0172 only. The chest handler 00:CFB1..D059 checks for the key in the towns attached to outdoor areas 1, 2, 4 and 6 (internal map IDs 7, 8, 10 and 12), changes the chest graphic to its opened state, and grants the listed reward. That branch does not remove the key. The rewards are potato bait, waxworm bait, a small lure rod and a candle. An already-open chest displays message 0262; a locked chest without the key displays 0270. Coordinates are internal map7 (5,68), map8 (4,6), map10 (4,6), map12 (4,6). Inventory space is checked separately for the bait/rod/general-tool reward; message 0196 is the no-room response. The chest is marked open before the capacity check, but persistence of a no-room result after reload has not been traced. The 100-yen item-record price does not establish shop availability."
+          "Corrected 2026-10-07: earlier versions said the key stays after a chest opens. It does not. The selected-use branch at 03:BD1B displays message 0172 only. The chest handler 00:CFB1..D059 checks for the key in the towns attached to outdoor areas 1, 2, 4 and 6 (internal map IDs 7, 8, 10 and 12), grants the reward, and the routine at 00:D1B7 removes one key (item 17). Emulator check: opening the Area 1 chest took the key count from 2 to 1. Refused openings (no room: message 0196; already open: 0262; no key: 0270) kept the key. With the bait pouch full the Area 1 chest refused; after freeing a slot, leaving the town and re-entering, it opened. Only the Area 1 chest was driven in the emulator; the Area 2, 4 and 6 chests use the same routine. Coordinates are internal map7 (5,68), map8 (4,6), map10 (4,6), map12 (4,6). Space is checked separately for bait (7E:0B36), rod (7E:0B06) or general tool. The Area 3 and Area 5 chests do not test for a key. The 100-yen item-record price does not establish shop availability."
         ],
         "ja": [
-          "選択使用分岐03:BD1Bはメッセージ0172のみ。宝箱処理00:CFB1..D059は屋外エリア1・2・4・6に対応する町（内部マップID7・8・10・12）でカギを確認し、宝箱グラフィックを開いた状態に変更して報酬を渡す。この分岐でカギは削除されない。報酬はイモ、ブドウムシ、小型ルアーロッド、ロウソク。開いた宝箱は0262、カギがない施錠箱は0270を表示。座標は内部マップ7（5,68）、8（4,6）、10（4,6）、12（4,6）。エサ・竿・一般道具の空き欄を別途確認し、空きがない場合は0196を表示する。容量確認より先に宝箱を開いた状態にするが、空きなしの結果が再読込後も保持されるかは未追跡。基本価格100円だけでは店頭在庫を証明しない。"
+          "2026-10-07訂正：以前は「宝箱を開けてもカギは残る」と書いていたが誤り。選択使用分岐03:BD1Bはメッセージ0172のみ。宝箱処理00:CFB1..D059は屋外エリア1・2・4・6に対応する町（内部マップID7・8・10・12）でカギを確認して報酬を渡し、00:D1B7の処理でカギ（ID17）を1個削除する。エミュレーター確認：エリア1の宝箱を開けるとカギが2個から1個になった。開けられなかった場合（空きなし：0196、開封済み：0262、カギなし：0270）はカギが残った。エサ欄が満杯のときエリア1の宝箱は開かず、欄を空けて町を出て入り直すと開いた。エミュレーターで実行したのはエリア1の宝箱のみで、エリア2・4・6は同じ処理を使う。座標は内部マップ7（5,68）、8（4,6）、10（4,6）、12（4,6）。空き確認はエサ（7E:0B36）・竿（7E:0B06）・道具で別々。エリア3とエリア5の宝箱はカギを確認しない。基本価格100円だけでは店頭在庫を証明しない。"
         ],
         "th": [
-          "แขนงเลือกใช้ที่ 03:BD1B แสดงข้อความ 0172 เท่านั้น ตัวเปิดหีบ 00:CFB1..D059 ตรวจหากุญแจในเมืองที่เชื่อมกับพื้นที่กลางแจ้ง 1, 2, 4 และ 6 (รหัสแผนที่ภายใน 7, 8, 10, 12) เปลี่ยนกราฟิกหีบเป็นสถานะเปิดและให้รางวัล โดยไม่ลบกุญแจ รางวัลคือเหยื่อมันฝรั่ง หนอนองุ่น คันลัวร์เล็ก และเทียน หีบที่เปิดแล้วแสดงข้อความ 0262; หีบล็อกที่ไม่มีกุญแจแสดง 0270 พิกัดคือแผนที่ภายใน 7 (5,68), 8 (4,6), 10 (4,6), 12 (4,6) โค้ดตรวจช่องว่างในช่องเหยื่อ/คัน/ของทั่วไปแยกต่างหาก ถ้าไม่มีจะแสดง 0196 หีบถูกเปลี่ยนเป็นสถานะเปิดก่อนตรวจช่องว่าง แต่ยังไม่ได้ไล่ว่าผลช่องว่างคงอยู่หลังโหลดใหม่หรือไม่ ราคาพื้นฐาน 100 เยนไม่ได้ยืนยันว่ามีขายในร้าน"
+          "แก้ไข 2026-10-07: ก่อนหน้านี้เขียนว่ากุญแจไม่หายหลังเปิดหีบ ซึ่งผิด แขนงเลือกใช้ที่ 03:BD1B แสดงข้อความ 0172 เท่านั้น ตัวเปิดหีบ 00:CFB1..D059 ตรวจหากุญแจในเมืองที่เชื่อมกับพื้นที่กลางแจ้ง 1, 2, 4 และ 6 (รหัสแผนที่ภายใน 7, 8, 10, 12) ให้รางวัล แล้วโค้ดที่ 00:D1B7 ลบกุญแจ (ไอเท็ม 17) ไปหนึ่งดอก ผลทดสอบในอีมูเลเตอร์: เปิดหีบด่าน 1 แล้วกุญแจลดจาก 2 เหลือ 1 ส่วนการเปิดที่ถูกปฏิเสธ (ไม่มีที่ว่าง ข้อความ 0196, เปิดไปแล้ว 0262, ไม่มีกุญแจ 0270) กุญแจไม่หาย เมื่อช่องเหยื่อเต็ม หีบด่าน 1 ไม่ยอมเปิด แต่พอเว้นช่อง เดินออกจากเมืองแล้วเข้าใหม่ ก็เปิดได้ ทดสอบในอีมูเลเตอร์เฉพาะหีบด่าน 1 ส่วนหีบด่าน 2, 4 และ 6 ใช้โค้ดชุดเดียวกัน พิกัดคือแผนที่ภายใน 7 (5,68), 8 (4,6), 10 (4,6), 12 (4,6) โค้ดตรวจช่องว่างแยกกัน: เหยื่อ (7E:0B36) คัน (7E:0B06) หรืออุปกรณ์ทั่วไป หีบด่าน 3 และ 5 ไม่ตรวจกุญแจ ราคาพื้นฐาน 100 เยนไม่ได้ยืนยันว่ามีขายในร้าน"
         ]
       },
       "rawTrace": {
@@ -731,7 +765,7 @@
               4,
               6
             ],
-            "reward": "bait 0B waxworm",
+            "reward": "bait 0B grapevine larva",
             "capacityCheck": "7E:0B36"
           },
           {
@@ -758,12 +792,13 @@
           }
         ],
         "inventoryCheck": "00:D208",
-        "keyConsumed": false,
+        "keyConsumed": true,
         "messageOffsets": [
           "05:0172",
           "05:0262",
           "05:0270"
-        ]
+        ],
+        "keyRemovalCpu": "00:D1B7"
       }
     }
   }

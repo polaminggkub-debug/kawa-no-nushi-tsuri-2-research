@@ -45,7 +45,7 @@ function renderPlayerDecisionOverview(ctx) {
         : 'What to buy, carry and do before fishing'
   const tip =
     ctx.lang === 'th'
-      ? 'ใช้ลัวร์หรือตีเหยื่อ: เติม HP ให้ถึง 100 ก่อน ถ้าอยากได้เวลาเล็งเต็มของคัน'
+      ? 'ใช้ลัวร์หรือคันหวด: เติม HP ให้ถึง 100 ก่อน ถ้าอยากได้เวลาเล็งเต็มของคัน'
       : ctx.lang === 'ja'
         ? 'ルアー・投げ釣り：狙う時間を最大にするには、先にHPを100まで回復する。'
         : 'Lure / casting: restore HP to 100 first to get your rod’s full time to aim.'
@@ -440,7 +440,7 @@ export function renderComparison(ctx, category) {
   const wasOpen = Boolean(box.querySelector?.('.comparison')?.open)
   const styles =
     ctx.lang === 'th'
-      ? { 1: 'ทุ่น / อายุ', 2: 'ตีเหยื่อ', 4: 'ลัวร์', 8: 'ฟลาย' }
+      ? { 1: 'ทุ่น / อายุ', 2: 'หวด', 4: 'ลัวร์', 8: 'ฟลาย' }
       : ctx.lang === 'ja'
         ? { 1: 'ウキ・アユ', 2: '投げ', 4: 'ルアー', 8: 'フライ' }
         : { 1: 'Float / Ayu', 2: 'Casting', 4: 'Lure', 8: 'Fly' }

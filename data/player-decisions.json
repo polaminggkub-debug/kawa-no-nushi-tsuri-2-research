@@ -236,19 +236,19 @@
         "ja": "HPが低いときは釣る前に回復し、必要分だけ買う"
       },
       "recommendation": {
-        "th": "ก่อนตกด้วยคันลัวร์หรือคันหวด เติม HP ให้ถึง 100: ถ้า HP ต่ำกว่า 100 เวลาเล็งของคันสองแบบนี้จะสั้นลง. อาหารร้านทุกชนิดคิด ¥1 ต่อ HP; ถ้าต้องการฟื้นต่อมื้อให้ได้มากสุด เลือกข้าวกล่องบ๊วย 06 ฟื้น 40 HP ราคา ¥40 (มีตั้งแต่ด่าน 5). ถ้าจะให้ถึง 100 ให้เลือกอาหารหนึ่งชิ้นหรือหลายชิ้นรวมกันให้พอฟื้น HP ที่ขาด: ด่าน1 ส้ม 01 ฟื้น 5/¥5 หรือข้าวปั้น 02 ฟื้น 10/¥10; ด่าน2 ดังโงะ 03 ฟื้น 15/¥15; ด่าน3 กล้วย 04 ฟื้น 20/¥20; ด่าน4 องุ่น 05 ฟื้น 30/¥30. ส่วนฟื้นที่เกิน HP สูงสุดจะเสียเปล่า",
-        "en": "Before lure or casting fishing, restore HP to 100: below 100 HP those two styles get less time to aim. All shop foods cost ¥1 per HP. For the most recovery from one serving, choose the 40-HP bento (06) for ¥40, stocked from area 5. To reach 100, choose one food or combine servings for at least your missing HP: area 1 orange 01 restores 5 for ¥5 or rice ball 02 restores 10 for ¥10; area 2 dango 03 restores 15 for ¥15; area 3 banana 04 restores 20 for ¥20; area 4 grapes 05 restores 30 for ¥30. Any recovery beyond maximum HP is wasted.",
-        "ja": "ルアーまたは投げ釣りの前にHPを100まで回復してください。HP100未満ではこの2系統の照準時間が短くなります。店の食料はすべてHP1につき1円です。一食で最も多く回復するなら、エリア5から販売される日の丸弁当06（40回復/40円）。HP100にするには、不足分以上を回復できる食料を選ぶか組み合わせます。エリア1：ミカン01は5回復/5円、おむすび02は10回復/10円。エリア2：だんご03は15/15円。エリア3：バナナ04は20/20円。エリア4：ブドウ05は30/30円。最大HPを超える回復分は無駄になります。"
+        "th": "คันลัวร์และคันหวด จะมีเวลาเล็งสั้นลงเมื่อ HP ต่ำกว่า 100 ก่อนตกด้วยคันสองแบบนี้ให้เติม HP ให้ถึง 100 ขึ้นไป ส่วนคันสายทุ่นและคันฟลายไม่โดนผลนี้ อาหารร้านคิด ¥1 ต่อ HP เลือกชิ้นที่รวมกันแล้วพอดีกับ HP ที่ขาด เพราะส่วนที่เกิน HP สูงสุดจะเสียเปล่า ชิ้นที่ฟื้นมากสุดคือข้าวกล่องบ๊วย ฟื้น 40 HP ราคา ¥40 (ขายตั้งแต่ด่าน 5) ชิ้นเล็กกว่า: ด่าน 1 ส้มฟื้น 5/¥5 หรือข้าวปั้นฟื้น 10/¥10; ด่าน 2 ดังโงะฟื้น 15/¥15; ด่าน 3 กล้วยฟื้น 20/¥20; ด่าน 4 องุ่นฟื้น 30/¥30 ถ้าอยากฟื้นเต็มฟรี ใช้นม (ดูการ์ดของเควสต์)",
+        "en": "Casting and lure rods get less time to aim when your HP is below 100, so top up to at least 100 before you fish with them. Float and fly rods are not affected. Shop food costs ¥1 per HP: pick servings that add up to the HP you are missing, because anything above your maximum is wasted. The biggest serving is the 40-HP Hinomaru bento (¥40, sold from Area 5). Smaller ones: Area 1 orange restores 5 for ¥5 or rice ball restores 10 for ¥10; Area 2 dango restores 15 for ¥15; Area 3 banana restores 20 for ¥20; Area 4 grapes restores 30 for ¥30. For a free full heal, use milk (see the quest items card).",
+        "ja": "ルアー竿と投げ竿は、HPが100未満だと狙う時間が短くなります。使う前にHPを100以上まで回復してください。ウキ竿と毛バリ竿は影響を受けません。店の食料はHP1につき1円。不足分に合う量を選んでください。最大HPを超える回復分は無駄になります。一食で最も多く回復するのはエリア5から販売される日の丸弁当（40回復・40円）。小さいもの：エリア1はミカン（5回復・5円）、おむすび（10回復・10円）。エリア2はだんご（15回復・15円）。エリア3はバナナ（20回復・20円）。エリア4はブドウ（30回復・30円）。無料で全回復したいなら牛乳を使います（イベントアイテムの欄を参照）。"
       },
       "reason": {
-        "th": "HP 100 ทำให้คันลัวร์/คันหวดมีเวลาเล็งเต็มที่; ฟื้นเกิน HP ที่ขาดจะสูญเปล่า และเมื่อ HP เต็มแล้วเกมไม่ให้กินอาหาร. นมที่มีอยู่ฟื้น HP เต็มได้และเติมกลับที่วัวด่าน 3 แต่ถ้าจะแลกเรือแคนูให้เก็บนมไว้ก่อน",
-        "en": "At 100 HP, the rod has its full time to aim. Recovery beyond missing HP is wasted, and the game refuses food when HP is full. Milk restores HP to its maximum and can be refilled at the area 3 cow, but save it if you still want to trade for the canoe.",
-        "ja": "HP100なら竿本来の狙う時間になります。不足HPを超える回復分は無駄になり、HP満タン時は食事できません。牛乳はHPを最大まで回復し、エリア3の牛で補充できますが、カヌーと交換したいなら先に渡してください。"
+        "th": "HP ทำอะไรบ้าง: การว่ายน้ำ (เสีย 1 HP ทุกครึ่งวินาทีโดยประมาณ) และการพายกะละมังหรือแคนู (ประมาณ 1 HP ต่อช่อง) ทำให้ HP ลด ส่วนการเดินไม่เสีย การเสียอุปกรณ์ในการสู้เสีย 1-4 HP เมื่อเหลือ 10 HP เกมจะเตือนว่ากำลังจะหมดแรง ถ้า HP เป็น 0 คุณจะสลบแล้วตื่นที่จุดเซฟด้วย HP 1 โดยเงิน ปลา และอุปกรณ์ยังอยู่ครบ ระหว่างสู้กับปลาไม่ได้ใช้ HP ผลต่อการตกปลามีอย่างเดียวคือเวลาเล็ง: ต่ำกว่า 100 HP คันลัวร์และคันหวดจะมีเวลาเล็งสั้นลง (ที่ 50 HP เหลือประมาณครึ่งหนึ่ง ที่ 20 HP เหลือประมาณหนึ่งในห้า) HP สูงสุดเริ่มที่ 100 และเพิ่มทีละ 1 เมื่อตกนิวต์ กบ กุ้งเครย์ฟิช เต่า ตะพาบ และปู สูงสุดประมาณ 190 \"HP เต็ม\" จึงไม่ใช่ 100 เสมอไป ตอน HP เต็มเกมไม่ให้กินอาหาร นมฟื้นเต็มและวัวด่าน 3 เติมขวดให้ฟรีกี่ครั้งก็ได้",
+        "en": "What HP does: it costs HP to swim (1 HP about every half second) or row the tub or canoe (about 1 HP per tile), but walking is free. Losing tackle in a fight costs 1 to 4 HP. At 10 HP the game warns you that you will run out of strength. At 0 HP you black out and wake up at your saved position with 1 HP, and you keep your money, fish and tools. HP is not used during the fight itself. The only effect on fishing is aim time: below 100 HP, casting and lure rods get less of it (about half at 50 HP, about a fifth at 20 HP). Your maximum HP starts at 100 and rises by 1 at a time as you catch newts, frogs, crayfish, turtles, softshell turtles and crabs, up to about 190, so \"full HP\" is not always 100. At full HP the game refuses food. Milk heals fully and the Area 3 cow refills the bottle for free, as often as you like.",
+        "ja": "HPの働き：泳ぐ（約0.5秒ごとに1HP）、タライやカヌーをこぐ（1マスにつき約1HP）とHPが減ります。歩くのは無料。ファイトで道具を失うと1〜4HP減ります。HPが10になると、このままでは力尽きるという警告が出ます。HPが0になると気絶し、保存位置で1HPの状態で目を覚ましますが、お金・魚・道具はそのままです。ファイト中にHPは使われません。釣りへの影響は狙う時間だけ：HPが100未満だと、ルアー竿と投げ竿の狙う時間が短くなります（HP50でおよそ半分、HP20でおよそ5分の1）。最大HPは100から始まり、イモリ・カエル・ザリガニ・カメ・スッポン・カニを釣るごとに1ずつ増えて最大190ほどになるので、「HP満タン」はいつも100とは限りません。満タンのときは食べられません。牛乳は全回復で、エリア3の牛が何度でも無料でビンを補充してくれます。"
       },
       "scope": {
-        "th": "ยืนยันเรื่องเวลาเล็งที่สั้นลงเฉพาะคันลัวร์/คันหวด; รายการอาหารและราคามาจากรายการร้านและผลของอาหารในเกม",
-        "en": "The drop in aim time is confirmed for lure and casting rods only; food locations and prices come from the shop lists and the foods' effects in the game.",
-        "ja": "狙う時間が短くなることを確認したのはルアー竿・投げ竿です。食料の販売場所と価格は店の品ぞろえとゲームの効果データに基づきます。"
+        "th": "ยืนยันเรื่องเวลาเล็งที่สั้นลงเฉพาะคันลัวร์/คันหวด รายการอาหารและราคามาจากรายการร้านและผลของอาหารในเกม ตัวเลข HP มาจากการทดสอบเกมต้นฉบับในอีมูเลเตอร์",
+        "en": "The drop in aim time is confirmed for lure and casting rods only; food locations and prices come from the shop lists and the foods' effects in the game. The HP figures come from emulator tests of the original game.",
+        "ja": "狙う時間が短くなることを確認したのはルアー竿・投げ竿です。食料の販売場所と価格は店の品ぞろえとゲームの効果データに基づきます。HPの数値は原作ゲームのエミュレーター検証によるものです。"
       },
       "items": [
         {
@@ -294,14 +294,14 @@
         "ja": "イベントアイテム：牛乳は後で補充できる。町の宝箱も確認"
       },
       "recommendation": {
-        "en": "Area 3: take the bottle from the town chest (6,4), fill it at the cow (6,103), then choose: trade fresh milk for the canoe at (28,39) now, or drink it for full HP and refill the empty bottle at the cow later. Area 4: give fried tofu 15 at (32,42) for the fox-story step, then use fireworks 16; fireworks can also trigger the fox scene directly at X31–33, Y42–43 without the tofu step. Area 6: take candle 12 from the town chest and give it to the NPC at (47,36).",
-        "ja": "エリア3：町の宝箱（6,4）でビンを取り、牛（6,103）で牛乳にします。その後は選択してください。カヌーが必要なら先に船大工（28,39）へ渡す。HP回復を優先するなら飲んで最大まで回復し、空きビンを後で牛に持っていけば再び牛乳にできます。エリア4：キツネの話を進めるならNPC（32,42）に油揚げ15を渡してから花火16を使う。油揚げの手順を通らず、X31–33、Y42–43で花火を直接使ってもキツネの場面が始まります。エリア6：町の宝箱からロウソク12を取り、NPC（47,36）に渡します。",
-        "th": "ด่าน 3: รับขวดจากหีบเมือง (6,4) เติมนมที่วัว (6,103) แล้วเลือกว่าจะทำอะไรต่อ—ถ้าต้องการแคนู ให้แลกนมกับช่างที่ (28,39) ก่อน; ถ้าต้องการฟื้น HP ให้เต็มก่อน ดื่มนมได้ แล้วนำขวดเปล่ากลับไปเติมที่วัวภายหลัง. ด่าน 4: ถ้าต้องการเดินเรื่องจิ้งจอก ให้ยื่นเต้าหู้ทอด 15 ที่ NPC (32,42) แล้วใช้ประทัด 16; หรือจุดฉากจิ้งจอกโดยตรงด้วยประทัดที่ X31–33, Y42–43 โดยไม่ต้องผ่านขั้นเต้าหู้. ด่าน 6: รับเทียน 12 จากหีบเมืองแล้วนำไปให้ NPC ที่ (47,36)."
+        "th": "ด่าน 3: รับขวดจากหีบเมือง (6,4) ไม่ต้องใช้กุญแจ แล้วเติมนมที่วัว (6,103) นมคือการฟื้น HP เต็มฟรี เติมกี่ครั้งก็ได้ ถ้าอยากได้แคนู ให้เอานมสดไปแลกกับช่างที่ (28,39) ถ้าไม่ ก็ดื่มเมื่อขาด HP แล้วค่อยเติมใหม่ ด่าน 4: ถ้าต้องการเดินเรื่องจิ้งจอก ให้ยื่นเต้าหู้ทอดที่ NPC (32,42) แล้วใช้ประทัด; หรือจุดฉากจิ้งจอกโดยตรงด้วยประทัดที่ X31–33, Y42–43 โดยไม่ต้องผ่านขั้นเต้าหู้ ด่าน 6: รับเทียนจากหีบเมือง (ใช้กุญแจหมดไปหนึ่งดอก) แล้วนำไปให้ NPC ที่ (47,36)",
+        "en": "Area 3: take the bottle from the town chest (6,4); no key is needed. Fill it at the cow (6,103). Milk is a free full heal you can refill as often as you like. If you want the canoe, hand fresh milk to the canoe maker at (28,39); otherwise drink it when you need HP and refill later. Area 4: give fried tofu at (32,42) for the fox-story step, then use fireworks; fireworks can also trigger the fox scene directly at X31–33, Y42–43 without the tofu step. Area 6: take the candle from the town chest (it uses up one key) and give it to the NPC at (47,36).",
+        "ja": "エリア3：町の宝箱（6,4）でビンを取ります（カギは不要）。牛（6,103）で牛乳にします。牛乳は何度でも無料で補充できる全回復です。カヌーが欲しいなら新しい牛乳を船大工（28,39）へ渡し、そうでなければHPが必要なときに飲んで後で補充します。エリア4：キツネの話を進めるならNPC（32,42）に油揚げを渡してから花火を使う。油揚げの手順を通らず、X31–33、Y42–43で花火を直接使ってもキツネの場面が始まります。エリア6：町の宝箱からロウソクを取り（カギを1個消費）、NPC（47,36）に渡します。"
       },
       "reason": {
-        "en": "Drinking milk changes it to an empty bottle, but the area-3 cow can refill that bottle; it delays the canoe exchange rather than permanently removing the route.",
-        "ja": "牛乳を飲むと空きビンに戻りますが、エリア3の牛で再び牛乳にできます。カヌー交換ができなくなるのではなく、後で補充する手間が増えるだけです。",
-        "th": "ดื่มนมแล้วไอเท็มจะเปลี่ยนเป็นขวดเปล่า แต่กลับไปเติมที่วัวด่าน 3 ได้ จึงแค่ต้องกลับมาเติมใหม่ก่อนแลกแคนู ไม่ได้ปิดทางแลกถาวร"
+        "th": "ดื่มนมแล้วเหลือขวดเปล่า แต่วัวด่าน 3 เติมให้ฟรีกี่ครั้งก็ได้ การดื่มก่อนแค่ทำให้ต้องเติมอีกครั้งก่อนแลกแคนู ไม่ได้ปิดทางแลกถาวร",
+        "en": "Drinking milk leaves an empty bottle, and the area-3 cow refills it for free as often as you like. Drinking only means one extra refill before the canoe trade; it never closes the route.",
+        "ja": "牛乳を飲むと空きビンが残りますが、エリア3の牛が何度でも無料で補充してくれます。飲んでもカヌー交換の前に補充が1回増えるだけで、交換できなくなることはありません。"
       },
       "scope": {
         "th": "ตำแหน่งและผลเหล่านี้มาจากข้อมูลเงื่อนไขของ NPC/หีบในเกม; ใช้ประทัดตรงจุดกับเรื่องเต้าหู้เป็นคนละทางกัน",
@@ -343,24 +343,24 @@
       "id": "key_and_lottery",
       "category": "general_tool",
       "title": {
-        "th": "กุญแจหนึ่งดอกใช้กับหีบสี่ด่าน; รับสลากจากหีบก่อนซื้อ",
-        "en": "One key opens four area chests; take the ticket from its chest before buying one",
-        "ja": "カギ1個で4エリアの宝箱を開ける。券は購入前に宝箱から取る"
+        "th": "กุญแจหนึ่งดอกเปิดหีบได้หนึ่งใบ สลากต้องถวายอาหารที่จิโซก่อนถึงจะถูก",
+        "en": "Each key opens one chest; the lottery needs a Jizo offering first",
+        "ja": "カギ1個で宝箱1つ。くじは先に地蔵へ供えないと当たらない"
       },
       "recommendation": {
-        "th": "ซื้อกุญแจ 17 หนึ่งดอกจากร้านด่าน 1 ราคา ¥100; สต็อกมีในด่าน 1, 2, 4 และ 6 และกุญแจไม่หายเมื่อเปิดหีบ จึงใช้ดอกเดิมกับหีบล็อกในเมืองทั้งสี่ด่านได้ เว้นช่องของรางวัลหมวดเหยื่อ/คัน/อุปกรณ์ให้ว่างก่อนเปิด. สลาก 11 รับจากหีบเมืองด่าน 5 ที่ (4,6) โดยไม่ต้องใช้กุญแจ แล้วนำไปขึ้นที่เคาน์เตอร์กลางแจ้ง (54,22) ก่อนซื้อสลากเพิ่ม. ถ้าจะเพิ่มค่าตัดสินรางวัล ถวายอาหารที่รูปปั้นจิโซ (49,22): ข้าวกล่อง 06 เพิ่ม 40 หน่วย; ส้ม 01 เพิ่ม 5; ตัวเลขนี้ไม่ใช่เปอร์เซ็นต์",
-        "en": "Buy one key (17) for ¥100 in area 1; recorded shop stock also includes it in areas 2, 4 and 6. It is retained after opening a chest, so the same key opens the locked town chests in areas 1, 2, 4 and 6. Leave space in the matching bait, rod or tool inventory before opening each chest. Take ticket 11 from the area-5 town chest at (4,6) without a key, then use it at the outdoor counter (54,22) before buying another ticket. If you want to raise the lottery threshold, offer food at the Jizo (49,22): bento 06 adds 40, orange 01 adds 5. These values are not percentages.",
-        "ja": "エリア1の店でカギ17を1個、100円で購入します。記録された店頭在庫はエリア2・4・6にもあります。宝箱を開けてもカギは消費されないため、同じ1個でエリア1・2・4・6の町の鍵付き宝箱を開けられます。各宝箱を開ける前に、対応するエサ・竿・道具欄を空けてください。富くじ11はエリア5の町の宝箱（4,6）からカギなしで入手し、追加購入の前に屋外の抽選所（54,22）で使います。当選しきい値を上げたい場合は地蔵（49,22）に食べ物を供えます。日の丸弁当06は40、みかん01は5を加算します。確率のパーセント値ではありません。"
+        "th": "กุญแจราคา ¥100 (ร้านด่าน 1, 2, 4 และ 6) และหมดไปหนึ่งดอกทุกครั้งที่เปิดหีบ ซื้อเท่าจำนวนหีบที่ต้องการ: ด่าน 1 เหยื่อมันฝรั่ง ด่าน 2 หนอนองุ่น ด่าน 4 คันลัวร์เล็ก ด่าน 6 เทียน หีบไหนไม่ต้องการของข้างใน ข้ามได้ เว้นช่องเหยื่อ คัน หรืออุปกรณ์ให้ว่างก่อน ถ้าหีบไม่ยอมเปิด ให้เว้นช่อง เดินออกจากเมืองแล้วเข้าใหม่ หีบขวดด่าน 3 และหีบสลากด่าน 5 ไม่ต้องใช้กุญแจ สลาก: รับสลากฟรีจากหีบในเมืองด่าน 5 ที่ (4,6) ถวายข้าวกล่องบ๊วยหรือหัวไชเท้าที่จิโซ (49,22) ก่อน (ชิ้นละ 40 ส้ม 5) แล้วค่อยนำสลากไปส่งที่เคาน์เตอร์ (54,22) ถ้าไม่ถวาย สลากจะไม่มีวันถูก",
+        "en": "Keys cost ¥100 (Area 1, 2, 4 and 6 shops) and each one is used up when a chest opens, so buy one per chest you want: Area 1 potato bait, Area 2 grapevine larva bait, Area 4 small lure rod, Area 6 candle. Skip a chest if you do not need its prize. Free a bait, rod or tool slot first; if the chest refuses, free a slot, leave the town and come back in. The Area 3 bottle chest and the Area 5 ticket chest need no key. Lottery: take the free ticket from the Area 5 town chest at (4,6), offer bento or daikon at the Jizo (49,22) first (40 each, orange 5), then hand the ticket in at the counter (54,22). With no offering the ticket can never win.",
+        "ja": "カギは100円（エリア1・2・4・6の店）で、宝箱を開けるたびに1個消費されます。欲しい宝箱の分だけ買ってください：エリア1はイモエサ、エリア2はブドウムシ、エリア4はルアーロッド小、エリア6はロウソク。中身が不要な宝箱は飛ばして構いません。先にエサ・竿・道具の欄を空けてください。開けられなかったら、欄を空けて町を出て入り直します。エリア3のビンの宝箱とエリア5の券の宝箱はカギ不要です。くじ：エリア5の町の宝箱（4,6）で無料の券を取り、先にお地蔵さま（49,22）へ弁当か大根を供え（各40、みかんは5）、抽選所（54,22）で券を出します。供えなければ券は絶対に当たりません。"
       },
       "reason": {
-        "th": "หีบแต่ละใบให้รางวัลหมวดต่างกันและตรวจช่องว่างก่อนรับของ; ส่วนสลากถูกใช้ที่เคาน์เตอร์และมีผลแพ้ด้วย จึงควรเก็บใบจากหีบก่อนจ่ายเงิน",
-        "en": "Each chest checks room in a different inventory before granting its reward. The counter consumes the ticket and includes a losing branch, so use the chest ticket before paying for another.",
-        "ja": "宝箱は報酬ごとに所持欄の空きを確認します。抽選所では券が消費され、はずれ分岐もあるため、追加購入の前に宝箱の券を使ってください。"
+        "th": "หีบแต่ละใบตรวจช่องว่างคนละกระเป๋าก่อนให้ของ เคาน์เตอร์ใช้สลากทิ้งและมีผลแพ้ด้วย ถ้าถูก ¥1,000 หรือ ¥5,000 ค่าถวายจะกลับเป็น 0 ต้องถวายใหม่ก่อนใช้สลากใบต่อไป การถวายยังช่วยให้เสียเบ็ด ลัวร์ หรือฟลายน้อยลงหลังตกปลาขึ้นมาได้ (เบ็ดและลัวร์จากประมาณ 6% เหลือ 4% ฟลายจากประมาณ 12% เหลือ 7% ในกรณีดีที่สุด)",
+        "en": "Each chest checks room in a different bag before giving its prize. The counter uses up the ticket and has a losing branch. Winning ¥1,000 or ¥5,000 resets your offering to zero, so offer again before the next ticket. The offering also lowers the chance of losing a hook, lure or fly after you land a fish (hook and lure about 6% to 4% at best, fly about 12% to 7% at best).",
+        "ja": "宝箱は報酬ごとに別の所持欄の空きを確認します。抽選所では券が消費され、はずれもあります。1,000円か5,000円が当たると供え物は0に戻るので、次の券の前にまた供えます。供え物は、魚を釣り上げた後にハリ・ルアー・毛バリを失う確率も下げます（ハリとルアーは最大でおよそ6%から4%、毛バリはおよそ12%から7%）。"
       },
       "scope": {
-        "th": "อาหารเพิ่มค่าตัดสินรางวัล แต่ยังไม่ใช่เปอร์เซ็นต์หรือกำไรคาดหวัง; หัวไชเท้า 07 เพิ่ม 40 เช่นกัน รับจากการแลกปลายามาโนคามิด่าน 3 โดยทับอาหารเดิมทั้ง 16 ช่อง อ่านหน้าหัวไชเท้าก่อนแลก",
-        "en": "Food raises the threshold, not a verified percentage or expected payout. Daikon 07 also adds 40; obtain it through the area-3 Yamanokami trade, which overwrites all 16 food slots. Read its item page before trading.",
-        "ja": "食料は判定値を上げるが、確率や期待払い戻し率ではない。大根07も40加算する。エリア3のヤマノカミ交換で入手できるが、食料全16枠を上書きするため、先にアイテムページを確認する。"
+        "th": "อาหารทำให้มีโอกาสถูกมากขึ้น แต่ไม่มีเปอร์เซ็นต์ที่ยืนยันหรือเงินรางวัลคาดหวัง หัวไชเท้าเพิ่ม 40 เช่นกัน รับจากการแลกปลายามาโนะคามิด่าน 3 โดยทับอาหารเดิมทั้ง 16 ช่อง อ่านหน้าหัวไชเท้าก่อนแลก อย่าซื้ออาหารเพื่อสลากอย่างเดียว",
+        "en": "Food raises the chance of winning, but there is no verified percentage or expected payout. Daikon also adds 40; you get it from the area-3 Yamanokami trade, which overwrites all 16 food slots, so read its page before trading. Do not buy food only for the lottery.",
+        "ja": "食料は当たりやすくしますが、確率や期待払い戻し率は確認されていません。大根も40加算します。エリア3のヤマノカミ交換で入手できますが、食料全16枠を上書きするため、先にアイテムページを確認してください。くじのためだけに食料を買わないでください。"
       },
       "items": [
         {

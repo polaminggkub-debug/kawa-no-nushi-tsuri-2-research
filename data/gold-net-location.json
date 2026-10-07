@@ -3,7 +3,7 @@
   "rom": {
     "sha1": "c2103dd94e2a1a65a495fc02adc2e7d040f31212"
   },
-  "scope": "One runtime-confirmed use of Gold Net (general_tool 04) in Area 1. The location is confirmed for the recorded field state; normal-route access is not established. Two controlled uses from the recorded field tile both increased the existing bait 07 stack from zero to three. The test injected the tool inventory entry and does not establish normal-route access.",
+  "scope": "One runtime-confirmed use of Gold Net (general_tool 04) in Area 1. The location is confirmed for the recorded field state; normal-route access is not established. Two controlled uses from the recorded field tile both increased the existing bait 07 stack from zero to three. The test injected the tool inventory entry and does not establish normal-route access. The net gives 1 to 4 pieces per use; both test uses happened to give 3.",
   "items": {
     "general_tool:04": [
       {

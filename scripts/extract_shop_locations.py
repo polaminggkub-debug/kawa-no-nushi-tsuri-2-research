@@ -242,7 +242,7 @@ def make_area_data(rom, area, town_images, field_bounds):
     # These chest contents and key conditions are traced in quest-tool-use-research.md.
     chest_rewards = {
         7: {"itemCategory": "bait", "itemId": "11", "requiresKey": True, "itemName": "Potato bait"},
-        8: {"itemCategory": "bait", "itemId": "0B", "requiresKey": True, "itemName": "Waxworm bait"},
+        8: {"itemCategory": "bait", "itemId": "0B", "requiresKey": True, "itemName": "Grapevine larva bait"},
         9: {"itemCategory": "general_tool", "itemId": "0F", "requiresKey": False, "itemName": "Empty milk bottle"},
         10: {"itemCategory": "rod", "itemId": "0A", "requiresKey": True, "itemName": "Small lure rod"},
         11: {"itemCategory": "general_tool", "itemId": "11", "requiresKey": False, "itemName": "Lottery ticket"},

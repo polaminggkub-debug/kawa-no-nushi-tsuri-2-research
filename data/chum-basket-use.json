@@ -475,30 +475,30 @@
         "th": "ข้องใส่ปลา ความจุ 10 ตัว"
       },
       "summary": {
-        "en": "Buy ID 0B in area 1 or 2 if your current capacity is below 10 and you want to hold up to ten fish before clearing the basket; full shop purchase price ¥300. If 10 slots cover your sessions, stop here. If you need more than 10, skip to ID 0C (20 slots, areas 3/4) or ID 0D (30 slots, areas 5/6).",
-        "ja": "エリア1・2で、現在の容量が10匹未満で、びくを空ける前に最大10匹まで残したい場合にID 0Bを購入します。店頭購入価格は300円。10匹分で足りるならここで十分です。10匹を超えて残したいなら、ID 0C（20匹、エリア3・4）またはID 0D（30匹、エリア5・6）を選んでください。",
-        "th": "ซื้อ ID 0B ที่ด่าน 1 หรือ 2 เมื่อความจุปัจจุบันต่ำกว่า 10 และอยากเก็บปลาได้ถึง 10 ตัวก่อนเคลียร์ข้อง; ราคาซื้อเต็มที่ร้าน ¥300. ถ้า 10 ช่องพอสำหรับรอบของคุณก็ไม่ต้องอัปเกรดต่อ ถ้าต้องการเก็บเกิน 10 ให้ข้ามไป ID 0C (20 ช่อง ด่าน 3/4) หรือ ID 0D (30 ช่อง ด่าน 5/6)"
+        "en": "A new game starts with room for 5 fish in the keepnet. Buy this one if that is too few: it holds 10 for ¥300 (sold in Areas 1 and 2). If 10 is enough, stop here. If you want more, skip ahead to the 20-fish net (Areas 3 and 4) or the 30-fish net (Areas 5 and 6).",
+        "ja": "びくの容量は、ニューゲームでは5匹から始まる。それでは足りないときに買う。10匹入り・300円（エリア1・2で販売）。10匹で足りるならここで十分。もっと必要なら、20匹入り（エリア3・4）か30匹入り（エリア5・6）まで待つ。",
+        "th": "เริ่มเกมใหม่ ข้องใส่ปลาได้ 5 ตัว ถ้าน้อยเกินไป ให้ซื้อใบนี้ ใส่ได้ 10 ตัว ราคา ¥300 (ขายที่ด่าน 1 และ 2) ถ้า 10 ตัวพอแล้วก็หยุดแค่นี้ ถ้าต้องการมากกว่านั้น ให้ข้ามไปรุ่น 20 ตัว (ด่าน 3 และ 4) หรือรุ่น 30 ตัว (ด่าน 5 และ 6)"
       },
       "facts": {
         "en": [
           "Capacity: 10 fish; full shop purchase price: ¥300; sold in areas 1 and 2.",
           "The shop accepts this purchase only when 10 is larger than your current capacity. If you plan to keep more than 10 fish, wait for the 20- or 30-fish offer; a larger capacity can be bought directly without buying this one first.",
           "At exactly full, the game stores the landed fish and then tells you the keepnet is full. The next fishing action is blocked until you make room.",
-          "Sell fish to make room, or eat the first fish through Food → Fish when HP is not full. Check the first fish: eating Kusafugu sets HP to zero.",
+          "To make room, sell a fish, or eat the first fish through Food → Fish when HP is not full. If that fish is a Kusafugu, eating it drops your HP to 0: you black out and wake up at your saved position with 1 HP, keeping your money, fish and tools. It is not a disaster, but the fish is gone.",
           "If you have Yamanokami (fish ID 18), read the Daikon exchange page before trading: the one-time Area 3 NPC at (21,82) consumes the fish and overwrites all 16 food slots with Daikon. Keep the fish until you decide, and use any food you want to keep before trading."
         ],
         "ja": [
           "容量は10匹。店頭での購入価格は300円。エリア1・2で販売。",
           "現在の容量より10匹の方が大きい場合だけ購入できます。10匹を超えて残す予定なら20匹または30匹の品を待ってください。大きい容量を直接買えるため、先にこれを買う必要はありません。",
           "満杯になる魚も先に保存され、その後びく満杯の表示が出る。次の釣り操作は空きを作るまで止まる。",
-          "魚を売って空きを作るか、HP満タンでなければ食べ物→魚でびくの先頭を食べる。先頭がクサフグなら食べない。HPが0になる。",
+          "空きを作るには、魚を売るか、HPが満タンでなければ食べ物→魚でびくの先頭を食べる。先頭がクサフグだと、食べるとHPが0になり、気絶して保存位置で1HPの状態で目を覚ます。お金・魚・道具はそのまま。大事にはならないが、その魚は失われる。",
           "ヤマノカミ（魚ID 18）がある場合は、交換前に大根の説明を読んでください。エリア3のNPC（21,82）との一度限りの交換で魚を消費し、食料16枠すべてが大根に上書きされます。交換するか決めるまで魚を残し、残したい食料は先に使ってください。"
         ],
         "th": [
           "ความจุ 10 ตัว; ราคาซื้อเต็มที่ร้าน ¥300; มีขายที่ด่าน 1 และ 2",
           "ซื้อรุ่นนี้ได้ก็ต่อเมื่อความจุปัจจุบันต่ำกว่า 10 ตัวเท่านั้น ถ้าจะเก็บเกิน 10 ตัว ให้รอรุ่น 20 หรือ 30 ตัว ซื้อรุ่นความจุสูงกว่าได้โดยตรง ไม่ต้องซื้อใบนี้ก่อน",
           "ปลาตัวที่ทำให้เต็มจะถูกเก็บก่อนแล้วจึงขึ้นข้อความว่าข้องเต็ม; กิจกรรมตกปลาครั้งต่อไปจะเริ่มไม่ได้จนกว่าจะมีที่ว่าง",
-          "ขายปลาเพื่อคืนที่ว่าง หรือเมื่อ HP ไม่เต็ม เลือก “ปลา” ในหมวดอาหารเพื่อกินตัวแรกในข้องหนึ่งตัว ตรวจให้ดีว่าตัวแรกไม่ใช่คุซะฟุกุ เพราะกินแล้ว HP เหลือ 0",
+          "วิธีเว้นที่ว่าง: ขายปลา หรือเมื่อ HP ไม่เต็ม เลือก “ปลา” ในหมวดอาหารเพื่อกินตัวแรกในข้อง ถ้าตัวแรกเป็นคุซะฟุกุ กินแล้ว HP เหลือ 0 คุณจะสลบแล้วตื่นที่จุดเซฟด้วย HP 1 โดยเงิน ปลา และอุปกรณ์ยังอยู่ครบ ไม่ร้ายแรง แต่ปลาตัวนั้นหายไป",
           "ถ้ามีปลายามาโนะคามิ (ปลา ID 18) ให้อ่านข้อมูลแลกหัวไชเท้าก่อน: การแลกครั้งเดียวกับ NPC ด่าน 3 ที่ (21,82) จะใช้ปลาตัวนี้และเขียนทับช่องอาหารทั้ง 16 ช่องด้วยหัวไชเท้า เก็บปลาไว้จนกว่าจะตัดสินใจ และกินอาหารเดิมที่ต้องการเก็บก่อนแลก"
         ]
       },
@@ -516,17 +516,20 @@
         "en": [
           "Shop capacity write and upgrade gate: 03:93A0..944F and 03:9450..94D3. Capacity field: 7E:0C12.",
           "Pre-action full check: 04:D218..D254, called at 04:BF32; it counts 30 species slots and compares count >= capacity. Message offsets 0092 and 00A2 were rendered from the original ROM font.",
-          "Food ID 08 reads and removes one stored fish at 03:BA15..BA7D; controlled HP samples are separately listed in data/food-effects-confirmed.json."
+          "Food ID 08 reads and removes one stored fish at 03:BA15..BA7D; controlled HP samples are separately listed in data/food-effects-confirmed.json.",
+          "Audit 2026-10-07: a new game starts with keepnet capacity 5 (7E:0C12)."
         ],
         "ja": [
           "店で容量を書き込む処理・購入判定: 03:93A0..944F、03:9450..94D3。容量欄: 7E:0C12。",
           "操作前の満杯判定: 04:D218..D254、04:BF32から呼ばれる。30個の魚ID枠を数えて個数>=容量を比較。メッセージ0092・00A2はROMフォントから描画。",
-          "食べ物ID 08は03:BA15..BA7Dで保存魚を読み、1匹分を取り除く。HPの実測値はdata/food-effects-confirmed.jsonに別記。"
+          "食べ物ID 08は03:BA15..BA7Dで保存魚を読み、1匹分を取り除く。HPの実測値はdata/food-effects-confirmed.jsonに別記。",
+          "2026-10-07監査：ニューゲームのびく容量は5匹（7E:0C12）。"
         ],
         "th": [
           "โค้ดเขียนความจุจากการซื้อและตรวจไม่ให้ลดระดับ: 03:93A0..944F, 03:9450..94D3; ช่องความจุ 7E:0C12",
           "ตรวจเต็มก่อนกิจกรรมตกปลา: 04:D218..D254 ถูกเรียกจาก 04:BF32; นับช่องรหัสปลา 30 ช่องและเทียบจำนวน >= ความจุ; ข้อความ 0092 และ 00A2 เรนเดอร์จากฟอนต์ ROM",
-          "อาหาร ID 08 อ่านและนำปลาออกหนึ่งตัวที่ 03:BA15..BA7D; ค่าฟื้น HP ที่ทดลองไว้แยกอยู่ใน data/food-effects-confirmed.json"
+          "อาหาร ID 08 อ่านและนำปลาออกหนึ่งตัวที่ 03:BA15..BA7D; ค่าฟื้น HP ที่ทดลองไว้แยกอยู่ใน data/food-effects-confirmed.json",
+          "การตรวจ 2026-10-07: เริ่มเกมใหม่ ความจุข้องคือ 5 ตัว (7E:0C12)"
         ]
       }
     },
@@ -546,21 +549,21 @@
           "Capacity: 20 fish; full shop purchase price: ¥400; sold in areas 3 and 4.",
           "The shop accepts this purchase only when 20 is larger than your current capacity. If you plan to keep more than 20 fish, wait for the 30-fish offer; you can buy that larger capacity directly without buying this one first.",
           "At exactly full, the game stores the landed fish and then tells you the keepnet is full. The next fishing action is blocked until you make room.",
-          "Sell fish to make room, or eat the first fish through Food → Fish when HP is not full. Check the first fish: eating Kusafugu sets HP to zero.",
+          "To make room, sell a fish, or eat the first fish through Food → Fish when HP is not full. If that fish is a Kusafugu, eating it drops your HP to 0: you black out and wake up at your saved position with 1 HP, keeping your money, fish and tools. It is not a disaster, but the fish is gone.",
           "If you have Yamanokami (fish ID 18), read the Daikon exchange page before trading: the one-time Area 3 NPC at (21,82) consumes the fish and overwrites all 16 food slots with Daikon. Keep the fish until you decide, and use any food you want to keep before trading."
         ],
         "ja": [
           "容量は20匹。店頭での購入価格は400円。エリア3・4で販売。",
           "現在の容量より20匹の方が大きい場合だけ購入できます。20匹を超えて残す予定なら30匹の品を待ってください。大きい容量を直接買えるため、先にこれを買う必要はありません。",
           "満杯になる魚も先に保存され、その後びく満杯の表示が出る。次の釣り操作は空きを作るまで止まる。",
-          "魚を売って空きを作るか、HP満タンでなければ食べ物→魚でびくの先頭を食べる。先頭がクサフグなら食べない。HPが0になる。",
+          "空きを作るには、魚を売るか、HPが満タンでなければ食べ物→魚でびくの先頭を食べる。先頭がクサフグだと、食べるとHPが0になり、気絶して保存位置で1HPの状態で目を覚ます。お金・魚・道具はそのまま。大事にはならないが、その魚は失われる。",
           "ヤマノカミ（魚ID 18）がある場合は、交換前に大根の説明を読んでください。エリア3のNPC（21,82）との一度限りの交換で魚を消費し、食料16枠すべてが大根に上書きされます。交換するか決めるまで魚を残し、残したい食料は先に使ってください。"
         ],
         "th": [
           "ความจุ 20 ตัว; ราคาซื้อเต็มที่ร้าน ¥400; มีขายที่ด่าน 3 และ 4",
           "ซื้อรุ่นนี้ได้ก็ต่อเมื่อความจุปัจจุบันต่ำกว่า 20 ตัวเท่านั้น ถ้าจะเก็บเกิน 20 ตัว ให้รอรุ่น 30 ตัว ซื้อรุ่นความจุสูงกว่าได้โดยตรง ไม่ต้องซื้อใบนี้ก่อน",
           "ปลาตัวที่ทำให้เต็มจะถูกเก็บก่อนแล้วจึงขึ้นข้อความว่าข้องเต็ม; กิจกรรมตกปลาครั้งต่อไปจะเริ่มไม่ได้จนกว่าจะมีที่ว่าง",
-          "ขายปลาเพื่อคืนที่ว่าง หรือเมื่อ HP ไม่เต็ม เลือก “ปลา” ในหมวดอาหารเพื่อกินตัวแรกในข้องหนึ่งตัว ตรวจให้ดีว่าตัวแรกไม่ใช่คุซะฟุกุ เพราะกินแล้ว HP เหลือ 0",
+          "วิธีเว้นที่ว่าง: ขายปลา หรือเมื่อ HP ไม่เต็ม เลือก “ปลา” ในหมวดอาหารเพื่อกินตัวแรกในข้อง ถ้าตัวแรกเป็นคุซะฟุกุ กินแล้ว HP เหลือ 0 คุณจะสลบแล้วตื่นที่จุดเซฟด้วย HP 1 โดยเงิน ปลา และอุปกรณ์ยังอยู่ครบ ไม่ร้ายแรง แต่ปลาตัวนั้นหายไป",
           "ถ้ามีปลายามาโนะคามิ (ปลา ID 18) ให้อ่านข้อมูลแลกหัวไชเท้าก่อน: การแลกครั้งเดียวกับ NPC ด่าน 3 ที่ (21,82) จะใช้ปลาตัวนี้และเขียนทับช่องอาหารทั้ง 16 ช่องด้วยหัวไชเท้า เก็บปลาไว้จนกว่าจะตัดสินใจ และกินอาหารเดิมที่ต้องการเก็บก่อนแลก"
         ]
       },
@@ -605,21 +608,21 @@
           "Capacity: 30 fish; full shop purchase price: ¥500; sold in areas 5 and 6.",
           "The shop accepts this purchase only when 30 is larger than your current capacity. You can buy this directly from a smaller capacity; the ROM does not require buying the 10- or 20-fish version first.",
           "At exactly full, the game stores the landed fish and then tells you the keepnet is full. The next fishing action is blocked until you make room.",
-          "Sell fish to make room, or eat the first fish through Food → Fish when HP is not full. Check the first fish: eating Kusafugu sets HP to zero.",
+          "To make room, sell a fish, or eat the first fish through Food → Fish when HP is not full. If that fish is a Kusafugu, eating it drops your HP to 0: you black out and wake up at your saved position with 1 HP, keeping your money, fish and tools. It is not a disaster, but the fish is gone.",
           "If you have Yamanokami (fish ID 18), read the Daikon exchange page before trading: the one-time Area 3 NPC at (21,82) consumes the fish and overwrites all 16 food slots with Daikon. Keep the fish until you decide, and use any food you want to keep before trading."
         ],
         "ja": [
           "容量は30匹。店頭での購入価格は500円。エリア5・6で販売。",
           "現在の容量より30匹の方が大きい場合だけ購入できます。小さい容量から直接買えます。10匹・20匹の品を先に買う必要はありません。",
           "満杯になる魚も先に保存され、その後びく満杯の表示が出る。次の釣り操作は空きを作るまで止まる。",
-          "魚を売って空きを作るか、HP満タンでなければ食べ物→魚でびくの先頭を食べる。先頭がクサフグなら食べない。HPが0になる。",
+          "空きを作るには、魚を売るか、HPが満タンでなければ食べ物→魚でびくの先頭を食べる。先頭がクサフグだと、食べるとHPが0になり、気絶して保存位置で1HPの状態で目を覚ます。お金・魚・道具はそのまま。大事にはならないが、その魚は失われる。",
           "ヤマノカミ（魚ID 18）がある場合は、交換前に大根の説明を読んでください。エリア3のNPC（21,82）との一度限りの交換で魚を消費し、食料16枠すべてが大根に上書きされます。交換するか決めるまで魚を残し、残したい食料は先に使ってください。"
         ],
         "th": [
           "ความจุ 30 ตัว; ราคาซื้อเต็มที่ร้าน ¥500; มีขายที่ด่าน 5 และ 6",
           "ซื้อรุ่นนี้ได้ก็ต่อเมื่อความจุปัจจุบันต่ำกว่า 30 ตัวเท่านั้น ซื้อจากความจุที่ต่ำกว่าได้โดยตรง ไม่ต้องซื้อรุ่น 10 หรือ 20 ตัวก่อน",
           "ปลาตัวที่ทำให้เต็มจะถูกเก็บก่อนแล้วจึงขึ้นข้อความว่าข้องเต็ม; กิจกรรมตกปลาครั้งต่อไปจะเริ่มไม่ได้จนกว่าจะมีที่ว่าง",
-          "ขายปลาเพื่อคืนที่ว่าง หรือเมื่อ HP ไม่เต็ม เลือก “ปลา” ในหมวดอาหารเพื่อกินตัวแรกในข้องหนึ่งตัว ตรวจให้ดีว่าตัวแรกไม่ใช่คุซะฟุกุ เพราะกินแล้ว HP เหลือ 0",
+          "วิธีเว้นที่ว่าง: ขายปลา หรือเมื่อ HP ไม่เต็ม เลือก “ปลา” ในหมวดอาหารเพื่อกินตัวแรกในข้อง ถ้าตัวแรกเป็นคุซะฟุกุ กินแล้ว HP เหลือ 0 คุณจะสลบแล้วตื่นที่จุดเซฟด้วย HP 1 โดยเงิน ปลา และอุปกรณ์ยังอยู่ครบ ไม่ร้ายแรง แต่ปลาตัวนั้นหายไป",
           "ถ้ามีปลายามาโนะคามิ (ปลา ID 18) ให้อ่านข้อมูลแลกหัวไชเท้าก่อน: การแลกครั้งเดียวกับ NPC ด่าน 3 ที่ (21,82) จะใช้ปลาตัวนี้และเขียนทับช่องอาหารทั้ง 16 ช่องด้วยหัวไชเท้า เก็บปลาไว้จนกว่าจะตัดสินใจ และกินอาหารเดิมที่ต้องการเก็บก่อนแลก"
         ]
       },

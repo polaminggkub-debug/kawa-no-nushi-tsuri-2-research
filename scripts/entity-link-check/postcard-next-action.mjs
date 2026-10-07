@@ -13,27 +13,27 @@ import {
 
 const locales = ['en', 'ja', 'th']
 const quest = readJson('data/quest-tool-use.json')
-const magnet = readJson('data/magnet-story-gate.json')
+const compass = readJson('data/magnet-story-gate.json')
 const eelId = '3B'
 const eel = locations.fish[eelId]
 const copy = {
   en: {
     condition: 'Once this request appears',
     map: 'Area 6 point · X 41, Y 8',
-    limit: 'The configured fishing point may be inactive.',
-    magnet: 'Magnet heading',
+    limit: 'The eel is not always at (41,8).',
+    compass: 'Compass heading',
   },
   ja: {
     condition: 'この依頼を見たら',
     map: 'エリア6の地点 · X 41, Y 8',
-    limit: '設定された釣り場に魚がいない場合もあります。',
-    magnet: '磁石のオオウナギ項目',
+    limit: '(41,8)にいつもオオウナギがいるとは限りません。',
+    compass: '磁石のオオウナギ項目',
   },
   th: {
     condition: 'ถ้าพบข้อความนี้แล้ว',
     map: 'ดูจุดด่าน 6 · X 41, Y 8',
-    limit: 'จุดตกที่กำหนดอาจไม่มีปลาในรอบนี้',
-    magnet: 'แม่เหล็ก',
+    limit: 'จุด (41,8) ไม่ได้มีปลาไหลอยู่เสมอ',
+    compass: 'เข็มทิศ',
   },
 }
 
@@ -42,7 +42,7 @@ checkResearchDetails()
 for (const locale of locales) await checkCatalogueCard(locale)
 for (const locale of locales) await checkLocale(locale)
 console.log(
-  'Postcard action PASS: catalogue and detail actions, three localized safe links, conditional caveats and collapsed ROM evidence agree with the fish and magnet traces.',
+  'Postcard action PASS: catalogue and detail actions, three localized safe links, conditional caveats and collapsed ROM evidence agree with the fish and compass traces.',
 )
 
 function readJson(relativePath) {
@@ -50,10 +50,10 @@ function readJson(relativePath) {
 }
 
 function checkRomEvidence() {
-  const story = magnet.storyGate
-  const target = magnet.area6MagnetTarget
-  assert.equal(quest.rom.sha1, magnet.rom.sha1)
-  assert.equal(magnet.rom.sha1, locations.rom.sha1)
+  const story = compass.storyGate
+  const target = compass.area6MagnetTarget
+  assert.equal(quest.rom.sha1, compass.rom.sha1)
+  assert.equal(compass.rom.sha1, locations.rom.sha1)
   assert.equal(story.prerequisiteMask, '0x02')
   assert.equal(story.headingMask, '0x04')
   assert.equal(story.recordArray.entryCount, 66)
@@ -131,12 +131,23 @@ function checkCatalogueCopy(action, locale) {
   const text = unescapeHtml(action)
   const conditions = {
     en: [
-      /keep it.*starting village/i,
-      /story conditions are complete/i,
-      /ending scene.*automatic/i,
+      /do not need to keep the eel/i,
+      /Area 1 village.*field door at \(12,189\)/i,
+      /earlier steps are done/i,
+      /ending scene plays automatically/i,
     ],
-    ja: [/ウナギを残して最初の村/, /物語の条件がそろうと/, /エンディングの自動シーン/],
-    th: [/เก็บปลาไหลไว้และกลับหมู่บ้านเริ่มต้น/, /หากเงื่อนไขเนื้อเรื่องครบ/, /ฉากจบอัตโนมัติ/],
+    ja: [
+      /残しておく必要はありません/,
+      /エリア1の村に入ると/,
+      /先の手順.*済んでいる/,
+      /エンディングが自動で流れます/,
+    ],
+    th: [
+      /ตกปลาไหลได้แล้วไม่ต้องเก็บไว้/,
+      /หมู่บ้านด่าน 1 ทางประตูสนาม/,
+      /ขั้นก่อนหน้าให้ครบก่อน/,
+      /ฉากจบจะเริ่มโดยอัตโนมัติ/,
+    ],
   }
 
   assert(
@@ -265,7 +276,7 @@ function checkPlayerCopy(panel, locale) {
   )
   assert(text.includes(copy[locale].map))
   assert(text.includes(copy[locale].limit), `${locale}: do not promise quest completion or reward`)
-  assert(text.includes(copy[locale].magnet))
+  assert(text.includes(copy[locale].compass))
   assert(!/\b65\b|0x41/.test(text), `${locale}: keep the hidden gate out of player-facing advice`)
 }
 

@@ -1,5 +1,7 @@
 # Groundbait and keepnet: what these items do
 
+> **Corrected 2026-10-07:** a new game starts with keepnet capacity 5 (`7E:0C12`); the three shop items upgrade it to 10, 20 or 30.
+
 This note traces general-tool IDs `08–0D` in the user-supplied original Japanese SFC ROM. It does not use an outside walkthrough as evidence. The item descriptions, behavior and limits below come from ROM records/code; the one note about eating stored fish cites a controlled run with the same original ROM.
 
 ROM: 1,572,864 bytes; SHA-1 `c2103dd94e2a1a65a495fc02adc2e7d040f31212`.
@@ -13,7 +15,7 @@ ROM: 1,572,864 bytes; SHA-1 `c2103dd94e2a1a65a495fc02adc2e7d040f31212`.
 | `0C` | Keepnet, capacity 20; 400 yen | Shop upgrade to 20 fish. The game refuses the same or a smaller capacity. |
 | `0D` | Keepnet, capacity 30; 500 yen | Shop upgrade to 30 fish. It changes the capacity field directly; it is not an item you equip or use from the tool menu. |
 
-When a landed catch fills the keepnet exactly, the game stores the fish first and then says the keepnet has become full. On a later fishing-action capacity check, it displays “The basket is full; you cannot fish.” Fish already stored can be eaten with **Food-category ID `08` (魚)**; this is separate from **Tool-category ID `08` (寄せエサ)** and consumes one stored fish. Controlled original-ROM runs show that food ID `08` restores HP based on stored fish size; see [food-effects-confirmed.json](../data/food-effects-confirmed.json) for the tested values.
+When a landed catch fills the keepnet exactly, the game stores the fish first and then says the keepnet has become full. On a later fishing-action capacity check, it displays “The basket is full; you cannot fish.” Fish already stored can be eaten with **Food-category ID `08` (魚)**; this is separate from **Tool-category ID `08` (寄せエサ)** and consumes one stored fish (the menu skips your first giant eel; a Kusafugu sets HP to 0, which is only a blackout with 1 HP on waking). Controlled original-ROM runs show that food ID `08` restores HP based on stored fish size; see [food-effects-confirmed.json](../data/food-effects-confirmed.json) for the tested values.
 
 ## Groundbait: the exact effect and its limits
 

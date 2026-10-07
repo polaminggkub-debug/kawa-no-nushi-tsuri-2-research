@@ -1,4 +1,12 @@
 import { enableShopControls, showShopLoadFailure } from './load-state.js'
+import { renderShopFacts } from './shop-facts.js'
+
+function fetchJson(url, label) {
+  return fetch(url).then((r) => {
+    if (!r.ok) throw new Error(label)
+    return r.json()
+  })
+}
 
 export async function init(ctx) {
   const stageSelect = ctx.$('stage-select'),
@@ -13,22 +21,10 @@ export async function init(ctx) {
     .forEach((input) => (input.checked = input.value === ctx.startPlace))
   ctx.updateLanguageLinks()
   const loc = await Promise.allSettled([
-    fetch('gallery-data.json').then((r) => {
-      if (!r.ok) throw new Error('gallery')
-      return r.json()
-    }),
-    fetch('../data/shop-stock-rom.json').then((r) => {
-      if (!r.ok) throw new Error('stock')
-      return r.json()
-    }),
-    fetch('maps/rom-map-manifest.json').then((r) => {
-      if (!r.ok) throw new Error('maps')
-      return r.json()
-    }),
-    fetch('../data/shop-locations-rom.json').then((r) => {
-      if (!r.ok) throw new Error('locations')
-      return r.json()
-    }),
+    fetchJson('gallery-data.json', 'gallery'),
+    fetchJson('../data/shop-stock-rom.json', 'stock'),
+    fetchJson('maps/rom-map-manifest.json', 'maps'),
+    fetchJson('../data/shop-locations-rom.json', 'locations'),
   ])
   const [galleryResult, stockResult, mapResult, locationResult] = loc
   if (galleryResult.status !== 'fulfilled' || stockResult.status !== 'fulfilled') {
@@ -39,6 +35,7 @@ export async function init(ctx) {
   ctx.fishVisuals = galleryResult.value.fishVisuals || {}
   applyFishRouteCategoryDefault(ctx, categorySelect)
   window.__shopItems = items
+  renderShopFacts(ctx, items)
   const stock = stockResult.value
   const mapManifest = mapResult.status === 'fulfilled' ? mapResult.value : null
   const locations = locationResult.status === 'fulfilled' ? locationResult.value : null

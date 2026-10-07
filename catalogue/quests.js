@@ -188,7 +188,7 @@
   });
   var labels = {
     "bait:11": "Potato bait: town chest",
-    "bait:0B": "Waxworm: town chest",
+    "bait:0B": "Grapevine larva: town chest",
     "general_tool:17": "Key: shop and purchase locations",
     "fish:22": "Hariyo: bait and fishing locations",
     "general_tool:01": "Tub: exchange location",
@@ -210,14 +210,14 @@
   };
   var actions = {
     "potato-chest": {
-      title: "Have the key? Collect potato bait from the village chest",
+      title: "Collect potato bait from the Area 1 village chest (needs a key)",
       steps: [
-        "Already have key 17? Keep it. Otherwise buy one for ¥100 at the Area 1 regular shop, then leave a free bait slot.",
-        "Enter the village through the field entrance at (12,189). The chest is inside the town at (5,68), not on the fishing map.",
-        "Open the locked chest to receive potato bait 11; the key remains."
+        "If you already hold a spare key, use it. If not, buy one (¥100) at the Area 1 shop. Either way, free a bait slot first. The chest uses the key up.",
+        "Walk into the village through the field entrance at (12,189). The chest is inside the town at (5,68).",
+        "Examine the chest to get the potato bait."
       ],
-      warning: "Make space before opening; the reward checks bait inventory capacity.",
-      limit: "The entrance is paired from ROM data, not a walked route. Key availability and its shop quote are ROM-backed; no new key-purchase replay was run."
+      warning: "If the chest says your bait pouch is full, the key is kept. Free a slot, leave the town, come back in and open it again.",
+      limit: "The entrance pairing and the key stock and price come from the game data, not a walked route. Corrected 2026-10-07: the key is used up when the chest opens (earlier text said it stayed). Checked in the emulator on this chest."
     },
     "hariyo-tub": {
       title: "Trade a kept Hariyo for a tub, if you do not already own one",
@@ -230,24 +230,24 @@
       limit: "Exchange behavior was checked with supplied inventory. This does not establish a natural Hariyo catch or catch rate."
     },
     "waxworm-chest": {
-      title: "Use the key to collect waxworm bait",
+      title: "Collect grapevine larva bait from the Area 2 chest (needs a key)",
       steps: [
-        "Already have key 17? Keep it. Otherwise buy one for ¥100 at the Area 2 regular shop, then leave a free bait slot.",
-        "Use the field entrance at (85,28); the chest is inside the town at (4,6).",
-        "Open the locked chest for waxworm bait 0B; the key remains."
+        "If you already hold a spare key, use it. If not, buy one (¥100) at the Area 2 shop. Either way, free a bait slot first. The chest uses the key up.",
+        "Use the field entrance at (85,28). The chest is inside the town at (4,6).",
+        "Examine the chest to get the grapevine larva."
       ],
-      warning: "Leave bait space before opening the chest.",
-      limit: "Town coordinates are separate from outdoor coordinates. Entrance pairing and key stock/quote are ROM evidence, not a new natural travel or key-purchase replay."
+      warning: "If the chest says your bait pouch is full, the key is kept. Free a slot, leave the town, come back in and open it again.",
+      limit: "Town coordinates are separate from field coordinates. Entrance pairing and key stock and price come from the game data. Corrected 2026-10-07: the key is used up. The Area 1 chest was tested in the emulator; Areas 2, 4 and 6 use the same chest routine."
     },
     "milk-canoe": {
-      title: "Get a bottle, fill it with milk, then choose healing or a canoe",
+      title: "Get a bottle and fill it with milk: free healing, or trade it for a canoe",
       steps: [
-        "Leave a general-tool slot free. Enter town from field (26,39) and take bottle 0F from the town chest at (6,4); no key is required.",
-        "Bring that bottle to the cow on the Area 3 field at (6,103). It becomes milk 10.",
-        "Want canoe 02 and do not own it? Reserve the milk and talk to the canoe maker at field (28,39). Otherwise drink the milk to restore current HP to maximum, then refill the returned empty bottle at the cow."
+        "Free a tool slot. Enter the town from field (26,39) and take the bottle from the chest at (6,4). No key is needed.",
+        "Take the bottle to the cow in the Area 3 field at (6,103). The cow turns it into milk, and refills the bottle for free as often as you like.",
+        "Drink milk any time for a full heal. Or, if you want a canoe and do not own one, give fresh milk to the canoe maker at field (28,39) first."
       ],
-      warning: "Drinking uses the milk needed for the canoe exchange; refill before trading. Leave space for the initial bottle.",
-      limit: "This traces the bottle, cow and canoe consumers. It does not establish the canoe exchange’s full-inventory behavior or a naturally replayed travel route."
+      warning: "The canoe trade uses the milk up, so refill the bottle first if you already drank it. The maker refuses if you already own a canoe.",
+      limit: "Traced from the bottle, cow and canoe code, and checked in the emulator. What happens if your tool bag is full at the canoe trade has not been checked."
     },
     "yamanokami-daikon": {
       title: "Trade Yamanokami for a full food inventory only if you want daikon",
@@ -260,14 +260,14 @@
       limit: "The exchange was traced and checked with supplied inventory; natural acquisition of the fish was not replayed."
     },
     "small-lure-rod-chest": {
-      title: "Check the locked chest before buying the small lure rod",
+      title: "Get the small lure rod from the Area 4 chest instead of buying it (needs a key)",
       steps: [
-        "Already have key 17? Keep it. Otherwise buy one for ¥100 at the Area 4 regular shop, then leave a rod slot free.",
-        "Enter town from field (61,21); find the chest inside at (4,6).",
-        "The unopened locked chest grants small lure rod 0A and keeps the key. If you already have the rod, you need not buy another just for this action."
+        "If you already hold a spare key, use it. If not, buy one (¥100) at the Area 4 shop. Either way, free a rod slot first. The chest uses the key up. A ¥100 key is cheaper than buying the rod; skip all this if you already own the rod.",
+        "Enter the town from field (61,21). The chest is inside at (4,6).",
+        "Examine the chest to get the small lure rod."
       ],
-      warning: "Make rod inventory space before opening.",
-      limit: "Town chest and outdoor entrance are distinct locations. Entrance pairing and key stock/quote are ROM evidence, not a new natural travel or key-purchase replay."
+      warning: "If the chest says your rod slots are full, the key is kept. Free a slot, leave the town, come back in and open it again.",
+      limit: "Town chest and outdoor entrance are distinct locations. Entrance pairing and key stock and price come from the game data. Corrected 2026-10-07: the key is used up when the chest opens."
     },
     "fox-fireworks": {
       title: "Trigger the fox scene with fireworks; tofu is an alternative",
@@ -280,44 +280,46 @@
       limit: "The hint transaction does not prove scene completion. These are event-consumer traces, not a complete campaign walkthrough."
     },
     lottery: {
-      title: "Try the optional lottery using a ticket and spare food",
+      title: "Try the optional lottery: you must offer food to the Jizo first",
       steps: [
-        "Leave a general-tool slot free. Enter town from field (59,27) and collect ticket 11 from the town chest at (4,6); no key is needed.",
-        "If you already have spare food, offer Hinomaru bento 06 or daikon 07 to the field Jizo at (49,22) before drawing. They can improve more losing draws than orange 01 before the cap; near the cap the effect can tie.",
-        "Take the ticket to the field drawing counter at (54,22). The result can be ¥100, ¥1,000, ¥5,000 or a loss."
+        "Free a tool slot. Enter the town from field (59,27) and take the free ticket from the chest at (4,6). No key is needed.",
+        "Offer food to the Jizo in the field at (49,22) before you draw. Hinomaru bento and daikon add 40 each, orange adds 5. The more you offer, the better your chance, up to a cap of six or seven bento. With no offering, the ticket can never win.",
+        "Hand the ticket in at the drawing counter in the field at (54,22). You can win ¥100, ¥1,000 or ¥5,000, or nothing."
       ],
-      warning: "Offered food and the ticket are consumed. Do not buy food or trade a fish solely for this optional lottery; a prize is not guaranteed.",
-      limit: "The threshold and prize branches are decoded, not a measured probability or guaranteed reward. This is not required progression."
+      warning: "The food and the ticket are used up either way, and a prize is never guaranteed. A ¥1,000 or ¥5,000 win resets your offering to zero. Do not buy food or trade a fish just for this. A large offering also makes you lose hooks, lures and flies less often after you land a fish.",
+      limit: "Corrected 2026-10-07: earlier text called the offering optional; without it the ticket cannot win. The cap and the prize branches come from the game code; there is no measured win percentage. The lottery is not needed to finish the game."
     },
     "candle-reunion": {
-      title: "Collect the candle and bring it to the reunion NPC",
+      title: "Take the candle to the Area 6 reunion NPC (optional scene)",
       steps: [
-        "Already have key 17? Keep it. Otherwise buy one for ¥100 at the Area 6 regular shop, then leave a general-tool slot free.",
-        "Enter town from field (9,41); open its chest at town (4,6) for candle 12. The key remains.",
-        "Bring the candle to the Area 6 field NPC at (47,36). It is consumed to run the signal/reunion event; selecting Use on its own only shows a description."
+        "If you already hold a spare key, use it. If not, buy one (¥100) at the Area 6 shop. Either way, free a tool slot first. The chest uses the key up.",
+        "Enter the town from field (9,41) and open the chest at (4,6) to get the candle.",
+        "Give the candle to the NPC in the Area 6 field at (47,36). It is used up and the signal and reunion scene plays. Selecting the candle from the menu only shows a description."
       ],
-      warning: "Leave room before opening the chest. Keep the candle until you reach its event NPC.",
-      limit: "The later Akame dialogue for character selector 1 is a clue, not an exact fishing tile or a proved mandatory catch gate for every character."
+      warning: "Keep the candle until you reach that NPC. If the chest says your tool bag is full, the key is kept: free a slot, leave the town, come back in and try again.",
+      limit: "The later Akame dialogue for the top-left character (the brother, Taro) is a clue, not an exact fishing tile. Corrected 2026-10-07: the key is used up when the chest opens."
     },
     "giant-eel-return": {
-      title: "After the doctor request: keep the giant eel and return here",
+      title: "The ending: walk into the Area 1 village door at (12,189)",
       steps: [
-        "Only follow this return if the doctor-request story conditions are met and you have stored giant eel 3B in the keepnet.",
-        "Keep the eel; do not sell it or eat the first kept fish if that fish is the eel.",
-        "Enter the Area 1 village through field (12,189). The conditional arrival at town (7,77) runs the doctor recovery and ending scene; no separate doctor hand-in NPC is established."
+        "Do this last. Everything else must be done first: your character’s special fish, the village scene at field (8,183), 65 of the 66 fish kinds with the doctor’s note, and the giant eel caught.",
+        "You do not need to keep the eel. The game recorded the catch the moment you landed it.",
+        "Walk into the Area 1 village through the field door at (12,189). The ending scene plays: the doctor recovers and everyone eats together. Nothing is given, and you can keep playing afterwards."
       ],
-      warning: "An eel alone does not guarantee the ending. Check the received request and story state first.",
-      limit: "Static original-ROM control flow and dialogue, not a natural full-campaign replay. Exact rewards, eel consumption and Thai-patch equivalence are not independently proved."
+      warning: "If nothing happens, an earlier step is still missing. The Area 6 card lists the whole route.",
+      limit: "Corrected 2026-10-07: earlier text said to keep the eel for the ending; that is not needed. We drove the ending scene in the emulator with the story flags set directly, so the whole chain from a fresh save has not been played in one go. No item, HP or money change was seen. Thai-patch wording is not checked."
     },
     "giant-eel-request": {
-      title: "Have the doctor’s request? Target the giant eel, keep it, then return",
+      title: "The giant eel and the ending: the real route",
       steps: [
-        "Read received postcard 06 and check for the doctor’s request before following this route. If the request is absent, do not assume this objective is active.",
-        "Use the Area 6 heading/target at (41,8) when active, and choose compatible equipment from giant eel 3B’s profile.",
-        "Store and keep the eel, then follow the marked Area 1 village return at field (12,189); the conditional scene restores the doctor and reaches the ending."
+        "This ending is optional. It gives no item, HP or money, and play continues afterwards.",
+        "First catch your own character’s special fish (brother Taro: Akame, sister Kyoko: Tanago, father Yuzo: Namazu, mother Noriko: Koi). Then walk into the Area 1 village at field (8,183) so its scene plays.",
+        "Get 65 of the 66 fish kinds into your notebook, then read the received postcard. When the doctor’s giant-eel note appears, the Area 6 compass points to the eel at (41,8).",
+        "Catch the giant eel with compatible gear (see its fish page). You do not need to keep it.",
+        "Walk into the Area 1 village through the field door at (12,189). The ending scene plays."
       ],
-      warning: "The dynamic target may be inactive. Do not sell or eat the eel; catching it alone does not guarantee the ending.",
-      limit: "The postcard reader enables the heading only with 65 distinct nonzero notebook species records and the required story state; this is not 65 catches, a per-area quota or automatic mail generation. The return branch is ROM-backed, but ordinary-save completion was not replayed. Exact rewards, eel consumption and Thai-patch equivalence remain unproved."
+      warning: "Catching the eel alone is not enough; the earlier steps must be done first. The food and sale menus hide your first giant eel until the ending is done, so you cannot lose it by accident.",
+      limit: "Corrected 2026-10-07: earlier text said to keep the eel and avoid eating it; the eel only has to be caught. We drove the ending scene in the emulator with the story flags set directly, so the whole chain from a fresh save has not been played in one go. The fish that counts as your character’s own comes from the game’s data tables. The postcard note needs 65 distinct species records, not 65 catches. Thai-patch wording is not checked."
     }
   };
 
@@ -351,14 +353,14 @@
   };
   var actions2 = {
     "potato-chest": {
-      title: "มีกุญแจแล้ว? รับเหยื่อมันฝรั่งจากหีบในหมู่บ้าน",
+      title: "รับเหยื่อมันฝรั่งจากหีบในหมู่บ้านด่าน 1 (ต้องมีกุญแจ)",
       steps: [
-        "ถ้ามีกุญแจ 17 แล้วให้ใช้ของเดิม ถ้ายังไม่มี ซื้อหนึ่งดอกจากร้านอุปกรณ์ปกติด่าน 1 ราคา ¥100 แล้วเว้นช่องเหยื่อให้ว่างก่อนเปิดหีบ",
-        "เข้าหมู่บ้านทางพิกัดสนาม (12,189) หีบอยู่ในเมืองที่ (5,68) ไม่ใช่จุดบนแผนที่ตกปลา",
-        "เปิดหีบล็อกเพื่อรับเหยื่อมันฝรั่ง 11 กุญแจยังอยู่"
+        "ถ้ามีกุญแจสำรองอยู่แล้วให้ใช้ได้เลย ถ้ายังไม่มี ซื้อหนึ่งดอก (¥100) ที่ร้านด่าน 1 ไม่ว่าแบบไหนให้เว้นช่องเหยื่อให้ว่างก่อน เปิดหีบแล้วกุญแจจะหมดไป",
+        "เดินเข้าหมู่บ้านทางสนาม (12,189) หีบอยู่ในเมืองที่ (5,68)",
+        "กดตรวจหีบเพื่อรับเหยื่อมันฝรั่ง"
       ],
-      warning: "ต้องมีช่องเหยื่อว่างก่อนเปิด เพราะเกมตรวจความจุช่องเหยื่อตอนให้ของ",
-      limit: "จับคู่ทางเข้าและตรวจสต็อกกับราคาขายกุญแจจาก ROM ยังไม่ได้เดินเส้นทางนี้จากเซฟปกติหรือทดลองซื้อกุญแจใหม่ในรอบนี้"
+      warning: "ถ้าเกมบอกว่าช่องเหยื่อเต็ม กุญแจจะยังอยู่ ให้เว้นช่อง เดินออกจากเมืองแล้วเข้าใหม่ แล้วเปิดอีกครั้ง",
+      limit: "การจับคู่ทางเข้า สต็อกและราคากุญแจมาจากข้อมูลเกม ไม่ใช่เส้นทางที่เดินจริง แก้ไข 2026-10-07: กุญแจหมดไปเมื่อเปิดหีบ (ข้อความเดิมเขียนว่ากุญแจยังอยู่) ทดสอบในอีมูเลเตอร์กับหีบใบนี้แล้ว"
     },
     "hariyo-tub": {
       title: "เก็บฮาริโยะไว้แลกกะละมัง ถ้ายังไม่มี",
@@ -371,24 +373,24 @@
       limit: "ตรวจการแลกด้วยการเตรียมไอเท็มในเซฟทดลอง ไม่ใช่หลักฐานว่าตกฮาริโยะจากการเล่นปกติได้แล้ว หรือพิสูจน์อัตราจับ"
     },
     "waxworm-chest": {
-      title: "ใช้กุญแจรับหนอนองุ่นจากหีบ",
+      title: "รับหนอนองุ่นจากหีบด่าน 2 (ต้องมีกุญแจ)",
       steps: [
-        "ถ้ามีกุญแจ 17 แล้วให้ใช้ของเดิม ถ้ายังไม่มี ซื้อหนึ่งดอกจากร้านอุปกรณ์ปกติด่าน 2 ราคา ¥100 แล้วเว้นช่องเหยื่อให้ว่าง",
-        "เข้าทางพิกัดสนาม (85,28) หีบอยู่ในเมืองที่ (4,6)",
-        "เปิดหีบล็อกเพื่อรับหนอนองุ่น 0B กุญแจไม่หาย"
+        "ถ้ามีกุญแจสำรองอยู่แล้วให้ใช้ได้เลย ถ้ายังไม่มี ซื้อหนึ่งดอก (¥100) ที่ร้านด่าน 2 ไม่ว่าแบบไหนให้เว้นช่องเหยื่อให้ว่างก่อน เปิดหีบแล้วกุญแจจะหมดไป",
+        "เข้าทางสนาม (85,28) หีบอยู่ในเมืองที่ (4,6)",
+        "กดตรวจหีบเพื่อรับหนอนองุ่น"
       ],
-      warning: "เว้นช่องเหยื่อก่อนเปิดหีบ",
-      limit: "พิกัดในเมืองคนละชุดกับพิกัดสนาม ทางเข้ากับสต็อกและราคาขายกุญแจมาจาก ROM ยังไม่ใช่การเดินหรือทดลองซื้อกุญแจจากเซฟปกติในรอบนี้"
+      warning: "ถ้าเกมบอกว่าช่องเหยื่อเต็ม กุญแจจะยังอยู่ ให้เว้นช่อง เดินออกจากเมืองแล้วเข้าใหม่ แล้วเปิดอีกครั้ง",
+      limit: "พิกัดในเมืองคนละชุดกับพิกัดสนาม การจับคู่ทางเข้า สต็อกและราคากุญแจมาจากข้อมูลเกม แก้ไข 2026-10-07: กุญแจหมดไปเมื่อเปิดหีบ ทดสอบในอีมูเลเตอร์กับหีบด่าน 1 ส่วนด่าน 2, 4 และ 6 ใช้โค้ดชุดเดียวกัน"
     },
     "milk-canoe": {
-      title: "รับขวด เติมนม แล้วเลือกดื่มหรือแลกแคนู",
+      title: "รับขวดแล้วเติมนม: ฟื้น HP ฟรี หรือเอาไปแลกแคนู",
       steps: [
-        "เว้นช่องอุปกรณ์ทั่วไป เข้าหมู่บ้านทางสนาม (26,39) รับขวดเปล่า 0F จากหีบในเมืองที่ (6,4) ไม่ต้องใช้กุญแจ",
-        "นำขวดนี้ไปหาวัวในสนามด่าน 3 ที่ (6,103) ขวดจะเปลี่ยนเป็นนม 10",
-        "ถ้าอยากได้แคนู 02 และยังไม่มี ให้เก็บนมไว้คุยกับคนทำเรือที่สนาม (28,39) ถ้าจะฟื้น HP ให้ดื่มนมจน HP เต็ม แล้วนำขวดเปล่าที่ได้คืนไปเติมที่วัว"
+        "เว้นช่องอุปกรณ์ทั่วไปให้ว่าง เข้าหมู่บ้านทางสนาม (26,39) แล้วรับขวดจากหีบในเมืองที่ (6,4) ไม่ต้องใช้กุญแจ",
+        "นำขวดไปหาวัวในสนามด่าน 3 ที่ (6,103) วัวจะเปลี่ยนขวดเป็นนม และเติมขวดให้ฟรีกี่ครั้งก็ได้",
+        "ดื่มนมได้ทุกเมื่อเพื่อฟื้น HP เต็ม หรือถ้าอยากได้แคนูและยังไม่มี ให้เอานมสดไปให้ช่างทำเรือที่สนาม (28,39) ก่อน"
       ],
-      warning: "ดื่มแล้วจะไม่มีนมให้แลกแคนู ต้องเติมใหม่ก่อนแลก เว้นช่องไว้รับขวดครั้งแรกด้วย",
-      limit: "ยืนยันตัวรับขวด วัว และการแลกแคนู แต่ยังไม่ยืนยันผลเมื่อช่องเต็มตอนแลกแคนู หรือการเดินเส้นทางทั้งหมดจากเซฟปกติ"
+      warning: "การแลกแคนูใช้นมหมดไป ถ้าดื่มไปแล้วให้เติมขวดที่วัวก่อนแลก ถ้ามีแคนูอยู่แล้ว ช่างจะไม่รับแลก",
+      limit: "ตามโค้ดของขวด วัว และแคนู และตรวจในอีมูเลเตอร์แล้ว ยังไม่ได้ตรวจว่าเกิดอะไรขึ้นถ้าช่องอุปกรณ์เต็มตอนแลกแคนู"
     },
     "yamanokami-daikon": {
       title: "แลกยามาโนะคามิเมื่ออยากเปลี่ยนอาหารทั้งกระเป๋าเป็นหัวไชเท้า",
@@ -401,14 +403,14 @@
       limit: "แกะโค้ดและตรวจการแลกด้วยการเตรียมไอเท็ม ยังไม่ได้เล่นจากเซฟปกติจนได้ปลาตัวนี้"
     },
     "small-lure-rod-chest": {
-      title: "เช็กหีบล็อกก่อนซื้อคันลัวร์เล็ก",
+      title: "รับคันลัวร์เล็กจากหีบด่าน 4 แทนการซื้อ (ต้องมีกุญแจ)",
       steps: [
-        "ถ้ามีกุญแจ 17 แล้วให้ใช้ของเดิม ถ้ายังไม่มี ซื้อหนึ่งดอกจากร้านอุปกรณ์ปกติด่าน 4 ราคา ¥100 แล้วเว้นช่องคันเบ็ดว่าง",
+        "ถ้ามีกุญแจสำรองอยู่แล้วให้ใช้ได้เลย ถ้ายังไม่มี ซื้อหนึ่งดอก (¥100) ที่ร้านด่าน 4 ไม่ว่าแบบไหนให้เว้นช่องคันเบ็ดให้ว่างก่อน เปิดหีบแล้วกุญแจจะหมดไป กุญแจ ¥100 ถูกกว่าซื้อคัน ถ้ามีคันนี้อยู่แล้วให้ข้ามทั้งหมด",
         "เข้าหมู่บ้านจากสนาม (61,21) หีบอยู่ในเมืองที่ (4,6)",
-        "หีบล็อกที่ยังไม่เปิดให้คันลัวร์เล็ก 0A และไม่ใช้กุญแจทิ้ง ถ้ามีคันนี้แล้วไม่จำเป็นต้องซื้อซ้ำเพื่อทำรายการนี้"
+        "กดตรวจหีบเพื่อรับคันลัวร์เล็ก"
       ],
-      warning: "เว้นช่องคันเบ็ดก่อนเปิดหีบ",
-      limit: "หีบในเมืองกับทางเข้าสนามเป็นคนละตำแหน่ง ทางเข้ากับสต็อกและราคาขายกุญแจมาจาก ROM ยังไม่ใช่การเดินหรือทดลองซื้อกุญแจจากเซฟปกติในรอบนี้"
+      warning: "ถ้าเกมบอกว่าช่องคันเบ็ดเต็ม กุญแจจะยังอยู่ ให้เว้นช่อง เดินออกจากเมืองแล้วเข้าใหม่ แล้วเปิดอีกครั้ง",
+      limit: "หีบในเมืองกับทางเข้าสนามเป็นคนละตำแหน่ง การจับคู่ทางเข้า สต็อกและราคากุญแจมาจากข้อมูลเกม แก้ไข 2026-10-07: กุญแจหมดไปเมื่อเปิดหีบ"
     },
     "fox-fireworks": {
       title: "ใช้ประทัดเรียกฉากจิ้งจอกได้เลย เต้าหู้เป็นอีกทางเลือก",
@@ -421,44 +423,46 @@
       limit: "การได้คำใบ้ไม่ได้พิสูจน์ว่าจบฉากจิ้งจอก นี่เป็นโค้ดตัวรับเหตุการณ์ ไม่ใช่บทสรุปเส้นทางจบเกมทั้งหมด"
     },
     lottery: {
-      title: "ลองจับสลากด้วยตั๋วและอาหารเหลือ เป็นกิจกรรมเสริม",
+      title: "ลองจับสลากเสริม: ต้องถวายอาหารที่จิโซก่อน",
       steps: [
-        "เว้นช่องอุปกรณ์ทั่วไป เข้าหมู่บ้านจากสนาม (59,27) รับสลาก 11 จากหีบในเมือง (4,6) ไม่ต้องใช้กุญแจ",
-        "ถ้ามีอาหารเหลือ ให้ข้าวกล่องบ๊วย 06 หรือหัวไชเท้า 07 แก่จิโซในสนาม (49,22) ก่อนจับรางวัล สองชิ้นนี้ช่วยเปลี่ยนผลแพ้ได้มากกว่าส้ม 01 ก่อนถึงเพดาน แต่ใกล้เพดานอาจได้ผลเท่ากัน",
-        "นำสลากไปจุดจับรางวัลในสนาม (54,22) อาจได้ ¥100 / ¥1,000 / ¥5,000 หรือไม่ได้รางวัล"
+        "เว้นช่องอุปกรณ์ทั่วไปให้ว่าง เข้าหมู่บ้านจากสนาม (59,27) แล้วรับสลากฟรีจากหีบในเมืองที่ (4,6) ไม่ต้องใช้กุญแจ",
+        "ก่อนจับ ให้ถวายอาหารแก่จิโซในสนามที่ (49,22) ข้าวกล่องบ๊วยและหัวไชเท้าเพิ่ม 40 ต่อชิ้น ส้มเพิ่ม 5 ยิ่งถวายมากยิ่งมีโอกาสถูก สูงสุดประมาณข้าวกล่อง 6-7 ชิ้น ถ้าไม่ถวาย สลากจะไม่มีวันถูก",
+        "นำสลากไปส่งที่จุดจับรางวัลในสนาม (54,22) อาจได้ ¥100 / ¥1,000 / ¥5,000 หรือไม่ได้อะไร"
       ],
-      warning: "อาหารที่ให้และสลากถูกใช้ไป ไม่ควรซื้ออาหารหรือแลกปลาเพื่อจับสลากอย่างเดียว เพราะไม่รับประกันรางวัล",
-      limit: "ยืนยันเงื่อนไขและเงินรางวัลแล้ว แต่ยังไม่ใช่อัตราชนะที่วัดจากการเล่น และไม่ใช่ขั้นตอนบังคับของเนื้อเรื่อง"
+      warning: "อาหารที่ถวายและสลากถูกใช้หมดไปไม่ว่าจะถูกหรือไม่ และไม่รับประกันรางวัล ถ้าถูก ¥1,000 หรือ ¥5,000 ค่าถวายจะกลับเป็น 0 อย่าซื้ออาหารหรือแลกปลาเพื่อสลากอย่างเดียว ถวายมากยังช่วยให้เสียเบ็ด ลัวร์ และฟลายน้อยลงหลังตกปลาขึ้นมาได้",
+      limit: "แก้ไข 2026-10-07: ข้อความเดิมบอกว่าการถวายเป็นของเสริม แต่ถ้าไม่ถวาย สลากจะไม่ถูก เพดานและแขนงรางวัลมาจากโค้ดเกม ไม่มีอัตราชนะที่วัดจริง การจับสลากไม่จำเป็นต่อการจบเกม"
     },
     "candle-reunion": {
-      title: "รับเทียนแล้วนำไปให้คนที่จุดนัดพบ",
+      title: "นำเทียนไปให้ NPC ที่จุดนัดพบด่าน 6 (ฉากเสริม)",
       steps: [
-        "ถ้ามีกุญแจ 17 แล้วให้ใช้ของเดิม ถ้ายังไม่มี ซื้อหนึ่งดอกจากร้านอุปกรณ์ปกติด่าน 6 ราคา ¥100 แล้วเว้นช่องอุปกรณ์ทั่วไป",
-        "เข้าหมู่บ้านจากสนาม (9,41) เปิดหีบในเมือง (4,6) รับเทียน 12 กุญแจยังอยู่",
-        "นำเทียนไปหา NPC ในสนามด่าน 6 ที่ (47,36) เทียนถูกใช้ไปเพื่อเริ่มเหตุการณ์ส่งสัญญาณ/กลับมาพบกัน กดใช้เทียนเฉย ๆ จะแสดงแค่คำอธิบาย"
+        "ถ้ามีกุญแจสำรองอยู่แล้วให้ใช้ได้เลย ถ้ายังไม่มี ซื้อหนึ่งดอก (¥100) ที่ร้านด่าน 6 ไม่ว่าแบบไหนให้เว้นช่องอุปกรณ์ทั่วไปให้ว่างก่อน เปิดหีบแล้วกุญแจจะหมดไป",
+        "เข้าหมู่บ้านจากสนาม (9,41) แล้วเปิดหีบในเมืองที่ (4,6) เพื่อรับเทียน",
+        "นำเทียนไปให้ NPC ในสนามด่าน 6 ที่ (47,36) เทียนจะหมดไปและฉากส่งสัญญาณ/พบกันจะเดินต่อ กดเลือกเทียนจากเมนูเฉย ๆ จะขึ้นแค่คำอธิบาย"
       ],
-      warning: "เว้นช่องก่อนเปิดหีบ และเก็บเทียนจนถึง NPC ที่ใช้ในเหตุการณ์",
-      limit: "บทพูดเรื่องอาคาเมะภายหลังของตัวละครหมายเลข 1 เป็นคำใบ้ ไม่ใช่พิกัดตกที่แน่นอนหรือข้อพิสูจน์ว่าทุกตัวละครต้องตกปลานี้เพื่อไปต่อ"
+      warning: "เก็บเทียนไว้จนถึง NPC คนนั้น ถ้าเกมบอกว่าช่องอุปกรณ์เต็ม กุญแจจะยังอยู่ ให้เว้นช่อง เดินออกจากเมืองแล้วเข้าใหม่ แล้วเปิดอีกครั้ง",
+      limit: "บทพูดเรื่องอาคาเมะภายหลังของตัวละครซ้ายบน (พี่ชายทาโร่) เป็นคำใบ้ ไม่ใช่พิกัดตกที่แน่นอน แก้ไข 2026-10-07: กุญแจหมดไปเมื่อเปิดหีบ"
     },
     "giant-eel-return": {
-      title: "หลังได้รับคำขอของหมอ: เก็บปลาไหลยักษ์แล้วกลับหมู่บ้านนี้",
+      title: "ฉากจบ: เดินเข้าประตูหมู่บ้านด่าน 1 ที่ (12,189)",
       steps: [
-        "ทำตามเส้นทางกลับนี้เมื่อเข้าเงื่อนไขเนื้อเรื่องคำขอของหมอ และเก็บปลาไหลยักษ์ 3B ในกระชังแล้วเท่านั้น",
-        "อย่าขายปลาไหล และอย่ากินปลาตัวแรกในกระชังถ้าตัวแรกคือปลาไหล",
-        "เข้าหมู่บ้านด่าน 1 ทางสนาม (12,189) เมื่อเข้าเงื่อนไข การมาถึงในเมืองที่ (7,77) จะเริ่มฉากหมอฟื้นและตอนจบ ยังไม่มีหลักฐานว่าต้องไปส่งกับ NPC หมอแยกต่างหาก"
+        "ทำเป็นขั้นสุดท้าย ต้องทำอย่างอื่นให้ครบก่อน: ปลาประจำตัวละครของคุณ ฉากในหมู่บ้านที่สนาม (8,183) ปลาครบ 65 จาก 66 ชนิดพร้อมข้อความของหมอ และตกปลาไหลยักษ์ได้แล้ว",
+        "ไม่ต้องเก็บปลาไหลไว้ เกมบันทึกว่าตกได้ตั้งแต่ตอนที่ตกขึ้นมา",
+        "เดินเข้าหมู่บ้านด่าน 1 ทางประตูสนาม (12,189) ฉากจบจะเริ่ม: หมอหายป่วยและทุกคนกินปลาด้วยกัน ไม่ได้ของอะไร และเล่นต่อได้"
       ],
-      warning: "มีปลาไหลอย่างเดียวไม่ได้รับประกันตอนจบ ต้องเช็กคำขอที่ได้รับและเงื่อนไขเนื้อเรื่องด้วย",
-      limit: "หลักฐานจากโค้ดและบทพูด ROM ญี่ปุ่น ยังไม่ได้เล่นจบจากเซฟปกติ ไม่ยืนยันรางวัลแน่นอน การใช้ปลาไหลทิ้ง หรือความตรงกันของแพตช์ไทย"
+      warning: "ถ้าไม่มีอะไรเกิดขึ้น แสดงว่ายังขาดขั้นก่อนหน้า รายการทั้งหมดอยู่ในการ์ดของด่าน 6",
+      limit: "แก้ไข 2026-10-07: ข้อความเดิมบอกให้เก็บปลาไหลไว้เพื่อฉากจบ ซึ่งไม่จำเป็น ทดสอบฉากจบในอีมูเลเตอร์โดยตั้งแฟล็กเนื้อเรื่องตรง ๆ จึงยังไม่ได้เล่นซ้ำทั้งสายตั้งแต่เซฟใหม่จนจบ ไม่พบการเปลี่ยนแปลงของไอเท็ม HP หรือเงิน ยังไม่ได้ตรวจถ้อยคำของแพตช์ไทย"
     },
     "giant-eel-request": {
-      title: "ได้รับคำขอของหมอแล้ว? ตกปลาไหลยักษ์ เก็บไว้ แล้วกลับหมู่บ้าน",
+      title: "ปลาไหลยักษ์กับฉากจบ: ขั้นตอนจริง",
       steps: [
-        "เปิดไปรษณียบัตรที่ได้รับ 06 ตรวจว่ามีคำขอของหมอก่อนทำตามเส้นทางนี้ ถ้ายังไม่มีคำขอ อย่าเพิ่งถือว่าเป้าหมายนี้เปิดแล้ว",
-        "ใช้ทิศทาง/จุดเป้าหมายด่าน 6 ที่ (41,8) เมื่อเปิดทำงานแล้ว และเลือกอุปกรณ์ที่ใช้ได้จากหน้าปลาไหลยักษ์ 3B",
-        "เก็บปลาไหลในกระชัง แล้วกลับหมู่บ้านด่าน 1 ทางสนาม (12,189) ที่ทำเครื่องหมายไว้ เมื่อเข้าเงื่อนไขจะเกิดฉากหมอฟื้นและตอนจบ"
+        "ฉากจบนี้เป็นของเสริม ไม่ได้รับไอเท็ม HP หรือเงินเพิ่ม และเล่นต่อได้",
+        "ก่อนอื่นตกปลาประจำตัวละครของคุณให้ได้ (พี่ชายทาโร่: อาคาเมะ น้องสาวเคียวโกะ: ทานาโกะ พ่อยูโซ: นามาซุ แม่โนริโกะ: โคอิ) แล้วเดินเข้าหมู่บ้านด่าน 1 ทางสนาม (8,183) เพื่อให้ฉากในหมู่บ้านเล่น",
+        "ทำให้สมุดบันทึกปลาครบ 65 จาก 66 ชนิด แล้วเปิดอ่านไปรษณียบัตรที่ได้รับ เมื่อข้อความเรื่องปลาไหลยักษ์ของหมอปรากฏ เข็มทิศในด่าน 6 จะชี้ไปที่ปลาไหลที่ (41,8)",
+        "ตกปลาไหลยักษ์ด้วยอุปกรณ์ที่ใช้ได้ (ดูหน้าปลาของมัน) ไม่ต้องเก็บไว้",
+        "เดินเข้าหมู่บ้านด่าน 1 ทางประตูสนาม (12,189) ฉากจบจะเริ่ม"
       ],
-      warning: "จุดเป้าหมายแบบไดนามิกอาจยังไม่ทำงาน อย่าขายหรือกินปลาไหล การตกได้อย่างเดียวไม่รับประกันตอนจบ",
-      limit: "โค้ดอ่านไปรษณียบัตรเปิดทิศทางเมื่อมีช่องสถิติสมุดที่ไม่เป็นศูนย์ 65 ชนิดและสถานะเนื้อเรื่องที่กำหนด ไม่ใช่ตก 65 ตัว โควตาของด่าน หรือเงื่อนไขที่สร้างจดหมายให้อัตโนมัติ ทางกลับหมู่บ้านมาจากข้อมูลในเกม แต่ยังไม่ได้เล่นจบด้วยเซฟปกติ รางวัล การใช้ปลาไหลทิ้ง และความตรงกันของแพตช์ไทยยังไม่ยืนยัน"
+      warning: "ตกปลาไหลได้อย่างเดียวไม่พอ ต้องทำขั้นก่อนหน้าให้ครบก่อน เมนูอาหารและเมนูขายจะซ่อนปลาไหลยักษ์ตัวแรกของคุณไว้จนกว่าฉากจบจะเล่น จึงไม่เสียมันไปโดยไม่ตั้งใจ",
+      limit: "แก้ไข 2026-10-07: ข้อความเดิมบอกให้เก็บปลาไหลและอย่ากิน แต่จริง ๆ แค่ตกให้ได้ก็พอ ทดสอบฉากจบในอีมูเลเตอร์โดยตั้งแฟล็กเนื้อเรื่องตรง ๆ จึงยังไม่ได้เล่นซ้ำทั้งสายตั้งแต่เซฟใหม่จนจบ ปลาที่นับเป็นของตัวละครอ่านจากตารางข้อมูลของเกม ข้อความของหมอต้องมีบันทึกปลา 65 ชนิดที่ต่างกัน ไม่ใช่ตก 65 ครั้ง ยังไม่ได้ตรวจถ้อยคำของแพตช์ไทย"
     }
   };
 
@@ -492,14 +496,14 @@
   };
   var actions3 = {
     "potato-chest": {
-      title: "カギがあれば、村の宝箱からイモエサを取る",
+      title: "エリア1の村の宝箱でイモエサを取る（カギが必要）",
       steps: [
-        "カギ17があればそのまま使う。なければエリア1の通常の道具店で1個100円で買い、エサ欄を1つ空ける。",
-        "フィールド（12,189）から村へ入る。宝箱は町の（5,68）にあり、釣り場の座標ではない。",
-        "施錠された宝箱からイモエサ11を受け取る。カギは残る。"
+        "カギを持っていればそれを使う。持っていなければエリア1の店で1個買う（100円）。どちらの場合も先にエサ欄を1つ空ける。宝箱を開けるとカギは消費される。",
+        "フィールド（12,189）の入口から村へ入る。宝箱は町の（5,68）にある。",
+        "宝箱を調べてイモエサを受け取る。"
       ],
-      warning: "開ける前にエサ欄を空ける。報酬を渡す処理はエサ欄の容量を確認する。",
-      limit: "入口の対応とカギの店頭在庫・販売価格はROMから確認。通常セーブからの移動や今回の新しいカギ購入再現ではない。"
+      warning: "エサ欄がいっぱいと言われたら、カギは残っている。欄を空け、町を出て入り直し、もう一度開ける。",
+      limit: "入口の対応とカギの在庫・価格はゲームデータに基づくもので、実際に歩いた経路ではない。2026-10-07訂正：宝箱を開けるとカギは消費される（以前は「残る」と書いていた）。この宝箱でエミュレーター確認済み。"
     },
     "hariyo-tub": {
       title: "タライをまだ持っていなければ、ハリヨを残して交換する",
@@ -512,24 +516,24 @@
       limit: "交換は用意した所持品による検証。通常プレイでのハリヨの捕獲や捕獲率を示すものではない。"
     },
     "waxworm-chest": {
-      title: "カギで宝箱を開け、ブドウムシを取る",
+      title: "エリア2の宝箱でブドウムシを取る（カギが必要）",
       steps: [
-        "カギ17があればそのまま使う。なければエリア2の通常の道具店で1個100円で買い、エサ欄を1つ空ける。",
-        "フィールド（85,28）の入口から町へ。宝箱は町の（4,6）にある。",
-        "施錠された宝箱からブドウムシ0Bを受け取る。カギは消費しない。"
+        "カギを持っていればそれを使う。持っていなければエリア2の店で1個買う（100円）。どちらの場合も先にエサ欄を1つ空ける。宝箱を開けるとカギは消費される。",
+        "フィールド（85,28）の入口から入る。宝箱は町の（4,6）にある。",
+        "宝箱を調べてブドウムシを受け取る。"
       ],
-      warning: "宝箱を開ける前にエサ欄を空ける。",
-      limit: "町とフィールドの座標は別。入口の対応とカギの在庫・販売価格はROMの証拠で、今回の通常移動やカギ購入の再現ではない。"
+      warning: "エサ欄がいっぱいと言われたら、カギは残っている。欄を空け、町を出て入り直し、もう一度開ける。",
+      limit: "町の座標はフィールドの座標とは別。入口の対応とカギの在庫・価格はゲームデータに基づく。2026-10-07訂正：カギは消費される。エミュレーターで確認したのはエリア1の宝箱で、エリア2・4・6は同じ処理を使う。"
     },
     "milk-canoe": {
-      title: "空きビンに牛乳を入れ、回復かカヌー交換を選ぶ",
+      title: "ビンを取って牛乳にする：無料の回復か、カヌーと交換",
       steps: [
-        "道具欄を1つ空ける。フィールド（26,39）から町へ入り、町の宝箱（6,4）で空きビン0Fを取る。カギは不要。",
-        "そのビンをエリア3のフィールド（6,103）の牛へ持っていく。牛乳10に変わる。",
-        "カヌー02が欲しく、まだ持っていなければ、牛乳を飲まずにフィールド（28,39）の作り手へ。回復したい場合は牛乳を飲んで現在HPを最大まで戻し、返った空きビンを牛の所で再び満たす。"
+        "道具欄を1つ空ける。フィールド（26,39）から町へ入り、（6,4）の宝箱からビンを取る。カギは不要。",
+        "エリア3のフィールド（6,103）の牛にビンを持っていく。牛がビンを牛乳にし、何度でも無料で補充してくれる。",
+        "牛乳はいつでも飲んで全回復できる。カヌーが欲しくてまだ持っていないなら、先に新しい牛乳をフィールド（28,39）の船大工に渡す。"
       ],
-      warning: "飲むと交換用の牛乳がなくなる。交換する前に再び満たす。最初のビンを受け取る空きも必要。",
-      limit: "ビン・牛・カヌーの処理を確認。カヌー交換時の満杯挙動や通常セーブからの移動全体は未確認。"
+      warning: "カヌーの交換で牛乳は消費される。先に飲んでしまったら、牛でビンを補充してから渡す。すでにカヌーを持っていると船大工は断る。",
+      limit: "ビン・牛・カヌーの処理を追跡し、エミュレーターで確認した。カヌー交換時に道具欄がいっぱいの場合の挙動は未確認。"
     },
     "yamanokami-daikon": {
       title: "食べ物をすべて大根にしたいときだけヤマノカミを交換する",
@@ -542,14 +546,14 @@
       limit: "コードと用意した所持品で交換を確認。通常プレイでの魚の入手は再現していない。"
     },
     "small-lure-rod-chest": {
-      title: "ルアーロッド小を買う前に、施錠された宝箱を確認する",
+      title: "買う前にエリア4の宝箱でルアーロッド小を取る（カギが必要）",
       steps: [
-        "カギ17があればそのまま使う。なければエリア4の通常の道具店で1個100円で買い、竿欄を1つ空ける。",
-        "フィールド（61,21）から町に入り、町の（4,6）の宝箱を探す。",
-        "未開封の宝箱からルアーロッド小0Aを受け取る。カギは残る。すでに持っているなら、このためにもう1本買う必要はない。"
+        "カギを持っていればそれを使う。持っていなければエリア4の店で1個買う（100円）。どちらの場合も先に竿欄を1つ空ける。宝箱を開けるとカギは消費される。竿を買うより100円のカギのほうが安い。すでに竿を持っているなら、ここは飛ばす。",
+        "フィールド（61,21）から町に入る。宝箱は中の（4,6）にある。",
+        "宝箱を調べてルアーロッド小を受け取る。"
       ],
-      warning: "開ける前に竿欄の空きを作る。",
-      limit: "町の宝箱とフィールドの入口は別。入口の対応とカギの在庫・販売価格はROMの証拠で、今回の通常移動やカギ購入の再現ではない。"
+      warning: "竿欄がいっぱいと言われたら、カギは残っている。欄を空け、町を出て入り直し、もう一度開ける。",
+      limit: "町の宝箱とフィールドの入口は別の場所。入口の対応とカギの在庫・価格はゲームデータに基づく。2026-10-07訂正：宝箱を開けるとカギは消費される。"
     },
     "fox-fireworks": {
       title: "花火でキツネの場面を起こす。油揚げは別ルート",
@@ -562,44 +566,46 @@
       limit: "ヒントをもらうことは場面完了の証拠ではない。イベント処理の確認であり、全ストーリーの攻略ではない。"
     },
     lottery: {
-      title: "富くじと余った食べ物で、任意の抽選を試す",
+      title: "任意のくじ：先にお地蔵さまへ食べ物を供える",
       steps: [
-        "道具欄を1つ空ける。フィールド（59,27）から町へ入り、町の宝箱（4,6）で富くじ11を取る。カギは不要。",
-        "余り物があれば、抽選前にフィールド（49,22）の地蔵へ日の丸弁当06か大根07を供える。上限前ならミカン01より多くの外れを当たりに変えられるが、上限近くでは効果が同じ場合もある。",
-        "フィールド（54,22）の抽選所へくじを持っていく。100円・1,000円・5,000円、または外れ。"
+        "道具欄を1つ空ける。フィールド（59,27）から町へ入り、（4,6）の宝箱から無料の券を取る。カギは不要。",
+        "引く前に、フィールド（49,22）のお地蔵さまへ食べ物を供える。日の丸弁当と大根は1個で40、みかんは5。供えるほど当たりやすくなり、上限は弁当6〜7個分。供えなければ券は絶対に当たらない。",
+        "フィールド（54,22）の抽選所で券を出す。100円・1,000円・5,000円のどれかが当たるか、はずれる。"
       ],
-      warning: "供えた食べ物とくじは消費される。当選保証はないので、このためだけに食べ物を買ったり魚を交換したりしない。",
-      limit: "閾値と賞金の分岐を確認したもので、実測の当選率ではない。必須の進行ではない。"
+      warning: "供えた食べ物も券も、当たってもはずれても消費され、当選は保証されない。1,000円か5,000円が当たると供え物は0に戻る。このためだけに食べ物を買ったり魚を交換したりしない。多く供えると、魚を釣り上げた後にハリ・ルアー・毛バリを失いにくくもなる。",
+      limit: "2026-10-07訂正：以前は供え物を任意としていたが、供えなければ券は当たらない。上限と賞品の分岐はゲームのコードに基づき、測定した当選率はない。くじはクリアに必須ではない。"
     },
     "candle-reunion": {
-      title: "ロウソクを取って、再会イベントの人物へ届ける",
+      title: "ロウソクをエリア6の再会の人物に届ける（任意の場面）",
       steps: [
-        "カギ17があればそのまま使う。なければエリア6の通常の道具店で1個100円で買い、道具欄を1つ空ける。",
-        "フィールド（9,41）から町へ入り、町の宝箱（4,6）でロウソク12を取る。カギは残る。",
-        "エリア6のフィールド（47,36）の人物へ届ける。ロウソクを消費して合図・再会の場面が始まる。単に使用を選ぶだけでは説明文が出る。"
+        "カギを持っていればそれを使う。持っていなければエリア6の店で1個買う（100円）。どちらの場合も先に道具欄を1つ空ける。宝箱を開けるとカギは消費される。",
+        "フィールド（9,41）から町へ入り、（4,6）の宝箱を開けてロウソクを取る。",
+        "エリア6のフィールド（47,36）の人物にロウソクを渡す。ロウソクは消費され、合図と再会の場面が進む。メニューでロウソクを選んでも説明が出るだけ。"
       ],
-      warning: "宝箱を開ける前に空きを作り、イベントの人物に会うまでロウソクを残す。",
-      limit: "その後のキャラクター選択値1向けアカメの台詞はヒントであり、正確な釣り座標や全キャラクターの必須捕獲条件ではない。"
+      warning: "その人物に会うまでロウソクを残す。道具欄がいっぱいと言われたらカギは残っている。欄を空け、町を出て入り直してもう一度開ける。",
+      limit: "左上のキャラクター（兄の太郎）で後に出るアカメの台詞は手掛かりで、釣りタイルを示すものではない。2026-10-07訂正：宝箱を開けるとカギは消費される。"
     },
     "giant-eel-return": {
-      title: "医者の依頼の後：オオウナギを残してこの村へ戻る",
+      title: "エンディング：エリア1の村の入口（12,189）に入る",
       steps: [
-        "医者の依頼のストーリー条件を満たし、オオウナギ3Bを魚かごに保存した場合だけ、この帰路を使う。",
-        "売らずに残す。かごの先頭がオオウナギなら、先頭の魚を食べない。",
-        "エリア1のフィールド（12,189）から村へ入る。条件を満たした町（7,77）への到着で医者の回復とエンディングが始まる。別の医者NPCへの手渡し取引は確認されていない。"
+        "最後に行う。先に全部済ませておく：自分のキャラクター専用の魚、フィールド（8,183）での村の場面、66種類中65種類と医者のハガキの文面、オオウナギの捕獲。",
+        "オオウナギを残しておく必要はない。釣り上げた時点でゲームが記録している。",
+        "フィールド（12,189）の入口からエリア1の村へ入る。エンディングの場面が流れる（医者が回復し、みんなで食べる）。何ももらえず、その後もプレイを続けられる。"
       ],
-      warning: "ウナギだけではエンディングを保証しない。受け取った依頼とストーリー条件を先に確認する。",
-      limit: "日本語ROMの静的コードと台詞による証拠で、通常プレイの全行程再現ではない。正確な報酬、魚の消費、タイ語パッチとの一致は未確認。"
+      warning: "何も起きないときは、前の手順がまだ足りない。全手順はエリア6のカードにある。",
+      limit: "2026-10-07訂正：以前は「エンディングのためにウナギを残す」と書いていたが、その必要はない。エンディングの場面は、エミュレーターで物語フラグを直接設定して確認したもので、新規セーブからの全工程の通し再現ではない。アイテム・HP・お金の変化は確認されなかった。タイ語パッチの文面は未確認。"
     },
     "giant-eel-request": {
-      title: "医者の依頼があるなら、オオウナギを釣って残し、村へ戻る",
+      title: "オオウナギとエンディング：本当の手順",
       steps: [
-        "届いた絵はがき06を読み、医者の依頼があることを確認してからこのルートを使う。依頼がなければ、この目標が有効だとは考えない。",
-        "有効になったエリア6の方角・目標（41,8）を使い、オオウナギ3Bのページで対応する道具を選ぶ。",
-        "魚かごに保存して残し、印のあるエリア1の村入口、フィールド（12,189）へ戻る。条件を満たせば医者の回復とエンディングに進む。"
+        "このエンディングは任意。アイテム・HP・お金はもらえず、その後もプレイを続けられる。",
+        "まず自分のキャラクター専用の魚を釣る（兄の太郎：アカメ、妹の京子：タナゴ、父の雄三：ナマズ、母の紀子：コイ）。そのあとフィールド（8,183）からエリア1の村へ入り、村の場面を見る。",
+        "図鑑に66種類中65種類を記録してから、受け取ったハガキを読む。医者のオオウナギの文面が出たら、エリア6の磁石が（41,8）のオオウナギを指す。",
+        "対応する道具でオオウナギを釣る（魚のページを参照）。残しておく必要はない。",
+        "フィールド（12,189）の入口からエリア1の村へ入る。エンディングの場面が流れる。"
       ],
-      warning: "動的な目標はまだ無効の場合がある。売ったり食べたりしない。釣っただけではエンディングを保証しない。",
-      limit: "絵はがきの読取処理は、ゼロではない魚種記録65種類と所定のストーリー状態で方角を有効にする。65匹、エリア別ノルマ、自動的な手紙生成の条件ではない。帰村の分岐はROMから確認したが、通常セーブでの完走は再現していない。正確な報酬、魚の消費、タイ語パッチとの一致は未確認。"
+      warning: "ウナギを釣るだけでは足りない。前の手順を先に済ませる。食料と売却のメニューは、エンディングまで最初のオオウナギを隠すので、うっかり失うことはない。",
+      limit: "2026-10-07訂正：以前は「ウナギを残し、食べない」と書いていたが、釣るだけでよい。エンディングの場面は、エミュレーターで物語フラグを直接設定して確認したもので、新規セーブからの全工程の通し再現ではない。どの魚が自分のキャラクター専用かはゲームのデータ表に基づく。ハガキの文面には65種類の記録が必要で、65回釣るという意味ではない。タイ語パッチの文面は未確認。"
     }
   };
 

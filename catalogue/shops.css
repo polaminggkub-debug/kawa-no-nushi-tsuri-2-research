@@ -659,6 +659,32 @@ footer {
   color: var(--muted);
   padding-block: 6px;
 }
+.price-note {
+  margin: 2px 0 6px;
+  color: var(--muted);
+  font-size: 0.88rem;
+}
+.shop-facts {
+  margin: 18px 0;
+  padding: 12px 16px;
+  border: 1px solid var(--line, #d8e2d4);
+  border-radius: 10px;
+  background: var(--soft-green, #e9efe4);
+}
+.shop-facts h2 {
+  margin: 0 0 6px;
+  font-size: 1.1rem;
+}
+.shop-facts:empty {
+  display: none;
+}
+.shop-facts .fact-list {
+  margin: 0;
+  padding-left: 1.2rem;
+}
+.shop-facts .fact-list li {
+  margin: 6px 0;
+}
 
 /* src/pages/shops/styles/route-walk.css */
 .shop-walk {

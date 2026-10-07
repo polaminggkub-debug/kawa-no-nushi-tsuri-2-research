@@ -19,6 +19,7 @@ for (const file of [
   'catalogue/shops.css',
   'catalogue/quests.css',
   'catalogue/fight-sim.css',
+  'catalogue/gear-guide.css',
   'research/strategy.css',
 ]) {
   assert(outputs.has(file), `Missing stylesheet output ${file}`)

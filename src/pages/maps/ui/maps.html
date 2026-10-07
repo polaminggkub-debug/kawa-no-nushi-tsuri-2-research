@@ -51,6 +51,7 @@
       >
       <div class="compendium-links">
         <a data-compendium-destination="0" href="index.html#catalogue">Equipment</a
+        ><a data-compendium-destination="6" href="gear-guide.html">Gear guide</a
         ><a data-compendium-destination="1" aria-current="page" href="maps.html">Fish & maps</a
         ><a data-compendium-destination="2" href="shops.html">Shops</a
         ><a data-compendium-destination="4" href="quests.html">Quests & exchanges</a
@@ -69,6 +70,8 @@
         <div class="hero-meta">
           <a class="back-link" href="index.html">← Equipment catalogue</a
           ><a id="shop-browser-link" href="shops.html">Shops and where to buy</a
+          ><a class="quick-guide-link notebook-guide-shortcut" href="#how-fish-work"
+            >How fish on the map work</a
           ><a class="quick-guide-link notebook-guide-shortcut" href="#notebook-guide"
             >Complete the 66-species journal</a
           >
@@ -172,10 +175,37 @@
             <div class="map-scroll"><div id="map-view" class="map-view"></div></div>
             <div id="pin-details" class="pin-details" hidden></div>
             <section id="water-icon-key" class="water-icon-key" hidden></section>
-            <p class="map-note">
-              These are configured spawn positions from the ROM. A point can be inactive in a
-              particular game state, and a fish may move after it bites.
-            </p>
+            <section id="how-fish-work" class="map-howto" aria-labelledby="how-fish-title">
+              <h3 id="how-fish-title">How fish on the map work</h3>
+              <ul>
+                <li>
+                  Each pin is where a fish starts after you load the game. Fish then wander: most
+                  stay within 1–2 tiles of the pin, some drift 5–10.
+                </li>
+                <li>On a fresh save, about 3 in 4 pins have a fish.</li>
+                <li>
+                  Land a fish and its pin stays empty. A fish that gets away disappears until you
+                  sleep at an inn or restart the game.
+                </li>
+                <li>
+                  Sleeping at an inn refills about as many pins as you fished in that area since
+                  your last stay. Only that area refills. It costs 3–10 yen and does nothing if you
+                  did not fish.
+                </li>
+                <li>
+                  Giant eel (オオウナギ) and Akame have only one pin in the whole game, both in Area
+                  6. If it is empty, fish in that area, sleep at its inn, and repeat.
+                </li>
+                <li>
+                  Cast the bobber exactly onto the fish’s tile. The game checks about every half
+                  second.
+                </li>
+                <li>
+                  Water marks only hint at size. On a crowded screen the last two fish have no mark.
+                </li>
+                <li>Time of day, season and weather do not change which fish are there.</li>
+              </ul>
+            </section>
             <a id="catalogue-fish-link" class="catalogue-fish-link" href="index.html"
               >See this fish’s compatible tackle ↗</a
             >
@@ -184,6 +214,18 @@
         </div>
         <details class="source-details">
           <summary>ROM source and map notes</summary>
+          <p>
+            Placement detail: each area has 256 permanent fish slots, each with a fixed species, a
+            home tile and a size (0 = empty). A fresh save fills 192 of the 256. Pins are the home
+            tiles; fish wander continuously (95% stay within 5 tiles, at most 10) and the game
+            writes the current tile back when the view is rebuilt. A bite needs the bobber on the
+            fish’s exact tile; each fish is checked once per 32 frames. Landing a fish empties its
+            slot. An escape hides the fish until the inn or a restart. The inn counts +1 per hooked
+            fish that reached the landing stage and +3 per escape, then runs that many refill picks
+            on its own area only (empty slot: new fish; occupied: +1 cm; over the cap: emptied).
+            Repeated slots at one tile are separate stacked fish, not a higher spawn chance. Time,
+            season and weather are not used. Source: independent audit of 2026-10-07.
+          </p>
           <p>
             Fish IDs, configured tile coordinates, and terrain images are read from the supplied
             Japanese SFC ROM. Pins use the map tile centers at 16 source pixels per tile; identical

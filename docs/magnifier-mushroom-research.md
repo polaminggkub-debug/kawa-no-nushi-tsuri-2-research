@@ -1,5 +1,7 @@
 # Magnifying-glass mushroom outcome: source trace
 
+> **Audit 2026-10-07:** the find message does not name the mushroom, but the two foods have different icons (`09` tan and flat heals 10 HP; `0A` red with yellow spots sets HP to 0), so the player can tell them apart before eating.
+
 ## Scope and ROM identity
 
 This is a bounded static trace of the supplied Japanese SFC ROM. It follows selected-item dispatch, the magnifying-glass handler, the mushroom ID branch, and the shared random-byte helper. It does not establish a naturally reachable or guaranteed “safe mushroom” tile, and it does not alter the ROM or runtime state.

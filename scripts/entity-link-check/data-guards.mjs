@@ -117,7 +117,11 @@ for (const item of data.items.filter((entry) => entry.category === 'hook')) {
     (item.playerUse.targetMatches || []).map((match) => match.fishId).sort(),
   )
 }
-for (const item of data.items.filter((entry) => entry.category === 'fly_wing')) {
+// Wings 25, 66 and 67 are not sold anywhere, so there is no purchase decision to warn about.
+const NOT_SOLD_WINGS = new Set(['25', '66', '67'])
+for (const item of data.items.filter(
+  (entry) => entry.category === 'fly_wing' && !NOT_SOLD_WINGS.has(entry.id),
+)) {
   assert(item.gearDecision.reason.en.includes('recasting the same setup does not reroll'))
   assert(item.gearDecision.reason.en.includes('at least one'))
   assert(item.gearDecision.reason.en.includes('do not guarantee a bite'))

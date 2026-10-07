@@ -4,14 +4,14 @@
     "sha1": "c2103dd94e2a1a65a495fc02adc2e7d040f31212"
   },
   "playerSummary": {
-    "en": "If you use these maps, you do not need to buy the magnet just to learn the fixed exit coordinates for Areas 1–5. Buy Magnet 0E for ¥300 only if you want the game to give a heading from your current position; it is stocked in Areas 1, 2, 3 and 6. Area 6 has no fixed map pin here: before its story condition is met, the magnet reports your area/section without a heading.",
-    "ja": "この地図を使うなら、エリア1～5の固定出口座標を知るためだけに磁石を買う必要はありません。現在地からゲーム内の方角表示を使いたい場合だけ、磁石0E（300円）を購入してください。エリア1・2・3・6で販売されています。エリア6には固定マーカーを載せていません。物語条件が満たされる前は、磁石はエリア／区画のみを表示し、方角は出ません。",
-    "th": "ถ้าใช้แผนที่นี้ ไม่ต้องซื้อแม่เหล็กเพื่อรู้พิกัดทางออกคงที่ของด่าน 1–5 ซื้อแม่เหล็ก 0E ราคา ¥300 เฉพาะเมื่อต้องการให้เกมบอกทิศจากตำแหน่งปัจจุบัน มีขายในด่าน 1, 2, 3 และ 6 ด่าน 6 ไม่มีหมุดพิกัดคงที่ในหน้านี้: ก่อนผ่านเงื่อนไขเนื้อเรื่อง แม่เหล็กจะแจ้งพื้นที่/ช่วงที่ยืน แต่ไม่บอกทิศ"
+    "en": "If you use these maps, you do not need to buy the compass just to learn the fixed exit coordinates for Areas 1–5. Buy Compass 0E for ¥300 only if you want the game to give a heading from your current position; it is stocked in Areas 1, 2, 3 and 6. Area 6 has no fixed map pin here: before its story condition is met, the compass reports your area/section without a heading. In Area 6, after the doctor's note has appeared, it points at the giant eel at (41,8) instead (see the received postcard).",
+    "ja": "この地図を使うなら、エリア1～5の固定出口座標を知るためだけに磁石を買う必要はありません。現在地からゲーム内の方角表示を使いたい場合だけ、磁石0E（300円）を購入してください。エリア1・2・3・6で販売されています。エリア6には固定マーカーを載せていません。物語条件が満たされる前は、磁石はエリア／区画のみを表示し、方角は出ません。エリア6では、医者の文面が出たあとは出口ではなく(41,8)のオオウナギを指します（受け取ったハガキを参照）。",
+    "th": "ถ้าใช้แผนที่นี้ ไม่ต้องซื้อเข็มทิศเพื่อรู้พิกัดทางออกคงที่ของด่าน 1–5 ซื้อเข็มทิศ 0E ราคา ¥300 เฉพาะเมื่อต้องการให้เกมบอกทิศจากตำแหน่งปัจจุบัน มีขายในด่าน 1, 2, 3 และ 6 ด่าน 6 ไม่มีหมุดพิกัดคงที่ในหน้านี้: ก่อนผ่านเงื่อนไขเนื้อเรื่อง เข็มทิศจะแจ้งพื้นที่/ช่วงที่ยืน แต่ไม่บอกทิศ ในด่าน 6 หลังข้อความของหมอปรากฏ เข็มทิศจะชี้ไปที่ปลาไหลยักษ์ที่ (41,8) แทน (ดูที่ไปรษณียบัตรที่ได้รับ)"
   },
   "scope": {
-    "en": "Static outdoor compass target tiles for Areas 1–5 only. The traced transition consumer uses each target to enter map 13, the connecting route; this relationship is inferred from code. It does not establish a tested natural walking route, an obstacle-aware route, or the shortest route. The magnet message does not name the destination. Area 6 is omitted because its target is dynamic and heading is gated by story progress.",
+    "en": "Static outdoor compass target tiles for Areas 1–5 only. The traced transition consumer uses each target to enter map 13, the connecting route; this relationship is inferred from code. It does not establish a tested natural walking route, an obstacle-aware route, or the shortest route. The compass message does not name the destination. Area 6 is omitted because its target is dynamic and heading is gated by story progress.",
     "ja": "エリア1～5の屋外磁石目標タイルのみを掲載。追跡した遷移処理は各目標地点を読み、連絡路マップ13へ進みます。この関係はコードから判断したもので、通常の歩行経路・障害物回避経路・最短経路は検証していません。磁石のメッセージは目的地名を示しません。エリア6は目標が動的で、方角表示に物語進行条件があるため掲載しません。",
-    "th": "แสดงเฉพาะช่องเป้าหมายกลางแจ้งของแม่เหล็กในด่าน 1–5 ตัวตรวจทางออกที่ตามโค้ดได้อ่านเป้าหมายแต่ละจุดเพื่อไปแผนที่ 13 ซึ่งเป็นทางเชื่อม; ความสัมพันธ์นี้สรุปจากโค้ด ยังไม่ได้ทดสอบเส้นทางเดินจริง เส้นทางหลบสิ่งกีดขวาง หรือเส้นทางสั้นที่สุด ข้อความแม่เหล็กไม่บอกชื่อปลายทาง ตัดด่าน 6 ออกเพราะเป้าหมายเปลี่ยนตามสถานะและการแสดงทิศขึ้นกับความคืบหน้าเนื้อเรื่อง"
+    "th": "แสดงเฉพาะช่องเป้าหมายกลางแจ้งของเข็มทิศในด่าน 1–5 ตัวตรวจทางออกที่ตามโค้ดได้อ่านเป้าหมายแต่ละจุดเพื่อไปแผนที่ 13 ซึ่งเป็นทางเชื่อม; ความสัมพันธ์นี้สรุปจากโค้ด ยังไม่ได้ทดสอบเส้นทางเดินจริง เส้นทางหลบสิ่งกีดขวาง หรือเส้นทางสั้นที่สุด ข้อความเข็มทิศไม่บอกชื่อปลายทาง ตัดด่าน 6 ออกเพราะเป้าหมายเปลี่ยนตามสถานะและการแสดงทิศขึ้นกับความคืบหน้าเนื้อเรื่อง"
   },
   "source": {
     "romSha1": "c2103dd94e2a1a65a495fc02adc2e7d040f31212",
@@ -45,17 +45,17 @@
         "name": {
           "en": "Compass stop tile · exit to connector",
           "ja": "磁石が止まる地点・連絡路の出口",
-          "th": "จุดที่เข็มแม่เหล็กหยุด · ทางออกสู่ทางเชื่อม"
+          "th": "จุดที่เข็มทิศหยุด · ทางออกสู่ทางเชื่อม"
         },
         "action": {
-          "en": "Use the magnet outdoors, move in its indicated direction, then use it again to update the heading. The needle stops at the marked exit tile, which leads to the connecting route.",
+          "en": "Use the compass outdoors, move in its indicated direction, then use it again to update the heading. The needle stops at the marked exit tile, which leads to the connecting route.",
           "ja": "屋外で磁石を使い、示された方角へ移動してから再使用し、方角を確認します。針が止まるマーカーの地点が連絡路への出口です。",
-          "th": "ใช้แม่เหล็กกลางแจ้ง เดินตามทิศที่บอกแล้วใช้ซ้ำเพื่อดูทิศใหม่ เข็มจะหยุดตรงช่องที่รูปแม่เหล็กชี้ ซึ่งเป็นจุดออกไปเส้นทางเชื่อม"
+          "th": "ใช้เข็มทิศกลางแจ้ง เดินตามทิศที่บอกแล้วใช้ซ้ำเพื่อดูทิศใหม่ เข็มจะหยุดตรงช่องที่รูปเข็มทิศชี้ ซึ่งเป็นจุดออกไปเส้นทางเชื่อม"
         },
         "description": {
-          "en": "Find tile (13,239) in Area 1 using the magnet portrait. The map shows the target, not a tested walking route or a path around obstacles.",
+          "en": "Find tile (13,239) in Area 1 using the compass picture. The map shows the target, not a tested walking route or a path around obstacles.",
           "ja": "磁石画像でエリア1のタイル（13,239）を確認します。目標地点を示す地図で、歩行経路や障害物を避ける道順は検証していません。",
-          "th": "ดูรูปแม่เหล็กที่ช่อง (13,239) ของด่าน 1 เพื่อหาจุดทางเชื่อม แผนที่นี้แสดงเป้าหมาย ยังไม่ได้ยืนยันขั้นตอนเดินหรือเส้นทางหลบสิ่งกีดขวาง"
+          "th": "ดูรูปเข็มทิศที่ช่อง (13,239) ของด่าน 1 เพื่อหาจุดทางเชื่อม แผนที่นี้แสดงเป้าหมาย ยังไม่ได้ยืนยันขั้นตอนเดินหรือเส้นทางหลบสิ่งกีดขวาง"
         },
         "image": "maps/tool-compass-area1.png",
         "fullImage": "maps/rom-field-01.png",
@@ -102,17 +102,17 @@
         "name": {
           "en": "Compass stop tile · exit to connector",
           "ja": "磁石が止まる地点・連絡路の出口",
-          "th": "จุดที่เข็มแม่เหล็กหยุด · ทางออกสู่ทางเชื่อม"
+          "th": "จุดที่เข็มทิศหยุด · ทางออกสู่ทางเชื่อม"
         },
         "action": {
-          "en": "Use the magnet outdoors, move in its indicated direction, then use it again to update the heading. The needle stops at the marked exit tile, which leads to the connecting route.",
+          "en": "Use the compass outdoors, move in its indicated direction, then use it again to update the heading. The needle stops at the marked exit tile, which leads to the connecting route.",
           "ja": "屋外で磁石を使い、示された方角へ移動してから再使用し、方角を確認します。針が止まるマーカーの地点が連絡路への出口です。",
-          "th": "ใช้แม่เหล็กกลางแจ้ง เดินตามทิศที่บอกแล้วใช้ซ้ำเพื่อดูทิศใหม่ เข็มจะหยุดตรงช่องที่รูปแม่เหล็กชี้ ซึ่งเป็นจุดออกไปเส้นทางเชื่อม"
+          "th": "ใช้เข็มทิศกลางแจ้ง เดินตามทิศที่บอกแล้วใช้ซ้ำเพื่อดูทิศใหม่ เข็มจะหยุดตรงช่องที่รูปเข็มทิศชี้ ซึ่งเป็นจุดออกไปเส้นทางเชื่อม"
         },
         "description": {
-          "en": "Find tile (56,17) in Area 2 using the magnet portrait. The map shows the target, not a tested walking route or a path around obstacles.",
+          "en": "Find tile (56,17) in Area 2 using the compass picture. The map shows the target, not a tested walking route or a path around obstacles.",
           "ja": "磁石画像でエリア2のタイル（56,17）を確認します。目標地点を示す地図で、歩行経路や障害物を避ける道順は検証していません。",
-          "th": "ดูรูปแม่เหล็กที่ช่อง (56,17) ของด่าน 2 เพื่อหาจุดทางเชื่อม แผนที่นี้แสดงเป้าหมาย ยังไม่ได้ยืนยันขั้นตอนเดินหรือเส้นทางหลบสิ่งกีดขวาง"
+          "th": "ดูรูปเข็มทิศที่ช่อง (56,17) ของด่าน 2 เพื่อหาจุดทางเชื่อม แผนที่นี้แสดงเป้าหมาย ยังไม่ได้ยืนยันขั้นตอนเดินหรือเส้นทางหลบสิ่งกีดขวาง"
         },
         "image": "maps/tool-compass-area2.png",
         "fullImage": "maps/rom-field-02.png",
@@ -159,17 +159,17 @@
         "name": {
           "en": "Compass stop tile · exit to connector",
           "ja": "磁石が止まる地点・連絡路の出口",
-          "th": "จุดที่เข็มแม่เหล็กหยุด · ทางออกสู่ทางเชื่อม"
+          "th": "จุดที่เข็มทิศหยุด · ทางออกสู่ทางเชื่อม"
         },
         "action": {
-          "en": "Use the magnet outdoors, move in its indicated direction, then use it again to update the heading. The needle stops at the marked exit tile, which leads to the connecting route.",
+          "en": "Use the compass outdoors, move in its indicated direction, then use it again to update the heading. The needle stops at the marked exit tile, which leads to the connecting route.",
           "ja": "屋外で磁石を使い、示された方角へ移動してから再使用し、方角を確認します。針が止まるマーカーの地点が連絡路への出口です。",
-          "th": "ใช้แม่เหล็กกลางแจ้ง เดินตามทิศที่บอกแล้วใช้ซ้ำเพื่อดูทิศใหม่ เข็มจะหยุดตรงช่องที่รูปแม่เหล็กชี้ ซึ่งเป็นจุดออกไปเส้นทางเชื่อม"
+          "th": "ใช้เข็มทิศกลางแจ้ง เดินตามทิศที่บอกแล้วใช้ซ้ำเพื่อดูทิศใหม่ เข็มจะหยุดตรงช่องที่รูปเข็มทิศชี้ ซึ่งเป็นจุดออกไปเส้นทางเชื่อม"
         },
         "description": {
-          "en": "Find tile (22,5) in Area 3 using the magnet portrait. The map shows the target, not a tested walking route or a path around obstacles.",
+          "en": "Find tile (22,5) in Area 3 using the compass picture. The map shows the target, not a tested walking route or a path around obstacles.",
           "ja": "磁石画像でエリア3のタイル（22,5）を確認します。目標地点を示す地図で、歩行経路や障害物を避ける道順は検証していません。",
-          "th": "ดูรูปแม่เหล็กที่ช่อง (22,5) ของด่าน 3 เพื่อหาจุดทางเชื่อม แผนที่นี้แสดงเป้าหมาย ยังไม่ได้ยืนยันขั้นตอนเดินหรือเส้นทางหลบสิ่งกีดขวาง"
+          "th": "ดูรูปเข็มทิศที่ช่อง (22,5) ของด่าน 3 เพื่อหาจุดทางเชื่อม แผนที่นี้แสดงเป้าหมาย ยังไม่ได้ยืนยันขั้นตอนเดินหรือเส้นทางหลบสิ่งกีดขวาง"
         },
         "image": "maps/tool-compass-area3.png",
         "fullImage": "maps/rom-field-03.png",
@@ -216,17 +216,17 @@
         "name": {
           "en": "Compass stop tile · exit to connector",
           "ja": "磁石が止まる地点・連絡路の出口",
-          "th": "จุดที่เข็มแม่เหล็กหยุด · ทางออกสู่ทางเชื่อม"
+          "th": "จุดที่เข็มทิศหยุด · ทางออกสู่ทางเชื่อม"
         },
         "action": {
-          "en": "Use the magnet outdoors, move in its indicated direction, then use it again to update the heading. The needle stops at the marked exit tile, which leads to the connecting route.",
+          "en": "Use the compass outdoors, move in its indicated direction, then use it again to update the heading. The needle stops at the marked exit tile, which leads to the connecting route.",
           "ja": "屋外で磁石を使い、示された方角へ移動してから再使用し、方角を確認します。針が止まるマーカーの地点が連絡路への出口です。",
-          "th": "ใช้แม่เหล็กกลางแจ้ง เดินตามทิศที่บอกแล้วใช้ซ้ำเพื่อดูทิศใหม่ เข็มจะหยุดตรงช่องที่รูปแม่เหล็กชี้ ซึ่งเป็นจุดออกไปเส้นทางเชื่อม"
+          "th": "ใช้เข็มทิศกลางแจ้ง เดินตามทิศที่บอกแล้วใช้ซ้ำเพื่อดูทิศใหม่ เข็มจะหยุดตรงช่องที่รูปเข็มทิศชี้ ซึ่งเป็นจุดออกไปเส้นทางเชื่อม"
         },
         "description": {
-          "en": "Find tile (32,41) in Area 4 using the magnet portrait. The map shows the target, not a tested walking route or a path around obstacles.",
+          "en": "Find tile (32,41) in Area 4 using the compass picture. The map shows the target, not a tested walking route or a path around obstacles.",
           "ja": "磁石画像でエリア4のタイル（32,41）を確認します。目標地点を示す地図で、歩行経路や障害物を避ける道順は検証していません。",
-          "th": "ดูรูปแม่เหล็กที่ช่อง (32,41) ของด่าน 4 เพื่อหาจุดทางเชื่อม แผนที่นี้แสดงเป้าหมาย ยังไม่ได้ยืนยันขั้นตอนเดินหรือเส้นทางหลบสิ่งกีดขวาง"
+          "th": "ดูรูปเข็มทิศที่ช่อง (32,41) ของด่าน 4 เพื่อหาจุดทางเชื่อม แผนที่นี้แสดงเป้าหมาย ยังไม่ได้ยืนยันขั้นตอนเดินหรือเส้นทางหลบสิ่งกีดขวาง"
         },
         "image": "maps/tool-compass-area4.png",
         "fullImage": "maps/rom-field-04.png",
@@ -273,17 +273,17 @@
         "name": {
           "en": "Compass stop tile · exit to connector",
           "ja": "磁石が止まる地点・連絡路の出口",
-          "th": "จุดที่เข็มแม่เหล็กหยุด · ทางออกสู่ทางเชื่อม"
+          "th": "จุดที่เข็มทิศหยุด · ทางออกสู่ทางเชื่อม"
         },
         "action": {
-          "en": "Use the magnet outdoors, move in its indicated direction, then use it again to update the heading. The needle stops at the marked exit tile, which leads to the connecting route.",
+          "en": "Use the compass outdoors, move in its indicated direction, then use it again to update the heading. The needle stops at the marked exit tile, which leads to the connecting route.",
           "ja": "屋外で磁石を使い、示された方角へ移動してから再使用し、方角を確認します。針が止まるマーカーの地点が連絡路への出口です。",
-          "th": "ใช้แม่เหล็กกลางแจ้ง เดินตามทิศที่บอกแล้วใช้ซ้ำเพื่อดูทิศใหม่ เข็มจะหยุดตรงช่องที่รูปแม่เหล็กชี้ ซึ่งเป็นจุดออกไปเส้นทางเชื่อม"
+          "th": "ใช้เข็มทิศกลางแจ้ง เดินตามทิศที่บอกแล้วใช้ซ้ำเพื่อดูทิศใหม่ เข็มจะหยุดตรงช่องที่รูปเข็มทิศชี้ ซึ่งเป็นจุดออกไปเส้นทางเชื่อม"
         },
         "description": {
-          "en": "Find tile (22,2) in Area 5 using the magnet portrait. The map shows the target, not a tested walking route or a path around obstacles.",
+          "en": "Find tile (22,2) in Area 5 using the compass picture. The map shows the target, not a tested walking route or a path around obstacles.",
           "ja": "磁石画像でエリア5のタイル（22,2）を確認します。目標地点を示す地図で、歩行経路や障害物を避ける道順は検証していません。",
-          "th": "ดูรูปแม่เหล็กที่ช่อง (22,2) ของด่าน 5 เพื่อหาจุดทางเชื่อม แผนที่นี้แสดงเป้าหมาย ยังไม่ได้ยืนยันขั้นตอนเดินหรือเส้นทางหลบสิ่งกีดขวาง"
+          "th": "ดูรูปเข็มทิศที่ช่อง (22,2) ของด่าน 5 เพื่อหาจุดทางเชื่อม แผนที่นี้แสดงเป้าหมาย ยังไม่ได้ยืนยันขั้นตอนเดินหรือเส้นทางหลบสิ่งกีดขวาง"
         },
         "image": "maps/tool-compass-area5.png",
         "fullImage": "maps/rom-field-05.png",
