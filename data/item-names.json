@@ -1,0 +1,1116 @@
+{
+  "schemaVersion": 1,
+  "scope": "Player-facing item names and name notes that differ from the raw extracted tables. Applied by scripts/build_catalogue.cjs (nameEn/nameJa/nameTh, gearDecision) and scripts/build_item_use.py (displayName, summary, factsAdd).",
+  "nameRules": {
+    "flyBodies": "Bodies keep the in-game Japanese name (ROM text). Thai names copy the Thai patch labels (family + wet/dry; terrestrial bodies use the patch's 'land insect' label plus the insect: ant, beetle, worm, hopper or spider) with the ID appended because several bodies share one name.",
+    "flyWingsAndTails": "The ROM names bodies only; wings and tails have a placeholder name. The guide names them family + wet/dry + role + a short description of the picture. Descriptions are unique inside each family/style/role group."
+  },
+  "items": {
+    "bait:0B": {
+      "nameEn": "Grapevine larva"
+    },
+    "bait:10": {
+      "displayName": {
+        "th": "เหยื่อปั้นโจ๊ก"
+      },
+      "factsAdd": {
+        "en": [
+          "A kneaded paste bait made from rice porridge (okayu)."
+        ],
+        "ja": [
+          "おかゆを練って作る練りエサ。"
+        ],
+        "th": [
+          "เหยื่อปั้นที่นวดจากโจ๊กข้าว (โอกายุ) ให้เป็นก้อน"
+        ]
+      }
+    },
+    "float_weight:02": {
+      "nameEn": "Round bead float",
+      "displayName": {
+        "th": "ทุ่นเม็ดเล็กทรงกลม"
+      },
+      "factsAdd": {
+        "en": [
+          "A shimori float: a small bead-type float that sits on the line. This one is round."
+        ],
+        "ja": [
+          "シモリ（小さな玉状のウキ）の丸い型。"
+        ],
+        "th": [
+          "ทุ่นแบบชิโมริ คือทุ่นเม็ดเล็กๆ ที่ร้อยอยู่บนสายเบ็ด รุ่นนี้เป็นทรงกลม"
+        ]
+      }
+    },
+    "float_weight:03": {
+      "nameEn": "Streamlined bead float",
+      "displayName": {
+        "th": "ทุ่นเม็ดเล็กทรงเรียว"
+      },
+      "factsAdd": {
+        "en": [
+          "A shimori float: a small bead-type float that sits on the line. This one has a slim, streamlined shape."
+        ],
+        "ja": [
+          "シモリ（小さな玉状のウキ）の流線型。"
+        ],
+        "th": [
+          "ทุ่นแบบชิโมริ คือทุ่นเม็ดเล็กๆ ที่ร้อยอยู่บนสายเบ็ด รุ่นนี้เป็นทรงเรียวลู่น้ำ"
+        ]
+      }
+    },
+    "float_weight:0A": {
+      "nameEn": "Jujube-shaped sinker",
+      "displayName": {
+        "th": "ตะกั่วทรงพุทรา"
+      },
+      "factsAdd": {
+        "en": [
+          "Natsume means jujube (Chinese date): an oval sinker with slightly tapered ends."
+        ],
+        "ja": [
+          "ナツメ（棗）の実の形をした、両端がやや細い楕円形のオモリ。"
+        ],
+        "th": [
+          "นัตสึเมะคือผลพุทราจีน ตะกั่วรุ่นนี้จึงเป็นทรงรีปลายค่อนข้างเรียว"
+        ]
+      }
+    },
+    "fly:01": {
+      "displayName": {
+        "th": "บอดี้เมย์ฟลาย แบบเปียก 01"
+      }
+    },
+    "fly:02": {
+      "displayName": {
+        "th": "บอดี้เมย์ฟลาย แบบเปียก 02"
+      }
+    },
+    "fly:03": {
+      "displayName": {
+        "th": "บอดี้เมย์ฟลาย แบบเปียก 03"
+      }
+    },
+    "fly:04": {
+      "displayName": {
+        "th": "บอดี้เมย์ฟลาย แบบเปียก 04"
+      }
+    },
+    "fly:05": {
+      "displayName": {
+        "th": "บอดี้เมย์ฟลาย แบบเปียก 05"
+      }
+    },
+    "fly:06": {
+      "displayName": {
+        "th": "บอดี้เมย์ฟลาย แบบเปียก 06"
+      }
+    },
+    "fly:07": {
+      "displayName": {
+        "th": "บอดี้เมย์ฟลาย แบบเปียก 07"
+      }
+    },
+    "fly:08": {
+      "displayName": {
+        "th": "บอดี้เมย์ฟลาย แบบเปียก 08"
+      }
+    },
+    "fly:18": {
+      "displayName": {
+        "th": "บอดี้เมย์ฟลาย แบบแห้ง 18"
+      }
+    },
+    "fly:19": {
+      "displayName": {
+        "th": "บอดี้เมย์ฟลาย แบบแห้ง 19"
+      }
+    },
+    "fly:1A": {
+      "displayName": {
+        "th": "บอดี้เมย์ฟลาย แบบแห้ง 1A"
+      }
+    },
+    "fly:1B": {
+      "displayName": {
+        "th": "บอดี้เมย์ฟลาย แบบแห้ง 1B"
+      }
+    },
+    "fly:1C": {
+      "displayName": {
+        "th": "บอดี้เมย์ฟลาย แบบแห้ง 1C"
+      }
+    },
+    "fly:1D": {
+      "displayName": {
+        "th": "บอดี้เมย์ฟลาย แบบแห้ง 1D"
+      }
+    },
+    "fly:1E": {
+      "displayName": {
+        "th": "บอดี้เมย์ฟลาย แบบแห้ง 1E"
+      }
+    },
+    "fly:2B": {
+      "displayName": {
+        "th": "บอดี้แคดดิส แบบเปียก 2B"
+      }
+    },
+    "fly:2C": {
+      "displayName": {
+        "th": "บอดี้แคดดิส แบบเปียก 2C"
+      }
+    },
+    "fly:2D": {
+      "displayName": {
+        "th": "บอดี้แคดดิส แบบเปียก 2D"
+      }
+    },
+    "fly:2E": {
+      "displayName": {
+        "th": "บอดี้แคดดิส แบบเปียก 2E"
+      }
+    },
+    "fly:2F": {
+      "displayName": {
+        "th": "บอดี้แคดดิส แบบเปียก 2F"
+      }
+    },
+    "fly:30": {
+      "displayName": {
+        "th": "บอดี้แคดดิส แบบเปียก 30"
+      }
+    },
+    "fly:31": {
+      "displayName": {
+        "th": "บอดี้แคดดิส แบบเปียก 31"
+      }
+    },
+    "fly:32": {
+      "displayName": {
+        "th": "บอดี้แคดดิส แบบเปียก 32"
+      }
+    },
+    "fly:33": {
+      "displayName": {
+        "th": "บอดี้แคดดิส แบบเปียก 33"
+      }
+    },
+    "fly:3E": {
+      "displayName": {
+        "th": "บอดี้แคดดิส แบบแห้ง 3E"
+      }
+    },
+    "fly:3F": {
+      "displayName": {
+        "th": "บอดี้แคดดิส แบบแห้ง 3F"
+      }
+    },
+    "fly:40": {
+      "displayName": {
+        "th": "บอดี้แคดดิส แบบแห้ง 40"
+      }
+    },
+    "fly:41": {
+      "displayName": {
+        "th": "บอดี้แคดดิส แบบแห้ง 41"
+      }
+    },
+    "fly:42": {
+      "displayName": {
+        "th": "บอดี้แคดดิส แบบแห้ง 42"
+      }
+    },
+    "fly:4B": {
+      "displayName": {
+        "th": "บอดี้ดิปเทอรา แบบเปียก 4B"
+      }
+    },
+    "fly:4C": {
+      "displayName": {
+        "th": "บอดี้ดิปเทอรา แบบเปียก 4C"
+      }
+    },
+    "fly:4D": {
+      "displayName": {
+        "th": "บอดี้ดิปเทอรา แบบเปียก 4D"
+      }
+    },
+    "fly:4E": {
+      "displayName": {
+        "th": "บอดี้ดิปเทอรา แบบเปียก 4E"
+      }
+    },
+    "fly:4F": {
+      "displayName": {
+        "th": "บอดี้ดิปเทอรา แบบเปียก 4F"
+      }
+    },
+    "fly:56": {
+      "displayName": {
+        "th": "บอดี้ดิปเทอรา แบบแห้ง 56"
+      }
+    },
+    "fly:57": {
+      "displayName": {
+        "th": "บอดี้ดิปเทอรา แบบแห้ง 57"
+      }
+    },
+    "fly:58": {
+      "displayName": {
+        "th": "บอดี้ดิปเทอรา แบบแห้ง 58"
+      }
+    },
+    "fly:59": {
+      "displayName": {
+        "th": "บอดี้ดิปเทอรา แบบแห้ง 59"
+      }
+    },
+    "fly:60": {
+      "displayName": {
+        "th": "บอดี้สโตนฟลาย แบบเปียก 60"
+      }
+    },
+    "fly:61": {
+      "displayName": {
+        "th": "บอดี้สโตนฟลาย แบบเปียก 61"
+      }
+    },
+    "fly:62": {
+      "displayName": {
+        "th": "บอดี้สโตนฟลาย แบบเปียก 62"
+      }
+    },
+    "fly:63": {
+      "displayName": {
+        "th": "บอดี้สโตนฟลาย แบบเปียก 63"
+      }
+    },
+    "fly:64": {
+      "displayName": {
+        "th": "บอดี้สโตนฟลาย แบบเปียก 64"
+      }
+    },
+    "fly:65": {
+      "displayName": {
+        "th": "บอดี้สโตนฟลาย แบบเปียก 65"
+      }
+    },
+    "fly:6C": {
+      "displayName": {
+        "th": "บอดี้สโตนฟลาย แบบแห้ง 6C"
+      }
+    },
+    "fly:6D": {
+      "displayName": {
+        "th": "บอดี้สโตนฟลาย แบบแห้ง 6D"
+      }
+    },
+    "fly:6E": {
+      "displayName": {
+        "th": "บอดี้สโตนฟลาย แบบแห้ง 6E"
+      }
+    },
+    "fly:6F": {
+      "displayName": {
+        "th": "บอดี้สโตนฟลาย แบบแห้ง 6F"
+      }
+    },
+    "fly:77": {
+      "displayName": {
+        "th": "บอดี้แมลงบก (มด) 77"
+      }
+    },
+    "fly:78": {
+      "displayName": {
+        "th": "บอดี้แมลงบก (มด) 78"
+      }
+    },
+    "fly:79": {
+      "displayName": {
+        "th": "บอดี้แมลงบก (มด) 79"
+      }
+    },
+    "fly:7A": {
+      "displayName": {
+        "th": "บอดี้แมลงบก (มด) 7A"
+      }
+    },
+    "fly:7B": {
+      "displayName": {
+        "th": "บอดี้แมลงบก (มด) 7B"
+      }
+    },
+    "fly:7C": {
+      "displayName": {
+        "th": "บอดี้แมลงบก (ด้วง) 7C"
+      }
+    },
+    "fly:7D": {
+      "displayName": {
+        "th": "บอดี้แมลงบก (ด้วง) 7D"
+      }
+    },
+    "fly:7E": {
+      "displayName": {
+        "th": "บอดี้แมลงบก (ด้วง) 7E"
+      }
+    },
+    "fly:7F": {
+      "displayName": {
+        "th": "บอดี้แมลงบก (ด้วง) 7F"
+      }
+    },
+    "fly:80": {
+      "displayName": {
+        "th": "บอดี้แมลงบก (หนอน) 80"
+      }
+    },
+    "fly:81": {
+      "displayName": {
+        "th": "บอดี้แมลงบก (หนอน) 81"
+      }
+    },
+    "fly:82": {
+      "displayName": {
+        "th": "บอดี้แมลงบก (หนอน) 82"
+      }
+    },
+    "fly:83": {
+      "displayName": {
+        "th": "บอดี้แมลงบก (ตั๊กแตน) 83"
+      }
+    },
+    "fly:84": {
+      "displayName": {
+        "th": "บอดี้แมลงบก (ตั๊กแตน) 84"
+      }
+    },
+    "fly:85": {
+      "displayName": {
+        "th": "บอดี้แมลงบก (ตั๊กแตน) 85"
+      }
+    },
+    "fly:86": {
+      "displayName": {
+        "th": "บอดี้แมลงบก (แมงมุม) 86"
+      }
+    },
+    "fly_tail:13": {
+      "nameEn": "Mayfly wet tail (olive, thin)",
+      "nameJa": "メイフライ・ウェットのテール（オリーブ色・細い）",
+      "displayName": {
+        "th": "หางเมย์ฟลาย แบบเปียก (สีเขียวมะกอก เรียวบาง)"
+      }
+    },
+    "fly_tail:14": {
+      "nameEn": "Mayfly wet tail (gold, thin)",
+      "nameJa": "メイフライ・ウェットのテール（金色・細い）",
+      "displayName": {
+        "th": "หางเมย์ฟลาย แบบเปียก (สีทอง เรียวบาง)"
+      }
+    },
+    "fly_tail:15": {
+      "nameEn": "Mayfly wet tail (grey)",
+      "nameJa": "メイフライ・ウェットのテール（灰色）",
+      "displayName": {
+        "th": "หางเมย์ฟลาย แบบเปียก (สีเทา)"
+      }
+    },
+    "fly_tail:16": {
+      "nameEn": "Mayfly wet tail (white)",
+      "nameJa": "メイフライ・ウェットのテール（白）",
+      "displayName": {
+        "th": "หางเมย์ฟลาย แบบเปียก (สีขาว)"
+      }
+    },
+    "fly_tail:17": {
+      "nameEn": "Mayfly wet tail (olive, thick)",
+      "nameJa": "メイフライ・ウェットのテール（オリーブ色・太い）",
+      "displayName": {
+        "th": "หางเมย์ฟลาย แบบเปียก (สีเขียวมะกอก หนา)"
+      }
+    },
+    "fly_tail:27": {
+      "nameEn": "Mayfly dry tail (grey and black)",
+      "nameJa": "メイフライ・ドライのテール（灰色と黒）",
+      "displayName": {
+        "th": "หางเมย์ฟลาย แบบแห้ง (สีเทากับดำ)"
+      }
+    },
+    "fly_tail:28": {
+      "nameEn": "Mayfly dry tail (olive)",
+      "nameJa": "メイフライ・ドライのテール（オリーブ色）",
+      "displayName": {
+        "th": "หางเมย์ฟลาย แบบแห้ง (สีเขียวมะกอก)"
+      }
+    },
+    "fly_tail:29": {
+      "nameEn": "Mayfly dry tail (grey, forked)",
+      "nameJa": "メイフライ・ドライのテール（灰色・二股）",
+      "displayName": {
+        "th": "หางเมย์ฟลาย แบบแห้ง (สีเทา แยกเป็นแฉก)"
+      }
+    },
+    "fly_tail:2A": {
+      "nameEn": "Mayfly dry tail (black, forked)",
+      "nameJa": "メイフライ・ドライのテール（黒・二股）",
+      "displayName": {
+        "th": "หางเมย์ฟลาย แบบแห้ง (สีดำ แยกเป็นแฉก)"
+      }
+    },
+    "fly_tail:3D": {
+      "nameEn": "Caddis wet tail (olive)",
+      "nameJa": "カディス・ウェットのテール（オリーブ色）",
+      "displayName": {
+        "th": "หางแคดดิส แบบเปียก (สีเขียวมะกอก)"
+      }
+    },
+    "fly_tail:49": {
+      "nameEn": "Caddis dry tail (olive)",
+      "nameJa": "カディス・ドライのテール（オリーブ色）",
+      "displayName": {
+        "th": "หางแคดดิส แบบแห้ง (สีเขียวมะกอก)"
+      }
+    },
+    "fly_tail:4A": {
+      "nameEn": "Caddis dry tail (grey)",
+      "nameJa": "カディス・ドライのテール（灰色）",
+      "displayName": {
+        "th": "หางแคดดิส แบบแห้ง (สีเทา)"
+      }
+    },
+    "fly_tail:53": {
+      "nameEn": "Diptera wet tail (dark red, long)",
+      "nameJa": "ディプテラ・ウェットのテール（暗い赤・長い）",
+      "displayName": {
+        "th": "หางดิปเทอรา แบบเปียก (สีแดงเข้ม ยาว)"
+      }
+    },
+    "fly_tail:54": {
+      "nameEn": "Diptera wet tail (olive, thin)",
+      "nameJa": "ディプテラ・ウェットのテール（オリーブ色・細い）",
+      "displayName": {
+        "th": "หางดิปเทอรา แบบเปียก (สีเขียวมะกอก เรียวบาง)"
+      }
+    },
+    "fly_tail:55": {
+      "nameEn": "Diptera wet tail (green, round puff)",
+      "nameJa": "ディプテラ・ウェットのテール（緑・丸いふわふわ）",
+      "displayName": {
+        "th": "หางดิปเทอรา แบบเปียก (สีเขียว เป็นก้อนกลมฟู)"
+      }
+    },
+    "fly_tail:5F": {
+      "nameEn": "Diptera dry tail (olive)",
+      "nameJa": "ディプテラ・ドライのテール（オリーブ色）",
+      "displayName": {
+        "th": "หางดิปเทอรา แบบแห้ง (สีเขียวมะกอก)"
+      }
+    },
+    "fly_tail:68": {
+      "nameEn": "Stonefly wet tail (dark red)",
+      "nameJa": "ストーンフライ・ウェットのテール（暗い赤）",
+      "displayName": {
+        "th": "หางสโตนฟลาย แบบเปียก (สีแดงเข้ม)"
+      }
+    },
+    "fly_tail:69": {
+      "nameEn": "Stonefly wet tail (olive, thin)",
+      "nameJa": "ストーンフライ・ウェットのテール（オリーブ色・細い）",
+      "displayName": {
+        "th": "หางสโตนฟลาย แบบเปียก (สีเขียวมะกอก เรียวบาง)"
+      }
+    },
+    "fly_tail:6A": {
+      "nameEn": "Stonefly wet tail (dark grey)",
+      "nameJa": "ストーンフライ・ウェットのテール（濃い灰色）",
+      "displayName": {
+        "th": "หางสโตนฟลาย แบบเปียก (สีเทาเข้ม)"
+      }
+    },
+    "fly_tail:6B": {
+      "nameEn": "Stonefly wet tail (olive and yellow, thick)",
+      "nameJa": "ストーンフライ・ウェットのテール（オリーブ色と黄色・太い）",
+      "displayName": {
+        "th": "หางสโตนฟลาย แบบเปียก (สีเขียวมะกอกกับเหลือง หนา)"
+      }
+    },
+    "fly_tail:74": {
+      "nameEn": "Stonefly dry tail (olive, short)",
+      "nameJa": "ストーンフライ・ドライのテール（オリーブ色・短い）",
+      "displayName": {
+        "th": "หางสโตนฟลาย แบบแห้ง (สีเขียวมะกอก สั้น)"
+      }
+    },
+    "fly_tail:75": {
+      "nameEn": "Stonefly dry tail (dark grey)",
+      "nameJa": "ストーンフライ・ドライのテール（濃い灰色）",
+      "displayName": {
+        "th": "หางสโตนฟลาย แบบแห้ง (สีเทาเข้ม)"
+      }
+    },
+    "fly_tail:76": {
+      "nameEn": "Stonefly dry tail (olive, thick)",
+      "nameJa": "ストーンフライ・ドライのテール（オリーブ色・太い）",
+      "displayName": {
+        "th": "หางสโตนฟลาย แบบแห้ง (สีเขียวมะกอก หนา)"
+      }
+    },
+    "fly_wing:09": {
+      "nameEn": "Mayfly wet wing (olive, thin strands, swept back)",
+      "nameJa": "メイフライ・ウェットのウィング（オリーブ色・細い毛束・後ろへ流れる）",
+      "displayName": {
+        "th": "ปีกเมย์ฟลาย แบบเปียก (สีเขียวมะกอก เส้นบางๆ ปัดไปด้านหลัง)"
+      }
+    },
+    "fly_wing:0A": {
+      "nameEn": "Mayfly wet wing (pale yellow and olive, swept back)",
+      "nameJa": "メイフライ・ウェットのウィング（淡い黄色とオリーブ色・後ろへ流れる）",
+      "displayName": {
+        "th": "ปีกเมย์ฟลาย แบบเปียก (สีเหลืองอ่อนกับเขียวมะกอก ปัดไปด้านหลัง)"
+      }
+    },
+    "fly_wing:0B": {
+      "nameEn": "Mayfly wet wing (olive, bushy, swept back)",
+      "nameJa": "メイフライ・ウェットのウィング（オリーブ色・ふさふさ・後ろへ流れる）",
+      "displayName": {
+        "th": "ปีกเมย์ฟลาย แบบเปียก (สีเขียวมะกอก ฟูเป็นพุ่ม ปัดไปด้านหลัง)"
+      }
+    },
+    "fly_wing:0C": {
+      "nameEn": "Mayfly wet wing (grey, upright)",
+      "nameJa": "メイフライ・ウェットのウィング（灰色・立ち上がる）",
+      "displayName": {
+        "th": "ปีกเมย์ฟลาย แบบเปียก (สีเทา ตั้งขึ้น)"
+      }
+    },
+    "fly_wing:0D": {
+      "nameEn": "Mayfly wet wing (olive and yellow, upright tuft)",
+      "nameJa": "メイフライ・ウェットのウィング（オリーブ色と黄色・立ち上がるふさ）",
+      "displayName": {
+        "th": "ปีกเมย์ฟลาย แบบเปียก (สีเขียวมะกอกกับเหลือง เป็นกระจุกตั้งขึ้น)"
+      }
+    },
+    "fly_wing:0E": {
+      "nameEn": "Mayfly wet wing (grey, speckled, fan-shaped)",
+      "nameJa": "メイフライ・ウェットのウィング（灰色・まだら・扇形）",
+      "displayName": {
+        "th": "ปีกเมย์ฟลาย แบบเปียก (สีเทา ลายจุด เป็นพัด)"
+      }
+    },
+    "fly_wing:0F": {
+      "nameEn": "Mayfly wet wing (olive, angled)",
+      "nameJa": "メイフライ・ウェットのウィング（オリーブ色・斜め）",
+      "displayName": {
+        "th": "ปีกเมย์ฟลาย แบบเปียก (สีเขียวมะกอก เฉียง)"
+      }
+    },
+    "fly_wing:10": {
+      "nameEn": "Mayfly wet wing (grey and pink, angled)",
+      "nameJa": "メイフライ・ウェットのウィング（灰色とピンク・斜め）",
+      "displayName": {
+        "th": "ปีกเมย์ฟลาย แบบเปียก (สีเทากับชมพู เฉียง)"
+      }
+    },
+    "fly_wing:11": {
+      "nameEn": "Mayfly wet wing (grey and black, upright)",
+      "nameJa": "メイフライ・ウェットのウィング（灰色と黒・立ち上がる）",
+      "displayName": {
+        "th": "ปีกเมย์ฟลาย แบบเปียก (สีเทากับดำ ตั้งขึ้น)"
+      }
+    },
+    "fly_wing:12": {
+      "nameEn": "Mayfly wet wing (olive and orange, bushy)",
+      "nameJa": "メイフライ・ウェットのウィング（オリーブ色とオレンジ・ふさふさ）",
+      "displayName": {
+        "th": "ปีกเมย์ฟลาย แบบเปียก (สีเขียวมะกอกกับส้ม ฟูเป็นพุ่ม)"
+      }
+    },
+    "fly_wing:1F": {
+      "nameEn": "Mayfly dry wing (grey and black, upright)",
+      "nameJa": "メイフライ・ドライのウィング（灰色と黒・立ち上がる）",
+      "displayName": {
+        "th": "ปีกเมย์ฟลาย แบบแห้ง (สีเทากับดำ ตั้งขึ้น)"
+      }
+    },
+    "fly_wing:20": {
+      "nameEn": "Mayfly dry wing (olive, upright tuft)",
+      "nameJa": "メイフライ・ドライのウィング（オリーブ色・立ち上がるふさ）",
+      "displayName": {
+        "th": "ปีกเมย์ฟลาย แบบแห้ง (สีเขียวมะกอก เป็นกระจุกตั้งขึ้น)"
+      }
+    },
+    "fly_wing:21": {
+      "nameEn": "Mayfly dry wing (grey, upright block)",
+      "nameJa": "メイフライ・ドライのウィング（灰色・四角く立つ）",
+      "displayName": {
+        "th": "ปีกเมย์ฟลาย แบบแห้ง (สีเทา เป็นก้อนเหลี่ยมตั้งขึ้น)"
+      }
+    },
+    "fly_wing:22": {
+      "nameEn": "Mayfly dry wing (pale grey, tilted block)",
+      "nameJa": "メイフライ・ドライのウィング（明るい灰色・傾いた四角）",
+      "displayName": {
+        "th": "ปีกเมย์ฟลาย แบบแห้ง (สีเทาอ่อน เป็นก้อนเหลี่ยมเอียง)"
+      }
+    },
+    "fly_wing:23": {
+      "nameEn": "Mayfly dry wing (yellow, spiky)",
+      "nameJa": "メイフライ・ドライのウィング（黄色・ツンツン）",
+      "displayName": {
+        "th": "ปีกเมย์ฟลาย แบบแห้ง (สีเหลือง แหลมกระจาย)"
+      }
+    },
+    "fly_wing:24": {
+      "nameEn": "Mayfly dry wing (grey, angled)",
+      "nameJa": "メイフライ・ドライのウィング（灰色・斜め）",
+      "displayName": {
+        "th": "ปีกเมย์ฟลาย แบบแห้ง (สีเทา เฉียง)"
+      }
+    },
+    "fly_wing:25": {
+      "nameEn": "Mayfly dry wing (white, round puff)",
+      "nameJa": "メイフライ・ドライのウィング（白・丸いふわふわ）",
+      "displayName": {
+        "th": "ปีกเมย์ฟลาย แบบแห้ง (สีขาว เป็นก้อนกลมฟู)"
+      },
+      "factsAdd": {
+        "en": [
+          "No shop, ready-made set or fly maker offers this wing, so you cannot get it in normal play."
+        ],
+        "ja": [
+          "店・完成品セット・毛バリ職人のどこにも出ないウィング。通常のプレイでは入手できない。"
+        ],
+        "th": [
+          "ไม่มีร้าน ชุดสำเร็จรูป หรือช่างประกอบฟลายที่ขายปีกนี้ จึงหาไม่ได้ในการเล่นปกติ"
+        ]
+      },
+      "gearDecision": {
+        "label": {
+          "en": "Not sold anywhere",
+          "ja": "どこでも入手できない",
+          "th": "ไม่มีขายที่ไหน"
+        },
+        "recommendation": {
+          "en": "No shop, ready-made fly set or fly maker offers this wing. Pick one of the other Mayfly dry wings the maker shows.",
+          "ja": "店・完成品セット・毛バリ職人のどこにも出ないウィング。毛バリ職人が表示する他のメイフライ・ドライのウィングを選んでください。",
+          "th": "ไม่มีร้าน ชุดสำเร็จรูป หรือช่างประกอบฟลายที่ขายปีกนี้ ให้เลือกปีกเมย์ฟลายแบบแห้งชิ้นอื่นที่ช่างแสดงให้เลือกแทน"
+        },
+        "reason": {
+          "en": "It is in the game data but missing from every shop list, ready-made set and fly maker menu that was opened in the game.",
+          "ja": "ゲームデータにはあるが、ゲーム内で確認した店の一覧・完成品セット・毛バリ職人のメニューのどれにもない。",
+          "th": "มีอยู่ในข้อมูลเกม แต่ไม่อยู่ในรายการร้าน ชุดสำเร็จรูป หรือเมนูช่างประกอบฟลายที่เปิดดูในเกมเลย"
+        },
+        "sources": [
+          "data/shop-stock-rom.json",
+          "data/fly-maker-wing-palette.json",
+          "docs/shop-stock-research.md"
+        ]
+      }
+    },
+    "fly_wing:26": {
+      "nameEn": "Mayfly dry wing (olive, bushy)",
+      "nameJa": "メイフライ・ドライのウィング（オリーブ色・ふさふさ）",
+      "displayName": {
+        "th": "ปีกเมย์ฟลาย แบบแห้ง (สีเขียวมะกอก ฟูเป็นพุ่ม)"
+      },
+      "factsAdd": {
+        "en": [
+          "Sold only inside one ready-made set: Area 6 (body 1E + wing 26 + tail 2A, ¥50 for the whole set). It is not in the fly maker menu."
+        ],
+        "ja": [
+          "エリア6の完成品セット1つにだけ入っている（ボディ1E＋ウィング26＋テール2A、セット全体で50円）。毛バリ職人のメニューにはない。"
+        ],
+        "th": [
+          "มีเฉพาะในชุดสำเร็จรูปชุดเดียวของด่าน 6 (บอดี้ 1E + ปีก 26 + หาง 2A ราคาทั้งชุด 50 เยน) ไม่อยู่ในเมนูช่างประกอบฟลาย"
+        ]
+      },
+      "gearDecision": {
+        "label": {
+          "en": "Only in one Area 6 ready-made set",
+          "ja": "エリア6の完成品セットのみ",
+          "th": "มีเฉพาะในชุดสำเร็จรูปด่าน 6"
+        },
+        "recommendation": {
+          "en": "Wing 26 is sold only inside the Area 6 ready-made set: body 1E + wing 26 + tail 2A for ¥50 in total. The fly maker does not list it, so you cannot pick it on its own.",
+          "ja": "ウィング26はエリア6の完成品セット（ボディ1E＋ウィング26＋テール2A、セット全体で50円）にだけ入っています。毛バリ職人のメニューにはなく、単独では選べません。",
+          "th": "ปีก 26 มีเฉพาะในชุดสำเร็จรูปด่าน 6 (บอดี้ 1E + ปีก 26 + หาง 2A รวม 50 เยน) ช่างประกอบฟลายไม่มีชิ้นนี้ให้เลือก จึงเลือกแยกเดี่ยวไม่ได้"
+        },
+        "reason": {
+          "en": "The ready-made set costs only its body price (the fly maker, found only in the Area 1 to 3 towns, charges body + wing + tail). The target list belongs to the body; the ROM has not ranked wings by bite or landing success. The maker supplies the selected parts and charges the final quote; separate component ownership is not required. The wing shares a hidden check with the body: recasting the same setup does not reroll it, and changing only the wing may not help. If the fish you are targeting does not respond, open its fish page and try all three complete backup bundles there in the same loaded area. Together, the three guarantee that at least one avoids this one check for the current stored values; they do not guarantee a bite.",
+          "ja": "完成品セットの値段はボディの値段だけです（毛バリ職人はエリア1〜3の町にだけいて、ボディ＋ウィング＋テールの合計を請求します）。魚リストはボディ側の判定です。食いつき・釣り上げでウィングの順位は確認されていません。店が選択した部品で作成し、最終見積額を請求します。部品の事前所持は不要です。 ウィングはボディと一緒に隠し判定を受けます。同じ組み合わせを投げ直しても保存値は再抽選されず、ウィングだけ替えても解決しないことがあります。狙った魚が反応しない場合は、魚ページの完成予備セット3組を同じ読み込み済みエリアで試してください。保存値が同じなら、3組のうち少なくとも1組がこの判定を回避しますが、食いつきは保証しません。",
+          "th": "ชุดสำเร็จรูปคิดแค่ราคาบอดี้ (ส่วนช่างประกอบฟลายมีเฉพาะในเมืองด่าน 1–3 และคิดราคาบอดี้ + ปีก + หาง) รายชื่อปลาเป็นเงื่อนไขของบอดี้ ไม่ใช่ปีก; ROM ยังไม่จัดอันดับปีกตามการกินหรือการตกขึ้น ร้านประกอบจัดชิ้นส่วนตามรูปที่เลือกและคิดราคาสุทธิ ไม่ต้องมีชิ้นส่วนแยกก่อนประกอบ ปีกมีส่วนในเงื่อนไขซ่อนร่วมกับบอดี้ การตีชุดเดิมซ้ำไม่สุ่มค่าใหม่ และเปลี่ยนแค่ปีกอาจไม่ช่วย ถ้าปลาที่เล็งไม่ตอบสนอง ให้เปิดหน้าปลาแล้วลองชุดสำรองสำเร็จรูปทั้งสามชุดในฉากที่โหลดอยู่เดียวกัน เมื่อค่าที่เก็บไว้ยังเดิม ทั้งสามชุดจะมีอย่างน้อยหนึ่งชุดที่เลี่ยงเงื่อนไขนี้ได้ แต่ไม่รับประกันว่าปลากิน"
+        },
+        "sources": [
+          "data/shop-stock-rom.json",
+          "data/fly-maker-wing-palette.json",
+          "docs/shop-stock-research.md"
+        ]
+      }
+    },
+    "fly_wing:34": {
+      "nameEn": "Caddis wet wing (olive and orange, bushy)",
+      "nameJa": "カディス・ウェットのウィング（オリーブ色とオレンジ・ふさふさ）",
+      "displayName": {
+        "th": "ปีกแคดดิส แบบเปียก (สีเขียวมะกอกกับส้ม ฟูเป็นพุ่ม)"
+      }
+    },
+    "fly_wing:35": {
+      "nameEn": "Caddis wet wing (grey and black, bushy)",
+      "nameJa": "カディス・ウェットのウィング（灰色と黒・ふさふさ）",
+      "displayName": {
+        "th": "ปีกแคดดิส แบบเปียก (สีเทากับดำ ฟูเป็นพุ่ม)"
+      }
+    },
+    "fly_wing:36": {
+      "nameEn": "Caddis wet wing (yellow, upright)",
+      "nameJa": "カディス・ウェットのウィング（黄色・立ち上がる）",
+      "displayName": {
+        "th": "ปีกแคดดิส แบบเปียก (สีเหลือง ตั้งขึ้น)"
+      }
+    },
+    "fly_wing:37": {
+      "nameEn": "Caddis wet wing (olive and orange, spotted)",
+      "nameJa": "カディス・ウェットのウィング（オリーブ色とオレンジ・斑点）",
+      "displayName": {
+        "th": "ปีกแคดดิส แบบเปียก (สีเขียวมะกอกกับส้ม เป็นจุดๆ)"
+      }
+    },
+    "fly_wing:38": {
+      "nameEn": "Caddis wet wing (black and white, spiky)",
+      "nameJa": "カディス・ウェットのウィング（黒と白・ツンツン）",
+      "displayName": {
+        "th": "ปีกแคดดิส แบบเปียก (สีดำกับขาว แหลมกระจาย)"
+      }
+    },
+    "fly_wing:39": {
+      "nameEn": "Caddis wet wing (red, thin strands)",
+      "nameJa": "カディス・ウェットのウィング（赤・細い毛束）",
+      "displayName": {
+        "th": "ปีกแคดดิส แบบเปียก (สีแดง เส้นบางๆ)"
+      }
+    },
+    "fly_wing:3A": {
+      "nameEn": "Caddis wet wing (gold, long and flat)",
+      "nameJa": "カディス・ウェットのウィング（金色・平たく長い）",
+      "displayName": {
+        "th": "ปีกแคดดิส แบบเปียก (สีทอง แบนยาว)"
+      }
+    },
+    "fly_wing:3B": {
+      "nameEn": "Caddis wet wing (olive, round and dense)",
+      "nameJa": "カディス・ウェットのウィング（オリーブ色・丸く密）",
+      "displayName": {
+        "th": "ปีกแคดดิส แบบเปียก (สีเขียวมะกอก กลมแน่น)"
+      }
+    },
+    "fly_wing:3C": {
+      "nameEn": "Caddis wet wing (pale grey, speckled)",
+      "nameJa": "カディス・ウェットのウィング（明るい灰色・まだら）",
+      "displayName": {
+        "th": "ปีกแคดดิส แบบเปียก (สีเทาอ่อน ลายจุด)"
+      }
+    },
+    "fly_wing:43": {
+      "nameEn": "Caddis dry wing (pale yellow, long and flat)",
+      "nameJa": "カディス・ドライのウィング（淡い黄色・平たく長い）",
+      "displayName": {
+        "th": "ปีกแคดดิส แบบแห้ง (สีเหลืองอ่อน แบนยาว)"
+      }
+    },
+    "fly_wing:44": {
+      "nameEn": "Caddis dry wing (olive, upright tuft, long and flat)",
+      "nameJa": "カディス・ドライのウィング（オリーブ色・立ち上がるふさ・平たく長い）",
+      "displayName": {
+        "th": "ปีกแคดดิส แบบแห้ง (สีเขียวมะกอก เป็นกระจุกตั้งขึ้น แบนยาว)"
+      }
+    },
+    "fly_wing:45": {
+      "nameEn": "Caddis dry wing (olive and grey, upright tuft, long and flat)",
+      "nameJa": "カディス・ドライのウィング（オリーブ色と灰色・立ち上がるふさ・平たく長い）",
+      "displayName": {
+        "th": "ปีกแคดดิส แบบแห้ง (สีเขียวมะกอกกับเทา เป็นกระจุกตั้งขึ้น แบนยาว)"
+      }
+    },
+    "fly_wing:46": {
+      "nameEn": "Caddis dry wing (olive, upright tuft)",
+      "nameJa": "カディス・ドライのウィング（オリーブ色・立ち上がるふさ）",
+      "displayName": {
+        "th": "ปีกแคดดิส แบบแห้ง (สีเขียวมะกอก เป็นกระจุกตั้งขึ้น)"
+      }
+    },
+    "fly_wing:47": {
+      "nameEn": "Caddis dry wing (white and yellow, long and flat)",
+      "nameJa": "カディス・ドライのウィング（白と黄色・平たく長い）",
+      "displayName": {
+        "th": "ปีกแคดดิส แบบแห้ง (สีขาวกับเหลือง แบนยาว)"
+      }
+    },
+    "fly_wing:48": {
+      "nameEn": "Caddis dry wing (olive, spread wide)",
+      "nameJa": "カディス・ドライのウィング（オリーブ色・横に広がる）",
+      "displayName": {
+        "th": "ปีกแคดดิส แบบแห้ง (สีเขียวมะกอก กางกว้าง)"
+      }
+    },
+    "fly_wing:50": {
+      "nameEn": "Diptera wet wing (pale grey, long and flat)",
+      "nameJa": "ディプテラ・ウェットのウィング（明るい灰色・平たく長い）",
+      "displayName": {
+        "th": "ปีกดิปเทอรา แบบเปียก (สีเทาอ่อน แบนยาว)"
+      }
+    },
+    "fly_wing:51": {
+      "nameEn": "Diptera wet wing (red, round puff)",
+      "nameJa": "ディプテラ・ウェットのウィング（赤・丸いふわふわ）",
+      "displayName": {
+        "th": "ปีกดิปเทอรา แบบเปียก (สีแดง เป็นก้อนกลมฟู)"
+      }
+    },
+    "fly_wing:52": {
+      "nameEn": "Diptera wet wing (olive, round puff)",
+      "nameJa": "ディプテラ・ウェットのウィング（オリーブ色・丸いふわふわ）",
+      "displayName": {
+        "th": "ปีกดิปเทอรา แบบเปียก (สีเขียวมะกอก เป็นก้อนกลมฟู)"
+      }
+    },
+    "fly_wing:5A": {
+      "nameEn": "Diptera dry wing (pale blue, long and flat)",
+      "nameJa": "ディプテラ・ドライのウィング（水色・平たく長い）",
+      "displayName": {
+        "th": "ปีกดิปเทอรา แบบแห้ง (สีฟ้าอ่อน แบนยาว)"
+      }
+    },
+    "fly_wing:5B": {
+      "nameEn": "Diptera dry wing (grey, upright block)",
+      "nameJa": "ディプテラ・ドライのウィング（灰色・四角く立つ）",
+      "displayName": {
+        "th": "ปีกดิปเทอรา แบบแห้ง (สีเทา เป็นก้อนเหลี่ยมตั้งขึ้น)"
+      }
+    },
+    "fly_wing:5C": {
+      "nameEn": "Diptera dry wing (white and grey, speckled)",
+      "nameJa": "ディプテラ・ドライのウィング（白と灰色・まだら）",
+      "displayName": {
+        "th": "ปีกดิปเทอรา แบบแห้ง (สีขาวกับเทา ลายจุด)"
+      }
+    },
+    "fly_wing:5D": {
+      "nameEn": "Diptera dry wing (white and grey, upright tuft)",
+      "nameJa": "ディプテラ・ドライのウィング（白と灰色・立ち上がるふさ）",
+      "displayName": {
+        "th": "ปีกดิปเทอรา แบบแห้ง (สีขาวกับเทา เป็นกระจุกตั้งขึ้น)"
+      }
+    },
+    "fly_wing:5E": {
+      "nameEn": "Diptera dry wing (yellow, upright tuft)",
+      "nameJa": "ディプテラ・ドライのウィング（黄色・立ち上がるふさ）",
+      "displayName": {
+        "th": "ปีกดิปเทอรา แบบแห้ง (สีเหลือง เป็นกระจุกตั้งขึ้น)"
+      }
+    },
+    "fly_wing:66": {
+      "nameEn": "Leech",
+      "nameJa": "リーチ",
+      "displayName": {
+        "th": "บอดี้ลีช (ปลิง) 66"
+      },
+      "summary": {
+        "en": "A leech-pattern fly body from the game data. No shop, ready-made set or fly maker offers it, so you cannot get it in normal play.",
+        "ja": "ゲームデータにあるリーチ（ヒル型）の毛バリボディ。店・完成品セット・毛バリ職人のどこにも出ないため、通常のプレイでは入手できない。",
+        "th": "บอดี้ฟลายแบบลีช (รูปปลิง) ที่มีอยู่ในข้อมูลเกม แต่ไม่มีร้าน ชุดสำเร็จรูป หรือช่างประกอบฟลายที่เสนอชิ้นนี้ จึงหาไม่ได้ในการเล่นปกติ"
+      },
+      "facts": {
+        "en": [
+          "In the game data this record is a body-type part (leech family). The guide keeps it in the wing list so older links still work."
+        ],
+        "ja": [
+          "ゲームデータ上は体（ボディ）型の部品（リーチ系統）。古いリンクが切れないよう、このガイドではウィング一覧に残している。"
+        ],
+        "th": [
+          "ในข้อมูลเกมชิ้นนี้เป็นชิ้นส่วนแบบบอดี้ (ตระกูลลีช) คู่มือนี้เก็บไว้ในรายการปีกเพื่อไม่ให้ลิงก์เก่าเสีย"
+        ]
+      },
+      "evidenceNotes": {
+        "en": [
+          "Family code 5 (leech) with the body-type part code. The record is missing from every shop stock table, ready-made fly set and fly maker palette that was checked."
+        ],
+        "ja": [
+          "系統コード5（リーチ）、部品コードはボディ型。確認した店の在庫表・完成品セット・毛バリ職人のパレットのどれにも載っていない。"
+        ],
+        "th": [
+          "รหัสตระกูล 5 (ลีช) และรหัสชิ้นส่วนแบบบอดี้ ระเบียนนี้ไม่อยู่ในตารางสต็อกร้าน ชุดสำเร็จรูป หรือพาเลตต์ของช่างประกอบฟลายที่ตรวจ"
+        ]
+      },
+      "imageNote": {
+        "en": "Picture of the leech fly body itself.",
+        "ja": "リーチ毛バリ本体の画像。",
+        "th": "ภาพตัวฟลายแบบลีชเอง"
+      },
+      "gearDecision": {
+        "label": {
+          "en": "Not sold anywhere",
+          "ja": "どこでも入手できない",
+          "th": "ไม่มีขายที่ไหน"
+        },
+        "recommendation": {
+          "en": "No shop, ready-made fly set or fly maker offers this part. Choose a body that is sold and lists your target fish instead.",
+          "ja": "店・完成品セット・毛バリ職人のどこにも出ない部品。対象魚がリストにある、売っているボディを選んでください。",
+          "th": "ไม่มีร้าน ชุดสำเร็จรูป หรือช่างประกอบฟลายที่ขายชิ้นนี้ ให้เลือกบอดี้ที่มีขายและมีปลาเป้าหมายอยู่ในรายชื่อแทน"
+        },
+        "reason": {
+          "en": "It is in the game data but missing from every shop list, ready-made set and fly maker menu that was opened in the game.",
+          "ja": "ゲームデータにはあるが、ゲーム内で確認した店の一覧・完成品セット・毛バリ職人のメニューのどれにもない。",
+          "th": "มีอยู่ในข้อมูลเกม แต่ไม่อยู่ในรายการร้าน ชุดสำเร็จรูป หรือเมนูช่างประกอบฟลายที่เปิดดูในเกมเลย"
+        },
+        "sources": [
+          "data/shop-stock-rom.json",
+          "data/fly-maker-wing-palette.json",
+          "docs/shop-stock-research.md"
+        ]
+      }
+    },
+    "fly_wing:67": {
+      "nameEn": "Leech",
+      "nameJa": "リーチ",
+      "displayName": {
+        "th": "บอดี้ลีช (ปลิง) 67"
+      },
+      "summary": {
+        "en": "A leech-pattern fly body from the game data. No shop, ready-made set or fly maker offers it, so you cannot get it in normal play.",
+        "ja": "ゲームデータにあるリーチ（ヒル型）の毛バリボディ。店・完成品セット・毛バリ職人のどこにも出ないため、通常のプレイでは入手できない。",
+        "th": "บอดี้ฟลายแบบลีช (รูปปลิง) ที่มีอยู่ในข้อมูลเกม แต่ไม่มีร้าน ชุดสำเร็จรูป หรือช่างประกอบฟลายที่เสนอชิ้นนี้ จึงหาไม่ได้ในการเล่นปกติ"
+      },
+      "facts": {
+        "en": [
+          "In the game data this record is a body-type part (leech family). The guide keeps it in the wing list so older links still work."
+        ],
+        "ja": [
+          "ゲームデータ上は体（ボディ）型の部品（リーチ系統）。古いリンクが切れないよう、このガイドではウィング一覧に残している。"
+        ],
+        "th": [
+          "ในข้อมูลเกมชิ้นนี้เป็นชิ้นส่วนแบบบอดี้ (ตระกูลลีช) คู่มือนี้เก็บไว้ในรายการปีกเพื่อไม่ให้ลิงก์เก่าเสีย"
+        ]
+      },
+      "evidenceNotes": {
+        "en": [
+          "Family code 5 (leech) with the body-type part code. The record is missing from every shop stock table, ready-made fly set and fly maker palette that was checked."
+        ],
+        "ja": [
+          "系統コード5（リーチ）、部品コードはボディ型。確認した店の在庫表・完成品セット・毛バリ職人のパレットのどれにも載っていない。"
+        ],
+        "th": [
+          "รหัสตระกูล 5 (ลีช) และรหัสชิ้นส่วนแบบบอดี้ ระเบียนนี้ไม่อยู่ในตารางสต็อกร้าน ชุดสำเร็จรูป หรือพาเลตต์ของช่างประกอบฟลายที่ตรวจ"
+        ]
+      },
+      "imageNote": {
+        "en": "Picture of the leech fly body itself.",
+        "ja": "リーチ毛バリ本体の画像。",
+        "th": "ภาพตัวฟลายแบบลีชเอง"
+      },
+      "gearDecision": {
+        "label": {
+          "en": "Not sold anywhere",
+          "ja": "どこでも入手できない",
+          "th": "ไม่มีขายที่ไหน"
+        },
+        "recommendation": {
+          "en": "No shop, ready-made fly set or fly maker offers this part. Choose a body that is sold and lists your target fish instead.",
+          "ja": "店・完成品セット・毛バリ職人のどこにも出ない部品。対象魚がリストにある、売っているボディを選んでください。",
+          "th": "ไม่มีร้าน ชุดสำเร็จรูป หรือช่างประกอบฟลายที่ขายชิ้นนี้ ให้เลือกบอดี้ที่มีขายและมีปลาเป้าหมายอยู่ในรายชื่อแทน"
+        },
+        "reason": {
+          "en": "It is in the game data but missing from every shop list, ready-made set and fly maker menu that was opened in the game.",
+          "ja": "ゲームデータにはあるが、ゲーム内で確認した店の一覧・完成品セット・毛バリ職人のメニューのどれにもない。",
+          "th": "มีอยู่ในข้อมูลเกม แต่ไม่อยู่ในรายการร้าน ชุดสำเร็จรูป หรือเมนูช่างประกอบฟลายที่เปิดดูในเกมเลย"
+        },
+        "sources": [
+          "data/shop-stock-rom.json",
+          "data/fly-maker-wing-palette.json",
+          "docs/shop-stock-research.md"
+        ]
+      }
+    },
+    "fly_wing:70": {
+      "nameEn": "Stonefly dry wing (olive, spread wide)",
+      "nameJa": "ストーンフライ・ドライのウィング（オリーブ色・横に広がる）",
+      "displayName": {
+        "th": "ปีกสโตนฟลาย แบบแห้ง (สีเขียวมะกอก กางกว้าง)"
+      }
+    },
+    "fly_wing:71": {
+      "nameEn": "Stonefly dry wing (yellow, spread wide)",
+      "nameJa": "ストーンフライ・ドライのウィング（黄色・横に広がる）",
+      "displayName": {
+        "th": "ปีกสโตนฟลาย แบบแห้ง (สีเหลือง กางกว้าง)"
+      }
+    },
+    "fly_wing:72": {
+      "nameEn": "Stonefly dry wing (olive, upright tuft)",
+      "nameJa": "ストーンフライ・ドライのウィング（オリーブ色・立ち上がるふさ）",
+      "displayName": {
+        "th": "ปีกสโตนฟลาย แบบแห้ง (สีเขียวมะกอก เป็นกระจุกตั้งขึ้น)"
+      }
+    },
+    "fly_wing:73": {
+      "nameEn": "Stonefly dry wing (grey and black, spread wide)",
+      "nameJa": "ストーンフライ・ドライのウィング（灰色と黒・横に広がる）",
+      "displayName": {
+        "th": "ปีกสโตนฟลาย แบบแห้ง (สีเทากับดำ กางกว้าง)"
+      }
+    },
+    "food:08": {
+      "nameEn": "Caught fish",
+      "nameJa": "釣った魚",
+      "displayName": {
+        "th": "ปลาที่ตกได้"
+      }
+    },
+    "food:09": {
+      "nameEn": "Mushroom (tan, flat cap)",
+      "nameTh": "เห็ด (หมวกแบนสีน้ำตาลอ่อน)",
+      "displayName": {
+        "th": "เห็ด (หมวกแบนสีน้ำตาลอ่อน)",
+        "ja": "きのこ（茶色の平たい形）"
+      },
+      "factsAdd": {
+        "en": [
+          "The game shows both mushrooms under the same name, きのこ. Tell them apart by the icon: a tan, flat cap is the safe one (+10 HP); red with yellow spots is poison (HP to 0)."
+        ],
+        "ja": [
+          "ゲームでは2種類とも「きのこ」と表示される。見分けはアイコン：茶色の平たい形は安全（HP+10）、赤に黄色い点は毒（HPが0になる）。"
+        ],
+        "th": [
+          "ในเกมเห็ดสองชนิดใช้ชื่อเดียวกันว่า きのこ ให้ดูที่ไอคอน: หมวกแบนสีน้ำตาลอ่อนคือกินได้ (+10 HP) ส่วนสีแดงจุดเหลืองคือเห็ดพิษ (HP เหลือ 0)"
+        ]
+      }
+    },
+    "food:0A": {
+      "nameEn": "Mushroom (red with yellow spots, poison)",
+      "nameJa": "きのこ",
+      "nameTh": "เห็ด (สีแดงจุดเหลือง มีพิษ)",
+      "displayName": {
+        "th": "เห็ด (สีแดงจุดเหลือง มีพิษ)",
+        "ja": "きのこ（赤に黄色い点・毒）"
+      },
+      "factsAdd": {
+        "en": [
+          "The game shows both mushrooms under the same name, きのこ. Tell them apart by the icon: a tan, flat cap is the safe one (+10 HP); red with yellow spots is poison (HP to 0)."
+        ],
+        "ja": [
+          "ゲームでは2種類とも「きのこ」と表示される。見分けはアイコン：茶色の平たい形は安全（HP+10）、赤に黄色い点は毒（HPが0になる）。"
+        ],
+        "th": [
+          "ในเกมเห็ดสองชนิดใช้ชื่อเดียวกันว่า きのこ ให้ดูที่ไอคอน: หมวกแบนสีน้ำตาลอ่อนคือกินได้ (+10 HP) ส่วนสีแดงจุดเหลืองคือเห็ดพิษ (HP เหลือ 0)"
+        ]
+      }
+    },
+    "general_tool:0E": {
+      "nameEn": "Compass",
+      "displayName": {
+        "th": "เข็มทิศ"
+      }
+    }
+  }
+}

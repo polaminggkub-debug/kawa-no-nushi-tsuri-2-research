@@ -11,7 +11,7 @@ This page records where the original Japanese ROM places several useful item rew
 | `general_tool:0F` — empty bottle | Area 3 / map 9 | `(6,4)` | Take the bottle; no key check is in the dedicated grant branch. |
 | `general_tool:11` — lottery ticket | Area 5 / map 11 | `(4,6)` | Take one ticket; the ROM's map-11 branch grants ID `11` without a key. |
 | `bait:11` — potato bait | Area 1 / map 7 | `(5,68)` | Use key `general_tool:17` (it is used up); leave room in the bait inventory. |
-| `bait:0B` — waxworm bait | Area 2 / map 8 | `(4,6)` | Use key `general_tool:17` (it is used up); leave room in the bait inventory. |
+| `bait:0B` — grapevine larva bait | Area 2 / map 8 | `(4,6)` | Use key `general_tool:17` (it is used up); leave room in the bait inventory. |
 | `rod:0A` — small lure rod | Area 4 / map 10 | `(4,6)` | Use key `general_tool:17` (it is used up); leave room in the rod inventory. |
 | `general_tool:12` — candle | Area 6 / map 12 | `(4,6)` | Use key `general_tool:17` (it is used up); leave room in general tools. |
 

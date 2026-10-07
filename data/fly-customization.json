@@ -83,7 +83,7 @@
             136
           ]
         },
-        "notes": "The captured Mayfly sequence shows 20 choices in a 5-by-4 palette. The final two visible icons are gray and pale yellow at row 5, columns 3 and 4. Their correspondence to the final special wing records (66/67) is based on the decoded ROM component ordering; the UI itself does not display internal IDs."
+        "notes": "Superseded visual estimate: an early capture read 20 icons in a 5-by-4 grid, with the last two (gray and pale yellow) guessed to be records 66/67. The controller-verified Mayfly wing menu in Area 1 has 16 icons in a 4-by-4 grid; the last two are wings 23 and 24. Records 66/67 are leech body records that no menu or shop offers (see data/fly-maker-wing-palette.json)."
       }
     },
     {

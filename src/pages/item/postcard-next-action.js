@@ -4,7 +4,7 @@ function postcardCopy(lang) {
   return {
     th: {
       title: 'เมื่ออ่านแล้วพบจดหมายจากหมอให้ตกปลาไหลยักษ์',
-      body: 'ถ้าพบข้อความนี้แล้ว ใช้แม่เหล็กในด่าน 6 ดูทิศทาง หรือเปิดจุดบนแผนที่ด้านล่าง เลือกเหยื่อและอุปกรณ์จากหน้าปลาไหลยักษ์ก่อนออกไปตก',
+      body: 'ถ้าพบข้อความนี้แล้ว ใช้เข็มทิศในด่าน 6 ดูทิศทาง หรือเปิดจุดบนแผนที่ด้านล่าง เลือกเหยื่อและอุปกรณ์จากหน้าปลาไหลยักษ์ก่อนออกไปตก',
       afterCatch:
         'ตกปลาไหลได้แล้วไม่ต้องเก็บไว้ เดินเข้าหมู่บ้านด่าน 1 ทางประตูสนาม (12,189) ฉากจบจะเริ่มโดยอัตโนมัติ โดยต้องทำขั้นก่อนหน้าให้ครบก่อน (ปลาประจำตัวละครของคุณ แล้วฉากในหมู่บ้านที่สนาม (8,183))',
       returnMap: 'ดูทางกลับหมู่บ้าน · ด่าน 1 (12,189)',
@@ -24,7 +24,7 @@ function postcardCopy(lang) {
     },
     en: {
       title: 'After reading the doctor’s request for a giant eel',
-      body: 'Once this request appears, use its Area 6 Magnet heading or open the map point below. Choose compatible bait and equipment from the fish profile before fishing.',
+      body: 'Once this request appears, use its Area 6 Compass heading or open the map point below. Choose compatible bait and equipment from the fish profile before fishing.',
       afterCatch:
         'You do not need to keep the eel once it is caught. Walk into the Area 1 village through the field door at (12,189) and the ending scene plays automatically, provided the earlier steps are done (your character’s own special fish, then the village scene at field (8,183)).',
       returnMap: 'Starting-village entrance · Area 1 (12,189)',

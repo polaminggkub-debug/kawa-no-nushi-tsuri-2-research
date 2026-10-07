@@ -988,7 +988,7 @@
     ctx.suggestionIds = matches.slice(0, ctx.suggestionLimit);
     ctx.activeSuggestion = -1;
     const open = Boolean(ctx.searchInput.value.trim()) && !ctx.suggestionsDismissed && document.activeElement === ctx.searchInput && ctx.suggestionIds.length > 0;
-    const areaLabel = ctx.lang === "th" ? "พื้นที่" : ctx.lang === "ja" ? "エリア" : "Areas";
+    const areaLabel = ctx.lang === "th" ? "ด่าน" : ctx.lang === "ja" ? "エリア" : "Areas";
     ctx.suggestionList.innerHTML = ctx.suggestionIds.map((id, index) => {
       const item = ctx.species[id], image = item.visual.image || "";
       const areaBadges = item.stages.filter((stage) => !ctx.activeWaterMark || stage === ctx.activeStage).map((stage) => `<span class="suggestion-area-badge">${ctx.esc(ctx.c.area(stage))}</span>`).join("");

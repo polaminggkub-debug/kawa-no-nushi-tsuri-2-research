@@ -33,6 +33,8 @@ export function sourceFiles(root, context) {
     ...collectTree(join(root, 'src'), 'src', context),
     ...collectTree(join(root, 'scripts/code-quality'), 'scripts/code-quality', context),
     ...collectTree(join(root, 'scripts/entity-link-check'), 'scripts/entity-link-check', context),
+    ...collectTree(join(root, 'scripts/gear-effects'), 'scripts/gear-effects', context),
+    ...collectTree(join(root, 'scripts/gear-guide'), 'scripts/gear-guide', context),
   ]
   const buildTool = join(root, 'scripts/build_frontend.mjs')
   if (existsSync(buildTool) && statSync(buildTool).isFile())
@@ -40,6 +42,9 @@ export function sourceFiles(root, context) {
   const policyTool = join(root, 'scripts/build_fight_policies.mjs')
   if (existsSync(policyTool) && statSync(policyTool).isFile())
     files.push('scripts/build_fight_policies.mjs')
+  const gearTool = join(root, 'scripts/build_gear_effects.mjs')
+  if (existsSync(gearTool) && statSync(gearTool).isFile())
+    files.push('scripts/build_gear_effects.mjs')
   const entityTool = join(root, 'scripts/check_entity_links.cjs')
   if (existsSync(entityTool) && statSync(entityTool).isFile())
     files.push('scripts/check_entity_links.cjs')

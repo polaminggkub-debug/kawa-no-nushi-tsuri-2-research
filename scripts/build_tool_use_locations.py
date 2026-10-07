@@ -126,7 +126,7 @@ def build(rom):
                 acquisition_copy = {
                     'general_tool:0F': (
                         loc('Town chest: empty bottle', '町の宝箱：空きビン', 'หีบในเมือง: ขวดเปล่า'),
-                        loc('Take the empty bottle, then bring it to the area-3 cow at (6,103).', '空きビンを取り、エリア3の牛（6,103）へ持っていく。', 'รับขวดเปล่า แล้วนำไปหาวัวในพื้นที่ 3 พิกัด (6,103)'),
+                        loc('Take the empty bottle, then bring it to the area-3 cow at (6,103).', '空きビンを取り、エリア3の牛（6,103）へ持っていく。', 'รับขวดเปล่า แล้วนำไปหาวัวในด่าน 3 พิกัด (6,103)'),
                     ),
                     'general_tool:11': (
                         loc('Town chest: lottery ticket', '町の宝箱：富くじ', 'หีบในเมือง: สลาก'),
@@ -137,7 +137,7 @@ def build(rom):
                         loc('Bring a key (the chest uses it up) and leave a free bait slot before opening this chest.', 'カギを持ち、エサ欄を1つ空けてから開ける。宝箱を開けるとカギは消費される。', 'พกกุญแจ (เปิดหีบแล้วกุญแจหมดไป) และเว้นช่องเหยื่อให้ว่างก่อนเปิดหีบ'),
                     ),
                     'bait:0B': (
-                        loc('Locked town chest: waxworm bait', '施錠された町の宝箱：ブドウムシ', 'หีบล็อกในเมือง: หนอนองุ่น'),
+                        loc('Locked town chest: grapevine larva bait', '施錠された町の宝箱：ブドウムシ', 'หีบล็อกในเมือง: หนอนองุ่น'),
                         loc('Bring a key (the chest uses it up) and leave a free bait slot before opening this chest.', 'カギを持ち、エサ欄を1つ空けてから開ける。宝箱を開けるとカギは消費される。', 'พกกุญแจ (เปิดหีบแล้วกุญแจหมดไป) และเว้นช่องเหยื่อให้ว่างก่อนเปิดหีบ'),
                     ),
                     'rod:0A': (

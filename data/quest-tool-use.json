@@ -20,9 +20,9 @@
         "basePriceYen": 0
       },
       "summary": {
-        "en": "Do you need it? Only if you want the story ending. Keep it, and read it from the item menu once your notebook has 65 of the 66 fish kinds. If a note from the doctor asking you to catch the giant eel appears, the Area 6 magnet starts pointing to the eel. Reading never uses the postcard up.",
+        "en": "Do you need it? Only if you want the story ending. Keep it, and read it from the item menu once your notebook has 65 of the 66 fish kinds. If a note from the doctor asking you to catch the giant eel appears, the Area 6 compass starts pointing to the eel. Reading never uses the postcard up.",
         "ja": "必要か？ エンディングを見たい場合だけ。残しておき、図鑑が66種類のうち65種類以上になったらアイテムメニューから読む。医者の「オオウナギを釣ってほしい」という文面が出たら、エリア6の磁石がオオウナギの場所を指すようになる。読んでもハガキは消えない。",
-        "th": "ต้องใช้ไหม? เฉพาะตอนอยากดูฉากจบ เก็บไว้ แล้วเปิดอ่านจากเมนูไอเท็มเมื่อสมุดมีปลาครบ 65 จาก 66 ชนิด ถ้ามีข้อความจากหมอขอให้ตกปลาไหลยักษ์ แม่เหล็กในด่าน 6 จะเริ่มชี้ไปหาปลาไหลตัวนั้น อ่านแล้วไปรษณียบัตรไม่หาย"
+        "th": "ต้องใช้ไหม? เฉพาะตอนอยากดูฉากจบ เก็บไว้ แล้วเปิดอ่านจากเมนูไอเท็มเมื่อสมุดมีปลาครบ 65 จาก 66 ชนิด ถ้ามีข้อความจากหมอขอให้ตกปลาไหลยักษ์ เข็มทิศในด่าน 6 จะเริ่มชี้ไปหาปลาไหลตัวนั้น อ่านแล้วไปรษณียบัตรไม่หาย"
       },
       "facts": {
         "en": [
@@ -57,7 +57,7 @@
           "The item handler sets action state 09. The state table routes to the read-mail handler, which searches four saved-character mail blocks using the current-character selector. The read path does not consume ID 06 or modify HP or money.",
           "For message 041E, 01:DE89..DEB1 requires $0C18 bit 0x02, bit 0x04 clear, and at least 0x41 (65) nonzero two-byte records among $0DC8..$0E4A. The reader sets bit 0x04 at 01:DEB3..DEB9, then copies ROM message 041E into the display buffer beginning at 01:DECC. This check sets the Magnet-heading flag; it does not mark the eel as caught or grant an item reward.",
           "Bit 0x02 is set separately after the automatic profile-specific return scene at 02:E643..E649. The scene is queued by the Area 1 return transition when $0C18 == 1 at 00:9E43..9E5F; the matching transition maps Area 1 tile (8,183) to map selector 7 tile (7,13). The earlier fishing callback matches a selected profile to an active fish-table row but does not test a landed-catch result, so the exact ordinary-play trigger timing remains unverified.",
-          "The Magnet's Area 6 dynamic target is separately traced in docs/magnet-story-gate-research.md: it matches fish-table row 1, giant eel ID 3B, at (41,8).",
+          "The compass's Area 6 dynamic target is separately traced in docs/magnet-story-gate-research.md: it matches fish-table row 1, giant eel ID 3B, at (41,8).",
           "Audit 2026-10-07: the successful-storage branch 01:85E4..85FC calls the story-bit producer 01:917A before storing the fish at 01:8AC3, so bit 0x08 is set at the catch itself (and only if bit 0x01 was already set by your character's own special fish). You do not have to keep the eel. At $0C18==000F, entering the Area 1 village door at (12,189) (internal village map 7, (7,77)) queues the automatic ending scene. Messages 03C8/03CC describe the doctor's recovery and the shared meal. The scene gives no item, HP or money, and play continues afterwards. The scene was driven in the emulator with the story flags set directly in RAM; the full chain from a fresh save was not replayed, and Thai-patch equivalence is unverified."
         ],
         "ja": [
@@ -69,9 +69,9 @@
         ],
         "th": [
           "โค้ดใช้ไอเท็มตั้งสถานะการกระทำ 09 แล้วตารางสถานะส่งไปยังตัวอ่านจดหมาย ซึ่งค้นหาพื้นที่จดหมายของตัวละครที่เซฟไว้ 4 ช่องด้วยค่าตัวละครปัจจุบัน การอ่านไม่ใช้ ID 06 ทิ้งและไม่เปลี่ยน HP หรือเงิน",
-          "เงื่อนไขข้อความ 041E ที่ 01:DE89..DEB1 คือต้องมีบิต 0x02 ใน $0C18, บิต 0x04 ยังไม่ถูกตั้ง และมีช่องบันทึกปลาที่ไม่เป็นศูนย์อย่างน้อย 0x41 (65) จากช่องสองไบต์ 66 ช่องใน $0DC8..$0E4A ตัวอ่านตั้งบิต 0x04 ที่ 01:DEB3..DEB9 แล้วคัดลอกข้อความ ROM 041E ลงบัฟเฟอร์เริ่มที่ 01:DECC เงื่อนไขนี้เปิดทิศทางของแม่เหล็ก ไม่ได้บันทึกว่าตกปลาไหลยักษ์ได้แล้วหรือให้รางวัลเป็นไอเท็ม",
+          "เงื่อนไขข้อความ 041E ที่ 01:DE89..DEB1 คือต้องมีบิต 0x02 ใน $0C18, บิต 0x04 ยังไม่ถูกตั้ง และมีช่องบันทึกปลาที่ไม่เป็นศูนย์อย่างน้อย 0x41 (65) จากช่องสองไบต์ 66 ช่องใน $0DC8..$0E4A ตัวอ่านตั้งบิต 0x04 ที่ 01:DEB3..DEB9 แล้วคัดลอกข้อความ ROM 041E ลงบัฟเฟอร์เริ่มที่ 01:DECC เงื่อนไขนี้เปิดทิศทางของเข็มทิศ ไม่ได้บันทึกว่าตกปลาไหลยักษ์ได้แล้วหรือให้รางวัลเป็นไอเท็ม",
           "บิต 0x02 ถูกตั้งแยกต่างหากหลังฉากกลับอัตโนมัติของตัวละครที่เลือก เมื่อ $0C18 == 1 ทางกลับในด่าน 1 จะพิกัด (8,183) ไปยังแผนที่เมืองรหัส 7 พิกัด (7,13) และเริ่มฉาก (00:9E43..9E5F); ช่วงท้ายฉากที่ 02:E643..E649 ตั้งบิต 0x02 คอลแบ็กตกปลาก่อนหน้านี้ตรวจตัวละครที่เลือกเทียบกับแถวปลาที่กำลังทำงาน แต่ไม่ได้ตรวจผลว่าตกขึ้นมาได้แล้วหรือไม่ จึงยังยืนยันไม่ได้ว่าเงื่อนไขเกิดขึ้นตอนไหนในการเล่นปกติ",
-          "เป้าหมายแบบไดนามิกของแม่เหล็กในด่าน 6 มีหลักฐานแยกใน docs/magnet-story-gate-research.md: ตรงกับปลาไหลยักษ์ ID 3B แถวที่ 1 ของตารางปลา ที่พิกัด (41,8)",
+          "เป้าหมายแบบไดนามิกของเข็มทิศในด่าน 6 มีหลักฐานแยกใน docs/magnet-story-gate-research.md: ตรงกับปลาไหลยักษ์ ID 3B แถวที่ 1 ของตารางปลา ที่พิกัด (41,8)",
           "การตรวจ 2026-10-07: แขนงเก็บปลาสำเร็จ 01:85E4..85FC เรียกตัวตั้งบิตเนื้อเรื่อง 01:917A ก่อนเก็บปลาที่ 01:8AC3 บิต 0x08 จึงถูกตั้งตั้งแต่ตกปลาไหลได้ (และเฉพาะเมื่อบิต 0x01 ถูกตั้งแล้วจากปลาประจำตัวละคร) ไม่จำเป็นต้องเก็บปลาไหลไว้ เมื่อ $0C18==000F การเดินเข้าประตูหมู่บ้านด่าน 1 ที่ (12,189) (แผนที่หมู่บ้านภายใน 7 พิกัด (7,77)) เริ่มฉากจบอัตโนมัติ ข้อความ 03C8/03CC เล่าว่าหมอหายและทุกคนกินปลาด้วยกัน ฉากนี้ไม่ให้ไอเท็ม HP หรือเงิน และเล่นต่อได้ ทดสอบในอีมูเลเตอร์โดยตั้งแฟล็กเนื้อเรื่องใน RAM โดยตรง ไม่ได้เล่นซ้ำตั้งแต่เซฟใหม่จนจบ และยังไม่ยืนยันความตรงกันของแพตช์ไทย"
         ]
       },
@@ -224,7 +224,7 @@
           "直接使用処理03:C4D9はメッセージ0168のみを表示する。町の宝箱処理00:D0EA..D113は00:D1D4..D207の付与処理でID0Fを渡し、付与成功時に限り7E:0C1Aのbit0を設定する。共通付与処理は最後の道具欄7E:0B78を確認し、埋まっている場合はメッセージ0196を表示して状態1で戻るため、宝箱処理はフラグ設定前に終了する。満杯状態で試した後の保存・再試行動作はこの追跡では確認していない。エリア3のNPCスロット0C（6,103）、00:C804はそのフラグとID0Fを確認して、見つかった所持欄をID10に置き換える。"
         ],
         "th": [
-          "ตัวใช้โดยตรง 03:C4D9 แสดงข้อความ 0168 เท่านั้น ทางหีบเมือง 00:D0EA..D113 ส่ง ID 0F ผ่านฟังก์ชันให้ของ 00:D1D4..D207 แล้วตั้งบิต 0 ของ 7E:0C1A เฉพาะเมื่อให้ของสำเร็จ ฟังก์ชันกลางตรวจช่องของทั่วไปช่องสุดท้ายที่ 7E:0B78; หากมีของอยู่จะแสดงข้อความ 0196 แล้วคืนสถานะ 1 ทำให้ตัวเปิดหีบจบก่อนตั้งธง โค้ดที่ตรวจยังไม่ยืนยันว่าหลังโหลดเซฟใหม่จะเกิดอะไรขึ้นกับความพยายามตอนช่องเต็ม ส่วน NPC ช่อง 0C ในพื้นที่ 3 (6,103) ที่ 00:C804 ตรวจธงนี้กับ ID 0F แล้วเขียน ID 10 ทับช่องไอเท็มที่พบ"
+          "ตัวใช้โดยตรง 03:C4D9 แสดงข้อความ 0168 เท่านั้น ทางหีบเมือง 00:D0EA..D113 ส่ง ID 0F ผ่านฟังก์ชันให้ของ 00:D1D4..D207 แล้วตั้งบิต 0 ของ 7E:0C1A เฉพาะเมื่อให้ของสำเร็จ ฟังก์ชันกลางตรวจช่องของทั่วไปช่องสุดท้ายที่ 7E:0B78; หากมีของอยู่จะแสดงข้อความ 0196 แล้วคืนสถานะ 1 ทำให้ตัวเปิดหีบจบก่อนตั้งธง โค้ดที่ตรวจยังไม่ยืนยันว่าหลังโหลดเซฟใหม่จะเกิดอะไรขึ้นกับความพยายามตอนช่องเต็ม ส่วน NPC ช่อง 0C ในด่าน 3 (6,103) ที่ 00:C804 ตรวจธงนี้กับ ID 0F แล้วเขียน ID 10 ทับช่องไอเท็มที่พบ"
         ]
       },
       "rawTrace": {
@@ -562,7 +562,7 @@
           "直接使用03:C5C0は最大HP7E:0864を現在HP7E:0862へコピーし、選択アイテム一覧を詰めて消費する。メッセージ016Cは食べたことを示す。エリア4イベント00:CA1CはID15を確認・削除し、7E:0C1Cのbit0を立てる。返答はメッセージ02FE。基本価格50円だけでは店頭在庫を証明しない。"
         ],
         "th": [
-          "ใช้โดยตรงที่ 03:C5C0 จะคัดลอก HP สูงสุด 7E:0864 ไปยัง HP ปัจจุบัน 7E:0862 และเลื่อนรายการไอเท็มเพื่อใช้ทิ้ง ข้อความ 016C ยืนยันว่ากินแล้ว เหตุการณ์พื้นที่ 4 ที่ 00:CA1C ตรวจ ID 15 ใช้ทิ้ง และตั้งบิต 0 ของ 7E:0C1C คำตอบ NPC คือข้อความ 02FE ราคาพื้นฐาน 50 เยนไม่ได้ยืนยันว่ามีขายในร้าน"
+          "ใช้โดยตรงที่ 03:C5C0 จะคัดลอก HP สูงสุด 7E:0864 ไปยัง HP ปัจจุบัน 7E:0862 และเลื่อนรายการไอเท็มเพื่อใช้ทิ้ง ข้อความ 016C ยืนยันว่ากินแล้ว เหตุการณ์ด่าน 4 ที่ 00:CA1C ตรวจ ID 15 ใช้ทิ้ง และตั้งบิต 0 ของ 7E:0C1C คำตอบ NPC คือข้อความ 02FE ราคาพื้นฐาน 50 เยนไม่ได้ยืนยันว่ามีขายในร้าน"
         ]
       },
       "rawTrace": {
@@ -600,7 +600,7 @@
       "summary": {
         "en": "In area 4, directly use fireworks at X=31–33, Y=42–43 before the fox scene has happened. The fox appears startled and runs away; fireworks are consumed. This shortcut works without first giving the NPC fried tofu.",
         "ja": "エリア4の座標X=31～33・Y=42～43で、キツネの場面が起きる前に花火を直接使う。キツネが驚いて姿を見せ、逃げていく。花火は消費される。NPCに油揚げを渡す前でも使える。",
-        "th": "ใช้ดอกไม้ไฟโดยตรงที่ X=31–33, Y=42–43 ในพื้นที่ 4 ก่อนฉากจิ้งจอกเกิด จิ้งจอกจะเผยตัวด้วยท่าทีตกใจแล้วหนีไป ดอกไม้ไฟถูกใช้ทิ้ง ใช้ทางลัดนี้ได้โดยไม่ต้องเอาเต้าหู้ทอดไปให้ NPC ก่อน"
+        "th": "ใช้ดอกไม้ไฟโดยตรงที่ X=31–33, Y=42–43 ในด่าน 4 ก่อนฉากจิ้งจอกเกิด จิ้งจอกจะเผยตัวด้วยท่าทีตกใจแล้วหนีไป ดอกไม้ไฟถูกใช้ทิ้ง ใช้ทางลัดนี้ได้โดยไม่ต้องเอาเต้าหู้ทอดไปให้ NPC ก่อน"
       },
       "facts": {
         "en": [
@@ -612,7 +612,7 @@
           "他の使用可能な屋外位置では通常の花火の場面になり、花火は消費される。タライ・カヌーに乗っている時は使えない。"
         ],
         "th": [
-          "NPC เควสต์พื้นที่ 4 (32,42) รับดอกไม้ไฟหลังขั้นเต้าหู้ทอดและเริ่มฉากจิ้งจอก ส่วน NPC อีกคน (62,32) รับดอกไม้ไฟโดยไม่ต้องผ่านขั้นเต้าหู้และให้คำใบ้ การใช้โดยตรงที่พิกัดที่ระบุก็เริ่มฉากได้โดยไม่ต้องทำขั้นเต้าหู้ก่อน",
+          "NPC เควสต์ด่าน 4 (32,42) รับดอกไม้ไฟหลังขั้นเต้าหู้ทอดและเริ่มฉากจิ้งจอก ส่วน NPC อีกคน (62,32) รับดอกไม้ไฟโดยไม่ต้องผ่านขั้นเต้าหู้และให้คำใบ้ การใช้โดยตรงที่พิกัดที่ระบุก็เริ่มฉากได้โดยไม่ต้องทำขั้นเต้าหู้ก่อน",
           "ใช้ในจุดกลางแจ้งอื่นที่ใช้ได้จะเป็นฉากดอกไม้ไฟทั่วไปและยังเสียไอเท็ม ใช้ไม่ได้ขณะอยู่บนกะละมังหรือแคนู"
         ]
       },
@@ -632,7 +632,7 @@
           "直接使用03:C5F6は許可されたフィールド状態・エリア1～6でのみ動作する。選択品を消費し通常は状態0Fにする。エリア4で7E:0C1Aのbit7が未設定、プレイヤー座標がX=31～33・Y=42～43なら状態0Eを選び02:DF9Cへ進む。このイベントは7E:0C1Aのbit7と7E:0C1Cのbit0を設定する。メッセージ0300/0302は花火使用、キツネの出現・驚き・逃走を示す。直接使用処理に油揚げ条件はない。別のイベントNPCスロット0C（32,42）も油揚げイベント後に花火を消費して02:DF9Cを起動する。ヒントNPCスロット1E（62,32）は油揚げ条件なしで00:CAFBによりアイテムを消費してメッセージ02E6を表示する。この助言だけではキツネ出現イベントの発生を証明しない。"
         ],
         "th": [
-          "ใช้โดยตรงที่ 03:C5F6 ได้เฉพาะสถานะภาคสนามที่กำหนดและพื้นที่ 1–6 โดยใช้ไอเท็มที่เลือกทิ้งและปกติตั้งสถานะ 0F ในพื้นที่ 4 หากบิต 7 ของ 7E:0C1A ยังไม่ถูกตั้ง และพิกัดผู้เล่นอยู่ในกรอบ X=31–33, Y=42–43 จะเลือกสถานะ 0E แล้วไปที่ 02:DF9C เหตุการณ์นี้ตั้งบิต 7 ของ 7E:0C1A และบิต 0 ของ 7E:0C1C ข้อความ 0300/0302 บอกว่าใช้ดอกไม้ไฟ จิ้งจอกเผยตัว ตกใจและหนีไป การใช้โดยตรงไม่ต้องมีธงเต้าหู้ทอด NPC เควสต์ช่อง 0C (32,42) เป็นอีกเส้นทาง หลังขั้นเต้าหู้ทอดจะใช้ดอกไม้ไฟทิ้งแล้วเรียก 02:DF9C ส่วน NPC ให้คำใบ้ช่อง 1E (62,32) ใช้ทาง 00:CAFB โดยไม่ต้องผ่านขั้นเต้าหู้ ใช้ไอเท็มทิ้งและแสดงข้อความ 02E6 ข้อความคำแนะนำอย่างเดียวไม่ยืนยันว่าฉากจิ้งจอกเกิดแล้ว"
+          "ใช้โดยตรงที่ 03:C5F6 ได้เฉพาะสถานะภาคสนามที่กำหนดและด่าน 1–6 โดยใช้ไอเท็มที่เลือกทิ้งและปกติตั้งสถานะ 0F ในด่าน 4 หากบิต 7 ของ 7E:0C1A ยังไม่ถูกตั้ง และพิกัดผู้เล่นอยู่ในกรอบ X=31–33, Y=42–43 จะเลือกสถานะ 0E แล้วไปที่ 02:DF9C เหตุการณ์นี้ตั้งบิต 7 ของ 7E:0C1A และบิต 0 ของ 7E:0C1C ข้อความ 0300/0302 บอกว่าใช้ดอกไม้ไฟ จิ้งจอกเผยตัว ตกใจและหนีไป การใช้โดยตรงไม่ต้องมีธงเต้าหู้ทอด NPC เควสต์ช่อง 0C (32,42) เป็นอีกเส้นทาง หลังขั้นเต้าหู้ทอดจะใช้ดอกไม้ไฟทิ้งแล้วเรียก 02:DF9C ส่วน NPC ให้คำใบ้ช่อง 1E (62,32) ใช้ทาง 00:CAFB โดยไม่ต้องผ่านขั้นเต้าหู้ ใช้ไอเท็มทิ้งและแสดงข้อความ 02E6 ข้อความคำแนะนำอย่างเดียวไม่ยืนยันว่าฉากจิ้งจอกเกิดแล้ว"
         ]
       },
       "rawTrace": {
@@ -707,7 +707,7 @@
         "en": [
           "Selecting the key in the item menu only shows its description. It works when you examine a locked chest.",
           "Each chest you open uses up one key. If the opening is refused (bag full, or the chest is already open), you keep the key.",
-          "Chest prizes: Area 1 potato bait, Area 2 waxworm bait, Area 4 small lure rod, Area 6 candle. The chests in Areas 3 and 5 hold the bottle and the lottery ticket and need no key.",
+          "Chest prizes: Area 1 potato bait, Area 2 grapevine larva bait, Area 4 small lure rod, Area 6 candle. The chests in Areas 3 and 5 hold the bottle and the lottery ticket and need no key.",
           "Make room first: a bait slot for Areas 1 and 2, a rod slot for Area 4, a tool slot for Area 6. If the chest refuses, free a slot, leave the town and walk back in, then open it again."
         ],
         "ja": [
@@ -765,7 +765,7 @@
               4,
               6
             ],
-            "reward": "bait 0B waxworm",
+            "reward": "bait 0B grapevine larva",
             "capacityCheck": "7E:0B36"
           },
           {

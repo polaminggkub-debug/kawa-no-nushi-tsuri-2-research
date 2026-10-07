@@ -188,7 +188,7 @@
   });
   var labels = {
     "bait:11": "Potato bait: town chest",
-    "bait:0B": "Waxworm: town chest",
+    "bait:0B": "Grapevine larva: town chest",
     "general_tool:17": "Key: shop and purchase locations",
     "fish:22": "Hariyo: bait and fishing locations",
     "general_tool:01": "Tub: exchange location",
@@ -230,11 +230,11 @@
       limit: "Exchange behavior was checked with supplied inventory. This does not establish a natural Hariyo catch or catch rate."
     },
     "waxworm-chest": {
-      title: "Collect waxworm bait from the Area 2 chest (needs a key)",
+      title: "Collect grapevine larva bait from the Area 2 chest (needs a key)",
       steps: [
         "If you already hold a spare key, use it. If not, buy one (¥100) at the Area 2 shop. Either way, free a bait slot first. The chest uses the key up.",
         "Use the field entrance at (85,28). The chest is inside the town at (4,6).",
-        "Examine the chest to get the waxworm."
+        "Examine the chest to get the grapevine larva."
       ],
       warning: "If the chest says your bait pouch is full, the key is kept. Free a slot, leave the town, come back in and open it again.",
       limit: "Town coordinates are separate from field coordinates. Entrance pairing and key stock and price come from the game data. Corrected 2026-10-07: the key is used up. The Area 1 chest was tested in the emulator; Areas 2, 4 and 6 use the same chest routine."
@@ -314,7 +314,7 @@
       steps: [
         "This ending is optional. It gives no item, HP or money, and play continues afterwards.",
         "First catch your own character’s special fish (brother Taro: Akame, sister Kyoko: Tanago, father Yuzo: Namazu, mother Noriko: Koi). Then walk into the Area 1 village at field (8,183) so its scene plays.",
-        "Get 65 of the 66 fish kinds into your notebook, then read the received postcard. When the doctor’s giant-eel note appears, the Area 6 magnet points to the eel at (41,8).",
+        "Get 65 of the 66 fish kinds into your notebook, then read the received postcard. When the doctor’s giant-eel note appears, the Area 6 compass points to the eel at (41,8).",
         "Catch the giant eel with compatible gear (see its fish page). You do not need to keep it.",
         "Walk into the Area 1 village through the field door at (12,189). The ending scene plays."
       ],
@@ -457,7 +457,7 @@
       steps: [
         "ฉากจบนี้เป็นของเสริม ไม่ได้รับไอเท็ม HP หรือเงินเพิ่ม และเล่นต่อได้",
         "ก่อนอื่นตกปลาประจำตัวละครของคุณให้ได้ (พี่ชายทาโร่: อาคาเมะ น้องสาวเคียวโกะ: ทานาโกะ พ่อยูโซ: นามาซุ แม่โนริโกะ: โคอิ) แล้วเดินเข้าหมู่บ้านด่าน 1 ทางสนาม (8,183) เพื่อให้ฉากในหมู่บ้านเล่น",
-        "ทำให้สมุดบันทึกปลาครบ 65 จาก 66 ชนิด แล้วเปิดอ่านไปรษณียบัตรที่ได้รับ เมื่อข้อความเรื่องปลาไหลยักษ์ของหมอปรากฏ แม่เหล็กในด่าน 6 จะชี้ไปที่ปลาไหลที่ (41,8)",
+        "ทำให้สมุดบันทึกปลาครบ 65 จาก 66 ชนิด แล้วเปิดอ่านไปรษณียบัตรที่ได้รับ เมื่อข้อความเรื่องปลาไหลยักษ์ของหมอปรากฏ เข็มทิศในด่าน 6 จะชี้ไปที่ปลาไหลที่ (41,8)",
         "ตกปลาไหลยักษ์ด้วยอุปกรณ์ที่ใช้ได้ (ดูหน้าปลาของมัน) ไม่ต้องเก็บไว้",
         "เดินเข้าหมู่บ้านด่าน 1 ทางประตูสนาม (12,189) ฉากจบจะเริ่ม"
       ],

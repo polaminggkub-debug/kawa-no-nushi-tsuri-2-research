@@ -1,39 +1,39 @@
 const copy = {
   th: {
-    title: 'ด่าน 6 ใช้แม่เหล็กแล้วไม่บอกทิศ: ทำอะไรต่อ?',
+    title: 'ด่าน 6 ใช้เข็มทิศแล้วไม่บอกทิศ: ทำอะไรต่อ?',
     action:
-      'ยังไม่ต้องซื้อแม่เหล็กเพิ่ม ใช้แผนที่เลือกปลาและจุดตกได้เลยระหว่างตรวจความคืบหน้าเรื่องราว',
+      'ยังไม่ต้องซื้อเข็มทิศเพิ่ม ใช้แผนที่เลือกปลาและจุดตกได้เลยระหว่างตรวจความคืบหน้าเรื่องราว',
     notebook:
       'รวมจำนวนจากสมุดเกมทั้ง 6 หน้า ต้องบันทึกอย่างน้อย 65 ชนิดที่ต่างกันจาก 66 ชนิด ไม่ใช่ตก 65 ครั้ง และยังมีเงื่อนไขเรื่องราวอีกด้วย ครบ 65 ชนิดอย่างเดียวจึงไม่รับประกันว่าจะบอกทิศ',
     checklist: 'เทียบชื่อปลากับเช็กลิสต์สมุด',
     map: 'เลือกจุดตกด่าน 6 บนแผนที่',
     postcard:
-      'หลังเทียบสมุด ให้อ่านไปรษณียบัตรที่ได้รับ (06) ในเกม ถ้าข้อความหมอขอปลาไหลยักษ์ปรากฏ การอ่านครั้งนั้นจะเปิดทิศแม่เหล็กด่าน 6 ถ้ายังไม่ปรากฏ ให้ทำฉากในหมู่บ้านก่อน: ตกปลาประจำตัวละครของคุณ แล้วเดินเข้าหมู่บ้านด่าน 1 ทางสนาม (8,183)',
+      'หลังเทียบสมุด ให้อ่านไปรษณียบัตรที่ได้รับ (06) ในเกม ถ้าข้อความหมอขอปลาไหลยักษ์ปรากฏ การอ่านครั้งนั้นจะเปิดทิศเข็มทิศด่าน 6 ถ้ายังไม่ปรากฏ ให้ทำฉากในหมู่บ้านก่อน: ตกปลาประจำตัวละครของคุณ แล้วเดินเข้าหมู่บ้านด่าน 1 ทางสนาม (8,183)',
     mail: 'ดูคำแนะนำไปรษณียบัตรและจุดปลาไหลยักษ์',
     evidence: 'เงื่อนไขที่ยืนยันและสิ่งที่ยังต้องค้นคว้า',
     limit:
       'อ่านโค้ดเกมเรื่องจำนวนปลาในสมุดและขั้นเนื้อเรื่องแล้ว และทดสอบฉากจบในอีมูเลเตอร์โดยตั้งแฟล็กเนื้อเรื่องตรง ๆ แต่ยังไม่ได้เล่นซ้ำทั้งสายตั้งแต่เซฟใหม่ เช็กลิสต์เว็บไม่อ่านเซฟเกมและไม่ปลดล็อกเกม',
     source: 'อ่านหลักฐานเงื่อนไขเรื่องราว',
     noticeSource: 'หลักฐานการอ่านไปรษณียบัตร',
-    general: 'วิธีใช้แม่เหล็กทั่วไปและคำแนะนำซื้อ',
+    general: 'วิธีใช้เข็มทิศทั่วไปและคำแนะนำซื้อ',
   },
   en: {
-    title: 'No Magnet heading in Area 6: what next?',
+    title: 'No Compass heading in Area 6: what next?',
     action:
-      'Do not buy another Magnet yet. Use the map to choose fish and fishing spots while checking story progress.',
+      'Do not buy another Compass yet. Use the map to choose fish and fishing spots while checking story progress.',
     notebook:
       'Add the counts on all six in-game notebook pages. At least 65 distinct species records out of 66 are required, not 65 catches. A story prerequisite is also required, so 65 records alone do not guarantee a heading.',
     checklist: 'Compare fish names with the notebook checklist',
     map: 'Choose Area 6 fishing spots on the map',
     postcard:
-      'After checking the notebook, read Received postcard 06 in the game. If the doctor’s giant-eel request appears, that read enables the Area 6 Magnet heading. If it does not appear, do the village scene first: catch your character’s own special fish, then walk into the Area 1 village at field (8,183).',
+      'After checking the notebook, read Received postcard 06 in the game. If the doctor’s giant-eel request appears, that read enables the Area 6 Compass heading. If it does not appear, do the village scene first: catch your character’s own special fish, then walk into the Area 1 village at field (8,183).',
     mail: 'See postcard guidance and the giant-eel point',
     evidence: 'Verified conditions and remaining research',
     limit:
       'We read the game’s code for the notebook count and the story steps, and drove the ending in the emulator with the story flags set directly. The whole chain from a fresh save has not been played in one go. The web checklist does not read your save or unlock the game.',
     source: 'Read the story-gate evidence',
     noticeSource: 'Postcard reader evidence',
-    general: 'General Magnet use and buying advice',
+    general: 'General Compass use and buying advice',
   },
   ja: {
     title: 'エリア6で磁石が方角を示さないときは？',

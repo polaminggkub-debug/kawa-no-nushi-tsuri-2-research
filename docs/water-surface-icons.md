@@ -1,5 +1,7 @@
 # Water-surface marks: what the player can infer
 
+> **Corrected 2026-10-07:** the earlier "caught growth `01:9352..9373`" was wrong. That range is the *escape* branch; a landed fish empties its slot. `04:EC56` is the new-save fill. The marks are a size hint only, and the last two fish on a crowded screen show none.
+
 Source: owner-supplied original Japanese ROM, SHA-1 `c2103dd94e2a1a65a495fc02adc2e7d040f31212`. No guide-derived species or probability claims.
 
 ## Player decisions
@@ -27,10 +29,10 @@ New size is `B + (R % B)`, where `B = floor(profile[0] / 2)`. `$00:DA96` calls t
 ## Code evidence
 
 - Profiles: CPU `05:8018`, file `0x028018`, 23 bytes each; 73 profiles.
-- Marker choice: `04:C369..C3D4`. Profile word at +15/+16 is loaded to `$1208`. Bit `0x0100` takes the special path first (`selector 001E`, class `007A`). Otherwise row `$7F:1E8A` is compared with `0x0032`: below uses selector `001E`, class `006A`; at least uses selector `021E`, class `006C`.
+- Marker choice: `04:C369..C3D4`. Profile word at +15/+16 is loaded to `$1208`. Only the first 14 fish in the 17x15 screen window get a mark (`04:C3D5`); the last two on a crowded screen have none. Bit `0x0100` takes the special path first (`selector 001E`, class `007A`). Otherwise row `$7F:1E8A` is compared with `0x0032`: below uses selector `001E`, class `006A`; at least uses selector `021E`, class `006C`.
 - Rendering: `00:D273..D2E4`; direction/animation `00:D2E5..D3B2`. Small and large variants use related class values `006B` and `006E`; special `007A` can become `007B`. These are visual direction/animation variants.
 - Selector stores: spawn `04:C39D/C3B4/C3C4` and visual animation `00:D2FC..D3A4`. Growth routines update the size row, not these selectors. We do not promise a live size refresh.
-- Initialization/growth: `03:83AA..83DF`, `04:EC56..EC8B`; caught growth also `01:9352..9373`.
+- Initialization/growth: `03:83AA..83DF`; `04:EC56..EC8B` is the one-time new-save fill (192 of 256 slots per area), not growth. `01:9352..9373` is the escape branch (the escaped fish grows `profile[0]/16+1` and is hidden until the inn or a reboot); a landed fish zeroes its slot at `01:8DFE`.
 - Catch: `04:8717..871B` copies current row size to `$1EB1`.
 - Kept fish: `01:8AD5..8ADA` copies `$1EB1` to `$0BB6,X` without scaling. `02:AA5F..AA67` sends that number to the decimal formatter. Controlled keepnet displays of 15, 30, 35 and 36 showed the same values with the game's `cm` label. These display probes were fixtures, not naturally caught fish.
 - Potato bait 11: CPU `05:9F27`, record +6 mask `0x0100`; this matches the special marker bit. Other method and equipment checks still apply.

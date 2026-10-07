@@ -38,9 +38,9 @@
       property="og:description"
       content="エリアと魚を選んで、日本版SFC ROMから抽出した魚の出現位置をマップで確認できます。"
     />
-    <link rel="stylesheet" href="maps.css?v=24736e4f4fc2797d" />
+    <link rel="stylesheet" href="maps.css?v=ce855e5b910adab2" />
     <link rel="stylesheet" href="compendium.css?v=944b2e768f29779c" />
-    <script src="compendium.js?v=db0957a69654351f" defer></script>
+    <script src="compendium.js?v=de337224916509f8" defer></script>
   <script data-goatcounter="https://polamin.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script></head>
   <body>
     <a class="skip-link" href="#main-content">本文へ移動</a>
@@ -51,6 +51,7 @@
       >
       <div class="compendium-links">
         <a data-compendium-destination="0" href="index.ja.html#catalogue">道具を選ぶ</a
+        ><a data-compendium-destination="6" href="gear-guide.ja.html">選び方ガイド</a
         ><a data-compendium-destination="1" aria-current="page" href="maps.ja.html">魚とマップ</a
         ><a data-compendium-destination="2" href="shops.ja.html">店を探す</a
         ><a data-compendium-destination="4" href="quests.ja.html">依頼・交換</a
@@ -68,6 +69,8 @@
         <div class="hero-meta">
           <a class="back-link" href="index.ja.html">← 釣り道具カタログへ</a
           ><a id="shop-browser-link" href="shops.ja.html">店と購入場所</a
+          ><a class="quick-guide-link notebook-guide-shortcut" href="#how-fish-work"
+            >マップ上の魚のしくみ</a
           ><a class="quick-guide-link notebook-guide-shortcut" href="#notebook-guide"
             >魚手帳を全66種埋める</a
           >
@@ -169,9 +172,29 @@
             <div class="map-scroll"><div id="map-view" class="map-view"></div></div>
             <div id="pin-details" class="pin-details" hidden></div>
             <section id="water-icon-key" class="water-icon-key" hidden></section>
-            <p class="map-note">
-              マーカーはROMに設定された出現地点です。ゲーム状態によって出現しない地点があり、魚は食いついた後に移動することがあります。
-            </p>
+            <section id="how-fish-work" class="map-howto" aria-labelledby="how-fish-title">
+              <h3 id="how-fish-title">マップ上の魚のしくみ</h3>
+              <ul>
+                <li>
+                  ピンは、ゲームをロードした直後に魚がいる場所です。その後、魚は泳ぎ回ります。ほとんどはピンから1～2マス以内、遠い魚は5～10マスほど離れます。
+                </li>
+                <li>新しいセーブでは、ピンの約4分の3に魚がいます。</li>
+                <li>
+                  釣り上げた魚のピンは空になります。逃げた魚は、宿屋で寝るかゲームを再起動するまで姿を消します。
+                </li>
+                <li>
+                  宿屋で寝ると、前回泊まってからそのエリアで釣った数と同じくらいのピンに魚が戻ります。戻るのはそのエリアだけです。料金は3～10円で、釣りをしていなければ何も起こりません。
+                </li>
+                <li>
+                  オオウナギとアカメのピンは、ゲーム全体で1か所ずつ（どちらもエリア6）。空なら、そのエリアで釣りをして宿屋で寝る、を繰り返します。
+                </li>
+                <li>浮きは魚のいるマスにぴったり落とします。判定は約0.5秒ごとです。</li>
+                <li>
+                  水面のマークは大きさの目安だけです。魚が多い画面では、最後の2匹にマークは付きません。
+                </li>
+                <li>時間帯・季節・天気は、魚の配置に影響しません。</li>
+              </ul>
+            </section>
             <a id="catalogue-fish-link" class="catalogue-fish-link" href="index.ja.html"
               >この魚に使える道具を見る ↗</a
             >
@@ -180,6 +203,9 @@
         </div>
         <details class="source-details">
           <summary>ROMとマップの根拠</summary>
+          <p>
+            配置の詳細：各エリアに固定の魚枠が256あり、枠ごとに魚種・ホームのタイル・大きさ（0=空）が決まっています。新しいセーブでは256枠のうち192枠が埋まります。ピンはホームのタイルで、魚は常に泳ぎ回ります（95%は5マス以内、最大10マス）。画面の作り直し時に現在のタイルが書き戻されます。食いつくには浮きが魚のタイルに重なる必要があり、各魚は32フレームに1回判定されます。釣り上げると枠は空になります。逃げた魚は宿屋か再起動まで隠れます。宿屋は、ランディング段階まで進んだ魚1匹につき+1、逃げた魚1匹につき+3として数え、その回数だけ同じエリア内で補充を行います（空き枠は新しい魚、埋まっていれば+1cm、上限超過は空）。同じタイルの重複した枠は別々の魚が重なっているだけで、出現率が高いわけではありません。時間・季節・天気は使われません。出典：2026-10-07の独立検証。
+          </p>
           <p>
             魚ID・出現タイル座標・地形画像は提供された日本版SFC
             ROMから抽出しました。マーカーは16ピクセル単位のタイル中心に配置。同じ魚・同じタイルの重複は一つにまとめ、別種の魚が同じタイルにいる場合は一つのクラスターに表示します。
@@ -199,6 +225,6 @@
       <p>ファンによる独立調査 · ROM本体は含まれていません。</p>
       <a href="../research/index.ja.html">調査ノート</a>
     </footer>
-    <script src="maps.js?v=9baebf228e7d9940" defer></script>
+    <script src="maps.js?v=b789f60ed5cb9049" defer></script>
   </body>
 </html>

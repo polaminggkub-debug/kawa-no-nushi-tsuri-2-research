@@ -62,7 +62,7 @@ def extract(rom):
                 entry.update(family_code=record[0], component_code=record[1], wet_dry_code=record[2])
                 # 66/67 have an exceptional family code: do not infer normal BODY use.
                 if record[0] == 5:
-                    entry['classification_note'] = 'Special wing graphics; exact maker UI-to-ID mapping remains unconfirmed.'
+                    entry['classification_note'] = 'Leech-family (code 5) body-type record; absent from every shop stock table, fly bundle and fly maker palette that was checked.'
             elif category == 'food':
                 entry['effect_field_raw'] = record[0]
                 entry['effect_note'] = ('Carried fish size affects runtime recovery; this raw byte is not a universal flat recovery.'

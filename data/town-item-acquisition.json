@@ -30,7 +30,7 @@
         "action": {
           "en": "Take the empty bottle, then bring it to the area-3 cow at (6,103).",
           "ja": "空きビンを取り、エリア3の牛（6,103）へ持っていく。",
-          "th": "รับขวดเปล่า แล้วนำไปหาวัวในพื้นที่ 3 พิกัด (6,103)"
+          "th": "รับขวดเปล่า แล้วนำไปหาวัวในด่าน 3 พิกัด (6,103)"
         },
         "source": {
           "objectSlotHex": "0E",
@@ -175,7 +175,7 @@
         "mapId": 8,
         "context": "town",
         "name": {
-          "en": "Locked town chest: waxworm bait",
+          "en": "Locked town chest: grapevine larva bait",
           "ja": "施錠された町の宝箱：ブドウムシ",
           "th": "หีบล็อกในเมือง: หนอนองุ่น"
         },

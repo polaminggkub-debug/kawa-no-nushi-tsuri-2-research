@@ -119,7 +119,7 @@ Run `node scripts/check_entity_links.cjs`, `node scripts/check_shop_conditions.c
 
 - All 157 hook/float/fly-part cards and profiles now state a buy/use decision and its evidence-bound reason. Hook names do not imply catch superiority. Floats have a linked six-area minimum-stock-price table; sinker selection checks the target profile first. Wings/tails lead with body/target choice and appearance/actual quote, rather than unresolved selectors.
 - Fly parts with a target link directly to that fish's starter/optional backup disclosure. Unsupported targets link to other bait/methods. A no-target wing/tail opens a wet-body fish list rather than looping to itself.
-- Six town rewards now have acquisition instructions, town coordinates, authentic crops and paired outdoor entrance images: bottle, ticket, potato bait, waxworm bait, lure rod and candle. Key/space requirements are explicit. Room pairing is source evidence, not a controlled walk to every chest.
+- Six town rewards now have acquisition instructions, town coordinates, authentic crops and paired outdoor entrance images: bottle, ticket, potato bait, grapevine larva bait, lure rod and candle. Key/space requirements are explicit. Room pairing is source evidence, not a controlled walk to every chest.
 - Maps have localized keyboard/click autocomplete with unique fish sprites and confirmed areas. Typing stays on the current map; committing a fish changes area only if needed. A functional harness executes the real listeners with all 72 mapped profiles; live EN/TH/JA checks covered Area 6 → Rainbow trout in Area 1, Escape, clear and exact return context.
 - Root browser checks additionally covered hook01 → Akame → hook return, float01 → six-area price table → float02, ticket acquisition/entrance disclosure, and wing09 → Rainbow optional backup automatically opened. Original evidence remains collapsed.
 - Source-render coverage: 1,524 localized detail renders, 209,808 link/asset/entity references, all 315 items and 73 fish profiles. Repeated references are not a count of manual clicks. Full-goal status remains active; unresolved traversal/gameplay outcomes listed above remain research work.
@@ -183,7 +183,7 @@ Rod comparison rows now expose the existing decision reason and a direct detail 
 
 ## Compass exits and crawler-visible rod decisions
 
-Magnet0E now resolves a navigation choice: maps show the five fixed outdoor exit targets, and the player can skip buying it solely to learn those coordinates. The ¥300 purchase is for in-game bearings from the current position. Area-specific links open the matching section at its original-ROM terrain crop. The main copy explains using the magnet again after movement and the needle stopping at the target; internal map13 and instruction addresses remain in the linked source report. These points are not tested walking routes. Area6 remains excluded because its target is dynamic and its heading is story-gated.
+Compass0E now resolves a navigation choice: maps show the five fixed outdoor exit targets, and the player can skip buying it solely to learn those coordinates. The ¥300 purchase is for in-game bearings from the current position. Area-specific links open the matching section at its original-ROM terrain crop. The main copy explains using the compass again after movement and the needle stopping at the target; internal map13 and instruction addresses remain in the linked source report. These points are not tested walking routes. Area6 remains excluded because its target is dynamic and its heading is story-gated.
 
 The generator independently validates the original ROM hash, table row bytes, five exact targets, Area6 sentinel and five source-map hashes. Source guards require the five stage links and matching fragment anchors, localized action/route limits and exclusion of a static Area6 point. Local browser: Thai area2 link -> correct (56,17) section -> Japanese retained stage/fragment -> area5 -> English retained its (22,2) section.
 
@@ -207,12 +207,12 @@ The scoped food/chum/hook source review found no additional material food-action
 
 ## Follow-up: keep fishing decisions through seller navigation (2026-10-04)
 
-- Item → seller and seller → item now retain the shop area, selected fish and float/sinker rig for fishing equipment, bait-gathering tools, groundbait and map navigation with the magnet. Food and unrelated tools retain area and a contextual return link, without presenting that fish as their own target. Magnifier is tool 03; notebook 05 is not a fishing-target tool.
+- Item → seller and seller → item now retain the shop area, selected fish and float/sinker rig for fishing equipment, bait-gathering tools, groundbait and map navigation with the compass. Food and unrelated tools retain area and a contextual return link, without presenting that fish as their own target. Magnifier is tool 03; notebook 05 is not a fishing-target tool.
 - Catalogue seller and comparison links follow the same relevance rule. Going from a fishing setup to food does not attach a misleading fish-compatibility context; returning restores the earlier selection.
 - Changing language from an item or shop localizes the nested return chain through supported item/shop/fish/map/research pages, up to four nested returns. External nested destinations are discarded.
 - Local browser evidence: Thai bait 01 / Iwana / sinker → seller → bait 01 preserves the rejection and offered float-rig switch; switch to English → back to shop → back to initial bait profile preserves language and selection. Shop food filter → orange01 presents no fish target while its return still retains Iwana/sinker.
 - Renderer assertions additionally cover every recorded stock item in all six areas and three languages, and seller links on every stocked item profile in three languages. These are source-render checks; the actual click observations above are specific paths, not a claim that every possible website interaction has been manually completed.
-- Research remains active: ordinary net traversal reached Area 1 (8,121), not candidate (9,105); connector mushroom selection and practical boat boarding points are being traced separately. The Area 6 magnet story prerequisite is not yet a named player quest. No new gameplay outcome is inferred from those partial records.
+- Research remains active: ordinary net traversal reached Area 1 (8,121), not candidate (9,105); connector mushroom selection and practical boat boarding points are being traced separately. The Area 6 compass story prerequisite is not yet a named player quest. No new gameplay outcome is inferred from those partial records.
 
 - Published shop navigation release `6f40f33` was confirmed built by GitHub Pages and checked through Thai bait → shop → bait, then English switch → shop back → initial item back, with Iwana/sinker intact.
 - The same audit found map language switches kept the return page in its original language. Map language links now localize the supported nested return chain, retain item/fish/stage/rig filters, and discard external nested destinations. The map harness covers all three target languages, an item → shop → research chain, and the external-return rejection. Local actual clicks: Thai bait → fish map → English → back reaches English bait01 with Iwana/sinker rejection intact.
@@ -233,7 +233,7 @@ The scoped food/chum/hook source review found no additional material food-action
 - Source checks cover every forage point/marker and all seven bait profiles across six selected areas and three languages, plus catalogue-renderer forage choices. Local actual Thai clicks: bait01/area3/Rainbow/float → magnifier area3/context1 → bait portrait → bait01 retains area3/target/rig → back lands at the same original terrain example.
 - The new source report and verifier follow both magnifier draws, the food-slot gate, identical discovery message and the shared counter-driven byte source. Main independently ran the verifier against the supplied ROM hashes and exact fingerprints. A mushroom type is not assigned by the coordinate in this branch; balanced table parity is not turned into a visit probability.
 - Magnifier03 and both mushroom records now explain that no fixed safe mushroom tile is established and offer recorded shop food for HP recovery when the mushroom cannot be identified. Original runtime evidence remains responsible for food09 +10 HP / food0A HP-zero; this new trace establishes selection, not an extra healing experiment.
-- Full goal remains active: ordinary boat boarding points, Area6 seller traversal and the exact magnet event/menu action still need stronger evidence; the natural net route has not yet reached the candidate.
+- Full goal remains active: ordinary boat boarding points, Area6 seller traversal and the exact compass event/menu action still need stronger evidence; the natural net route has not yet reached the candidate.
 
 ## Follow-up: make every shop-food choice actionable (2026-10-04)
 
@@ -241,7 +241,7 @@ The six ordinary shop foods now state when to use/buy the item in terms of missi
 
 Food profiles show alternative foods recorded for the selected area first. The full cross-area HP/food guide and its item links remain in a closed disclosure instead of repeating a long global recommendation and unavailable-area alternatives in the main view. The guard checks all six foods against runtime-confirmed recovery and the one-yen-per-HP prices, then renders 108 food/area/language combinations and requires exactly the locally stocked alternatives with retained area links. The full aggregate passes. Actual browser clicks: area5 lunch06 → Dango03 retains area5; the 390px layout remains readable.
 
-The whole-site goal remains active while natural boat boarding/access and the named Area6 magnet prerequisite are being researched. Passing these food checks does not resolve those gameplay evidence gaps.
+The whole-site goal remains active while natural boat boarding/access and the named Area6 compass prerequisite are being researched. Passing these food checks does not resolve those gameplay evidence gaps.
 
 ## Follow-up: turn tub placement into a boarding instruction (2026-10-04)
 
@@ -258,7 +258,7 @@ The full player-usefulness goal is still unproven. A fresh review of the current
 - **Gold Net:** Area 1 has a controlled-use point, but an input-only route from the house/entrance has not been established. Areas 2–6 have decoded rewards without confirmed reachable use points. Next evidence: ordinary walking route, shallow-water position, normal menu use, and bait inventory delta, keeping any owned-tool setup explicit.
 - **Area 6 shop:** a known seller coordinate does not prove a route from the entrance. Next evidence: walk from a naturally reached entrance and open the shop normally.
 - **DIY flies:** ready-made bundles are actionable; maker pictures still need a verified picture-to-record mapping before players can reliably apply body/wing choices to that menu. Next evidence: selection index, original picture and component record, with the actual quoted combination price.
-- **Area 6 magnet:** the bounded static trace establishes record-slot and prerequisite flags. The natural encounter/result trigger remains unverified; no catch recipe is inferred from it.
+- **Area 6 compass:** the bounded static trace establishes record-slot and prerequisite flags. The natural encounter/result trigger remains unverified; no catch recipe is inferred from it.
 
 These are research tasks with direct player outcomes, not reasons to expand raw-number summaries. Passing source guards does not establish their completion.
 
@@ -273,7 +273,7 @@ The owner redirected work away from the net and magnifying glass. Both are defer
 | Catalogue clarity     | Selected-fish status and decision-fact rendering | Correct all/body/bait result labels in EN/JA/TH and remove repeated decision reasons without removing evidence.                                               |
 | Coordinator           | Integration, maker guide, release checks         | Turn confirmed findings into selectable player instructions; inspect desktop/mobile and run the full publication gate.                                        |
 
-When workers finish, dispatch the next independent batch: Area 6 ordinary shop access, the Area 6 magnet's natural prerequisite/use path, and fish/map navigation review. A decoded coordinate alone does not close either access task. Map review must follow selecting a fish through its actual fishing location and accepted equipment, including return links and filters. Workers must own separate files/directories; generated artifacts, integration and publication remain coordinator-owned.
+When workers finish, dispatch the next independent batch: Area 6 ordinary shop access, the Area 6 compass's natural prerequisite/use path, and fish/map navigation review. A decoded coordinate alone does not close either access task. Map review must follow selecting a fish through its actual fishing location and accepted equipment, including return links and filters. Workers must own separate files/directories; generated artifacts, integration and publication remain coordinator-owned.
 
 Final audit still covers every catalogue category, fish/maps, shops, item/fish details and research navigation in all three languages. Every visible gameplay claim needs a concrete next action or decision supported by original-ROM evidence; unresolved selectors belong in technical evidence. Automated checks cover the recorded data and link invariants, while actual browser interaction and visual review cover usability. This queue records known gaps, not a claim that every other requirement is complete.
 
@@ -285,7 +285,7 @@ The static maker worker and catalogue-label worker completed their first bounded
 
 This batch also corrects all 47 wing decisions: the maker supplies parts, so players do not need to bring an owned wing. Selected-fish result labels now distinguish body-profile acceptance from component sale compatibility. Card decision reasons render once. Historical picture counts remain in research with an explicit unresolved mismatch, rather than becoming confirmed menu counts.
 
-Next dispatch when the controller slot is free: Area 6 magnet prerequisite/use research. After the access/navigation reports, implement only evidence-supported route instructions and navigation repairs, then conduct the final category/profile/shop/map audit. The net and magnifying glass remain deferred by owner direction.
+Next dispatch when the controller slot is free: Area 6 compass prerequisite/use research. After the access/navigation reports, implement only evidence-supported route instructions and navigation repairs, then conduct the final category/profile/shop/map audit. The net and magnifying glass remain deferred by owner direction.
 
 ## Selected-fish fly profile action (2026-10-05)
 
@@ -299,7 +299,7 @@ The maker guide now includes nine authentic frames: tested directional selection
 
 Map equipment actions now carry the current fish, area, map section and nested return. The catalogue shows an exact map return both in its header and at the selected-fish landing panel. Language switches recursively localize supported returns and reject external destinations. Actual local Thai map area1/section s1-c1-r6/Iwana→equipment→nearby return reached the same map; switching to English before returning reached maps.html with the same area, section and fish.
 
-The full local gate passes. Runtime recipe probes establish bounded menu operations; automated link checks and these browser paths do not finish Area6 shop access, magnet triggers or the whole-site usefulness audit.
+The full local gate passes. Runtime recipe probes establish bounded menu operations; automated link checks and these browser paths do not finish Area6 shop access, compass triggers or the whole-site usefulness audit.
 
 ## Full inventory and map audit, 2026-10-05
 
@@ -324,9 +324,9 @@ Local browser review covered 320/390 px mobile and 1280 px desktop, the three or
 
 Release gate: `npm run check` passed for cache `compendium-20261005-21`, including formatting, FSD and size limits, research-source and publication safety, 31 reproducible frontend outputs, item/fish/link guards, the bundled water-mark filter matrix, all six shop areas, map comboboxes, and multilingual research search. `git diff --check` passed. Automated coverage and browser inspection are separate evidence; this closes the current corrections, not all remaining gameplay research.
 
-## Follow-up: Area 6 Magnet without a heading (2026-10-05)
+## Follow-up: Area 6 Compass without a heading (2026-10-05)
 
-The Magnet detail in Area 6 previously described a story gate but offered only the five other areas' exit pictures. Its recovery panel now gives three usable paths: compare names against the notebook checklist, choose Area 6 fishing spots directly, or read received postcard 06 in the game after checking the records. If the doctor's request appears, that read sets the heading flag; the linked postcard guide explains the conditional target action. It distinguishes the required 65 distinct game-record slots from repeated catches and from the separate story prerequisite; 65 alone is not an unlock instruction. The web checklist cannot read or alter a game save.
+The Compass detail in Area 6 previously described a story gate but offered only the five other areas' exit pictures. Its recovery panel now gives three usable paths: compare names against the notebook checklist, choose Area 6 fishing spots directly, or read received postcard 06 in the game after checking the records. If the doctor's request appears, that read sets the heading flag; the linked postcard guide explains the conditional target action. It distinguishes the required 65 distinct game-record slots from repeated catches and from the separate story prerequisite; 65 alone is not an unlock instruction. The web checklist cannot read or alter a game save.
 
 The current area's fixed exit picture stays visible in Areas 1–5, while the other areas' pictures remain available in a closed disclosure. No location data, anchors, research sources, or original captures are removed. The complete natural sequence that first sets the story prerequisite remains a research task, not a claimed player route. See [the ROM gate trace](magnet-story-gate-research.md).
 

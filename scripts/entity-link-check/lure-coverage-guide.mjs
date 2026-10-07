@@ -160,7 +160,7 @@ function checkNoLocalPairAdvice(card, lang, stage) {
   const missing = {
     en: `Area ${stage} has no complete local pair.`,
     ja: `エリア${stage}では一式が揃いません。`,
-    th: `ด่าน ${stage} ไม่มีคู่ครบขายในพื้นที่`,
+    th: `ด่าน ${stage} ไม่มีคู่ครบขายในด่าน`,
   }
   const seller = { en: 'Area 4', ja: 'エリア4', th: 'ด่าน 4' }
   assert(

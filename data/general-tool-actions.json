@@ -181,11 +181,11 @@
       "facts": {
         "en": [
           "Search the field location you are standing at. Searching the same tile again without moving returns nothing.",
-          "In the six main areas, the search can yield worm, maggot, large earthworm, waxworm, insect or bee larva, depending on the ground context. Area 3 also has a potato-bait context.",
+          "In the six main areas, the search can yield worm, maggot, large earthworm, grapevine larva, insect or bee larva, depending on the ground context. Area 3 also has a potato-bait context.",
           "A coordinate band in town maps yields kneaded bait. The connecting route can yield large earthworm or mushrooms. The find message does not say which mushroom you got, but the icon does: the tan flat mushroom heals 10 HP, the red one with yellow spots is poison.",
           "Bait rewards are 1–4 at a time, up to 9 per bait type. Mushrooms need an empty food slot.",
           "Do not search while standing in shallow water or riding a tub/canoe; those modes reject the magnifier action.",
-          "Open an area map below and walk to a bait icon to search. These are example terrain-context tiles, not the only searchable tiles.",
+          "Stand on dry land to use the glass; it does not work in water. Open an area map below and walk to a bait icon: these are the dry-land tiles we verified in the game, not the only ones.",
           "Do not count on a search tile giving the healing mushroom: the type comes from a shared sequence, not the tile. Both mushrooms have the same name in the food menu, so check the icon before you eat: tan and flat is safe, red with yellow spots is poison."
         ],
         "ja": [
@@ -194,7 +194,7 @@
           "町の特定の座標帯ではネリエが見つかる。連絡路ではドバミミズやキノコが見つかる。見つかったときのメッセージではどのキノコか分からないが、アイコンで見分けられる。茶色い平たいキノコはHP10回復、黄色い斑点のある赤いキノコは毒。",
           "エサは一度に1～4個、種類ごとに最大9個。キノコには食料欄の空きが必要。",
           "浅瀬に立っている時やタライ・カヌーに乗っている時は虫メガネを使えない。",
-          "下の地図でエリアを選び、エサ画像の地点へ歩いて探す。地形分類から抽出した地点例で、探せる場所はほかにもある。",
+          "虫メガネは水の中では使えない。陸地に立って使う。下の地図でエリアを選び、エサ画像の地点へ歩いて探す。実際に確認できた陸地のタイルで、探せる場所はほかにもある。",
           "探索地点で回復キノコが出るとは限らない。種類は地点ではなく共通の乱数列で決まる。食料メニューでは2種類とも同じ名前なので、食べる前にアイコンを確認する。茶色で平たいものは安全、黄色い斑点のある赤いものは毒。"
         ],
         "th": [
@@ -203,7 +203,7 @@
           "ในเขตเมืองมีแถบตำแหน่งที่ให้เหยื่อปั้น ส่วนทางเชื่อมระหว่างด่านอาจได้ไส้เดือนใหญ่หรือเห็ด ข้อความตอนพบเห็ดไม่บอกว่าเป็นเห็ดชนิดไหน แต่ดูจากไอคอนได้ เห็ดแบนสีน้ำตาลอ่อนฟื้น 10 HP ส่วนเห็ดสีแดงมีจุดเหลืองเป็นเห็ดพิษ",
           "เหยื่อได้ครั้งละ 1–4 ชิ้น สูงสุดชนิดละ 9 ชิ้น ส่วนเห็ดต้องมีช่องอาหารว่าง",
           "ใช้แว่นขยายไม่ได้ขณะยืนในน้ำตื้นหรืออยู่บนกะละมัง/แคนู",
-          "เปิดแผนที่ด้านล่าง เลือกด่าน แล้วเดินไปยืนตรงรูปเหยื่อเพื่อค้นหา เป็นตัวอย่างจุดจากชนิดพื้นใน ROM ไม่ใช่จุดหาได้เพียงจุดเดียว",
+          "ต้องยืนบนพื้นดินแห้งถึงจะใช้แว่นขยายได้ ในน้ำใช้ไม่ได้ เปิดแผนที่ด้านล่าง เลือกด่าน แล้วเดินไปยืนตรงรูปเหยื่อ จุดเหล่านี้คือจุดบนบกที่ลองในเกมแล้วใช้ได้ ไม่ใช่จุดเดียวที่ค้นหาได้",
           "อย่าคิดว่าจุดค้นหาจุดไหนจะได้เห็ดฟื้นพลังแน่ ๆ เพราะเกมสุ่มชนิดจากลำดับร่วม ไม่ได้กำหนดตามช่องที่ยืน เห็ดสองชนิดมีชื่อเดียวกันในเมนูอาหาร ก่อนกินให้ดูไอคอน: สีน้ำตาลอ่อนและแบนปลอดภัย สีแดงมีจุดเหลืองคือเห็ดพิษ"
         ]
       },
@@ -391,9 +391,9 @@
           "初期所持は日本語原版ROMの4人分の初期化コードで確認。新しい操作再現やタイ語パッチの独立確認ではなく、再入手方法も未確認です。"
         ],
         "th": [
-          "ยืนยันความสัมพันธ์ระหว่างหกหน้ากับพื้นที่จากเส้นทางวาดฉากและสมุดใน ROM แต่ไม่ได้อ้างว่าภาพในสมุดระบุพิกัดเกิดปลาได้",
-          "เปิดสมุดตกปลาเพื่อดูบันทึกปลาที่จัดเป็นหกพื้นที่ พร้อมหน้าภาพรวมของพื้นที่ตามลำดับ",
-          "เกมเรียงรายการปลาในแต่ละพื้นที่ ไอเท็มนี้ใช้เปิดดูข้อมูล ไม่ได้เปลี่ยนอุปกรณ์ตกปลา",
+          "ยืนยันความสัมพันธ์ระหว่างหกหน้ากับด่านจากเส้นทางวาดฉากและสมุดใน ROM แต่ไม่ได้อ้างว่าภาพในสมุดระบุพิกัดเกิดปลาได้",
+          "เปิดสมุดตกปลาเพื่อดูบันทึกปลาที่จัดเป็นหกด่าน พร้อมหน้าภาพรวมของด่านตามลำดับ",
+          "เกมเรียงรายการปลาในแต่ละด่าน ไอเท็มนี้ใช้เปิดดูข้อมูล ไม่ได้เปลี่ยนอุปกรณ์ตกปลา",
           "ยืนยันการมีสมุดเริ่มต้นจากโค้ด ROM ญี่ปุ่นของทั้ง 4 ตัวละคร ไม่ใช่การเล่นทดสอบใหม่หรือการตรวจแพตช์ไทยแยก และยังไม่ได้ยืนยันวิธีรับทดแทน"
         ]
       },
@@ -418,9 +418,9 @@
       "id": "0E",
       "nameJa": "磁石",
       "summary": {
-        "en": "Do you need it? Rarely. It shows a compass direction to the area's exit and tells you which section you are in. In Area 6, once the doctor's note has appeared, it points to the giant eel at (41,8) instead. One magnet is enough.",
+        "en": "Do you need it? Rarely. It shows a compass direction to the area's exit and tells you which section you are in. In Area 6, once the doctor's note has appeared, it points to the giant eel at (41,8) instead. One compass is enough.",
         "ja": "必要か？ あまり必要ない。エリアの出口がどの方角か、今どの区画にいるかが分かる。エリア6では医者の文面が出たあと、出口ではなく(41,8)にいるオオウナギを指す。磁石は1個で足りる。",
-        "th": "ต้องซื้อไหม? แทบไม่จำเป็น ใช้ดูทิศทางไปทางออกของด่านและดูว่ากำลังอยู่ช่วงไหนของด่าน ในด่าน 6 หลังข้อความจากหมอปรากฏ แม่เหล็กจะชี้ไปที่ปลาไหลยักษ์ที่ (41,8) แทนทางออก ซื้อชิ้นเดียวพอ"
+        "th": "ต้องซื้อไหม? แทบไม่จำเป็น ใช้ดูทิศทางไปทางออกของด่านและดูว่ากำลังอยู่ช่วงไหนของด่าน ในด่าน 6 หลังข้อความจากหมอปรากฏ เข็มทิศจะชี้ไปที่ปลาไหลยักษ์ที่ (41,8) แทนทางออก ซื้อชิ้นเดียวพอ"
       },
       "facts": {
         "en": [
