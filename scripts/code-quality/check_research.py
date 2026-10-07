@@ -38,6 +38,8 @@ def main():
              ROOT / 'scripts/verify_giant_eel_ending_route.py',
              ROOT / 'scripts/verify_town_paste_bait.py']
     paths += sorted((ROOT / 'scripts/magnet-story-gate').rglob('*.py'))
+    paths += [ROOT / 'scripts/build_gear_advice.py']
+    paths += sorted((ROOT / 'scripts/gear_advice').glob('*.py'))
     errors = []
     for path in paths:
         if not path.exists():

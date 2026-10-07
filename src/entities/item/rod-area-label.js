@@ -42,21 +42,24 @@ function relationCopy(lang, key) {
 }
 
 export function tradeoffDescription(lang, subject, other) {
-  const aimKey = subject.aim > other.aim ? 'aimMore' : subject.aim < other.aim ? 'aimLess' : ''
-  const boundaryKey =
-    subject.boundary > other.boundary
-      ? 'boundaryMore'
-      : subject.boundary < other.boundary
-        ? 'boundaryLess'
-        : ''
-  const keys = [aimKey, boundaryKey].filter(Boolean)
-  const phrases = keys.map((key) =>
-    relationCopy(lang, key).replace('{id}', rodRefName(lang, other.id)),
-  )
-  const opposing =
-    keys.length === 2 && subject.aim > other.aim !== subject.boundary > other.boundary
-  const joiner = opposing ? relationCopy(lang, 'but') : relationCopy(lang, 'and')
-  return relationCopy(lang, 'versus').replace('{benefits}', phrases.join(joiner))
+  const compare = (field, more, less) =>
+    subject[field] > other[field] ? more : subject[field] < other[field] ? less : ''
+  const better = [
+    compare('aim', 'aimMore', ''),
+    compare('boundary', 'boundaryMore', ''),
+    compare('start', 'startMore', ''),
+  ].filter(Boolean)
+  const worse = [
+    compare('aim', '', 'aimLess'),
+    compare('boundary', '', 'boundaryLess'),
+    compare('start', '', 'startLess'),
+  ].filter(Boolean)
+  const phrase = (key) => relationCopy(lang, key).replace('{id}', rodRefName(lang, other.id))
+  const joined = (keys) => keys.map(phrase).join(relationCopy(lang, 'and'))
+  const text = [joined(better), joined(worse)]
+    .filter(Boolean)
+    .join(better.length && worse.length ? relationCopy(lang, 'but') : '')
+  return relationCopy(lang, 'versus').replace('{benefits}', text)
 }
 
 export function higherPriceDescription(lang, subject, other) {
@@ -77,6 +80,7 @@ export function dominatedReason(lang, candidate, better) {
   const keys = [better.price < candidate.price ? 'cheaper' : 'samePrice']
   if (better.aim > candidate.aim) keys.push('aimMoreAny')
   if (better.boundary > candidate.boundary) keys.push('boundaryMoreAny')
+  if (better.start > candidate.start) keys.push('startMoreAny')
   return keys
     .map((key) => relationCopy(lang, key).replace('{id}', rodRefName(lang, candidate.id)))
     .join(relationCopy(lang, 'and'))

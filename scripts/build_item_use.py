@@ -6,6 +6,9 @@ import re
 from collections import defaultdict
 from pathlib import Path
 
+from gear_advice.facts import Facts
+from gear_advice.overlay import use_overlay
+
 
 PUBLICATION = Path(__file__).resolve().parents[1]
 CATALOGUE = PUBLICATION / "catalogue"
@@ -184,6 +187,7 @@ def build():
     if (DATA / "forage-locations.json").exists():
         tool_locations.update(load(DATA / "forage-locations.json")["items"])
     thai_fish_names = stage_fish_names()
+    gear_overlay = use_overlay(Facts())
 
     fish = {entry["id_hex"].upper(): entry for entry in acceptance["fish_profiles"]}
     valid_fish = {item_id for item_id, entry in fish.items() if not entry.get("name_has_unmapped_glyph") and int(item_id, 16) != 0x43}
@@ -635,6 +639,9 @@ def build():
                         entry[field] = {lang: list(dict.fromkeys(entry.get(field, {}).get(lang, []) + finding[field].get(lang, []))) for lang in ("en", "ja", "th")}
                     else:
                         entry[field] = finding[field]
+        if key(category, item_id) in gear_overlay:
+            # Measured fight effects replace the older rod, hook and float wording.
+            entry.update(gear_overlay[key(category, item_id)])
         if (DATA / "shop-stock-rom.json").exists():
             entry["shops"] = shop_stock.get(key(category, item_id), [])
         item_data[key(category, item_id)] = entry

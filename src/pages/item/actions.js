@@ -27,10 +27,10 @@ export function gearNextActions(ctx, item, fishVisuals, fishLocations, allItems)
     const label =
       category === 'hook'
         ? ctx.lang === 'th'
-          ? 'เบ็ดหายหรือยังไม่มี? ดูเบ็ดทั่วไปที่ถูกสุดทั้งหกด่าน'
+          ? 'เบ็ดหายหรือยังไม่มี? ดูเบ็ดที่ถูกสุดตามขนาดปลาทั้งหกด่าน'
           : ctx.lang === 'ja'
-            ? '針を失った・持っていない？6エリアの最安汎用針を見る'
-            : 'Lost your hook or have none? See the cheapest generic hook in each area'
+            ? '針を失った・持っていない？6エリアの大きさ別最安の針を見る'
+            : 'Lost your hook or have none? See the cheapest hook by fish size in each area'
         : ctx.lang === 'th'
           ? 'ดูทุ่นและตะกั่วราคาต่ำสุดแยกทั้งหกด่าน'
           : ctx.lang === 'ja'
@@ -45,7 +45,7 @@ export function gearNextActions(ctx, item, fishVisuals, fishLocations, allItems)
   if (item.category === 'hook' && ids.length)
     return (
       hookBudget +
-      `<p>${ctx.lang === 'th' ? 'ดูเหยื่อและจุดตกของปลาที่ชื่อเบ็ดอ้างถึง (ไม่ได้แนะนำให้ใช้เบ็ดนี้จับง่ายกว่า)' : ctx.lang === 'ja' ? 'ハリ名が参照する魚のエサ・場所を確認（このハリの優位性を示すものではありません）' : 'See bait and locations for the fish named by this hook (not a claim this hook lands it more easily)'}</p>${ids.map((id) => `<a class="route-button" href="${ctx.esc(ctx.fishProfileLink(id, fishLocations))}">${ctx.esc(ctx.fishName(id, fishVisuals))} ↗</a>`).join('')}`
+      `<p>${ctx.lang === 'th' ? 'ดูเหยื่อและจุดตกของปลาที่ชื่อเบ็ดอ้างถึง' : ctx.lang === 'ja' ? 'ハリ名が参照する魚のエサ・場所を確認' : 'See bait and locations for the fish named by this hook'}</p>${ids.map((id) => `<a class="route-button" href="${ctx.esc(ctx.fishProfileLink(id, fishLocations))}">${ctx.esc(ctx.fishName(id, fishVisuals))} ↗</a>`).join('')}`
     )
   if (item.category.startsWith('fly')) {
     const target = ctx.selectedFish && fishVisuals[ctx.selectedFish] ? ctx.selectedFish : ''

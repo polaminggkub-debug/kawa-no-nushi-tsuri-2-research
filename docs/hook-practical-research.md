@@ -28,6 +28,8 @@ Hooks 06 (`ハリ`), 07 (`袖ヒガイ`), 08 (`ハヤ・ヤマベ`) and 09 (`マ
 
 ## What the hook calculation means
 
+> **Corrected 2026-10-07 — see [gear-effects.md](gear-effects.md).** "A half-sized value does **not** reliably delay this check" and "the ROM trace cannot recommend one general hook as universally better" are superseded: the fight resets the meter to the start value after every rest, so the start value is what counts. Halving never costs a mistake. Selector-0 hooks 7, 8, 11 are the bad choice for fish above 35 cm, hook 9 (10 yen) is the cheapest good hook for fish of 16..35 cm. The remark that the size field "is not a length in centimetres" is also outdated: the fight model uses the fish size in cm (validated against the traces).
+
 During fight setup, the game first transforms the response value from the rod. In bait modes 0 and 1, it checks the selected bait's fish field and then the hook's fish field against the active fish ID. A match applies `H(x) = floor(x/2)` and skips the hook's ordinary +0 size-response branch. It does not test whether the fish can eat the bait.
 
 When neither bait nor hook matches, the hook's +0 selector chooses an internal transform by fish-size value `$1EB1`:
@@ -74,6 +76,8 @@ Two cautions:
 The accompanying [`hook-practical-research.json`](../data/hook-practical-research.json) contains English, Japanese, and Thai card-copy overrides for all 23 hook/float/sinker items.
 
 ## Budget equipment on fish profiles
+
+> **Corrected 2026-10-07 — see [gear-effects.md](gear-effects.md).** "The new-purchase choices do not rank landing success" and "the ROM does not provide enough information to rank every complete rod/bait/hook setup" no longer hold: hooks are chosen by fish size class (the catalogue now shows the cheapest hook of each class per area), and rods by the line strength the fish needs. The price table below lists the older generic-hook pool.
 
 Fish starter offers now identify missing hook and float/sinker purchases for the selected method and area. Keep an owned hook and matching route equipment; the new-purchase choices do not rank landing success. The hook candidate pool is the four records with zero fish-ID field (06–09), avoiding a species-matched branch as the basis for a general starter recommendation. Their ordinary size-response selectors still differ. Float and sinker prices are compared only within the required route. All choices use unconditional recorded shop stock.
 

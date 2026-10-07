@@ -57,6 +57,8 @@ const FAMILIES = {
   gearDecision: {
     categories: ['hook', 'float_weight', 'fly', 'fly_wing', 'fly_tail'],
     keys: ['recommendation', 'reason'],
+    // Hook and float labels point to the cheaper item to buy, so they name it too.
+    labelCategories: ['hook', 'float_weight'],
   },
 }
 const PLAYER_USE_KEYS = ['summary', 'facts', 'comparison', 'useLocations']
@@ -69,7 +71,7 @@ const ID_TOKEN =
   /(?<![0-9A-Za-z.×¥/:+#–-]|\d[.,])([0-9A-F]{2})(?![0-9A-Za-z%]|[.,/:–-]\d|[–-][0-9A-F]{2}\b)/g
 // A two-digit number is a quantity, not an ID, when it is followed or preceded by these.
 const QUANTITY_AFTER =
-  /^\s*(?:and ×|และ ×|と×|units?\b|m\b|ม\.|หน่วย|ตัว|คัน|HP|fish|ชนิด|profiles?|โปรไฟล์|プロフィール|yen|เยน|[本位・円対種匹個倍枚点秒歩回台段]|%)/i
+  /^\s*(?:and ×|และ ×|と×|units?\b|species\b|of\b|จาก|cm\b|ซม\.|m\b|ม\.|หน่วย|ตัว|คัน|HP|fish|ชนิด|profiles?|โปรไฟล์|プロフィール|yen|เยน|[本位・円対種匹個倍枚点秒歩回台段]|%)/i
 const QUANTITY_BEFORE =
   /(?:\bof |\bthan |\baim |จาก |เกิน|ครบ |ใน |เวลาเล็ง |狙う時間|×)\s*$/i
 const NOT_AN_ITEM = /(?:fish|ปลา|魚)\s*ID\s*$|บอดี้(?:เปียก|แห้ง)\s*$/i
@@ -243,6 +245,8 @@ function createResolver(items) {
       const start = Math.max(last, match.index - ref.cueLength)
       output += value.slice(last, start) + ref.name
       last = match.index + match[1].length
+      // A name that ends in a full stop ("3.3 ม.") already closes the sentence.
+      if (ref.name.endsWith('.') && value[last] === '.') last += 1
     }
     return capitalizeSentenceStarts(output + value.slice(last), lang)
   }
@@ -280,9 +284,11 @@ function createResolver(items) {
   }
 
   function resolveRecord(item, field, log) {
-    const keys = field === 'playerUse' ? PLAYER_USE_KEYS : field === 'section' ? SECTION_KEYS : FAMILIES[field].keys
+    const family = FAMILIES[field]
+    const keys = field === 'playerUse' ? PLAYER_USE_KEYS : field === 'section' ? SECTION_KEYS : family.keys
+    const withLabel = family?.labelCategories?.includes(item.category) ? ['label'] : []
     const record = field === 'section' ? item : item[field]
-    for (const key of keys) if (record[key]) record[key] = resolveValue(item, field, record[key], log)
+    for (const key of [...withLabel, ...keys]) if (record[key]) record[key] = resolveValue(item, field, record[key], log)
   }
 
   return { table, resolveValue, resolveRecord }

@@ -69,741 +69,666 @@
   "items": {
     "hook:01": {
       "label": {
-        "en": "Keep your hook; no catch gain proved",
-        "th": "ใช้ตะขอที่มี; ยังไม่พบโบนัสจับปลา",
-        "ja": "所持品を継続、釣果向上は未確認"
+        "th": "ดีสุดกับ: อาคาเมะ (ตะขอตรงชื่อปลา) และ ปลาเกิน 35 ซม. 28 ชนิด (เช่น อิวานะ, ปลาอาเมะมาสุ, นิจิมาสุ). ไม่เหมาะกับ: ปลาไม่เกิน 15 ซม. (เสียไป 1 จังหวะ) และ ปลา 16–35 ซม. (ไม่ช่วย).",
+        "en": "Best for: Akame (the hook is named for it); fish over 35 cm (28 species, e.g. Iwana, Amemasu, Nijimasu (rainbow trout)). Bad for: fish up to 15 cm (costs 1 mistake); fish of 16–35 cm (no help).",
+        "ja": "最適：アカメ（魚名の付いた針）、35cm超の魚（28種、例：イワナ、アメマス、ニジマス）。不向き：15cm以下の魚（ミス1回分を失う）、16〜35cmの魚（効果なし）。"
       },
       "recommendation": {
-        "en": "Keep the hook you already have. The ROM does not show that buying or switching to this fish-named hook gives more bites or easier landing. Choose bait the target accepts first. If you are targeting Akame, open its fish page to check accepted bait and spots; this item is for bait fishing only.",
-        "th": "ใช้ตะขอที่มีอยู่ก่อน ROM ยังไม่ยืนยันว่าซื้อหรือเปลี่ยนมาใช้เบ็ดชื่อนี้แล้วปลากินหรือดึงขึ้นง่ายกว่า เลือกเหยื่อที่ปลาเป้าหมายรับได้ก่อน ถ้าจะตกอาคาเมะ กดดูหน้าปลาเพื่อตรวจเหยื่อและตำแหน่ง; ตะขอนี้ใช้กับการตกเหยื่อเท่านั้น",
-        "ja": "今持っている針を使い続けてください。この魚名付きの針に替えても食いつきや取り込みが改善する根拠はありません。まず対象魚に合うエサを選びます。アカメを狙うなら魚ページで適合エサと場所を確認してください。この針はエサ釣り用です。"
+        "th": "ตะขอตั้งจุดเริ่มของแรงตึงตามขนาดปลา: ปลาไม่เกิน 15 ซม.: พลาดได้น้อยลง 1 จังหวะ; ปลา 16–35 ซม.: ไม่ช่วย; ปลาเกิน 35 ซม.: พลาดได้เพิ่ม 1 จังหวะ. ตะขอตรงชื่ออาคาเมะช่วยให้พลาดได้เพิ่ม 1 จังหวะกับปลาชนิดนี้ทุกขนาด (ไม่ซ้อนกับผลตามขนาด). แต่ตะขอ เบ็ด 04 หรือ เบ็ด 03 ให้ผลเท่ากันกับอาคาเมะ ไม่จำเป็นต้องซื้อตะขอตรงชื่อ. ราคา ¥50 ขายที่ด่าน 6 ขายเป็นชุด 9 ตัว. ถ้าอยู่ด่าน 4 ซื้อ เบ็ด 04 (¥35) แทน: ถูกกว่าและให้ผลเท่ากันหรือดีกว่ากับปลาทุกชนิด ด่านอื่นซื้อตัวนี้ได้.",
+        "en": "A hook sets the fight meter's start by fish size: fish up to 15 cm: 1 fewer mistake allowed; fish of 16–35 cm: no difference; fish over 35 cm: 1 more mistake allowed. The hook named for Akame allows 1 more mistake against that fish at any size (it does not stack with the size effect). But hook 04 or hook 03 do the same against Akame, so you need not buy the named hook. Price ¥50; sold in area 6; sold in stacks of 9. If you are in area 4, buy hook 04 (¥35) instead: it costs less and does the same or better against every fish. Elsewhere this one is fine.",
+        "ja": "針は魚の大きさでファイトのメーターの出だしを決めます：15cm以下の魚は許されるミスが1回減る、16〜35cmの魚は変わらない、35cm超の魚は許されるミスが1回増える。アカメの名前が付いた針は、その魚にはどの大きさでも許されるミスが1回増えます（大きさの効果とは重なりません）。ただし04か03もアカメに同じ効果なので、名前付きの針を買う必要はありません。価格50円。エリア6で販売。9個1組で売っています。エリア4にいるなら、代わりに04（35円）を買います。安く、どの魚にも同じかそれ以上の効果です。ほかのエリアではこの針で構いません。"
       },
       "reason": {
-        "en": "A fish-name match in the item record is not evidence of more bites or easier landing, so it is not a reason to pay for an upgrade.",
-        "th": "ชื่อปลาที่ตรงตามข้อมูลของไอเท็มไม่ได้ยืนยันว่าปลากินหรือดึงขึ้นง่ายกว่า จึงไม่ใช่เหตุให้จ่ายซื้อเปลี่ยน",
-        "ja": "道具レコードの魚名一致は、食いつきや取り込みやすさの証明ではありません。買い替えの理由にはなりません。"
+        "th": "จากการจำลองการสู้ปลา: ตะขอนี้ดีสุดกับ 27 จาก 72 ชนิดของคันทุ่น เฉลี่ยเสียไป 0.7 จังหวะ (ตะขอที่ดีที่สุดเสีย 0)",
+        "en": "From simulated fights: this hook is the best choice for 27 of 72 float-rod species and costs 0.7 mistakes on average (the best hook costs 0).",
+        "ja": "ファイトのシミュレーションでは、ウキ竿の72種中27種でこの針が最良で、平均0.7回分のミスを失います（最良の針は0）。"
       },
+      "alternatives": [
+        {
+          "category": "hook",
+          "id": "04"
+        }
+      ],
       "targetFish": [
         "37"
       ],
       "sources": [
-        "docs/hook-practical-research.md",
-        "docs/hook-float-use.md",
-        "data/hook-practical-research.json",
-        "data/fish-acceptance.json",
-        "data/player-decisions.json"
+        "data/gear-effects.json",
+        "docs/gear-effects.md",
+        "docs/fight-model.md",
+        "scripts/build_gear_advice.py"
       ]
     },
     "hook:02": {
       "label": {
-        "en": "Keep your hook; no catch gain proved",
-        "th": "ใช้ตะขอที่มี; ยังไม่พบโบนัสจับปลา",
-        "ja": "所持品を継続、釣果向上は未確認"
+        "th": "ดีสุดกับ: โออูนางิ (ตะขอตรงชื่อปลา) และ ปลา 16–35 ซม. 23 ชนิด (เช่น ยามาเมะ, อามาโกะ, ปลาคาจิกะ). ไม่เหมาะกับ: ปลาไม่เกิน 15 ซม. และ ปลาเกิน 35 ซม. (ไม่ช่วย).",
+        "en": "Best for: Oo-unagi (the hook is named for it); fish of 16–35 cm (23 species, e.g. Yamame, Amago, Kajika). Bad for: fish up to 15 cm and fish over 35 cm (no help).",
+        "ja": "最適：オオウナギ（魚名の付いた針）、16〜35cmの魚（23種、例：ヤマメ、アマゴ、カジカ）。不向き：15cm以下の魚と35cm超の魚（効果なし）。"
       },
       "recommendation": {
-        "en": "Keep the hook you already have. The ROM does not show that buying or switching to this fish-named hook gives more bites or easier landing. Choose bait the target accepts first. If you are targeting Oo-unagi, open its fish page to check accepted bait and spots; this item is for bait fishing only.",
-        "th": "ใช้ตะขอที่มีอยู่ก่อน ROM ยังไม่ยืนยันว่าซื้อหรือเปลี่ยนมาใช้เบ็ดชื่อนี้แล้วปลากินหรือดึงขึ้นง่ายกว่า เลือกเหยื่อที่ปลาเป้าหมายรับได้ก่อน ถ้าจะตกโออูนางิ / ปลาไหลยักษ์ กดดูหน้าปลาเพื่อตรวจเหยื่อและตำแหน่ง; ตะขอนี้ใช้กับการตกเหยื่อเท่านั้น",
-        "ja": "今持っている針を使い続けてください。この魚名付きの針に替えても食いつきや取り込みが改善する根拠はありません。まず対象魚に合うエサを選びます。オオウナギを狙うなら魚ページで適合エサと場所を確認してください。この針はエサ釣り用です。"
+        "th": "ตะขอตั้งจุดเริ่มของแรงตึงตามขนาดปลา: ปลาไม่เกิน 15 ซม.: ไม่ช่วย; ปลา 16–35 ซม.: พลาดได้เพิ่ม 1 จังหวะ; ปลาเกิน 35 ซม.: ไม่ช่วย. ตะขอตรงชื่อโออูนางิช่วยให้พลาดได้เพิ่ม 1 จังหวะกับปลาชนิดนี้ทุกขนาด (ไม่ซ้อนกับผลตามขนาด). แต่ตะขอ เบ็ด 04 หรือ เบ็ด 03 ให้ผลเท่ากันกับโออูนางิ ไม่จำเป็นต้องซื้อตะขอตรงชื่อ. ราคา ¥45 ขายที่ด่าน 6 ขายเป็นชุด 9 ตัว.",
+        "en": "A hook sets the fight meter's start by fish size: fish up to 15 cm: no difference; fish of 16–35 cm: 1 more mistake allowed; fish over 35 cm: no difference. The hook named for Oo-unagi allows 1 more mistake against that fish at any size (it does not stack with the size effect). But hook 04 or hook 03 do the same against Oo-unagi, so you need not buy the named hook. Price ¥45; sold in area 6; sold in stacks of 9.",
+        "ja": "針は魚の大きさでファイトのメーターの出だしを決めます：15cm以下の魚は変わらない、16〜35cmの魚は許されるミスが1回増える、35cm超の魚は変わらない。オオウナギの名前が付いた針は、その魚にはどの大きさでも許されるミスが1回増えます（大きさの効果とは重なりません）。ただし04か03もオオウナギに同じ効果なので、名前付きの針を買う必要はありません。価格45円。エリア6で販売。9個1組で売っています。"
       },
       "reason": {
-        "en": "A fish-name match in the item record is not evidence of more bites or easier landing, so it is not a reason to pay for an upgrade.",
-        "th": "ชื่อปลาที่ตรงตามข้อมูลของไอเท็มไม่ได้ยืนยันว่าปลากินหรือดึงขึ้นง่ายกว่า จึงไม่ใช่เหตุให้จ่ายซื้อเปลี่ยน",
-        "ja": "道具レコードの魚名一致は、食いつきや取り込みやすさの証明ではありません。買い替えの理由にはなりません。"
+        "th": "จากการจำลองการสู้ปลา: ตะขอนี้ดีสุดกับ 41 จาก 72 ชนิดของคันทุ่น เฉลี่ยเสียไป 0.4 จังหวะ (ตะขอที่ดีที่สุดเสีย 0)",
+        "en": "From simulated fights: this hook is the best choice for 41 of 72 float-rod species and costs 0.4 mistakes on average (the best hook costs 0).",
+        "ja": "ファイトのシミュレーションでは、ウキ竿の72種中41種でこの針が最良で、平均0.4回分のミスを失います（最良の針は0）。"
       },
+      "alternatives": [
+        {
+          "category": "hook",
+          "id": "09"
+        }
+      ],
       "targetFish": [
         "3B"
       ],
       "sources": [
-        "docs/hook-practical-research.md",
-        "docs/hook-float-use.md",
-        "data/hook-practical-research.json",
-        "data/fish-acceptance.json",
-        "data/player-decisions.json"
+        "data/gear-effects.json",
+        "docs/gear-effects.md",
+        "docs/fight-model.md",
+        "scripts/build_gear_advice.py"
       ]
     },
     "hook:03": {
       "label": {
-        "en": "Keep your hook; no catch gain proved",
-        "th": "ใช้ตะขอที่มี; ยังไม่พบโบนัสจับปลา",
-        "ja": "所持品を継続、釣果向上は未確認"
+        "th": "ดีสุดกับ: ซึซึกิ (ตะขอตรงชื่อปลา) และ ปลาเกิน 35 ซม. 28 ชนิด (เช่น อิวานะ, ปลาอาเมะมาสุ, นิจิมาสุ). ไม่เหมาะกับ: ปลาไม่เกิน 15 ซม. (เสียไป 1 จังหวะ) และ ปลา 16–35 ซม. (ไม่ช่วย).",
+        "en": "Best for: Suzuki (the hook is named for it); fish over 35 cm (28 species, e.g. Iwana, Amemasu, Nijimasu (rainbow trout)). Bad for: fish up to 15 cm (costs 1 mistake); fish of 16–35 cm (no help).",
+        "ja": "最適：スズキ（魚名の付いた針）、35cm超の魚（28種、例：イワナ、アメマス、ニジマス）。不向き：15cm以下の魚（ミス1回分を失う）、16〜35cmの魚（効果なし）。"
       },
       "recommendation": {
-        "en": "Keep the hook you already have. The ROM does not show that buying or switching to this fish-named hook gives more bites or easier landing. Choose bait the target accepts first. If you are targeting Suzuki, open its fish page to check accepted bait and spots; this item is for bait fishing only.",
-        "th": "ใช้ตะขอที่มีอยู่ก่อน ROM ยังไม่ยืนยันว่าซื้อหรือเปลี่ยนมาใช้เบ็ดชื่อนี้แล้วปลากินหรือดึงขึ้นง่ายกว่า เลือกเหยื่อที่ปลาเป้าหมายรับได้ก่อน ถ้าจะตกซึซึกิ กดดูหน้าปลาเพื่อตรวจเหยื่อและตำแหน่ง; ตะขอนี้ใช้กับการตกเหยื่อเท่านั้น",
-        "ja": "今持っている針を使い続けてください。この魚名付きの針に替えても食いつきや取り込みが改善する根拠はありません。まず対象魚に合うエサを選びます。スズキを狙うなら魚ページで適合エサと場所を確認してください。この針はエサ釣り用です。"
+        "th": "ตะขอตั้งจุดเริ่มของแรงตึงตามขนาดปลา: ปลาไม่เกิน 15 ซม.: พลาดได้น้อยลง 1 จังหวะ; ปลา 16–35 ซม.: ไม่ช่วย; ปลาเกิน 35 ซม.: พลาดได้เพิ่ม 1 จังหวะ. ตะขอตรงชื่อซึซึกิช่วยให้พลาดได้เพิ่ม 1 จังหวะกับปลาชนิดนี้ทุกขนาด (ไม่ซ้อนกับผลตามขนาด). แต่ตะขอ เบ็ด 04 ให้ผลเท่ากันกับซึซึกิ ไม่จำเป็นต้องซื้อตะขอตรงชื่อ. ราคา ¥40 ขายที่ด่าน 5 ขายเป็นชุด 9 ตัว. ถ้าอยู่ด่าน 4 ซื้อ เบ็ด 04 (¥35) แทน: ถูกกว่าและให้ผลเท่ากันหรือดีกว่ากับปลาทุกชนิด ด่านอื่นซื้อตัวนี้ได้.",
+        "en": "A hook sets the fight meter's start by fish size: fish up to 15 cm: 1 fewer mistake allowed; fish of 16–35 cm: no difference; fish over 35 cm: 1 more mistake allowed. The hook named for Suzuki allows 1 more mistake against that fish at any size (it does not stack with the size effect). But hook 04 do the same against Suzuki, so you need not buy the named hook. Price ¥40; sold in area 5; sold in stacks of 9. If you are in area 4, buy hook 04 (¥35) instead: it costs less and does the same or better against every fish. Elsewhere this one is fine.",
+        "ja": "針は魚の大きさでファイトのメーターの出だしを決めます：15cm以下の魚は許されるミスが1回減る、16〜35cmの魚は変わらない、35cm超の魚は許されるミスが1回増える。スズキの名前が付いた針は、その魚にはどの大きさでも許されるミスが1回増えます（大きさの効果とは重なりません）。ただし04もスズキに同じ効果なので、名前付きの針を買う必要はありません。価格40円。エリア5で販売。9個1組で売っています。エリア4にいるなら、代わりに04（35円）を買います。安く、どの魚にも同じかそれ以上の効果です。ほかのエリアではこの針で構いません。"
       },
       "reason": {
-        "en": "A fish-name match in the item record is not evidence of more bites or easier landing, so it is not a reason to pay for an upgrade.",
-        "th": "ชื่อปลาที่ตรงตามข้อมูลของไอเท็มไม่ได้ยืนยันว่าปลากินหรือดึงขึ้นง่ายกว่า จึงไม่ใช่เหตุให้จ่ายซื้อเปลี่ยน",
-        "ja": "道具レコードの魚名一致は、食いつきや取り込みやすさの証明ではありません。買い替えの理由にはなりません。"
+        "th": "จากการจำลองการสู้ปลา: ตะขอนี้ดีสุดกับ 27 จาก 72 ชนิดของคันทุ่น เฉลี่ยเสียไป 0.7 จังหวะ (ตะขอที่ดีที่สุดเสีย 0)",
+        "en": "From simulated fights: this hook is the best choice for 27 of 72 float-rod species and costs 0.7 mistakes on average (the best hook costs 0).",
+        "ja": "ファイトのシミュレーションでは、ウキ竿の72種中27種でこの針が最良で、平均0.7回分のミスを失います（最良の針は0）。"
       },
+      "alternatives": [
+        {
+          "category": "hook",
+          "id": "04"
+        }
+      ],
       "targetFish": [
         "36"
       ],
       "sources": [
-        "docs/hook-practical-research.md",
-        "docs/hook-float-use.md",
-        "data/hook-practical-research.json",
-        "data/fish-acceptance.json",
-        "data/player-decisions.json"
+        "data/gear-effects.json",
+        "docs/gear-effects.md",
+        "docs/fight-model.md",
+        "scripts/build_gear_advice.py"
       ]
     },
     "hook:04": {
       "label": {
-        "en": "Keep your hook; no catch gain proved",
-        "th": "ใช้ตะขอที่มี; ยังไม่พบโบนัสจับปลา",
-        "ja": "所持品を継続、釣果向上は未確認"
+        "th": "ดีสุดกับ: ปลาคาร์ป (ตะขอตรงชื่อปลา) และ ปลาเกิน 35 ซม. 28 ชนิด (เช่น อิวานะ, ปลาอาเมะมาสุ, นิจิมาสุ). ไม่เหมาะกับ: ปลาไม่เกิน 15 ซม. (เสียไป 1 จังหวะ) และ ปลา 16–35 ซม. (ไม่ช่วย).",
+        "en": "Best for: Koi (the hook is named for it); fish over 35 cm (28 species, e.g. Iwana, Amemasu, Nijimasu (rainbow trout)). Bad for: fish up to 15 cm (costs 1 mistake); fish of 16–35 cm (no help).",
+        "ja": "最適：コイ（魚名の付いた針）、35cm超の魚（28種、例：イワナ、アメマス、ニジマス）。不向き：15cm以下の魚（ミス1回分を失う）、16〜35cmの魚（効果なし）。"
       },
       "recommendation": {
-        "en": "Keep the hook you already have. The ROM does not show that buying or switching to this fish-named hook gives more bites or easier landing. Choose bait the target accepts first. If you are targeting Koi, open its fish page to check accepted bait and spots; this item is for bait fishing only.",
-        "th": "ใช้ตะขอที่มีอยู่ก่อน ROM ยังไม่ยืนยันว่าซื้อหรือเปลี่ยนมาใช้เบ็ดชื่อนี้แล้วปลากินหรือดึงขึ้นง่ายกว่า เลือกเหยื่อที่ปลาเป้าหมายรับได้ก่อน ถ้าจะตกโคอิ กดดูหน้าปลาเพื่อตรวจเหยื่อและตำแหน่ง; ตะขอนี้ใช้กับการตกเหยื่อเท่านั้น",
-        "ja": "今持っている針を使い続けてください。この魚名付きの針に替えても食いつきや取り込みが改善する根拠はありません。まず対象魚に合うエサを選びます。コイを狙うなら魚ページで適合エサと場所を確認してください。この針はエサ釣り用です。"
+        "th": "ตะขอตั้งจุดเริ่มของแรงตึงตามขนาดปลา: ปลาไม่เกิน 15 ซม.: พลาดได้น้อยลง 1 จังหวะ; ปลา 16–35 ซม.: ไม่ช่วย; ปลาเกิน 35 ซม.: พลาดได้เพิ่ม 1 จังหวะ. ตะขอตรงชื่อปลาคาร์ปช่วยให้พลาดได้เพิ่ม 1 จังหวะกับปลาชนิดนี้ทุกขนาด (ไม่ซ้อนกับผลตามขนาด). ราคา ¥35 ขายที่ด่าน 4 ขายเป็นชุด 9 ตัว. ตัวนี้ถูกที่สุดในกลุ่มปลาเกิน 35 ซม.",
+        "en": "A hook sets the fight meter's start by fish size: fish up to 15 cm: 1 fewer mistake allowed; fish of 16–35 cm: no difference; fish over 35 cm: 1 more mistake allowed. The hook named for Koi allows 1 more mistake against that fish at any size (it does not stack with the size effect). Price ¥35; sold in area 4; sold in stacks of 9. This is the cheapest hook for the group of fish over 35 cm.",
+        "ja": "針は魚の大きさでファイトのメーターの出だしを決めます：15cm以下の魚は許されるミスが1回減る、16〜35cmの魚は変わらない、35cm超の魚は許されるミスが1回増える。コイの名前が付いた針は、その魚にはどの大きさでも許されるミスが1回増えます（大きさの効果とは重なりません）。価格35円。エリア4で販売。9個1組で売っています。35cm超の魚向けの針の中で最安です。"
       },
       "reason": {
-        "en": "A fish-name match in the item record is not evidence of more bites or easier landing, so it is not a reason to pay for an upgrade. For Koi, the compatible fish-matched baits are linked below: its fish match runs the same opening-fight branch before the hook check. Do not buy this hook just to trigger that branch again. This does not prove equal landing results for the whole setup or rule out other hook effects.",
-        "th": "ชื่อปลาที่ตรงตามข้อมูลของไอเท็มไม่ได้ยืนยันว่าปลากินหรือดึงขึ้นง่ายกว่า จึงไม่ใช่เหตุให้จ่ายซื้อเปลี่ยน สำหรับปลาคาร์ป ถ้าใช้เหยื่อที่ตรงกับปลาในลิงก์ด้านล่างอยู่แล้ว ไม่ต้องซื้อเบ็ดนี้เพื่อหวังเพิ่มผลเฉพาะปลานี้ซ้ำ เพราะเกมใช้ผลนั้นจากเหยื่อก่อนตรวจเบ็ด ข้อนี้ไม่ได้พิสูจน์ว่าชุดตกทั้งหมดดึงปลาขึ้นง่ายเท่ากัน หรือเบ็ดไม่มีผลด้านอื่น",
-        "ja": "道具レコードの魚名一致は、食いつきや取り込みやすさの証明ではありません。買い替えの理由にはなりません。コイ向けの魚別エサは下のリンクです。適合するエサ側の魚ID一致により、針の判定より先に同じファイト開始分岐が実行されます。その分岐をもう一度起こすためだけにこの針を買う必要はありません。釣り全体の取り込み結果が同じ、または針に他の効果がないと証明するものではありません。"
+        "th": "จากการจำลองการสู้ปลา: ตะขอนี้ดีสุดกับ 27 จาก 72 ชนิดของคันทุ่น เฉลี่ยเสียไป 0.7 จังหวะ (ตะขอที่ดีที่สุดเสีย 0)",
+        "en": "From simulated fights: this hook is the best choice for 27 of 72 float-rod species and costs 0.7 mistakes on average (the best hook costs 0).",
+        "ja": "ファイトのシミュレーションでは、ウキ竿の72種中27種でこの針が最良で、平均0.7回分のミスを失います（最良の針は0）。"
       },
+      "alternatives": [],
       "targetFish": [
         "0D"
       ],
       "sources": [
-        "docs/hook-practical-research.md",
-        "docs/hook-float-use.md",
-        "data/hook-practical-research.json",
-        "data/fish-acceptance.json",
-        "data/player-decisions.json"
-      ],
-      "alternatives": [
-        {
-          "category": "bait",
-          "id": "0F"
-        },
-        {
-          "category": "bait",
-          "id": "11"
-        }
+        "data/gear-effects.json",
+        "docs/gear-effects.md",
+        "docs/fight-model.md",
+        "scripts/build_gear_advice.py"
       ]
     },
     "hook:05": {
       "label": {
-        "en": "Keep your hook; no catch gain proved",
-        "th": "ใช้ตะขอที่มี; ยังไม่พบโบนัสจับปลา",
-        "ja": "所持品を継続、釣果向上は未確認"
+        "th": "ดีสุดกับ: เฮระบูนะ (ตะขอตรงชื่อปลา) และ ปลา 16–35 ซม. 23 ชนิด (เช่น ยามาเมะ, อามาโกะ, ปลาคาจิกะ). ไม่เหมาะกับ: ปลาไม่เกิน 15 ซม. และ ปลาเกิน 35 ซม. (ไม่ช่วย).",
+        "en": "Best for: Herabuna (the hook is named for it); fish of 16–35 cm (23 species, e.g. Yamame, Amago, Kajika). Bad for: fish up to 15 cm and fish over 35 cm (no help).",
+        "ja": "最適：ヘラブナ（魚名の付いた針）、16〜35cmの魚（23種、例：ヤマメ、アマゴ、カジカ）。不向き：15cm以下の魚と35cm超の魚（効果なし）。"
       },
       "recommendation": {
-        "en": "Keep the hook you already have. The ROM does not show that buying or switching to this fish-named hook gives more bites or easier landing. Choose bait the target accepts first. If you are targeting Herabuna, open its fish page to check accepted bait and spots; this item is for bait fishing only.",
-        "th": "ใช้ตะขอที่มีอยู่ก่อน ROM ยังไม่ยืนยันว่าซื้อหรือเปลี่ยนมาใช้เบ็ดชื่อนี้แล้วปลากินหรือดึงขึ้นง่ายกว่า เลือกเหยื่อที่ปลาเป้าหมายรับได้ก่อน ถ้าจะตกเฮระบูนะ กดดูหน้าปลาเพื่อตรวจเหยื่อและตำแหน่ง; ตะขอนี้ใช้กับการตกเหยื่อเท่านั้น",
-        "ja": "今持っている針を使い続けてください。この魚名付きの針に替えても食いつきや取り込みが改善する根拠はありません。まず対象魚に合うエサを選びます。ヘラブナを狙うなら魚ページで適合エサと場所を確認してください。この針はエサ釣り用です。"
+        "th": "ตะขอตั้งจุดเริ่มของแรงตึงตามขนาดปลา: ปลาไม่เกิน 15 ซม.: ไม่ช่วย; ปลา 16–35 ซม.: พลาดได้เพิ่ม 1 จังหวะ; ปลาเกิน 35 ซม.: ไม่ช่วย. ตะขอตรงชื่อเฮระบูนะช่วยให้พลาดได้เพิ่ม 1 จังหวะกับปลาชนิดนี้ทุกขนาด (ไม่ซ้อนกับผลตามขนาด). ราคา ¥30 ขายที่ด่าน 4, 5 ขายเป็นชุด 9 ตัว.",
+        "en": "A hook sets the fight meter's start by fish size: fish up to 15 cm: no difference; fish of 16–35 cm: 1 more mistake allowed; fish over 35 cm: no difference. The hook named for Herabuna allows 1 more mistake against that fish at any size (it does not stack with the size effect). Price ¥30; sold in areas 4, 5; sold in stacks of 9.",
+        "ja": "針は魚の大きさでファイトのメーターの出だしを決めます：15cm以下の魚は変わらない、16〜35cmの魚は許されるミスが1回増える、35cm超の魚は変わらない。ヘラブナの名前が付いた針は、その魚にはどの大きさでも許されるミスが1回増えます（大きさの効果とは重なりません）。価格30円。エリア4・5で販売。9個1組で売っています。"
       },
       "reason": {
-        "en": "A fish-name match in the item record is not evidence of more bites or easier landing, so it is not a reason to pay for an upgrade. For Herabuna, the compatible fish-matched bait is linked below: its fish match runs the same opening-fight branch before the hook check. Do not buy this hook just to trigger that branch again. This does not prove equal landing results for the whole setup or rule out other hook effects.",
-        "th": "ชื่อปลาที่ตรงตามข้อมูลของไอเท็มไม่ได้ยืนยันว่าปลากินหรือดึงขึ้นง่ายกว่า จึงไม่ใช่เหตุให้จ่ายซื้อเปลี่ยน สำหรับปลาเฮระบูนะ ถ้าใช้เหยื่อที่ตรงกับปลาในลิงก์ด้านล่างอยู่แล้ว ไม่ต้องซื้อเบ็ดนี้เพื่อหวังเพิ่มผลเฉพาะปลานี้ซ้ำ เพราะเกมใช้ผลนั้นจากเหยื่อก่อนตรวจเบ็ด ข้อนี้ไม่ได้พิสูจน์ว่าชุดตกทั้งหมดดึงปลาขึ้นง่ายเท่ากัน หรือเบ็ดไม่มีผลด้านอื่น",
-        "ja": "道具レコードの魚名一致は、食いつきや取り込みやすさの証明ではありません。買い替えの理由にはなりません。ヘラブナ向けの魚別エサは下のリンクです。適合するエサ側の魚ID一致により、針の判定より先に同じファイト開始分岐が実行されます。その分岐をもう一度起こすためだけにこの針を買う必要はありません。釣り全体の取り込み結果が同じ、または針に他の効果がないと証明するものではありません。"
+        "th": "จากการจำลองการสู้ปลา: ตะขอนี้ดีสุดกับ 40 จาก 72 ชนิดของคันทุ่น เฉลี่ยเสียไป 0.4 จังหวะ (ตะขอที่ดีที่สุดเสีย 0)",
+        "en": "From simulated fights: this hook is the best choice for 40 of 72 float-rod species and costs 0.4 mistakes on average (the best hook costs 0).",
+        "ja": "ファイトのシミュレーションでは、ウキ竿の72種中40種でこの針が最良で、平均0.4回分のミスを失います（最良の針は0）。"
       },
+      "alternatives": [
+        {
+          "category": "hook",
+          "id": "09"
+        }
+      ],
       "targetFish": [
         "25"
       ],
       "sources": [
-        "docs/hook-practical-research.md",
-        "docs/hook-float-use.md",
-        "data/hook-practical-research.json",
-        "data/fish-acceptance.json",
-        "data/player-decisions.json"
-      ],
-      "alternatives": [
-        {
-          "category": "bait",
-          "id": "0E"
-        }
+        "data/gear-effects.json",
+        "docs/gear-effects.md",
+        "docs/fight-model.md",
+        "scripts/build_gear_advice.py"
       ]
     },
     "hook:06": {
       "label": {
-        "en": "Keep your hook; no catch gain proved",
-        "th": "ใช้ตะขอที่มี; ยังไม่พบโบนัสจับปลา",
-        "ja": "所持品を継続、釣果向上は未確認"
+        "th": "ดีสุดกับ: ปลา 16–35 ซม. 23 ชนิด (เช่น ยามาเมะ, อามาโกะ, ปลาคาจิกะ). ไม่เหมาะกับ: ปลาไม่เกิน 15 ซม. และ ปลาเกิน 35 ซม. (ไม่ช่วย).",
+        "en": "Best for: fish of 16–35 cm (23 species, e.g. Yamame, Amago, Kajika). Bad for: fish up to 15 cm and fish over 35 cm (no help).",
+        "ja": "最適：16〜35cmの魚（23種、例：ヤマメ、アマゴ、カジカ）。不向き：15cm以下の魚と35cm超の魚（効果なし）。"
       },
       "recommendation": {
-        "en": "Keep the hook you already have. The ROM does not show that buying or switching hooks gives more bites or easier landing. Choose bait the target accepts first; this advice applies to bait fishing only.",
-        "th": "ใช้ตะขอที่มีอยู่ก่อน ROM ยังไม่ยืนยันว่าซื้อหรือเปลี่ยนเบ็ดแล้วปลากินหรือดึงขึ้นง่ายกว่า เลือกเหยื่อที่ปลาเป้าหมายรับได้ก่อน คำแนะนำนี้ใช้กับการตกเหยื่อเท่านั้น",
-        "ja": "今持っている針を使い続けてください。針の購入・交換で食いつきや取り込みが改善する根拠はありません。まず対象魚に合うエサを選びます。エサ釣りに限った案内です。"
+        "th": "ตะขอตั้งจุดเริ่มของแรงตึงตามขนาดปลา: ปลาไม่เกิน 15 ซม.: ไม่ช่วย; ปลา 16–35 ซม.: พลาดได้เพิ่ม 1 จังหวะ; ปลาเกิน 35 ซม.: ไม่ช่วย. ราคา ¥25 ขายที่ด่าน 1, 2, 3, 4, 5, 6 ขายเป็นชุด 9 ตัว. ถ้าอยู่ด่าน 2, 3 ซื้อ เบ็ด 09 (¥10) แทน: ถูกกว่าและให้ผลเท่ากันหรือดีกว่ากับปลาทุกชนิด ด่านอื่นซื้อตัวนี้ได้.",
+        "en": "A hook sets the fight meter's start by fish size: fish up to 15 cm: no difference; fish of 16–35 cm: 1 more mistake allowed; fish over 35 cm: no difference. Price ¥25; sold in areas 1, 2, 3, 4, 5, 6; sold in stacks of 9. If you are in areas 2, 3, buy hook 09 (¥10) instead: it costs less and does the same or better against every fish. Elsewhere this one is fine.",
+        "ja": "針は魚の大きさでファイトのメーターの出だしを決めます：15cm以下の魚は変わらない、16〜35cmの魚は許されるミスが1回増える、35cm超の魚は変わらない。価格25円。エリア1・2・3・4・5・6で販売。9個1組で売っています。エリア2・3にいるなら、代わりに09（10円）を買います。安く、どの魚にも同じかそれ以上の効果です。ほかのエリアではこの針で構いません。"
       },
       "reason": {
-        "en": "A fish-name match in the item record is not evidence of more bites or easier landing, so it is not a reason to pay for an upgrade.",
-        "th": "ชื่อปลาที่ตรงตามข้อมูลของไอเท็มไม่ได้ยืนยันว่าปลากินหรือดึงขึ้นง่ายกว่า จึงไม่ใช่เหตุให้จ่ายซื้อเปลี่ยน",
-        "ja": "道具レコードの魚名一致は、食いつきや取り込みやすさの証明ではありません。買い替えの理由にはなりません。"
+        "th": "จากการจำลองการสู้ปลา: ตะขอนี้ดีสุดกับ 40 จาก 72 ชนิดของคันทุ่น เฉลี่ยเสียไป 0.4 จังหวะ (ตะขอที่ดีที่สุดเสีย 0)",
+        "en": "From simulated fights: this hook is the best choice for 40 of 72 float-rod species and costs 0.4 mistakes on average (the best hook costs 0).",
+        "ja": "ファイトのシミュレーションでは、ウキ竿の72種中40種でこの針が最良で、平均0.4回分のミスを失います（最良の針は0）。"
       },
+      "alternatives": [
+        {
+          "category": "hook",
+          "id": "09"
+        }
+      ],
       "sources": [
-        "docs/hook-practical-research.md",
-        "docs/hook-float-use.md",
-        "data/hook-practical-research.json",
-        "data/fish-acceptance.json",
-        "data/player-decisions.json"
+        "data/gear-effects.json",
+        "docs/gear-effects.md",
+        "docs/fight-model.md",
+        "scripts/build_gear_advice.py"
       ]
     },
     "hook:07": {
       "label": {
-        "en": "Keep your hook; no catch gain proved",
-        "th": "ใช้ตะขอที่มี; ยังไม่พบโบนัสจับปลา",
-        "ja": "所持品を継続、釣果向上は未確認"
+        "th": "ดีสุดกับ: ปลาไม่เกิน 15 ซม. 21 ชนิด (เช่น ปลาวากาซากิ, โมสึโกะ, อิโตะโมะโระโกะ). ไม่เหมาะกับ: ปลาเกิน 35 ซม. (เสียไป 1 จังหวะ) และ ปลา 16–35 ซม. (ไม่ช่วย).",
+        "en": "Best for: fish up to 15 cm (21 species, e.g. Wakasagi, Motsugo, Itomoroko). Bad for: fish over 35 cm (costs 1 mistake); fish of 16–35 cm (no help).",
+        "ja": "最適：15cm以下の魚（21種、例：ワカサギ、モツゴ、イトモロコ）。不向き：35cm超の魚（ミス1回分を失う）、16〜35cmの魚（効果なし）。"
       },
       "recommendation": {
-        "en": "Keep the hook you already have. The ROM does not show that buying or switching hooks gives more bites or easier landing. Choose bait the target accepts first; this advice applies to bait fishing only.",
-        "th": "ใช้ตะขอที่มีอยู่ก่อน ROM ยังไม่ยืนยันว่าซื้อหรือเปลี่ยนเบ็ดแล้วปลากินหรือดึงขึ้นง่ายกว่า เลือกเหยื่อที่ปลาเป้าหมายรับได้ก่อน คำแนะนำนี้ใช้กับการตกเหยื่อเท่านั้น",
-        "ja": "今持っている針を使い続けてください。針の購入・交換で食いつきや取り込みが改善する根拠はありません。まず対象魚に合うエサを選びます。エサ釣りに限った案内です。"
+        "th": "ตะขอตั้งจุดเริ่มของแรงตึงตามขนาดปลา: ปลาไม่เกิน 15 ซม.: พลาดได้เพิ่ม 1 จังหวะ; ปลา 16–35 ซม.: ไม่ช่วย; ปลาเกิน 35 ซม.: พลาดได้น้อยลง 1 จังหวะ. ราคา ¥20 ขายที่ด่าน 2, 6 ขายเป็นชุด 9 ตัว. ถ้าอยู่ด่าน 4, 5 ซื้อ เบ็ด 0B (¥12) แทน: ถูกกว่าและให้ผลเท่ากันหรือดีกว่ากับปลาทุกชนิด ด่านอื่นซื้อตัวนี้ได้.",
+        "en": "A hook sets the fight meter's start by fish size: fish up to 15 cm: 1 more mistake allowed; fish of 16–35 cm: no difference; fish over 35 cm: 1 fewer mistake allowed. Price ¥20; sold in areas 2, 6; sold in stacks of 9. If you are in areas 4, 5, buy hook 0B (¥12) instead: it costs less and does the same or better against every fish. Elsewhere this one is fine.",
+        "ja": "針は魚の大きさでファイトのメーターの出だしを決めます：15cm以下の魚は許されるミスが1回増える、16〜35cmの魚は変わらない、35cm超の魚は許されるミスが1回減る。価格20円。エリア2・6で販売。9個1組で売っています。エリア4・5にいるなら、代わりに0B（12円）を買います。安く、どの魚にも同じかそれ以上の効果です。ほかのエリアではこの針で構いません。"
       },
       "reason": {
-        "en": "A fish-name match in the item record is not evidence of more bites or easier landing, so it is not a reason to pay for an upgrade.",
-        "th": "ชื่อปลาที่ตรงตามข้อมูลของไอเท็มไม่ได้ยืนยันว่าปลากินหรือดึงขึ้นง่ายกว่า จึงไม่ใช่เหตุให้จ่ายซื้อเปลี่ยน",
-        "ja": "道具レコードの魚名一致は、食いつきや取り込みやすさの証明ではありません。買い替えの理由にはなりません。"
+        "th": "จากการจำลองการสู้ปลา: ตะขอนี้ดีสุดกับ 26 จาก 72 ชนิดของคันทุ่น เฉลี่ยเสียไป 1 จังหวะ (ตะขอที่ดีที่สุดเสีย 0)",
+        "en": "From simulated fights: this hook is the best choice for 26 of 72 float-rod species and costs 1 mistakes on average (the best hook costs 0).",
+        "ja": "ファイトのシミュレーションでは、ウキ竿の72種中26種でこの針が最良で、平均1回分のミスを失います（最良の針は0）。"
       },
+      "alternatives": [
+        {
+          "category": "hook",
+          "id": "0B"
+        }
+      ],
       "sources": [
-        "docs/hook-practical-research.md",
-        "docs/hook-float-use.md",
-        "data/hook-practical-research.json",
-        "data/fish-acceptance.json",
-        "data/player-decisions.json"
+        "data/gear-effects.json",
+        "docs/gear-effects.md",
+        "docs/fight-model.md",
+        "scripts/build_gear_advice.py"
       ]
     },
     "hook:08": {
       "label": {
-        "en": "Keep your hook; no catch gain proved",
-        "th": "ใช้ตะขอที่มี; ยังไม่พบโบนัสจับปลา",
-        "ja": "所持品を継続、釣果向上は未確認"
+        "th": "ดีสุดกับ: ปลาไม่เกิน 15 ซม. 21 ชนิด (เช่น ปลาวากาซากิ, โมสึโกะ, อิโตะโมะโระโกะ). ไม่เหมาะกับ: ปลาเกิน 35 ซม. (เสียไป 1 จังหวะ) และ ปลา 16–35 ซม. (ไม่ช่วย).",
+        "en": "Best for: fish up to 15 cm (21 species, e.g. Wakasagi, Motsugo, Itomoroko). Bad for: fish over 35 cm (costs 1 mistake); fish of 16–35 cm (no help).",
+        "ja": "最適：15cm以下の魚（21種、例：ワカサギ、モツゴ、イトモロコ）。不向き：35cm超の魚（ミス1回分を失う）、16〜35cmの魚（効果なし）。"
       },
       "recommendation": {
-        "en": "Keep the hook you already have. The ROM does not show that buying or switching hooks gives more bites or easier landing. Choose bait the target accepts first; this advice applies to bait fishing only.",
-        "th": "ใช้ตะขอที่มีอยู่ก่อน ROM ยังไม่ยืนยันว่าซื้อหรือเปลี่ยนเบ็ดแล้วปลากินหรือดึงขึ้นง่ายกว่า เลือกเหยื่อที่ปลาเป้าหมายรับได้ก่อน คำแนะนำนี้ใช้กับการตกเหยื่อเท่านั้น",
-        "ja": "今持っている針を使い続けてください。針の購入・交換で食いつきや取り込みが改善する根拠はありません。まず対象魚に合うエサを選びます。エサ釣りに限った案内です。"
+        "th": "ตะขอตั้งจุดเริ่มของแรงตึงตามขนาดปลา: ปลาไม่เกิน 15 ซม.: พลาดได้เพิ่ม 1 จังหวะ; ปลา 16–35 ซม.: ไม่ช่วย; ปลาเกิน 35 ซม.: พลาดได้น้อยลง 1 จังหวะ. ราคา ¥15 ขายที่ด่าน 1, 3 ขายเป็นชุด 9 ตัว. ถ้าอยู่ด่าน 4, 5 ซื้อ เบ็ด 0B (¥12) แทน: ถูกกว่าและให้ผลเท่ากันหรือดีกว่ากับปลาทุกชนิด ด่านอื่นซื้อตัวนี้ได้.",
+        "en": "A hook sets the fight meter's start by fish size: fish up to 15 cm: 1 more mistake allowed; fish of 16–35 cm: no difference; fish over 35 cm: 1 fewer mistake allowed. Price ¥15; sold in areas 1, 3; sold in stacks of 9. If you are in areas 4, 5, buy hook 0B (¥12) instead: it costs less and does the same or better against every fish. Elsewhere this one is fine.",
+        "ja": "針は魚の大きさでファイトのメーターの出だしを決めます：15cm以下の魚は許されるミスが1回増える、16〜35cmの魚は変わらない、35cm超の魚は許されるミスが1回減る。価格15円。エリア1・3で販売。9個1組で売っています。エリア4・5にいるなら、代わりに0B（12円）を買います。安く、どの魚にも同じかそれ以上の効果です。ほかのエリアではこの針で構いません。"
       },
       "reason": {
-        "en": "A fish-name match in the item record is not evidence of more bites or easier landing, so it is not a reason to pay for an upgrade.",
-        "th": "ชื่อปลาที่ตรงตามข้อมูลของไอเท็มไม่ได้ยืนยันว่าปลากินหรือดึงขึ้นง่ายกว่า จึงไม่ใช่เหตุให้จ่ายซื้อเปลี่ยน",
-        "ja": "道具レコードの魚名一致は、食いつきや取り込みやすさの証明ではありません。買い替えの理由にはなりません。"
+        "th": "จากการจำลองการสู้ปลา: ตะขอนี้ดีสุดกับ 26 จาก 72 ชนิดของคันทุ่น เฉลี่ยเสียไป 1 จังหวะ (ตะขอที่ดีที่สุดเสีย 0)",
+        "en": "From simulated fights: this hook is the best choice for 26 of 72 float-rod species and costs 1 mistakes on average (the best hook costs 0).",
+        "ja": "ファイトのシミュレーションでは、ウキ竿の72種中26種でこの針が最良で、平均1回分のミスを失います（最良の針は0）。"
       },
+      "alternatives": [
+        {
+          "category": "hook",
+          "id": "0B"
+        }
+      ],
       "sources": [
-        "docs/hook-practical-research.md",
-        "docs/hook-float-use.md",
-        "data/hook-practical-research.json",
-        "data/fish-acceptance.json",
-        "data/player-decisions.json"
+        "data/gear-effects.json",
+        "docs/gear-effects.md",
+        "docs/fight-model.md",
+        "scripts/build_gear_advice.py"
       ]
     },
     "hook:09": {
       "label": {
-        "en": "Keep your hook; no catch gain proved",
-        "th": "ใช้ตะขอที่มี; ยังไม่พบโบนัสจับปลา",
-        "ja": "所持品を継続、釣果向上は未確認"
+        "th": "ดีสุดกับ: ปลา 16–35 ซม. 23 ชนิด (เช่น ยามาเมะ, อามาโกะ, ปลาคาจิกะ). ไม่เหมาะกับ: ปลาไม่เกิน 15 ซม. และ ปลาเกิน 35 ซม. (ไม่ช่วย).",
+        "en": "Best for: fish of 16–35 cm (23 species, e.g. Yamame, Amago, Kajika). Bad for: fish up to 15 cm and fish over 35 cm (no help).",
+        "ja": "最適：16〜35cmの魚（23種、例：ヤマメ、アマゴ、カジカ）。不向き：15cm以下の魚と35cm超の魚（効果なし）。"
       },
       "recommendation": {
-        "en": "Keep the hook you already have. The ROM does not show that buying or switching hooks gives more bites or easier landing. Choose bait the target accepts first; this advice applies to bait fishing only.",
-        "th": "ใช้ตะขอที่มีอยู่ก่อน ROM ยังไม่ยืนยันว่าซื้อหรือเปลี่ยนเบ็ดแล้วปลากินหรือดึงขึ้นง่ายกว่า เลือกเหยื่อที่ปลาเป้าหมายรับได้ก่อน คำแนะนำนี้ใช้กับการตกเหยื่อเท่านั้น",
-        "ja": "今持っている針を使い続けてください。針の購入・交換で食いつきや取り込みが改善する根拠はありません。まず対象魚に合うエサを選びます。エサ釣りに限った案内です。"
+        "th": "ตะขอตั้งจุดเริ่มของแรงตึงตามขนาดปลา: ปลาไม่เกิน 15 ซม.: ไม่ช่วย; ปลา 16–35 ซม.: พลาดได้เพิ่ม 1 จังหวะ; ปลาเกิน 35 ซม.: ไม่ช่วย. ราคา ¥10 ขายที่ด่าน 2, 3 ขายเป็นชุด 9 ตัว. ตัวนี้ถูกที่สุดในกลุ่มปลา 16–35 ซม.",
+        "en": "A hook sets the fight meter's start by fish size: fish up to 15 cm: no difference; fish of 16–35 cm: 1 more mistake allowed; fish over 35 cm: no difference. Price ¥10; sold in areas 2, 3; sold in stacks of 9. This is the cheapest hook for the group of fish of 16–35 cm.",
+        "ja": "針は魚の大きさでファイトのメーターの出だしを決めます：15cm以下の魚は変わらない、16〜35cmの魚は許されるミスが1回増える、35cm超の魚は変わらない。価格10円。エリア2・3で販売。9個1組で売っています。16〜35cmの魚向けの針の中で最安です。"
       },
       "reason": {
-        "en": "A fish-name match in the item record is not evidence of more bites or easier landing, so it is not a reason to pay for an upgrade.",
-        "th": "ชื่อปลาที่ตรงตามข้อมูลของไอเท็มไม่ได้ยืนยันว่าปลากินหรือดึงขึ้นง่ายกว่า จึงไม่ใช่เหตุให้จ่ายซื้อเปลี่ยน",
-        "ja": "道具レコードの魚名一致は、食いつきや取り込みやすさの証明ではありません。買い替えの理由にはなりません。"
+        "th": "จากการจำลองการสู้ปลา: ตะขอนี้ดีสุดกับ 40 จาก 72 ชนิดของคันทุ่น เฉลี่ยเสียไป 0.4 จังหวะ (ตะขอที่ดีที่สุดเสีย 0)",
+        "en": "From simulated fights: this hook is the best choice for 40 of 72 float-rod species and costs 0.4 mistakes on average (the best hook costs 0).",
+        "ja": "ファイトのシミュレーションでは、ウキ竿の72種中40種でこの針が最良で、平均0.4回分のミスを失います（最良の針は0）。"
       },
+      "alternatives": [],
       "sources": [
-        "docs/hook-practical-research.md",
-        "docs/hook-float-use.md",
-        "data/hook-practical-research.json",
-        "data/fish-acceptance.json",
-        "data/player-decisions.json"
+        "data/gear-effects.json",
+        "docs/gear-effects.md",
+        "docs/fight-model.md",
+        "scripts/build_gear_advice.py"
       ]
     },
     "hook:0A": {
       "label": {
-        "en": "Keep your hook; no catch gain proved",
-        "th": "ใช้ตะขอที่มี; ยังไม่พบโบนัสจับปลา",
-        "ja": "所持品を継続、釣果向上は未確認"
+        "th": "ดีสุดกับ: ปลาอายุ (ตะขอตรงชื่อปลา). ไม่เหมาะกับ: ปลาอื่นทุกชนิด (ไม่มีผล).",
+        "en": "Best for: Ayu (the hook is named for it). Bad for: every other fish (no effect).",
+        "ja": "最適：アユ（魚名の付いた針）。不向き：ほかのすべての魚（効果なし）。"
       },
       "recommendation": {
-        "en": "Keep the hook you already have. The ROM does not show that buying or switching to this fish-named hook gives more bites or easier landing. Choose bait the target accepts first. If you are targeting Ayu, open its fish page to check accepted bait and spots; this item is for bait fishing only.",
-        "th": "ใช้ตะขอที่มีอยู่ก่อน ROM ยังไม่ยืนยันว่าซื้อหรือเปลี่ยนมาใช้เบ็ดชื่อนี้แล้วปลากินหรือดึงขึ้นง่ายกว่า เลือกเหยื่อที่ปลาเป้าหมายรับได้ก่อน ถ้าจะตกปลาอายุ กดดูหน้าปลาเพื่อตรวจเหยื่อและตำแหน่ง; ตะขอนี้ใช้กับการตกเหยื่อเท่านั้น",
-        "ja": "今持っている針を使い続けてください。この魚名付きの針に替えても食いつきや取り込みが改善する根拠はありません。まず対象魚に合うエサを選びます。アユを狙うなら魚ページで適合エサと場所を確認してください。この針はエサ釣り用です。"
+        "th": "ห่วงนี้ไม่มีผลกับการสู้ปลา ยกเว้นปลาอายุ. ตะขอตรงชื่อปลาอายุช่วยให้พลาดได้เพิ่ม 1 จังหวะกับปลาชนิดนี้ทุกขนาด (ไม่ซ้อนกับผลตามขนาด). แต่ตะขอ เบ็ด 09 ให้ผลเท่ากันกับปลาอายุ ไม่จำเป็นต้องซื้อตะขอตรงชื่อ. ราคา ¥10 ขายที่ด่าน 3 ขายเป็นชุด 9 ตัว. ถ้าอยู่ด่าน 2, 3 ซื้อ เบ็ด 09 (¥10) แทน: ถูกกว่าและให้ผลเท่ากันหรือดีกว่ากับปลาทุกชนิด ด่านอื่นซื้อตัวนี้ได้.",
+        "en": "This ring has no effect on a fight except for Ayu. The hook named for Ayu allows 1 more mistake against that fish at any size (it does not stack with the size effect). But hook 09 do the same against Ayu, so you need not buy the named hook. Price ¥10; sold in area 3; sold in stacks of 9. If you are in areas 2, 3, buy hook 09 (¥10) instead: it costs less and does the same or better against every fish. Elsewhere this one is fine.",
+        "ja": "この環はアユ以外のファイトには効果がありません。アユの名前が付いた針は、その魚にはどの大きさでも許されるミスが1回増えます（大きさの効果とは重なりません）。ただし09もアユに同じ効果なので、名前付きの針を買う必要はありません。価格10円。エリア3で販売。9個1組で売っています。エリア2・3にいるなら、代わりに09（10円）を買います。安く、どの魚にも同じかそれ以上の効果です。ほかのエリアではこの針で構いません。"
       },
       "reason": {
-        "en": "A fish-name match in the item record is not evidence of more bites or easier landing, so it is not a reason to pay for an upgrade. For Ayu, the compatible fish-matched bait is linked below: its fish match runs the same opening-fight branch before the hook check. Do not buy this hook just to trigger that branch again. This does not prove equal landing results for the whole setup or rule out other hook effects.",
-        "th": "ชื่อปลาที่ตรงตามข้อมูลของไอเท็มไม่ได้ยืนยันว่าปลากินหรือดึงขึ้นง่ายกว่า จึงไม่ใช่เหตุให้จ่ายซื้อเปลี่ยน สำหรับปลาอายุ ถ้าใช้เหยื่อที่ตรงกับปลาในลิงก์ด้านล่างอยู่แล้ว ไม่ต้องซื้อเบ็ดนี้เพื่อหวังเพิ่มผลเฉพาะปลานี้ซ้ำ เพราะเกมใช้ผลนั้นจากเหยื่อก่อนตรวจเบ็ด ข้อนี้ไม่ได้พิสูจน์ว่าชุดตกทั้งหมดดึงปลาขึ้นง่ายเท่ากัน หรือเบ็ดไม่มีผลด้านอื่น",
-        "ja": "道具レコードの魚名一致は、食いつきや取り込みやすさの証明ではありません。買い替えの理由にはなりません。アユ向けの魚別エサは下のリンクです。適合するエサ側の魚ID一致により、針の判定より先に同じファイト開始分岐が実行されます。その分岐をもう一度起こすためだけにこの針を買う必要はありません。釣り全体の取り込み結果が同じ、または針に他の効果がないと証明するものではありません。"
+        "th": "จากการจำลองการสู้ปลา: ตะขอนี้ดีสุดกับ 21 จาก 72 ชนิดของคันทุ่น เฉลี่ยเสียไป 0.7 จังหวะ (ตะขอที่ดีที่สุดเสีย 0)",
+        "en": "From simulated fights: this hook is the best choice for 21 of 72 float-rod species and costs 0.7 mistakes on average (the best hook costs 0).",
+        "ja": "ファイトのシミュレーションでは、ウキ竿の72種中21種でこの針が最良で、平均0.7回分のミスを失います（最良の針は0）。"
       },
+      "alternatives": [
+        {
+          "category": "hook",
+          "id": "09"
+        }
+      ],
       "targetFish": [
         "38"
       ],
       "sources": [
-        "docs/hook-practical-research.md",
-        "docs/hook-float-use.md",
-        "data/hook-practical-research.json",
-        "data/fish-acceptance.json",
-        "data/player-decisions.json"
-      ],
-      "alternatives": [
-        {
-          "category": "bait",
-          "id": "17"
-        }
+        "data/gear-effects.json",
+        "docs/gear-effects.md",
+        "docs/fight-model.md",
+        "scripts/build_gear_advice.py"
       ]
     },
     "hook:0B": {
       "label": {
-        "en": "Keep your hook; no catch gain proved",
-        "th": "ใช้ตะขอที่มี; ยังไม่พบโบนัสจับปลา",
-        "ja": "所持品を継続、釣果向上は未確認"
+        "th": "ดีสุดกับ: ทานาโกะ (ตะขอตรงชื่อปลา) และ ปลาไม่เกิน 15 ซม. 21 ชนิด (เช่น ปลาวากาซากิ, โมสึโกะ, อิโตะโมะโระโกะ). ไม่เหมาะกับ: ปลาเกิน 35 ซม. (เสียไป 1 จังหวะ) และ ปลา 16–35 ซม. (ไม่ช่วย).",
+        "en": "Best for: Tanago (the hook is named for it); fish up to 15 cm (21 species, e.g. Wakasagi, Motsugo, Itomoroko). Bad for: fish over 35 cm (costs 1 mistake); fish of 16–35 cm (no help).",
+        "ja": "最適：タナゴ（魚名の付いた針）、15cm以下の魚（21種、例：ワカサギ、モツゴ、イトモロコ）。不向き：35cm超の魚（ミス1回分を失う）、16〜35cmの魚（効果なし）。"
       },
       "recommendation": {
-        "en": "Keep the hook you already have. The ROM does not show that buying or switching to this fish-named hook gives more bites or easier landing. Choose bait the target accepts first. If you are targeting Tanago, open its fish page to check accepted bait and spots; this item is for bait fishing only.",
-        "th": "ใช้ตะขอที่มีอยู่ก่อน ROM ยังไม่ยืนยันว่าซื้อหรือเปลี่ยนมาใช้เบ็ดชื่อนี้แล้วปลากินหรือดึงขึ้นง่ายกว่า เลือกเหยื่อที่ปลาเป้าหมายรับได้ก่อน ถ้าจะตกทานาโกะ กดดูหน้าปลาเพื่อตรวจเหยื่อและตำแหน่ง; ตะขอนี้ใช้กับการตกเหยื่อเท่านั้น",
-        "ja": "今持っている針を使い続けてください。この魚名付きの針に替えても食いつきや取り込みが改善する根拠はありません。まず対象魚に合うエサを選びます。タナゴを狙うなら魚ページで適合エサと場所を確認してください。この針はエサ釣り用です。"
+        "th": "ตะขอตั้งจุดเริ่มของแรงตึงตามขนาดปลา: ปลาไม่เกิน 15 ซม.: พลาดได้เพิ่ม 1 จังหวะ; ปลา 16–35 ซม.: ไม่ช่วย; ปลาเกิน 35 ซม.: พลาดได้น้อยลง 1 จังหวะ. ตะขอตรงชื่อทานาโกะช่วยให้พลาดได้เพิ่ม 1 จังหวะกับปลาชนิดนี้ทุกขนาด (ไม่ซ้อนกับผลตามขนาด). ราคา ¥12 ขายที่ด่าน 4, 5 ขายเป็นชุด 9 ตัว. ตัวนี้ถูกที่สุดในกลุ่มปลาไม่เกิน 15 ซม.",
+        "en": "A hook sets the fight meter's start by fish size: fish up to 15 cm: 1 more mistake allowed; fish of 16–35 cm: no difference; fish over 35 cm: 1 fewer mistake allowed. The hook named for Tanago allows 1 more mistake against that fish at any size (it does not stack with the size effect). Price ¥12; sold in areas 4, 5; sold in stacks of 9. This is the cheapest hook for the group of fish up to 15 cm.",
+        "ja": "針は魚の大きさでファイトのメーターの出だしを決めます：15cm以下の魚は許されるミスが1回増える、16〜35cmの魚は変わらない、35cm超の魚は許されるミスが1回減る。タナゴの名前が付いた針は、その魚にはどの大きさでも許されるミスが1回増えます（大きさの効果とは重なりません）。価格12円。エリア4・5で販売。9個1組で売っています。15cm以下の魚向けの針の中で最安です。"
       },
       "reason": {
-        "en": "A fish-name match in the item record is not evidence of more bites or easier landing, so it is not a reason to pay for an upgrade. For Tanago, the compatible fish-matched bait is linked below: its fish match runs the same opening-fight branch before the hook check. Do not buy this hook just to trigger that branch again. This does not prove equal landing results for the whole setup or rule out other hook effects.",
-        "th": "ชื่อปลาที่ตรงตามข้อมูลของไอเท็มไม่ได้ยืนยันว่าปลากินหรือดึงขึ้นง่ายกว่า จึงไม่ใช่เหตุให้จ่ายซื้อเปลี่ยน สำหรับปลาทานาโกะ ถ้าใช้เหยื่อที่ตรงกับปลาในลิงก์ด้านล่างอยู่แล้ว ไม่ต้องซื้อเบ็ดนี้เพื่อหวังเพิ่มผลเฉพาะปลานี้ซ้ำ เพราะเกมใช้ผลนั้นจากเหยื่อก่อนตรวจเบ็ด ข้อนี้ไม่ได้พิสูจน์ว่าชุดตกทั้งหมดดึงปลาขึ้นง่ายเท่ากัน หรือเบ็ดไม่มีผลด้านอื่น",
-        "ja": "道具レコードの魚名一致は、食いつきや取り込みやすさの証明ではありません。買い替えの理由にはなりません。タナゴ向けの魚別エサは下のリンクです。適合するエサ側の魚ID一致により、針の判定より先に同じファイト開始分岐が実行されます。その分岐をもう一度起こすためだけにこの針を買う必要はありません。釣り全体の取り込み結果が同じ、または針に他の効果がないと証明するものではありません。"
+        "th": "จากการจำลองการสู้ปลา: ตะขอนี้ดีสุดกับ 26 จาก 72 ชนิดของคันทุ่น เฉลี่ยเสียไป 1 จังหวะ (ตะขอที่ดีที่สุดเสีย 0)",
+        "en": "From simulated fights: this hook is the best choice for 26 of 72 float-rod species and costs 1 mistakes on average (the best hook costs 0).",
+        "ja": "ファイトのシミュレーションでは、ウキ竿の72種中26種でこの針が最良で、平均1回分のミスを失います（最良の針は0）。"
       },
+      "alternatives": [],
       "targetFish": [
         "39"
       ],
       "sources": [
-        "docs/hook-practical-research.md",
-        "docs/hook-float-use.md",
-        "data/hook-practical-research.json",
-        "data/fish-acceptance.json",
-        "data/player-decisions.json"
-      ],
-      "alternatives": [
-        {
-          "category": "bait",
-          "id": "10"
-        }
+        "data/gear-effects.json",
+        "docs/gear-effects.md",
+        "docs/fight-model.md",
+        "scripts/build_gear_advice.py"
       ]
     },
     "hook:0C": {
       "label": {
-        "en": "Keep your hook; no catch gain proved",
-        "th": "ใช้ตะขอที่มี; ยังไม่พบโบนัสจับปลา",
-        "ja": "所持品を継続、釣果向上は未確認"
+        "th": "ดีสุดกับ: อิวานะ (ตะขอตรงชื่อปลา) และ ปลา 16–35 ซม. 23 ชนิด (เช่น ยามาเมะ, อามาโกะ, ปลาคาจิกะ). ไม่เหมาะกับ: ปลาไม่เกิน 15 ซม. และ ปลาเกิน 35 ซม. (ไม่ช่วย).",
+        "en": "Best for: Iwana (the hook is named for it); fish of 16–35 cm (23 species, e.g. Yamame, Amago, Kajika). Bad for: fish up to 15 cm and fish over 35 cm (no help).",
+        "ja": "最適：イワナ（魚名の付いた針）、16〜35cmの魚（23種、例：ヤマメ、アマゴ、カジカ）。不向き：15cm以下の魚と35cm超の魚（効果なし）。"
       },
       "recommendation": {
-        "en": "Keep the hook you already have. The ROM does not show that buying or switching to this fish-named hook gives more bites or easier landing. Choose bait the target accepts first. If you are targeting Iwana, open its fish page to check accepted bait and spots; this item is for bait fishing only.",
-        "th": "ใช้ตะขอที่มีอยู่ก่อน ROM ยังไม่ยืนยันว่าซื้อหรือเปลี่ยนมาใช้เบ็ดชื่อนี้แล้วปลากินหรือดึงขึ้นง่ายกว่า เลือกเหยื่อที่ปลาเป้าหมายรับได้ก่อน ถ้าจะตกอิวานะ กดดูหน้าปลาเพื่อตรวจเหยื่อและตำแหน่ง; ตะขอนี้ใช้กับการตกเหยื่อเท่านั้น",
-        "ja": "今持っている針を使い続けてください。この魚名付きの針に替えても食いつきや取り込みが改善する根拠はありません。まず対象魚に合うエサを選びます。イワナを狙うなら魚ページで適合エサと場所を確認してください。この針はエサ釣り用です。"
+        "th": "ตะขอตั้งจุดเริ่มของแรงตึงตามขนาดปลา: ปลาไม่เกิน 15 ซม.: ไม่ช่วย; ปลา 16–35 ซม.: พลาดได้เพิ่ม 1 จังหวะ; ปลาเกิน 35 ซม.: ไม่ช่วย. ตะขอตรงชื่ออิวานะช่วยให้พลาดได้เพิ่ม 1 จังหวะกับปลาชนิดนี้ทุกขนาด (ไม่ซ้อนกับผลตามขนาด). ราคา ¥25 ขายที่ด่าน 1 ขายเป็นชุด 9 ตัว.",
+        "en": "A hook sets the fight meter's start by fish size: fish up to 15 cm: no difference; fish of 16–35 cm: 1 more mistake allowed; fish over 35 cm: no difference. The hook named for Iwana allows 1 more mistake against that fish at any size (it does not stack with the size effect). Price ¥25; sold in area 1; sold in stacks of 9.",
+        "ja": "針は魚の大きさでファイトのメーターの出だしを決めます：15cm以下の魚は変わらない、16〜35cmの魚は許されるミスが1回増える、35cm超の魚は変わらない。イワナの名前が付いた針は、その魚にはどの大きさでも許されるミスが1回増えます（大きさの効果とは重なりません）。価格25円。エリア1で販売。9個1組で売っています。"
       },
       "reason": {
-        "en": "A fish-name match in the item record is not evidence of more bites or easier landing, so it is not a reason to pay for an upgrade.",
-        "th": "ชื่อปลาที่ตรงตามข้อมูลของไอเท็มไม่ได้ยืนยันว่าปลากินหรือดึงขึ้นง่ายกว่า จึงไม่ใช่เหตุให้จ่ายซื้อเปลี่ยน",
-        "ja": "道具レコードの魚名一致は、食いつきや取り込みやすさの証明ではありません。買い替えの理由にはなりません。"
+        "th": "จากการจำลองการสู้ปลา: ตะขอนี้ดีสุดกับ 41 จาก 72 ชนิดของคันทุ่น เฉลี่ยเสียไป 0.4 จังหวะ (ตะขอที่ดีที่สุดเสีย 0)",
+        "en": "From simulated fights: this hook is the best choice for 41 of 72 float-rod species and costs 0.4 mistakes on average (the best hook costs 0).",
+        "ja": "ファイトのシミュレーションでは、ウキ竿の72種中41種でこの針が最良で、平均0.4回分のミスを失います（最良の針は0）。"
       },
+      "alternatives": [
+        {
+          "category": "hook",
+          "id": "09"
+        }
+      ],
       "targetFish": [
         "01"
       ],
       "sources": [
-        "docs/hook-practical-research.md",
-        "docs/hook-float-use.md",
-        "data/hook-practical-research.json",
-        "data/fish-acceptance.json",
-        "data/player-decisions.json"
+        "data/gear-effects.json",
+        "docs/gear-effects.md",
+        "docs/fight-model.md",
+        "scripts/build_gear_advice.py"
       ]
     },
     "hook:0D": {
       "label": {
-        "en": "Keep your hook; no catch gain proved",
-        "th": "ใช้ตะขอที่มี; ยังไม่พบโบนัสจับปลา",
-        "ja": "所持品を継続、釣果向上は未確認"
+        "th": "ดีสุดกับ: ยามาเมะ (ตะขอตรงชื่อปลา) และ ปลา 16–35 ซม. 23 ชนิด (เช่น อามาโกะ, ปลาคาจิกะ, ปลาดงโกะ). ไม่เหมาะกับ: ปลาไม่เกิน 15 ซม. และ ปลาเกิน 35 ซม. (ไม่ช่วย).",
+        "en": "Best for: Yamame (the hook is named for it); fish of 16–35 cm (23 species, e.g. Amago, Kajika, Donko). Bad for: fish up to 15 cm and fish over 35 cm (no help).",
+        "ja": "最適：ヤマメ（魚名の付いた針）、16〜35cmの魚（23種、例：アマゴ、カジカ、ドンコ）。不向き：15cm以下の魚と35cm超の魚（効果なし）。"
       },
       "recommendation": {
-        "en": "Keep the hook you already have. The ROM does not show that buying or switching to this fish-named hook gives more bites or easier landing. Choose bait the target accepts first. If you are targeting Yamame, open its fish page to check accepted bait and spots; this item is for bait fishing only.",
-        "th": "ใช้ตะขอที่มีอยู่ก่อน ROM ยังไม่ยืนยันว่าซื้อหรือเปลี่ยนมาใช้เบ็ดชื่อนี้แล้วปลากินหรือดึงขึ้นง่ายกว่า เลือกเหยื่อที่ปลาเป้าหมายรับได้ก่อน ถ้าจะตกยามาเมะ กดดูหน้าปลาเพื่อตรวจเหยื่อและตำแหน่ง; ตะขอนี้ใช้กับการตกเหยื่อเท่านั้น",
-        "ja": "今持っている針を使い続けてください。この魚名付きの針に替えても食いつきや取り込みが改善する根拠はありません。まず対象魚に合うエサを選びます。ヤマメを狙うなら魚ページで適合エサと場所を確認してください。この針はエサ釣り用です。"
+        "th": "ตะขอตั้งจุดเริ่มของแรงตึงตามขนาดปลา: ปลาไม่เกิน 15 ซม.: ไม่ช่วย; ปลา 16–35 ซม.: พลาดได้เพิ่ม 1 จังหวะ; ปลาเกิน 35 ซม.: ไม่ช่วย. ตะขอตรงชื่อยามาเมะช่วยให้พลาดได้เพิ่ม 1 จังหวะกับปลาชนิดนี้ทุกขนาด (ไม่ซ้อนกับผลตามขนาด). แต่ตะขอ เบ็ด 09, เบ็ด 06 หรือ เบ็ด 0C ให้ผลเท่ากันกับยามาเมะ ไม่จำเป็นต้องซื้อตะขอตรงชื่อ. ราคา ¥25 ขายที่ด่าน 1, 2 ขายเป็นชุด 9 ตัว. ถ้าอยู่ด่าน 2, 3 ซื้อ เบ็ด 09 (¥10) แทน: ถูกกว่าและให้ผลเท่ากันหรือดีกว่ากับปลาทุกชนิด ด่านอื่นซื้อตัวนี้ได้.",
+        "en": "A hook sets the fight meter's start by fish size: fish up to 15 cm: no difference; fish of 16–35 cm: 1 more mistake allowed; fish over 35 cm: no difference. The hook named for Yamame allows 1 more mistake against that fish at any size (it does not stack with the size effect). But hook 09, hook 06 or hook 0C do the same against Yamame, so you need not buy the named hook. Price ¥25; sold in areas 1, 2; sold in stacks of 9. If you are in areas 2, 3, buy hook 09 (¥10) instead: it costs less and does the same or better against every fish. Elsewhere this one is fine.",
+        "ja": "針は魚の大きさでファイトのメーターの出だしを決めます：15cm以下の魚は変わらない、16〜35cmの魚は許されるミスが1回増える、35cm超の魚は変わらない。ヤマメの名前が付いた針は、その魚にはどの大きさでも許されるミスが1回増えます（大きさの効果とは重なりません）。ただし09、06か0Cもヤマメに同じ効果なので、名前付きの針を買う必要はありません。価格25円。エリア1・2で販売。9個1組で売っています。エリア2・3にいるなら、代わりに09（10円）を買います。安く、どの魚にも同じかそれ以上の効果です。ほかのエリアではこの針で構いません。"
       },
       "reason": {
-        "en": "A fish-name match in the item record is not evidence of more bites or easier landing, so it is not a reason to pay for an upgrade.",
-        "th": "ชื่อปลาที่ตรงตามข้อมูลของไอเท็มไม่ได้ยืนยันว่าปลากินหรือดึงขึ้นง่ายกว่า จึงไม่ใช่เหตุให้จ่ายซื้อเปลี่ยน",
-        "ja": "道具レコードの魚名一致は、食いつきや取り込みやすさの証明ではありません。買い替えの理由にはなりません。"
+        "th": "จากการจำลองการสู้ปลา: ตะขอนี้ดีสุดกับ 40 จาก 72 ชนิดของคันทุ่น เฉลี่ยเสียไป 0.4 จังหวะ (ตะขอที่ดีที่สุดเสีย 0)",
+        "en": "From simulated fights: this hook is the best choice for 40 of 72 float-rod species and costs 0.4 mistakes on average (the best hook costs 0).",
+        "ja": "ファイトのシミュレーションでは、ウキ竿の72種中40種でこの針が最良で、平均0.4回分のミスを失います（最良の針は0）。"
       },
+      "alternatives": [
+        {
+          "category": "hook",
+          "id": "09"
+        }
+      ],
       "targetFish": [
         "03"
       ],
       "sources": [
-        "docs/hook-practical-research.md",
-        "docs/hook-float-use.md",
-        "data/hook-practical-research.json",
-        "data/fish-acceptance.json",
-        "data/player-decisions.json"
+        "data/gear-effects.json",
+        "docs/gear-effects.md",
+        "docs/fight-model.md",
+        "scripts/build_gear_advice.py"
       ]
     },
     "float_weight:01": {
       "label": {
-        "en": "Keep any float; buy by price, not fishing bonus",
-        "th": "มีทุ่นอะไรก็ใช้; เลือกซื้อจากราคา ไม่ใช่โบนัสจับปลา",
-        "ja": "所持品を継続、購入は価格で選ぶ"
+        "th": "ป้ายปลาเฮระของทุ่นนี้ไม่มีผลอะไร ผลเท่ากับทุ่นอื่น ซื้อ ทุ่น 02 (¥10) แทน",
+        "en": "The Hera tag on this float does nothing and it does the same as the others: buy float 02 (¥10) instead",
+        "ja": "このウキのヘラブナの表示は何も起こしません。ほかのウキと効果は同じなので、代わりにウキ02（10円）を買います"
       },
       "recommendation": {
-        "en": "If you already own any float (IDs 01–08), keep it. These models select the same float route; if buying, choose the cheapest model stocked in your current area from the area price guide. Then check that the target passes the float-route fish list and choose a bait it accepts. Its ¥250 price is not a Herabuna bonus: the game does not use that fish-looking value when it checks bait.",
-        "th": "ถ้ามีทุ่น ID 01–08 อยู่แล้ว ใช้ต่อได้ ทุกรุ่นเลือกชุดทุ่นเดียวกัน ถ้าจะซื้อ ให้เลือกตัวที่ราคาต่ำสุดในสต็อกของด่านปัจจุบันจากตารางราคา แล้วตรวจว่าปลาเป้าหมายอยู่ในรายชื่อชุดทุ่นและเลือกเหยื่อที่ปลารับได้ ราคา ¥250 ไม่ใช่โบนัสปลาเฮระบุนะ; และเกมไม่ได้ใช้ค่าที่คล้ายชื่อปลานี้ตอนเลือกเหยื่อ",
-        "ja": "ウキID01–08のどれかを持っているなら継続できます。すべて同じウキ経路を選びます。購入する場合はエリア別価格表から現在地の最安在庫を選び、対象魚がウキの対応リストにあることと、エサが適合することを確認してください。 250円はヘラブナ向けボーナスではありません。魚IDに見える欄をエサ釣り経路で読むコードは確認できません。"
+        "th": "ทุ่นเลือกเส้นทางตกเหยื่อ: คันทุ่นใช้ทุ่น คันหวดใช้ตะกั่ว ตอนสู้ปลาทุ่นทุกแบบให้ผลเท่ากัน ต่างกันแค่รูปแบบสัญญาณทุ่นที่แสดงบนจอ. ป้ายปลาเฮระของทุ่นเฮระไม่ทำอะไร ตกปลาเฮระง่ายขึ้นไม่ได้. ซื้อตัวที่ถูกสุดที่ร้านในด่านมี ทุ่นที่ถูกสุดคือ ทุ่น 02 (¥10, ด่าน 2, 4, 5) ด่านอื่นดูตารางราคาตามด่าน.",
+        "en": "A float picks the bait route: float rods use floats, casting rods use sinkers. In a fight every float does the same; they differ only in the float signal shown on screen. The Hera tag on the Hera float does nothing; it does not make Hera easier to catch. Buy the cheapest one your shop stocks. The cheapest float is float 02 (¥10, areas 2, 4, 5); for other areas see the price-by-area table.",
+        "ja": "ウキはエサ釣りの経路を決めます。ウキ竿はウキ、投げ竿はオモリを使います。ファイトではどのウキも効果は同じで、違うのは画面に出るウキの合図だけです。ヘラウキのヘラブナの表示は何もしません。ヘラブナが釣りやすくなることはありません。店にある中で最安のものを買います。最安のウキはウキ02（10円、エリア2・4・5）で、ほかのエリアはエリア別の価格表を見ます。"
       },
       "reason": {
-        "en": "No model has a proven bite or landing advantage; use the route fish list and purchase price to choose.",
-        "th": "ยังไม่มีรุ่นใดพิสูจน์ว่าเพิ่มโอกาสกินหรือดึงขึ้น ให้เลือกจากรายชื่อปลาในเส้นทางและราคาซื้อ",
-        "ja": "食いつきや取り込みの優位が証明された型はありません。魚の対応リストと価格で選びます。"
+        "th": "ผลการจำลอง: ทุ่นและตะกั่วไม่อยู่ในข้อมูลการสู้ปลาเลย เปลี่ยนแล้วการสู้ปลาเหมือนเดิมทุกเฟรม (ทดสอบ 28 การสู้ ด้วยทุ่น 5 แบบและตะกั่ว 2 แบบ)",
+        "en": "Simulation result: floats and sinkers are not in the fight data at all, so swapping them leaves the fight identical frame for frame (28 fights tested with 5 floats and 2 sinkers)",
+        "ja": "シミュレーションの結果：ウキとオモリはファイトのデータに含まれず、替えてもファイトは1フレームも変わりません（ウキ5種とオモリ2種で28回のファイトを確認）"
       },
       "alternatives": [
         {
           "category": "float_weight",
           "id": "02"
-        },
-        {
-          "category": "float_weight",
-          "id": "05"
-        },
-        {
-          "category": "float_weight",
-          "id": "06"
         }
       ],
       "sources": [
-        "docs/hook-practical-research.md",
-        "docs/hook-float-use.md",
-        "docs/fish-acceptance-research.md",
-        "data/fish-acceptance.json",
-        "data/shop-stock-rom.json"
+        "data/gear-effects.json",
+        "docs/gear-effects.md",
+        "docs/fight-model.md",
+        "scripts/build_gear_advice.py"
       ]
     },
     "float_weight:02": {
       "label": {
-        "en": "Keep any float; buy by price, not fishing bonus",
-        "th": "มีทุ่นอะไรก็ใช้; เลือกซื้อจากราคา ไม่ใช่โบนัสจับปลา",
-        "ja": "所持品を継続、購入は価格で選ぶ"
+        "th": "ทุ่นทุกแบบให้ผลเท่ากัน ตัวนี้ถูกสุด ซื้อตัวนี้ (¥10, ด่าน 2, 4, 5)",
+        "en": "Every float does the same and this one is the cheapest: buy it (¥10, areas 2, 4, 5)",
+        "ja": "どのウキも効果は同じで、これが最安です。これを買います（10円、エリア2・4・5）"
       },
       "recommendation": {
-        "en": "If you already own any float (IDs 01–08), keep it. These models select the same float route; if buying, choose the cheapest model stocked in your current area from the area price guide. Then check that the target passes the float-route fish list and choose a bait it accepts.",
-        "th": "ถ้ามีทุ่น ID 01–08 อยู่แล้ว ใช้ต่อได้ ทุกรุ่นเลือกชุดทุ่นเดียวกัน ถ้าจะซื้อ ให้เลือกตัวที่ราคาต่ำสุดในสต็อกของด่านปัจจุบันจากตารางราคา แล้วตรวจว่าปลาเป้าหมายอยู่ในรายชื่อชุดทุ่นและเลือกเหยื่อที่ปลารับได้",
-        "ja": "ウキID01–08のどれかを持っているなら継続できます。すべて同じウキ経路を選びます。購入する場合はエリア別価格表から現在地の最安在庫を選び、対象魚がウキの対応リストにあることと、エサが適合することを確認してください。"
+        "th": "ทุ่นเลือกเส้นทางตกเหยื่อ: คันทุ่นใช้ทุ่น คันหวดใช้ตะกั่ว ตอนสู้ปลาทุ่นทุกแบบให้ผลเท่ากัน ต่างกันแค่รูปแบบสัญญาณทุ่นที่แสดงบนจอ. ซื้อตัวที่ถูกสุดที่ร้านในด่านมี ทุ่นที่ถูกสุดคือ ทุ่น 02 (¥10, ด่าน 2, 4, 5) ด่านอื่นดูตารางราคาตามด่าน.",
+        "en": "A float picks the bait route: float rods use floats, casting rods use sinkers. In a fight every float does the same; they differ only in the float signal shown on screen. Buy the cheapest one your shop stocks. The cheapest float is float 02 (¥10, areas 2, 4, 5); for other areas see the price-by-area table.",
+        "ja": "ウキはエサ釣りの経路を決めます。ウキ竿はウキ、投げ竿はオモリを使います。ファイトではどのウキも効果は同じで、違うのは画面に出るウキの合図だけです。店にある中で最安のものを買います。最安のウキはウキ02（10円、エリア2・4・5）で、ほかのエリアはエリア別の価格表を見ます。"
       },
       "reason": {
-        "en": "No model has a proven bite or landing advantage; use the route fish list and purchase price to choose.",
-        "th": "ยังไม่มีรุ่นใดพิสูจน์ว่าเพิ่มโอกาสกินหรือดึงขึ้น ให้เลือกจากรายชื่อปลาในเส้นทางและราคาซื้อ",
-        "ja": "食いつきや取り込みの優位が証明された型はありません。魚の対応リストと価格で選びます。"
+        "th": "ผลการจำลอง: ทุ่นและตะกั่วไม่อยู่ในข้อมูลการสู้ปลาเลย เปลี่ยนแล้วการสู้ปลาเหมือนเดิมทุกเฟรม (ทดสอบ 28 การสู้ ด้วยทุ่น 5 แบบและตะกั่ว 2 แบบ)",
+        "en": "Simulation result: floats and sinkers are not in the fight data at all, so swapping them leaves the fight identical frame for frame (28 fights tested with 5 floats and 2 sinkers)",
+        "ja": "シミュレーションの結果：ウキとオモリはファイトのデータに含まれず、替えてもファイトは1フレームも変わりません（ウキ5種とオモリ2種で28回のファイトを確認）"
       },
-      "alternatives": [
-        {
-          "category": "float_weight",
-          "id": "02"
-        },
-        {
-          "category": "float_weight",
-          "id": "05"
-        },
-        {
-          "category": "float_weight",
-          "id": "06"
-        }
-      ],
+      "alternatives": [],
       "sources": [
-        "docs/hook-practical-research.md",
-        "docs/hook-float-use.md",
-        "docs/fish-acceptance-research.md",
-        "data/fish-acceptance.json",
-        "data/shop-stock-rom.json"
+        "data/gear-effects.json",
+        "docs/gear-effects.md",
+        "docs/fight-model.md",
+        "scripts/build_gear_advice.py"
       ]
     },
     "float_weight:03": {
       "label": {
-        "en": "Keep any float; buy by price, not fishing bonus",
-        "th": "มีทุ่นอะไรก็ใช้; เลือกซื้อจากราคา ไม่ใช่โบนัสจับปลา",
-        "ja": "所持品を継続、購入は価格で選ぶ"
+        "th": "ผลเท่ากับทุ่นตัวอื่นทุกแบบ ไม่ต้องจ่ายแพง ซื้อ ทุ่น 02 (¥10) แทน",
+        "en": "It does the same as every other float, so do not pay extra: buy float 02 (¥10) instead",
+        "ja": "どのウキとも効果は同じなので、高く払う必要はありません。代わりにウキ02（10円）を買います"
       },
       "recommendation": {
-        "en": "If you already own any float (IDs 01–08), keep it. These models select the same float route; if buying, choose the cheapest model stocked in your current area from the area price guide. Then check that the target passes the float-route fish list and choose a bait it accepts.",
-        "th": "ถ้ามีทุ่น ID 01–08 อยู่แล้ว ใช้ต่อได้ ทุกรุ่นเลือกชุดทุ่นเดียวกัน ถ้าจะซื้อ ให้เลือกตัวที่ราคาต่ำสุดในสต็อกของด่านปัจจุบันจากตารางราคา แล้วตรวจว่าปลาเป้าหมายอยู่ในรายชื่อชุดทุ่นและเลือกเหยื่อที่ปลารับได้",
-        "ja": "ウキID01–08のどれかを持っているなら継続できます。すべて同じウキ経路を選びます。購入する場合はエリア別価格表から現在地の最安在庫を選び、対象魚がウキの対応リストにあることと、エサが適合することを確認してください。"
+        "th": "ทุ่นเลือกเส้นทางตกเหยื่อ: คันทุ่นใช้ทุ่น คันหวดใช้ตะกั่ว ตอนสู้ปลาทุ่นทุกแบบให้ผลเท่ากัน ต่างกันแค่รูปแบบสัญญาณทุ่นที่แสดงบนจอ. ซื้อตัวที่ถูกสุดที่ร้านในด่านมี ทุ่นที่ถูกสุดคือ ทุ่น 02 (¥10, ด่าน 2, 4, 5) ด่านอื่นดูตารางราคาตามด่าน.",
+        "en": "A float picks the bait route: float rods use floats, casting rods use sinkers. In a fight every float does the same; they differ only in the float signal shown on screen. Buy the cheapest one your shop stocks. The cheapest float is float 02 (¥10, areas 2, 4, 5); for other areas see the price-by-area table.",
+        "ja": "ウキはエサ釣りの経路を決めます。ウキ竿はウキ、投げ竿はオモリを使います。ファイトではどのウキも効果は同じで、違うのは画面に出るウキの合図だけです。店にある中で最安のものを買います。最安のウキはウキ02（10円、エリア2・4・5）で、ほかのエリアはエリア別の価格表を見ます。"
       },
       "reason": {
-        "en": "No model has a proven bite or landing advantage; use the route fish list and purchase price to choose.",
-        "th": "ยังไม่มีรุ่นใดพิสูจน์ว่าเพิ่มโอกาสกินหรือดึงขึ้น ให้เลือกจากรายชื่อปลาในเส้นทางและราคาซื้อ",
-        "ja": "食いつきや取り込みの優位が証明された型はありません。魚の対応リストと価格で選びます。"
+        "th": "ผลการจำลอง: ทุ่นและตะกั่วไม่อยู่ในข้อมูลการสู้ปลาเลย เปลี่ยนแล้วการสู้ปลาเหมือนเดิมทุกเฟรม (ทดสอบ 28 การสู้ ด้วยทุ่น 5 แบบและตะกั่ว 2 แบบ)",
+        "en": "Simulation result: floats and sinkers are not in the fight data at all, so swapping them leaves the fight identical frame for frame (28 fights tested with 5 floats and 2 sinkers)",
+        "ja": "シミュレーションの結果：ウキとオモリはファイトのデータに含まれず、替えてもファイトは1フレームも変わりません（ウキ5種とオモリ2種で28回のファイトを確認）"
       },
       "alternatives": [
         {
           "category": "float_weight",
           "id": "02"
-        },
-        {
-          "category": "float_weight",
-          "id": "05"
-        },
-        {
-          "category": "float_weight",
-          "id": "06"
         }
       ],
       "sources": [
-        "docs/hook-practical-research.md",
-        "docs/hook-float-use.md",
-        "docs/fish-acceptance-research.md",
-        "data/fish-acceptance.json",
-        "data/shop-stock-rom.json"
+        "data/gear-effects.json",
+        "docs/gear-effects.md",
+        "docs/fight-model.md",
+        "scripts/build_gear_advice.py"
       ]
     },
     "float_weight:04": {
       "label": {
-        "en": "No shop listing; choose a stocked float",
-        "th": "ไม่พบขาย; เลือกทุ่นที่มีในร้าน",
-        "ja": "店頭記録なし、在庫品から選ぶ"
+        "th": "ไม่มีขายที่ไหน ถ้ามีอยู่แล้วใช้ได้ ผลเท่ากับทุ่นอื่นทุกแบบ",
+        "en": "Not sold anywhere; if you own it, it works like every other float",
+        "ja": "どの店にも売っていません。持っているなら、ほかのウキと同じように使えます"
       },
       "recommendation": {
-        "en": "No shop stock was recorded for this exact model in the six decoded areas. Keep it if you own it; otherwise choose the cheapest stocked float for your current area from the area price guide. All stocked floats use the same float route.",
-        "th": "ไม่พบรุ่นนี้ในสต็อกร้านทั้งหกด่านที่ถอดได้ ถ้ามีอยู่แล้วใช้ต่อได้; ถ้ายังไม่มีให้เลือกทุ่นที่มีราคาต่ำสุดในด่านปัจจุบันจากตารางราคา ทุ่นที่มีขายใช้เส้นทางทุ่นเดียวกัน",
-        "ja": "復号した6エリアの店頭在庫にこの型はありません。所持中なら使えますが、新規購入ならエリア別価格表から現在地の最安ウキを選んでください。店頭在庫のウキはすべて同じウキ経路です。"
+        "th": "ทุ่นเลือกเส้นทางตกเหยื่อ: คันทุ่นใช้ทุ่น คันหวดใช้ตะกั่ว ตอนสู้ปลาทุ่นทุกแบบให้ผลเท่ากัน ต่างกันแค่รูปแบบสัญญาณทุ่นที่แสดงบนจอ. ซื้อตัวที่ถูกสุดที่ร้านในด่านมี ทุ่นที่ถูกสุดคือ ทุ่น 02 (¥10, ด่าน 2, 4, 5) ด่านอื่นดูตารางราคาตามด่าน.",
+        "en": "A float picks the bait route: float rods use floats, casting rods use sinkers. In a fight every float does the same; they differ only in the float signal shown on screen. Buy the cheapest one your shop stocks. The cheapest float is float 02 (¥10, areas 2, 4, 5); for other areas see the price-by-area table.",
+        "ja": "ウキはエサ釣りの経路を決めます。ウキ竿はウキ、投げ竿はオモリを使います。ファイトではどのウキも効果は同じで、違うのは画面に出るウキの合図だけです。店にある中で最安のものを買います。最安のウキはウキ02（10円、エリア2・4・5）で、ほかのエリアはエリア別の価格表を見ます。"
       },
       "reason": {
-        "en": "This item has no decoded shop listing; all float models select the same float route.",
-        "th": "ไม่พบไอเท็มนี้ในรายการสต็อกที่ถอดได้ และทุ่นทุกรุ่นใช้เส้นทางทุ่นเดียวกัน",
-        "ja": "復号した在庫にこの商品はありません。ウキはどの型も同じウキ経路です。"
+        "th": "ผลการจำลอง: ทุ่นและตะกั่วไม่อยู่ในข้อมูลการสู้ปลาเลย เปลี่ยนแล้วการสู้ปลาเหมือนเดิมทุกเฟรม (ทดสอบ 28 การสู้ ด้วยทุ่น 5 แบบและตะกั่ว 2 แบบ)",
+        "en": "Simulation result: floats and sinkers are not in the fight data at all, so swapping them leaves the fight identical frame for frame (28 fights tested with 5 floats and 2 sinkers)",
+        "ja": "シミュレーションの結果：ウキとオモリはファイトのデータに含まれず、替えてもファイトは1フレームも変わりません（ウキ5種とオモリ2種で28回のファイトを確認）"
       },
       "alternatives": [
         {
           "category": "float_weight",
           "id": "02"
-        },
-        {
-          "category": "float_weight",
-          "id": "05"
-        },
-        {
-          "category": "float_weight",
-          "id": "06"
         }
       ],
       "sources": [
-        "docs/hook-practical-research.md",
-        "docs/hook-float-use.md",
-        "docs/fish-acceptance-research.md",
-        "data/fish-acceptance.json",
-        "data/shop-stock-rom.json"
+        "data/gear-effects.json",
+        "docs/gear-effects.md",
+        "docs/fight-model.md",
+        "scripts/build_gear_advice.py"
       ]
     },
     "float_weight:05": {
       "label": {
-        "en": "Keep any float; buy by price, not fishing bonus",
-        "th": "มีทุ่นอะไรก็ใช้; เลือกซื้อจากราคา ไม่ใช่โบนัสจับปลา",
-        "ja": "所持品を継続、購入は価格で選ぶ"
+        "th": "ผลเท่ากับทุ่นตัวอื่นทุกแบบ ไม่ต้องจ่ายแพง ซื้อ ทุ่น 02 (¥10) แทน",
+        "en": "It does the same as every other float, so do not pay extra: buy float 02 (¥10) instead",
+        "ja": "どのウキとも効果は同じなので、高く払う必要はありません。代わりにウキ02（10円）を買います"
       },
       "recommendation": {
-        "en": "If you already own any float (IDs 01–08), keep it. These models select the same float route; if buying, choose the cheapest model stocked in your current area from the area price guide. Then check that the target passes the float-route fish list and choose a bait it accepts.",
-        "th": "ถ้ามีทุ่น ID 01–08 อยู่แล้ว ใช้ต่อได้ ทุกรุ่นเลือกชุดทุ่นเดียวกัน ถ้าจะซื้อ ให้เลือกตัวที่ราคาต่ำสุดในสต็อกของด่านปัจจุบันจากตารางราคา แล้วตรวจว่าปลาเป้าหมายอยู่ในรายชื่อชุดทุ่นและเลือกเหยื่อที่ปลารับได้",
-        "ja": "ウキID01–08のどれかを持っているなら継続できます。すべて同じウキ経路を選びます。購入する場合はエリア別価格表から現在地の最安在庫を選び、対象魚がウキの対応リストにあることと、エサが適合することを確認してください。"
+        "th": "ทุ่นเลือกเส้นทางตกเหยื่อ: คันทุ่นใช้ทุ่น คันหวดใช้ตะกั่ว ตอนสู้ปลาทุ่นทุกแบบให้ผลเท่ากัน ต่างกันแค่รูปแบบสัญญาณทุ่นที่แสดงบนจอ. ซื้อตัวที่ถูกสุดที่ร้านในด่านมี ทุ่นที่ถูกสุดคือ ทุ่น 02 (¥10, ด่าน 2, 4, 5) ด่านอื่นดูตารางราคาตามด่าน.",
+        "en": "A float picks the bait route: float rods use floats, casting rods use sinkers. In a fight every float does the same; they differ only in the float signal shown on screen. Buy the cheapest one your shop stocks. The cheapest float is float 02 (¥10, areas 2, 4, 5); for other areas see the price-by-area table.",
+        "ja": "ウキはエサ釣りの経路を決めます。ウキ竿はウキ、投げ竿はオモリを使います。ファイトではどのウキも効果は同じで、違うのは画面に出るウキの合図だけです。店にある中で最安のものを買います。最安のウキはウキ02（10円、エリア2・4・5）で、ほかのエリアはエリア別の価格表を見ます。"
       },
       "reason": {
-        "en": "No model has a proven bite or landing advantage; use the route fish list and purchase price to choose.",
-        "th": "ยังไม่มีรุ่นใดพิสูจน์ว่าเพิ่มโอกาสกินหรือดึงขึ้น ให้เลือกจากรายชื่อปลาในเส้นทางและราคาซื้อ",
-        "ja": "食いつきや取り込みの優位が証明された型はありません。魚の対応リストと価格で選びます。"
+        "th": "ผลการจำลอง: ทุ่นและตะกั่วไม่อยู่ในข้อมูลการสู้ปลาเลย เปลี่ยนแล้วการสู้ปลาเหมือนเดิมทุกเฟรม (ทดสอบ 28 การสู้ ด้วยทุ่น 5 แบบและตะกั่ว 2 แบบ)",
+        "en": "Simulation result: floats and sinkers are not in the fight data at all, so swapping them leaves the fight identical frame for frame (28 fights tested with 5 floats and 2 sinkers)",
+        "ja": "シミュレーションの結果：ウキとオモリはファイトのデータに含まれず、替えてもファイトは1フレームも変わりません（ウキ5種とオモリ2種で28回のファイトを確認）"
       },
       "alternatives": [
         {
           "category": "float_weight",
           "id": "02"
-        },
-        {
-          "category": "float_weight",
-          "id": "05"
-        },
-        {
-          "category": "float_weight",
-          "id": "06"
         }
       ],
       "sources": [
-        "docs/hook-practical-research.md",
-        "docs/hook-float-use.md",
-        "docs/fish-acceptance-research.md",
-        "data/fish-acceptance.json",
-        "data/shop-stock-rom.json"
+        "data/gear-effects.json",
+        "docs/gear-effects.md",
+        "docs/fight-model.md",
+        "scripts/build_gear_advice.py"
       ]
     },
     "float_weight:06": {
       "label": {
-        "en": "Keep any float; buy by price, not fishing bonus",
-        "th": "มีทุ่นอะไรก็ใช้; เลือกซื้อจากราคา ไม่ใช่โบนัสจับปลา",
-        "ja": "所持品を継続、購入は価格で選ぶ"
+        "th": "ผลเท่ากับทุ่นตัวอื่นทุกแบบ ไม่ต้องจ่ายแพง ซื้อ ทุ่น 02 (¥10) แทน",
+        "en": "It does the same as every other float, so do not pay extra: buy float 02 (¥10) instead",
+        "ja": "どのウキとも効果は同じなので、高く払う必要はありません。代わりにウキ02（10円）を買います"
       },
       "recommendation": {
-        "en": "If you already own any float (IDs 01–08), keep it. These models select the same float route; if buying, choose the cheapest model stocked in your current area from the area price guide. Then check that the target passes the float-route fish list and choose a bait it accepts.",
-        "th": "ถ้ามีทุ่น ID 01–08 อยู่แล้ว ใช้ต่อได้ ทุกรุ่นเลือกชุดทุ่นเดียวกัน ถ้าจะซื้อ ให้เลือกตัวที่ราคาต่ำสุดในสต็อกของด่านปัจจุบันจากตารางราคา แล้วตรวจว่าปลาเป้าหมายอยู่ในรายชื่อชุดทุ่นและเลือกเหยื่อที่ปลารับได้",
-        "ja": "ウキID01–08のどれかを持っているなら継続できます。すべて同じウキ経路を選びます。購入する場合はエリア別価格表から現在地の最安在庫を選び、対象魚がウキの対応リストにあることと、エサが適合することを確認してください。"
+        "th": "ทุ่นเลือกเส้นทางตกเหยื่อ: คันทุ่นใช้ทุ่น คันหวดใช้ตะกั่ว ตอนสู้ปลาทุ่นทุกแบบให้ผลเท่ากัน ต่างกันแค่รูปแบบสัญญาณทุ่นที่แสดงบนจอ. ซื้อตัวที่ถูกสุดที่ร้านในด่านมี ทุ่นที่ถูกสุดคือ ทุ่น 02 (¥10, ด่าน 2, 4, 5) ด่านอื่นดูตารางราคาตามด่าน.",
+        "en": "A float picks the bait route: float rods use floats, casting rods use sinkers. In a fight every float does the same; they differ only in the float signal shown on screen. Buy the cheapest one your shop stocks. The cheapest float is float 02 (¥10, areas 2, 4, 5); for other areas see the price-by-area table.",
+        "ja": "ウキはエサ釣りの経路を決めます。ウキ竿はウキ、投げ竿はオモリを使います。ファイトではどのウキも効果は同じで、違うのは画面に出るウキの合図だけです。店にある中で最安のものを買います。最安のウキはウキ02（10円、エリア2・4・5）で、ほかのエリアはエリア別の価格表を見ます。"
       },
       "reason": {
-        "en": "No model has a proven bite or landing advantage; use the route fish list and purchase price to choose.",
-        "th": "ยังไม่มีรุ่นใดพิสูจน์ว่าเพิ่มโอกาสกินหรือดึงขึ้น ให้เลือกจากรายชื่อปลาในเส้นทางและราคาซื้อ",
-        "ja": "食いつきや取り込みの優位が証明された型はありません。魚の対応リストと価格で選びます。"
+        "th": "ผลการจำลอง: ทุ่นและตะกั่วไม่อยู่ในข้อมูลการสู้ปลาเลย เปลี่ยนแล้วการสู้ปลาเหมือนเดิมทุกเฟรม (ทดสอบ 28 การสู้ ด้วยทุ่น 5 แบบและตะกั่ว 2 แบบ)",
+        "en": "Simulation result: floats and sinkers are not in the fight data at all, so swapping them leaves the fight identical frame for frame (28 fights tested with 5 floats and 2 sinkers)",
+        "ja": "シミュレーションの結果：ウキとオモリはファイトのデータに含まれず、替えてもファイトは1フレームも変わりません（ウキ5種とオモリ2種で28回のファイトを確認）"
       },
       "alternatives": [
         {
           "category": "float_weight",
           "id": "02"
-        },
-        {
-          "category": "float_weight",
-          "id": "05"
-        },
-        {
-          "category": "float_weight",
-          "id": "06"
         }
       ],
       "sources": [
-        "docs/hook-practical-research.md",
-        "docs/hook-float-use.md",
-        "docs/fish-acceptance-research.md",
-        "data/fish-acceptance.json",
-        "data/shop-stock-rom.json"
+        "data/gear-effects.json",
+        "docs/gear-effects.md",
+        "docs/fight-model.md",
+        "scripts/build_gear_advice.py"
       ]
     },
     "float_weight:07": {
       "label": {
-        "en": "Keep any float; buy by price, not fishing bonus",
-        "th": "มีทุ่นอะไรก็ใช้; เลือกซื้อจากราคา ไม่ใช่โบนัสจับปลา",
-        "ja": "所持品を継続、購入は価格で選ぶ"
+        "th": "ผลเท่ากับทุ่นตัวอื่นทุกแบบ ไม่ต้องจ่ายแพง ซื้อ ทุ่น 02 (¥10) แทน",
+        "en": "It does the same as every other float, so do not pay extra: buy float 02 (¥10) instead",
+        "ja": "どのウキとも効果は同じなので、高く払う必要はありません。代わりにウキ02（10円）を買います"
       },
       "recommendation": {
-        "en": "If you already own any float (IDs 01–08), keep it. These models select the same float route; if buying, choose the cheapest model stocked in your current area from the area price guide. Then check that the target passes the float-route fish list and choose a bait it accepts.",
-        "th": "ถ้ามีทุ่น ID 01–08 อยู่แล้ว ใช้ต่อได้ ทุกรุ่นเลือกชุดทุ่นเดียวกัน ถ้าจะซื้อ ให้เลือกตัวที่ราคาต่ำสุดในสต็อกของด่านปัจจุบันจากตารางราคา แล้วตรวจว่าปลาเป้าหมายอยู่ในรายชื่อชุดทุ่นและเลือกเหยื่อที่ปลารับได้",
-        "ja": "ウキID01–08のどれかを持っているなら継続できます。すべて同じウキ経路を選びます。購入する場合はエリア別価格表から現在地の最安在庫を選び、対象魚がウキの対応リストにあることと、エサが適合することを確認してください。"
+        "th": "ทุ่นเลือกเส้นทางตกเหยื่อ: คันทุ่นใช้ทุ่น คันหวดใช้ตะกั่ว ตอนสู้ปลาทุ่นทุกแบบให้ผลเท่ากัน ต่างกันแค่รูปแบบสัญญาณทุ่นที่แสดงบนจอ. ซื้อตัวที่ถูกสุดที่ร้านในด่านมี ทุ่นที่ถูกสุดคือ ทุ่น 02 (¥10, ด่าน 2, 4, 5) ด่านอื่นดูตารางราคาตามด่าน.",
+        "en": "A float picks the bait route: float rods use floats, casting rods use sinkers. In a fight every float does the same; they differ only in the float signal shown on screen. Buy the cheapest one your shop stocks. The cheapest float is float 02 (¥10, areas 2, 4, 5); for other areas see the price-by-area table.",
+        "ja": "ウキはエサ釣りの経路を決めます。ウキ竿はウキ、投げ竿はオモリを使います。ファイトではどのウキも効果は同じで、違うのは画面に出るウキの合図だけです。店にある中で最安のものを買います。最安のウキはウキ02（10円、エリア2・4・5）で、ほかのエリアはエリア別の価格表を見ます。"
       },
       "reason": {
-        "en": "No model has a proven bite or landing advantage; use the route fish list and purchase price to choose.",
-        "th": "ยังไม่มีรุ่นใดพิสูจน์ว่าเพิ่มโอกาสกินหรือดึงขึ้น ให้เลือกจากรายชื่อปลาในเส้นทางและราคาซื้อ",
-        "ja": "食いつきや取り込みの優位が証明された型はありません。魚の対応リストと価格で選びます。"
+        "th": "ผลการจำลอง: ทุ่นและตะกั่วไม่อยู่ในข้อมูลการสู้ปลาเลย เปลี่ยนแล้วการสู้ปลาเหมือนเดิมทุกเฟรม (ทดสอบ 28 การสู้ ด้วยทุ่น 5 แบบและตะกั่ว 2 แบบ)",
+        "en": "Simulation result: floats and sinkers are not in the fight data at all, so swapping them leaves the fight identical frame for frame (28 fights tested with 5 floats and 2 sinkers)",
+        "ja": "シミュレーションの結果：ウキとオモリはファイトのデータに含まれず、替えてもファイトは1フレームも変わりません（ウキ5種とオモリ2種で28回のファイトを確認）"
       },
       "alternatives": [
         {
           "category": "float_weight",
           "id": "02"
-        },
-        {
-          "category": "float_weight",
-          "id": "05"
-        },
-        {
-          "category": "float_weight",
-          "id": "06"
         }
       ],
       "sources": [
-        "docs/hook-practical-research.md",
-        "docs/hook-float-use.md",
-        "docs/fish-acceptance-research.md",
-        "data/fish-acceptance.json",
-        "data/shop-stock-rom.json"
+        "data/gear-effects.json",
+        "docs/gear-effects.md",
+        "docs/fight-model.md",
+        "scripts/build_gear_advice.py"
       ]
     },
     "float_weight:08": {
       "label": {
-        "en": "Fly setup loads this automatically",
-        "th": "ชุดฟลายใส่ให้อัตโนมัติ",
-        "ja": "フライでは自動で読み込まれる"
+        "th": "เครื่องหมายที่เกมใส่ให้เองตอนตกด้วยฟลาย ไม่มีขายและไม่ต้องซื้อ",
+        "en": "The marker the game fits for you when you fish with a fly; it is not sold and you do not need to buy it",
+        "ja": "フライで釣るとき、ゲームが自動で付ける目印です。売っておらず、買う必要もありません"
       },
       "recommendation": {
-        "en": "Do not buy or select Marker 08 to improve a fly: the fly setup loads it automatically. If using it as bait gear, it belongs to the float route like IDs 01–07; no shop stock for 08 was found in the six decoded areas, and another stocked float can serve that route.",
-        "th": "ไม่ต้องซื้อหรือเลือกมาร์กเกอร์ 08 เพื่อให้ฟลายดีขึ้น เพราะเกมใส่ให้อัตโนมัติ ถ้าใช้ตกด้วยเหยื่อ มันอยู่ในชุดทุ่นเหมือน ID 01–07 แต่ไม่พบขายในสต็อกหกด่านที่ถอดได้; ใช้ทุ่นรุ่นอื่นที่ร้านมีแทนได้",
-        "ja": "フライを強くするためにマーカー08を買ったり選んだりする必要はありません。フライ設定で自動的に読み込まれます。エサ釣りでは01–07と同じウキ経路ですが、復号した6エリアの在庫に08はありません。店にある別のウキを使えます。"
+        "th": "เครื่องหมายสายนี้เกมโหลดให้เองเมื่อเตรียมฟลาย ไม่ต้องซื้อและไม่มีผลอะไรกับปลา.",
+        "en": "The game loads this line marker by itself when it sets up a fly; you never need to buy it and it does nothing to the fish.",
+        "ja": "この目印は、フライの準備のときにゲームが自動で読み込みます。買う必要はなく、魚への効果もありません。"
       },
       "reason": {
-        "en": "The fly setup writes Marker ID 08 automatically. As bait tackle it selects the float route, but its model does not add compatibility or a proven fishing advantage.",
-        "th": "โค้ดชุดฟลายใส่ Marker ID 08 ให้อัตโนมัติ; เมื่อนำไปตกเหยื่อจะเลือกเส้นทางทุ่น แต่ไม่มีหลักฐานว่าเพิ่มชนิดปลาหรือข้อได้เปรียบการตก",
-        "ja": "フライ設定はマーカーID08を自動で書き込みます。エサ仕掛けではウキ経路を選びますが、適合魚や釣果の利点は確認されていません。"
+        "th": "ผลการจำลอง: ทุ่นและตะกั่วไม่อยู่ในข้อมูลการสู้ปลาเลย เปลี่ยนแล้วการสู้ปลาเหมือนเดิมทุกเฟรม (ทดสอบ 28 การสู้ ด้วยทุ่น 5 แบบและตะกั่ว 2 แบบ)",
+        "en": "Simulation result: floats and sinkers are not in the fight data at all, so swapping them leaves the fight identical frame for frame (28 fights tested with 5 floats and 2 sinkers)",
+        "ja": "シミュレーションの結果：ウキとオモリはファイトのデータに含まれず、替えてもファイトは1フレームも変わりません（ウキ5種とオモリ2種で28回のファイトを確認）"
       },
-      "alternatives": [
-        {
-          "category": "float_weight",
-          "id": "02"
-        },
-        {
-          "category": "float_weight",
-          "id": "05"
-        },
-        {
-          "category": "float_weight",
-          "id": "06"
-        }
-      ],
+      "alternatives": [],
       "sources": [
-        "docs/hook-practical-research.md",
-        "docs/hook-float-use.md",
-        "docs/fish-acceptance-research.md",
-        "data/fish-acceptance.json",
-        "data/shop-stock-rom.json"
+        "data/gear-effects.json",
+        "docs/gear-effects.md",
+        "docs/fight-model.md",
+        "scripts/build_gear_advice.py"
       ]
     },
     "float_weight:09": {
       "label": {
-        "en": "Use only if the target passes the sinker route",
-        "th": "เปลี่ยนเป็นตะกั่วเมื่อปลาเป้าหมายผ่านเงื่อนไขชุดนี้",
-        "ja": "対象魚がオモリ経路を通る場合に選ぶ"
+        "th": "สำหรับคันหวดเท่านั้น: ตกได้เฉพาะปลาก้นน้ำ รอประมาณ 10 วินาที และไม่ตกอะไรที่ทุ่นตกไม่ได้",
+        "en": "For casting rods only: it catches bottom fish only, waits about 10 seconds, and catches nothing a float cannot",
+        "ja": "投げ竿専用です。底にいる魚だけが釣れ、約10秒待ち、ウキで釣れない魚は釣れません"
       },
       "recommendation": {
-        "en": "Use this route only when the target is on the sinker-compatible list and the bait also passes. IDs 09 and 0A have the same 30-profile set. If buying new, area 4 stocks 09 for ¥75; areas 5 and 6 stock 0A for ¥30. For targets outside the sinker list, use a route whose fish list includes them.",
-        "th": "ใช้ชุดตะกั่วเมื่อปลาเป้าหมายอยู่ในรายชื่อและเหยื่อก็ผ่านเงื่อนไข ID 09 กับ 0A ใช้รายชื่อปลา 30 โปรไฟล์เดียวกัน ถ้าซื้อใหม่ ด่าน 4 มี 09 ราคา ¥75; ด่าน 5–6 มี 0A ราคา ¥30 ถ้าปลาอยู่นอกรายชื่อ ให้ใช้ชุดตกที่มีปลาอยู่ในเงื่อนไข",
-        "ja": "対象魚がオモリ対応リストにあり、エサも適合する場合に選びます。09と0Aは同じ30プロフィールです。新規購入ならエリア4では09が75円、エリア5・6では0Aが30円。対象魚がリスト外なら対応する別の仕掛けを使ってください。"
+        "th": "ตะกั่วเลือกเส้นทางคันหวด: ตกได้ 30 จาก 72 ชนิด (เฉพาะปลาก้นน้ำ) รอประมาณ 10 วินาที และไม่มีปลาที่ตะกั่วตกได้แต่ทุ่นตกไม่ได้ ถ้าไม่มีเหตุผลพิเศษ ใช้คันทุ่นกับทุ่นถูกสุดจะง่ายกว่า. ตะกั่วสองแบบให้ผลเท่ากัน ตะกั่ว 0A (¥30) ถูกกว่า ซื้อตัวนั้นถ้าอยู่ด่าน 5, 6 ด่านอื่นซื้อตัวนี้ได้.",
+        "en": "A sinker picks the casting route: it catches 30 of 72 species (bottom fish only), waits about 10 seconds, and catches nothing a float cannot. Unless you have a reason, a float rod with the cheapest float is easier. Both sinkers do the same; sinker 0A (¥30) is cheaper, so buy that one if you are in areas 5, 6 and this one elsewhere.",
+        "ja": "オモリは投げ竿の経路を決めます。72種中30種（底にいる魚だけ）が釣れ、約10秒待ち、ウキで釣れない魚は釣れません。特別な理由がなければ、最安のウキでウキ竿を使う方が簡単です。2種類のオモリは効果が同じです。オモリ0A（30円）の方が安いので、エリア5・6にいるならそちらを、ほかのエリアではこれを買います。"
       },
       "reason": {
-        "en": "The sinker equipment selects a stricter route than the float route: 30 fish profiles pass the sinker profile check, compared with 72 on the float route. Changing between 09 and 0A does not change that set or add a bite bonus.",
-        "th": "ชุดตะกั่วเพิ่มตัวกรองโปรไฟล์ปลา: ผ่าน 30 โปรไฟล์ เทียบกับชุดทุ่น 72 โปรไฟล์ การเปลี่ยนระหว่าง 09 กับ 0A ไม่เปลี่ยนรายชื่อและไม่มีโบนัสกัดที่ยืนยันได้",
-        "ja": "オモリ仕掛けはウキより厳しい魚プロフィール判定があり、通るのは30種（ウキは72種）です。09と0Aの交換で対象リストは変わらず、食いつきボーナスも確認されていません。"
+        "th": "ผลการจำลอง: ทุ่นและตะกั่วไม่อยู่ในข้อมูลการสู้ปลาเลย เปลี่ยนแล้วการสู้ปลาเหมือนเดิมทุกเฟรม (ทดสอบ 28 การสู้ ด้วยทุ่น 5 แบบและตะกั่ว 2 แบบ)",
+        "en": "Simulation result: floats and sinkers are not in the fight data at all, so swapping them leaves the fight identical frame for frame (28 fights tested with 5 floats and 2 sinkers)",
+        "ja": "シミュレーションの結果：ウキとオモリはファイトのデータに含まれず、替えてもファイトは1フレームも変わりません（ウキ5種とオモリ2種で28回のファイトを確認）"
       },
       "alternatives": [
-        {
-          "category": "float_weight",
-          "id": "02"
-        },
         {
           "category": "float_weight",
           "id": "0A"
         }
       ],
       "sources": [
-        "docs/hook-practical-research.md",
-        "docs/hook-float-use.md",
-        "docs/fish-acceptance-research.md",
-        "data/fish-acceptance.json",
-        "data/shop-stock-rom.json"
+        "data/gear-effects.json",
+        "docs/gear-effects.md",
+        "docs/fight-model.md",
+        "scripts/build_gear_advice.py"
       ]
     },
     "float_weight:0A": {
       "label": {
-        "en": "Use only if the target passes the sinker route",
-        "th": "เปลี่ยนเป็นตะกั่วเมื่อปลาเป้าหมายผ่านเงื่อนไขชุดนี้",
-        "ja": "対象魚がオモリ経路を通る場合に選ぶ"
+        "th": "สำหรับคันหวดเท่านั้น: ตกได้เฉพาะปลาก้นน้ำ รอประมาณ 10 วินาที และไม่ตกอะไรที่ทุ่นตกไม่ได้",
+        "en": "For casting rods only: it catches bottom fish only, waits about 10 seconds, and catches nothing a float cannot",
+        "ja": "投げ竿専用です。底にいる魚だけが釣れ、約10秒待ち、ウキで釣れない魚は釣れません"
       },
       "recommendation": {
-        "en": "Use this route only when the target is on the sinker-compatible list and the bait also passes. IDs 09 and 0A have the same 30-profile set. If buying new, area 4 stocks 09 for ¥75; areas 5 and 6 stock 0A for ¥30. For targets outside the sinker list, use a route whose fish list includes them.",
-        "th": "ใช้ชุดตะกั่วเมื่อปลาเป้าหมายอยู่ในรายชื่อและเหยื่อก็ผ่านเงื่อนไข ID 09 กับ 0A ใช้รายชื่อปลา 30 โปรไฟล์เดียวกัน ถ้าซื้อใหม่ ด่าน 4 มี 09 ราคา ¥75; ด่าน 5–6 มี 0A ราคา ¥30 ถ้าปลาอยู่นอกรายชื่อ ให้ใช้ชุดตกที่มีปลาอยู่ในเงื่อนไข",
-        "ja": "対象魚がオモリ対応リストにあり、エサも適合する場合に選びます。09と0Aは同じ30プロフィールです。新規購入ならエリア4では09が75円、エリア5・6では0Aが30円。対象魚がリスト外なら対応する別の仕掛けを使ってください。"
+        "th": "ตะกั่วเลือกเส้นทางคันหวด: ตกได้ 30 จาก 72 ชนิด (เฉพาะปลาก้นน้ำ) รอประมาณ 10 วินาที และไม่มีปลาที่ตะกั่วตกได้แต่ทุ่นตกไม่ได้ ถ้าไม่มีเหตุผลพิเศษ ใช้คันทุ่นกับทุ่นถูกสุดจะง่ายกว่า. ตะกั่วสองแบบให้ผลเท่ากัน ตัวนี้ถูกสุด (¥30, ด่าน 5, 6).",
+        "en": "A sinker picks the casting route: it catches 30 of 72 species (bottom fish only), waits about 10 seconds, and catches nothing a float cannot. Unless you have a reason, a float rod with the cheapest float is easier. Both sinkers do the same and this one is the cheapest (¥30, areas 5, 6).",
+        "ja": "オモリは投げ竿の経路を決めます。72種中30種（底にいる魚だけ）が釣れ、約10秒待ち、ウキで釣れない魚は釣れません。特別な理由がなければ、最安のウキでウキ竿を使う方が簡単です。2種類のオモリは効果が同じで、これが最安です（30円、エリア5・6）。"
       },
       "reason": {
-        "en": "The sinker equipment selects a stricter route than the float route: 30 fish profiles pass the sinker profile check, compared with 72 on the float route. Changing between 09 and 0A does not change that set or add a bite bonus.",
-        "th": "ชุดตะกั่วเพิ่มตัวกรองโปรไฟล์ปลา: ผ่าน 30 โปรไฟล์ เทียบกับชุดทุ่น 72 โปรไฟล์ การเปลี่ยนระหว่าง 09 กับ 0A ไม่เปลี่ยนรายชื่อและไม่มีโบนัสกัดที่ยืนยันได้",
-        "ja": "オモリ仕掛けはウキより厳しい魚プロフィール判定があり、通るのは30種（ウキは72種）です。09と0Aの交換で対象リストは変わらず、食いつきボーナスも確認されていません。"
+        "th": "ผลการจำลอง: ทุ่นและตะกั่วไม่อยู่ในข้อมูลการสู้ปลาเลย เปลี่ยนแล้วการสู้ปลาเหมือนเดิมทุกเฟรม (ทดสอบ 28 การสู้ ด้วยทุ่น 5 แบบและตะกั่ว 2 แบบ)",
+        "en": "Simulation result: floats and sinkers are not in the fight data at all, so swapping them leaves the fight identical frame for frame (28 fights tested with 5 floats and 2 sinkers)",
+        "ja": "シミュレーションの結果：ウキとオモリはファイトのデータに含まれず、替えてもファイトは1フレームも変わりません（ウキ5種とオモリ2種で28回のファイトを確認）"
       },
-      "alternatives": [
-        {
-          "category": "float_weight",
-          "id": "02"
-        },
-        {
-          "category": "float_weight",
-          "id": "09"
-        }
-      ],
+      "alternatives": [],
       "sources": [
-        "docs/hook-practical-research.md",
-        "docs/hook-float-use.md",
-        "docs/fish-acceptance-research.md",
-        "data/fish-acceptance.json",
-        "data/shop-stock-rom.json"
+        "data/gear-effects.json",
+        "docs/gear-effects.md",
+        "docs/fight-model.md",
+        "scripts/build_gear_advice.py"
       ]
     },
     "fly:01": {

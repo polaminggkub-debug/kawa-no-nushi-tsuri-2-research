@@ -199,14 +199,23 @@ function checkGearPrices() {
 function checkHookPrices() {
   for (const stage of [1, 2, 3, 4, 5, 6]) {
     const row = data.gearPriceGuide.hook[stage]
-    const eligible = data.items.filter(
-      (item) =>
-        item.category === 'hook' &&
-        item.rawFields['+1'] === 0 &&
-        item.playerUse.shops.some((shop) => Number(shop.stage) === stage && !shop.condition),
-    )
-    assert.equal(row.priceYen, Math.min(...eligible.map((item) => item.priceYen)))
-    assert(eligible.some((item) => item.id === row.id && item.priceYen === row.priceYen))
+    // One cheapest stocked hook per fish-size class (rawFields +0), or none when that class is not sold yet.
+    for (const size of [0, 1, 2]) {
+      const eligible = data.items.filter(
+        (item) =>
+          item.category === 'hook' &&
+          item.rawFields['+0'] === size &&
+          item.playerUse.shops.some((shop) => Number(shop.stage) === stage && !shop.condition),
+      )
+      const choice = row.bySize[size]
+      if (!eligible.length) {
+        assert.equal(choice, null, `Area ${stage} sells no size-${size} hook`)
+        continue
+      }
+      assert.equal(choice.priceYen, Math.min(...eligible.map((item) => item.priceYen)))
+      assert(eligible.some((item) => item.id === choice.id && item.priceYen === choice.priceYen))
+    }
+    assert.equal(row.id, row.bySize[1].id)
   }
 }
 

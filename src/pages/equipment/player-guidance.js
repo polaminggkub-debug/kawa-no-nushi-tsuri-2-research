@@ -10,6 +10,8 @@ import {
   withStage,
 } from './rod-area-page-helpers.js'
 
+export { hookPriceGuide } from './hook-price-guide.js'
+
 export function decisionCard(ctx, d) {
   d = d.id === 'lure_coverage_pair' ? contextualLureCoverageDecision(ctx, d) : d
   d = contextualFoodDecision(ctx, d)
@@ -23,7 +25,7 @@ export function decisionCard(ctx, d) {
     ? `<p><a class="route-button" data-fly-backup-action href="${ctx.esc(d.nextAction.href)}">${ctx.esc(ctx.local(d.nextAction.label))} ↗</a></p>`
     : ''
   const choices = `<div class="decision-items">${(d.items || []).map(ctx.decisionLink).join('')}</div>`
-  return `<article class="decision-card"${marker}><h3>${ctx.esc(ctx.local(d.title))}</h3>${d.foodAreaStage ? choices : ''}<p class="decision-action">${ctx.esc(ctx.local(d.recommendation))}</p>${d.reason ? `<p>${ctx.esc(ctx.local(d.reason))}</p>` : ''}${d.foodAreaStage ? '' : choices}${d.scope ? `<small>${ctx.esc(ctx.local(d.scope))}</small>` : ''}${lureGuide}${nextAction}</article>`
+  return `<article class="decision-card"${marker}><h3>${ctx.esc(ctx.local(d.title))}</h3>${d.foodAreaStage ? choices : ''}<p class="decision-action">${ctx.esc(ctx.local(d.recommendation)).replaceAll('\n', '<br>')}</p>${d.reason ? `<p>${ctx.esc(ctx.local(d.reason))}</p>` : ''}${d.foodAreaStage ? '' : choices}${d.scope ? `<small>${ctx.esc(ctx.local(d.scope))}</small>` : ''}${lureGuide}${nextAction}</article>`
 }
 
 function lureCoverageGuide(ctx) {
@@ -133,30 +135,6 @@ export function renderDecisions(ctx, category) {
   renderPlayerDecisionOverview(ctx)
 }
 
-export function hookPriceGuide(ctx) {
-  const title =
-    ctx.lang === 'th'
-      ? 'เบ็ดหายหรือยังไม่มี? ซื้อเบ็ดทั่วไปที่ถูกสุดในด่านนี้'
-      : ctx.lang === 'ja'
-        ? '針を失った・持っていない？現在エリアの最安の汎用針'
-        : 'Lost your hook or have none? Buy the cheapest stocked generic hook'
-  const note =
-    ctx.lang === 'th'
-      ? 'ถ้ามีเบ็ดอยู่แล้วใช้ต่อได้ ซื้อเมื่อต้องเติมเบ็ดสำหรับชุดทุ่นหรือตะกั่ว ตารางนี้เทียบราคาเบ็ดที่ไม่ผูกกับปลาเฉพาะ ไม่ใช่อันดับดึงปลาสำเร็จ และไม่ต้องซื้อเบ็ดชุดเหยื่อสำหรับลัวร์หรือฟลาย'
-      : ctx.lang === 'ja'
-        ? '所持している針はそのまま使えます。ウキ・オモリ仕掛けの針が必要な時だけ購入。魚ID一致分岐のない針の価格比較で、釣果順位ではありません。ルアー・フライ用にエサ釣りの針を買う必要はありません。'
-        : 'Keep the hook you own. Buy only when a float or sinker bait rig needs a hook. This compares prices of hooks without a species-match branch, not landing success. Do not buy a bait-rig hook for lure or fly fishing.'
-  return `<section class="decision-card" id="hook-price-guide"><h3>${title}</h3><p>${note}</p><div class="table-wrap"><table><thead><tr><th>${ctx.lang === 'th' ? 'ด่าน' : ctx.lang === 'ja' ? 'エリア' : 'Area'}</th><th>${ctx.lang === 'th' ? 'ซื้อชิ้นนี้ถ้าต้องเติมเบ็ด' : ctx.lang === 'ja' ? '針が必要なら購入' : 'Buy if you need a hook'}</th></tr></thead><tbody>${[
-    1, 2, 3, 4, 5, 6,
-  ]
-    .map((stage) => {
-      const row = ctx.gearPriceGuide.hook[stage],
-        item = ctx.allItems.find((i) => i.category === row.category && i.id === row.id)
-      return `<tr><td>${stage}</td><td><a data-hook-budget-stage="${stage}" href="${ctx.esc(ctx.areaItemLink(item, stage))}">${ctx.esc(ctx.itemName(item))} (${row.id}) · ¥${row.priceYen}</a></td></tr>`
-    })
-    .join('')}</tbody></table></div></section>`
-}
-
 export function floatPriceGuide(ctx) {
   const fish = document.getElementById('fish-filter').value
   const title = fish
@@ -172,15 +150,15 @@ export function floatPriceGuide(ctx) {
         : 'Cheapest stocked float or sinker in your area'
   const note = fish
     ? ctx.lang === 'th'
-      ? `ถ้ามีของที่ใช้กับ${ctx.fishName(fish)} อยู่แล้วให้ใช้ต่อ ตารางแสดงเฉพาะของที่ผ่านเงื่อนไขปลานี้และมีบันทึกขายในแต่ละด่าน การผ่านเงื่อนไขไม่รับประกันว่าปลากินหรือจับขึ้นได้`
+      ? `ถ้ามีของที่ใช้กับ${ctx.fishName(fish)} อยู่แล้วให้ใช้ต่อ ตารางแสดงเฉพาะของที่ตกปลานี้ได้และมีบันทึกขายในแต่ละด่าน ทุ่นทุกแบบให้ผลเท่ากันตอนสู้ปลา ซื้อตัวที่ถูกสุด`
       : ctx.lang === 'ja'
-        ? `${ctx.fishName(fish)}に使える道具を持っていれば継続してください。表には魚の判定を通り、各エリアで販売記録がある品だけを表示します。適合は食いつきや釣果を保証しません。`
-        : `Keep a model you already own for ${ctx.fishName(fish)}. The table lists only stocked items that pass this fish’s ROM profile check. Passing the check does not guarantee a bite or catch.`
+        ? `${ctx.fishName(fish)}に使える道具を持っていれば継続してください。表には、この魚が釣れて各エリアで販売記録がある品だけを表示します。どのウキもファイトでは効果が同じなので、最安のものを買います。`
+        : `Keep a model you already own for ${ctx.fishName(fish)}. The table lists only stocked items that can catch this fish. Every float does the same in a fight, so buy the cheapest.`
     : ctx.lang === 'th'
-      ? 'มีรุ่นเดิมอยู่แล้วใช้ต่อได้ ตารางนี้เลือกจากราคาของที่มีขาย ไม่ใช่อันดับจับปลา ทุ่นกับตะกั่วใช้คนละชุดปลา: เปิดรายละเอียดเพื่อตรวจปลาเป้าหมายก่อนซื้อ'
+      ? 'มีรุ่นเดิมอยู่แล้วใช้ต่อได้ ทุ่นทุกแบบให้ผลเท่ากันตอนสู้ปลา จึงซื้อตัวที่ถูกสุดตามตาราง ตะกั่วใช้กับคันหวดเท่านั้น (ตกได้เฉพาะปลาก้นน้ำและไม่ตกอะไรที่ทุ่นตกไม่ได้)'
       : ctx.lang === 'ja'
-        ? '所持品はそのまま使えます。店頭価格による選択であり釣果順位ではありません。ウキとオモリの対応魚は違うため、購入前に詳細で魚を確認してください。'
-        : 'Keep the model you own. These choices use recorded shop prices, not catch rankings. Float and sinker routes accept different fish; check the item profile for your target before buying.'
+        ? '所持品はそのまま使えます。ファイトではどのウキも効果が同じなので、表の最安のものを買います。オモリは投げ竿専用で、底にいる魚だけが釣れ、ウキで釣れない魚は釣れません。'
+        : 'Keep the model you own. Every float does the same in a fight, so buy the cheapest in the table. Sinkers are for casting rods only: they catch bottom fish only and nothing a float cannot.'
   const none =
     ctx.lang === 'th'
       ? 'ไม่พบในสต็อกด่านนี้'

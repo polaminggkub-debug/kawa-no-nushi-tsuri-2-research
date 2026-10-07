@@ -3,15 +3,18 @@ import { rodAreaDecision } from '../../entities/item/index.js'
 const copy = {
   th: {
     details: 'เหตุผลและสิ่งที่คำแนะนำนี้เทียบ',
-    rodScope: 'เทียบราคาซื้อใหม่ เวลาเล็ง และสายขาดยาก ไม่ใช่อันดับโอกาสตกสำเร็จ',
+    rodScope:
+      'เทียบราคาซื้อใหม่ เวลาเล็ง สายขาดยาก และจุดเริ่มสู้ คันเหมาะกับปลาชนิดไหนดูในหน้าคัน',
   },
   en: {
     details: 'Why choose it and what the comparison covers',
-    rodScope: 'Compares new-purchase price, time to aim and line strength, not catch success.',
+    rodScope:
+      'Compares new-purchase price, time to aim, line strength and fight start; the rod page says which fish it suits.',
   },
   ja: {
     details: '選ぶ理由と比較の範囲',
-    rodScope: '新品価格・狙う時間・糸の切れにくさの比較で、釣果の順位ではありません。',
+    rodScope:
+      '新品価格・狙う時間・糸の切れにくさ・ファイトの出だしの比較です。どの魚に向くかは竿のページで確認できます。',
   },
 }
 

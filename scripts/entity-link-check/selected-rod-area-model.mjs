@@ -34,6 +34,7 @@ function metrics(item) {
     price: Number(item.priceYen),
     aim: Number(item.decodedFields.castAimHoldCutoffInternal),
     boundary: Number(item.decodedFields.rangeMultiplier),
+    start: -Number(item.rodDecision.startLoss),
   }
 }
 
@@ -75,7 +76,11 @@ function dominates(first, second) {
     first.price <= second.price &&
     first.aim >= second.aim &&
     first.boundary >= second.boundary &&
-    (first.price < second.price || first.aim > second.aim || first.boundary > second.boundary)
+    first.start >= second.start &&
+    (first.price < second.price ||
+      first.aim > second.aim ||
+      first.boundary > second.boundary ||
+      first.start > second.start)
   )
 }
 
@@ -409,10 +414,10 @@ function checkArea5Tradeoff(decision, lang, item) {
 function checkClaimScope(decision, lang, item, stage) {
   const copy = `${decision.recommendation[lang]} ${decision.reason[lang]} ${decision.scope[lang]}`
   requireValue(
-    /Bite rate, catch rate and fish-specific advantages are not ranked|ไม่ได้จัดอันดับโอกาสที่ปลากินเหยื่อหรือจับขึ้น|食いつきや釣れやすさ、魚ごとの相性は順位付けしていません/.test(
+    /Which fish a rod suits is on its own page|คันเหมาะกับปลาชนิดไหนดูในหน้าคันนั้น|どの魚に向くかは竿のページで確認できます/.test(
       decision.scope[lang],
     ),
-    `Catch scope missing: ${lang}/${stage}/${item.id}`,
+    `Fish-suitability pointer missing: ${lang}/${stage}/${item.id}`,
   )
   requireValue(
     !/best for catching|easier to catch|จับปลาได้ง่ายกว่า|釣れやすい/.test(copy),

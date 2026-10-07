@@ -4,6 +4,8 @@ This guide translates the traced item records into player-facing use. It describ
 
 ## The useful answer
 
+> **Corrected 2026-10-07 — see [gear-effects.md](gear-effects.md).** The statement below that the hook match "does **not** prove a higher bite rate, an easier catch" is outdated for the fight: a matching hook halves the fight meter's start (one more mistake allowed), measured in the frame-exact engine, and the hook's size class moves the start by fish size (hooks 7, 8, 11 for fish up to 15 cm, hooks 2, 5, 6, 9, 12, 13 for 16..35 cm, hooks 1, 3, 4 above 35 cm). It is still not a bite-rate effect. The float and sinker statements stand and are now confirmed to have no fight effect.
+
 - **Hooks:** nine records have a nonzero fish ID. When that ID matches the active fish during bait-route fight setup, the game takes a species-matched initialization branch. This makes those hooks sensible candidates for the named fish. It does **not** prove a higher bite rate, an easier catch, or exclusivity.
 - **Floats and sinkers:** the game routes IDs 01–08 through the float-equipped bait path and IDs 09–0A through the sinker-equipped bait path. A separate record byte selects one of three state/drawing branches. No traced field establishes depth, sensitivity, weight, or a fish-specific bonus.
 - **Fly marker:** fly setup automatically loads Marker ID 08. The marker is therefore also relevant when preparing fly gear.
@@ -57,5 +59,7 @@ These byte groups tell us how the game selects its state/drawing routine. They a
 - Fish IDs/names come from the original-ROM fish-profile table summarized in [`fish-acceptance.json`](../data/fish-acceptance.json).
 
 ## Limits
+
+> **Corrected 2026-10-07 — see [gear-effects.md](gear-effects.md).** "There is no end-to-end controlled catch experiment" and "do not read ... as proof of ... catch probability" no longer hold for hooks: the effect on landing is measured there (Yamame on rod 16: 100 % with a hook that starts the fight at 3, 6 % at 7). Floats and sinkers: checked against the fight code and in 28 interpreter fights, no effect.
 
 This is static ROM evidence. It identifies branches, not a full emulator trial. The traced hook branch changes the initial fight response value; there is no end-to-end controlled catch experiment here. Float/sinker values such as +1, +2, or +3 are not given player-facing meanings unless a consumer was verified. In particular, do not read the item price or one of these byte codes as proof of strength, depth, sensitivity, or catch probability.

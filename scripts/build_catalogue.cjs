@@ -109,10 +109,14 @@ if(!fs.existsSync(gearPath))throw new Error('Missing per-item gear decisions');
 {
   const gear=JSON.parse(fs.readFileSync(gearPath,'utf8'));
   data.gearPriceGuide={float:gear.floatCheapestRecordedStockByArea,sinker:gear.sinkerCheapestRecordedStockByArea};
+  // Hooks are bought by fish size: the cheapest stocked hook of each size class in every area.
   data.gearPriceGuide.hook=Object.fromEntries([1,2,3,4,5,6].map(stage=>{
-    const choices=data.items.filter(item=>item.category==='hook'&&item.rawFields['+1']===0&&item.playerUse.shops?.some(shop=>Number(shop.stage)===stage&&!shop.condition)).sort((a,b)=>a.priceYen-b.priceYen||a.id.localeCompare(b.id));
-    const item=choices[0];if(!item)throw Error('Missing generic hook stock in area '+stage);
-    return [stage,{category:'hook',id:item.id,priceYen:item.priceYen}];
+    const bySize=[0,1,2].map(size=>{
+      const choices=data.items.filter(item=>item.category==='hook'&&item.rawFields['+0']===size&&item.playerUse.shops?.some(shop=>Number(shop.stage)===stage&&!shop.condition)).sort((a,b)=>a.priceYen-b.priceYen||a.id.localeCompare(b.id));
+      const item=choices[0];return item?{category:'hook',id:item.id,priceYen:item.priceYen}:null;
+    });
+    const row=bySize[1];if(!row)throw Error('Missing mid-size hook stock in area '+stage);
+    return [stage,{...row,bySize}];
   }));
   if(gear.rom?.sha1!=='c2103dd94e2a1a65a495fc02adc2e7d040f31212')throw new Error('Gear decisions ROM mismatch');
   for(const item of data.items.filter(i=>['hook','float_weight','fly','fly_wing','fly_tail'].includes(i.category))){

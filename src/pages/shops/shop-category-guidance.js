@@ -1,9 +1,10 @@
 const categoryAdvice = {
   th: {
     all: 'ป้ายเงื่อนไขปลามีเฉพาะเหยื่อจริง ลัวร์ และบอดี้ฟลาย: ดูป้ายก่อนซื้อ การผ่านเงื่อนไขไม่รับประกันว่าปลากินหรือตกขึ้นได้ ของหมวดอื่นให้ดูคำแนะนำการใช้ในรายละเอียด',
-    rod: 'เลือกวิธีตกก่อน แล้วดูคำแนะนำซื้อใต้คันแต่ละรุ่นของด่านนี้ เทียบราคา เวลาเล็ง และสายขาดยาก ไม่ใช่อันดับโอกาสตกสำเร็จ',
-    hook: 'เลือกเบ็ดให้ตรงกับชุดที่ใช้ แล้วดูคำแนะนำและราคาในรายละเอียดไอเท็มก่อนซื้อ',
-    float_weight: 'เลือกทุ่นหรือตะกั่วตามชุดที่ใช้ แล้วเปรียบเทียบราคาและคำแนะนำในรายละเอียดไอเท็ม',
+    rod: 'เลือกวิธีตกก่อน แล้วดูคำแนะนำซื้อใต้คันแต่ละรุ่นของด่านนี้ เทียบราคา เวลาเล็ง สายขาดยาก และจุดเริ่มสู้ ปลาใหญ่ต้องใช้คันที่สายยาว',
+    hook: 'เลือกเบ็ดตามขนาดปลาที่จะตก ดูว่าเหมาะกับปลาแบบไหนและราคาในรายละเอียดไอเท็มก่อนซื้อ ขายเป็นชุด 9 ตัว',
+    float_weight:
+      'ทุ่นทุกแบบให้ผลเท่ากัน ซื้อตัวที่ถูกสุด ตะกั่วใช้กับคันหวดเท่านั้น ดูรายละเอียดไอเท็มก่อนซื้อ',
     food: 'เลือกอาหารตาม HP ที่ต้องเติมและราคา เปิดรายละเอียดเพื่อดู HP ที่ฟื้นและเงื่อนไขเควสต์ก่อนกิน',
     general_tool:
       'ซื้อเมื่อจำเป็นต้องใช้ทำสิ่งนั้นหรือทำเควสต์ เปิดรายละเอียดเพื่อดูว่าใช้ที่ไหนและต้องเก็บไว้ทำอะไร',
@@ -15,10 +16,10 @@ const categoryAdvice = {
   },
   en: {
     all: 'Fish-check badges apply to bait, lures and fly bodies. Check them before buying; passing does not guarantee a bite or landing. For other categories, read the use advice in item details.',
-    rod: 'Choose your fishing method, then read each rod’s buying advice for this area. The comparison covers price, time to aim and line strength, not catch success.',
-    hook: 'Choose a hook for your setup, then check its use advice and price in item details before buying.',
+    rod: 'Choose your fishing method, then read each rod’s buying advice for this area. The comparison covers price, time to aim, line strength and fight start; big fish need a rod with a long line.',
+    hook: 'Choose a hook by the size of the fish you want, then check which fish it suits and its price in item details. Hooks are sold in stacks of 9.',
     float_weight:
-      'Choose a float or sinker for your setup, then compare prices and use advice in item details.',
+      'Every float does the same, so buy the cheapest. Sinkers are for casting rods only. Check item details before buying.',
     food: 'Choose food by the HP you need to restore and its price. Open details for measured HP recovery and quest conditions before eating.',
     general_tool:
       'Buy a tool when you need its action or quest use. Open details to see where to use it and what to keep it for.',
@@ -30,9 +31,10 @@ const categoryAdvice = {
   },
   ja: {
     all: '魚の判定表示はエサ・ルアー・毛バリのボディに付きます。購入前に確認してください。判定を通っても食いつきや取り込みは保証されません。他の種類は詳細ページの使い方で選んでください。',
-    rod: '釣り方を選び、このエリアの各竿の購入アドバイスを確認してください。比べるのは価格・狙う時間・糸の切れにくさで、釣果の順位ではありません。',
-    hook: '仕掛けに合う針を選び、詳細ページで使い方と価格を確認してから購入してください。',
-    float_weight: '仕掛けに合うウキやオモリを選び、詳細ページで価格と使い方を比較してください。',
+    rod: '釣り方を選び、このエリアの各竿の購入アドバイスを確認してください。比べるのは価格・狙う時間・糸の切れにくさ・ファイトの出だしで、大物には糸の長い竿が必要です。',
+    hook: '狙う魚の大きさで針を選び、詳細ページでどの魚に向くかと価格を確認してから購入してください。9個1組で売っています。',
+    float_weight:
+      'どのウキも効果は同じなので最安のものを買います。オモリは投げ竿専用です。購入前に詳細ページを確認してください。',
     food: '回復したいHPと価格で食べ物を選んでください。食べる前に詳細ページで確認済みの回復量とイベント用途を確認してください。',
     general_tool:
       '必要な操作やイベント用途がある時に購入してください。詳細ページで使う場所と取っておく用途を確認できます。',
