@@ -1,5 +1,6 @@
 import { foodChoicePanel } from './food-choice.js'
 import { fishMealRecovery } from './fish-meal-recovery.js'
+import { stackPriceNote } from '../../entities/item/index.js'
 
 function selectedStage(ctx) {
   const stage = Number(ctx.selectedStage)
@@ -149,6 +150,11 @@ function shopOfferCard(ctx, item, stage, offer, fishLocations, selected) {
   return `<article class="detail-section" data-purchase-stage="${stage}"${isSelected ? ' data-selected-area-offer="true"' : ''}><h3>${ctx.esc(ctx.stageName(stage, fishLocations))}${selectedAreaBadge(ctx, stage)}</h3><p>${ctx.esc(shopSeller(ctx, offer))}${itemPrice}</p>${ctx.shopCondition(item, offer, fishLocations)}${ctx.stageButton(stage, fishLocations)}</article>`
 }
 
+function stackNote(ctx, item) {
+  const note = stackPriceNote(ctx.lang, item)
+  return note ? `<p class="muted price-note">${ctx.esc(note)}</p>` : ''
+}
+
 function ordinaryPurchaseSection(ctx, item, fishLocations, selected) {
   const shops = item.playerUse?.shops || []
   if (!shops.length)
@@ -161,7 +167,7 @@ function ordinaryPurchaseSection(ctx, item, fishLocations, selected) {
     selected && !hasSelectedOffer ? missingAreaNote(ctx, selected, false, stages.length > 0) : ''
   const price =
     item.priceYen != null
-      ? `<p><strong>${ctx.esc(ctx.copy.price(item.priceYen))}</strong> <span class="muted">· ${ctx.esc(ctx.copy.stockAt)}</span></p>`
+      ? `<p><strong>${ctx.esc(ctx.copy.price(item.priceYen))}</strong> <span class="muted">· ${ctx.esc(ctx.copy.stockAt)}</span></p>${stackNote(ctx, item)}`
       : ''
   const cards = stages
     .map((stage) =>
@@ -204,8 +210,10 @@ export function buyingDecision(ctx, item, allItems, decisions) {
     item.category === 'rod'
       ? rodPaths[item.decodedFields?.styleCode]
       : item.category === 'hook'
-        ? 'hook_purchase_caution'
-        : ''
+        ? 'hook_by_size'
+        : item.category === 'float_weight'
+          ? 'float_sinker_choice'
+          : ''
   const sections = decisions.filter((section) =>
     path
       ? section.id === path
@@ -222,7 +230,7 @@ export function buyingDecision(ctx, item, allItems, decisions) {
         .filter((ref) => ref.category === item.category && ref.id !== item.id)
         .map((ref) => allItems.find((i) => i.category === ref.category && i.id === ref.id))
         .filter(Boolean)
-      return `<h3>${ctx.esc(ctx.local(section.title))}</h3><p>${ctx.esc(ctx.local(section.recommendation))}</p>${refs.length ? `<div class="detail-grid">${refs.map((ref) => ctx.componentLink(ref)).join('')}</div>` : ''}<p class="muted">${ctx.esc(ctx.local(section.scope))}</p>`
+      return `<h3>${ctx.esc(ctx.local(section.title))}</h3><p>${ctx.esc(ctx.local(section.recommendation)).replaceAll('\n', '<br>')}</p>${refs.length ? `<div class="detail-grid">${refs.map((ref) => ctx.componentLink(ref)).join('')}</div>` : ''}<p class="muted">${ctx.esc(ctx.local(section.scope))}</p>`
     })
     .join('')}</section>`
 }

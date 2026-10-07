@@ -7,6 +7,8 @@ from collections import defaultdict
 from pathlib import Path
 
 from bait_lure_copy import bait_copy, lure_copy, lure_special_scope
+from gear_advice.facts import Facts
+from gear_advice.overlay import use_overlay
 
 
 PUBLICATION = Path(__file__).resolve().parents[1]
@@ -61,7 +63,7 @@ def stage_fish_names():
 
 STYLE = {
     1: loc("Float / Ayu", "ウキ・アユ", "สายทุ่น / ปลาอายุ"),
-    2: loc("Casting", "投げ釣り", "ตีเหยื่อแบบคาสติ้ง"),
+    2: loc("Casting", "投げ釣り", "หวด"),
     4: loc("Lure", "ルアー", "ลัวร์"),
     8: loc("Fly", "毛バリ", "ฟลาย"),
 }
@@ -75,7 +77,7 @@ GENERAL_TOOL_COPY = {
     "0B": (loc("The ROM label specifies a 10-fish basket; its capacity check has not yet been traced.", "ROM名は10匹用のびく。容量判定は未追跡。", "ชื่อใน ROM ระบุว่าเป็นกระชัง 10 ตัว; ยังไม่ได้ถอดโค้ดตรวจความจุ"), []),
     "0C": (loc("The ROM label specifies a 20-fish basket; its capacity check has not yet been traced.", "ROM名は20匹用のびく。容量判定は未追跡。", "ชื่อใน ROM ระบุว่าเป็นกระชัง 20 ตัว; ยังไม่ได้ถอดโค้ดตรวจความจุ"), []),
     "0D": (loc("The ROM label specifies a 30-fish basket; its capacity check has not yet been traced.", "ROM名は30匹用のびく。容量判定は未追跡。", "ชื่อใน ROM ระบุว่าเป็นกระชัง 30 ตัว; ยังไม่ได้ถอดโค้ดตรวจความจุ"), []),
-    "0E": (loc("A magnet inventory item.", "磁石のアイテム。", "ไอเท็มแม่เหล็ก"), []),
+    "0E": (loc("A compass inventory item.", "磁石（方位磁石）のアイテム。", "ไอเท็มเข็มทิศ"), []),
     "11": (loc("Lottery ticket; the prize result is not decoded.", "富くじ。賞品の内容は未解明。", "สลาก; ยังไม่พบผลรางวัล"), []),
     "13": (loc("Menu label: stereo. The setting handler has not yet been traced.", "メニュー名はステレオ。設定処理は未追跡。", "ชื่อเมนูคือสเตอริโอ; ยังไม่ได้ถอดโค้ดการตั้งค่า"), []),
     "14": (loc("Menu label: monaural. The setting handler has not yet been traced.", "メニュー名はモノラル。設定処理は未追跡。", "ชื่อเมนูคือโมโน; ยังไม่ได้ถอดโค้ดการตั้งค่า"), []),
@@ -87,7 +89,7 @@ BAIT_NAME_TH = {
     "05": "หนอนเลือด", "06": "หนอนทะเล", "07": "แมลงน้ำ", "08": "ตัวอ่อนแมลงหนอนปลอกน้ำ",
     "09": "ไข่ปลาแซลมอน", "0A": "ไส้เดือนใหญ่", "0B": "หนอนองุ่น", "0C": "ตัวอ่อนผึ้ง",
     "0D": "เหยื่อปั้น", "0E": "เหยื่อปั้นเฮระ", "0F": "เหยื่อปั้นปลาคาร์ป",
-    "10": "เหยื่อปั้นข้าวกวน", "11": "เหยื่อหัวมัน", "12": "ปลาเล็ก", "13": "ปลาโดโจ",
+    "11": "เหยื่อหัวมัน", "12": "ปลาเล็ก", "13": "ปลาโดโจ",
     "14": "กบ", "15": "กุ้ง", "16": "เนื้อหอย", "17": "ปลาอายุเหยื่อล่อ",
 }
 
@@ -103,48 +105,54 @@ TH_DIRECT_NAMES = {
         "0B": "เบ็ดปลาทานาโกะ", "0C": "เบ็ดปลาอิวานะ", "0D": "เบ็ดปลายามาเมะ",
     },
     "float_weight": {
-        "01": "ทุ่นเฮระ", "02": "ทุ่นชิโมริทรงกลม", "03": "ทุ่นชิโมริทรงเรียว",
+        "01": "ทุ่นเฮระ",
         "04": "ทุ่นลูกบอล", "05": "ทุ่นแท่ง", "06": "ทุ่นลูกโอ๊ก", "07": "ทุ่นพริก",
-        "08": "เครื่องหมายบนสาย", "09": "ตะกั่วทรงรี", "0A": "ตะกั่วทรงนัตสึเมะ",
+        "08": "เครื่องหมายบนสาย", "09": "ตะกั่วทรงรี",
     },
     "general_tool": {
         "01": "กะละมัง", "02": "เรือแคนู", "03": "แว่นขยาย", "04": "ตาข่ายสีทอง",
         "05": "สมุดบันทึกการตกปลา", "06": "ไปรษณียบัตรที่ได้รับ", "07": "ไปรษณียบัตร",
         "08": "เหยื่อโปรยเรียกปลา 1", "09": "เหยื่อโปรยเรียกปลา 2", "0A": "เหยื่อโปรยเรียกปลา 3",
         "0B": "ข้องใส่ปลา ความจุ 10 ตัว", "0C": "ข้องใส่ปลา ความจุ 20 ตัว", "0D": "ข้องใส่ปลา ความจุ 30 ตัว",
-        "0E": "แม่เหล็ก", "0F": "ขวดนม", "10": "นม", "11": "สลาก", "12": "เทียน",
+        "0F": "ขวดนม", "10": "นม", "11": "สลาก", "12": "เทียน",
         "13": "สเตอริโอ", "14": "โมโน", "15": "เต้าหู้ทอด", "16": "ดอกไม้ไฟ", "17": "กุญแจ",
     },
-    "food": {"08": "ปลา"},
 }
 
 
-FLY_FAMILY_TH = {
-    "Mayfly": "แมลงชีปะขาว", "Caddis": "แมลงหนอนปลอกน้ำ",
-    "Diptera": "แมลงปีกคู่", "Stonefly": "แมลงสโตนฟลาย",
+ITEM_NAMES = load(DATA / "item-names.json")["items"]
+FIXED_NAME_NOTE = {
+    "fly": "ชื่อกลุ่มตามป้ายในแพตช์ไทย ต่อท้ายด้วยรหัสเพื่อแยกชิ้นที่ชื่อซ้ำกัน",
+    "fly_wing": "ในเกมไม่มีชื่อชิ้นส่วนนี้ คู่มือตั้งชื่อตามตระกูล แบบเปียก/แห้ง ประเภทชิ้นส่วน และลักษณะที่เห็นในภาพ",
+    "fly_tail": "ในเกมไม่มีชื่อชิ้นส่วนนี้ คู่มือตั้งชื่อตามตระกูล แบบเปียก/แห้ง ประเภทชิ้นส่วน และลักษณะที่เห็นในภาพ",
 }
 
 
-def display_name(category, item, fly_customizer=None):
+def display_name(category, item):
+    """Names from data/item-names.json win; then Thai patch labels; then direct translations."""
     item_id = item["id"].upper()
-    if category == "food" and item_id == "0A":
-        return {"th": "เห็ด (ชนิดมีพิษ)"}, {"th": "คำขยายเพื่อแยกจากชื่อเมนูภาษาไทยที่แสดงว่า เห็ด"}
+    fixed = ITEM_NAMES.get(key(category, item_id), {}).get("displayName")
+    if fixed:
+        note = FIXED_NAME_NOTE.get(category, "ชื่อที่คู่มือกำหนดให้ชัดเจนขึ้น ไม่ใช่ภาพป้ายจากแพตช์ไทย")
+        return dict(fixed), {"th": note}
     # A Thai patch label exists for these records and remains the preferred wording.
     if item.get("nameTh"):
         return None, None
-    if category == "fly":
-        family = item["nameEn"].split()[0]
-        wet_dry = "แบบเปียก" if "wet" in item["nameEn"].lower() else "แบบแห้ง"
-        return {"th": f"บอดี้ฟลาย{FLY_FAMILY_TH.get(family, family)}{wet_dry} {item_id}"}, {"th": "คำแปลชื่อญี่ปุ่นโดยตรง ไม่ใช่ภาพป้ายจากแพตช์ไทย"}
-    if category in ("fly_wing", "fly_tail"):
-        family = item["nameEn"].split(" · ")[0]
-        wet_dry = "แบบเปียก" if "Wet" in item["nameEn"] else "แบบแห้ง"
-        part = "ปีกฟลาย" if category == "fly_wing" else "หางฟลาย"
-        return {"th": f"{part} {FLY_FAMILY_TH.get(family, family)}{wet_dry} {item_id}"}, {"th": "คำแปลชื่อญี่ปุ่นโดยตรง ไม่ใช่ภาพป้ายจากแพตช์ไทย"}
     translated = TH_DIRECT_NAMES.get(category, {}).get(item_id)
     if translated:
         return {"th": translated}, {"th": "คำแปลชื่อญี่ปุ่นโดยตรง ไม่ใช่ภาพป้ายจากแพตช์ไทย"}
     return None, None
+
+
+def apply_name_fixes(entry, category, item_id):
+    """Overrides from data/item-names.json: replace summary/facts/evidenceNotes, append factsAdd."""
+    fixes = ITEM_NAMES.get(key(category, item_id), {})
+    for field in ("summary", "facts", "evidenceNotes"):
+        if field in fixes:
+            entry[field] = fixes[field]
+    for lang, extra in fixes.get("factsAdd", {}).items():
+        entry.setdefault("facts", {}).setdefault(lang, [])
+        entry["facts"][lang] = entry["facts"][lang] + [fact for fact in extra if fact not in entry["facts"][lang]]
 
 
 def build():
@@ -198,6 +206,7 @@ def build():
             "ja": ja,
             "th": visual.get("nameTh") or " / ".join(visual.get("nameThVariants") or []) or latin or ja,
         }
+    gear_overlay = use_overlay(Facts())
 
     fish = {entry["id_hex"].upper(): entry for entry in acceptance["fish_profiles"]}
     valid_fish = {item_id for item_id, entry in fish.items() if not entry.get("name_has_unmapped_glyph") and int(item_id, 16) != 0x43}
@@ -442,15 +451,15 @@ def build():
                 entry["hpRecovery"] = {"formula": "floor(raw stored fish size / 4)", "sample": {"fishSize": 30, "hp": 7}}
             elif item_id == "09":
                 entry["summary"] = loc(
-                    "Healing mushroom ID 09: restores 10 HP, up to your maximum. The tested Japan-ROM menu labels poison mushroom ID 0A with the same name, ‘きのこ’; if you cannot identify the item in your inventory, use shop food instead. Revisiting a search location does not guarantee this safe type: the magnifier selects mushroom type from the game’s shared sequence.",
-                    "回復キノコ ID 09：HPを10回復（最大HPまで）。確認した日本版ROMのメニューでは、毒キノコID 0Aも同じ「きのこ」と表示される。所持品を見分けられない場合は店の食料を使う。同じ探索地点へ戻っても安全な種類は保証されない。虫めがねはゲーム共通の乱数列からキノコの種類を選ぶ。",
-                    "เห็ดฟื้นพลัง ID 09: ฟื้น 10 HP แต่ไม่เกินค่าสูงสุด เมนูใน ROM ญี่ปุ่นที่ทดสอบแสดงเห็ดพิษ ID 0A ด้วยชื่อเดียวกันว่า “きのこ”; ถ้าแยกไอเท็มในช่องเก็บของไม่ได้ ให้ใช้อาหารจากร้านแทน กลับไปค้นจุดเดิมก็ไม่รับประกันว่าจะได้เห็ดชนิดนี้ เพราะแว่นขยายเลือกชนิดจากลำดับสุ่มร่วมของเกม",
+                    "Tan flat mushroom: restores 10 HP, up to your maximum. In the food menu it has the same name as the poison mushroom (きのこ), but the icon is different: this one is tan and flat, the poison one is red with yellow spots. Check the icon before you eat. A search spot does not guarantee this type: the magnifier picks the mushroom type from the game's shared random sequence.",
+                    "茶色く平たいキノコ：HPを10回復（最大HPまで）。食料メニューでは毒キノコと同じ名前（きのこ）だが、アイコンが違う：これは茶色で平たく、毒キノコは黄色い斑点のある赤。食べる前にアイコンを確認する。同じ探索地点へ戻っても、この種類が出るとは限らない。虫めがねはゲーム共通の乱数列からキノコの種類を選ぶ。",
+                    "เห็ดสีน้ำตาลอ่อนทรงแบน: ฟื้น 10 HP แต่ไม่เกินค่าสูงสุด ในเมนูอาหารมีชื่อเดียวกับเห็ดพิษ (きのこ) แต่ไอคอนต่างกัน: ตัวนี้สีน้ำตาลอ่อนและแบน ส่วนเห็ดพิษสีแดงมีจุดเหลือง ก่อนกินให้ดูไอคอน กลับไปค้นจุดเดิมก็ไม่รับประกันว่าจะได้เห็ดชนิดนี้ เพราะแว่นขยายเลือกชนิดจากลำดับสุ่มร่วมของเกม",
                 )
             elif item_id == "0A":
                 entry["summary"] = loc(
-                    "Poison mushroom ID 0A: eating it sets current HP to 0. The tested Japan-ROM menu labels healing mushroom ID 09 with the same name, ‘きのこ’; if you cannot identify the item in your inventory, do not eat it—use shop food instead. Revisiting a search location does not guarantee the healing type: the magnifier selects mushroom type from the game’s shared sequence.",
-                    "毒キノコ ID 0A：食べると現在HPが0になる。確認した日本版ROMのメニューでは、回復キノコID 09も同じ「きのこ」と表示される。所持品を見分けられない場合は食べず、店の食料を使う。同じ探索地点へ戻っても回復用は保証されない。虫めがねはゲーム共通の乱数列からキノコの種類を選ぶ。",
-                    "เห็ดพิษ ID 0A: กินแล้ว HP ปัจจุบันเหลือ 0 เมนูใน ROM ญี่ปุ่นที่ทดสอบแสดงเห็ดฟื้นพลัง ID 09 ด้วยชื่อเดียวกันว่า “きのこ”; ถ้าแยกไอเท็มในช่องเก็บของไม่ได้ อย่ากิน ให้ใช้อาหารจากร้านแทน กลับไปค้นจุดเดิมก็ไม่รับประกันว่าจะได้เห็ดฟื้นพลัง เพราะแว่นขยายเลือกชนิดจากลำดับสุ่มร่วมของเกม",
+                    "Poison mushroom, red with yellow spots. Eating it sets your HP to 0: you black out and wake up at your saved position with 1 HP, keeping your money, fish and tools. In the food menu it has the same name as the healing mushroom (きのこ), so look at the icon: tan and flat is safe, red with yellow spots is poison. If in doubt, eat shop food instead.",
+                    "毒キノコ（黄色い斑点のある赤）。食べるとHPが0になる：気絶して保存位置で1HPの状態で目を覚まし、お金・魚・道具はそのまま。食料メニューでは回復キノコと同じ名前（きのこ）なので、アイコンを見る：茶色で平たいものは安全、黄色い斑点のある赤は毒。迷ったら店の食料を食べる。",
+                    "เห็ดพิษ สีแดงมีจุดเหลือง กินแล้ว HP เหลือ 0: คุณจะสลบแล้วตื่นที่จุดเซฟด้วย HP 1 โดยเงิน ปลา และอุปกรณ์ยังอยู่ครบ ในเมนูอาหารมีชื่อเดียวกับเห็ดฟื้นพลัง (きのこ) จึงต้องดูไอคอน: สีน้ำตาลอ่อนและแบนปลอดภัย สีแดงมีจุดเหลืองคือเห็ดพิษ ถ้าไม่แน่ใจ ให้กินอาหารจากร้านแทน",
                 )
                 entry["hpRecovery"] = {"effect": "sets current HP to 0"}
             else:
@@ -464,9 +473,9 @@ def build():
                     entry["hpRecovery"] = {"hp": delta}
             if item_id in ("09", "0A"):
                 entry["facts"] = loc_lists(
-                    ["In the tested menu, both IDs display “きのこ” but have opposite effects: +10 HP versus HP 0."],
-                    ["確認したメニューでは両IDとも「きのこ」と表示されるが、効果は+10HPとHP0で異なる。"],
-                    ["เมนูที่ทดสอบแสดงทั้งสอง ID ว่า “きのこ” แต่ผลต่างกัน: ฟื้น 10 HP กับทำให้ HP เหลือ 0"],
+                    ["Both mushrooms show the same name, “きのこ”, in the food menu, but the icons differ: the tan flat one heals 10 HP and the red one with yellow spots sets HP to 0."],
+                    ["食料メニューでは両方とも「きのこ」と表示されるが、アイコンが違う。茶色で平たいものはHP10回復、黄色い斑点のある赤いものはHPが0になる。"],
+                    ["ในเมนูอาหาร เห็ดสองชนิดใช้ชื่อ “きのこ” เหมือนกัน แต่ไอคอนต่างกัน: เห็ดแบนสีน้ำตาลอ่อนฟื้น 10 HP ส่วนเห็ดสีแดงมีจุดเหลืองทำให้ HP เหลือ 0"],
                 )
 
         elif category == "general_tool":
@@ -559,6 +568,10 @@ def build():
                         entry[field] = {lang: list(dict.fromkeys(entry.get(field, {}).get(lang, []) + finding[field].get(lang, []))) for lang in ("en", "ja", "th")}
                     else:
                         entry[field] = finding[field]
+        if key(category, item_id) in gear_overlay:
+            # Measured fight effects replace the older rod, hook and float wording.
+            entry.update(gear_overlay[key(category, item_id)])
+        apply_name_fixes(entry, category, item_id)
         if (DATA / "shop-stock-rom.json").exists():
             entry["shops"] = shop_stock.get(key(category, item_id), [])
         item_data[key(category, item_id)] = entry

@@ -169,5 +169,6 @@ async function checkWormForage(accepted, worm, lang) {
   assert.equal(next.searchParams.get('id'), '03')
   assert.equal(next.searchParams.get('fish'), '01')
   assert.equal(next.searchParams.get('route'), 'float')
-  assert.equal(next.hash, '#forage-stage-3-context-1')
+  // The worm's only verified dry-land tile is in area 5, so area 3 falls back to it.
+  assert.equal(next.hash, '#forage-stage-5-context-2')
 }

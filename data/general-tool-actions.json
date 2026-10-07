@@ -12,28 +12,28 @@
       "id": "01",
       "nameJa": "タライ",
       "summary": {
-        "en": "Keep using a tub you already own if it gets you where you need to go and you want to save the fresh milk. No canoe appears in the six recorded area shop stocks; the verified way to get one is to trade fresh milk to the area-3 canoe maker at (28,39).",
-        "ja": "今のタライで移動できて牛乳を残したいなら、そのまま使ってください。全6エリアの店頭在庫にカヌーは記録されていません。確認できた入手方法は、エリア3（28,39）の船大工に牛乳を渡す交換です。",
-        "th": "ถ้ามีกะละมังอยู่แล้วและพาไปถึงจุดหมายได้ ให้ใช้ต่อเมื่ออยากเก็บนมสดไว้; ไม่พบแคนูในสต็อกร้านทั้ง 6 ด่าน วิธีได้แคนูที่ยืนยันจากโค้ดคือเอานมสดไปแลกกับช่างทำเรือด่าน 3 (28,39)."
+        "en": "Keep using your tub if it gets you where you need to go. Rowing costs HP (about 1 HP per tile) while walking is free, so watch your HP on long trips. The canoe is faster: in still water it moves 14 steps for the tub's 10. No shop sells a canoe; you get one by trading fresh milk to the Area 3 canoe maker at (28,39).",
+        "ja": "今のタライで行きたい所へ行けるなら、そのまま使ってよい。こぐとHPを消費する（1マスにつき約1HP）が、歩くのは無料なので、長い移動ではHPに注意。カヌーのほうが速い：流れのない水面でタライの10歩に対してカヌーは14歩進む。カヌーを売る店はなく、エリア3（28,39）の船大工に新しい牛乳を渡すと手に入る。",
+        "th": "ถ้ากะละมังพาไปถึงที่หมายได้ ก็ใช้ต่อได้เลย การพายเสีย HP (ประมาณ 1 HP ต่อช่อง) แต่เดินไม่เสีย HP จึงต้องดู HP ตอนเดินทางไกล แคนูเร็วกว่า: ในน้ำนิ่งแคนูขยับ 14 ก้าว ขณะที่กะละมังขยับ 10 ก้าว ไม่มีร้านขายแคนู ต้องเอานมสดไปแลกกับช่างทำเรือด่าน 3 ที่ (28,39)"
       },
       "facts": {
         "en": [
-          "At an accepted launch location, the game places the tub and displays that it is floating on the water.",
-          "It cannot be launched while swimming or from an unusable tile. The tub then enters its own water-travel mode.",
-          "You cannot switch directly between the tub and canoe while riding. Get out of the current vehicle before using the other.",
-          "With no current contribution, the canoe movement table gives 14 position steps versus the tub’s 10 in the same cycle (+40%). Current changes the selected speed; this is not a universal 40% advantage."
+          "Use it from the item menu at a spot on the water's edge that allows launching. The game says it is floating on the water.",
+          "You cannot launch while swimming or from an unusable tile. You also cannot switch straight from the tub to the canoe: get out first.",
+          "Rowing costs about 1 HP per tile. Swimming costs 1 HP about every half second. Walking is free.",
+          "In still water the canoe moves 14 steps for the tub's 10 (+40%). Current changes the speed, so this is not +40% everywhere."
         ],
         "ja": [
-          "使用可能な場所ではタライを配置し、水に浮かんだことを表示する。",
-          "泳いでいる間や使用不可のタイルからは乗れない。乗るとタライ専用の水上移動モードに入る。",
-          "乗っている間にタライとカヌーを直接切り替えることはできない。別の乗り物を使う前に降りる。",
-          "流れの寄与がない時、同じ周期でカヌーは14回、タライは10回位置を進める（40%増）。流れで速度が変わるので、全地点で40%速いわけではない。"
+          "水際の乗れる場所でアイテムメニューから使う。水に浮かんだというメッセージが出る。",
+          "泳いでいる間や使えないタイルからは乗れない。タライからカヌーへ直接切り替えることもできないので、先に降りる。",
+          "こぐと1マスにつき約1HP消費。泳ぐと約0.5秒ごとに1HP消費。歩くのは無料。",
+          "流れのない水面では、タライの10歩に対しカヌーは14歩進む（40%増）。流れで速度が変わるので、どこでも40%速いわけではない。"
         ],
         "th": [
-          "ถ้าจุดนั้นใช้ได้ เกมจะวางกะละมังและแสดงข้อความว่าลอยอยู่บนผิวน้ำ",
-          "ขึ้นพาหนะขณะว่ายน้ำหรือจากช่องที่ใช้ไม่ได้ไม่สำเร็จ เมื่อขึ้นได้แล้วจะเข้าโหมดเดินทางทางน้ำของกะละมัง",
-          "ขณะอยู่บนพาหนะสลับกะละมังกับแคนูโดยตรงไม่ได้ ต้องลงจากพาหนะเดิมก่อนใช้ชนิดอื่น",
-          "ในน้ำที่โค้ดไม่มีแรงกระแส แคนูเคลื่อนที่เร็วกว่ากะละมัง: ตารางขยับให้ 14 เทียบกับ 10 ในรอบเดียวกัน (+40%) กระแสน้ำทำให้ความเร็วเปลี่ยน จึงไม่ใช่ +40% ทุกจุด"
+          "ใช้จากเมนูไอเท็มตรงจุดริมน้ำที่ปล่อยลงน้ำได้ เกมจะบอกว่าลอยอยู่บนผิวน้ำ",
+          "ว่ายน้ำอยู่หรือยืนบนช่องที่ใช้ไม่ได้จะลงไม่ได้ และสลับจากกะละมังเป็นแคนูทันทีไม่ได้ ต้องลงจากพาหนะก่อน",
+          "การพายเสียประมาณ 1 HP ต่อช่อง ส่วนการว่ายน้ำเสีย 1 HP ทุก ๆ ครึ่งวินาทีโดยประมาณ ส่วนการเดินไม่เสีย HP",
+          "ในน้ำนิ่งแคนูขยับ 14 ก้าว ขณะที่กะละมังขยับ 10 ก้าว (เร็วกว่า 40%) กระแสน้ำทำให้ความเร็วเปลี่ยน จึงไม่ได้เร็วกว่า 40% ทุกจุด"
         ]
       },
       "evidence": {
@@ -46,15 +46,18 @@
       "evidenceNotes": {
         "en": [
           "Current-sensitive movement and the different terrain eligibility checks are documented in boat-movement-research.md; no universal destination or speed claim is made.",
-          "The launch predicates are numeric terrain checks; a specific bank/depth classification has not been established."
+          "The launch predicates are numeric terrain checks; a specific bank/depth classification has not been established.",
+          "Audit 2026-10-07: rowing costs 1 HP per tile and swimming 1 HP per 32 frames (emulator). The canoe 14 vs tub 10 step counts were confirmed. The canoe maker refuses the milk trade when you already own a canoe."
         ],
         "ja": [
           "流れによる速度選択と地形判定の違いはboat-movement-research.mdに記録。全地点での速度・行き先の優位は主張しない。",
-          "乗る場所は数値の地形条件で判定される。岸・水深の分類は未確認。"
+          "乗る場所は数値の地形条件で判定される。岸・水深の分類は未確認。",
+          "2026-10-07監査：こぐと1マスにつき1HP、泳ぐと32フレームにつき1HP消費（エミュレーターで確認）。カヌー14歩・タライ10歩も確認済み。すでにカヌーを持っていると船大工は牛乳の交換を断る。"
         ],
         "th": [
           "รายละเอียดกระแสน้ำและเงื่อนไขช่องที่ผ่านได้อยู่ใน boat-movement-research.md ไม่สรุปว่าแคนูเร็วกว่าทุกกรณีหรือไปได้ทุกจุด",
-          "เกมตรวจจุดใช้ด้วยค่าประเภทพื้น ยังไม่ได้ยืนยันว่าแต่ละค่าหมายถึงริมฝั่งหรือความลึกเท่าไร"
+          "เกมตรวจจุดใช้ด้วยค่าประเภทพื้น ยังไม่ได้ยืนยันว่าแต่ละค่าหมายถึงริมฝั่งหรือความลึกเท่าไร",
+          "การตรวจ 2026-10-07: การพายเสีย 1 HP ต่อช่อง และการว่ายน้ำเสีย 1 HP ทุก 32 เฟรม (ยืนยันในอีมูเลเตอร์) ยืนยันด้วยว่าแคนู 14 ก้าว กะละมัง 10 ก้าว และช่างทำเรือปฏิเสธการแลกนมถ้ามีแคนูอยู่แล้ว"
         ]
       },
       "trace": {
@@ -88,31 +91,31 @@
       "id": "02",
       "nameJa": "カヌー",
       "summary": {
-        "en": "Choose the canoe if its extra movement in the traced no-current water branch is worth trading away fresh milk; that branch schedules 14 position steps versus the tub’s 10, not a universal trip-time guarantee. No area shop stock is recorded for the canoe. If you do not want to spend the milk, keep using your tub.",
-        "ja": "流れのない分岐で移動量が増えることを重視し、牛乳を交換に使ってよい場合はカヌーを選ぶ。この分岐ではタライの10回に対し14回位置を進めるが、全行程での所要時間が必ず短くなるわけではない。全エリアの店頭在庫にカヌーは記録されていません。牛乳を残すならタライを使い続ける。",
-        "th": "ถ้าต้องการให้เคลื่อนที่มากขึ้นในเส้นทางน้ำที่โค้ดตรวจว่าไม่มีกระแส และยอมแลกนมสดได้ ให้เลือกแคนู: รอบที่ตรวจขยับตำแหน่ง 14 ครั้ง เทียบกับกะละมัง 10 ครั้ง ไม่ได้แปลว่าเวลาเดินทางทุกเส้นทางสั้นลงเสมอ; ไม่พบแคนูในสต็อกร้านทั้งหกด่าน ถ้าอยากเก็บนมไว้ ใช้กะละมังต่อได้"
+        "en": "Optional. The canoe is faster than the tub: in still water it moves 14 steps for the tub's 10. Rowing costs HP either way (about 1 HP per tile). To get one, give fresh milk to the Area 3 canoe maker at (28,39); this works only if you do not own a canoe yet, and the trade uses up the milk (refilling the bottle at the cow is free). No shop sells a canoe. Skip the trade if you are happy with the tub.",
+        "ja": "任意。カヌーはタライより速い：流れのない水面でタライの10歩に対してカヌーは14歩進む。こぐとどちらもHPを消費する（1マスにつき約1HP）。入手するには、エリア3（28,39）の船大工に新しい牛乳を渡す。カヌーをまだ持っていないときだけ交換でき、牛乳は消費される（牛でのビンの補充は無料）。カヌーを売る店はない。タライで十分なら交換しなくてよい。",
+        "th": "ไม่บังคับ แคนูเร็วกว่ากะละมัง: ในน้ำนิ่งแคนูขยับ 14 ก้าว ขณะที่กะละมังขยับ 10 ก้าว ทั้งสองแบบเสีย HP ตอนพาย (ประมาณ 1 HP ต่อช่อง) วิธีได้แคนูคือเอานมสดไปให้ช่างทำเรือด่าน 3 ที่ (28,39) แลกได้เฉพาะตอนที่ยังไม่มีแคนู และการแลกใช้นมหมดไป (เติมนมที่วัวฟรี) ไม่มีร้านขายแคนู ถ้าพอใจกับกะละมังแล้วก็ข้ามการแลกนี้ได้"
       },
       "facts": {
         "en": [
-          "At an accepted launch location, the game places the canoe and displays that it is floating on the water.",
-          "It cannot be launched while swimming or from an unusable tile. The canoe then enters its own water-travel mode.",
-          "You cannot switch directly between the tub and canoe while riding. Get out of the current vehicle before using the other.",
-          "With no current contribution, the canoe movement table gives 14 position steps versus the tub’s 10 in the same cycle (+40%). Current changes the selected speed; this is not a universal 40% advantage.",
-          "If you do not already own a canoe, trade fresh milk to the area-3 canoe maker at X 28, Y 39. Take the town-chest bottle to the cow first; the exchange consumes the milk."
+          "Use it from the item menu at a spot on the water's edge that allows launching. The game says it is floating on the water.",
+          "You cannot launch while swimming or from an unusable tile. You also cannot switch straight from the canoe to the tub: get out first.",
+          "Rowing costs about 1 HP per tile. Swimming costs 1 HP about every half second. Walking is free.",
+          "In still water the canoe moves 14 steps for the tub's 10 (+40%). Current changes the speed, so this is not +40% everywhere.",
+          "To get the canoe, take the bottle from the Area 3 town chest, fill it at the cow, then hand the fresh milk to the canoe maker at (28,39). The maker refuses if you already own a canoe."
         ],
         "ja": [
-          "使用可能な場所ではカヌーを配置し、水に浮かんだことを表示する。",
-          "泳いでいる間や使用不可のタイルからは乗れない。乗るとカヌー専用の水上移動モードに入る。",
-          "乗っている間にタライとカヌーを直接切り替えることはできない。別の乗り物を使う前に降りる。",
-          "流れの寄与がない時、同じ周期でカヌーは14回、タライは10回位置を進める（40%増）。流れで速度が変わるので、全地点で40%速いわけではない。",
-          "カヌーをまだ持っていない場合、エリア3の職人（X28、Y39）に新鮮な牛乳を渡して交換できる。先に町の宝箱のビンを牛で満たす。交換で牛乳を消費する。"
+          "水際の乗れる場所でアイテムメニューから使う。水に浮かんだというメッセージが出る。",
+          "泳いでいる間や使えないタイルからは乗れない。カヌーからタライへ直接切り替えることもできないので、先に降りる。",
+          "こぐと1マスにつき約1HP消費。泳ぐと約0.5秒ごとに1HP消費。歩くのは無料。",
+          "流れのない水面では、タライの10歩に対しカヌーは14歩進む（40%増）。流れで速度が変わるので、どこでも40%速いわけではない。",
+          "カヌーを得るには、エリア3の町の宝箱でビンを取り、牛で牛乳にして、船大工（28,39）に渡す。すでにカヌーを持っていると断られる。"
         ],
         "th": [
-          "ถ้าจุดนั้นใช้ได้ เกมจะวางแคนูและแสดงข้อความว่าลอยอยู่บนผิวน้ำ",
-          "ขึ้นพาหนะขณะว่ายน้ำหรือจากช่องที่ใช้ไม่ได้ไม่สำเร็จ เมื่อขึ้นได้แล้วจะเข้าโหมดเดินทางทางน้ำของแคนู",
-          "ขณะอยู่บนพาหนะสลับกะละมังกับแคนูโดยตรงไม่ได้ ต้องลงจากพาหนะเดิมก่อนใช้ชนิดอื่น",
-          "ในน้ำที่โค้ดไม่มีแรงกระแส แคนูเคลื่อนที่เร็วกว่ากะละมัง: ตารางขยับให้ 14 เทียบกับ 10 ในรอบเดียวกัน (+40%) กระแสน้ำทำให้ความเร็วเปลี่ยน จึงไม่ใช่ +40% ทุกจุด",
-          "ถ้ายังไม่มีแคนู เอานมสดไปแลกกับช่างทำเรือด่าน 3 ที่ X 28, Y 39 ได้ รับขวดจากหีบในเมืองแล้วเติมนมกับวัวก่อน การแลกใช้ไอเท็มนมไป"
+          "ใช้จากเมนูไอเท็มตรงจุดริมน้ำที่ปล่อยลงน้ำได้ เกมจะบอกว่าลอยอยู่บนผิวน้ำ",
+          "ว่ายน้ำอยู่หรือยืนบนช่องที่ใช้ไม่ได้จะลงไม่ได้ และสลับจากแคนูเป็นกะละมังทันทีไม่ได้ ต้องลงจากพาหนะก่อน",
+          "การพายเสียประมาณ 1 HP ต่อช่อง ส่วนการว่ายน้ำเสีย 1 HP ทุก ๆ ครึ่งวินาทีโดยประมาณ ส่วนการเดินไม่เสีย HP",
+          "ในน้ำนิ่งแคนูขยับ 14 ก้าว ขณะที่กะละมังขยับ 10 ก้าว (เร็วกว่า 40%) กระแสน้ำทำให้ความเร็วเปลี่ยน จึงไม่ได้เร็วกว่า 40% ทุกจุด",
+          "วิธีได้แคนู: รับขวดจากหีบในเมืองด่าน 3 เติมนมที่วัว แล้วเอานมสดไปให้ช่างทำเรือที่ (28,39) ถ้ามีแคนูอยู่แล้ว ช่างจะไม่รับแลก"
         ]
       },
       "evidence": {
@@ -126,15 +129,18 @@
       "evidenceNotes": {
         "en": [
           "Current-sensitive movement and the different terrain eligibility checks are documented in boat-movement-research.md; no universal destination or speed claim is made.",
-          "The launch predicates are numeric terrain checks; a specific bank/depth classification has not been established."
+          "The launch predicates are numeric terrain checks; a specific bank/depth classification has not been established.",
+          "Audit 2026-10-07: rowing costs 1 HP per tile and swimming 1 HP per 32 frames (emulator). The canoe 14 vs tub 10 step counts were confirmed. The canoe maker refuses the milk trade when you already own a canoe."
         ],
         "ja": [
           "流れによる速度選択と地形判定の違いはboat-movement-research.mdに記録。全地点での速度・行き先の優位は主張しない。",
-          "乗る場所は数値の地形条件で判定される。岸・水深の分類は未確認。"
+          "乗る場所は数値の地形条件で判定される。岸・水深の分類は未確認。",
+          "2026-10-07監査：こぐと1マスにつき1HP、泳ぐと32フレームにつき1HP消費（エミュレーターで確認）。カヌー14歩・タライ10歩も確認済み。すでにカヌーを持っていると船大工は牛乳の交換を断る。"
         ],
         "th": [
           "รายละเอียดกระแสน้ำและเงื่อนไขช่องที่ผ่านได้อยู่ใน boat-movement-research.md ไม่สรุปว่าแคนูเร็วกว่าทุกกรณีหรือไปได้ทุกจุด",
-          "เกมตรวจจุดใช้ด้วยค่าประเภทพื้น ยังไม่ได้ยืนยันว่าแต่ละค่าหมายถึงริมฝั่งหรือความลึกเท่าไร"
+          "เกมตรวจจุดใช้ด้วยค่าประเภทพื้น ยังไม่ได้ยืนยันว่าแต่ละค่าหมายถึงริมฝั่งหรือความลึกเท่าไร",
+          "การตรวจ 2026-10-07: การพายเสีย 1 HP ต่อช่อง และการว่ายน้ำเสีย 1 HP ทุก 32 เฟรม (ยืนยันในอีมูเลเตอร์) ยืนยันด้วยว่าแคนู 14 ก้าว กะละมัง 10 ก้าว และช่างทำเรือปฏิเสธการแลกนมถ้ามีแคนูอยู่แล้ว"
         ]
       },
       "trace": {
@@ -175,30 +181,30 @@
       "facts": {
         "en": [
           "Search the field location you are standing at. Searching the same tile again without moving returns nothing.",
-          "In the six main areas, the search can yield worm, maggot, large earthworm, waxworm, insect or bee larva, depending on the ground context. Area 3 also has a potato-bait context.",
-          "A coordinate band in town maps yields kneaded bait. The connecting route can yield large earthworm or mushrooms. Poisonous mushrooms are possible; the find message does not distinguish them.",
+          "In the six main areas, the search can yield worm, maggot, large earthworm, grapevine larva, insect or bee larva, depending on the ground context. Area 3 also has a potato-bait context.",
+          "A coordinate band in town maps yields kneaded bait. The connecting route can yield large earthworm or mushrooms. The find message does not say which mushroom you got, but the icon does: the tan flat mushroom heals 10 HP, the red one with yellow spots is poison.",
           "Bait rewards are 1–4 at a time, up to 9 per bait type. Mushrooms need an empty food slot.",
           "Do not search while standing in shallow water or riding a tub/canoe; those modes reject the magnifier action.",
-          "Open an area map below and walk to a bait icon to search. These are example terrain-context tiles, not the only searchable tiles.",
-          "Do not treat a search tile as guaranteeing a healing mushroom: this branch selects the type from a shared sequence, not the tile. The discovery message also covers poison mushrooms. If you cannot identify it, recover HP with shop food instead."
+          "Stand on dry land to use the glass; it does not work in water. Open an area map below and walk to a bait icon: these are the dry-land tiles we verified in the game, not the only ones.",
+          "Do not count on a search tile giving the healing mushroom: the type comes from a shared sequence, not the tile. Both mushrooms have the same name in the food menu, so check the icon before you eat: tan and flat is safe, red with yellow spots is poison."
         ],
         "ja": [
           "現在地を調べる。同じタイルで動かずにもう一度使うと何も見つからない。",
           "6つのメインエリアでは、場所によりミミズ、サシ、ドバミミズ、ブドウムシ、昆虫、ハチの子が見つかる。エリア3にはイモが見つかる場所もある。",
-          "町の特定の座標帯ではネリエが見つかる。連絡路ではドバミミズやキノコが見つかる。毒キノコもあるが、発見メッセージでは区別されない。",
+          "町の特定の座標帯ではネリエが見つかる。連絡路ではドバミミズやキノコが見つかる。見つかったときのメッセージではどのキノコか分からないが、アイコンで見分けられる。茶色い平たいキノコはHP10回復、黄色い斑点のある赤いキノコは毒。",
           "エサは一度に1～4個、種類ごとに最大9個。キノコには食料欄の空きが必要。",
           "浅瀬に立っている時やタライ・カヌーに乗っている時は虫メガネを使えない。",
-          "下の地図でエリアを選び、エサ画像の地点へ歩いて探す。地形分類から抽出した地点例で、探せる場所はほかにもある。",
-          "探索地点を回復キノコの確定地点と考えないでください。この分岐は地点ではなく共通の乱数列で種類を選び、毒キノコにも同じ発見文を表示します。識別できなければHP回復には店の食料を使ってください。"
+          "虫メガネは水の中では使えない。陸地に立って使う。下の地図でエリアを選び、エサ画像の地点へ歩いて探す。実際に確認できた陸地のタイルで、探せる場所はほかにもある。",
+          "探索地点で回復キノコが出るとは限らない。種類は地点ではなく共通の乱数列で決まる。食料メニューでは2種類とも同じ名前なので、食べる前にアイコンを確認する。茶色で平たいものは安全、黄色い斑点のある赤いものは毒。"
         ],
         "th": [
           "ค้นหาจุดที่ยืนอยู่ ถ้าไม่ขยับแล้วค้นช่องเดิมซ้ำจะไม่พบอะไร",
           "ใน 6 ด่านหลัก ขุดหาได้ทั้งไส้เดือน หนอนแมลงวัน ไส้เดือนใหญ่ หนอนองุ่น แมลง และตัวอ่อนผึ้ง ตามชนิดจุดที่ยืนอยู่ ด่าน 3 มีจุดที่ให้เหยื่อมันฝรั่งด้วย",
-          "ในเขตเมืองมีแถบตำแหน่งที่ให้เหยื่อปั้น ส่วนทางเชื่อมระหว่างด่านอาจได้ไส้เดือนใหญ่หรือเห็ด มีเห็ดพิษด้วย แต่ข้อความตอนพบเห็ดไม่บอกว่าเป็นชนิดไหน",
+          "ในเขตเมืองมีแถบตำแหน่งที่ให้เหยื่อปั้น ส่วนทางเชื่อมระหว่างด่านอาจได้ไส้เดือนใหญ่หรือเห็ด ข้อความตอนพบเห็ดไม่บอกว่าเป็นเห็ดชนิดไหน แต่ดูจากไอคอนได้ เห็ดแบนสีน้ำตาลอ่อนฟื้น 10 HP ส่วนเห็ดสีแดงมีจุดเหลืองเป็นเห็ดพิษ",
           "เหยื่อได้ครั้งละ 1–4 ชิ้น สูงสุดชนิดละ 9 ชิ้น ส่วนเห็ดต้องมีช่องอาหารว่าง",
           "ใช้แว่นขยายไม่ได้ขณะยืนในน้ำตื้นหรืออยู่บนกะละมัง/แคนู",
-          "เปิดแผนที่ด้านล่าง เลือกด่าน แล้วเดินไปยืนตรงรูปเหยื่อเพื่อค้นหา เป็นตัวอย่างจุดจากชนิดพื้นใน ROM ไม่ใช่จุดหาได้เพียงจุดเดียว",
-          "ไม่มีพิกัดที่รับประกันเห็ดฟื้นพลังในส่วนที่ตรวจแล้ว: เกมสุ่มชนิดเห็ดจากลำดับร่วม ไม่ได้กำหนดตามช่องที่ยืน ข้อความพบเห็ดไม่แยกเห็ดพิษ ถ้าแยกชนิดไม่ได้ ใช้อาหารจากร้านเติม HP แทน"
+          "ต้องยืนบนพื้นดินแห้งถึงจะใช้แว่นขยายได้ ในน้ำใช้ไม่ได้ เปิดแผนที่ด้านล่าง เลือกด่าน แล้วเดินไปยืนตรงรูปเหยื่อ จุดเหล่านี้คือจุดบนบกที่ลองในเกมแล้วใช้ได้ ไม่ใช่จุดเดียวที่ค้นหาได้",
+          "อย่าคิดว่าจุดค้นหาจุดไหนจะได้เห็ดฟื้นพลังแน่ ๆ เพราะเกมสุ่มชนิดจากลำดับร่วม ไม่ได้กำหนดตามช่องที่ยืน เห็ดสองชนิดมีชื่อเดียวกันในเมนูอาหาร ก่อนกินให้ดูไอคอน: สีน้ำตาลอ่อนและแบนปลอดภัย สีแดงมีจุดเหลืองคือเห็ดพิษ"
         ]
       },
       "evidence": {
@@ -212,13 +218,16 @@
       },
       "evidenceNotes": {
         "en": [
-          "The ROM stores the location context as a number; labels such as 'grass' or 'riverbank' are not assigned without an explicit decoded tile label. RNG branches are described by their code conditions, not as fixed percentages."
+          "The ROM stores the location context as a number; labels such as 'grass' or 'riverbank' are not assigned without an explicit decoded tile label. RNG branches are described by their code conditions, not as fixed percentages.",
+          "Audit 2026-10-07: food 09 (tan flat icon) heals 10 HP and food 0A (red with yellow spots) sets HP to 0; both show as the same name in the menu but their icons differ."
         ],
         "ja": [
-          "ROMは場所コンテキストを数値で保持する。「草地」「川岸」などの名称は、タイル名が明示的に解読できない限り付けない。乱数分岐はコード条件で記述し、確率として断定しない。"
+          "ROMは場所コンテキストを数値で保持する。「草地」「川岸」などの名称は、タイル名が明示的に解読できない限り付けない。乱数分岐はコード条件で記述し、確率として断定しない。",
+          "2026-10-07監査：食料09（茶色く平たいアイコン）はHP10回復、食料0A（黄色い斑点のある赤いアイコン）はHPが0になる。メニューの名前は同じだがアイコンは異なる。"
         ],
         "th": [
-          "ROM เก็บบริบทตำแหน่งเป็นตัวเลข จึงไม่ตั้งชื่อว่าเป็นหญ้าหรือริมแม่น้ำถ้ายังไม่มีป้ายชนิดช่องที่ถอดได้ และอธิบายผลสุ่มตามเงื่อนไขในโค้ด ไม่สรุปเป็นเปอร์เซ็นต์"
+          "ROM เก็บบริบทตำแหน่งเป็นตัวเลข จึงไม่ตั้งชื่อว่าเป็นหญ้าหรือริมแม่น้ำถ้ายังไม่มีป้ายชนิดช่องที่ถอดได้ และอธิบายผลสุ่มตามเงื่อนไขในโค้ด ไม่สรุปเป็นเปอร์เซ็นต์",
+          "การตรวจ 2026-10-07: อาหาร 09 (ไอคอนแบนสีน้ำตาลอ่อน) ฟื้น 10 HP ส่วนอาหาร 0A (ไอคอนสีแดงมีจุดเหลือง) ทำให้ HP เหลือ 0 ชื่อในเมนูเหมือนกันแต่ไอคอนต่างกัน"
         ]
       },
       "trace": {
@@ -260,25 +269,25 @@
       "id": "04",
       "nameJa": "金アミ",
       "summary": {
-        "en": "Use the gold net on a new shallow-water tile to catch the bait type assigned to that area.",
-        "ja": "浅瀬の新しいタイルで金アミを使い、エリアごとに決まったエサを採る。",
-        "th": "ใช้ตาข่ายสีทองที่ช่องน้ำตื้นช่องใหม่ เพื่อเก็บเหยื่อชนิดที่กำหนดไว้สำหรับพื้นที่นั้น"
+        "en": "Optional free bait. Wade into shallow water (not in a boat), use the net from the item menu, and you get 1 to 4 pieces of the bait for that area, up to 9 of each kind. Move to a different shallow tile before you use it again: the same tile gives nothing.",
+        "ja": "任意の無料エサ集め。浅瀬に歩いて入り（ボートの上ではだめ）、アイテムメニューで金アミを使うと、そのエリアのエサが1〜4個手に入る。種類ごとに最大9個。もう一度使う前に別の浅瀬のタイルへ移動すること。同じタイルでは何も取れない。",
+        "th": "เหยื่อฟรีแบบไม่บังคับ ลุยลงน้ำตื้น (ห้ามอยู่บนเรือ) แล้วใช้ตาข่ายจากเมนูไอเท็ม จะได้เหยื่อของด่านนั้น 1-4 ชิ้น สูงสุดชนิดละ 9 ชิ้น ก่อนใช้ซ้ำให้ขยับไปช่องน้ำตื้นช่องอื่น ช่องเดิมจะไม่ได้อะไร"
       },
       "facts": {
         "en": [
-          "Stand in shallow water and use the net. Move to a new eligible tile before using it again.",
+          "Stand in shallow water on foot (not on the tub or canoe) and use the net. Move to a new eligible tile before using it again.",
           "The bait depends on the area: 1 aquatic insect; 2 caddis larva; 3 salmon roe; 4 shelled clam meat; 5 bloodworm; 6 ragworm.",
-          "You get 1–4 pieces, up to 9 of each bait type. Make space in the bait pouch first."
+          "Each use gives 1 to 4 pieces (not always the same amount), up to 9 of each bait type. Make space in the bait pouch first."
         ],
         "ja": [
-          "浅瀬に立って使う。もう一度採るには別の使用可能なタイルへ移動する。",
+          "徒歩で浅瀬に立ち（タライ・カヌーの上ではだめ）、金アミを使う。もう一度採るには別の使用可能なタイルへ移動する。",
           "エリア別のエサ：1カワムシ、2トビケラ、3イクラ、4貝のむきみ、5アカムシ、6ゴカイ。",
-          "一度に1～4個、種類ごとに最大9個。エサ欄に空きを作っておく。"
+          "1回で1〜4個（毎回同じ数とは限らない）、種類ごとに最大9個。先にエサ欄に空きを作っておく。"
         ],
         "th": [
-          "ยืนในน้ำตื้นแล้วเลือกใช้ตาข่าย ต้องขยับไปช่องใหม่ที่ใช้ได้ก่อนเก็บซ้ำ",
+          "ยืนในน้ำตื้นด้วยการเดินลุย (ไม่ใช่บนกะละมังหรือแคนู) แล้วใช้ตาข่าย ก่อนใช้ซ้ำต้องขยับไปช่องใหม่ที่ใช้ได้",
           "เหยื่อที่ได้ตามด่าน: 1 แมลงน้ำ; 2 ตัวอ่อนแมลงหนอนปลอกน้ำ; 3 ไข่ปลาแซลมอน; 4 เนื้อหอย; 5 หนอนเลือด; 6 หนอนทะเล",
-          "ได้ครั้งละ 1–4 ชิ้น สูงสุดชนิดละ 9 ชิ้น ต้องมีที่ว่างในกระเป๋าเหยื่อ"
+          "ใช้ครั้งหนึ่งได้ 1-4 ชิ้น (ไม่ได้เท่ากันทุกครั้ง) สูงสุดชนิดละ 9 ชิ้น ต้องเว้นที่ว่างในกระเป๋าเหยื่อก่อน"
         ]
       },
       "evidence": {
@@ -289,13 +298,16 @@
       },
       "evidenceNotes": {
         "en": [
-          "The six output names are joined from bait IDs whose Japanese item names are preserved in the ROM item catalogue. The ROM table provides the IDs directly."
+          "The six output names are joined from bait IDs whose Japanese item names are preserved in the ROM item catalogue. The ROM table provides the IDs directly.",
+          "Audit 2026-10-07: the net gives 1 to 4 pieces per use (not always 3), works only while wading, and returns nothing on the tile you just used."
         ],
         "ja": [
-          "6種類の名称は、ROMのアイテム一覧に記録されたエサIDの日本語名と対応付けた。ROM表自体が返すのはID。"
+          "6種類の名称は、ROMのアイテム一覧に記録されたエサIDの日本語名と対応付けた。ROM表自体が返すのはID。",
+          "2026-10-07監査：金アミは1回につき1〜4個（常に3個とは限らない）。歩いて浅瀬に入っているときだけ使え、直前に使ったタイルでは何も取れない。"
         ],
         "th": [
-          "ชื่อเหยื่อทั้งหกจับคู่จาก ID กับชื่อญี่ปุ่นในรายการไอเท็มที่ถอดจาก ROM ตารางของตาข่ายระบุ ID โดยตรง"
+          "ชื่อเหยื่อทั้งหกจับคู่จาก ID กับชื่อญี่ปุ่นในรายการไอเท็มที่ถอดจาก ROM ตารางของตาข่ายระบุ ID โดยตรง",
+          "การตรวจ 2026-10-07: ตาข่ายให้ครั้งละ 1-4 ชิ้น (ไม่ใช่ 3 ชิ้นเสมอ) ใช้ได้เฉพาะตอนลุยน้ำ และช่องที่เพิ่งใช้จะไม่ได้อะไร"
         ]
       },
       "trace": {
@@ -379,9 +391,9 @@
           "初期所持は日本語原版ROMの4人分の初期化コードで確認。新しい操作再現やタイ語パッチの独立確認ではなく、再入手方法も未確認です。"
         ],
         "th": [
-          "ยืนยันความสัมพันธ์ระหว่างหกหน้ากับพื้นที่จากเส้นทางวาดฉากและสมุดใน ROM แต่ไม่ได้อ้างว่าภาพในสมุดระบุพิกัดเกิดปลาได้",
-          "เปิดสมุดตกปลาเพื่อดูบันทึกปลาที่จัดเป็นหกพื้นที่ พร้อมหน้าภาพรวมของพื้นที่ตามลำดับ",
-          "เกมเรียงรายการปลาในแต่ละพื้นที่ ไอเท็มนี้ใช้เปิดดูข้อมูล ไม่ได้เปลี่ยนอุปกรณ์ตกปลา",
+          "ยืนยันความสัมพันธ์ระหว่างหกหน้ากับด่านจากเส้นทางวาดฉากและสมุดใน ROM แต่ไม่ได้อ้างว่าภาพในสมุดระบุพิกัดเกิดปลาได้",
+          "เปิดสมุดตกปลาเพื่อดูบันทึกปลาที่จัดเป็นหกด่าน พร้อมหน้าภาพรวมของด่านตามลำดับ",
+          "เกมเรียงรายการปลาในแต่ละด่าน ไอเท็มนี้ใช้เปิดดูข้อมูล ไม่ได้เปลี่ยนอุปกรณ์ตกปลา",
           "ยืนยันการมีสมุดเริ่มต้นจากโค้ด ROM ญี่ปุ่นของทั้ง 4 ตัวละคร ไม่ใช่การเล่นทดสอบใหม่หรือการตรวจแพตช์ไทยแยก และยังไม่ได้ยืนยันวิธีรับทดแทน"
         ]
       },
@@ -406,25 +418,25 @@
       "id": "0E",
       "nameJa": "磁石",
       "summary": {
-        "en": "Use the magnet as a compass toward the area's exit/connecting route; it also reports your current area and subregion.",
-        "ja": "磁石でエリア出口・連絡路の方向を調べ、現在のエリアと区画を確認する。",
-        "th": "ใช้แม่เหล็กดูทิศไปทางทางออกหรือทางเชื่อมของพื้นที่ พร้อมดูพื้นที่และช่วงที่ยืนอยู่"
+        "en": "Do you need it? Rarely. It shows a compass direction to the area's exit and tells you which section you are in. In Area 6, once the doctor's note has appeared, it points to the giant eel at (41,8) instead. One compass is enough.",
+        "ja": "必要か？ あまり必要ない。エリアの出口がどの方角か、今どの区画にいるかが分かる。エリア6では医者の文面が出たあと、出口ではなく(41,8)にいるオオウナギを指す。磁石は1個で足りる。",
+        "th": "ต้องซื้อไหม? แทบไม่จำเป็น ใช้ดูทิศทางไปทางออกของด่านและดูว่ากำลังอยู่ช่วงไหนของด่าน ในด่าน 6 หลังข้อความจากหมอปรากฏ เข็มทิศจะชี้ไปที่ปลาไหลยักษ์ที่ (41,8) แทนทางออก ซื้อชิ้นเดียวพอ"
       },
       "facts": {
         "en": [
-          "Use it to read a compass heading toward the area’s exit/connecting route and to see your current area and section.",
-          "At the exit target the needle stops. The message gives a direction and your current location, but does not name the destination.",
-          "In area 6, a story-progress condition controls whether a heading appears; before that, it reports only your location. Town maps use fixed headings rather than the outdoor exit targets."
+          "Use it from the item menu. It shows a compass direction toward the exit of the area you are in, plus your area and section.",
+          "In Areas 1 to 5 it points at the area exit. At the exit the needle stops. The message does not name the destination.",
+          "In Area 6 it only tells you where you are until the doctor's note has appeared (read the received postcard). After that it points to the giant eel at (41,8). Town maps always show a fixed direction."
         ],
         "ja": [
-          "使うと出口・連絡路の方角と、現在のエリア／区画を確認できる。",
-          "出口ターゲットに着くと針が止まる。表示は方角と現在地で、目的地名は出ない。",
-          "エリア6の方角表示には物語の進行条件があり、それ以前は現在地だけを表示する。町では屋外の出口座標ではなく固定の方角を使う。"
+          "アイテムメニューから使う。今いるエリアの出口の方角と、現在のエリア・区画が表示される。",
+          "エリア1〜5では出口を指す。出口に着くと針が止まる。目的地の名前は表示されない。",
+          "エリア6では、医者の文面が出る（受け取ったハガキを読む）までは現在地しか分からない。その後は(41,8)のオオウナギを指す。町では固定の方角が表示される。"
         ],
         "th": [
-          "ใช้ดูทิศไปทางทางออกหรือทางเชื่อม และดูพื้นที่กับช่วงที่ยืนอยู่",
-          "เมื่อถึงจุดเป้าหมาย เข็มจะหยุด ข้อความบอกทิศกับตำแหน่งปัจจุบัน แต่ไม่บอกชื่อปลายทาง",
-          "ด่าน 6 ต้องผ่านเงื่อนไขเนื้อเรื่องก่อนจึงบอกทิศได้ ก่อนหน้านั้นบอกแค่ตำแหน่ง ส่วนในเมืองใช้ทิศที่เกมกำหนดไว้ตายตัว"
+          "ใช้จากเมนูไอเท็ม แสดงทิศทางไปทางออกของด่านที่อยู่ พร้อมบอกด่านและช่วงที่ยืนอยู่",
+          "ในด่าน 1-5 เข็มชี้ไปที่ทางออก เมื่อถึงทางออกเข็มจะหยุด ข้อความไม่บอกชื่อปลายทาง",
+          "ในด่าน 6 จะบอกแค่ตำแหน่งปัจจุบันจนกว่าข้อความของหมอจะปรากฏ (อ่านไปรษณียบัตรที่ได้รับ) หลังจากนั้นเข็มจะชี้ไปที่ปลาไหลยักษ์ที่ (41,8) ส่วนในเมืองแสดงทิศที่เกมกำหนดไว้ตายตัว"
         ]
       },
       "evidence": {
@@ -435,13 +447,16 @@
       },
       "evidenceNotes": {
         "en": [
-          "Target tiles are ROM coordinates in the game's map coordinate system. The Japanese direction substitutions are preserved from messages 015C–0162; English/Thai direction names are translations. No destination name appears in message 0144."
+          "Target tiles are ROM coordinates in the game's map coordinate system. The Japanese direction substitutions are preserved from messages 015C–0162; English/Thai direction names are translations. No destination name appears in message 0144.",
+          "Audit 2026-10-07: the heading is a cardinal direction plus your tile; in Areas 1-5 it points at the exit, and in Area 6 at the giant eel (41,8) once story bit 0x04 is set."
         ],
         "ja": [
-          "ターゲットはゲームのマップ座標系によるROM座標。方角置換はメッセージ015C～0162に基づく。メッセージ0144に目的地名はない。"
+          "ターゲットはゲームのマップ座標系によるROM座標。方角置換はメッセージ015C～0162に基づく。メッセージ0144に目的地名はない。",
+          "2026-10-07監査：表示は東西南北の方角と現在のタイル。エリア1〜5では出口、エリア6では物語ビット0x04が立つとオオウナギ(41,8)を指す。"
         ],
         "th": [
-          "พิกัดเป้าหมายเป็นพิกัดแผนที่ภายในเกม คำบอกทิศอ้างจากข้อความ 015C–0162 และข้อความ 0144 ไม่มีชื่อปลายทาง"
+          "พิกัดเป้าหมายเป็นพิกัดแผนที่ภายในเกม คำบอกทิศอ้างจากข้อความ 015C–0162 และข้อความ 0144 ไม่มีชื่อปลายทาง",
+          "การตรวจ 2026-10-07: เข็มบอกทิศหลักและช่องที่ยืน ในด่าน 1-5 ชี้ที่ทางออก ส่วนในด่าน 6 ชี้ที่ปลาไหลยักษ์ (41,8) เมื่อบิตเนื้อเรื่อง 0x04 ถูกตั้ง"
         ]
       },
       "trace": {

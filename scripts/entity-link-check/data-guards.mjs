@@ -117,7 +117,11 @@ for (const item of data.items.filter((entry) => entry.category === 'hook')) {
     (item.playerUse.targetMatches || []).map((match) => match.fishId).sort(),
   )
 }
-for (const item of data.items.filter((entry) => entry.category === 'fly_wing')) {
+// Wings 25, 66 and 67 are not sold anywhere (data/item-names.json), so there is no lock advice to give.
+const NOT_SOLD_WINGS = new Set(['25', '66', '67'])
+for (const item of data.items.filter(
+  (entry) => entry.category === 'fly_wing' && !NOT_SOLD_WINGS.has(entry.id),
+)) {
   assert(item.gearDecision.reason.en.includes('only a ticket past the lock'))
   assert(item.gearDecision.reason.en.includes('The tail is only looks'))
 }
@@ -198,14 +202,23 @@ function checkGearPrices() {
 function checkHookPrices() {
   for (const stage of [1, 2, 3, 4, 5, 6]) {
     const row = data.gearPriceGuide.hook[stage]
-    const eligible = data.items.filter(
-      (item) =>
-        item.category === 'hook' &&
-        item.rawFields['+1'] === 0 &&
-        item.playerUse.shops.some((shop) => Number(shop.stage) === stage && !shop.condition),
-    )
-    assert.equal(row.priceYen, Math.min(...eligible.map((item) => item.priceYen)))
-    assert(eligible.some((item) => item.id === row.id && item.priceYen === row.priceYen))
+    // One cheapest stocked hook per fish-size class (rawFields +0), or none when that class is not sold yet.
+    for (const size of [0, 1, 2]) {
+      const eligible = data.items.filter(
+        (item) =>
+          item.category === 'hook' &&
+          item.rawFields['+0'] === size &&
+          item.playerUse.shops.some((shop) => Number(shop.stage) === stage && !shop.condition),
+      )
+      const choice = row.bySize[size]
+      if (!eligible.length) {
+        assert.equal(choice, null, `Area ${stage} sells no size-${size} hook`)
+        continue
+      }
+      assert.equal(choice.priceYen, Math.min(...eligible.map((item) => item.priceYen)))
+      assert(eligible.some((item) => item.id === choice.id && item.priceYen === choice.priceYen))
+    }
+    assert.equal(row.id, row.bySize[1].id)
   }
 }
 

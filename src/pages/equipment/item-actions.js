@@ -52,7 +52,7 @@ export function compassUseChoice(ctx, item) {
       : ctx.lang === 'ja'
         ? '迷ったら現在エリアの出口地点を見る'
         : 'Lost? See the exit point for your current area'
-  return `<aside class="detail-section compass-exit-choice" data-compass-exit-choice><h3>${label}</h3><p>${ctx.lang === 'th' ? 'เลือกด่าน แล้วดูรูปแม่เหล็กที่ชี้จุดทางเชื่อม เข็มจะหยุดเมื่อถึงช่องเป้าหมาย แต่คำบอกทิศไม่ใช่เส้นทางหลบสิ่งกีดขวาง' : ctx.lang === 'ja' ? 'エリアを選び、磁石画像が示す連絡路の地点を確認します。目標タイルで針が止まりますが、方角表示は障害物を避ける経路案内ではありません。' : 'Choose an area and find the connecting-route point marked by the magnet portrait. The needle stops at its target tile; the heading does not supply a route around obstacles.'}</p>${locations.map((loc) => `<p><a data-compass-location href="${ctx.esc(ctx.areaItemLink(item, loc.stage, '#compass-exit-' + loc.stage))}">${ctx.lang === 'th' ? 'ด่าน' : ctx.lang === 'ja' ? 'エリア' : 'Area'} ${loc.stage} · ${ctx.lang === 'th' ? 'ดูจุดที่เข็มหยุด' : ctx.lang === 'ja' ? '針が止まる地点を見る' : 'See where the needle stops'} ↗</a></p>`).join('')}</aside>`
+  return `<aside class="detail-section compass-exit-choice" data-compass-exit-choice><h3>${label}</h3><p>${ctx.lang === 'th' ? 'เลือกด่าน แล้วดูรูปเข็มทิศที่ชี้จุดทางเชื่อม เข็มจะหยุดเมื่อถึงช่องเป้าหมาย แต่คำบอกทิศไม่ใช่เส้นทางหลบสิ่งกีดขวาง' : ctx.lang === 'ja' ? 'エリアを選び、磁石画像が示す連絡路の地点を確認します。目標タイルで針が止まりますが、方角表示は障害物を避ける経路案内ではありません。' : 'Choose an area and find the connecting-route point marked by the compass picture. The needle stops at its target tile; the heading does not supply a route around obstacles.'}</p>${locations.map((loc) => `<p><a data-compass-location href="${ctx.esc(ctx.areaItemLink(item, loc.stage, '#compass-exit-' + loc.stage))}">${ctx.lang === 'th' ? 'ด่าน' : ctx.lang === 'ja' ? 'エリア' : 'Area'} ${loc.stage} · ${ctx.lang === 'th' ? 'ดูจุดที่เข็มหยุด' : ctx.lang === 'ja' ? '針が止まる地点を見る' : 'See where the needle stops'} ↗</a></p>`).join('')}</aside>`
 }
 
 export function gatheredBaitChoices(ctx, item) {
@@ -115,10 +115,10 @@ export function forageBaitChoice(ctx, item, items) {
       : stages
   const note =
     ctx.lang === 'th'
-      ? 'ถ้ามีแว่นขยายอยู่แล้ว ลองหาเหยื่อนี้แทนการซื้อเพิ่ม: ไปถึงช่องตัวอย่างแล้วใช้แว่นขยาย ขยับช่องก่อนค้นซ้ำ บางช่องมีผลลัพธ์ได้สองชนิด จึงไม่รับประกันว่าจะได้ชนิดนี้ทุกครั้ง'
+      ? 'ถ้ามีแว่นขยายอยู่แล้ว ลองหาเหยื่อนี้แทนการซื้อเพิ่ม: ยืนบนพื้นดินแห้งที่ช่องตัวอย่างแล้วใช้แว่นขยาย ในน้ำใช้ไม่ได้ ขยับช่องก่อนค้นซ้ำ บางช่องมีผลลัพธ์ได้สองชนิด จึงไม่รับประกันว่าจะได้ชนิดนี้ทุกครั้ง'
       : ctx.lang === 'ja'
-        ? '虫メガネを持っているなら、追加購入の代わりに探索できます。地点例で使い、再探索前に移動してください。2種類の候補がある地点では毎回このエサが出るとは限りません。'
-        : 'If you already own the magnifying glass, try gathering instead of buying more: use it at an example tile and move before searching again. Some tiles have two possible results, so this bait is not guaranteed every time.'
+        ? '虫メガネを持っているなら、追加購入の代わりに探索できます。陸地の地点で使い（水の中では使えません）、再探索前に移動してください。2種類の候補がある地点では毎回このエサが出るとは限りません。'
+        : 'If you already own the magnifying glass, try gathering instead of buying more: stand on dry land at one of the listed tiles (it does not work in water) and move before searching again. Some tiles have two possible results, so this bait is not guaranteed every time.'
   return `<aside class="forage-bait-choice" data-forage-bait-choice><p>${ctx.esc(note)}</p>${shown
     .map((stage) => {
       const loc = points.find((point) => Number(point.stage) === stage)
@@ -234,10 +234,10 @@ export function gearNextActions(ctx, item) {
     const label =
       category === 'hook'
         ? ctx.lang === 'th'
-          ? 'เบ็ดหายหรือยังไม่มี? ดูเบ็ดทั่วไปที่ถูกสุดทั้งหกด่าน'
+          ? 'เบ็ดหายหรือยังไม่มี? ดูเบ็ดที่ถูกสุดตามขนาดปลาทั้งหกด่าน'
           : ctx.lang === 'ja'
-            ? '針を失った・持っていない？6エリアの最安汎用針を見る'
-            : 'Lost your hook or have none? See the cheapest generic hook in each area'
+            ? '針を失った・持っていない？6エリアの大きさ別最安の針を見る'
+            : 'Lost your hook or have none? See the cheapest hook by fish size in each area'
         : ctx.lang === 'th'
           ? 'ดูทุ่นและตะกั่วราคาต่ำสุดแยกทั้งหกด่าน'
           : ctx.lang === 'ja'

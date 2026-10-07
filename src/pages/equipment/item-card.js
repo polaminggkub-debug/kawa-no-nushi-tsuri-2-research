@@ -9,6 +9,7 @@ import {
   flyWingPlayerLinks,
   freshStarterBody,
   rodAreaDecision,
+  stackPriceUnit,
 } from '../../entities/item/index.js'
 
 function flyWingActionHrefs(ctx, item, decision, fish) {
@@ -102,11 +103,16 @@ function conditionalOfferNote(ctx, item, use) {
   return `<p class="fish-scope conditional-offer-note" data-conditional-offer-note="bait:17" data-offer-stage="${stage}">${ctx.esc(note)}</p>`
 }
 
+function stackUnit(ctx, item) {
+  const unit = stackPriceUnit(ctx.lang, item)
+  return unit ? ` <small>${ctx.esc(unit)}</small>` : ''
+}
+
 function renderCardIdentity(ctx, item, use, detailHref) {
   const image = `<a href="${ctx.esc(detailHref)}" aria-label="${ctx.esc(ctx.itemName(item))} — ${ctx.detailLabel}"><img loading="lazy" src="${ctx.esc(item.image)}" alt="${ctx.esc(ctx.itemName(item))}"></a>`
   const price =
     item.priceYen > 0 && use.shops?.length && !item.category.startsWith('fly')
-      ? `<span class="price-badge">${ctx.esc(ctx.formatYen(item))}</span>`
+      ? `<span class="price-badge">${ctx.esc(ctx.formatYen(item))}${stackUnit(ctx, item)}</span>`
       : ''
   const japanese =
     ctx.itemName(item) !== item.nameJa

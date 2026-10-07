@@ -3,6 +3,7 @@ import { targetActions } from './target-actions.js'
 import { area6Walk } from './area6-walk.js'
 import { shopCompatibility, shopCompatibilityBadge, shopFishContext } from './player-decision.js'
 import { shopPurchaseDecision } from './shop-purchase-decision.js'
+import { stackPriceNote } from '../../entities/item/index.js'
 export function renderLocations(ctx, locations, mapManifest, stage, place, items) {
   const area = locations?.areas?.find((a) => Number(a.outdoorArea) === stage)
   const visuals = ctx.$('location-visuals')
@@ -237,6 +238,11 @@ export function itemTargetLink(ctx, category, id) {
   return `<a href="${ctx.esc(ctx.itemHref(item))}">${ctx.esc(ctx.itemName(item))} · ID ${ctx.esc(item.id)} ↗</a>`
 }
 
+function stackNote(ctx, item) {
+  const note = stackPriceNote(ctx.lang, item)
+  return note ? `<p class="price-note">${ctx.esc(note)}</p>` : ''
+}
+
 export function offerCard(ctx, item, options = {}) {
   const target = options.target === true
   const special = options.special === true
@@ -262,7 +268,7 @@ export function offerCard(ctx, item, options = {}) {
       <a class="offer-image-link" href="${ctx.esc(ctx.itemHref(item))}"><img loading="lazy" src="${ctx.esc(image)}" alt="${ctx.esc(name)}"></a>
       <p class="small-id">${ctx.esc(ctx.catName(item.category))} · ID ${ctx.esc(item.id)}</p>
       <h4><a href="${ctx.esc(ctx.itemHref(item))}">${ctx.esc(name)}</a></h4>
-      <p class="price">${ctx.esc(price)}</p>${recovery}${shopCompatibilityBadge(ctx, item, compatibility)}${shopPurchaseDecision(ctx, item, options.stage, options.items || [])}${canHaveCondition ? `<p class="condition-label">${ctx.esc(ctx.text.soldConditional)}</p>` : ''}${extra}
+      <p class="price">${ctx.esc(price)}</p>${stackNote(ctx, item)}${recovery}${shopCompatibilityBadge(ctx, item, compatibility)}${shopPurchaseDecision(ctx, item, options.stage, options.items || [])}${canHaveCondition ? `<p class="condition-label">${ctx.esc(ctx.text.soldConditional)}</p>` : ''}${extra}
     </article>`
 }
 

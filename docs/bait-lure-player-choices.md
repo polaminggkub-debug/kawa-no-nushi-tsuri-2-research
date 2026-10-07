@@ -13,7 +13,7 @@ The float column is the mode-0 mask check. The sinker column intersects the same
 | Float / sinker profiles | Exact gate group and confirmed full-price offers (area numbers) |
 | ---: | --- |
 | 44 / 20 | `01` Worm ¥5 (1–6) |
-| 22 / 8 | `02` Maggot ¥10 (1, 3, 5, 6); `03` Red maggot ¥25 (2); `0B` Waxworm ¥35 (1); `0C` Bee larva ¥35 (3) |
+| 22 / 8 | `02` Maggot ¥10 (1, 3, 5, 6); `03` Red maggot ¥25 (2); `0B` Grapevine larva ¥35 (1); `0C` Bee larva ¥35 (3) |
 | 17 / 1 | `04` Insect ¥25 (1–3) |
 | 24 / 13 | `05` Bloodworm ¥15 (3–5) |
 | 16 / 9 | `06` Ragworm ¥30 (6) |

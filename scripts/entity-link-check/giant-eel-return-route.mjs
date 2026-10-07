@@ -8,18 +8,23 @@ import { data, render, renderCatalogue, unescapeHtml } from './shared.mjs'
 const postcard = data.items.find((item) => item.category === 'general_tool' && item.id === '06')
 const advice = {
   en: [
-    /keep (?:it|.*eel)/i,
-    /starting village/i,
-    /automatic/i,
-    /When the story conditions are complete/i,
+    /do not need to keep the eel/i,
+    /Area 1 village|village door/i,
+    /earlier steps are done|Once the earlier steps/i,
+    /ending scene plays automatically/i,
   ],
   ja: [
-    /ウナギ.*(?:残|保管)|(?:残|保管).*ウナギ/,
-    /最初の村|開始.*村/,
-    /自動/,
-    /物語の条件がそろうと/,
+    /(?:残しておく|残す)必要はありません/,
+    /エリア1の村|村の入口/,
+    /先の手順/,
+    /エンディングが自動で流れます/,
   ],
-  th: [/เก็บ.*ปลาไหล/, /หมู่บ้านเริ่มต้น/, /อัตโนมัติ/, /(?:หาก|เมื่อ)เงื่อนไขเนื้อเรื่องครบ/],
+  th: [
+    /ไม่ต้องเก็บ.*ไว้/,
+    /หมู่บ้านด่าน 1|ประตูหมู่บ้าน/,
+    /ขั้นก่อนหน้า/,
+    /ฉากจบจะเริ่มโดยอัตโนมัติ/,
+  ],
 }
 checkProvenance()
 await checkEntranceMarker()

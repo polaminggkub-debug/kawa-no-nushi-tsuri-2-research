@@ -38,9 +38,9 @@
       property="og:description"
       content="เลือกด่าน ค้นหาปลา แล้วดูตำแหน่งจากข้อมูลในเกมบนแผนที่พร้อมรูปปลาจริงในเกม"
     />
-    <link rel="stylesheet" href="maps.css?v=24736e4f4fc2797d" />
+    <link rel="stylesheet" href="maps.css?v=ce855e5b910adab2" />
     <link rel="stylesheet" href="compendium.css?v=944b2e768f29779c" />
-    <script src="compendium.js?v=db0957a69654351f" defer></script>
+    <script src="compendium.js?v=de337224916509f8" defer></script>
   <script data-goatcounter="https://polamin.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script></head>
   <body>
     <a class="skip-link" href="#main-content">ข้ามไปเนื้อหา</a>
@@ -51,6 +51,7 @@
       >
       <div class="compendium-links">
         <a data-compendium-destination="0" href="index.th.html#catalogue">เลือกอุปกรณ์</a
+        ><a data-compendium-destination="6" href="gear-guide.th.html">คู่มือเลือกชุดเบ็ด</a
         ><a data-compendium-destination="1" aria-current="page" href="maps.th.html">ปลาและแผนที่</a
         ><a data-compendium-destination="2" href="shops.th.html">ร้านและจุดซื้อ</a
         ><a data-compendium-destination="4" href="quests.th.html">เควสต์และแลกของ</a
@@ -69,6 +70,8 @@
         <div class="hero-meta">
           <a class="back-link" href="index.th.html">← กลับไปหน้าคู่มืออุปกรณ์</a
           ><a id="shop-browser-link" href="shops.th.html">ร้านและจุดซื้อของ</a
+          ><a class="quick-guide-link notebook-guide-shortcut" href="#how-fish-work"
+            >ปลาบนแผนที่ทำงานอย่างไร</a
           ><a class="quick-guide-link notebook-guide-shortcut" href="#notebook-guide"
             >เก็บสมุดให้ครบ 66 ชนิด</a
           >
@@ -169,10 +172,35 @@
             <div class="map-scroll"><div id="map-view" class="map-view"></div></div>
             <div id="pin-details" class="pin-details" hidden></div>
             <section id="water-icon-key" class="water-icon-key" hidden></section>
-            <p class="map-note">
-              จุดเหล่านี้คือจุดเกิดปลาที่ตั้งไว้ใน ROM จุดบางแห่งอาจไม่ทำงานในรอบเกมนั้น
-              และปลาขยับตำแหน่งได้หลังจากกินเหยื่อ
-            </p>
+            <section id="how-fish-work" class="map-howto" aria-labelledby="how-fish-title">
+              <h3 id="how-fish-title">ปลาบนแผนที่ทำงานอย่างไร</h3>
+              <ul>
+                <li>
+                  หมุดคือจุดที่ปลาอยู่ตอนโหลดเกม หลังจากนั้นปลาจะว่ายไปมา
+                  ส่วนใหญ่อยู่ห่างหมุดไม่เกิน 1–2 ช่อง บางตัวไปไกล 5–10 ช่อง
+                </li>
+                <li>เซฟใหม่จะมีปลาอยู่ที่หมุดประมาณ 3 ใน 4 จุด</li>
+                <li>
+                  ตกปลาขึ้นแล้ว หมุดนั้นจะว่าง
+                  ส่วนปลาที่หลุดมือจะหายไปจนกว่าจะนอนโรงแรมหรือเริ่มเกมใหม่
+                </li>
+                <li>
+                  นอนโรงแรมของด่านไหน
+                  ปลาในด่านนั้นจะกลับมาราวเท่ากับจำนวนที่คุณตกตั้งแต่นอนครั้งก่อน ค่าห้อง 3–10 เยน
+                  ถ้าไม่ได้ตกปลาเลย นอนไปก็ไม่เกิดอะไร
+                </li>
+                <li>
+                  โออูนางิ / ปลาไหลยักษ์ (オオウナギ) และอาคาเมะ (アカメ) มีหมุดเดียวทั้งเกม
+                  อยู่ที่ด่าน 6 ทั้งคู่ ถ้าหมุดว่าง ให้ตกปลาในด่านนั้นแล้วนอนโรงแรมของด่านนั้น ทำซ้ำ
+                </li>
+                <li>ปล่อยทุ่นให้ตกลงบนช่องเดียวกับปลาพอดี เกมเช็กทุกครึ่งวินาทีโดยประมาณ</li>
+                <li>
+                  สัญลักษณ์บนผิวน้ำบอกขนาดคร่าว ๆ เท่านั้น และปลา 2
+                  ตัวสุดท้ายในฉากที่แน่นจะไม่มีสัญลักษณ์
+                </li>
+                <li>เวลา ฤดู และอากาศ ไม่มีผลกับว่าปลาอยู่ตรงไหน</li>
+              </ul>
+            </section>
             <a id="catalogue-fish-link" class="catalogue-fish-link" href="index.th.html"
               >ดูอุปกรณ์ที่ใช้กับปลานี้ ↗</a
             >
@@ -181,6 +209,17 @@
         </div>
         <details class="source-details">
           <summary>ที่มาและหมายเหตุแผนที่จาก ROM</summary>
+          <p>
+            รายละเอียดการวางปลา: แต่ละด่านมีช่องปลาถาวร 256 ช่อง แต่ละช่องมีชนิดปลา ช่องบ้าน และขนาด
+            (0 = ว่าง) เซฟใหม่เติมไว้ 192 จาก 256 ช่อง หมุดคือช่องบ้าน ปลาว่ายไปมาตลอด (95% อยู่ใน 5
+            ช่อง ไกลสุด 10) และเกมเขียนช่องปัจจุบันกลับเมื่อสร้างภาพใหม่
+            ปลากินเมื่อทุ่นอยู่บนช่องของปลาพอดี เกมเช็กปลาแต่ละตัวทุก 32 เฟรม ตกขึ้นแล้วช่องว่าง
+            ปลาที่หลุดจะถูกซ่อนจนกว่าจะนอนโรงแรมหรือเริ่มใหม่ โรงแรมนับ +1
+            ต่อปลาที่ติดเบ็ดจนถึงขั้นดึงขึ้น และ +3 ต่อปลาที่หลุด
+            แล้วสุ่มเติมตามจำนวนนั้นในด่านตัวเองเท่านั้น (ช่องว่าง: ปลาใหม่ ช่องมีปลา: โตขึ้น 1 ซม.
+            เกินเพดาน: ว่าง) ช่องซ้ำที่ช่องเดียวกันคือปลาหลายตัวซ้อนกัน ไม่ใช่โอกาสเกิดที่สูงขึ้น
+            เวลา ฤดู และอากาศไม่ถูกใช้ ที่มา: การตรวจสอบอิสระ 2026-10-07
+          </p>
           <p>
             เลข ID ปลา พิกัดช่องเกิด และภาพฉากถอดจาก ROM ญี่ปุ่น SFC ที่ให้มา
             ตำแหน่งหมุดใช้จุดกึ่งกลางช่องแผนที่ โดยหนึ่งช่องเท่ากับ 16 พิกเซลของภาพต้นฉบับ
@@ -202,6 +241,6 @@
       <p>งานวิจัยแฟนเกม · ไม่มีไฟล์ ROM รวมอยู่ในเว็บ</p>
       <a href="../research/index.th.html">บันทึกการวิจัย</a>
     </footer>
-    <script src="maps.js?v=b1dd6b8d833e1cca" defer></script>
+    <script src="maps.js?v=b789f60ed5cb9049" defer></script>
   </body>
 </html>

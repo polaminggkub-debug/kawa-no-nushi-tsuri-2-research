@@ -34,17 +34,17 @@ def localized_location(stage, x, y, image_name, full_image, width, height, pin, 
         "name": {
             "en": f"Compass stop tile · exit to connector",
             "ja": "磁石が止まる地点・連絡路の出口",
-            "th": "จุดที่เข็มแม่เหล็กหยุด · ทางออกสู่ทางเชื่อม",
+            "th": "จุดที่เข็มทิศหยุด · ทางออกสู่ทางเชื่อม",
         },
         "action": {
-            "en": "Use the magnet outdoors, move in its indicated direction, then use it again to update the heading. The needle stops at the marked exit tile, which leads to the connecting route.",
+            "en": "Use the compass outdoors, move in its indicated direction, then use it again to update the heading. The needle stops at the marked exit tile, which leads to the connecting route.",
             "ja": "屋外で磁石を使い、示された方角へ移動してから再使用し、方角を確認します。針が止まるマーカーの地点が連絡路への出口です。",
-            "th": "ใช้แม่เหล็กกลางแจ้ง เดินตามทิศที่บอกแล้วใช้ซ้ำเพื่อดูทิศใหม่ เข็มจะหยุดตรงช่องที่รูปแม่เหล็กชี้ ซึ่งเป็นจุดออกไปเส้นทางเชื่อม",
+            "th": "ใช้เข็มทิศกลางแจ้ง เดินตามทิศที่บอกแล้วใช้ซ้ำเพื่อดูทิศใหม่ เข็มจะหยุดตรงช่องที่รูปเข็มทิศชี้ ซึ่งเป็นจุดออกไปเส้นทางเชื่อม",
         },
         "description": {
-            "en": f"Find tile ({x},{y}) in Area {stage} using the magnet portrait. The map shows the target, not a tested walking route or a path around obstacles.",
+            "en": f"Find tile ({x},{y}) in Area {stage} using the compass picture. The map shows the target, not a tested walking route or a path around obstacles.",
             "ja": f"磁石画像でエリア{stage}のタイル（{x},{y}）を確認します。目標地点を示す地図で、歩行経路や障害物を避ける道順は検証していません。",
-            "th": f"ดูรูปแม่เหล็กที่ช่อง ({x},{y}) ของด่าน {stage} เพื่อหาจุดทางเชื่อม แผนที่นี้แสดงเป้าหมาย ยังไม่ได้ยืนยันขั้นตอนเดินหรือเส้นทางหลบสิ่งกีดขวาง",
+            "th": f"ดูรูปเข็มทิศที่ช่อง ({x},{y}) ของด่าน {stage} เพื่อหาจุดทางเชื่อม แผนที่นี้แสดงเป้าหมาย ยังไม่ได้ยืนยันขั้นตอนเดินหรือเส้นทางหลบสิ่งกีดขวาง",
         },
         "image": image_name,
         "fullImage": full_image,
@@ -87,15 +87,15 @@ def build(rom_path):
     shop_stock = json.loads((ROOT / "data/shop-stock-rom.json").read_text(encoding="utf-8"))
     compass_offers = sorted(row["stage"] for row in shop_stock["items"]["general_tool:0E"])
     if compass_offers != [1, 2, 3, 6]:
-        raise ValueError(f"Magnet shop stages changed: expected [1, 2, 3, 6], got {compass_offers}")
+        raise ValueError(f"Compass shop stages changed: expected [1, 2, 3, 6], got {compass_offers}")
     code_index = json.loads((ROOT / "data/general-tool-code-index.json").read_text(encoding="utf-8"))
     if code_index["items"]["0E"]["basePriceYen"] != 300:
-        raise ValueError("Magnet's ROM item-record price changed from 300 yen")
+        raise ValueError("Compass's ROM item-record price changed from 300 yen")
     record = code_index["items"]["0E"]
     record_offset = int(record["recordFileOffset"], 16)
     record_bytes = bytes.fromhex(record["recordBytes"])
     if rom[record_offset:record_offset + len(record_bytes)] != record_bytes or word(rom, record_offset + 4) != 300:
-        raise ValueError("Magnet record bytes or price disagree with the supplied ROM")
+        raise ValueError("Compass record bytes or price disagree with the supplied ROM")
 
     manifest = json.loads((ROOT / "catalogue/maps/rom-map-manifest.json").read_text(encoding="utf-8"))
     locations = []
@@ -169,26 +169,29 @@ def build(rom_path):
         "rom": {"sha1": SHA1},
         "playerSummary": {
             "en": (
-                "If you use these maps, you do not need to buy the magnet just to learn the fixed exit coordinates for Areas 1–5. "
-                "Buy Magnet 0E for ¥300 only if you want the game to give a heading from your current position; it is stocked in Areas 1, 2, 3 and 6. "
-                "Area 6 has no fixed map pin here: before its story condition is met, the magnet reports your area/section without a heading."
+                "If you use these maps, you do not need to buy the compass just to learn the fixed exit coordinates for Areas 1–5. "
+                "Buy Compass 0E for ¥300 only if you want the game to give a heading from your current position; it is stocked in Areas 1, 2, 3 and 6. "
+                "Area 6 has no fixed map pin here: before its story condition is met, the compass reports your area/section without a heading. "
+                "In Area 6, after the doctor's note has appeared, it points at the giant eel at (41,8) instead (see the received postcard)."
             ),
             "ja": (
                 "この地図を使うなら、エリア1～5の固定出口座標を知るためだけに磁石を買う必要はありません。"
                 "現在地からゲーム内の方角表示を使いたい場合だけ、磁石0E（300円）を購入してください。エリア1・2・3・6で販売されています。"
                 "エリア6には固定マーカーを載せていません。物語条件が満たされる前は、磁石はエリア／区画のみを表示し、方角は出ません。"
+                "エリア6では、医者の文面が出たあとは出口ではなく(41,8)のオオウナギを指します（受け取ったハガキを参照）。"
             ),
             "th": (
-                "ถ้าใช้แผนที่นี้ ไม่ต้องซื้อแม่เหล็กเพื่อรู้พิกัดทางออกคงที่ของด่าน 1–5 ซื้อแม่เหล็ก 0E ราคา ¥300 "
+                "ถ้าใช้แผนที่นี้ ไม่ต้องซื้อเข็มทิศเพื่อรู้พิกัดทางออกคงที่ของด่าน 1–5 ซื้อเข็มทิศ 0E ราคา ¥300 "
                 "เฉพาะเมื่อต้องการให้เกมบอกทิศจากตำแหน่งปัจจุบัน มีขายในด่าน 1, 2, 3 และ 6 ด่าน 6 ไม่มีหมุดพิกัดคงที่ในหน้านี้: "
-                "ก่อนผ่านเงื่อนไขเนื้อเรื่อง แม่เหล็กจะแจ้งพื้นที่/ช่วงที่ยืน แต่ไม่บอกทิศ"
+                "ก่อนผ่านเงื่อนไขเนื้อเรื่อง เข็มทิศจะแจ้งพื้นที่/ช่วงที่ยืน แต่ไม่บอกทิศ "
+                "ในด่าน 6 หลังข้อความของหมอปรากฏ เข็มทิศจะชี้ไปที่ปลาไหลยักษ์ที่ (41,8) แทน (ดูที่ไปรษณียบัตรที่ได้รับ)"
             ),
         },
         "scope": {
             "en": (
                 "Static outdoor compass target tiles for Areas 1–5 only. The traced transition consumer uses each target "
                 "to enter map 13, the connecting route; this relationship is inferred from code. It does not establish "
-                "a tested natural walking route, an obstacle-aware route, or the shortest route. The magnet message does not name the destination. "
+                "a tested natural walking route, an obstacle-aware route, or the shortest route. The compass message does not name the destination. "
                 "Area 6 is omitted because its target is dynamic and heading is gated by story progress."
             ),
             "ja": (
@@ -197,9 +200,9 @@ def build(rom_path):
                 "エリア6は目標が動的で、方角表示に物語進行条件があるため掲載しません。"
             ),
             "th": (
-                "แสดงเฉพาะช่องเป้าหมายกลางแจ้งของแม่เหล็กในด่าน 1–5 ตัวตรวจทางออกที่ตามโค้ดได้อ่านเป้าหมายแต่ละจุดเพื่อไปแผนที่ 13 "
+                "แสดงเฉพาะช่องเป้าหมายกลางแจ้งของเข็มทิศในด่าน 1–5 ตัวตรวจทางออกที่ตามโค้ดได้อ่านเป้าหมายแต่ละจุดเพื่อไปแผนที่ 13 "
                 "ซึ่งเป็นทางเชื่อม; ความสัมพันธ์นี้สรุปจากโค้ด ยังไม่ได้ทดสอบเส้นทางเดินจริง เส้นทางหลบสิ่งกีดขวาง หรือเส้นทางสั้นที่สุด "
-                "ข้อความแม่เหล็กไม่บอกชื่อปลายทาง ตัดด่าน 6 ออกเพราะเป้าหมายเปลี่ยนตามสถานะและการแสดงทิศขึ้นกับความคืบหน้าเนื้อเรื่อง"
+                "ข้อความเข็มทิศไม่บอกชื่อปลายทาง ตัดด่าน 6 ออกเพราะเป้าหมายเปลี่ยนตามสถานะและการแสดงทิศขึ้นกับความคืบหน้าเนื้อเรื่อง"
             ),
         },
         "source": {

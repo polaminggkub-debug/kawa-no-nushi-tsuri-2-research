@@ -67,7 +67,7 @@ for (const lang of ['en', 'ja', 'th']) {
   await checkDetailRoutes(lang)
 }
 console.log(
-  'PASS: four unverified wing routes use bounded evidence and actionable verified alternatives; Area 6 set is ¥50 total (EN/JA/TH).',
+  'PASS: four unverified wing routes say they are not sold anywhere and give actionable verified alternatives; Area 6 set is ¥50 total (EN/JA/TH).',
 )
 
 async function checkDetailRoutes(lang) {

@@ -34,7 +34,7 @@ export function renderFilters(ctx) {
     `<option value="">${ctx.esc(ctx.player.all)}</option>` +
     Object.entries(
       ctx.lang === 'th'
-        ? { 1: 'ทุ่น / อายุ', 2: 'ตีเหยื่อ', 4: 'ลัวร์', 8: 'ฟลาย' }
+        ? { 1: 'ทุ่น / อายุ', 2: 'หวด', 4: 'ลัวร์', 8: 'ฟลาย' }
         : ctx.lang === 'ja'
           ? { 1: 'ウキ・アユ', 2: '投げ', 4: 'ルアー', 8: 'フライ' }
           : { 1: 'Float / Ayu', 2: 'Casting', 4: 'Lure', 8: 'Fly' },

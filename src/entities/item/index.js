@@ -12,6 +12,7 @@ export {
   freshStarterBody,
 } from './fly-lock.js'
 export { categoryGuideLink } from './price-guide-link.js'
+export { stackPriceNote, stackPriceUnit } from './stack-price-note.js'
 export { fishMealSummary, fishMealFacts } from './fish-meal-copy.js'
 export { rodAreaDecision } from './rod-area-decision.js'
 export { rodRefName } from './rod-ref-name.js'

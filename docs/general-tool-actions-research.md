@@ -47,6 +47,8 @@ Bait inventory item IDs are stored at `$088C..$08AE`, with counts at `$08B8..$08
 
 ## Gold net: ID 04
 
+*Audit 2026-10-07:* each use gives 1 to 4 pieces (not always 3; both test uses happened to give 3), works only while wading, and returns nothing on the tile you just used.
+
 Handler `$03:BF2A..BF93` requires field state 2 and exactly `$0858==1`. The ROM message `015A` says `金アミは、浅瀬で虫取りに使います。` (the gold net is used to catch bugs in shallow water). The previous searched tile is `$1D49/$1D4B`; using the net twice without moving returns message `0142`.
 
 For a new eligible tile, `$03:BF94..BFBB` reads a 16-bit area table at `$03:C04C` using index `$085A * 2`. Word zero is a sentinel; words 1 through 6 select these baits:
@@ -88,7 +90,7 @@ Handler `$03:C05C..C071` saves the current state in `$0836`, switches `$0834` to
 
 `$01:BF30..C00B` scans the 66 word entries in `$0C3C`. It gathers entries whose area value is 1–6 into six lists in `$7F:2AFA` and records cumulative list byte boundaries at `$7F:2A8E..2A98`. `$01:C258..C2EA` sorts each list using corresponding values in `$0CC0` and `$0D44`. This is the notebook's fish-record organization. The ROM-backed notebook renderer also has six overview pages in the same order as field areas 1–6. Its overview artwork does not itself read the fish-spawn coordinate tables; see [`fish-location-research.md`](fish-location-research.md).
 
-## Magnet: ID 0E
+## Compass: ID 0E
 
 Handler `$03:C313..C3E8` compares the player's current tile with an area target, chooses a direction message, and reports the current area and section. Messages are `0144` (`磁石の針が [D7]を指した。現在地は[DA]の[D4]だ。`), `014A` (current location only), and `0146` (`針が動かなくなった。`). The direction words come from message substitutions `015C..0162`.
 
@@ -119,6 +121,6 @@ The tool label reflects the current mode. Using it toggles to the opposite mode;
 
 ## Evidence boundary
 
-All action claims above come from the supplied original ROM's selected-use dispatch, state handlers, message strings, data tables, and the consumers named at each section. Bait display names are matched by item ID to the Japanese names in the ROM-derived item catalogue. This research does not use fan guides to fill gaps. Remaining limits are explicit: the numeric magnifier context values are not yet mapped to named terrain; the two vehicle routes are demonstrably distinct but their full player-visible gameplay differences are not assigned; the magnet's message reports a heading and current region, not a destination name.
+All action claims above come from the supplied original ROM's selected-use dispatch, state handlers, message strings, data tables, and the consumers named at each section. Bait display names are matched by item ID to the Japanese names in the ROM-derived item catalogue. This research does not use fan guides to fill gaps. Remaining limits are explicit: the numeric magnifier context values are not yet mapped to named terrain; the two vehicle routes are demonstrably distinct but their full player-visible gameplay differences are not assigned; the compass's message reports a heading and current region, not a destination name.
 
 The [notebook completion guide](notebook-completion-research.md) traces the 66 global species records and explains why a new larger record can move an entry between area pages.

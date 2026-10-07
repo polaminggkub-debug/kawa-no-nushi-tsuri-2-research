@@ -26,6 +26,8 @@ function rodMetrics(item) {
     price: Number(item.priceYen),
     aim: Number(item.decodedFields?.castAimHoldCutoffInternal),
     boundary: Number(item.decodedFields?.rangeMultiplier),
+    // Mistakes you can afford, averaged over every fish: the fewer the rod loses, the higher.
+    start: -Number(item.rodDecision?.startLoss ?? 0),
   }
   if (!Object.values(values).every(Number.isFinite)) return null
   rememberRod(item)
@@ -52,7 +54,11 @@ function dominates(first, second) {
     first.price <= second.price &&
     first.aim >= second.aim &&
     first.boundary >= second.boundary &&
-    (first.price < second.price || first.aim > second.aim || first.boundary > second.boundary)
+    first.start >= second.start &&
+    (first.price < second.price ||
+      first.aim > second.aim ||
+      first.boundary > second.boundary ||
+      first.start > second.start)
   )
 }
 

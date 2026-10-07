@@ -7,33 +7,45 @@
       "id": "float_rod_path",
       "category": "rod",
       "title": {
-        "th": "สายทุ่น: ซื้อคันไหนก่อนดี?",
-        "en": "Float fishing: which rod should I buy first?",
-        "ja": "ウキ釣り：最初にどの竿を買う？"
+        "th": "คันทุ่น: เลือกคันตามปลาที่จะตก",
+        "en": "Float rods: pick the rod by the fish",
+        "ja": "ウキ竿：狙う魚で竿を選ぶ"
       },
       "recommendation": {
-        "th": "ด่าน 1 เลือกคัน 04 ราคา ¥500: มีเวลาเล็งนานกว่าและสายขาดยากกว่าคัน 03 ราคา ¥350 ส่วนคัน 05 ราคา ¥750 แพงกว่าแต่มีเวลาเล็งไม่นานกว่าคัน 04 พอถึงด่าน 3 ถ้าจะซื้อคันใหม่และอยากมีเวลาเล็งนานสุดในสายทุ่น คัน 14 ราคาเต็ม ¥1,500 มีเวลาเล็งนานกว่าและสายขาดยากกว่าคัน 07 ที่ราคาเท่ากัน",
-        "en": "In area 1, choose rod 04 for ¥500: it gives more time to aim and a line that breaks less easily than rod 03 at ¥350. Rod 05 costs ¥750 but does not give more time to aim than rod 04. In area 3, if you want the most time to aim among float rods and are buying new, rod 14 costs ¥1,500, the same full price as rod 07, and is better on both counts.",
-        "ja": "エリア1では、04を500円で選びます。350円の03より狙う時間が長く、糸も切れにくくなります。750円の05は高いのに、04より狙う時間は長くありません。エリア3でウキ竿の狙う時間を最長にしたい場合、新しく買うなら、14が07と同じ1,500円で、狙う時間も糸の切れにくさも上です。"
+        "th": "ปลาใหญ่ต้องใช้คันที่สายยาว ปลาเล็กคันไหนก็พอ ซื้อตามนี้:\n• ปลา 38 ชนิด (เช่น ปลาอาเมะมาสุ, อิวานะ, ปลาอุไก) ต้องสาย ×3 ขึ้นไป: คัน 03 (¥350, ด่าน 1, 2, 4, 6); ถ้ารอถึงด่าน 4 คัน 09 (¥200) ถูกกว่า\n• ปลา 9 ชนิด (เช่น มารุตะ, ฮาเซะ, ปลาฮาสุ) ต้องสาย ×9–12 ขึ้นไป: คัน 14 (¥1,500, ด่าน 3, 4, 6); ถ้ารอถึงด่าน 4 คัน 09 (¥200) ถูกกว่า\n• ปลา 10 ชนิด (เช่น ไรเกียว, บราวน์เทราต์, นามาซุ) ต้องสาย ×15 ขึ้นไป: คัน 14 (¥1,500, ด่าน 3, 4, 6)\n• ปลา 15 ชนิด (เช่น โออูนางิ, โคคุเร็น, อาคาเมะ) ต้องสาย ×24 ขึ้นไป: คัน 15 (¥2,000, ด่าน 4, 5, 6); ถ้ารอถึงด่าน 5 คัน 08 (¥1,500) ถูกกว่า",
+        "en": "Big fish need a rod with a long line; small fish take any rod. Buy by the fish:\n• 38 species (e.g. Amemasu, Iwana, Ugui) need line strength ×3 or more: rod 03 (¥350, areas 1, 2, 4, 6); if you can wait until area 4, rod 09 (¥200) is cheaper\n• 9 species (e.g. Maruta, Haze, Hasu) need line strength ×9–12 or more: rod 14 (¥1,500, areas 3, 4, 6); if you can wait until area 4, rod 09 (¥200) is cheaper\n• 10 species (e.g. Raigyo, Brown trout, Namazu) need line strength ×15 or more: rod 14 (¥1,500, areas 3, 4, 6)\n• 15 species (e.g. Oo-unagi, Kokuren, Akame) need line strength ×24 or more: rod 15 (¥2,000, areas 4, 5, 6); if you can wait until area 5, rod 08 (¥1,500) is cheaper",
+        "ja": "大物には糸の長い竿が必要で、小物はどの竿でも足ります。魚に合わせて買います。\n38種（例：アメマス、イワナ、ウグイ）は糸の切れにくさ×3以上：竿03（350円、エリア1・2・4・6）。エリア4まで待てるなら竿09（200円）の方が安い。\n9種（例：マルタ、ハゼ、ハス）は糸の切れにくさ×9–12以上：竿14（1,500円、エリア3・4・6）。エリア4まで待てるなら竿09（200円）の方が安い。\n10種（例：ライギョ、ブラウントラウト、ナマズ）は糸の切れにくさ×15以上：竿14（1,500円、エリア3・4・6）。\n15種（例：オオウナギ、コクレン、アカメ）は糸の切れにくさ×24以上：竿15（2,000円、エリア4・5・6）。エリア5まで待てるなら竿08（1,500円）の方が安い。"
       },
       "reason": {
-        "th": "เวลาเล็งนานขึ้นทำให้มีเวลาขยับช่องเป้าหมายมากขึ้นก่อนเกมตัดสินว่าเหยื่อตกตรงไหน ส่วนสายขาดยากหมายถึงปลาดึงหนีได้ไกลกว่าก่อนอุปกรณ์หลุด (ช่วยกันอุปกรณ์หลุดแค่แบบเดียว)",
-        "en": "More time to aim gives you longer to move the target before the game decides where the cast lands. A line that breaks less easily lets the fish pull farther before tackle is lost (this covers only one way of losing tackle).",
-        "ja": "狙う時間が長いほど、投げ先が決まる前にターゲットを動かせる時間が増えます。糸が切れにくいほど、魚が遠くまで引いても道具を失いにくくなります（道具を失う逃げ方のうち1つだけに関係します）。"
+        "th": "สายขาดยาก ×N คือระยะที่ปลาวิ่งได้ก่อนสายขาดและเสียตะขอ ปลาใหญ่ชี้ขาดที่ตรงนี้ (ปลาไหลยักษ์ต้อง ×24) คันยังกำหนดจุดเริ่มของมาตรวัดแรงตึง ซึ่งคือพลาดได้กี่จังหวะ: คัน 01 ได้เปรียบสุดกับปลาไม่เกิน 15 ซม.; คันอื่นส่วนใหญ่ได้เปรียบสุดกับปลา 16–35 ซม.; ปลาเกิน 35 ซม. คันไหนก็เกือบเท่ากัน; คัน 08 เสียเปรียบปลาเล็กถึงกลางเฉลี่ย 1.5 จังหวะ ใช้กับปลาเกิน 35 ซม. เท่านั้น.",
+        "en": "Line strength ×N is how far a fish may run before the line breaks and the hook is lost; big fish are decided here (the giant eel needs ×24). The rod also sets where the fight meter starts, which is how many mistakes you can afford: rod 01 gives the best start against fish up to 15 cm; most of the other rods give the best start against fish of 16–35 cm; for fish over 35 cm almost any rod is the same; using rod 08 on small and mid-size fish loses 1.5 mistakes on average, so keep it for fish over 35 cm.",
+        "ja": "糸の切れにくさ×Nは、魚が走っても糸が切れて針を失わない距離です。大物はここで決まります（オオウナギは×24が必要）。竿はファイトのメーターの出だしも決め、許されるミスの数が変わります：竿01は15cm以下の魚で最良のスタート。ほかの竿の大半は16〜35cmの魚で最良のスタート。35cm超の魚はほとんどどの竿でも同じです。竿08は小〜中型の魚で平均1.5回分のミスを失うので、35cm超の魚専用にします。"
       },
       "scope": {
-        "th": "ร้านด่าน 1 ขายคัน 03, 04 และ 05; ร้านด่าน 3 ขายคัน 07 และ 14 นี่ไม่ใช่อันดับโอกาสกินหรือจับปลา และปลายังหนีด้วยวิธีอื่นได้",
-        "en": "Area 1 sells rods 03, 04 and 05; area 3 sells 07 and 14. This does not rank bite or catch odds, and fish can escape other ways.",
-        "ja": "エリア1では03、04、05、エリア3では07、14を売っています。食いつき率や釣り上げ率の順位ではなく、他の逃げ方もあります。"
+        "th": "ไม่มีขายที่ไหนเลย: คัน 02 หรือ คัน 06. ขายเฉพาะร้านคันเบ็ดพิเศษ: คัน 01 หรือ คัน 08.",
+        "en": "Never sold anywhere: rod 02 or rod 06. Only sold by the special rod seller: rod 01 or rod 08.",
+        "ja": "どの店にも売っていません：竿02か竿06。特別な竿の販売所だけで売っています：竿01か竿08。"
       },
       "items": [
         {
           "category": "rod",
-          "id": "04"
+          "id": "03"
+        },
+        {
+          "category": "rod",
+          "id": "09"
         },
         {
           "category": "rod",
           "id": "14"
+        },
+        {
+          "category": "rod",
+          "id": "15"
+        },
+        {
+          "category": "rod",
+          "id": "08"
         }
       ]
     },
@@ -41,33 +53,29 @@
       "id": "lure_rod_path",
       "category": "rod",
       "title": {
-        "th": "สายลัวร์: อัปเกรดตรงไหนคุ้ม?",
-        "en": "Lure fishing: where is the useful upgrade?",
-        "ja": "ルアー釣り：どこで竿を強化する？"
+        "th": "คันลัวร์: เลือกคันตามปลาที่จะตก",
+        "en": "Lure rods: pick the rod by the fish",
+        "ja": "ルアー竿：狙う魚で竿を選ぶ"
       },
       "recommendation": {
-        "th": "ด่าน 1 ถ้าซื้อใหม่และเงินพอ เลือกคัน 0C ราคาเต็ม ¥600 แทนคัน 0A ราคา ¥500; ถ้ามีคัน 0A อยู่แล้วและเวลาเล็งพอ ใช้ต่อได้ ไม่ต้องซื้อใหม่ ด่าน 4 คัน 0D ราคาเต็ม ¥650 มีเวลาเล็งนานสุดและสายขาดยากสุดในกลุ่มคันลัวร์ ซื้อเมื่ออยากได้สองข้อนี้ ไม่ใช่เพื่อหวังว่าปลาจะกินง่ายขึ้น",
-        "en": "In area 1, when buying new, choose rod 0C at ¥600 instead of rod 0A at ¥500 if you can afford the extra ¥100. If you already own rod 0A and its aim time is enough, keep using it. In area 4, rod 0D costs ¥650 and has the most time to aim and the line that breaks least easily among lure rods. Buy it for those two things, not for easier bites.",
-        "ja": "エリア1で新しく買うとき、100円多く出せるなら0A（500円）ではなく0C（600円）を選びます。すでに0Aを持ち、狙う時間が足りているならそのまま使ってください。エリア4の0Dは650円で、ルアー竿の中で狙う時間が最長、糸も最も切れにくい竿です。この2点を求める場合に選び、食いつきやすさは期待しないでください。"
+        "th": "ปลาใหญ่ต้องใช้คันที่สายยาว ปลาเล็กคันไหนก็พอ ซื้อตามนี้:\n• ปลา 27 ชนิด (เช่น ไรเกียว, บราวน์เทราต์, นามาซุ) ต้องสาย ×3–15 ขึ้นไป: คัน 0A (¥500, ด่าน 1, 2, 3, 5, 6)\n• ปลา 11 ชนิด (เช่น โออูนางิ, โคคุเร็น, อาคาเมะ) ต้องสาย ×24 ขึ้นไป: คัน 0D (¥650, ด่าน 4)",
+        "en": "Big fish need a rod with a long line; small fish take any rod. Buy by the fish:\n• 27 species (e.g. Raigyo, Brown trout, Namazu) need line strength ×3–15 or more: rod 0A (¥500, areas 1, 2, 3, 5, 6)\n• 11 species (e.g. Oo-unagi, Kokuren, Akame) need line strength ×24 or more: rod 0D (¥650, area 4)",
+        "ja": "大物には糸の長い竿が必要で、小物はどの竿でも足ります。魚に合わせて買います。\n27種（例：ライギョ、ブラウントラウト、ナマズ）は糸の切れにくさ×3–15以上：竿0A（500円、エリア1・2・3・5・6）。\n11種（例：オオウナギ、コクレン、アカメ）は糸の切れにくさ×24以上：竿0D（650円、エリア4）。"
       },
       "reason": {
-        "th": "คัน 0C มีเวลาเล็งนานกว่าคัน 0A; คัน 0D มีทั้งเวลาเล็งนานกว่าและสายขาดยากกว่า",
-        "en": "0C gives more time to aim than 0A; 0D adds both more time to aim and a line that breaks less easily.",
-        "ja": "0Cは0Aより狙う時間が長く、0Dは狙う時間も糸の切れにくさもさらに上です。"
+        "th": "สายขาดยาก ×N คือระยะที่ปลาวิ่งได้ก่อนสายขาดและเสียตะขอ ปลาใหญ่ชี้ขาดที่ตรงนี้ (ปลาไหลยักษ์ต้อง ×24) คันยังกำหนดจุดเริ่มของมาตรวัดแรงตึง ซึ่งคือพลาดได้กี่จังหวะ: คัน 0A ได้เปรียบสุดกับปลาไม่เกิน 15 ซม.; คัน 0C ได้เปรียบสุดกับปลา 16–35 ซม.; ปลาเกิน 35 ซม. คันไหนก็เกือบเท่ากัน; คัน 0D เสียเปรียบปลาเล็กถึงกลางเฉลี่ย 1.0 จังหวะ ใช้กับปลาเกิน 35 ซม. เท่านั้น.",
+        "en": "Line strength ×N is how far a fish may run before the line breaks and the hook is lost; big fish are decided here (the giant eel needs ×24). The rod also sets where the fight meter starts, which is how many mistakes you can afford: rod 0A gives the best start against fish up to 15 cm; rod 0C gives the best start against fish of 16–35 cm; for fish over 35 cm almost any rod is the same; using rod 0D on small and mid-size fish loses 1.0 mistakes on average, so keep it for fish over 35 cm.",
+        "ja": "糸の切れにくさ×Nは、魚が走っても糸が切れて針を失わない距離です。大物はここで決まります（オオウナギは×24が必要）。竿はファイトのメーターの出だしも決め、許されるミスの数が変わります：竿0Aは15cm以下の魚で最良のスタート。竿0Cは16〜35cmの魚で最良のスタート。35cm超の魚はほとんどどの竿でも同じです。竿0Dは小〜中型の魚で平均1.0回分のミスを失うので、35cm超の魚専用にします。"
       },
       "scope": {
-        "th": "เทียบที่ HP 100 ถ้า HP ต่ำกว่า 100 เวลาเล็งของคันลัวร์/คันหวดจะสั้นลง ตัวเลขนี้ไม่ได้บอกโอกาสที่ปลาจะกินหรือจับขึ้น",
-        "en": "Compared at 100 HP; below 100 HP lure and casting rods get less time to aim. These numbers do not prove bite or catch odds.",
-        "ja": "HP100での比較です。HPが低いとルアー竿・投げ竿の狙う時間は短くなります。食いつき率や釣果は証明していません。"
+        "th": "ไม่มีขายที่ไหนเลย: คัน 0B. ขายเฉพาะร้านคันเบ็ดพิเศษ: คัน 0D. คันหวดและคันลัวร์มีเวลาเล็งสั้นลงเมื่อ HP ต่ำกว่า 100 เติม HP ก่อนตก.",
+        "en": "Never sold anywhere: rod 0B. Only sold by the special rod seller: rod 0D. Casting and lure rods give you less time to aim below 100 HP; restore HP before you fish.",
+        "ja": "どの店にも売っていません：竿0B。特別な竿の販売所だけで売っています：竿0D。投げ竿とルアー竿は、HPが100未満だと狙う時間が短くなります。釣る前にHPを回復してください。"
       },
       "items": [
         {
           "category": "rod",
           "id": "0A"
-        },
-        {
-          "category": "rod",
-          "id": "0C"
         },
         {
           "category": "rod",
@@ -79,24 +87,24 @@
       "id": "casting_rod_path",
       "category": "rod",
       "title": {
-        "th": "สายหวด: เริ่มถูก แล้วค่อยขยับ",
-        "en": "Casting: start cheap, then upgrade if aim time matters",
-        "ja": "投げ釣り：安く始めて必要なら強化"
+        "th": "คันหวด: เลือกคันตามปลาที่จะตก",
+        "en": "Casting rods: pick the rod by the fish",
+        "ja": "投げ竿：狙う魚で竿を選ぶ"
       },
       "recommendation": {
-        "th": "ด่าน 1 คัน 0E ราคา ¥250 เป็นคันเริ่มต้นที่ถูกสุด; ถ้าอยากมีเวลาเล็งนานขึ้น ให้ข้ามไปซื้อคัน 0F ราคา ¥600 ที่ด่าน 2 คัน 10 ราคา ¥1,500 ที่ด่าน 6 มีเวลาเล็งนานสุดของสายนี้ แต่ไม่จำเป็นต้องซื้อถ้าคัน 0F ใช้พอแล้ว",
-        "en": "Rod 0E is the ¥250 starting choice in area 1. If you want more time to aim, skip to rod 0F for ¥600 in area 2. Rod 10 at ¥1,500 in area 6 has the most time to aim in this style, but you do not need it if rod 0F is enough.",
-        "ja": "エリア1では0Eが250円の入門用です。狙う時間を増やしたければ、エリア2で0Fを600円で購入します。エリア6の10は1,500円でこの系統の狙う時間が最長ですが、0Fで十分なら買い替えは不要です。"
+        "th": "ปลาใหญ่ต้องใช้คันที่สายยาว ปลาเล็กคันไหนก็พอ ซื้อตามนี้:\n• ปลา 25 ชนิด (เช่น ไรเกียว, นามาซุ, นุมะกาเรย์) ต้องสาย ×18 ขึ้นไป: คัน 0E (¥250, ด่าน 1, 3, 4, 5, 6)\n• ปลา 1 ชนิด (เช่น คามุรุจิ) ต้องสาย ×21 ขึ้นไป: คัน 0F (¥600, ด่าน 2, 4, 5, 6)\n• ปลา 4 ชนิด (เช่น โออูนางิ, อาโอะอุโอะ, อูนางิ) ต้องสาย ×24 ขึ้นไป: คัน 10 (¥1,500, ด่าน 6)",
+        "en": "Big fish need a rod with a long line; small fish take any rod. Buy by the fish:\n• 25 species (e.g. Raigyo, Namazu, Numagarei) need line strength ×18 or more: rod 0E (¥250, areas 1, 3, 4, 5, 6)\n• 1 species (e.g. Kamuruchi) need line strength ×21 or more: rod 0F (¥600, areas 2, 4, 5, 6)\n• 4 species (e.g. Oo-unagi, Aouo, Unagi) need line strength ×24 or more: rod 10 (¥1,500, area 6)",
+        "ja": "大物には糸の長い竿が必要で、小物はどの竿でも足ります。魚に合わせて買います。\n25種（例：ライギョ、ナマズ、ヌマガレイ）は糸の切れにくさ×18以上：竿0E（250円、エリア1・3・4・5・6）。\n1種（例：カムルチー）は糸の切れにくさ×21以上：竿0F（600円、エリア2・4・5・6）。\n4種（例：オオウナギ、アオウオ、ウナギ）は糸の切れにくさ×24以上：竿10（1,500円、エリア6）。"
       },
       "reason": {
-        "th": "คัน 0F มีเวลาเล็งนานกว่าคัน 0E ส่วนคัน 10 นานสุดในกลุ่มคันหวด",
-        "en": "Rod 0F gives more time to aim than rod 0E; rod 10 gives the most among casting rods.",
-        "ja": "0Fは0Eより狙う時間が長く、投げ竿の中では10が最長です。"
+        "th": "สายขาดยาก ×N คือระยะที่ปลาวิ่งได้ก่อนสายขาดและเสียตะขอ ปลาใหญ่ชี้ขาดที่ตรงนี้ (ปลาไหลยักษ์ต้อง ×24) คันยังกำหนดจุดเริ่มของมาตรวัดแรงตึง ซึ่งคือพลาดได้กี่จังหวะ: คัน 0E ได้เปรียบสุดกับปลาไม่เกิน 15 ซม.; คัน 0F ได้เปรียบสุดกับปลา 16–35 ซม.; ปลาเกิน 35 ซม. คันไหนก็เกือบเท่ากัน; คัน 10 เสียเปรียบปลาเล็กถึงกลางเฉลี่ย 1.4 จังหวะ ใช้กับปลาเกิน 35 ซม. เท่านั้น.",
+        "en": "Line strength ×N is how far a fish may run before the line breaks and the hook is lost; big fish are decided here (the giant eel needs ×24). The rod also sets where the fight meter starts, which is how many mistakes you can afford: rod 0E gives the best start against fish up to 15 cm; rod 0F gives the best start against fish of 16–35 cm; for fish over 35 cm almost any rod is the same; using rod 10 on small and mid-size fish loses 1.4 mistakes on average, so keep it for fish over 35 cm.",
+        "ja": "糸の切れにくさ×Nは、魚が走っても糸が切れて針を失わない距離です。大物はここで決まります（オオウナギは×24が必要）。竿はファイトのメーターの出だしも決め、許されるミスの数が変わります：竿0Eは15cm以下の魚で最良のスタート。竿0Fは16〜35cmの魚で最良のスタート。35cm超の魚はほとんどどの竿でも同じです。竿10は小〜中型の魚で平均1.4回分のミスを失うので、35cm超の魚専用にします。"
       },
       "scope": {
-        "th": "ร้านด่าน 1/2/6 ขายคันตามที่ระบุ; ซื้อเพิ่มเมื่อเวลาเล็งที่นานขึ้นสำคัญกับวิธีเล่นของคุณ ไม่ใช่อันดับโอกาสจับปลา",
-        "en": "The listed rods are sold in areas 1, 2 and 6. Upgrade when the extra time to aim matters to how you play; this is not a catch-rate ranking.",
-        "ja": "記載した竿はそれぞれエリア1・2・6で販売しています。狙う時間が必要になったときに強化してください。釣果の順位ではありません。"
+        "th": "ขายเฉพาะร้านคันเบ็ดพิเศษ: คัน 10. คันหวดและคันลัวร์มีเวลาเล็งสั้นลงเมื่อ HP ต่ำกว่า 100 เติม HP ก่อนตก.",
+        "en": "Only sold by the special rod seller: rod 10. Casting and lure rods give you less time to aim below 100 HP; restore HP before you fish.",
+        "ja": "特別な竿の販売所だけで売っています：竿10。投げ竿とルアー竿は、HPが100未満だと狙う時間が短くなります。釣る前にHPを回復してください。"
       },
       "items": [
         {
@@ -117,29 +125,29 @@
       "id": "fly_rod_path",
       "category": "rod",
       "title": {
-        "th": "สายฟลาย: ซื้อคันใหญ่ทีเดียวได้ไหม?",
-        "en": "Fly fishing: should I buy the large rod directly?",
-        "ja": "フライ釣り：最初から大竿を買う？"
+        "th": "คันฟลาย: เลือกคันตามปลาที่จะตก",
+        "en": "Fly rods: pick the rod by the fish",
+        "ja": "フライ竿：狙う魚で竿を選ぶ"
       },
       "recommendation": {
-        "th": "ถ้าจะตกฟลายและกำลังเลือกซื้อคันใหม่ ซื้อคัน 13 ราคาเต็ม ¥450 ที่ด่าน 1 ได้เลย คัน 12 ราคาเต็ม ¥400 แต่คัน 13 มีเวลาเล็งนานสุดและสายขาดยากสุด ถ้ามีคัน 12 อยู่แล้ว ไม่ได้แปลว่าเอาไปแลกหรืออัปเกรดแล้วจ่ายแค่ส่วนต่าง ¥50",
-        "en": "If you plan to fly-fish and are buying a new rod, buy rod 13 for ¥450 in area 1. Rod 12 costs ¥400, but rod 13 has the most time to aim and the line that breaks least easily. This is not a ¥50 trade-in or upgrade price if you already own rod 12.",
-        "ja": "フライ釣りをする予定で新しい竿を選ぶなら、エリア1で13を450円で購入します。12は400円ですが、13は狙う時間が最長で、糸も最も切れにくい竿です。12を持っていても、差額50円で交換できるわけではありません。"
+        "th": "ปลาใหญ่ต้องใช้คันที่สายยาว ปลาเล็กคันไหนก็พอ ซื้อตามนี้:\n• ปลา 30 ชนิด (เช่น บราวน์เทราต์, ปลาอาเมะมาสุ, ปลาซากุระมาสุ) ต้องสาย ×3–15 ขึ้นไป: คัน 12 (¥400, ด่าน 1, 2, 3, 5)\n• ปลา 3 ชนิด (เช่น อาโอะอุโอะ, ปลาแบล็กแบส, นิจิมาสุ) อยากได้สาย ×24 แต่คันที่ยาวสุดมีแค่ คัน 13 (¥450, ด่าน 1, 2, 3, 4) (×21) ใช้ได้แต่เสี่ยงสายขาด",
+        "en": "Big fish need a rod with a long line; small fish take any rod. Buy by the fish:\n• 30 species (e.g. Brown trout, Amemasu, Sakuramasu) need line strength ×3–15 or more: rod 12 (¥400, areas 1, 2, 3, 5)\n• 3 species (e.g. Aouo, Black bass, Nijimasu (rainbow trout)) want line strength ×24, but the longest rod is rod 13 (¥450, areas 1, 2, 3, 4) (×21); it works, with some risk of the line breaking",
+        "ja": "大物には糸の長い竿が必要で、小物はどの竿でも足ります。魚に合わせて買います。\n30種（例：ブラウントラウト、アメマス、サクラマス）は糸の切れにくさ×3–15以上：竿12（400円、エリア1・2・3・5）。\n3種（例：アオウオ、ブラックバス、ニジマス）は糸の切れにくさ×24がほしいところですが、最長の竿は竿13（450円、エリア1・2・3・4）（×21）です。使えますが、糸が切れる危険があります。"
       },
       "reason": {
-        "th": "คัน 13 ราคา ¥450 กับคัน 12 ราคา ¥400 ต่างกันที่เวลาเล็งกับสายขาดยาก",
-        "en": "The large rod (13) costs ¥450 and the medium rod (12) ¥400; they differ in time to aim and line strength.",
-        "ja": "13は450円、12は400円。違いは狙う時間と糸の切れにくさです。"
+        "th": "สายขาดยาก ×N คือระยะที่ปลาวิ่งได้ก่อนสายขาดและเสียตะขอ ปลาใหญ่ชี้ขาดที่ตรงนี้ คันยังกำหนดจุดเริ่มของมาตรวัดแรงตึง ซึ่งคือพลาดได้กี่จังหวะ: คัน 12 ได้เปรียบสุดกับปลา 16–35 ซม.; ปลาเกิน 35 ซม. คันไหนก็เกือบเท่ากัน; คัน 13 เสียเปรียบปลาเล็กถึงกลางเฉลี่ย 1.7 จังหวะ ใช้กับปลาเกิน 35 ซม. เท่านั้น.",
+        "en": "Line strength ×N is how far a fish may run before the line breaks and the hook is lost; big fish are decided here. The rod also sets where the fight meter starts, which is how many mistakes you can afford: rod 12 gives the best start against fish of 16–35 cm; for fish over 35 cm almost any rod is the same; using rod 13 on small and mid-size fish loses 1.7 mistakes on average, so keep it for fish over 35 cm.",
+        "ja": "糸の切れにくさ×Nは、魚が走っても糸が切れて針を失わない距離です。大物はここで決まります。竿はファイトのメーターの出だしも決め、許されるミスの数が変わります：竿12は16〜35cmの魚で最良のスタート。35cm超の魚はほとんどどの竿でも同じです。竿13は小〜中型の魚で平均1.7回分のミスを失うので、35cm超の魚専用にします。"
       },
       "scope": {
-        "th": "ร้านด่าน 1 ขายคัน 12 และคัน 13; ไม่ได้ยืนยันว่าคัน 13 ทำให้ปลากินหรือขึ้นฝั่งง่ายกว่า",
-        "en": "Area 1 sells rod 12 and rod 13. Rod 13 is not proven to improve bites or landings.",
-        "ja": "エリア1では中竿12と大竿13を販売しています。大竿が食いつきや釣り上げを改善する証拠はありません。"
+        "th": "ไม่มีขายที่ไหนเลย: คัน 11.",
+        "en": "Never sold anywhere: rod 11.",
+        "ja": "どの店にも売っていません：竿11。"
       },
       "items": [
         {
           "category": "rod",
-          "id": "13"
+          "id": "12"
         }
       ]
     },
@@ -236,19 +244,19 @@
         "ja": "HPが低いときは釣る前に回復し、必要分だけ買う"
       },
       "recommendation": {
-        "th": "ก่อนตกด้วยคันลัวร์หรือคันหวด เติม HP ให้ถึง 100: ถ้า HP ต่ำกว่า 100 เวลาเล็งของคันสองแบบนี้จะสั้นลง. อาหารร้านทุกชนิดคิด ¥1 ต่อ HP; ถ้าต้องการฟื้นต่อมื้อให้ได้มากสุด เลือกข้าวกล่องบ๊วย 06 ฟื้น 40 HP ราคา ¥40 (มีตั้งแต่ด่าน 5). ถ้าจะให้ถึง 100 ให้เลือกอาหารหนึ่งชิ้นหรือหลายชิ้นรวมกันให้พอฟื้น HP ที่ขาด: ด่าน1 ส้ม 01 ฟื้น 5/¥5 หรือข้าวปั้น 02 ฟื้น 10/¥10; ด่าน2 ดังโงะ 03 ฟื้น 15/¥15; ด่าน3 กล้วย 04 ฟื้น 20/¥20; ด่าน4 องุ่น 05 ฟื้น 30/¥30. ส่วนฟื้นที่เกิน HP สูงสุดจะเสียเปล่า",
-        "en": "Before lure or casting fishing, restore HP to 100: below 100 HP those two styles get less time to aim. All shop foods cost ¥1 per HP. For the most recovery from one serving, choose the 40-HP bento (06) for ¥40, stocked from area 5. To reach 100, choose one food or combine servings for at least your missing HP: area 1 orange 01 restores 5 for ¥5 or rice ball 02 restores 10 for ¥10; area 2 dango 03 restores 15 for ¥15; area 3 banana 04 restores 20 for ¥20; area 4 grapes 05 restores 30 for ¥30. Any recovery beyond maximum HP is wasted.",
-        "ja": "ルアーまたは投げ釣りの前にHPを100まで回復してください。HP100未満ではこの2系統の照準時間が短くなります。店の食料はすべてHP1につき1円です。一食で最も多く回復するなら、エリア5から販売される日の丸弁当06（40回復/40円）。HP100にするには、不足分以上を回復できる食料を選ぶか組み合わせます。エリア1：ミカン01は5回復/5円、おむすび02は10回復/10円。エリア2：だんご03は15/15円。エリア3：バナナ04は20/20円。エリア4：ブドウ05は30/30円。最大HPを超える回復分は無駄になります。"
+        "th": "คันลัวร์และคันหวด จะมีเวลาเล็งสั้นลงเมื่อ HP ต่ำกว่า 100 ก่อนตกด้วยคันสองแบบนี้ให้เติม HP ให้ถึง 100 ขึ้นไป ส่วนคันสายทุ่นและคันฟลายไม่โดนผลนี้ อาหารร้านคิด ¥1 ต่อ HP เลือกชิ้นที่รวมกันแล้วพอดีกับ HP ที่ขาด เพราะส่วนที่เกิน HP สูงสุดจะเสียเปล่า ชิ้นที่ฟื้นมากสุดคือข้าวกล่องบ๊วย ฟื้น 40 HP ราคา ¥40 (ขายตั้งแต่ด่าน 5) ชิ้นเล็กกว่า: ด่าน 1 ส้มฟื้น 5/¥5 หรือข้าวปั้นฟื้น 10/¥10; ด่าน 2 ดังโงะฟื้น 15/¥15; ด่าน 3 กล้วยฟื้น 20/¥20; ด่าน 4 องุ่นฟื้น 30/¥30 ถ้าอยากฟื้นเต็มฟรี ใช้นม (ดูการ์ดของเควสต์)",
+        "en": "Casting and lure rods get less time to aim when your HP is below 100, so top up to at least 100 before you fish with them. Float and fly rods are not affected. Shop food costs ¥1 per HP: pick servings that add up to the HP you are missing, because anything above your maximum is wasted. The biggest serving is the 40-HP Hinomaru bento (¥40, sold from Area 5). Smaller ones: Area 1 orange restores 5 for ¥5 or rice ball restores 10 for ¥10; Area 2 dango restores 15 for ¥15; Area 3 banana restores 20 for ¥20; Area 4 grapes restores 30 for ¥30. For a free full heal, use milk (see the quest items card).",
+        "ja": "ルアー竿と投げ竿は、HPが100未満だと狙う時間が短くなります。使う前にHPを100以上まで回復してください。ウキ竿と毛バリ竿は影響を受けません。店の食料はHP1につき1円。不足分に合う量を選んでください。最大HPを超える回復分は無駄になります。一食で最も多く回復するのはエリア5から販売される日の丸弁当（40回復・40円）。小さいもの：エリア1はミカン（5回復・5円）、おむすび（10回復・10円）。エリア2はだんご（15回復・15円）。エリア3はバナナ（20回復・20円）。エリア4はブドウ（30回復・30円）。無料で全回復したいなら牛乳を使います（イベントアイテムの欄を参照）。"
       },
       "reason": {
-        "th": "HP 100 ทำให้คันลัวร์/คันหวดมีเวลาเล็งเต็มที่; ฟื้นเกิน HP ที่ขาดจะสูญเปล่า และเมื่อ HP เต็มแล้วเกมไม่ให้กินอาหาร. นมที่มีอยู่ฟื้น HP เต็มได้และเติมกลับที่วัวด่าน 3 แต่ถ้าจะแลกเรือแคนูให้เก็บนมไว้ก่อน",
-        "en": "At 100 HP, the rod has its full time to aim. Recovery beyond missing HP is wasted, and the game refuses food when HP is full. Milk restores HP to its maximum and can be refilled at the area 3 cow, but save it if you still want to trade for the canoe.",
-        "ja": "HP100なら竿本来の狙う時間になります。不足HPを超える回復分は無駄になり、HP満タン時は食事できません。牛乳はHPを最大まで回復し、エリア3の牛で補充できますが、カヌーと交換したいなら先に渡してください。"
+        "th": "HP ทำอะไรบ้าง: การว่ายน้ำ (เสีย 1 HP ทุกครึ่งวินาทีโดยประมาณ) และการพายกะละมังหรือแคนู (ประมาณ 1 HP ต่อช่อง) ทำให้ HP ลด ส่วนการเดินไม่เสีย การเสียอุปกรณ์ในการสู้เสีย 1-4 HP เมื่อเหลือ 10 HP เกมจะเตือนว่ากำลังจะหมดแรง ถ้า HP เป็น 0 คุณจะสลบแล้วตื่นที่จุดเซฟด้วย HP 1 โดยเงิน ปลา และอุปกรณ์ยังอยู่ครบ ระหว่างสู้กับปลาไม่ได้ใช้ HP ผลต่อการตกปลามีอย่างเดียวคือเวลาเล็ง: ต่ำกว่า 100 HP คันลัวร์และคันหวดจะมีเวลาเล็งสั้นลง (ที่ 50 HP เหลือประมาณครึ่งหนึ่ง ที่ 20 HP เหลือประมาณหนึ่งในห้า) HP สูงสุดเริ่มที่ 100 และเพิ่มทีละ 1 เมื่อตกนิวต์ กบ กุ้งเครย์ฟิช เต่า ตะพาบ และปู สูงสุดประมาณ 190 \"HP เต็ม\" จึงไม่ใช่ 100 เสมอไป ตอน HP เต็มเกมไม่ให้กินอาหาร นมฟื้นเต็มและวัวด่าน 3 เติมขวดให้ฟรีกี่ครั้งก็ได้",
+        "en": "What HP does: it costs HP to swim (1 HP about every half second) or row the tub or canoe (about 1 HP per tile), but walking is free. Losing tackle in a fight costs 1 to 4 HP. At 10 HP the game warns you that you will run out of strength. At 0 HP you black out and wake up at your saved position with 1 HP, and you keep your money, fish and tools. HP is not used during the fight itself. The only effect on fishing is aim time: below 100 HP, casting and lure rods get less of it (about half at 50 HP, about a fifth at 20 HP). Your maximum HP starts at 100 and rises by 1 at a time as you catch newts, frogs, crayfish, turtles, softshell turtles and crabs, up to about 190, so \"full HP\" is not always 100. At full HP the game refuses food. Milk heals fully and the Area 3 cow refills the bottle for free, as often as you like.",
+        "ja": "HPの働き：泳ぐ（約0.5秒ごとに1HP）、タライやカヌーをこぐ（1マスにつき約1HP）とHPが減ります。歩くのは無料。ファイトで道具を失うと1〜4HP減ります。HPが10になると、このままでは力尽きるという警告が出ます。HPが0になると気絶し、保存位置で1HPの状態で目を覚ましますが、お金・魚・道具はそのままです。ファイト中にHPは使われません。釣りへの影響は狙う時間だけ：HPが100未満だと、ルアー竿と投げ竿の狙う時間が短くなります（HP50でおよそ半分、HP20でおよそ5分の1）。最大HPは100から始まり、イモリ・カエル・ザリガニ・カメ・スッポン・カニを釣るごとに1ずつ増えて最大190ほどになるので、「HP満タン」はいつも100とは限りません。満タンのときは食べられません。牛乳は全回復で、エリア3の牛が何度でも無料でビンを補充してくれます。"
       },
       "scope": {
-        "th": "ยืนยันเรื่องเวลาเล็งที่สั้นลงเฉพาะคันลัวร์/คันหวด; รายการอาหารและราคามาจากรายการร้านและผลของอาหารในเกม",
-        "en": "The drop in aim time is confirmed for lure and casting rods only; food locations and prices come from the shop lists and the foods' effects in the game.",
-        "ja": "狙う時間が短くなることを確認したのはルアー竿・投げ竿です。食料の販売場所と価格は店の品ぞろえとゲームの効果データに基づきます。"
+        "th": "ยืนยันเรื่องเวลาเล็งที่สั้นลงเฉพาะคันลัวร์/คันหวด รายการอาหารและราคามาจากรายการร้านและผลของอาหารในเกม ตัวเลข HP มาจากการทดสอบเกมต้นฉบับในอีมูเลเตอร์",
+        "en": "The drop in aim time is confirmed for lure and casting rods only; food locations and prices come from the shop lists and the foods' effects in the game. The HP figures come from emulator tests of the original game.",
+        "ja": "狙う時間が短くなることを確認したのはルアー竿・投げ竿です。食料の販売場所と価格は店の品ぞろえとゲームの効果データに基づきます。HPの数値は原作ゲームのエミュレーター検証によるものです。"
       },
       "items": [
         {
@@ -294,14 +302,14 @@
         "ja": "イベントアイテム：牛乳は後で補充できる。町の宝箱も確認"
       },
       "recommendation": {
-        "en": "Area 3: take the bottle from the town chest (6,4), fill it at the cow (6,103), then choose: trade fresh milk for the canoe at (28,39) now, or drink it for full HP and refill the empty bottle at the cow later. Area 4: give fried tofu 15 at (32,42) for the fox-story step, then use fireworks 16; fireworks can also trigger the fox scene directly at X31–33, Y42–43 without the tofu step. Area 6: take candle 12 from the town chest and give it to the NPC at (47,36).",
-        "ja": "エリア3：町の宝箱（6,4）でビンを取り、牛（6,103）で牛乳にします。その後は選択してください。カヌーが必要なら先に船大工（28,39）へ渡す。HP回復を優先するなら飲んで最大まで回復し、空きビンを後で牛に持っていけば再び牛乳にできます。エリア4：キツネの話を進めるならNPC（32,42）に油揚げ15を渡してから花火16を使う。油揚げの手順を通らず、X31–33、Y42–43で花火を直接使ってもキツネの場面が始まります。エリア6：町の宝箱からロウソク12を取り、NPC（47,36）に渡します。",
-        "th": "ด่าน 3: รับขวดจากหีบเมือง (6,4) เติมนมที่วัว (6,103) แล้วเลือกว่าจะทำอะไรต่อ—ถ้าต้องการแคนู ให้แลกนมกับช่างที่ (28,39) ก่อน; ถ้าต้องการฟื้น HP ให้เต็มก่อน ดื่มนมได้ แล้วนำขวดเปล่ากลับไปเติมที่วัวภายหลัง. ด่าน 4: ถ้าต้องการเดินเรื่องจิ้งจอก ให้ยื่นเต้าหู้ทอด 15 ที่ NPC (32,42) แล้วใช้ประทัด 16; หรือจุดฉากจิ้งจอกโดยตรงด้วยประทัดที่ X31–33, Y42–43 โดยไม่ต้องผ่านขั้นเต้าหู้. ด่าน 6: รับเทียน 12 จากหีบเมืองแล้วนำไปให้ NPC ที่ (47,36)."
+        "th": "ด่าน 3: รับขวดจากหีบเมือง (6,4) ไม่ต้องใช้กุญแจ แล้วเติมนมที่วัว (6,103) นมคือการฟื้น HP เต็มฟรี เติมกี่ครั้งก็ได้ ถ้าอยากได้แคนู ให้เอานมสดไปแลกกับช่างที่ (28,39) ถ้าไม่ ก็ดื่มเมื่อขาด HP แล้วค่อยเติมใหม่ ด่าน 4: ถ้าต้องการเดินเรื่องจิ้งจอก ให้ยื่นเต้าหู้ทอดที่ NPC (32,42) แล้วใช้ประทัด; หรือจุดฉากจิ้งจอกโดยตรงด้วยประทัดที่ X31–33, Y42–43 โดยไม่ต้องผ่านขั้นเต้าหู้ ด่าน 6: รับเทียนจากหีบเมือง (ใช้กุญแจหมดไปหนึ่งดอก) แล้วนำไปให้ NPC ที่ (47,36)",
+        "en": "Area 3: take the bottle from the town chest (6,4); no key is needed. Fill it at the cow (6,103). Milk is a free full heal you can refill as often as you like. If you want the canoe, hand fresh milk to the canoe maker at (28,39); otherwise drink it when you need HP and refill later. Area 4: give fried tofu at (32,42) for the fox-story step, then use fireworks; fireworks can also trigger the fox scene directly at X31–33, Y42–43 without the tofu step. Area 6: take the candle from the town chest (it uses up one key) and give it to the NPC at (47,36).",
+        "ja": "エリア3：町の宝箱（6,4）でビンを取ります（カギは不要）。牛（6,103）で牛乳にします。牛乳は何度でも無料で補充できる全回復です。カヌーが欲しいなら新しい牛乳を船大工（28,39）へ渡し、そうでなければHPが必要なときに飲んで後で補充します。エリア4：キツネの話を進めるならNPC（32,42）に油揚げを渡してから花火を使う。油揚げの手順を通らず、X31–33、Y42–43で花火を直接使ってもキツネの場面が始まります。エリア6：町の宝箱からロウソクを取り（カギを1個消費）、NPC（47,36）に渡します。"
       },
       "reason": {
-        "en": "Drinking milk changes it to an empty bottle, but the area-3 cow can refill that bottle; it delays the canoe exchange rather than permanently removing the route.",
-        "ja": "牛乳を飲むと空きビンに戻りますが、エリア3の牛で再び牛乳にできます。カヌー交換ができなくなるのではなく、後で補充する手間が増えるだけです。",
-        "th": "ดื่มนมแล้วไอเท็มจะเปลี่ยนเป็นขวดเปล่า แต่กลับไปเติมที่วัวด่าน 3 ได้ จึงแค่ต้องกลับมาเติมใหม่ก่อนแลกแคนู ไม่ได้ปิดทางแลกถาวร"
+        "th": "ดื่มนมแล้วเหลือขวดเปล่า แต่วัวด่าน 3 เติมให้ฟรีกี่ครั้งก็ได้ การดื่มก่อนแค่ทำให้ต้องเติมอีกครั้งก่อนแลกแคนู ไม่ได้ปิดทางแลกถาวร",
+        "en": "Drinking milk leaves an empty bottle, and the area-3 cow refills it for free as often as you like. Drinking only means one extra refill before the canoe trade; it never closes the route.",
+        "ja": "牛乳を飲むと空きビンが残りますが、エリア3の牛が何度でも無料で補充してくれます。飲んでもカヌー交換の前に補充が1回増えるだけで、交換できなくなることはありません。"
       },
       "scope": {
         "th": "ตำแหน่งและผลเหล่านี้มาจากข้อมูลเงื่อนไขของ NPC/หีบในเกม; ใช้ประทัดตรงจุดกับเรื่องเต้าหู้เป็นคนละทางกัน",
@@ -343,24 +351,24 @@
       "id": "key_and_lottery",
       "category": "general_tool",
       "title": {
-        "th": "กุญแจหนึ่งดอกใช้กับหีบสี่ด่าน; รับสลากจากหีบก่อนซื้อ",
-        "en": "One key opens four area chests; take the ticket from its chest before buying one",
-        "ja": "カギ1個で4エリアの宝箱を開ける。券は購入前に宝箱から取る"
+        "th": "กุญแจหนึ่งดอกเปิดหีบได้หนึ่งใบ สลากต้องถวายอาหารที่จิโซก่อนถึงจะถูก",
+        "en": "Each key opens one chest; the lottery needs a Jizo offering first",
+        "ja": "カギ1個で宝箱1つ。くじは先に地蔵へ供えないと当たらない"
       },
       "recommendation": {
-        "th": "ซื้อกุญแจ 17 หนึ่งดอกจากร้านด่าน 1 ราคา ¥100; สต็อกมีในด่าน 1, 2, 4 และ 6 และกุญแจไม่หายเมื่อเปิดหีบ จึงใช้ดอกเดิมกับหีบล็อกในเมืองทั้งสี่ด่านได้ เว้นช่องของรางวัลหมวดเหยื่อ/คัน/อุปกรณ์ให้ว่างก่อนเปิด. สลาก 11 รับจากหีบเมืองด่าน 5 ที่ (4,6) โดยไม่ต้องใช้กุญแจ แล้วนำไปขึ้นที่เคาน์เตอร์กลางแจ้ง (54,22) ก่อนซื้อสลากเพิ่ม. ถ้าจะเพิ่มค่าตัดสินรางวัล ถวายอาหารที่รูปปั้นจิโซ (49,22): ข้าวกล่อง 06 เพิ่ม 40 หน่วย; ส้ม 01 เพิ่ม 5; ตัวเลขนี้ไม่ใช่เปอร์เซ็นต์",
-        "en": "Buy one key (17) for ¥100 in area 1; recorded shop stock also includes it in areas 2, 4 and 6. It is retained after opening a chest, so the same key opens the locked town chests in areas 1, 2, 4 and 6. Leave space in the matching bait, rod or tool inventory before opening each chest. Take ticket 11 from the area-5 town chest at (4,6) without a key, then use it at the outdoor counter (54,22) before buying another ticket. If you want to raise the lottery threshold, offer food at the Jizo (49,22): bento 06 adds 40, orange 01 adds 5. These values are not percentages.",
-        "ja": "エリア1の店でカギ17を1個、100円で購入します。記録された店頭在庫はエリア2・4・6にもあります。宝箱を開けてもカギは消費されないため、同じ1個でエリア1・2・4・6の町の鍵付き宝箱を開けられます。各宝箱を開ける前に、対応するエサ・竿・道具欄を空けてください。富くじ11はエリア5の町の宝箱（4,6）からカギなしで入手し、追加購入の前に屋外の抽選所（54,22）で使います。当選しきい値を上げたい場合は地蔵（49,22）に食べ物を供えます。日の丸弁当06は40、みかん01は5を加算します。確率のパーセント値ではありません。"
+        "th": "กุญแจราคา ¥100 (ร้านด่าน 1, 2, 4 และ 6) และหมดไปหนึ่งดอกทุกครั้งที่เปิดหีบ ซื้อเท่าจำนวนหีบที่ต้องการ: ด่าน 1 เหยื่อมันฝรั่ง ด่าน 2 หนอนองุ่น ด่าน 4 คันลัวร์เล็ก ด่าน 6 เทียน หีบไหนไม่ต้องการของข้างใน ข้ามได้ เว้นช่องเหยื่อ คัน หรืออุปกรณ์ให้ว่างก่อน ถ้าหีบไม่ยอมเปิด ให้เว้นช่อง เดินออกจากเมืองแล้วเข้าใหม่ หีบขวดด่าน 3 และหีบสลากด่าน 5 ไม่ต้องใช้กุญแจ สลาก: รับสลากฟรีจากหีบในเมืองด่าน 5 ที่ (4,6) ถวายข้าวกล่องบ๊วยหรือหัวไชเท้าที่จิโซ (49,22) ก่อน (ชิ้นละ 40 ส้ม 5) แล้วค่อยนำสลากไปส่งที่เคาน์เตอร์ (54,22) ถ้าไม่ถวาย สลากจะไม่มีวันถูก",
+        "en": "Keys cost ¥100 (Area 1, 2, 4 and 6 shops) and each one is used up when a chest opens, so buy one per chest you want: Area 1 potato bait, Area 2 grapevine larva bait, Area 4 small lure rod, Area 6 candle. Skip a chest if you do not need its prize. Free a bait, rod or tool slot first; if the chest refuses, free a slot, leave the town and come back in. The Area 3 bottle chest and the Area 5 ticket chest need no key. Lottery: take the free ticket from the Area 5 town chest at (4,6), offer bento or daikon at the Jizo (49,22) first (40 each, orange 5), then hand the ticket in at the counter (54,22). With no offering the ticket can never win.",
+        "ja": "カギは100円（エリア1・2・4・6の店）で、宝箱を開けるたびに1個消費されます。欲しい宝箱の分だけ買ってください：エリア1はイモエサ、エリア2はブドウムシ、エリア4はルアーロッド小、エリア6はロウソク。中身が不要な宝箱は飛ばして構いません。先にエサ・竿・道具の欄を空けてください。開けられなかったら、欄を空けて町を出て入り直します。エリア3のビンの宝箱とエリア5の券の宝箱はカギ不要です。くじ：エリア5の町の宝箱（4,6）で無料の券を取り、先にお地蔵さま（49,22）へ弁当か大根を供え（各40、みかんは5）、抽選所（54,22）で券を出します。供えなければ券は絶対に当たりません。"
       },
       "reason": {
-        "th": "หีบแต่ละใบให้รางวัลหมวดต่างกันและตรวจช่องว่างก่อนรับของ; ส่วนสลากถูกใช้ที่เคาน์เตอร์และมีผลแพ้ด้วย จึงควรเก็บใบจากหีบก่อนจ่ายเงิน",
-        "en": "Each chest checks room in a different inventory before granting its reward. The counter consumes the ticket and includes a losing branch, so use the chest ticket before paying for another.",
-        "ja": "宝箱は報酬ごとに所持欄の空きを確認します。抽選所では券が消費され、はずれ分岐もあるため、追加購入の前に宝箱の券を使ってください。"
+        "th": "หีบแต่ละใบตรวจช่องว่างคนละกระเป๋าก่อนให้ของ เคาน์เตอร์ใช้สลากทิ้งและมีผลแพ้ด้วย ถ้าถูก ¥1,000 หรือ ¥5,000 ค่าถวายจะกลับเป็น 0 ต้องถวายใหม่ก่อนใช้สลากใบต่อไป การถวายยังช่วยให้เสียเบ็ด ลัวร์ หรือฟลายน้อยลงหลังตกปลาขึ้นมาได้ (เบ็ดและลัวร์จากประมาณ 6% เหลือ 4% ฟลายจากประมาณ 12% เหลือ 7% ในกรณีดีที่สุด)",
+        "en": "Each chest checks room in a different bag before giving its prize. The counter uses up the ticket and has a losing branch. Winning ¥1,000 or ¥5,000 resets your offering to zero, so offer again before the next ticket. The offering also lowers the chance of losing a hook, lure or fly after you land a fish (hook and lure about 6% to 4% at best, fly about 12% to 7% at best).",
+        "ja": "宝箱は報酬ごとに別の所持欄の空きを確認します。抽選所では券が消費され、はずれもあります。1,000円か5,000円が当たると供え物は0に戻るので、次の券の前にまた供えます。供え物は、魚を釣り上げた後にハリ・ルアー・毛バリを失う確率も下げます（ハリとルアーは最大でおよそ6%から4%、毛バリはおよそ12%から7%）。"
       },
       "scope": {
-        "th": "อาหารเพิ่มค่าตัดสินรางวัล แต่ยังไม่ใช่เปอร์เซ็นต์หรือกำไรคาดหวัง; หัวไชเท้า 07 เพิ่ม 40 เช่นกัน รับจากการแลกปลายามาโนคามิด่าน 3 โดยทับอาหารเดิมทั้ง 16 ช่อง อ่านหน้าหัวไชเท้าก่อนแลก",
-        "en": "Food raises the threshold, not a verified percentage or expected payout. Daikon 07 also adds 40; obtain it through the area-3 Yamanokami trade, which overwrites all 16 food slots. Read its item page before trading.",
-        "ja": "食料は判定値を上げるが、確率や期待払い戻し率ではない。大根07も40加算する。エリア3のヤマノカミ交換で入手できるが、食料全16枠を上書きするため、先にアイテムページを確認する。"
+        "th": "อาหารทำให้มีโอกาสถูกมากขึ้น แต่ไม่มีเปอร์เซ็นต์ที่ยืนยันหรือเงินรางวัลคาดหวัง หัวไชเท้าเพิ่ม 40 เช่นกัน รับจากการแลกปลายามาโนะคามิด่าน 3 โดยทับอาหารเดิมทั้ง 16 ช่อง อ่านหน้าหัวไชเท้าก่อนแลก อย่าซื้ออาหารเพื่อสลากอย่างเดียว",
+        "en": "Food raises the chance of winning, but there is no verified percentage or expected payout. Daikon also adds 40; you get it from the area-3 Yamanokami trade, which overwrites all 16 food slots, so read its page before trading. Do not buy food only for the lottery.",
+        "ja": "食料は当たりやすくしますが、確率や期待払い戻し率は確認されていません。大根も40加算します。エリア3のヤマノカミ交換で入手できますが、食料全16枠を上書きするため、先にアイテムページを確認してください。くじのためだけに食料を買わないでください。"
       },
       "items": [
         {
@@ -378,32 +386,82 @@
       ]
     },
     {
-      "id": "hook_purchase_caution",
+      "id": "hook_by_size",
       "category": "hook",
       "title": {
-        "th": "อย่าซื้อเบ็ดเพราะชื่อปลาตรงอย่างเดียว",
-        "en": "Do not buy a hook just because its name matches a fish",
-        "ja": "魚名が合うという理由だけで針を買わない"
+        "th": "ตะขอ: เลือกตามขนาดปลา",
+        "en": "Hooks: pick by fish size",
+        "ja": "針：魚の大きさで選ぶ"
       },
       "recommendation": {
-        "th": "เลือกเหยื่อและชุดตกที่ปลาเป้าหมายรับได้ก่อน; ยังไม่ควรจ่ายเพิ่มเพื่อเบ็ดชื่อปลาเดียวกันโดยคาดหวังว่ากินง่ายหรือจับง่ายขึ้น",
-        "en": "Choose a compatible bait and fishing style for the target first. Do not pay extra for a fish-matched hook expecting easier bites or catches.",
-        "ja": "まず対象魚に適合するエサと釣り方を選びます。魚名が一致する針に、食いつきや釣り上げやすさを期待して追加料金を払わないでください。"
+        "th": "ตะขอตั้งจุดเริ่มของมาตรวัดแรงตึงตอนสู้ปลา ยิ่งเริ่มต่ำยิ่งพลาดได้หลายจังหวะ ตะขอถูกขนาดปลาให้พลาดได้เพิ่ม 1 จังหวะ ผิดขนาดเสียไป 1 จังหวะ ต่างกันได้ถึง 2 จังหวะ ซื้อตามขนาดปลา:\n• ปลาไม่เกิน 15 ซม.: เบ็ด 08 (¥15, ด่าน 1, 3).\n• ปลา 16–35 ซม.: เบ็ด 06 (¥25, ด่าน 1, 2, 3, 4, 5, 6); ถ้ารอถึงด่าน 2 เบ็ด 09 (¥10) ถูกกว่า.\n• ปลาเกิน 35 ซม.: เบ็ด 04 (¥35, ด่าน 4); ก่อนถึงด่าน 4 ยังไม่มีขาย ใช้ตะขอของปลา 16–35 ซม. แทน (ไม่เสียอะไร) แต่อย่าใช้ตะขอของปลาไม่เกิน 15 ซม. กับปลาใหญ่ (เสีย 1 จังหวะ).\n• ตะขอที่มีชื่อปลา ใช้ได้ดีสุดกับปลานั้น แต่ตะขอตามขนาดราคาถูกกว่าให้ผลเท่ากันเกือบทุกกรณี.\n• ปลาไหลยักษ์: เบ็ด 01, เบ็ด 02, เบ็ด 03 และ เบ็ด 04 ให้ผลเท่ากันหมด ไม่ต้องใช้ตะขอปลาไหล.\nตะขอขายเป็นชุด 9 ตัว.",
+        "en": "A hook sets where the fight meter starts: the lower it starts, the more mistakes you can afford. A hook that fits the fish's size allows 1 more mistake, one that does not costs 1, so the gap is up to 2. Buy by fish size:\n• fish up to 15 cm: hook 08 (¥15, areas 1, 3).\n• fish of 16–35 cm: hook 06 (¥25, areas 1, 2, 3, 4, 5, 6); if you can wait until area 2, hook 09 (¥10) is cheaper.\n• fish over 35 cm: hook 04 (¥35, area 4); none is sold before area 4, so use a hook for fish of 16–35 cm (it costs nothing) and never a hook for fish up to 15 cm on big fish (it costs 1 mistake).\n• A hook named for a fish works best on that fish, but a cheaper hook of the right size does the same in almost every case.\n• Giant eel: hook 01, hook 02, hook 03 and hook 04 all do the same, so you do not need the eel hook.\nHooks are sold in stacks of 9.",
+        "ja": "針はファイトのメーターの出だしを決めます。低く始まるほど、許されるミスが増えます。魚の大きさに合う針はミスを1回分増やし、合わない針は1回分減らすので、差は最大2回です。魚の大きさで買います。\n15cm以下の魚：08（15円、エリア1・3）。\n16〜35cmの魚：06（25円、エリア1・2・3・4・5・6）。エリア2まで待てるなら09（10円）の方が安い。\n35cm超の魚：04（35円、エリア4）。エリア4より前は売っていないので、16〜35cmの魚用の針で代用します（損はありません）。15cm以下用の針を大物に使うとミス1回分を失います。\n魚名の付いた針はその魚に最良ですが、大きさの合う安い針でもほぼ同じ効果です。\nオオウナギ：01、02、03と04はどれも同じ効果で、ウナギ用の針は不要です。\n針は9個1組で売っています。"
       },
       "reason": {
-        "en": "The fish name on a hook does not add a bait that the fish will accept. Use a hook you already have while choosing bait from the target fish’s recorded list.",
-        "ja": "針の魚名によって、その魚が食べるエサの種類が増えるわけではありません。所持している針を使い、対象魚の記録されたエサ一覧から選んでください。",
-        "th": "ชื่อปลาบนเบ็ดไม่ได้เพิ่มชนิดเหยื่อที่ปลานั้นรับได้ ใช้เบ็ดที่มีอยู่ก่อน แล้วเลือกเหยื่อจากรายชื่อของปลาที่จะตก"
+        "th": "ตัวอย่างที่วัดได้: ยามาเมะบนคัน 10 ถ้าตะขอถูกขนาด ตกได้ 100% ถ้าผิดขนาดตกได้ 6% การตกได้แล้วตะขอก็ยังหักได้ (สูงสุดราว 6%) จึงควรพกสำรอง.",
+        "en": "Measured example: Yamame on rod 10 is landed in 100% of fights with a hook that fits its size and in 6% with one that does not. A landed fish can still break the hook (up to about 6%), so carry spares.",
+        "ja": "測定例：竿10でヤマメは、大きさに合う針なら100%、合わない針なら6%で釣り上げられました。釣り上げた後でも針が折れることがある（最大約6%）ので、予備を持ちます。"
       },
       "scope": {
-        "en": "This advice does not rank which hook lands fish more easily. Open the generic hook record to compare its traced use without assuming a catch bonus.",
-        "ja": "この案内は針の釣り上げやすさを順位付けするものではありません。釣果ボーナスを想定せず、汎用ハリの記録を確認してください。",
-        "th": "คำแนะนำนี้ไม่ได้จัดอันดับว่าเบ็ดไหนช่วยดึงปลาขึ้นง่ายกว่า เปิดดูเบ็ดทั่วไปเพื่อเทียบการใช้งานที่ตรวจได้ โดยไม่สมมติว่ามีโบนัสจับปลา"
+        "th": "ขนาดที่ใช้คือขนาดจริงของปลาแต่ละตัว ปลาบางชนิดมีหลายขนาด ตะขอใช้กับคันทุ่นและคันหวด ส่วนลัวร์และฟลายไม่ใช้.",
+        "en": "The size that counts is each fish's own size; some species come in several sizes. Hooks are used with float and casting rods, not with lures or flies.",
+        "ja": "基準は魚1匹ごとの実際の大きさで、複数の大きさがある魚もいます。針はウキ竿と投げ竿用で、ルアーとフライには使いません。"
       },
       "items": [
         {
           "category": "hook",
+          "id": "08"
+        },
+        {
+          "category": "hook",
+          "id": "0B"
+        },
+        {
+          "category": "hook",
           "id": "06"
+        },
+        {
+          "category": "hook",
+          "id": "09"
+        },
+        {
+          "category": "hook",
+          "id": "04"
+        }
+      ]
+    },
+    {
+      "id": "float_sinker_choice",
+      "category": "float_weight",
+      "title": {
+        "th": "ทุ่นและตะกั่ว: ซื้อถูกสุดพอ",
+        "en": "Floats and sinkers: buy the cheapest",
+        "ja": "ウキとオモリ：最安で十分"
+      },
+      "recommendation": {
+        "th": "ซื้อตัวที่ถูกสุดที่ร้านในด่านมี ทุ่นที่ถูกสุดคือ ทุ่น 02 (¥10, ด่าน 2, 4, 5) ด่านอื่นดูตารางราคาตามด่าน. ตะกั่วเลือกเส้นทางคันหวด: ตกได้ 30 จาก 72 ชนิด (เฉพาะปลาก้นน้ำ) รอประมาณ 10 วินาที และไม่มีปลาที่ตะกั่วตกได้แต่ทุ่นตกไม่ได้ ถ้าไม่มีเหตุผลพิเศษ ใช้คันทุ่นกับทุ่นถูกสุดจะง่ายกว่า.",
+        "en": "Buy the cheapest one your shop stocks. The cheapest float is float 02 (¥10, areas 2, 4, 5); for other areas see the price-by-area table. A sinker picks the casting route: it catches 30 of 72 species (bottom fish only), waits about 10 seconds, and catches nothing a float cannot. Unless you have a reason, a float rod with the cheapest float is easier.",
+        "ja": "店にある中で最安のものを買います。最安のウキはウキ02（10円、エリア2・4・5）で、ほかのエリアはエリア別の価格表を見ます。オモリは投げ竿の経路を決めます。72種中30種（底にいる魚だけ）が釣れ、約10秒待ち、ウキで釣れない魚は釣れません。特別な理由がなければ、最安のウキでウキ竿を使う方が簡単です。"
+      },
+      "reason": {
+        "th": "ผลการจำลอง: ทุ่นและตะกั่วไม่อยู่ในข้อมูลการสู้ปลาเลย เปลี่ยนแล้วการสู้ปลาเหมือนเดิมทุกเฟรม (ทดสอบ 28 การสู้ ด้วยทุ่น 5 แบบและตะกั่ว 2 แบบ).",
+        "en": "Simulation result: floats and sinkers are not in the fight data at all, so swapping them leaves the fight identical frame for frame (28 fights tested with 5 floats and 2 sinkers).",
+        "ja": "シミュレーションの結果：ウキとオモリはファイトのデータに含まれず、替えてもファイトは1フレームも変わりません（ウキ5種とオモリ2種で28回のファイトを確認）。"
+      },
+      "scope": {
+        "th": "ป้ายปลาเฮระของทุ่นเฮระไม่ทำอะไร ตกปลาเฮระง่ายขึ้นไม่ได้. ตะกั่วที่ถูกสุดคือ ตะกั่ว 0A (¥30, ด่าน 5, 6) ตะกั่วสองแบบให้ผลเท่ากัน.",
+        "en": "The Hera tag on the Hera float does nothing; it does not make Hera easier to catch. The cheapest sinker is sinker 0A (¥30, areas 5, 6); both sinkers do the same.",
+        "ja": "ヘラウキのヘラブナの表示は何もしません。ヘラブナが釣りやすくなることはありません。最安のオモリはオモリ0A（30円、エリア5・6）で、2種類のオモリは効果が同じです。"
+      },
+      "items": [
+        {
+          "category": "float_weight",
+          "id": "02"
+        },
+        {
+          "category": "float_weight",
+          "id": "0A"
         }
       ]
     }

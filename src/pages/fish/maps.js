@@ -40,16 +40,26 @@ export function renderAreaMap(ctx, map, location, fish) {
 function emptyPointAdvice(ctx, count) {
   if (count === 1) {
     if (ctx.locale === 'th')
-      return 'ด่านนี้มีจุดที่เกมกำหนดไว้เพียงจุดเดียว ถ้าไม่พบปลา ช่องเกิดนี้อาจไม่ทำงานในรอบนี้ หรือปลาอาจเคลื่อนที่ไปแล้ว ลองตรวจบริเวณใกล้จุดนี้'
+      return 'ด่านนี้ปลาชนิดนี้มีหมุดเดียว ถ้าหมุดว่าง ให้ตกปลาในด่านนั้นแล้วนอนโรงแรมของด่านนั้น ทำซ้ำจนปลากลับมา ปลาว่ายห่างจากหมุดได้ ลองดูรอบ ๆ ด้วย'
     if (ctx.locale === 'ja')
-      return 'このエリアでゲームに設定された地点は1か所だけです。魚がいなければ、この出現枠が無効な状態か、魚が移動した可能性があります。周辺を探してください。'
-    return 'The game records only one spot for this area. If no fish appears there, its spawn slot may be inactive in this state or the fish may have moved; check the nearby water.'
+      return 'このエリアでこの魚のピンは1か所だけです。空なら、そのエリアで釣りをして宿屋で寝る、を魚が戻るまで繰り返します。魚はピンから離れて泳ぐので、周りも探してください。'
+    return 'This fish has only one pin in this area. If it is empty, fish in the area and sleep at its inn, and repeat until the fish returns. Fish drift away from the pin, so check nearby water too.'
   }
   if (ctx.locale === 'th')
-    return 'ถ้าจุดหนึ่งไม่มีปลา ให้ลองจุดอื่นที่แสดงไว้ ปลาเคลื่อนที่ได้และจุดเกิดบางแห่งอาจไม่ทำงานในรอบนั้น'
+    return 'หมุดคือจุดที่ปลาอยู่ตอนโหลดเกม แล้วปลาจะว่ายไปมา ส่วนใหญ่ไม่เกิน 1–2 ช่องจากหมุด ถ้าหมุดว่าง ลองหมุดอื่น ปลาที่ตกขึ้นแล้วหรือหลุดไปจะหายจากหมุดจนกว่าจะนอนโรงแรมของด่านนั้น'
   if (ctx.locale === 'ja')
-    return '魚がいなければ別の表示地点も試してください。魚は移動し、出現枠が無効の場合もあります。'
-  return 'If a point is empty, try another marked spot. Fish move, and some spawn slots may be inactive in that state.'
+    return 'ピンはロード直後に魚がいる場所で、その後は泳ぎ回ります（ほとんどは1～2マス以内）。空なら別のピンも試してください。釣り上げた魚や逃げた魚は、そのエリアの宿屋で寝るまでピンに戻りません。'
+  return 'Pins show where fish start after loading, then they wander (most stay within 1–2 tiles). If a pin is empty, try another. A landed or escaped fish stays gone until you sleep at that area’s inn.'
+}
+
+function howItWorksLink(ctx) {
+  const label =
+    ctx.locale === 'th'
+      ? 'ปลาบนแผนที่ทำงานอย่างไร'
+      : ctx.locale === 'ja'
+        ? 'マップ上の魚のしくみ'
+        : 'How fish on the map work'
+  return `<p><a href="${ctx.escapeHtml(ctx.mapPath())}#how-fish-work">${ctx.escapeHtml(label)} ↗</a></p>`
 }
 
 export function renderAreas(ctx, locations, activeStage, fish) {
@@ -61,5 +71,5 @@ export function renderAreas(ctx, locations, activeStage, fish) {
     name = selected.stageName?.[ctx.locale] || selected.stageName?.en || ctx.copy.stage(stage)
   const maps = (selected.maps || []).map((map) => ctx.renderAreaMap(map, selected, fish)).join('')
   const caution = emptyPointAdvice(ctx, pointCount(ctx, selected))
-  return `<section class="detail-section fish-where-to-go" id="fish-area-map"><h2>${ctx.escapeHtml(ctx.copy.areas)}</h2><label class="area-select-label" for="shopping-area">${ctx.escapeHtml(ctx.shoppingCopy.area)}</label><select id="shopping-area" class="area-select">${locations.map((location) => `<option value="${ctx.escapeHtml(location.stage)}" ${String(location.stage) === stage ? 'selected' : ''}>${ctx.escapeHtml(ctx.copy.stage(location.stage))} · ${ctx.escapeHtml(location.stageName?.[ctx.locale] || location.stageName?.en || '')}</option>`).join('')}</select><article class="detail-section area-card current-area" data-active="true"><h3>${ctx.escapeHtml(ctx.copy.stage(stage))} · ${ctx.escapeHtml(name)}</h3><p class="area-point-count">${ctx.escapeHtml(ctx.copy.configuredPoints(ctx.pointCount(selected)))}</p><p class="section-lede">${ctx.escapeHtml(caution)}</p>${maps ? `<div class="detail-grid area-map-grid">${maps}</div>` : ''}<a class="route-button" href="${ctx.escapeHtml(ctx.fishMapLink(stage))}">${ctx.escapeHtml(ctx.copy.mapAction)} ↗</a></article></section>`
+  return `<section class="detail-section fish-where-to-go" id="fish-area-map"><h2>${ctx.escapeHtml(ctx.copy.areas)}</h2><label class="area-select-label" for="shopping-area">${ctx.escapeHtml(ctx.shoppingCopy.area)}</label><select id="shopping-area" class="area-select">${locations.map((location) => `<option value="${ctx.escapeHtml(location.stage)}" ${String(location.stage) === stage ? 'selected' : ''}>${ctx.escapeHtml(ctx.copy.stage(location.stage))} · ${ctx.escapeHtml(location.stageName?.[ctx.locale] || location.stageName?.en || '')}</option>`).join('')}</select><article class="detail-section area-card current-area" data-active="true"><h3>${ctx.escapeHtml(ctx.copy.stage(stage))} · ${ctx.escapeHtml(name)}</h3><p class="area-point-count">${ctx.escapeHtml(ctx.copy.configuredPoints(ctx.pointCount(selected)))}</p><p class="section-lede">${ctx.escapeHtml(caution)}</p>${howItWorksLink(ctx)}${maps ? `<div class="detail-grid area-map-grid">${maps}</div>` : ''}<a class="route-button" href="${ctx.escapeHtml(ctx.fishMapLink(stage))}">${ctx.escapeHtml(ctx.copy.mapAction)} ↗</a></article></section>`
 }

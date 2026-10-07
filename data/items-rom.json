@@ -5054,9 +5054,10 @@
         {
           "id": "87",
           "idDecimal": 135,
-          "nameJapanese": "無し(メイフライ)",
-          "nameEnglish": "No item (mayfly label)",
-          "availability": "unclear; listed as a special/no-item code"
+          "nameJapanese": "無し",
+          "nameEnglish": "None",
+          "priceYen": 0,
+          "availability": "The fly maker's None choice: leaves the wing or tail empty and adds ¥0. It is not one of the 134 component records."
         }
       ],
       "statNote": "Sparse IDs are preserved as listed. Numeric fly attributes have not been traced to a ROM table yet.",
@@ -7053,7 +7054,7 @@
           "id": "0B",
           "idDecimal": 11,
           "nameJapanese": "ブドウムシ",
-          "nameEnglish": "Waxworm",
+          "nameEnglish": "Grapevine larva",
           "maximumStack": 9,
           "romRecord": {
             "fileOffset": "0x029EDF",
@@ -7814,7 +7815,7 @@
           "id": "02",
           "idDecimal": 2,
           "nameJapanese": "丸型シモリ",
-          "nameEnglish": "Round shimori float",
+          "nameEnglish": "Round bead float",
           "romRecord": {
             "fileOffset": "0x02A141",
             "cpuAddress": "05:A141",
@@ -7839,7 +7840,7 @@
           "id": "03",
           "idDecimal": 3,
           "nameJapanese": "流線シモリ",
-          "nameEnglish": "Streamlined shimori float",
+          "nameEnglish": "Streamlined bead float",
           "romRecord": {
             "fileOffset": "0x02A14A",
             "cpuAddress": "05:A14A",
@@ -8014,7 +8015,7 @@
           "id": "0A",
           "idDecimal": 10,
           "nameJapanese": "ナツメ型おもり",
-          "nameEnglish": "Natsume-shaped sinker",
+          "nameEnglish": "Jujube-shaped sinker",
           "romRecord": {
             "fileOffset": "0x02A189",
             "cpuAddress": "05:A189",
@@ -8202,7 +8203,7 @@
           "id": "0E",
           "idDecimal": 14,
           "nameJapanese": "磁石",
-          "nameEnglish": "Magnet"
+          "nameEnglish": "Compass"
         },
         {
           "id": "0F",

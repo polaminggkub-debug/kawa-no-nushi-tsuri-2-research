@@ -1,5 +1,7 @@
 # Completing the Fishing Notebook
 
+> **Corrected 2026-10-07:** the record is written at `01:859F` *before* the land/escape decision, not "on landing" (a RAM-forced escape recorded 23 cm). The notebook pin formula is resolved (Area 1: `((x+7)*8, (y/12+4)*8)`, `01:8B2F..8C8D`). For play, still confirm the entry in the game notebook before ticking the checklist.
+
 Source: the owner-supplied original Japanese ROM, SHA-1 `c2103dd94e2a1a65a495fc02adc2e7d040f31212`. This guide uses the game’s tables and record code, not external walkthroughs.
 
 ## The notebook records species globally
@@ -44,7 +46,7 @@ This is a browser convenience, not ROM-derived save progress: the website does n
 
 - Item `05` (`釣りノート`) opens notebook state 8 via `03:C05C..C071`; state dispatch calls `01:9738`, then list builder `01:BF30`.
 - `01:BF30..C00B` scans 66 area words at `$0C3C`, puts IDs with area 1–6 into the corresponding lists in `$7F:2AFA`, and writes six cumulative byte boundaries at `$7F:2A8E..2A98`.
-- Record updater `01:8B00..8C8F` indexes species by `2*(id-1)`. It compares selected size `$1EB1` against the existing best at `$0DC8+X`, and writes the current area `$085A` to `$0C3C+X` only on a strictly larger record. IDs above `42` are rejected.
+- The record is written at `01:859F`, *before* the game decides land or escape (a RAM-forced escape still recorded 23 cm), so a bite that reaches the catch-size stage can record even if the fish then escapes. The notebook map pin is `((x+7)*8, (y/12+4)*8)` for Area 1 (`01:8B2F..8C8D`, verified). The updater at `01:8B00..8C8F` indexes species by `2*(id-1)`. It compares selected size `$1EB1` against the existing best at `$0DC8+X`, and writes the current area `$085A` to `$0C3C+X` only on a strictly larger record. IDs above `42` are rejected.
 - `01:CED7..CEE4` displays Area 3’s current page count as `($7F:2A92 − $7F:2A90) / 2`; those values are the Area 3 and Area 2 cumulative byte endpoints. This counts unique species assigned to that page, independently of the fish’s update counter at `$0E4C`.
 - The same contents-page rule is verified for every area: `01:CE84` uses `2A8E / 2`; `01:CEAB` uses `(2A90 − 2A8E) / 2`; `01:CF03` uses `(2A94 − 2A92) / 2`; `01:CF2F` uses `(2A96 − 2A94) / 2`; `01:CF5B` uses `(2A98 − 2A96) / 2`. All six send their count to formatter `00:DA4A`. These are save-dependent list lengths, not constants for completion.
 - `01:C258..C2EA` sorts lists using the corresponding values in `$0CC0` and `$0D44`.
@@ -72,7 +74,7 @@ A fresh-game controller route reached an Area 1 Yamame fight. Holding A for 60 f
 
 ![Later 23 cm message, record updated](../catalogue/images/notebook/natural-catch-size.png)
 
-ID03 best size/area changed from **0/0 to 23/1** during the next 60-neutral-frame observation interval. All 66 slots were compared; only ID03 changed. The raw callback counter changed 0→1, but its player-facing meaning is not claimed. A separate continuous-A escape branch from the same fight seed retained an empty record; this single comparison does not establish all failure outcomes.
+ID03 best size/area changed from **0/0 to 23/1** during the next 60-neutral-frame observation interval. All 66 slots were compared; only ID03 changed. The raw callback counter changed 0→1, but its player-facing meaning is not claimed. A separate continuous-A escape branch from the same fight seed retained an empty record; this single comparison does not establish all failure outcomes (see the 2026-10-07 correction at the top: the record write precedes the land/escape decision).
 
 The route contained no RAM-write requests. The private chain starts at fresh boot, passes the opening/name inputs, walks from the house to Area1 tile(4,183), chooses Fishing and dismisses its start message, then uses B+Up for8 frames, neutral290, A1 and neutral150 to enter the fight. The runner adds one neutral frame when saving checkpoints. State timing matters; this is archived evidence, not a packaged emulator replay. No ROM/core/state/WRAM is distributed.
 

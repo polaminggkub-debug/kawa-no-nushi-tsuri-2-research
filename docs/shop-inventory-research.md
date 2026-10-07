@@ -4,7 +4,7 @@
 
 ## What this capture establishes
 
-One shop menu was inspected in the original Japanese ROM. Its status window shows the region text `渓流`; this research does not map that text to a numbered stage. The `サオ` (rod) selector showed eight distinct entries in this order:
+One shop menu was inspected in the original Japanese ROM. Its status window shows the region text `渓流`, which is Area 1: the later six-shop check in the game matched these eight rod rows with Area 1's stock. The `サオ` (rod) selector showed eight distinct entries in this order:
 
 | Menu order | Rod ID | In-game Japanese name | ROM base price |
 |---:|---:|---|---:|
@@ -40,8 +40,8 @@ The structured rows, record offsets, and prices are in [`shop-inventory.json`](.
 
 ## Limits
 
-- This is one observed rod menu, not a complete shop inventory.
-- No six-stage shop mapping was established. The on-screen word `渓流` is recorded verbatim, with no inferred stage number.
+- This is one observed rod menu, not a complete shop inventory. The full six-area stock is in [`shop-stock-rom.json`](../data/shop-stock-rom.json).
+- The on-screen word `渓流` is Area 1's menu; the other five areas are covered by the six-area stock research.
 - Lure, bait, fly, hook, float/sinker, food, and general-tool menus were not verified in this observation.
 - No additional shops, progression flags, timing conditions, or alternate stock sets were tested.
-- This pass did not identify a ROM shop-stock table or a code offset that maps inventory to shops. Do not use a ROM price as a reason to recommend buying an item at a particular point in progression.
+- This early pass did not identify the ROM stock arrays; [six-area shop stock](shop-stock-research.md) did. A ROM price alone still does not show that a shop sells the item.

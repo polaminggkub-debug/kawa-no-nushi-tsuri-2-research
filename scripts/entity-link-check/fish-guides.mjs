@@ -73,9 +73,9 @@ function checkEmptyPointAdvice(html, lang, fishId, stage, count) {
   assert(advice, `${lang}/${fishId}/${stage}: missing empty-point advice`)
   if (count === 1) {
     const wording = {
-      en: ['records only one spot', 'nearby water', 'another marked spot'],
-      ja: ['地点は1か所だけ', '周辺', '別の表示地点'],
-      th: ['จุดที่เกมกำหนดไว้เพียงจุดเดียว', 'บริเวณใกล้', 'จุดอื่นที่แสดงไว้'],
+      en: ['only one pin in this area', 'nearby water', 'try another'],
+      ja: ['ピンは1か所だけ', '周りも探', '別のピンも試'],
+      th: ['มีหมุดเดียว', 'รอบ ๆ', 'ลองหมุดอื่น'],
     }[lang]
     assert(advice.includes(wording[0]), `${lang}/${fishId}/${stage}: single spot is unclear`)
     assert(advice.includes(wording[1]), `${lang}/${fishId}/${stage}: no nearby search action`)
@@ -87,9 +87,9 @@ function checkEmptyPointAdvice(html, lang, fishId, stage, count) {
   }
   assert(count > 1, `${lang}/${fishId}/${stage}: unexpected zero-point area`)
   const tryAnother = {
-    en: 'try another marked spot',
-    ja: '別の表示地点も試',
-    th: 'ลองจุดอื่นที่แสดงไว้',
+    en: 'try another',
+    ja: '別のピンも試',
+    th: 'ลองหมุดอื่น',
   }[lang]
   assert(advice.includes(tryAnother), `${lang}/${fishId}/${stage}: no alternate spot action`)
 }

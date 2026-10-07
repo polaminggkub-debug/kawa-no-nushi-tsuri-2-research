@@ -279,10 +279,7 @@
       note: (family, point) => `คนนี้ประกอบ${family} เข้ามาทางเข้าลำดับที่ 2 จะเริ่มที่ X7,Y29 แล้วหาจุด X${point.x},Y${point.y} ตามรูป ตรวจช่องฟลายว่างและราคาก่อนยืนยัน ตำแหน่งมาจาก ROM ยังไม่ได้ทดลองเดินเส้นทางนี้`,
       field: "ดูทางเข้าเมืองบนแผนที่ด่าน",
       unavailable: "ยังไม่มีตำแหน่งคนทำฟลายที่ยืนยันในด่านนี้ เลือกเมืองตามตระกูลฟลายที่ต้องการประกอบ",
-      recovery: [
-        "ด่าน 1 · เมย์ฟลาย / แคดดิส / เทอเรสเทรียล",
-        "ด่าน 2 · ดิพเทรา / สโตนฟลาย / เทอเรสเทรียล"
-      ]
+      recovery: ["ด่าน 1 · เมย์ฟลาย / แคดดิส / แมลงบก", "ด่าน 2 · ดิปเทอรา / สโตนฟลาย / แมลงบก"]
     },
     en: {
       title: (stage) => `Fly maker · Area ${stage} town`,
@@ -307,11 +304,11 @@
   };
   function familyName(lang, stage) {
     const names = stage % 2 ? {
-      th: "เมย์ฟลาย คัดดิส และเทเรสเทรียล",
+      th: "เมย์ฟลาย แคดดิส และแมลงบก",
       en: "Mayfly, Caddis and Terrestrial flies",
       ja: "メイフライ・カディス・テレストリアル"
     } : {
-      th: "ดิพเทรา สโตนฟลาย และเทเรสเทรียล",
+      th: "ดิปเทอรา สโตนฟลาย และแมลงบก",
       en: "Diptera, Stonefly and Terrestrial flies",
       ja: "ディプテラ・ストーンフライ・テレストリアル"
     };
@@ -474,9 +471,9 @@
   var categoryAdvice = {
     th: {
       all: "ป้ายบอกปลามีเฉพาะเหยื่อจริง ลัวร์ และบอดี้ฟลาย: ดูป้ายก่อนซื้อว่าปลาเป้าหมายกินชิ้นนั้นไหม ฟลายยังต้องไม่ติดล็อกของเซฟ ของหมวดอื่นให้ดูคำแนะนำการใช้ในรายละเอียด",
-      rod: "เลือกวิธีตกก่อน แล้วดูคำแนะนำซื้อใต้คันแต่ละรุ่นของด่านนี้ เทียบราคา เวลาเล็ง และสายขาดยาก ไม่ใช่อันดับโอกาสตกสำเร็จ",
-      hook: "เลือกเบ็ดให้ตรงกับชุดที่ใช้ แล้วดูคำแนะนำและราคาในรายละเอียดไอเท็มก่อนซื้อ",
-      float_weight: "เลือกทุ่นหรือตะกั่วตามชุดที่ใช้ แล้วเปรียบเทียบราคาและคำแนะนำในรายละเอียดไอเท็ม",
+      rod: "เลือกวิธีตกก่อน แล้วดูคำแนะนำซื้อใต้คันแต่ละรุ่นของด่านนี้ เทียบราคา เวลาเล็ง สายขาดยาก และจุดเริ่มสู้ ปลาใหญ่ต้องใช้คันที่สายยาว",
+      hook: "เลือกเบ็ดตามขนาดปลาที่จะตก ดูว่าเหมาะกับปลาแบบไหนและราคาในรายละเอียดไอเท็มก่อนซื้อ ขายเป็นชุด 9 ตัว",
+      float_weight: "ทุ่นทุกแบบให้ผลเท่ากัน ซื้อตัวที่ถูกสุด ตะกั่วใช้กับคันหวดเท่านั้น ดูรายละเอียดไอเท็มก่อนซื้อ",
       food: "เลือกอาหารตาม HP ที่ต้องเติมและราคา เปิดรายละเอียดเพื่อดู HP ที่ฟื้นและเงื่อนไขเควสต์ก่อนกิน",
       general_tool: "ซื้อเมื่อจำเป็นต้องใช้ทำสิ่งนั้นหรือทำเควสต์ เปิดรายละเอียดเพื่อดูว่าใช้ที่ไหนและต้องเก็บไว้ทำอะไร",
       fly_wing: "รายการนี้เป็นส่วนประกอบของฟลายสำเร็จรูปที่ร้านขาย เปิดรายละเอียดเพื่อดูทั้งชุดก่อนซื้อ",
@@ -485,9 +482,9 @@
     },
     en: {
       all: "Fish badges apply to bait, lures and fly bodies. Check whether your target fish takes the item before buying; a fly must also get past the save’s lock. For other categories, read the use advice in item details.",
-      rod: "Choose your fishing method, then read each rod’s buying advice for this area. The comparison covers price, time to aim and line strength, not catch success.",
-      hook: "Choose a hook for your setup, then check its use advice and price in item details before buying.",
-      float_weight: "Choose a float or sinker for your setup, then compare prices and use advice in item details.",
+      rod: "Choose your fishing method, then read each rod’s buying advice for this area. The comparison covers price, time to aim, line strength and fight start; big fish need a rod with a long line.",
+      hook: "Choose a hook by the size of the fish you want, then check which fish it suits and its price in item details. Hooks are sold in stacks of 9.",
+      float_weight: "Every float does the same, so buy the cheapest. Sinkers are for casting rods only. Check item details before buying.",
       food: "Choose food by the HP you need to restore and its price. Open details for measured HP recovery and quest conditions before eating.",
       general_tool: "Buy a tool when you need its action or quest use. Open details to see where to use it and what to keep it for.",
       fly_wing: "These components belong to ready-made fly bundles sold here. Open details to inspect the whole bundle before buying.",
@@ -496,9 +493,9 @@
     },
     ja: {
       all: "魚の表示はエサ・ルアー・毛バリのボディに付きます。購入前に、狙う魚がその品を食べるか確認してください。毛バリはセーブのロックも通る必要があります。他の種類は詳細ページの使い方で選んでください。",
-      rod: "釣り方を選び、このエリアの各竿の購入アドバイスを確認してください。比べるのは価格・狙う時間・糸の切れにくさで、釣果の順位ではありません。",
-      hook: "仕掛けに合う針を選び、詳細ページで使い方と価格を確認してから購入してください。",
-      float_weight: "仕掛けに合うウキやオモリを選び、詳細ページで価格と使い方を比較してください。",
+      rod: "釣り方を選び、このエリアの各竿の購入アドバイスを確認してください。比べるのは価格・狙う時間・糸の切れにくさ・ファイトの出だしで、大物には糸の長い竿が必要です。",
+      hook: "狙う魚の大きさで針を選び、詳細ページでどの魚に向くかと価格を確認してから購入してください。9個1組で売っています。",
+      float_weight: "どのウキも効果は同じなので最安のものを買います。オモリは投げ竿専用です。購入前に詳細ページを確認してください。",
       food: "回復したいHPと価格で食べ物を選んでください。食べる前に詳細ページで確認済みの回復量とイベント用途を確認してください。",
       general_tool: "必要な操作やイベント用途がある時に購入してください。詳細ページで使う場所と取っておく用途を確認できます。",
       fly_wing: "ここでは店で販売する完成毛バリの構成部品を表示します。購入前に詳細ページでセット全体を確認してください。",
@@ -651,6 +648,20 @@
   // src/entities/item/fly-lock.js
   var FRESH_SAVE_LOCK = Object.freeze({ body: 1, wing: 2 });
 
+  // src/entities/item/stack-price-note.js
+  var STACK_CATEGORIES = /* @__PURE__ */ new Set(["bait", "hook"]);
+  var NOTE = {
+    th: "ราคานี้ต่อ 1 ชุด (9 ชิ้น) ถ้าเหลืออยู่ 8 ก็ยังจ่ายเต็มราคา แล้วเกมเติมให้ครบ 9",
+    en: "This price is per stack of 9. With 8 left you still pay it in full and are topped up to 9.",
+    ja: "価格は9個1組分。8個残っていても全額かかり、9個まで補充されます。"
+  };
+  function sellsByStack(item) {
+    return STACK_CATEGORIES.has(item?.category);
+  }
+  function stackPriceNote(lang, item) {
+    return sellsByStack(item) ? NOTE[lang] || NOTE.en : "";
+  }
+
   // src/entities/item/rod-ref-name.js
   var rods = /* @__PURE__ */ new Map();
   var GENERIC_ROD_NAME = /^(?:Small|Medium|Large|Heavy-fish|Two-handed) /;
@@ -701,6 +712,9 @@
         aimLessAny: "you get less time to aim than with {id}",
         boundaryMoreAny: "the line breaks less easily than with {id}",
         boundaryLessAny: "the line breaks more easily than with {id}",
+        startMore: "you can afford more mistakes on average than with the cheaper {id}",
+        startLess: "you can afford fewer mistakes on average than with the cheaper {id}",
+        startMoreAny: "you can afford more mistakes on average than with {id}",
         versus: "{benefits}",
         higherPrice: "{id} costs more at {price}; {comparison}{hpNote}.",
         cheaper: "a lower full new-purchase price",
@@ -710,7 +724,7 @@
       },
       recommendation: {
         only: "This is the only {style} rod sold in {area}: {stats}. Choose it if you need this style here; if you already own it, keep using it.",
-        dominated: "For a new {style} rod in {area}, choose {otherId} ({otherStats}) over {id} ({stats}): {betterReason}. If you already own {id}, keep using it; effects on specific fish are unconfirmed.",
+        dominated: "For a new {style} rod in {area}, choose {otherId} ({otherStats}) over {id} ({stats}): {betterReason}. If you already own {id}, keep using it; which fish it suits is on its own page.",
         dual: "Choose {id} in {area} if you need a new {style} rod: it has the lowest full price ({price}), the most time to aim ({aim}){hpNote}, and the line that breaks least easily (×{boundary}). If you already own a rod, keep using it.",
         cheapest: "Choose {id} to pay the lowest full price in {area} ({price}). {aimLine} {boundaryLine} These are full new-purchase prices, not trade-in costs; if you already own a rod, keep using it.",
         aim: "Choose {id} in {area} when you want more time to aim: its aim time ({aim}){hpNote} is the highest among the {style} rods sold here. {budgetLine} {boundaryLine}",
@@ -719,7 +733,7 @@
         boundaryPeerCheapest: "Choose {id} for the hardest-to-break line at the lowest full price among rods tied on that ({price}). {otherId} costs {otherPrice} and gives more time to aim{hpNote} with the same line strength.",
         boundaryPeerAim: "Choose {id} when you want more time to aim than with {otherId}{hpNote} and the same hardest-to-break line. Full new-purchase price: {price} versus {otherPrice}.",
         tradeoff: "{id} is a trade-off among the {style} rods sold here: {lowerLine} {higherLine} Decide by the full new-purchase price, the time to aim and how hard the line is to break.",
-        itemMissing: "{id} is not sold in {area}. The same-style rods sold here are {options}. If you already own {id}, keep using it. If you are buying new: {budgetLine} {aimLine} {boundaryLine} This only compares price, time to aim and line strength; it does not rank catch success.",
+        itemMissing: "{id} is not sold in {area}. The same-style rods sold here are {options}. If you already own {id}, keep using it. If you are buying new: {budgetLine} {aimLine} {boundaryLine} This compares price, time to aim, line strength and fight start; which fish a rod suits is on its own page.",
         styleMissing: "{area} does not sell a {style} rod. The {direction} area that does is Area {nextStage}: {options}. If you already own {id}, keep using it. This only covers shop stock; the rod may be available some other way.",
         aimLeader: "The most time to aim: {id} ({stats}).",
         aimOther: "{id} ({stats}) gives more time to aim than this rod.",
@@ -729,11 +743,11 @@
         budgetOther: "{id} ({stats}) has the lowest full price.",
         step: "Compared with {otherId} ({otherStats}), {choiceId} has full price {price} (from {otherPrice}), aim time {aim} (from {otherAim}), and line strength ×{boundary} (from ×{otherBoundary}).",
         area: "Area {stage}",
-        reason: "This advice uses only the same-style rods the shops sell, their full prices, and two measured values: time to aim and line strength.",
+        reason: "This advice uses only the same-style rods the shops sell, their full prices, and three measured values: time to aim, line strength and fight start (how many mistakes you can afford).",
         styleNever: "No {style} rod is sold in any of the six areas. If you already own {id}, keep using it; no shop that sells one has been found.",
-        tradeoffChoice: "Choose {id} at the full new-purchase price {price} when {comparison}{hpNote}. {higherLine} If you already own a rod, keep using it. Effects on specific fish are unconfirmed.",
+        tradeoffChoice: "Choose {id} at the full new-purchase price {price} when {comparison}{hpNote}. {higherLine} If you already own a rod, keep using it. Which fish it suits is on the rod’s own page.",
         noHigher: "",
-        scope: "What is compared: rods of the same style that shops sell, full new-purchase price, time to aim, and how hard the line is to break (the fish can pull farther before tackle is lost). Bite rate, catch rate and fish-specific advantages are not ranked.{hp}{fly}",
+        scope: "What is compared: rods of the same style that shops sell, full new-purchase price, time to aim, how hard the line is to break (the fish can pull farther before tackle is lost) and fight start (how many mistakes you can afford, on average). Which fish a rod suits is on its own page.{hp}{fly}",
         hp: " Aim time for lure/casting rods is measured at HP 100 and gets shorter when HP is lower.",
         fly: " The fly rod’s second hidden value is left out because its effect is unknown.",
         noHp: "",
@@ -744,7 +758,7 @@
       }
     },
     th: {
-      styles: { 1: "สายทุ่น/อายุ", 2: "ตีเหยื่อ", 4: "ลัวร์", 8: "ฟลาย" },
+      styles: { 1: "สายทุ่น/อายุ", 2: "หวด", 4: "ลัวร์", 8: "ฟลาย" },
       labels: {
         only: "ด่าน {stage}: ร้านขายคันแบบนี้คันเดียว",
         dominated: "ด่าน {stage}: ซื้อ {otherId} แทน — {betterReason}{hpNote}",
@@ -770,6 +784,9 @@
         aimLessAny: "มีเวลาเล็งน้อยกว่า {id}",
         boundaryMoreAny: "สายขาดยากกว่า {id}",
         boundaryLessAny: "สายขาดง่ายกว่า {id}",
+        startMore: "เฉลี่ยพลาดได้มากกว่า {id} ที่ถูกกว่า",
+        startLess: "เฉลี่ยพลาดได้น้อยกว่า {id} ที่ถูกกว่า",
+        startMoreAny: "เฉลี่ยพลาดได้มากกว่า {id}",
         versus: "{benefits}",
         higherPrice: "{id} ราคาเต็มสูงกว่า ({price}) และ{comparison}{hpNote}",
         cheaper: "ราคาซื้อใหม่ถูกกว่า",
@@ -779,7 +796,7 @@
       },
       recommendation: {
         only: "{area} มีคัน{style}ขายแค่คันนี้: {stats} ถ้าต้องใช้คันแบบนี้ก็ซื้อได้ ถ้ามีอยู่แล้วใช้ต่อได้ ไม่ต้องซื้อใหม่",
-        dominated: "ถ้าจะซื้อคัน{style}ใหม่ใน{area} ให้เลือก {otherId} ({otherStats}) แทน {id} ({stats}): {betterReason} ถ้ามี {id} อยู่แล้วใช้ต่อได้ ไม่ต้องซื้อใหม่ ส่วนผลกับปลาแต่ละชนิดยังไม่ยืนยัน",
+        dominated: "ถ้าจะซื้อคัน{style}ใหม่ใน{area} ให้เลือก {otherId} ({otherStats}) แทน {id} ({stats}): {betterReason} ถ้ามี {id} อยู่แล้วใช้ต่อได้ ไม่ต้องซื้อใหม่ ส่วนว่าเหมาะกับปลาชนิดไหนดูในหน้าคันนั้น",
         dual: "ถ้าต้องซื้อคัน{style}ใหม่ใน{area} ให้เลือก {id}: ราคาเต็มถูกสุด ({price}) มีเวลาเล็งนานสุด ({aim}){hpNote} และสายขาดยากสุด (×{boundary}) ถ้ามีคันเดิมอยู่แล้วใช้ต่อได้ ไม่ต้องซื้อใหม่",
         cheapest: "เลือก {id} ถ้าอยากจ่ายถูกสุดใน{area} ({price}) {aimLine} {boundaryLine} ราคานี้คือราคาเต็มซื้อใหม่ ไม่ใช่ราคาหลังหักคันเก่า ถ้ามีคันเดิมอยู่แล้วใช้ต่อได้ ไม่ต้องซื้อใหม่",
         aim: "เลือก {id} ใน{area} ถ้าอยากมีเวลาเล็งนานขึ้น: เวลาเล็ง ({aim}){hpNote} มากสุดในกลุ่มคัน{style}ที่ขายในด่านนี้ {budgetLine} {boundaryLine}",
@@ -788,7 +805,7 @@
         boundaryPeerCheapest: "เลือก {id} ถ้าอยากได้สายขาดยากสุดในราคาเต็มถูกสุดของกลุ่มที่เท่ากัน ({price}) ส่วน {otherId} ราคา {otherPrice} มีเวลาเล็งนานกว่า{hpNote} และสายขาดยากเท่ากัน",
         boundaryPeerAim: "เลือก {id} ถ้าอยากมีเวลาเล็งนานกว่า {otherId}{hpNote} โดยยังได้สายขาดยากสุดเท่ากัน ราคาเต็มซื้อใหม่ {price} เทียบกับ {otherPrice}",
         tradeoff: "{id} มีข้อแลกเปลี่ยนเมื่อเทียบกับคัน{style}ที่ขายในด่านนี้: {lowerLine} {higherLine} ให้เลือกโดยดูราคาเต็มซื้อใหม่ เวลาเล็ง และความยากที่สายจะขาด",
-        itemMissing: "ร้านใน{area} ไม่ขาย {id}; คัน{style}ที่ขายคือ {options} ถ้ามี {id} อยู่แล้วใช้ต่อได้ ไม่ต้องซื้อใหม่ ถ้าจะซื้อใหม่: {budgetLine} {aimLine} {boundaryLine} นี่เทียบแค่ราคา เวลาเล็ง และความยากที่สายจะขาด ไม่ได้จัดอันดับโอกาสจับปลา",
+        itemMissing: "ร้านใน{area} ไม่ขาย {id}; คัน{style}ที่ขายคือ {options} ถ้ามี {id} อยู่แล้วใช้ต่อได้ ไม่ต้องซื้อใหม่ ถ้าจะซื้อใหม่: {budgetLine} {aimLine} {boundaryLine} นี่เทียบราคา เวลาเล็ง ความยากที่สายจะขาด และจุดเริ่มสู้ ส่วนว่าเหมาะกับปลาชนิดไหนดูในหน้าคันนั้น",
         styleMissing: "{area} ไม่มีร้านขายคัน{style}; ด่าน{direction}ที่มีขายคือด่าน {nextStage}: {options} ถ้ามี {id} อยู่แล้วใช้ต่อได้ ไม่ต้องซื้อใหม่ ข้อมูลนี้บอกแค่ของที่วางขายในร้าน ไม่ได้บอกว่าหาทางอื่นไม่ได้",
         aimLeader: "มีเวลาเล็งนานสุด: {id} ({stats})",
         aimOther: "{id} ({stats}) มีเวลาเล็งนานกว่าคันนี้",
@@ -798,12 +815,12 @@
         budgetOther: "{id} ({stats}) ราคาเต็มถูกสุด",
         step: "เทียบ {otherId} ({otherStats}) กับ {choiceId}: ราคาเต็ม {price} (เดิม {otherPrice}), เวลาเล็ง {aim} (เดิม {otherAim}), สายขาดยาก ×{boundary} (เดิม ×{otherBoundary})",
         area: "ด่าน {stage}",
-        reason: "คำแนะนำนี้ดูจากคันแบบเดียวกันที่ร้านขาย ราคาเต็ม และตัวเลขที่วัดได้สองค่า คือเวลาเล็งกับความยากที่สายจะขาด",
+        reason: "คำแนะนำนี้ดูจากคันแบบเดียวกันที่ร้านขาย ราคาเต็ม และตัวเลขที่วัดได้สามค่า คือเวลาเล็ง ความยากที่สายจะขาด และจุดเริ่มสู้ (พลาดได้กี่จังหวะ)",
         styleNever: "ไม่มีร้านไหนขายคัน{style}ทั้ง 6 ด่าน ถ้ามี {id} อยู่แล้วใช้ต่อได้ ไม่ต้องซื้อใหม่; ยังไม่พบร้านที่ขายคันแบบนี้",
-        tradeoffChoice: "เลือก {id} ในราคาเต็มซื้อใหม่ {price} เพราะ{comparison}{hpNote} {higherLine} ถ้ามีคันเดิมอยู่แล้วใช้ต่อได้ ไม่ต้องซื้อใหม่ ส่วนผลกับปลาแต่ละชนิดยังไม่ยืนยัน",
+        tradeoffChoice: "เลือก {id} ในราคาเต็มซื้อใหม่ {price} เพราะ{comparison}{hpNote} {higherLine} ถ้ามีคันเดิมอยู่แล้วใช้ต่อได้ ไม่ต้องซื้อใหม่ ส่วนว่าเหมาะกับปลาชนิดไหนดูในหน้าคันนั้น",
         noHigher: "",
-        scope: "สิ่งที่เทียบ: คันแบบเดียวกันที่ร้านขาย ราคาเต็มซื้อใหม่ เวลาเล็ง และความยากที่สายจะขาด (ปลาดึงหนีได้ไกลกว่าก่อนอุปกรณ์หลุด) ไม่ได้จัดอันดับโอกาสที่ปลากินเหยื่อหรือจับขึ้น{hp}{fly}",
-        hp: " เวลาเล็งของคันลัวร์/ตีเหยื่อวัดที่ HP 100 และสั้นลงเมื่อ HP ต่ำกว่า 100",
+        scope: "สิ่งที่เทียบ: คันแบบเดียวกันที่ร้านขาย ราคาเต็มซื้อใหม่ เวลาเล็ง ความยากที่สายจะขาด (ปลาดึงหนีได้ไกลกว่าก่อนสายขาด) และจุดเริ่มสู้ (เฉลี่ยพลาดได้กี่จังหวะ) คันเหมาะกับปลาชนิดไหนดูในหน้าคันนั้น{hp}{fly}",
+        hp: " เวลาเล็งของคันลัวร์/คันหวดวัดที่ HP 100 และสั้นลงเมื่อ HP ต่ำกว่า 100",
         fly: " ไม่รวมค่าที่สองของคันฟลาย เพราะยังไม่รู้ว่ามีผลอะไร",
         noHp: "",
         noFly: "",
@@ -839,6 +856,9 @@
         aimLessAny: "{id}より狙う時間が短い",
         boundaryMoreAny: "{id}より糸が切れにくい",
         boundaryLessAny: "{id}より糸が切れやすい",
+        startMore: "安い{id}より許されるミスが平均で多い",
+        startLess: "安い{id}より許されるミスが平均で少ない",
+        startMoreAny: "{id}より許されるミスが平均で多い",
         versus: "{benefits}",
         higherPrice: "高い{id}（新品の全額{price}）なら、{comparison}{hpNote}",
         cheaper: "新品の全額が安い",
@@ -848,7 +868,7 @@
       },
       recommendation: {
         only: "エリア{stage}で売っている{style}竿はこれだけです：{stats}。この釣り方が必要なら買ってください。すでに持っていれば、そのまま使えます。",
-        dominated: "エリア{stage}で{style}竿を新しく買うなら、{id}（{stats}）より{otherId}（{otherStats}）がおすすめです：{betterReason}。{id}をすでに持っていれば、そのまま使えます。魚ごとの差はまだ分かっていません。",
+        dominated: "エリア{stage}で{style}竿を新しく買うなら、{id}（{stats}）より{otherId}（{otherStats}）がおすすめです：{betterReason}。{id}をすでに持っていれば、そのまま使えます。どの魚に向くかは、その竿のページで確認できます。",
         dual: "エリア{stage}で{style}竿を新しく買うなら{id}。新品の全額が最安（{price}）で、狙う時間（{aim}）{hpNote}も最長、糸も最も切れにくい（×{boundary}）竿です。すでに持っていれば、そのまま使えます。",
         cheapest: "エリア{stage}で新品の全額を抑えるなら{id}（{price}）が最安です。{aimLine} {boundaryLine} 下取りを引いた値段ではなく、新品の全額です。すでに持っていれば、そのまま使えます。",
         aim: "狙う時間を長くしたいなら、エリア{stage}の{id}（{aim}）{hpNote}です。ここで売っている{style}竿で最長です。{budgetLine} {boundaryLine}",
@@ -857,10 +877,10 @@
         boundaryPeerCheapest: "糸が最も切れにくい竿の中で、新品の全額が最安なのは{id}（{price}）です。{otherId}（{otherPrice}）なら糸の切れにくさは同じまま、狙う時間がもっと長くなります{hpNote}。",
         boundaryPeerAim: "糸が最も切れにくいまま、{otherId}より狙う時間を長くしたいなら{id}を選びます{hpNote}。新品の全額は{price}で、{otherId}は{otherPrice}です。",
         tradeoff: "{id}は、エリア{stage}で売っている{style}竿の中で、値段・狙う時間・糸の切れにくさに一長一短があります。{lowerLine} {higherLine} 新品の全額と、必要な狙う時間・糸の切れにくさで選んでください。",
-        itemMissing: "{id}はエリア{stage}で売っていません。同じ釣り方でこのエリアで売っている竿は{options}です。{id}を持っていれば、そのまま使えます。新しく買うなら：{budgetLine} {aimLine} {boundaryLine} 比べているのは値段・狙う時間・糸の切れにくさだけで、釣れやすさの順位ではありません。",
+        itemMissing: "{id}はエリア{stage}で売っていません。同じ釣り方でこのエリアで売っている竿は{options}です。{id}を持っていれば、そのまま使えます。新しく買うなら：{budgetLine} {aimLine} {boundaryLine} 比べているのは値段・狙う時間・糸の切れにくさ・ファイトの出だしで、どの魚に向くかはその竿のページで確認できます。",
         styleMissing: "エリア{stage}に{style}竿は売っていません。同じ釣り方の竿を売っている{direction}エリアは、エリア{nextStage}です：{options}。{id}を持っていれば、そのまま使えます。分かるのは店の品ぞろえだけで、他の入手方法がないとは言えません。",
         styleNever: "6エリアのどの店にも{style}竿はありません。{id}を持っていれば、そのまま使えます。買える店は見つかっていません。",
-        tradeoffChoice: "新品の全額{price}の{id}を選びます。{comparison}{hpNote}。{higherLine}。持っている竿はそのまま使えます。魚ごとの差はまだ分かっていません。",
+        tradeoffChoice: "新品の全額{price}の{id}を選びます。{comparison}{hpNote}。{higherLine}。持っている竿はそのまま使えます。どの魚に向くかは、その竿のページで確認できます。",
         noHigher: "",
         aimLeader: "狙う時間が最長なのは{id}（{stats}）。",
         aimOther: "{id}（{stats}）の方が狙う時間が長いです。",
@@ -870,8 +890,8 @@
         budgetOther: "新品の全額が最安なのは{id}（{stats}）です。",
         step: "{otherId}（{otherStats}）と{choiceId}の比較：新品の全額 {price}（{otherPrice}から）、狙う時間 {aim}（{otherAim}から）、切れにくさ ×{boundary}（×{otherBoundary}から）。",
         area: "エリア{stage}",
-        reason: "同じ釣り方の店の品ぞろえ、新品の全額、測定できた2つの値（狙う時間・切れにくさ）だけで比べています。",
-        scope: "比べているもの：同じ釣り方で店が売っている竿、新品の全額、狙う時間、糸の切れにくさ（魚が遠くまで引いても道具を失いにくい）。食いつきや釣れやすさ、魚ごとの相性は順位付けしていません。{hp}{fly}",
+        reason: "同じ釣り方の店の品ぞろえ、新品の全額、測定できた3つの値（狙う時間・切れにくさ・ファイトの出だし）で比べています。",
+        scope: "比べているもの：同じ釣り方で店が売っている竿、新品の全額、狙う時間、糸の切れにくさ（魚が遠くまで引いても道具を失いにくい）、ファイトの出だし（許されるミスの数の平均）。どの魚に向くかは竿のページで確認できます。{hp}{fly}",
         hp: " ルアー竿・投げ竿の狙う時間はHP100のときの値で、HPが減ると短くなります。",
         fly: " フライ竿のもう1つの隠れた値は、効果が分からないため比べていません。",
         noHp: "",
@@ -932,15 +952,21 @@
     );
   }
   function tradeoffDescription(lang, subject, other) {
-    const aimKey = subject.aim > other.aim ? "aimMore" : subject.aim < other.aim ? "aimLess" : "";
-    const boundaryKey = subject.boundary > other.boundary ? "boundaryMore" : subject.boundary < other.boundary ? "boundaryLess" : "";
-    const keys = [aimKey, boundaryKey].filter(Boolean);
-    const phrases = keys.map(
-      (key) => relationCopy(lang, key).replace("{id}", rodRefName(lang, other.id))
-    );
-    const opposing = keys.length === 2 && subject.aim > other.aim !== subject.boundary > other.boundary;
-    const joiner = opposing ? relationCopy(lang, "but") : relationCopy(lang, "and");
-    return relationCopy(lang, "versus").replace("{benefits}", phrases.join(joiner));
+    const compare = (field, more, less) => subject[field] > other[field] ? more : subject[field] < other[field] ? less : "";
+    const better = [
+      compare("aim", "aimMore", ""),
+      compare("boundary", "boundaryMore", ""),
+      compare("start", "startMore", "")
+    ].filter(Boolean);
+    const worse = [
+      compare("aim", "", "aimLess"),
+      compare("boundary", "", "boundaryLess"),
+      compare("start", "", "startLess")
+    ].filter(Boolean);
+    const phrase = (key) => relationCopy(lang, key).replace("{id}", rodRefName(lang, other.id));
+    const joined = (keys) => keys.map(phrase).join(relationCopy(lang, "and"));
+    const text3 = [joined(better), joined(worse)].filter(Boolean).join(better.length && worse.length ? relationCopy(lang, "but") : "");
+    return relationCopy(lang, "versus").replace("{benefits}", text3);
   }
   function higherPriceDescription(lang, subject, other) {
     return relationCopy(lang, "higherPrice").replace("{id}", rodRefName(lang, subject.id)).replace("{price}", offerPrice(lang, subject.price)).replace("{comparison}", tradeoffDescription(lang, subject, other)).replace("{hpNote}", aimCondition(lang, subject.item));
@@ -954,6 +980,7 @@
     const keys = [better.price < candidate.price ? "cheaper" : "samePrice"];
     if (better.aim > candidate.aim) keys.push("aimMoreAny");
     if (better.boundary > candidate.boundary) keys.push("boundaryMoreAny");
+    if (better.start > candidate.start) keys.push("startMoreAny");
     return keys.map((key) => relationCopy(lang, key).replace("{id}", rodRefName(lang, candidate.id))).join(relationCopy(lang, "and"));
   }
   function valuesFor(lang, candidate, stage, better) {
@@ -1031,7 +1058,9 @@
     const values = {
       price: Number(item.priceYen),
       aim: Number(item.decodedFields?.castAimHoldCutoffInternal),
-      boundary: Number(item.decodedFields?.rangeMultiplier)
+      boundary: Number(item.decodedFields?.rangeMultiplier),
+      // Mistakes you can afford, averaged over every fish: the fewer the rod loses, the higher.
+      start: -Number(item.rodDecision?.startLoss ?? 0)
     };
     if (!Object.values(values).every(Number.isFinite)) return null;
     rememberRod(item);
@@ -1044,7 +1073,7 @@
     ).map(rodMetrics).filter(Boolean).sort((a, b) => a.id.localeCompare(b.id));
   }
   function dominates(first, second) {
-    return first.id !== second.id && first.price <= second.price && first.aim >= second.aim && first.boundary >= second.boundary && (first.price < second.price || first.aim > second.aim || first.boundary > second.boundary);
+    return first.id !== second.id && first.price <= second.price && first.aim >= second.aim && first.boundary >= second.boundary && first.start >= second.start && (first.price < second.price || first.aim > second.aim || first.boundary > second.boundary || first.start > second.start);
   }
   function dominators(candidate, choices) {
     return choices.filter((choice) => dominates(choice, candidate)).sort(
@@ -1333,15 +1362,15 @@
   var copy3 = {
     th: {
       details: "เหตุผลและสิ่งที่คำแนะนำนี้เทียบ",
-      rodScope: "เทียบราคาซื้อใหม่ เวลาเล็ง และสายขาดยาก ไม่ใช่อันดับโอกาสตกสำเร็จ"
+      rodScope: "เทียบราคาซื้อใหม่ เวลาเล็ง สายขาดยาก และจุดเริ่มสู้ คันเหมาะกับปลาชนิดไหนดูในหน้าคัน"
     },
     en: {
       details: "Why choose it and what the comparison covers",
-      rodScope: "Compares new-purchase price, time to aim and line strength, not catch success."
+      rodScope: "Compares new-purchase price, time to aim, line strength and fight start; the rod page says which fish it suits."
     },
     ja: {
       details: "選ぶ理由と比較の範囲",
-      rodScope: "新品価格・狙う時間・糸の切れにくさの比較で、釣果の順位ではありません。"
+      rodScope: "新品価格・狙う時間・糸の切れにくさ・ファイトの出だしの比較です。どの魚に向くかは竿のページで確認できます。"
     }
   };
   function localValue(lang, value) {
@@ -1532,6 +1561,10 @@
     if (!item) return "";
     return `<a href="${ctx.esc(ctx.itemHref(item))}">${ctx.esc(ctx.itemName(item))} · ID ${ctx.esc(item.id)} ↗</a>`;
   }
+  function stackNote(ctx, item) {
+    const note = stackPriceNote(ctx.lang, item);
+    return note ? `<p class="price-note">${ctx.esc(note)}</p>` : "";
+  }
   function offerCard(ctx, item, options = {}) {
     const target = options.target === true;
     const special = options.special === true;
@@ -1552,7 +1585,7 @@
       <a class="offer-image-link" href="${ctx.esc(ctx.itemHref(item))}"><img loading="lazy" src="${ctx.esc(image)}" alt="${ctx.esc(name)}"></a>
       <p class="small-id">${ctx.esc(ctx.catName(item.category))} · ID ${ctx.esc(item.id)}</p>
       <h4><a href="${ctx.esc(ctx.itemHref(item))}">${ctx.esc(name)}</a></h4>
-      <p class="price">${ctx.esc(price)}</p>${recovery}${shopCompatibilityBadge(ctx, item, compatibility)}${shopPurchaseDecision(ctx, item, options.stage, options.items || [])}${canHaveCondition ? `<p class="condition-label">${ctx.esc(ctx.text.soldConditional)}</p>` : ""}${extra}
+      <p class="price">${ctx.esc(price)}</p>${stackNote(ctx, item)}${recovery}${shopCompatibilityBadge(ctx, item, compatibility)}${shopPurchaseDecision(ctx, item, options.stage, options.items || [])}${canHaveCondition ? `<p class="condition-label">${ctx.esc(ctx.text.soldConditional)}</p>` : ""}${extra}
     </article>`;
   }
   function bundleCard(ctx, bundle, stage, items, target) {
@@ -1735,7 +1768,97 @@
     ctx.$("shop-results").replaceChildren();
   }
 
+  // src/pages/shops/shop-facts.js
+  var NEVER_SOLD = [
+    ["rod", "02"],
+    ["rod", "06"],
+    ["rod", "0B"],
+    ["rod", "11"],
+    ["fly_wing", "25"],
+    ["fly_wing", "66"],
+    ["fly_wing", "67"],
+    ["food", "09"],
+    ["food", "0A"],
+    ["general_tool", "01"],
+    ["general_tool", "02"]
+  ];
+  var COPY3 = {
+    th: {
+      heading: "ข้อควรรู้ก่อนซื้อ",
+      stack: "<strong>เหยื่อและเบ็ดคิดราคาต่อ 1 ชุด (9 ชิ้น)</strong> ถ้าเหลืออยู่ 8 ชิ้นก็ยังจ่ายเต็มราคา แล้วเกมเติมให้ครบ 9",
+      special: "<strong>บางด่านมีร้านคันเบ็ดพิเศษเพิ่มอีกร้านในเมือง</strong> ขายคันที่ร้านทั่วไปไม่มี:",
+      stage: (n) => `ด่าน ${n}`,
+      price: (n) => `¥${n}`,
+      flyRod: "<strong>ด่าน 6 ไม่มีขายคันฟลาย</strong> ให้ซื้อในด่าน 1–5 ก่อน",
+      decoy: "<strong>ปลาอายุเหยื่อล่อ</strong>จะโผล่ในร้านด่าน 3 หลังจากขายปลาอายุจากข้องไปอย่างน้อย 1 ตัวเท่านั้น",
+      maker: "<strong>ฟลายประกอบเอง</strong>มีช่างทำเฉพาะในเมืองด่าน 1–3 และคิดราคาบอดี้ + ปีก + หาง ส่วนฟลายสำเร็จรูปคิดแค่ราคาบอดี้ (ด่าน 4–6 มีเฉพาะสำเร็จรูป)",
+      never: "<strong>ไม่มีขายที่ไหนเลย:</strong>",
+      neverHow: "เห็ดหาได้จากการใช้แว่นขยายค้นหา ส่วนกะละมังกับเรือแคนูได้จากการแลกของในเควสต์"
+    },
+    en: {
+      heading: "Good to know before you buy",
+      stack: "<strong>Bait and hooks are priced per stack of 9.</strong> With 8 left you still pay in full, and the game tops you up to 9.",
+      special: "<strong>Some areas have a second, special rod merchant in town.</strong> It sells rods the regular shop does not:",
+      stage: (n) => `Area ${n}`,
+      price: (n) => `¥${n.toLocaleString("en-US")}`,
+      flyRod: "<strong>Area 6 sells no fly rod.</strong> Buy yours in Areas 1 to 5.",
+      decoy: "<strong>Decoy Ayu</strong> appears in the Area 3 shop only after you have sold an Ayu from your keepnet.",
+      maker: "<strong>Custom flies</strong> are built only by the fly makers in the Area 1 to 3 towns, and cost body + wing + tail. A ready-made fly set costs only its body price (Areas 4 to 6 have ready-made sets only).",
+      never: "<strong>Never sold anywhere:</strong>",
+      neverHow: "Mushrooms come from searching with the magnifying glass; the wash tub and the canoe come from quest trades."
+    },
+    ja: {
+      heading: "購入前に知っておくこと",
+      stack: "<strong>エサとハリの値段は9個1組の価格です。</strong>8個残っていても全額かかり、9個まで補充されます。",
+      special: "<strong>町に専用竿の店がもう1軒あるエリアがあります。</strong>通常の店にない竿を売っています：",
+      stage: (n) => `エリア${n}`,
+      price: (n) => `${n.toLocaleString("ja-JP")}円`,
+      flyRod: "<strong>エリア6にはフライロッドが売っていません。</strong>エリア1〜5で買ってください。",
+      decoy: "<strong>おとりアユ</strong>は、びくのアユを1匹以上売ったあとにだけエリア3の店に並びます。",
+      maker: "<strong>自作の毛バリ</strong>はエリア1〜3の町の職人だけが作れて、ボディ＋ウィング＋テールの合計がかかります。完成品セットはボディの値段だけです（エリア4〜6は完成品のみ）。",
+      never: "<strong>どこでも売っていない物：</strong>",
+      neverHow: "キノコは虫メガネで探して入手し、タライとカヌーはイベントの交換で入手します。"
+    }
+  };
+  function itemLink(ctx, item) {
+    return `<a href="${ctx.esc(ctx.itemHref(item))}">${ctx.esc(ctx.itemName(item))}</a>`;
+  }
+  function specialMerchants(ctx, c, items) {
+    const byStage = /* @__PURE__ */ new Map();
+    for (const item of items)
+      for (const shop of item.playerUse?.shops || [])
+        if (shop.shop === "special_rod_shop") {
+          const stage = Number(shop.stage);
+          byStage.set(stage, [...byStage.get(stage) || [], item]);
+        }
+    return [...byStage.entries()].sort(([a], [b]) => a - b).map(
+      ([stage, rods2]) => `<li>${ctx.esc(c.stage(stage))}: ${rods2.map((rod) => `${itemLink(ctx, rod)} ${ctx.esc(c.price(rod.priceYen))}`).join(" · ")}</li>`
+    ).join("");
+  }
+  function shopFactsHtml(ctx, items) {
+    const c = COPY3[ctx.lang] || COPY3.en;
+    const never = NEVER_SOLD.map(([category, id]) => ctx.findItem(items, category, id)).filter(Boolean).map((item) => `${itemLink(ctx, item)} <small>(ID ${ctx.esc(item.id)})</small>`).join(" · ");
+    return `<h2 id="shop-facts-heading">${ctx.esc(c.heading)}</h2><ul class="fact-list">
+    <li>${c.stack}</li>
+    <li>${c.special}<ul>${specialMerchants(ctx, c, items)}</ul></li>
+    <li>${c.flyRod}</li>
+    <li>${c.decoy}</li>
+    <li>${c.maker}</li>
+    <li>${c.never} ${never} <span class="muted">${ctx.esc(c.neverHow)}</span></li>
+  </ul>`;
+  }
+  function renderShopFacts(ctx, items) {
+    const box = ctx.$("shop-facts");
+    if (box) box.innerHTML = shopFactsHtml(ctx, items);
+  }
+
   // src/pages/shops/shop-page.js
+  function fetchJson(url, label) {
+    return fetch(url).then((r) => {
+      if (!r.ok) throw new Error(label);
+      return r.json();
+    });
+  }
   async function init(ctx) {
     const stageSelect = ctx.$("stage-select"), categorySelect = ctx.$("category-select"), search = ctx.$("item-search");
     stageSelect.value = String(ctx.startStage);
@@ -1745,22 +1868,10 @@
     document.querySelectorAll('input[name="place"]').forEach((input) => input.checked = input.value === ctx.startPlace);
     ctx.updateLanguageLinks();
     const loc = await Promise.allSettled([
-      fetch("gallery-data.json").then((r) => {
-        if (!r.ok) throw new Error("gallery");
-        return r.json();
-      }),
-      fetch("../data/shop-stock-rom.json").then((r) => {
-        if (!r.ok) throw new Error("stock");
-        return r.json();
-      }),
-      fetch("maps/rom-map-manifest.json").then((r) => {
-        if (!r.ok) throw new Error("maps");
-        return r.json();
-      }),
-      fetch("../data/shop-locations-rom.json").then((r) => {
-        if (!r.ok) throw new Error("locations");
-        return r.json();
-      })
+      fetchJson("gallery-data.json", "gallery"),
+      fetchJson("../data/shop-stock-rom.json", "stock"),
+      fetchJson("maps/rom-map-manifest.json", "maps"),
+      fetchJson("../data/shop-locations-rom.json", "locations")
     ]);
     const [galleryResult, stockResult, mapResult, locationResult] = loc;
     if (galleryResult.status !== "fulfilled" || stockResult.status !== "fulfilled") {
@@ -1771,6 +1882,7 @@
     ctx.fishVisuals = galleryResult.value.fishVisuals || {};
     applyFishRouteCategoryDefault(ctx, categorySelect);
     window.__shopItems = items;
+    renderShopFacts(ctx, items);
     const stock = stockResult.value;
     const mapManifest = mapResult.status === "fulfilled" ? mapResult.value : null;
     const locations = locationResult.status === "fulfilled" ? locationResult.value : null;
@@ -1972,19 +2084,19 @@
     backToSource: "กลับหน้าที่เปิดร้านนี้",
     openCatalogue: "เปิดคลังไอเท็ม",
     recoveryActions: "ทางเลือกเมื่อโหลดข้อมูลไม่สำเร็จ",
-    area: (n) => `พื้นที่ตกปลา ${n}`,
-    outdoor: (n) => `พื้นที่ ${n} · ทางเข้าเมือง`,
-    town: (n) => `พื้นที่ ${n} · ตำแหน่งร้าน`,
-    townSummary: (n) => `พื้นที่ตกปลา ${n} · เมืองที่คู่กัน`,
+    area: (n) => `ด่าน ${n}`,
+    outdoor: (n) => `ด่าน ${n} · ทางเข้าเมือง`,
+    town: (n) => `ด่าน ${n} · ตำแหน่งร้าน`,
+    townSummary: (n) => `ด่าน ${n} · เมืองที่คู่กัน`,
     mapSetEvidence: (place, n) => `${place === "outdoor" ? "แผนที่พื้นที่กลางแจ้ง" : "แผนที่ภายในเมือง"} · ชุดแผนที่ ${n}`,
     fieldHeading: "ควรเข้าทางไหน?",
     townHeading: "ไปร้านไหน / เข้าทางไหน?",
     focusedEntrance: (n) => `กำลังเน้นทางเข้า ${n + 1} ซึ่งเชื่อมกับร้านที่เลือก`,
     mapUnavailable: "ไม่มีภาพภูมิประเทศที่สร้างจาก ROM สำหรับแผนที่ชุดนี้",
     invalidPoints: "พิกัดบางรายการอยู่นอกแผนที่ที่ใช้ได้ จึงซ่อนหมุดเหล่านั้นแทนการเดาตำแหน่ง",
-    noValidPoint: "พื้นที่นี้ไม่มีพิกัดบนแผนที่ที่ใช้ได้ หน้านี้จะไม่เดาตำแหน่ง",
+    noValidPoint: "ด่านนี้ไม่มีพิกัดบนแผนที่ที่ใช้ได้ หน้านี้จะไม่เดาตำแหน่ง",
     fullMap: "เปิดภาพภูมิประเทศทั้งแผนที่ ↗",
-    noLocations: "ยืนยันรายการขายของพื้นที่นี้ได้ แต่ข้อมูลตำแหน่งที่มีอยู่ยังไม่ระบุจุดร้านและทางเข้าแบบเจาะจง",
+    noLocations: "ยืนยันรายการขายของด่านนี้ได้ แต่ข้อมูลตำแหน่งที่มีอยู่ยังไม่ระบุจุดร้านและทางเข้าแบบเจาะจง",
     mapNoEntrances: "ข้อมูลตำแหน่งที่มีอยู่ยังไม่บันทึกทางเข้าจากพื้นที่ไปเมืองนี้",
     entrance: (n) => `ทางเข้า ${n + 1}`,
     outside: "ทางเข้าจากพื้นที่กลางแจ้ง",
@@ -2004,14 +2116,14 @@
     regularNote: "จุดนี้เปิดเมนูเลือกหมวดและซื้อไอเท็มทั่วไป",
     specialNote: "จุดนี้เปิดรายการคันเบ็ดพิเศษที่กำหนดไว้",
     filtered: (n) => `ตรงตัวกรอง ${n} รายการ`,
-    targetFound: "มีรายการนี้ขายในพื้นที่ที่เลือก",
-    targetNotHere: "ไม่มีรายการนี้ในสต็อกของพื้นที่ที่เลือก",
-    soldElsewhere: "พื้นที่ที่มีข้อมูลว่าขาย:",
+    targetFound: "มีรายการนี้ขายในด่านที่เลือก",
+    targetNotHere: "ไม่มีรายการนี้ในสต็อกของด่านที่เลือก",
+    soldElsewhere: "ด่านที่มีข้อมูลว่าขาย:",
     soldConditional: "รายการนี้มีเงื่อนไขซื้อ ให้อ่านวิธีปลดล็อกบนการ์ดก่อนตามหาในร้าน",
     none: "ไม่พบรายการที่ตรงกับตัวกรองนี้",
-    noCategory: "พื้นที่นี้ไม่มีไอเท็มประเภทที่ตรงกับตัวกรอง",
+    noCategory: "ด่านนี้ไม่มีไอเท็มประเภทที่ตรงกับตัวกรอง",
     noTarget: "ไม่พบ ID นี้ในคลังไอเท็ม",
-    browseArea: (n) => `ดูพื้นที่ ${n}`,
+    browseArea: (n) => `ดูด่าน ${n}`,
     categoryAll: "ทุกประเภท",
     types: {
       rod: "คันเบ็ด",
@@ -2032,7 +2144,7 @@
     parts: "ชิ้นส่วนในชุดนี้",
     included: "ขายรวมอยู่ในชุดสำเร็จรูปนี้",
     conditionTitle: "วิธีปลดล็อกรายการนี้",
-    ayu: "ขายปลาอายุจากข้องอย่างน้อย 1 ตัวก่อน แล้วเหยื่อล่อปลาอายุจะปรากฏในร้านพื้นที่ 3 เมื่อซื้อ จำนวนในช่องจะเต็มเป็น 9 ชิ้น และจำนวนปลาอายุที่ขายไปจะลดลง 9 (ต่ำสุด 0) ถ้ารายการหายไปอีก ให้ขายปลาอายุเพิ่มก่อนลองซื้อ",
+    ayu: "ขายปลาอายุจากข้องอย่างน้อย 1 ตัวก่อน แล้วเหยื่อล่อปลาอายุจะปรากฏในร้านด่าน 3 เมื่อซื้อ จำนวนในช่องจะเต็มเป็น 9 ชิ้น และจำนวนปลาอายุที่ขายไปจะลดลง 9 (ต่ำสุด 0) ถ้ารายการหายไปอีก ให้ขายปลาอายุเพิ่มก่อนลองซื้อ",
     ayuFish: "ดูจุดตกปลาอายุ ↗",
     noPrice: "ยังไม่มีราคาขายแยกที่ยืนยันได้",
     price: (n) => `${n} เยน`,
@@ -2040,7 +2152,7 @@
     returnItem: "← กลับหน้าที่เปิดร้านนี้",
     returnCatalogue: "← คลังไอเท็ม",
     technical: "หลักฐานจาก ROM",
-    evidenceStock: "รายการด้านล่างมาจากอาร์เรย์สต็อกหกพื้นที่ที่แกะจาก ROM ช่องราคาพื้นฐานของไอเท็มเพียงอย่างเดียวไม่ถือเป็นหลักฐานว่าร้านขาย",
+    evidenceStock: "รายการด้านล่างมาจากอาร์เรย์สต็อกหกด่านที่แกะจาก ROM ช่องราคาพื้นฐานของไอเท็มเพียงอย่างเดียวไม่ถือเป็นหลักฐานว่าร้านขาย",
     evidenceBundles: "ข้อมูลบอดี้ ปีก และหางฟลายถูกแกะเป็นชุดสำเร็จรูปเดียว ราคาที่แสดงคือราคารวมทั้งชุด ไม่ได้แยกชิ้นส่วนเป็นรายการขาย",
     evidenceLocations: "หมุดแสดงจุดเปลี่ยนพื้นที่และจุดโต้ตอบร้านที่แกะจาก ROM ได้ จุดโต้ตอบร้านไม่ได้ยืนยันเส้นทางเดิน",
     source: "ระเบียนหลักฐาน",
@@ -2048,7 +2160,7 @@
     kind: "ประเภทร้านที่ยืนยันได้",
     mode: "โหมดโต้ตอบดิบ",
     slot: "ช่องใน ROM",
-    stageWord: (n) => `พื้นที่ ${n}`,
+    stageWord: (n) => `ด่าน ${n}`,
     warningLocations: "โหลดรายการขายได้ แต่โหลดข้อมูลตำแหน่งบนแผนที่ไม่ได้ หน้านี้จะไม่เดาเส้นทางให้",
     language: "ภาษา"
   };

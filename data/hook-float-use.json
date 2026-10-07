@@ -409,20 +409,20 @@
     },
     "float_sinker:02": {
       "summary": {
-        "th": "ชิโมริทรงกลม: ใช้ในเส้นทางติดตั้งทุ่น (IDs 01–08; selector 0); ROM ยืนยันเส้นทางและรูปแบบสถานะ แต่ไม่ยืนยันโบนัสการกินหรือความลึก",
-        "en": "Round shimori float: used in the float-equipped bait route (IDs 01–08; selector 0); the ROM confirms its route/state family, not a bite or depth bonus.",
+        "th": "ทุ่นเม็ดเล็กทรงกลม: ใช้ในเส้นทางติดตั้งทุ่น (IDs 01–08; selector 0); ROM ยืนยันเส้นทางและรูปแบบสถานะ แต่ไม่ยืนยันโบนัสการกินหรือความลึก",
+        "en": "Round bead float: used in the float-equipped bait route (IDs 01–08; selector 0); the ROM confirms its route/state family, not a bite or depth bonus.",
         "ja": "丸型シモリ：ウキ装備のエサ釣り経路（ID 01–08、selector 0）で使われる。ROMが確認するのは経路と状態分岐で、食いつき・深さのボーナスではない。"
       },
       "facts": {
         "th": [
           "ในรายการอุปกรณ์ ID 02 อยู่ในเส้นทางติดตั้งทุ่น (IDs 01–08; selector 0)",
-          "ฟิลด์ +0 = 0: แขนงสถานะ/การวาดของชิโมริ (IDs 02–03); โค้ดใช้เลือกเส้นทางสถานะ/การวาด ไม่ใช่คะแนนความแรง",
+          "ฟิลด์ +0 = 0: แขนงสถานะ/การวาดของทุ่นเม็ดเล็ก (IDs 02–03); โค้ดใช้เลือกเส้นทางสถานะ/การวาด ไม่ใช่คะแนนความแรง",
           "ไม่พบหลักฐานที่ยืนยันว่าเลขใน record กำหนดความลึก ความไวทุ่น การเลือกชนิดปลา หรือโอกาสจับ",
           "ใช้ตารางเหยื่อที่ปลายอมรับเพื่อตรวจว่าอะไรทำให้ปลากิน; ค่าทุ่น/ตะกั่วนี้ไม่แทนเงื่อนไขเหยื่อ"
         ],
         "en": [
           "Equipment selection puts ID 02 in the float-equipped bait route (IDs 01–08; selector 0).",
-          "Record +0 = 0: Round/streamlined shimori state-and-drawing path (IDs 02–03); code uses it to select a state/drawing path, not a strength rating.",
+          "Record +0 = 0: Round/streamlined bead-float state-and-drawing path (IDs 02–03); code uses it to select a state/drawing path, not a strength rating.",
           "No traced ROM evidence confirms that this record sets fishing depth, float sensitivity, fish preference, or catch chance.",
           "Use the bait-acceptance table to identify fish/bait compatibility; this float/sinker record does not replace the bait gate."
         ],
@@ -436,20 +436,20 @@
     },
     "float_sinker:03": {
       "summary": {
-        "th": "ชิโมริทรงเพรียว: ใช้ในเส้นทางติดตั้งทุ่น (IDs 01–08; selector 0); ROM ยืนยันเส้นทางและรูปแบบสถานะ แต่ไม่ยืนยันโบนัสการกินหรือความลึก",
-        "en": "Streamlined shimori float: used in the float-equipped bait route (IDs 01–08; selector 0); the ROM confirms its route/state family, not a bite or depth bonus.",
+        "th": "ทุ่นเม็ดเล็กทรงเรียว: ใช้ในเส้นทางติดตั้งทุ่น (IDs 01–08; selector 0); ROM ยืนยันเส้นทางและรูปแบบสถานะ แต่ไม่ยืนยันโบนัสการกินหรือความลึก",
+        "en": "Streamlined bead float: used in the float-equipped bait route (IDs 01–08; selector 0); the ROM confirms its route/state family, not a bite or depth bonus.",
         "ja": "流線シモリ：ウキ装備のエサ釣り経路（ID 01–08、selector 0）で使われる。ROMが確認するのは経路と状態分岐で、食いつき・深さのボーナスではない。"
       },
       "facts": {
         "th": [
           "ในรายการอุปกรณ์ ID 03 อยู่ในเส้นทางติดตั้งทุ่น (IDs 01–08; selector 0)",
-          "ฟิลด์ +0 = 0: แขนงสถานะ/การวาดของชิโมริ (IDs 02–03); โค้ดใช้เลือกเส้นทางสถานะ/การวาด ไม่ใช่คะแนนความแรง",
+          "ฟิลด์ +0 = 0: แขนงสถานะ/การวาดของทุ่นเม็ดเล็ก (IDs 02–03); โค้ดใช้เลือกเส้นทางสถานะ/การวาด ไม่ใช่คะแนนความแรง",
           "ไม่พบหลักฐานที่ยืนยันว่าเลขใน record กำหนดความลึก ความไวทุ่น การเลือกชนิดปลา หรือโอกาสจับ",
           "ใช้ตารางเหยื่อที่ปลายอมรับเพื่อตรวจว่าอะไรทำให้ปลากิน; ค่าทุ่น/ตะกั่วนี้ไม่แทนเงื่อนไขเหยื่อ"
         ],
         "en": [
           "Equipment selection puts ID 03 in the float-equipped bait route (IDs 01–08; selector 0).",
-          "Record +0 = 0: Round/streamlined shimori state-and-drawing path (IDs 02–03); code uses it to select a state/drawing path, not a strength rating.",
+          "Record +0 = 0: Round/streamlined bead-float state-and-drawing path (IDs 02–03); code uses it to select a state/drawing path, not a strength rating.",
           "No traced ROM evidence confirms that this record sets fishing depth, float sensitivity, fish preference, or catch chance.",
           "Use the bait-acceptance table to identify fish/bait compatibility; this float/sinker record does not replace the bait gate."
         ],
@@ -628,8 +628,8 @@
     },
     "float_sinker:0A": {
       "summary": {
-        "th": "ตะกั่วทรงนัตสึเมะ: ใช้ในเส้นทางติดตั้งตะกั่ว (IDs 09–0A; selector 1); ROM ยืนยันเส้นทางและรูปแบบสถานะ แต่ไม่ยืนยันโบนัสการกินหรือความลึก",
-        "en": "Natsume-shaped sinker: used in the sinker-equipped bait route (IDs 09–0A; selector 1); the ROM confirms its route/state family, not a bite or depth bonus.",
+        "th": "ตะกั่วทรงพุทรา: ใช้ในเส้นทางติดตั้งตะกั่ว (IDs 09–0A; selector 1); ROM ยืนยันเส้นทางและรูปแบบสถานะ แต่ไม่ยืนยันโบนัสการกินหรือความลึก",
+        "en": "Jujube-shaped sinker: used in the sinker-equipped bait route (IDs 09–0A; selector 1); the ROM confirms its route/state family, not a bite or depth bonus.",
         "ja": "ナツメ型おもり：オモリ装備のエサ釣り経路（ID 09–0A、selector 1）で使われる。ROMが確認するのは経路と状態分岐で、食いつき・深さのボーナスではない。"
       },
       "facts": {

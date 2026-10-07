@@ -474,12 +474,12 @@
   }
   function lockBadge(ctx, bundle) {
     const works = flyWorksOnFreshSave(bundle);
-    const text = works ? { th: "ใช้ได้บนเซฟใหม่", ja: "新規セーブで使える", en: "Works on a fresh save" } : {
+    const text2 = works ? { th: "ใช้ได้บนเซฟใหม่", ja: "新規セーブで使える", en: "Works on a fresh save" } : {
       th: "ติดล็อกบนเซฟใหม่ (ใช้เมื่อล็อกเปลี่ยน)",
       ja: "新規セーブではロックされる（ロックが変わったら使う）",
       en: "Locked on a fresh save (use it once the lock changes)"
     };
-    return `<p class="fly-backup-lock" data-fresh-save="${works ? "works" : "locked"}"><strong>${ctx.escapeHtml(text[ctx.locale] || text.en)}</strong></p>`;
+    return `<p class="fly-backup-lock" data-fresh-save="${works ? "works" : "locked"}"><strong>${ctx.escapeHtml(text2[ctx.locale] || text2.en)}</strong></p>`;
   }
   function backupLocation(ctx, def) {
     if (ctx.locale === "th") return `ร้านด่าน ${def.stage} · รายการฟลายที่ ${def.slot + 1}`;
@@ -534,6 +534,70 @@
     const total = offers.reduce((sum, offer) => sum + offer.bundle.shopPriceYen, 0);
     const cards = backupCards(ctx, offers, items, stage);
     return `<details id="fly-backup" class="detail-section fly-fallback" data-total="${total}"><summary>${ctx.escapeHtml(backupTitle(ctx))}</summary><p>${ctx.escapeHtml(backupIntro(ctx, total))}</p><p><strong>${ctx.escapeHtml(backupAction(ctx))}</strong></p><div class="detail-grid">${cards}</div><p class="muted">${ctx.escapeHtml(backupScope(ctx))}</p>${backupResearchLink(ctx)}</details>`;
+  }
+
+  // src/pages/fish/rod-fit.js
+  var text = {
+    th: {
+      reach: "สายยาวพอสำหรับปลานี้",
+      start: "เริ่มสู้ได้ดีกว่าสำหรับปลานี้",
+      reachEffect: (reach, base) => `คันถูกสุดสาย ×${base} สั้นเกินสำหรับปลานี้ ถ้าปลาวิ่งไกลเกินสายจะขาดและเสียตะขอ คันนี้สาย ×${reach} ยาวพอ`,
+      startEffect: () => "คันถูกสุดเริ่มสู้เสียเปรียบกับปลาชนิดนี้ (พลาดได้น้อยลง) คันนี้เริ่มสู้ได้ดีที่สุดกับปลาชนิดนี้",
+      shortNote: "คันถูกสุดนี้สายสั้นเกินสำหรับปลาชนิดนี้ ถ้าปลาวิ่งไกลเกินสายจะขาดและเสียตะขอ",
+      badNote: "คันถูกสุดนี้เริ่มสู้เสียเปรียบกับปลาชนิดนี้ พลาดได้น้อยลง"
+    },
+    ja: {
+      reach: "この魚に糸の長さが足りる",
+      start: "この魚で出だしが有利",
+      reachEffect: (reach, base) => `最安竿の糸（×${base}）はこの魚には短く、遠くまで走られると糸が切れて針を失います。この竿は×${reach}で足ります。`,
+      startEffect: () => "最安竿はこの魚で出だしが不利（許されるミスが減る）。この竿はこの魚で出だしが最良です。",
+      shortNote: "最安竿の糸はこの魚には短く、遠くまで走られると糸が切れて針を失います。",
+      badNote: "最安竿はこの魚で出だしが不利で、許されるミスが減ります。"
+    },
+    en: {
+      reach: "The line is long enough for this fish",
+      start: "A better fight start against this fish",
+      reachEffect: (reach, base) => `The budget rod’s line (×${base}) is too short for this fish: if it runs farther the line breaks and the hook is lost. This rod’s ×${reach} holds it.`,
+      startEffect: () => "The budget rod starts the fight worse against this fish (fewer mistakes allowed). This rod gives the best start against it.",
+      shortNote: "The line of this budget rod is too short for this fish: if it runs farther the line breaks and the hook is lost.",
+      badNote: "This budget rod starts the fight worse against this fish, so you can afford fewer mistakes."
+    }
+  };
+  var copy = (ctx) => text[ctx.locale] || text.en;
+  function rodFit(item, fish) {
+    const fight = item.rodDecision?.fight;
+    if (!fight || !Number.isInteger(fish)) return null;
+    return {
+      short: fight.short.includes(fish),
+      bad: fight.bad.includes(fish),
+      best: fight.best.includes(fish)
+    };
+  }
+  function fitUpgrades(rods, budgetRod, fish) {
+    const base = rodFit(budgetRod, fish);
+    if (!base) return [];
+    const pick = (test) => rods.find((rod) => {
+      const fit = rod.id !== budgetRod.id && rodFit(rod, fish);
+      return fit && test(fit);
+    });
+    const found = [
+      ["reach", base.short ? pick((fit) => !fit.short) : null],
+      ["start", base.bad ? pick((fit) => fit.best) : null]
+    ];
+    return found.filter(([, rod]) => rod);
+  }
+  function fitHeadline(ctx, dimension) {
+    return copy(ctx)[dimension];
+  }
+  function fitEffect(ctx, dimension, item, budgetRod) {
+    const reach = (rod) => rod.playerUse?.rodMetrics?.reachMultiplierRaw;
+    return dimension === "reach" ? copy(ctx).reachEffect(reach(item), reach(budgetRod)) : copy(ctx).startEffect();
+  }
+  function fitNote(ctx, budgetRod, fish) {
+    const fit = rodFit(budgetRod, fish);
+    if (!fit || !(fit.short || fit.bad)) return "";
+    const note = fit.short ? copy(ctx).shortNote : copy(ctx).badNote;
+    return `<p class="method-rod-fit">${ctx.escapeHtml(note)}</p>`;
   }
 
   // src/pages/fish/fishing-setup.js
@@ -655,7 +719,8 @@
     const baseTotal = rodSetupTotal(method, starterPrice, localRods, choice, rigTotal);
     const upgrades = renderRodUpgradeChoices(ctx, method, stage, localRods, choice, baseTotal);
     const total = nonBaitSetupTotal(ctx, method, baseTotal);
-    return `<section class="method-rod" data-method-rod="${method}" data-rod="${choice.id}" data-rod-local="${Boolean(localRods.length)}"><h4>${ctx.escapeHtml(title)}</h4><p>${ctx.escapeHtml(owned)}</p><p>${ctx.escapeHtml(decision)}</p>${ctx.itemLink({ item: choice, routes: [] }, stage)}${total}${upgrades}</section>`;
+    const fit = fitNote(ctx, choice, Number.parseInt(ctx.id, 16));
+    return `<section class="method-rod" data-method-rod="${method}" data-rod="${choice.id}" data-rod-local="${Boolean(localRods.length)}"><h4>${ctx.escapeHtml(title)}</h4><p>${ctx.escapeHtml(owned)}</p><p>${ctx.escapeHtml(decision)}</p>${fit}${ctx.itemLink({ item: choice, routes: [] }, stage)}${total}${upgrades}</section>`;
   }
   function nonBaitSetupTotal(ctx, method, total) {
     if (!["lure", "fly"].includes(method) || !Number.isFinite(total)) return "";
@@ -697,20 +762,18 @@
       (a, b) => rodMetric(b, key) - rodMetric(a, key) || rodMetric(b, secondaryKey) - rodMetric(a, secondaryKey) || a.priceYen - b.priceYen || a.id.localeCompare(b.id)
     )[0];
   }
-  function rodUpgradeLeaders(rods, budgetRod) {
+  function rodUpgradeLeaders(rods, budgetRod, fish) {
     if (!budgetRod || rods.length < 2) return [];
     const baselineAim = rodMetric(budgetRod, "aimCutoffAt100Hp");
-    const baselineReach = rodMetric(budgetRod, "reachMultiplierRaw");
-    if (baselineAim === null || baselineReach === null) return [];
+    if (baselineAim === null) return [];
     const leaders = [
       ["aim", metricLeader(rods, "aimCutoffAt100Hp", "reachMultiplierRaw")],
-      ["reach", metricLeader(rods, "reachMultiplierRaw", "aimCutoffAt100Hp")]
+      ...fitUpgrades(rods, budgetRod, fish)
     ];
     const choices = /* @__PURE__ */ new Map();
     for (const [dimension, item] of leaders) {
       if (!item) continue;
-      const metricKey = dimension === "aim" ? "aimCutoffAt100Hp" : "reachMultiplierRaw";
-      if (rodMetric(item, metricKey) <= rodMetric(budgetRod, metricKey)) continue;
+      if (dimension === "aim" && rodMetric(item, "aimCutoffAt100Hp") <= baselineAim) continue;
       const choice = choices.get(item.id) || { item, dimensions: [] };
       choice.dimensions.push(dimension);
       choices.set(item.id, choice);
@@ -718,43 +781,28 @@
     return [...choices.values()];
   }
   function upgradeHeadline(ctx, dimensions) {
-    if (ctx.locale === "th") {
-      if (dimensions.length === 2) return "มีเวลาเล็งนานสุดและสายขาดยากสุดในร้านด่านนี้";
-      return dimensions[0] === "aim" ? "มีเวลาเล็งนานสุดในร้านด่านนี้" : "สายขาดยากสุดในร้านด่านนี้";
-    }
-    if (ctx.locale === "ja") {
-      if (dimensions.length === 2) return "このエリアの店頭で狙う時間が最長、糸も最も切れにくい";
-      return dimensions[0] === "aim" ? "このエリアの店頭で狙う時間が最長" : "このエリアの店頭で糸が最も切れにくい";
-    }
-    if (dimensions.length === 2)
-      return "Most time to aim and the line that breaks least easily in this area";
-    return dimensions[0] === "aim" ? "Most time to aim in this area" : "The line that breaks least easily in this area";
+    const aim = ctx.locale === "th" ? "มีเวลาเล็งนานสุดในร้านด่านนี้" : ctx.locale === "ja" ? "このエリアの店頭で狙う時間が最長" : "Most time to aim in this area";
+    const parts = dimensions.map(
+      (dimension) => dimension === "aim" ? aim : fitHeadline(ctx, dimension)
+    );
+    return parts.join(" · ");
   }
   function upgradeEffect(ctx, dimension, item, budgetRod) {
+    if (dimension !== "aim") return fitEffect(ctx, dimension, item, budgetRod);
     const aim = rodMetric(item, "aimCutoffAt100Hp");
     const baseAim = rodMetric(budgetRod, "aimCutoffAt100Hp");
-    const reach = rodMetric(item, "reachMultiplierRaw");
-    const baseReach = rodMetric(budgetRod, "reachMultiplierRaw");
-    const style = item.decodedFields?.styleCode;
-    if (dimension === "aim" && [2, 4].includes(style)) {
+    if ([2, 4].includes(item.decodedFields?.styleCode)) {
       if (ctx.locale === "th")
         return `ที่ HP 100 มีเวลาเล็ง ${aim} เทียบกับ ${baseAim} ของคันราคาต่ำสุด; ถ้า HP ต่ำกว่า 100 เวลาเล็งจะสั้นลง`;
       if (ctx.locale === "ja")
         return `HP100のときの狙う時間は${aim}、最安竿は${baseAim}。HPが100未満だと短くなります。`;
       return `At 100 HP, aim time ${aim} vs ${baseAim} for the cheapest rod; below 100 HP you get less time to aim.`;
     }
-    if (dimension === "aim") {
-      if (ctx.locale === "th")
-        return `เวลาเล็ง ${aim} เทียบกับ ${baseAim} ของคันราคาต่ำสุด จึงมีเวลาขยับเป้านานขึ้นก่อนเกมตัดสินว่าเหยื่อตกตรงไหน`;
-      if (ctx.locale === "ja")
-        return `狙う時間は${aim}、最安竿は${baseAim}。投げ先を動かす時間が長くなります。`;
-      return `Aim time ${aim} vs ${baseAim} for the cheapest rod gives you longer to move the target before the game decides where the cast lands.`;
-    }
     if (ctx.locale === "th")
-      return `สายขาดยาก ×${reach} เทียบกับ ×${baseReach}; ปลาดึงหนีได้ไกลกว่าก่อนอุปกรณ์หลุด`;
+      return `เวลาเล็ง ${aim} เทียบกับ ${baseAim} ของคันราคาต่ำสุด จึงมีเวลาขยับเป้านานขึ้นก่อนเกมตัดสินว่าเหยื่อตกตรงไหน`;
     if (ctx.locale === "ja")
-      return `糸の切れにくさは×${reach}、最安竿は×${baseReach}。魚が遠くまで引いても道具を失いにくくなります。`;
-    return `Line strength ×${reach} vs ×${baseReach}: the fish can pull farther before tackle is lost.`;
+      return `狙う時間は${aim}、最安竿は${baseAim}。投げ先を動かす時間が長くなります。`;
+    return `Aim time ${aim} vs ${baseAim} for the cheapest rod gives you longer to move the target before the game decides where the cast lands.`;
   }
   function upgradeCost(ctx, item, budgetRod) {
     const difference = item.priceYen - budgetRod.priceYen;
@@ -773,7 +821,7 @@
     const image = item.image ? `<img src="${ctx.escapeHtml(item.image)}" alt="">` : "";
     const link = upgradeRodLink(ctx, item, method, stage);
     const total = Number.isFinite(baseTotal) ? setupTotalNote(ctx, baseTotal + item.priceYen - budgetRod.priceYen) : "";
-    return `<article class="method-rig-choice method-rod-upgrade" data-rod-upgrade="${item.id}" data-rod-upgrade-dimensions="${choice.dimensions.join(",")}"><h5>${ctx.escapeHtml(label)}</h5><a class="entity-link" href="${ctx.escapeHtml(link)}">${image}<span><strong>${ctx.escapeHtml(ctx.localizedItemName(item))}</strong><small>${ctx.escapeHtml(upgradeCost(ctx, item, budgetRod))}</small></span></a>${benefit.map((text) => `<p>${ctx.escapeHtml(text)}</p>`).join("")}${total ? `<p><strong>${ctx.escapeHtml(total)}</strong></p>` : ""}</article>`;
+    return `<article class="method-rig-choice method-rod-upgrade" data-rod-upgrade="${item.id}" data-rod-upgrade-dimensions="${choice.dimensions.join(",")}"><h5>${ctx.escapeHtml(label)}</h5><a class="entity-link" href="${ctx.escapeHtml(link)}">${image}<span><strong>${ctx.escapeHtml(ctx.localizedItemName(item))}</strong><small>${ctx.escapeHtml(upgradeCost(ctx, item, budgetRod))}</small></span></a>${benefit.map((text2) => `<p>${ctx.escapeHtml(text2)}</p>`).join("")}${total ? `<p><strong>${ctx.escapeHtml(total)}</strong></p>` : ""}</article>`;
   }
   function setupTotalNote(ctx, total) {
     if (ctx.locale === "th") return `ซื้อของทั้งชุดใหม่รวม ¥${total}`;
@@ -781,10 +829,10 @@
     return `Complete new setup total ¥${total}`;
   }
   function renderRodUpgradeChoices(ctx, method, stage, rods, budgetRod, baseTotal) {
-    const choices = rodUpgradeLeaders(rods, budgetRod);
+    const choices = rodUpgradeLeaders(rods, budgetRod, Number.parseInt(ctx.id, 16));
     if (!choices.length) return "";
-    const title = ctx.locale === "th" ? "ถ้าต้องการเวลาเล็งนานขึ้นหรือสายขาดยากขึ้น" : ctx.locale === "ja" ? "狙う時間や糸の切れにくさを上げたい場合" : "If you want more time to aim or a line that breaks less easily";
-    const scope = ctx.locale === "th" ? "สายขาดยากช่วยป้องกันอุปกรณ์หลุดแค่แบบเดียวเท่านั้น ไม่ได้แปลว่าปลากินหรือจับง่ายขึ้น; คันนี้ต้องซื้อใหม่ราคาเต็ม" : ctx.locale === "ja" ? "この切れにくさは、道具を失う逃げ方のうち1つにだけ関係します。食いつきや釣り上げやすさは証明されておらず、新品の全額が必要です。" : "Line strength only helps against one way of losing tackle. It does not prove easier bites or catches; the rod costs its full new-purchase price.";
+    const title = ctx.locale === "th" ? "ถ้าคันถูกสุดไม่เหมาะกับปลานี้ หรืออยากมีเวลาเล็งนานขึ้น" : ctx.locale === "ja" ? "最安竿がこの魚に合わない場合や、狙う時間を上げたい場合" : "If the budget rod does not suit this fish, or you want more time to aim";
+    const scope = ctx.locale === "th" ? "สายยาวพอและจุดเริ่มสู้ที่ดีกว่าช่วยให้ปลาไม่หลุดและสายไม่ขาด (วัดจากการจำลองการสู้ปลา) ส่วนเวลาเล็งไม่ได้ทำให้ปลากินง่ายขึ้น; คันนี้ต้องซื้อใหม่ราคาเต็ม" : ctx.locale === "ja" ? "糸の長さが足りて出だしが有利なほど、魚を逃がしにくく糸も切れにくくなります（ファイトのシミュレーションによる）。狙う時間で食いつきは良くなりません。新品の全額が必要です。" : "A line that is long enough and a better fight start keep the fish from escaping and the line from breaking (measured in simulated fights). Time to aim does not make fish bite more. The rod costs its full new-purchase price.";
     return `<div class="method-rod-upgrades" data-rod-upgrades-for="${method}"><h5>${ctx.escapeHtml(title)}</h5><div class="detail-grid">${choices.map((choice) => upgradeCard(ctx, method, stage, choice, budgetRod, baseTotal)).join("")}</div><p class="muted">${ctx.escapeHtml(scope)}</p></div>`;
   }
   function rodPurchaseDecision(ctx, localRods, stage, choice) {
@@ -844,16 +892,20 @@
   function emptyPointAdvice(ctx, count) {
     if (count === 1) {
       if (ctx.locale === "th")
-        return "ด่านนี้มีจุดที่เกมกำหนดไว้เพียงจุดเดียว ถ้าไม่พบปลา ช่องเกิดนี้อาจไม่ทำงานในรอบนี้ หรือปลาอาจเคลื่อนที่ไปแล้ว ลองตรวจบริเวณใกล้จุดนี้";
+        return "ด่านนี้ปลาชนิดนี้มีหมุดเดียว ถ้าหมุดว่าง ให้ตกปลาในด่านนั้นแล้วนอนโรงแรมของด่านนั้น ทำซ้ำจนปลากลับมา ปลาว่ายห่างจากหมุดได้ ลองดูรอบ ๆ ด้วย";
       if (ctx.locale === "ja")
-        return "このエリアでゲームに設定された地点は1か所だけです。魚がいなければ、この出現枠が無効な状態か、魚が移動した可能性があります。周辺を探してください。";
-      return "The game records only one spot for this area. If no fish appears there, its spawn slot may be inactive in this state or the fish may have moved; check the nearby water.";
+        return "このエリアでこの魚のピンは1か所だけです。空なら、そのエリアで釣りをして宿屋で寝る、を魚が戻るまで繰り返します。魚はピンから離れて泳ぐので、周りも探してください。";
+      return "This fish has only one pin in this area. If it is empty, fish in the area and sleep at its inn, and repeat until the fish returns. Fish drift away from the pin, so check nearby water too.";
     }
     if (ctx.locale === "th")
-      return "ถ้าจุดหนึ่งไม่มีปลา ให้ลองจุดอื่นที่แสดงไว้ ปลาเคลื่อนที่ได้และจุดเกิดบางแห่งอาจไม่ทำงานในรอบนั้น";
+      return "หมุดคือจุดที่ปลาอยู่ตอนโหลดเกม แล้วปลาจะว่ายไปมา ส่วนใหญ่ไม่เกิน 1–2 ช่องจากหมุด ถ้าหมุดว่าง ลองหมุดอื่น ปลาที่ตกขึ้นแล้วหรือหลุดไปจะหายจากหมุดจนกว่าจะนอนโรงแรมของด่านนั้น";
     if (ctx.locale === "ja")
-      return "魚がいなければ別の表示地点も試してください。魚は移動し、出現枠が無効の場合もあります。";
-    return "If a point is empty, try another marked spot. Fish move, and some spawn slots may be inactive in that state.";
+      return "ピンはロード直後に魚がいる場所で、その後は泳ぎ回ります（ほとんどは1～2マス以内）。空なら別のピンも試してください。釣り上げた魚や逃げた魚は、そのエリアの宿屋で寝るまでピンに戻りません。";
+    return "Pins show where fish start after loading, then they wander (most stay within 1–2 tiles). If a pin is empty, try another. A landed or escaped fish stays gone until you sleep at that area’s inn.";
+  }
+  function howItWorksLink(ctx) {
+    const label = ctx.locale === "th" ? "ปลาบนแผนที่ทำงานอย่างไร" : ctx.locale === "ja" ? "マップ上の魚のしくみ" : "How fish on the map work";
+    return `<p><a href="${ctx.escapeHtml(ctx.mapPath())}#how-fish-work">${ctx.escapeHtml(label)} ↗</a></p>`;
   }
   function renderAreas(ctx, locations, activeStage, fish) {
     if (!locations.length)
@@ -862,7 +914,7 @@
     const stage = String(selected.stage), name = selected.stageName?.[ctx.locale] || selected.stageName?.en || ctx.copy.stage(stage);
     const maps = (selected.maps || []).map((map) => ctx.renderAreaMap(map, selected, fish)).join("");
     const caution = emptyPointAdvice(ctx, pointCount(ctx, selected));
-    return `<section class="detail-section fish-where-to-go" id="fish-area-map"><h2>${ctx.escapeHtml(ctx.copy.areas)}</h2><label class="area-select-label" for="shopping-area">${ctx.escapeHtml(ctx.shoppingCopy.area)}</label><select id="shopping-area" class="area-select">${locations.map((location2) => `<option value="${ctx.escapeHtml(location2.stage)}" ${String(location2.stage) === stage ? "selected" : ""}>${ctx.escapeHtml(ctx.copy.stage(location2.stage))} · ${ctx.escapeHtml(location2.stageName?.[ctx.locale] || location2.stageName?.en || "")}</option>`).join("")}</select><article class="detail-section area-card current-area" data-active="true"><h3>${ctx.escapeHtml(ctx.copy.stage(stage))} · ${ctx.escapeHtml(name)}</h3><p class="area-point-count">${ctx.escapeHtml(ctx.copy.configuredPoints(ctx.pointCount(selected)))}</p><p class="section-lede">${ctx.escapeHtml(caution)}</p>${maps ? `<div class="detail-grid area-map-grid">${maps}</div>` : ""}<a class="route-button" href="${ctx.escapeHtml(ctx.fishMapLink(stage))}">${ctx.escapeHtml(ctx.copy.mapAction)} ↗</a></article></section>`;
+    return `<section class="detail-section fish-where-to-go" id="fish-area-map"><h2>${ctx.escapeHtml(ctx.copy.areas)}</h2><label class="area-select-label" for="shopping-area">${ctx.escapeHtml(ctx.shoppingCopy.area)}</label><select id="shopping-area" class="area-select">${locations.map((location2) => `<option value="${ctx.escapeHtml(location2.stage)}" ${String(location2.stage) === stage ? "selected" : ""}>${ctx.escapeHtml(ctx.copy.stage(location2.stage))} · ${ctx.escapeHtml(location2.stageName?.[ctx.locale] || location2.stageName?.en || "")}</option>`).join("")}</select><article class="detail-section area-card current-area" data-active="true"><h3>${ctx.escapeHtml(ctx.copy.stage(stage))} · ${ctx.escapeHtml(name)}</h3><p class="area-point-count">${ctx.escapeHtml(ctx.copy.configuredPoints(ctx.pointCount(selected)))}</p><p class="section-lede">${ctx.escapeHtml(caution)}</p>${howItWorksLink(ctx)}${maps ? `<div class="detail-grid area-map-grid">${maps}</div>` : ""}<a class="route-button" href="${ctx.escapeHtml(ctx.fishMapLink(stage))}">${ctx.escapeHtml(ctx.copy.mapAction)} ↗</a></article></section>`;
   }
 
   // src/pages/fish/evidence.js
@@ -887,13 +939,13 @@
     const rewards = items.filter((item) => item.exchangeFishId === ctx.id);
     if (!rewards.length) return "";
     const title = ctx.locale === "th" ? "เก็บปลานี้ไว้แลกของไหม?" : ctx.locale === "ja" ? "この魚を交換用に残す？" : "Keep this fish for an exchange?";
-    const text = ctx.locale === "th" ? "ถ้ายังไม่เคยแลกและต้องการหัวไชเท้า 16 ชิ้น เก็บปลายามาโนะคามิหนึ่งตัวในข้องไว้ให้ NPC ด่าน 3 (21,82) ก่อนกินหรือขาย แต่การแลกทับอาหารเดิมทุกช่อง: ใช้อาหารเดิมที่ต้องการก่อน หรือข้ามการแลกถ้าต้องการเก็บอาหารไว้" : ctx.locale === "ja" ? "まだ交換しておらず大根16個が欲しいなら、食べたり売ったりする前にヤマノカミ1匹をびくに残し、エリア3（21,82）の人物へ。ただし食料全枠を上書きする。必要な食料は先に使い、残したいなら交換を見送る。" : "If you have not traded yet and want 16 Daikon, keep one Yamanokami for the area-3 NPC at (21,82) before eating or selling it. The trade replaces every food slot: use wanted food first, or skip the trade to keep it.";
-    return `<section class="detail-section" data-fish-exchange><h2>${ctx.escapeHtml(title)}</h2>${rewards.map((item) => `<p>${ctx.escapeHtml(item.exchangeFishAction?.[ctx.locale] || item.exchangeFishAction?.en || text)}</p>${ctx.itemLink({ item, routes: [] }, stage)}`).join("")}</section>`;
+    const text2 = ctx.locale === "th" ? "ถ้ายังไม่เคยแลกและต้องการหัวไชเท้า 16 ชิ้น เก็บปลายามาโนะคามิหนึ่งตัวในข้องไว้ให้ NPC ด่าน 3 (21,82) ก่อนกินหรือขาย แต่การแลกทับอาหารเดิมทุกช่อง: ใช้อาหารเดิมที่ต้องการก่อน หรือข้ามการแลกถ้าต้องการเก็บอาหารไว้" : ctx.locale === "ja" ? "まだ交換しておらず大根16個が欲しいなら、食べたり売ったりする前にヤマノカミ1匹をびくに残し、エリア3（21,82）の人物へ。ただし食料全枠を上書きする。必要な食料は先に使い、残したいなら交換を見送る。" : "If you have not traded yet and want 16 Daikon, keep one Yamanokami for the area-3 NPC at (21,82) before eating or selling it. The trade replaces every food slot: use wanted food first, or skip the trade to keep it.";
+    return `<section class="detail-section" data-fish-exchange><h2>${ctx.escapeHtml(title)}</h2>${rewards.map((item) => `<p>${ctx.escapeHtml(item.exchangeFishAction?.[ctx.locale] || item.exchangeFishAction?.en || text2)}</p>${ctx.itemLink({ item, routes: [] }, stage)}`).join("")}</section>`;
   }
   function unconfirmedProfileAction(ctx) {
     const title = ctx.locale === "th" ? "ไม่ต้องจัดชุดตกสำหรับรายการ 43" : ctx.locale === "ja" ? "プロフィール43用の仕掛けを買う必要はありません" : "Do not buy a fishing setup for profile 43";
-    const text = ctx.locale === "th" ? "เลือกปลาที่มีชื่อและจุดตกยืนยันแล้วแทน รายการนี้ไม่มีจุดที่ปลาปรากฏที่ยืนยันแล้ว และไม่มีเหยื่อจริง ลัวร์ หรือตัวฟลายที่ใช้ได้กับมัน การมีข้อมูลอยู่ในเกมไม่ได้แปลว่าเป็นปลาที่พบและตกได้ตามปกติ" : ctx.locale === "ja" ? "名前と確認済みの釣り場がある魚を選んでください。この項目には抽出した出現表の確認済み地点がなく、エサ・ルアー・フライ本体の判定を通る候補もありません。ROMに行があるだけでは、通常出現して釣れる魚とは確認できません。" : "Choose a named fish with confirmed fishing spots instead. This entry has no confirmed point in the extracted spawn table, and no bait, lure or fly body passes its recorded check. A row in the ROM does not establish that it normally appears and can be caught.";
-    return `<section class="detail-section" data-unconfirmed-profile-action><h2>${ctx.escapeHtml(title)}</h2><p>${ctx.escapeHtml(text)}</p><a class="route-button" href="${ctx.escapeHtml(ctx.cataloguePath())}?category=all#catalogue">${ctx.locale === "th" ? "เลือกปลาอื่นจากช่องค้นหา" : ctx.locale === "ja" ? "検索欄で別の魚を選ぶ" : "Choose another fish in the search field"} ↗</a></section>`;
+    const text2 = ctx.locale === "th" ? "เลือกปลาที่มีชื่อและจุดตกยืนยันแล้วแทน รายการนี้ไม่มีจุดที่ปลาปรากฏที่ยืนยันแล้ว และไม่มีเหยื่อจริง ลัวร์ หรือตัวฟลายที่ใช้ได้กับมัน การมีข้อมูลอยู่ในเกมไม่ได้แปลว่าเป็นปลาที่พบและตกได้ตามปกติ" : ctx.locale === "ja" ? "名前と確認済みの釣り場がある魚を選んでください。この項目には抽出した出現表の確認済み地点がなく、エサ・ルアー・フライ本体の判定を通る候補もありません。ROMに行があるだけでは、通常出現して釣れる魚とは確認できません。" : "Choose a named fish with confirmed fishing spots instead. This entry has no confirmed point in the extracted spawn table, and no bait, lure or fly body passes its recorded check. A row in the ROM does not establish that it normally appears and can be caught.";
+    return `<section class="detail-section" data-unconfirmed-profile-action><h2>${ctx.escapeHtml(title)}</h2><p>${ctx.escapeHtml(text2)}</p><a class="route-button" href="${ctx.escapeHtml(ctx.cataloguePath())}?category=all#catalogue">${ctx.locale === "th" ? "เลือกปลาอื่นจากช่องค้นหา" : ctx.locale === "ja" ? "検索欄で別の魚を選ぶ" : "Choose another fish in the search field"} ↗</a></section>`;
   }
 
   // src/shared/lib/hp-recovery-action.js
@@ -937,7 +989,7 @@
   }
   function aimTip(ctx, method, stage) {
     if (!["lure", "sinker"].includes(method)) return "";
-    const text = ctx.locale === "th" ? "ก่อนใช้คันลัวร์หรือคันหวด เติม HP ให้ถึง 100 เพื่อให้ได้เวลาเล็งเต็มของคันนั้น ไม่ใช่โบนัสโอกาสปลากิน" : ctx.locale === "ja" ? "ルアー竿・投げ竿を使う前にHPを100まで回復すると、竿本来の狙う時間になります。食いつき率のボーナスではありません。" : "Restore HP to 100 before lure or casting fishing to get the rod’s full time to aim. This does not add a bite-rate bonus.";
+    const text2 = ctx.locale === "th" ? "ก่อนใช้คันลัวร์หรือคันหวด เติม HP ให้ถึง 100 เพื่อให้ได้เวลาเล็งเต็มของคันนั้น ไม่ใช่โบนัสโอกาสปลากิน" : ctx.locale === "ja" ? "ルアー竿・投げ竿を使う前にHPを100まで回復すると、竿本来の狙う時間になります。食いつき率のボーナスではありません。" : "Restore HP to 100 before lure or casting fishing to get the rod’s full time to aim. This does not add a bite-rate bonus.";
     const action = hpRecoveryAction({
       locale: ctx.locale,
       cataloguePath: ctx.cataloguePath(),
@@ -946,7 +998,7 @@
       source: `fish-${method}`,
       escapeHtml: ctx.escapeHtml
     });
-    return `<p class="aim-tip">${ctx.escapeHtml(text)}</p><p>${action}</p>`;
+    return `<p class="aim-tip">${ctx.escapeHtml(text2)}</p><p>${action}</p>`;
   }
   function starterLink(ctx, offer, stage) {
     const item = offer.entry.item;
@@ -960,24 +1012,24 @@
     if (["float", "sinker"].includes(offer.method)) query.set("route", offer.method);
     return `${ctx.itemPath()}?${query}`;
   }
-  function starterItem(ctx, offer, stage, text) {
+  function starterItem(ctx, offer, stage, text2) {
     const item = offer.entry.item;
-    const bundle = offer.bundle ? ` · ${ctx.escapeHtml(text.bundle)}` : "";
-    return `<a class="entity-link" href="${ctx.escapeHtml(starterLink(ctx, offer, stage))}"><img src="${ctx.escapeHtml(item.image)}" alt=""><span><strong>${ctx.escapeHtml(ctx.localizedItemName(item))}</strong><small>${ctx.escapeHtml(text.cost)} ¥${offer.price}${bundle}</small></span></a>`;
+    const bundle = offer.bundle ? ` · ${ctx.escapeHtml(text2.bundle)}` : "";
+    return `<a class="entity-link" href="${ctx.escapeHtml(starterLink(ctx, offer, stage))}"><img src="${ctx.escapeHtml(item.image)}" alt=""><span><strong>${ctx.escapeHtml(ctx.localizedItemName(item))}</strong><small>${ctx.escapeHtml(text2.cost)} ¥${offer.price}${bundle}</small></span></a>`;
   }
-  function starterCard(ctx, offer, stage, allItems, text) {
+  function starterCard(ctx, offer, stage, allItems, text2) {
     const method = offer.method;
     const item = offer.entry.item;
     const rig = ctx.renderRigForMethod(method, stage, allItems, offer.price);
     const aim = aimTip(ctx, method, stage);
-    const fly = offer.bundle ? `<p class="muted">${ctx.escapeHtml(text.fly)}</p>` : "";
+    const fly = offer.bundle ? `<p class="muted">${ctx.escapeHtml(text2.fly)}</p>` : "";
     const link = starterLink(ctx, offer, stage);
     const total = rig.match(/data-rig-total="(\d+)"/)?.[1];
     const rod = ctx.renderRodForMethod(method, stage, allItems, offer.price, Number(total));
     const summaryTotal = total || rod.match(/data-method-setup-total="(\d+)"/)?.[1];
     const summary = starterSummary(ctx, offer, summaryTotal);
     const open = ctx.requestedMethod === method ? " open" : "";
-    return `<details class="detail-section starter-offer" id="starter-${method}" data-method="${method}" data-item="${item.category}:${item.id}" data-price="${offer.price}"${open}><summary>${summary}</summary>${starterItem(ctx, offer, stage, text)}${rod}${rig}${aim}${fly}<a class="route-button" href="${ctx.escapeHtml(link)}">${ctx.escapeHtml(text.buy)} ↗</a></details>`;
+    return `<details class="detail-section starter-offer" id="starter-${method}" data-method="${method}" data-item="${item.category}:${item.id}" data-price="${offer.price}"${open}><summary>${summary}</summary>${starterItem(ctx, offer, stage, text2)}${rod}${rig}${aim}${fly}<a class="route-button" href="${ctx.escapeHtml(link)}">${ctx.escapeHtml(text2.buy)} ↗</a></details>`;
   }
   function starterSummary(ctx, offer, total) {
     const bait = ctx.localizedItemName(offer.entry.item);
@@ -995,13 +1047,13 @@
     if (ctx.locale === "ja") return ` · 竿と仕掛け一式 ${total}円`;
     return ` · Complete new setup ¥${total}`;
   }
-  function starterCards(ctx, offers, stage, allItems, text) {
-    return offers.map((offer) => starterCard(ctx, offer, stage, allItems, text)).join("");
+  function starterCards(ctx, offers, stage, allItems, text2) {
+    return offers.map((offer) => starterCard(ctx, offer, stage, allItems, text2)).join("");
   }
-  function selectedArea(ctx, locations, stage, text) {
+  function selectedArea(ctx, locations, stage, text2) {
     const selected = locations.find((location2) => String(location2.stage) === String(stage)) || locations[0];
     const name = selected.stageName?.[ctx.locale] || selected.stageName?.en || "";
-    return `<p class="shopping-area-context"><strong>${ctx.escapeHtml(text.area)}:</strong> ${ctx.escapeHtml(ctx.copy.stage(selected.stage))} · ${ctx.escapeHtml(name)}</p>`;
+    return `<p class="shopping-area-context"><strong>${ctx.escapeHtml(text2.area)}:</strong> ${ctx.escapeHtml(ctx.copy.stage(selected.stage))} · ${ctx.escapeHtml(name)}</p>`;
   }
   function methodEntries(entries, method) {
     return entries.filter(
@@ -1084,13 +1136,13 @@
     const conditional = localConditionalSale(entries, stage);
     const sales = recordedSales(entries, method);
     const fallback = sales[0];
-    const copy4 = missingMethodCopy(ctx, method, stage, entries.length);
+    const copy5 = missingMethodCopy(ctx, method, stage, entries.length);
     const actions = [];
     if (conditional) {
       const item = conditional.entry.item;
       const href = offerLink(ctx, method, conditional.entry, stage, stage);
       actions.push(
-        `<a class="route-button" data-conditional-sale href="${ctx.escapeHtml(href)}">${ctx.escapeHtml(copy4.conditional(ctx.localizedItemName(item)))}</a>`
+        `<a class="route-button" data-conditional-sale href="${ctx.escapeHtml(href)}">${ctx.escapeHtml(copy5.conditional(ctx.localizedItemName(item)))}</a>`
       );
     }
     if (fallback) {
@@ -1099,17 +1151,17 @@
       const price = Number.isFinite(amount) ? ` · ¥${amount}` : "";
       const href = offerLink(ctx, method, fallback.entry, stage, fallback.shop.stage);
       actions.push(
-        `<a class="route-button" data-recorded-sale href="${ctx.escapeHtml(href)}">${ctx.escapeHtml(copy4.sale(fallback.shop.stage, `${ctx.localizedItemName(item)} (ID ${item.id})`, price))} ↗</a>`
+        `<a class="route-button" data-recorded-sale href="${ctx.escapeHtml(href)}">${ctx.escapeHtml(copy5.sale(fallback.shop.stage, `${ctx.localizedItemName(item)} (ID ${item.id})`, price))} ↗</a>`
       );
     } else if (!conditional) {
       const entry = entries[0];
       const href = compatibleItemLink(ctx, method, entry, stage);
       actions.push(
-        `<a class="route-button" data-acquisition-details href="${ctx.escapeHtml(href)}">${ctx.escapeHtml(copy4.detail(`${ctx.localizedItemName(entry.item)} (ID ${entry.item.id})`))} ↗</a>`
+        `<a class="route-button" data-acquisition-details href="${ctx.escapeHtml(href)}">${ctx.escapeHtml(copy5.detail(`${ctx.localizedItemName(entry.item)} (ID ${entry.item.id})`))} ↗</a>`
       );
     }
-    const noSales = !fallback && !conditional ? `<p class="muted">${ctx.escapeHtml(copy4.noSales)}</p>` : "";
-    return `<article class="detail-section method-no-local-stock" data-method-no-local="${method}"><h3>${ctx.escapeHtml(copy4.title)}</h3><p>${ctx.escapeHtml(copy4.owned)}</p>${noSales}<div class="method-stock-actions">${actions.join("")}</div></article>`;
+    const noSales = !fallback && !conditional ? `<p class="muted">${ctx.escapeHtml(copy5.noSales)}</p>` : "";
+    return `<article class="detail-section method-no-local-stock" data-method-no-local="${method}"><h3>${ctx.escapeHtml(copy5.title)}</h3><p>${ctx.escapeHtml(copy5.owned)}</p>${noSales}<div class="method-stock-actions">${actions.join("")}</div></article>`;
   }
   function missingMethodActions(ctx, entries, offers, stage) {
     const methods = ["float", "sinker", "lure", "fly"];
@@ -1121,15 +1173,15 @@
   }
   function renderShopping(ctx, entries, locations, stage, allItems, flyChoices) {
     if (!locations.length) return "";
-    const text = ctx.shoppingCopy;
+    const text2 = ctx.shoppingCopy;
     const offers = ctx.starterOffers(entries, stage);
-    const cards = starterCards(ctx, offers, stage, allItems, text);
-    const noOffer = offers.length ? "" : `<p>${ctx.escapeHtml(text.none)}</p>`;
+    const cards = starterCards(ctx, offers, stage, allItems, text2);
+    const noOffer = offers.length ? "" : `<p>${ctx.escapeHtml(text2.none)}</p>`;
     const missingMethods = missingMethodActions(ctx, entries, offers, stage);
-    const area = selectedArea(ctx, locations, stage, text);
+    const area = selectedArea(ctx, locations, stage, text2);
     const kit = ctx.renderReusableKit(allItems, stage);
     const fallback = ctx.renderFlyFallback(allItems, stage, flyChoices);
-    return `<section id="fish-shopping" class="detail-section shopping-plan"><h2>${ctx.escapeHtml(text.title)}</h2>${area}<p>${ctx.escapeHtml(text.intro)}</p>${offers.length ? `<div class="detail-grid">${cards}</div>` : noOffer}${missingMethods ? `<div class="detail-grid missing-method-grid">${missingMethods}</div>` : ""}<p class="muted">${ctx.escapeHtml(text.scope)}</p><a href="#all-compatible">${ctx.escapeHtml(text.all)} ↓</a>${kit}${fallback}</section>`;
+    return `<section id="fish-shopping" class="detail-section shopping-plan"><h2>${ctx.escapeHtml(text2.title)}</h2>${area}<p>${ctx.escapeHtml(text2.intro)}</p>${offers.length ? `<div class="detail-grid">${cards}</div>` : noOffer}${missingMethods ? `<div class="detail-grid missing-method-grid">${missingMethods}</div>` : ""}<p class="muted">${ctx.escapeHtml(text2.scope)}</p><a href="#all-compatible">${ctx.escapeHtml(text2.all)} ↓</a>${kit}${fallback}</section>`;
   }
 
   // src/pages/fish/water-icons.js
@@ -1205,31 +1257,31 @@
     if (stage) query.set("stage", String(stage));
     return `${ctx.itemPath()}?${query.toString()}`;
   }
-  function iconFact(copy4, iconClass) {
-    if (iconClass === "small") return copy4.smallFact;
-    if (iconClass === "large") return copy4.largeFact;
-    return copy4.bubbleFact;
+  function iconFact(copy5, iconClass) {
+    if (iconClass === "small") return copy5.smallFact;
+    if (iconClass === "large") return copy5.largeFact;
+    return copy5.bubbleFact;
   }
-  function iconCard(ctx, copy4, waterIcons, profile, iconClass, stage) {
+  function iconCard(ctx, copy5, waterIcons, profile, iconClass, stage) {
     const conditional = profile.growthOnlyClasses?.includes(iconClass) === true;
-    const label = conditional ? copy4.growthLabel : copy4[iconClass];
+    const label = conditional ? copy5.growthLabel : copy5[iconClass];
     const image = ctx.escapeHtml(imageFor(waterIcons, iconClass) + "?v=native-20261005");
-    const fact = ctx.escapeHtml(conditional ? copy4.growthFact : iconFact(copy4, iconClass));
-    const bubbleAction = iconClass === "bubble" && profile.bubble === true ? `<a class="route-button" data-water-bait-link href="${ctx.escapeHtml(potatoBaitLink(ctx, stage))}">${ctx.escapeHtml(copy4.baitAction)} ↗</a>` : "";
+    const fact = ctx.escapeHtml(conditional ? copy5.growthFact : iconFact(copy5, iconClass));
+    const bubbleAction = iconClass === "bubble" && profile.bubble === true ? `<a class="route-button" data-water-bait-link href="${ctx.escapeHtml(potatoBaitLink(ctx, stage))}">${ctx.escapeHtml(copy5.baitAction)} ↗</a>` : "";
     return `<article class="entity-link water-icon-card" data-water-icon="${iconClass}" data-water-class-evidence="${conditional ? "growth-only" : "initial"}"><img loading="lazy" src="${image}" alt="${ctx.escapeHtml(label)}"><span><strong>${ctx.escapeHtml(label)}</strong><small>${fact}</small></span>${bubbleAction}</article>`;
   }
-  function evidenceDetails(ctx, copy4) {
+  function evidenceDetails(ctx, copy5) {
     const href = "https://github.com/polaminggkub-debug/kawa-no-nushi-tsuri-2-research/blob/main/docs/water-surface-icons.md";
-    return `<details class="water-icon-evidence"><summary>${ctx.escapeHtml(copy4.evidence)}</summary><p><a href="${href}">${ctx.escapeHtml(copy4.evidenceLink)} ↗</a></p></details>`;
+    return `<details class="water-icon-evidence"><summary>${ctx.escapeHtml(copy5.evidence)}</summary><p><a href="${href}">${ctx.escapeHtml(copy5.evidenceLink)} ↗</a></p></details>`;
   }
   function renderWaterIcons(ctx, waterIcons, stage) {
     const profile = waterIcons?.profiles?.[ctx.id];
     if (!waterIcons?.romSha1 || !profile) return "";
     const classes = visibleClasses(waterIcons, profile);
     if (!classes.length) return "";
-    const copy4 = copyFor(ctx);
-    const cards = classes.map((iconClass) => iconCard(ctx, copy4, waterIcons, profile, iconClass, stage)).join("");
-    return `<section class="detail-section water-icon-guide" id="water-icons"><h2>${ctx.escapeHtml(copy4.title)}</h2><p class="section-lede">${ctx.escapeHtml(copy4.intro)}</p><div class="detail-grid water-icon-grid">${cards}</div>${evidenceDetails(ctx, copy4)}</section>`;
+    const copy5 = copyFor(ctx);
+    const cards = classes.map((iconClass) => iconCard(ctx, copy5, waterIcons, profile, iconClass, stage)).join("");
+    return `<section class="detail-section water-icon-guide" id="water-icons"><h2>${ctx.escapeHtml(copy5.title)}</h2><p class="section-lede">${ctx.escapeHtml(copy5.intro)}</p><div class="detail-grid water-icon-grid">${cards}</div>${evidenceDetails(ctx, copy5)}</section>`;
   }
 
   // src/pages/fish/section-index.js
@@ -1259,7 +1311,7 @@
   }
 
   // src/pages/fish/fight-controls.js
-  var copy = {
+  var copy2 = {
     th: {
       title: "ยามาเมะด่าน 1: สู้ปลาและดูผล",
       action: "ลองกด A แล้วปล่อยคั่นเป็นช่วง ๆ สำหรับยามาเมะด่าน 1: เป็นข้อเสนอทดลองจากเหตุการณ์เดียวและชุดที่ระบุ ไม่ใช่สูตรรับประกัน",
@@ -1311,7 +1363,7 @@
   };
   function renderFightControls(ctx, stage) {
     if (ctx.id !== "03" || String(stage) !== "1") return "";
-    const text = copy[ctx.locale] || copy.en;
+    const text2 = copy2[ctx.locale] || copy2.en;
     const esc = ctx.escapeHtml;
     const query = new URLSearchParams({
       category: "general_tool",
@@ -1320,7 +1372,7 @@
       return: ctx.currentFishPath(stage)
     });
     const notebookHref = `${ctx.itemPath()}?${query}`;
-    return `<section id="fight-controls" class="detail-section"><h2>${esc(text.title)}</h2><p><strong>${esc(text.action)}</strong></p><p data-fight-surface-progression>${esc(text.surface)} <a data-fight-notebook-action href="${esc(notebookHref)}">${esc(text.notebook)} ↗</a></p><details id="fight-controls-evidence"><summary>${esc(text.evidence)}</summary><p>${esc(text.result)}</p><p>${esc(text.setup)}</p><p>${esc(text.continuation)}</p><p>${esc(text.surfaceEvidence)} <a href="../research/assets/fight-a-surface-result.png">${esc(text.surfaceResult)} ↗</a></p><p><a href="https://github.com/polaminggkub-debug/kawa-no-nushi-tsuri-2-research/blob/main/docs/fight-input-research.md">${esc(text.trace)} ↗</a></p><div class="fight-captures"><figure><a href="../research/assets/fight-hold-escape.png"><img src="../research/assets/fight-hold-escape.png" alt="${esc(text.escape)}" loading="lazy"></a><figcaption>${esc(text.escape)}</figcaption></figure><figure><a href="../research/assets/fight-release-catch.png"><img src="../research/assets/fight-release-catch.png" alt="${esc(text.catch)}" loading="lazy"></a><figcaption>${esc(text.catch)}</figcaption></figure><figure><a href="../research/assets/fight-caught-name.png"><img src="../research/assets/fight-caught-name.png" alt="${esc(text.caughtName)}" loading="lazy"></a><figcaption>${esc(text.caughtName)}</figcaption></figure></div></details></section>`;
+    return `<section id="fight-controls" class="detail-section"><h2>${esc(text2.title)}</h2><p><strong>${esc(text2.action)}</strong></p><p data-fight-surface-progression>${esc(text2.surface)} <a data-fight-notebook-action href="${esc(notebookHref)}">${esc(text2.notebook)} ↗</a></p><details id="fight-controls-evidence"><summary>${esc(text2.evidence)}</summary><p>${esc(text2.result)}</p><p>${esc(text2.setup)}</p><p>${esc(text2.continuation)}</p><p>${esc(text2.surfaceEvidence)} <a href="../research/assets/fight-a-surface-result.png">${esc(text2.surfaceResult)} ↗</a></p><p><a href="https://github.com/polaminggkub-debug/kawa-no-nushi-tsuri-2-research/blob/main/docs/fight-input-research.md">${esc(text2.trace)} ↗</a></p><div class="fight-captures"><figure><a href="../research/assets/fight-hold-escape.png"><img src="../research/assets/fight-hold-escape.png" alt="${esc(text2.escape)}" loading="lazy"></a><figcaption>${esc(text2.escape)}</figcaption></figure><figure><a href="../research/assets/fight-release-catch.png"><img src="../research/assets/fight-release-catch.png" alt="${esc(text2.catch)}" loading="lazy"></a><figcaption>${esc(text2.catch)}</figcaption></figure><figure><a href="../research/assets/fight-caught-name.png"><img src="../research/assets/fight-caught-name.png" alt="${esc(text2.caughtName)}" loading="lazy"></a><figcaption>${esc(text2.caughtName)}</figcaption></figure></div></details></section>`;
   }
 
   // src/pages/fish/notebook-checklist-link.js
@@ -1343,7 +1395,7 @@
   }
 
   // src/pages/fish/notebook-status.js
-  var copy2 = {
+  var copy3 = {
     th: {
       eligibleTitle: "เป้าหมายสมุด · 1 ใน 66 ชนิด",
       eligibleBody: "ถ้ายังไม่มีชื่อในสมุด ให้ตกปลานี้ ผ่านข้อความจับปลา แล้วตรวจไอเท็ม 05 “สมุดบันทึกการตกปลา”",
@@ -1393,55 +1445,55 @@
     if (entry?.notebookEligible === false) return { kind: "excluded", entry };
     return { kind: "unconfirmed", entry: null };
   }
-  function renderEligible(ctx, entry, text) {
+  function renderEligible(ctx, entry, text2) {
     const stages = (entry.stages || []).filter(validStage2).map(Number).sort((a, b) => a - b);
     const first = Number(entry.firstOccurrenceStage);
-    if (!validStage2(first) || !stages.length) return renderUnconfirmed(ctx, text);
+    if (!validStage2(first) || !stages.length) return renderUnconfirmed(ctx, text2);
     const otherStages = stages.filter((stage) => stage !== first);
-    const locations = otherStages.length ? text.repeats(otherStages.join(", ")) : text.noRepeats;
-    return `<section id="fish-notebook" class="decision-panel fish-notebook-goal" data-fish-notebook-status="eligible" data-notebook-first-stage="${first}" data-notebook-stages="${stages.join(",")}"><h2>${ctx.escapeHtml(text.eligibleTitle)}</h2><p>${ctx.escapeHtml(text.eligibleBody)}</p><p><strong>${ctx.escapeHtml(text.first(first))}</strong> · ${ctx.escapeHtml(locations)}</p><p>${ctx.escapeHtml(text.recorded)}</p><a class="route-button" href="#fish-area-map">${ctx.escapeHtml(text.map)} ↑</a><p>${notebookChecklistLink(ctx, first)}</p></section>`;
+    const locations = otherStages.length ? text2.repeats(otherStages.join(", ")) : text2.noRepeats;
+    return `<section id="fish-notebook" class="decision-panel fish-notebook-goal" data-fish-notebook-status="eligible" data-notebook-first-stage="${first}" data-notebook-stages="${stages.join(",")}"><h2>${ctx.escapeHtml(text2.eligibleTitle)}</h2><p>${ctx.escapeHtml(text2.eligibleBody)}</p><p><strong>${ctx.escapeHtml(text2.first(first))}</strong> · ${ctx.escapeHtml(locations)}</p><p>${ctx.escapeHtml(text2.recorded)}</p><a class="route-button" href="#fish-area-map">${ctx.escapeHtml(text2.map)} ↑</a><p>${notebookChecklistLink(ctx, first)}</p></section>`;
   }
-  function renderExcluded(ctx, text) {
-    return `<section id="fish-notebook" class="decision-panel fish-notebook-goal" data-fish-notebook-status="excluded"><h2>${ctx.escapeHtml(text.excludedTitle)}</h2><p>${ctx.escapeHtml(text.excludedBody)}</p></section>`;
+  function renderExcluded(ctx, text2) {
+    return `<section id="fish-notebook" class="decision-panel fish-notebook-goal" data-fish-notebook-status="excluded"><h2>${ctx.escapeHtml(text2.excludedTitle)}</h2><p>${ctx.escapeHtml(text2.excludedBody)}</p></section>`;
   }
-  function renderUnconfirmed(ctx, text) {
-    return `<section id="fish-notebook" class="decision-panel fish-notebook-goal" data-fish-notebook-status="unconfirmed"><h2>${ctx.escapeHtml(text.unknownTitle)}</h2><p>${ctx.escapeHtml(text.unknownBody)}</p></section>`;
+  function renderUnconfirmed(ctx, text2) {
+    return `<section id="fish-notebook" class="decision-panel fish-notebook-goal" data-fish-notebook-status="unconfirmed"><h2>${ctx.escapeHtml(text2.unknownTitle)}</h2><p>${ctx.escapeHtml(text2.unknownBody)}</p></section>`;
   }
   function renderNotebookStatus(ctx, fishData) {
-    const text = copy2[ctx.locale] || copy2.en;
+    const text2 = copy3[ctx.locale] || copy3.en;
     const state = notebookState(fishData, ctx.id);
-    if (state.kind === "eligible") return renderEligible(ctx, state.entry, text);
-    if (state.kind === "excluded") return renderExcluded(ctx, text);
-    return renderUnconfirmed(ctx, text);
+    if (state.kind === "eligible") return renderEligible(ctx, state.entry, text2);
+    if (state.kind === "excluded") return renderExcluded(ctx, text2);
+    return renderUnconfirmed(ctx, text2);
   }
 
   // src/pages/fish/quest-context.js
   var EEL_ID = "3B";
   var EEL_POINT = { stage: 6, x: 41, y: 8 };
-  var copy3 = {
+  var copy4 = {
     th: {
       title: "ถ้าคำขอจากหมอปรากฏ",
-      body: "ถ้าอ่านโปสต์การ์ดที่ได้รับแล้วเห็นคำขอให้ตกปลาไหลใหญ่ ให้เปิดข้อมูลโปสต์การ์ดเพื่อดูเบาะแสด่าน 6 ก่อนออกไปตก",
+      body: "ถ้าอ่านโปสต์การ์ดที่ได้รับแล้วเห็นคำขอให้ตกปลาไหลยักษ์ ให้เปิดข้อมูลโปสต์การ์ดเพื่อดูเบาะแสด่าน 6 ก่อนออกไปตก",
       link: "เปิดข้อมูลโปสต์การ์ดที่ได้รับ",
-      afterCatch: "จับตามคำขอได้แล้ว ให้เก็บปลาไหลไว้และกลับหมู่บ้านเริ่มต้น หากเงื่อนไขเนื้อเรื่องครบ เกมจะเริ่มฉากช่วยหมอและฉากจบอัตโนมัติ",
+      afterCatch: "ตกปลาไหลได้แล้วไม่ต้องเก็บไว้ เดินเข้าหมู่บ้านด่าน 1 ทางประตูสนาม (12,189) ฉากจบจะเริ่มโดยอัตโนมัติ โดยต้องทำขั้นก่อนหน้าให้ครบก่อน (ปลาประจำตัวละครของคุณ แล้วฉากในหมู่บ้านที่สนาม (8,183))",
       returnMap: "ดูทางกลับหมู่บ้าน · ด่าน 1 (12,189)",
-      limit: "จุดตกที่กำหนดอาจไม่มีปลาในรอบนี้"
+      limit: "จุด (41,8) ไม่ได้มีปลาไหลอยู่เสมอ"
     },
     ja: {
       title: "医者の依頼が表示された場合",
       body: "受け取ったはがきを読み、大ウナギを釣る依頼が表示されたら、釣りに行く前にエリア6の手掛かりをはがき情報で確認してください。",
       link: "受け取ったはがきの情報を見る",
-      afterCatch: "依頼の魚を釣ったら、ウナギを残して最初の村へ戻ってください。物語の条件がそろうと、医者の回復とエンディングの自動シーンが始まります。",
+      afterCatch: "オオウナギは釣れば十分で、残しておく必要はありません。フィールド（12,189）の入口からエリア1の村に入ると、エンディングが自動で流れます。ただし先の手順（自分のキャラクター専用の魚、次にフィールド（8,183）での村の場面）が済んでいることが条件です。",
       returnMap: "最初の村への入口 · エリア1 (12,189)",
-      limit: "設定された釣り場に魚がいない場合もあります。"
+      limit: "(41,8)にいつもオオウナギがいるとは限りません。"
     },
     en: {
       title: "If the doctor’s request appears",
       body: "If you read Received Postcard 06 and see the doctor’s giant-eel request, open the postcard guidance for the Area 6 clue before fishing.",
       link: "Open Received Postcard guidance",
-      afterCatch: "After catching the requested eel, keep it and return to the starting village. When the story conditions are complete, the doctor-recovery and ending scene starts automatically.",
+      afterCatch: "You do not need to keep the eel once it is caught. Walk into the Area 1 village through the field door at (12,189) and the ending scene plays automatically, provided the earlier steps are done (your character’s own special fish, then the village scene at field (8,183)).",
       returnMap: "Starting-village entrance · Area 1 (12,189)",
-      limit: "The configured fishing point may be inactive."
+      limit: "The eel is not always at (41,8)."
     }
   };
   function eelPointConfigured(locationData) {
@@ -1465,8 +1517,8 @@
   }
   function renderEelQuestContext(ctx, locationData) {
     if (ctx.id !== EEL_ID || !eelPointConfigured(locationData)) return "";
-    const text = copy3[ctx.locale] || copy3.en;
-    return `<aside class="detail-section fish-quest-context" data-fish-quest-context="postcard-eel"><h2>${ctx.escapeHtml(text.title)}</h2><p>${ctx.escapeHtml(text.body)}</p><p><a class="route-button" data-fish-postcard-link href="${ctx.escapeHtml(postcardHref(ctx))}">${ctx.escapeHtml(text.link)} ↗</a></p><p data-eel-ending-action>${ctx.escapeHtml(text.afterCatch)}</p><p><a class="route-button" data-eel-return-map href="${ctx.escapeHtml(returnVillageHref(ctx))}">${ctx.escapeHtml(text.returnMap)} ↗</a></p><p>${ctx.escapeHtml(text.limit)}</p></aside>`;
+    const text2 = copy4[ctx.locale] || copy4.en;
+    return `<aside class="detail-section fish-quest-context" data-fish-quest-context="postcard-eel"><h2>${ctx.escapeHtml(text2.title)}</h2><p>${ctx.escapeHtml(text2.body)}</p><p><a class="route-button" data-fish-postcard-link href="${ctx.escapeHtml(postcardHref(ctx))}">${ctx.escapeHtml(text2.link)} ↗</a></p><p data-eel-ending-action>${ctx.escapeHtml(text2.afterCatch)}</p><p><a class="route-button" data-eel-return-map href="${ctx.escapeHtml(returnVillageHref(ctx))}">${ctx.escapeHtml(text2.returnMap)} ↗</a></p><p>${ctx.escapeHtml(text2.limit)}</p></aside>`;
   }
 
   // src/pages/fish/render.js

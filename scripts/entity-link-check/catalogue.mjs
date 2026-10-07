@@ -160,14 +160,21 @@ async function checkRodComparison(lang) {
 async function checkHookChoices(lang, suffix) {
   const result = await renderCatalogue(lang, '?category=hook#catalogue')
   const table = result.nodes['category-decisions'].innerHTML
-  const links = [...table.matchAll(/data-hook-budget-stage="([1-6])" href="([^"]+)"/g)]
-  assert.equal(links.length, 6, `Missing hook replacement area choice ${lang}`)
+  const links = [
+    ...table.matchAll(/data-hook-budget-stage="([1-6])" data-hook-size="([0-2])" href="([^"]+)"/g),
+  ]
+  // One link per stocked size class in each area; size 2 hooks are not sold in areas 1 to 3.
+  const stocked = [1, 2, 3, 4, 5, 6].flatMap((stage) =>
+    [0, 1, 2].filter((size) => data.gearPriceGuide.hook[stage].bySize[size]),
+  )
+  assert.equal(links.length, stocked.length, `Missing hook replacement area choice ${lang}`)
+  assert.equal(stocked.length, 15, 'Expected 15 stocked area and size choices')
   for (const match of links) {
     const next = new URL(
-      unescapeHtml(match[2]),
+      unescapeHtml(match[3]),
       `https://example.test/catalogue/index${suffix}.html`,
     )
-    const row = data.gearPriceGuide.hook[match[1]]
+    const row = data.gearPriceGuide.hook[match[1]].bySize[match[2]]
     assert.equal(next.searchParams.get('id'), row.id)
     assert.equal(next.searchParams.get('stage'), match[1])
   }

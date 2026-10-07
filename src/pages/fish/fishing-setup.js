@@ -1,3 +1,5 @@
+import { fitEffect, fitHeadline, fitNote, fitUpgrades } from './rod-fit.js'
+
 function stockedInArea(item, stage) {
   return item.playerUse?.shops?.some(
     (shop) => String(shop.stage) === String(stage) && !shop.condition,
@@ -170,7 +172,8 @@ export function renderRodForMethod(ctx, method, stage, items, starterPrice, rigT
   const baseTotal = rodSetupTotal(method, starterPrice, localRods, choice, rigTotal)
   const upgrades = renderRodUpgradeChoices(ctx, method, stage, localRods, choice, baseTotal)
   const total = nonBaitSetupTotal(ctx, method, baseTotal)
-  return `<section class="method-rod" data-method-rod="${method}" data-rod="${choice.id}" data-rod-local="${Boolean(localRods.length)}"><h4>${ctx.escapeHtml(title)}</h4><p>${ctx.escapeHtml(owned)}</p><p>${ctx.escapeHtml(decision)}</p>${ctx.itemLink({ item: choice, routes: [] }, stage)}${total}${upgrades}</section>`
+  const fit = fitNote(ctx, choice, Number.parseInt(ctx.id, 16))
+  return `<section class="method-rod" data-method-rod="${method}" data-rod="${choice.id}" data-rod-local="${Boolean(localRods.length)}"><h4>${ctx.escapeHtml(title)}</h4><p>${ctx.escapeHtml(owned)}</p><p>${ctx.escapeHtml(decision)}</p>${fit}${ctx.itemLink({ item: choice, routes: [] }, stage)}${total}${upgrades}</section>`
 }
 
 function nonBaitSetupTotal(ctx, method, total) {
@@ -228,20 +231,18 @@ function metricLeader(rods, key, secondaryKey) {
     )[0]
 }
 
-function rodUpgradeLeaders(rods, budgetRod) {
+function rodUpgradeLeaders(rods, budgetRod, fish) {
   if (!budgetRod || rods.length < 2) return []
   const baselineAim = rodMetric(budgetRod, 'aimCutoffAt100Hp')
-  const baselineReach = rodMetric(budgetRod, 'reachMultiplierRaw')
-  if (baselineAim === null || baselineReach === null) return []
+  if (baselineAim === null) return []
   const leaders = [
     ['aim', metricLeader(rods, 'aimCutoffAt100Hp', 'reachMultiplierRaw')],
-    ['reach', metricLeader(rods, 'reachMultiplierRaw', 'aimCutoffAt100Hp')],
+    ...fitUpgrades(rods, budgetRod, fish),
   ]
   const choices = new Map()
   for (const [dimension, item] of leaders) {
     if (!item) continue
-    const metricKey = dimension === 'aim' ? 'aimCutoffAt100Hp' : 'reachMultiplierRaw'
-    if (rodMetric(item, metricKey) <= rodMetric(budgetRod, metricKey)) continue
+    if (dimension === 'aim' && rodMetric(item, 'aimCutoffAt100Hp') <= baselineAim) continue
     const choice = choices.get(item.id) || { item, dimensions: [] }
     choice.dimensions.push(dimension)
     choices.set(item.id, choice)
@@ -250,48 +251,34 @@ function rodUpgradeLeaders(rods, budgetRod) {
 }
 
 function upgradeHeadline(ctx, dimensions) {
-  if (ctx.locale === 'th') {
-    if (dimensions.length === 2) return 'มีเวลาเล็งนานสุดและสายขาดยากสุดในร้านด่านนี้'
-    return dimensions[0] === 'aim' ? 'มีเวลาเล็งนานสุดในร้านด่านนี้' : 'สายขาดยากสุดในร้านด่านนี้'
-  }
-  if (ctx.locale === 'ja') {
-    if (dimensions.length === 2) return 'このエリアの店頭で狙う時間が最長、糸も最も切れにくい'
-    return dimensions[0] === 'aim'
-      ? 'このエリアの店頭で狙う時間が最長'
-      : 'このエリアの店頭で糸が最も切れにくい'
-  }
-  if (dimensions.length === 2)
-    return 'Most time to aim and the line that breaks least easily in this area'
-  return dimensions[0] === 'aim'
-    ? 'Most time to aim in this area'
-    : 'The line that breaks least easily in this area'
+  const aim =
+    ctx.locale === 'th'
+      ? 'มีเวลาเล็งนานสุดในร้านด่านนี้'
+      : ctx.locale === 'ja'
+        ? 'このエリアの店頭で狙う時間が最長'
+        : 'Most time to aim in this area'
+  const parts = dimensions.map((dimension) =>
+    dimension === 'aim' ? aim : fitHeadline(ctx, dimension),
+  )
+  return parts.join(' · ')
 }
 
 function upgradeEffect(ctx, dimension, item, budgetRod) {
+  if (dimension !== 'aim') return fitEffect(ctx, dimension, item, budgetRod)
   const aim = rodMetric(item, 'aimCutoffAt100Hp')
   const baseAim = rodMetric(budgetRod, 'aimCutoffAt100Hp')
-  const reach = rodMetric(item, 'reachMultiplierRaw')
-  const baseReach = rodMetric(budgetRod, 'reachMultiplierRaw')
-  const style = item.decodedFields?.styleCode
-  if (dimension === 'aim' && [2, 4].includes(style)) {
+  if ([2, 4].includes(item.decodedFields?.styleCode)) {
     if (ctx.locale === 'th')
       return `ที่ HP 100 มีเวลาเล็ง ${aim} เทียบกับ ${baseAim} ของคันราคาต่ำสุด; ถ้า HP ต่ำกว่า 100 เวลาเล็งจะสั้นลง`
     if (ctx.locale === 'ja')
       return `HP100のときの狙う時間は${aim}、最安竿は${baseAim}。HPが100未満だと短くなります。`
     return `At 100 HP, aim time ${aim} vs ${baseAim} for the cheapest rod; below 100 HP you get less time to aim.`
   }
-  if (dimension === 'aim') {
-    if (ctx.locale === 'th')
-      return `เวลาเล็ง ${aim} เทียบกับ ${baseAim} ของคันราคาต่ำสุด จึงมีเวลาขยับเป้านานขึ้นก่อนเกมตัดสินว่าเหยื่อตกตรงไหน`
-    if (ctx.locale === 'ja')
-      return `狙う時間は${aim}、最安竿は${baseAim}。投げ先を動かす時間が長くなります。`
-    return `Aim time ${aim} vs ${baseAim} for the cheapest rod gives you longer to move the target before the game decides where the cast lands.`
-  }
   if (ctx.locale === 'th')
-    return `สายขาดยาก ×${reach} เทียบกับ ×${baseReach}; ปลาดึงหนีได้ไกลกว่าก่อนอุปกรณ์หลุด`
+    return `เวลาเล็ง ${aim} เทียบกับ ${baseAim} ของคันราคาต่ำสุด จึงมีเวลาขยับเป้านานขึ้นก่อนเกมตัดสินว่าเหยื่อตกตรงไหน`
   if (ctx.locale === 'ja')
-    return `糸の切れにくさは×${reach}、最安竿は×${baseReach}。魚が遠くまで引いても道具を失いにくくなります。`
-  return `Line strength ×${reach} vs ×${baseReach}: the fish can pull farther before tackle is lost.`
+    return `狙う時間は${aim}、最安竿は${baseAim}。投げ先を動かす時間が長くなります。`
+  return `Aim time ${aim} vs ${baseAim} for the cheapest rod gives you longer to move the target before the game decides where the cast lands.`
 }
 
 function upgradeCost(ctx, item, budgetRod) {
@@ -324,20 +311,20 @@ function setupTotalNote(ctx, total) {
 }
 
 function renderRodUpgradeChoices(ctx, method, stage, rods, budgetRod, baseTotal) {
-  const choices = rodUpgradeLeaders(rods, budgetRod)
+  const choices = rodUpgradeLeaders(rods, budgetRod, Number.parseInt(ctx.id, 16))
   if (!choices.length) return ''
   const title =
     ctx.locale === 'th'
-      ? 'ถ้าต้องการเวลาเล็งนานขึ้นหรือสายขาดยากขึ้น'
+      ? 'ถ้าคันถูกสุดไม่เหมาะกับปลานี้ หรืออยากมีเวลาเล็งนานขึ้น'
       : ctx.locale === 'ja'
-        ? '狙う時間や糸の切れにくさを上げたい場合'
-        : 'If you want more time to aim or a line that breaks less easily'
+        ? '最安竿がこの魚に合わない場合や、狙う時間を上げたい場合'
+        : 'If the budget rod does not suit this fish, or you want more time to aim'
   const scope =
     ctx.locale === 'th'
-      ? 'สายขาดยากช่วยป้องกันอุปกรณ์หลุดแค่แบบเดียวเท่านั้น ไม่ได้แปลว่าปลากินหรือจับง่ายขึ้น; คันนี้ต้องซื้อใหม่ราคาเต็ม'
+      ? 'สายยาวพอและจุดเริ่มสู้ที่ดีกว่าช่วยให้ปลาไม่หลุดและสายไม่ขาด (วัดจากการจำลองการสู้ปลา) ส่วนเวลาเล็งไม่ได้ทำให้ปลากินง่ายขึ้น; คันนี้ต้องซื้อใหม่ราคาเต็ม'
       : ctx.locale === 'ja'
-        ? 'この切れにくさは、道具を失う逃げ方のうち1つにだけ関係します。食いつきや釣り上げやすさは証明されておらず、新品の全額が必要です。'
-        : 'Line strength only helps against one way of losing tackle. It does not prove easier bites or catches; the rod costs its full new-purchase price.'
+        ? '糸の長さが足りて出だしが有利なほど、魚を逃がしにくく糸も切れにくくなります（ファイトのシミュレーションによる）。狙う時間で食いつきは良くなりません。新品の全額が必要です。'
+        : 'A line that is long enough and a better fight start keep the fish from escaping and the line from breaking (measured in simulated fights). Time to aim does not make fish bite more. The rod costs its full new-purchase price.'
   return `<div class="method-rod-upgrades" data-rod-upgrades-for="${method}"><h5>${ctx.escapeHtml(title)}</h5><div class="detail-grid">${choices.map((choice) => upgradeCard(ctx, method, stage, choice, budgetRod, baseTotal)).join('')}</div><p class="muted">${ctx.escapeHtml(scope)}</p></div>`
 }
 

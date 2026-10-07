@@ -126,7 +126,7 @@ def build(rom):
                 acquisition_copy = {
                     'general_tool:0F': (
                         loc('Town chest: empty bottle', '町の宝箱：空きビン', 'หีบในเมือง: ขวดเปล่า'),
-                        loc('Take the empty bottle, then bring it to the area-3 cow at (6,103).', '空きビンを取り、エリア3の牛（6,103）へ持っていく。', 'รับขวดเปล่า แล้วนำไปหาวัวในพื้นที่ 3 พิกัด (6,103)'),
+                        loc('Take the empty bottle, then bring it to the area-3 cow at (6,103).', '空きビンを取り、エリア3の牛（6,103）へ持っていく。', 'รับขวดเปล่า แล้วนำไปหาวัวในด่าน 3 พิกัด (6,103)'),
                     ),
                     'general_tool:11': (
                         loc('Town chest: lottery ticket', '町の宝箱：富くじ', 'หีบในเมือง: สลาก'),
@@ -134,19 +134,19 @@ def build(rom):
                     ),
                     'bait:11': (
                         loc('Locked town chest: potato bait', '施錠された町の宝箱：イモエサ', 'หีบล็อกในเมือง: เหยื่อมันฝรั่ง'),
-                        loc('Bring key 17 and leave a free bait slot before opening this chest.', 'カギ17を持ち、エサ欄を1つ空けてから開ける。', 'พกกุญแจ 17 และเว้นช่องเหยื่อให้ว่างก่อนเปิดหีบ'),
+                        loc('Bring a key (the chest uses it up) and leave a free bait slot before opening this chest.', 'カギを持ち、エサ欄を1つ空けてから開ける。宝箱を開けるとカギは消費される。', 'พกกุญแจ (เปิดหีบแล้วกุญแจหมดไป) และเว้นช่องเหยื่อให้ว่างก่อนเปิดหีบ'),
                     ),
                     'bait:0B': (
-                        loc('Locked town chest: waxworm bait', '施錠された町の宝箱：ブドウムシ', 'หีบล็อกในเมือง: หนอนองุ่น'),
-                        loc('Bring key 17 and leave a free bait slot before opening this chest.', 'カギ17を持ち、エサ欄を1つ空けてから開ける。', 'พกกุญแจ 17 และเว้นช่องเหยื่อให้ว่างก่อนเปิดหีบ'),
+                        loc('Locked town chest: grapevine larva bait', '施錠された町の宝箱：ブドウムシ', 'หีบล็อกในเมือง: หนอนองุ่น'),
+                        loc('Bring a key (the chest uses it up) and leave a free bait slot before opening this chest.', 'カギを持ち、エサ欄を1つ空けてから開ける。宝箱を開けるとカギは消費される。', 'พกกุญแจ (เปิดหีบแล้วกุญแจหมดไป) และเว้นช่องเหยื่อให้ว่างก่อนเปิดหีบ'),
                     ),
                     'rod:0A': (
                         loc('Locked town chest: small lure rod', '施錠された町の宝箱：ルアーロッド小', 'หีบล็อกในเมือง: คันลัวร์เล็ก'),
-                        loc('Bring key 17 and leave a free rod slot before opening this chest.', 'カギ17を持ち、竿欄を1つ空けてから開ける。', 'พกกุญแจ 17 และเว้นช่องคันเบ็ดให้ว่างก่อนเปิดหีบ'),
+                        loc('Bring a key (the chest uses it up) and leave a free rod slot before opening this chest.', 'カギを持ち、竿欄を1つ空けてから開ける。宝箱を開けるとカギは消費される。', 'พกกุญแจ (เปิดหีบแล้วกุญแจหมดไป) และเว้นช่องคันเบ็ดให้ว่างก่อนเปิดหีบ'),
                     ),
                     'general_tool:12': (
                         loc('Locked town chest: candle', '施錠された町の宝箱：ロウソク', 'หีบล็อกในเมือง: เทียน'),
-                        loc('Bring key 17 and leave a free general-tool slot before opening this chest.', 'カギ17を持ち、道具欄を1つ空けてから開ける。', 'พกกุญแจ 17 และเว้นช่องอุปกรณ์ทั่วไปให้ว่างก่อนเปิดหีบ'),
+                        loc('Bring a key (the chest uses it up) and leave a free general-tool slot before opening this chest.', 'カギを持ち、道具欄を1つ空けてから開ける。宝箱を開けるとカギは消費される。', 'พกกุญแจ (เปิดหีบแล้วกุญแจหมดไป) และเว้นช่องอุปกรณ์ทั่วไปให้ว่างก่อนเปิดหีบ'),
                     ),
                 }
                 composite_key = f"{reward_item['category']}:{reward_item['id']}"
@@ -169,8 +169,8 @@ def build(rom):
                 entry['requiresKey'] = False
             if chest.get('capacityCheck'):
                 entry['capacityCheck'] = chest['capacityCheck']
-            if quest['items'].get('17',{}).get('rawTrace',{}).get('keyConsumed') is False and required_item:
-                entry['keyConsumed'] = False
+            if quest['items'].get('17',{}).get('rawTrace',{}).get('keyConsumed') is True and required_item:
+                entry['keyConsumed'] = True
             paired = next((e for e in town_area['entrances'] if int(e['townArrival']['y'])//16==y//16),None)
             if paired:
                 entry['townEntranceOrdinal']=int(paired['ordinal'])

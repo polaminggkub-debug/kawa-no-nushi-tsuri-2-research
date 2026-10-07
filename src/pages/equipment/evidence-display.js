@@ -75,7 +75,7 @@ export function detailedFields(ctx, item) {
         : [use.targetMatches]
       : []
   const response = targets.length
-    ? `<p>${ctx.lang === 'th' ? 'มีการคำนวณตอบสนองเฉพาะปลา แต่ยังใช้จัดอันดับจับง่ายไม่ได้' : ctx.lang === 'ja' ? '魚別の応答計算。取り込みやすさの順位には未使用。' : 'Fish-specific response calculation; not a landing recommendation.'}: ${targets.map((t) => ctx.esc(ctx.fishName(t.fishId))).join(', ')}</p>`
+    ? `<p>${ctx.lang === 'th' ? 'ปลาที่อุปกรณ์นี้ตรงชื่อ (จุดเริ่มสู้ถูกปรับตอนตกปลาชนิดนี้)' : ctx.lang === 'ja' ? 'この道具が対応する魚（この魚を釣るときファイトの出だしが調整されます）' : 'Fish this item is matched to (its fight start is adjusted when you fish for them)'}: ${targets.map((t) => ctx.esc(ctx.fishName(t.fishId))).join(', ')}</p>`
     : ''
   const hookTrace =
     item.category === 'rod' ||

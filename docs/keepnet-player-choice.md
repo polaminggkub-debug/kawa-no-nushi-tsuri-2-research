@@ -1,6 +1,8 @@
 # Keepnet purchase choices
 
-Choose a keepnet by how many fish you want to keep before clearing it. The full purchase prices and areas below are checked against the ROM item records and the six decoded shop inventories.
+> **Corrected 2026-10-07:** the starting keepnet capacity is 5 fish; the food menu skips the first giant eel; eating a Kusafugu is a blackout, not a disaster.
+
+A new game starts with room for 5 fish in the keepnet. Choose an upgrade by how many fish you want to keep before clearing it. The full purchase prices and areas below are checked against the ROM item records and the six decoded shop inventories.
 
 | Item | Capacity | Full purchase price | Sold in | Buy or wait |
 | --- | ---: | ---: | --- | --- |
@@ -10,7 +12,7 @@ Choose a keepnet by how many fish you want to keep before clearing it. The full 
 
 The shop accepts only a larger capacity: equal and smaller choices are refused. You can skip an intermediate size and buy a larger one directly. Each amount above is the full purchase price, not a trade-in value or an upgrade-price difference.
 
-When a catch reaches capacity, the ROM stores that fish and then reports that the basket is full. A later fishing action is blocked until the player makes room. Selling a fish frees a slot. Eating a fish also frees a slot, but the game eats the first basket fish; check its name because eating Kusafugu sets HP to zero.
+When a catch reaches capacity, the ROM stores that fish and then reports that the basket is full. A later fishing action is blocked until the player makes room. Selling a fish frees a slot. Eating a fish also frees a slot, but the game eats the first basket fish (skipping your first giant eel); check its name because eating Kusafugu sets HP to zero, which only causes a blackout: you wake at the saved position with 1 HP and keep everything.
 
 If you have Yamanokami (`18`), read the Daikon exchange details before trading. The one-time Area 3 exchange at `(21,82)` consumes the fish and overwrites all 16 food slots with Daikon. Keep the fish until you decide, and use any food you want to keep before the trade. This does not establish a natural way to catch or obtain Yamanokami.
 

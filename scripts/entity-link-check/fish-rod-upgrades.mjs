@@ -74,6 +74,24 @@ for (const locale of ['en', 'th', 'ja'])
         )
     }
   }
+// Nijimasu needs line strength 24: the area 4 budget rod (12) is too short, so the card for the
+// 24 rod is offered for its reach and the page says why.
+for (const locale of ['en', 'th', 'ja']) {
+  const suffix = locale === 'en' ? '' : `.${locale}`
+  const ctx = {
+    locale,
+    id: '06',
+    escapeHtml: String,
+    localizedItemName: (item) => item.nameEn,
+    itemLink: () => '',
+    itemPath: () => `item${suffix}.html`,
+    currentFishPath: () => `fish${suffix}.html?id=06`,
+  }
+  const html = renderRodForMethod(ctx, 'float', 4, data.items, 10, 1000)
+  assert(html.includes('class="method-rod-fit"'), `Budget rod fit note missing: ${locale}`)
+  const card = html.match(/<article[^>]*data-rod-upgrade="15"[^>]*>/)?.[0] || ''
+  assert(card.includes('reach'), `Reach upgrade missing: ${locale}`)
+}
 console.log(
   'Fish rod upgrades PASS: local metric leaders, tradeoffs, prices/setup totals, HP baseline and complete three-locale return context',
 )

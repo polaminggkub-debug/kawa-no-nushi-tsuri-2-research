@@ -6,410 +6,1601 @@
     "identity": "User-supplied headerless original Japanese SFC ROM"
   },
   "scope": {
-    "en": "These choices use only the rod data, effects checked in the game code, and the six areas' shop lists. Time to aim is how long you can move the target before the game decides where the cast lands; for lure and casting rods it gets shorter below 100 HP, and float/Ayu rods use the plain value. Fly rods have a second hidden value whose effect is unknown, so it is left out. Line strength is how far a fish can pull before tackle is lost (the line breaks less easily); it is not a distance in meters and does not stop other ways fish escape. Prices are full new-purchase prices, not upgrade costs. A rod name or picture that includes a fish, or matching codes, does not mean the rod suits that fish or makes it easier to catch. No bite-rate or overall catch-success ranking is claimed.",
-    "th": "คำแนะนำนี้ดูจากข้อมูลคันเบ็ด ผลที่ตรวจจากโค้ดเกมได้ และรายการสินค้าของร้านทั้ง 6 ด่านเท่านั้น เวลาเล็ง คือเวลาที่ขยับช่องเป้าหมายได้ก่อนเกมตัดสินว่าเหยื่อตกตรงไหน คันลัวร์/คันหวดจะมีเวลาเล็งสั้นลงเมื่อ HP ต่ำกว่า 100 ส่วนคันสายทุ่น/อายุใช้ค่าเดิม คันฟลายมีอีกค่าหนึ่งที่ยังไม่รู้ว่ามีผลอะไร จึงไม่รวม สายขาดยาก คือปลาดึงหนีได้ไกลกว่าก่อนอุปกรณ์หลุด (ไม่ใช่ระยะเป็นเมตร และไม่ได้กันปลาหนีทางอื่น) ราคาที่ใช้คือราคาเต็มซื้อใหม่ ไม่ใช่ส่วนต่างตอนอัปเกรด ชื่อหรือรูปคันที่มีชื่อปลา รวมทั้งรหัสตอบสนองและรหัสปลา ไม่ได้แปลว่าเป็นคันเฉพาะปลานั้นหรือทำให้จับง่ายขึ้น และไม่ได้จัดอันดับว่าปลากินง่ายหรือจับสำเร็จง่ายแค่ไหนโดยรวม",
-    "ja": "購入・使用の判断は、竿のデータ、ゲームコードで確認した効果、全6エリアの店の品ぞろえだけに基づきます。狙う時間は、投げた先が決まる前にターゲットを動かせる時間です。ルアー竿・投げ竿はHP100未満で短くなり、ウキ・アユ竿はそのままの値です。フライ竿にはもう1つ隠れた値がありますが、効果が分からないため含めていません。糸の切れにくさは、魚が遠くまで引いても道具を失いにくいことを表します（距離のメートル数ではなく、他の逃げ方も防ぎません）。価格は新品の全額で、下取り後の強化費用ではありません。魚名の入った竿名や画像、一致するコードは、その魚専用や釣りやすさの証明ではありません。食いつき率や総合的な釣果の順位は付けていません。"
+    "th": "คำแนะนำนี้มาจากการจำลองการสู้ปลา (data/gear-effects.json) และรายการสินค้าของร้านทั้ง 6 ด่าน คันกำหนดสองอย่าง: สายขาดยาก คือปลาวิ่งไกลได้แค่ไหนก่อนสายขาดและเสียตะขอ (ชี้ขาดกับปลาใหญ่) และจุดเริ่มของมาตรวัดแรงตึง คือพลาดได้กี่จังหวะ เวลาเล็งสั้นลงเมื่อ HP ต่ำกว่า 100 กับคันหวดและคันลัวร์ ราคาที่ใช้คือราคาเต็มซื้อใหม่ ไม่ใช่ส่วนต่างตอนอัปเกรด",
+    "en": "These choices come from simulated fights (data/gear-effects.json) and the six areas' shop lists. A rod decides two things: line strength, how far a fish can run before the line breaks and the hook is lost (decisive for big fish), and the fight meter's start, how many mistakes you can afford. Casting and lure rods give less time to aim below 100 HP. Prices are full new-purchase prices, not upgrade costs.",
+    "ja": "この案内は、ファイトのシミュレーション（data/gear-effects.json）と全6エリアの店の品ぞろえに基づきます。竿が決めるのは2つです。糸の切れにくさ（魚が走っても糸が切れて針を失わない距離。大物はここで決まります）と、ファイトのメーターの出だし（許されるミスの数）です。投げ竿とルアー竿は、HPが100未満だと狙う時間が短くなります。価格は新品の全額で、強化費用ではありません。"
   },
   "items": {
     "10": {
       "label": {
-        "en": "Area 6: buy for more time to aim and a line that breaks less easily; if you already own 0F, keep using it",
-        "th": "ด่าน 6: ซื้อถ้าอยากมีเวลาเล็งนานกว่าและสายขาดยากกว่า; ถ้ามีคัน 0F อยู่แล้วใช้ต่อได้ ไม่ต้องซื้อใหม่",
-        "ja": "エリア6：狙う時間を長く、糸を切れにくくしたいなら購入。0Fを持っていればそのまま使えます"
+        "th": "เมื่อต้องตกปลาใหญ่: สาย ×24 ยาวพอกับปลาทุกชนิด; เริ่มสู้ดีสุดกับ 10 ชนิด; เสียเปรียบปลาไม่เกิน 15 ซม. และ ปลา 16–35 ซม. รวม 19 ชนิด",
+        "en": "For big fish: line strength ×24 is long enough for every species; best start against 10 species; worse against fish up to 15 cm and fish of 16–35 cm (19 species)",
+        "ja": "大物向け。糸の切れにくさ×24で全魚種に足りる。10種で最良のスタート、15cm以下の魚と16〜35cmの魚（計19種）は不利"
       },
       "recommendation": {
-        "en": "Area 6 sells 10 for ¥1,500. It is the casting rod with the most time to aim (120) and the line that breaks least easily (×24). Compared with 0F at ¥600, you get 20 more aim and ×3 more line strength for ¥900 more (new-purchase prices). Buy it only for those two things; already owning 0F does not make 10 cheaper.",
-        "th": "ด่าน 6 มีคัน 10 ราคาเต็ม ¥1,500 เป็นคันหวดที่มีเวลาเล็งนานสุด (120) และสายขาดยากสุด (×24) เทียบกับคัน 0F ราคาเต็ม ¥600 จะได้เวลาเล็งเพิ่ม 20 และสายขาดยากขึ้น ×3 แต่ต้องจ่ายเพิ่ม ¥900 (เทียบราคาซื้อใหม่ทั้งคู่) ซื้อเพราะสองข้อนี้เท่านั้น การมีคัน 0F อยู่แล้วไม่ทำให้คัน 10 ถูกลง",
-        "ja": "エリア6で売っている10は1,500円。投げ竿の中で狙う時間が最長（120）で、糸も最も切れにくい（×24）竿です。600円の0Fと比べると、狙う時間が20、切れにくさが×3上がり、新品価格の差は900円です。この2点が目的のときだけ選んでください。0Fを持っていても10が安くなるわけではありません。"
+        "th": "สายขาดยาก ×24: ปลาวิ่งหนีได้ไกลแค่ไหนก่อนสายขาดและเสียตะขอ คันนี้ยาวพอกับปลาทุกชนิด. ตอนเริ่มสู้ปลา คันนี้ได้เปรียบสุดกับปลา 10 จาก 30 ชนิด แต่เสียเปรียบปลาไม่เกิน 15 ซม. และ ปลา 16–35 ซม. รวม 19 ชนิด เช่น ฮาเซะ, กิกิ, มาบุนะ เฉลี่ยทุกชนิดพลาดได้น้อยลง 1.4 จังหวะ. เวลาเล็ง 120 เมื่อ HP เต็ม 100 ถ้า HP ต่ำกว่านั้นเวลาเล็งสั้นลง เติม HP ก่อนตก. ราคา ¥1,500 ขายที่ด่าน 6 (ร้านคันเบ็ดพิเศษ). ถ้ามีคันนี้อยู่แล้วใช้ต่อได้ ไม่ต้องซื้อใหม่.",
+        "en": "Line strength ×24 is how far a fish can run before the line breaks and the hook is lost. This rod is long enough for every species. It gives the best fight start against 10 of 30 species but is worse against fish up to 15 cm and fish of 16–35 cm (19 species, e.g. Haze, Gigi, Mabuna); averaged over all species it costs 1.4 mistakes you could otherwise afford. Time to aim is 120 at full 100 HP and shorter below that, so restore HP before you fish. Price ¥1,500; sold in area 6 (special rod seller). If you already own this rod, keep using it.",
+        "ja": "糸の切れにくさ×24は、魚がどこまで走っても糸が切れて針を失わない距離です。この竿はどの魚にも十分です。30種中10種でファイトの出だしが最良ですが、15cm以下の魚と16〜35cmの魚（計19種、例：ハゼ、ギギ、マブナ）では不利です。全種の平均で、許されるミスを1.4回分失います。狙う時間はHP100のとき120で、HPが減ると短くなります。釣る前にHPを回復してください。価格1,500円。エリア6で販売（特別な竿の販売所）。すでに持っているなら、そのまま使えます。"
       },
       "reason": {
-        "en": "The maximum only covers time to aim and how hard the line is to break, not how well fish bite. Aim time is compared at 100 HP.",
-        "th": "ค่าสูงสุดนี้พูดถึงแค่เวลาเล็งกับความยากที่สายจะขาด ไม่ได้บอกว่าปลากินง่ายขึ้น เวลาเล็งเทียบที่ HP 100",
-        "ja": "最大なのは狙う時間と糸の切れにくさだけで、魚が食いつきやすくなるわけではありません。狙う時間はHP100のときの比較です。"
+        "th": "ตัวเลขมาจากการจำลองการสู้ปลา: จุดเริ่มของมาตรวัดแรงตึงกำหนดว่าพลาดได้กี่จังหวะ คันนี้เฉลี่ยเสียไป 1.4 จังหวะต่อชนิด (คันที่ดีที่สุดเสีย 0) ส่วนสายขาดยากกำหนดว่าปลาวิ่งไกลได้แค่ไหนก่อนสายขาด",
+        "en": "The numbers come from simulated fights: the rod sets the fight meter's starting point, which decides how many mistakes you can afford. This rod costs 1.4 mistakes per species on average (the best rod costs 0). Line strength decides how far a fish may run before the line breaks.",
+        "ja": "数値はファイトのシミュレーション結果です。竿はメーターの出だしを決め、許されるミスの数が変わります。この竿は1種あたり平均1.4回分のミスを失います（最良の竿は0）。糸の切れにくさは、魚がどこまで走れるかを決めます。"
       },
-      "alternatives": [
-        {
-          "category": "rod",
-          "id": "0F"
-        }
-      ],
+      "alternatives": [],
+      "startLoss": 1.4,
+      "fight": {
+        "best": [
+          13,
+          36,
+          38,
+          45,
+          48,
+          49,
+          51,
+          58,
+          59,
+          62
+        ],
+        "bad": [
+          5,
+          14,
+          16,
+          17,
+          18,
+          24,
+          25,
+          28,
+          29,
+          30,
+          34,
+          35,
+          42,
+          43,
+          44,
+          46,
+          52,
+          65,
+          70
+        ],
+        "short": []
+      },
       "sources": [
-        "data/rod-response.json",
-        "docs/rod-lure-practical-research.md",
-        "data/shop-stock-rom.json",
-        "docs/shop-stock-research.md"
+        "data/gear-effects.json",
+        "docs/gear-effects.md",
+        "docs/fight-model.md",
+        "scripts/build_gear_advice.py"
       ]
     },
     "11": {
       "label": {
-        "en": "If you already own 11, keep using it; to buy new, 12 or 13 give more time to aim and a line that breaks less easily",
-        "th": "ถ้ามีคัน 11 อยู่แล้วใช้ต่อได้ ไม่ต้องซื้อใหม่; ถ้าจะซื้อ คัน 12 หรือคัน 13 มีเวลาเล็งนานกว่าและสายขาดยากกว่า",
-        "ja": "そのまま使えるなら継続。買うなら12か13で、狙う時間が長く糸も切れにくくなります"
+        "th": "ไม่มีขายที่ไหนเลย; ถ้ามีอยู่แล้ว: เริ่มสู้ดีสุดกับ 25 ชนิด; เสียเปรียบปลา 16–35 ซม. รวม 4 ชนิด",
+        "en": "Not sold anywhere; if you own it: best start against 25 species; worse against fish of 16–35 cm (4 species)",
+        "ja": "どの店にも売っていません。持っている場合：25種で最良のスタート、16〜35cmの魚（計4種）は不利"
       },
       "recommendation": {
-        "th": "ถ้ามีคัน 11 อยู่แล้วและเล็งทัน ใช้ต่อได้ ไม่ต้องซื้อใหม่ ร้านทั้ง 6 ด่านไม่ได้ขายคันนี้ ถ้าจะซื้อใหม่ที่ด่าน 1–3 และมี ¥450 เลือกคัน 13 จะมีเวลาเล็งนานกว่าและสายขาดยากกว่า ถ้ามีแค่ ¥400 เลือกคัน 12 ด่าน 4 ขายคัน 13 ส่วนด่าน 5 ขายคัน 12",
-        "en": "If you already own 11 and its aim time is enough, keep using it; no shop in the six areas sells it. Buying new in areas 1–3 with ¥450, choose 13 for more time to aim and a line that breaks less easily; with only ¥400, choose 12. Area 4 sells 13; area 5 sells 12.",
-        "ja": "11を持っていて狙う時間が足りるなら、そのまま使えます。11は全6エリアの店で売っていません。エリア1〜3で新品を買い450円出せるなら13がおすすめで、狙う時間が長く、糸も切れにくくなります。予算が400円なら12です。エリア4は13、エリア5は12を売っています。"
+        "th": "สายขาดยาก ×15: ปลาวิ่งหนีได้ไกลแค่ไหนก่อนสายขาดและเสียตะขอ คันนี้พอกับปลา 30 จาก 33 ชนิด ส่วนอีก 3 ชนิด (เช่น อาโอะอุโอะ, ปลาแบล็กแบส, นิจิมาสุ) วิ่งไกลกว่านั้น ต้องใช้คันที่ยาวกว่า. ตอนเริ่มสู้ปลา คันนี้ได้เปรียบสุดกับปลา 25 จาก 33 ชนิด แต่เสียเปรียบปลา 16–35 ซม. รวม 4 ชนิด เช่น ยามาเมะ, ปลาดงโกะ, ปลาคามะสึกะ เฉลี่ยทุกชนิดพลาดได้น้อยลง 0.2 จังหวะ. ไม่มีขายในร้านทั้ง 6 ด่าน. ปลาที่สายไม่พอให้ใช้ คัน 12 (¥400, ด่าน 1, 2, 3, 5). ถ้ามีคันนี้อยู่แล้วใช้ต่อได้ ไม่ต้องซื้อใหม่.",
+        "en": "Line strength ×15 is how far a fish can run before the line breaks and the hook is lost. This rod holds 30 of 33 species; the other 3 species (e.g. Aouo, Black bass, Nijimasu (rainbow trout)) run farther, so they need a longer rod. It gives the best fight start against 25 of 33 species but is worse against fish of 16–35 cm (4 species, e.g. Yamame, Donko, Kamatsuka); averaged over all species it costs 0.2 mistakes you could otherwise afford. It is not sold in any of the six areas. For fish this line cannot hold, use rod 12 (¥400, areas 1, 2, 3, 5). If you already own this rod, keep using it.",
+        "ja": "糸の切れにくさ×15は、魚がどこまで走っても糸が切れて針を失わない距離です。この竿は33種中30種に足ります。残り3種（例：アオウオ、ブラックバス、ニジマス）はもっと走るので、長い竿が必要です。33種中25種でファイトの出だしが最良ですが、16〜35cmの魚（計4種、例：ヤマメ、ドンコ、カマツカ）では不利です。全種の平均で、許されるミスを0.2回分失います。全6エリアのどの店にも売っていません。糸が足りない魚には竿12（400円、エリア1・2・3・5）を使います。すでに持っているなら、そのまま使えます。"
       },
       "reason": {
-        "th": "คัน 12 ได้เวลาเล็ง 60 และสายขาดยาก ×18 คัน 13 ได้ 70 และ ×21 ทั้งคู่ดีกว่าคัน 11 ที่ได้ 50 และ ×15 คัน 13 แพงกว่าคัน 12 ¥50 แต่ต่อให้มีคัน 11 อยู่แล้วก็ต้องจ่ายราคาเต็ม ¥450 อยู่ดี",
-        "en": "12 has aim 60 and line strength ×18; 13 has 70 and ×21. Both beat 11 (50 and ×15). A new 13 costs ¥50 more than a new 12, and even if you own a rod you still pay the full ¥450 for 13.",
-        "ja": "12は狙う時間60・切れにくさ×18、13は70・×21で、どちらも11（50・×15）より上です。新品の13は12より50円高く、竿を持っていても13は450円の全額が必要です。"
+        "th": "ตัวเลขมาจากการจำลองการสู้ปลา: จุดเริ่มของมาตรวัดแรงตึงกำหนดว่าพลาดได้กี่จังหวะ คันนี้เฉลี่ยเสียไป 0.2 จังหวะต่อชนิด (คันที่ดีที่สุดเสีย 0) ส่วนสายขาดยากกำหนดว่าปลาวิ่งไกลได้แค่ไหนก่อนสายขาด",
+        "en": "The numbers come from simulated fights: the rod sets the fight meter's starting point, which decides how many mistakes you can afford. This rod costs 0.2 mistakes per species on average (the best rod costs 0). Line strength decides how far a fish may run before the line breaks.",
+        "ja": "数値はファイトのシミュレーション結果です。竿はメーターの出だしを決め、許されるミスの数が変わります。この竿は1種あたり平均0.2回分のミスを失います（最良の竿は0）。糸の切れにくさは、魚がどこまで走れるかを決めます。"
       },
       "alternatives": [
         {
           "category": "rod",
           "id": "12"
-        },
-        {
-          "category": "rod",
-          "id": "13"
         }
       ],
+      "startLoss": 0.2,
+      "fight": {
+        "best": [
+          1,
+          2,
+          4,
+          6,
+          8,
+          9,
+          11,
+          17,
+          18,
+          19,
+          22,
+          30,
+          32,
+          33,
+          34,
+          43,
+          46,
+          48,
+          49,
+          56,
+          60,
+          64,
+          66,
+          68,
+          69
+        ],
+        "bad": [
+          3,
+          14,
+          24,
+          42
+        ],
+        "short": [
+          6,
+          11,
+          48
+        ]
+      },
       "sources": [
-        "data/rod-response.json",
-        "docs/rod-lure-practical-research.md",
-        "data/shop-stock-rom.json",
-        "docs/shop-stock-research.md"
+        "data/gear-effects.json",
+        "docs/gear-effects.md",
+        "docs/fight-model.md",
+        "scripts/build_gear_advice.py"
       ]
     },
     "12": {
       "label": {
-        "en": "Area 5: the fly rod the shop sells; areas 1–3: compare with 13 before buying",
-        "th": "ด่าน 5 ซื้อคันฟลายได้คันนี้; ด่าน 1–3 ลองเทียบคัน 13 ก่อนซื้อ",
-        "ja": "エリア5で売っているフライ竿。エリア1〜3は13と比べてから買う"
+        "th": "เมื่อตกปลาที่สาย ×18 พอ (30 จาก 33 ชนิด); เริ่มสู้ดีสุดกับ 20 ชนิด; เสียเปรียบปลาไม่เกิน 15 ซม. รวม 10 ชนิด",
+        "en": "For fish that line strength ×18 holds (30 of 33 species); best start against 20 species; worse against fish up to 15 cm (10 species)",
+        "ja": "糸の切れにくさ×18で足りる魚（33種中30種）向け。20種で最良のスタート、15cm以下の魚（計10種）は不利"
       },
       "recommendation": {
-        "en": "In area 5, 12 is the only fly rod the shop sells. In areas 1–3, 13 costs ¥450 against ¥400 for 12 and raises aim time from 60 to 70 and line strength from ×18 to ×21. The ¥50 is the difference between two new-purchase prices, not an upgrade fee. If that is not worth the full price of 13, keep using 12.",
-        "th": "ด่าน 5 ร้านขายคันฟลายคันนี้คันเดียว ด่าน 1–3 มีคัน 13 ราคาเต็ม ¥450 แพงกว่าคัน 12 (¥400) อยู่ ¥50 แต่เวลาเล็งเพิ่มจาก 60 เป็น 70 และสายขาดยากขึ้นจาก ×18 เป็น ×21 (¥50 นี้คือส่วนต่างราคาซื้อใหม่ ไม่ใช่ค่าอัปเกรด) ถ้าสองข้อนี้ไม่คุ้มกับราคาเต็มของคัน 13 ก็ใช้คัน 12 ต่อได้",
-        "ja": "エリア5で売っているフライ竿は12です。エリア1〜3では13が450円、12が400円で、狙う時間が60から70、切れにくさが×18から×21に上がります。50円の差は新品どうしの価格差で、下取りの強化費用ではありません。その上がり幅が全額に見合わないなら12を使い続けてください。"
+        "th": "สายขาดยาก ×18: ปลาวิ่งหนีได้ไกลแค่ไหนก่อนสายขาดและเสียตะขอ คันนี้พอกับปลา 30 จาก 33 ชนิด ส่วนอีก 3 ชนิด (เช่น อาโอะอุโอะ, ปลาแบล็กแบส, นิจิมาสุ) วิ่งไกลกว่านั้น ต้องใช้คันที่ยาวกว่า. ตอนเริ่มสู้ปลา คันนี้ได้เปรียบสุดกับปลา 20 จาก 33 ชนิด แต่เสียเปรียบปลาไม่เกิน 15 ซม. รวม 10 ชนิด เช่น มุกิสึคุ, อาคาซะ, โอยะนิรามิ เฉลี่ยทุกชนิดพลาดได้น้อยลง 0.4 จังหวะ. ราคา ¥400 ขายที่ด่าน 1, 2, 3, 5. ปลาที่สายไม่พอให้ใช้ คัน 13 (¥450, ด่าน 1, 2, 3, 4). ถ้ามีคันนี้อยู่แล้วใช้ต่อได้ ไม่ต้องซื้อใหม่.",
+        "en": "Line strength ×18 is how far a fish can run before the line breaks and the hook is lost. This rod holds 30 of 33 species; the other 3 species (e.g. Aouo, Black bass, Nijimasu (rainbow trout)) run farther, so they need a longer rod. It gives the best fight start against 20 of 33 species but is worse against fish up to 15 cm (10 species, e.g. Mugitsuku, Akaza, Oyanirami); averaged over all species it costs 0.4 mistakes you could otherwise afford. Price ¥400; sold in areas 1, 2, 3, 5. For fish this line cannot hold, use rod 13 (¥450, areas 1, 2, 3, 4). If you already own this rod, keep using it.",
+        "ja": "糸の切れにくさ×18は、魚がどこまで走っても糸が切れて針を失わない距離です。この竿は33種中30種に足ります。残り3種（例：アオウオ、ブラックバス、ニジマス）はもっと走るので、長い竿が必要です。33種中20種でファイトの出だしが最良ですが、15cm以下の魚（計10種、例：ムギツク、アカザ、オヤニラミ）では不利です。全種の平均で、許されるミスを0.4回分失います。価格400円。エリア1・2・3・5で販売。糸が足りない魚には竿13（450円、エリア1・2・3・4）を使います。すでに持っているなら、そのまま使えます。"
       },
       "reason": {
-        "en": "12 is sold in areas 1–3 and 5. It is ¥50 cheaper than 13 but has aim 60 and ×18 instead of 70 and ×21. In area 5 it is the only fly rod in stock.",
-        "th": "คัน 12 ขายในด่าน 1–3 และ 5 ถูกกว่าคัน 13 อยู่ ¥50 แต่ได้เวลาเล็ง 60 และสายขาดยาก ×18 แทน 70 และ ×21 ส่วนด่าน 5 เป็นคันฟลายที่ร้านขายคันเดียว",
-        "ja": "12はエリア1〜3と5で売っています。13より新品が50円安い一方、60・×18で、13の70・×21を下回ります。エリア5で売っているフライ竿は12だけです。"
+        "th": "ตัวเลขมาจากการจำลองการสู้ปลา: จุดเริ่มของมาตรวัดแรงตึงกำหนดว่าพลาดได้กี่จังหวะ คันนี้เฉลี่ยเสียไป 0.4 จังหวะต่อชนิด (คันที่ดีที่สุดเสีย 0) ส่วนสายขาดยากกำหนดว่าปลาวิ่งไกลได้แค่ไหนก่อนสายขาด",
+        "en": "The numbers come from simulated fights: the rod sets the fight meter's starting point, which decides how many mistakes you can afford. This rod costs 0.4 mistakes per species on average (the best rod costs 0). Line strength decides how far a fish may run before the line breaks.",
+        "ja": "数値はファイトのシミュレーション結果です。竿はメーターの出だしを決め、許されるミスの数が変わります。この竿は1種あたり平均0.4回分のミスを失います（最良の竿は0）。糸の切れにくさは、魚がどこまで走れるかを決めます。"
       },
       "alternatives": [
-        {
-          "category": "rod",
-          "id": "11"
-        },
         {
           "category": "rod",
           "id": "13"
         }
       ],
+      "startLoss": 0.4,
+      "fight": {
+        "best": [
+          1,
+          2,
+          3,
+          4,
+          6,
+          8,
+          9,
+          11,
+          12,
+          14,
+          18,
+          19,
+          24,
+          32,
+          42,
+          46,
+          48,
+          49,
+          56,
+          66
+        ],
+        "bad": [
+          17,
+          22,
+          30,
+          33,
+          34,
+          43,
+          60,
+          64,
+          68,
+          69
+        ],
+        "short": [
+          6,
+          11,
+          48
+        ]
+      },
       "sources": [
-        "data/rod-response.json",
-        "docs/rod-lure-practical-research.md",
-        "data/shop-stock-rom.json",
-        "docs/shop-stock-research.md"
+        "data/gear-effects.json",
+        "docs/gear-effects.md",
+        "docs/fight-model.md",
+        "scripts/build_gear_advice.py"
       ]
     },
     "13": {
       "label": {
-        "en": "Areas 1–4: the fly rod with the most time to aim and the line that breaks least easily",
-        "th": "ด่าน 1–4: คันฟลายที่มีเวลาเล็งนานสุดและสายขาดยากสุด",
-        "ja": "エリア1〜4：フライ竿で狙う時間が最長、糸も最も切れにくい"
+        "th": "เมื่อตกปลาที่สาย ×21 พอ (30 จาก 33 ชนิด); เริ่มสู้ดีสุดกับ 9 ชนิด; เสียเปรียบปลาไม่เกิน 15 ซม. และ ปลา 16–35 ซม. รวม 22 ชนิด",
+        "en": "For fish that line strength ×21 holds (30 of 33 species); best start against 9 species; worse against fish up to 15 cm and fish of 16–35 cm (22 species)",
+        "ja": "糸の切れにくさ×21で足りる魚（33種中30種）向け。9種で最良のスタート、15cm以下の魚と16〜35cmの魚（計22種）は不利"
       },
       "recommendation": {
-        "en": "If you are buying a fly rod in areas 1–4 and want the most time to aim and the line that breaks least easily in this style, choose 13. In areas 1–3 it costs ¥450, ¥50 more than 12, and raises the values from 60/×18 to 70/×21. Area 5 does not sell 13; its fly rod is 12.",
-        "th": "ถ้าจะซื้อคันฟลายในด่าน 1–4 และอยากได้เวลาเล็งนานสุดกับสายขาดยากสุดในกลุ่มนี้ ให้เลือกคัน 13 ด่าน 1–3 ราคาเต็ม ¥450 แพงกว่าคัน 12 อยู่ ¥50 และเวลาเล็งกับสายขาดยากเพิ่มจาก 60/×18 เป็น 70/×21 ด่าน 5 ไม่ขายคัน 13 คันฟลายที่ขายคือคัน 12",
-        "ja": "エリア1〜4でフライ竿を買うとき、狙う時間が最長で糸も最も切れにくい竿がよければ13を選びます。エリア1〜3では450円で、12より50円高く、60・×18から70・×21に上がります。エリア5には13がなく、売っているフライ竿は12です。"
+        "th": "สายขาดยาก ×21: ปลาวิ่งหนีได้ไกลแค่ไหนก่อนสายขาดและเสียตะขอ คันนี้พอกับปลา 30 จาก 33 ชนิด ส่วนอีก 3 ชนิด (เช่น อาโอะอุโอะ, ปลาแบล็กแบส, นิจิมาสุ) วิ่งไกลกว่านั้น ต้องใช้คันที่ยาวกว่า. ตอนเริ่มสู้ปลา คันนี้ได้เปรียบสุดกับปลา 9 จาก 33 ชนิด แต่เสียเปรียบปลาไม่เกิน 15 ซม. และ ปลา 16–35 ซม. รวม 22 ชนิด เช่น ยามาเมะ, ปลาบลูกิล, กิกิ เฉลี่ยทุกชนิดพลาดได้น้อยลง 1.7 จังหวะ. ราคา ¥450 ขายที่ด่าน 1, 2, 3, 4. ถ้ามีคันนี้อยู่แล้วใช้ต่อได้ ไม่ต้องซื้อใหม่.",
+        "en": "Line strength ×21 is how far a fish can run before the line breaks and the hook is lost. This rod holds 30 of 33 species; the other 3 species (e.g. Aouo, Black bass, Nijimasu (rainbow trout)) run farther, so they need a longer rod. It gives the best fight start against 9 of 33 species but is worse against fish up to 15 cm and fish of 16–35 cm (22 species, e.g. Yamame, Bluegill, Gigi); averaged over all species it costs 1.7 mistakes you could otherwise afford. Price ¥450; sold in areas 1, 2, 3, 4. If you already own this rod, keep using it.",
+        "ja": "糸の切れにくさ×21は、魚がどこまで走っても糸が切れて針を失わない距離です。この竿は33種中30種に足ります。残り3種（例：アオウオ、ブラックバス、ニジマス）はもっと走るので、長い竿が必要です。33種中9種でファイトの出だしが最良ですが、15cm以下の魚と16〜35cmの魚（計22種、例：ヤマメ、ブルーギル、ギギ）では不利です。全種の平均で、許されるミスを1.7回分失います。価格450円。エリア1・2・3・4で販売。すでに持っているなら、そのまま使えます。"
       },
       "reason": {
-        "en": "13 has the highest time to aim and line strength among fly rods. This compares only those two things, not catch success.",
-        "th": "คัน 13 มีเวลาเล็งนานสุดและสายขาดยากสุดในกลุ่มคันฟลาย เป็นการเทียบแค่สองข้อนี้ ไม่ใช่อันดับโอกาสจับปลา",
-        "ja": "13はフライ竿の中で、狙う時間と切れにくさがどちらも最大です。比べているのはこの2点だけで、釣れやすさの順位ではありません。"
+        "th": "ตัวเลขมาจากการจำลองการสู้ปลา: จุดเริ่มของมาตรวัดแรงตึงกำหนดว่าพลาดได้กี่จังหวะ คันนี้เฉลี่ยเสียไป 1.7 จังหวะต่อชนิด (คันที่ดีที่สุดเสีย 0) ส่วนสายขาดยากกำหนดว่าปลาวิ่งไกลได้แค่ไหนก่อนสายขาด",
+        "en": "The numbers come from simulated fights: the rod sets the fight meter's starting point, which decides how many mistakes you can afford. This rod costs 1.7 mistakes per species on average (the best rod costs 0). Line strength decides how far a fish may run before the line breaks.",
+        "ja": "数値はファイトのシミュレーション結果です。竿はメーターの出だしを決め、許されるミスの数が変わります。この竿は1種あたり平均1.7回分のミスを失います（最良の竿は0）。糸の切れにくさは、魚がどこまで走れるかを決めます。"
       },
-      "alternatives": [
-        {
-          "category": "rod",
-          "id": "12"
-        }
-      ],
+      "alternatives": [],
+      "startLoss": 1.7,
+      "fight": {
+        "best": [
+          1,
+          2,
+          6,
+          8,
+          9,
+          11,
+          19,
+          48,
+          49
+        ],
+        "bad": [
+          3,
+          4,
+          5,
+          14,
+          15,
+          17,
+          18,
+          22,
+          24,
+          27,
+          30,
+          32,
+          33,
+          34,
+          42,
+          43,
+          46,
+          56,
+          60,
+          64,
+          68,
+          69
+        ],
+        "short": [
+          6,
+          11,
+          48
+        ]
+      },
       "sources": [
-        "data/rod-response.json",
-        "docs/rod-lure-practical-research.md",
-        "data/shop-stock-rom.json",
-        "docs/shop-stock-research.md"
+        "data/gear-effects.json",
+        "docs/gear-effects.md",
+        "docs/fight-model.md",
+        "scripts/build_gear_advice.py"
       ]
     },
     "14": {
       "label": {
-        "en": "Choose for the most time to aim among float rods; for a line that breaks less easily, choose 15",
-        "th": "เลือกถ้าอยากมีเวลาเล็งนานสุดในสายทุ่น; ถ้าอยากให้สายขาดยากสุดเลือกคัน 15",
-        "ja": "ウキ竿で狙う時間が最長なら14、糸が最も切れにくいのは15"
+        "th": "เมื่อตกปลาที่สาย ×15 พอ (57 จาก 72 ชนิด); เริ่มสู้ดีสุดกับ 42 ชนิด; เสียเปรียบปลาไม่เกิน 15 ซม. รวม 23 ชนิด",
+        "en": "For fish that line strength ×15 holds (57 of 72 species); best start against 42 species; worse against fish up to 15 cm (23 species)",
+        "ja": "糸の切れにくさ×15で足りる魚（72種中57種）向け。42種で最良のスタート、15cm以下の魚（計23種）は不利"
       },
       "recommendation": {
-        "en": "If you are buying a Float/Ayu rod in area 3, 14 costs the same ¥1,500 as 07 and is better on both counts: aim 80 versus 70, line strength ×15 versus ×9. It has the most time to aim in the group. 15 gives up 20 aim for the strongest line (×24); choose 15 when that matters more.",
-        "th": "ถ้าซื้อคันสายทุ่น/อายุที่ด่าน 3 คัน 14 ราคาเต็ม ¥1,500 เท่ากับคัน 07 แต่ดีกว่าทั้งสองข้อ: เวลาเล็ง 80 (คัน 07 ได้ 70) และสายขาดยาก ×15 (คัน 07 ได้ ×9) คัน 14 มีเวลาเล็งนานสุดในกลุ่ม ส่วนคัน 15 ยอมมีเวลาเล็งน้อยลง 20 เพื่อแลกกับสายขาดยากสุด ×24 เลือกคัน 15 เมื่อสายขาดยากสำคัญกว่า",
-        "ja": "エリア3でウキ・アユ竿を買うなら、14は07と同じ1,500円で、狙う時間が80対70、切れにくさが×15対×9とどちらも上です。14は狙う時間がグループ最長です。15は狙う時間を20下げて、最大の切れにくさ×24を得る竿で、切れにくさを重視するときに選びます。"
+        "th": "สายขาดยาก ×15: ปลาวิ่งหนีได้ไกลแค่ไหนก่อนสายขาดและเสียตะขอ คันนี้พอกับปลา 57 จาก 72 ชนิด ส่วนอีก 15 ชนิด (เช่น โออูนางิ, โคคุเร็น, อาคาเมะ) วิ่งไกลกว่านั้น ต้องใช้คันที่ยาวกว่า. ตอนเริ่มสู้ปลา คันนี้ได้เปรียบสุดกับปลา 42 จาก 72 ชนิด แต่เสียเปรียบปลาไม่เกิน 15 ซม. รวม 23 ชนิด เช่น ปลาวากาซากิ, มุกิสึคุ, อาคาซะ เฉลี่ยทุกชนิดพลาดได้น้อยลง 0.4 จังหวะ. ราคา ¥1,500 ขายที่ด่าน 3, 4, 6. ปลาที่สายไม่พอให้ใช้ คัน 08 (¥1,500, ด่าน 5). ถ้ามีคันนี้อยู่แล้วใช้ต่อได้ ไม่ต้องซื้อใหม่.",
+        "en": "Line strength ×15 is how far a fish can run before the line breaks and the hook is lost. This rod holds 57 of 72 species; the other 15 species (e.g. Oo-unagi, Kokuren, Akame) run farther, so they need a longer rod. It gives the best fight start against 42 of 72 species but is worse against fish up to 15 cm (23 species, e.g. Wakasagi, Mugitsuku, Akaza); averaged over all species it costs 0.4 mistakes you could otherwise afford. Price ¥1,500; sold in areas 3, 4, 6. For fish this line cannot hold, use rod 08 (¥1,500, area 5). If you already own this rod, keep using it.",
+        "ja": "糸の切れにくさ×15は、魚がどこまで走っても糸が切れて針を失わない距離です。この竿は72種中57種に足ります。残り15種（例：オオウナギ、コクレン、アカメ）はもっと走るので、長い竿が必要です。72種中42種でファイトの出だしが最良ですが、15cm以下の魚（計23種、例：ワカサギ、ムギツク、アカザ）では不利です。全種の平均で、許されるミスを0.4回分失います。価格1,500円。エリア3・4・6で販売。糸が足りない魚には竿08（1,500円、エリア5）を使います。すでに持っているなら、そのまま使えます。"
       },
       "reason": {
-        "en": "14 leads the float rods on time to aim, not on line strength. In areas 4 and 6, compare it with 15: you trade aim time for line strength.",
-        "th": "คัน 14 เด่นสุดที่เวลาเล็ง ไม่ได้เด่นที่ความยากที่สายจะขาด ที่ด่าน 4 และ 6 ให้เทียบกับคัน 15 เพราะต้องเลือกระหว่างเวลาเล็งกับสายขาดยาก",
-        "ja": "14はウキ・アユ竿で狙う時間が最長ですが、切れにくさは最大ではありません。エリア4・6では、狙う時間と切れにくさのどちらを取るか15と比べてください。"
+        "th": "ตัวเลขมาจากการจำลองการสู้ปลา: จุดเริ่มของมาตรวัดแรงตึงกำหนดว่าพลาดได้กี่จังหวะ คันนี้เฉลี่ยเสียไป 0.4 จังหวะต่อชนิด (คันที่ดีที่สุดเสีย 0) ส่วนสายขาดยากกำหนดว่าปลาวิ่งไกลได้แค่ไหนก่อนสายขาด",
+        "en": "The numbers come from simulated fights: the rod sets the fight meter's starting point, which decides how many mistakes you can afford. This rod costs 0.4 mistakes per species on average (the best rod costs 0). Line strength decides how far a fish may run before the line breaks.",
+        "ja": "数値はファイトのシミュレーション結果です。竿はメーターの出だしを決め、許されるミスの数が変わります。この竿は1種あたり平均0.4回分のミスを失います（最良の竿は0）。糸の切れにくさは、魚がどこまで走れるかを決めます。"
       },
       "alternatives": [
         {
           "category": "rod",
-          "id": "07"
-        },
-        {
-          "category": "rod",
-          "id": "15"
+          "id": "08"
         }
       ],
+      "startLoss": 0.4,
+      "fight": {
+        "best": [
+          2,
+          3,
+          4,
+          6,
+          7,
+          8,
+          9,
+          11,
+          12,
+          13,
+          14,
+          18,
+          19,
+          20,
+          21,
+          24,
+          32,
+          36,
+          38,
+          39,
+          40,
+          41,
+          42,
+          45,
+          46,
+          47,
+          48,
+          49,
+          50,
+          51,
+          52,
+          53,
+          54,
+          55,
+          56,
+          58,
+          59,
+          61,
+          62,
+          66,
+          71,
+          72
+        ],
+        "bad": [
+          1,
+          10,
+          16,
+          17,
+          22,
+          25,
+          26,
+          29,
+          30,
+          31,
+          33,
+          34,
+          35,
+          43,
+          44,
+          57,
+          60,
+          63,
+          64,
+          68,
+          69,
+          70,
+          73
+        ],
+        "short": [
+          6,
+          7,
+          11,
+          13,
+          20,
+          21,
+          45,
+          47,
+          48,
+          53,
+          54,
+          55,
+          58,
+          59,
+          61
+        ]
+      },
       "sources": [
-        "data/rod-response.json",
-        "docs/rod-lure-practical-research.md",
-        "data/shop-stock-rom.json",
-        "docs/shop-stock-research.md"
+        "data/gear-effects.json",
+        "docs/gear-effects.md",
+        "docs/fight-model.md",
+        "scripts/build_gear_advice.py"
       ]
     },
     "15": {
       "label": {
-        "en": "Choose for the line that breaks least easily among float rods; 14 gives more time to aim",
-        "th": "เลือกถ้าอยากให้สายขาดยากสุดในสายทุ่น; ถ้าอยากมีเวลาเล็งนานสุดเลือกคัน 14",
-        "ja": "ウキ竿で糸が最も切れにくいのは15、狙う時間が最長なら14"
+        "th": "เมื่อต้องตกปลาใหญ่: สาย ×24 ยาวพอกับปลาทุกชนิด; เริ่มสู้ดีสุดกับ 43 ชนิด; เสียเปรียบปลาไม่เกิน 15 ซม. รวม 23 ชนิด",
+        "en": "For big fish: line strength ×24 is long enough for every species; best start against 43 species; worse against fish up to 15 cm (23 species)",
+        "ja": "大物向け。糸の切れにくさ×24で全魚種に足りる。43種で最良のスタート、15cm以下の魚（計23種）は不利"
       },
       "recommendation": {
-        "en": "Choose 15 in areas 4–6 when the strongest Float/Ayu line (×24) matters more than the longest aim time. In areas 4 and 6, 14 costs ¥1,500 and gives more time to aim (80 versus 60) but a line that breaks more easily (×15). In area 5, 08 costs ¥1,500 with the same ×24 but only 40 aim; 15 costs ¥2,000, ¥500 more between new-purchase prices, for aim 60.",
-        "th": "เลือกคัน 15 ในด่าน 4–6 ถ้าสายขาดยากสุดของสายทุ่น/อายุ (×24) สำคัญกว่าเวลาเล็งนานสุด ที่ด่าน 4 และ 6 คัน 14 ราคาเต็ม ¥1,500 มีเวลาเล็งนานกว่า (80 เทียบกับ 60) แต่สายขาดง่ายกว่า (×15) ที่ด่าน 5 คัน 08 ราคาเต็ม ¥1,500 ได้สายขาดยาก ×24 เท่ากัน แต่เวลาเล็งแค่ 40 ส่วนคัน 15 ราคาเต็ม ¥2,000 (แพงกว่า ¥500 เมื่อเทียบราคาซื้อใหม่) แลกกับเวลาเล็ง 60",
-        "ja": "エリア4〜6で、最長の狙う時間より、ウキ・アユ竿で最大の切れにくさ×24を重視するなら15を選びます。エリア4・6の14は1,500円で、狙う時間は80（15は60）ですが、切れにくさは×15です。エリア5の08は1,500円で同じ×24、狙う時間は40です。15は2,000円で、狙う時間は60。新品価格の差は500円です。"
+        "th": "สายขาดยาก ×24: ปลาวิ่งหนีได้ไกลแค่ไหนก่อนสายขาดและเสียตะขอ คันนี้ยาวพอกับปลาทุกชนิด. ตอนเริ่มสู้ปลา คันนี้ได้เปรียบสุดกับปลา 43 จาก 72 ชนิด แต่เสียเปรียบปลาไม่เกิน 15 ซม. รวม 23 ชนิด เช่น ปลาวากาซากิ, มุกิสึคุ, อาคาซะ เฉลี่ยทุกชนิดพลาดได้น้อยลง 0.4 จังหวะ. ราคา ¥2,000 ขายที่ด่าน 4, 5, 6. ถ้ามีคันนี้อยู่แล้วใช้ต่อได้ ไม่ต้องซื้อใหม่.",
+        "en": "Line strength ×24 is how far a fish can run before the line breaks and the hook is lost. This rod is long enough for every species. It gives the best fight start against 43 of 72 species but is worse against fish up to 15 cm (23 species, e.g. Wakasagi, Mugitsuku, Akaza); averaged over all species it costs 0.4 mistakes you could otherwise afford. Price ¥2,000; sold in areas 4, 5, 6. If you already own this rod, keep using it.",
+        "ja": "糸の切れにくさ×24は、魚がどこまで走っても糸が切れて針を失わない距離です。この竿はどの魚にも十分です。72種中43種でファイトの出だしが最良ですが、15cm以下の魚（計23種、例：ワカサギ、ムギツク、アカザ）では不利です。全種の平均で、許されるミスを0.4回分失います。価格2,000円。エリア4・5・6で販売。すでに持っているなら、そのまま使えます。"
       },
       "reason": {
-        "en": "15 leads the float rods on line strength and 14 leads on time to aim. Pick the one that fixes your problem; neither is best overall.",
-        "th": "คัน 15 เด่นสุดในสายทุ่นเรื่องสายขาดยาก ส่วนคัน 14 เด่นเรื่องเวลาเล็ง ให้เลือกตามข้อที่อยากให้ดีขึ้น ไม่มีคันไหนดีที่สุดโดยรวม",
-        "ja": "15は糸の切れにくさが最大で、狙う時間が最長なのは14です。良くしたい点で選び、どちらかが総合で最強というわけではありません。"
+        "th": "ตัวเลขมาจากการจำลองการสู้ปลา: จุดเริ่มของมาตรวัดแรงตึงกำหนดว่าพลาดได้กี่จังหวะ คันนี้เฉลี่ยเสียไป 0.4 จังหวะต่อชนิด (คันที่ดีที่สุดเสีย 0) ส่วนสายขาดยากกำหนดว่าปลาวิ่งไกลได้แค่ไหนก่อนสายขาด",
+        "en": "The numbers come from simulated fights: the rod sets the fight meter's starting point, which decides how many mistakes you can afford. This rod costs 0.4 mistakes per species on average (the best rod costs 0). Line strength decides how far a fish may run before the line breaks.",
+        "ja": "数値はファイトのシミュレーション結果です。竿はメーターの出だしを決め、許されるミスの数が変わります。この竿は1種あたり平均0.4回分のミスを失います（最良の竿は0）。糸の切れにくさは、魚がどこまで走れるかを決めます。"
       },
-      "alternatives": [
-        {
-          "category": "rod",
-          "id": "08"
-        },
-        {
-          "category": "rod",
-          "id": "14"
-        }
-      ],
+      "alternatives": [],
+      "startLoss": 0.4,
+      "fight": {
+        "best": [
+          2,
+          3,
+          4,
+          6,
+          7,
+          8,
+          9,
+          11,
+          12,
+          13,
+          14,
+          18,
+          19,
+          20,
+          21,
+          24,
+          32,
+          36,
+          37,
+          38,
+          39,
+          40,
+          41,
+          42,
+          45,
+          46,
+          47,
+          48,
+          49,
+          50,
+          51,
+          52,
+          53,
+          54,
+          55,
+          56,
+          58,
+          59,
+          61,
+          62,
+          66,
+          71,
+          72
+        ],
+        "bad": [
+          1,
+          10,
+          16,
+          17,
+          22,
+          25,
+          26,
+          29,
+          30,
+          31,
+          33,
+          34,
+          35,
+          43,
+          44,
+          57,
+          60,
+          63,
+          64,
+          68,
+          69,
+          70,
+          73
+        ],
+        "short": []
+      },
       "sources": [
-        "data/rod-response.json",
-        "docs/rod-lure-practical-research.md",
-        "data/shop-stock-rom.json",
-        "docs/shop-stock-research.md"
+        "data/gear-effects.json",
+        "docs/gear-effects.md",
+        "docs/fight-model.md",
+        "scripts/build_gear_advice.py"
       ]
     },
     "01": {
       "label": {
-        "en": "Skip buying: 04 costs the same and gives more time to aim and a line that breaks less easily",
-        "th": "ไม่แนะนำซื้อ: คัน 04 ราคาเท่ากัน มีเวลาเล็งนานกว่าและสายขาดยากกว่า",
-        "ja": "購入は04へ：同じ値段で、狙う時間が長く糸も切れにくい"
+        "th": "เมื่อตกปลาที่สาย ×3 พอ (38 จาก 72 ชนิด); เริ่มสู้ดีสุดกับ 56 ชนิด; เสียเปรียบปลา 16–35 ซม. รวม 9 ชนิด",
+        "en": "For fish that line strength ×3 holds (38 of 72 species); best start against 56 species; worse against fish of 16–35 cm (9 species)",
+        "ja": "糸の切れにくさ×3で足りる魚（72種中38種）向け。56種で最良のスタート、16〜35cmの魚（計9種）は不利"
       },
       "recommendation": {
-        "en": "Do not buy this rod if you want more time to aim or a line that breaks less easily. In area 5, 04 is sold for the same ¥500 and is better on both counts: aim 50 and line strength ×7, against 10 and ×3 here. If you already own 01, keep using it. Buying 04 means paying the full price; it is not a trade-in.",
-        "th": "อย่าซื้อคันนี้ถ้าอยากได้เวลาเล็งนานขึ้นหรือสายขาดยากขึ้น ที่ด่าน 5 มีคัน 04 ขายราคาเต็ม ¥500 เท่ากัน แต่ดีกว่าทั้งสองข้อ: เวลาเล็ง 50 และสายขาดยาก ×7 (คันนี้ได้ 10 และ ×3) ถ้ามีคัน 01 อยู่แล้วใช้ต่อได้ ไม่ต้องซื้อใหม่ การซื้อคัน 04 คือจ่ายราคาเต็ม ไม่ใช่แลกอัปเกรด",
-        "ja": "狙う時間や糸の切れにくさを求めて買う竿ではありません。エリア5では04も同じ500円で売っていて、狙う時間50・切れにくさ×7と、この竿の10・×3よりどちらも上です。01を持っているならそのまま使えます。04への買い替えは下取りではなく全額購入です。"
+        "th": "สายขาดยาก ×3: ปลาวิ่งหนีได้ไกลแค่ไหนก่อนสายขาดและเสียตะขอ คันนี้พอกับปลา 38 จาก 72 ชนิด ส่วนอีก 34 ชนิด (เช่น โออูนางิ, โคคุเร็น, อาคาเมะ) วิ่งไกลกว่านั้น ต้องใช้คันที่ยาวกว่า. ตอนเริ่มสู้ปลา คันนี้ได้เปรียบสุดกับปลา 56 จาก 72 ชนิด แต่เสียเปรียบปลา 16–35 ซม. รวม 9 ชนิด เช่น ยามาเมะ, มาบุนะ, ซาโยริ เฉลี่ยทุกชนิดพลาดได้น้อยลง 0.2 จังหวะ. ราคา ¥500 ขายที่ด่าน 5 (ร้านคันเบ็ดพิเศษ). ปลาที่สายไม่พอให้ใช้ คัน 09 (¥200, ด่าน 4, 5) หรือ คัน 08 (¥1,500, ด่าน 5). ถ้ามีคันนี้อยู่แล้วใช้ต่อได้ ไม่ต้องซื้อใหม่.",
+        "en": "Line strength ×3 is how far a fish can run before the line breaks and the hook is lost. This rod holds 38 of 72 species; the other 34 species (e.g. Oo-unagi, Kokuren, Akame) run farther, so they need a longer rod. It gives the best fight start against 56 of 72 species but is worse against fish of 16–35 cm (9 species, e.g. Yamame, Mabuna, Sayori); averaged over all species it costs 0.2 mistakes you could otherwise afford. Price ¥500; sold in area 5 (special rod seller). For fish this line cannot hold, use rod 09 (¥200, areas 4, 5) or rod 08 (¥1,500, area 5). If you already own this rod, keep using it.",
+        "ja": "糸の切れにくさ×3は、魚がどこまで走っても糸が切れて針を失わない距離です。この竿は72種中38種に足ります。残り34種（例：オオウナギ、コクレン、アカメ）はもっと走るので、長い竿が必要です。72種中56種でファイトの出だしが最良ですが、16〜35cmの魚（計9種、例：ヤマメ、マブナ、サヨリ）では不利です。全種の平均で、許されるミスを0.2回分失います。価格500円。エリア5で販売（特別な竿の販売所）。糸が足りない魚には竿09（200円、エリア4・5）か竿08（1,500円、エリア5）を使います。すでに持っているなら、そのまま使えます。"
       },
       "reason": {
-        "en": "Among Float/Ayu rods, 01 has the lowest aim time and line strength. A fish name in the rod's name does not mean it suits that fish.",
-        "th": "ในกลุ่มคันสายทุ่น/อายุ คัน 01 มีเวลาเล็งและสายขาดยากต่ำสุด ชื่อคันที่มีชื่อปลาอยู่ ไม่ได้แปลว่าเป็นคันที่เหมาะกับปลาชนิดนั้นโดยเฉพาะ",
-        "ja": "ウキ・アユ竿の中で、01は狙う時間も切れにくさも最小です。魚名が入った竿名は、その魚専用という意味ではありません。"
+        "th": "ตัวเลขมาจากการจำลองการสู้ปลา: จุดเริ่มของมาตรวัดแรงตึงกำหนดว่าพลาดได้กี่จังหวะ คันนี้เฉลี่ยเสียไป 0.2 จังหวะต่อชนิด (คันที่ดีที่สุดเสีย 0) ส่วนสายขาดยากกำหนดว่าปลาวิ่งไกลได้แค่ไหนก่อนสายขาด",
+        "en": "The numbers come from simulated fights: the rod sets the fight meter's starting point, which decides how many mistakes you can afford. This rod costs 0.2 mistakes per species on average (the best rod costs 0). Line strength decides how far a fish may run before the line breaks.",
+        "ja": "数値はファイトのシミュレーション結果です。竿はメーターの出だしを決め、許されるミスの数が変わります。この竿は1種あたり平均0.2回分のミスを失います（最良の竿は0）。糸の切れにくさは、魚がどこまで走れるかを決めます。"
       },
       "alternatives": [
+        {
+          "category": "rod",
+          "id": "09"
+        },
+        {
+          "category": "rod",
+          "id": "08"
+        }
+      ],
+      "startLoss": 0.2,
+      "fight": {
+        "best": [
+          2,
+          4,
+          6,
+          7,
+          8,
+          9,
+          10,
+          11,
+          13,
+          16,
+          17,
+          18,
+          19,
+          20,
+          21,
+          22,
+          25,
+          26,
+          30,
+          31,
+          32,
+          33,
+          34,
+          35,
+          36,
+          38,
+          40,
+          41,
+          43,
+          44,
+          45,
+          46,
+          47,
+          48,
+          49,
+          51,
+          52,
+          53,
+          54,
+          55,
+          56,
+          57,
+          58,
+          59,
+          60,
+          61,
+          62,
+          63,
+          64,
+          66,
+          68,
+          69,
+          70,
+          71,
+          72,
+          73
+        ],
+        "bad": [
+          1,
+          3,
+          12,
+          14,
+          24,
+          29,
+          39,
+          42,
+          50
+        ],
+        "short": [
+          4,
+          6,
+          7,
+          8,
+          9,
+          11,
+          13,
+          18,
+          19,
+          20,
+          21,
+          29,
+          36,
+          37,
+          38,
+          40,
+          41,
+          45,
+          47,
+          48,
+          49,
+          51,
+          52,
+          53,
+          54,
+          55,
+          56,
+          58,
+          59,
+          61,
+          62,
+          64,
+          66,
+          73
+        ]
+      },
+      "sources": [
+        "data/gear-effects.json",
+        "docs/gear-effects.md",
+        "docs/fight-model.md",
+        "scripts/build_gear_advice.py"
+      ]
+    },
+    "02": {
+      "label": {
+        "th": "ไม่มีขายที่ไหนเลย; ถ้ามีอยู่แล้ว: เริ่มสู้ดีสุดกับ 43 ชนิด; เสียเปรียบปลาไม่เกิน 15 ซม. รวม 22 ชนิด",
+        "en": "Not sold anywhere; if you own it: best start against 43 species; worse against fish up to 15 cm (22 species)",
+        "ja": "どの店にも売っていません。持っている場合：43種で最良のスタート、15cm以下の魚（計22種）は不利"
+      },
+      "recommendation": {
+        "th": "สายขาดยาก ×8: ปลาวิ่งหนีได้ไกลแค่ไหนก่อนสายขาดและเสียตะขอ คันนี้พอกับปลา 38 จาก 72 ชนิด ส่วนอีก 34 ชนิด (เช่น โออูนางิ, โคคุเร็น, อาคาเมะ) วิ่งไกลกว่านั้น ต้องใช้คันที่ยาวกว่า. ตอนเริ่มสู้ปลา คันนี้ได้เปรียบสุดกับปลา 43 จาก 72 ชนิด แต่เสียเปรียบปลาไม่เกิน 15 ซม. รวม 22 ชนิด เช่น ปลาวากาซากิ, มุกิสึคุ, อาคาซะ เฉลี่ยทุกชนิดพลาดได้น้อยลง 0.4 จังหวะ. ไม่มีขายในร้านทั้ง 6 ด่าน. ปลาที่สายไม่พอให้ใช้ คัน 09 (¥200, ด่าน 4, 5) หรือ คัน 08 (¥1,500, ด่าน 5). ถ้ามีคันนี้อยู่แล้วใช้ต่อได้ ไม่ต้องซื้อใหม่.",
+        "en": "Line strength ×8 is how far a fish can run before the line breaks and the hook is lost. This rod holds 38 of 72 species; the other 34 species (e.g. Oo-unagi, Kokuren, Akame) run farther, so they need a longer rod. It gives the best fight start against 43 of 72 species but is worse against fish up to 15 cm (22 species, e.g. Wakasagi, Mugitsuku, Akaza); averaged over all species it costs 0.4 mistakes you could otherwise afford. It is not sold in any of the six areas. For fish this line cannot hold, use rod 09 (¥200, areas 4, 5) or rod 08 (¥1,500, area 5). If you already own this rod, keep using it.",
+        "ja": "糸の切れにくさ×8は、魚がどこまで走っても糸が切れて針を失わない距離です。この竿は72種中38種に足ります。残り34種（例：オオウナギ、コクレン、アカメ）はもっと走るので、長い竿が必要です。72種中43種でファイトの出だしが最良ですが、15cm以下の魚（計22種、例：ワカサギ、ムギツク、アカザ）では不利です。全種の平均で、許されるミスを0.4回分失います。全6エリアのどの店にも売っていません。糸が足りない魚には竿09（200円、エリア4・5）か竿08（1,500円、エリア5）を使います。すでに持っているなら、そのまま使えます。"
+      },
+      "reason": {
+        "th": "ตัวเลขมาจากการจำลองการสู้ปลา: จุดเริ่มของมาตรวัดแรงตึงกำหนดว่าพลาดได้กี่จังหวะ คันนี้เฉลี่ยเสียไป 0.4 จังหวะต่อชนิด (คันที่ดีที่สุดเสีย 0) ส่วนสายขาดยากกำหนดว่าปลาวิ่งไกลได้แค่ไหนก่อนสายขาด",
+        "en": "The numbers come from simulated fights: the rod sets the fight meter's starting point, which decides how many mistakes you can afford. This rod costs 0.4 mistakes per species on average (the best rod costs 0). Line strength decides how far a fish may run before the line breaks.",
+        "ja": "数値はファイトのシミュレーション結果です。竿はメーターの出だしを決め、許されるミスの数が変わります。この竿は1種あたり平均0.4回分のミスを失います（最良の竿は0）。糸の切れにくさは、魚がどこまで走れるかを決めます。"
+      },
+      "alternatives": [
+        {
+          "category": "rod",
+          "id": "09"
+        },
+        {
+          "category": "rod",
+          "id": "08"
+        }
+      ],
+      "startLoss": 0.4,
+      "fight": {
+        "best": [
+          1,
+          2,
+          3,
+          4,
+          6,
+          7,
+          8,
+          9,
+          11,
+          12,
+          13,
+          14,
+          18,
+          19,
+          20,
+          21,
+          24,
+          32,
+          36,
+          38,
+          39,
+          40,
+          41,
+          42,
+          45,
+          46,
+          47,
+          48,
+          49,
+          50,
+          51,
+          52,
+          53,
+          54,
+          55,
+          56,
+          58,
+          59,
+          61,
+          62,
+          66,
+          71,
+          72
+        ],
+        "bad": [
+          10,
+          16,
+          17,
+          22,
+          25,
+          26,
+          29,
+          30,
+          31,
+          33,
+          34,
+          35,
+          43,
+          44,
+          57,
+          60,
+          63,
+          64,
+          68,
+          69,
+          70,
+          73
+        ],
+        "short": [
+          4,
+          6,
+          7,
+          8,
+          9,
+          11,
+          13,
+          18,
+          19,
+          20,
+          21,
+          29,
+          36,
+          37,
+          38,
+          40,
+          41,
+          45,
+          47,
+          48,
+          49,
+          51,
+          52,
+          53,
+          54,
+          55,
+          56,
+          58,
+          59,
+          61,
+          62,
+          64,
+          66,
+          73
+        ]
+      },
+      "sources": [
+        "data/gear-effects.json",
+        "docs/gear-effects.md",
+        "docs/fight-model.md",
+        "scripts/build_gear_advice.py"
+      ]
+    },
+    "03": {
+      "label": {
+        "th": "ซื้อเฉพาะก่อนถึงด่าน 4: ถึงแล้ว คัน 09 ถูกกว่าและสายยาวกว่า",
+        "en": "Only buy before you reach area 4: from there rod 09 costs less and has a line that breaks less easily",
+        "ja": "エリア4に着く前だけ購入：着いたら竿09の方が安い・糸が切れにくい"
+      },
+      "recommendation": {
+        "th": "สายขาดยาก ×5: ปลาวิ่งหนีได้ไกลแค่ไหนก่อนสายขาดและเสียตะขอ คันนี้พอกับปลา 38 จาก 72 ชนิด ส่วนอีก 34 ชนิด (เช่น โออูนางิ, โคคุเร็น, อาคาเมะ) วิ่งไกลกว่านั้น ต้องใช้คันที่ยาวกว่า. ตอนเริ่มสู้ปลา คันนี้ได้เปรียบสุดกับปลา 42 จาก 72 ชนิด แต่เสียเปรียบปลาไม่เกิน 15 ซม. รวม 23 ชนิด เช่น ปลาวากาซากิ, มุกิสึคุ, อาคาซะ เฉลี่ยทุกชนิดพลาดได้น้อยลง 0.4 จังหวะ. ราคา ¥350 ขายที่ด่าน 1, 2, 4, 6. ถึงด่าน 4 แล้วซื้อ คัน 09 แทน: ถูกกว่าและสายยาวกว่า. ถ้ามีคันนี้อยู่แล้วใช้ต่อได้ ไม่ต้องซื้อใหม่.",
+        "en": "Line strength ×5 is how far a fish can run before the line breaks and the hook is lost. This rod holds 38 of 72 species; the other 34 species (e.g. Oo-unagi, Kokuren, Akame) run farther, so they need a longer rod. It gives the best fight start against 42 of 72 species but is worse against fish up to 15 cm (23 species, e.g. Wakasagi, Mugitsuku, Akaza); averaged over all species it costs 0.4 mistakes you could otherwise afford. Price ¥350; sold in areas 1, 2, 4, 6. Once you reach area 4, buy rod 09 instead: it costs less and has a line that breaks less easily. If you already own this rod, keep using it.",
+        "ja": "糸の切れにくさ×5は、魚がどこまで走っても糸が切れて針を失わない距離です。この竿は72種中38種に足ります。残り34種（例：オオウナギ、コクレン、アカメ）はもっと走るので、長い竿が必要です。72種中42種でファイトの出だしが最良ですが、15cm以下の魚（計23種、例：ワカサギ、ムギツク、アカザ）では不利です。全種の平均で、許されるミスを0.4回分失います。価格350円。エリア1・2・4・6で販売。エリア4に着いたら、代わりに竿09を買います：安い・糸が切れにくい。すでに持っているなら、そのまま使えます。"
+      },
+      "reason": {
+        "th": "ตัวเลขมาจากการจำลองการสู้ปลา: จุดเริ่มของมาตรวัดแรงตึงกำหนดว่าพลาดได้กี่จังหวะ คันนี้เฉลี่ยเสียไป 0.4 จังหวะต่อชนิด (คันที่ดีที่สุดเสีย 0) ส่วนสายขาดยากกำหนดว่าปลาวิ่งไกลได้แค่ไหนก่อนสายขาด",
+        "en": "The numbers come from simulated fights: the rod sets the fight meter's starting point, which decides how many mistakes you can afford. This rod costs 0.4 mistakes per species on average (the best rod costs 0). Line strength decides how far a fish may run before the line breaks.",
+        "ja": "数値はファイトのシミュレーション結果です。竿はメーターの出だしを決め、許されるミスの数が変わります。この竿は1種あたり平均0.4回分のミスを失います（最良の竿は0）。糸の切れにくさは、魚がどこまで走れるかを決めます。"
+      },
+      "alternatives": [
+        {
+          "category": "rod",
+          "id": "09"
+        },
+        {
+          "category": "rod",
+          "id": "08"
+        }
+      ],
+      "startLoss": 0.4,
+      "fight": {
+        "best": [
+          2,
+          3,
+          4,
+          6,
+          7,
+          8,
+          9,
+          11,
+          12,
+          13,
+          14,
+          18,
+          19,
+          20,
+          21,
+          24,
+          32,
+          36,
+          38,
+          39,
+          40,
+          41,
+          42,
+          45,
+          46,
+          47,
+          48,
+          49,
+          50,
+          51,
+          52,
+          53,
+          54,
+          55,
+          56,
+          58,
+          59,
+          61,
+          62,
+          66,
+          71,
+          72
+        ],
+        "bad": [
+          1,
+          10,
+          16,
+          17,
+          22,
+          25,
+          26,
+          29,
+          30,
+          31,
+          33,
+          34,
+          35,
+          43,
+          44,
+          57,
+          60,
+          63,
+          64,
+          68,
+          69,
+          70,
+          73
+        ],
+        "short": [
+          4,
+          6,
+          7,
+          8,
+          9,
+          11,
+          13,
+          18,
+          19,
+          20,
+          21,
+          29,
+          36,
+          37,
+          38,
+          40,
+          41,
+          45,
+          47,
+          48,
+          49,
+          51,
+          52,
+          53,
+          54,
+          55,
+          56,
+          58,
+          59,
+          61,
+          62,
+          64,
+          66,
+          73
+        ]
+      },
+      "sources": [
+        "data/gear-effects.json",
+        "docs/gear-effects.md",
+        "docs/fight-model.md",
+        "scripts/build_gear_advice.py"
+      ]
+    },
+    "04": {
+      "label": {
+        "th": "เมื่อตกปลาที่สาย ×7 พอ (38 จาก 72 ชนิด); เริ่มสู้ดีสุดกับ 42 ชนิด; เสียเปรียบปลาไม่เกิน 15 ซม. รวม 23 ชนิด",
+        "en": "For fish that line strength ×7 holds (38 of 72 species); best start against 42 species; worse against fish up to 15 cm (23 species)",
+        "ja": "糸の切れにくさ×7で足りる魚（72種中38種）向け。42種で最良のスタート、15cm以下の魚（計23種）は不利"
+      },
+      "recommendation": {
+        "th": "สายขาดยาก ×7: ปลาวิ่งหนีได้ไกลแค่ไหนก่อนสายขาดและเสียตะขอ คันนี้พอกับปลา 38 จาก 72 ชนิด ส่วนอีก 34 ชนิด (เช่น โออูนางิ, โคคุเร็น, อาคาเมะ) วิ่งไกลกว่านั้น ต้องใช้คันที่ยาวกว่า. ตอนเริ่มสู้ปลา คันนี้ได้เปรียบสุดกับปลา 42 จาก 72 ชนิด แต่เสียเปรียบปลาไม่เกิน 15 ซม. รวม 23 ชนิด เช่น ปลาวากาซากิ, มุกิสึคุ, อาคาซะ เฉลี่ยทุกชนิดพลาดได้น้อยลง 0.4 จังหวะ. ราคา ¥500 ขายที่ด่าน 1, 2, 3, 5, 6. ปลาที่สายไม่พอให้ใช้ คัน 09 (¥200, ด่าน 4, 5) หรือ คัน 08 (¥1,500, ด่าน 5). ถ้ามีคันนี้อยู่แล้วใช้ต่อได้ ไม่ต้องซื้อใหม่.",
+        "en": "Line strength ×7 is how far a fish can run before the line breaks and the hook is lost. This rod holds 38 of 72 species; the other 34 species (e.g. Oo-unagi, Kokuren, Akame) run farther, so they need a longer rod. It gives the best fight start against 42 of 72 species but is worse against fish up to 15 cm (23 species, e.g. Wakasagi, Mugitsuku, Akaza); averaged over all species it costs 0.4 mistakes you could otherwise afford. Price ¥500; sold in areas 1, 2, 3, 5, 6. For fish this line cannot hold, use rod 09 (¥200, areas 4, 5) or rod 08 (¥1,500, area 5). If you already own this rod, keep using it.",
+        "ja": "糸の切れにくさ×7は、魚がどこまで走っても糸が切れて針を失わない距離です。この竿は72種中38種に足ります。残り34種（例：オオウナギ、コクレン、アカメ）はもっと走るので、長い竿が必要です。72種中42種でファイトの出だしが最良ですが、15cm以下の魚（計23種、例：ワカサギ、ムギツク、アカザ）では不利です。全種の平均で、許されるミスを0.4回分失います。価格500円。エリア1・2・3・5・6で販売。糸が足りない魚には竿09（200円、エリア4・5）か竿08（1,500円、エリア5）を使います。すでに持っているなら、そのまま使えます。"
+      },
+      "reason": {
+        "th": "ตัวเลขมาจากการจำลองการสู้ปลา: จุดเริ่มของมาตรวัดแรงตึงกำหนดว่าพลาดได้กี่จังหวะ คันนี้เฉลี่ยเสียไป 0.4 จังหวะต่อชนิด (คันที่ดีที่สุดเสีย 0) ส่วนสายขาดยากกำหนดว่าปลาวิ่งไกลได้แค่ไหนก่อนสายขาด",
+        "en": "The numbers come from simulated fights: the rod sets the fight meter's starting point, which decides how many mistakes you can afford. This rod costs 0.4 mistakes per species on average (the best rod costs 0). Line strength decides how far a fish may run before the line breaks.",
+        "ja": "数値はファイトのシミュレーション結果です。竿はメーターの出だしを決め、許されるミスの数が変わります。この竿は1種あたり平均0.4回分のミスを失います（最良の竿は0）。糸の切れにくさは、魚がどこまで走れるかを決めます。"
+      },
+      "alternatives": [
+        {
+          "category": "rod",
+          "id": "09"
+        },
+        {
+          "category": "rod",
+          "id": "08"
+        }
+      ],
+      "startLoss": 0.4,
+      "fight": {
+        "best": [
+          2,
+          3,
+          4,
+          6,
+          7,
+          8,
+          9,
+          11,
+          12,
+          13,
+          14,
+          18,
+          19,
+          20,
+          21,
+          24,
+          32,
+          36,
+          38,
+          39,
+          40,
+          41,
+          42,
+          45,
+          46,
+          47,
+          48,
+          49,
+          50,
+          51,
+          52,
+          53,
+          54,
+          55,
+          56,
+          58,
+          59,
+          61,
+          62,
+          66,
+          71,
+          72
+        ],
+        "bad": [
+          1,
+          10,
+          16,
+          17,
+          22,
+          25,
+          26,
+          29,
+          30,
+          31,
+          33,
+          34,
+          35,
+          43,
+          44,
+          57,
+          60,
+          63,
+          64,
+          68,
+          69,
+          70,
+          73
+        ],
+        "short": [
+          4,
+          6,
+          7,
+          8,
+          9,
+          11,
+          13,
+          18,
+          19,
+          20,
+          21,
+          29,
+          36,
+          37,
+          38,
+          40,
+          41,
+          45,
+          47,
+          48,
+          49,
+          51,
+          52,
+          53,
+          54,
+          55,
+          56,
+          58,
+          59,
+          61,
+          62,
+          64,
+          66,
+          73
+        ]
+      },
+      "sources": [
+        "data/gear-effects.json",
+        "docs/gear-effects.md",
+        "docs/fight-model.md",
+        "scripts/build_gear_advice.py"
+      ]
+    },
+    "05": {
+      "label": {
+        "th": "ข้ามคันนี้: คัน 04 ถูกกว่า สายยาวกว่าและเวลาเล็งนานกว่า (ขายที่ด่าน 1, 2, 3, 5, 6)",
+        "en": "Skip: rod 04 costs less, has a line that breaks less easily and gives more time to aim (sold in areas 1, 2, 3, 5, 6)",
+        "ja": "竿04を選ぶ：安い、糸が切れにくい・狙う時間が長い（エリア1・2・3・5・6で販売）"
+      },
+      "recommendation": {
+        "th": "สายขาดยาก ×6: ปลาวิ่งหนีได้ไกลแค่ไหนก่อนสายขาดและเสียตะขอ คันนี้พอกับปลา 38 จาก 72 ชนิด ส่วนอีก 34 ชนิด (เช่น โออูนางิ, โคคุเร็น, อาคาเมะ) วิ่งไกลกว่านั้น ต้องใช้คันที่ยาวกว่า. ตอนเริ่มสู้ปลา คันนี้ได้เปรียบสุดกับปลา 42 จาก 72 ชนิด แต่เสียเปรียบปลาไม่เกิน 15 ซม. รวม 23 ชนิด เช่น ปลาวากาซากิ, มุกิสึคุ, อาคาซะ เฉลี่ยทุกชนิดพลาดได้น้อยลง 0.4 จังหวะ. ราคา ¥750 ขายที่ด่าน 1, 2. ถึงด่าน 1 แล้วซื้อ คัน 04 แทน: ถูกกว่า สายยาวกว่าและเวลาเล็งนานกว่า. ถ้ามีคันนี้อยู่แล้วใช้ต่อได้ ไม่ต้องซื้อใหม่.",
+        "en": "Line strength ×6 is how far a fish can run before the line breaks and the hook is lost. This rod holds 38 of 72 species; the other 34 species (e.g. Oo-unagi, Kokuren, Akame) run farther, so they need a longer rod. It gives the best fight start against 42 of 72 species but is worse against fish up to 15 cm (23 species, e.g. Wakasagi, Mugitsuku, Akaza); averaged over all species it costs 0.4 mistakes you could otherwise afford. Price ¥750; sold in areas 1, 2. Once you reach area 1, buy rod 04 instead: it costs less, has a line that breaks less easily and gives more time to aim. If you already own this rod, keep using it.",
+        "ja": "糸の切れにくさ×6は、魚がどこまで走っても糸が切れて針を失わない距離です。この竿は72種中38種に足ります。残り34種（例：オオウナギ、コクレン、アカメ）はもっと走るので、長い竿が必要です。72種中42種でファイトの出だしが最良ですが、15cm以下の魚（計23種、例：ワカサギ、ムギツク、アカザ）では不利です。全種の平均で、許されるミスを0.4回分失います。価格750円。エリア1・2で販売。エリア1に着いたら、代わりに竿04を買います：安い、糸が切れにくい・狙う時間が長い。すでに持っているなら、そのまま使えます。"
+      },
+      "reason": {
+        "th": "ตัวเลขมาจากการจำลองการสู้ปลา: จุดเริ่มของมาตรวัดแรงตึงกำหนดว่าพลาดได้กี่จังหวะ คันนี้เฉลี่ยเสียไป 0.4 จังหวะต่อชนิด (คันที่ดีที่สุดเสีย 0) ส่วนสายขาดยากกำหนดว่าปลาวิ่งไกลได้แค่ไหนก่อนสายขาด",
+        "en": "The numbers come from simulated fights: the rod sets the fight meter's starting point, which decides how many mistakes you can afford. This rod costs 0.4 mistakes per species on average (the best rod costs 0). Line strength decides how far a fish may run before the line breaks.",
+        "ja": "数値はファイトのシミュレーション結果です。竿はメーターの出だしを決め、許されるミスの数が変わります。この竿は1種あたり平均0.4回分のミスを失います（最良の竿は0）。糸の切れにくさは、魚がどこまで走れるかを決めます。"
+      },
+      "alternatives": [
+        {
+          "category": "rod",
+          "id": "09"
+        },
+        {
+          "category": "rod",
+          "id": "08"
+        },
         {
           "category": "rod",
           "id": "04"
         }
       ],
+      "startLoss": 0.4,
+      "fight": {
+        "best": [
+          2,
+          3,
+          4,
+          6,
+          7,
+          8,
+          9,
+          11,
+          12,
+          13,
+          14,
+          18,
+          19,
+          20,
+          21,
+          24,
+          32,
+          36,
+          38,
+          39,
+          40,
+          41,
+          42,
+          45,
+          46,
+          47,
+          48,
+          49,
+          50,
+          51,
+          52,
+          53,
+          54,
+          55,
+          56,
+          58,
+          59,
+          61,
+          62,
+          66,
+          71,
+          72
+        ],
+        "bad": [
+          1,
+          10,
+          16,
+          17,
+          22,
+          25,
+          26,
+          29,
+          30,
+          31,
+          33,
+          34,
+          35,
+          43,
+          44,
+          57,
+          60,
+          63,
+          64,
+          68,
+          69,
+          70,
+          73
+        ],
+        "short": [
+          4,
+          6,
+          7,
+          8,
+          9,
+          11,
+          13,
+          18,
+          19,
+          20,
+          21,
+          29,
+          36,
+          37,
+          38,
+          40,
+          41,
+          45,
+          47,
+          48,
+          49,
+          51,
+          52,
+          53,
+          54,
+          55,
+          56,
+          58,
+          59,
+          61,
+          62,
+          64,
+          66,
+          73
+        ]
+      },
       "sources": [
-        "data/rod-response.json",
-        "docs/rod-lure-practical-research.md",
-        "data/shop-stock-rom.json",
-        "docs/shop-stock-research.md"
+        "data/gear-effects.json",
+        "docs/gear-effects.md",
+        "docs/fight-model.md",
+        "scripts/build_gear_advice.py"
       ]
     },
-    "02": {
+    "06": {
       "label": {
-        "en": "If you already own it, keep using it: 04 gives less time to aim and a line that breaks more easily",
-        "th": "ถ้ามีอยู่แล้วใช้ต่อได้ ไม่ต้องซื้อใหม่: คัน 04 มีเวลาเล็งน้อยกว่าและสายขาดง่ายกว่า",
-        "ja": "そのまま使えます：04は狙う時間が短く、糸も切れやすくなる"
+        "th": "ไม่มีขายที่ไหนเลย; ถ้ามีอยู่แล้ว: เริ่มสู้ดีสุดกับ 57 ชนิด; เสียเปรียบปลา 16–35 ซม. และ ปลาเกิน 35 ซม. รวม 8 ชนิด",
+        "en": "Not sold anywhere; if you own it: best start against 57 species; worse against fish of 16–35 cm and fish over 35 cm (8 species)",
+        "ja": "どの店にも売っていません。持っている場合：57種で最良のスタート、16〜35cmの魚と35cm超の魚（計8種）は不利"
       },
       "recommendation": {
-        "en": "If you own 02 and its aim time is enough, keep using it. Do not buy 04 as an upgrade: it gives less time to aim (50 versus 60) and a line that breaks more easily (×7 versus ×8). No shop in the six areas sells 02. If you do not own it, buy 04 in area 1; from area 3, look at 14 if you want both to improve.",
-        "th": "ถ้ามีคัน 02 และเล็งทัน ให้ใช้ต่อ อย่าซื้อคัน 04 เพื่อเปลี่ยน เพราะมีเวลาเล็งน้อยลง (50 เทียบกับ 60) และสายขาดง่ายขึ้น (×7 เทียบกับ ×8) ร้านทั้ง 6 ด่านไม่ได้ขายคัน 02 ถ้ายังไม่มี ให้ซื้อคัน 04 ที่ด่าน 1 พอถึงด่าน 3 ค่อยดูคัน 14 ถ้าอยากได้ดีขึ้นทั้งสองข้อ",
-        "ja": "02を持っていて狙う時間が足りるなら、そのまま使ってください。04は狙う時間が50対60、切れにくさが×7対×8とどちらも下がるので、強化目的では買いません。02は全6エリアの店で売っていません。持っていなければエリア1で04を買い、エリア3で両方を伸ばしたいなら14を比べてください。"
+        "th": "สายขาดยาก ×4: ปลาวิ่งหนีได้ไกลแค่ไหนก่อนสายขาดและเสียตะขอ คันนี้พอกับปลา 38 จาก 72 ชนิด ส่วนอีก 34 ชนิด (เช่น โออูนางิ, โคคุเร็น, อาคาเมะ) วิ่งไกลกว่านั้น ต้องใช้คันที่ยาวกว่า. ตอนเริ่มสู้ปลา คันนี้ได้เปรียบสุดกับปลา 57 จาก 72 ชนิด แต่เสียเปรียบปลา 16–35 ซม. และ ปลาเกิน 35 ซม. รวม 8 ชนิด เช่น อิวานะ, ปลาอุไก, ยามาเมะ เฉลี่ยทุกชนิดพลาดได้น้อยลง 0.2 จังหวะ. ไม่มีขายในร้านทั้ง 6 ด่าน. ปลาที่สายไม่พอให้ใช้ คัน 09 (¥200, ด่าน 4, 5) หรือ คัน 08 (¥1,500, ด่าน 5). ถ้ามีคันนี้อยู่แล้วใช้ต่อได้ ไม่ต้องซื้อใหม่.",
+        "en": "Line strength ×4 is how far a fish can run before the line breaks and the hook is lost. This rod holds 38 of 72 species; the other 34 species (e.g. Oo-unagi, Kokuren, Akame) run farther, so they need a longer rod. It gives the best fight start against 57 of 72 species but is worse against fish of 16–35 cm and fish over 35 cm (8 species, e.g. Iwana, Ugui, Yamame); averaged over all species it costs 0.2 mistakes you could otherwise afford. It is not sold in any of the six areas. For fish this line cannot hold, use rod 09 (¥200, areas 4, 5) or rod 08 (¥1,500, area 5). If you already own this rod, keep using it.",
+        "ja": "糸の切れにくさ×4は、魚がどこまで走っても糸が切れて針を失わない距離です。この竿は72種中38種に足ります。残り34種（例：オオウナギ、コクレン、アカメ）はもっと走るので、長い竿が必要です。72種中57種でファイトの出だしが最良ですが、16〜35cmの魚と35cm超の魚（計8種、例：イワナ、ウグイ、ヤマメ）では不利です。全種の平均で、許されるミスを0.2回分失います。全6エリアのどの店にも売っていません。糸が足りない魚には竿09（200円、エリア4・5）か竿08（1,500円、エリア5）を使います。すでに持っているなら、そのまま使えます。"
       },
       "reason": {
-        "en": "02 is tied for 3rd of 11 on time to aim and 6th of 11 on line strength among float rods, so it is still worth keeping: it beats 04 on both. 14, sold from area 3, beats 02 on both.",
-        "th": "คัน 02 มีเวลาเล็งนานเป็นอันดับ 3 ร่วมจาก 11 คัน และสายขาดยากเป็นอันดับ 6 จาก 11 คัน ในกลุ่มสายทุ่น จึงใช้ต่อได้: ดีกว่าคัน 04 ทั้งสองข้อ แต่คัน 14 ที่ซื้อได้ตั้งแต่ด่าน 3 ดีกว่าคัน 02 ทั้งเวลาเล็งและสายขาดยาก",
-        "ja": "02はウキ竿11本の中で、狙う時間が3位タイ、切れにくさが6位です。どちらも04より上なので、使い続ける価値があります。エリア3以降で売っている14は、02よりどちらも上です。"
+        "th": "ตัวเลขมาจากการจำลองการสู้ปลา: จุดเริ่มของมาตรวัดแรงตึงกำหนดว่าพลาดได้กี่จังหวะ คันนี้เฉลี่ยเสียไป 0.2 จังหวะต่อชนิด (คันที่ดีที่สุดเสีย 0) ส่วนสายขาดยากกำหนดว่าปลาวิ่งไกลได้แค่ไหนก่อนสายขาด",
+        "en": "The numbers come from simulated fights: the rod sets the fight meter's starting point, which decides how many mistakes you can afford. This rod costs 0.2 mistakes per species on average (the best rod costs 0). Line strength decides how far a fish may run before the line breaks.",
+        "ja": "数値はファイトのシミュレーション結果です。竿はメーターの出だしを決め、許されるミスの数が変わります。この竿は1種あたり平均0.2回分のミスを失います（最良の竿は0）。糸の切れにくさは、魚がどこまで走れるかを決めます。"
       },
       "alternatives": [
         {
           "category": "rod",
-          "id": "04"
+          "id": "09"
+        },
+        {
+          "category": "rod",
+          "id": "08"
+        }
+      ],
+      "startLoss": 0.2,
+      "fight": {
+        "best": [
+          2,
+          4,
+          6,
+          7,
+          8,
+          9,
+          10,
+          11,
+          13,
+          16,
+          17,
+          18,
+          19,
+          20,
+          21,
+          22,
+          25,
+          26,
+          29,
+          30,
+          31,
+          32,
+          33,
+          34,
+          35,
+          36,
+          38,
+          40,
+          41,
+          43,
+          44,
+          45,
+          46,
+          47,
+          48,
+          49,
+          51,
+          52,
+          53,
+          54,
+          55,
+          56,
+          57,
+          58,
+          59,
+          60,
+          61,
+          62,
+          63,
+          64,
+          66,
+          68,
+          69,
+          70,
+          71,
+          72,
+          73
+        ],
+        "bad": [
+          1,
+          3,
+          12,
+          14,
+          24,
+          39,
+          42,
+          50
+        ],
+        "short": [
+          4,
+          6,
+          7,
+          8,
+          9,
+          11,
+          13,
+          18,
+          19,
+          20,
+          21,
+          29,
+          36,
+          37,
+          38,
+          40,
+          41,
+          45,
+          47,
+          48,
+          49,
+          51,
+          52,
+          53,
+          54,
+          55,
+          56,
+          58,
+          59,
+          61,
+          62,
+          64,
+          66,
+          73
+        ]
+      },
+      "sources": [
+        "data/gear-effects.json",
+        "docs/gear-effects.md",
+        "docs/fight-model.md",
+        "scripts/build_gear_advice.py"
+      ]
+    },
+    "07": {
+      "label": {
+        "th": "ข้ามคันนี้: คัน 14 ราคาเท่ากัน สายยาวกว่าและเวลาเล็งนานกว่า (ขายที่ด่าน 3, 4, 6)",
+        "en": "Skip: rod 14 costs the same, has a line that breaks less easily and gives more time to aim (sold in areas 3, 4, 6)",
+        "ja": "竿14を選ぶ：同じ価格、糸が切れにくい・狙う時間が長い（エリア3・4・6で販売）"
+      },
+      "recommendation": {
+        "th": "สายขาดยาก ×9: ปลาวิ่งหนีได้ไกลแค่ไหนก่อนสายขาดและเสียตะขอ คันนี้พอกับปลา 44 จาก 72 ชนิด ส่วนอีก 28 ชนิด (เช่น โออูนางิ, โคคุเร็น, อาคาเมะ) วิ่งไกลกว่านั้น ต้องใช้คันที่ยาวกว่า. ตอนเริ่มสู้ปลา คันนี้ได้เปรียบสุดกับปลา 42 จาก 72 ชนิด แต่เสียเปรียบปลาไม่เกิน 15 ซม. รวม 23 ชนิด เช่น ปลาวากาซากิ, มุกิสึคุ, อาคาซะ เฉลี่ยทุกชนิดพลาดได้น้อยลง 0.4 จังหวะ. ราคา ¥1,500 ขายที่ด่าน 3, 5. ถึงด่าน 3 แล้วซื้อ คัน 14 แทน: ราคาเท่ากัน สายยาวกว่าและเวลาเล็งนานกว่า. ถ้ามีคันนี้อยู่แล้วใช้ต่อได้ ไม่ต้องซื้อใหม่.",
+        "en": "Line strength ×9 is how far a fish can run before the line breaks and the hook is lost. This rod holds 44 of 72 species; the other 28 species (e.g. Oo-unagi, Kokuren, Akame) run farther, so they need a longer rod. It gives the best fight start against 42 of 72 species but is worse against fish up to 15 cm (23 species, e.g. Wakasagi, Mugitsuku, Akaza); averaged over all species it costs 0.4 mistakes you could otherwise afford. Price ¥1,500; sold in areas 3, 5. Once you reach area 3, buy rod 14 instead: it costs the same, has a line that breaks less easily and gives more time to aim. If you already own this rod, keep using it.",
+        "ja": "糸の切れにくさ×9は、魚がどこまで走っても糸が切れて針を失わない距離です。この竿は72種中44種に足ります。残り28種（例：オオウナギ、コクレン、アカメ）はもっと走るので、長い竿が必要です。72種中42種でファイトの出だしが最良ですが、15cm以下の魚（計23種、例：ワカサギ、ムギツク、アカザ）では不利です。全種の平均で、許されるミスを0.4回分失います。価格1,500円。エリア3・5で販売。エリア3に着いたら、代わりに竿14を買います：同じ価格、糸が切れにくい・狙う時間が長い。すでに持っているなら、そのまま使えます。"
+      },
+      "reason": {
+        "th": "ตัวเลขมาจากการจำลองการสู้ปลา: จุดเริ่มของมาตรวัดแรงตึงกำหนดว่าพลาดได้กี่จังหวะ คันนี้เฉลี่ยเสียไป 0.4 จังหวะต่อชนิด (คันที่ดีที่สุดเสีย 0) ส่วนสายขาดยากกำหนดว่าปลาวิ่งไกลได้แค่ไหนก่อนสายขาด",
+        "en": "The numbers come from simulated fights: the rod sets the fight meter's starting point, which decides how many mistakes you can afford. This rod costs 0.4 mistakes per species on average (the best rod costs 0). Line strength decides how far a fish may run before the line breaks.",
+        "ja": "数値はファイトのシミュレーション結果です。竿はメーターの出だしを決め、許されるミスの数が変わります。この竿は1種あたり平均0.4回分のミスを失います（最良の竿は0）。糸の切れにくさは、魚がどこまで走れるかを決めます。"
+      },
+      "alternatives": [
+        {
+          "category": "rod",
+          "id": "09"
+        },
+        {
+          "category": "rod",
+          "id": "08"
         },
         {
           "category": "rod",
           "id": "14"
         }
       ],
+      "startLoss": 0.4,
+      "fight": {
+        "best": [
+          2,
+          3,
+          4,
+          6,
+          7,
+          8,
+          9,
+          11,
+          12,
+          13,
+          14,
+          18,
+          19,
+          20,
+          21,
+          24,
+          32,
+          36,
+          38,
+          39,
+          40,
+          41,
+          42,
+          45,
+          46,
+          47,
+          48,
+          49,
+          50,
+          51,
+          52,
+          53,
+          54,
+          55,
+          56,
+          58,
+          59,
+          61,
+          62,
+          66,
+          71,
+          72
+        ],
+        "bad": [
+          1,
+          10,
+          16,
+          17,
+          22,
+          25,
+          26,
+          29,
+          30,
+          31,
+          33,
+          34,
+          35,
+          43,
+          44,
+          57,
+          60,
+          63,
+          64,
+          68,
+          69,
+          70,
+          73
+        ],
+        "short": [
+          6,
+          7,
+          8,
+          9,
+          11,
+          13,
+          19,
+          20,
+          21,
+          36,
+          37,
+          38,
+          41,
+          45,
+          47,
+          48,
+          49,
+          51,
+          52,
+          53,
+          54,
+          55,
+          58,
+          59,
+          61,
+          62,
+          66,
+          73
+        ]
+      },
       "sources": [
-        "data/rod-response.json",
-        "docs/rod-lure-practical-research.md",
-        "data/shop-stock-rom.json",
-        "docs/shop-stock-research.md"
+        "data/gear-effects.json",
+        "docs/gear-effects.md",
+        "docs/fight-model.md",
+        "scripts/build_gear_advice.py"
       ]
     },
-    "03": {
+    "08": {
       "label": {
-        "en": "Tight budget in area 1: buy 03; for more time to aim, choose 04",
-        "th": "ด่าน 1 งบน้อยซื้อคัน 03; อยากมีเวลาเล็งนานขึ้นเลือกคัน 04",
-        "ja": "エリア1で節約なら03、狙う時間を伸ばすなら04"
+        "th": "เมื่อต้องตกปลาใหญ่: สาย ×24 ยาวพอกับปลาทุกชนิด; เริ่มสู้ดีสุดกับ 23 ชนิด; เสียเปรียบปลาไม่เกิน 15 ซม. และ ปลา 16–35 ซม. รวม 46 ชนิด",
+        "en": "For big fish: line strength ×24 is long enough for every species; best start against 23 species; worse against fish up to 15 cm and fish of 16–35 cm (46 species)",
+        "ja": "大物向け。糸の切れにくさ×24で全魚種に足りる。23種で最良のスタート、15cm以下の魚と16〜35cmの魚（計46種）は不利"
       },
       "recommendation": {
-        "en": "For a budget float rod in area 1, choose 03 at ¥350, the cheapest float rod sold there. If you want more time to aim and a line that breaks less easily, 04 costs ¥500 (¥150 more between new-purchase prices) and raises the values from 30/×5 to 50/×7.",
-        "th": "ถ้าจะเริ่มเล่นสายทุ่นที่ด่าน 1 แบบประหยัด เลือกคัน 03 ราคาเต็ม ¥350 ถูกสุดในบรรดาคันสายทุ่นที่ร้านด่านนี้ขาย ถ้าอยากได้เวลาเล็งนานขึ้นและสายขาดยากขึ้น คัน 04 ราคาเต็ม ¥500 (แพงกว่า ¥150 เมื่อเทียบราคาซื้อใหม่) เวลาเล็งกับสายขาดยากเพิ่มจาก 30/×5 เป็น 50/×7",
-        "ja": "エリア1で安くウキ釣りを始めるなら、店で売っているウキ竿で最安の03（350円）を選びます。狙う時間と糸の切れにくさを上げたいなら、04は500円（新品価格の差150円）で、30・×5から50・×7に上がります。"
+        "th": "สายขาดยาก ×24: ปลาวิ่งหนีได้ไกลแค่ไหนก่อนสายขาดและเสียตะขอ คันนี้ยาวพอกับปลาทุกชนิด. ตอนเริ่มสู้ปลา คันนี้ได้เปรียบสุดกับปลา 23 จาก 72 ชนิด แต่เสียเปรียบปลาไม่เกิน 15 ซม. และ ปลา 16–35 ซม. รวม 46 ชนิด เช่น ฮาเซะ, ตะพาบน้ำ, ยามาเมะ เฉลี่ยทุกชนิดพลาดได้น้อยลง 1.5 จังหวะ. ราคา ¥1,500 ขายที่ด่าน 5 (ร้านคันเบ็ดพิเศษ). ถ้ามีคันนี้อยู่แล้วใช้ต่อได้ ไม่ต้องซื้อใหม่.",
+        "en": "Line strength ×24 is how far a fish can run before the line breaks and the hook is lost. This rod is long enough for every species. It gives the best fight start against 23 of 72 species but is worse against fish up to 15 cm and fish of 16–35 cm (46 species, e.g. Haze, Suppon, Yamame); averaged over all species it costs 1.5 mistakes you could otherwise afford. Price ¥1,500; sold in area 5 (special rod seller). If you already own this rod, keep using it.",
+        "ja": "糸の切れにくさ×24は、魚がどこまで走っても糸が切れて針を失わない距離です。この竿はどの魚にも十分です。72種中23種でファイトの出だしが最良ですが、15cm以下の魚と16〜35cmの魚（計46種、例：ハゼ、スッポン、ヤマメ）では不利です。全種の平均で、許されるミスを1.5回分失います。価格1,500円。エリア5で販売（特別な竿の販売所）。すでに持っているなら、そのまま使えます。"
       },
       "reason": {
-        "en": "03 is a real budget starter, not a top performer. 04 is sold in the same area and is better on both counts; 05 costs more but is worse than 04 on both.",
-        "th": "คัน 03 เป็นตัวเริ่มราคาถูกจริง แต่ตัวเลขไม่ได้เด่น คัน 04 ขายในด่านเดียวกันและดีกว่าทั้งสองข้อ ส่วนคัน 05 แพงกว่าแต่ได้น้อยกว่าคัน 04 ทั้งคู่",
-        "ja": "03は安く始めるための竿で、数値が高いわけではありません。同じエリアで買える04は、どちらの値も上です。05は04より高いのに、どちらの値も低いです。"
+        "th": "ตัวเลขมาจากการจำลองการสู้ปลา: จุดเริ่มของมาตรวัดแรงตึงกำหนดว่าพลาดได้กี่จังหวะ คันนี้เฉลี่ยเสียไป 1.5 จังหวะต่อชนิด (คันที่ดีที่สุดเสีย 0) ส่วนสายขาดยากกำหนดว่าปลาวิ่งไกลได้แค่ไหนก่อนสายขาด",
+        "en": "The numbers come from simulated fights: the rod sets the fight meter's starting point, which decides how many mistakes you can afford. This rod costs 1.5 mistakes per species on average (the best rod costs 0). Line strength decides how far a fish may run before the line breaks.",
+        "ja": "数値はファイトのシミュレーション結果です。竿はメーターの出だしを決め、許されるミスの数が変わります。この竿は1種あたり平均1.5回分のミスを失います（最良の竿は0）。糸の切れにくさは、魚がどこまで走れるかを決めます。"
       },
-      "alternatives": [
-        {
-          "category": "rod",
-          "id": "04"
-        },
-        {
-          "category": "rod",
-          "id": "05"
-        }
-      ],
+      "alternatives": [],
+      "startLoss": 1.5,
+      "fight": {
+        "best": [
+          2,
+          6,
+          8,
+          9,
+          11,
+          13,
+          19,
+          20,
+          21,
+          36,
+          38,
+          45,
+          47,
+          48,
+          49,
+          51,
+          53,
+          54,
+          55,
+          58,
+          59,
+          61,
+          62
+        ],
+        "bad": [
+          1,
+          3,
+          4,
+          5,
+          10,
+          14,
+          15,
+          16,
+          17,
+          18,
+          22,
+          23,
+          24,
+          25,
+          26,
+          27,
+          28,
+          29,
+          30,
+          31,
+          32,
+          33,
+          34,
+          35,
+          37,
+          39,
+          40,
+          41,
+          42,
+          43,
+          44,
+          46,
+          50,
+          52,
+          56,
+          57,
+          60,
+          63,
+          64,
+          65,
+          68,
+          69,
+          70,
+          71,
+          72,
+          73
+        ],
+        "short": []
+      },
       "sources": [
-        "data/rod-response.json",
-        "docs/rod-lure-practical-research.md",
-        "data/shop-stock-rom.json",
-        "docs/shop-stock-research.md"
+        "data/gear-effects.json",
+        "docs/gear-effects.md",
+        "docs/fight-model.md",
+        "scripts/build_gear_advice.py"
       ]
     },
-    "04": {
+    "09": {
       "label": {
-        "en": "Area 1: the most time to aim and the line that breaks least easily in the shop; 03 if money is tight",
-        "th": "ด่าน 1: มีเวลาเล็งนานสุดและสายขาดยากสุดในร้าน; งบน้อยเลือกคัน 03",
-        "ja": "エリア1の店では狙う時間も糸の切れにくさも最高。節約なら03"
+        "th": "เมื่อตกปลาที่สาย ×12 พอ (47 จาก 72 ชนิด); เริ่มสู้ดีสุดกับ 43 ชนิด; เสียเปรียบปลาไม่เกิน 15 ซม. รวม 23 ชนิด",
+        "en": "For fish that line strength ×12 holds (47 of 72 species); best start against 43 species; worse against fish up to 15 cm (23 species)",
+        "ja": "糸の切れにくさ×12で足りる魚（72種中47種）向け。43種で最良のスタート、15cm以下の魚（計23種）は不利"
       },
       "recommendation": {
-        "en": "In area 1, choose 04 at ¥500 if you want more time to aim and a line that breaks less easily than 03: 50/×7 versus 30/×5, ¥150 more between full new-purchase prices. It is also better than 05 on both counts and ¥250 cheaper. In area 5 it costs the same as 01 but is better on both counts.",
-        "th": "ที่ด่าน 1 เลือกคัน 04 ราคา ¥500 ถ้าอยากได้เวลาเล็งนานกว่าและสายขาดยากกว่าคัน 03: ได้ 50/×7 เทียบกับ 30/×5 แพงกว่า ¥150 (เทียบราคาซื้อใหม่เต็มจำนวน) และยังดีกว่าคัน 05 ทั้งสองข้อ ในราคาถูกกว่า ¥250 ที่ด่าน 5 คันนี้ราคาเต็มเท่าคัน 01 แต่ดีกว่าทั้งสองข้อ",
-        "ja": "エリア1で03より狙う時間が長く、糸も切れにくい竿がほしいなら、04（500円）を選びます。30・×5に対して50・×7で、新品価格の差は150円です。05よりどちらも上で、価格は250円安いです。エリア5では01と同じ価格で、どちらの値も上です。"
+        "th": "สายขาดยาก ×12: ปลาวิ่งหนีได้ไกลแค่ไหนก่อนสายขาดและเสียตะขอ คันนี้พอกับปลา 47 จาก 72 ชนิด ส่วนอีก 25 ชนิด (เช่น โออูนางิ, โคคุเร็น, อาคาเมะ) วิ่งไกลกว่านั้น ต้องใช้คันที่ยาวกว่า. ตอนเริ่มสู้ปลา คันนี้ได้เปรียบสุดกับปลา 43 จาก 72 ชนิด แต่เสียเปรียบปลาไม่เกิน 15 ซม. รวม 23 ชนิด เช่น ปลาวากาซากิ, มุกิสึคุ, อาคาซะ เฉลี่ยทุกชนิดพลาดได้น้อยลง 0.4 จังหวะ. ราคา ¥200 ขายที่ด่าน 4, 5. ปลาที่สายไม่พอให้ใช้ คัน 14 (¥1,500, ด่าน 3, 4, 6) หรือ คัน 08 (¥1,500, ด่าน 5). ถ้ามีคันนี้อยู่แล้วใช้ต่อได้ ไม่ต้องซื้อใหม่.",
+        "en": "Line strength ×12 is how far a fish can run before the line breaks and the hook is lost. This rod holds 47 of 72 species; the other 25 species (e.g. Oo-unagi, Kokuren, Akame) run farther, so they need a longer rod. It gives the best fight start against 43 of 72 species but is worse against fish up to 15 cm (23 species, e.g. Wakasagi, Mugitsuku, Akaza); averaged over all species it costs 0.4 mistakes you could otherwise afford. Price ¥200; sold in areas 4, 5. For fish this line cannot hold, use rod 14 (¥1,500, areas 3, 4, 6) or rod 08 (¥1,500, area 5). If you already own this rod, keep using it.",
+        "ja": "糸の切れにくさ×12は、魚がどこまで走っても糸が切れて針を失わない距離です。この竿は72種中47種に足ります。残り25種（例：オオウナギ、コクレン、アカメ）はもっと走るので、長い竿が必要です。72種中43種でファイトの出だしが最良ですが、15cm以下の魚（計23種、例：ワカサギ、ムギツク、アカザ）では不利です。全種の平均で、許されるミスを0.4回分失います。価格200円。エリア4・5で販売。糸が足りない魚には竿14（1,500円、エリア3・4・6）か竿08（1,500円、エリア5）を使います。すでに持っているなら、そのまま使えます。"
       },
       "reason": {
-        "en": "Among the float rods sold in area 1, 04 has the most time to aim and the strongest line. This compares only aim time and line strength, not catch odds.",
-        "th": "ในร้านด่าน 1 คัน 04 มีเวลาเล็งนานสุดและสายขาดยากสุดในกลุ่มสายทุ่น/อายุ นี่เทียบแค่เวลาเล็งกับความยากที่สายจะขาด ไม่ใช่โอกาสจับปลา",
-        "ja": "エリア1で売っているウキ・アユ竿の中で、04は狙う時間も切れにくさも最大です。比べているのはこの2点だけで、釣れる確率ではありません。"
-      },
-      "alternatives": [
-        {
-          "category": "rod",
-          "id": "03"
-        },
-        {
-          "category": "rod",
-          "id": "05"
-        },
-        {
-          "category": "rod",
-          "id": "01"
-        }
-      ],
-      "sources": [
-        "data/rod-response.json",
-        "docs/rod-lure-practical-research.md",
-        "data/shop-stock-rom.json",
-        "docs/shop-stock-research.md"
-      ]
-    },
-    "05": {
-      "label": {
-        "en": "Skip buying: 04 is cheaper and gives more time to aim and a line that breaks less easily",
-        "th": "ไม่แนะนำซื้อ: คัน 04 ถูกกว่า มีเวลาเล็งนานกว่าและสายขาดยากกว่า",
-        "ja": "購入は04へ：安くて、狙う時間が長く糸も切れにくい"
-      },
-      "recommendation": {
-        "en": "Skip 05 if you are buying for more time to aim or a line that breaks less easily. In areas 1 and 2, 04 costs ¥500 and 05 costs ¥750, and 04 still gives 50/×7 instead of 40/×6. If you already own 05, keep using it; there is no evidence of a special catch bonus. Buy 04 only if those two improvements are worth its full price.",
-        "th": "ข้ามคัน 05 ถ้าซื้อเพราะอยากได้เวลาเล็งนานขึ้นหรือสายขาดยากขึ้น ในด่าน 1 และ 2 คัน 04 ราคาเต็ม ¥500 ส่วนคัน 05 ราคาเต็ม ¥750 และคัน 04 ยังได้ 50/×7 แทน 40/×6 ถ้ามีคัน 05 อยู่แล้ว ใช้ต่อได้ ไม่ต้องซื้อใหม่ ไม่มีหลักฐานว่ามีโบนัสจับปลาพิเศษ ซื้อคัน 04 เมื่อเห็นว่าสองข้อที่ดีขึ้นนี้คุ้มกับราคาเต็ม",
-        "ja": "狙う時間や糸の切れにくさが目的なら05は見送り、エリア1・2で500円の04を選びます。05は750円で、04は40・×6ではなく50・×7です。05を持っていればそのまま使えます。特別な釣果効果は確認されていません。2点の向上が全額に見合うときだけ04を買ってください。"
-      },
-      "reason": {
-        "en": "04 is sold in the same areas and is better than 05 on both counts for less money.",
-        "th": "คัน 04 ขายในด่านเดียวกันและดีกว่าคัน 05 ทั้งสองข้อ ในราคาที่ถูกกว่า",
-        "ja": "04は同じエリアで売っていて、狙う時間も切れにくさも05より上なのに、価格は安いです。"
-      },
-      "alternatives": [
-        {
-          "category": "rod",
-          "id": "04"
-        }
-      ],
-      "sources": [
-        "data/rod-response.json",
-        "docs/rod-lure-practical-research.md",
-        "data/shop-stock-rom.json",
-        "docs/shop-stock-research.md"
-      ]
-    },
-    "06": {
-      "label": {
-        "en": "If you already own it and aim time is enough, keep using it; to buy new, choose 03 or 04",
-        "th": "ถ้ามีอยู่แล้วและเล็งทัน ใช้ต่อได้ ไม่ต้องซื้อใหม่; ถ้าจะซื้อใหม่เลือกคัน 03 หรือคัน 04",
-        "ja": "狙う時間が足りるならそのまま使えます。買うなら03か04"
-      },
-      "recommendation": {
-        "th": "ถ้ามีคัน 06 และเล็งทัน ใช้ต่อได้ ร้านทั้ง 6 ด่านไม่ได้ขายคันนี้ ถ้าจะซื้อใหม่: ด่าน 1/2/6 งบน้อยเลือกคัน 03 ราคา ¥350 ถ้าจ่าย ¥500 ได้ เลือกคัน 04 จะมีเวลาเล็งนานกว่าและสายขาดยากกว่า ด่าน 4 ขายคัน 03 ส่วนด่าน 3 และ 5 ขายคัน 04",
-        "en": "If you own 06 and its aim time is enough, keep using it; no shop in the six areas sells it. To buy new: in areas 1, 2 and 6, choose 03 at ¥350 on a tight budget, or 04 at ¥500 for more time to aim and a line that breaks less easily. Area 4 sells 03; areas 3 and 5 sell 04.",
-        "ja": "06の狙う時間で足りるなら、そのまま使えます。06は全6エリアの店で売っていません。エリア1・2・6で新品を買うなら、節約は03（350円）、狙う時間と切れにくさを上げるなら04（500円）です。エリア4は03、エリア3・5は04を売っています。"
-      },
-      "reason": {
-        "th": "คัน 03 ดีกว่าคัน 06 (จาก 20/×4 เป็น 30/×5) คัน 04 ดีขึ้นอีกเป็น 50/×7 คัน 04 ราคาซื้อใหม่แพงกว่าคัน 03 อยู่ ¥150 และต่อให้มีคันเดิมอยู่แล้วก็ต้องจ่ายราคาเต็มของคันที่จะซื้อ",
-        "en": "03 improves on 06's 20/×4 with 30/×5; 04 improves it to 50/×7. A new 04 costs ¥150 more than a new 03. Owning a rod does not lower the full price of the one you buy.",
-        "ja": "03は06の20・×4を30・×5に、04は50・×7に上げます。新品の04は新品の03より150円高く、竿を持っていても買い替え先の全額が必要です。"
-      },
-      "alternatives": [
-        {
-          "category": "rod",
-          "id": "03"
-        },
-        {
-          "category": "rod",
-          "id": "04"
-        }
-      ],
-      "sources": [
-        "data/rod-response.json",
-        "docs/rod-lure-practical-research.md",
-        "data/shop-stock-rom.json",
-        "docs/shop-stock-research.md"
-      ]
-    },
-    "07": {
-      "label": {
-        "en": "Area 3: buy 14; area 5: choose 07 for more time to aim than 08",
-        "th": "ด่าน 3 ซื้อคัน 14 แทน; ด่าน 5 เลือกคัน 07 ถ้าอยากมีเวลาเล็งนานกว่าคัน 08",
-        "ja": "エリア3は14、エリア5で狙う時間を伸ばすなら07"
-      },
-      "recommendation": {
-        "en": "If you are buying a Float/Ayu rod in area 3, choose 14 over 07: both cost ¥1,500, but 14 raises aim time from 70 to 80 and line strength from ×9 to ×15. Area 5 does not sell 14; there, choose 07 for more time to aim than 08, or 08 for the strongest line at the same price.",
-        "th": "ถ้าซื้อคันสายทุ่น/อายุที่ด่าน 3 ให้เลือกคัน 14 แทนคัน 07: ราคาเต็ม ¥1,500 เท่ากัน แต่คัน 14 เวลาเล็งเพิ่มจาก 70 เป็น 80 และสายขาดยากขึ้นจาก ×9 เป็น ×15 ด่าน 5 ไม่ขายคัน 14 ที่นั่นเลือกคัน 07 ถ้าอยากมีเวลาเล็งนานกว่าคัน 08 หรือเลือกคัน 08 ถ้าอยากให้สายขาดยากสุดในราคาเต็มเท่ากัน",
-        "ja": "エリア3でウキ・アユ竿を買うなら07より14を選びます。どちらも1,500円ですが、14は狙う時間が70から80、切れにくさが×9から×15に上がります。エリア5には14がないので、08より狙う時間を伸ばしたいなら07、同じ価格で糸が最も切れにくいのは08です。"
-      },
-      "reason": {
-        "en": "In area 3, 14 is better on both counts at the same price. In area 5 you must choose between 07's aim time and 08's line strength.",
-        "th": "ที่ด่าน 3 คัน 14 ดีกว่าทั้งสองข้อในราคาซื้อใหม่เท่ากัน แต่ที่ด่าน 5 ต้องเลือกระหว่างเวลาเล็งของคัน 07 กับสายขาดยากของคัน 08",
-        "ja": "エリア3では同じ新品価格で14がどちらの値も上です。エリア5では、07の狙う時間と08の切れにくさのどちらを取るかの選択になります。"
+        "th": "ตัวเลขมาจากการจำลองการสู้ปลา: จุดเริ่มของมาตรวัดแรงตึงกำหนดว่าพลาดได้กี่จังหวะ คันนี้เฉลี่ยเสียไป 0.4 จังหวะต่อชนิด (คันที่ดีที่สุดเสีย 0) ส่วนสายขาดยากกำหนดว่าปลาวิ่งไกลได้แค่ไหนก่อนสายขาด",
+        "en": "The numbers come from simulated fights: the rod sets the fight meter's starting point, which decides how many mistakes you can afford. This rod costs 0.4 mistakes per species on average (the best rod costs 0). Line strength decides how far a fish may run before the line breaks.",
+        "ja": "数値はファイトのシミュレーション結果です。竿はメーターの出だしを決め、許されるミスの数が変わります。この竿は1種あたり平均0.4回分のミスを失います（最良の竿は0）。糸の切れにくさは、魚がどこまで走れるかを決めます。"
       },
       "alternatives": [
         {
@@ -421,265 +1612,584 @@
           "id": "08"
         }
       ],
+      "startLoss": 0.4,
+      "fight": {
+        "best": [
+          2,
+          3,
+          4,
+          6,
+          7,
+          8,
+          9,
+          11,
+          12,
+          13,
+          14,
+          18,
+          19,
+          20,
+          21,
+          24,
+          32,
+          36,
+          37,
+          38,
+          39,
+          40,
+          41,
+          42,
+          45,
+          46,
+          47,
+          48,
+          49,
+          50,
+          51,
+          52,
+          53,
+          54,
+          55,
+          56,
+          58,
+          59,
+          61,
+          62,
+          66,
+          71,
+          72
+        ],
+        "bad": [
+          1,
+          10,
+          16,
+          17,
+          22,
+          25,
+          26,
+          29,
+          30,
+          31,
+          33,
+          34,
+          35,
+          43,
+          44,
+          57,
+          60,
+          63,
+          64,
+          68,
+          69,
+          70,
+          73
+        ],
+        "short": [
+          6,
+          7,
+          8,
+          9,
+          11,
+          13,
+          19,
+          20,
+          21,
+          36,
+          37,
+          38,
+          45,
+          47,
+          48,
+          49,
+          53,
+          54,
+          55,
+          58,
+          59,
+          61,
+          62,
+          66,
+          73
+        ]
+      },
       "sources": [
-        "data/rod-response.json",
-        "docs/rod-lure-practical-research.md",
-        "data/shop-stock-rom.json",
-        "docs/shop-stock-research.md"
-      ]
-    },
-    "08": {
-      "label": {
-        "en": "Area 5: the strongest line at a lower price than 15, but less time to aim",
-        "th": "ด่าน 5: สายขาดยากสุดในราคาถูกกว่าคัน 15 แต่มีเวลาเล็งน้อยกว่า",
-        "ja": "エリア5：15より安く糸が最も切れにくい。ただし狙う時間は短い"
-      },
-      "recommendation": {
-        "en": "In area 5, choose 08 at ¥1,500 if you want the line that breaks least easily among float rods (×24). 15 costs ¥2,000 for the same ×24 plus 20 more aim (60 versus 40). 07 costs the same ¥1,500 and gives more time to aim (70) but a line that breaks more easily (×9).",
-        "th": "ที่ด่าน 5 เลือกคัน 08 ราคาเต็ม ¥1,500 ถ้าอยากให้สายขาดยากสุดของสายทุ่น/อายุ (×24) คัน 15 ราคาเต็ม ¥2,000 ได้ ×24 เท่ากันแต่เวลาเล็งมากกว่า 20 (60 เทียบกับ 40) ส่วนคัน 07 ราคาเต็มเท่ากันที่ ¥1,500 มีเวลาเล็งนานกว่า (70) แต่สายขาดง่ายกว่า (×9)",
-        "ja": "エリア5でウキ・アユ竿の糸を最も切れにくくしたいなら、08（1,500円）を選びます。切れにくさ×24はグループ最大です。15は2,000円で、同じ×24に加えて狙う時間が20長い（60対40）竿です。同じ1,500円の07は狙う時間が70ですが、切れにくさは×9です。"
-      },
-      "reason": {
-        "en": "08 gives up some aim time to reach the strongest float-rod line at a lower price than 15. Choose by whether aim time or line strength matters more to you.",
-        "th": "คัน 08 ยอมมีเวลาเล็งน้อยลงเพื่อให้สายขาดยากสุดของสายทุ่น ในราคาเต็มถูกกว่าคัน 15 ให้เลือกตามว่าอยากได้เวลาเล็งหรือสายขาดยากมากกว่า",
-        "ja": "08は狙う時間を抑えて、15より安い価格でウキ竿最大の切れにくさを得る竿です。狙う時間と糸の切れにくさのどちらを重視するかで選んでください。"
-      },
-      "alternatives": [
-        {
-          "category": "rod",
-          "id": "07"
-        },
-        {
-          "category": "rod",
-          "id": "15"
-        }
-      ],
-      "sources": [
-        "data/rod-response.json",
-        "docs/rod-lure-practical-research.md",
-        "data/shop-stock-rom.json",
-        "docs/shop-stock-research.md"
-      ]
-    },
-    "09": {
-      "label": {
-        "en": "Areas 4–5: budget float rod; for more time to aim, 14 in area 4 or 04 in area 5",
-        "th": "ด่าน 4–5: สายทุ่นราคาประหยัด; อยากมีเวลาเล็งนานขึ้นเลือกคัน 14 (ด่าน 4) หรือคัน 04 (ด่าน 5)",
-        "ja": "エリア4・5の節約用。狙う時間を伸ばすならエリア4は14、エリア5は04"
-      },
-      "recommendation": {
-        "en": "In areas 4 and 5, buy 09 at ¥200 for a budget float setup (aim 30, line strength ×12). Area 4 does not sell 04: for more time to aim and a line that breaks less easily, choose 14 at ¥1,500 (80/×15), or 15 at ¥2,000 (60/×24) for the strongest line. In area 5, 04 at ¥500 gives more time to aim (50) but a line that breaks more easily (×7); choose it when aim time matters more. If you own 09 and its aim time is enough, keep using it.",
-        "th": "ด่าน 4 และ 5 ซื้อคัน 09 ราคาเต็ม ¥200 ถ้าอยากเริ่มสายทุ่นแบบประหยัด (เวลาเล็ง 30 สายขาดยาก ×12) ด่าน 4 ไม่ขายคัน 04 ถ้าอยากมีเวลาเล็งนานขึ้นและสายขาดยากขึ้น เลือกคัน 14 ราคาเต็ม ¥1,500 (80/×15) ถ้าอยากให้สายขาดยากสุด เลือกคัน 15 ราคาเต็ม ¥2,000 (60/×24) ด่าน 5 มีคัน 04 ราคาเต็ม ¥500 ซึ่งมีเวลาเล็งนานกว่า (50) แต่สายขาดง่ายกว่า (×7) เลือกเมื่อเวลาเล็งสำคัญกว่า ถ้ามีคัน 09 อยู่แล้วและเล็งทัน ใช้ต่อได้ ไม่ต้องซื้อใหม่",
-        "ja": "エリア4・5で安くウキ釣りを始めるなら、09（200円、狙う時間30、切れにくさ×12）を買います。エリア4には04がありません。狙う時間と切れにくさを伸ばすなら14（1,500円、80・×15）、糸が最も切れにくい竿なら15（2,000円、60・×24）です。エリア5の04は500円で狙う時間が50と長い一方、切れにくさは×7に下がります。切れにくさより狙う時間を重視する場合に選んでください。09の狙う時間で足りるなら使い続けられます。"
-      },
-      "reason": {
-        "en": "09 is cheap but not strong on aim time. In area 4, 14 is better on both counts but much more expensive. In area 5, 04 gives up line strength for more time to aim. The two are separate, not a catch-success ranking.",
-        "th": "คัน 09 ราคาถูกแต่เวลาเล็งไม่ได้เด่น ด่าน 4 คัน 14 ดีกว่าทั้งสองข้อแต่แพงกว่ามาก ส่วนด่าน 5 คัน 04 ยอมให้สายขาดง่ายกว่าเพื่อแลกกับเวลาเล็งที่นานกว่า สองข้อนี้แยกกัน ไม่ใช่อันดับว่าจับปลาสำเร็จง่ายแค่ไหน",
-        "ja": "09は安いですが、狙う時間は最上位ではありません。エリア4の14はどちらの値も上ですが、価格が大きく上がります。エリア5の04は切れにくさを下げて狙う時間を増やす選択です。別々の効果で、釣果の総合順位ではありません。"
-      },
-      "alternatives": [
-        {
-          "category": "rod",
-          "id": "14"
-        },
-        {
-          "category": "rod",
-          "id": "04"
-        },
-        {
-          "category": "rod",
-          "id": "15"
-        }
-      ],
-      "sources": [
-        "data/rod-response.json",
-        "docs/rod-lure-practical-research.md",
-        "data/shop-stock-rom.json",
-        "docs/shop-stock-research.md"
+        "data/gear-effects.json",
+        "docs/gear-effects.md",
+        "docs/fight-model.md",
+        "scripts/build_gear_advice.py"
       ]
     },
     "0A": {
       "label": {
-        "en": "If you already own it and aim time is enough, keep using it; in area 4, collect it from the chest before buying a second",
-        "th": "ถ้ามีอยู่แล้วและเล็งทัน ใช้ต่อได้ ไม่ต้องซื้อใหม่; ด่าน 4 ไปรับจากหีบก่อนซื้อซ้ำ",
-        "ja": "狙う時間が足りれば継続。エリア4は重複して買う前に宝箱へ"
+        "th": "เมื่อตกปลาที่สาย ×15 พอ (27 จาก 38 ชนิด); เริ่มสู้ดีสุดกับ 34 ชนิด; เสียเปรียบปลา 16–35 ซม. และ ปลาเกิน 35 ซม. รวม 2 ชนิด",
+        "en": "For fish that line strength ×15 holds (27 of 38 species); best start against 34 species; worse against fish of 16–35 cm and fish over 35 cm (2 species)",
+        "ja": "糸の切れにくさ×15で足りる魚（38種中27種）向け。34種で最良のスタート、16〜35cmの魚と35cm超の魚（計2種）は不利"
       },
       "recommendation": {
-        "en": "If you own 0A and its aim time is enough, keep using it. In area 4, if the locked town chest is still unopened, bring key 17 and leave a rod slot free to collect this rod before buying another. If you need a lure rod earlier, 0A costs ¥500; where both are sold, choose 0C at ¥600 if more time to aim and a line that breaks less easily are worth the extra. Area 5 sells 0A but not 0C.",
-        "ja": "狙う時間が足りているなら0Aを使い続けてください。エリア4の施錠された宝箱がまだ開いていなければ、カギ17を持ち、竿の欄に空きを作って受け取ると、重複購入を避けられます。それ以前にルアー竿が必要なら0Aは500円です。両方を売っているエリアでは、狙う時間と切れにくさを上げたいときに600円の0Cを選びます。エリア5で売っているルアー竿は0Aだけで、0Cはありません。",
-        "th": "ถ้ามีคัน 0A อยู่แล้วและเวลาเล็งพอ ใช้ต่อได้ ด่าน 4 ถ้าหีบล็อกในเมืองยังไม่เปิด ให้พกกุญแจ 17 และเว้นช่องคันเบ็ดไว้ไปรับคันนี้ก่อนซื้อซ้ำ ถ้าต้องใช้ลัวร์ก่อนถึงด่านนั้น คัน 0A ราคา ¥500 เป็นตัวเริ่ม ในด่านที่มีขายทั้งสองคัน เลือกคัน 0C ราคา ¥600 ถ้าอยากได้เวลาเล็งนานขึ้นและสายขาดยากขึ้น ด่าน 5 ร้านขายคัน 0A แต่ไม่มีคัน 0C"
+        "th": "สายขาดยาก ×15: ปลาวิ่งหนีได้ไกลแค่ไหนก่อนสายขาดและเสียตะขอ คันนี้พอกับปลา 27 จาก 38 ชนิด ส่วนอีก 11 ชนิด (เช่น โออูนางิ, โคคุเร็น, อาคาเมะ) วิ่งไกลกว่านั้น ต้องใช้คันที่ยาวกว่า. ตอนเริ่มสู้ปลา คันนี้ได้เปรียบสุดกับปลา 34 จาก 38 ชนิด แต่เสียเปรียบปลา 16–35 ซม. และ ปลาเกิน 35 ซม. รวม 2 ชนิด เช่น ปลาอุไก, ยามาเมะ เฉลี่ยทุกชนิดพลาดได้น้อยลง 0.1 จังหวะ. เวลาเล็ง 70 เมื่อ HP เต็ม 100 ถ้า HP ต่ำกว่านั้นเวลาเล็งสั้นลง เติม HP ก่อนตก. ราคา ¥500 ขายที่ด่าน 1, 2, 3, 5, 6. ปลาที่สายไม่พอให้ใช้ คัน 0C (¥600, ด่าน 1, 2, 3, 4, 6) หรือ คัน 0D (¥650, ด่าน 4). ถ้ามีคันนี้อยู่แล้วใช้ต่อได้ ไม่ต้องซื้อใหม่.",
+        "en": "Line strength ×15 is how far a fish can run before the line breaks and the hook is lost. This rod holds 27 of 38 species; the other 11 species (e.g. Oo-unagi, Kokuren, Akame) run farther, so they need a longer rod. It gives the best fight start against 34 of 38 species but is worse against fish of 16–35 cm and fish over 35 cm (2 species, e.g. Ugui, Yamame); averaged over all species it costs 0.1 mistakes you could otherwise afford. Time to aim is 70 at full 100 HP and shorter below that, so restore HP before you fish. Price ¥500; sold in areas 1, 2, 3, 5, 6. For fish this line cannot hold, use rod 0C (¥600, areas 1, 2, 3, 4, 6) or rod 0D (¥650, area 4). If you already own this rod, keep using it.",
+        "ja": "糸の切れにくさ×15は、魚がどこまで走っても糸が切れて針を失わない距離です。この竿は38種中27種に足ります。残り11種（例：オオウナギ、コクレン、アカメ）はもっと走るので、長い竿が必要です。38種中34種でファイトの出だしが最良ですが、16〜35cmの魚と35cm超の魚（計2種、例：ウグイ、ヤマメ）では不利です。全種の平均で、許されるミスを0.1回分失います。狙う時間はHP100のとき70で、HPが減ると短くなります。釣る前にHPを回復してください。価格500円。エリア1・2・3・5・6で販売。糸が足りない魚には竿0C（600円、エリア1・2・3・4・6）か竿0D（650円、エリア4）を使います。すでに持っているなら、そのまま使えます。"
       },
       "reason": {
-        "en": "0A is the cheap starter, not the strongest lure rod. Its aim rank is at full HP; below 100 HP lure rods get less time to aim.",
-        "th": "คัน 0A เป็นตัวเริ่มราคาถูก ไม่ใช่คันลัวร์ที่ตัวเลขสูงสุด อันดับเวลาเล็งเทียบที่ HP เต็ม ถ้า HP ต่ำกว่า 100 เวลาเล็งของคันลัวร์จะสั้นลง",
-        "ja": "0Aは安く始めるための竿で、ルアー竿の中で最強ではありません。狙う時間の順位はHP満タンのときの値で、HPが100未満だとルアー竿の狙う時間は短くなります。"
+        "th": "ตัวเลขมาจากการจำลองการสู้ปลา: จุดเริ่มของมาตรวัดแรงตึงกำหนดว่าพลาดได้กี่จังหวะ คันนี้เฉลี่ยเสียไป 0.1 จังหวะต่อชนิด (คันที่ดีที่สุดเสีย 0) ส่วนสายขาดยากกำหนดว่าปลาวิ่งไกลได้แค่ไหนก่อนสายขาด",
+        "en": "The numbers come from simulated fights: the rod sets the fight meter's starting point, which decides how many mistakes you can afford. This rod costs 0.1 mistakes per species on average (the best rod costs 0). Line strength decides how far a fish may run before the line breaks.",
+        "ja": "数値はファイトのシミュレーション結果です。竿はメーターの出だしを決め、許されるミスの数が変わります。この竿は1種あたり平均0.1回分のミスを失います（最良の竿は0）。糸の切れにくさは、魚がどこまで走れるかを決めます。"
       },
       "alternatives": [
         {
           "category": "rod",
           "id": "0C"
-        }
-      ],
-      "sources": [
-        "data/rod-response.json",
-        "docs/rod-lure-practical-research.md",
-        "data/shop-stock-rom.json",
-        "docs/shop-stock-research.md",
-        "data/town-item-acquisition.json",
-        "docs/town-item-acquisition-research.md"
-      ]
-    },
-    "0B": {
-      "label": {
-        "en": "If you already own it and it is enough, keep using it; to buy, 0C gives more time to aim and a line that breaks less easily",
-        "th": "ถ้ามีอยู่แล้วและพอ ใช้ต่อได้ ไม่ต้องซื้อใหม่; ถ้าจะซื้อ คัน 0C มีเวลาเล็งนานกว่าและสายขาดยากกว่า",
-        "ja": "足りるなら継続。買うなら狙う時間が長く糸も切れにくい0C"
-      },
-      "recommendation": {
-        "en": "Use 0B only if you already own it; no shop in the six areas sells it. If you are buying a lure rod, 0C is sold in area 1 and gives more time to aim (100 versus 80) and a line that breaks less easily (×21 versus ×18).",
-        "th": "ใช้คัน 0B เฉพาะเมื่อมีอยู่แล้ว เพราะไม่พบว่าร้านทั้ง 6 ด่านขายคันนี้ ถ้าจะซื้อคันลัวร์ คัน 0C มีขายที่ด่าน 1 และมีเวลาเล็งนานกว่า (100 เทียบกับ 80) กับสายขาดยากกว่า (×21 เทียบกับ ×18)",
-        "ja": "0Bはすでに持っている場合だけ使ってください。全6エリアの店では売っていません。ルアー竿を買うなら、エリア1で売っている0Cは狙う時間が100（0Bは80）、切れにくさが×21（0Bは×18）です。"
-      },
-      "reason": {
-        "en": "The price stored in the game data does not prove a shop sells the rod. 0C is the nearest rod that shops do sell and it is better on both counts.",
-        "th": "ราคาที่เก็บไว้ในข้อมูลเกมไม่ได้แปลว่าร้านขายจริง คัน 0C เป็นตัวเลือกที่ร้านขายและได้ดีกว่าทั้งสองข้อ",
-        "ja": "ゲームデータに入っている価格だけでは、店で売っている証拠になりません。店で買える0Cは、どちらの値も上の次の候補です。"
-      },
-      "alternatives": [
-        {
-          "category": "rod",
-          "id": "0C"
-        }
-      ],
-      "sources": [
-        "data/rod-response.json",
-        "docs/rod-lure-practical-research.md",
-        "data/shop-stock-rom.json",
-        "docs/shop-stock-research.md"
-      ]
-    },
-    "0C": {
-      "label": {
-        "en": "Area 1: more time to aim and a line that breaks less easily than 0A; area 4: compare 0D",
-        "th": "ด่าน 1: มีเวลาเล็งนานกว่าและสายขาดยากกว่าคัน 0A; ด่าน 4 ดูคัน 0D",
-        "ja": "エリア1では0Aより狙う時間が長く糸も切れにくい。エリア4は0Dと比較"
-      },
-      "recommendation": {
-        "en": "In area 1, choose 0C at ¥600 if you want more time to aim and a line that breaks less easily than 0A: 100/×21 versus 70/×15, ¥100 more between new-purchase prices. In area 4, 0D costs ¥650 and gives 120/×24, ¥50 more; but even if you own 0C, buying 0D still costs the full ¥650.",
-        "th": "ที่ด่าน 1 เลือกคัน 0C ราคาเต็ม ¥600 ถ้าอยากได้เวลาเล็งนานกว่าและสายขาดยากกว่าคัน 0A: 100/×21 เทียบกับ 70/×15 แพงกว่า ¥100 เมื่อเทียบราคาซื้อใหม่ ที่ด่าน 4 คัน 0D ราคาเต็ม ¥650 ได้ 120/×24 แพงกว่า ¥50 เมื่อเทียบราคาซื้อใหม่ แต่ต่อให้มีคัน 0C อยู่แล้ว การซื้อคัน 0D ก็ยังต้องจ่ายเต็ม ¥650",
-        "ja": "エリア1で0Aより狙う時間が長く、糸も切れにくい竿がほしいなら、0C（600円）を選びます。70・×15に対して100・×21で、新品価格の差は100円です。エリア4の0Dは650円で120・×24になります。新品価格の差は50円ですが、0Cを持っていても0Dは650円の全額が必要です。"
-      },
-      "reason": {
-        "en": "0C is second-best among lure rods on both counts and is sold in many areas. Aim time is compared at 100 HP; at lower HP it gets shorter.",
-        "th": "คัน 0C ดีเป็นอันดับสองในกลุ่มคันลัวร์ทั้งสองข้อ และขายหลายด่าน เวลาเล็งเทียบที่ HP 100 ถ้า HP ต่ำเวลาเล็งของคันนี้จะสั้นลง",
-        "ja": "0Cはルアー竿の中で、2つの値がどちらも2番目に高く、多くのエリアで売っています。狙う時間はHP100のときの比較で、HPが低いと短くなります。"
-      },
-      "alternatives": [
-        {
-          "category": "rod",
-          "id": "0A"
         },
         {
           "category": "rod",
           "id": "0D"
         }
       ],
+      "startLoss": 0.1,
+      "fight": {
+        "best": [
+          1,
+          2,
+          4,
+          6,
+          7,
+          8,
+          9,
+          11,
+          13,
+          14,
+          18,
+          19,
+          20,
+          24,
+          32,
+          33,
+          36,
+          38,
+          40,
+          45,
+          49,
+          51,
+          52,
+          54,
+          55,
+          58,
+          59,
+          60,
+          61,
+          63,
+          66,
+          69,
+          71,
+          72
+        ],
+        "bad": [
+          3,
+          12
+        ],
+        "short": [
+          6,
+          7,
+          11,
+          13,
+          20,
+          45,
+          54,
+          55,
+          58,
+          59,
+          61
+        ]
+      },
       "sources": [
-        "data/rod-response.json",
-        "docs/rod-lure-practical-research.md",
-        "data/shop-stock-rom.json",
-        "docs/shop-stock-research.md"
+        "data/gear-effects.json",
+        "docs/gear-effects.md",
+        "docs/fight-model.md",
+        "scripts/build_gear_advice.py"
       ]
     },
-    "0D": {
+    "0B": {
       "label": {
-        "en": "Area 4: the lure rod with the most time to aim and the line that breaks least easily",
-        "th": "ด่าน 4: คันลัวร์ที่มีเวลาเล็งนานสุดและสายขาดยากสุด",
-        "ja": "エリア4：ルアー竿で狙う時間が最長、糸も最も切れにくい"
+        "th": "ไม่มีขายที่ไหนเลย; ถ้ามีอยู่แล้ว: เริ่มสู้ดีสุดกับ 34 ชนิด; เสียเปรียบปลา 16–35 ซม. และ ปลาเกิน 35 ซม. รวม 2 ชนิด",
+        "en": "Not sold anywhere; if you own it: best start against 34 species; worse against fish of 16–35 cm and fish over 35 cm (2 species)",
+        "ja": "どの店にも売っていません。持っている場合：34種で最良のスタート、16〜35cmの魚と35cm超の魚（計2種）は不利"
       },
       "recommendation": {
-        "en": "Area 4 sells 0D for ¥650. It has the most time to aim (120) and the strongest line (×24) of the lure rods. Compared with a new 0C at ¥600, you get 20 more aim and ×3 more line strength for ¥50 more; if you already own 0C, 0D still costs the full ¥650, not ¥50.",
-        "th": "ด่าน 4 ขายคัน 0D ราคาเต็ม ¥650 เป็นคันลัวร์ที่มีเวลาเล็งนานสุด (120) และสายขาดยากสุด (×24) เทียบกับคัน 0C ราคาซื้อใหม่ ¥600 จะได้เวลาเล็งเพิ่ม 20 และสายขาดยากขึ้น ×3 โดยจ่ายเพิ่ม ¥50 แต่ถ้ามีคัน 0C อยู่แล้ว คัน 0D ก็ยังต้องจ่ายเต็ม ¥650 ไม่ใช่ ¥50",
-        "ja": "エリア4で0Dは650円です。ルアー竿の中で狙う時間が最長（120）、切れにくさも最大（×24）です。新品の0C（600円）と比べると、新品価格の差50円で、狙う時間が20、切れにくさが×3上がります。0Cを持っていても0Dは650円で、50円の差額で買えるわけではありません。"
+        "th": "สายขาดยาก ×18: ปลาวิ่งหนีได้ไกลแค่ไหนก่อนสายขาดและเสียตะขอ คันนี้พอกับปลา 27 จาก 38 ชนิด ส่วนอีก 11 ชนิด (เช่น โออูนางิ, โคคุเร็น, อาคาเมะ) วิ่งไกลกว่านั้น ต้องใช้คันที่ยาวกว่า. ตอนเริ่มสู้ปลา คันนี้ได้เปรียบสุดกับปลา 34 จาก 38 ชนิด แต่เสียเปรียบปลา 16–35 ซม. และ ปลาเกิน 35 ซม. รวม 2 ชนิด เช่น ปลาอุไก, ยามาเมะ เฉลี่ยทุกชนิดพลาดได้น้อยลง 0.1 จังหวะ. เวลาเล็ง 80 เมื่อ HP เต็ม 100 ถ้า HP ต่ำกว่านั้นเวลาเล็งสั้นลง เติม HP ก่อนตก. ไม่มีขายในร้านทั้ง 6 ด่าน. ปลาที่สายไม่พอให้ใช้ คัน 0C (¥600, ด่าน 1, 2, 3, 4, 6) หรือ คัน 0D (¥650, ด่าน 4). ถ้ามีคันนี้อยู่แล้วใช้ต่อได้ ไม่ต้องซื้อใหม่.",
+        "en": "Line strength ×18 is how far a fish can run before the line breaks and the hook is lost. This rod holds 27 of 38 species; the other 11 species (e.g. Oo-unagi, Kokuren, Akame) run farther, so they need a longer rod. It gives the best fight start against 34 of 38 species but is worse against fish of 16–35 cm and fish over 35 cm (2 species, e.g. Ugui, Yamame); averaged over all species it costs 0.1 mistakes you could otherwise afford. Time to aim is 80 at full 100 HP and shorter below that, so restore HP before you fish. It is not sold in any of the six areas. For fish this line cannot hold, use rod 0C (¥600, areas 1, 2, 3, 4, 6) or rod 0D (¥650, area 4). If you already own this rod, keep using it.",
+        "ja": "糸の切れにくさ×18は、魚がどこまで走っても糸が切れて針を失わない距離です。この竿は38種中27種に足ります。残り11種（例：オオウナギ、コクレン、アカメ）はもっと走るので、長い竿が必要です。38種中34種でファイトの出だしが最良ですが、16〜35cmの魚と35cm超の魚（計2種、例：ウグイ、ヤマメ）では不利です。全種の平均で、許されるミスを0.1回分失います。狙う時間はHP100のとき80で、HPが減ると短くなります。釣る前にHPを回復してください。全6エリアのどの店にも売っていません。糸が足りない魚には竿0C（600円、エリア1・2・3・4・6）か竿0D（650円、エリア4）を使います。すでに持っているなら、そのまま使えます。"
       },
       "reason": {
-        "en": "This is the maximum for just those two lure-rod values. It does not mean more bites or the best rod overall. Aim time is compared at 100 HP.",
-        "th": "ตัวเลขนี้สูงสุดเฉพาะสองข้อของคันลัวร์ คือเวลาเล็งกับความยากที่สายจะขาด ไม่ได้แปลว่าปลากินมากขึ้นหรือเป็นคันที่ดีที่สุดโดยรวม เวลาเล็งเทียบที่ HP 100",
-        "ja": "最大なのは狙う時間と糸の切れにくさの2点だけで、食いつきが増える、総合で最強という意味ではありません。狙う時間はHP100のときの比較です。"
+        "th": "ตัวเลขมาจากการจำลองการสู้ปลา: จุดเริ่มของมาตรวัดแรงตึงกำหนดว่าพลาดได้กี่จังหวะ คันนี้เฉลี่ยเสียไป 0.1 จังหวะต่อชนิด (คันที่ดีที่สุดเสีย 0) ส่วนสายขาดยากกำหนดว่าปลาวิ่งไกลได้แค่ไหนก่อนสายขาด",
+        "en": "The numbers come from simulated fights: the rod sets the fight meter's starting point, which decides how many mistakes you can afford. This rod costs 0.1 mistakes per species on average (the best rod costs 0). Line strength decides how far a fish may run before the line breaks.",
+        "ja": "数値はファイトのシミュレーション結果です。竿はメーターの出だしを決め、許されるミスの数が変わります。この竿は1種あたり平均0.1回分のミスを失います（最良の竿は0）。糸の切れにくさは、魚がどこまで走れるかを決めます。"
       },
       "alternatives": [
         {
           "category": "rod",
           "id": "0C"
+        },
+        {
+          "category": "rod",
+          "id": "0D"
         }
       ],
+      "startLoss": 0.1,
+      "fight": {
+        "best": [
+          1,
+          2,
+          4,
+          6,
+          7,
+          8,
+          9,
+          11,
+          13,
+          14,
+          18,
+          19,
+          20,
+          24,
+          32,
+          33,
+          36,
+          38,
+          40,
+          45,
+          49,
+          51,
+          52,
+          54,
+          55,
+          58,
+          59,
+          60,
+          61,
+          63,
+          66,
+          69,
+          71,
+          72
+        ],
+        "bad": [
+          3,
+          12
+        ],
+        "short": [
+          6,
+          7,
+          11,
+          13,
+          20,
+          45,
+          54,
+          55,
+          58,
+          59,
+          61
+        ]
+      },
       "sources": [
-        "data/rod-response.json",
-        "docs/rod-lure-practical-research.md",
-        "data/shop-stock-rom.json",
-        "docs/shop-stock-research.md"
+        "data/gear-effects.json",
+        "docs/gear-effects.md",
+        "docs/fight-model.md",
+        "scripts/build_gear_advice.py"
+      ]
+    },
+    "0C": {
+      "label": {
+        "th": "เมื่อตกปลาที่สาย ×21 พอ (27 จาก 38 ชนิด); เริ่มสู้ดีสุดกับ 32 ชนิด; เสียเปรียบปลาไม่เกิน 15 ซม. รวม 4 ชนิด",
+        "en": "For fish that line strength ×21 holds (27 of 38 species); best start against 32 species; worse against fish up to 15 cm (4 species)",
+        "ja": "糸の切れにくさ×21で足りる魚（38種中27種）向け。32種で最良のスタート、15cm以下の魚（計4種）は不利"
+      },
+      "recommendation": {
+        "th": "สายขาดยาก ×21: ปลาวิ่งหนีได้ไกลแค่ไหนก่อนสายขาดและเสียตะขอ คันนี้พอกับปลา 27 จาก 38 ชนิด ส่วนอีก 11 ชนิด (เช่น โออูนางิ, โคคุเร็น, อาคาเมะ) วิ่งไกลกว่านั้น ต้องใช้คันที่ยาวกว่า. ตอนเริ่มสู้ปลา คันนี้ได้เปรียบสุดกับปลา 32 จาก 38 ชนิด แต่เสียเปรียบปลาไม่เกิน 15 ซม. รวม 4 ชนิด เช่น คุซะฟุกุ, โอยะนิรามิ, ปลาอาบุระฮายะ เฉลี่ยทุกชนิดพลาดได้น้อยลง 0.2 จังหวะ. เวลาเล็ง 100 เมื่อ HP เต็ม 100 ถ้า HP ต่ำกว่านั้นเวลาเล็งสั้นลง เติม HP ก่อนตก. ราคา ¥600 ขายที่ด่าน 1, 2, 3, 4, 6. ปลาที่สายไม่พอให้ใช้ คัน 0D (¥650, ด่าน 4). ถ้ามีคันนี้อยู่แล้วใช้ต่อได้ ไม่ต้องซื้อใหม่.",
+        "en": "Line strength ×21 is how far a fish can run before the line breaks and the hook is lost. This rod holds 27 of 38 species; the other 11 species (e.g. Oo-unagi, Kokuren, Akame) run farther, so they need a longer rod. It gives the best fight start against 32 of 38 species but is worse against fish up to 15 cm (4 species, e.g. Kusafugu, Oyanirami, Aburahaya); averaged over all species it costs 0.2 mistakes you could otherwise afford. Time to aim is 100 at full 100 HP and shorter below that, so restore HP before you fish. Price ¥600; sold in areas 1, 2, 3, 4, 6. For fish this line cannot hold, use rod 0D (¥650, area 4). If you already own this rod, keep using it.",
+        "ja": "糸の切れにくさ×21は、魚がどこまで走っても糸が切れて針を失わない距離です。この竿は38種中27種に足ります。残り11種（例：オオウナギ、コクレン、アカメ）はもっと走るので、長い竿が必要です。38種中32種でファイトの出だしが最良ですが、15cm以下の魚（計4種、例：クサフグ、オヤニラミ、アブラハヤ）では不利です。全種の平均で、許されるミスを0.2回分失います。狙う時間はHP100のとき100で、HPが減ると短くなります。釣る前にHPを回復してください。価格600円。エリア1・2・3・4・6で販売。糸が足りない魚には竿0D（650円、エリア4）を使います。すでに持っているなら、そのまま使えます。"
+      },
+      "reason": {
+        "th": "ตัวเลขมาจากการจำลองการสู้ปลา: จุดเริ่มของมาตรวัดแรงตึงกำหนดว่าพลาดได้กี่จังหวะ คันนี้เฉลี่ยเสียไป 0.2 จังหวะต่อชนิด (คันที่ดีที่สุดเสีย 0) ส่วนสายขาดยากกำหนดว่าปลาวิ่งไกลได้แค่ไหนก่อนสายขาด",
+        "en": "The numbers come from simulated fights: the rod sets the fight meter's starting point, which decides how many mistakes you can afford. This rod costs 0.2 mistakes per species on average (the best rod costs 0). Line strength decides how far a fish may run before the line breaks.",
+        "ja": "数値はファイトのシミュレーション結果です。竿はメーターの出だしを決め、許されるミスの数が変わります。この竿は1種あたり平均0.2回分のミスを失います（最良の竿は0）。糸の切れにくさは、魚がどこまで走れるかを決めます。"
+      },
+      "alternatives": [
+        {
+          "category": "rod",
+          "id": "0D"
+        }
+      ],
+      "startLoss": 0.2,
+      "fight": {
+        "best": [
+          1,
+          2,
+          3,
+          4,
+          6,
+          7,
+          8,
+          9,
+          11,
+          12,
+          13,
+          14,
+          18,
+          19,
+          20,
+          24,
+          32,
+          36,
+          38,
+          40,
+          45,
+          49,
+          51,
+          52,
+          54,
+          55,
+          58,
+          59,
+          61,
+          66,
+          71,
+          72
+        ],
+        "bad": [
+          33,
+          60,
+          63,
+          69
+        ],
+        "short": [
+          6,
+          7,
+          11,
+          13,
+          20,
+          45,
+          54,
+          55,
+          58,
+          59,
+          61
+        ]
+      },
+      "sources": [
+        "data/gear-effects.json",
+        "docs/gear-effects.md",
+        "docs/fight-model.md",
+        "scripts/build_gear_advice.py"
+      ]
+    },
+    "0D": {
+      "label": {
+        "th": "เมื่อต้องตกปลาใหญ่: สาย ×24 ยาวพอกับปลาทุกชนิด; เริ่มสู้ดีสุดกับ 19 ชนิด; เสียเปรียบปลาไม่เกิน 15 ซม. และ ปลา 16–35 ซม. รวม 16 ชนิด",
+        "en": "For big fish: line strength ×24 is long enough for every species; best start against 19 species; worse against fish up to 15 cm and fish of 16–35 cm (16 species)",
+        "ja": "大物向け。糸の切れにくさ×24で全魚種に足りる。19種で最良のスタート、15cm以下の魚と16〜35cmの魚（計16種）は不利"
+      },
+      "recommendation": {
+        "th": "สายขาดยาก ×24: ปลาวิ่งหนีได้ไกลแค่ไหนก่อนสายขาดและเสียตะขอ คันนี้ยาวพอกับปลาทุกชนิด. ตอนเริ่มสู้ปลา คันนี้ได้เปรียบสุดกับปลา 19 จาก 38 ชนิด แต่เสียเปรียบปลาไม่เกิน 15 ซม. และ ปลา 16–35 ซม. รวม 16 ชนิด เช่น ฮาเซะ, ตะพาบน้ำ, ยามาเมะ เฉลี่ยทุกชนิดพลาดได้น้อยลง 1 จังหวะ. เวลาเล็ง 120 เมื่อ HP เต็ม 100 ถ้า HP ต่ำกว่านั้นเวลาเล็งสั้นลง เติม HP ก่อนตก. ราคา ¥650 ขายที่ด่าน 4 (ร้านคันเบ็ดพิเศษ). ถ้ามีคันนี้อยู่แล้วใช้ต่อได้ ไม่ต้องซื้อใหม่.",
+        "en": "Line strength ×24 is how far a fish can run before the line breaks and the hook is lost. This rod is long enough for every species. It gives the best fight start against 19 of 38 species but is worse against fish up to 15 cm and fish of 16–35 cm (16 species, e.g. Haze, Suppon, Yamame); averaged over all species it costs 1 mistakes you could otherwise afford. Time to aim is 120 at full 100 HP and shorter below that, so restore HP before you fish. Price ¥650; sold in area 4 (special rod seller). If you already own this rod, keep using it.",
+        "ja": "糸の切れにくさ×24は、魚がどこまで走っても糸が切れて針を失わない距離です。この竿はどの魚にも十分です。38種中19種でファイトの出だしが最良ですが、15cm以下の魚と16〜35cmの魚（計16種、例：ハゼ、スッポン、ヤマメ）では不利です。全種の平均で、許されるミスを1回分失います。狙う時間はHP100のとき120で、HPが減ると短くなります。釣る前にHPを回復してください。価格650円。エリア4で販売（特別な竿の販売所）。すでに持っているなら、そのまま使えます。"
+      },
+      "reason": {
+        "th": "ตัวเลขมาจากการจำลองการสู้ปลา: จุดเริ่มของมาตรวัดแรงตึงกำหนดว่าพลาดได้กี่จังหวะ คันนี้เฉลี่ยเสียไป 1 จังหวะต่อชนิด (คันที่ดีที่สุดเสีย 0) ส่วนสายขาดยากกำหนดว่าปลาวิ่งไกลได้แค่ไหนก่อนสายขาด",
+        "en": "The numbers come from simulated fights: the rod sets the fight meter's starting point, which decides how many mistakes you can afford. This rod costs 1 mistakes per species on average (the best rod costs 0). Line strength decides how far a fish may run before the line breaks.",
+        "ja": "数値はファイトのシミュレーション結果です。竿はメーターの出だしを決め、許されるミスの数が変わります。この竿は1種あたり平均1回分のミスを失います（最良の竿は0）。糸の切れにくさは、魚がどこまで走れるかを決めます。"
+      },
+      "alternatives": [],
+      "startLoss": 1,
+      "fight": {
+        "best": [
+          1,
+          2,
+          6,
+          8,
+          9,
+          11,
+          13,
+          19,
+          20,
+          36,
+          38,
+          45,
+          49,
+          51,
+          54,
+          55,
+          58,
+          59,
+          61
+        ],
+        "bad": [
+          3,
+          4,
+          5,
+          14,
+          15,
+          18,
+          24,
+          32,
+          33,
+          40,
+          52,
+          60,
+          63,
+          69,
+          71,
+          72
+        ],
+        "short": []
+      },
+      "sources": [
+        "data/gear-effects.json",
+        "docs/gear-effects.md",
+        "docs/fight-model.md",
+        "scripts/build_gear_advice.py"
       ]
     },
     "0E": {
       "label": {
-        "en": "Buy for a low-budget casting start; if you already own it and aim time is enough, keep using it",
-        "th": "ซื้อถ้าเริ่มสายหวดด้วยงบน้อย; ถ้ามีอยู่แล้วและเล็งทัน ใช้ต่อได้ ไม่ต้องซื้อใหม่",
-        "ja": "投げ釣りを安く始めるなら。狙う時間が足りれば継続"
+        "th": "เมื่อตกปลาที่สาย ×18 พอ (25 จาก 30 ชนิด); เริ่มสู้ดีสุดกับ 24 ชนิด; เสียเปรียบปลา 16–35 ซม. รวม 3 ชนิด",
+        "en": "For fish that line strength ×18 holds (25 of 30 species); best start against 24 species; worse against fish of 16–35 cm (3 species)",
+        "ja": "糸の切れにくさ×18で足りる魚（30種中25種）向け。24種で最良のスタート、16〜35cmの魚（計3種）は不利"
       },
       "recommendation": {
-        "en": "To start casting in area 1, choose 0E at ¥250, the casting rod sold there. Areas 4–6 sell both 0E and 0F: 0F costs ¥600 and raises 70/×18 to 100/×21, ¥350 more between new-purchase prices. Choose 0E if the low price matters more than the extra aim time and line strength.",
-        "th": "ถ้าจะเริ่มสายหวดที่ด่าน 1 เลือกคัน 0E ราคาเต็ม ¥250 ซึ่งเป็นคันหวดที่ร้านด่านนั้นขาย ที่ด่าน 4–6 มีทั้งคัน 0E และคัน 0F คัน 0F ราคาเต็ม ¥600 ดีขึ้นจาก 70/×18 เป็น 100/×21 แพงกว่า ¥350 เมื่อเทียบราคาซื้อใหม่ เลือกคัน 0E ถ้าราคาถูกสำคัญกว่าเวลาเล็งและสายขาดยากที่เพิ่มขึ้น",
-        "ja": "エリア1で投げ釣りを始めるなら、店で売っている0E（250円）を選びます。エリア4〜6には0Eと0Fがあり、0Fは600円で70・×18から100・×21に上がります。新品価格の差350円を払うかどうかは、狙う時間と切れにくさの向上が必要かで決めます。"
+        "th": "สายขาดยาก ×18: ปลาวิ่งหนีได้ไกลแค่ไหนก่อนสายขาดและเสียตะขอ คันนี้พอกับปลา 25 จาก 30 ชนิด ส่วนอีก 5 ชนิด (เช่น โออูนางิ, อาโอะอุโอะ, อูนางิ) วิ่งไกลกว่านั้น ต้องใช้คันที่ยาวกว่า. ตอนเริ่มสู้ปลา คันนี้ได้เปรียบสุดกับปลา 24 จาก 30 ชนิด แต่เสียเปรียบปลา 16–35 ซม. รวม 3 ชนิด เช่น ปลาดงโกะ, ปลาคามะสึกะ, ปลายามาโนะคามิ เฉลี่ยทุกชนิดพลาดได้น้อยลง 0.2 จังหวะ. เวลาเล็ง 70 เมื่อ HP เต็ม 100 ถ้า HP ต่ำกว่านั้นเวลาเล็งสั้นลง เติม HP ก่อนตก. ราคา ¥250 ขายที่ด่าน 1, 3, 4, 5, 6. ปลาที่สายไม่พอให้ใช้ คัน 0F (¥600, ด่าน 2, 4, 5, 6) หรือ คัน 10 (¥1,500, ด่าน 6). ถ้ามีคันนี้อยู่แล้วใช้ต่อได้ ไม่ต้องซื้อใหม่.",
+        "en": "Line strength ×18 is how far a fish can run before the line breaks and the hook is lost. This rod holds 25 of 30 species; the other 5 species (e.g. Oo-unagi, Aouo, Unagi) run farther, so they need a longer rod. It gives the best fight start against 24 of 30 species but is worse against fish of 16–35 cm (3 species, e.g. Donko, Kamatsuka, Yamanokami); averaged over all species it costs 0.2 mistakes you could otherwise afford. Time to aim is 70 at full 100 HP and shorter below that, so restore HP before you fish. Price ¥250; sold in areas 1, 3, 4, 5, 6. For fish this line cannot hold, use rod 0F (¥600, areas 2, 4, 5, 6) or rod 10 (¥1,500, area 6). If you already own this rod, keep using it.",
+        "ja": "糸の切れにくさ×18は、魚がどこまで走っても糸が切れて針を失わない距離です。この竿は30種中25種に足ります。残り5種（例：オオウナギ、アオウオ、ウナギ）はもっと走るので、長い竿が必要です。30種中24種でファイトの出だしが最良ですが、16〜35cmの魚（計3種、例：ドンコ、カマツカ、ヤマノカミ）では不利です。全種の平均で、許されるミスを0.2回分失います。狙う時間はHP100のとき70で、HPが減ると短くなります。釣る前にHPを回復してください。価格250円。エリア1・3・4・5・6で販売。糸が足りない魚には竿0F（600円、エリア2・4・5・6）か竿10（1,500円、エリア6）を使います。すでに持っているなら、そのまま使えます。"
       },
       "reason": {
-        "en": "0E is the cheapest casting rod in area 1. The group comparison is at full HP; below 100 HP casting rods get less time to aim.",
-        "th": "คัน 0E เป็นคันหวดที่ถูกสุดในด่าน 1 การเทียบในกลุ่มใช้ HP เต็ม ถ้า HP ต่ำกว่า 100 เวลาเล็งของคันหวดจะสั้นลง",
-        "ja": "0Eはエリア1で売っている投げ竿の中で最安です。グループの比較はHP満タンのときで、HPが100未満だと投げ竿の狙う時間は短くなります。"
+        "th": "ตัวเลขมาจากการจำลองการสู้ปลา: จุดเริ่มของมาตรวัดแรงตึงกำหนดว่าพลาดได้กี่จังหวะ คันนี้เฉลี่ยเสียไป 0.2 จังหวะต่อชนิด (คันที่ดีที่สุดเสีย 0) ส่วนสายขาดยากกำหนดว่าปลาวิ่งไกลได้แค่ไหนก่อนสายขาด",
+        "en": "The numbers come from simulated fights: the rod sets the fight meter's starting point, which decides how many mistakes you can afford. This rod costs 0.2 mistakes per species on average (the best rod costs 0). Line strength decides how far a fish may run before the line breaks.",
+        "ja": "数値はファイトのシミュレーション結果です。竿はメーターの出だしを決め、許されるミスの数が変わります。この竿は1種あたり平均0.2回分のミスを失います（最良の竿は0）。糸の切れにくさは、魚がどこまで走れるかを決めます。"
       },
       "alternatives": [
         {
           "category": "rod",
           "id": "0F"
-        }
-      ],
-      "sources": [
-        "data/rod-response.json",
-        "docs/rod-lure-practical-research.md",
-        "data/shop-stock-rom.json",
-        "docs/shop-stock-research.md"
-      ]
-    },
-    "0F": {
-      "label": {
-        "en": "From area 2: buy for more time to aim than 0E; if you already own it, keep using it",
-        "th": "ด่าน 2 เป็นต้นไป: ซื้อถ้าอยากมีเวลาเล็งนานกว่าคัน 0E; ถ้าพอแล้วใช้ต่อได้ ไม่ต้องซื้อใหม่",
-        "ja": "エリア2以降：0Eより狙う時間を伸ばしたいなら。足りれば継続"
-      },
-      "recommendation": {
-        "en": "Area 2 is the first to sell 0F, at ¥600. Where 0E is also sold, 0F raises 70/×18 to 100/×21; compare full prices, and do not assume a trade-in discount. In area 6, 10 costs ¥1,500 for 120/×24, another ¥900 more between new-purchase prices. Keep using 0F if its aim time is enough.",
-        "th": "ด่าน 2 เป็นด่านแรกที่ร้านขายคัน 0F ราคาเต็ม ¥600 ในด่านที่มีคัน 0E ด้วย คัน 0F ดีขึ้นจาก 70/×18 เป็น 100/×21 ให้เทียบราคาเต็ม อย่าคิดว่าจะมีส่วนลดเมื่อเอาคันเก่าไปแลก ที่ด่าน 6 คัน 10 ราคาเต็ม ¥1,500 ได้ 120/×24 แพงกว่าอีก ¥900 เมื่อเทียบราคาซื้อใหม่ ถ้าเวลาเล็งของคัน 0F พอแล้ว ใช้ต่อได้ ไม่ต้องซื้อใหม่",
-        "ja": "エリア2で初めて売られる0Fは600円です。0Eもあるエリアでは、70・×18から100・×21に上がります。下取りは考えず、全額どうしで比べてください。エリア6の10は1,500円で120・×24になり、新品価格の差はさらに900円です。0Fで足りるなら使い続けてください。"
-      },
-      "reason": {
-        "en": "0F is the middle of the three casting rods: a clear step above 0E without paying the full price of the best one, 10.",
-        "th": "คัน 0F อยู่กลางกลุ่มคันหวดสามคัน ดีกว่าคัน 0E ชัดเจนโดยไม่ต้องจ่ายราคาเต็มของคัน 10 ที่ดีที่สุด",
-        "ja": "0Fは投げ竿3本の中間です。10の全額を払わずに、0Eより効果をはっきり上げられます。"
-      },
-      "alternatives": [
-        {
-          "category": "rod",
-          "id": "0E"
         },
         {
           "category": "rod",
           "id": "10"
         }
       ],
+      "startLoss": 0.2,
+      "fight": {
+        "best": [
+          13,
+          16,
+          17,
+          18,
+          25,
+          29,
+          30,
+          34,
+          35,
+          36,
+          37,
+          38,
+          43,
+          44,
+          45,
+          46,
+          48,
+          49,
+          51,
+          52,
+          58,
+          59,
+          62,
+          70
+        ],
+        "bad": [
+          14,
+          24,
+          42
+        ],
+        "short": [
+          13,
+          45,
+          48,
+          58,
+          59
+        ]
+      },
       "sources": [
-        "data/rod-response.json",
-        "docs/rod-lure-practical-research.md",
-        "data/shop-stock-rom.json",
-        "docs/shop-stock-research.md"
+        "data/gear-effects.json",
+        "docs/gear-effects.md",
+        "docs/fight-model.md",
+        "scripts/build_gear_advice.py"
+      ]
+    },
+    "0F": {
+      "label": {
+        "th": "เมื่อตกปลาที่สาย ×21 พอ (26 จาก 30 ชนิด); เริ่มสู้ดีสุดกับ 18 ชนิด; เสียเปรียบปลาไม่เกิน 15 ซม. รวม 9 ชนิด",
+        "en": "For fish that line strength ×21 holds (26 of 30 species); best start against 18 species; worse against fish up to 15 cm (9 species)",
+        "ja": "糸の切れにくさ×21で足りる魚（30種中26種）向け。18種で最良のスタート、15cm以下の魚（計9種）は不利"
+      },
+      "recommendation": {
+        "th": "สายขาดยาก ×21: ปลาวิ่งหนีได้ไกลแค่ไหนก่อนสายขาดและเสียตะขอ คันนี้พอกับปลา 26 จาก 30 ชนิด ส่วนอีก 4 ชนิด (เช่น โออูนางิ, อาโอะอุโอะ, อูนางิ) วิ่งไกลกว่านั้น ต้องใช้คันที่ยาวกว่า. ตอนเริ่มสู้ปลา คันนี้ได้เปรียบสุดกับปลา 18 จาก 30 ชนิด แต่เสียเปรียบปลาไม่เกิน 15 ซม. รวม 9 ชนิด เช่น อาคาซะ, ปลาชิมะโดโจ, โดโจ เฉลี่ยทุกชนิดพลาดได้น้อยลง 0.4 จังหวะ. เวลาเล็ง 100 เมื่อ HP เต็ม 100 ถ้า HP ต่ำกว่านั้นเวลาเล็งสั้นลง เติม HP ก่อนตก. ราคา ¥600 ขายที่ด่าน 2, 4, 5, 6. ปลาที่สายไม่พอให้ใช้ คัน 10 (¥1,500, ด่าน 6). ถ้ามีคันนี้อยู่แล้วใช้ต่อได้ ไม่ต้องซื้อใหม่.",
+        "en": "Line strength ×21 is how far a fish can run before the line breaks and the hook is lost. This rod holds 26 of 30 species; the other 4 species (e.g. Oo-unagi, Aouo, Unagi) run farther, so they need a longer rod. It gives the best fight start against 18 of 30 species but is worse against fish up to 15 cm (9 species, e.g. Akaza, Shimadojou, Dojou); averaged over all species it costs 0.4 mistakes you could otherwise afford. Time to aim is 100 at full 100 HP and shorter below that, so restore HP before you fish. Price ¥600; sold in areas 2, 4, 5, 6. For fish this line cannot hold, use rod 10 (¥1,500, area 6). If you already own this rod, keep using it.",
+        "ja": "糸の切れにくさ×21は、魚がどこまで走っても糸が切れて針を失わない距離です。この竿は30種中26種に足ります。残り4種（例：オオウナギ、アオウオ、ウナギ）はもっと走るので、長い竿が必要です。30種中18種でファイトの出だしが最良ですが、15cm以下の魚（計9種、例：アカザ、シマドジョウ、ドジョウ）では不利です。全種の平均で、許されるミスを0.4回分失います。狙う時間はHP100のとき100で、HPが減ると短くなります。釣る前にHPを回復してください。価格600円。エリア2・4・5・6で販売。糸が足りない魚には竿10（1,500円、エリア6）を使います。すでに持っているなら、そのまま使えます。"
+      },
+      "reason": {
+        "th": "ตัวเลขมาจากการจำลองการสู้ปลา: จุดเริ่มของมาตรวัดแรงตึงกำหนดว่าพลาดได้กี่จังหวะ คันนี้เฉลี่ยเสียไป 0.4 จังหวะต่อชนิด (คันที่ดีที่สุดเสีย 0) ส่วนสายขาดยากกำหนดว่าปลาวิ่งไกลได้แค่ไหนก่อนสายขาด",
+        "en": "The numbers come from simulated fights: the rod sets the fight meter's starting point, which decides how many mistakes you can afford. This rod costs 0.4 mistakes per species on average (the best rod costs 0). Line strength decides how far a fish may run before the line breaks.",
+        "ja": "数値はファイトのシミュレーション結果です。竿はメーターの出だしを決め、許されるミスの数が変わります。この竿は1種あたり平均0.4回分のミスを失います（最良の竿は0）。糸の切れにくさは、魚がどこまで走れるかを決めます。"
+      },
+      "alternatives": [
+        {
+          "category": "rod",
+          "id": "10"
+        }
+      ],
+      "startLoss": 0.4,
+      "fight": {
+        "best": [
+          13,
+          14,
+          18,
+          24,
+          29,
+          36,
+          37,
+          38,
+          42,
+          45,
+          46,
+          48,
+          49,
+          51,
+          52,
+          58,
+          59,
+          62
+        ],
+        "bad": [
+          16,
+          17,
+          25,
+          30,
+          34,
+          35,
+          43,
+          44,
+          70
+        ],
+        "short": [
+          13,
+          48,
+          58,
+          59
+        ]
+      },
+      "sources": [
+        "data/gear-effects.json",
+        "docs/gear-effects.md",
+        "docs/fight-model.md",
+        "scripts/build_gear_advice.py"
       ]
     }
   }

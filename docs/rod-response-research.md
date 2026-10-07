@@ -69,6 +69,8 @@ The equality comparison and numeric IDs come from rod records and code in the RO
 
 ## Rods that lead on traced fields
 
+> **Corrected 2026-10-07 — see [gear-effects.md](gear-effects.md).** "Not a tested best gear ranking", "not evidence of a stronger rod" and "not a measured universal catch-rate increase" are superseded. Selector 0 rods help fish up to 15 cm, selector 1 rods help fish of 16..35 cm, selector 2 rods cost 1.0 to 1.7 mistakes on average on small and mid-size fish; reach (the +3 value) decides tackle loss for big fish (the giant eel needs reach 24). The table of leading rods is replaced by the per-fish kits in `data/gear-effects.json`.
+
 These rods have the largest known +2 hold-time cutoff and/or +3 reach value inside a style. They are not a tested “best gear” ranking: a longer hold-time window is not proven to improve the cast or catch, response-code direction is unresolved, and two rod bytes remain unexplained.
 
 | Style | Rods leading on listed internal fields | Highest raw +2 hold-time cutoff | Highest traced reach | Fish-match branch | Reading |
@@ -82,6 +84,8 @@ These rods have the largest known +2 hold-time cutoff and/or +3 reach value insi
 For an Ayu target, rod 14 has a longer raw hold-time cutoff and higher +3 than rod 07; both match ID 38 and use response code 1. That means the aim step can stay active longer on rod 14, but no better cast or catch result has been established. For long reach in the same style, rods 08 and 15 lead, with different hold-time cutoff and fish-ID branches.
 
 ## Limits and evidence status
+
+> **Corrected 2026-10-07 — see [gear-effects.md](gear-effects.md).** "No consistent good/bad direction has been demonstrated for codes 0, 1, and 2" and "This subtask did not run matched combat trials across rods" are outdated: matched trials in the frame-exact engine show the direction for every code, per fish size band.
 
 - Raw table bytes and offsets are reproducible with scripts/extract_rod_response.py and the exact original ROM hash above.
 - The hold-time cutoff, range boundary, equality branch, and selector transformations are static deductions from original ROM code.

@@ -3,7 +3,7 @@ function locationCopy(ctx) {
     th: {
       pin: 'รูปไอเท็มชี้ตำแหน่งที่ต้องไป',
       forage:
-        'รูปเหยื่อชี้ช่องตัวอย่างที่ค้นหาได้ ถ้ามีสองรูปคือผลลัพธ์ทางเลือก ไม่ได้รับทั้งคู่ ขยับช่องก่อนค้นซ้ำ',
+        'รูปเหยื่อชี้ช่องบนพื้นดินแห้งที่ใช้แว่นขยายได้ ต้องยืนบนบก ในน้ำใช้ไม่ได้ ถ้ามีสองรูปคือผลลัพธ์ทางเลือก ไม่ได้รับทั้งคู่ ขยับช่องก่อนค้นซ้ำ',
       open: 'เปิดภาพบริเวณนี้เต็ม',
       full: 'เปิดภาพฉากทั้งด่าน',
       window: 'ยืนใช้ไอเท็มในช่วง',
@@ -11,7 +11,7 @@ function locationCopy(ctx) {
     en: {
       pin: 'The item portrait marks where to go.',
       forage:
-        'Bait portraits mark an example search tile. Two portraits mean alternative results, not both at once. Move to another tile before searching again.',
+        'Bait portraits mark a dry-land tile where the glass works. Stand on land; it does not work in water. Two portraits mean alternative results, not both at once. Move to another tile before searching again.',
       open: 'Open this location image',
       full: 'Open full area terrain',
       window: 'Stand and use the item within',
@@ -19,7 +19,7 @@ function locationCopy(ctx) {
     ja: {
       pin: '道具画像が目的の場所を示す。',
       forage:
-        'エサ画像は探索できるタイル例。2枚なら結果の候補で、両方同時ではない。再探索前に別タイルへ移動する。',
+        'エサ画像は虫メガネが使える陸地のタイル。水の中では使えないので陸地に立つ。2枚なら結果の候補で、両方同時ではない。再探索前に別タイルへ移動する。',
       open: 'この場所の画像を開く',
       full: 'エリア全体の地形を開く',
       window: 'この範囲で道具を使う',

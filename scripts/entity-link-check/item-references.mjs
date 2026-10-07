@@ -75,11 +75,16 @@ function checkRodNamesMatchBuild() {
 }
 
 function checkSamples() {
-  const rod01 = rods.find((item) => item.id === '01')
-  assert(rod01.rodDecision.label.th.includes('คันคาร์บอนน้ำใส 5.3m'))
-  assert(rod01.rodDecision.label.en.includes('Clear stream carbon rod 5.3 m'))
-  assert(rod01.rodDecision.label.ja.includes('清流カーボン竿5.3m'))
-  assert(!/(?<![\w×¥])04(?!\w)/.test(rod01.rodDecision.label.th))
+  // Rod 03's label points to rod 09; it must say the rod's name, not its ID.
+  const rod03 = rods.find((item) => item.id === '03')
+  for (const lang of locales) {
+    const name = itemRefs.table.get('rod:09')[lang]
+    assert(
+      rod03.rodDecision.label[lang].includes(name),
+      `Rod 03 label should name ${name} (${lang})`,
+    )
+  }
+  assert(!/(?<![\w×¥])09(?!\w)/.test(rod03.rodDecision.label.th))
 }
 
 // Building the selected-area advice registers each rod's name, as it does in the browser.

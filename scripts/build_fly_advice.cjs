@@ -425,6 +425,12 @@ const index = decisions.sections.findIndex(section => section.id === 'fly_bundle
 if (index < 0) throw new Error('fly_bundle_choice missing');
 decisions.sections[index] = decision;
 
+// The file-level scope covers hooks and floats too; the rod/hook/float generator leaves it alone.
+gear.scope = t(
+  'Player-facing hook, float/sinker and fly-component decisions from the supplied Japanese ROM, decoded six-area shop stock, the ROM audit of 2026-10-07 and direct original-ROM maker capture. A fly bites only if its body is on the fish\'s list and neither its body nor its wing matches the save\'s hidden lock; hooks and fly bodies also change how the fight starts. No external gameplay guide is used as evidence.',
+  '針・ウキ／オモリ・フライ部品の判断は、提供された日本版ROM、復号した6エリアの在庫、2026-10-07のROM監査、原作の作成画面キャプチャに基づきます。毛バリは、ボディが魚のリストにあり、ボディもウィングもセーブの隠しロックと一致しないときだけ食いつきます。針とフライのボディはファイトの出だしにも影響します。外部攻略情報は根拠に使っていません。',
+  'คำแนะนำตะขอ ทุ่น/ตะกั่ว และชิ้นส่วนฟลายนี้อ้างจาก ROM ญี่ปุ่นที่ผู้ใช้ให้ รายการร้านหกด่านที่ถอดได้ การตรวจ ROM ปี 2026-10-07 และภาพหน้าทำฟลายจากเกมจริง ฟลายจะกินเมื่อบอดี้อยู่ในรายชื่อของปลา และทั้งบอดี้และปีกไม่ตรงกับล็อกลับของเซฟ ตะขอและบอดี้ฟลายยังเปลี่ยนจุดเริ่มสู้ด้วย ไม่ใช้ไกด์เกมภายนอกเป็นหลักฐาน',
+);
 write('data/fly-practical-research.json', research);
 write('data/gear-item-decisions.json', gear);
 write('data/player-decisions.json', decisions);

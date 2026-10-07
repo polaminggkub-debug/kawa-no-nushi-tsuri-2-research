@@ -32,6 +32,9 @@ const COPY = {
       aimLessAny: 'you get less time to aim than with {id}',
       boundaryMoreAny: 'the line breaks less easily than with {id}',
       boundaryLessAny: 'the line breaks more easily than with {id}',
+      startMore: 'you can afford more mistakes on average than with the cheaper {id}',
+      startLess: 'you can afford fewer mistakes on average than with the cheaper {id}',
+      startMoreAny: 'you can afford more mistakes on average than with {id}',
       versus: '{benefits}',
       higherPrice: '{id} costs more at {price}; {comparison}{hpNote}.',
       cheaper: 'a lower full new-purchase price',
@@ -42,7 +45,7 @@ const COPY = {
     recommendation: {
       only: 'This is the only {style} rod sold in {area}: {stats}. Choose it if you need this style here; if you already own it, keep using it.',
       dominated:
-        'For a new {style} rod in {area}, choose {otherId} ({otherStats}) over {id} ({stats}): {betterReason}. If you already own {id}, keep using it; effects on specific fish are unconfirmed.',
+        'For a new {style} rod in {area}, choose {otherId} ({otherStats}) over {id} ({stats}): {betterReason}. If you already own {id}, keep using it; which fish it suits is on its own page.',
       dual: 'Choose {id} in {area} if you need a new {style} rod: it has the lowest full price ({price}), the most time to aim ({aim}){hpNote}, and the line that breaks least easily (×{boundary}). If you already own a rod, keep using it.',
       cheapest:
         'Choose {id} to pay the lowest full price in {area} ({price}). {aimLine} {boundaryLine} These are full new-purchase prices, not trade-in costs; if you already own a rod, keep using it.',
@@ -58,7 +61,7 @@ const COPY = {
       tradeoff:
         '{id} is a trade-off among the {style} rods sold here: {lowerLine} {higherLine} Decide by the full new-purchase price, the time to aim and how hard the line is to break.',
       itemMissing:
-        '{id} is not sold in {area}. The same-style rods sold here are {options}. If you already own {id}, keep using it. If you are buying new: {budgetLine} {aimLine} {boundaryLine} This only compares price, time to aim and line strength; it does not rank catch success.',
+        '{id} is not sold in {area}. The same-style rods sold here are {options}. If you already own {id}, keep using it. If you are buying new: {budgetLine} {aimLine} {boundaryLine} This compares price, time to aim, line strength and fight start; which fish a rod suits is on its own page.',
       styleMissing:
         '{area} does not sell a {style} rod. The {direction} area that does is Area {nextStage}: {options}. If you already own {id}, keep using it. This only covers shop stock; the rod may be available some other way.',
       aimLeader: 'The most time to aim: {id} ({stats}).',
@@ -70,14 +73,14 @@ const COPY = {
       step: 'Compared with {otherId} ({otherStats}), {choiceId} has full price {price} (from {otherPrice}), aim time {aim} (from {otherAim}), and line strength ×{boundary} (from ×{otherBoundary}).',
       area: 'Area {stage}',
       reason:
-        'This advice uses only the same-style rods the shops sell, their full prices, and two measured values: time to aim and line strength.',
+        'This advice uses only the same-style rods the shops sell, their full prices, and three measured values: time to aim, line strength and fight start (how many mistakes you can afford).',
       styleNever:
         'No {style} rod is sold in any of the six areas. If you already own {id}, keep using it; no shop that sells one has been found.',
       tradeoffChoice:
-        'Choose {id} at the full new-purchase price {price} when {comparison}{hpNote}. {higherLine} If you already own a rod, keep using it. Effects on specific fish are unconfirmed.',
+        'Choose {id} at the full new-purchase price {price} when {comparison}{hpNote}. {higherLine} If you already own a rod, keep using it. Which fish it suits is on the rod’s own page.',
       noHigher: '',
       scope:
-        'What is compared: rods of the same style that shops sell, full new-purchase price, time to aim, and how hard the line is to break (the fish can pull farther before tackle is lost). Bite rate, catch rate and fish-specific advantages are not ranked.{hp}{fly}',
+        'What is compared: rods of the same style that shops sell, full new-purchase price, time to aim, how hard the line is to break (the fish can pull farther before tackle is lost) and fight start (how many mistakes you can afford, on average). Which fish a rod suits is on its own page.{hp}{fly}',
       hp: ' Aim time for lure/casting rods is measured at HP 100 and gets shorter when HP is lower.',
       fly: ' The fly rod’s second hidden value is left out because its effect is unknown.',
       noHp: '',
@@ -88,7 +91,7 @@ const COPY = {
     },
   },
   th: {
-    styles: { 1: 'สายทุ่น/อายุ', 2: 'ตีเหยื่อ', 4: 'ลัวร์', 8: 'ฟลาย' },
+    styles: { 1: 'สายทุ่น/อายุ', 2: 'หวด', 4: 'ลัวร์', 8: 'ฟลาย' },
     labels: {
       only: 'ด่าน {stage}: ร้านขายคันแบบนี้คันเดียว',
       dominated: 'ด่าน {stage}: ซื้อ {otherId} แทน — {betterReason}{hpNote}',
@@ -117,6 +120,9 @@ const COPY = {
       aimLessAny: 'มีเวลาเล็งน้อยกว่า {id}',
       boundaryMoreAny: 'สายขาดยากกว่า {id}',
       boundaryLessAny: 'สายขาดง่ายกว่า {id}',
+      startMore: 'เฉลี่ยพลาดได้มากกว่า {id} ที่ถูกกว่า',
+      startLess: 'เฉลี่ยพลาดได้น้อยกว่า {id} ที่ถูกกว่า',
+      startMoreAny: 'เฉลี่ยพลาดได้มากกว่า {id}',
       versus: '{benefits}',
       higherPrice: '{id} ราคาเต็มสูงกว่า ({price}) และ{comparison}{hpNote}',
       cheaper: 'ราคาซื้อใหม่ถูกกว่า',
@@ -127,7 +133,7 @@ const COPY = {
     recommendation: {
       only: '{area} มีคัน{style}ขายแค่คันนี้: {stats} ถ้าต้องใช้คันแบบนี้ก็ซื้อได้ ถ้ามีอยู่แล้วใช้ต่อได้ ไม่ต้องซื้อใหม่',
       dominated:
-        'ถ้าจะซื้อคัน{style}ใหม่ใน{area} ให้เลือก {otherId} ({otherStats}) แทน {id} ({stats}): {betterReason} ถ้ามี {id} อยู่แล้วใช้ต่อได้ ไม่ต้องซื้อใหม่ ส่วนผลกับปลาแต่ละชนิดยังไม่ยืนยัน',
+        'ถ้าจะซื้อคัน{style}ใหม่ใน{area} ให้เลือก {otherId} ({otherStats}) แทน {id} ({stats}): {betterReason} ถ้ามี {id} อยู่แล้วใช้ต่อได้ ไม่ต้องซื้อใหม่ ส่วนว่าเหมาะกับปลาชนิดไหนดูในหน้าคันนั้น',
       dual: 'ถ้าต้องซื้อคัน{style}ใหม่ใน{area} ให้เลือก {id}: ราคาเต็มถูกสุด ({price}) มีเวลาเล็งนานสุด ({aim}){hpNote} และสายขาดยากสุด (×{boundary}) ถ้ามีคันเดิมอยู่แล้วใช้ต่อได้ ไม่ต้องซื้อใหม่',
       cheapest:
         'เลือก {id} ถ้าอยากจ่ายถูกสุดใน{area} ({price}) {aimLine} {boundaryLine} ราคานี้คือราคาเต็มซื้อใหม่ ไม่ใช่ราคาหลังหักคันเก่า ถ้ามีคันเดิมอยู่แล้วใช้ต่อได้ ไม่ต้องซื้อใหม่',
@@ -142,7 +148,7 @@ const COPY = {
       tradeoff:
         '{id} มีข้อแลกเปลี่ยนเมื่อเทียบกับคัน{style}ที่ขายในด่านนี้: {lowerLine} {higherLine} ให้เลือกโดยดูราคาเต็มซื้อใหม่ เวลาเล็ง และความยากที่สายจะขาด',
       itemMissing:
-        'ร้านใน{area} ไม่ขาย {id}; คัน{style}ที่ขายคือ {options} ถ้ามี {id} อยู่แล้วใช้ต่อได้ ไม่ต้องซื้อใหม่ ถ้าจะซื้อใหม่: {budgetLine} {aimLine} {boundaryLine} นี่เทียบแค่ราคา เวลาเล็ง และความยากที่สายจะขาด ไม่ได้จัดอันดับโอกาสจับปลา',
+        'ร้านใน{area} ไม่ขาย {id}; คัน{style}ที่ขายคือ {options} ถ้ามี {id} อยู่แล้วใช้ต่อได้ ไม่ต้องซื้อใหม่ ถ้าจะซื้อใหม่: {budgetLine} {aimLine} {boundaryLine} นี่เทียบราคา เวลาเล็ง ความยากที่สายจะขาด และจุดเริ่มสู้ ส่วนว่าเหมาะกับปลาชนิดไหนดูในหน้าคันนั้น',
       styleMissing:
         '{area} ไม่มีร้านขายคัน{style}; ด่าน{direction}ที่มีขายคือด่าน {nextStage}: {options} ถ้ามี {id} อยู่แล้วใช้ต่อได้ ไม่ต้องซื้อใหม่ ข้อมูลนี้บอกแค่ของที่วางขายในร้าน ไม่ได้บอกว่าหาทางอื่นไม่ได้',
       aimLeader: 'มีเวลาเล็งนานสุด: {id} ({stats})',
@@ -154,15 +160,15 @@ const COPY = {
       step: 'เทียบ {otherId} ({otherStats}) กับ {choiceId}: ราคาเต็ม {price} (เดิม {otherPrice}), เวลาเล็ง {aim} (เดิม {otherAim}), สายขาดยาก ×{boundary} (เดิม ×{otherBoundary})',
       area: 'ด่าน {stage}',
       reason:
-        'คำแนะนำนี้ดูจากคันแบบเดียวกันที่ร้านขาย ราคาเต็ม และตัวเลขที่วัดได้สองค่า คือเวลาเล็งกับความยากที่สายจะขาด',
+        'คำแนะนำนี้ดูจากคันแบบเดียวกันที่ร้านขาย ราคาเต็ม และตัวเลขที่วัดได้สามค่า คือเวลาเล็ง ความยากที่สายจะขาด และจุดเริ่มสู้ (พลาดได้กี่จังหวะ)',
       styleNever:
         'ไม่มีร้านไหนขายคัน{style}ทั้ง 6 ด่าน ถ้ามี {id} อยู่แล้วใช้ต่อได้ ไม่ต้องซื้อใหม่; ยังไม่พบร้านที่ขายคันแบบนี้',
       tradeoffChoice:
-        'เลือก {id} ในราคาเต็มซื้อใหม่ {price} เพราะ{comparison}{hpNote} {higherLine} ถ้ามีคันเดิมอยู่แล้วใช้ต่อได้ ไม่ต้องซื้อใหม่ ส่วนผลกับปลาแต่ละชนิดยังไม่ยืนยัน',
+        'เลือก {id} ในราคาเต็มซื้อใหม่ {price} เพราะ{comparison}{hpNote} {higherLine} ถ้ามีคันเดิมอยู่แล้วใช้ต่อได้ ไม่ต้องซื้อใหม่ ส่วนว่าเหมาะกับปลาชนิดไหนดูในหน้าคันนั้น',
       noHigher: '',
       scope:
-        'สิ่งที่เทียบ: คันแบบเดียวกันที่ร้านขาย ราคาเต็มซื้อใหม่ เวลาเล็ง และความยากที่สายจะขาด (ปลาดึงหนีได้ไกลกว่าก่อนอุปกรณ์หลุด) ไม่ได้จัดอันดับโอกาสที่ปลากินเหยื่อหรือจับขึ้น{hp}{fly}',
-      hp: ' เวลาเล็งของคันลัวร์/ตีเหยื่อวัดที่ HP 100 และสั้นลงเมื่อ HP ต่ำกว่า 100',
+        'สิ่งที่เทียบ: คันแบบเดียวกันที่ร้านขาย ราคาเต็มซื้อใหม่ เวลาเล็ง ความยากที่สายจะขาด (ปลาดึงหนีได้ไกลกว่าก่อนสายขาด) และจุดเริ่มสู้ (เฉลี่ยพลาดได้กี่จังหวะ) คันเหมาะกับปลาชนิดไหนดูในหน้าคันนั้น{hp}{fly}',
+      hp: ' เวลาเล็งของคันลัวร์/คันหวดวัดที่ HP 100 และสั้นลงเมื่อ HP ต่ำกว่า 100',
       fly: ' ไม่รวมค่าที่สองของคันฟลาย เพราะยังไม่รู้ว่ามีผลอะไร',
       noHp: '',
       noFly: '',
@@ -201,6 +207,9 @@ const COPY = {
       aimLessAny: '{id}より狙う時間が短い',
       boundaryMoreAny: '{id}より糸が切れにくい',
       boundaryLessAny: '{id}より糸が切れやすい',
+      startMore: '安い{id}より許されるミスが平均で多い',
+      startLess: '安い{id}より許されるミスが平均で少ない',
+      startMoreAny: '{id}より許されるミスが平均で多い',
       versus: '{benefits}',
       higherPrice: '高い{id}（新品の全額{price}）なら、{comparison}{hpNote}',
       cheaper: '新品の全額が安い',
@@ -211,7 +220,7 @@ const COPY = {
     recommendation: {
       only: 'エリア{stage}で売っている{style}竿はこれだけです：{stats}。この釣り方が必要なら買ってください。すでに持っていれば、そのまま使えます。',
       dominated:
-        'エリア{stage}で{style}竿を新しく買うなら、{id}（{stats}）より{otherId}（{otherStats}）がおすすめです：{betterReason}。{id}をすでに持っていれば、そのまま使えます。魚ごとの差はまだ分かっていません。',
+        'エリア{stage}で{style}竿を新しく買うなら、{id}（{stats}）より{otherId}（{otherStats}）がおすすめです：{betterReason}。{id}をすでに持っていれば、そのまま使えます。どの魚に向くかは、その竿のページで確認できます。',
       dual: 'エリア{stage}で{style}竿を新しく買うなら{id}。新品の全額が最安（{price}）で、狙う時間（{aim}）{hpNote}も最長、糸も最も切れにくい（×{boundary}）竿です。すでに持っていれば、そのまま使えます。',
       cheapest:
         'エリア{stage}で新品の全額を抑えるなら{id}（{price}）が最安です。{aimLine} {boundaryLine} 下取りを引いた値段ではなく、新品の全額です。すでに持っていれば、そのまま使えます。',
@@ -227,13 +236,13 @@ const COPY = {
       tradeoff:
         '{id}は、エリア{stage}で売っている{style}竿の中で、値段・狙う時間・糸の切れにくさに一長一短があります。{lowerLine} {higherLine} 新品の全額と、必要な狙う時間・糸の切れにくさで選んでください。',
       itemMissing:
-        '{id}はエリア{stage}で売っていません。同じ釣り方でこのエリアで売っている竿は{options}です。{id}を持っていれば、そのまま使えます。新しく買うなら：{budgetLine} {aimLine} {boundaryLine} 比べているのは値段・狙う時間・糸の切れにくさだけで、釣れやすさの順位ではありません。',
+        '{id}はエリア{stage}で売っていません。同じ釣り方でこのエリアで売っている竿は{options}です。{id}を持っていれば、そのまま使えます。新しく買うなら：{budgetLine} {aimLine} {boundaryLine} 比べているのは値段・狙う時間・糸の切れにくさ・ファイトの出だしで、どの魚に向くかはその竿のページで確認できます。',
       styleMissing:
         'エリア{stage}に{style}竿は売っていません。同じ釣り方の竿を売っている{direction}エリアは、エリア{nextStage}です：{options}。{id}を持っていれば、そのまま使えます。分かるのは店の品ぞろえだけで、他の入手方法がないとは言えません。',
       styleNever:
         '6エリアのどの店にも{style}竿はありません。{id}を持っていれば、そのまま使えます。買える店は見つかっていません。',
       tradeoffChoice:
-        '新品の全額{price}の{id}を選びます。{comparison}{hpNote}。{higherLine}。持っている竿はそのまま使えます。魚ごとの差はまだ分かっていません。',
+        '新品の全額{price}の{id}を選びます。{comparison}{hpNote}。{higherLine}。持っている竿はそのまま使えます。どの魚に向くかは、その竿のページで確認できます。',
       noHigher: '',
       aimLeader: '狙う時間が最長なのは{id}（{stats}）。',
       aimOther: '{id}（{stats}）の方が狙う時間が長いです。',
@@ -244,9 +253,9 @@ const COPY = {
       step: '{otherId}（{otherStats}）と{choiceId}の比較：新品の全額 {price}（{otherPrice}から）、狙う時間 {aim}（{otherAim}から）、切れにくさ ×{boundary}（×{otherBoundary}から）。',
       area: 'エリア{stage}',
       reason:
-        '同じ釣り方の店の品ぞろえ、新品の全額、測定できた2つの値（狙う時間・切れにくさ）だけで比べています。',
+        '同じ釣り方の店の品ぞろえ、新品の全額、測定できた3つの値（狙う時間・切れにくさ・ファイトの出だし）で比べています。',
       scope:
-        '比べているもの：同じ釣り方で店が売っている竿、新品の全額、狙う時間、糸の切れにくさ（魚が遠くまで引いても道具を失いにくい）。食いつきや釣れやすさ、魚ごとの相性は順位付けしていません。{hp}{fly}',
+        '比べているもの：同じ釣り方で店が売っている竿、新品の全額、狙う時間、糸の切れにくさ（魚が遠くまで引いても道具を失いにくい）、ファイトの出だし（許されるミスの数の平均）。どの魚に向くかは竿のページで確認できます。{hp}{fly}',
       hp: ' ルアー竿・投げ竿の狙う時間はHP100のときの値で、HPが減ると短くなります。',
       fly: ' フライ竿のもう1つの隠れた値は、効果が分からないため比べていません。',
       noHp: '',

@@ -7,9 +7,15 @@ const quest = JSON.parse(fs.readFileSync(path.join(root, 'data/quest-tool-use.js
 const source = quest.items['10']
 const marker = 'data-milk-canoe-choice'
 const copy = {
-  en: [/canoe.*do not own/i, /reserve.*milk/i, /HP.*maximum/i, /empty bottle/i, /refill/i],
-  ja: [/カヌー.*まだ持っていない/, /交換用に残/, /最大HP/, /空きビン/, /補充/],
-  th: [/แคนู.*ยังไม่มี/, /เก็บนมสด/, /HP.*เต็ม/, /ขวดเปล่า/, /เติม/],
+  en: [
+    /canoe.*do not own/i,
+    /fresh milk to the canoe maker/i,
+    /HP.*maximum/i,
+    /empty bottle/i,
+    /refill/i,
+  ],
+  ja: [/カヌー.*まだ持っていない/, /新しい牛乳を渡す/, /最大HP/, /空きビン/, /補充/],
+  th: [/แคนู.*ยังไม่มี/, /นมสดไปให้ช่างทำเรือ/, /HP.*เต็ม/, /ขวดเปล่า/, /เติม/],
 }
 
 assert.equal(source.rawTrace.selectedUseCpu, '03:C4EA')

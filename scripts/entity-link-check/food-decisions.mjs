@@ -51,10 +51,16 @@ const mealExamples = {
   ja: /20cm.*5HP.*40cm.*10HP.*100cm.*25HP/,
   th: /20 ซม\..*(?:ฟื้น 5 HP|→ 5 HP).*40 ซม\..*(?:ฟื้น 10 HP|→ 10 HP).*100 ซม\..*(?:ฟื้น 25 HP|→ 25 HP)/,
 }
-const eelPreservation = {
-  en: 'To keep the giant eel for the doctor’s request, do not eat the first keepnet fish when it is the giant eel. The fish-meal menu does not protect the giant eel; use other food to restore HP.',
-  ja: '医者の依頼用にオオウナギを残すなら、びくの先頭がオオウナギのときは食べない。食べる処理はオオウナギを保護しないため、HP回復には別の食料を使う。',
-  th: 'ถ้าจะเก็บโออูนางิ / ปลาไหลยักษ์ไว้ให้หมอ อย่าเลือกกินปลาเมื่อมันเป็นปลาตัวแรกในข้อง เมนูกินปลาไม่ได้กันปลาไหลยักษ์ไว้ให้; ใช้อาหารอื่นฟื้น HP แทน',
+const eelHidden = {
+  en: 'The menu skips your first giant eel while the ending is not done, so you cannot eat it by accident. You do not need to keep the eel for the ending. A second giant eel is not skipped.',
+  ja: 'エンディングが済むまでは、最初のオオウナギは食べる対象から外される。うっかり食べてしまうことはない。エンディングのためにオオウナギを残しておく必要はない。2匹目のオオウナギは外されない。',
+  th: 'ก่อนจบเรื่อง เมนูจะข้ามปลาไหลยักษ์ตัวแรกของคุณ จึงเผลอกินไม่ได้ และไม่จำเป็นต้องเก็บปลาไหลไว้เพื่อดูฉากจบ ปลาไหลยักษ์ตัวที่สองจะไม่ถูกข้าม',
+}
+// The old advice told players to avoid eating the first fish when it is the eel; it was wrong.
+const oldEelWarning = {
+  en: /do not eat the first keepnet fish|does not protect the giant eel/i,
+  ja: /オオウナギを保護しない|先頭がオオウナギのときは食べない/,
+  th: /เมนูกินปลาไม่ได้กัน|อย่าเลือกกินปลาเมื่อมันเป็นปลาตัวแรก/,
 }
 for (const lang of ['en', 'ja', 'th']) {
   const catalogue = await renderCatalogue(lang, '?category=food#catalogue')
@@ -74,10 +80,11 @@ for (const lang of ['en', 'ja', 'th']) {
     assert(mealClaims[lang].test(text), `Fish meal ${surface} guidance missing ${lang}`)
     assert(mealExamples[lang].test(text), `Fish meal ${surface} size examples missing ${lang}`)
     assert.equal(
-      text.split(eelPreservation[lang]).length - 1,
+      text.split(eelHidden[lang]).length - 1,
       1,
-      `Fish meal ${surface} must show giant-eel quest preservation advice exactly once (${lang})`,
+      `Fish meal ${surface} must explain that the first giant eel is skipped exactly once (${lang})`,
     )
+    assert.doesNotMatch(text, oldEelWarning[lang], `Fish meal ${surface} keeps the old eel warning`)
     assert.doesNotMatch(
       text,
       /\b[XY]\s*\d|\(\s*\d+\s*,\s*\d+\s*\)/,
