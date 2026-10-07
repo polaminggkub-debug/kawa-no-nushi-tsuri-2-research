@@ -39,8 +39,16 @@ async function checkPlayerGuidance(locale) {
   const healing = food('09').playerUse.summary[locale]
   const poison = food('0A').playerUse.summary[locale]
   assert.notEqual(healing, poison, `${locale}: safe and poison cards need distinct outcomes`)
-  assert(/09/.test(healing) && /10/.test(healing) && /HP/.test(healing))
-  assert(/0A/.test(poison) && /0/.test(poison) && /HP/.test(poison))
+  assert(/10/.test(healing) && /HP/.test(healing))
+  assert(/0/.test(poison) && /HP/.test(poison))
+  // The two mushrooms share a menu name; the player tells them apart by icon.
+  const icons = {
+    en: [/tan/, /yellow spots/],
+    ja: [/茶色/, /黄色い斑点/],
+    th: [/น้ำตาล/, /จุดเหลือง/],
+  }[locale]
+  assert(icons[0].test(healing) && icons[1].test(healing), `${locale}: healing mushroom icon`)
+  assert(icons[0].test(poison) && icons[1].test(poison), `${locale}: poison mushroom icon`)
   assert(healing.includes('きのこ') && poison.includes('きのこ'))
   for (const id of ['09', '0A']) await checkItemRender(locale, 'food', id)
   await checkTicketRender(locale)
@@ -63,9 +71,9 @@ async function checkTicketRender(locale) {
   assert(summary.replace(/\s/g, '').includes('49,22'))
   assert(summary.replace(/\s/g, '').includes('54,22'))
   const ordering = {
-    en: ['offer Hinomaru bento', 'drawing at the counter'],
-    th: ['นำข้าวกล่องบ๊วย', 'ก่อนขึ้นสลาก'],
-    ja: ['お地蔵さま', '供えてから'],
+    en: ['offer Hinomaru bento', 'hand the ticket in at the counter'],
+    th: ['ไปถวายข้าวกล่องบ๊วย', 'แล้วค่อยนำสลาก'],
+    ja: ['日の丸弁当か大根を供えてから', '抽選所'],
   }[locale]
   assert(summary.indexOf(ordering[0]) < summary.indexOf(ordering[1]))
   const notes = ticket.playerUse.evidenceNotes[locale].join(' ')
@@ -87,22 +95,29 @@ async function checkTicketRender(locale) {
 function checkLotteryChoiceAdvice(summary, locale) {
   const markers = {
     en: [
-      'food to spare',
-      'Hinomaru bento (06)',
-      'daikon (07)',
-      'orange (01)',
-      'consumed',
+      'can only win after you offer food',
+      'Hinomaru bento',
+      'daikon',
+      'orange adds 5',
+      'used up',
       'never guaranteed',
     ],
     th: [
-      'อาหารเหลือที่ยอมสละได้',
-      'ข้าวกล่องบ๊วย (06)',
-      'หัวไชเท้า (07)',
-      'ส้ม (01)',
-      'ถูกใช้',
+      'ถวายอาหารที่รูปปั้นจิโซก่อน',
+      'ข้าวกล่องบ๊วย',
+      'หัวไชเท้า',
+      'ส้มเพิ่ม 5',
+      'ถูกใช้หมด',
       'ไม่รับประกันรางวัล',
     ],
-    ja: ['余った食料', '日の丸弁当（06）', '大根（07）', 'みかん（01）', '消費', '保証されません'],
+    ja: [
+      '先にお地蔵さまへ食べ物を供えないと当たらない',
+      '日の丸弁当',
+      '大根',
+      'みかんは5',
+      '消費され',
+      '保証されない',
+    ],
   }
   for (const marker of markers[locale]) assert(summary.includes(marker), `${locale}: ${marker}`)
   assert(!/\d+(?:\.\d+)?\s*%/.test(summary), `${locale}: invented draw percentage`)

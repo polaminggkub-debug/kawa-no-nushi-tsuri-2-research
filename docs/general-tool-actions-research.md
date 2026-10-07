@@ -47,6 +47,8 @@ Bait inventory item IDs are stored at `$088C..$08AE`, with counts at `$08B8..$08
 
 ## Gold net: ID 04
 
+*Audit 2026-10-07:* each use gives 1 to 4 pieces (not always 3; both test uses happened to give 3), works only while wading, and returns nothing on the tile you just used.
+
 Handler `$03:BF2A..BF93` requires field state 2 and exactly `$0858==1`. The ROM message `015A` says `金アミは、浅瀬で虫取りに使います。` (the gold net is used to catch bugs in shallow water). The previous searched tile is `$1D49/$1D4B`; using the net twice without moving returns message `0142`.
 
 For a new eligible tile, `$03:BF94..BFBB` reads a 16-bit area table at `$03:C04C` using index `$085A * 2`. Word zero is a sentinel; words 1 through 6 select these baits:

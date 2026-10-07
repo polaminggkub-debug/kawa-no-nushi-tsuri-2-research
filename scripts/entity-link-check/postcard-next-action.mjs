@@ -20,19 +20,19 @@ const copy = {
   en: {
     condition: 'Once this request appears',
     map: 'Area 6 point · X 41, Y 8',
-    limit: 'The configured fishing point may be inactive.',
+    limit: 'The eel is not always at (41,8).',
     magnet: 'Magnet heading',
   },
   ja: {
     condition: 'この依頼を見たら',
     map: 'エリア6の地点 · X 41, Y 8',
-    limit: '設定された釣り場に魚がいない場合もあります。',
+    limit: '(41,8)にいつもオオウナギがいるとは限りません。',
     magnet: '磁石のオオウナギ項目',
   },
   th: {
     condition: 'ถ้าพบข้อความนี้แล้ว',
     map: 'ดูจุดด่าน 6 · X 41, Y 8',
-    limit: 'จุดตกที่กำหนดอาจไม่มีปลาในรอบนี้',
+    limit: 'จุด (41,8) ไม่ได้มีปลาไหลอยู่เสมอ',
     magnet: 'แม่เหล็ก',
   },
 }
@@ -131,12 +131,23 @@ function checkCatalogueCopy(action, locale) {
   const text = unescapeHtml(action)
   const conditions = {
     en: [
-      /keep it.*starting village/i,
-      /story conditions are complete/i,
-      /ending scene.*automatic/i,
+      /do not need to keep the eel/i,
+      /Area 1 village.*field door at \(12,189\)/i,
+      /earlier steps are done/i,
+      /ending scene plays automatically/i,
     ],
-    ja: [/ウナギを残して最初の村/, /物語の条件がそろうと/, /エンディングの自動シーン/],
-    th: [/เก็บปลาไหลไว้และกลับหมู่บ้านเริ่มต้น/, /หากเงื่อนไขเนื้อเรื่องครบ/, /ฉากจบอัตโนมัติ/],
+    ja: [
+      /残しておく必要はありません/,
+      /エリア1の村に入ると/,
+      /先の手順.*済んでいる/,
+      /エンディングが自動で流れます/,
+    ],
+    th: [
+      /ตกปลาไหลได้แล้วไม่ต้องเก็บไว้/,
+      /หมู่บ้านด่าน 1 ทางประตูสนาม/,
+      /ขั้นก่อนหน้าให้ครบก่อน/,
+      /ฉากจบจะเริ่มโดยอัตโนมัติ/,
+    ],
   }
 
   assert(

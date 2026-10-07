@@ -8,11 +8,11 @@ const copy = {
     checklist: 'เทียบชื่อปลากับเช็กลิสต์สมุด',
     map: 'เลือกจุดตกด่าน 6 บนแผนที่',
     postcard:
-      'หลังเทียบสมุด ให้อ่านไปรษณียบัตรที่ได้รับ (06) ในเกม ถ้าข้อความหมอขอปลาไหลใหญ่ปรากฏ การอ่านครั้งนั้นจะเปิดทิศแม่เหล็กด่าน 6 ถ้ายังไม่ปรากฏ เงื่อนไขเรื่องราวอาจยังไม่ครบ',
-    mail: 'ดูคำแนะนำไปรษณียบัตรและจุดปลาไหลใหญ่',
+      'หลังเทียบสมุด ให้อ่านไปรษณียบัตรที่ได้รับ (06) ในเกม ถ้าข้อความหมอขอปลาไหลยักษ์ปรากฏ การอ่านครั้งนั้นจะเปิดทิศแม่เหล็กด่าน 6 ถ้ายังไม่ปรากฏ ให้ทำฉากในหมู่บ้านก่อน: ตกปลาประจำตัวละครของคุณ แล้วเดินเข้าหมู่บ้านด่าน 1 ทางสนาม (8,183)',
+    mail: 'ดูคำแนะนำไปรษณียบัตรและจุดปลาไหลยักษ์',
     evidence: 'เงื่อนไขที่ยืนยันและสิ่งที่ยังต้องค้นคว้า',
     limit:
-      'ROM ยืนยันจำนวนช่องสมุดและเงื่อนไขเรื่องราว แต่ยังไม่มีลำดับการเล่นตามปกติที่ยืนยันครบเพื่อเปิดเงื่อนไขนั้น เช็กลิสต์เว็บไม่อ่านเซฟเกมและไม่ปลดล็อกเกม',
+      'อ่านโค้ดเกมเรื่องจำนวนปลาในสมุดและขั้นเนื้อเรื่องแล้ว และทดสอบฉากจบในอีมูเลเตอร์โดยตั้งแฟล็กเนื้อเรื่องตรง ๆ แต่ยังไม่ได้เล่นซ้ำทั้งสายตั้งแต่เซฟใหม่ เช็กลิสต์เว็บไม่อ่านเซฟเกมและไม่ปลดล็อกเกม',
     source: 'อ่านหลักฐานเงื่อนไขเรื่องราว',
     noticeSource: 'หลักฐานการอ่านไปรษณียบัตร',
     general: 'วิธีใช้แม่เหล็กทั่วไปและคำแนะนำซื้อ',
@@ -26,11 +26,11 @@ const copy = {
     checklist: 'Compare fish names with the notebook checklist',
     map: 'Choose Area 6 fishing spots on the map',
     postcard:
-      'After checking the notebook, read Received postcard 06 in the game. If the doctor’s giant-eel request appears, that read enables the Area 6 Magnet heading. If it does not appear, the story prerequisite may still be missing.',
+      'After checking the notebook, read Received postcard 06 in the game. If the doctor’s giant-eel request appears, that read enables the Area 6 Magnet heading. If it does not appear, do the village scene first: catch your character’s own special fish, then walk into the Area 1 village at field (8,183).',
     mail: 'See postcard guidance and the giant-eel point',
     evidence: 'Verified conditions and remaining research',
     limit:
-      'ROM evidence establishes the notebook count and story gate, but a complete ordinary-play sequence to unlock the prerequisite is not yet verified. The web checklist does not read your save or unlock the game.',
+      'We read the game’s code for the notebook count and the story steps, and drove the ending in the emulator with the story flags set directly. The whole chain from a fresh save has not been played in one go. The web checklist does not read your save or unlock the game.',
     source: 'Read the story-gate evidence',
     noticeSource: 'Postcard reader evidence',
     general: 'General Magnet use and buying advice',
@@ -44,11 +44,11 @@ const copy = {
     checklist: '図鑑チェックリストと魚名を照合する',
     map: '地図でエリア6の釣り場を選ぶ',
     postcard:
-      '図鑑を確認したら、ゲーム内で受け取ったハガキ06を読んでください。医者のオオウナギ依頼が出たとき、その読み取りでエリア6の磁石の方角表示が有効になります。出ない場合、物語の前提条件がまだ足りない可能性があります。',
+      '図鑑を確認したら、ゲーム内で受け取ったハガキ06を読んでください。医者のオオウナギ依頼が出たとき、その読み取りでエリア6の磁石の方角表示が有効になります。出ない場合は、先に村の場面を済ませてください：自分のキャラクター専用の魚を釣り、フィールド（8,183）からエリア1の村へ入ります。',
     mail: 'ハガキの案内とオオウナギの地点を見る',
     evidence: '確認した条件と未解決点',
     limit:
-      'ROMで図鑑の数と物語の条件を確認していますが、前提条件を解除する通常プレイの全手順は未検証です。ウェブのチェックリストはセーブを読み取らず、ゲームの条件も解除しません。',
+      '図鑑の数と物語の手順はゲームのコードで確認し、エミュレーターで物語フラグを直接設定してエンディングも確認しました。新規セーブからの全工程の通し再現はしていません。ウェブのチェックリストはセーブを読み取らず、ゲームの条件も解除しません。',
     source: '物語条件の根拠を読む',
     noticeSource: 'ハガキ読み取りの根拠',
     general: '磁石の基本操作と購入の目安',

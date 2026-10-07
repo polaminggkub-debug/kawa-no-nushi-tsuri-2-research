@@ -677,25 +677,31 @@
 
   // src/entities/item/fish-meal-copy.js
   var summaries = {
-    th: "ปลาอื่นเอาขนาดที่แสดงเป็นเซนติเมตรหาร 4 แล้วปัดเศษลง (ขั้นต่ำ 1 HP ไม่เกิน HP ที่ขาด). เมนูกินปลาตัวแรกในข้องและเอาออก—ตรวจชื่อก่อนยืนยัน; คุซะฟุกุทำ HP เหลือ 0",
-    en: "Other fish restore their displayed size in centimetres divided by four (round down, minimum 1 HP), capped at missing HP. The menu eats and removes the first fish in the keepnet; check its name because Kusafugu sets HP to zero.",
-    ja: "通常の魚は表示サイズ(cm)を4で割って切り捨て（最低1HP、不足HPまで）回復する。びくの先頭を食べて取り除くため、名前を確認すること。クサフグはHPが0になる。"
+    th: 'กินปลาตัวแรกในข้อง ปลาทั่วไปฟื้น HP เท่ากับขนาดที่แสดงเป็นเซนติเมตรหาร 4 ปัดเศษลง (ขั้นต่ำ 1 HP ไม่เกิน HP ที่ขาด): 20 ซม. ฟื้น 5, 40 ซม. ฟื้น 10, 100 ซม. ฟื้น 25 เมนูจะข้ามปลาไหลยักษ์ตัวแรกของคุณ จึงเผลอกินทิ้งไม่ได้ (ปลาไหลยักษ์ตัวที่สองจะถูกกิน) คุซะฟุกุทำให้ HP เหลือ 0: คุณจะสลบแล้วตื่นที่จุดเซฟด้วย HP 1 ของที่มีอยู่ครบ แต่ปลาตัวนั้นหายไป รายการ "ปลา" จะโผล่ในเมนูอาหารก็ต่อเมื่อช่องอาหารจาก 16 ช่องมีที่ว่างอย่างน้อยหนึ่งช่อง',
+    en: "Eats the first fish in your keepnet. Other fish restore their displayed size in centimetres divided by four (round down, minimum 1 HP), capped at missing HP: 20 cm heals 5, 40 cm heals 10, 100 cm heals 25. The menu skips your first giant eel, so you cannot lose it by accident (a second giant eel would be eaten). Kusafugu sets HP to zero: you black out and wake up at your saved position with 1 HP and keep everything, but the fish is gone. The Fish entry only shows if one of your 16 food slots is free.",
+    ja: "びくの先頭の魚を食べる。通常の魚は表示サイズ(cm)を4で割って切り捨て（最低1HP、不足HPまで）回復する：20cmで5、40cmで10、100cmで25。最初のオオウナギは食べる対象から外されるので、うっかり失うことはない（2匹目のオオウナギは食べられてしまう）。クサフグはHPが0になる：気絶して保存位置で1HPの状態で目を覚まし、持ち物はそのままだが、その魚は失われる。「魚」の項目は、食料16枠のどこかに空きがあるときだけ表示される。"
   };
   function fishMealSummary(lang) {
     return summaries[lang] || summaries.en;
   }
   var facts = {
     th: [
-      "ตัวอย่าง: 20 ซม. ฟื้น 5 HP, 40 ซม. ฟื้น 10 HP, 100 ซม. ฟื้น 25 HP.",
-      "ถ้าจะเก็บโออูนางิ / ปลาไหลยักษ์ไว้ให้หมอ อย่าเลือกกินปลาเมื่อมันเป็นปลาตัวแรกในข้อง เมนูกินปลาไม่ได้กันปลาไหลยักษ์ไว้ให้; ใช้อาหารอื่นฟื้น HP แทน"
+      "ตัวอย่าง: 20 ซม. ฟื้น 5 HP, 40 ซม. ฟื้น 10 HP, 100 ซม. ฟื้น 25 HP",
+      "ก่อนจบเรื่อง เมนูจะข้ามปลาไหลยักษ์ตัวแรกของคุณ จึงเผลอกินไม่ได้ และไม่จำเป็นต้องเก็บปลาไหลไว้เพื่อดูฉากจบ ปลาไหลยักษ์ตัวที่สองจะไม่ถูกข้าม",
+      "คุซะฟุกุทำให้ HP เหลือ 0 คุณจะสลบแล้วตื่นที่จุดเซฟด้วย HP 1 โดยเงิน ปลา และอุปกรณ์ยังอยู่ครบ ตรวจชื่อปลาก่อนกดยืนยัน",
+      'รายการ "ปลา" จะโผล่ในเมนูอาหารก็ต่อเมื่อช่องอาหารจาก 16 ช่องมีที่ว่างอย่างน้อยหนึ่งช่อง'
     ],
     en: [
       "Examples: 20 cm restores 5 HP, 40 cm restores 10 HP, and 100 cm restores 25 HP.",
-      "To keep the giant eel for the doctor’s request, do not eat the first keepnet fish when it is the giant eel. The fish-meal menu does not protect the giant eel; use other food to restore HP."
+      "The menu skips your first giant eel while the ending is not done, so you cannot eat it by accident. You do not need to keep the eel for the ending. A second giant eel is not skipped.",
+      "Kusafugu takes your HP to 0. You black out and wake up at your saved position with 1 HP, and you keep your money, fish and tools. Check the fish name before you confirm.",
+      "The Fish entry only appears in the food menu if one of your 16 food slots is free."
     ],
     ja: [
       "例：20cmなら5HP、40cmなら10HP、100cmなら25HP。",
-      "医者の依頼用にオオウナギを残すなら、びくの先頭がオオウナギのときは食べない。食べる処理はオオウナギを保護しないため、HP回復には別の食料を使う。"
+      "エンディングが済むまでは、最初のオオウナギは食べる対象から外される。うっかり食べてしまうことはない。エンディングのためにオオウナギを残しておく必要はない。2匹目のオオウナギは外されない。",
+      "クサフグを食べるとHPが0になる。気絶して保存位置で1HPの状態で目を覚まし、お金・魚・道具はそのまま。決定する前に魚の名前を確認する。",
+      "「魚」の項目は、食料16枠のどこかに空きがあるときだけ食料メニューに表示される。"
     ]
   };
   function fishMealFacts(lang) {
@@ -2744,29 +2750,29 @@
     if (!record?.points?.some((point) => point.x === 41 && point.y === 8)) return "";
     const text4 = {
       th: {
-        title: "เมื่ออ่านแล้วพบจดหมายจากหมอให้ตกปลาไหลใหญ่",
-        body: "ถ้าพบข้อความนี้แล้ว ใช้แม่เหล็กในด่าน 6 ดูทิศทาง หรือเปิดจุดบนแผนที่ด้านล่าง เลือกเหยื่อและอุปกรณ์จากหน้าปลาไหลใหญ่ก่อนออกไปตก",
-        afterCatch: "จับตามคำขอได้แล้ว ให้เก็บปลาไหลไว้และกลับหมู่บ้านเริ่มต้น หากเงื่อนไขเนื้อเรื่องครบ เกมจะเริ่มฉากช่วยหมอและฉากจบอัตโนมัติ",
+        title: "เมื่ออ่านแล้วพบจดหมายจากหมอให้ตกปลาไหลยักษ์",
+        body: "ถ้าพบข้อความนี้แล้ว ใช้แม่เหล็กในด่าน 6 ดูทิศทาง หรือเปิดจุดบนแผนที่ด้านล่าง เลือกเหยื่อและอุปกรณ์จากหน้าปลาไหลยักษ์ก่อนออกไปตก",
+        afterCatch: "ตกปลาไหลได้แล้วไม่ต้องเก็บไว้ เดินเข้าหมู่บ้านด่าน 1 ทางประตูสนาม (12,189) ฉากจบจะเริ่มโดยอัตโนมัติ โดยต้องทำขั้นก่อนหน้าให้ครบก่อน (ปลาประจำตัวละครของคุณ แล้วฉากในหมู่บ้านที่สนาม (8,183))",
         returnMap: "ดูทางกลับหมู่บ้าน · ด่าน 1 (12,189)",
-        limit: "จุดตกที่กำหนดอาจไม่มีปลาในรอบนี้",
-        fish: "ดูเหยื่อและอุปกรณ์ของปลาไหลใหญ่",
+        limit: "จุด (41,8) ไม่ได้มีปลาไหลอยู่เสมอ",
+        fish: "ดูเหยื่อและอุปกรณ์ของปลาไหลยักษ์",
         map: "ดูจุดด่าน 6 · X 41, Y 8"
       },
       ja: {
         title: "医者から大ウナギを釣る依頼が届いたら",
         body: "この依頼を見たら、エリア6で磁石のオオウナギ項目を使うか、下の地図で地点を確認。釣りに行く前に魚のページで対応エサと道具を選んでください。",
-        afterCatch: "依頼の魚を釣ったら、ウナギを残して最初の村へ戻ってください。物語の条件がそろうと、医者の回復とエンディングの自動シーンが始まります。",
+        afterCatch: "オオウナギは釣れば十分で、残しておく必要はありません。フィールド（12,189）の入口からエリア1の村に入ると、エンディングが自動で流れます。ただし先の手順（自分のキャラクター専用の魚、次にフィールド（8,183）での村の場面）が済んでいることが条件です。",
         returnMap: "最初の村への入口 · エリア1 (12,189)",
-        limit: "設定された釣り場に魚がいない場合もあります。",
+        limit: "(41,8)にいつもオオウナギがいるとは限りません。",
         fish: "オオウナギのエサと道具を見る",
         map: "エリア6の地点 · X 41, Y 8"
       },
       en: {
         title: "After reading the doctor’s request for a giant eel",
         body: "Once this request appears, use its Area 6 Magnet heading or open the map point below. Choose compatible bait and equipment from the fish profile before fishing.",
-        afterCatch: "After catching the requested eel, keep it and return to the starting village. When the story conditions are complete, the doctor-recovery and ending scene starts automatically.",
+        afterCatch: "You do not need to keep the eel once it is caught. Walk into the Area 1 village through the field door at (12,189) and the ending scene plays automatically, provided the earlier steps are done (your character’s own special fish, then the village scene at field (8,183)).",
         returnMap: "Starting-village entrance · Area 1 (12,189)",
-        limit: "The configured fishing point may be inactive.",
+        limit: "The eel is not always at (41,8).",
         fish: "See giant eel bait and equipment",
         map: "Area 6 point · X 41, Y 8"
       }

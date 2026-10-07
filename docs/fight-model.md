@@ -1,5 +1,7 @@
 # Fight model: how a hooked fish is won or lost
 
+> **Corrected 2026-10-07 (audit):** post-landing gear breakage exists (`01:84B7` -> `01:8613`): after a landed fish the hook/lure can still be lost (about 6.25%, or 3.9% with a large Jizo offering) and a fly about 12.5% (6.6% with the offering). In the 26 caught traces, 5 have `hookCleared` true, so "cleared hook only for tackle loss" below is wrong. HP still plays no part in the fight itself.
+
 Source: the supplied headerless Japanese ROM (1,572,864 bytes, SHA-1 `c2103dd94e2a1a65a495fc02adc2e7d040f31212`). Every statement below comes from the original code or from a frame-exact comparison with the real game running in the Snes9x libretro core. Addresses are CPU addresses as `bank:address` (bank `04` and `84` are the same ROM bank); `$xxxx` is work RAM. The ROM and savestates are not published.
 
 ## Player summary
@@ -210,7 +212,7 @@ The loop exits (`04:8689`, `JSL $018008`) in the frame in which, after the mover
 * `phase == 2`, `lostTackle == 0`: **escaped** (`01:81F8`, message `009A`/`00A8`).
 * `phase == 2`, `lostTackle == 1`: **tackle lost** (message `0096`; `01:8374..840C`: damage = 1 + (random byte & 3) HP, hook removed; HP 0 starts the blackout flow).
 
-The recorded real-game aftermath agrees with the classification in every trace (notebook counter +1 only when caught, HP drop and cleared hook only for tackle loss).
+The recorded real-game aftermath agrees with the classification in every trace (notebook counter +1 only when caught, HP drop only for tackle loss). The hook is cleared on tackle loss, and also occasionally after a *landed* fish (see the correction below).
 
 If the player never lifts the fish out of the view in phase 2 the loop never exits; the engine then returns `outcome: null` for as long as the caller steps it. Callers should impose a frame limit.
 

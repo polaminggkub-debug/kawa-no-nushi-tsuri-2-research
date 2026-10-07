@@ -293,12 +293,23 @@ function assertRecordedFishAdvice(text, locale, id) {
 function assertQuestCaveat(text, locale) {
   const caveat = {
     en: [
-      /keep it.*starting village/i,
-      /story conditions are complete/i,
-      /ending scene.*automatic/i,
+      /do not need to keep the eel/i,
+      /Area 1 village.*field door at \(12,189\)/i,
+      /earlier steps are done/i,
+      /ending scene plays automatically/i,
     ],
-    ja: [/ウナギを残して最初の村/, /物語の条件がそろうと/, /エンディングの自動シーン/],
-    th: [/เก็บปลาไหลไว้และกลับหมู่บ้านเริ่มต้น/, /หากเงื่อนไขเนื้อเรื่องครบ/, /ฉากจบอัตโนมัติ/],
+    ja: [
+      /残しておく必要はありません/,
+      /エリア1の村に入ると/,
+      /先の手順.*済んでいる/,
+      /エンディングが自動で流れます/,
+    ],
+    th: [
+      /ตกปลาไหลได้แล้วไม่ต้องเก็บไว้/,
+      /หมู่บ้านด่าน 1 ทางประตูสนาม/,
+      /ขั้นก่อนหน้าให้ครบก่อน/,
+      /ฉากจบจะเริ่มโดยอัตโนมัติ/,
+    ],
   }[locale]
   for (const [index, test] of caveat.entries())
     assert(

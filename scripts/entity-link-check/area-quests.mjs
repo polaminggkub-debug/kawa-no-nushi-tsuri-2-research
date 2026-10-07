@@ -59,19 +59,14 @@ const decisionRules = {
     th: [/31.*33/, /42.*43/, /ไม่ต้อง.*เต้าหู้|ไม่จำเป็น.*เต้าหู้/, /62,\s*32/, /คำใบ้|บอกใบ้/],
   },
   lottery: {
-    en: [/49,\s*22/, /54,\s*22/, /spare/, /not.*guarantee|lose|loss/],
-    ja: [/49,\s*22/, /54,\s*22/, /余/, /保証|はずれ|外れ/],
-    th: [/49,\s*22/, /54,\s*22/, /เหลือ/, /ไม่.*รับประกัน|แพ้|ไม่ได้รางวัล/],
+    en: [/49,\s*22/, /54,\s*22/, /offer/, /never guaranteed|nothing/],
+    ja: [/49,\s*22/, /54,\s*22/, /供え/, /保証|はずれ|外れ/],
+    th: [/49,\s*22/, /54,\s*22/, /ถวาย/, /ไม่.*รับประกัน|ไม่ได้อะไร/],
   },
   'giant-eel-return': {
-    en: [
-      /keep/,
-      /starting village|Area 1 village|Area 1.*village return/,
-      /condition|prerequisite/,
-      /not.*guarantee/,
-    ],
-    ja: [/残|保管/, /最初.*村|エリア1.*村/, /条件/, /保証/],
-    th: [/เก็บ|อย่า.*กิน/, /หมู่บ้านเริ่มต้น|หมู่บ้านด่าน 1/, /เงื่อนไข/, /ไม่.*รับประกัน/],
+    en: [/do not need to keep/, /Area 1 village/, /earlier step/, /not enough|nothing happens/],
+    ja: [/残しておく必要はない/, /エリア1の村/, /前の手順/, /何も起きない|足りない/],
+    th: [/ไม่ต้องเก็บ/, /หมู่บ้านด่าน 1/, /ขั้นก่อนหน้า/, /ไม่มีอะไรเกิดขึ้น|ไม่พอ/],
   },
 }
 
@@ -394,9 +389,10 @@ function checkChestCopy(action, row) {
   if (row.requiresKey)
     assert.match(
       text,
-      /key remains|keeps the key|key.*retained|กุญแจ.*(?:อยู่|ไม่|เหลือ)|カギ.*(?:残|消費しない)/,
+      /uses the key up|key is kept|กุญแจจะหมดไป|กุญแจจะยังอยู่|カギは消費される|カギは残っている/,
     )
-  else assert.match(text, /no key|key.*not.*(?:required|needed)|ไม่ต้อง.*กุญแจ|カギ.*不要|鍵.*不要/)
+  else
+    assert.match(text, /no key|key.*not.*(?:required|needed)|ไม่ต้อง.*กุญแจ|カギ.*不要|鍵.*不要/i)
 }
 
 async function checkDestinationAnchors() {

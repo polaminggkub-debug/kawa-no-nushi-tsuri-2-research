@@ -17,9 +17,10 @@ const copy = {
     readerAction: 'After checking the notebook, read Received postcard 06 in the game.',
     trigger:
       'If the doctor’s giant-eel request appears, that read enables the Area 6 Magnet heading.',
-    missing: 'If it does not appear, the story prerequisite may still be missing.',
+    missing:
+      'If it does not appear, do the village scene first: catch your character’s own special fish, then walk into the Area 1 village at field (8,183).',
     pages: 'all six in-game notebook pages',
-    limit: 'complete ordinary-play sequence',
+    limit: 'chain from a fresh save',
   },
   ja: {
     title: 'エリア6で磁石が方角を示さないときは？',
@@ -29,9 +30,10 @@ const copy = {
     readerAction: '図鑑を確認したら、ゲーム内で受け取ったハガキ06を読んでください。',
     trigger:
       '医者のオオウナギ依頼が出たとき、その読み取りでエリア6の磁石の方角表示が有効になります。',
-    missing: '出ない場合、物語の前提条件がまだ足りない可能性があります。',
+    missing:
+      '出ない場合は、先に村の場面を済ませてください：自分のキャラクター専用の魚を釣り、フィールド（8,183）からエリア1の村へ入ります。',
     pages: '図鑑6ページ',
-    limit: '通常プレイの全手順',
+    limit: '新規セーブからの全工程',
   },
   th: {
     title: 'ด่าน 6 ใช้แม่เหล็กแล้วไม่บอกทิศ: ทำอะไรต่อ?',
@@ -39,10 +41,11 @@ const copy = {
     count: 'ต้องบันทึกอย่างน้อย 65 ชนิดที่ต่างกันจาก 66 ชนิด ไม่ใช่ตก 65 ครั้ง',
     prerequisite: 'ครบ 65 ชนิดอย่างเดียวจึงไม่รับประกันว่าจะบอกทิศ',
     readerAction: 'หลังเทียบสมุด ให้อ่านไปรษณียบัตรที่ได้รับ (06) ในเกม',
-    trigger: 'ถ้าข้อความหมอขอปลาไหลใหญ่ปรากฏ การอ่านครั้งนั้นจะเปิดทิศแม่เหล็กด่าน 6',
-    missing: 'ถ้ายังไม่ปรากฏ เงื่อนไขเรื่องราวอาจยังไม่ครบ',
+    trigger: 'ถ้าข้อความหมอขอปลาไหลยักษ์ปรากฏ การอ่านครั้งนั้นจะเปิดทิศแม่เหล็กด่าน 6',
+    missing:
+      'ถ้ายังไม่ปรากฏ ให้ทำฉากในหมู่บ้านก่อน: ตกปลาประจำตัวละครของคุณ แล้วเดินเข้าหมู่บ้านด่าน 1 ทางสนาม (8,183)',
     pages: 'ทั้ง 6 หน้า',
-    limit: 'ลำดับการเล่นตามปกติ',
+    limit: 'ทั้งสายตั้งแต่เซฟใหม่',
   },
 }
 

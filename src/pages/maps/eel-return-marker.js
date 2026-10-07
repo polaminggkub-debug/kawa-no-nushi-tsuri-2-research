@@ -3,15 +3,15 @@ import { eelEndingEntrance } from '../../entities/fish/index.js'
 const copy = {
   th: {
     label: 'ทางเข้าหมู่บ้าน',
-    help: 'เก็บปลาไหลไว้แล้วกลับหมู่บ้านทางจุดลูกศร เมื่อเงื่อนไขเนื้อเรื่องครบ เกมจะเริ่มฉากช่วยหมอและฉากจบอัตโนมัติ กดลูกศรเพื่อกลับไปอ่านคำขอ',
+    help: 'ประตูหมู่บ้านสำหรับฉากจบ เมื่อทำขั้นก่อนหน้าครบแล้ว เดินเข้าตรงจุดลูกศร ฉากจบจะเริ่มโดยอัตโนมัติ ไม่ต้องเก็บปลาไหลไว้ กดลูกศรเพื่อกลับไปอ่านคำขอ',
   },
   en: {
     label: 'Starting-village entrance',
-    help: 'Keep the eel and enter the village at the arrow. When the story conditions are complete, the doctor-recovery and ending scene starts automatically. Select the arrow to return to the request guidance.',
+    help: 'This is the village door for the ending. Once the earlier steps are done, walk in at the arrow and the ending scene plays automatically. You do not need to keep the eel. Select the arrow to return to the request guidance.',
   },
   ja: {
     label: '最初の村への入口',
-    help: 'ウナギを残して矢印の地点から村へ戻ります。物語の条件がそろうと、医者の回復とエンディングの自動シーンが始まります。矢印を選ぶと依頼の説明に戻ります。',
+    help: 'エンディング用の村の入口です。先の手順が済んでいれば、矢印の地点から入るとエンディングが自動で流れます。ウナギを残す必要はありません。矢印を選ぶと依頼の説明に戻ります。',
   },
 }
 

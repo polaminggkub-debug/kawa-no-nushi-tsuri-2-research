@@ -13,17 +13,20 @@
         "en": [
           "Recovers 5 HP, up to your maximum. At full HP, the food menu refuses to eat and keeps the item.",
           "Eating consumes one food item.",
-          "All six shop foods cost 1 yen per HP. Choose recovery close to your missing HP: recovery above your maximum is wasted."
+          "All six shop foods cost 1 yen per HP. Choose recovery close to your missing HP: recovery above your maximum is wasted.",
+          "Your maximum HP starts at 100. It rises in steps of 1 as you catch newts, frogs, crayfish, turtles, softshell turtles and crabs, up to about 190. \"Full HP\" means your own maximum, not always 100."
         ],
         "ja": [
           "HPを5回復する。最大HPが上限。満タンでは食べず、アイテムも残る。",
           "食べると食料を1個消費する。",
-          "店の食料6種はいずれも回復HPあたり1円。不足HPに近い量を選ぶと、最大HPを超える無駄を減らせる。"
+          "店の食料6種はいずれも回復HPあたり1円。不足HPに近い量を選ぶと、最大HPを超える無駄を減らせる。",
+          "最大HPは100から始まる。イモリ・カエル・ザリガニ・カメ・スッポン・カニを釣るたびに経験値がたまり、1ずつ増えて最大190ほどになる。「HP満タン」は自分の最大値のことで、いつも100とは限らない。"
         ],
         "th": [
           "ฟื้น 5 HP แต่ไม่เกินค่าสูงสุด ถ้า HP เต็ม เมนูอาหารจะไม่ให้กินและไม่เสียไอเท็ม",
           "กินแล้วอาหารหนึ่งชิ้นหมดไป",
-          "อาหารร้านทั้ง 6 แบบมีราคา 1 เยนต่อ HP เท่ากัน เลือกปริมาณที่ใกล้ HP ที่ขาด เพราะส่วนที่เกิน HP สูงสุดจะไม่ได้เพิ่มให้"
+          "อาหารร้านทั้ง 6 แบบมีราคา 1 เยนต่อ HP เท่ากัน เลือกปริมาณที่ใกล้ HP ที่ขาด เพราะส่วนที่เกิน HP สูงสุดจะไม่ได้เพิ่มให้",
+          "HP สูงสุดเริ่มที่ 100 และเพิ่มทีละ 1 เมื่อตกนิวต์ กบ กุ้งเครย์ฟิช เต่า ตะพาบ และปู สูงสุดประมาณ 190 \"HP เต็ม\" หมายถึงค่าสูงสุดของคุณเอง ไม่ใช่ 100 เสมอไป"
         ]
       },
       "summary": {
@@ -44,17 +47,20 @@
         "en": [
           "Recovers 10 HP, up to your maximum. At full HP, the food menu refuses to eat and keeps the item.",
           "Eating consumes one food item.",
-          "All six shop foods cost 1 yen per HP. Choose recovery close to your missing HP: recovery above your maximum is wasted."
+          "All six shop foods cost 1 yen per HP. Choose recovery close to your missing HP: recovery above your maximum is wasted.",
+          "Your maximum HP starts at 100. It rises in steps of 1 as you catch newts, frogs, crayfish, turtles, softshell turtles and crabs, up to about 190. \"Full HP\" means your own maximum, not always 100."
         ],
         "ja": [
           "HPを10回復する。最大HPが上限。満タンでは食べず、アイテムも残る。",
           "食べると食料を1個消費する。",
-          "店の食料6種はいずれも回復HPあたり1円。不足HPに近い量を選ぶと、最大HPを超える無駄を減らせる。"
+          "店の食料6種はいずれも回復HPあたり1円。不足HPに近い量を選ぶと、最大HPを超える無駄を減らせる。",
+          "最大HPは100から始まる。イモリ・カエル・ザリガニ・カメ・スッポン・カニを釣るたびに経験値がたまり、1ずつ増えて最大190ほどになる。「HP満タン」は自分の最大値のことで、いつも100とは限らない。"
         ],
         "th": [
           "ฟื้น 10 HP แต่ไม่เกินค่าสูงสุด ถ้า HP เต็ม เมนูอาหารจะไม่ให้กินและไม่เสียไอเท็ม",
           "กินแล้วอาหารหนึ่งชิ้นหมดไป",
-          "อาหารร้านทั้ง 6 แบบมีราคา 1 เยนต่อ HP เท่ากัน เลือกปริมาณที่ใกล้ HP ที่ขาด เพราะส่วนที่เกิน HP สูงสุดจะไม่ได้เพิ่มให้"
+          "อาหารร้านทั้ง 6 แบบมีราคา 1 เยนต่อ HP เท่ากัน เลือกปริมาณที่ใกล้ HP ที่ขาด เพราะส่วนที่เกิน HP สูงสุดจะไม่ได้เพิ่มให้",
+          "HP สูงสุดเริ่มที่ 100 และเพิ่มทีละ 1 เมื่อตกนิวต์ กบ กุ้งเครย์ฟิช เต่า ตะพาบ และปู สูงสุดประมาณ 190 \"HP เต็ม\" หมายถึงค่าสูงสุดของคุณเอง ไม่ใช่ 100 เสมอไป"
         ]
       },
       "summary": {
@@ -75,17 +81,20 @@
         "en": [
           "Recovers 15 HP, up to your maximum. At full HP, the food menu refuses to eat and keeps the item.",
           "Eating consumes one food item.",
-          "All six shop foods cost 1 yen per HP. Choose recovery close to your missing HP: recovery above your maximum is wasted."
+          "All six shop foods cost 1 yen per HP. Choose recovery close to your missing HP: recovery above your maximum is wasted.",
+          "Your maximum HP starts at 100. It rises in steps of 1 as you catch newts, frogs, crayfish, turtles, softshell turtles and crabs, up to about 190. \"Full HP\" means your own maximum, not always 100."
         ],
         "ja": [
           "HPを15回復する。最大HPが上限。満タンでは食べず、アイテムも残る。",
           "食べると食料を1個消費する。",
-          "店の食料6種はいずれも回復HPあたり1円。不足HPに近い量を選ぶと、最大HPを超える無駄を減らせる。"
+          "店の食料6種はいずれも回復HPあたり1円。不足HPに近い量を選ぶと、最大HPを超える無駄を減らせる。",
+          "最大HPは100から始まる。イモリ・カエル・ザリガニ・カメ・スッポン・カニを釣るたびに経験値がたまり、1ずつ増えて最大190ほどになる。「HP満タン」は自分の最大値のことで、いつも100とは限らない。"
         ],
         "th": [
           "ฟื้น 15 HP แต่ไม่เกินค่าสูงสุด ถ้า HP เต็ม เมนูอาหารจะไม่ให้กินและไม่เสียไอเท็ม",
           "กินแล้วอาหารหนึ่งชิ้นหมดไป",
-          "อาหารร้านทั้ง 6 แบบมีราคา 1 เยนต่อ HP เท่ากัน เลือกปริมาณที่ใกล้ HP ที่ขาด เพราะส่วนที่เกิน HP สูงสุดจะไม่ได้เพิ่มให้"
+          "อาหารร้านทั้ง 6 แบบมีราคา 1 เยนต่อ HP เท่ากัน เลือกปริมาณที่ใกล้ HP ที่ขาด เพราะส่วนที่เกิน HP สูงสุดจะไม่ได้เพิ่มให้",
+          "HP สูงสุดเริ่มที่ 100 และเพิ่มทีละ 1 เมื่อตกนิวต์ กบ กุ้งเครย์ฟิช เต่า ตะพาบ และปู สูงสุดประมาณ 190 \"HP เต็ม\" หมายถึงค่าสูงสุดของคุณเอง ไม่ใช่ 100 เสมอไป"
         ]
       },
       "summary": {
@@ -106,17 +115,20 @@
         "en": [
           "Recovers 20 HP, up to your maximum. At full HP, the food menu refuses to eat and keeps the item.",
           "Eating consumes one food item.",
-          "All six shop foods cost 1 yen per HP. Choose recovery close to your missing HP: recovery above your maximum is wasted."
+          "All six shop foods cost 1 yen per HP. Choose recovery close to your missing HP: recovery above your maximum is wasted.",
+          "Your maximum HP starts at 100. It rises in steps of 1 as you catch newts, frogs, crayfish, turtles, softshell turtles and crabs, up to about 190. \"Full HP\" means your own maximum, not always 100."
         ],
         "ja": [
           "HPを20回復する。最大HPが上限。満タンでは食べず、アイテムも残る。",
           "食べると食料を1個消費する。",
-          "店の食料6種はいずれも回復HPあたり1円。不足HPに近い量を選ぶと、最大HPを超える無駄を減らせる。"
+          "店の食料6種はいずれも回復HPあたり1円。不足HPに近い量を選ぶと、最大HPを超える無駄を減らせる。",
+          "最大HPは100から始まる。イモリ・カエル・ザリガニ・カメ・スッポン・カニを釣るたびに経験値がたまり、1ずつ増えて最大190ほどになる。「HP満タン」は自分の最大値のことで、いつも100とは限らない。"
         ],
         "th": [
           "ฟื้น 20 HP แต่ไม่เกินค่าสูงสุด ถ้า HP เต็ม เมนูอาหารจะไม่ให้กินและไม่เสียไอเท็ม",
           "กินแล้วอาหารหนึ่งชิ้นหมดไป",
-          "อาหารร้านทั้ง 6 แบบมีราคา 1 เยนต่อ HP เท่ากัน เลือกปริมาณที่ใกล้ HP ที่ขาด เพราะส่วนที่เกิน HP สูงสุดจะไม่ได้เพิ่มให้"
+          "อาหารร้านทั้ง 6 แบบมีราคา 1 เยนต่อ HP เท่ากัน เลือกปริมาณที่ใกล้ HP ที่ขาด เพราะส่วนที่เกิน HP สูงสุดจะไม่ได้เพิ่มให้",
+          "HP สูงสุดเริ่มที่ 100 และเพิ่มทีละ 1 เมื่อตกนิวต์ กบ กุ้งเครย์ฟิช เต่า ตะพาบ และปู สูงสุดประมาณ 190 \"HP เต็ม\" หมายถึงค่าสูงสุดของคุณเอง ไม่ใช่ 100 เสมอไป"
         ]
       },
       "summary": {
@@ -137,17 +149,20 @@
         "en": [
           "Recovers 30 HP, up to your maximum. At full HP, the food menu refuses to eat and keeps the item.",
           "Eating consumes one food item.",
-          "All six shop foods cost 1 yen per HP. Choose recovery close to your missing HP: recovery above your maximum is wasted."
+          "All six shop foods cost 1 yen per HP. Choose recovery close to your missing HP: recovery above your maximum is wasted.",
+          "Your maximum HP starts at 100. It rises in steps of 1 as you catch newts, frogs, crayfish, turtles, softshell turtles and crabs, up to about 190. \"Full HP\" means your own maximum, not always 100."
         ],
         "ja": [
           "HPを30回復する。最大HPが上限。満タンでは食べず、アイテムも残る。",
           "食べると食料を1個消費する。",
-          "店の食料6種はいずれも回復HPあたり1円。不足HPに近い量を選ぶと、最大HPを超える無駄を減らせる。"
+          "店の食料6種はいずれも回復HPあたり1円。不足HPに近い量を選ぶと、最大HPを超える無駄を減らせる。",
+          "最大HPは100から始まる。イモリ・カエル・ザリガニ・カメ・スッポン・カニを釣るたびに経験値がたまり、1ずつ増えて最大190ほどになる。「HP満タン」は自分の最大値のことで、いつも100とは限らない。"
         ],
         "th": [
           "ฟื้น 30 HP แต่ไม่เกินค่าสูงสุด ถ้า HP เต็ม เมนูอาหารจะไม่ให้กินและไม่เสียไอเท็ม",
           "กินแล้วอาหารหนึ่งชิ้นหมดไป",
-          "อาหารร้านทั้ง 6 แบบมีราคา 1 เยนต่อ HP เท่ากัน เลือกปริมาณที่ใกล้ HP ที่ขาด เพราะส่วนที่เกิน HP สูงสุดจะไม่ได้เพิ่มให้"
+          "อาหารร้านทั้ง 6 แบบมีราคา 1 เยนต่อ HP เท่ากัน เลือกปริมาณที่ใกล้ HP ที่ขาด เพราะส่วนที่เกิน HP สูงสุดจะไม่ได้เพิ่มให้",
+          "HP สูงสุดเริ่มที่ 100 และเพิ่มทีละ 1 เมื่อตกนิวต์ กบ กุ้งเครย์ฟิช เต่า ตะพาบ และปู สูงสุดประมาณ 190 \"HP เต็ม\" หมายถึงค่าสูงสุดของคุณเอง ไม่ใช่ 100 เสมอไป"
         ]
       },
       "summary": {
@@ -168,17 +183,23 @@
         "en": [
           "Recovers 40 HP, up to your maximum. At full HP, the food menu refuses to eat and keeps the item.",
           "Eating consumes one food item.",
-          "All six shop foods cost 1 yen per HP. Choose recovery close to your missing HP: recovery above your maximum is wasted."
+          "All six shop foods cost 1 yen per HP. Choose recovery close to your missing HP: recovery above your maximum is wasted.",
+          "Your maximum HP starts at 100. It rises in steps of 1 as you catch newts, frogs, crayfish, turtles, softshell turtles and crabs, up to about 190. \"Full HP\" means your own maximum, not always 100.",
+          "Offered at the Area 5 Jizo (49,22), it adds 40 to your lottery offering. That also lowers the chance of losing a hook, lure or fly after you land a fish (see the lottery ticket)."
         ],
         "ja": [
           "HPを40回復する。最大HPが上限。満タンでは食べず、アイテムも残る。",
           "食べると食料を1個消費する。",
-          "店の食料6種はいずれも回復HPあたり1円。不足HPに近い量を選ぶと、最大HPを超える無駄を減らせる。"
+          "店の食料6種はいずれも回復HPあたり1円。不足HPに近い量を選ぶと、最大HPを超える無駄を減らせる。",
+          "最大HPは100から始まる。イモリ・カエル・ザリガニ・カメ・スッポン・カニを釣るたびに経験値がたまり、1ずつ増えて最大190ほどになる。「HP満タン」は自分の最大値のことで、いつも100とは限らない。",
+          "エリア5の地蔵（49,22）に供えると、くじの供え物が40増える。魚を釣り上げた後にハリ・ルアー・毛バリを失う確率も下がる（富くじの項目を参照）。"
         ],
         "th": [
           "ฟื้น 40 HP แต่ไม่เกินค่าสูงสุด ถ้า HP เต็ม เมนูอาหารจะไม่ให้กินและไม่เสียไอเท็ม",
           "กินแล้วอาหารหนึ่งชิ้นหมดไป",
-          "อาหารร้านทั้ง 6 แบบมีราคา 1 เยนต่อ HP เท่ากัน เลือกปริมาณที่ใกล้ HP ที่ขาด เพราะส่วนที่เกิน HP สูงสุดจะไม่ได้เพิ่มให้"
+          "อาหารร้านทั้ง 6 แบบมีราคา 1 เยนต่อ HP เท่ากัน เลือกปริมาณที่ใกล้ HP ที่ขาด เพราะส่วนที่เกิน HP สูงสุดจะไม่ได้เพิ่มให้",
+          "HP สูงสุดเริ่มที่ 100 และเพิ่มทีละ 1 เมื่อตกนิวต์ กบ กุ้งเครย์ฟิช เต่า ตะพาบ และปู สูงสุดประมาณ 190 \"HP เต็ม\" หมายถึงค่าสูงสุดของคุณเอง ไม่ใช่ 100 เสมอไป",
+          "ถวายที่รูปปั้นจิโซด่าน 5 (49,22) จะเพิ่มค่าถวายสลาก 40 ซึ่งช่วยลดโอกาสเสียเบ็ด ลัวร์ หรือฟลายหลังตกปลาขึ้นมาได้ด้วย (ดูที่สลาก)"
         ]
       },
       "summary": {
@@ -201,17 +222,23 @@
         "en": [
           "Recovers 40 HP, up to your maximum. At full HP, the food menu refuses to eat and keeps the item.",
           "Eating consumes one food item.",
-          "Consumes one kept Yamanokami and is available once per save. No empty food slot is required: all 16 slots are replaced, not just empty slots."
+          "Consumes one kept Yamanokami and is available once per save. No empty food slot is required: all 16 slots are replaced, not just empty slots.",
+          "Your maximum HP starts at 100. It rises in steps of 1 as you catch newts, frogs, crayfish, turtles, softshell turtles and crabs, up to about 190. \"Full HP\" means your own maximum, not always 100.",
+          "Offered at the Area 5 Jizo (49,22), it adds 40 to your lottery offering. That also lowers the chance of losing a hook, lure or fly after you land a fish (see the lottery ticket)."
         ],
         "ja": [
           "HPを40回復する。最大HPが上限。満タンでは食べず、アイテムも残る。",
           "食べると食料を1個消費する。",
-          "びくのヤマノカミ1匹を消費し、セーブごとに一度だけ交換できる。空き枠は不要で、空き枠だけでなく食料全16枠が大根に置き換わる。"
+          "びくのヤマノカミ1匹を消費し、セーブごとに一度だけ交換できる。空き枠は不要で、空き枠だけでなく食料全16枠が大根に置き換わる。",
+          "最大HPは100から始まる。イモリ・カエル・ザリガニ・カメ・スッポン・カニを釣るたびに経験値がたまり、1ずつ増えて最大190ほどになる。「HP満タン」は自分の最大値のことで、いつも100とは限らない。",
+          "エリア5の地蔵（49,22）に供えると、くじの供え物が40増える。魚を釣り上げた後にハリ・ルアー・毛バリを失う確率も下がる（富くじの項目を参照）。"
         ],
         "th": [
           "ฟื้น 40 HP แต่ไม่เกินค่าสูงสุด ถ้า HP เต็ม เมนูอาหารจะไม่ให้กินและไม่เสียไอเท็ม",
           "กินแล้วอาหารหนึ่งชิ้นหมดไป",
-          "การแลกใช้ปลายามาโนะคามิหนึ่งตัวจากข้อง และทำได้ครั้งเดียวต่อเซฟ ไม่ต้องเว้นช่องอาหาร: อาหารเดิมทั้ง 16 ช่องถูกแทนที่ ไม่ใช่เพิ่มหัวไชเท้าเฉพาะช่องว่าง"
+          "การแลกใช้ปลายามาโนะคามิหนึ่งตัวจากข้อง และทำได้ครั้งเดียวต่อเซฟ ไม่ต้องเว้นช่องอาหาร: อาหารเดิมทั้ง 16 ช่องถูกแทนที่ ไม่ใช่เพิ่มหัวไชเท้าเฉพาะช่องว่าง",
+          "HP สูงสุดเริ่มที่ 100 และเพิ่มทีละ 1 เมื่อตกนิวต์ กบ กุ้งเครย์ฟิช เต่า ตะพาบ และปู สูงสุดประมาณ 190 \"HP เต็ม\" หมายถึงค่าสูงสุดของคุณเอง ไม่ใช่ 100 เสมอไป",
+          "ถวายที่รูปปั้นจิโซด่าน 5 (49,22) จะเพิ่มค่าถวายสลาก 40 ซึ่งช่วยลดโอกาสเสียเบ็ด ลัวร์ หรือฟลายหลังตกปลาขึ้นมาได้ด้วย (ดูที่สลาก)"
         ]
       },
       "summary": {
@@ -232,39 +259,42 @@
         ]
       },
       "summary": {
-        "th": "เมนูกินปลาตัวแรกในข้องแล้วเอาออก: ดูชื่อก่อนยืนยัน. ปลาอื่นเอาขนาดที่แสดงเป็นเซนติเมตรหาร 4 ปัดเศษลง ฟื้นขั้นต่ำ 1 HP และไม่เกิน HP ที่ขาด; คุซะฟุกุทำ HP เหลือ 0",
-        "en": "The menu eats and removes the first fish in the keepnet. Check its name: other fish restore their displayed size in cm divided by 4 (round down, at least 1 HP), capped at missing HP; Kusafugu sets HP to zero.",
-        "ja": "びくの先頭の魚を食べて取り除く。名前を確認：通常の魚は表示サイズ(cm)を4で割って切り捨て、最低1HP、不足HPまで回復。クサフグはHPが0になる。"
+        "en": "Eats the first fish in your keepnet. Other fish restore their displayed size in centimetres divided by four (round down, minimum 1 HP), capped at missing HP: 20 cm heals 5, 40 cm heals 10, 100 cm heals 25. The menu skips your first giant eel, so you cannot lose it by accident (a second giant eel would be eaten). Kusafugu sets HP to zero: you black out and wake up at your saved position with 1 HP and keep everything, but the fish is gone. The Fish entry only shows if one of your 16 food slots is free.",
+        "ja": "びくの先頭の魚を食べる。通常の魚は表示サイズ(cm)を4で割って切り捨て（最低1HP、不足HPまで）回復する：20cmで5、40cmで10、100cmで25。最初のオオウナギは食べる対象から外されるので、うっかり失うことはない（2匹目のオオウナギは食べられてしまう）。クサフグはHPが0になる：気絶して保存位置で1HPの状態で目を覚まし、持ち物はそのままだが、その魚は失われる。「魚」の項目は、食料16枠のどこかに空きがあるときだけ表示される。",
+        "th": "กินปลาตัวแรกในข้อง ปลาทั่วไปฟื้น HP เท่ากับขนาดที่แสดงเป็นเซนติเมตรหาร 4 ปัดเศษลง (ขั้นต่ำ 1 HP ไม่เกิน HP ที่ขาด): 20 ซม. ฟื้น 5, 40 ซม. ฟื้น 10, 100 ซม. ฟื้น 25 เมนูจะข้ามปลาไหลยักษ์ตัวแรกของคุณ จึงเผลอกินทิ้งไม่ได้ (ปลาไหลยักษ์ตัวที่สองจะถูกกิน) คุซะฟุกุทำให้ HP เหลือ 0: คุณจะสลบแล้วตื่นที่จุดเซฟด้วย HP 1 ของที่มีอยู่ครบ แต่ปลาตัวนั้นหายไป รายการ \"ปลา\" จะโผล่ในเมนูอาหารก็ต่อเมื่อช่องอาหารจาก 16 ช่องมีที่ว่างอย่างน้อยหนึ่งช่อง"
       },
       "facts": {
-        "th": [
-          "เมนูแสดงชื่อปลาตัวแรกในข้องก่อนกิน ไม่ได้เลือกตัวไหนก็ได้จากข้อง",
-          "ปลาอื่นฟื้น 1 HP ต่อขนาด 4 ซม. ปัดเศษลง ขั้นต่ำ 1 HP: 20 ซม. → 5 HP, 40 ซม. → 10 HP, 100 ซม. → 25 HP",
-          "กินแล้วปลาตัวนั้นถูกนำออกจากข้อง HP ไม่เกินค่าสูงสุด",
-          "ข้อยกเว้นคือคุซะฟุกุ: กินแล้ว HP เหลือ 0 และเข้าสู่เหตุการณ์หมดแรง"
-        ],
         "en": [
-          "The menu previews the first stored fish; it does not let you freely choose a different keepnet fish.",
-          "Other fish restore 1 HP per 4 cm of displayed size, rounded down, with a minimum of 1 HP: 20 cm → 5 HP, 40 cm → 10 HP, 100 cm → 25 HP.",
-          "Eating removes that fish and caps recovery at maximum HP.",
-          "Exception: Kusafugu sets HP to zero and enters the collapse event."
+          "Examples: 20 cm restores 5 HP, 40 cm restores 10 HP, and 100 cm restores 25 HP.",
+          "The menu skips your first giant eel while the ending is not done, so you cannot eat it by accident. You do not need to keep the eel for the ending. A second giant eel is not skipped.",
+          "Kusafugu takes your HP to 0. You black out and wake up at your saved position with 1 HP, and you keep your money, fish and tools. Check the fish name before you confirm.",
+          "The Fish entry only appears in the food menu if one of your 16 food slots is free."
         ],
         "ja": [
-          "メニューはびくの先頭の魚名を表示する。任意の魚を選ぶ方式ではない。",
-          "通常の魚は表示サイズ4cmにつき1HPを回復し、端数切り捨て、最低1HP。20cmなら5HP、40cmなら10HP、100cmなら25HP。",
-          "食べた魚はびくから消え、HPは最大値を超えない。",
-          "クサフグは例外。HPが0になり、倒れるイベントに入る。"
+          "例：20cmなら5HP、40cmなら10HP、100cmなら25HP。",
+          "エンディングが済むまでは、最初のオオウナギは食べる対象から外される。うっかり食べてしまうことはない。エンディングのためにオオウナギを残しておく必要はない。2匹目のオオウナギは外されない。",
+          "クサフグを食べるとHPが0になる。気絶して保存位置で1HPの状態で目を覚まし、お金・魚・道具はそのまま。決定する前に魚の名前を確認する。",
+          "「魚」の項目は、食料16枠のどこかに空きがあるときだけ食料メニューに表示される。"
+        ],
+        "th": [
+          "ตัวอย่าง: 20 ซม. ฟื้น 5 HP, 40 ซม. ฟื้น 10 HP, 100 ซม. ฟื้น 25 HP",
+          "ก่อนจบเรื่อง เมนูจะข้ามปลาไหลยักษ์ตัวแรกของคุณ จึงเผลอกินไม่ได้ และไม่จำเป็นต้องเก็บปลาไหลไว้เพื่อดูฉากจบ ปลาไหลยักษ์ตัวที่สองจะไม่ถูกข้าม",
+          "คุซะฟุกุทำให้ HP เหลือ 0 คุณจะสลบแล้วตื่นที่จุดเซฟด้วย HP 1 โดยเงิน ปลา และอุปกรณ์ยังอยู่ครบ ตรวจชื่อปลาก่อนกดยืนยัน",
+          "รายการ \"ปลา\" จะโผล่ในเมนูอาหารก็ต่อเมื่อช่องอาหารจาก 16 ช่องมีที่ว่างอย่างน้อยหนึ่งช่อง"
         ]
       },
       "evidenceNotes": {
         "en": [
-          "A later ROM trace confirms that the selected size is copied to the keepnet unchanged and displayed in centimetres. The divide-by-four and minimum-one rule are the ordinary-fish code path; runtime samples still cover six species and the recorded sizes only."
+          "A later ROM trace confirms that the selected size is copied to the keepnet unchanged and displayed in centimetres. The divide-by-four and minimum-one rule are the ordinary-fish code path; runtime samples still cover six species and the recorded sizes only.",
+          "Corrected 2026-10-07: earlier text said the fish meal does not protect the giant eel. The food menu hides the first giant eel (fish 3B) while story bit 0x10 is clear (03:B871 calls 03:A2BA; it is restored at 03:B8B3). A second eel is not hidden. The meal eats the first fish after the hidden eel. The Fish entry is absent when all 16 food slots are full."
         ],
         "ja": [
-          "後のROM追跡で、魚のサイズが変換されずにびくへコピーされ、センチメートル表示されることを確認。4で割り最低1HPとする処理は通常魚のコード経路による。実行確認は6種と記録済みサイズの範囲。"
+          "後のROM追跡で、魚のサイズが変換されずにびくへコピーされ、センチメートル表示されることを確認。4で割り最低1HPとする処理は通常魚のコード経路による。実行確認は6種と記録済みサイズの範囲。",
+          "2026-10-07訂正：以前は「食べる処理はオオウナギを保護しない」と書いていたが誤り。食料メニューは物語ビット0x10が立つまで最初のオオウナギ（魚3B）を隠す（03:B871が03:A2BAを呼び、03:B8B3で戻す）。2匹目は隠されない。食べる対象は隠したオオウナギの次の魚。食料16枠がすべて埋まっていると「魚」の項目は出ない。"
         ],
         "th": [
-          "การแกะ ROM ภายหลังยืนยันว่าค่าขนาดปลาเดียวกันถูกคัดลอกเข้าข้องโดยไม่แปลง และหน้าจอแสดงเป็นเซนติเมตร สูตรหาร 4 และขั้นต่ำ 1 HP มาจากเส้นทางโค้ดของปลาทั่วไป; การทดลองในเกมยังครอบคลุมเพียง 6 ชนิดและขนาดที่บันทึกไว้"
+          "การแกะ ROM ภายหลังยืนยันว่าค่าขนาดปลาเดียวกันถูกคัดลอกเข้าข้องโดยไม่แปลง และหน้าจอแสดงเป็นเซนติเมตร สูตรหาร 4 และขั้นต่ำ 1 HP มาจากเส้นทางโค้ดของปลาทั่วไป; การทดลองในเกมยังครอบคลุมเพียง 6 ชนิดและขนาดที่บันทึกไว้",
+          "แก้ไข 2026-10-07: ก่อนหน้านี้เขียนว่าเมนูกินปลาไม่กันปลาไหลยักษ์ ซึ่งผิด เมนูอาหารซ่อนปลาไหลยักษ์ตัวแรก (ปลา 3B) ไว้ตราบที่บิตเนื้อเรื่อง 0x10 ยังไม่ถูกตั้ง (03:B871 เรียก 03:A2BA แล้วคืนค่าที่ 03:B8B3) ปลาไหลตัวที่สองไม่ถูกซ่อน เมนูกินปลาตัวแรกที่เหลือหลังข้ามปลาไหลที่ซ่อนไว้ และรายการ \"ปลา\" จะไม่ปรากฏเมื่อช่องอาหารเต็มทั้ง 16 ช่อง"
         ]
       }
     },
@@ -278,9 +308,20 @@
         ]
       },
       "summary": {
-        "en": "Healing mushroom ID 09: restores 10 HP, up to your maximum. The tested Japan-ROM menu labels poison mushroom ID 0A with the same name, ‘きのこ’; if you cannot identify the item in your inventory, use shop food instead. Revisiting a search location does not guarantee this safe type: the magnifier selects mushroom type from the game’s shared sequence.",
-        "th": "เห็ดฟื้นพลัง ID 09: ฟื้น 10 HP แต่ไม่เกินค่าสูงสุด เมนูใน ROM ญี่ปุ่นที่ทดสอบแสดงเห็ดพิษ ID 0A ด้วยชื่อเดียวกันว่า “きのこ”; ถ้าแยกไอเท็มในช่องเก็บของไม่ได้ ให้ใช้อาหารจากร้านแทน กลับไปค้นจุดเดิมก็ไม่รับประกันว่าจะได้เห็ดชนิดนี้ เพราะแว่นขยายเลือกชนิดจากลำดับสุ่มร่วมของเกม",
-        "ja": "回復キノコ ID 09：HPを10回復（最大HPまで）。確認した日本版ROMのメニューでは、毒キノコID 0Aも同じ「きのこ」と表示される。所持品を見分けられない場合は店の食料を使う。同じ探索地点へ戻っても安全な種類は保証されない。虫めがねはゲーム共通の乱数列からキノコの種類を選ぶ。"
+        "en": "Tan flat mushroom: restores 10 HP, up to your maximum. In the food menu it has the same name as the poison mushroom (きのこ), but the icon is different: this one is tan and flat, the poison one is red with yellow spots. Check the icon before you eat. A search spot does not guarantee this type: the magnifier picks the mushroom type from the game's shared random sequence.",
+        "th": "เห็ดสีน้ำตาลอ่อนทรงแบน: ฟื้น 10 HP แต่ไม่เกินค่าสูงสุด ในเมนูอาหารมีชื่อเดียวกับเห็ดพิษ (きのこ) แต่ไอคอนต่างกัน: ตัวนี้สีน้ำตาลอ่อนและแบน ส่วนเห็ดพิษสีแดงมีจุดเหลือง ก่อนกินให้ดูไอคอน กลับไปค้นจุดเดิมก็ไม่รับประกันว่าจะได้เห็ดชนิดนี้ เพราะแว่นขยายเลือกชนิดจากลำดับสุ่มร่วมของเกม",
+        "ja": "茶色く平たいキノコ：HPを10回復（最大HPまで）。食料メニューでは毒キノコと同じ名前（きのこ）だが、アイコンが違う：これは茶色で平たく、毒キノコは黄色い斑点のある赤。食べる前にアイコンを確認する。同じ探索地点へ戻っても、この種類が出るとは限らない。虫めがねはゲーム共通の乱数列からキノコの種類を選ぶ。"
+      },
+      "evidenceNotes": {
+        "en": [
+          "Audit 2026-10-07: the two mushrooms share the menu name but have different icons (food 09 tan flat, food 0A red with yellow spots). Earlier text called them unidentifiable; that was wrong."
+        ],
+        "ja": [
+          "2026-10-07監査：2種類のキノコはメニューの名前が同じだがアイコンが異なる（食料09は茶色で平たい、食料0Aは黄色い斑点のある赤）。以前の「見分けられない」という記述は誤り。"
+        ],
+        "th": [
+          "การตรวจ 2026-10-07: เห็ดสองชนิดมีชื่อในเมนูเหมือนกันแต่ไอคอนต่างกัน (อาหาร 09 สีน้ำตาลอ่อนแบน อาหาร 0A สีแดงมีจุดเหลือง) ข้อความเดิมที่ว่าแยกไม่ได้นั้นผิด"
+        ]
       }
     },
     "food:0A": {
@@ -293,9 +334,20 @@
         ]
       },
       "summary": {
-        "en": "Poison mushroom ID 0A: eating it sets current HP to 0. The tested Japan-ROM menu labels healing mushroom ID 09 with the same name, ‘きのこ’; if you cannot identify the item in your inventory, do not eat it—use shop food instead. Revisiting a search location does not guarantee the healing type: the magnifier selects mushroom type from the game’s shared sequence.",
-        "th": "เห็ดพิษ ID 0A: กินแล้ว HP ปัจจุบันเหลือ 0 เมนูใน ROM ญี่ปุ่นที่ทดสอบแสดงเห็ดฟื้นพลัง ID 09 ด้วยชื่อเดียวกันว่า “きのこ”; ถ้าแยกไอเท็มในช่องเก็บของไม่ได้ อย่ากิน ให้ใช้อาหารจากร้านแทน กลับไปค้นจุดเดิมก็ไม่รับประกันว่าจะได้เห็ดฟื้นพลัง เพราะแว่นขยายเลือกชนิดจากลำดับสุ่มร่วมของเกม",
-        "ja": "毒キノコ ID 0A：食べると現在HPが0になる。確認した日本版ROMのメニューでは、回復キノコID 09も同じ「きのこ」と表示される。所持品を見分けられない場合は食べず、店の食料を使う。同じ探索地点へ戻っても回復用は保証されない。虫めがねはゲーム共通の乱数列からキノコの種類を選ぶ。"
+        "en": "Poison mushroom, red with yellow spots. Eating it sets your HP to 0: you black out and wake up at your saved position with 1 HP, keeping your money, fish and tools. In the food menu it has the same name as the healing mushroom (きのこ), so look at the icon: tan and flat is safe, red with yellow spots is poison. If in doubt, eat shop food instead.",
+        "th": "เห็ดพิษ สีแดงมีจุดเหลือง กินแล้ว HP เหลือ 0: คุณจะสลบแล้วตื่นที่จุดเซฟด้วย HP 1 โดยเงิน ปลา และอุปกรณ์ยังอยู่ครบ ในเมนูอาหารมีชื่อเดียวกับเห็ดฟื้นพลัง (きのこ) จึงต้องดูไอคอน: สีน้ำตาลอ่อนและแบนปลอดภัย สีแดงมีจุดเหลืองคือเห็ดพิษ ถ้าไม่แน่ใจ ให้กินอาหารจากร้านแทน",
+        "ja": "毒キノコ（黄色い斑点のある赤）。食べるとHPが0になる：気絶して保存位置で1HPの状態で目を覚まし、お金・魚・道具はそのまま。食料メニューでは回復キノコと同じ名前（きのこ）なので、アイコンを見る：茶色で平たいものは安全、黄色い斑点のある赤は毒。迷ったら店の食料を食べる。"
+      },
+      "evidenceNotes": {
+        "en": [
+          "Audit 2026-10-07: the two mushrooms share the menu name but have different icons (food 09 tan flat, food 0A red with yellow spots). Earlier text called them unidentifiable; that was wrong."
+        ],
+        "ja": [
+          "2026-10-07監査：2種類のキノコはメニューの名前が同じだがアイコンが異なる（食料09は茶色で平たい、食料0Aは黄色い斑点のある赤）。以前の「見分けられない」という記述は誤り。"
+        ],
+        "th": [
+          "การตรวจ 2026-10-07: เห็ดสองชนิดมีชื่อในเมนูเหมือนกันแต่ไอคอนต่างกัน (อาหาร 09 สีน้ำตาลอ่อนแบน อาหาร 0A สีแดงมีจุดเหลือง) ข้อความเดิมที่ว่าแยกไม่ได้นั้นผิด"
+        ]
       }
     }
   }

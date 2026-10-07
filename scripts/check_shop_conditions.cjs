@@ -68,9 +68,9 @@ function assertMilkCanoeData() {
   assert.equal(canoe.playerUse.shops.length, 0)
   assert.equal(conditionalOffers().filter((item) => item.id === '02').length, 0)
   assert.match(milk.playerUse.summary.en, /restores? current HP to maximum/)
-  assert.match(milk.playerUse.summary.en, /Reserve the fresh milk for the Area 3 canoe maker/)
-  assert.match(canoe.playerUse.summary.en, /No area shop stock is recorded for the canoe/)
-  assert.match(canoe.playerUse.summary.en, /trading away fresh milk/)
+  assert.match(milk.playerUse.summary.en, /give fresh milk to the canoe maker/)
+  assert.match(canoe.playerUse.summary.en, /No shop sells a canoe/)
+  assert.match(canoe.playerUse.summary.en, /the trade uses up the milk/)
 
   const canoeSpot = toolLocations.items['02'].find((location) => location.tileX === 28)
   const milkSpot = toolLocations.items['10'].find((location) => location.tileX === 28)
@@ -198,9 +198,9 @@ function assertMilkCanoePage(html, locale, id) {
       ja: ['カヌー職人：牛乳とカヌーを交換', 'X 28, Y 39', '最大HPまで回復'],
     },
     '02': {
-      en: ['No area shop stock is recorded for the canoe', 'X 28, Y 39', '14 position steps'],
-      th: ['ไม่พบแคนูในสต็อกร้านทั้งหกด่าน', 'X 28, Y 39', 'ขยับตำแหน่ง 14 ครั้ง'],
-      ja: ['全エリアの店頭在庫にカヌーは記録されていません', 'X 28, Y 39', '14回位置を進める'],
+      en: ['No shop sells a canoe', 'X 28, Y 39', '14 steps'],
+      th: ['ไม่มีร้านขายแคนู', 'X 28, Y 39', 'ขยับ 14 ก้าว'],
+      ja: ['カヌーを売る店はない', 'X 28, Y 39', '14歩進む'],
     },
   }
   for (const phrase of expectations[id][locale])

@@ -14,9 +14,9 @@ The catalogue shows an action and its effects first. Addresses, flags and any na
 
 ## Why separate consumers matter
 
-- Selecting a key only displays its description; the town chest routine is what checks possession and opens locked chests.
-- Selecting an empty milk bottle only displays its description; the area-3 cow interaction replaces it with milk. Drinking the milk restores maximum HP and returns the bottle. The canoe maker has a separate milk-for-canoe exchange.
-- Selecting a lottery ticket only displays its description; the area-5 drawing counter consumes it and executes the prize logic. Jizo food offerings change the threshold used by that logic.
+- Selecting a key only displays its description; the town chest routine is what checks possession, opens locked chests and (corrected 2026-10-07) uses up one key per successful opening.
+- Selecting an empty milk bottle only displays its description; the area-3 cow interaction replaces it with milk. Drinking the milk restores HP to maximum and returns the bottle; the cow refills it with no limit, so milk is an unlimited free full heal. The canoe maker has a separate milk-for-canoe exchange.
+- Selecting a lottery ticket only displays its description; the area-5 drawing counter consumes it and executes the prize logic. Jizo food offerings set the threshold used by that logic: with no offering (threshold 0) the ticket can never win (corrected 2026-10-07).
 - Groundbait IDs `08`, `09`, `0A` are successive remaining-use states. Fish movement toward the chosen point is a different consumer from the item menu.
 
 These examples explain why an item-table dump or its selected-use message alone was insufficient for a practical guide.

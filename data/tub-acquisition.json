@@ -4,9 +4,9 @@
   "romSizeBytes": 1572864,
   "scope": "Original-ROM trace of the Area 2 Hariyo-for-tub exchange. Runtime checks used private emulator states with fish inventory injected; they verify the exchange handler, not a natural fishing session.",
   "playerSummary": {
-    "en": "Use the tub for water travel where the game permits launching it. Bring Hariyo (22) to the tub maker in Area 2 at (87,27). Leave one general-tool slot free before talking. This is a one-time trade; if you already own the tub, skip the trade and use it.",
-    "ja": "使用可能な場所から水上を移動するためのタライ。エリア2（87,27）のタライ作りのじいにハリヨ（22）を渡す。話しかける前に道具欄を1枠空ける。交換は1回限り。すでにタライを持っているなら魚を渡さず、手持ちを使う。",
-    "th": "ใช้กะละมังเป็นพาหนะเดินทางทางน้ำในช่องที่เกมอนุญาตให้ขึ้นได้ นำฮาริโยะ (ID 22) ไปให้ชายชราผู้ทำกะละมังที่ด่าน 2 พิกัด (87,27) เว้นช่องอุปกรณ์ทั่วไป 1 ช่องก่อนคุย แลกได้ครั้งเดียว; ถ้ามีกะละมังอยู่แล้วให้ใช้ของเดิมและอย่าเอาปลาไปแลก"
+    "en": "Optional boat for crossing water where the game lets you launch. To get one, take a Hariyo (22) from the keepnet to the tub maker in Area 2 at (87,27) and free one tool slot first. The trade works once, so skip it if you already own a tub. Rowing costs about 1 HP per tile; walking is free.",
+    "ja": "使用可能な場所から水上を移動できる任意の乗り物。入手するには、びくのハリヨ（22）をエリア2（87,27）のタライ作りのじいに渡す。話しかける前に道具欄を1枠空ける。交換は1回限りなので、すでにタライを持っているなら交換しない。こぐと1マスにつき約1HP消費し、歩くのは無料。",
+    "th": "พาหนะทางน้ำแบบไม่บังคับ ใช้ข้ามน้ำในจุดที่เกมให้ปล่อยลงได้ วิธีได้มาคือเอาฮาริโยะ (22) จากข้องไปให้ชายชราผู้ทำกะละมังที่ด่าน 2 พิกัด (87,27) และเว้นช่องอุปกรณ์ทั่วไป 1 ช่องก่อนคุย แลกได้ครั้งเดียว ถ้ามีกะละมังอยู่แล้วให้ข้าม การพายเสียประมาณ 1 HP ต่อช่อง ส่วนการเดินไม่เสีย HP"
   },
   "playerFacts": {
     "en": [
@@ -15,7 +15,8 @@
       "If you already own Tub 01 and the inventory is not full, the grant routine skips a duplicate copy but the exchange still consumes Hariyo and completes. Skip the trade to save your fish.",
       "At an accepted launch location, the game places the tub and displays that it is floating on the water.",
       "It cannot be launched while swimming or from an unusable tile. The tub then enters its own water-travel mode.",
-      "You cannot switch directly between the tub and canoe while riding. Get out of the current vehicle before using the other."
+      "You cannot switch directly between the tub and canoe while riding. Get out of the current vehicle before using the other.",
+      "Rowing costs about 1 HP per tile and swimming costs 1 HP about every half second. Walking is free. The canoe is faster than the tub (14 steps to the tub's 10 in still water)."
     ],
     "ja": [
       "タライ01は、ROMから確認した全6エリアの店頭在庫にありません。",
@@ -23,7 +24,8 @@
       "タライ01をすでに持っていて道具欄に空きがある場合、2個目は追加されませんが、ハリヨは消費されて交換済みになります。魚を残すには交換を避けてください。",
       "使用可能な場所ではタライを配置し、水に浮かんだことを表示する。",
       "泳いでいる間や使用不可のタイルからは乗れない。乗るとタライ専用の水上移動モードに入る。",
-      "乗っている間にタライとカヌーを直接切り替えることはできない。別の乗り物を使う前に降りる。"
+      "乗っている間にタライとカヌーを直接切り替えることはできない。別の乗り物を使う前に降りる。",
+      "こぐと1マスにつき約1HP、泳ぐと約0.5秒ごとに1HP消費する。歩くのは無料。カヌーはタライより速い（流れのない水面でタライの10歩に対し14歩）。"
     ],
     "th": [
       "กะละมัง ID 01 ไม่มีขายในร้านทั้งหกด่าน",
@@ -31,7 +33,8 @@
       "ถ้ามีกะละมัง ID 01 อยู่แล้วและช่องยังไม่เต็ม เกมจะไม่เพิ่มใบที่สอง แต่จะใช้ปลาและตั้งธงว่าแลกแล้ว ถ้าต้องการเก็บปลาไว้ ให้ข้ามการแลก",
       "ถ้าจุดนั้นใช้ได้ เกมจะวางกะละมังและแสดงข้อความว่าลอยอยู่บนผิวน้ำ",
       "ขึ้นพาหนะขณะว่ายน้ำหรือจากช่องที่ใช้ไม่ได้ไม่สำเร็จ เมื่อขึ้นได้แล้วจะเข้าโหมดเดินทางทางน้ำของกะละมัง",
-      "ขณะอยู่บนพาหนะสลับกะละมังกับแคนูโดยตรงไม่ได้ ต้องลงจากพาหนะเดิมก่อนใช้ชนิดอื่น"
+      "ขณะอยู่บนพาหนะสลับกะละมังกับแคนูโดยตรงไม่ได้ ต้องลงจากพาหนะเดิมก่อนใช้ชนิดอื่น",
+      "การพายเสียประมาณ 1 HP ต่อช่อง การว่ายน้ำเสีย 1 HP ทุก ๆ ครึ่งวินาที ส่วนการเดินไม่เสีย HP แคนูเร็วกว่ากะละมัง (14 ก้าว เทียบกับ 10 ก้าวของกะละมังในน้ำนิ่ง)"
     ]
   },
   "playerFishAction": {

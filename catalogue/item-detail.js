@@ -304,7 +304,7 @@
     const nearby = ctx.selectedStage ? `<h3>${ctx.esc(copy6[0])} · ${ctx.selectedStage}</h3><div class="detail-grid" data-local-food-options>${alternatives.map(foodOption).join("")}</div>` : "";
     const catalogueOptions = allItems.filter((other) => other.category === "food" && other.priceYen > 0 && other.id !== item.id).map(foodOption).join("");
     const full = sections2.map(
-      (section) => `<h3>${ctx.esc(ctx.local(section.title))}</h3><p>${ctx.esc(ctx.local(section.recommendation))}</p><p class="muted">${ctx.esc(ctx.local(section.scope))}</p>`
+      (section) => `<h3>${ctx.esc(ctx.local(section.title))}</h3><p>${ctx.esc(ctx.local(section.recommendation))}</p>${section.reason ? `<p data-hp-basics>${ctx.esc(ctx.local(section.reason))}</p>` : ""}<p class="muted">${ctx.esc(ctx.local(section.scope))}</p>`
     ).join("");
     return `<section class="detail-section buying-decision" data-food-choice>${nearby}<details><summary>${ctx.esc(copy6[1])}</summary>${full}<div class="detail-grid" data-all-food-options>${catalogueOptions}</div></details></section>`;
   }
@@ -612,25 +612,31 @@
 
   // src/entities/item/fish-meal-copy.js
   var summaries = {
-    th: "ปลาอื่นเอาขนาดที่แสดงเป็นเซนติเมตรหาร 4 แล้วปัดเศษลง (ขั้นต่ำ 1 HP ไม่เกิน HP ที่ขาด). เมนูกินปลาตัวแรกในข้องและเอาออก—ตรวจชื่อก่อนยืนยัน; คุซะฟุกุทำ HP เหลือ 0",
-    en: "Other fish restore their displayed size in centimetres divided by four (round down, minimum 1 HP), capped at missing HP. The menu eats and removes the first fish in the keepnet; check its name because Kusafugu sets HP to zero.",
-    ja: "通常の魚は表示サイズ(cm)を4で割って切り捨て（最低1HP、不足HPまで）回復する。びくの先頭を食べて取り除くため、名前を確認すること。クサフグはHPが0になる。"
+    th: 'กินปลาตัวแรกในข้อง ปลาทั่วไปฟื้น HP เท่ากับขนาดที่แสดงเป็นเซนติเมตรหาร 4 ปัดเศษลง (ขั้นต่ำ 1 HP ไม่เกิน HP ที่ขาด): 20 ซม. ฟื้น 5, 40 ซม. ฟื้น 10, 100 ซม. ฟื้น 25 เมนูจะข้ามปลาไหลยักษ์ตัวแรกของคุณ จึงเผลอกินทิ้งไม่ได้ (ปลาไหลยักษ์ตัวที่สองจะถูกกิน) คุซะฟุกุทำให้ HP เหลือ 0: คุณจะสลบแล้วตื่นที่จุดเซฟด้วย HP 1 ของที่มีอยู่ครบ แต่ปลาตัวนั้นหายไป รายการ "ปลา" จะโผล่ในเมนูอาหารก็ต่อเมื่อช่องอาหารจาก 16 ช่องมีที่ว่างอย่างน้อยหนึ่งช่อง',
+    en: "Eats the first fish in your keepnet. Other fish restore their displayed size in centimetres divided by four (round down, minimum 1 HP), capped at missing HP: 20 cm heals 5, 40 cm heals 10, 100 cm heals 25. The menu skips your first giant eel, so you cannot lose it by accident (a second giant eel would be eaten). Kusafugu sets HP to zero: you black out and wake up at your saved position with 1 HP and keep everything, but the fish is gone. The Fish entry only shows if one of your 16 food slots is free.",
+    ja: "びくの先頭の魚を食べる。通常の魚は表示サイズ(cm)を4で割って切り捨て（最低1HP、不足HPまで）回復する：20cmで5、40cmで10、100cmで25。最初のオオウナギは食べる対象から外されるので、うっかり失うことはない（2匹目のオオウナギは食べられてしまう）。クサフグはHPが0になる：気絶して保存位置で1HPの状態で目を覚まし、持ち物はそのままだが、その魚は失われる。「魚」の項目は、食料16枠のどこかに空きがあるときだけ表示される。"
   };
   function fishMealSummary(lang) {
     return summaries[lang] || summaries.en;
   }
   var facts = {
     th: [
-      "ตัวอย่าง: 20 ซม. ฟื้น 5 HP, 40 ซม. ฟื้น 10 HP, 100 ซม. ฟื้น 25 HP.",
-      "ถ้าจะเก็บโออูนางิ / ปลาไหลยักษ์ไว้ให้หมอ อย่าเลือกกินปลาเมื่อมันเป็นปลาตัวแรกในข้อง เมนูกินปลาไม่ได้กันปลาไหลยักษ์ไว้ให้; ใช้อาหารอื่นฟื้น HP แทน"
+      "ตัวอย่าง: 20 ซม. ฟื้น 5 HP, 40 ซม. ฟื้น 10 HP, 100 ซม. ฟื้น 25 HP",
+      "ก่อนจบเรื่อง เมนูจะข้ามปลาไหลยักษ์ตัวแรกของคุณ จึงเผลอกินไม่ได้ และไม่จำเป็นต้องเก็บปลาไหลไว้เพื่อดูฉากจบ ปลาไหลยักษ์ตัวที่สองจะไม่ถูกข้าม",
+      "คุซะฟุกุทำให้ HP เหลือ 0 คุณจะสลบแล้วตื่นที่จุดเซฟด้วย HP 1 โดยเงิน ปลา และอุปกรณ์ยังอยู่ครบ ตรวจชื่อปลาก่อนกดยืนยัน",
+      'รายการ "ปลา" จะโผล่ในเมนูอาหารก็ต่อเมื่อช่องอาหารจาก 16 ช่องมีที่ว่างอย่างน้อยหนึ่งช่อง'
     ],
     en: [
       "Examples: 20 cm restores 5 HP, 40 cm restores 10 HP, and 100 cm restores 25 HP.",
-      "To keep the giant eel for the doctor’s request, do not eat the first keepnet fish when it is the giant eel. The fish-meal menu does not protect the giant eel; use other food to restore HP."
+      "The menu skips your first giant eel while the ending is not done, so you cannot eat it by accident. You do not need to keep the eel for the ending. A second giant eel is not skipped.",
+      "Kusafugu takes your HP to 0. You black out and wake up at your saved position with 1 HP, and you keep your money, fish and tools. Check the fish name before you confirm.",
+      "The Fish entry only appears in the food menu if one of your 16 food slots is free."
     ],
     ja: [
       "例：20cmなら5HP、40cmなら10HP、100cmなら25HP。",
-      "医者の依頼用にオオウナギを残すなら、びくの先頭がオオウナギのときは食べない。食べる処理はオオウナギを保護しないため、HP回復には別の食料を使う。"
+      "エンディングが済むまでは、最初のオオウナギは食べる対象から外される。うっかり食べてしまうことはない。エンディングのためにオオウナギを残しておく必要はない。2匹目のオオウナギは外されない。",
+      "クサフグを食べるとHPが0になる。気絶して保存位置で1HPの状態で目を覚まし、お金・魚・道具はそのまま。決定する前に魚の名前を確認する。",
+      "「魚」の項目は、食料16枠のどこかに空きがあるときだけ食料メニューに表示される。"
     ]
   };
   function fishMealFacts(lang) {
@@ -2065,10 +2071,10 @@
       notebook: "รวมจำนวนจากสมุดเกมทั้ง 6 หน้า ต้องบันทึกอย่างน้อย 65 ชนิดที่ต่างกันจาก 66 ชนิด ไม่ใช่ตก 65 ครั้ง และยังมีเงื่อนไขเรื่องราวอีกด้วย ครบ 65 ชนิดอย่างเดียวจึงไม่รับประกันว่าจะบอกทิศ",
       checklist: "เทียบชื่อปลากับเช็กลิสต์สมุด",
       map: "เลือกจุดตกด่าน 6 บนแผนที่",
-      postcard: "หลังเทียบสมุด ให้อ่านไปรษณียบัตรที่ได้รับ (06) ในเกม ถ้าข้อความหมอขอปลาไหลใหญ่ปรากฏ การอ่านครั้งนั้นจะเปิดทิศแม่เหล็กด่าน 6 ถ้ายังไม่ปรากฏ เงื่อนไขเรื่องราวอาจยังไม่ครบ",
-      mail: "ดูคำแนะนำไปรษณียบัตรและจุดปลาไหลใหญ่",
+      postcard: "หลังเทียบสมุด ให้อ่านไปรษณียบัตรที่ได้รับ (06) ในเกม ถ้าข้อความหมอขอปลาไหลยักษ์ปรากฏ การอ่านครั้งนั้นจะเปิดทิศแม่เหล็กด่าน 6 ถ้ายังไม่ปรากฏ ให้ทำฉากในหมู่บ้านก่อน: ตกปลาประจำตัวละครของคุณ แล้วเดินเข้าหมู่บ้านด่าน 1 ทางสนาม (8,183)",
+      mail: "ดูคำแนะนำไปรษณียบัตรและจุดปลาไหลยักษ์",
       evidence: "เงื่อนไขที่ยืนยันและสิ่งที่ยังต้องค้นคว้า",
-      limit: "ROM ยืนยันจำนวนช่องสมุดและเงื่อนไขเรื่องราว แต่ยังไม่มีลำดับการเล่นตามปกติที่ยืนยันครบเพื่อเปิดเงื่อนไขนั้น เช็กลิสต์เว็บไม่อ่านเซฟเกมและไม่ปลดล็อกเกม",
+      limit: "อ่านโค้ดเกมเรื่องจำนวนปลาในสมุดและขั้นเนื้อเรื่องแล้ว และทดสอบฉากจบในอีมูเลเตอร์โดยตั้งแฟล็กเนื้อเรื่องตรง ๆ แต่ยังไม่ได้เล่นซ้ำทั้งสายตั้งแต่เซฟใหม่ เช็กลิสต์เว็บไม่อ่านเซฟเกมและไม่ปลดล็อกเกม",
       source: "อ่านหลักฐานเงื่อนไขเรื่องราว",
       noticeSource: "หลักฐานการอ่านไปรษณียบัตร",
       general: "วิธีใช้แม่เหล็กทั่วไปและคำแนะนำซื้อ"
@@ -2079,10 +2085,10 @@
       notebook: "Add the counts on all six in-game notebook pages. At least 65 distinct species records out of 66 are required, not 65 catches. A story prerequisite is also required, so 65 records alone do not guarantee a heading.",
       checklist: "Compare fish names with the notebook checklist",
       map: "Choose Area 6 fishing spots on the map",
-      postcard: "After checking the notebook, read Received postcard 06 in the game. If the doctor’s giant-eel request appears, that read enables the Area 6 Magnet heading. If it does not appear, the story prerequisite may still be missing.",
+      postcard: "After checking the notebook, read Received postcard 06 in the game. If the doctor’s giant-eel request appears, that read enables the Area 6 Magnet heading. If it does not appear, do the village scene first: catch your character’s own special fish, then walk into the Area 1 village at field (8,183).",
       mail: "See postcard guidance and the giant-eel point",
       evidence: "Verified conditions and remaining research",
-      limit: "ROM evidence establishes the notebook count and story gate, but a complete ordinary-play sequence to unlock the prerequisite is not yet verified. The web checklist does not read your save or unlock the game.",
+      limit: "We read the game’s code for the notebook count and the story steps, and drove the ending in the emulator with the story flags set directly. The whole chain from a fresh save has not been played in one go. The web checklist does not read your save or unlock the game.",
       source: "Read the story-gate evidence",
       noticeSource: "Postcard reader evidence",
       general: "General Magnet use and buying advice"
@@ -2093,10 +2099,10 @@
       notebook: "ゲーム内の図鑑6ページの数を合計してください。66種類のうち異なる65種類以上の記録が必要です。65回釣るという意味ではありません。物語の前提条件もあるため、65種類だけで方角が出るとは限りません。",
       checklist: "図鑑チェックリストと魚名を照合する",
       map: "地図でエリア6の釣り場を選ぶ",
-      postcard: "図鑑を確認したら、ゲーム内で受け取ったハガキ06を読んでください。医者のオオウナギ依頼が出たとき、その読み取りでエリア6の磁石の方角表示が有効になります。出ない場合、物語の前提条件がまだ足りない可能性があります。",
+      postcard: "図鑑を確認したら、ゲーム内で受け取ったハガキ06を読んでください。医者のオオウナギ依頼が出たとき、その読み取りでエリア6の磁石の方角表示が有効になります。出ない場合は、先に村の場面を済ませてください：自分のキャラクター専用の魚を釣り、フィールド（8,183）からエリア1の村へ入ります。",
       mail: "ハガキの案内とオオウナギの地点を見る",
       evidence: "確認した条件と未解決点",
-      limit: "ROMで図鑑の数と物語の条件を確認していますが、前提条件を解除する通常プレイの全手順は未検証です。ウェブのチェックリストはセーブを読み取らず、ゲームの条件も解除しません。",
+      limit: "図鑑の数と物語の手順はゲームのコードで確認し、エミュレーターで物語フラグを直接設定してエンディングも確認しました。新規セーブからの全工程の通し再現はしていません。ウェブのチェックリストはセーブを読み取らず、ゲームの条件も解除しません。",
       source: "物語条件の根拠を読む",
       noticeSource: "ハガキ読み取りの根拠",
       general: "磁石の基本操作と購入の目安"
@@ -2701,21 +2707,21 @@
       th: {
         title: "เก็บนมไว้แลกเรือ หรือดื่มเติม HP?",
         reserve: "ถ้าอยากได้แคนูและยังไม่มี ให้เก็บนมสดไว้คุยกับช่างทำเรือด่าน 3 (28,39) ไม่จำเป็นต้องแลกเรือถ้าพอใจกับกะละมังที่มีแล้ว",
-        heal: "ถ้าไม่แลก ใช้ดื่มเมื่อขาด HP เพื่อฟื้นจนเต็มตามค่าสูงสุด นมจะกลายเป็นขวดเปล่า นำไปเติมกับวัวด่าน 3 (6,103) ได้ ถ้าดื่มก่อน ต้องเติมใหม่ก่อนแลกเรือ",
+        heal: "ถ้าไม่แลก ใช้ดื่มเมื่อขาด HP เพื่อฟื้นจนเต็มตามค่าสูงสุด นมจะกลายเป็นขวดเปล่า นำไปให้วัวด่าน 3 (6,103) เติมให้ฟรีกี่ครั้งก็ได้ ถ้าดื่มก่อน ต้องเติมใหม่ก่อนแลกเรือ",
         compare: "ดูข้อแลกเปลี่ยนของแคนูกับกะละมัง",
         trade: "ดูจุดแลกนมเป็นแคนู · ด่าน 3"
       },
       ja: {
         title: "牛乳をカヌー用に残す？ HP回復に使う？",
         reserve: "カヌーが欲しく、まだ持っていないなら、牛乳をエリア3（28,39）の船大工との交換用に残してください。今のタライで十分なら、交換する必要はありません。",
-        heal: "交換しないなら、HPが必要なときに飲むと最大HPまで回復し、空きビンになる。エリア3の牛（6,103）で補充できます。先に飲んだ場合、交換前に補充が必要です。",
+        heal: "交換しないなら、HPが必要なときに飲むと最大HPまで回復し、空きビンになる。エリア3の牛（6,103）が何度でも無料で補充してくれます。先に飲んだ場合、交換前に補充が必要です。",
         compare: "カヌーとタライの選択理由を比較",
         trade: "牛乳とカヌーの交換地点 · エリア3"
       },
       en: {
         title: "Reserve milk for a canoe, or drink it for HP?",
         reserve: "Want a canoe and do not own one? Keep the fresh milk for the Area 3 canoe maker at (28,39). You do not need to trade if your existing tub suits you.",
-        heal: "Otherwise drink it when you need HP: it restores current HP to maximum and becomes an empty bottle. Refill at the Area 3 cow (6,103). If you drink first, refill before trading for the canoe.",
+        heal: "Otherwise drink it when you need HP: it restores current HP to maximum and becomes an empty bottle. The Area 3 cow (6,103) refills it for free, as often as you like. If you drink first, refill before trading for the canoe.",
         compare: "Compare the canoe and tub trade-off",
         trade: "See the milk-for-canoe location · Area 3"
       }
@@ -2771,29 +2777,29 @@
   function postcardCopy(lang) {
     return {
       th: {
-        title: "เมื่ออ่านแล้วพบจดหมายจากหมอให้ตกปลาไหลใหญ่",
-        body: "ถ้าพบข้อความนี้แล้ว ใช้แม่เหล็กในด่าน 6 ดูทิศทาง หรือเปิดจุดบนแผนที่ด้านล่าง เลือกเหยื่อและอุปกรณ์จากหน้าปลาไหลใหญ่ก่อนออกไปตก",
-        afterCatch: "จับตามคำขอได้แล้ว ให้เก็บปลาไหลไว้และกลับหมู่บ้านเริ่มต้น หากเงื่อนไขเนื้อเรื่องครบ เกมจะเริ่มฉากช่วยหมอและฉากจบอัตโนมัติ",
+        title: "เมื่ออ่านแล้วพบจดหมายจากหมอให้ตกปลาไหลยักษ์",
+        body: "ถ้าพบข้อความนี้แล้ว ใช้แม่เหล็กในด่าน 6 ดูทิศทาง หรือเปิดจุดบนแผนที่ด้านล่าง เลือกเหยื่อและอุปกรณ์จากหน้าปลาไหลยักษ์ก่อนออกไปตก",
+        afterCatch: "ตกปลาไหลได้แล้วไม่ต้องเก็บไว้ เดินเข้าหมู่บ้านด่าน 1 ทางประตูสนาม (12,189) ฉากจบจะเริ่มโดยอัตโนมัติ โดยต้องทำขั้นก่อนหน้าให้ครบก่อน (ปลาประจำตัวละครของคุณ แล้วฉากในหมู่บ้านที่สนาม (8,183))",
         returnMap: "ดูทางกลับหมู่บ้าน · ด่าน 1 (12,189)",
-        limit: "จุดตกที่กำหนดอาจไม่มีปลาในรอบนี้",
-        fish: "ดูเหยื่อและอุปกรณ์สำหรับปลาไหลใหญ่",
+        limit: "จุด (41,8) ไม่ได้มีปลาไหลอยู่เสมอ",
+        fish: "ดูเหยื่อและอุปกรณ์สำหรับปลาไหลยักษ์",
         map: "ดูจุดด่าน 6 · X 41, Y 8"
       },
       ja: {
         title: "医者から大ウナギを釣る依頼が届いたら",
         body: "この依頼を見たら、エリア6で磁石のオオウナギ項目を使うか、下の地図で地点を確認。釣りに行く前に魚のページで対応エサと道具を選んでください。",
-        afterCatch: "依頼の魚を釣ったら、ウナギを残して最初の村へ戻ってください。物語の条件がそろうと、医者の回復とエンディングの自動シーンが始まります。",
+        afterCatch: "オオウナギは釣れば十分で、残しておく必要はありません。フィールド（12,189）の入口からエリア1の村に入ると、エンディングが自動で流れます。ただし先の手順（自分のキャラクター専用の魚、次にフィールド（8,183）での村の場面）が済んでいることが条件です。",
         returnMap: "最初の村への入口 · エリア1 (12,189)",
-        limit: "設定された釣り場に魚がいない場合もあります。",
+        limit: "(41,8)にいつもオオウナギがいるとは限りません。",
         fish: "オオウナギの対応エサと道具を見る",
         map: "エリア6の地点 · X 41, Y 8"
       },
       en: {
         title: "After reading the doctor’s request for a giant eel",
         body: "Once this request appears, use its Area 6 Magnet heading or open the map point below. Choose compatible bait and equipment from the fish profile before fishing.",
-        afterCatch: "After catching the requested eel, keep it and return to the starting village. When the story conditions are complete, the doctor-recovery and ending scene starts automatically.",
+        afterCatch: "You do not need to keep the eel once it is caught. Walk into the Area 1 village through the field door at (12,189) and the ending scene plays automatically, provided the earlier steps are done (your character’s own special fish, then the village scene at field (8,183)).",
         returnMap: "Starting-village entrance · Area 1 (12,189)",
-        limit: "The configured fishing point may be inactive.",
+        limit: "The eel is not always at (41,8).",
         fish: "See giant eel bait and equipment",
         map: "Area 6 point · X 41, Y 8"
       }

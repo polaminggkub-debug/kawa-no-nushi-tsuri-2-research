@@ -82,7 +82,8 @@ def build(rom_path):
             "One runtime-confirmed use of Gold Net (general_tool 04) in Area 1. "
             "The location is confirmed for the recorded field state; normal-route access is not established. "
             "Two controlled uses from the recorded field tile both increased the existing bait 07 stack from zero to three. "
-            "The test injected the tool inventory entry and does not establish normal-route access."
+            "The test injected the tool inventory entry and does not establish normal-route access. "
+            "The net gives 1 to 4 pieces per use; both test uses happened to give 3."
         ),
         "items": {
             "general_tool:04": [

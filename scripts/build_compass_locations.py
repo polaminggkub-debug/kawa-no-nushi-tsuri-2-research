@@ -171,17 +171,20 @@ def build(rom_path):
             "en": (
                 "If you use these maps, you do not need to buy the magnet just to learn the fixed exit coordinates for Areas 1–5. "
                 "Buy Magnet 0E for ¥300 only if you want the game to give a heading from your current position; it is stocked in Areas 1, 2, 3 and 6. "
-                "Area 6 has no fixed map pin here: before its story condition is met, the magnet reports your area/section without a heading."
+                "Area 6 has no fixed map pin here: before its story condition is met, the magnet reports your area/section without a heading. "
+                "In Area 6, after the doctor's note has appeared, it points at the giant eel at (41,8) instead (see the received postcard)."
             ),
             "ja": (
                 "この地図を使うなら、エリア1～5の固定出口座標を知るためだけに磁石を買う必要はありません。"
                 "現在地からゲーム内の方角表示を使いたい場合だけ、磁石0E（300円）を購入してください。エリア1・2・3・6で販売されています。"
                 "エリア6には固定マーカーを載せていません。物語条件が満たされる前は、磁石はエリア／区画のみを表示し、方角は出ません。"
+                "エリア6では、医者の文面が出たあとは出口ではなく(41,8)のオオウナギを指します（受け取ったハガキを参照）。"
             ),
             "th": (
                 "ถ้าใช้แผนที่นี้ ไม่ต้องซื้อแม่เหล็กเพื่อรู้พิกัดทางออกคงที่ของด่าน 1–5 ซื้อแม่เหล็ก 0E ราคา ¥300 "
                 "เฉพาะเมื่อต้องการให้เกมบอกทิศจากตำแหน่งปัจจุบัน มีขายในด่าน 1, 2, 3 และ 6 ด่าน 6 ไม่มีหมุดพิกัดคงที่ในหน้านี้: "
-                "ก่อนผ่านเงื่อนไขเนื้อเรื่อง แม่เหล็กจะแจ้งพื้นที่/ช่วงที่ยืน แต่ไม่บอกทิศ"
+                "ก่อนผ่านเงื่อนไขเนื้อเรื่อง แม่เหล็กจะแจ้งพื้นที่/ช่วงที่ยืน แต่ไม่บอกทิศ "
+                "ในด่าน 6 หลังข้อความของหมอปรากฏ แม่เหล็กจะชี้ไปที่ปลาไหลยักษ์ที่ (41,8) แทน (ดูที่ไปรษณียบัตรที่ได้รับ)"
             ),
         },
         "scope": {

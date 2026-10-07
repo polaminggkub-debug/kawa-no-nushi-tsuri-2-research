@@ -132,9 +132,9 @@
           "y": 0.5208333333333334
         },
         "action": {
-          "en": "Bring key 17 and leave a free bait slot before opening this chest.",
-          "ja": "カギ17を持ち、エサ欄を1つ空けてから開ける。",
-          "th": "พกกุญแจ 17 และเว้นช่องเหยื่อให้ว่างก่อนเปิดหีบ"
+          "en": "Bring a key (the chest uses it up) and leave a free bait slot before opening this chest.",
+          "ja": "カギを持ち、エサ欄を1つ空けてから開ける。宝箱を開けるとカギは消費される。",
+          "th": "พกกุญแจ (เปิดหีบแล้วกุญแจหมดไป) และเว้นช่องเหยื่อให้ว่างก่อนเปิดหีบ"
         },
         "source": {
           "objectSlotHex": "0E",
@@ -152,7 +152,7 @@
           "id": "17"
         },
         "capacityCheck": "7E:0B36",
-        "keyConsumed": false,
+        "keyConsumed": true,
         "townEntranceOrdinal": 4,
         "approach": {
           "image": "maps/tool-entry-town-chest-07.png",
@@ -190,9 +190,9 @@
           "y": 0.2708333333333333
         },
         "action": {
-          "en": "Bring key 17 and leave a free bait slot before opening this chest.",
-          "ja": "カギ17を持ち、エサ欄を1つ空けてから開ける。",
-          "th": "พกกุญแจ 17 และเว้นช่องเหยื่อให้ว่างก่อนเปิดหีบ"
+          "en": "Bring a key (the chest uses it up) and leave a free bait slot before opening this chest.",
+          "ja": "カギを持ち、エサ欄を1つ空けてから開ける。宝箱を開けるとカギは消費される。",
+          "th": "พกกุญแจ (เปิดหีบแล้วกุญแจหมดไป) และเว้นช่องเหยื่อให้ว่างก่อนเปิดหีบ"
         },
         "source": {
           "objectSlotHex": "0E",
@@ -210,7 +210,7 @@
           "id": "17"
         },
         "capacityCheck": "7E:0B36",
-        "keyConsumed": false,
+        "keyConsumed": true,
         "townEntranceOrdinal": 0,
         "approach": {
           "image": "maps/tool-entry-town-chest-08.png",
@@ -248,9 +248,9 @@
           "y": 0.2708333333333333
         },
         "action": {
-          "en": "Bring key 17 and leave a free rod slot before opening this chest.",
-          "ja": "カギ17を持ち、竿欄を1つ空けてから開ける。",
-          "th": "พกกุญแจ 17 และเว้นช่องคันเบ็ดให้ว่างก่อนเปิดหีบ"
+          "en": "Bring a key (the chest uses it up) and leave a free rod slot before opening this chest.",
+          "ja": "カギを持ち、竿欄を1つ空けてから開ける。宝箱を開けるとカギは消費される。",
+          "th": "พกกุญแจ (เปิดหีบแล้วกุญแจหมดไป) และเว้นช่องคันเบ็ดให้ว่างก่อนเปิดหีบ"
         },
         "source": {
           "objectSlotHex": "0E",
@@ -268,7 +268,7 @@
           "id": "17"
         },
         "capacityCheck": "7E:0B06",
-        "keyConsumed": false,
+        "keyConsumed": true,
         "townEntranceOrdinal": 0,
         "approach": {
           "image": "maps/tool-entry-town-chest-10.png",
@@ -306,9 +306,9 @@
           "y": 0.2708333333333333
         },
         "action": {
-          "en": "Bring key 17 and leave a free general-tool slot before opening this chest.",
-          "ja": "カギ17を持ち、道具欄を1つ空けてから開ける。",
-          "th": "พกกุญแจ 17 และเว้นช่องอุปกรณ์ทั่วไปให้ว่างก่อนเปิดหีบ"
+          "en": "Bring a key (the chest uses it up) and leave a free general-tool slot before opening this chest.",
+          "ja": "カギを持ち、道具欄を1つ空けてから開ける。宝箱を開けるとカギは消費される。",
+          "th": "พกกุญแจ (เปิดหีบแล้วกุญแจหมดไป) และเว้นช่องอุปกรณ์ทั่วไปให้ว่างก่อนเปิดหีบ"
         },
         "source": {
           "objectSlotHex": "0E",
@@ -326,7 +326,7 @@
           "id": "17"
         },
         "capacityCheck": "general-tool inventory",
-        "keyConsumed": false,
+        "keyConsumed": true,
         "townEntranceOrdinal": 0,
         "approach": {
           "image": "maps/tool-entry-town-chest-12.png",

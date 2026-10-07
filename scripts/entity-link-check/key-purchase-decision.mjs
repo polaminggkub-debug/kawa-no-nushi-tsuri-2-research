@@ -8,31 +8,28 @@ const key = JSON.parse(fs.readFileSync(path.join(root, 'data/quest-tool-use.json
 const stock = JSON.parse(fs.readFileSync(path.join(root, 'data/shop-stock-rom.json')))
 const rules = {
   en: [
-    /do not buy another/i,
-    /buy one for ¥100/i,
-    /1, 2, 4 or 6/,
-    /interact.*chest/i,
-    /rather than selecting.*menu/i,
-    /does not consume/i,
-    /Leave room/i,
+    /uses up one key/i,
+    /¥100/,
+    /1, 2, 4 and 6/,
+    /examine the chest/i,
+    /do not pick the key from the item menu/i,
+    /free a slot/i,
   ],
   th: [
-    /ไม่ต้องซื้อซ้ำ/,
-    /ซื้อราคา ¥100/,
-    /1, 2, 4 หรือ 6/,
+    /กุญแจหมดไปหนึ่งดอก/,
+    /¥100/,
+    /1, 2, 4 และ 6/,
     /กดตรวจหีบ/,
-    /ไม่ต้องเลือกใช้.*เมนู/,
-    /กุญแจไม่หาย/,
-    /เว้นช่องกระเป๋า/,
+    /ไม่ต้องเลือกกุญแจจากเมนู/,
+    /ให้เว้นช่อง/,
   ],
   ja: [
-    /買い直さず/,
-    /100円で購入/,
+    /カギが1個なくなる/,
+    /100円/,
     /1・2・4・6/,
     /宝箱を調べ/,
-    /メニュー.*ではなく/,
-    /消費されません/,
-    /所持欄に空き/,
+    /カギを選んでも開かない/,
+    /欄を1つ空け/,
   ],
 }
 
@@ -67,7 +64,7 @@ function checkEvidence() {
     [1, 2, 4, 6],
   )
   assert.equal(key.record.basePriceYen, 100)
-  assert.equal(key.rawTrace.keyConsumed, false)
+  assert.equal(key.rawTrace.keyConsumed, true)
   assert.deepEqual(
     key.rawTrace.chests.map((chest) => [chest.visibleArea, chest.reward]),
     [
@@ -78,10 +75,10 @@ function checkEvidence() {
     ],
   )
   const hashes = {
-    facts: '4c4aedede2d9c2923f53e600ef90f9c9a432a89a110782d39be22627e3da609a',
+    facts: '7bca5b02184515dad29b00e304095cd524a5deb2eecf90c15d0dcc531905d88d',
     evidence: '06c6f4c204f5004c4fe70c4b80bb75bb44659e96cce75bc9a540071b58e945e7',
-    evidenceNotes: 'fbc04a277f5fa4a576d8cf75286c49b4d49a305feb87650a7c2ed69acb4a00b0',
-    rawTrace: '26b3207f2172324e523c47e84c428b8840fe2f388ff64df8dc72ddd8a1badcf4',
+    evidenceNotes: 'f92be430806d6ca1c303ff095dc47f1aa5dad270cec5682488637018390da9f8',
+    rawTrace: '72d24a79fc1a487958bf2249992d1b893823e755df56db2a6f124538bbdbd86f',
     record: 'ff4ad40e868729be445eb008d4b2f0ce51f13e7a7e93348624eebaf89a1105b9',
   }
   for (const [field, expected] of Object.entries(hashes)) {
