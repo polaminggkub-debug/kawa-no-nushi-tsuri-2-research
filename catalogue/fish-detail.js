@@ -172,6 +172,96 @@
     }
   }
 
+  // src/entities/item/fly-lock.js
+  var FRESH_SAVE_LOCK = Object.freeze({ body: 1, wing: 2 });
+  function flyGroup(id) {
+    return Number.parseInt(id, 16) % 4;
+  }
+  function flyLockedAt(bundle, lock = FRESH_SAVE_LOCK) {
+    return flyGroup(bundle.body) === lock.body || flyGroup(bundle.wing || "00") === lock.wing;
+  }
+  function flyWorksOnFreshSave(bundle) {
+    return !flyLockedAt(bundle);
+  }
+  function freshSaveOffers(offers, bundleOf = (offer) => offer) {
+    const usable = offers.filter((offer) => flyWorksOnFreshSave(bundleOf(offer)));
+    return usable.length ? usable : offers;
+  }
+
+  // src/entities/item/lure-coverage-kit.js
+  var PREFERRED_PAIR_ORDER = /* @__PURE__ */ new Map([
+    ["2E+23", 0],
+    ["17+24", 1],
+    ["17+23", 2]
+  ]);
+  function luresWithFishProfiles(items) {
+    return items.filter(
+      (item) => item.category === "lure" && (item.playerUse?.fishIds || []).length > 0
+    );
+  }
+  function expectedFishIds(lures) {
+    return new Set(lures.flatMap((item) => item.playerUse.fishIds || []));
+  }
+  function pairItems(first, second) {
+    return [first, second].sort((a, b) => {
+      const maskA = Number.parseInt(a.decodedFields?.fishHookGateMaskHex || "0", 16);
+      const maskB = Number.parseInt(b.decodedFields?.fishHookGateMaskHex || "0", 16);
+      return maskB - maskA || a.id.localeCompare(b.id);
+    });
+  }
+  function pairKey(items) {
+    return items.map((item) => item.id).join("+");
+  }
+  function isFullCoverage(items, expected) {
+    const covered = new Set(items.flatMap((item) => item.playerUse.fishIds || []));
+    return covered.size === expected.size && [...expected].every((id) => covered.has(id));
+  }
+  function makePair(items, coverageCount) {
+    const orderedItems = pairItems(...items);
+    return {
+      items: orderedItems,
+      key: pairKey(orderedItems),
+      totalYen: orderedItems.reduce((sum, item) => sum + Number(item.priceYen), 0),
+      coverageCount
+    };
+  }
+  function pairOrder(first, second) {
+    const priceDifference = first.totalYen - second.totalYen;
+    if (priceDifference) return priceDifference;
+    const firstPreference = PREFERRED_PAIR_ORDER.get(first.key) ?? Infinity;
+    const secondPreference = PREFERRED_PAIR_ORDER.get(second.key) ?? Infinity;
+    return firstPreference - secondPreference || first.key.localeCompare(second.key);
+  }
+  function lureCoverageOptions(items) {
+    const lures = luresWithFishProfiles(items);
+    const expected = expectedFishIds(lures);
+    const pairs = [];
+    for (let first = 0; first < lures.length; first += 1) {
+      for (let second = first + 1; second < lures.length; second += 1) {
+        const pair = pairItems(lures[first], lures[second]);
+        if (pair.every((item) => Number.isFinite(item.priceYen)) && isFullCoverage(pair, expected))
+          pairs.push(makePair(pair, expected.size));
+      }
+    }
+    return { coverageCount: expected.size, pairs: pairs.sort(pairOrder) };
+  }
+  function stockedInArea(item, stage) {
+    return (item.playerUse?.shops || []).some(
+      (shop) => Number(shop.stage) === stage && !shop.condition
+    );
+  }
+  function lureCoverageForArea(options, stage) {
+    const area = Number(stage);
+    const localPairs = Number.isInteger(area) && area >= 1 && area <= 6 ? options.pairs.filter((pair) => pair.items.every((item) => stockedInArea(item, area))) : [];
+    return {
+      stage: area,
+      coverageCount: options.coverageCount,
+      localPairs,
+      pair: localPairs[0] || options.pairs[0] || null,
+      isLocal: localPairs.length > 0
+    };
+  }
+
   // src/entities/fish/eel-ending-route.js
   var eelEndingEntrance = Object.freeze({ stage: 1, x: 12, y: 189 });
 
@@ -267,82 +357,9 @@
         }
       }
       candidates.sort((a, b) => a.price - b.price || a.entry.item.id.localeCompare(b.entry.item.id));
-      return candidates.length ? [candidates[0]] : [];
+      const usable = method === "fly" ? freshSaveOffers(candidates, (offer) => offer.bundle) : candidates;
+      return usable.length ? [usable[0]] : [];
     });
-  }
-
-  // src/entities/item/lure-coverage-kit.js
-  var PREFERRED_PAIR_ORDER = /* @__PURE__ */ new Map([
-    ["2E+23", 0],
-    ["17+24", 1],
-    ["17+23", 2]
-  ]);
-  function luresWithFishProfiles(items) {
-    return items.filter(
-      (item) => item.category === "lure" && (item.playerUse?.fishIds || []).length > 0
-    );
-  }
-  function expectedFishIds(lures) {
-    return new Set(lures.flatMap((item) => item.playerUse.fishIds || []));
-  }
-  function pairItems(first, second) {
-    return [first, second].sort((a, b) => {
-      const maskA = Number.parseInt(a.decodedFields?.fishHookGateMaskHex || "0", 16);
-      const maskB = Number.parseInt(b.decodedFields?.fishHookGateMaskHex || "0", 16);
-      return maskB - maskA || a.id.localeCompare(b.id);
-    });
-  }
-  function pairKey(items) {
-    return items.map((item) => item.id).join("+");
-  }
-  function isFullCoverage(items, expected) {
-    const covered = new Set(items.flatMap((item) => item.playerUse.fishIds || []));
-    return covered.size === expected.size && [...expected].every((id) => covered.has(id));
-  }
-  function makePair(items, coverageCount) {
-    const orderedItems = pairItems(...items);
-    return {
-      items: orderedItems,
-      key: pairKey(orderedItems),
-      totalYen: orderedItems.reduce((sum, item) => sum + Number(item.priceYen), 0),
-      coverageCount
-    };
-  }
-  function pairOrder(first, second) {
-    const priceDifference = first.totalYen - second.totalYen;
-    if (priceDifference) return priceDifference;
-    const firstPreference = PREFERRED_PAIR_ORDER.get(first.key) ?? Infinity;
-    const secondPreference = PREFERRED_PAIR_ORDER.get(second.key) ?? Infinity;
-    return firstPreference - secondPreference || first.key.localeCompare(second.key);
-  }
-  function lureCoverageOptions(items) {
-    const lures = luresWithFishProfiles(items);
-    const expected = expectedFishIds(lures);
-    const pairs = [];
-    for (let first = 0; first < lures.length; first += 1) {
-      for (let second = first + 1; second < lures.length; second += 1) {
-        const pair = pairItems(lures[first], lures[second]);
-        if (pair.every((item) => Number.isFinite(item.priceYen)) && isFullCoverage(pair, expected))
-          pairs.push(makePair(pair, expected.size));
-      }
-    }
-    return { coverageCount: expected.size, pairs: pairs.sort(pairOrder) };
-  }
-  function stockedInArea(item, stage) {
-    return (item.playerUse?.shops || []).some(
-      (shop) => Number(shop.stage) === stage && !shop.condition
-    );
-  }
-  function lureCoverageForArea(options, stage) {
-    const area = Number(stage);
-    const localPairs = Number.isInteger(area) && area >= 1 && area <= 6 ? options.pairs.filter((pair) => pair.items.every((item) => stockedInArea(item, area))) : [];
-    return {
-      stage: area,
-      coverageCount: options.coverageCount,
-      localPairs,
-      pair: localPairs[0] || options.pairs[0] || null,
-      isLocal: localPairs.length > 0
-    };
   }
 
   // src/pages/fish/lure-kit.js
@@ -358,10 +375,10 @@
   }
   function lureKitIntro(ctx, count, total) {
     if (ctx.locale === "th")
-      return `คู่นี้ครอบคลุม ${count} โปรไฟล์ที่ผ่านเงื่อนไขลัวร์ ราคา ¥${total} หากซื้อใหม่ครบคู่ ไม่ต้องซื้อซ้ำถ้ามีคู่ที่ครอบคลุมครบอยู่แล้ว`;
+      return `สองชิ้นนี้ครอบคลุมปลาลัวร์ทั้ง ${count} ชนิด ราคารวม ¥${total} ถ้าซื้อใหม่ ไม่ต้องซื้อซ้ำถ้ามีคู่ที่ครอบคลุมครบอยู่แล้ว`;
     if (ctx.locale === "ja")
-      return `この組み合わせはルアー判定を通る${count}プロフィールをカバーし、新規購入は合計${total}円です。すでに全範囲をカバーする組を持っていれば買い直す必要はありません。`;
-    return `This pair covers all ${count} profiles that pass the lure check, for ¥${total} when buying new. Keep a full-coverage pair you already own.`;
+      return `この2つでルアーの対象${count}種すべてをカバーでき、新規購入は合計${total}円です。すでに全範囲をカバーする組を持っていれば買い直す必要はありません。`;
+    return `This pair covers all ${count} lure fish for ¥${total} when buying new. Keep a full-coverage pair you already own.`;
   }
   function lureKitAvailability(ctx, localPair, hasLocalLureOffer) {
     if (ctx.locale === "th")
@@ -398,10 +415,10 @@
   }
   function lureKitScope(ctx) {
     if (ctx.locale === "th")
-      return "ครอบคลุมเงื่อนไขชนิดเหยื่อ ไม่ได้รับประกันว่าปลาจะกินหรือดึงขึ้นสำเร็จ";
+      return "ปลาว่ายตามเมื่ออยู่ช่องเดียวกับลัวร์และคุณกด A หรือ B ต่อเนื่อง พอปลาอยู่ระดับเดียวกับลัวร์ให้กด A หนึ่งครั้ง ลัวร์สองชิ้นนี้เริ่มสู้ได้ไม่เท่ากันกับปลาแต่ละขนาด ดูกลุ่มขนาดบนการ์ดลัวร์";
     if (ctx.locale === "ja")
-      return "ルアー種類の判定をカバーするもので、食いつきや取り込みの保証ではありません。";
-    return "Coverage is lure-type compatibility, not a guarantee of a bite or landing.";
+      return "魚がルアーと同じマスにいて、AかBを押し続けると追ってきます。同じ高さに来たらAを1回。この2つはファイトの開始値が魚のサイズで違うので、ルアーのカードでサイズ区分を確認してください。";
+    return "A fish follows when it is on the lure’s tile and you keep tapping A or B; press A once when it is level with the lure. The two lures start the fight differently by fish size, so check the size class on each lure card.";
   }
   function renderReusableKit(ctx, items, stage) {
     const lures = items.filter((item) => item.category === "lure");
@@ -430,30 +447,39 @@
     return offers.every((offer) => offer.body?.playerUse?.fishIds?.includes(ctx.id) && offer.bundle) ? offers : [];
   }
   function backupTitle(ctx) {
-    if (ctx.locale === "th") return "ปลาไม่กินฟลาย? ทางเลือกเพื่อผ่านเงื่อนไขซ่อนหนึ่งข้อ";
-    if (ctx.locale === "ja") return "フライに反応しない？ 隠れた判定1つを避ける候補";
-    return "No bite on a fly? Alternatives for one hidden check";
+    if (ctx.locale === "th") return "ฟลายไม่ติด? พกชุดสามตัวกันล็อกเปลี่ยน";
+    if (ctx.locale === "ja") return "フライに反応しない？ ロック変更に備える3本セット";
+    return "No bite on a fly? A three-fly set against a lock change";
   }
   function backupIntro(ctx, total) {
     if (ctx.locale === "th")
-      return `ถ้าจะเตรียมฟลายสำรอง ชุดด้านล่างมีราคารวมต่ำที่สุดในกลุ่มที่ซื้อชุดสำเร็จรูป 3 ชุดจากร้านทั้ง 6 ด่านแล้วผ่านเงื่อนไขนี้สำหรับปลาตัวนี้ ซื้อใหม่รวม ¥${total} และบอดี้ทั้งสามผ่านเงื่อนไขของปลาที่กำลังดู เก็บไว้เป็นชุดสำรอง ไม่จำเป็นต้องซื้อทั้งหมดเพื่อเริ่มตก`;
+      return `เซฟทุกอันมีล็อกลับที่อาจเปลี่ยนหลังนอนโรงแรม ชุดสามตัวนี้ถูกที่สุดที่ปลานี้กิน และมีบอดี้กับปีกอยู่คนละกลุ่มกันหมด จึงมีอย่างน้อยหนึ่งตัวที่ใช้ได้ไม่ว่าล็อกจะเป็นเลขไหน ซื้อใหม่รวม ¥${total} ไม่ต้องซื้อครบเพื่อเริ่มตก เซฟใหม่เริ่มจากตัวที่ติดป้าย “ใช้ได้บนเซฟใหม่” ก็พอ`;
     if (ctx.locale === "ja")
-      return `予備を用意するなら、この魚の条件を満たす店売り3セットのうち、全6エリアの在庫で合計価格が最安の候補です。新規購入は合計${total}円で、3つの本体すべてが表示中の魚の判定を通ります。最初から全部買う必要はありません。`;
-    return `For backup flies, these are the lowest-total-price three ready-made sets across all six recorded area stocks that satisfy this check for the current fish. They cost ¥${total} in total when buying new. All three bodies pass the current fish’s profile check. You do not need to buy all three to start fishing.`;
+      return `どのセーブにも隠しロックがあり、宿泊で変わることがあります。この3本は、この魚が食べる最安の組み合わせで、ボディとウィングのグループがすべて違うため、ロックがどの数字でも少なくとも1本は使えます。新規購入は合計${total}円。始めるのに全部買う必要はありません。新規セーブでは「新規セーブで使える」の表示があるものから使えば十分です。`;
+    return `Every save has a hidden lock that an inn rest can change. These three are the cheapest flies this fish takes, and their bodies and wings are all in different groups, so at least one works whatever the lock is. They cost ¥${total} in total when buying new, and you do not need all three to start. On a fresh save, begin with the one marked “Works on a fresh save”.`;
   }
   function backupAction(ctx) {
     if (ctx.locale === "th")
-      return "สลับลองสามชุดในฉากที่โหลดอยู่เดิม โดยไม่พักโรงแรมหรือออกไปโหลดฉากใหม่ ตามที่เกมทำงาน อย่างน้อยหนึ่งชุดจะไม่ติดเงื่อนไขที่บล็อกเพราะบอดี้กับปีกซ้ำกัน ตราบใดที่ค่าซ่อนในเกมไม่เปลี่ยน การตีชุดเดิมซ้ำไม่ได้สุ่มค่านี้ใหม่";
+      return "ใส่ทีละตัวในฉากเดิมได้เลย ไม่ต้องนอนโรงแรมหรือเปลี่ยนฉาก ถ้าทุ่นอยู่ช่องของปลาแล้วไม่มีปลาตัวไหนสนใจฟลายเลย ให้สลับไปตัวถัดไป ถ้าปลาหันมาหาฟลายแสดงว่าตัวนั้นผ่านล็อกแล้ว ไม่ต้องเปลี่ยน";
     if (ctx.locale === "ja")
-      return "宿泊やフィールド再生成を挟まず、同じ読み込み済みフィールドで3セットを切り替えます。隠れた値が一定なら、コード上は少なくとも1セットがボディ・ウィングの一致による遮断を避けます。同じセットの投げ直しはこの値を再抽選しません。";
-    return "Switch among the three sets in the same loaded field, without an inn stay or field reload. With the stored hidden values unchanged, the code guarantees at least one avoids the body/wing equality block. Recasting the same set does not reroll those values.";
+      return "同じフィールドのまま、宿泊や移動なしで1本ずつ切り替えます。ウキを魚のマスに置いても魚がまったく反応しないときは次の1本へ。魚がこちらを向いたら、そのフライはロックを通っているので替える必要はありません。";
+    return "Swap them one at a time in the same field; no inn stay or travel needed. If your float is on the fish’s tile and nothing reacts to the fly, switch to the next one. If a fish turns toward the fly, it has passed the lock; change nothing.";
   }
   function backupScope(ctx) {
     if (ctx.locale === "th")
-      return "นี่ผ่านเงื่อนไขซ่อนเพียงหนึ่งข้อ ไม่รับประกันว่าปลาจะกินหรือตกขึ้นได้ ยังมีตำแหน่ง จังหวะ และเงื่อนไขอื่น เส้นทางสลับชุดนี้เป็นข้อสรุปจากโค้ด ยังไม่มีผลทดลองตกจริงยืนยันชุดนี้";
+      return "การตีซ้ำด้วยฟลายตัวเดิมไม่เปลี่ยนล็อก มีแต่การนอนโรงแรมที่เปลี่ยนได้ (ราว 34% ที่เลขใดเลขหนึ่งเปลี่ยน) นอนแล้วให้ใส่ฟลายอีกครั้ง";
     if (ctx.locale === "ja")
-      return "回避するのは隠れた判定1つだけで、食いつき・取り込みの保証ではありません。位置・タイミング・別条件も残ります。この切替手順はコードに基づく結論で、実釣比較は未実施です。";
-    return "This avoids only one hidden check. Position, timing and other checks still apply; it does not guarantee a bite or landing. The switching strategy is derived from code and has not been confirmed by a controlled fishing trial.";
+      return "同じフライで投げ直してもロックは変わりません。変わるのは宿泊だけです（どちらかの数字が変わる確率は約34%）。泊まったら毛バリを装備し直してください。";
+    return "Recasting the same fly never changes the lock; only an inn rest can (about a 34% chance that one of the two numbers changes). Re-equip your fly after resting.";
+  }
+  function lockBadge(ctx, bundle) {
+    const works = flyWorksOnFreshSave(bundle);
+    const text = works ? { th: "ใช้ได้บนเซฟใหม่", ja: "新規セーブで使える", en: "Works on a fresh save" } : {
+      th: "ติดล็อกบนเซฟใหม่ (ใช้เมื่อล็อกเปลี่ยน)",
+      ja: "新規セーブではロックされる（ロックが変わったら使う）",
+      en: "Locked on a fresh save (use it once the lock changes)"
+    };
+    return `<p class="fly-backup-lock" data-fresh-save="${works ? "works" : "locked"}"><strong>${ctx.escapeHtml(text[ctx.locale] || text.en)}</strong></p>`;
   }
   function backupLocation(ctx, def) {
     if (ctx.locale === "th") return `ร้านด่าน ${def.stage} · รายการฟลายที่ ${def.slot + 1}`;
@@ -493,7 +519,7 @@
   function backupCard(ctx, offer, items, stage) {
     const { def, bundle } = offer;
     const parts = backupParts(items, def).map((item) => ctx.itemLink({ item, routes: [] }, stage)).join("");
-    return `<article class="detail-section fly-backup" data-bundle="${def.body}/${def.wing}/${def.tail}" data-price="${bundle.shopPriceYen}"><h4>${ctx.escapeHtml(backupLocation(ctx, def))} · ¥${bundle.shopPriceYen}</h4><p>${ctx.escapeHtml(backupPartsNote(ctx))}</p>${parts}<a class="route-button" href="${ctx.escapeHtml(backupShopLink(ctx, def, stage))}">${ctx.escapeHtml(backupBuyLabel(ctx))} ↗</a></article>`;
+    return `<article class="detail-section fly-backup" data-bundle="${def.body}/${def.wing}/${def.tail}" data-price="${bundle.shopPriceYen}"><h4>${ctx.escapeHtml(backupLocation(ctx, def))} · ¥${bundle.shopPriceYen}</h4>${lockBadge(ctx, def)}<p>${ctx.escapeHtml(backupPartsNote(ctx))}</p>${parts}<a class="route-button" href="${ctx.escapeHtml(backupShopLink(ctx, def, stage))}">${ctx.escapeHtml(backupBuyLabel(ctx))} ↗</a></article>`;
   }
   function backupCards(ctx, offers, items, stage) {
     return offers.map((offer) => backupCard(ctx, offer, items, stage)).join("");
@@ -1607,14 +1633,14 @@
     bait: "Live bait",
     lure: "Lures",
     fly: "Fly bodies",
-    flyCandidates: "Fly bodies · profile matches only",
-    flyProfileOnly: "This count lists bodies that match the fish profile, not fully accepted fly sets. The body and wing can still fail a hidden condition. Start with a recorded shop set; if it does not get a bite, inspect the three backup sets instead of buying every body.",
-    flyBackupAction: "Show this fish’s three backup sets",
+    flyCandidates: "Fly bodies this fish takes",
+    flyProfileOnly: "This counts the bodies this fish takes (wet or dry). The whole fly must also get past the save’s lock: a fresh save locks body group 1 and wing group 2, and a fly matching the lock never bites. Start with the set recommended above.",
+    flyBackupAction: "Show this fish’s three-fly set",
     firstStep: "Start with the map, then choose your gear",
     firstStepBody: "Choose an area to find fishing points, then choose a tackle setup below for your fishing method.",
     chooseSpots: "Choose a fishing area",
     compatible: "Choose bait or inspect fly candidates",
-    compatibilityNote: "Bait and lures pass this fish’s recorded mask checks. Fly bodies below only match the fish profile; the assembled body/wing set must pass another live condition. None of these checks guarantees a bite or landing.",
+    compatibilityNote: "The baits and lures below are on this fish’s list: once your float or lure is on the fish’s tile it bites or chases within seconds. The fly bodies below are the bodies this fish takes, but the whole fly must also get past the save’s lock.",
     mapAction: "Open map and fish points",
     configuredPoints: (n) => `${n} configured point${n === 1 ? "" : "s"}`,
     spawnSlots: (n) => `${n} spawn slots in the ROM table`,
@@ -1652,14 +1678,14 @@
     bait: "エサ",
     lure: "ルアー",
     fly: "フライ本体",
-    flyCandidates: "フライ本体・プロフィール一致のみ",
-    flyProfileOnly: "この数は魚プロフィールと一致する本体数で、判定をすべて通る完成フライ数ではありません。本体・ウィングは隠れた条件で遮断される場合があります。まず店売りセットを選び、反応しない場合は本体を全部買うのではなく予備3セットを確認してください。",
-    flyBackupAction: "この魚の予備3セットを見る",
+    flyCandidates: "この魚が食べるフライボディ",
+    flyProfileOnly: "この数は魚が食べるボディ（ウェットまたはドライ）の数です。毛バリ全体がセーブのロックも通る必要があります：新規セーブはボディのグループ1とウィングのグループ2をロックし、一致する毛バリは食いつきません。まず上のおすすめセットから。",
+    flyBackupAction: "この魚の3本セットを見る",
     firstStep: "まずマップを見てから道具を選ぶ",
     firstStepBody: "エリアを選んで釣りポイントを確認し、下から自分の釣り方に合う道具セットを選んでください。",
     chooseSpots: "釣るエリアを選ぶ",
     compatible: "エサを選ぶ・フライ候補を調べる",
-    compatibilityNote: "エサとルアーはこの魚の記録済みマスク判定を通ります。下のフライ本体は魚プロフィールとの一致のみで、完成セットの本体・ウィングには別の動的条件があります。食いつきや取り込みの保証ではありません。",
+    compatibilityNote: "下のエサとルアーはこの魚のリストにあり、ウキやルアーが魚と同じマスにあれば数秒で食いつく・追ってくる。下のフライ本体はこの魚が食べるボディだが、毛バリ全体がセーブのロックも通る必要がある。",
     mapAction: "マップと魚の位置を開く",
     configuredPoints: (n) => `設定されたポイント ${n}か所`,
     spawnSlots: (n) => `ROMテーブルの出現枠 ${n}`,
@@ -1697,14 +1723,14 @@
     bait: "เหยื่อจริง",
     lure: "เหยื่อปลอม",
     fly: "ตัวฟลาย",
-    flyCandidates: "บอดี้ฟลาย · ตรงกับโปรไฟล์ปลาเท่านั้น",
-    flyProfileOnly: "จำนวนนี้นับบอดี้ที่ตรงกับโปรไฟล์ปลา ไม่ใช่จำนวนชุดฟลายที่ผ่านทุกเงื่อนไข บอดี้กับปีกยังอาจถูกบล็อกจากเงื่อนไขซ่อน เริ่มด้วยชุดที่มีขายในร้าน ถ้าไม่กิน ให้ดูชุดสำรองสามชุดแทนการซื้อบอดี้ทุกชิ้น",
-    flyBackupAction: "ดูชุดฟลายสำรองสามชุดของปลานี้",
+    flyCandidates: "บอดี้ฟลายที่ปลานี้กิน",
+    flyProfileOnly: "จำนวนนี้นับบอดี้ที่ปลานี้กิน (แบบเปียกหรือแบบแห้ง) ฟลายทั้งชุดยังต้องไม่ติดล็อกของเซฟ: เซฟใหม่บอดี้กลุ่ม 1 และปีกกลุ่ม 2 ไม่กินเลย เริ่มจากชุดที่แนะนำด้านบน",
+    flyBackupAction: "ดูชุดฟลายสำรองสามตัวของปลานี้",
     firstStep: "เริ่มจากดูแผนที่ แล้วค่อยเลือกอุปกรณ์",
     firstStepBody: "เลือกด่านเพื่อดูจุดตก แล้วเลือกชุดอุปกรณ์ด้านล่างตามวิธีที่คุณเล่น",
     chooseSpots: "เลือกด่านที่จะไปตก",
     compatible: "เลือกเหยื่อหรือดูตัวเลือกฟลาย",
-    compatibilityNote: "เหยื่อจริงและเหยื่อปลอมผ่านเงื่อนไขความเข้ากันได้ที่บันทึกไว้ของปลานี้ ส่วนบอดี้ฟลายด้านล่างตรงกับโปรไฟล์ปลาเท่านั้น ชุดบอดี้/ปีกยังมีเงื่อนไขซ่อนเพิ่มเติม ไม่รับประกันว่าปลาจะกินหรือตกขึ้นได้",
+    compatibilityNote: "เหยื่อจริงและเหยื่อปลอมด้านล่างอยู่ในรายชื่อของปลานี้ พอทุ่นหรือลัวร์อยู่ช่องเดียวกับปลา ปลาก็กินหรือว่ายตามภายในไม่กี่วินาที บอดี้ฟลายด้านล่างคือบอดี้ที่ปลานี้กิน แต่ฟลายทั้งชุดยังต้องไม่ติดล็อกของเซฟ",
     mapAction: "เปิดแผนที่และจุดของปลา",
     configuredPoints: (n) => `${n} จุดที่เกมกำหนด`,
     spawnSlots: (n) => `${n} ช่องเกิดปลาในตาราง ROM`,
@@ -1739,9 +1765,9 @@
   var shoppingCopy_en = {
     title: "What should I buy for this fish?",
     area: "Choose your fishing area",
-    intro: "If buying new tackle, start with the lowest-priced stocked option for each method below. Each passes this fish’s recorded check. Keep compatible tackle you already own; there is no need to buy a duplicate.",
-    scope: "Lowest price within each method, not a bite or landing-success ranking. Offers requiring a shop unlock are excluded from these starter choices.",
-    fly: "Fly: this price is for the ready-made set and its recorded parts; some sets omit a wing or tail. Hidden body/wing conditions may still prevent a bite.",
+    intro: "If buying new tackle, take the lowest-priced stocked option for each method below. Every one is on this fish’s list. Keep tackle you already own that works; there is no need to buy a duplicate.",
+    scope: "Lowest price within each method. Every item on the fish’s list bites the same; they differ in the fight (baits named for a fish, lure and fly-body size classes). Offers requiring a shop unlock are excluded from these starter choices.",
+    fly: "Fly: the cheapest ready-made set this fish takes that a fresh save can use (a fresh save locks body group 1 and wing group 2; a fly matching the lock never bites). An inn rest can change the lock, so re-equip the fly afterwards.",
     none: "No compatible offer without an unlock is recorded here. Choose from all compatible tackle below, then open its details for purchase areas or acquisition instructions.",
     cost: "Price",
     bundle: "Ready-made fly set",
@@ -1753,9 +1779,9 @@
   var shoppingCopy_ja = {
     title: "この魚には何を買う？",
     area: "釣るエリアを選ぶ",
-    intro: "新しく買うなら、下の釣り方ごとに店頭在庫がある最安の候補から選べる。各候補はこの魚の判定を通る。対応する道具を持っているなら、同じものを買い直す必要はない。",
-    scope: "各釣り方の最安価格であり、食いつき・取り込み成功率の順位ではない。店の解放が必要な販売は最初の候補から除いている。",
-    fly: "フライの表示額は詳細にある店売りセット全体。ウィングやテールを含まないセットもある。隠れた本体・ウィング条件で食いつかない場合もある。",
+    intro: "新しく買うなら、下の釣り方ごとに店頭在庫がある最安の候補を選べる。どれもこの魚のリストにある。使える道具を持っているなら、同じものを買い直す必要はない。",
+    scope: "各釣り方の最安価格。魚のリストにある品はどれも同じように食いつく。違いはファイト（魚名つきのエサ、ルアーとフライボディのサイズ区分）。店の解放が必要な販売は最初の候補から除いている。",
+    fly: "フライ：この魚が食べて、新規セーブで使える最安の完成品（新規セーブはボディのグループ1とウィングのグループ2をロックし、一致する毛バリは食いつかない）。宿に泊まるとロックが変わることがあるので、泊まったら装備し直す。",
     none: "このエリアでは、解放不要で販売される対応道具を確認できない。下の対応道具一覧から選び、詳細で販売エリアや入手方法を確認する。",
     cost: "価格",
     bundle: "店売りフライセット",
@@ -1767,9 +1793,9 @@
   var shoppingCopy_th = {
     title: "เริ่มซื้ออะไรสำหรับปลานี้?",
     area: "เลือกด่านที่จะตก",
-    intro: "ถ้าต้องซื้อใหม่ เลือกตัวเลือกที่ราคาต่ำสุดและมีขายในด่านนี้ โดยผ่านเงื่อนไขของปลานี้แล้ว ถ้ามีเหยื่อที่ผ่านเงื่อนไขอยู่แล้ว ใช้ต่อได้ ไม่ต้องซื้อซ้ำ",
-    scope: "ราคาถูกสุดในแต่ละวิธีตก ไม่ใช่อันดับโอกาสกัดหรือดึงขึ้นสำเร็จ รายการที่ต้องปลดล็อกร้านก่อนยังไม่รวมในชุดเริ่มต้นนี้",
-    fly: "ฟลาย: ราคานี้เป็นชุดสำเร็จรูปตามส่วนประกอบในรายละเอียด บางชุดไม่มีปีกหรือหาง ยังมีเงื่อนไขบอดี้/ปีกที่ซ่อนอยู่ซึ่งอาจทำให้ไม่กินเหยื่อ",
+    intro: "ถ้าต้องซื้อใหม่ ซื้อตัวที่ถูกที่สุดของแต่ละวิธีตกในด่านนี้ได้เลย ทุกตัวอยู่ในรายชื่อของปลานี้ ถ้ามีของที่ใช้ได้อยู่แล้วใช้ต่อ ไม่ต้องซื้อซ้ำ",
+    scope: "ราคาถูกสุดในแต่ละวิธีตก ปลากินเท่ากันทุกตัวที่อยู่ในรายชื่อ ต่างกันที่ตอนสู้ (เหยื่อที่ระบุชื่อปลา กลุ่มขนาดของลัวร์และบอดี้ฟลาย) รายการที่ต้องปลดล็อกร้านก่อนยังไม่รวมในชุดเริ่มต้นนี้",
+    fly: "ฟลาย: ชุดสำเร็จรูปที่ถูกที่สุดที่ปลานี้กินและใช้ได้บนเซฟใหม่ (เซฟใหม่ล็อกบอดี้กลุ่ม 1 กับปีกกลุ่ม 2 ฟลายที่ตรงล็อกไม่กินเลย) นอนโรงแรมแล้วล็อกอาจเปลี่ยน ให้ใส่ฟลายอีกครั้ง",
     none: "ไม่มีของที่ผ่านเงื่อนไขและมีขายแบบไม่ต้องปลดล็อกในด่านนี้ เลือกจากรายการเหยื่อทั้งหมดด้านล่าง แล้วเปิดรายละเอียดเพื่อดูด่านที่ขายหรือวิธีหา",
     cost: "ราคา",
     bundle: "ชุดฟลายสำเร็จรูป",

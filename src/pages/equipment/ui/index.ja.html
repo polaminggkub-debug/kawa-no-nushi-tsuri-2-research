@@ -275,24 +275,86 @@
         </section>
       </details>
       <details class="guide-details" id="fly-instructions">
-        <summary>フライを作る：操作画面</summary>
-        <section class="customizer-section">
+        <summary>毛バリを自作する：必要？ いつ？ どうやって？</summary>
+        <section class="customizer-section fly-guide">
           <div class="section-heading">
             <div>
-              <p class="eyebrow dark" data-t="fly-kicker">毛バリ作成NPC</p>
-              <h2 data-t="fly-title">ボディ、ウィング、テール、そして見積もり</h2>
+              <p class="eyebrow dark" data-t="fly-kicker">毛バリ職人ガイド</p>
+              <h2 data-t="fly-title">毛バリは自作しないといけない？</h2>
             </div>
             <p class="section-copy" data-t="fly-copy">
-              日本版の実画面で25円の初期構成と17円のテール無し例を確認。先に対象魚に合うボディを選んでください。この例は操作と価格の説明で、最強フライの推薦ではありません。
+              ふつうは不要。店は同じ部品で作った完成品を売っていて、できる毛バリはまったく同じ、しかも安い。完成品の料金はボディ分だけだが、職人はボディ＋ウィング＋テールの合計になるため。例えば店のボディ2B＋ウィング34は15円、職人で同じものを作ると23円。
+            </p>
+          </div>
+          <div class="fly-guide-block" id="fly-guide-when">
+            <h3>どんなときに自作する価値がある？</h3>
+            <ul>
+              <li>
+                店に売っていないボディとウィングの組み合わせが欲しいとき。例えば、狙う魚が食べるボディの完成品に、新規セーブでロックされるウィング（グループ2）が付いている場合、別グループのウィングで自作する。
+              </li>
+              <li>
+                特定のボディ系統が欲しいとき。例えば16〜35cmの魚とのファイトで有利なホッパー、店が完成品で売っていないテレストリアルのボディ。
+              </li>
+              <li>それ以外は、完成品を買うほうがよい。</li>
+            </ul>
+            <p class="fly-guide-note">
+              毛バリ職人がいるのはエリア1〜3だけ。ウィング25・66・67は店にも職人にもない。
+            </p>
+          </div>
+          <div class="fly-guide-block" id="fly-guide-how">
+            <h3>作り方：ゲーム画面の手順</h3>
+            <p class="section-copy">
+              日本版の実画面。メイフライのメニューでボタン操作と価格を説明する。注意：画像の例（ボディ01、ボディ02＋ウィング0A）は新規セーブではロックされ、一切食いつかない。ボタン操作の説明用。実際に選ぶ部品は下の表で決める。
             </p>
           </div>
           <div id="customizer-frames" class="custom-grid">
             <!-- prerender:customizer-frames --><!-- /prerender:customizer-frames -->
           </div>
           <p class="custom-fact" data-t="fly-fact">
-            支払前に最終見積額を確認する。記録したメイフライの最初のボディ・ウィング・テールは25円。
-            「無し」にすると組み合わせが変わるため、その見積額を別に確認する。全組み合わせが25円ではない。
+            支払前に必ず最終見積額を確認する。最初の例（最初のボディ・ウィング・テール）は25円。テールを「無し」にすると組み合わせと価格が変わるため、見積額はそのつど確認する。
           </p>
+          <div class="fly-guide-block" id="fly-guide-parts">
+            <h3>部品ごとに何が変わる？</h3>
+            <div class="table-wrap">
+              <table class="fly-part-table">
+                <tbody>
+                  <tr>
+                    <th scope="col">部品</th>
+                    <th scope="col">変わること</th>
+                    <th scope="col">変わらないこと</th>
+                  </tr>
+                  <tr>
+                    <th scope="row">ボディ</th>
+                    <td data-label="変わること">
+                      食いつく魚：ウェットは33種、ドライ・テレストリアルは17種。<br />セーブのロックのボディ側：グループ1のボディは新規セーブでは食いつかない。<br />ファイトの開始値：カディスとホッパーは16〜35cmの魚に有利。他の系統は15cm以下に有利で、35cm超には不利。
+                    </td>
+                    <td data-label="変わらないこと">
+                      食いつきの速さ：ロックを通れば数秒で食いつく。
+                    </td>
+                  </tr>
+                  <tr>
+                    <th scope="row">ウィング</th>
+                    <td data-label="変わること">
+                      セーブのロックのウィング側だけ：グループ2のウィングは新規セーブでは食いつかない（メイフライのメニューでは全列の2行目）。
+                    </td>
+                    <td data-label="変わらないこと">
+                      食いつく魚、ファイト、食いつきの速さ。高いウィングが良いわけではない。
+                    </td>
+                  </tr>
+                  <tr>
+                    <th scope="row">テール</th>
+                    <td data-label="変わること">何も変わらない。見た目だけ。</td>
+                    <td data-label="変わらないこと">
+                      食いつきとファイト。「無し」（0円）を選べば節約できる。
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+            <p class="fly-guide-note">
+              セーブのロック：どのセーブにも、ボディのグループとウィングのグループ（0〜3）という2つの隠し数字がある。ボディかウィングのグループが保存値と同じ毛バリは一切食いつかない。グループは部品ID（10進）を4で割った余り。宿に泊まったことのないセーブは、ボディ1・ウィング2。宿泊でどちらかが変わる確率は約34%で、泊まったら毛バリを装備し直す。移動や投げ直しではロックは変わらない。
+            </p>
+          </div>
         </section>
       </details>
       <details class="guide-details research-details">

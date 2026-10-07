@@ -1,5 +1,7 @@
 # Fly maker: what the ROM lets a player do
 
+> **Corrected 2026-10-07.** Superseded by the ROM audit (`rom-analysis/audit-2026-10-07/acceptance/report.md`) and [gear-effects.md](gear-effects.md). A fly bites when its body passes the fish's mask and neither its body ID nor its wing ID (divided by 4, remainder) equals the save's hidden pair; the wing is only a ticket past that lock and the tail is only looks. A fresh save holds body 1 and wing 2 (rolled when the save is formatted, then only by an inn rest, about a 34% chance that one side changes), so the ¥5 Mayfly wet set 01/09/13 and the set 02/0A/14 never bite on a fresh save; Caddis wet 2B/34/00 (¥15) and Caddis dry 3E/43/49 (¥5) do. "Hidden values unknown", "the pair is generated during field setup", and "no better-catch direction" below are outdated: body families change how the fight starts (Caddis and hopper help fish of 16 to 35 cm). The maker stores exactly the same fly as a shop set but charges body + wing + tail. Wings 25, 66 and 67 are in no shop and not in the maker.
+
 ## Useful answer first
 
 Choose a fly body from the fish you are trying to catch. The wet-body group passes one required fish-profile check for 33 fish. The dry-body group passes it for 17 fish, and all 17 are also in the wet group. A fish shown on a body card has passed that one check; it does not mean the fish will bite, hook, or be landed.

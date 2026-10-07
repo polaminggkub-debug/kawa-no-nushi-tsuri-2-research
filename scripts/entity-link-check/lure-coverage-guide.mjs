@@ -184,10 +184,7 @@ function checkResearchAreaRecommendations(lang) {
     !/notebook|สมุด|ノート|66/.test(section),
     `${lang}: compatibility kit confused with notebook count`,
   )
-  assert(
-    /bite|catch|食いつき|釣果|อัตรากิน|จับได้/i.test(section),
-    `${lang}: compatibility limit missing`,
-  )
+  assert(/A or B|AかB|A หรือ B/.test(section), `${lang}: how-to-work-the-lure instruction missing`)
   const rows = new Map(
     [...section.matchAll(/<tr\b[^>]*data-lure-kit-area="([1-6,]+)"[^>]*>([\s\S]*?)<\/tr>/g)].map(
       ([, areas, content]) => [areas, content],

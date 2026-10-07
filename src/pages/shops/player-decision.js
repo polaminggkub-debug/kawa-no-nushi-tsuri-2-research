@@ -72,26 +72,26 @@ const localizedCopy = {
     target: 'ปลาที่เลือกไว้',
     profile: 'เปิดหน้าข้อมูลปลา',
     explains:
-      'ดูป้ายก่อนซื้อ: ของที่แสดงไม่ได้ผ่านเงื่อนไขปลานี้ทุกชิ้น และการผ่านเงื่อนไขไม่รับประกันว่าปลากินหรือตกขึ้นได้',
+      'ดูป้ายก่อนซื้อ: ของที่แสดงไม่ได้เป็นของที่ปลานี้กินทุกชิ้น ชิ้นที่ปลานี้กินใช้ได้เมื่อทุ่นหรือลัวร์อยู่ช่องเดียวกับปลา ส่วนฟลายต้องไม่ติดล็อกของเซฟด้วย',
     methods: { float: 'สายทุ่น', sinker: 'สายตะกั่ว', lure: 'สายลัวร์', fly: 'สายฟลาย' },
     status: {
       lure: {
-        accepted: 'ผ่านเงื่อนไขชนิดปลาของลัวร์',
-        rejected: 'ไม่ผ่านเงื่อนไขชนิดปลาของลัวร์',
+        accepted: 'ปลานี้ว่ายตามลัวร์ชิ้นนี้',
+        rejected: 'ปลานี้ไม่ตามลัวร์ชิ้นนี้',
       },
       bait: {
         float: {
-          accepted: 'ผ่านเงื่อนไขเหยื่อสายทุ่น',
-          rejected: 'ไม่ผ่านเงื่อนไขเหยื่อสายทุ่น',
+          accepted: 'ปลานี้กินเหยื่อนี้ (สายทุ่น)',
+          rejected: 'ปลานี้ไม่กินเหยื่อนี้ (สายทุ่น)',
         },
         sinker: {
-          accepted: 'ผ่านเงื่อนไขเหยื่อสายตะกั่ว',
-          rejected: 'ไม่ผ่านเงื่อนไขเหยื่อสายตะกั่ว',
+          accepted: 'ปลานี้กินเหยื่อนี้ (สายตะกั่ว)',
+          rejected: 'ปลานี้ไม่กินเหยื่อนี้ (สายตะกั่ว)',
         },
       },
       fly: {
-        accepted: 'บอดี้ฟลายผ่านเงื่อนไขปลา 1 ข้อ',
-        rejected: 'บอดี้ฟลายไม่ผ่านเงื่อนไขปลา 1 ข้อ',
+        accepted: 'ปลานี้กินบอดี้ฟลายนี้ (ฟลายทั้งชุดต้องไม่ติดล็อกของเซฟ)',
+        rejected: 'ปลานี้ไม่กินบอดี้ฟลายนี้',
       },
     },
   },
@@ -99,17 +99,23 @@ const localizedCopy = {
     target: '選択中の魚',
     profile: '魚プロフィールを見る',
     explains:
-      '購入前に印を確認してください。表示品がすべてこの魚の判定を通るわけではなく、判定を通っても食いつきや取り込みは保証されません。',
+      '購入前に印を確認してください。表示品がすべてこの魚の食べるものとは限りません。魚が食べる品は、ウキやルアーが魚と同じマスにあれば使えます。毛バリはセーブのロックも通る必要があります。',
     methods: { float: 'ウキ仕掛け', sinker: 'オモリ仕掛け', lure: 'ルアー', fly: '毛バリ' },
     status: {
-      lure: { accepted: 'ルアーの魚種判定を通る', rejected: 'ルアーの魚種判定を通らない' },
+      lure: { accepted: 'この魚はこのルアーを追う', rejected: 'この魚はこのルアーを追わない' },
       bait: {
-        float: { accepted: 'ウキのエサ判定を通る', rejected: 'ウキのエサ判定を通らない' },
-        sinker: { accepted: 'オモリのエサ判定を通る', rejected: 'オモリのエサ判定を通らない' },
+        float: {
+          accepted: 'この魚はこのエサを食べる（ウキ）',
+          rejected: 'この魚はこのエサを食べない（ウキ）',
+        },
+        sinker: {
+          accepted: 'この魚はこのエサを食べる（オモリ）',
+          rejected: 'この魚はこのエサを食べない（オモリ）',
+        },
       },
       fly: {
-        accepted: 'ボディの魚プロフィール判定の1つを通る',
-        rejected: 'ボディの魚プロフィール判定の1つを通らない',
+        accepted: 'この魚はこのボディを食べる（毛バリ全体がセーブのロックも通ること）',
+        rejected: 'この魚はこのボディを食べない',
       },
     },
   },
@@ -117,26 +123,26 @@ const localizedCopy = {
     target: 'Selected fish',
     profile: 'Open fish profile',
     explains:
-      'Check the marks before buying: not every listed item passes this fish check. Passing does not guarantee a bite or landing.',
+      'Check the marks before buying: not every listed item is one this fish takes. Items it takes work once your float or lure is on its tile; a fly must also get past the save’s lock.',
     methods: { float: 'Float route', sinker: 'Sinker route', lure: 'Lure route', fly: 'Fly route' },
     status: {
       lure: {
-        accepted: 'Passes the lure fish-type check',
-        rejected: 'Does not pass the lure fish-type check',
+        accepted: 'This fish chases this lure',
+        rejected: 'This fish does not chase this lure',
       },
       bait: {
         float: {
-          accepted: 'Passes the float bait check',
-          rejected: 'Does not pass the float bait check',
+          accepted: 'This fish takes this bait (float)',
+          rejected: 'This fish does not take this bait (float)',
         },
         sinker: {
-          accepted: 'Passes the sinker bait check',
-          rejected: 'Does not pass the sinker bait check',
+          accepted: 'This fish takes this bait (sinker)',
+          rejected: 'This fish does not take this bait (sinker)',
         },
       },
       fly: {
-        accepted: 'Body passes one fish-profile check',
-        rejected: 'Body does not pass one fish-profile check',
+        accepted: 'This fish takes this fly body (the whole fly must also pass the save’s lock)',
+        rejected: 'This fish does not take this fly body',
       },
     },
   },

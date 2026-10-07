@@ -14,10 +14,10 @@ function lureKitTitle(ctx) {
 
 function lureKitIntro(ctx, count, total) {
   if (ctx.locale === 'th')
-    return `คู่นี้ครอบคลุม ${count} โปรไฟล์ที่ผ่านเงื่อนไขลัวร์ ราคา ¥${total} หากซื้อใหม่ครบคู่ ไม่ต้องซื้อซ้ำถ้ามีคู่ที่ครอบคลุมครบอยู่แล้ว`
+    return `สองชิ้นนี้ครอบคลุมปลาลัวร์ทั้ง ${count} ชนิด ราคารวม ¥${total} ถ้าซื้อใหม่ ไม่ต้องซื้อซ้ำถ้ามีคู่ที่ครอบคลุมครบอยู่แล้ว`
   if (ctx.locale === 'ja')
-    return `この組み合わせはルアー判定を通る${count}プロフィールをカバーし、新規購入は合計${total}円です。すでに全範囲をカバーする組を持っていれば買い直す必要はありません。`
-  return `This pair covers all ${count} profiles that pass the lure check, for ¥${total} when buying new. Keep a full-coverage pair you already own.`
+    return `この2つでルアーの対象${count}種すべてをカバーでき、新規購入は合計${total}円です。すでに全範囲をカバーする組を持っていれば買い直す必要はありません。`
+  return `This pair covers all ${count} lure fish for ¥${total} when buying new. Keep a full-coverage pair you already own.`
 }
 
 function lureKitAvailability(ctx, localPair, hasLocalLureOffer) {
@@ -70,10 +70,10 @@ function lureKitCard(ctx, item, stage, pairKey) {
 
 function lureKitScope(ctx) {
   if (ctx.locale === 'th')
-    return 'ครอบคลุมเงื่อนไขชนิดเหยื่อ ไม่ได้รับประกันว่าปลาจะกินหรือดึงขึ้นสำเร็จ'
+    return 'ปลาว่ายตามเมื่ออยู่ช่องเดียวกับลัวร์และคุณกด A หรือ B ต่อเนื่อง พอปลาอยู่ระดับเดียวกับลัวร์ให้กด A หนึ่งครั้ง ลัวร์สองชิ้นนี้เริ่มสู้ได้ไม่เท่ากันกับปลาแต่ละขนาด ดูกลุ่มขนาดบนการ์ดลัวร์'
   if (ctx.locale === 'ja')
-    return 'ルアー種類の判定をカバーするもので、食いつきや取り込みの保証ではありません。'
-  return 'Coverage is lure-type compatibility, not a guarantee of a bite or landing.'
+    return '魚がルアーと同じマスにいて、AかBを押し続けると追ってきます。同じ高さに来たらAを1回。この2つはファイトの開始値が魚のサイズで違うので、ルアーのカードでサイズ区分を確認してください。'
+  return 'A fish follows when it is on the lure’s tile and you keep tapping A or B; press A once when it is level with the lure. The two lures start the fight differently by fish size, so check the size class on each lure card.'
 }
 
 export function renderReusableKit(ctx, items, stage) {

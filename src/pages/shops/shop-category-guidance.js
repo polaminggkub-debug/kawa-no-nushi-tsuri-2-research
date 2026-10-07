@@ -1,6 +1,6 @@
 const categoryAdvice = {
   th: {
-    all: 'ป้ายเงื่อนไขปลามีเฉพาะเหยื่อจริง ลัวร์ และบอดี้ฟลาย: ดูป้ายก่อนซื้อ การผ่านเงื่อนไขไม่รับประกันว่าปลากินหรือตกขึ้นได้ ของหมวดอื่นให้ดูคำแนะนำการใช้ในรายละเอียด',
+    all: 'ป้ายบอกปลามีเฉพาะเหยื่อจริง ลัวร์ และบอดี้ฟลาย: ดูป้ายก่อนซื้อว่าปลาเป้าหมายกินชิ้นนั้นไหม ฟลายยังต้องไม่ติดล็อกของเซฟ ของหมวดอื่นให้ดูคำแนะนำการใช้ในรายละเอียด',
     rod: 'เลือกวิธีตกก่อน แล้วดูคำแนะนำซื้อใต้คันแต่ละรุ่นของด่านนี้ เทียบราคา เวลาเล็ง และสายขาดยาก ไม่ใช่อันดับโอกาสตกสำเร็จ',
     hook: 'เลือกเบ็ดให้ตรงกับชุดที่ใช้ แล้วดูคำแนะนำและราคาในรายละเอียดไอเท็มก่อนซื้อ',
     float_weight: 'เลือกทุ่นหรือตะกั่วตามชุดที่ใช้ แล้วเปรียบเทียบราคาและคำแนะนำในรายละเอียดไอเท็ม',
@@ -14,7 +14,7 @@ const categoryAdvice = {
     fallback: 'เปิดรายละเอียดไอเท็มเพื่อดูวิธีใช้และเหตุผลที่ควรซื้อ',
   },
   en: {
-    all: 'Fish-check badges apply to bait, lures and fly bodies. Check them before buying; passing does not guarantee a bite or landing. For other categories, read the use advice in item details.',
+    all: 'Fish badges apply to bait, lures and fly bodies. Check whether your target fish takes the item before buying; a fly must also get past the save’s lock. For other categories, read the use advice in item details.',
     rod: 'Choose your fishing method, then read each rod’s buying advice for this area. The comparison covers price, time to aim and line strength, not catch success.',
     hook: 'Choose a hook for your setup, then check its use advice and price in item details before buying.',
     float_weight:
@@ -29,7 +29,7 @@ const categoryAdvice = {
     fallback: 'Open item details for its use and buying advice.',
   },
   ja: {
-    all: '魚の判定表示はエサ・ルアー・毛バリのボディに付きます。購入前に確認してください。判定を通っても食いつきや取り込みは保証されません。他の種類は詳細ページの使い方で選んでください。',
+    all: '魚の表示はエサ・ルアー・毛バリのボディに付きます。購入前に、狙う魚がその品を食べるか確認してください。毛バリはセーブのロックも通る必要があります。他の種類は詳細ページの使い方で選んでください。',
     rod: '釣り方を選び、このエリアの各竿の購入アドバイスを確認してください。比べるのは価格・狙う時間・糸の切れにくさで、釣果の順位ではありません。',
     hook: '仕掛けに合う針を選び、詳細ページで使い方と価格を確認してから購入してください。',
     float_weight: '仕掛けに合うウキやオモリを選び、詳細ページで価格と使い方を比較してください。',

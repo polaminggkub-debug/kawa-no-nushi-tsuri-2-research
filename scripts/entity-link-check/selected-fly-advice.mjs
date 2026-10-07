@@ -75,9 +75,17 @@ function advicePanel(html, fish) {
 
 function assertCaveat(panel, locale) {
   const phrases = {
-    en: ['recasting the same set', 'can repeat them', 'do not guarantee a catch'],
-    ja: ['同じセットの投げ直し', '同じ値にもなります', '釣果は保証しません'],
-    th: ['ตีชุดเดิมซ้ำ', 'ก็อาจได้ค่าเดิม', 'ไม่ได้รับประกันว่าตกได้'],
+    en: [
+      'Recasting does not change the lock',
+      'only an inn rest can',
+      'If a fish turns toward the fly, change nothing',
+    ],
+    ja: [
+      '投げ直してもロックは変わらず',
+      '変わるのは宿泊だけ',
+      '魚がこちらを向いたら替える必要はありません',
+    ],
+    th: ['การตีซ้ำไม่เปลี่ยนล็อก', 'มีแต่การนอนโรงแรมที่เปลี่ยนได้', 'ไม่ต้องเปลี่ยนอะไร'],
   }
   for (const phrase of phrases[locale])
     assert(panel.includes(phrase), `${locale}: missing caveat ${phrase}`)
@@ -114,9 +122,9 @@ async function checkRejectedBody(locale) {
     `${locale}: rejected body falsely offers its backup action`,
   )
   const mismatch = {
-    en: 'does not pass the profile check',
-    ja: 'プロフィール判定を通りません',
-    th: 'ไม่ผ่านเงื่อนไขโปรไฟล์',
+    en: 'does not take this body',
+    ja: 'はこのボディを食べません',
+    th: 'ไม่กินบอดี้นี้',
   }
   assert(panel.includes(mismatch[locale]), `${locale}: rejected-body explanation missing`)
 }
@@ -129,9 +137,9 @@ async function checkNoFlyTarget(locale) {
   const result = await renderItem(locale, body01.id, fish)
   const panel = advicePanel(result.html, fish)
   const explanation = {
-    en: 'No decoded fly body passes the profile check',
-    ja: '判定を通るフライボディは解析データにありません',
-    th: 'ยังไม่มีบอดี้ฟลายที่ผ่านเงื่อนไขโปรไฟล์',
+    en: 'No fly body takes',
+    ja: 'が食べるフライボディはありません',
+    th: 'ไม่มีบอดี้ฟลายที่',
   }
   assert(panel.includes(explanation[locale]), `${locale}: no-fly explanation is missing`)
   assert(
@@ -168,9 +176,9 @@ async function checkFlyPartAction(locale, part) {
     `${locale} ${part.category}: missing fish backup link`,
   )
   const noBodyClaim = {
-    en: 'alone does not establish fish compatibility',
-    ja: '単体では適合を確認できません',
-    th: 'อย่างเดียวไม่ได้ยืนยันว่าใช้ตกปลานี้ได้',
+    en: 'Wings and tails do not choose fish',
+    ja: 'ウィングとテールは魚を選びません',
+    th: 'ปีกและหางไม่เลือกปลา',
   }
   assert(
     panel.includes(noBodyClaim[locale]),

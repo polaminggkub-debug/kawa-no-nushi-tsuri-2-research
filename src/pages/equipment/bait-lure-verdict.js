@@ -2,16 +2,23 @@ import { equalPriceChoice } from '../../entities/item/index.js'
 
 const COPY = {
   en: {
-    ownBait: (route) =>
-      `If you already own it, keep using it for fish that pass its ${route} compatibility check.`,
-    ownLure:
-      'If you already own it, keep using it for fish that pass this lure’s compatibility check.',
-    float: 'float-rig',
-    sinker: 'sinker-rig',
+    ownBait: (route, count, wait) =>
+      `${count} fish take this bait on the ${route}. Put your float on the tile the fish is on; it bites in about ${wait} seconds. If it ignores you, move the cast, not the bait.`,
+    ownLure: (count) =>
+      `${count} fish chase this lure. Keep tapping A or B while it is in the water, then press A once when the fish is level with the lure to hook it.`,
+    fightBait: (fish) =>
+      `Named for ${fish}: against that fish the fight starts with half the mistakes counted, like a named hook (the two do not stack). A cheaper bait does not give you this.`,
+    fightLure: [
+      'Size class: helps in the fight against fish up to 15 cm, hurts against fish over 35 cm.',
+      'Size class: helps in the fight against fish of 16 to 35 cm.',
+      'Size class: helps in the fight against fish over 35 cm, hurts against fish up to 15 cm.',
+    ],
+    float: 'float rig',
+    sinker: 'sinker rig',
     buy: 'Buying new',
     cheaper: 'lower-priced shop choices with the same or broader fish coverage',
     elsewhere: 'Buying new elsewhere',
-    noCheaper: 'No lower-priced shop offer with the same or broader full fish coverage was found.',
+    noCheaper: 'No cheaper shop item covers the same fish, so this one is a fine buy.',
     chooseFish: 'Choose one target fish to compare its compatible baits and lures',
     notHere: (stage) => `This item has no recorded shop offer in Area ${stage}.`,
     notHereElsewhere: (stage, areas) =>
@@ -30,18 +37,30 @@ const COPY = {
     area: (stage) => `Area ${stage}`,
     coveragePeers: 'For the same route-specific fish lists, confirmed shop alternatives are',
     limit:
-      'This compares compatible fish and recorded shop stock; it does not show which item gets more bites or is easier to land.',
+      'A bait or lure on the fish’s list bites once your float or lure is on the fish’s tile (float about 2 s, sinker about 10 s, bottom fish only). Time, weather, rod, hook and HP change nothing: if a fish ignores you, move the cast.',
+    limitBait:
+      'A bait on the fish’s list bites once your float is on the fish’s tile: about 2 seconds, or about 10 seconds on a sinker rig (bottom fish only). Time, weather, rod, hook and HP change nothing: if a fish ignores you, move the cast, not the bait.',
+    limitLure:
+      'A lure on the fish’s list is chased once the lure is on the fish’s tile and you keep tapping A or B; press A once when the fish is level with the lure to hook it. Time, weather and rod change nothing.',
   },
   ja: {
-    ownBait: (route) =>
-      `すでに持っているなら、${route}仕掛けの適合条件を通る魚に使い続けられます。`,
-    ownLure: 'すでに持っているなら、このルアーの適合条件を通る魚に使い続けられます。',
+    ownBait: (route, count, wait) =>
+      `${route}で${count}種がこのエサを食べます。ウキを魚と同じマスに置けば約${wait}秒で食いつきます。反応しないときはエサではなく投げる位置を変えます。`,
+    ownLure: (count) =>
+      `${count}種がこのルアーを追います。水中にある間はAかBを連打し、魚がルアーと同じ高さに来たらAを1回押してかけます。`,
+    fightBait: (fish) =>
+      `${fish}の名前を持つエサ：この魚とのファイトは開始値が半分になります（魚名つきのハリと同じ効果で、重なりません）。安いエサにはこの効果がありません。`,
+    fightLure: [
+      'サイズ区分：ファイトで15cm以下の魚に有利、35cm超の魚には不利。',
+      'サイズ区分：ファイトで16〜35cmの魚に有利。',
+      'サイズ区分：ファイトで35cm超の魚に有利、15cm以下の魚には不利。',
+    ],
     float: 'ウキ',
     sinker: 'オモリ',
     buy: '新しく買うなら',
     cheaper: '同じか広い魚リストに対応する、より安い店頭品',
     elsewhere: '他のエリアで買うなら',
-    noCheaper: '同じか広い魚リスト全体に対応する、より安い店頭品は確認できていません。',
+    noCheaper: '同じ魚をカバーする安い店売り品はないので、これを買ってよい。',
     chooseFish: '魚を1種類選び、使えるエサとルアーを比較する',
     notHere: (stage) => `エリア${stage}では、この品の店頭販売は確認されていません。`,
     notHereElsewhere: (stage, areas) =>
@@ -58,17 +77,31 @@ const COPY = {
     noBaitFish: 'このエサはどちらの仕掛けでも対応魚が記録されていません。',
     area: (stage) => `エリア${stage}`,
     coveragePeers: '同じ仕掛け別の魚リストに対応し、店頭販売が確認された候補：',
-    limit: 'これは対応する魚と店頭在庫の比較です。食いつきや取り込みやすさは示しません。',
+    limit:
+      '魚のリストにあるエサ・ルアーは、ウキやルアーが魚と同じマスにあれば食いつきます（ウキ約2秒、オモリ約10秒・底の魚のみ）。時間・天気・竿・ハリ・HPは関係ありません。反応しないときは投げる位置を変えます。',
+    limitBait:
+      'リストにあるエサは、ウキが魚と同じマスにあれば食いつきます。約2秒（オモリは約10秒、底の魚のみ）。時間・天気・竿・ハリ・HPは関係ありません。反応しないときは、エサではなく投げる位置を変えます。',
+    limitLure:
+      'リストにあるルアーは、魚と同じマスにあり、AかBを連打していれば追われます。魚が同じ高さに来たらAを1回押してかけます。時間・天気・竿は関係ありません。',
   },
   th: {
-    ownBait: (route) => `ถ้ามีอยู่แล้ว ใช้ต่อกับปลาที่ผ่านเงื่อนไขของ${route}ได้`,
-    ownLure: 'ถ้ามีอยู่แล้ว ใช้ต่อกับปลาที่ผ่านเงื่อนไขของลัวร์ชิ้นนี้ได้',
+    ownBait: (route, count, wait) =>
+      `ปลา ${count} ชนิดกินเหยื่อนี้ใน${route} วางทุ่นให้ตรงช่องที่ปลาอยู่ ปลากินภายในราว ${wait} วินาที ถ้าปลาไม่สนใจ ให้ขยับจุดปล่อย ไม่ต้องเปลี่ยนเหยื่อ`,
+    ownLure: (count) =>
+      `ปลา ${count} ชนิดว่ายตามลัวร์นี้ กด A หรือ B ต่อเนื่องตอนลัวร์อยู่ในน้ำ แล้วกด A หนึ่งครั้งเมื่อปลาอยู่ระดับเดียวกับลัวร์เพื่อเกี่ยวปลา`,
+    fightBait: (fish) =>
+      `เหยื่อระบุชื่อ${fish}: ตอนสู้กับปลานี้ค่าเริ่มสู้ลดลงครึ่งหนึ่ง เหมือนตะขอที่ระบุชื่อปลา (ไม่ซ้อนกัน) เหยื่อที่ถูกกว่าไม่ได้ข้อนี้`,
+    fightLure: [
+      'กลุ่มขนาด: ช่วยตอนสู้กับปลาไม่เกิน 15 ซม. เสียเปรียบกับปลาใหญ่กว่า 35 ซม.',
+      'กลุ่มขนาด: ช่วยตอนสู้กับปลา 16–35 ซม.',
+      'กลุ่มขนาด: ช่วยตอนสู้กับปลาใหญ่กว่า 35 ซม. เสียเปรียบกับปลาไม่เกิน 15 ซม.',
+    ],
     float: 'สายทุ่น',
     sinker: 'สายตะกั่ว',
     buy: 'ถ้าจะซื้อใหม่',
     cheaper: 'ตัวเลือกในร้านที่ถูกกว่าและรองรับรายชื่อปลาเท่ากันหรือกว้างกว่า',
     elsewhere: 'ถ้าจะซื้อจากด่านอื่น',
-    noCheaper: 'ไม่พบรายการขายที่ถูกกว่าและครอบคลุมรายชื่อปลาทั้งชุดเท่ากันหรือกว้างกว่า',
+    noCheaper: 'ไม่มีชิ้นไหนในร้านที่ถูกกว่าและกินปลาเท่ากัน ซื้อชิ้นนี้ได้เลย',
     chooseFish: 'เลือกปลาเป้าหมายเพื่อเทียบเหยื่อที่ใช้ได้กับปลาตัวนั้น',
     notHere: (stage) => `ไม่พบรายการขายชิ้นนี้ในร้านด่าน ${stage}`,
     notHereElsewhere: (stage, areas) => `ด่าน ${stage} ไม่มีขาย; มีรายการขายที่${areas}`,
@@ -85,7 +118,11 @@ const COPY = {
     area: (stage) => `ด่าน ${stage}`,
     coveragePeers: 'ตัวเลือกที่ร้านมีขายและรองรับรายชื่อปลาเดียวกันตามสายตกนี้:',
     limit:
-      'ข้อมูลนี้เทียบชนิดปลาที่ใช้ได้กับรายการของในร้าน ไม่ได้บอกว่าอันไหนทำให้ปลากินมากกว่าหรือตกขึ้นง่ายกว่า',
+      'เหยื่อหรือลัวร์ที่อยู่ในรายชื่อของปลาจะถูกกินเมื่อทุ่นหรือลัวร์อยู่ช่องเดียวกับปลา (ทุ่นราว 2 วินาที ตะกั่วราว 10 วินาที เฉพาะปลาหน้าดิน) เวลา อากาศ คัน เบ็ด และ HP ไม่มีผล ถ้าปลาไม่สนใจ ให้ขยับจุดปล่อย',
+    limitBait:
+      'เหยื่อที่อยู่ในรายชื่อของปลาจะถูกกินเมื่อทุ่นอยู่ช่องเดียวกับปลา ราว 2 วินาที (ชุดตะกั่วราว 10 วินาที เฉพาะปลาหน้าดิน) เวลา อากาศ คัน เบ็ด และ HP ไม่มีผล ถ้าปลาไม่สนใจ ให้ขยับจุดปล่อย ไม่ใช่เปลี่ยนเหยื่อ',
+    limitLure:
+      'ลัวร์ที่อยู่ในรายชื่อของปลาจะมีปลาว่ายตามเมื่อปลาอยู่ช่องเดียวกับลัวร์และคุณกด A หรือ B ต่อเนื่อง พอปลาอยู่ระดับเดียวกับลัวร์ให้กด A หนึ่งครั้งเพื่อเกี่ยวปลา เวลา อากาศ และคันไม่มีผล',
   },
 }
 
@@ -230,17 +267,30 @@ function routeChoiceLink(ctx, item, route) {
   return page + '?' + params
 }
 
+function fightNoteMarkup(ctx, item) {
+  const c = copy(ctx)
+  const decision = item.baitLureDecision || {}
+  const note =
+    item.category === 'bait'
+      ? decision.matchedFish && c.fightBait(ctx.fishName(decision.matchedFish))
+      : Number.isInteger(decision.fightClass) && c.fightLure[decision.fightClass]
+  return note ? `<p class="bait-lure-fight-note">${ctx.esc(note)}</p>` : ''
+}
+
 function ownUseMarkup(ctx, item) {
   const c = copy(ctx)
-  if (item.category !== 'bait') return `<p class="bait-lure-owned-action">${ctx.esc(c.ownLure)}</p>`
+  const fight = fightNoteMarkup(ctx, item)
+  if (item.category !== 'bait') {
+    const count = (item.playerUse?.fishIds || []).length
+    return `<p class="bait-lure-owned-action">${ctx.esc(c.ownLure(count))}</p>${fight}`
+  }
   const fishByRoute = item.playerUse?.fishIdsByRoute
   const routeKey = ctx.baitRoute === 'sinker' ? 'sinker' : 'float'
   const routeName = routeKey === 'sinker' ? c.sinker : c.float
-  if (!Array.isArray(fishByRoute?.[routeKey])) {
-    return `<p class="bait-lure-owned-action">${ctx.esc(c.ownBait(routeName))}</p>`
-  }
-  if (fishByRoute[routeKey].length) {
-    return `<p class="bait-lure-owned-action">${ctx.esc(c.ownBait(routeName))}</p>`
+  const wait = routeKey === 'sinker' ? 10 : 2
+  if (!Array.isArray(fishByRoute?.[routeKey]) || fishByRoute[routeKey].length) {
+    const count = (fishByRoute?.[routeKey] || item.playerUse?.fishIds || []).length
+    return `<p class="bait-lure-owned-action">${ctx.esc(c.ownBait(routeName, count, wait))}</p>${fight}`
   }
   const otherRoute = routeKey === 'sinker' ? 'float' : 'sinker'
   const otherName = otherRoute === 'sinker' ? c.sinker : c.float
@@ -270,13 +320,19 @@ function offerSentence(ctx, item, offers) {
   return `<p class="bait-lure-buy-choices"><strong>${ctx.esc(title)}:</strong> ${shown.map((offer) => offerLabel(ctx, offer)).join(' · ')}</p>`
 }
 
-export function baitLureEvidenceScope(ctx) {
-  const label = {
-    en: 'Bait and lure choices: ',
-    ja: 'エサ・ルアーの選び方：',
-    th: 'การเลือกเหยื่อจริงและลัวร์: ',
-  }[ctx.lang]
-  return (label || 'Bait and lure choices: ') + copy(ctx).limit
+export function baitLureEvidenceScope(ctx, category = 'all') {
+  const labels = {
+    all: {
+      en: 'Bait and lure choices: ',
+      ja: 'エサ・ルアーの選び方：',
+      th: 'การเลือกเหยื่อจริงและลัวร์: ',
+    },
+    bait: { en: 'Baits: ', ja: 'エサ：', th: 'เหยื่อจริง: ' },
+    lure: { en: 'Lures: ', ja: 'ルアー：', th: 'เหยื่อปลอม: ' },
+  }
+  const c = copy(ctx)
+  const body = { all: c.limit, bait: c.limitBait, lure: c.limitLure }[category] || c.limit
+  return ((labels[category] || labels.all)[ctx.lang] || 'Bait and lure choices: ') + body
 }
 
 export function baitLureVerdict(ctx, item, { includeScope = true } = {}) {

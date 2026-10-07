@@ -3,21 +3,24 @@ const COPY = {
     title: 'ซื้อใหม่เพื่อใช้กับปลาหลายชนิด: ราคาเท่ากัน แต่รองรับปลามากกว่า',
     advice:
       'เลือกตัวเลือกนี้ถ้าอยากพกชิ้นที่ใช้ได้กว้างขึ้น รองรับปลาเดิมครบทุกสายตกที่เปรียบเทียบ ถ้ามีชิ้นเดิมและใช้กับปลาเป้าหมายได้แล้ว ให้ใช้ต่อได้',
-    limit: 'ไม่ได้ยืนยันว่าปลากินบ่อยขึ้นหรือตกขึ้นง่ายกว่า',
+    limit:
+      'ปลากินเท่ากันเมื่อเหยื่ออยู่ในรายชื่อ แต่ถ้าชิ้นเดิมระบุชื่อปลาหรือเป็นลัวร์คนละกลุ่มขนาด ตอนเริ่มสู้จะไม่เหมือนกัน',
     area: (stage) => `ด่าน ${stage}`,
   },
   en: {
     title: 'Buying for more species: same price, broader fish coverage',
     advice:
       'Choose this option to carry an item with broader compatibility. It covers every original fish on each compared rig. Keep using the current item if you own it and it works for your target.',
-    limit: 'This does not establish more bites or easier landings.',
+    limit:
+      'Both bite the same way once the fish is on its tile; a named bait or a different lure size class still changes how the fight starts.',
     area: (stage) => `Area ${stage}`,
   },
   ja: {
     title: '複数の魚を狙って買うなら：同じ価格で対応魚が多い候補',
     advice:
       '対応する魚を増やしたいなら、この候補を選べます。比較した各仕掛けで元の魚すべてに対応します。すでに持っていて対象魚に使える品は、そのまま使えます。',
-    limit: '食いつきや取り込みやすさの優位を示すものではありません。',
+    limit:
+      '食いつきは同じです。ただし魚名つきのエサやルアーのサイズ区分が違えば、ファイトの開始値は変わります。',
     area: (stage) => `エリア${stage}`,
   },
 }

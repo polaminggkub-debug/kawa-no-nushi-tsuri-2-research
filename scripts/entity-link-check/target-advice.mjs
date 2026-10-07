@@ -7,14 +7,27 @@ const ids = Object.keys(data.fishVisuals)
 const locales = ['en', 'ja', 'th']
 let cases = 0
 const targetScopeCopy = {
-  en: 'This confirms the ROM compatibility check only; a bite or catch is not guaranteed.',
-  ja: 'ROM条件を通ることのみ確認。食いつき・釣り上げは保証されません。',
-  th: 'ยืนยันเฉพาะเงื่อนไขจาก ROM ไม่ได้ยืนยันโอกาสกินเหยื่อหรือจับขึ้น',
+  en: 'The fish bites or chases once your float or lure is on its tile. Time, weather, rod, hook and HP do not matter.',
+  ja: 'ウキやルアーが魚と同じマスにあれば食いつく・追ってくる。時間・天気・竿・ハリ・HPは関係ない。',
+  th: 'ปลากินหรือว่ายตามเมื่อทุ่นหรือลัวร์อยู่ช่องเดียวกับปลา เวลา อากาศ คัน เบ็ด และ HP ไม่มีผล',
 }
 const noFishBaitLureScopeCopy = {
-  en: 'Bait and lure choices: This compares compatible fish and recorded shop stock; it does not show which item gets more bites or is easier to land.',
-  ja: 'エサ・ルアーの選び方：これは対応する魚と店頭在庫の比較です。食いつきや取り込みやすさは示しません。',
-  th: 'การเลือกเหยื่อจริงและลัวร์: ข้อมูลนี้เทียบชนิดปลาที่ใช้ได้กับรายการของในร้าน ไม่ได้บอกว่าอันไหนทำให้ปลากินมากกว่าหรือตกขึ้นง่ายกว่า',
+  en: 'Bait and lure choices: A bait or lure on the fish’s list bites once your float or lure is on the fish’s tile (float about 2 s, sinker about 10 s, bottom fish only). Time, weather, rod, hook and HP change nothing: if a fish ignores you, move the cast.',
+  ja: 'エサ・ルアーの選び方：魚のリストにあるエサ・ルアーは、ウキやルアーが魚と同じマスにあれば食いつきます（ウキ約2秒、オモリ約10秒・底の魚のみ）。時間・天気・竿・ハリ・HPは関係ありません。反応しないときは投げる位置を変えます。',
+  th: 'การเลือกเหยื่อจริงและลัวร์: เหยื่อหรือลัวร์ที่อยู่ในรายชื่อของปลาจะถูกกินเมื่อทุ่นหรือลัวร์อยู่ช่องเดียวกับปลา (ทุ่นราว 2 วินาที ตะกั่วราว 10 วินาที เฉพาะปลาหน้าดิน) เวลา อากาศ คัน เบ็ด และ HP ไม่มีผล ถ้าปลาไม่สนใจ ให้ขยับจุดปล่อย',
+}
+const noFishScopeByCategory = {
+  bait: {
+    en: 'Baits: A bait on the fish’s list bites once your float is on the fish’s tile: about 2 seconds, or about 10 seconds on a sinker rig (bottom fish only). Time, weather, rod, hook and HP change nothing: if a fish ignores you, move the cast, not the bait.',
+    ja: 'エサ：リストにあるエサは、ウキが魚と同じマスにあれば食いつきます。約2秒（オモリは約10秒、底の魚のみ）。時間・天気・竿・ハリ・HPは関係ありません。反応しないときは、エサではなく投げる位置を変えます。',
+    th: 'เหยื่อจริง: เหยื่อที่อยู่ในรายชื่อของปลาจะถูกกินเมื่อทุ่นอยู่ช่องเดียวกับปลา ราว 2 วินาที (ชุดตะกั่วราว 10 วินาที เฉพาะปลาหน้าดิน) เวลา อากาศ คัน เบ็ด และ HP ไม่มีผล ถ้าปลาไม่สนใจ ให้ขยับจุดปล่อย ไม่ใช่เปลี่ยนเหยื่อ',
+  },
+  lure: {
+    en: 'Lures: A lure on the fish’s list is chased once the lure is on the fish’s tile and you keep tapping A or B; press A once when the fish is level with the lure to hook it. Time, weather and rod change nothing.',
+    ja: 'ルアー：リストにあるルアーは、魚と同じマスにあり、AかBを連打していれば追われます。魚が同じ高さに来たらAを1回押してかけます。時間・天気・竿は関係ありません。',
+    th: 'เหยื่อปลอม: ลัวร์ที่อยู่ในรายชื่อของปลาจะมีปลาว่ายตามเมื่อปลาอยู่ช่องเดียวกับลัวร์และคุณกด A หรือ B ต่อเนื่อง พอปลาอยู่ระดับเดียวกับลัวร์ให้กด A หนึ่งครั้งเพื่อเกี่ยวปลา เวลา อากาศ และคันไม่มีผล',
+  },
+  all: noFishBaitLureScopeCopy,
 }
 const previousBaitScopeCopy = {
   en: 'This confirms the bait check only; it does not establish bite odds or landing success.',
@@ -22,9 +35,9 @@ const previousBaitScopeCopy = {
   th: 'ยืนยันเฉพาะว่าเข้าเงื่อนไขตรวจเหยื่อ ไม่ได้ยืนยันโอกาสกินเหยื่อหรือจับขึ้น',
 }
 const flyScopeCopy = {
-  en: 'Showing fly bodies whose body-profile check passes for this fish; a bite or catch is not guaranteed.',
-  ja: 'この魚のボディプロフィール判定を通るフライボディです。食いつき・釣り上げは保証されません。',
-  th: 'แสดงบอดี้ฟลายที่ผ่านเงื่อนไขโปรไฟล์ของปลานี้ ไม่ได้รับประกันว่าปลากินหรือตกขึ้นได้',
+  en: 'Showing the fly bodies this fish takes. Check each card for whether it works on a fresh save (group-1 bodies do not).',
+  ja: 'この魚が食べるフライボディです。カードの表示で新規セーブで使えるかを確認（グループ1のボディは新規セーブでは使えない）。',
+  th: 'แสดงบอดี้ที่ปลานี้กิน ดูป้ายบนการ์ดว่าใช้ได้บนเซฟใหม่หรือติดล็อก (บอดี้กลุ่ม 1 ใช้ไม่ได้บนเซฟใหม่)',
 }
 
 function occurrences(value, phrase) {
@@ -62,10 +75,10 @@ async function checkStandaloneTargetScope(locale, category, id, fish) {
 async function checkNoTargetScope(locale, category) {
   const { nodes } = await renderCatalogue(locale, `?category=${category}&stage=1&route=float`)
   const status = unescapeHtml(nodes['fish-status'].textContent || nodes['fish-status'].innerHTML)
-  const requiresBaitLureScope = ['bait', 'lure', 'all'].includes(category)
+  const expectedScope = noFishScopeByCategory[category]?.[locale]
   assert.equal(
-    occurrences(status, noFishBaitLureScopeCopy[locale]),
-    requiresBaitLureScope ? 1 : 0,
+    occurrences(status, expectedScope || noFishBaitLureScopeCopy[locale]),
+    expectedScope ? 1 : 0,
     `${locale}/${category} no-fish scope count`,
   )
   assert.equal(occurrences(status, targetScopeCopy[locale]), 0)

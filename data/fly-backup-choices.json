@@ -1,10 +1,15 @@
 {
-  "schemaVersion": 1,
+  "schemaVersion": 2,
   "romSha1": "c2103dd94e2a1a65a495fc02adc2e7d040f31212",
-  "scope": "Cheapest three ready-made bundles across all six recorded area stocks that each pass the target body profile mask and collectively avoid the body/wing equality block for any unchanged hidden pair. Not bite/landing odds. Two bundles cannot cover all hidden pairs: a hidden body group matching the first and wing group matching the second blocks both.",
+  "freshSaveLock": {
+    "body": 1,
+    "wing": 2
+  },
+  "scope": "Ready-made fly choices across all six recorded area stocks for each fish a fly body can pass. starter: the cheapest bundle that passes the fish's body mask and is not blocked on a fresh save (hidden pair body 1, wing 2); starterByStage repeats that per area. bundles: the cheapest three bundles that pass the mask and differ in body group and wing group, so at least one works for every hidden pair; the ones a fresh save can use come first. fightFamily: the body selector that starts the fight best (caddis: Caddis and hopper bodies; other: the remaining families).",
   "sources": [
     "data/shop-stock-rom.json",
     "data/fish-acceptance.json",
+    "data/gear-effects.json",
     "docs/fly-selection-practical-research.md"
   ],
   "profiles": {
@@ -13,23 +18,19 @@
       "bundles": [
         {
           "stage": 1,
-          "slot": 0,
-          "body": "01",
-          "wing": "09",
-          "tail": "13",
-          "priceYen": 5,
-          "bodyGroup": 1,
-          "wingGroup": 1
-        },
-        {
-          "stage": 1,
           "slot": 2,
           "body": "2B",
           "wing": "34",
           "tail": "00",
-          "priceYen": 15,
-          "bodyGroup": 3,
-          "wingGroup": 0
+          "priceYen": 15
+        },
+        {
+          "stage": 1,
+          "slot": 0,
+          "body": "01",
+          "wing": "09",
+          "tail": "13",
+          "priceYen": 5
         },
         {
           "stage": 2,
@@ -37,34 +38,87 @@
           "body": "02",
           "wing": "0A",
           "tail": "14",
-          "priceYen": 10,
-          "bodyGroup": 2,
-          "wingGroup": 2
+          "priceYen": 10
         }
-      ]
+      ],
+      "starter": {
+        "stage": 1,
+        "slot": 2,
+        "body": "2B",
+        "wing": "34",
+        "tail": "00",
+        "priceYen": 15
+      },
+      "starterByStage": {
+        "1": {
+          "stage": 1,
+          "slot": 2,
+          "body": "2B",
+          "wing": "34",
+          "tail": "00",
+          "priceYen": 15
+        },
+        "2": {
+          "stage": 2,
+          "slot": 2,
+          "body": "2C",
+          "wing": "35",
+          "tail": "00",
+          "priceYen": 20
+        },
+        "3": {
+          "stage": 3,
+          "slot": 0,
+          "body": "03",
+          "wing": "0B",
+          "tail": "15",
+          "priceYen": 15
+        },
+        "4": {
+          "stage": 4,
+          "slot": 0,
+          "body": "04",
+          "wing": "0C",
+          "tail": "16",
+          "priceYen": 20
+        },
+        "5": {
+          "stage": 5,
+          "slot": 0,
+          "body": "06",
+          "wing": "11",
+          "tail": "13",
+          "priceYen": 30
+        },
+        "6": {
+          "stage": 6,
+          "slot": 2,
+          "body": "33",
+          "wing": "39",
+          "tail": "3D",
+          "priceYen": 45
+        }
+      },
+      "fightFamily": "caddis"
     },
     "12": {
       "totalYen": 30,
       "bundles": [
         {
           "stage": 1,
-          "slot": 0,
-          "body": "01",
-          "wing": "09",
-          "tail": "13",
-          "priceYen": 5,
-          "bodyGroup": 1,
-          "wingGroup": 1
-        },
-        {
-          "stage": 1,
           "slot": 2,
           "body": "2B",
           "wing": "34",
           "tail": "00",
-          "priceYen": 15,
-          "bodyGroup": 3,
-          "wingGroup": 0
+          "priceYen": 15
+        },
+        {
+          "stage": 1,
+          "slot": 0,
+          "body": "01",
+          "wing": "09",
+          "tail": "13",
+          "priceYen": 5
         },
         {
           "stage": 2,
@@ -72,34 +126,79 @@
           "body": "02",
           "wing": "0A",
           "tail": "14",
-          "priceYen": 10,
-          "bodyGroup": 2,
-          "wingGroup": 2
+          "priceYen": 10
         }
-      ]
+      ],
+      "starter": {
+        "stage": 1,
+        "slot": 2,
+        "body": "2B",
+        "wing": "34",
+        "tail": "00",
+        "priceYen": 15
+      },
+      "starterByStage": {
+        "1": {
+          "stage": 1,
+          "slot": 2,
+          "body": "2B",
+          "wing": "34",
+          "tail": "00",
+          "priceYen": 15
+        },
+        "2": {
+          "stage": 2,
+          "slot": 2,
+          "body": "2C",
+          "wing": "35",
+          "tail": "00",
+          "priceYen": 20
+        },
+        "3": {
+          "stage": 3,
+          "slot": 0,
+          "body": "03",
+          "wing": "0B",
+          "tail": "15",
+          "priceYen": 15
+        },
+        "4": {
+          "stage": 4,
+          "slot": 0,
+          "body": "04",
+          "wing": "0C",
+          "tail": "16",
+          "priceYen": 20
+        },
+        "5": {
+          "stage": 5,
+          "slot": 0,
+          "body": "06",
+          "wing": "11",
+          "tail": "13",
+          "priceYen": 30
+        },
+        "6": {
+          "stage": 6,
+          "slot": 2,
+          "body": "33",
+          "wing": "39",
+          "tail": "3D",
+          "priceYen": 45
+        }
+      },
+      "fightFamily": "caddis"
     },
     "13": {
       "totalYen": 17,
       "bundles": [
         {
           "stage": 1,
-          "slot": 0,
-          "body": "01",
-          "wing": "09",
-          "tail": "13",
-          "priceYen": 5,
-          "bodyGroup": 1,
-          "wingGroup": 1
-        },
-        {
-          "stage": 1,
           "slot": 3,
           "body": "3E",
           "wing": "43",
           "tail": "49",
-          "priceYen": 5,
-          "bodyGroup": 2,
-          "wingGroup": 3
+          "priceYen": 5
         },
         {
           "stage": 2,
@@ -107,34 +206,95 @@
           "body": "3F",
           "wing": "44",
           "tail": "4A",
-          "priceYen": 7,
-          "bodyGroup": 3,
-          "wingGroup": 0
+          "priceYen": 7
+        },
+        {
+          "stage": 1,
+          "slot": 0,
+          "body": "01",
+          "wing": "09",
+          "tail": "13",
+          "priceYen": 5
         }
-      ]
+      ],
+      "starter": {
+        "stage": 1,
+        "slot": 3,
+        "body": "3E",
+        "wing": "43",
+        "tail": "49",
+        "priceYen": 5
+      },
+      "starterByStage": {
+        "1": {
+          "stage": 1,
+          "slot": 3,
+          "body": "3E",
+          "wing": "43",
+          "tail": "49",
+          "priceYen": 5
+        },
+        "2": {
+          "stage": 2,
+          "slot": 3,
+          "body": "3F",
+          "wing": "44",
+          "tail": "4A",
+          "priceYen": 7
+        },
+        "3": {
+          "stage": 3,
+          "slot": 3,
+          "body": "40",
+          "wing": "43",
+          "tail": "49",
+          "priceYen": 10
+        },
+        "4": {
+          "stage": 4,
+          "slot": 0,
+          "body": "04",
+          "wing": "0C",
+          "tail": "16",
+          "priceYen": 20
+        },
+        "5": {
+          "stage": 5,
+          "slot": 3,
+          "body": "42",
+          "wing": "47",
+          "tail": "49",
+          "priceYen": 15
+        },
+        "6": {
+          "stage": 6,
+          "slot": 3,
+          "body": "3F",
+          "wing": "48",
+          "tail": "4A",
+          "priceYen": 7
+        }
+      },
+      "fightFamily": "caddis"
     },
     "16": {
       "totalYen": 30,
       "bundles": [
         {
           "stage": 1,
-          "slot": 0,
-          "body": "01",
-          "wing": "09",
-          "tail": "13",
-          "priceYen": 5,
-          "bodyGroup": 1,
-          "wingGroup": 1
-        },
-        {
-          "stage": 1,
           "slot": 2,
           "body": "2B",
           "wing": "34",
           "tail": "00",
-          "priceYen": 15,
-          "bodyGroup": 3,
-          "wingGroup": 0
+          "priceYen": 15
+        },
+        {
+          "stage": 1,
+          "slot": 0,
+          "body": "01",
+          "wing": "09",
+          "tail": "13",
+          "priceYen": 5
         },
         {
           "stage": 2,
@@ -142,34 +302,87 @@
           "body": "02",
           "wing": "0A",
           "tail": "14",
-          "priceYen": 10,
-          "bodyGroup": 2,
-          "wingGroup": 2
+          "priceYen": 10
         }
-      ]
+      ],
+      "starter": {
+        "stage": 1,
+        "slot": 2,
+        "body": "2B",
+        "wing": "34",
+        "tail": "00",
+        "priceYen": 15
+      },
+      "starterByStage": {
+        "1": {
+          "stage": 1,
+          "slot": 2,
+          "body": "2B",
+          "wing": "34",
+          "tail": "00",
+          "priceYen": 15
+        },
+        "2": {
+          "stage": 2,
+          "slot": 2,
+          "body": "2C",
+          "wing": "35",
+          "tail": "00",
+          "priceYen": 20
+        },
+        "3": {
+          "stage": 3,
+          "slot": 0,
+          "body": "03",
+          "wing": "0B",
+          "tail": "15",
+          "priceYen": 15
+        },
+        "4": {
+          "stage": 4,
+          "slot": 0,
+          "body": "04",
+          "wing": "0C",
+          "tail": "16",
+          "priceYen": 20
+        },
+        "5": {
+          "stage": 5,
+          "slot": 0,
+          "body": "06",
+          "wing": "11",
+          "tail": "13",
+          "priceYen": 30
+        },
+        "6": {
+          "stage": 6,
+          "slot": 2,
+          "body": "33",
+          "wing": "39",
+          "tail": "3D",
+          "priceYen": 45
+        }
+      },
+      "fightFamily": "caddis"
     },
     "18": {
       "totalYen": 30,
       "bundles": [
         {
           "stage": 1,
-          "slot": 0,
-          "body": "01",
-          "wing": "09",
-          "tail": "13",
-          "priceYen": 5,
-          "bodyGroup": 1,
-          "wingGroup": 1
-        },
-        {
-          "stage": 1,
           "slot": 2,
           "body": "2B",
           "wing": "34",
           "tail": "00",
-          "priceYen": 15,
-          "bodyGroup": 3,
-          "wingGroup": 0
+          "priceYen": 15
+        },
+        {
+          "stage": 1,
+          "slot": 0,
+          "body": "01",
+          "wing": "09",
+          "tail": "13",
+          "priceYen": 5
         },
         {
           "stage": 2,
@@ -177,34 +390,79 @@
           "body": "02",
           "wing": "0A",
           "tail": "14",
-          "priceYen": 10,
-          "bodyGroup": 2,
-          "wingGroup": 2
+          "priceYen": 10
         }
-      ]
+      ],
+      "starter": {
+        "stage": 1,
+        "slot": 2,
+        "body": "2B",
+        "wing": "34",
+        "tail": "00",
+        "priceYen": 15
+      },
+      "starterByStage": {
+        "1": {
+          "stage": 1,
+          "slot": 2,
+          "body": "2B",
+          "wing": "34",
+          "tail": "00",
+          "priceYen": 15
+        },
+        "2": {
+          "stage": 2,
+          "slot": 2,
+          "body": "2C",
+          "wing": "35",
+          "tail": "00",
+          "priceYen": 20
+        },
+        "3": {
+          "stage": 3,
+          "slot": 0,
+          "body": "03",
+          "wing": "0B",
+          "tail": "15",
+          "priceYen": 15
+        },
+        "4": {
+          "stage": 4,
+          "slot": 0,
+          "body": "04",
+          "wing": "0C",
+          "tail": "16",
+          "priceYen": 20
+        },
+        "5": {
+          "stage": 5,
+          "slot": 0,
+          "body": "06",
+          "wing": "11",
+          "tail": "13",
+          "priceYen": 30
+        },
+        "6": {
+          "stage": 6,
+          "slot": 2,
+          "body": "33",
+          "wing": "39",
+          "tail": "3D",
+          "priceYen": 45
+        }
+      },
+      "fightFamily": "caddis"
     },
     "20": {
       "totalYen": 17,
       "bundles": [
         {
           "stage": 1,
-          "slot": 0,
-          "body": "01",
-          "wing": "09",
-          "tail": "13",
-          "priceYen": 5,
-          "bodyGroup": 1,
-          "wingGroup": 1
-        },
-        {
-          "stage": 1,
           "slot": 3,
           "body": "3E",
           "wing": "43",
           "tail": "49",
-          "priceYen": 5,
-          "bodyGroup": 2,
-          "wingGroup": 3
+          "priceYen": 5
         },
         {
           "stage": 2,
@@ -212,34 +470,87 @@
           "body": "3F",
           "wing": "44",
           "tail": "4A",
-          "priceYen": 7,
-          "bodyGroup": 3,
-          "wingGroup": 0
+          "priceYen": 7
+        },
+        {
+          "stage": 1,
+          "slot": 0,
+          "body": "01",
+          "wing": "09",
+          "tail": "13",
+          "priceYen": 5
         }
-      ]
+      ],
+      "starter": {
+        "stage": 1,
+        "slot": 3,
+        "body": "3E",
+        "wing": "43",
+        "tail": "49",
+        "priceYen": 5
+      },
+      "starterByStage": {
+        "1": {
+          "stage": 1,
+          "slot": 3,
+          "body": "3E",
+          "wing": "43",
+          "tail": "49",
+          "priceYen": 5
+        },
+        "2": {
+          "stage": 2,
+          "slot": 3,
+          "body": "3F",
+          "wing": "44",
+          "tail": "4A",
+          "priceYen": 7
+        },
+        "3": {
+          "stage": 3,
+          "slot": 3,
+          "body": "40",
+          "wing": "43",
+          "tail": "49",
+          "priceYen": 10
+        },
+        "4": {
+          "stage": 4,
+          "slot": 0,
+          "body": "04",
+          "wing": "0C",
+          "tail": "16",
+          "priceYen": 20
+        },
+        "5": {
+          "stage": 5,
+          "slot": 3,
+          "body": "42",
+          "wing": "47",
+          "tail": "49",
+          "priceYen": 15
+        },
+        "6": {
+          "stage": 6,
+          "slot": 3,
+          "body": "3F",
+          "wing": "48",
+          "tail": "4A",
+          "priceYen": 7
+        }
+      },
+      "fightFamily": "caddis"
     },
     "21": {
       "totalYen": 17,
       "bundles": [
         {
           "stage": 1,
-          "slot": 0,
-          "body": "01",
-          "wing": "09",
-          "tail": "13",
-          "priceYen": 5,
-          "bodyGroup": 1,
-          "wingGroup": 1
-        },
-        {
-          "stage": 1,
           "slot": 3,
           "body": "3E",
           "wing": "43",
           "tail": "49",
-          "priceYen": 5,
-          "bodyGroup": 2,
-          "wingGroup": 3
+          "priceYen": 5
         },
         {
           "stage": 2,
@@ -247,34 +558,95 @@
           "body": "3F",
           "wing": "44",
           "tail": "4A",
-          "priceYen": 7,
-          "bodyGroup": 3,
-          "wingGroup": 0
+          "priceYen": 7
+        },
+        {
+          "stage": 1,
+          "slot": 0,
+          "body": "01",
+          "wing": "09",
+          "tail": "13",
+          "priceYen": 5
         }
-      ]
+      ],
+      "starter": {
+        "stage": 1,
+        "slot": 3,
+        "body": "3E",
+        "wing": "43",
+        "tail": "49",
+        "priceYen": 5
+      },
+      "starterByStage": {
+        "1": {
+          "stage": 1,
+          "slot": 3,
+          "body": "3E",
+          "wing": "43",
+          "tail": "49",
+          "priceYen": 5
+        },
+        "2": {
+          "stage": 2,
+          "slot": 3,
+          "body": "3F",
+          "wing": "44",
+          "tail": "4A",
+          "priceYen": 7
+        },
+        "3": {
+          "stage": 3,
+          "slot": 3,
+          "body": "40",
+          "wing": "43",
+          "tail": "49",
+          "priceYen": 10
+        },
+        "4": {
+          "stage": 4,
+          "slot": 0,
+          "body": "04",
+          "wing": "0C",
+          "tail": "16",
+          "priceYen": 20
+        },
+        "5": {
+          "stage": 5,
+          "slot": 3,
+          "body": "42",
+          "wing": "47",
+          "tail": "49",
+          "priceYen": 15
+        },
+        "6": {
+          "stage": 6,
+          "slot": 3,
+          "body": "3F",
+          "wing": "48",
+          "tail": "4A",
+          "priceYen": 7
+        }
+      },
+      "fightFamily": "caddis"
     },
     "22": {
       "totalYen": 30,
       "bundles": [
         {
           "stage": 1,
-          "slot": 0,
-          "body": "01",
-          "wing": "09",
-          "tail": "13",
-          "priceYen": 5,
-          "bodyGroup": 1,
-          "wingGroup": 1
-        },
-        {
-          "stage": 1,
           "slot": 2,
           "body": "2B",
           "wing": "34",
           "tail": "00",
-          "priceYen": 15,
-          "bodyGroup": 3,
-          "wingGroup": 0
+          "priceYen": 15
+        },
+        {
+          "stage": 1,
+          "slot": 0,
+          "body": "01",
+          "wing": "09",
+          "tail": "13",
+          "priceYen": 5
         },
         {
           "stage": 2,
@@ -282,34 +654,87 @@
           "body": "02",
           "wing": "0A",
           "tail": "14",
-          "priceYen": 10,
-          "bodyGroup": 2,
-          "wingGroup": 2
+          "priceYen": 10
         }
-      ]
+      ],
+      "starter": {
+        "stage": 1,
+        "slot": 2,
+        "body": "2B",
+        "wing": "34",
+        "tail": "00",
+        "priceYen": 15
+      },
+      "starterByStage": {
+        "1": {
+          "stage": 1,
+          "slot": 2,
+          "body": "2B",
+          "wing": "34",
+          "tail": "00",
+          "priceYen": 15
+        },
+        "2": {
+          "stage": 2,
+          "slot": 2,
+          "body": "2C",
+          "wing": "35",
+          "tail": "00",
+          "priceYen": 20
+        },
+        "3": {
+          "stage": 3,
+          "slot": 0,
+          "body": "03",
+          "wing": "0B",
+          "tail": "15",
+          "priceYen": 15
+        },
+        "4": {
+          "stage": 4,
+          "slot": 0,
+          "body": "04",
+          "wing": "0C",
+          "tail": "16",
+          "priceYen": 20
+        },
+        "5": {
+          "stage": 5,
+          "slot": 0,
+          "body": "06",
+          "wing": "11",
+          "tail": "13",
+          "priceYen": 30
+        },
+        "6": {
+          "stage": 6,
+          "slot": 2,
+          "body": "33",
+          "wing": "39",
+          "tail": "3D",
+          "priceYen": 45
+        }
+      },
+      "fightFamily": "caddis"
     },
     "30": {
       "totalYen": 30,
       "bundles": [
         {
           "stage": 1,
-          "slot": 0,
-          "body": "01",
-          "wing": "09",
-          "tail": "13",
-          "priceYen": 5,
-          "bodyGroup": 1,
-          "wingGroup": 1
-        },
-        {
-          "stage": 1,
           "slot": 2,
           "body": "2B",
           "wing": "34",
           "tail": "00",
-          "priceYen": 15,
-          "bodyGroup": 3,
-          "wingGroup": 0
+          "priceYen": 15
+        },
+        {
+          "stage": 1,
+          "slot": 0,
+          "body": "01",
+          "wing": "09",
+          "tail": "13",
+          "priceYen": 5
         },
         {
           "stage": 2,
@@ -317,34 +742,79 @@
           "body": "02",
           "wing": "0A",
           "tail": "14",
-          "priceYen": 10,
-          "bodyGroup": 2,
-          "wingGroup": 2
+          "priceYen": 10
         }
-      ]
+      ],
+      "starter": {
+        "stage": 1,
+        "slot": 2,
+        "body": "2B",
+        "wing": "34",
+        "tail": "00",
+        "priceYen": 15
+      },
+      "starterByStage": {
+        "1": {
+          "stage": 1,
+          "slot": 2,
+          "body": "2B",
+          "wing": "34",
+          "tail": "00",
+          "priceYen": 15
+        },
+        "2": {
+          "stage": 2,
+          "slot": 2,
+          "body": "2C",
+          "wing": "35",
+          "tail": "00",
+          "priceYen": 20
+        },
+        "3": {
+          "stage": 3,
+          "slot": 0,
+          "body": "03",
+          "wing": "0B",
+          "tail": "15",
+          "priceYen": 15
+        },
+        "4": {
+          "stage": 4,
+          "slot": 0,
+          "body": "04",
+          "wing": "0C",
+          "tail": "16",
+          "priceYen": 20
+        },
+        "5": {
+          "stage": 5,
+          "slot": 0,
+          "body": "06",
+          "wing": "11",
+          "tail": "13",
+          "priceYen": 30
+        },
+        "6": {
+          "stage": 6,
+          "slot": 2,
+          "body": "33",
+          "wing": "39",
+          "tail": "3D",
+          "priceYen": 45
+        }
+      },
+      "fightFamily": "caddis"
     },
     "31": {
       "totalYen": 17,
       "bundles": [
         {
           "stage": 1,
-          "slot": 0,
-          "body": "01",
-          "wing": "09",
-          "tail": "13",
-          "priceYen": 5,
-          "bodyGroup": 1,
-          "wingGroup": 1
-        },
-        {
-          "stage": 1,
           "slot": 3,
           "body": "3E",
           "wing": "43",
           "tail": "49",
-          "priceYen": 5,
-          "bodyGroup": 2,
-          "wingGroup": 3
+          "priceYen": 5
         },
         {
           "stage": 2,
@@ -352,34 +822,87 @@
           "body": "3F",
           "wing": "44",
           "tail": "4A",
-          "priceYen": 7,
-          "bodyGroup": 3,
-          "wingGroup": 0
+          "priceYen": 7
+        },
+        {
+          "stage": 1,
+          "slot": 0,
+          "body": "01",
+          "wing": "09",
+          "tail": "13",
+          "priceYen": 5
         }
-      ]
+      ],
+      "starter": {
+        "stage": 1,
+        "slot": 3,
+        "body": "3E",
+        "wing": "43",
+        "tail": "49",
+        "priceYen": 5
+      },
+      "starterByStage": {
+        "1": {
+          "stage": 1,
+          "slot": 3,
+          "body": "3E",
+          "wing": "43",
+          "tail": "49",
+          "priceYen": 5
+        },
+        "2": {
+          "stage": 2,
+          "slot": 3,
+          "body": "3F",
+          "wing": "44",
+          "tail": "4A",
+          "priceYen": 7
+        },
+        "3": {
+          "stage": 3,
+          "slot": 3,
+          "body": "40",
+          "wing": "43",
+          "tail": "49",
+          "priceYen": 10
+        },
+        "4": {
+          "stage": 4,
+          "slot": 0,
+          "body": "04",
+          "wing": "0C",
+          "tail": "16",
+          "priceYen": 20
+        },
+        "5": {
+          "stage": 5,
+          "slot": 3,
+          "body": "42",
+          "wing": "47",
+          "tail": "49",
+          "priceYen": 15
+        },
+        "6": {
+          "stage": 6,
+          "slot": 3,
+          "body": "3F",
+          "wing": "48",
+          "tail": "4A",
+          "priceYen": 7
+        }
+      },
+      "fightFamily": "caddis"
     },
     "38": {
       "totalYen": 17,
       "bundles": [
         {
           "stage": 1,
-          "slot": 0,
-          "body": "01",
-          "wing": "09",
-          "tail": "13",
-          "priceYen": 5,
-          "bodyGroup": 1,
-          "wingGroup": 1
-        },
-        {
-          "stage": 1,
           "slot": 3,
           "body": "3E",
           "wing": "43",
           "tail": "49",
-          "priceYen": 5,
-          "bodyGroup": 2,
-          "wingGroup": 3
+          "priceYen": 5
         },
         {
           "stage": 2,
@@ -387,34 +910,95 @@
           "body": "3F",
           "wing": "44",
           "tail": "4A",
-          "priceYen": 7,
-          "bodyGroup": 3,
-          "wingGroup": 0
+          "priceYen": 7
+        },
+        {
+          "stage": 1,
+          "slot": 0,
+          "body": "01",
+          "wing": "09",
+          "tail": "13",
+          "priceYen": 5
         }
-      ]
+      ],
+      "starter": {
+        "stage": 1,
+        "slot": 3,
+        "body": "3E",
+        "wing": "43",
+        "tail": "49",
+        "priceYen": 5
+      },
+      "starterByStage": {
+        "1": {
+          "stage": 1,
+          "slot": 3,
+          "body": "3E",
+          "wing": "43",
+          "tail": "49",
+          "priceYen": 5
+        },
+        "2": {
+          "stage": 2,
+          "slot": 3,
+          "body": "3F",
+          "wing": "44",
+          "tail": "4A",
+          "priceYen": 7
+        },
+        "3": {
+          "stage": 3,
+          "slot": 3,
+          "body": "40",
+          "wing": "43",
+          "tail": "49",
+          "priceYen": 10
+        },
+        "4": {
+          "stage": 4,
+          "slot": 0,
+          "body": "04",
+          "wing": "0C",
+          "tail": "16",
+          "priceYen": 20
+        },
+        "5": {
+          "stage": 5,
+          "slot": 3,
+          "body": "42",
+          "wing": "47",
+          "tail": "49",
+          "priceYen": 15
+        },
+        "6": {
+          "stage": 6,
+          "slot": 3,
+          "body": "3F",
+          "wing": "48",
+          "tail": "4A",
+          "priceYen": 7
+        }
+      },
+      "fightFamily": "caddis"
     },
     "40": {
       "totalYen": 30,
       "bundles": [
         {
           "stage": 1,
-          "slot": 0,
-          "body": "01",
-          "wing": "09",
-          "tail": "13",
-          "priceYen": 5,
-          "bodyGroup": 1,
-          "wingGroup": 1
-        },
-        {
-          "stage": 1,
           "slot": 2,
           "body": "2B",
           "wing": "34",
           "tail": "00",
-          "priceYen": 15,
-          "bodyGroup": 3,
-          "wingGroup": 0
+          "priceYen": 15
+        },
+        {
+          "stage": 1,
+          "slot": 0,
+          "body": "01",
+          "wing": "09",
+          "tail": "13",
+          "priceYen": 5
         },
         {
           "stage": 2,
@@ -422,34 +1006,79 @@
           "body": "02",
           "wing": "0A",
           "tail": "14",
-          "priceYen": 10,
-          "bodyGroup": 2,
-          "wingGroup": 2
+          "priceYen": 10
         }
-      ]
+      ],
+      "starter": {
+        "stage": 1,
+        "slot": 2,
+        "body": "2B",
+        "wing": "34",
+        "tail": "00",
+        "priceYen": 15
+      },
+      "starterByStage": {
+        "1": {
+          "stage": 1,
+          "slot": 2,
+          "body": "2B",
+          "wing": "34",
+          "tail": "00",
+          "priceYen": 15
+        },
+        "2": {
+          "stage": 2,
+          "slot": 2,
+          "body": "2C",
+          "wing": "35",
+          "tail": "00",
+          "priceYen": 20
+        },
+        "3": {
+          "stage": 3,
+          "slot": 0,
+          "body": "03",
+          "wing": "0B",
+          "tail": "15",
+          "priceYen": 15
+        },
+        "4": {
+          "stage": 4,
+          "slot": 0,
+          "body": "04",
+          "wing": "0C",
+          "tail": "16",
+          "priceYen": 20
+        },
+        "5": {
+          "stage": 5,
+          "slot": 0,
+          "body": "06",
+          "wing": "11",
+          "tail": "13",
+          "priceYen": 30
+        },
+        "6": {
+          "stage": 6,
+          "slot": 2,
+          "body": "33",
+          "wing": "39",
+          "tail": "3D",
+          "priceYen": 45
+        }
+      },
+      "fightFamily": "other"
     },
     "42": {
       "totalYen": 17,
       "bundles": [
         {
           "stage": 1,
-          "slot": 0,
-          "body": "01",
-          "wing": "09",
-          "tail": "13",
-          "priceYen": 5,
-          "bodyGroup": 1,
-          "wingGroup": 1
-        },
-        {
-          "stage": 1,
           "slot": 3,
           "body": "3E",
           "wing": "43",
           "tail": "49",
-          "priceYen": 5,
-          "bodyGroup": 2,
-          "wingGroup": 3
+          "priceYen": 5
         },
         {
           "stage": 2,
@@ -457,34 +1086,87 @@
           "body": "3F",
           "wing": "44",
           "tail": "4A",
-          "priceYen": 7,
-          "bodyGroup": 3,
-          "wingGroup": 0
+          "priceYen": 7
+        },
+        {
+          "stage": 1,
+          "slot": 0,
+          "body": "01",
+          "wing": "09",
+          "tail": "13",
+          "priceYen": 5
         }
-      ]
+      ],
+      "starter": {
+        "stage": 1,
+        "slot": 3,
+        "body": "3E",
+        "wing": "43",
+        "tail": "49",
+        "priceYen": 5
+      },
+      "starterByStage": {
+        "1": {
+          "stage": 1,
+          "slot": 3,
+          "body": "3E",
+          "wing": "43",
+          "tail": "49",
+          "priceYen": 5
+        },
+        "2": {
+          "stage": 2,
+          "slot": 3,
+          "body": "3F",
+          "wing": "44",
+          "tail": "4A",
+          "priceYen": 7
+        },
+        "3": {
+          "stage": 3,
+          "slot": 3,
+          "body": "40",
+          "wing": "43",
+          "tail": "49",
+          "priceYen": 10
+        },
+        "4": {
+          "stage": 4,
+          "slot": 0,
+          "body": "04",
+          "wing": "0C",
+          "tail": "16",
+          "priceYen": 20
+        },
+        "5": {
+          "stage": 5,
+          "slot": 3,
+          "body": "42",
+          "wing": "47",
+          "tail": "49",
+          "priceYen": 15
+        },
+        "6": {
+          "stage": 6,
+          "slot": 3,
+          "body": "3F",
+          "wing": "48",
+          "tail": "4A",
+          "priceYen": 7
+        }
+      },
+      "fightFamily": "caddis"
     },
     "44": {
       "totalYen": 17,
       "bundles": [
         {
           "stage": 1,
-          "slot": 0,
-          "body": "01",
-          "wing": "09",
-          "tail": "13",
-          "priceYen": 5,
-          "bodyGroup": 1,
-          "wingGroup": 1
-        },
-        {
-          "stage": 1,
           "slot": 3,
           "body": "3E",
           "wing": "43",
           "tail": "49",
-          "priceYen": 5,
-          "bodyGroup": 2,
-          "wingGroup": 3
+          "priceYen": 5
         },
         {
           "stage": 2,
@@ -492,34 +1174,87 @@
           "body": "3F",
           "wing": "44",
           "tail": "4A",
-          "priceYen": 7,
-          "bodyGroup": 3,
-          "wingGroup": 0
+          "priceYen": 7
+        },
+        {
+          "stage": 1,
+          "slot": 0,
+          "body": "01",
+          "wing": "09",
+          "tail": "13",
+          "priceYen": 5
         }
-      ]
+      ],
+      "starter": {
+        "stage": 1,
+        "slot": 3,
+        "body": "3E",
+        "wing": "43",
+        "tail": "49",
+        "priceYen": 5
+      },
+      "starterByStage": {
+        "1": {
+          "stage": 1,
+          "slot": 3,
+          "body": "3E",
+          "wing": "43",
+          "tail": "49",
+          "priceYen": 5
+        },
+        "2": {
+          "stage": 2,
+          "slot": 3,
+          "body": "3F",
+          "wing": "44",
+          "tail": "4A",
+          "priceYen": 7
+        },
+        "3": {
+          "stage": 3,
+          "slot": 3,
+          "body": "40",
+          "wing": "43",
+          "tail": "49",
+          "priceYen": 10
+        },
+        "4": {
+          "stage": 4,
+          "slot": 0,
+          "body": "04",
+          "wing": "0C",
+          "tail": "16",
+          "priceYen": 20
+        },
+        "5": {
+          "stage": 5,
+          "slot": 3,
+          "body": "42",
+          "wing": "47",
+          "tail": "49",
+          "priceYen": 15
+        },
+        "6": {
+          "stage": 6,
+          "slot": 3,
+          "body": "3F",
+          "wing": "48",
+          "tail": "4A",
+          "priceYen": 7
+        }
+      },
+      "fightFamily": "other"
     },
     "45": {
       "totalYen": 17,
       "bundles": [
         {
           "stage": 1,
-          "slot": 0,
-          "body": "01",
-          "wing": "09",
-          "tail": "13",
-          "priceYen": 5,
-          "bodyGroup": 1,
-          "wingGroup": 1
-        },
-        {
-          "stage": 1,
           "slot": 3,
           "body": "3E",
           "wing": "43",
           "tail": "49",
-          "priceYen": 5,
-          "bodyGroup": 2,
-          "wingGroup": 3
+          "priceYen": 5
         },
         {
           "stage": 2,
@@ -527,34 +1262,87 @@
           "body": "3F",
           "wing": "44",
           "tail": "4A",
-          "priceYen": 7,
-          "bodyGroup": 3,
-          "wingGroup": 0
+          "priceYen": 7
+        },
+        {
+          "stage": 1,
+          "slot": 0,
+          "body": "01",
+          "wing": "09",
+          "tail": "13",
+          "priceYen": 5
         }
-      ]
+      ],
+      "starter": {
+        "stage": 1,
+        "slot": 3,
+        "body": "3E",
+        "wing": "43",
+        "tail": "49",
+        "priceYen": 5
+      },
+      "starterByStage": {
+        "1": {
+          "stage": 1,
+          "slot": 3,
+          "body": "3E",
+          "wing": "43",
+          "tail": "49",
+          "priceYen": 5
+        },
+        "2": {
+          "stage": 2,
+          "slot": 3,
+          "body": "3F",
+          "wing": "44",
+          "tail": "4A",
+          "priceYen": 7
+        },
+        "3": {
+          "stage": 3,
+          "slot": 3,
+          "body": "40",
+          "wing": "43",
+          "tail": "49",
+          "priceYen": 10
+        },
+        "4": {
+          "stage": 4,
+          "slot": 0,
+          "body": "04",
+          "wing": "0C",
+          "tail": "16",
+          "priceYen": 20
+        },
+        "5": {
+          "stage": 5,
+          "slot": 3,
+          "body": "42",
+          "wing": "47",
+          "tail": "49",
+          "priceYen": 15
+        },
+        "6": {
+          "stage": 6,
+          "slot": 3,
+          "body": "3F",
+          "wing": "48",
+          "tail": "4A",
+          "priceYen": 7
+        }
+      },
+      "fightFamily": "other"
     },
     "01": {
       "totalYen": 17,
       "bundles": [
         {
           "stage": 1,
-          "slot": 0,
-          "body": "01",
-          "wing": "09",
-          "tail": "13",
-          "priceYen": 5,
-          "bodyGroup": 1,
-          "wingGroup": 1
-        },
-        {
-          "stage": 1,
           "slot": 3,
           "body": "3E",
           "wing": "43",
           "tail": "49",
-          "priceYen": 5,
-          "bodyGroup": 2,
-          "wingGroup": 3
+          "priceYen": 5
         },
         {
           "stage": 2,
@@ -562,34 +1350,87 @@
           "body": "3F",
           "wing": "44",
           "tail": "4A",
-          "priceYen": 7,
-          "bodyGroup": 3,
-          "wingGroup": 0
+          "priceYen": 7
+        },
+        {
+          "stage": 1,
+          "slot": 0,
+          "body": "01",
+          "wing": "09",
+          "tail": "13",
+          "priceYen": 5
         }
-      ]
+      ],
+      "starter": {
+        "stage": 1,
+        "slot": 3,
+        "body": "3E",
+        "wing": "43",
+        "tail": "49",
+        "priceYen": 5
+      },
+      "starterByStage": {
+        "1": {
+          "stage": 1,
+          "slot": 3,
+          "body": "3E",
+          "wing": "43",
+          "tail": "49",
+          "priceYen": 5
+        },
+        "2": {
+          "stage": 2,
+          "slot": 3,
+          "body": "3F",
+          "wing": "44",
+          "tail": "4A",
+          "priceYen": 7
+        },
+        "3": {
+          "stage": 3,
+          "slot": 3,
+          "body": "40",
+          "wing": "43",
+          "tail": "49",
+          "priceYen": 10
+        },
+        "4": {
+          "stage": 4,
+          "slot": 0,
+          "body": "04",
+          "wing": "0C",
+          "tail": "16",
+          "priceYen": 20
+        },
+        "5": {
+          "stage": 5,
+          "slot": 3,
+          "body": "42",
+          "wing": "47",
+          "tail": "49",
+          "priceYen": 15
+        },
+        "6": {
+          "stage": 6,
+          "slot": 3,
+          "body": "3F",
+          "wing": "48",
+          "tail": "4A",
+          "priceYen": 7
+        }
+      },
+      "fightFamily": "caddis"
     },
     "02": {
       "totalYen": 17,
       "bundles": [
         {
           "stage": 1,
-          "slot": 0,
-          "body": "01",
-          "wing": "09",
-          "tail": "13",
-          "priceYen": 5,
-          "bodyGroup": 1,
-          "wingGroup": 1
-        },
-        {
-          "stage": 1,
           "slot": 3,
           "body": "3E",
           "wing": "43",
           "tail": "49",
-          "priceYen": 5,
-          "bodyGroup": 2,
-          "wingGroup": 3
+          "priceYen": 5
         },
         {
           "stage": 2,
@@ -597,34 +1438,87 @@
           "body": "3F",
           "wing": "44",
           "tail": "4A",
-          "priceYen": 7,
-          "bodyGroup": 3,
-          "wingGroup": 0
+          "priceYen": 7
+        },
+        {
+          "stage": 1,
+          "slot": 0,
+          "body": "01",
+          "wing": "09",
+          "tail": "13",
+          "priceYen": 5
         }
-      ]
+      ],
+      "starter": {
+        "stage": 1,
+        "slot": 3,
+        "body": "3E",
+        "wing": "43",
+        "tail": "49",
+        "priceYen": 5
+      },
+      "starterByStage": {
+        "1": {
+          "stage": 1,
+          "slot": 3,
+          "body": "3E",
+          "wing": "43",
+          "tail": "49",
+          "priceYen": 5
+        },
+        "2": {
+          "stage": 2,
+          "slot": 3,
+          "body": "3F",
+          "wing": "44",
+          "tail": "4A",
+          "priceYen": 7
+        },
+        "3": {
+          "stage": 3,
+          "slot": 3,
+          "body": "40",
+          "wing": "43",
+          "tail": "49",
+          "priceYen": 10
+        },
+        "4": {
+          "stage": 4,
+          "slot": 0,
+          "body": "04",
+          "wing": "0C",
+          "tail": "16",
+          "priceYen": 20
+        },
+        "5": {
+          "stage": 5,
+          "slot": 3,
+          "body": "42",
+          "wing": "47",
+          "tail": "49",
+          "priceYen": 15
+        },
+        "6": {
+          "stage": 6,
+          "slot": 3,
+          "body": "3F",
+          "wing": "48",
+          "tail": "4A",
+          "priceYen": 7
+        }
+      },
+      "fightFamily": "caddis"
     },
     "03": {
       "totalYen": 17,
       "bundles": [
         {
           "stage": 1,
-          "slot": 0,
-          "body": "01",
-          "wing": "09",
-          "tail": "13",
-          "priceYen": 5,
-          "bodyGroup": 1,
-          "wingGroup": 1
-        },
-        {
-          "stage": 1,
           "slot": 3,
           "body": "3E",
           "wing": "43",
           "tail": "49",
-          "priceYen": 5,
-          "bodyGroup": 2,
-          "wingGroup": 3
+          "priceYen": 5
         },
         {
           "stage": 2,
@@ -632,34 +1526,87 @@
           "body": "3F",
           "wing": "44",
           "tail": "4A",
-          "priceYen": 7,
-          "bodyGroup": 3,
-          "wingGroup": 0
+          "priceYen": 7
+        },
+        {
+          "stage": 1,
+          "slot": 0,
+          "body": "01",
+          "wing": "09",
+          "tail": "13",
+          "priceYen": 5
         }
-      ]
+      ],
+      "starter": {
+        "stage": 1,
+        "slot": 3,
+        "body": "3E",
+        "wing": "43",
+        "tail": "49",
+        "priceYen": 5
+      },
+      "starterByStage": {
+        "1": {
+          "stage": 1,
+          "slot": 3,
+          "body": "3E",
+          "wing": "43",
+          "tail": "49",
+          "priceYen": 5
+        },
+        "2": {
+          "stage": 2,
+          "slot": 3,
+          "body": "3F",
+          "wing": "44",
+          "tail": "4A",
+          "priceYen": 7
+        },
+        "3": {
+          "stage": 3,
+          "slot": 3,
+          "body": "40",
+          "wing": "43",
+          "tail": "49",
+          "priceYen": 10
+        },
+        "4": {
+          "stage": 4,
+          "slot": 0,
+          "body": "04",
+          "wing": "0C",
+          "tail": "16",
+          "priceYen": 20
+        },
+        "5": {
+          "stage": 5,
+          "slot": 3,
+          "body": "42",
+          "wing": "47",
+          "tail": "49",
+          "priceYen": 15
+        },
+        "6": {
+          "stage": 6,
+          "slot": 3,
+          "body": "3F",
+          "wing": "48",
+          "tail": "4A",
+          "priceYen": 7
+        }
+      },
+      "fightFamily": "caddis"
     },
     "04": {
       "totalYen": 17,
       "bundles": [
         {
           "stage": 1,
-          "slot": 0,
-          "body": "01",
-          "wing": "09",
-          "tail": "13",
-          "priceYen": 5,
-          "bodyGroup": 1,
-          "wingGroup": 1
-        },
-        {
-          "stage": 1,
           "slot": 3,
           "body": "3E",
           "wing": "43",
           "tail": "49",
-          "priceYen": 5,
-          "bodyGroup": 2,
-          "wingGroup": 3
+          "priceYen": 5
         },
         {
           "stage": 2,
@@ -667,34 +1614,95 @@
           "body": "3F",
           "wing": "44",
           "tail": "4A",
-          "priceYen": 7,
-          "bodyGroup": 3,
-          "wingGroup": 0
+          "priceYen": 7
+        },
+        {
+          "stage": 1,
+          "slot": 0,
+          "body": "01",
+          "wing": "09",
+          "tail": "13",
+          "priceYen": 5
         }
-      ]
+      ],
+      "starter": {
+        "stage": 1,
+        "slot": 3,
+        "body": "3E",
+        "wing": "43",
+        "tail": "49",
+        "priceYen": 5
+      },
+      "starterByStage": {
+        "1": {
+          "stage": 1,
+          "slot": 3,
+          "body": "3E",
+          "wing": "43",
+          "tail": "49",
+          "priceYen": 5
+        },
+        "2": {
+          "stage": 2,
+          "slot": 3,
+          "body": "3F",
+          "wing": "44",
+          "tail": "4A",
+          "priceYen": 7
+        },
+        "3": {
+          "stage": 3,
+          "slot": 3,
+          "body": "40",
+          "wing": "43",
+          "tail": "49",
+          "priceYen": 10
+        },
+        "4": {
+          "stage": 4,
+          "slot": 0,
+          "body": "04",
+          "wing": "0C",
+          "tail": "16",
+          "priceYen": 20
+        },
+        "5": {
+          "stage": 5,
+          "slot": 3,
+          "body": "42",
+          "wing": "47",
+          "tail": "49",
+          "priceYen": 15
+        },
+        "6": {
+          "stage": 6,
+          "slot": 3,
+          "body": "3F",
+          "wing": "48",
+          "tail": "4A",
+          "priceYen": 7
+        }
+      },
+      "fightFamily": "caddis"
     },
     "05": {
       "totalYen": 30,
       "bundles": [
         {
           "stage": 1,
-          "slot": 0,
-          "body": "01",
-          "wing": "09",
-          "tail": "13",
-          "priceYen": 5,
-          "bodyGroup": 1,
-          "wingGroup": 1
-        },
-        {
-          "stage": 1,
           "slot": 2,
           "body": "2B",
           "wing": "34",
           "tail": "00",
-          "priceYen": 15,
-          "bodyGroup": 3,
-          "wingGroup": 0
+          "priceYen": 15
+        },
+        {
+          "stage": 1,
+          "slot": 0,
+          "body": "01",
+          "wing": "09",
+          "tail": "13",
+          "priceYen": 5
         },
         {
           "stage": 2,
@@ -702,34 +1710,87 @@
           "body": "02",
           "wing": "0A",
           "tail": "14",
-          "priceYen": 10,
-          "bodyGroup": 2,
-          "wingGroup": 2
+          "priceYen": 10
         }
-      ]
+      ],
+      "starter": {
+        "stage": 1,
+        "slot": 2,
+        "body": "2B",
+        "wing": "34",
+        "tail": "00",
+        "priceYen": 15
+      },
+      "starterByStage": {
+        "1": {
+          "stage": 1,
+          "slot": 2,
+          "body": "2B",
+          "wing": "34",
+          "tail": "00",
+          "priceYen": 15
+        },
+        "2": {
+          "stage": 2,
+          "slot": 2,
+          "body": "2C",
+          "wing": "35",
+          "tail": "00",
+          "priceYen": 20
+        },
+        "3": {
+          "stage": 3,
+          "slot": 0,
+          "body": "03",
+          "wing": "0B",
+          "tail": "15",
+          "priceYen": 15
+        },
+        "4": {
+          "stage": 4,
+          "slot": 0,
+          "body": "04",
+          "wing": "0C",
+          "tail": "16",
+          "priceYen": 20
+        },
+        "5": {
+          "stage": 5,
+          "slot": 0,
+          "body": "06",
+          "wing": "11",
+          "tail": "13",
+          "priceYen": 30
+        },
+        "6": {
+          "stage": 6,
+          "slot": 2,
+          "body": "33",
+          "wing": "39",
+          "tail": "3D",
+          "priceYen": 45
+        }
+      },
+      "fightFamily": "caddis"
     },
     "06": {
       "totalYen": 30,
       "bundles": [
         {
           "stage": 1,
-          "slot": 0,
-          "body": "01",
-          "wing": "09",
-          "tail": "13",
-          "priceYen": 5,
-          "bodyGroup": 1,
-          "wingGroup": 1
-        },
-        {
-          "stage": 1,
           "slot": 2,
           "body": "2B",
           "wing": "34",
           "tail": "00",
-          "priceYen": 15,
-          "bodyGroup": 3,
-          "wingGroup": 0
+          "priceYen": 15
+        },
+        {
+          "stage": 1,
+          "slot": 0,
+          "body": "01",
+          "wing": "09",
+          "tail": "13",
+          "priceYen": 5
         },
         {
           "stage": 2,
@@ -737,34 +1798,87 @@
           "body": "02",
           "wing": "0A",
           "tail": "14",
-          "priceYen": 10,
-          "bodyGroup": 2,
-          "wingGroup": 2
+          "priceYen": 10
         }
-      ]
+      ],
+      "starter": {
+        "stage": 1,
+        "slot": 2,
+        "body": "2B",
+        "wing": "34",
+        "tail": "00",
+        "priceYen": 15
+      },
+      "starterByStage": {
+        "1": {
+          "stage": 1,
+          "slot": 2,
+          "body": "2B",
+          "wing": "34",
+          "tail": "00",
+          "priceYen": 15
+        },
+        "2": {
+          "stage": 2,
+          "slot": 2,
+          "body": "2C",
+          "wing": "35",
+          "tail": "00",
+          "priceYen": 20
+        },
+        "3": {
+          "stage": 3,
+          "slot": 0,
+          "body": "03",
+          "wing": "0B",
+          "tail": "15",
+          "priceYen": 15
+        },
+        "4": {
+          "stage": 4,
+          "slot": 0,
+          "body": "04",
+          "wing": "0C",
+          "tail": "16",
+          "priceYen": 20
+        },
+        "5": {
+          "stage": 5,
+          "slot": 0,
+          "body": "06",
+          "wing": "11",
+          "tail": "13",
+          "priceYen": 30
+        },
+        "6": {
+          "stage": 6,
+          "slot": 2,
+          "body": "33",
+          "wing": "39",
+          "tail": "3D",
+          "priceYen": 45
+        }
+      },
+      "fightFamily": "caddis"
     },
     "08": {
       "totalYen": 30,
       "bundles": [
         {
           "stage": 1,
-          "slot": 0,
-          "body": "01",
-          "wing": "09",
-          "tail": "13",
-          "priceYen": 5,
-          "bodyGroup": 1,
-          "wingGroup": 1
-        },
-        {
-          "stage": 1,
           "slot": 2,
           "body": "2B",
           "wing": "34",
           "tail": "00",
-          "priceYen": 15,
-          "bodyGroup": 3,
-          "wingGroup": 0
+          "priceYen": 15
+        },
+        {
+          "stage": 1,
+          "slot": 0,
+          "body": "01",
+          "wing": "09",
+          "tail": "13",
+          "priceYen": 5
         },
         {
           "stage": 2,
@@ -772,34 +1886,79 @@
           "body": "02",
           "wing": "0A",
           "tail": "14",
-          "priceYen": 10,
-          "bodyGroup": 2,
-          "wingGroup": 2
+          "priceYen": 10
         }
-      ]
+      ],
+      "starter": {
+        "stage": 1,
+        "slot": 2,
+        "body": "2B",
+        "wing": "34",
+        "tail": "00",
+        "priceYen": 15
+      },
+      "starterByStage": {
+        "1": {
+          "stage": 1,
+          "slot": 2,
+          "body": "2B",
+          "wing": "34",
+          "tail": "00",
+          "priceYen": 15
+        },
+        "2": {
+          "stage": 2,
+          "slot": 2,
+          "body": "2C",
+          "wing": "35",
+          "tail": "00",
+          "priceYen": 20
+        },
+        "3": {
+          "stage": 3,
+          "slot": 0,
+          "body": "03",
+          "wing": "0B",
+          "tail": "15",
+          "priceYen": 15
+        },
+        "4": {
+          "stage": 4,
+          "slot": 0,
+          "body": "04",
+          "wing": "0C",
+          "tail": "16",
+          "priceYen": 20
+        },
+        "5": {
+          "stage": 5,
+          "slot": 0,
+          "body": "06",
+          "wing": "11",
+          "tail": "13",
+          "priceYen": 30
+        },
+        "6": {
+          "stage": 6,
+          "slot": 2,
+          "body": "33",
+          "wing": "39",
+          "tail": "3D",
+          "priceYen": 45
+        }
+      },
+      "fightFamily": "caddis"
     },
     "09": {
       "totalYen": 17,
       "bundles": [
         {
           "stage": 1,
-          "slot": 0,
-          "body": "01",
-          "wing": "09",
-          "tail": "13",
-          "priceYen": 5,
-          "bodyGroup": 1,
-          "wingGroup": 1
-        },
-        {
-          "stage": 1,
           "slot": 3,
           "body": "3E",
           "wing": "43",
           "tail": "49",
-          "priceYen": 5,
-          "bodyGroup": 2,
-          "wingGroup": 3
+          "priceYen": 5
         },
         {
           "stage": 2,
@@ -807,34 +1966,87 @@
           "body": "3F",
           "wing": "44",
           "tail": "4A",
-          "priceYen": 7,
-          "bodyGroup": 3,
-          "wingGroup": 0
+          "priceYen": 7
+        },
+        {
+          "stage": 1,
+          "slot": 0,
+          "body": "01",
+          "wing": "09",
+          "tail": "13",
+          "priceYen": 5
         }
-      ]
+      ],
+      "starter": {
+        "stage": 1,
+        "slot": 3,
+        "body": "3E",
+        "wing": "43",
+        "tail": "49",
+        "priceYen": 5
+      },
+      "starterByStage": {
+        "1": {
+          "stage": 1,
+          "slot": 3,
+          "body": "3E",
+          "wing": "43",
+          "tail": "49",
+          "priceYen": 5
+        },
+        "2": {
+          "stage": 2,
+          "slot": 3,
+          "body": "3F",
+          "wing": "44",
+          "tail": "4A",
+          "priceYen": 7
+        },
+        "3": {
+          "stage": 3,
+          "slot": 3,
+          "body": "40",
+          "wing": "43",
+          "tail": "49",
+          "priceYen": 10
+        },
+        "4": {
+          "stage": 4,
+          "slot": 0,
+          "body": "04",
+          "wing": "0C",
+          "tail": "16",
+          "priceYen": 20
+        },
+        "5": {
+          "stage": 5,
+          "slot": 3,
+          "body": "42",
+          "wing": "47",
+          "tail": "49",
+          "priceYen": 15
+        },
+        "6": {
+          "stage": 6,
+          "slot": 3,
+          "body": "3F",
+          "wing": "48",
+          "tail": "4A",
+          "priceYen": 7
+        }
+      },
+      "fightFamily": "caddis"
     },
     "0B": {
       "totalYen": 17,
       "bundles": [
         {
           "stage": 1,
-          "slot": 0,
-          "body": "01",
-          "wing": "09",
-          "tail": "13",
-          "priceYen": 5,
-          "bodyGroup": 1,
-          "wingGroup": 1
-        },
-        {
-          "stage": 1,
           "slot": 3,
           "body": "3E",
           "wing": "43",
           "tail": "49",
-          "priceYen": 5,
-          "bodyGroup": 2,
-          "wingGroup": 3
+          "priceYen": 5
         },
         {
           "stage": 2,
@@ -842,34 +2054,87 @@
           "body": "3F",
           "wing": "44",
           "tail": "4A",
-          "priceYen": 7,
-          "bodyGroup": 3,
-          "wingGroup": 0
+          "priceYen": 7
+        },
+        {
+          "stage": 1,
+          "slot": 0,
+          "body": "01",
+          "wing": "09",
+          "tail": "13",
+          "priceYen": 5
         }
-      ]
+      ],
+      "starter": {
+        "stage": 1,
+        "slot": 3,
+        "body": "3E",
+        "wing": "43",
+        "tail": "49",
+        "priceYen": 5
+      },
+      "starterByStage": {
+        "1": {
+          "stage": 1,
+          "slot": 3,
+          "body": "3E",
+          "wing": "43",
+          "tail": "49",
+          "priceYen": 5
+        },
+        "2": {
+          "stage": 2,
+          "slot": 3,
+          "body": "3F",
+          "wing": "44",
+          "tail": "4A",
+          "priceYen": 7
+        },
+        "3": {
+          "stage": 3,
+          "slot": 3,
+          "body": "40",
+          "wing": "43",
+          "tail": "49",
+          "priceYen": 10
+        },
+        "4": {
+          "stage": 4,
+          "slot": 0,
+          "body": "04",
+          "wing": "0C",
+          "tail": "16",
+          "priceYen": 20
+        },
+        "5": {
+          "stage": 5,
+          "slot": 3,
+          "body": "42",
+          "wing": "47",
+          "tail": "49",
+          "priceYen": 15
+        },
+        "6": {
+          "stage": 6,
+          "slot": 3,
+          "body": "3F",
+          "wing": "48",
+          "tail": "4A",
+          "priceYen": 7
+        }
+      },
+      "fightFamily": "caddis"
     },
     "0C": {
       "totalYen": 17,
       "bundles": [
         {
           "stage": 1,
-          "slot": 0,
-          "body": "01",
-          "wing": "09",
-          "tail": "13",
-          "priceYen": 5,
-          "bodyGroup": 1,
-          "wingGroup": 1
-        },
-        {
-          "stage": 1,
           "slot": 3,
           "body": "3E",
           "wing": "43",
           "tail": "49",
-          "priceYen": 5,
-          "bodyGroup": 2,
-          "wingGroup": 3
+          "priceYen": 5
         },
         {
           "stage": 2,
@@ -877,34 +2142,95 @@
           "body": "3F",
           "wing": "44",
           "tail": "4A",
-          "priceYen": 7,
-          "bodyGroup": 3,
-          "wingGroup": 0
+          "priceYen": 7
+        },
+        {
+          "stage": 1,
+          "slot": 0,
+          "body": "01",
+          "wing": "09",
+          "tail": "13",
+          "priceYen": 5
         }
-      ]
+      ],
+      "starter": {
+        "stage": 1,
+        "slot": 3,
+        "body": "3E",
+        "wing": "43",
+        "tail": "49",
+        "priceYen": 5
+      },
+      "starterByStage": {
+        "1": {
+          "stage": 1,
+          "slot": 3,
+          "body": "3E",
+          "wing": "43",
+          "tail": "49",
+          "priceYen": 5
+        },
+        "2": {
+          "stage": 2,
+          "slot": 3,
+          "body": "3F",
+          "wing": "44",
+          "tail": "4A",
+          "priceYen": 7
+        },
+        "3": {
+          "stage": 3,
+          "slot": 3,
+          "body": "40",
+          "wing": "43",
+          "tail": "49",
+          "priceYen": 10
+        },
+        "4": {
+          "stage": 4,
+          "slot": 0,
+          "body": "04",
+          "wing": "0C",
+          "tail": "16",
+          "priceYen": 20
+        },
+        "5": {
+          "stage": 5,
+          "slot": 3,
+          "body": "42",
+          "wing": "47",
+          "tail": "49",
+          "priceYen": 15
+        },
+        "6": {
+          "stage": 6,
+          "slot": 3,
+          "body": "3F",
+          "wing": "48",
+          "tail": "4A",
+          "priceYen": 7
+        }
+      },
+      "fightFamily": "caddis"
     },
     "0E": {
       "totalYen": 30,
       "bundles": [
         {
           "stage": 1,
-          "slot": 0,
-          "body": "01",
-          "wing": "09",
-          "tail": "13",
-          "priceYen": 5,
-          "bodyGroup": 1,
-          "wingGroup": 1
-        },
-        {
-          "stage": 1,
           "slot": 2,
           "body": "2B",
           "wing": "34",
           "tail": "00",
-          "priceYen": 15,
-          "bodyGroup": 3,
-          "wingGroup": 0
+          "priceYen": 15
+        },
+        {
+          "stage": 1,
+          "slot": 0,
+          "body": "01",
+          "wing": "09",
+          "tail": "13",
+          "priceYen": 5
         },
         {
           "stage": 2,
@@ -912,34 +2238,79 @@
           "body": "02",
           "wing": "0A",
           "tail": "14",
-          "priceYen": 10,
-          "bodyGroup": 2,
-          "wingGroup": 2
+          "priceYen": 10
         }
-      ]
+      ],
+      "starter": {
+        "stage": 1,
+        "slot": 2,
+        "body": "2B",
+        "wing": "34",
+        "tail": "00",
+        "priceYen": 15
+      },
+      "starterByStage": {
+        "1": {
+          "stage": 1,
+          "slot": 2,
+          "body": "2B",
+          "wing": "34",
+          "tail": "00",
+          "priceYen": 15
+        },
+        "2": {
+          "stage": 2,
+          "slot": 2,
+          "body": "2C",
+          "wing": "35",
+          "tail": "00",
+          "priceYen": 20
+        },
+        "3": {
+          "stage": 3,
+          "slot": 0,
+          "body": "03",
+          "wing": "0B",
+          "tail": "15",
+          "priceYen": 15
+        },
+        "4": {
+          "stage": 4,
+          "slot": 0,
+          "body": "04",
+          "wing": "0C",
+          "tail": "16",
+          "priceYen": 20
+        },
+        "5": {
+          "stage": 5,
+          "slot": 0,
+          "body": "06",
+          "wing": "11",
+          "tail": "13",
+          "priceYen": 30
+        },
+        "6": {
+          "stage": 6,
+          "slot": 2,
+          "body": "33",
+          "wing": "39",
+          "tail": "3D",
+          "priceYen": 45
+        }
+      },
+      "fightFamily": "caddis"
     },
     "0F": {
       "totalYen": 17,
       "bundles": [
         {
           "stage": 1,
-          "slot": 0,
-          "body": "01",
-          "wing": "09",
-          "tail": "13",
-          "priceYen": 5,
-          "bodyGroup": 1,
-          "wingGroup": 1
-        },
-        {
-          "stage": 1,
           "slot": 3,
           "body": "3E",
           "wing": "43",
           "tail": "49",
-          "priceYen": 5,
-          "bodyGroup": 2,
-          "wingGroup": 3
+          "priceYen": 5
         },
         {
           "stage": 2,
@@ -947,34 +2318,95 @@
           "body": "3F",
           "wing": "44",
           "tail": "4A",
-          "priceYen": 7,
-          "bodyGroup": 3,
-          "wingGroup": 0
+          "priceYen": 7
+        },
+        {
+          "stage": 1,
+          "slot": 0,
+          "body": "01",
+          "wing": "09",
+          "tail": "13",
+          "priceYen": 5
         }
-      ]
+      ],
+      "starter": {
+        "stage": 1,
+        "slot": 3,
+        "body": "3E",
+        "wing": "43",
+        "tail": "49",
+        "priceYen": 5
+      },
+      "starterByStage": {
+        "1": {
+          "stage": 1,
+          "slot": 3,
+          "body": "3E",
+          "wing": "43",
+          "tail": "49",
+          "priceYen": 5
+        },
+        "2": {
+          "stage": 2,
+          "slot": 3,
+          "body": "3F",
+          "wing": "44",
+          "tail": "4A",
+          "priceYen": 7
+        },
+        "3": {
+          "stage": 3,
+          "slot": 3,
+          "body": "40",
+          "wing": "43",
+          "tail": "49",
+          "priceYen": 10
+        },
+        "4": {
+          "stage": 4,
+          "slot": 0,
+          "body": "04",
+          "wing": "0C",
+          "tail": "16",
+          "priceYen": 20
+        },
+        "5": {
+          "stage": 5,
+          "slot": 3,
+          "body": "42",
+          "wing": "47",
+          "tail": "49",
+          "priceYen": 15
+        },
+        "6": {
+          "stage": 6,
+          "slot": 3,
+          "body": "3F",
+          "wing": "48",
+          "tail": "4A",
+          "priceYen": 7
+        }
+      },
+      "fightFamily": "caddis"
     },
     "1B": {
       "totalYen": 30,
       "bundles": [
         {
           "stage": 1,
-          "slot": 0,
-          "body": "01",
-          "wing": "09",
-          "tail": "13",
-          "priceYen": 5,
-          "bodyGroup": 1,
-          "wingGroup": 1
-        },
-        {
-          "stage": 1,
           "slot": 2,
           "body": "2B",
           "wing": "34",
           "tail": "00",
-          "priceYen": 15,
-          "bodyGroup": 3,
-          "wingGroup": 0
+          "priceYen": 15
+        },
+        {
+          "stage": 1,
+          "slot": 0,
+          "body": "01",
+          "wing": "09",
+          "tail": "13",
+          "priceYen": 5
         },
         {
           "stage": 2,
@@ -982,34 +2414,87 @@
           "body": "02",
           "wing": "0A",
           "tail": "14",
-          "priceYen": 10,
-          "bodyGroup": 2,
-          "wingGroup": 2
+          "priceYen": 10
         }
-      ]
+      ],
+      "starter": {
+        "stage": 1,
+        "slot": 2,
+        "body": "2B",
+        "wing": "34",
+        "tail": "00",
+        "priceYen": 15
+      },
+      "starterByStage": {
+        "1": {
+          "stage": 1,
+          "slot": 2,
+          "body": "2B",
+          "wing": "34",
+          "tail": "00",
+          "priceYen": 15
+        },
+        "2": {
+          "stage": 2,
+          "slot": 2,
+          "body": "2C",
+          "wing": "35",
+          "tail": "00",
+          "priceYen": 20
+        },
+        "3": {
+          "stage": 3,
+          "slot": 0,
+          "body": "03",
+          "wing": "0B",
+          "tail": "15",
+          "priceYen": 15
+        },
+        "4": {
+          "stage": 4,
+          "slot": 0,
+          "body": "04",
+          "wing": "0C",
+          "tail": "16",
+          "priceYen": 20
+        },
+        "5": {
+          "stage": 5,
+          "slot": 0,
+          "body": "06",
+          "wing": "11",
+          "tail": "13",
+          "priceYen": 30
+        },
+        "6": {
+          "stage": 6,
+          "slot": 2,
+          "body": "33",
+          "wing": "39",
+          "tail": "3D",
+          "priceYen": 45
+        }
+      },
+      "fightFamily": "caddis"
     },
     "1E": {
       "totalYen": 30,
       "bundles": [
         {
           "stage": 1,
-          "slot": 0,
-          "body": "01",
-          "wing": "09",
-          "tail": "13",
-          "priceYen": 5,
-          "bodyGroup": 1,
-          "wingGroup": 1
-        },
-        {
-          "stage": 1,
           "slot": 2,
           "body": "2B",
           "wing": "34",
           "tail": "00",
-          "priceYen": 15,
-          "bodyGroup": 3,
-          "wingGroup": 0
+          "priceYen": 15
+        },
+        {
+          "stage": 1,
+          "slot": 0,
+          "body": "01",
+          "wing": "09",
+          "tail": "13",
+          "priceYen": 5
         },
         {
           "stage": 2,
@@ -1017,34 +2502,87 @@
           "body": "02",
           "wing": "0A",
           "tail": "14",
-          "priceYen": 10,
-          "bodyGroup": 2,
-          "wingGroup": 2
+          "priceYen": 10
         }
-      ]
+      ],
+      "starter": {
+        "stage": 1,
+        "slot": 2,
+        "body": "2B",
+        "wing": "34",
+        "tail": "00",
+        "priceYen": 15
+      },
+      "starterByStage": {
+        "1": {
+          "stage": 1,
+          "slot": 2,
+          "body": "2B",
+          "wing": "34",
+          "tail": "00",
+          "priceYen": 15
+        },
+        "2": {
+          "stage": 2,
+          "slot": 2,
+          "body": "2C",
+          "wing": "35",
+          "tail": "00",
+          "priceYen": 20
+        },
+        "3": {
+          "stage": 3,
+          "slot": 0,
+          "body": "03",
+          "wing": "0B",
+          "tail": "15",
+          "priceYen": 15
+        },
+        "4": {
+          "stage": 4,
+          "slot": 0,
+          "body": "04",
+          "wing": "0C",
+          "tail": "16",
+          "priceYen": 20
+        },
+        "5": {
+          "stage": 5,
+          "slot": 0,
+          "body": "06",
+          "wing": "11",
+          "tail": "13",
+          "priceYen": 30
+        },
+        "6": {
+          "stage": 6,
+          "slot": 2,
+          "body": "33",
+          "wing": "39",
+          "tail": "3D",
+          "priceYen": 45
+        }
+      },
+      "fightFamily": "other"
     },
     "2A": {
       "totalYen": 30,
       "bundles": [
         {
           "stage": 1,
-          "slot": 0,
-          "body": "01",
-          "wing": "09",
-          "tail": "13",
-          "priceYen": 5,
-          "bodyGroup": 1,
-          "wingGroup": 1
-        },
-        {
-          "stage": 1,
           "slot": 2,
           "body": "2B",
           "wing": "34",
           "tail": "00",
-          "priceYen": 15,
-          "bodyGroup": 3,
-          "wingGroup": 0
+          "priceYen": 15
+        },
+        {
+          "stage": 1,
+          "slot": 0,
+          "body": "01",
+          "wing": "09",
+          "tail": "13",
+          "priceYen": 5
         },
         {
           "stage": 2,
@@ -1052,34 +2590,87 @@
           "body": "02",
           "wing": "0A",
           "tail": "14",
-          "priceYen": 10,
-          "bodyGroup": 2,
-          "wingGroup": 2
+          "priceYen": 10
         }
-      ]
+      ],
+      "starter": {
+        "stage": 1,
+        "slot": 2,
+        "body": "2B",
+        "wing": "34",
+        "tail": "00",
+        "priceYen": 15
+      },
+      "starterByStage": {
+        "1": {
+          "stage": 1,
+          "slot": 2,
+          "body": "2B",
+          "wing": "34",
+          "tail": "00",
+          "priceYen": 15
+        },
+        "2": {
+          "stage": 2,
+          "slot": 2,
+          "body": "2C",
+          "wing": "35",
+          "tail": "00",
+          "priceYen": 20
+        },
+        "3": {
+          "stage": 3,
+          "slot": 0,
+          "body": "03",
+          "wing": "0B",
+          "tail": "15",
+          "priceYen": 15
+        },
+        "4": {
+          "stage": 4,
+          "slot": 0,
+          "body": "04",
+          "wing": "0C",
+          "tail": "16",
+          "priceYen": 20
+        },
+        "5": {
+          "stage": 5,
+          "slot": 0,
+          "body": "06",
+          "wing": "11",
+          "tail": "13",
+          "priceYen": 30
+        },
+        "6": {
+          "stage": 6,
+          "slot": 2,
+          "body": "33",
+          "wing": "39",
+          "tail": "3D",
+          "priceYen": 45
+        }
+      },
+      "fightFamily": "caddis"
     },
     "2B": {
       "totalYen": 30,
       "bundles": [
         {
           "stage": 1,
-          "slot": 0,
-          "body": "01",
-          "wing": "09",
-          "tail": "13",
-          "priceYen": 5,
-          "bodyGroup": 1,
-          "wingGroup": 1
-        },
-        {
-          "stage": 1,
           "slot": 2,
           "body": "2B",
           "wing": "34",
           "tail": "00",
-          "priceYen": 15,
-          "bodyGroup": 3,
-          "wingGroup": 0
+          "priceYen": 15
+        },
+        {
+          "stage": 1,
+          "slot": 0,
+          "body": "01",
+          "wing": "09",
+          "tail": "13",
+          "priceYen": 5
         },
         {
           "stage": 2,
@@ -1087,34 +2678,87 @@
           "body": "02",
           "wing": "0A",
           "tail": "14",
-          "priceYen": 10,
-          "bodyGroup": 2,
-          "wingGroup": 2
+          "priceYen": 10
         }
-      ]
+      ],
+      "starter": {
+        "stage": 1,
+        "slot": 2,
+        "body": "2B",
+        "wing": "34",
+        "tail": "00",
+        "priceYen": 15
+      },
+      "starterByStage": {
+        "1": {
+          "stage": 1,
+          "slot": 2,
+          "body": "2B",
+          "wing": "34",
+          "tail": "00",
+          "priceYen": 15
+        },
+        "2": {
+          "stage": 2,
+          "slot": 2,
+          "body": "2C",
+          "wing": "35",
+          "tail": "00",
+          "priceYen": 20
+        },
+        "3": {
+          "stage": 3,
+          "slot": 0,
+          "body": "03",
+          "wing": "0B",
+          "tail": "15",
+          "priceYen": 15
+        },
+        "4": {
+          "stage": 4,
+          "slot": 0,
+          "body": "04",
+          "wing": "0C",
+          "tail": "16",
+          "priceYen": 20
+        },
+        "5": {
+          "stage": 5,
+          "slot": 0,
+          "body": "06",
+          "wing": "11",
+          "tail": "13",
+          "priceYen": 30
+        },
+        "6": {
+          "stage": 6,
+          "slot": 2,
+          "body": "33",
+          "wing": "39",
+          "tail": "3D",
+          "priceYen": 45
+        }
+      },
+      "fightFamily": "caddis"
     },
     "2E": {
       "totalYen": 30,
       "bundles": [
         {
           "stage": 1,
-          "slot": 0,
-          "body": "01",
-          "wing": "09",
-          "tail": "13",
-          "priceYen": 5,
-          "bodyGroup": 1,
-          "wingGroup": 1
-        },
-        {
-          "stage": 1,
           "slot": 2,
           "body": "2B",
           "wing": "34",
           "tail": "00",
-          "priceYen": 15,
-          "bodyGroup": 3,
-          "wingGroup": 0
+          "priceYen": 15
+        },
+        {
+          "stage": 1,
+          "slot": 0,
+          "body": "01",
+          "wing": "09",
+          "tail": "13",
+          "priceYen": 5
         },
         {
           "stage": 2,
@@ -1122,34 +2766,79 @@
           "body": "02",
           "wing": "0A",
           "tail": "14",
-          "priceYen": 10,
-          "bodyGroup": 2,
-          "wingGroup": 2
+          "priceYen": 10
         }
-      ]
+      ],
+      "starter": {
+        "stage": 1,
+        "slot": 2,
+        "body": "2B",
+        "wing": "34",
+        "tail": "00",
+        "priceYen": 15
+      },
+      "starterByStage": {
+        "1": {
+          "stage": 1,
+          "slot": 2,
+          "body": "2B",
+          "wing": "34",
+          "tail": "00",
+          "priceYen": 15
+        },
+        "2": {
+          "stage": 2,
+          "slot": 2,
+          "body": "2C",
+          "wing": "35",
+          "tail": "00",
+          "priceYen": 20
+        },
+        "3": {
+          "stage": 3,
+          "slot": 0,
+          "body": "03",
+          "wing": "0B",
+          "tail": "15",
+          "priceYen": 15
+        },
+        "4": {
+          "stage": 4,
+          "slot": 0,
+          "body": "04",
+          "wing": "0C",
+          "tail": "16",
+          "priceYen": 20
+        },
+        "5": {
+          "stage": 5,
+          "slot": 0,
+          "body": "06",
+          "wing": "11",
+          "tail": "13",
+          "priceYen": 30
+        },
+        "6": {
+          "stage": 6,
+          "slot": 2,
+          "body": "33",
+          "wing": "39",
+          "tail": "3D",
+          "priceYen": 45
+        }
+      },
+      "fightFamily": "caddis"
     },
     "3C": {
       "totalYen": 17,
       "bundles": [
         {
           "stage": 1,
-          "slot": 0,
-          "body": "01",
-          "wing": "09",
-          "tail": "13",
-          "priceYen": 5,
-          "bodyGroup": 1,
-          "wingGroup": 1
-        },
-        {
-          "stage": 1,
           "slot": 3,
           "body": "3E",
           "wing": "43",
           "tail": "49",
-          "priceYen": 5,
-          "bodyGroup": 2,
-          "wingGroup": 3
+          "priceYen": 5
         },
         {
           "stage": 2,
@@ -1157,11 +2846,76 @@
           "body": "3F",
           "wing": "44",
           "tail": "4A",
-          "priceYen": 7,
-          "bodyGroup": 3,
-          "wingGroup": 0
+          "priceYen": 7
+        },
+        {
+          "stage": 1,
+          "slot": 0,
+          "body": "01",
+          "wing": "09",
+          "tail": "13",
+          "priceYen": 5
         }
-      ]
+      ],
+      "starter": {
+        "stage": 1,
+        "slot": 3,
+        "body": "3E",
+        "wing": "43",
+        "tail": "49",
+        "priceYen": 5
+      },
+      "starterByStage": {
+        "1": {
+          "stage": 1,
+          "slot": 3,
+          "body": "3E",
+          "wing": "43",
+          "tail": "49",
+          "priceYen": 5
+        },
+        "2": {
+          "stage": 2,
+          "slot": 3,
+          "body": "3F",
+          "wing": "44",
+          "tail": "4A",
+          "priceYen": 7
+        },
+        "3": {
+          "stage": 3,
+          "slot": 3,
+          "body": "40",
+          "wing": "43",
+          "tail": "49",
+          "priceYen": 10
+        },
+        "4": {
+          "stage": 4,
+          "slot": 0,
+          "body": "04",
+          "wing": "0C",
+          "tail": "16",
+          "priceYen": 20
+        },
+        "5": {
+          "stage": 5,
+          "slot": 3,
+          "body": "42",
+          "wing": "47",
+          "tail": "49",
+          "priceYen": 15
+        },
+        "6": {
+          "stage": 6,
+          "slot": 3,
+          "body": "3F",
+          "wing": "48",
+          "tail": "4A",
+          "priceYen": 7
+        }
+      },
+      "fightFamily": "caddis"
     }
   }
 }

@@ -69,11 +69,9 @@
       <section id="lure-kit">
         <h2>A practical lure kit</h2>
         <p class="decision">
-          <strong
-            >Each full pair below covers the lure compatibility check for all 38 fish and aquatic-
-            creature profiles that at least one lure can pass. Choose a pair stocked in your area;
-            this is code-level compatibility, not a bite rate or guaranteed catch.</strong
-          >
+          \1Each full pair below covers all 38 lure fish. Choose a pair stocked in your area. A fish
+          follows the lure when it is on the lure’s tile and you keep tapping A or B; press A once
+          when it is level with the lure to hook it.\2
         </p>
         <p class="note">
           This pair does not cover every fish. Search for your target on the maps, then open its
@@ -361,15 +359,14 @@
           This section keeps the data needed to check the conclusions. Internal ROM counters are not
           seconds, metres, or catch scores.
         </p>
-        <h3>Fly-body filter</h3>
-        <p>
-          The 64 ordinary fly-body IDs normalize to three bait IDs but use only two masks: 0020
-          passes 33 profile masks; 0004 passes 17, all already included in those 33. The 0020 bodies
-          are IDs 01–08 / 2B–33 / 4B–4F / 60–65. Wings and tails do not change the body mask. An
-          additional filter blocks this fly-hook path when (BODY ID &amp; 3) equals 7F:1E86 or (WING
-          ID &amp; 3) equals 7F:1E88; this filter does not read the tail. One-fly coverage and a
-          higher bite rate are not established.
-        </p>
+        \1The 64 ordinary fly-body IDs normalize to three bait IDs but use only two masks: 0020
+        passes 33 profile masks; 0004 passes 17, all already included in those 33. The 0020 bodies
+        are IDs 01–08 / 2B–33 / 4B–4F / 60–65. Wings and tails do not change the body mask. The
+        save’s hidden lock blocks this fly-hook path when (BODY ID &amp; 3) equals 7F:1E86 or (WING
+        ID &amp; 3) equals 7F:1E88; this filter does not read the tail. The lock is written once
+        when the save is formatted (a fresh save gets body 1, wing 2) and again only by an inn rest
+        (about a 34% chance that at least one side changes). In emulator tests every fish on the
+        list bit a fly that passed the lock (wet 33 of 33, dry 17 of 17); ROM audit of 2026-10-07.\3
         <h3>Rod fields and their traced consumers</h3>
         <p>
           +2 is the counter cutoff for aiming: while the direction input is held, the target moves;
@@ -378,13 +375,11 @@
           lets the fish travel farther before that branch, while other escape routes remain. +7
           changes the initial fight state. These are not landing-success scores.
         </p>
-        <h3>Lure responses keyed to named fish</h3>
-        <p>
-          Lure 12 checks Black bass, lure 21 Namazu, and lure 51 Akame. On an exact match, the game
-          halves the starting response value and skips that lure’s size-based transform; the rod
-          still transforms the value afterward. The code does not establish an easier bite or
-          landing.
-        </p>
+        \1Lure 12 checks Black bass, lure 21 Namazu, and lure 51 Akame. On an exact match, the game
+        halves the starting response value and skips that lure’s size-based transform; the rod still
+        transforms the value afterward. All three fish are over 35 cm, where the lure’s size class
+        already halves the value, so the match changes no real fight and does not change whether the
+        fish follows the lure.\3
         <h3>All rod records</h3>
         <div class="scroll">
           <table>

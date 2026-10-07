@@ -19,24 +19,24 @@ function kitCopy(ctx, pair) {
   if (ctx.lang === 'th')
     return {
       title: 'คุณกำลังเลือกของสำหรับชุดลัวร์หลายชนิด',
-      action: `เก็บทั้งคู่ ${pair.key} เพื่อครอบคลุมเงื่อนไขลัวร์ ${pair.coverageCount} โปรไฟล์ รวม ¥${pair.totalYen} หากซื้อใหม่ ถ้ามีคู่ครบอยู่แล้ว ใช้ต่อได้ ไม่ต้องซื้อซ้ำ`,
+      action: `เก็บทั้งคู่ ${pair.key} จะครอบคลุมปลาลัวร์ทั้ง ${pair.coverageCount} ชนิด รวม ¥${pair.totalYen} หากซื้อใหม่ ถ้ามีคู่ครบอยู่แล้ว ใช้ต่อได้ ไม่ต้องซื้อซ้ำ`,
       scope:
-        'คำแนะนำราคาถูกกว่าด้านล่างเปรียบเทียบไอเท็มแต่ละชิ้น ถ้าเลือกปลาไว้จะเทียบสำหรับปลานั้น การเปลี่ยนชิ้นหนึ่งต้องตรวจความครอบคลุมของทั้งคู่ด้วย ชุดนี้ไม่ได้รับประกันปลากินหรือดึงขึ้นสำเร็จ',
+        'ตัวเลือกที่ถูกกว่าด้านล่างเทียบทีละชิ้น ถ้าเลือกปลาไว้จะเทียบสำหรับปลานั้น ถ้าจะเปลี่ยนชิ้นหนึ่งในคู่ ให้ตรวจว่าทั้งคู่ยังครอบคลุมปลาครบ และลัวร์ที่ถูกกว่าอาจอยู่คนละกลุ่มขนาด จึงเริ่มสู้ได้ไม่เหมือนกัน',
       partner: 'ดูอีกชิ้นในชุดและแหล่งซื้อ',
     }
   if (ctx.lang === 'ja')
     return {
       title: '複数の魚に使うルアーセットを選択中',
-      action: `${pair.key}の両方を持つと${pair.coverageCount}プロフィールのルアー判定をカバーできます。新規購入は合計${pair.totalYen}円。すでに一式を持っていれば買い直す必要はありません。`,
+      action: `${pair.key}の両方を持つとルアーの対象${pair.coverageCount}種すべてをカバーできます。新規購入は合計${pair.totalYen}円。すでに一式を持っていれば買い直す必要はありません。`,
       scope:
-        '下の安い候補は道具単体の比較です。魚を選択している場合は、その魚について比較します。片方を替えるときはセット全体のカバーも確認してください。食いつきや取り込みの保証ではありません。',
+        '下の安い候補は道具単体の比較です。魚を選択している場合は、その魚について比較します。片方を替えるときはセット全体のカバーを確認してください。安いルアーはサイズ区分が違い、ファイトの開始値も変わることがあります。',
       partner: 'もう一方の道具と販売場所を見る',
     }
   return {
     title: 'Choosing an item for a multi-species lure kit',
-    action: `Keep both ${pair.key} to cover ${pair.coverageCount} lure-compatible profiles, for ¥${pair.totalYen} when buying new. Keep using a complete pair you already own; you do not need to buy it again.`,
+    action: `Keep both ${pair.key} to cover all ${pair.coverageCount} lure fish, for ¥${pair.totalYen} when buying new. Keep using a complete pair you already own; you do not need to buy it again.`,
     scope:
-      'Cheaper choices below compare individual items; with a selected fish, they compare choices for that fish. Check the coverage of the complete pair before replacing a member. Coverage does not guarantee a bite or landing.',
+      'Cheaper choices below compare individual items; with a selected fish, they compare choices for that fish. Check that the complete pair still covers every fish before replacing a member. A cheaper lure can sit in a different size class, which changes how the fight starts.',
     partner: 'See the other kit member and where to buy it',
   }
 }

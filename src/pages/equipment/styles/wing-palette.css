@@ -256,3 +256,19 @@
 #wing-palette-title {
   scroll-margin-top: 8rem;
 }
+
+.wing-palette__choice-lock {
+  display: block;
+  padding: 1px 5px;
+  border-radius: 999px;
+  background: #f1dcd6;
+  color: #8a2f1c;
+  font-size: 0.62rem;
+  font-weight: 700;
+  line-height: 1.35;
+  text-align: center;
+}
+
+td[data-wing-locked='true'] .wing-palette__choice {
+  background: #fbf3f0;
+}

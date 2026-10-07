@@ -5,8 +5,8 @@ import { shopFishContext, shopCompatibilityBadge } from '../../src/pages/shops/p
 const relevant = ['all', 'bait', 'lure', 'fly']
 const unrelated = ['food', 'rod', 'general_tool', 'hook', 'float_weight', 'fly_wing', 'fly_tail']
 const instructions = {
-  en: /Check (?:the marks|them) before buying/,
-  ja: /購入前に印を確認|購入前に確認/,
+  en: /Check (?:the marks|them|whether your target fish takes the item) before buying/,
+  ja: /購入前に印を確認|購入前に確認|購入前に、狙う魚が/,
   th: /ดูป้ายก่อนซื้อ/,
 }
 const categoryAdvice = {

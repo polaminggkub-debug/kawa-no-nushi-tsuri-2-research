@@ -1,5 +1,7 @@
 # A practical way around the fly body/wing check
 
+> **Corrected 2026-10-07.** The three-set backup still works for any hidden pair, but the audit (`rom-analysis/audit-2026-10-07/acceptance/report.md`) shows the pair is not unknown: a blank save starts at body 1 / wing 2, so on a fresh save two of the three sets (01/09/13 and 02/0A/14) are dead and 2B/34/00 is the one that bites. The pair is rolled when the save is formatted (`01:B705`), not "during field setup", and changes only after an inn rest (about 34%). "Pick on price and the hidden residue" is replaced by: starter = the cheapest set that passes the fish's mask and is not blocked on a fresh save (Caddis wet 2B/34/00 ¥15, Caddis dry 3E/43/49 ¥5); insurance = the three-set backup (`data/fly-backup-choices.json`). Re-equip the fly after resting.
+
 ## Player answer
 
 For a fish shown on the wet-fly profile list, keep these three **ready-made** flies and try them in the same loaded fishing area if one is blocked by the hidden body/wing check:

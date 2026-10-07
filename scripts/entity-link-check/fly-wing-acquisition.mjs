@@ -3,9 +3,9 @@ import { data, render, renderCatalogue, unescapeHtml, validate } from './shared.
 
 const ids = ['25', '26', '66', '67']
 const scope = {
-  en: 'No recorded menu position or shop bundle',
-  ja: 'メニュー位置・店売りセットは未記録',
-  th: 'ยังไม่มีตำแหน่งเมนูหรือชุดร้านที่บันทึกไว้',
+  en: 'it is in no shop and not in the fly maker',
+  ja: '店にも毛バリ職人にもない',
+  th: 'ไม่มีทั้งในร้านและในร้านทำฟลาย',
 }
 
 function actionUrls(html, base) {

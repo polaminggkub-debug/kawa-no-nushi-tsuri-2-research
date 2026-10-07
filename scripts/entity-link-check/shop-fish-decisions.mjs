@@ -84,17 +84,17 @@ function checkCategoryAwareBaitNote() {
     en: {
       bait: 'Bait labels use the sinker route when selected; otherwise they use float.',
       profile:
-        'Check the marks before buying: not every listed item passes this fish check. Passing does not guarantee a bite or landing.',
+        'Check the marks before buying: not every listed item is one this fish takes. Items it takes work once your float or lure is on its tile; a fly must also get past the save’s lock.',
     },
     th: {
       bait: 'ป้ายเหยื่อจริงใช้เส้นทางตะกั่วเมื่อเลือกตะกั่ว; วิธีอื่นหรือยังไม่เลือกจะใช้ทุ่น',
       profile:
-        'ดูป้ายก่อนซื้อ: ของที่แสดงไม่ได้ผ่านเงื่อนไขปลานี้ทุกชิ้น และการผ่านเงื่อนไขไม่รับประกันว่าปลากินหรือตกขึ้นได้',
+        'ดูป้ายก่อนซื้อ: ของที่แสดงไม่ได้เป็นของที่ปลานี้กินทุกชิ้น ชิ้นที่ปลานี้กินใช้ได้เมื่อทุ่นหรือลัวร์อยู่ช่องเดียวกับปลา ส่วนฟลายต้องไม่ติดล็อกของเซฟด้วย',
     },
     ja: {
       bait: 'エサの判定はオモリ仕掛けを選んだ場合はオモリ、それ以外はウキで表示します。',
       profile:
-        '購入前に印を確認してください。表示品がすべてこの魚の判定を通るわけではなく、判定を通っても食いつきや取り込みは保証されません。',
+        '購入前に印を確認してください。表示品がすべてこの魚の食べるものとは限りません。魚が食べる品は、ウキやルアーが魚と同じマスにあれば使えます。毛バリはセーブのロックも通る必要があります。',
     },
   }
   for (const lang of ['en', 'th', 'ja']) {
@@ -179,14 +179,11 @@ function assertCategoryProfile(html, lang, category, profile) {
   }
   const rules = {
     en: [
-      /Fish-check badges apply to bait, lures and fly bodies/,
-      /passing does not guarantee a bite or landing/,
+      /Fish badges apply to bait, lures and fly bodies/,
+      /a fly must also get past the save’s lock/,
     ],
-    ja: [/魚の判定表示はエサ・ルアー・毛バリのボディ/, /食いつきや取り込みは保証/],
-    th: [
-      /ป้ายเงื่อนไขปลามีเฉพาะเหยื่อจริง ลัวร์ และบอดี้ฟลาย/,
-      /ไม่รับประกันว่าปลากินหรือตกขึ้นได้/,
-    ],
+    ja: [/魚の表示はエサ・ルアー・毛バリのボディ/, /毛バリはセーブのロックも通る/],
+    th: [/ป้ายบอกปลามีเฉพาะเหยื่อจริง ลัวร์ และบอดี้ฟลาย/, /ฟลายยังต้องไม่ติดล็อกของเซฟ/],
   }[lang]
   for (const rule of rules) assert.match(html, rule, `${lang}/all: scoped check guidance missing`)
 }

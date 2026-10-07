@@ -7,14 +7,16 @@ import { areaLabel, withStage } from './rod-area-page-helpers.js'
 import {
   flyWingPlayerDecision,
   flyWingPlayerLinks,
+  freshStarterBody,
   rodAreaDecision,
 } from '../../entities/item/index.js'
 
 function flyWingActionHrefs(ctx, item, decision, fish) {
-  const bodyId = decision.bundle?.body || '01'
-  const body = ctx.allItems.find(
-    (candidate) => candidate.category === 'fly' && candidate.id === bodyId,
-  )
+  const body = decision.bundle?.body
+    ? ctx.allItems.find(
+        (candidate) => candidate.category === 'fly' && candidate.id === decision.bundle.body,
+      )
+    : freshStarterBody(ctx.allItems)
   const verifiedWing = ctx.allItems
     .filter(
       (candidate) =>

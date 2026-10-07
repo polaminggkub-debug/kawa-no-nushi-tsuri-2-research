@@ -41,7 +41,7 @@ async function checkLocale(lang) {
   const visible = unescapeHtml(page.html.replace(evidence, ''))
   const bounded = {
     en: /one encounter.*not a guaranteed rhythm/,
-    ja: /1回.*保証/,
+    ja: /1回.*(?:保証|確実に釣れる)/,
     th: /เหตุการณ์เดียว.*ไม่ใช่สูตรรับประกัน/,
   }
   assert.match(visible, bounded[lang])

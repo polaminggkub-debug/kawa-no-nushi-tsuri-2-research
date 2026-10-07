@@ -17,15 +17,15 @@
     },
     {
       "src": "custom/mayfly-body-choices.png",
-      "captionEn": "At the default body cursor (top left), A selects body01 for the ¥25 example. Down once then A selects body02; Right once then A selects body05. Other positions are not mapped here.",
-      "captionJa": "初期カーソル（左上）でAならボディ01。下1回＋Aは02、右1回＋Aは05。この案内では他の位置は未対応。",
-      "captionTh": "ตัวอย่าง ¥25: เคอร์เซอร์เริ่มที่ซ้ายบน กด A ได้บอดี้ 01 ถ้ากดลงหนึ่งครั้งแล้ว A ได้ 02; ขวาหนึ่งครั้งแล้ว A ได้ 05 ตำแหน่งอื่นยังไม่ได้เทียบในไกด์นี้"
+      "captionEn": "At the default body cursor (top left), A selects body01 for the ¥25 example. Down once then A selects body02; Right once then A selects body05. Other positions are not mapped here. Button demo only: body 01 is group 1, which a fresh save locks.",
+      "captionJa": "初期カーソル（左上）でAならボディ01。下1回＋Aは02、右1回＋Aは05。この案内では他の位置は未対応。 ボタン操作の説明用。ボディ01はグループ1で、新規セーブではロックされる。",
+      "captionTh": "ตัวอย่าง ¥25: เคอร์เซอร์เริ่มที่ซ้ายบน กด A ได้บอดี้ 01 ถ้ากดลงหนึ่งครั้งแล้ว A ได้ 02; ขวาหนึ่งครั้งแล้ว A ได้ 05 ตำแหน่งอื่นยังไม่ได้เทียบในไกด์นี้ ใช้ดูปุ่มเท่านั้น: บอดี้ 01 อยู่กลุ่ม 1 ซึ่งเซฟใหม่ล็อกไว้"
     },
     {
       "src": "custom/after-body-select.png",
-      "captionEn": "At the default wing cursor, A selects09 for this example. Down once then A selects0A; Right once then A selects0D.",
-      "captionJa": "初期位置でAならウィング09。下1回＋Aは0A、右1回＋Aは0D。",
-      "captionTh": "ปีกแรก: กด A ได้ 09 สำหรับชุดนี้; ลงหนึ่งครั้งแล้ว A ได้ 0A; ขวาหนึ่งครั้งแล้ว A ได้ 0D"
+      "captionEn": "At the default wing cursor, A selects09 for this example. Down once then A selects0A; Right once then A selects0D. Wing 0A is group 2, which a fresh save locks; wing 09 is fine.",
+      "captionJa": "初期位置でAならウィング09。下1回＋Aは0A、右1回＋Aは0D。 ウィング0Aはグループ2で、新規セーブではロックされる。09は問題ない。",
+      "captionTh": "ปีกแรก: กด A ได้ 09 สำหรับชุดนี้; ลงหนึ่งครั้งแล้ว A ได้ 0A; ขวาหนึ่งครั้งแล้ว A ได้ 0D ปีก 0A อยู่กลุ่ม 2 ซึ่งเซฟใหม่ล็อกไว้ ส่วนปีก 09 ใช้ได้"
     },
     {
       "src": "custom/after-wing-select.png",
@@ -47,15 +47,15 @@
     },
     {
       "src": "custom/B02-tail-none-cursor.png",
-      "captionEn": "Another tested recipe: body02 (Down once, A), wing0A (Down once, A), then tail None (Down once, Right twice, A). Each part starts from its default cursor. This is an example recipe, not a best-fly recommendation.",
-      "captionJa": "別の検証例：各部品の初期位置からボディ02（下1回＋A）、ウィング0A（下1回＋A）、テール無し（下1回、右2回＋A）。最強構成の推薦ではありません。",
-      "captionTh": "ตัวอย่างอีกชุด: แต่ละเมนูเริ่มจากเคอร์เซอร์แรก เลือกบอดี้ 02 ด้วยลงหนึ่งครั้งแล้ว A; ปีก 0A ด้วยลงหนึ่งครั้งแล้ว A; หาง “ไม่มี” ด้วยลงหนึ่งครั้ง ขวาสองครั้ง แล้ว A เป็นชุดตัวอย่าง ไม่ใช่ข้อสรุปว่าดีที่สุด"
+      "captionEn": "Another tested recipe: body02 (Down once, A), wing0A (Down once, A), then tail None (Down once, Right twice, A). Each part starts from its default cursor. This is an example recipe, not a best-fly recommendation. Button demo only: wing 0A is locked on a fresh save, so this fly never bites there.",
+      "captionJa": "別の検証例：各部品の初期位置からボディ02（下1回＋A）、ウィング0A（下1回＋A）、テール無し（下1回、右2回＋A）。最強構成の推薦ではありません。 ボタン操作の説明用。ウィング0Aは新規セーブでロックされ、このフライは食いつかない。",
+      "captionTh": "ตัวอย่างอีกชุด: แต่ละเมนูเริ่มจากเคอร์เซอร์แรก เลือกบอดี้ 02 ด้วยลงหนึ่งครั้งแล้ว A; ปีก 0A ด้วยลงหนึ่งครั้งแล้ว A; หาง “ไม่มี” ด้วยลงหนึ่งครั้ง ขวาสองครั้ง แล้ว A เป็นชุดตัวอย่าง ไม่ใช่ข้อสรุปว่าดีที่สุด ใช้ดูปุ่มเท่านั้น: ปีก 0A ติดล็อกเซฟใหม่ ฟลายชุดนี้จึงไม่กินบนเซฟใหม่"
     },
     {
       "src": "custom/B02-W0A-none-quote.png",
-      "captionEn": "This02/0A/no-tail recipe is quoted at ¥17. Accepting Yes stores the completed fly and changes money100→83. The01/0A/no-tail preview quotes ¥12, but that preview was not purchased.",
-      "captionJa": "02・0A・無しの見積額は17円。はいで完成フライを保存し、所持金100→83。01・0A・無しは12円の見積を確認したが、その例では購入していない。",
-      "captionTh": "ชุด 02 + 0A + ไม่มีหาง คิด ¥17 กดตกลงแล้วได้ฟลายสำเร็จรูป เงิน 100 → 83 ส่วนชุด 01 + 0A + ไม่มีหาง ตรวจราคาเสนอได้ ¥12 แต่ชุดหลังยังไม่ได้กดซื้อในการตรวจนั้น"
+      "captionEn": "This02/0A/no-tail recipe is quoted at ¥17. Accepting Yes stores the completed fly and changes money100→83. The01/0A/no-tail preview quotes ¥12, but that preview was not purchased. This recipe is also locked on a fresh save (wing 0A).",
+      "captionJa": "02・0A・無しの見積額は17円。はいで完成フライを保存し、所持金100→83。01・0A・無しは12円の見積を確認したが、その例では購入していない。 このレシピも新規セーブではロックされる（ウィング0A）。",
+      "captionTh": "ชุด 02 + 0A + ไม่มีหาง คิด ¥17 กดตกลงแล้วได้ฟลายสำเร็จรูป เงิน 100 → 83 ส่วนชุด 01 + 0A + ไม่มีหาง ตรวจราคาเสนอได้ ¥12 แต่ชุดหลังยังไม่ได้กดซื้อในการตรวจนั้น ชุดนี้ก็ติดล็อกเซฟใหม่เช่นกัน (ปีก 0A)"
     }
   ],
   "crosswalkSource": "data/fly-maker-ui-crosswalk.json"

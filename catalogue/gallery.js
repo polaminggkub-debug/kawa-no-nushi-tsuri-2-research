@@ -49,511 +49,28 @@
     visibleUse: () => visibleUse
   });
 
-  // src/shared/lib/target-advice.js
-  function acceptedFor(item, fish, route) {
-    const use = item.playerUse || {};
-    const ids = item.category === "bait" ? use.fishIdsByRoute?.[route] || [] : use.fishIds || [];
-    return ids.includes(fish);
+  // src/entities/item/fly-lock.js
+  var FRESH_SAVE_LOCK = Object.freeze({ body: 1, wing: 2 });
+  function flyGroup(id) {
+    return Number.parseInt(id, 16) % 4;
   }
-  function offerAt(item, stage) {
-    const use = item.playerUse || {};
-    const offer = use.shops?.find((entry) => Number(entry.stage) === stage);
-    if (!offer) return null;
-    return {
-      category: item.category,
-      id: item.id,
-      priceYen: Number(offer.priceYen ?? item.priceYen),
-      available: true,
-      conditional: Boolean(offer.condition),
-      condition: offer.condition || ""
-    };
+  function flyLockedAt(bundle, lock = FRESH_SAVE_LOCK) {
+    return flyGroup(bundle.body) === lock.body || flyGroup(bundle.wing || "00") === lock.wing;
   }
-  function localOffers(ctx, item, fish, route, stage) {
-    if (!stage) return [];
-    return ctx.allItems.filter(
-      (candidate) => candidate.category === item.category && acceptedFor(candidate, fish, route)
-    ).map((candidate) => offerAt(candidate, stage)).filter((offer) => offer && Number.isFinite(offer.priceYen)).sort((a, b) => a.priceYen - b.priceYen || a.id.localeCompare(b.id));
+  function flyWorksOnFreshSave(bundle) {
+    return !flyLockedAt(bundle);
   }
-  function cheapestTies(offers) {
-    const eligible = offers.filter((offer) => !offer.conditional);
-    if (!eligible.length) return [];
-    const minimum = eligible[0].priceYen;
-    return eligible.filter((offer) => offer.priceYen === minimum);
+  function freshSaveOffers(offers, bundleOf = (offer) => offer) {
+    const usable = offers.filter((offer) => flyWorksOnFreshSave(bundleOf(offer)));
+    return usable.length ? usable : offers;
   }
-  function conditionalTies(offers) {
-    const eligible = offers.filter((offer) => offer.conditional);
-    if (!eligible.length) return [];
-    const minimum = eligible[0].priceYen;
-    return eligible.filter((offer) => offer.priceYen === minimum);
-  }
-  function selectAlternatives(offers, current, currentStock) {
-    const otherOffers = offers.filter((offer) => offer.id !== current.id);
-    const candidates = currentStock ? otherOffers.filter((offer) => offer.priceYen < currentStock.priceYen) : otherOffers;
-    return [...cheapestTies(candidates), ...conditionalTies(candidates)].sort(
-      (a, b) => a.priceYen - b.priceYen || Number(a.conditional) - Number(b.conditional) || a.id.localeCompare(b.id)
-    );
-  }
-  function targetAdvice(ctx, item, fish) {
-    if (!fish || !["bait", "lure"].includes(item.category)) return null;
-    const route = item.category === "bait" ? ctx.baitRoute || "float" : "lure";
-    if (!acceptedFor(item, fish, route)) return null;
-    const parsedStage = Number(ctx.locationStage);
-    const stage = Number.isInteger(parsedStage) && parsedStage >= 1 && parsedStage <= 6 ? parsedStage : null;
-    const currentOffer = stage ? offerAt(item, stage) : null;
-    const currentStock = stage ? currentOffer || { available: false } : null;
-    const localOptions = localOffers(ctx, item, fish, route, stage);
-    const alternatives = stage ? selectAlternatives(localOptions, item, currentStock?.available ? currentStock : null) : [];
-    return {
-      fish,
-      route,
-      stage,
-      compatible: true,
-      currentStock,
-      localOptions,
-      cheapestUnconditional: cheapestTies(localOptions),
-      alternatives
-    };
-  }
-  function routeName(ctx, route) {
-    if (route === "lure")
-      return ctx.lang === "ja" ? "ルアー" : ctx.lang === "th" ? "สายลัวร์" : "lure";
-    if (ctx.lang === "th") return route === "float" ? "ชุดทุ่น" : "ชุดตะกั่ว";
-    if (ctx.lang === "ja") return route === "float" ? "ウキ仕掛け" : "オモリ仕掛け";
-    return route === "float" ? "float rig" : "sinker rig";
-  }
-  function compatibilityText(ctx, fish, route) {
-    if (route === "lure")
-      return text(ctx, {
-        th: `ผ่านเงื่อนไขลัวร์สำหรับ${fish}`,
-        ja: `${fish}のルアー判定に適合`,
-        en: `Passes the lure check for ${fish}`
-      });
-    return text(ctx, {
-      th: `ผ่านเงื่อนไขเหยื่อสำหรับ${fish} · ${routeName(ctx, route)}`,
-      ja: `${fish}のエサ判定に適合 · ${routeName(ctx, route)}`,
-      en: `Passes the bait check for ${fish} · ${routeName(ctx, route)}`
-    });
-  }
-  function text(ctx, values) {
-    return values[ctx.lang] || values.en;
-  }
-  function conditionText(ctx, condition) {
-    if (!condition.includes("sell at least one Ayu")) return condition;
-    if (ctx.lang === "th") return "ต้องขายปลาอายุจากข้องอย่างน้อย 1 ตัวก่อนซื้อ";
-    if (ctx.lang === "ja") return "びくのアユを1匹以上売ってから購入";
-    return "requires selling at least one Ayu from your keepnet first";
-  }
-  function alternativeLink(ctx, offer) {
-    const candidate = ctx.allItems.find(
-      (entry) => entry.category === offer.category && entry.id === offer.id
-    );
-    if (!candidate) return "";
-    const condition = offer.conditional ? `<small>${ctx.esc(conditionText(ctx, offer.condition))}</small>` : "";
-    return `<li data-target-alternative="${ctx.esc(offer.category + ":" + offer.id)}"><a href="${ctx.esc(ctx.itemHref(candidate))}">${ctx.esc(ctx.itemName(candidate))} (${ctx.esc(offer.id)}) · ¥${offer.priceYen}</a>${condition}</li>`;
-  }
-  function alternativeList(ctx, advice) {
-    if (!advice.alternatives.length) return "";
-    const heading = advice.currentStock?.available ? text(ctx, {
-      th: "ตัวเลือกที่ถูกกว่าซึ่งผ่านเงื่อนไขปลาและมีขายในด่านนี้",
-      ja: "この魚の判定を通り、エリア内で買える安い候補",
-      en: "Cheaper local offers that pass this fish check"
-    }) : text(ctx, {
-      th: "ตัวเลือกที่มีขายในด่านนี้และผ่านเงื่อนไขปลา",
-      ja: "エリア内で販売され、この魚の判定を通る候補",
-      en: "Local offers that pass this fish check"
-    });
-    return `<p>${ctx.esc(heading)}</p><ul>${advice.alternatives.map((offer) => alternativeLink(ctx, offer)).join("")}</ul>`;
-  }
-  function noAreaDecision(ctx) {
-    return text(ctx, {
-      th: "มีของชิ้นนี้อยู่แล้วใช้ต่อได้ เลือกด่านจากแผนที่เพื่อดูว่ามีขายอะไรและราคาเท่าไร",
-      ja: "所持していれば使用できます。地図でエリアを選ぶと、店頭在庫と価格を確認できます。",
-      en: "Use it if you already own it. Choose an area on the map to check local stock and prices."
-    });
-  }
-  function absentStockDecision(ctx, advice) {
-    if (advice.alternatives.length)
-      return text(ctx, {
-        th: "ถ้ามีชิ้นนี้อยู่แล้วใช้ต่อได้ ชิ้นนี้ไม่มีรายการขายในด่านนี้; ถ้าจะซื้อใหม่ ให้เลือกตัวเลือกด้านล่าง",
-        ja: "所持していればそのまま使えます。この品はエリア内の在庫記録がありません。新しく買うなら下記の候補を選べます。",
-        en: "Keep using it if owned. This item has no recorded stock in this area; for a new purchase, choose a compatible offer below."
-      });
-    return text(ctx, {
-      th: "ชิ้นนี้ไม่มีรายการขายในด่านนี้; ถ้ามีอยู่แล้วใช้ต่อได้ หรือดูร้านในด่านอื่น",
-      ja: "この品はエリア内の在庫記録がありません。所持品は使えます。別エリアの店を確認してください。",
-      en: "This item has no recorded stock in this area. Use it if owned, or check another area’s shops."
-    });
-  }
-  function conditionalStockDecision(ctx, stage, stock) {
-    return text(ctx, {
-      th: `มีขายในด่าน ${stage} ราคา ¥${stock.priceYen} แต่${conditionText(ctx, stock.condition)}`,
-      ja: `エリア${stage}で${stock.priceYen}円で販売。ただし${conditionText(ctx, stock.condition)}`,
-      en: `Stocked in area ${stage} for ¥${stock.priceYen}, but ${conditionText(ctx, stock.condition)}.`
-    });
-  }
-  function cheapestStockDecision(ctx, stage, stock) {
-    return text(ctx, {
-      th: `มีขายในด่าน ${stage} ราคา ¥${stock.priceYen}; ถ้าจะซื้อ ชิ้นนี้เป็นหนึ่งในตัวเลือกที่ถูกที่สุดซึ่งผ่านเงื่อนไขปลาในสต็อกที่ตรวจได้`,
-      ja: `エリア${stage}で${stock.priceYen}円。このエリアで確認できた魚判定を通る在庫品の最安候補の一つです。`,
-      en: `Stocked in area ${stage} for ¥${stock.priceYen}; it is one of the cheapest recorded local offers passing this fish check.`
-    });
-  }
-  function compareStockDecision(ctx, stage, stock) {
-    return text(ctx, {
-      th: `มีขายในด่าน ${stage} ราคา ¥${stock.priceYen}; ถ้ามีอยู่แล้วใช้ต่อได้ ถ้าจะซื้อให้ดูตัวเลือกที่ถูกกว่าด้านล่าง`,
-      ja: `エリア${stage}で${stock.priceYen}円。所持品はそのまま使えます。購入するなら下記の安い候補を確認してください。`,
-      en: `Stocked in area ${stage} for ¥${stock.priceYen}. Keep using it if owned; compare the cheaper offers below before buying.`
-    });
-  }
-  function shopDecision(ctx, advice) {
-    if (!advice.stage) return noAreaDecision(ctx);
-    const stock = advice.currentStock;
-    if (!stock?.available) return absentStockDecision(ctx, advice);
-    if (stock.conditional) return conditionalStockDecision(ctx, advice.stage, stock);
-    const isCheapest = advice.cheapestUnconditional.some(
-      (offer) => offer.id === advice.currentStock.id
-    );
-    return isCheapest ? cheapestStockDecision(ctx, advice.stage, stock) : compareStockDecision(ctx, advice.stage, stock);
-  }
-  function targetAdviceScope(ctx) {
-    return text(ctx, {
-      th: "ยืนยันเฉพาะเงื่อนไขจาก ROM ไม่ได้ยืนยันโอกาสกินเหยื่อหรือจับขึ้น",
-      ja: "ROM条件を通ることのみ確認。食いつき・釣り上げは保証されません。",
-      en: "This confirms the ROM compatibility check only; a bite or catch is not guaranteed."
-    });
-  }
-  function renderTargetAdvice(ctx, item, fish, { includeScope = true } = {}) {
-    const advice = targetAdvice(ctx, item, fish);
-    if (!advice) return "";
-    const fishName = ctx.fishName(fish);
-    const status = compatibilityText(ctx, fishName, advice.route);
-    const scope = includeScope ? `<small>${ctx.esc(targetAdviceScope(ctx))}</small>` : "";
-    const markers = `data-target-advice data-target-fish="${ctx.esc(fish)}" data-target-route="${advice.route}" data-target-stage="${advice.stage || ""}"`;
-    return `<div class="target-advice" ${markers}><p class="target-compatibility"><strong>${ctx.esc(status)}</strong></p><p>${ctx.esc(shopDecision(ctx, advice))}</p>${alternativeList(ctx, advice)}${scope}</div>`;
-  }
-
-  // src/shared/lib/evidence-link.js
-  var repository = "https://github.com/polaminggkub-debug/kawa-no-nushi-tsuri-2-research/blob/main/";
-  function readableEvidenceHref(value) {
-    if (typeof value !== "string") return value;
-    if (!/^\.\.\/(?:docs\/[\w.-]+\.md|README\.md)(?:#[^\s]*)?$/.test(value)) return value;
-    return repository + value.slice(3);
-  }
-
-  // src/shared/lib/hp-recovery-action.js
-  var labels = {
-    th: "เลือกอาหารฟื้น HP และดูแหล่งซื้อ",
-    ja: "HP回復用の食料と販売場所を選ぶ",
-    en: "Choose recovery food and see where to buy it"
-  };
-  function hpRecoveryAction(options) {
-    const { locale, cataloguePath, stage, returnPath, source, escapeHtml } = options;
-    const query = new URLSearchParams({ category: "food", return: returnPath });
-    if (/^[1-6]$/.test(String(stage))) query.set("stage", String(stage));
-    const href = `${cataloguePath}?${query}#category-decisions`;
-    return `<a class="route-button" data-hp-food-action data-hp-source="${escapeHtml(source)}" href="${escapeHtml(href)}">${escapeHtml(labels[locale] || labels.en)} ↗</a>`;
-  }
-
-  // src/shared/lib/index.js
-  function createPageRuntime(api) {
-    const runtime = {};
-    for (const [name, value] of Object.entries(api)) {
-      if (name !== "initialize") runtime[name] = value.bind(null, runtime);
-    }
-    return runtime;
-  }
-
-  // src/pages/equipment/wing-palette.js
-  function itemDisplayName(ctx, item) {
-    return item.playerUse?.displayName?.[ctx.lang] || ctx.itemName(item);
-  }
-  function findWingItem(ctx, wingId) {
-    const item = ctx.allItems.find((entry) => entry.category === "fly_wing" && entry.id === wingId);
-    if (!item) throw new Error(`Missing catalogue record for Mayfly wing ${wingId}`);
-    return item;
-  }
-  function wingItemHref(ctx, item) {
-    const target = new URL(ctx.itemHref(item), "https://example.invalid/catalogue/");
-    const returned = target.searchParams.get("return");
-    if (returned) target.searchParams.set("return", `${returned.split("#")[0]}#wing-palette-title`);
-    return `${target.pathname.split("/").pop()}${target.search}${target.hash}`;
-  }
-  function renderColumnHeaders(ctx, palette, copy3) {
-    const columns = Array.from({ length: palette.menu.columns }, (_, index) => index + 1);
-    return columns.map((column) => `<th scope="col">${ctx.esc(copy3.column)} ${column}</th>`).join("");
-  }
-  function renderChoice(ctx, position, copy3) {
-    const item = findWingItem(ctx, position.wingId);
-    const name = itemDisplayName(ctx, item);
-    const location2 = `${copy3.column} ${position.column}, ${copy3.row} ${position.row}`;
-    const label = `${copy3.openItem}: ${name}, ID ${position.wingId}; ${location2}`;
-    return `<td data-wing-cell="${position.wingId}"><a class="wing-palette__choice" data-wing-choice="${position.wingId}" data-wing-row="${position.row}" data-wing-column="${position.column}" href="${ctx.esc(wingItemHref(ctx, item))}" aria-label="${ctx.esc(label)}"><img loading="lazy" src="${ctx.esc(item.image)}" alt=""><span class="wing-palette__choice-id">${ctx.esc(position.wingId)}</span><span class="wing-palette__choice-name">${ctx.esc(name)}</span><span class="wing-palette__choice-open"><span class="wing-palette__choice-open-label">${ctx.esc(copy3.openItem)}</span> ↗</span></a></td>`;
-  }
-  function renderRow(ctx, palette, row, copy3) {
-    const cells = Array.from({ length: palette.menu.columns }, (_, index) => {
-      const column = index + 1;
-      const position = palette.positions.find((entry) => entry.column === column && entry.row === row);
-      if (!position) throw new Error(`Missing verified Mayfly wing at row ${row}, column ${column}`);
-      return renderChoice(ctx, position, copy3);
-    });
-    return `<tr><th scope="row">${ctx.esc(copy3.row)} ${row}</th>${cells.join("")}</tr>`;
-  }
-  function renderGrid(ctx, palette, copy3) {
-    const rows = Array.from({ length: palette.menu.rows }, (_, index) => index + 1);
-    return `<div class="wing-palette__table-wrap"><table class="wing-palette__table"><caption>${ctx.esc(copy3.gridCaption)}</caption><thead><tr><th scope="col" class="wing-palette__corner"></th>${renderColumnHeaders(ctx, palette, copy3)}</tr></thead><tbody>${rows.map((row) => renderRow(ctx, palette, row, copy3)).join("")}</tbody></table></div>`;
-  }
-  function renderScreenshot(ctx, palette, copy3) {
-    const shot = palette.screenshot;
-    return `<figure class="wing-palette__screenshot"><a href="${ctx.esc(shot.path)}" target="_blank" rel="noopener"><img loading="lazy" src="${ctx.esc(shot.path)}" alt="${ctx.esc(copy3.screenshotTitle)}"></a><figcaption>${ctx.esc(shot.caption[ctx.lang] || shot.caption.en)}</figcaption></figure>`;
-  }
-  function renderTechnicalEvidence(ctx, palette, copy3) {
-    const evidenceLink = `<p><a href="${ctx.esc(readableEvidenceHref(palette.evidenceHref))}" target="_blank" rel="noopener">${ctx.esc(copy3.evidenceLink)} ↗</a></p>`;
-    return `<details class="wing-palette__technical"><summary>${ctx.esc(copy3.technicalTitle)}</summary><div><p>${ctx.esc(copy3.rightEdge)}</p><p>${ctx.esc(copy3.noRanking)}</p><p>${ctx.esc(copy3.evidence)}</p>${evidenceLink}</div></details>`;
-  }
-  function wingPaletteMarkup(ctx, palette) {
-    if (!palette?.positions?.length || !ctx.allItems?.length || !ctx.itemHref) return "";
-    const copy3 = palette.copy[ctx.lang] || palette.copy.en;
-    const titleId = "wing-palette-title";
-    return `<section class="wing-palette" data-wing-palette aria-labelledby="${titleId}"><header class="wing-palette__header"><p class="wing-palette__eyebrow">${ctx.esc(copy3.eyebrow)}</p><h3 id="${titleId}">${ctx.esc(copy3.title)}</h3><p class="wing-palette__intro">${ctx.esc(copy3.intro)}</p><p class="wing-palette__controls" id="wing-palette-controls">${ctx.esc(copy3.controls)}</p></header><div class="wing-palette__layout">${renderScreenshot(ctx, palette, copy3)}${renderGrid(ctx, palette, copy3)}</div>${renderTechnicalEvidence(ctx, palette, copy3)}</section>`;
-  }
-
-  // src/pages/equipment/evidence-display.js
-  function renderSamples(ctx) {
-    const tbody = document.getElementById("sample-rows");
-    const selected = ctx.exampleIds.map((key) => ctx.allItems.find((item) => `${item.category}:${item.id}` === key)).filter(Boolean);
-    tbody.innerHTML = selected.map((item) => {
-      const summary = ctx.copy.quick[`${item.category}:${item.id}`] || ctx.itemNotes(item)[0];
-      return `<tr><td><div class="sample-item"><img src="${ctx.esc(item.image)}" alt=""><div><span class="item-id">${ctx.esc(item.id)}</span><strong>${ctx.esc(ctx.itemName(item))}</strong><small>${ctx.esc(item.nameJa)}</small></div></div></td><td>${ctx.esc(summary)}</td><td><span class="price-badge">${ctx.esc(ctx.formatYen(item))}</span></td></tr>`;
-    }).join("");
-  }
-  function renderFrames(ctx, data) {
-    const box = document.getElementById("customizer-frames");
-    box.innerHTML = data.customizerFrames.map(
-      (frame, index) => `<figure class="custom-frame"><a href="${ctx.esc(frame.src)}" target="_blank" rel="noopener"><img loading="lazy" src="${ctx.esc(frame.src)}" alt="${ctx.esc(ctx.lang === "th" ? frame.captionTh : ctx.lang === "ja" ? frame.captionJa : frame.captionEn)}"></a><figcaption><span>${String(index + 1).padStart(2, "0")}</span>${ctx.esc(ctx.lang === "th" ? frame.captionTh : ctx.lang === "ja" ? frame.captionJa : frame.captionEn)}</figcaption></figure>`
-    ).join("") + wingPaletteMarkup(ctx, data.flyMakerWingPalette);
-  }
-  function renderNotes(ctx, data) {
-    const list = data.researchNotes[ctx.lang] || data.researchNotes.en;
-    document.getElementById("research-notes").innerHTML = list.map((text4) => `<p>${ctx.esc(text4)}</p>`).join("");
-    document.getElementById("sources").innerHTML = data.sources.map(
-      (src) => `<p>${src.url ? `<a href="${ctx.esc(src.url)}" target="_blank" rel="noopener">${ctx.esc(ctx.lang === "th" ? src.titleTh : ctx.lang === "ja" ? src.titleJa : src.titleEn)} ↗</a>` : `<strong>${ctx.esc(ctx.lang === "th" ? src.titleTh : ctx.lang === "ja" ? src.titleJa : src.titleEn)}</strong>`}<br><span>${ctx.esc(ctx.lang === "th" ? src.detailTh : ctx.lang === "ja" ? src.detailJa : src.detailEn)}</span></p>`
-    ).join("");
-  }
-  function cardDisclosure(ctx, summary, content, className) {
-    if (!content?.trim()) return "";
-    return `<details class="${className}"><summary>${ctx.esc(summary)}</summary><div class="${className}-content">${content}</div></details>`;
-  }
-  function detailedFields(ctx, item) {
-    const originalEvidence = ctx.useOf(item).evidence || {};
-    const evidence = {
-      ...originalEvidence,
-      sources: [
-        .../* @__PURE__ */ new Set([
-          ...originalEvidence.sources || [],
-          ...item.rodDecision?.sources || [],
-          ...item.gearDecision?.sources || [],
-          ...item.baitLureDecision?.sources || []
-        ])
-      ]
-    };
-    const sourceInfo = evidence.type ? `<p>${ctx.esc(ctx.lang === "th" ? "ที่มาของคำอธิบาย" : ctx.lang === "ja" ? "説明の根拠" : "Explanation source")}: ${ctx.esc(evidence.type)}</p>${(evidence.sources || []).map((s) => `<p><a href="https://github.com/polaminggkub-debug/kawa-no-nushi-tsuri-2-research/blob/main/${ctx.esc(s)}" target="_blank" rel="noopener"><code>${ctx.esc(s)}</code> ↗</a></p>`).join("")}` : "";
-    const bytes = item.recordBytesHex ? `<p><b>${ctx.esc(ctx.copy.offset)}:</b> <code>${ctx.esc(item.fileOffset || "—")}</code></p><p><b>${ctx.esc(ctx.copy.bytes)}:</b> <code>${ctx.esc(item.recordBytesHex)}</code></p>` : `<p>${ctx.esc(ctx.copy.none)}</p>`;
-    const decoded = Object.entries(item.decodedFields || {}).filter(([key]) => !["nameJapanese", "nameEnglish", "condition"].includes(key)).map(
-      ([key, value]) => `<dt>${ctx.esc(ctx.copy.fieldNames[key] || key)}</dt><dd>${ctx.esc(typeof value === "object" ? JSON.stringify(value) : value)}</dd>`
-    ).join("");
-    const use = ctx.useOf(item), targets = use.targetMatches ? Array.isArray(use.targetMatches) ? use.targetMatches : [use.targetMatches] : [];
-    const response = targets.length ? `<p>${ctx.lang === "th" ? "มีการคำนวณตอบสนองเฉพาะปลา แต่ยังใช้จัดอันดับจับง่ายไม่ได้" : ctx.lang === "ja" ? "魚別の応答計算。取り込みやすさの順位には未使用。" : "Fish-specific response calculation; not a landing recommendation."}: ${targets.map((t) => ctx.esc(ctx.fishName(t.fishId))).join(", ")}</p>` : "";
-    const hookTrace = item.category === "rod" || ["hook", "fly_wing", "fly_tail", "float_weight"].includes(item.category) || item.category === "food" && item.id === "08" || use.specialResponseTarget ? `<p>${ctx.esc(ctx.local(use.summary))}</p><ul>${(use.facts?.[ctx.lang] || []).map((f) => `<li>${ctx.esc(f)}</li>`).join("")}</ul>` : "";
-    return `<details class="record-details"><summary>${ctx.esc(ctx.player.evidence)}</summary>${sourceInfo}${response}${hookTrace}${use.comparison ? `<p>${ctx.esc(ctx.local(use.comparison))}</p>` : ""}<p>${ctx.esc(ctx.copy.priceField)}: ${ctx.esc(ctx.formatYen(item))}</p><ul class="stat-list">${(ctx.useOf(item).evidenceNotes?.[ctx.lang] || []).map((n) => `<li>${ctx.esc(n)}</li>`).join("")}</ul>${ctx.lang === "th" && !item.nameTh && ctx.useOf(item).displayName?.th ? "<p>ชื่อไทย: คำแปลชื่อภาษาญี่ปุ่นสำหรับคู่มือนี้</p>" : ""}${bytes}${decoded ? `<h4>${ctx.esc(ctx.copy.decoded)}</h4><dl>${decoded}</dl>` : ""}<a class="frame-link" href="${ctx.esc(item.frame)}" target="_blank" rel="noopener">${ctx.esc(ctx.copy.openFrame)}</a></details>`;
-  }
-  function thaiLabel(ctx, item) {
-    return ctx.lang === "th" && item.labelImageTh ? `<img class="thai-rom-label" loading="lazy" src="${ctx.esc(item.labelImageTh)}" alt="${ctx.esc(item.nameTh || "ชื่อในเกมไทย")}">` : "";
-  }
-
-  // src/pages/equipment/fish-equipment-default.js
-  function compatibleWith(item, fish, route) {
-    const use = item.playerUse || {};
-    const ids = route ? use.fishIdsByRoute?.[route] || use.fishIds || [] : use.fishIds || [];
-    return ids.includes(fish);
-  }
-  function fishEquipmentDefault(ctx, fish) {
-    const items = ctx.allItems || [];
-    const preferred = ctx.baitRoute === "sinker" ? "sinker" : "float";
-    for (const route of [preferred, preferred === "float" ? "sinker" : "float"]) {
-      if (items.some((item) => item.category === "bait" && compatibleWith(item, fish, route)))
-        return { category: "bait", route };
-    }
-    if (items.some((item) => item.category === "lure" && compatibleWith(item, fish)))
-      return { category: "lure", route: preferred };
-    if (items.some((item) => item.category === "fly" && compatibleWith(item, fish)))
-      return { category: "flymaker", route: preferred };
-    return { category: "bait", route: preferred };
-  }
-  function applyFishEquipmentDefault(ctx, fish) {
-    const choice = fishEquipmentDefault(ctx, fish);
-    document.getElementById("category-filter").value = choice.category;
-    ctx.baitRoute = choice.route;
-    ctx.flyPart = "fly";
-  }
-
-  // src/pages/equipment/fish-picker.js
-  function closeFishSuggestions(ctx) {
-    document.getElementById("fish-suggestions").hidden = true;
-    document.getElementById("fish-search").setAttribute("aria-expanded", "false");
-    document.getElementById("fish-search").removeAttribute("aria-activedescendant");
-    ctx.activeSuggestion = -1;
-  }
-  function showFishSuggestions(ctx) {
-    const input = document.getElementById("fish-search"), box = document.getElementById("fish-suggestions");
-    const selected = document.getElementById("fish-filter").value;
-    const term = selected && input.value === ctx.fishName(selected) ? "" : input.value.normalize("NFKC").trim().toLocaleLowerCase();
-    ctx.suggestionIds = Object.keys(ctx.fishVisuals).filter((id) => id !== "43" && (!term || ctx.fishSearchText(id).includes(term))).sort((a, b) => ctx.fishName(a).localeCompare(ctx.fishName(b), ctx.lang));
-    ctx.activeSuggestion = -1;
-    box.innerHTML = ctx.suggestionIds.map(
-      (id) => `<div id="fish-option-${id}" role="option" aria-selected="false" data-fish-choice="${id}"><img src="${ctx.esc(ctx.fishVisuals[id].image)}" alt=""><span><strong>${ctx.esc(ctx.fishName(id))}</strong><small>${ctx.esc(ctx.lang === "ja" ? ctx.fishVisuals[id].nameLatin || ctx.fishVisuals[id].nameLatinVariants?.[0] || "" : ctx.fishVisuals[id].nameJa || "")}</small></span></div>`
-    ).join("") || `<p class="fish-no-match">${ctx.esc(ctx.pickerCopy.none)}</p>`;
-    box.hidden = false;
-    input.setAttribute("aria-expanded", "true");
-    input.removeAttribute("aria-activedescendant");
-    document.getElementById("fish-search-status").textContent = ctx.suggestionIds.length ? ctx.pickerCopy.count(ctx.suggestionIds.length) : ctx.pickerCopy.none;
-  }
-  function handleFishSearchInput(ctx, input) {
-    if (!input.value.trim()) ctx.selectFish("");
-    ctx.showFishSuggestions();
-  }
-  function restoreSelectedFish(ctx, input) {
-    const selected = document.getElementById("fish-filter").value;
-    input.value = selected ? ctx.fishName(selected) : "";
-  }
-  function handleFishSearchBlur(ctx, input) {
-    restoreSelectedFish(ctx, input);
-    ctx.closeFishSuggestions();
-  }
-  function handleFishSearchKeydown(ctx, input, box, event) {
-    if (event.key === "Escape") {
-      restoreSelectedFish(ctx, input);
-      ctx.closeFishSuggestions();
-      return;
-    }
-    if (event.key === "ArrowDown" || event.key === "ArrowUp") {
-      event.preventDefault();
-      if (box.hidden) ctx.showFishSuggestions();
-      if (!ctx.suggestionIds.length) return;
-      ctx.activeSuggestion = event.key === "ArrowDown" ? (ctx.activeSuggestion + 1) % ctx.suggestionIds.length : ctx.activeSuggestion < 0 ? ctx.suggestionIds.length - 1 : (ctx.activeSuggestion - 1 + ctx.suggestionIds.length) % ctx.suggestionIds.length;
-      box.querySelectorAll('[role="option"]').forEach(
-        (option2, index) => option2.setAttribute("aria-selected", index === ctx.activeSuggestion ? "true" : "false")
-      );
-      const option = document.getElementById("fish-option-" + ctx.suggestionIds[ctx.activeSuggestion]);
-      input.setAttribute("aria-activedescendant", option.id);
-      option.scrollIntoView({ block: "nearest" });
-    } else if (event.key === "Enter" && !box.hidden) {
-      event.preventDefault();
-      const id = ctx.suggestionIds[ctx.activeSuggestion] || (ctx.suggestionIds.length === 1 ? ctx.suggestionIds[0] : null);
-      if (id) ctx.selectFish(id);
-    } else if (event.key === "Tab") ctx.closeFishSuggestions();
-  }
-  function selectClickedFish(ctx, event) {
-    const option = event.target.closest("[data-fish-choice]");
-    if (option) ctx.selectFish(option.dataset.fishChoice);
-  }
-  function clearFishSearch(ctx, input) {
-    ctx.selectFish("");
-    input.focus();
-    ctx.showFishSuggestions();
-  }
-  function closeSuggestionsOutside(ctx, event) {
-    if (!event.target.closest(".fish-combobox")) ctx.closeFishSuggestions();
-  }
-  function setupFishPicker(ctx) {
-    const input = document.getElementById("fish-search"), box = document.getElementById("fish-suggestions"), clearButton = document.getElementById("fish-clear");
-    input.disabled = false;
-    clearButton.disabled = false;
-    input.placeholder = ctx.pickerCopy.placeholder;
-    clearButton.setAttribute("aria-label", ctx.pickerCopy.clear);
-    input.addEventListener("input", () => handleFishSearchInput(ctx, input));
-    input.addEventListener("focus", ctx.showFishSuggestions);
-    input.addEventListener("blur", () => handleFishSearchBlur(ctx, input));
-    input.addEventListener("keydown", (event) => handleFishSearchKeydown(ctx, input, box, event));
-    box.addEventListener("mousedown", (event) => event.preventDefault());
-    box.addEventListener("click", (event) => selectClickedFish(ctx, event));
-    clearButton.addEventListener("click", () => clearFishSearch(ctx, input));
-    document.addEventListener("click", (event) => closeSuggestionsOutside(ctx, event));
-  }
-  function selectFish(ctx, id) {
-    if (document.getElementById("fish-filter").value !== id) {
-      document.getElementById("search").value = "";
-      document.getElementById("style-filter").value = "";
-      ctx.flyPart = "fly";
-    }
-    document.getElementById("fish-filter").value = id;
-    document.getElementById("fish-search").value = id ? ctx.fishName(id) : "";
-    document.getElementById("fish-search-status").textContent = "";
-    ctx.closeFishSuggestions();
-    if (id) applyFishEquipmentDefault(ctx, id);
-    ctx.locationStage = "";
-    ctx.locationMapIndex = 0;
-    ctx.renderCards();
-    if (typeof history !== "undefined")
-      history.replaceState(null, "", `?${new URLSearchParams(location.search)}#fish-location-panel`);
-    ctx.refreshLanguageLinks?.();
-  }
-
-  // src/pages/equipment/category-navigation.js
-  var ROUTES = ["float", "sinker"];
-  var FLY_PARTS = ["fly", "fly_wing", "fly_tail"];
-  var STAGES = ["1", "2", "3", "4", "5", "6"];
-  function categoryNavigationHref(ctx, category, fish) {
-    const search = typeof location === "undefined" ? "" : location.search;
-    const query = new URLSearchParams(search);
-    query.set("category", category);
-    if (fish) query.set("fish", fish);
-    else query.delete("fish");
-    query.delete("q");
-    query.delete("style");
-    if (STAGES.includes(String(ctx.locationStage || ""))) query.set("stage", ctx.locationStage);
-    else query.delete("stage");
-    if (ROUTES.includes(ctx.baitRoute)) query.set("route", ctx.baitRoute);
-    else query.delete("route");
-    if (category === "flymaker" && FLY_PARTS.includes(ctx.flyPart)) query.set("part", ctx.flyPart);
-    else query.delete("part");
-    const map = Number(ctx.locationMapIndex);
-    if (query.has("map") || Number.isInteger(map) && map > 0) {
-      if (Number.isInteger(map) && map >= 0) query.set("map", String(map));
-      else query.delete("map");
-    }
-    return `?${query.toString()}#catalogue`;
-  }
-  function refreshCategoryNavigationLinks(ctx, fish) {
-    document.querySelectorAll("#category-menu [data-category]").forEach((link) => {
-      link.setAttribute("href", categoryNavigationHref(ctx, link.dataset.category, fish));
-    });
-  }
-
-  // src/pages/equipment/category-controls.js
-  function renderTargetCategories(ctx, fish) {
-    const available = fish ? ctx.groups.filter((c) => ctx.fishCategories.includes(c)) : ctx.groups;
-    const select = document.getElementById("category-filter"), current = select.value;
-    select.innerHTML = `<option value="all">${ctx.esc(ctx.player.all)}</option>` + available.map((c) => `<option value="${c}">${ctx.esc(ctx.player.cat[c])}</option>`).join("");
-    select.value = !fish || ctx.fishCategories.includes(current) ? current : "all";
-    document.getElementById("category-menu").innerHTML = `<a class="category-button" href="${ctx.esc(categoryNavigationHref(ctx, "all", fish))}" data-category="all"><span><strong>${ctx.esc(ctx.player.all)}</strong></span></a>` + available.map((c) => {
-      const item = ctx.allItems.find((i) => ctx.groupOf(i) === c);
-      const count = ctx.allItems.filter(
-        (i) => fish && ["rod", "hook"].includes(c) ? ctx.groupOf(i) === c : ctx.groupOf(i) === c && (!fish || ctx.fishIdsFor(i).includes(fish) || ["fly_wing", "fly_tail"].includes(i.category) && ctx.flyBundlePartFor(i, fish))
-      ).length;
-      return `<a class="category-button" href="${ctx.esc(categoryNavigationHref(ctx, c, fish))}" data-category="${c}"><img src="${ctx.esc(item?.image)}" alt=""><span><strong>${ctx.esc(ctx.player.cat[c])}</strong><small>${count}</small></span></a>`;
-    }).join("");
-  }
-  function renderFilters(ctx) {
-    document.getElementById("category-filter").innerHTML = `<option value="all">${ctx.esc(ctx.player.all)}</option>` + ctx.groups.map((c) => `<option value="${c}">${ctx.esc(ctx.player.cat[c])}</option>`).join("");
-    document.getElementById("style-filter").innerHTML = `<option value="">${ctx.esc(ctx.player.all)}</option>` + Object.entries(
-      ctx.lang === "th" ? { 1: "ทุ่น / อายุ", 2: "ตีเหยื่อ", 4: "ลัวร์", 8: "ฟลาย" } : ctx.lang === "ja" ? { 1: "ウキ・アユ", 2: "投げ", 4: "ルアー", 8: "フライ" } : { 1: "Float / Ayu", 2: "Casting", 4: "Lure", 8: "Fly" }
-    ).map(([k, v]) => `<option value="${k}">${ctx.esc(v)}</option>`).join("");
-    ctx.set("#style-filter-label", ctx.player.style);
-    document.getElementById("sort-filter").innerHTML = `<option value="id">${ctx.esc(ctx.copy.sortId)}</option><option value="name">${ctx.esc(ctx.copy.sortName)}</option><option value="buy-price">${ctx.esc(ctx.copy.sortBuyPrice)}</option><option value="price">${ctx.esc(ctx.copy.sortPrice)}</option>`;
-    document.getElementById("category-menu").innerHTML = ctx.groups.map((c) => {
-      const i = ctx.allItems.find((i2) => ctx.groupOf(i2) === c);
-      return `<a class="category-button" href="${ctx.esc(categoryNavigationHref(ctx, c, document.getElementById("fish-filter").value))}" data-category="${c}"><img src="${ctx.esc(i?.image)}" alt=""><span><strong>${ctx.esc(ctx.player.cat[c])}</strong><small>${ctx.allItems.filter((i2) => ctx.groupOf(i2) === c).length}</small></span></a>`;
-    }).join("");
+  function freshStarterBody(items) {
+    const bodies = items.filter((item) => item.category === "fly");
+    const widest = Math.max(0, ...bodies.map((item) => item.playerUse?.fishIds?.length || 0));
+    const offers = bodies.filter((item) => (item.playerUse?.fishIds?.length || 0) === widest).flatMap(
+      (item) => (item.playerUse?.shops || []).filter((shop) => shop.bundle).map((shop) => ({ item, shop }))
+    ).filter((offer) => flyWorksOnFreshSave(offer.shop.bundle)).sort((a, b) => a.shop.bundle.shopPriceYen - b.shop.bundle.shopPriceYen);
+    return offers[0]?.item || null;
   }
 
   // src/entities/item/fly-wing-decision.js
@@ -570,39 +87,49 @@
   function noBundleCopy(lang, id, fish) {
     const copies = {
       th: {
-        label: `ยังไม่มีตำแหน่งเมนูหรือชุดร้านที่บันทึกไว้สำหรับ ID ${id}`,
-        recommendation: fish ? `เมนูที่ตรวจและรายการชุดสำเร็จรูปของร้านยังไม่มีเส้นทางยืนยันสำหรับปีก ID ${id} อย่าพึ่งว่าหา ID นี้ได้จากเมนูที่มีหลักฐาน ถ้าจะตก${fish} ให้เปิดหน้าปลาเพื่อดูชุดฟลายหรือวิธีอื่นที่มีบันทึก` : `เมนูที่ตรวจและรายการชุดสำเร็จรูปของร้านยังไม่มีเส้นทางยืนยันสำหรับปีก ID ${id} อย่าพึ่งว่าหา ID นี้ได้จากเมนูที่มีหลักฐาน ถ้าจะประกอบฟลายให้เลือกบอดี้ตามปลาเป้าหมาย แล้วใช้ชิ้นส่วนที่มีตำแหน่งเมนูยืนยัน หรือดูชุดเริ่มต้นบอดี้ 01 สำหรับปลาในรายชื่อของบอดี้นั้น`,
-        reason: "นี่หมายถึงยังไม่มีเส้นทางในหลักฐานที่ตรวจ ไม่ได้พิสูจน์ว่าทุกเมนูหรือทุกพื้นที่เลือกชิ้นนี้ไม่ได้ และยังไม่มีหลักฐานโบนัสการกินหรือดึงปลาจากปีกนี้"
+        label: `ปีก ${id} หาไม่ได้: ไม่มีทั้งในร้านและในร้านทำฟลาย`,
+        recommendation: fish ? `ข้ามปีกนี้ไปได้ ปีกไม่ได้เลือกปลา จะตก${fish} ให้เปิดหน้าปลาเพื่อดูชุดฟลายที่ซื้อได้` : "ข้ามปีกนี้ไปได้ ปีกมีหน้าที่แค่ผ่านล็อกของเซฟ ถ้าจะประกอบฟลายให้เลือกปีกที่ร้านทำฟลายมีให้ หรือซื้อชุดสำเร็จรูปแทน",
+        reason: "ร้านและเมนูของร้านทำฟลายที่ตรวจไม่มีปีกชิ้นนี้ ปีกไม่ช่วยให้ปลากินดีขึ้นและไม่ช่วยตอนสู้ มีหน้าที่แค่ผ่านล็อกของเซฟ"
       },
       en: {
-        label: `No recorded menu position or shop bundle for ID ${id}`,
-        recommendation: fish ? `The captured menus and recorded ready-made offers do not establish a route for wing ID ${id}. Do not assume it can be selected from a documented menu. For ${fish}, open the fish profile to see recorded flies or other methods.` : `The captured menus and recorded ready-made offers do not establish a route for wing ID ${id}. Do not assume it can be selected from a documented menu. For a custom fly, match the body to your target first, then use a component with a recorded menu position; otherwise see the starter body 01 bundle for fish in its list.`,
-        reason: "This means no route is present in the evidence checked; it does not prove the part is unavailable in every menu or area. No bite or landing bonus from this wing is established."
+        label: `Wing ${id} cannot be had: it is in no shop and not in the fly maker`,
+        recommendation: fish ? `Skip this wing; a wing does not choose fish. For ${fish}, open the fish page to see the flies you can buy.` : "Skip this wing. A wing is only a ticket past the save’s lock. To build a fly, pick a wing the fly maker offers, or buy a ready-made set.",
+        reason: "No shop and no fly-maker menu we checked offers this wing. A wing does not make fish bite better and does not help in the fight; it only gets the fly past the lock."
       },
       ja: {
-        label: `ID ${id}のメニュー位置・店売りセットは未記録`,
-        recommendation: fish ? `確認したメニューと完成品の店売り記録には、ウィングID ${id}の選択経路がありません。記録済みメニューで選べるとは限りません。${fish}の魚ページで、記録のあるフライや別の釣り方を確認してください。` : `確認したメニューと完成品の店売り記録には、ウィングID ${id}の選択経路がありません。記録済みメニューで選べるとは限りません。自作する場合は先に対象魚に合うボディを選び、選択位置が確認された部品を使ってください。対象魚が未定なら、ボディ01の対象魚リストにある魚向けの入門セットを確認できます。`,
-        reason: "これは確認した証拠に経路がないという意味で、すべてのメニュー・エリアで入手不能という証明ではありません。このウィングの食いつき・取り込みボーナスも確認されていません。"
+        label: `ウィング${id}は入手不可：店にも毛バリ職人にもない`,
+        recommendation: fish ? `このウィングは無視してよい。ウィングは魚を選ばない。${fish}の魚ページで、買えるフライを確認してください。` : "このウィングは無視してよい。ウィングはセーブのロックを通るための部品でしかない。自作するなら職人にあるウィングを選ぶか、完成品を買う。",
+        reason: "確認した店にも毛バリ職人のメニューにも、このウィングはない。ウィングは食いつきを良くせず、ファイトにも効かない。毛バリがロックを通るためだけの部品。"
       }
     };
     return copies[lang] || copies.en;
   }
+  function lockText(lang, item) {
+    const blocked = flyGroup(item.id) === FRESH_SAVE_LOCK.wing;
+    const g = flyGroup(item.id);
+    if (lang === "th")
+      return blocked ? `ปีกนี้อยู่กลุ่ม ${g} ซึ่งเซฟใหม่ล็อกไว้ ฟลายที่ใช้ปีกนี้จะไม่กินเลยบนเซฟใหม่` : `ปีกนี้อยู่กลุ่ม ${g} ไม่ตรงกับล็อกของเซฟใหม่`;
+    if (lang === "ja")
+      return blocked ? `このウィングはグループ${g}で、新規セーブがロックしている。新規セーブではこのウィングの毛バリは一切食いつかない。` : `このウィングはグループ${g}で、新規セーブのロックとは一致しない。`;
+    return blocked ? `This wing is group ${g}, the group a fresh save locks, so a fly with it never bites on a fresh save.` : `This wing is group ${g}, which does not match a fresh save’s lock.`;
+  }
   function bundleCopy(lang, item, bundle, fish, supported) {
+    const lock = lockText(lang, item);
     const result = {
       th: {
-        label: `ชุดสำเร็จรูปด่าน ${bundle.stage}: บอดี้ ${bundle.body} + ปีก ${bundle.wing} + หาง ${bundle.tail} · ¥${bundle.shopPriceYen} ทั้งชุด`,
-        recommendation: fish ? supported ? `ปลาเป้าหมาย ${fish} อยู่ในรายชื่อของบอดี้ ${bundle.body}; ลองชุดสำเร็จรูปด่าน ${bundle.stage} (${bundle.body}/${bundle.wing}/${bundle.tail}) ได้ในราคา ¥${bundle.shopPriceYen} ทั้งชุด ไม่ใช่ราคาปีกอย่างเดียว` : `ปลาเป้าหมาย ${fish} ไม่อยู่ในรายชื่อที่บันทึกไว้ของบอดี้ ${bundle.body}; อย่าเลือกชุดนี้เป็นตัวเลือกที่รองรับเป้าหมายนี้ เปิดหน้าปลาเพื่อดูชุดและวิธีอื่นที่มีบันทึก` : `ถ้าจะใช้ปีก ${item.id} มีชุดสำเร็จรูปด่าน ${bundle.stage}: บอดี้ ${bundle.body} + ปีก ${bundle.wing} + หาง ${bundle.tail} ราคา ¥${bundle.shopPriceYen} ทั้งชุด ตรวจว่าปลาเป้าหมายอยู่ในรายชื่อบอดี้ ${bundle.body} ก่อนซื้อ`,
-        reason: `นี่คือข้อเสนอชุดสำเร็จรูปในร้าน ไม่ใช่ตำแหน่งเลือกปีก ${item.id} ในเมนูประกอบ และ ¥${bundle.shopPriceYen} คือราคารวมทั้งชุด ยังไม่มีหลักฐานว่าปีกนี้เพิ่มโอกาสปลากินหรือช่วยให้ตกขึ้น`
+        label: `ได้เฉพาะในชุดสำเร็จรูปด่าน ${bundle.stage}: บอดี้ ${bundle.body} + ปีก ${bundle.wing} + หาง ${bundle.tail} · ¥${bundle.shopPriceYen} ทั้งชุด`,
+        recommendation: fish ? supported ? `${fish}กินบอดี้ ${bundle.body} ซื้อชุดสำเร็จรูปด่าน ${bundle.stage} (${bundle.body}/${bundle.wing}/${bundle.tail}) ได้ในราคา ¥${bundle.shopPriceYen} ทั้งชุด ${lock}` : `${fish}ไม่กินบอดี้ ${bundle.body} ชุดนี้ใช้ตก${fish}ไม่ได้ เปิดหน้าปลาเพื่อดูชุดที่ใช้ได้` : `ปีก ${item.id} ได้เฉพาะในชุดสำเร็จรูปด่าน ${bundle.stage}: บอดี้ ${bundle.body} + ปีก ${bundle.wing} + หาง ${bundle.tail} ราคา ¥${bundle.shopPriceYen} ทั้งชุด ${lock}`,
+        reason: `ร้านทำฟลายไม่มีปีก ${item.id} ให้เลือกเอง ราคา ¥${bundle.shopPriceYen} คือราคาทั้งชุด ปีกไม่ช่วยให้ปลากินดีขึ้นและไม่ช่วยตอนสู้ มีหน้าที่แค่ผ่านล็อกของเซฟ`
       },
       en: {
-        label: `Area ${bundle.stage} ready-made set: body ${bundle.body} + wing ${bundle.wing} + tail ${bundle.tail} · ¥${bundle.shopPriceYen} total`,
-        recommendation: fish ? supported ? `The target ${fish} is listed for body ${bundle.body}. You can try the area ${bundle.stage} ready-made set (${bundle.body}/${bundle.wing}/${bundle.tail}) for ¥${bundle.shopPriceYen} total, not for the wing alone.` : `The target ${fish} is not in the recorded list for body ${bundle.body}; this set is not a listed profile match. Open the fish page for recorded flies and other methods.` : `If you want wing ${item.id}, the recorded ready-made set is area ${bundle.stage}: body ${bundle.body} + wing ${bundle.wing} + tail ${bundle.tail}, ¥${bundle.shopPriceYen} for the complete set. Check that your target is listed for body ${bundle.body} before buying.`,
-        reason: `This is a ready-made shop offer, not a verified custom-menu position for wing ${item.id}. ¥${bundle.shopPriceYen} is the complete-set price. No bite or landing advantage from this wing is established.`
+        label: `Only inside the Area ${bundle.stage} ready-made set: body ${bundle.body} + wing ${bundle.wing} + tail ${bundle.tail} · ¥${bundle.shopPriceYen} total`,
+        recommendation: fish ? supported ? `${fish} takes body ${bundle.body}. Buy the area ${bundle.stage} ready-made set (${bundle.body}/${bundle.wing}/${bundle.tail}) for ¥${bundle.shopPriceYen} total. ${lock}` : `${fish} does not take body ${bundle.body}, so this set cannot catch it. Open the fish page for sets that can.` : `Wing ${item.id} comes only in the area ${bundle.stage} ready-made set: body ${bundle.body} + wing ${bundle.wing} + tail ${bundle.tail}, ¥${bundle.shopPriceYen} for the complete set. ${lock}`,
+        reason: `The fly maker does not offer wing ${item.id}; ¥${bundle.shopPriceYen} is the price of the whole set. A wing does not make fish bite better and does not help in the fight; it only gets the fly past the lock.`
       },
       ja: {
-        label: `エリア${bundle.stage}の完成品：ボディ${bundle.body}＋ウィング${bundle.wing}＋テール${bundle.tail} · セット価格¥${bundle.shopPriceYen}`,
-        recommendation: fish ? supported ? `対象の${fish}はボディ${bundle.body}の記録済みリストにあります。エリア${bundle.stage}の完成品（${bundle.body}/${bundle.wing}/${bundle.tail}）をセット価格¥${bundle.shopPriceYen}で試せます。ウィング単体の価格ではありません。` : `対象の${fish}はボディ${bundle.body}の記録済みリストにありません。このセットは記録上の対象一致ではありません。魚ページで記録のあるフライや別の釣り方を確認してください。` : `ウィング${item.id}を使う店売り完成品は、エリア${bundle.stage}のボディ${bundle.body}＋ウィング${bundle.wing}＋テール${bundle.tail}、セット価格¥${bundle.shopPriceYen}です。購入前に対象魚がボディ${bundle.body}のリストにあるか確認してください。`,
-        reason: `これは店売り完成品で、ウィング${item.id}の自作メニュー位置ではありません。¥${bundle.shopPriceYen}はセット全体の価格です。このウィングによる食いつき・取り込み向上は確認されていません。`
+        label: `エリア${bundle.stage}の完成品の中だけ：ボディ${bundle.body}＋ウィング${bundle.wing}＋テール${bundle.tail} · セット価格¥${bundle.shopPriceYen}`,
+        recommendation: fish ? supported ? `${fish}はボディ${bundle.body}を食べる。エリア${bundle.stage}の完成品（${bundle.body}/${bundle.wing}/${bundle.tail}）をセット価格¥${bundle.shopPriceYen}で買う。${lock}` : `${fish}はボディ${bundle.body}を食べないので、このセットでは釣れない。魚ページで使えるセットを確認してください。` : `ウィング${item.id}はエリア${bundle.stage}の完成品（ボディ${bundle.body}＋ウィング${bundle.wing}＋テール${bundle.tail}、セット価格¥${bundle.shopPriceYen}）の中でしか手に入らない。${lock}`,
+        reason: `毛バリ職人ではウィング${item.id}を選べない。¥${bundle.shopPriceYen}はセット全体の価格。ウィングは食いつきを良くせず、ファイトにも効かない。毛バリがロックを通るためだけの部品。`
       }
     };
     return result[lang] || result.en;
@@ -634,9 +161,9 @@
         ja: "この魚のフライ候補と釣り方を見る"
       },
       starter: {
-        th: "ดูชุดสำเร็จรูปและรายชื่อปลาของบอดี้ 01",
-        en: "See body 01’s ready-made sets and fish list",
-        ja: "ボディ01の完成品と対象魚リストを見る"
+        th: "ดูชุดสำเร็จรูปและรายชื่อปลาของบอดี้เริ่มต้นที่ใช้ได้บนเซฟใหม่",
+        en: "See the starter body that works on a fresh save, with its ready-made sets and fish list",
+        ja: "新規セーブで使える入門ボディの完成品と対象魚リストを見る"
       },
       alternative: {
         th: "ดูปีกชิ้นอื่นที่มีตำแหน่งเมนูยืนยัน",
@@ -954,7 +481,7 @@
 
   // src/entities/item/rod-area-label.js
   var AIM_STYLES = [2, 4];
-  function text2(lang, type, key, values) {
+  function text(lang, type, key, values) {
     return rodAreaCopy(lang, type, key, values);
   }
   function offerPrice(lang, price) {
@@ -979,7 +506,7 @@
     const placeholders = Object.fromEntries(names.map((name) => [name, `%%${name}%%`]));
     return Object.entries(placeholders).reduce(
       (copy3, [name, marker]) => copy3.replaceAll(marker, `{${name}}`),
-      text2(lang, "comparison", key, placeholders)
+      text(lang, "comparison", key, placeholders)
     );
   }
   function tradeoffDescription(lang, subject, other) {
@@ -1010,7 +537,7 @@
   function valuesFor(lang, candidate, stage, better) {
     return {
       stage,
-      area: text2(lang, "recommendation", "area", { stage }),
+      area: text(lang, "recommendation", "area", { stage }),
       id: candidate.id,
       otherId: better?.id || "",
       price: offerPrice(lang, candidate.price),
@@ -1022,7 +549,7 @@
     if (status === "aim") {
       const budget = leader(choices, "price");
       if (budget.id !== candidate.id) {
-        return text2(lang, "labels", "aimChoice", {
+        return text(lang, "labels", "aimChoice", {
           ...values,
           comparison: tradeoffDescription(lang, candidate, budget)
         });
@@ -1032,10 +559,10 @@
       const maximum = Math.max(...choices.map((choice) => choice.boundary));
       const peer = boundaryPeerContext(choices, maximum);
       if (peer?.cheapest.id === candidate.id && peer.aimLeader.id !== candidate.id) {
-        return text2(lang, "labels", "boundaryPeerCheapest", values);
+        return text(lang, "labels", "boundaryPeerCheapest", values);
       }
       if (peer?.aimLeader.id === candidate.id && peer.cheapest.id !== candidate.id) {
-        return text2(lang, "labels", "boundaryPeerAim", {
+        return text(lang, "labels", "boundaryPeerAim", {
           ...values,
           otherId: peer.cheapest.id
         });
@@ -1047,7 +574,7 @@
     const { lower, higher } = tradeoffNeighbors(candidate, choices);
     const other = lower || leader(choices, "price");
     const key = higher ? "tradeoff" : "tradeoffFallback";
-    return text2(lang, "labels", key, {
+    return text(lang, "labels", key, {
       ...values,
       lowerId: other.id,
       comparison: tradeoffDescription(lang, candidate, other)
@@ -1056,14 +583,14 @@
   function areaRodLabel(lang, status, candidate, choices, stage, better) {
     const values = valuesFor(lang, candidate, stage, better);
     if (status === "dominated") {
-      return text2(lang, "labels", status, {
+      return text(lang, "labels", status, {
         ...values,
         betterReason: dominatedReason(lang, candidate, better)
       });
     }
     const leaderLabel = areaLeaderLabel(lang, status, candidate, choices, values);
     if (leaderLabel) return leaderLabel;
-    if (status !== "tradeoff") return text2(lang, "labels", status, values);
+    if (status !== "tradeoff") return text(lang, "labels", status, values);
     return tradeoffLabel(lang, candidate, choices, values);
   }
 
@@ -1127,7 +654,7 @@
   function localized(valueForLocale) {
     return Object.fromEntries(LOCALES.map((lang) => [lang, valueForLocale(lang)]));
   }
-  function text3(lang, type, key, values) {
+  function text2(lang, type, key, values) {
     return rodAreaCopy(lang, type, key, values);
   }
   function leader2(choices, field) {
@@ -1138,7 +665,7 @@
     const best = leader2(choices, field);
     const key = field === "aim" ? "aim" : field === "boundary" ? "boundary" : "budget";
     const sentenceKey = best.id === candidate.id ? `${key}Leader` : `${key}Other`;
-    return text3(lang, "recommendation", sentenceKey, {
+    return text2(lang, "recommendation", sentenceKey, {
       id: best.id,
       stats: offerStats(lang, best),
       hpNote: ""
@@ -1167,10 +694,10 @@
   }
   function localRecommendationValues(lang, candidate, stage) {
     return {
-      area: text3(lang, "recommendation", "area", { stage }),
+      area: text2(lang, "recommendation", "area", { stage }),
       stage,
       id: candidate.id,
-      style: text3(lang, "styles", String(styleCode(candidate.item)), {}),
+      style: text2(lang, "styles", String(styleCode(candidate.item)), {}),
       price: offerPrice2(lang, candidate.price),
       aim: candidate.aim,
       boundary: candidate.boundary,
@@ -1179,22 +706,22 @@
     };
   }
   function simpleLocalRecommendation(lang, status, candidate, choices, best, values) {
-    if (status === "only") return text3(lang, "recommendation", "only", values);
+    if (status === "only") return text2(lang, "recommendation", "only", values);
     if (status === "dominated")
-      return text3(lang, "recommendation", "dominated", {
+      return text2(lang, "recommendation", "dominated", {
         ...values,
         otherId: best.id,
         otherStats: offerStats(lang, best),
         betterReason: dominatedReason(lang, candidate, best)
       });
-    if (status === "dual") return text3(lang, "recommendation", "dual", values);
+    if (status === "dual") return text2(lang, "recommendation", "dual", values);
     if (status === "cheapest") return cheapestRecommendation(lang, candidate, choices, values);
     if (status === "aim") return aimRecommendation(lang, candidate, choices, values);
     if (status === "boundary") return boundaryRecommendation(lang, candidate, choices, values);
     return "";
   }
   function cheapestRecommendation(lang, candidate, choices, values) {
-    return text3(lang, "recommendation", "cheapest", {
+    return text2(lang, "recommendation", "cheapest", {
       ...values,
       aimLine: leaderSentence(lang, "aim", candidate, choices),
       boundaryLine: leaderSentence(lang, "boundary", candidate, choices)
@@ -1203,14 +730,14 @@
   function aimRecommendation(lang, candidate, choices, values) {
     const budget = leader2(choices, "price");
     if (budget.id !== candidate.id) {
-      return text3(lang, "recommendation", "aimChoice", {
+      return text2(lang, "recommendation", "aimChoice", {
         ...values,
         lowerId: budget.id,
         lowerPrice: offerPrice2(lang, budget.price),
         comparison: tradeoffDescription(lang, candidate, budget)
       });
     }
-    return text3(lang, "recommendation", "aim", {
+    return text2(lang, "recommendation", "aim", {
       ...values,
       budgetLine: leaderSentence(lang, "price", candidate, choices),
       boundaryLine: leaderSentence(lang, "boundary", candidate, choices)
@@ -1220,7 +747,7 @@
     const maximum = Math.max(...choices.map((choice) => choice.boundary));
     const peer = boundaryPeerContext(choices, maximum);
     if (peer?.cheapest.id === candidate.id && peer.aimLeader.id !== candidate.id) {
-      return text3(lang, "recommendation", "boundaryPeerCheapest", {
+      return text2(lang, "recommendation", "boundaryPeerCheapest", {
         ...values,
         otherId: peer.aimLeader.id,
         otherPrice: offerPrice2(lang, peer.aimLeader.price),
@@ -1229,14 +756,14 @@
       });
     }
     if (peer?.aimLeader.id === candidate.id && peer.cheapest.id !== candidate.id) {
-      return text3(lang, "recommendation", "boundaryPeerAim", {
+      return text2(lang, "recommendation", "boundaryPeerAim", {
         ...values,
         otherId: peer.cheapest.id,
         otherPrice: offerPrice2(lang, peer.cheapest.price),
         hpNote: aimCondition2(lang, candidate.item)
       });
     }
-    return text3(lang, "recommendation", "boundary", {
+    return text2(lang, "recommendation", "boundary", {
       ...values,
       budgetLine: leaderSentence(lang, "price", candidate, choices),
       aimLine: leaderSentence(lang, "aim", candidate, choices)
@@ -1244,7 +771,7 @@
   }
   function tradeoffRecommendation(lang, candidate, choices, values) {
     const { lower, higher } = tradeoffNeighbors2(candidate, choices);
-    return text3(lang, "recommendation", "tradeoffChoice", {
+    return text2(lang, "recommendation", "tradeoffChoice", {
       ...values,
       lowerId: lower?.id || leader2(choices, "price").id,
       comparison: tradeoffDescription(lang, candidate, lower || leader2(choices, "price")),
@@ -1286,7 +813,7 @@
       stage,
       label: localized(labelFor),
       recommendation: localized(recommendationFor),
-      reason: localized((lang) => text3(lang, "recommendation", "reason", {})),
+      reason: localized((lang) => text2(lang, "recommendation", "reason", {})),
       scope: localized((lang) => rodAreaScope(lang, style)),
       alternatives,
       nextStockStage
@@ -1295,29 +822,29 @@
   function areaValues(lang, stage) {
     return {
       stage,
-      area: text3(lang, "recommendation", "area", { stage })
+      area: text2(lang, "recommendation", "area", { stage })
     };
   }
   function unstockedItem(item, choices, stage, style) {
     const status = "item-unstocked";
-    const area = localized((lang) => text3(lang, "recommendation", "area", { stage }));
+    const area = localized((lang) => text2(lang, "recommendation", "area", { stage }));
     const budget = leader2(choices, "price");
     return decisionResult(
       status,
       stage,
       style,
-      (lang) => text3(lang, "labels", "itemMissing", {
+      (lang) => text2(lang, "labels", "itemMissing", {
         stage,
         area: area[lang],
         id: item.id,
         budgetId: budget.id,
         budgetPrice: offerPrice2(lang, budget.price)
       }),
-      (lang) => text3(lang, "recommendation", "itemMissing", {
+      (lang) => text2(lang, "recommendation", "itemMissing", {
         id: item.id,
         stage,
         area: area[lang],
-        style: text3(lang, "styles", String(style), {}) || STYLES[style],
+        style: text2(lang, "styles", String(style), {}) || STYLES[style],
         options: localeOptions(lang, choices),
         hpNote: aimCondition2(lang, item),
         budgetLine: leaderSentence(lang, "price", budget, choices),
@@ -1338,19 +865,19 @@
       status,
       stage,
       style,
-      (lang) => text3(lang, "labels", labelKey, {
+      (lang) => text2(lang, "labels", labelKey, {
         ...areaValues(lang, stage),
         nextStage,
         nextId: choices[0]?.id || "",
-        direction: text3(lang, "recommendation", direction, {})
+        direction: text2(lang, "recommendation", direction, {})
       }),
-      (lang) => text3(lang, "recommendation", key, {
+      (lang) => text2(lang, "recommendation", key, {
         id: item.id,
         ...areaValues(lang, stage),
         nextStage,
         nextId: choices[0]?.id || "",
-        direction: text3(lang, "recommendation", direction, {}),
-        style: text3(lang, "styles", String(style), {}) || STYLES[style],
+        direction: text2(lang, "recommendation", direction, {}),
+        style: text2(lang, "styles", String(style), {}) || STYLES[style],
         options: localeOptions(lang, choices),
         hpNote: aimCondition2(lang, item)
       }),
@@ -1385,19 +912,19 @@
     th: {
       title: "ซื้อใหม่เพื่อใช้กับปลาหลายชนิด: ราคาเท่ากัน แต่รองรับปลามากกว่า",
       advice: "เลือกตัวเลือกนี้ถ้าอยากพกชิ้นที่ใช้ได้กว้างขึ้น รองรับปลาเดิมครบทุกสายตกที่เปรียบเทียบ ถ้ามีชิ้นเดิมและใช้กับปลาเป้าหมายได้แล้ว ให้ใช้ต่อได้",
-      limit: "ไม่ได้ยืนยันว่าปลากินบ่อยขึ้นหรือตกขึ้นง่ายกว่า",
+      limit: "ปลากินเท่ากันเมื่อเหยื่ออยู่ในรายชื่อ แต่ถ้าชิ้นเดิมระบุชื่อปลาหรือเป็นลัวร์คนละกลุ่มขนาด ตอนเริ่มสู้จะไม่เหมือนกัน",
       area: (stage) => `ด่าน ${stage}`
     },
     en: {
       title: "Buying for more species: same price, broader fish coverage",
       advice: "Choose this option to carry an item with broader compatibility. It covers every original fish on each compared rig. Keep using the current item if you own it and it works for your target.",
-      limit: "This does not establish more bites or easier landings.",
+      limit: "Both bite the same way once the fish is on its tile; a named bait or a different lure size class still changes how the fight starts.",
       area: (stage) => `Area ${stage}`
     },
     ja: {
       title: "複数の魚を狙って買うなら：同じ価格で対応魚が多い候補",
       advice: "対応する魚を増やしたいなら、この候補を選べます。比較した各仕掛けで元の魚すべてに対応します。すでに持っていて対象魚に使える品は、そのまま使えます。",
-      limit: "食いつきや取り込みやすさの優位を示すものではありません。",
+      limit: "食いつきは同じです。ただし魚名つきのエサやルアーのサイズ区分が違えば、ファイトの開始値は変わります。",
       area: (stage) => `エリア${stage}`
     }
   };
@@ -1560,6 +1087,515 @@
   }
   function lureCoverageByArea(options) {
     return [1, 2, 3, 4, 5, 6].map((stage) => lureCoverageForArea(options, stage));
+  }
+
+  // src/shared/lib/target-advice.js
+  function acceptedFor(item, fish, route) {
+    const use = item.playerUse || {};
+    const ids = item.category === "bait" ? use.fishIdsByRoute?.[route] || [] : use.fishIds || [];
+    return ids.includes(fish);
+  }
+  function offerAt(item, stage) {
+    const use = item.playerUse || {};
+    const offer = use.shops?.find((entry) => Number(entry.stage) === stage);
+    if (!offer) return null;
+    return {
+      category: item.category,
+      id: item.id,
+      priceYen: Number(offer.priceYen ?? item.priceYen),
+      available: true,
+      conditional: Boolean(offer.condition),
+      condition: offer.condition || ""
+    };
+  }
+  function localOffers(ctx, item, fish, route, stage) {
+    if (!stage) return [];
+    return ctx.allItems.filter(
+      (candidate) => candidate.category === item.category && acceptedFor(candidate, fish, route)
+    ).map((candidate) => offerAt(candidate, stage)).filter((offer) => offer && Number.isFinite(offer.priceYen)).sort((a, b) => a.priceYen - b.priceYen || a.id.localeCompare(b.id));
+  }
+  function cheapestTies(offers) {
+    const eligible = offers.filter((offer) => !offer.conditional);
+    if (!eligible.length) return [];
+    const minimum = eligible[0].priceYen;
+    return eligible.filter((offer) => offer.priceYen === minimum);
+  }
+  function conditionalTies(offers) {
+    const eligible = offers.filter((offer) => offer.conditional);
+    if (!eligible.length) return [];
+    const minimum = eligible[0].priceYen;
+    return eligible.filter((offer) => offer.priceYen === minimum);
+  }
+  function selectAlternatives(offers, current, currentStock) {
+    const otherOffers = offers.filter((offer) => offer.id !== current.id);
+    const candidates = currentStock ? otherOffers.filter((offer) => offer.priceYen < currentStock.priceYen) : otherOffers;
+    return [...cheapestTies(candidates), ...conditionalTies(candidates)].sort(
+      (a, b) => a.priceYen - b.priceYen || Number(a.conditional) - Number(b.conditional) || a.id.localeCompare(b.id)
+    );
+  }
+  function targetAdvice(ctx, item, fish) {
+    if (!fish || !["bait", "lure"].includes(item.category)) return null;
+    const route = item.category === "bait" ? ctx.baitRoute || "float" : "lure";
+    if (!acceptedFor(item, fish, route)) return null;
+    const parsedStage = Number(ctx.locationStage);
+    const stage = Number.isInteger(parsedStage) && parsedStage >= 1 && parsedStage <= 6 ? parsedStage : null;
+    const currentOffer = stage ? offerAt(item, stage) : null;
+    const currentStock = stage ? currentOffer || { available: false } : null;
+    const localOptions = localOffers(ctx, item, fish, route, stage);
+    const alternatives = stage ? selectAlternatives(localOptions, item, currentStock?.available ? currentStock : null) : [];
+    return {
+      fish,
+      route,
+      stage,
+      compatible: true,
+      currentStock,
+      localOptions,
+      cheapestUnconditional: cheapestTies(localOptions),
+      alternatives
+    };
+  }
+  function routeName(ctx, route) {
+    if (route === "lure")
+      return ctx.lang === "ja" ? "ルアー" : ctx.lang === "th" ? "สายลัวร์" : "lure";
+    if (ctx.lang === "th") return route === "float" ? "ชุดทุ่น" : "ชุดตะกั่ว";
+    if (ctx.lang === "ja") return route === "float" ? "ウキ仕掛け" : "オモリ仕掛け";
+    return route === "float" ? "float rig" : "sinker rig";
+  }
+  function compatibilityText(ctx, fish, route) {
+    if (route === "lure")
+      return text3(ctx, {
+        th: `${fish}ว่ายตามลัวร์นี้`,
+        ja: `${fish}はこのルアーを追う`,
+        en: `${fish} chases this lure`
+      });
+    return text3(ctx, {
+      th: `${fish}กินเหยื่อนี้ · ${routeName(ctx, route)}`,
+      ja: `${fish}はこのエサを食べる · ${routeName(ctx, route)}`,
+      en: `${fish} takes this bait · ${routeName(ctx, route)}`
+    });
+  }
+  function text3(ctx, values) {
+    return values[ctx.lang] || values.en;
+  }
+  function conditionText(ctx, condition) {
+    if (!condition.includes("sell at least one Ayu")) return condition;
+    if (ctx.lang === "th") return "ต้องขายปลาอายุจากข้องอย่างน้อย 1 ตัวก่อนซื้อ";
+    if (ctx.lang === "ja") return "びくのアユを1匹以上売ってから購入";
+    return "requires selling at least one Ayu from your keepnet first";
+  }
+  function alternativeLink(ctx, offer) {
+    const candidate = ctx.allItems.find(
+      (entry) => entry.category === offer.category && entry.id === offer.id
+    );
+    if (!candidate) return "";
+    const condition = offer.conditional ? `<small>${ctx.esc(conditionText(ctx, offer.condition))}</small>` : "";
+    return `<li data-target-alternative="${ctx.esc(offer.category + ":" + offer.id)}"><a href="${ctx.esc(ctx.itemHref(candidate))}">${ctx.esc(ctx.itemName(candidate))} (${ctx.esc(offer.id)}) · ¥${offer.priceYen}</a>${condition}</li>`;
+  }
+  function alternativeList(ctx, advice) {
+    if (!advice.alternatives.length) return "";
+    const heading = advice.currentStock?.available ? text3(ctx, {
+      th: "ตัวเลือกที่ถูกกว่าซึ่งผ่านเงื่อนไขปลาและมีขายในด่านนี้",
+      ja: "この魚の判定を通り、エリア内で買える安い候補",
+      en: "Cheaper local offers that pass this fish check"
+    }) : text3(ctx, {
+      th: "ตัวเลือกที่มีขายในด่านนี้และผ่านเงื่อนไขปลา",
+      ja: "エリア内で販売され、この魚の判定を通る候補",
+      en: "Local offers that pass this fish check"
+    });
+    return `<p>${ctx.esc(heading)}</p><ul>${advice.alternatives.map((offer) => alternativeLink(ctx, offer)).join("")}</ul>`;
+  }
+  function noAreaDecision(ctx) {
+    return text3(ctx, {
+      th: "มีของชิ้นนี้อยู่แล้วใช้ต่อได้ เลือกด่านจากแผนที่เพื่อดูว่ามีขายอะไรและราคาเท่าไร",
+      ja: "所持していれば使用できます。地図でエリアを選ぶと、店頭在庫と価格を確認できます。",
+      en: "Use it if you already own it. Choose an area on the map to check local stock and prices."
+    });
+  }
+  function absentStockDecision(ctx, advice) {
+    if (advice.alternatives.length)
+      return text3(ctx, {
+        th: "ถ้ามีชิ้นนี้อยู่แล้วใช้ต่อได้ ชิ้นนี้ไม่มีรายการขายในด่านนี้; ถ้าจะซื้อใหม่ ให้เลือกตัวเลือกด้านล่าง",
+        ja: "所持していればそのまま使えます。この品はエリア内の在庫記録がありません。新しく買うなら下記の候補を選べます。",
+        en: "Keep using it if owned. This item has no recorded stock in this area; for a new purchase, choose a compatible offer below."
+      });
+    return text3(ctx, {
+      th: "ชิ้นนี้ไม่มีรายการขายในด่านนี้; ถ้ามีอยู่แล้วใช้ต่อได้ หรือดูร้านในด่านอื่น",
+      ja: "この品はエリア内の在庫記録がありません。所持品は使えます。別エリアの店を確認してください。",
+      en: "This item has no recorded stock in this area. Use it if owned, or check another area’s shops."
+    });
+  }
+  function conditionalStockDecision(ctx, stage, stock) {
+    return text3(ctx, {
+      th: `มีขายในด่าน ${stage} ราคา ¥${stock.priceYen} แต่${conditionText(ctx, stock.condition)}`,
+      ja: `エリア${stage}で${stock.priceYen}円で販売。ただし${conditionText(ctx, stock.condition)}`,
+      en: `Stocked in area ${stage} for ¥${stock.priceYen}, but ${conditionText(ctx, stock.condition)}.`
+    });
+  }
+  function cheapestStockDecision(ctx, stage, stock) {
+    return text3(ctx, {
+      th: `มีขายในด่าน ${stage} ราคา ¥${stock.priceYen}; ถ้าจะซื้อ ชิ้นนี้เป็นหนึ่งในตัวเลือกที่ถูกที่สุดซึ่งผ่านเงื่อนไขปลาในสต็อกที่ตรวจได้`,
+      ja: `エリア${stage}で${stock.priceYen}円。このエリアで確認できた魚判定を通る在庫品の最安候補の一つです。`,
+      en: `Stocked in area ${stage} for ¥${stock.priceYen}; it is one of the cheapest recorded local offers passing this fish check.`
+    });
+  }
+  function compareStockDecision(ctx, stage, stock) {
+    return text3(ctx, {
+      th: `มีขายในด่าน ${stage} ราคา ¥${stock.priceYen}; ถ้ามีอยู่แล้วใช้ต่อได้ ถ้าจะซื้อให้ดูตัวเลือกที่ถูกกว่าด้านล่าง`,
+      ja: `エリア${stage}で${stock.priceYen}円。所持品はそのまま使えます。購入するなら下記の安い候補を確認してください。`,
+      en: `Stocked in area ${stage} for ¥${stock.priceYen}. Keep using it if owned; compare the cheaper offers below before buying.`
+    });
+  }
+  function shopDecision(ctx, advice) {
+    if (!advice.stage) return noAreaDecision(ctx);
+    const stock = advice.currentStock;
+    if (!stock?.available) return absentStockDecision(ctx, advice);
+    if (stock.conditional) return conditionalStockDecision(ctx, advice.stage, stock);
+    const isCheapest = advice.cheapestUnconditional.some(
+      (offer) => offer.id === advice.currentStock.id
+    );
+    return isCheapest ? cheapestStockDecision(ctx, advice.stage, stock) : compareStockDecision(ctx, advice.stage, stock);
+  }
+  function targetAdviceScope(ctx) {
+    return text3(ctx, {
+      th: "ปลากินหรือว่ายตามเมื่อทุ่นหรือลัวร์อยู่ช่องเดียวกับปลา เวลา อากาศ คัน เบ็ด และ HP ไม่มีผล",
+      ja: "ウキやルアーが魚と同じマスにあれば食いつく・追ってくる。時間・天気・竿・ハリ・HPは関係ない。",
+      en: "The fish bites or chases once your float or lure is on its tile. Time, weather, rod, hook and HP do not matter."
+    });
+  }
+  function renderTargetAdvice(ctx, item, fish, { includeScope = true } = {}) {
+    const advice = targetAdvice(ctx, item, fish);
+    if (!advice) return "";
+    const fishName = ctx.fishName(fish);
+    const status = compatibilityText(ctx, fishName, advice.route);
+    const scope = includeScope ? `<small>${ctx.esc(targetAdviceScope(ctx))}</small>` : "";
+    const markers = `data-target-advice data-target-fish="${ctx.esc(fish)}" data-target-route="${advice.route}" data-target-stage="${advice.stage || ""}"`;
+    return `<div class="target-advice" ${markers}><p class="target-compatibility"><strong>${ctx.esc(status)}</strong></p><p>${ctx.esc(shopDecision(ctx, advice))}</p>${alternativeList(ctx, advice)}${scope}</div>`;
+  }
+
+  // src/shared/lib/evidence-link.js
+  var repository = "https://github.com/polaminggkub-debug/kawa-no-nushi-tsuri-2-research/blob/main/";
+  function readableEvidenceHref(value) {
+    if (typeof value !== "string") return value;
+    if (!/^\.\.\/(?:docs\/[\w.-]+\.md|README\.md)(?:#[^\s]*)?$/.test(value)) return value;
+    return repository + value.slice(3);
+  }
+
+  // src/shared/lib/hp-recovery-action.js
+  var labels = {
+    th: "เลือกอาหารฟื้น HP และดูแหล่งซื้อ",
+    ja: "HP回復用の食料と販売場所を選ぶ",
+    en: "Choose recovery food and see where to buy it"
+  };
+  function hpRecoveryAction(options) {
+    const { locale, cataloguePath, stage, returnPath, source, escapeHtml } = options;
+    const query = new URLSearchParams({ category: "food", return: returnPath });
+    if (/^[1-6]$/.test(String(stage))) query.set("stage", String(stage));
+    const href = `${cataloguePath}?${query}#category-decisions`;
+    return `<a class="route-button" data-hp-food-action data-hp-source="${escapeHtml(source)}" href="${escapeHtml(href)}">${escapeHtml(labels[locale] || labels.en)} ↗</a>`;
+  }
+
+  // src/shared/lib/index.js
+  function createPageRuntime(api) {
+    const runtime = {};
+    for (const [name, value] of Object.entries(api)) {
+      if (name !== "initialize") runtime[name] = value.bind(null, runtime);
+    }
+    return runtime;
+  }
+
+  // src/pages/equipment/wing-palette.js
+  function itemDisplayName(ctx, item) {
+    return item.playerUse?.displayName?.[ctx.lang] || ctx.itemName(item);
+  }
+  function findWingItem(ctx, wingId) {
+    const item = ctx.allItems.find((entry) => entry.category === "fly_wing" && entry.id === wingId);
+    if (!item) throw new Error(`Missing catalogue record for Mayfly wing ${wingId}`);
+    return item;
+  }
+  function wingItemHref(ctx, item) {
+    const target = new URL(ctx.itemHref(item), "https://example.invalid/catalogue/");
+    const returned = target.searchParams.get("return");
+    if (returned) target.searchParams.set("return", `${returned.split("#")[0]}#wing-palette-title`);
+    return `${target.pathname.split("/").pop()}${target.search}${target.hash}`;
+  }
+  function renderColumnHeaders(ctx, palette, copy3) {
+    const columns = Array.from({ length: palette.menu.columns }, (_, index) => index + 1);
+    return columns.map((column) => `<th scope="col">${ctx.esc(copy3.column)} ${column}</th>`).join("");
+  }
+  function renderChoice(ctx, position, copy3) {
+    const item = findWingItem(ctx, position.wingId);
+    const name = itemDisplayName(ctx, item);
+    const location2 = `${copy3.column} ${position.column}, ${copy3.row} ${position.row}`;
+    const label = `${copy3.openItem}: ${name}, ID ${position.wingId}; ${location2}`;
+    const locked = flyGroup(position.wingId) === FRESH_SAVE_LOCK.wing;
+    const lock = locked ? `<span class="wing-palette__choice-lock">${ctx.esc(copy3.lock)}</span>` : "";
+    return `<td data-wing-cell="${position.wingId}"${locked ? ' data-wing-locked="true"' : ""}><a class="wing-palette__choice" data-wing-choice="${position.wingId}" data-wing-row="${position.row}" data-wing-column="${position.column}" href="${ctx.esc(wingItemHref(ctx, item))}" aria-label="${ctx.esc(label)}"><img loading="lazy" src="${ctx.esc(item.image)}" alt=""><span class="wing-palette__choice-id">${ctx.esc(position.wingId)}</span><span class="wing-palette__choice-name">${ctx.esc(name)}</span>${lock}<span class="wing-palette__choice-open"><span class="wing-palette__choice-open-label">${ctx.esc(copy3.openItem)}</span> ↗</span></a></td>`;
+  }
+  function renderRow(ctx, palette, row, copy3) {
+    const cells = Array.from({ length: palette.menu.columns }, (_, index) => {
+      const column = index + 1;
+      const position = palette.positions.find((entry) => entry.column === column && entry.row === row);
+      if (!position) throw new Error(`Missing verified Mayfly wing at row ${row}, column ${column}`);
+      return renderChoice(ctx, position, copy3);
+    });
+    return `<tr><th scope="row">${ctx.esc(copy3.row)} ${row}</th>${cells.join("")}</tr>`;
+  }
+  function renderGrid(ctx, palette, copy3) {
+    const rows = Array.from({ length: palette.menu.rows }, (_, index) => index + 1);
+    return `<div class="wing-palette__table-wrap"><table class="wing-palette__table"><caption>${ctx.esc(copy3.gridCaption)}</caption><thead><tr><th scope="col" class="wing-palette__corner"></th>${renderColumnHeaders(ctx, palette, copy3)}</tr></thead><tbody>${rows.map((row) => renderRow(ctx, palette, row, copy3)).join("")}</tbody></table></div>`;
+  }
+  function renderScreenshot(ctx, palette, copy3) {
+    const shot = palette.screenshot;
+    return `<figure class="wing-palette__screenshot"><a href="${ctx.esc(shot.path)}" target="_blank" rel="noopener"><img loading="lazy" src="${ctx.esc(shot.path)}" alt="${ctx.esc(copy3.screenshotTitle)}"></a><figcaption>${ctx.esc(shot.caption[ctx.lang] || shot.caption.en)}</figcaption></figure>`;
+  }
+  function renderTechnicalEvidence(ctx, palette, copy3) {
+    const evidenceLink = `<p><a href="${ctx.esc(readableEvidenceHref(palette.evidenceHref))}" target="_blank" rel="noopener">${ctx.esc(copy3.evidenceLink)} ↗</a></p>`;
+    return `<details class="wing-palette__technical"><summary>${ctx.esc(copy3.technicalTitle)}</summary><div><p>${ctx.esc(copy3.rightEdge)}</p><p>${ctx.esc(copy3.noRanking)}</p><p>${ctx.esc(copy3.evidence)}</p>${evidenceLink}</div></details>`;
+  }
+  function wingPaletteMarkup(ctx, palette) {
+    if (!palette?.positions?.length || !ctx.allItems?.length || !ctx.itemHref) return "";
+    const copy3 = palette.copy[ctx.lang] || palette.copy.en;
+    const titleId = "wing-palette-title";
+    return `<section class="wing-palette" data-wing-palette aria-labelledby="${titleId}"><header class="wing-palette__header"><p class="wing-palette__eyebrow">${ctx.esc(copy3.eyebrow)}</p><h3 id="${titleId}">${ctx.esc(copy3.title)}</h3><p class="wing-palette__intro">${ctx.esc(copy3.intro)}</p><p class="wing-palette__controls" id="wing-palette-controls">${ctx.esc(copy3.controls)}</p></header><div class="wing-palette__layout">${renderScreenshot(ctx, palette, copy3)}${renderGrid(ctx, palette, copy3)}</div>${renderTechnicalEvidence(ctx, palette, copy3)}</section>`;
+  }
+
+  // src/pages/equipment/evidence-display.js
+  function renderSamples(ctx) {
+    const tbody = document.getElementById("sample-rows");
+    const selected = ctx.exampleIds.map((key) => ctx.allItems.find((item) => `${item.category}:${item.id}` === key)).filter(Boolean);
+    tbody.innerHTML = selected.map((item) => {
+      const summary = ctx.copy.quick[`${item.category}:${item.id}`] || ctx.itemNotes(item)[0];
+      return `<tr><td><div class="sample-item"><img src="${ctx.esc(item.image)}" alt=""><div><span class="item-id">${ctx.esc(item.id)}</span><strong>${ctx.esc(ctx.itemName(item))}</strong><small>${ctx.esc(item.nameJa)}</small></div></div></td><td>${ctx.esc(summary)}</td><td><span class="price-badge">${ctx.esc(ctx.formatYen(item))}</span></td></tr>`;
+    }).join("");
+  }
+  function renderFrames(ctx, data) {
+    const box = document.getElementById("customizer-frames");
+    box.innerHTML = data.customizerFrames.map(
+      (frame, index) => `<figure class="custom-frame"><a href="${ctx.esc(frame.src)}" target="_blank" rel="noopener"><img loading="lazy" src="${ctx.esc(frame.src)}" alt="${ctx.esc(ctx.lang === "th" ? frame.captionTh : ctx.lang === "ja" ? frame.captionJa : frame.captionEn)}"></a><figcaption><span>${String(index + 1).padStart(2, "0")}</span>${ctx.esc(ctx.lang === "th" ? frame.captionTh : ctx.lang === "ja" ? frame.captionJa : frame.captionEn)}</figcaption></figure>`
+    ).join("") + wingPaletteMarkup(ctx, data.flyMakerWingPalette);
+  }
+  function renderNotes(ctx, data) {
+    const list = data.researchNotes[ctx.lang] || data.researchNotes.en;
+    document.getElementById("research-notes").innerHTML = list.map((text4) => `<p>${ctx.esc(text4)}</p>`).join("");
+    document.getElementById("sources").innerHTML = data.sources.map(
+      (src) => `<p>${src.url ? `<a href="${ctx.esc(src.url)}" target="_blank" rel="noopener">${ctx.esc(ctx.lang === "th" ? src.titleTh : ctx.lang === "ja" ? src.titleJa : src.titleEn)} ↗</a>` : `<strong>${ctx.esc(ctx.lang === "th" ? src.titleTh : ctx.lang === "ja" ? src.titleJa : src.titleEn)}</strong>`}<br><span>${ctx.esc(ctx.lang === "th" ? src.detailTh : ctx.lang === "ja" ? src.detailJa : src.detailEn)}</span></p>`
+    ).join("");
+  }
+  function cardDisclosure(ctx, summary, content, className) {
+    if (!content?.trim()) return "";
+    return `<details class="${className}"><summary>${ctx.esc(summary)}</summary><div class="${className}-content">${content}</div></details>`;
+  }
+  function detailedFields(ctx, item) {
+    const originalEvidence = ctx.useOf(item).evidence || {};
+    const evidence = {
+      ...originalEvidence,
+      sources: [
+        .../* @__PURE__ */ new Set([
+          ...originalEvidence.sources || [],
+          ...item.rodDecision?.sources || [],
+          ...item.gearDecision?.sources || [],
+          ...item.baitLureDecision?.sources || []
+        ])
+      ]
+    };
+    const sourceInfo = evidence.type ? `<p>${ctx.esc(ctx.lang === "th" ? "ที่มาของคำอธิบาย" : ctx.lang === "ja" ? "説明の根拠" : "Explanation source")}: ${ctx.esc(evidence.type)}</p>${(evidence.sources || []).map((s) => `<p><a href="https://github.com/polaminggkub-debug/kawa-no-nushi-tsuri-2-research/blob/main/${ctx.esc(s)}" target="_blank" rel="noopener"><code>${ctx.esc(s)}</code> ↗</a></p>`).join("")}` : "";
+    const bytes = item.recordBytesHex ? `<p><b>${ctx.esc(ctx.copy.offset)}:</b> <code>${ctx.esc(item.fileOffset || "—")}</code></p><p><b>${ctx.esc(ctx.copy.bytes)}:</b> <code>${ctx.esc(item.recordBytesHex)}</code></p>` : `<p>${ctx.esc(ctx.copy.none)}</p>`;
+    const decoded = Object.entries(item.decodedFields || {}).filter(([key]) => !["nameJapanese", "nameEnglish", "condition"].includes(key)).map(
+      ([key, value]) => `<dt>${ctx.esc(ctx.copy.fieldNames[key] || key)}</dt><dd>${ctx.esc(typeof value === "object" ? JSON.stringify(value) : value)}</dd>`
+    ).join("");
+    const use = ctx.useOf(item), targets = use.targetMatches ? Array.isArray(use.targetMatches) ? use.targetMatches : [use.targetMatches] : [];
+    const response = targets.length ? `<p>${ctx.lang === "th" ? "มีการคำนวณตอบสนองเฉพาะปลา แต่ยังใช้จัดอันดับจับง่ายไม่ได้" : ctx.lang === "ja" ? "魚別の応答計算。取り込みやすさの順位には未使用。" : "Fish-specific response calculation; not a landing recommendation."}: ${targets.map((t) => ctx.esc(ctx.fishName(t.fishId))).join(", ")}</p>` : "";
+    const hookTrace = item.category === "rod" || ["hook", "fly_wing", "fly_tail", "float_weight"].includes(item.category) || item.category === "food" && item.id === "08" || use.specialResponseTarget ? `<p>${ctx.esc(ctx.local(use.summary))}</p><ul>${(use.facts?.[ctx.lang] || []).map((f) => `<li>${ctx.esc(f)}</li>`).join("")}</ul>` : "";
+    return `<details class="record-details"><summary>${ctx.esc(ctx.player.evidence)}</summary>${sourceInfo}${response}${hookTrace}${use.comparison ? `<p>${ctx.esc(ctx.local(use.comparison))}</p>` : ""}<p>${ctx.esc(ctx.copy.priceField)}: ${ctx.esc(ctx.formatYen(item))}</p><ul class="stat-list">${(ctx.useOf(item).evidenceNotes?.[ctx.lang] || []).map((n) => `<li>${ctx.esc(n)}</li>`).join("")}</ul>${ctx.lang === "th" && !item.nameTh && ctx.useOf(item).displayName?.th ? "<p>ชื่อไทย: คำแปลชื่อภาษาญี่ปุ่นสำหรับคู่มือนี้</p>" : ""}${bytes}${decoded ? `<h4>${ctx.esc(ctx.copy.decoded)}</h4><dl>${decoded}</dl>` : ""}<a class="frame-link" href="${ctx.esc(item.frame)}" target="_blank" rel="noopener">${ctx.esc(ctx.copy.openFrame)}</a></details>`;
+  }
+  function thaiLabel(ctx, item) {
+    return ctx.lang === "th" && item.labelImageTh ? `<img class="thai-rom-label" loading="lazy" src="${ctx.esc(item.labelImageTh)}" alt="${ctx.esc(item.nameTh || "ชื่อในเกมไทย")}">` : "";
+  }
+
+  // src/pages/equipment/fish-equipment-default.js
+  function compatibleWith(item, fish, route) {
+    const use = item.playerUse || {};
+    const ids = route ? use.fishIdsByRoute?.[route] || use.fishIds || [] : use.fishIds || [];
+    return ids.includes(fish);
+  }
+  function fishEquipmentDefault(ctx, fish) {
+    const items = ctx.allItems || [];
+    const preferred = ctx.baitRoute === "sinker" ? "sinker" : "float";
+    for (const route of [preferred, preferred === "float" ? "sinker" : "float"]) {
+      if (items.some((item) => item.category === "bait" && compatibleWith(item, fish, route)))
+        return { category: "bait", route };
+    }
+    if (items.some((item) => item.category === "lure" && compatibleWith(item, fish)))
+      return { category: "lure", route: preferred };
+    if (items.some((item) => item.category === "fly" && compatibleWith(item, fish)))
+      return { category: "flymaker", route: preferred };
+    return { category: "bait", route: preferred };
+  }
+  function applyFishEquipmentDefault(ctx, fish) {
+    const choice = fishEquipmentDefault(ctx, fish);
+    document.getElementById("category-filter").value = choice.category;
+    ctx.baitRoute = choice.route;
+    ctx.flyPart = "fly";
+  }
+
+  // src/pages/equipment/fish-picker.js
+  function closeFishSuggestions(ctx) {
+    document.getElementById("fish-suggestions").hidden = true;
+    document.getElementById("fish-search").setAttribute("aria-expanded", "false");
+    document.getElementById("fish-search").removeAttribute("aria-activedescendant");
+    ctx.activeSuggestion = -1;
+  }
+  function showFishSuggestions(ctx) {
+    const input = document.getElementById("fish-search"), box = document.getElementById("fish-suggestions");
+    const selected = document.getElementById("fish-filter").value;
+    const term = selected && input.value === ctx.fishName(selected) ? "" : input.value.normalize("NFKC").trim().toLocaleLowerCase();
+    ctx.suggestionIds = Object.keys(ctx.fishVisuals).filter((id) => id !== "43" && (!term || ctx.fishSearchText(id).includes(term))).sort((a, b) => ctx.fishName(a).localeCompare(ctx.fishName(b), ctx.lang));
+    ctx.activeSuggestion = -1;
+    box.innerHTML = ctx.suggestionIds.map(
+      (id) => `<div id="fish-option-${id}" role="option" aria-selected="false" data-fish-choice="${id}"><img src="${ctx.esc(ctx.fishVisuals[id].image)}" alt=""><span><strong>${ctx.esc(ctx.fishName(id))}</strong><small>${ctx.esc(ctx.lang === "ja" ? ctx.fishVisuals[id].nameLatin || ctx.fishVisuals[id].nameLatinVariants?.[0] || "" : ctx.fishVisuals[id].nameJa || "")}</small></span></div>`
+    ).join("") || `<p class="fish-no-match">${ctx.esc(ctx.pickerCopy.none)}</p>`;
+    box.hidden = false;
+    input.setAttribute("aria-expanded", "true");
+    input.removeAttribute("aria-activedescendant");
+    document.getElementById("fish-search-status").textContent = ctx.suggestionIds.length ? ctx.pickerCopy.count(ctx.suggestionIds.length) : ctx.pickerCopy.none;
+  }
+  function handleFishSearchInput(ctx, input) {
+    if (!input.value.trim()) ctx.selectFish("");
+    ctx.showFishSuggestions();
+  }
+  function restoreSelectedFish(ctx, input) {
+    const selected = document.getElementById("fish-filter").value;
+    input.value = selected ? ctx.fishName(selected) : "";
+  }
+  function handleFishSearchBlur(ctx, input) {
+    restoreSelectedFish(ctx, input);
+    ctx.closeFishSuggestions();
+  }
+  function handleFishSearchKeydown(ctx, input, box, event) {
+    if (event.key === "Escape") {
+      restoreSelectedFish(ctx, input);
+      ctx.closeFishSuggestions();
+      return;
+    }
+    if (event.key === "ArrowDown" || event.key === "ArrowUp") {
+      event.preventDefault();
+      if (box.hidden) ctx.showFishSuggestions();
+      if (!ctx.suggestionIds.length) return;
+      ctx.activeSuggestion = event.key === "ArrowDown" ? (ctx.activeSuggestion + 1) % ctx.suggestionIds.length : ctx.activeSuggestion < 0 ? ctx.suggestionIds.length - 1 : (ctx.activeSuggestion - 1 + ctx.suggestionIds.length) % ctx.suggestionIds.length;
+      box.querySelectorAll('[role="option"]').forEach(
+        (option2, index) => option2.setAttribute("aria-selected", index === ctx.activeSuggestion ? "true" : "false")
+      );
+      const option = document.getElementById("fish-option-" + ctx.suggestionIds[ctx.activeSuggestion]);
+      input.setAttribute("aria-activedescendant", option.id);
+      option.scrollIntoView({ block: "nearest" });
+    } else if (event.key === "Enter" && !box.hidden) {
+      event.preventDefault();
+      const id = ctx.suggestionIds[ctx.activeSuggestion] || (ctx.suggestionIds.length === 1 ? ctx.suggestionIds[0] : null);
+      if (id) ctx.selectFish(id);
+    } else if (event.key === "Tab") ctx.closeFishSuggestions();
+  }
+  function selectClickedFish(ctx, event) {
+    const option = event.target.closest("[data-fish-choice]");
+    if (option) ctx.selectFish(option.dataset.fishChoice);
+  }
+  function clearFishSearch(ctx, input) {
+    ctx.selectFish("");
+    input.focus();
+    ctx.showFishSuggestions();
+  }
+  function closeSuggestionsOutside(ctx, event) {
+    if (!event.target.closest(".fish-combobox")) ctx.closeFishSuggestions();
+  }
+  function setupFishPicker(ctx) {
+    const input = document.getElementById("fish-search"), box = document.getElementById("fish-suggestions"), clearButton = document.getElementById("fish-clear");
+    input.disabled = false;
+    clearButton.disabled = false;
+    input.placeholder = ctx.pickerCopy.placeholder;
+    clearButton.setAttribute("aria-label", ctx.pickerCopy.clear);
+    input.addEventListener("input", () => handleFishSearchInput(ctx, input));
+    input.addEventListener("focus", ctx.showFishSuggestions);
+    input.addEventListener("blur", () => handleFishSearchBlur(ctx, input));
+    input.addEventListener("keydown", (event) => handleFishSearchKeydown(ctx, input, box, event));
+    box.addEventListener("mousedown", (event) => event.preventDefault());
+    box.addEventListener("click", (event) => selectClickedFish(ctx, event));
+    clearButton.addEventListener("click", () => clearFishSearch(ctx, input));
+    document.addEventListener("click", (event) => closeSuggestionsOutside(ctx, event));
+  }
+  function selectFish(ctx, id) {
+    if (document.getElementById("fish-filter").value !== id) {
+      document.getElementById("search").value = "";
+      document.getElementById("style-filter").value = "";
+      ctx.flyPart = "fly";
+    }
+    document.getElementById("fish-filter").value = id;
+    document.getElementById("fish-search").value = id ? ctx.fishName(id) : "";
+    document.getElementById("fish-search-status").textContent = "";
+    ctx.closeFishSuggestions();
+    if (id) applyFishEquipmentDefault(ctx, id);
+    ctx.locationStage = "";
+    ctx.locationMapIndex = 0;
+    ctx.renderCards();
+    if (typeof history !== "undefined")
+      history.replaceState(null, "", `?${new URLSearchParams(location.search)}#fish-location-panel`);
+    ctx.refreshLanguageLinks?.();
+  }
+
+  // src/pages/equipment/category-navigation.js
+  var ROUTES = ["float", "sinker"];
+  var FLY_PARTS = ["fly", "fly_wing", "fly_tail"];
+  var STAGES = ["1", "2", "3", "4", "5", "6"];
+  function categoryNavigationHref(ctx, category, fish) {
+    const search = typeof location === "undefined" ? "" : location.search;
+    const query = new URLSearchParams(search);
+    query.set("category", category);
+    if (fish) query.set("fish", fish);
+    else query.delete("fish");
+    query.delete("q");
+    query.delete("style");
+    if (STAGES.includes(String(ctx.locationStage || ""))) query.set("stage", ctx.locationStage);
+    else query.delete("stage");
+    if (ROUTES.includes(ctx.baitRoute)) query.set("route", ctx.baitRoute);
+    else query.delete("route");
+    if (category === "flymaker" && FLY_PARTS.includes(ctx.flyPart)) query.set("part", ctx.flyPart);
+    else query.delete("part");
+    const map = Number(ctx.locationMapIndex);
+    if (query.has("map") || Number.isInteger(map) && map > 0) {
+      if (Number.isInteger(map) && map >= 0) query.set("map", String(map));
+      else query.delete("map");
+    }
+    return `?${query.toString()}#catalogue`;
+  }
+  function refreshCategoryNavigationLinks(ctx, fish) {
+    document.querySelectorAll("#category-menu [data-category]").forEach((link) => {
+      link.setAttribute("href", categoryNavigationHref(ctx, link.dataset.category, fish));
+    });
+  }
+
+  // src/pages/equipment/category-controls.js
+  function renderTargetCategories(ctx, fish) {
+    const available = fish ? ctx.groups.filter((c) => ctx.fishCategories.includes(c)) : ctx.groups;
+    const select = document.getElementById("category-filter"), current = select.value;
+    select.innerHTML = `<option value="all">${ctx.esc(ctx.player.all)}</option>` + available.map((c) => `<option value="${c}">${ctx.esc(ctx.player.cat[c])}</option>`).join("");
+    select.value = !fish || ctx.fishCategories.includes(current) ? current : "all";
+    document.getElementById("category-menu").innerHTML = `<a class="category-button" href="${ctx.esc(categoryNavigationHref(ctx, "all", fish))}" data-category="all"><span><strong>${ctx.esc(ctx.player.all)}</strong></span></a>` + available.map((c) => {
+      const item = ctx.allItems.find((i) => ctx.groupOf(i) === c);
+      const count = ctx.allItems.filter(
+        (i) => fish && ["rod", "hook"].includes(c) ? ctx.groupOf(i) === c : ctx.groupOf(i) === c && (!fish || ctx.fishIdsFor(i).includes(fish) || ["fly_wing", "fly_tail"].includes(i.category) && ctx.flyBundlePartFor(i, fish))
+      ).length;
+      return `<a class="category-button" href="${ctx.esc(categoryNavigationHref(ctx, c, fish))}" data-category="${c}"><img src="${ctx.esc(item?.image)}" alt=""><span><strong>${ctx.esc(ctx.player.cat[c])}</strong><small>${count}</small></span></a>`;
+    }).join("");
+  }
+  function renderFilters(ctx) {
+    document.getElementById("category-filter").innerHTML = `<option value="all">${ctx.esc(ctx.player.all)}</option>` + ctx.groups.map((c) => `<option value="${c}">${ctx.esc(ctx.player.cat[c])}</option>`).join("");
+    document.getElementById("style-filter").innerHTML = `<option value="">${ctx.esc(ctx.player.all)}</option>` + Object.entries(
+      ctx.lang === "th" ? { 1: "ทุ่น / อายุ", 2: "ตีเหยื่อ", 4: "ลัวร์", 8: "ฟลาย" } : ctx.lang === "ja" ? { 1: "ウキ・アユ", 2: "投げ", 4: "ルアー", 8: "フライ" } : { 1: "Float / Ayu", 2: "Casting", 4: "Lure", 8: "Fly" }
+    ).map(([k, v]) => `<option value="${k}">${ctx.esc(v)}</option>`).join("");
+    ctx.set("#style-filter-label", ctx.player.style);
+    document.getElementById("sort-filter").innerHTML = `<option value="id">${ctx.esc(ctx.copy.sortId)}</option><option value="name">${ctx.esc(ctx.copy.sortName)}</option><option value="buy-price">${ctx.esc(ctx.copy.sortBuyPrice)}</option><option value="price">${ctx.esc(ctx.copy.sortPrice)}</option>`;
+    document.getElementById("category-menu").innerHTML = ctx.groups.map((c) => {
+      const i = ctx.allItems.find((i2) => ctx.groupOf(i2) === c);
+      return `<a class="category-button" href="${ctx.esc(categoryNavigationHref(ctx, c, document.getElementById("fish-filter").value))}" data-category="${c}"><img src="${ctx.esc(i?.image)}" alt=""><span><strong>${ctx.esc(ctx.player.cat[c])}</strong><small>${ctx.allItems.filter((i2) => ctx.groupOf(i2) === c).length}</small></span></a>`;
+    }).join("");
   }
 
   // src/pages/equipment/hp-recovery-tip.js
@@ -1897,12 +1933,13 @@
     const offers = ctx.allItems.filter((i) => i.category === "fly" && (ctx.useOf(i).fishIds || []).includes(fish)).flatMap(
       (i) => (ctx.useOf(i).shops || []).filter((s) => s.bundle).map((s) => ({ body: i, ...s }))
     ).sort((a, b) => a.bundle.shopPriceYen - b.bundle.shopPriceYen || a.stage - b.stage);
-    const sameArea = offers.filter((o) => o.stage === stage);
-    return { offer: (sameArea.length ? sameArea : offers)[0], sameArea };
+    const usable = freshSaveOffers(offers, (o) => o.bundle);
+    const sameArea = usable.filter((o) => o.stage === stage);
+    return { offer: (sameArea.length ? sameArea : usable)[0], sameArea };
   }
   function noReadyFlyCard(ctx, fish) {
     const title = ctx.lang === "th" ? "ปลานี้ควรใช้อะไร" : ctx.lang === "ja" ? "この魚には何を使うか" : "What to use for this fish";
-    const note = ctx.lang === "th" ? "ยังไม่มีชุดฟลายสำเร็จรูปที่ผ่านเงื่อนไขให้แนะนำ เปิดหน้าปลาเพื่อเลือกวิธีตกและอุปกรณ์ที่รองรับ" : ctx.lang === "ja" ? "条件に合う店売り毛バリは案内できません。魚のページで対応する釣り方と道具を選んでください。" : "No qualifying ready-made fly is listed. Open this fish’s guide to choose a supported method and setup.";
+    const note = ctx.lang === "th" ? "ไม่มีบอดี้ฟลายที่ปลานี้กิน เปิดหน้าปลาเพื่อดูวิธีตกและอุปกรณ์ที่ใช้ได้" : ctx.lang === "ja" ? "この魚が食べるフライボディはありません。魚のページで使える釣り方と道具を確認してください。" : "No fly body takes this fish. Open the fish page to see the methods and gear that work.";
     const action = ctx.lang === "th" ? "เลือกชุดตกสำหรับปลานี้" : ctx.lang === "ja" ? "対応する釣り方と道具を見る" : "Choose a setup for this fish";
     return `<article class="decision-card"><h3>${ctx.esc(title)}</h3><p>${ctx.esc(note)}</p><a class="route-button" data-fly-fallback="${ctx.esc(fish)}" href="${ctx.esc(ctx.fishHref(fish))}">${ctx.esc(action)} ↗</a></article>`;
   }
@@ -1912,9 +1949,9 @@
       { category: "fly_wing", id: b.wing },
       { category: "fly_tail", id: b.tail }
     ].filter((r) => r.id !== "00");
-    const action = ctx.lang === "th" ? `สำหรับ${ctx.fishName(fish)} เริ่มลองชุดนี้ได้: ร้านฟลายด่าน ${offer.stage} ราคา ${b.shopPriceYen} เยนทั้งชุด` : ctx.lang === "ja" ? `${ctx.fishName(fish)}なら、この構成から試せる。エリア${offer.stage}の毛バリ店、完成品${b.shopPriceYen}円。` : `For ${ctx.fishName(fish)}, start with this ready-made fly: area ${offer.stage} fly shop, ¥${b.shopPriceYen} for the complete bundle.`;
-    const reason = ctx.lang === "th" ? `เลือกชุดราคาต่ำสุดที่บอดี้ผ่านเงื่อนไขปลานี้${sameArea.length ? "ในด่านของแผนที่ที่เลือก" : ""} เพื่อลดเงินที่ต้องจ่าย ไม่ใช่เพราะพิสูจน์ว่าจับง่ายที่สุด` : ctx.lang === "ja" ? `ボディ判定に合う${sameArea.length ? "選択エリア内の" : ""}最安の店売り構成を選び、出費を抑える。釣果の最良構成ではない。` : `Lowest listed price among qualifying bodies${sameArea.length ? " in the selected fishing area" : ""}, to limit your spending; not a proven best-catching fly.`;
-    const scope = ctx.lang === "th" ? "ยังมีเงื่อนไขซ่อนของบอดี้กับปีก ถ้าปลาไม่กิน การตีซ้ำไม่สุ่มค่านั้นใหม่ อย่าเหมาว่าราคาสูงกว่าจะดีกว่า" : ctx.lang === "ja" ? "隠しボディ・ウィング条件も残る。投げ直しでは再抽選されず、高価なほど良いとは限らない。" : "Hidden body/wing conditions still apply. Recasting does not reroll them; paying more is not an established advantage.";
+    const action = ctx.lang === "th" ? `สำหรับ${ctx.fishName(fish)} ซื้อชุดนี้: ร้านฟลายด่าน ${offer.stage} ราคา ${b.shopPriceYen} เยนทั้งชุด ใช้ได้บนเซฟใหม่` : ctx.lang === "ja" ? `${ctx.fishName(fish)}なら、このセットを買う。エリア${offer.stage}の毛バリ店、完成品${b.shopPriceYen}円。新規セーブで使える。` : `For ${ctx.fishName(fish)}, buy this ready-made fly: area ${offer.stage} fly shop, ¥${b.shopPriceYen} for the complete bundle. It works on a fresh save.`;
+    const reason = ctx.lang === "th" ? `เป็นชุดที่ถูกที่สุด${sameArea.length ? "ในด่านของแผนที่ที่เลือก" : ""}ที่ปลานี้กินและไม่ติดล็อกของเซฟใหม่ (บอดี้กลุ่ม 1 หรือปีกกลุ่ม 2 ไม่กินเลย)` : ctx.lang === "ja" ? `この魚が食べて、新規セーブのロックに引っかからない${sameArea.length ? "選択エリア内の" : ""}最安セット（グループ1のボディとグループ2のウィングは食いつかない）。` : `The cheapest set${sameArea.length ? " in the selected fishing area" : ""} that this fish takes and a fresh save does not lock (a group-1 body or group-2 wing never bites).`;
+    const scope = ctx.lang === "th" ? "นอนโรงแรมแล้วล็อกอาจเปลี่ยน ให้ใส่ฟลายอีกครั้ง ราคาแพงกว่าไม่ได้กินดีกว่า ถ้าอยากกันเหนียวให้ดูชุดสำรองสามตัว" : ctx.lang === "ja" ? "宿に泊まるとロックが変わることがある。泊まったら毛バリを装備し直す。高いほど食いつくわけではない。保険がほしければ3本セットを。" : "Resting at an inn can change the lock, so re-equip the fly afterwards. Paying more does not make a fly bite better. For insurance, see the three-fly set.";
     return {
       title: ctx.lang === "th" ? "ชุดฟลายสำหรับปลาที่เลือก" : ctx.lang === "ja" ? "選んだ魚の毛バリ候補" : "Fly to try for your selected fish",
       recommendation: action,
@@ -1939,9 +1976,9 @@
   }
   function flyBackupAction(ctx, fish) {
     const labels2 = {
-      th: "ถ้าชุดเริ่มต้นติดเงื่อนไขซ่อน: ดูชุดสำรองของปลานี้ · ไม่รับประกันว่าปลากิน",
-      en: "If the starter is blocked by the hidden check: see this fish’s backup sets · no bite guarantee",
-      ja: "最初のセットが隠し判定でブロックされたら、この魚の予備セットを見る（食いつき保証ではありません）"
+      th: "กันเหนียวเผื่อล็อกเปลี่ยนหลังนอนโรงแรม: ดูชุดสำรองสามตัวของปลานี้",
+      en: "Insurance in case an inn rest changes the lock: see this fish’s three-fly set",
+      ja: "宿泊でロックが変わったときの保険：この魚の3本セットを見る"
     };
     return hasThreeBundleFlyBackup(ctx, fish) ? { href: `${ctx.fishHref(fish)}#fly-backup`, label: labels2 } : null;
   }
@@ -2075,7 +2112,7 @@
       return `<a class="fish-chip" data-entity="fish" href="${ctx.esc(ctx.fishHref(id))}" aria-label="${ctx.esc(ctx.fishName(id))} — ${ctx.detailLabel}">${f.image ? `<img loading="lazy" src="${ctx.esc(f.image)}" alt="">` : ""}<span>${ctx.esc(ctx.fishName(id))}</span><small>${ctx.detailLabel} ↗</small></a>`;
     };
     if (!ids.length) return "";
-    return `<div class="compatible-fish"><p class="fish-scope">${ctx.esc(item.category === "bait" ? ctx.lang === "th" ? `สำหรับ${ctx.baitRoute === "float" ? "ชุดทุ่น" : "ชุดตะกั่ว"} — ผ่านเงื่อนไขรับเหยื่อ ยังต้องวางเหยื่อให้เจอปลาและดึงขึ้นสำเร็จ` : ctx.lang === "ja" ? `${ctx.baitRoute === "float" ? "ウキ" : "オモリ"}仕掛けのエサ判定に適合。位置・タイミング・取り込みも必要。` : `${ctx.baitRoute === "float" ? "Float" : "Sinker"} rig: passes bait-acceptance conditions; position, timing and landing still matter.` : ctx.local(use.fishScope))}</p><div class="fish-chips">${ids.slice(0, 6).map(chip).join("")}</div>${ids.length > 6 ? `<details class="more-fish"><summary>${ctx.esc(ctx.player.more)} (${ids.length})</summary><div class="fish-chips">${ids.slice(6).map(chip).join("")}</div></details>` : ""}</div>`;
+    return `<div class="compatible-fish"><p class="fish-scope">${ctx.esc(item.category === "bait" ? ctx.lang === "th" ? `สำหรับ${ctx.baitRoute === "float" ? "ชุดทุ่น" : "ชุดตะกั่ว"} — ปลาเหล่านี้กินเหยื่อนี้เมื่อทุ่นอยู่ช่องเดียวกับปลา` : ctx.lang === "ja" ? `${ctx.baitRoute === "float" ? "ウキ" : "オモリ"}仕掛け：ウキが魚と同じマスにあれば、これらの魚が食べる。` : `${ctx.baitRoute === "float" ? "Float" : "Sinker"} rig: these fish take this bait once your float is on their tile.` : ctx.local(use.fishScope))}</p><div class="fish-chips">${ids.slice(0, 6).map(chip).join("")}</div>${ids.length > 6 ? `<details class="more-fish"><summary>${ctx.esc(ctx.player.more)} (${ids.length})</summary><div class="fish-chips">${ids.slice(6).map(chip).join("")}</div></details>` : ""}</div>`;
   }
 
   // src/pages/equipment/shop-locations.js
@@ -2834,14 +2871,20 @@
   // src/pages/equipment/bait-lure-verdict.js
   var COPY3 = {
     en: {
-      ownBait: (route) => `If you already own it, keep using it for fish that pass its ${route} compatibility check.`,
-      ownLure: "If you already own it, keep using it for fish that pass this lure’s compatibility check.",
-      float: "float-rig",
-      sinker: "sinker-rig",
+      ownBait: (route, count, wait) => `${count} fish take this bait on the ${route}. Put your float on the tile the fish is on; it bites in about ${wait} seconds. If it ignores you, move the cast, not the bait.`,
+      ownLure: (count) => `${count} fish chase this lure. Keep tapping A or B while it is in the water, then press A once when the fish is level with the lure to hook it.`,
+      fightBait: (fish) => `Named for ${fish}: against that fish the fight starts with half the mistakes counted, like a named hook (the two do not stack). A cheaper bait does not give you this.`,
+      fightLure: [
+        "Size class: helps in the fight against fish up to 15 cm, hurts against fish over 35 cm.",
+        "Size class: helps in the fight against fish of 16 to 35 cm.",
+        "Size class: helps in the fight against fish over 35 cm, hurts against fish up to 15 cm."
+      ],
+      float: "float rig",
+      sinker: "sinker rig",
       buy: "Buying new",
       cheaper: "lower-priced shop choices with the same or broader fish coverage",
       elsewhere: "Buying new elsewhere",
-      noCheaper: "No lower-priced shop offer with the same or broader full fish coverage was found.",
+      noCheaper: "No cheaper shop item covers the same fish, so this one is a fine buy.",
       chooseFish: "Choose one target fish to compare its compatible baits and lures",
       notHere: (stage) => `This item has no recorded shop offer in Area ${stage}.`,
       notHereElsewhere: (stage, areas) => `No offer in Area ${stage}; this item is listed in ${areas}.`,
@@ -2855,17 +2898,25 @@
       noBaitFish: "No compatible fish are recorded for this bait on either rig.",
       area: (stage) => `Area ${stage}`,
       coveragePeers: "For the same route-specific fish lists, confirmed shop alternatives are",
-      limit: "This compares compatible fish and recorded shop stock; it does not show which item gets more bites or is easier to land."
+      limit: "A bait or lure on the fish’s list bites once your float or lure is on the fish’s tile (float about 2 s, sinker about 10 s, bottom fish only). Time, weather, rod, hook and HP change nothing: if a fish ignores you, move the cast.",
+      limitBait: "A bait on the fish’s list bites once your float is on the fish’s tile: about 2 seconds, or about 10 seconds on a sinker rig (bottom fish only). Time, weather, rod, hook and HP change nothing: if a fish ignores you, move the cast, not the bait.",
+      limitLure: "A lure on the fish’s list is chased once the lure is on the fish’s tile and you keep tapping A or B; press A once when the fish is level with the lure to hook it. Time, weather and rod change nothing."
     },
     ja: {
-      ownBait: (route) => `すでに持っているなら、${route}仕掛けの適合条件を通る魚に使い続けられます。`,
-      ownLure: "すでに持っているなら、このルアーの適合条件を通る魚に使い続けられます。",
+      ownBait: (route, count, wait) => `${route}で${count}種がこのエサを食べます。ウキを魚と同じマスに置けば約${wait}秒で食いつきます。反応しないときはエサではなく投げる位置を変えます。`,
+      ownLure: (count) => `${count}種がこのルアーを追います。水中にある間はAかBを連打し、魚がルアーと同じ高さに来たらAを1回押してかけます。`,
+      fightBait: (fish) => `${fish}の名前を持つエサ：この魚とのファイトは開始値が半分になります（魚名つきのハリと同じ効果で、重なりません）。安いエサにはこの効果がありません。`,
+      fightLure: [
+        "サイズ区分：ファイトで15cm以下の魚に有利、35cm超の魚には不利。",
+        "サイズ区分：ファイトで16〜35cmの魚に有利。",
+        "サイズ区分：ファイトで35cm超の魚に有利、15cm以下の魚には不利。"
+      ],
       float: "ウキ",
       sinker: "オモリ",
       buy: "新しく買うなら",
       cheaper: "同じか広い魚リストに対応する、より安い店頭品",
       elsewhere: "他のエリアで買うなら",
-      noCheaper: "同じか広い魚リスト全体に対応する、より安い店頭品は確認できていません。",
+      noCheaper: "同じ魚をカバーする安い店売り品はないので、これを買ってよい。",
       chooseFish: "魚を1種類選び、使えるエサとルアーを比較する",
       notHere: (stage) => `エリア${stage}では、この品の店頭販売は確認されていません。`,
       notHereElsewhere: (stage, areas) => `エリア${stage}では販売されていません。販売エリア：${areas}。`,
@@ -2879,17 +2930,25 @@
       noBaitFish: "このエサはどちらの仕掛けでも対応魚が記録されていません。",
       area: (stage) => `エリア${stage}`,
       coveragePeers: "同じ仕掛け別の魚リストに対応し、店頭販売が確認された候補：",
-      limit: "これは対応する魚と店頭在庫の比較です。食いつきや取り込みやすさは示しません。"
+      limit: "魚のリストにあるエサ・ルアーは、ウキやルアーが魚と同じマスにあれば食いつきます（ウキ約2秒、オモリ約10秒・底の魚のみ）。時間・天気・竿・ハリ・HPは関係ありません。反応しないときは投げる位置を変えます。",
+      limitBait: "リストにあるエサは、ウキが魚と同じマスにあれば食いつきます。約2秒（オモリは約10秒、底の魚のみ）。時間・天気・竿・ハリ・HPは関係ありません。反応しないときは、エサではなく投げる位置を変えます。",
+      limitLure: "リストにあるルアーは、魚と同じマスにあり、AかBを連打していれば追われます。魚が同じ高さに来たらAを1回押してかけます。時間・天気・竿は関係ありません。"
     },
     th: {
-      ownBait: (route) => `ถ้ามีอยู่แล้ว ใช้ต่อกับปลาที่ผ่านเงื่อนไขของ${route}ได้`,
-      ownLure: "ถ้ามีอยู่แล้ว ใช้ต่อกับปลาที่ผ่านเงื่อนไขของลัวร์ชิ้นนี้ได้",
+      ownBait: (route, count, wait) => `ปลา ${count} ชนิดกินเหยื่อนี้ใน${route} วางทุ่นให้ตรงช่องที่ปลาอยู่ ปลากินภายในราว ${wait} วินาที ถ้าปลาไม่สนใจ ให้ขยับจุดปล่อย ไม่ต้องเปลี่ยนเหยื่อ`,
+      ownLure: (count) => `ปลา ${count} ชนิดว่ายตามลัวร์นี้ กด A หรือ B ต่อเนื่องตอนลัวร์อยู่ในน้ำ แล้วกด A หนึ่งครั้งเมื่อปลาอยู่ระดับเดียวกับลัวร์เพื่อเกี่ยวปลา`,
+      fightBait: (fish) => `เหยื่อระบุชื่อ${fish}: ตอนสู้กับปลานี้ค่าเริ่มสู้ลดลงครึ่งหนึ่ง เหมือนตะขอที่ระบุชื่อปลา (ไม่ซ้อนกัน) เหยื่อที่ถูกกว่าไม่ได้ข้อนี้`,
+      fightLure: [
+        "กลุ่มขนาด: ช่วยตอนสู้กับปลาไม่เกิน 15 ซม. เสียเปรียบกับปลาใหญ่กว่า 35 ซม.",
+        "กลุ่มขนาด: ช่วยตอนสู้กับปลา 16–35 ซม.",
+        "กลุ่มขนาด: ช่วยตอนสู้กับปลาใหญ่กว่า 35 ซม. เสียเปรียบกับปลาไม่เกิน 15 ซม."
+      ],
       float: "สายทุ่น",
       sinker: "สายตะกั่ว",
       buy: "ถ้าจะซื้อใหม่",
       cheaper: "ตัวเลือกในร้านที่ถูกกว่าและรองรับรายชื่อปลาเท่ากันหรือกว้างกว่า",
       elsewhere: "ถ้าจะซื้อจากด่านอื่น",
-      noCheaper: "ไม่พบรายการขายที่ถูกกว่าและครอบคลุมรายชื่อปลาทั้งชุดเท่ากันหรือกว้างกว่า",
+      noCheaper: "ไม่มีชิ้นไหนในร้านที่ถูกกว่าและกินปลาเท่ากัน ซื้อชิ้นนี้ได้เลย",
       chooseFish: "เลือกปลาเป้าหมายเพื่อเทียบเหยื่อที่ใช้ได้กับปลาตัวนั้น",
       notHere: (stage) => `ไม่พบรายการขายชิ้นนี้ในร้านด่าน ${stage}`,
       notHereElsewhere: (stage, areas) => `ด่าน ${stage} ไม่มีขาย; มีรายการขายที่${areas}`,
@@ -2903,7 +2962,9 @@
       noBaitFish: "ไม่พบปลาที่บันทึกว่าใช้เหยื่อนี้ได้ทั้งสายทุ่นและสายตะกั่ว",
       area: (stage) => `ด่าน ${stage}`,
       coveragePeers: "ตัวเลือกที่ร้านมีขายและรองรับรายชื่อปลาเดียวกันตามสายตกนี้:",
-      limit: "ข้อมูลนี้เทียบชนิดปลาที่ใช้ได้กับรายการของในร้าน ไม่ได้บอกว่าอันไหนทำให้ปลากินมากกว่าหรือตกขึ้นง่ายกว่า"
+      limit: "เหยื่อหรือลัวร์ที่อยู่ในรายชื่อของปลาจะถูกกินเมื่อทุ่นหรือลัวร์อยู่ช่องเดียวกับปลา (ทุ่นราว 2 วินาที ตะกั่วราว 10 วินาที เฉพาะปลาหน้าดิน) เวลา อากาศ คัน เบ็ด และ HP ไม่มีผล ถ้าปลาไม่สนใจ ให้ขยับจุดปล่อย",
+      limitBait: "เหยื่อที่อยู่ในรายชื่อของปลาจะถูกกินเมื่อทุ่นอยู่ช่องเดียวกับปลา ราว 2 วินาที (ชุดตะกั่วราว 10 วินาที เฉพาะปลาหน้าดิน) เวลา อากาศ คัน เบ็ด และ HP ไม่มีผล ถ้าปลาไม่สนใจ ให้ขยับจุดปล่อย ไม่ใช่เปลี่ยนเหยื่อ",
+      limitLure: "ลัวร์ที่อยู่ในรายชื่อของปลาจะมีปลาว่ายตามเมื่อปลาอยู่ช่องเดียวกับลัวร์และคุณกด A หรือ B ต่อเนื่อง พอปลาอยู่ระดับเดียวกับลัวร์ให้กด A หนึ่งครั้งเพื่อเกี่ยวปลา เวลา อากาศ และคันไม่มีผล"
     }
   };
   function copy(ctx) {
@@ -3027,17 +3088,26 @@
     params.set("route", route);
     return page + "?" + params;
   }
+  function fightNoteMarkup(ctx, item) {
+    const c = copy(ctx);
+    const decision = item.baitLureDecision || {};
+    const note = item.category === "bait" ? decision.matchedFish && c.fightBait(ctx.fishName(decision.matchedFish)) : Number.isInteger(decision.fightClass) && c.fightLure[decision.fightClass];
+    return note ? `<p class="bait-lure-fight-note">${ctx.esc(note)}</p>` : "";
+  }
   function ownUseMarkup(ctx, item) {
     const c = copy(ctx);
-    if (item.category !== "bait") return `<p class="bait-lure-owned-action">${ctx.esc(c.ownLure)}</p>`;
+    const fight = fightNoteMarkup(ctx, item);
+    if (item.category !== "bait") {
+      const count = (item.playerUse?.fishIds || []).length;
+      return `<p class="bait-lure-owned-action">${ctx.esc(c.ownLure(count))}</p>${fight}`;
+    }
     const fishByRoute = item.playerUse?.fishIdsByRoute;
     const routeKey = ctx.baitRoute === "sinker" ? "sinker" : "float";
     const routeName2 = routeKey === "sinker" ? c.sinker : c.float;
-    if (!Array.isArray(fishByRoute?.[routeKey])) {
-      return `<p class="bait-lure-owned-action">${ctx.esc(c.ownBait(routeName2))}</p>`;
-    }
-    if (fishByRoute[routeKey].length) {
-      return `<p class="bait-lure-owned-action">${ctx.esc(c.ownBait(routeName2))}</p>`;
+    const wait = routeKey === "sinker" ? 10 : 2;
+    if (!Array.isArray(fishByRoute?.[routeKey]) || fishByRoute[routeKey].length) {
+      const count = (fishByRoute?.[routeKey] || item.playerUse?.fishIds || []).length;
+      return `<p class="bait-lure-owned-action">${ctx.esc(c.ownBait(routeName2, count, wait))}</p>${fight}`;
     }
     const otherRoute = routeKey === "sinker" ? "float" : "sinker";
     const otherName = otherRoute === "sinker" ? c.sinker : c.float;
@@ -3063,13 +3133,19 @@
     const title = stage ? `${hasLocalOffer ? c.buy : c.elsewhere} · ${c.area(stage)}` : `${c.buy} · ${c.cheaper}`;
     return `<p class="bait-lure-buy-choices"><strong>${ctx.esc(title)}:</strong> ${shown.map((offer) => offerLabel(ctx, offer)).join(" · ")}</p>`;
   }
-  function baitLureEvidenceScope(ctx) {
-    const label = {
-      en: "Bait and lure choices: ",
-      ja: "エサ・ルアーの選び方：",
-      th: "การเลือกเหยื่อจริงและลัวร์: "
-    }[ctx.lang];
-    return (label || "Bait and lure choices: ") + copy(ctx).limit;
+  function baitLureEvidenceScope(ctx, category = "all") {
+    const labels2 = {
+      all: {
+        en: "Bait and lure choices: ",
+        ja: "エサ・ルアーの選び方：",
+        th: "การเลือกเหยื่อจริงและลัวร์: "
+      },
+      bait: { en: "Baits: ", ja: "エサ：", th: "เหยื่อจริง: " },
+      lure: { en: "Lures: ", ja: "ルアー：", th: "เหยื่อปลอม: " }
+    };
+    const c = copy(ctx);
+    const body = { all: c.limit, bait: c.limitBait, lure: c.limitLure }[category] || c.limit;
+    return ((labels2[category] || labels2.all)[ctx.lang] || "Bait and lure choices: ") + body;
   }
   function baitLureVerdict(ctx, item, { includeScope = true } = {}) {
     if (!item?.baitLureDecision || !["bait", "lure"].includes(item.category)) return "";
@@ -3084,10 +3160,9 @@
 
   // src/pages/equipment/item-card.js
   function flyWingActionHrefs(ctx, item, decision, fish) {
-    const bodyId = decision.bundle?.body || "01";
-    const body = ctx.allItems.find(
-      (candidate) => candidate.category === "fly" && candidate.id === bodyId
-    );
+    const body = decision.bundle?.body ? ctx.allItems.find(
+      (candidate) => candidate.category === "fly" && candidate.id === decision.bundle.body
+    ) : freshStarterBody(ctx.allItems);
     const verifiedWing = ctx.allItems.filter(
       (candidate) => candidate.category === "fly_wing" && candidate.id !== item.id && candidate.flyMakerMenuChoice
     ).sort((a, b) => a.id.localeCompare(b.id))[0];
@@ -3479,7 +3554,7 @@
   }
   function fishStatus(ctx, filters) {
     if (!filters.fish)
-      return ["bait", "lure", "all"].includes(filters.category) ? baitLureEvidenceScope(ctx) : "";
+      return ["bait", "lure", "all"].includes(filters.category) ? baitLureEvidenceScope(ctx, filters.category) : "";
     if (["rod", "hook"].includes(filters.category)) {
       if (ctx.lang === "th")
         return "แสดงอุปกรณ์ทั้งหมวดสำหรับเลือกทั่วไป ไม่ได้จัดว่าเหมาะกับปลานี้หรือช่วยเพิ่มโอกาสตกได้";
@@ -3491,17 +3566,17 @@
     if (["lure", "all"].includes(filters.category)) return targetAdviceScope(ctx);
     if (filters.category === "flymaker" && ctx.flyPart !== "fly") {
       if (ctx.lang === "th")
-        return "แสดงชิ้นส่วนที่ร้านขายพร้อมบอดี้ซึ่งผ่านเงื่อนไขปลานี้ ไม่ได้ยืนยันว่าปีกหรือหางเพิ่มโอกาสกิน";
+        return "แสดงปีกและหางที่มากับชุดสำเร็จรูปของบอดี้ที่ปลานี้กิน ปีกมีหน้าที่แค่ผ่านล็อกของเซฟ หางเป็นแค่หน้าตา";
       if (ctx.lang === "ja")
-        return "この魚の条件を通るボディと一緒に販売される部品です。ウイング・テールの食いつき向上は未確認。";
-      return "Showing parts sold with a body that passes this fish’s compatibility check; a wing or tail bite bonus is not established.";
+        return "この魚が食べるボディと一緒に売られる部品です。ウイングはロックを通るためだけ、テールは見た目だけ。";
+      return "Showing wings and tails sold with a body this fish takes. The wing is only a ticket past the save’s lock; the tail is only looks.";
     }
     if (filters.category === "flymaker" && ctx.flyPart === "fly") {
       if (ctx.lang === "th")
-        return "แสดงบอดี้ฟลายที่ผ่านเงื่อนไขโปรไฟล์ของปลานี้ ไม่ได้รับประกันว่าปลากินหรือตกขึ้นได้";
+        return "แสดงบอดี้ที่ปลานี้กิน ดูป้ายบนการ์ดว่าใช้ได้บนเซฟใหม่หรือติดล็อก (บอดี้กลุ่ม 1 ใช้ไม่ได้บนเซฟใหม่)";
       if (ctx.lang === "ja")
-        return "この魚のボディプロフィール判定を通るフライボディです。食いつき・釣り上げは保証されません。";
-      return "Showing fly bodies whose body-profile check passes for this fish; a bite or catch is not guaranteed.";
+        return "この魚が食べるフライボディです。カードの表示で新規セーブで使えるかを確認（グループ1のボディは新規セーブでは使えない）。";
+      return "Showing the fly bodies this fish takes. Check each card for whether it works on a fresh save (group-1 bodies do not).";
     }
     if (ctx.lang === "th")
       return "แสดงรายการในหมวดนี้ที่ผ่านเงื่อนไขจาก ROM ของปลาที่เลือก แต่ไม่ได้ยืนยันว่าปลากินหรือตกขึ้นได้";
@@ -3620,10 +3695,10 @@
     item: "Item",
     rom: "ROM fields we can explain",
     price: "ROM price field",
-    flyKicker: "THE CUSTOM FLY MAKER",
-    flyTitle: "Body, wing, tail… and a real price quote",
-    flyCopy: "Original Japanese game captures show the verified ¥25 default recipe and ¥17 no-tail example. Choose a body for your target fish first; these examples explain menu input and price, not which fly catches best.",
-    flyFact: "Check the final quote before paying. The recorded first-body + first-wing + first-tail Mayfly order cost ¥25. Choosing “None” changes the recipe, so read its quote separately. Other recipes do not share a fixed ¥25 price.",
+    flyKicker: "THE FLY MAKER GUIDE",
+    flyTitle: "Do I need to build a fly?",
+    flyCopy: "Usually not. The shop sells ready-made sets made from the same parts. You get the very same fly, and it costs less, because a ready-made set charges only the body’s price while the maker charges body + wing + tail. For example, the shop sells body 2B + wing 34 for ¥15; the same fly from the maker costs ¥23.",
+    flyFact: "Always read the final quote before paying. In the first example, first body + first wing + first tail cost ¥25; choosing “None” for the tail changes the recipe and its price, so read each quote separately.",
     catalogueKicker: "THE FULL INDEX",
     catalogueTitle: "Browse all 315 listed entries",
     catalogueCopy: "Search either language, an item ID, or a stat. Open any card for its details, including the raw game data for anyone who wants to check.",
@@ -3700,10 +3775,10 @@
     item: "ไอเท็ม",
     rom: "ช่องข้อมูล ROM ที่อธิบายได้",
     price: "ช่องราคาใน ROM",
-    flyKicker: "เมนูประกอบฟลาย",
-    flyTitle: "เลือกบอดี้ ปีก หาง พร้อมตรวจราคาจริง",
-    flyCopy: "ภาพเกมญี่ปุ่นจริง แสดงชุดเริ่มต้น ¥25 และตัวอย่างไม่มีหาง ¥17 เลือกบอดี้ตามปลาเป้าหมายก่อน ตัวอย่างนี้สอนปุ่มและราคา ไม่ใช่คำแนะนำว่าชุดไหนจับปลาดีที่สุด",
-    flyFact: "ตรวจราคาสุทธิก่อนจ่าย ชุดเมย์ฟลายบอดี้แรก + ปีกแรก + หางแรกที่ทดลองคิด ¥25 ถ้าเลือก “ไม่มี” แทนหาง ชุดจะเปลี่ยน ให้ดูราคาของชุดนั้นแยกต่างหาก ไม่ใช่ว่าทุกชุดราคา ¥25",
+    flyKicker: "คู่มือร้านทำฟลาย",
+    flyTitle: "ต้องประกอบฟลายเองไหม?",
+    flyCopy: "ปกติไม่ต้อง ร้านขายชุดสำเร็จรูปที่ใช้ชิ้นส่วนเดียวกัน ได้ฟลายเหมือนกันทุกอย่าง และถูกกว่า เพราะชุดสำเร็จรูปคิดแค่ราคาของบอดี้ ส่วนร้านประกอบคิดราคา บอดี้ + ปีก + หาง เช่น ชุดบอดี้ 2B + ปีก 34 ในร้านราคา ¥15 แต่ประกอบเองได้ของเหมือนกันในราคา ¥23",
+    flyFact: "ตรวจราคาสุทธิก่อนจ่ายเสมอ ชุดแรกในตัวอย่าง (บอดี้แรก + ปีกแรก + หางแรก) คิด ¥25 ถ้าเลือก “ไม่มี” แทนหาง ชุดและราคาจะเปลี่ยน ให้ดูราคาของแต่ละชุดแยกกัน",
     catalogueKicker: "รายการไอเท็มทั้งหมด",
     catalogueTitle: "ค้นหาข้อมูลทั้ง 315 รายการ",
     catalogueCopy: "ค้นด้วยชื่อภาษาไทยที่ถอดจากภาพแล้ว ภาษาอังกฤษ ญี่ปุ่น หรือเลข ID ได้ เปิดการ์ดเพื่อดูรายละเอียด และข้อมูลดิบจากเกมสำหรับผู้ที่อยากตรวจสอบ",
@@ -3811,10 +3886,10 @@
     item: "アイテム",
     rom: "意味を確認できたROM値",
     price: "ROM価格欄",
-    flyKicker: "毛バリ作成NPC",
-    flyTitle: "ボディ、ウィング、テール、そして見積もり",
-    flyCopy: "日本版の実画面で25円の初期構成と17円のテール無し例を確認。先に対象魚に合うボディを選んでください。この例は操作と価格の説明で、最強フライの推薦ではありません。",
-    flyFact: "支払前に最終見積額を確認する。記録したメイフライの最初のボディ・ウィング・テールは25円。「無し」にすると組み合わせが変わるため、その見積額を別に確認する。全組み合わせが25円ではない。",
+    flyKicker: "毛バリ職人ガイド",
+    flyTitle: "毛バリは自作しないといけない？",
+    flyCopy: "ふつうは不要。店は同じ部品で作った完成品を売っていて、できる毛バリはまったく同じ、しかも安い。完成品の料金はボディ分だけだが、職人はボディ＋ウィング＋テールの合計になるため。例えば店のボディ2B＋ウィング34は15円、職人で同じものを作ると23円。",
+    flyFact: "支払前に必ず最終見積額を確認する。最初の例（最初のボディ・ウィング・テール）は25円。テールを「無し」にすると組み合わせと価格が変わるため、見積額はそのつど確認する。",
     catalogueKicker: "全アイテム一覧",
     catalogueTitle: "掲載315件を検索",
     catalogueCopy: "英語・日本語、アイテムID、数値で検索できます。各カードを開くと詳細を確認できます。確認したい人向けにゲームの生データも載せています。",
@@ -3952,10 +4027,10 @@
     style: "รูปแบบการตก",
     titleByCategory: "อุปกรณ์ในหมวดนี้",
     noFish: "หมวดนี้ไม่ได้เลือกตามชนิดปลา",
-    fishOnly: "แสดงเหยื่อที่ผ่านเงื่อนไขของปลาที่เลือก",
+    fishOnly: "แสดงเหยื่อที่อยู่ในรายชื่อของปลาที่เลือก",
     basePrice: "ราคาพื้นฐาน",
     kit: "ชุดเหยื่อที่ครอบคลุมชนิดปลา",
-    kitText: "เลือกตามด่าน: ด่าน 1 ใช้ สปูน 2E + ยางหนอน 23 ราคา ¥55, ด่าน 2–3 ใช้ จมน้ำ 17 + ยางหนอน 24 ราคา ¥55, ด่าน 4 ใช้ จมน้ำ 17 + ยางหนอน 23 ราคา ¥50 ด่าน 5–6 ไม่มีร้านขายครบคู่ ให้พกคู่ที่มีอยู่ หรือซื้อ จมน้ำ 17 + ยางหนอน 23 ที่ด่าน 4 ทุกคู่ใช้ได้กับปลาที่ตกด้วยลัวร์ได้ 38 โปรไฟล์ แต่ไม่ได้รับประกันว่าปลาจะกินหรือจับได้",
+    kitText: "ลัวร์สองชิ้นก็ครอบคลุมปลาลัวร์ทั้ง 38 ชนิด ดูคู่ที่ซื้อครบในด่านของคุณจากการ์ดคำแนะนำหรือตารางด้านล่าง ปลาจะว่ายตามเมื่ออยู่ช่องเดียวกับลัวร์และคุณกด A หรือ B ต่อเนื่อง พอปลาอยู่ระดับเดียวกับลัวร์ให้กด A หนึ่งครั้งเพื่อเกี่ยวปลา",
     kitLink: "ดูชุดพร้อมภาพและตารางปลา",
     guide: "วิธีประกอบฟลายในเกม",
     research: "รายละเอียดและที่มาของข้อมูล",
@@ -3971,9 +4046,9 @@
     },
     desc: {
       rod: "เลือกวิธีตกก่อน แล้วเลือกคันที่มีเวลาเล็งนานหรือสายขาดยากตามที่ต้องการ",
-      lure: "เลือกปลาที่อยากตก เพื่อกรองเหยื่อที่ผ่านเงื่อนไขรับลัวร์",
-      flymaker: "ดูบอดี้ ปีก และหาง พร้อมเงื่อนไขที่มีผลต่อการติดเบ็ด",
-      bait: "เลือกปลาเพื่อดูเหยื่อที่ผ่านเงื่อนไขของการตกด้วยเหยื่อจริง",
+      lure: "ปลาในรายชื่อของลัวร์ว่ายตามเมื่ออยู่ช่องเดียวกับลัวร์ กด A หรือ B ต่อเนื่อง แล้วกด A หนึ่งครั้งตอนปลาอยู่ระดับเดียวกับลัวร์ เลือกปลาเพื่อดูลัวร์ที่ใช้ได้",
+      flymaker: "บอดี้เลือกปลาที่กิน ปีกเป็นแค่ตัวผ่านล็อกลับของเซฟ หางเป็นแค่หน้าตา เปิดคำแนะนำของหมวดนี้เพื่อดูชุดที่ใช้ได้บนเซฟใหม่",
+      bait: "ปลากินเมื่อเหยื่ออยู่ในรายชื่อของปลาและทุ่นอยู่ช่องเดียวกับปลา ราว 2 วินาที (ตะกั่วราว 10 วินาที เฉพาะปลาหน้าดิน) เลือกปลาเพื่อดูเหยื่อที่ใช้ได้",
       hook: "ดูตะขอและห่วงที่ใช้กับรูปแบบการตกต่างกัน",
       float_weight: "ดูอุปกรณ์ทุ่น เครื่องหมายบนสาย และตะกั่ว",
       food: "ดูผลฟื้น HP และอาหารที่ทำให้ HP หมด",
@@ -3999,10 +4074,10 @@
     style: "Fishing style",
     titleByCategory: "Equipment in this category",
     noFish: "This category is not filtered by fish species",
-    fishOnly: "Showing baits that pass the selected fish’s conditions",
+    fishOnly: "Showing baits on the selected fish’s list",
     basePrice: "Base price",
     kit: "A lure set covering the compatible species",
-    kitText: "Choose by area: Spoon 2E + Soft worm 23 costs ¥55 in Area 1, Sinking lure 17 + Soft worm 24 costs ¥55 in Areas 2–3, and Sinking lure 17 + Soft worm 23 costs ¥50 in Area 4. Areas 5–6 sell no complete pair; carry one you own or buy Sinking lure 17 + Soft worm 23 in Area 4. Each pair covers the same 38 lure-compatible profiles, not a guaranteed bite or catch.",
+    kitText: "Two lures cover all 38 lure fish. The guidance card and the table below list the pair you can buy complete in each area. A fish follows when it is on the lure’s tile and you keep tapping A or B; press A once when it is level with the lure to hook it.",
     kitLink: "See the illustrated set and fish table",
     guide: "Make a fly in the game",
     research: "Research details and sources",
@@ -4018,9 +4093,9 @@
     },
     desc: {
       rod: "Choose a fishing style, then compare time to aim and line strength.",
-      lure: "Choose a target fish to filter lures by the hook-acceptance condition.",
-      flymaker: "Browse bodies, wings and tails, with conditions that affect hooking.",
-      bait: "Choose a fish to see baits that pass the bait-mode conditions.",
+      lure: "A fish on a lure’s list chases it when it is on the lure’s tile: keep tapping A or B, then press A once when the fish is level with the lure. Choose a fish to see its lures.",
+      flymaker: "The body picks the fish that bite, the wing is only a ticket past the save’s hidden lock, and the tail is only looks. Open this category’s advice for the sets that work on a fresh save.",
+      bait: "A fish bites when the bait is on its list and your float is on its tile: about 2 seconds (sinker about 10 seconds, bottom fish only). Choose a fish to see its baits.",
       hook: "Hooks and rings used by different fishing styles.",
       float_weight: "Floats, line markers and sinkers.",
       food: "Measured recovery and food that drains HP.",
@@ -4046,10 +4121,10 @@
     style: "釣り方",
     titleByCategory: "この種類の装備",
     noFish: "この種類は魚種では絞り込まない",
-    fishOnly: "選んだ魚の条件に合うエサを表示",
+    fishOnly: "選んだ魚のリストにあるエサを表示",
     basePrice: "基本価格",
     kit: "対応魚を網羅するルアー構成",
-    kitText: "エリア別に選択：エリア1はスプーン2E＋ソフト・ワーム23が55円、エリア2・3はシンキング17＋ソフト・ワーム24が55円、エリア4はシンキング17＋ソフト・ワーム23が50円。エリア5・6では一式揃わないため、所持中のセットを使うかエリア4でシンキング17＋ソフト・ワーム23を購入。いずれもルアー判定を通る38プロフィールをカバーしますが、食いつきや釣果の保証ではありません。",
+    kitText: "ルアー2つで全38種をカバーできる。各エリアで揃う組み合わせは、案内カードと下の表を参照。魚がルアーと同じマスにいて、AかBを押し続けると追ってくる。ルアーと同じ高さに来たらAを1回押してかける。",
     kitLink: "画像付き構成と魚別表",
     guide: "ゲーム内でフライを作る",
     research: "調査詳細と出典",
@@ -4065,9 +4140,9 @@
     },
     desc: {
       rod: "釣り方を選び、狙う時間と糸の切れにくさを比べる。",
-      lure: "魚を選んでルアー針掛かり条件で絞り込む。",
-      flymaker: "ボディ・ウイング・テールと針掛かり条件。",
-      bait: "魚を選んでエサ釣り条件に合うエサを見る。",
+      lure: "ルアーのリストにある魚は、ルアーと同じマスにいれば追ってくる。AかBを連打し、同じ高さに来たらAを1回。魚を選んで使えるルアーを見る。",
+      flymaker: "ボディが食いつく魚を決め、ウイングはセーブの隠しロックを通るための部品、テールは見た目だけ。この種類の案内で、新規セーブで使えるセットを確認。",
+      bait: "エサが魚のリストにあり、ウキが魚と同じマスにあれば食いつく。約2秒（オモリは約10秒、底の魚のみ）。魚を選んで使えるエサを見る。",
       hook: "釣り方別のハリ・鼻カン。",
       float_weight: "ウキ・目印・オモリ。",
       food: "確認済みのHP回復とHPが0になる食べ物。",

@@ -92,14 +92,14 @@ function routeName(ctx, route) {
 function compatibilityText(ctx, fish, route) {
   if (route === 'lure')
     return text(ctx, {
-      th: `ผ่านเงื่อนไขลัวร์สำหรับ${fish}`,
-      ja: `${fish}のルアー判定に適合`,
-      en: `Passes the lure check for ${fish}`,
+      th: `${fish}ว่ายตามลัวร์นี้`,
+      ja: `${fish}はこのルアーを追う`,
+      en: `${fish} chases this lure`,
     })
   return text(ctx, {
-    th: `ผ่านเงื่อนไขเหยื่อสำหรับ${fish} · ${routeName(ctx, route)}`,
-    ja: `${fish}のエサ判定に適合 · ${routeName(ctx, route)}`,
-    en: `Passes the bait check for ${fish} · ${routeName(ctx, route)}`,
+    th: `${fish}กินเหยื่อนี้ · ${routeName(ctx, route)}`,
+    ja: `${fish}はこのエサを食べる · ${routeName(ctx, route)}`,
+    en: `${fish} takes this bait · ${routeName(ctx, route)}`,
   })
 }
 
@@ -202,9 +202,9 @@ function shopDecision(ctx, advice) {
 
 export function targetAdviceScope(ctx) {
   return text(ctx, {
-    th: 'ยืนยันเฉพาะเงื่อนไขจาก ROM ไม่ได้ยืนยันโอกาสกินเหยื่อหรือจับขึ้น',
-    ja: 'ROM条件を通ることのみ確認。食いつき・釣り上げは保証されません。',
-    en: 'This confirms the ROM compatibility check only; a bite or catch is not guaranteed.',
+    th: 'ปลากินหรือว่ายตามเมื่อทุ่นหรือลัวร์อยู่ช่องเดียวกับปลา เวลา อากาศ คัน เบ็ด และ HP ไม่มีผล',
+    ja: 'ウキやルアーが魚と同じマスにあれば食いつく・追ってくる。時間・天気・竿・ハリ・HPは関係ない。',
+    en: 'The fish bites or chases once your float or lure is on its tile. Time, weather, rod, hook and HP do not matter.',
   })
 }
 

@@ -1,5 +1,7 @@
 # Fish acceptance gates from the original ROM
 
+> **Corrected 2026-10-07.** The audit (`rom-analysis/audit-2026-10-07/acceptance/report.md`) confirmed the mask comparisons below and tested them on an emulator: a fish that passes the mask bites every time its tile holds the float or lure (float 79/79, sinker 75/75, lure 245/245, fly wet 33/33 and dry 17/17), and no fish that fails it ever does. Read "does not establish a bite" below as: the mask is the only species gate, and the remaining requirements are the exact tile, the wait (float 128 frames, sinker 600, lure 48 with A/B pressed, fly 8) and, for flies, the hidden body/wing lock. Time, weather, rod, hook, HP and cast distance are never read.
+
 This note separates the game's fish-profile mask checks from a successful bite or catch. All values below were extracted from the user-supplied, headerless Japanese SFC ROM (1,572,864 bytes; SHA-1 `c2103dd94e2a1a65a495fc02adc2e7d040f31212`). The reproducible extraction is [extract_fish_acceptance.py](../scripts/extract_fish_acceptance.py); its output is [fish-acceptance.json](../data/fish-acceptance.json). The output contains IDs, masks, decoded fish labels, pointers, and prices, but no ROM bytes.
 
 ## The mask comparison

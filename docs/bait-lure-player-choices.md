@@ -1,5 +1,7 @@
 # Bait and lure purchase choices
 
+> **Corrected 2026-10-07.** Superseded by the ROM audit (`rom-analysis/audit-2026-10-07/acceptance/report.md`) and [gear-effects.md](gear-effects.md). A bait or lure on a fish's list bites once the float (about 2 s; sinker about 10 s, bottom fish only) or the lure (keep tapping A or B, press A once when the fish is level) is on the fish's exact tile; time, weather, rod, hook and HP change nothing, so "compatible is not a bite" no longer applies. Equal fish lists do not mean an equal fight: baits 3, 14, 15, 16, 17 and 20 name a fish and start that fight with half the mistakes counted (not stacked with a named hook), and a lure's size class changes the fight start. Salmon roe (`09`) is covered by Small fish `12` (¥20), **not** by Worm `01`, which lacks fish 3F.
+
 This page turns ROM-derived compatibility sets and the six decoded shop inventories into budget choices. A compatible fish profile passes one necessary item-mask check; that does **not** establish attraction, a bite, a catch, a fight advantage, or a successful landing.
 
 For a specific fish, open its fish page first. Use a bait or lure you already own if that fish is listed for the route you are using. The item-page links below point to lower-priced options only when the ROM shows them in shop stock and their route-paired profile sets cover the same targets or a wider set. Buying another item with the same compatibility set does not add a proven target.
@@ -28,7 +30,7 @@ The float column is the mode-0 mask check. The sinker column intersects the same
 
 Useful lower-price choices from these exact or broader route-paired gates:
 
-- `09` Salmon roe's nine float-route profiles are all covered by Worm `01` for ¥5, which is stocked in every area. This is a broader profile set, not proof that the baits attract or land fish equally.
+- `09` Salmon roe's nine float-route profiles are covered by Small fish `12` (¥20), stocked in every area; Worm `01` lacks fish 3F (Kusafugu), so it does not cover them all. Both bite the same way once the float is on the fish's tile.
 - `07` and `08` have the same route-paired profile set. Choose `08` for ¥20 when shopping in areas 1–3; in area 4, `08` is absent, so `07` is the recorded offer.
 - `10` is ¥30 in area 5. `0F` is ¥25 in area 5 with the same route-paired profile set; `0E` is also ¥25 in area 4.
 - `14` is ¥30 in areas 2, 4, 5, and 6. Loach `13` has the exact same route-paired profile set for ¥20 in areas 3, 5, and 6. Small fish `12` is ¥20 in all areas and covers a broader route-paired set.

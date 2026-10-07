@@ -28,8 +28,8 @@ export const copy_en = {
   unknownShopCondition:
     'This shop offer has an additional purchase condition that has not been explained yet.',
   noShopMap: 'The ROM data does not record a stage for this item’s use or sale.',
-  fish: 'Fish that pass this item’s recorded check',
-  fishScope: 'Passing this item check does not guarantee a bite or a landed fish.',
+  fish: 'Fish this item works on',
+  fishScope: 'These are the fish this item works on.',
   routeFloat: 'Float rig',
   routeSinker: 'Sinker rig',
   floatFishHeading: 'Fish in the float-rig list',

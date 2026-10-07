@@ -90,9 +90,9 @@ function samePair(left, right) {
 function checkKitCopy(html, lang, hasLocalPair, stage) {
   const section = html.match(/<section class="detail-section reusable-kit"[\s\S]*?<\/section>/)?.[0]
   const scope = {
-    en: 'Coverage is lure-type compatibility, not a guarantee of a bite or landing.',
-    ja: 'ルアー種類の判定をカバーするもので、食いつきや取り込みの保証ではありません。',
-    th: 'ครอบคลุมเงื่อนไขชนิดเหยื่อ ไม่ได้รับประกันว่าปลาจะกินหรือดึงขึ้นสำเร็จ',
+    en: 'A fish follows when it is on the lure’s tile and you keep tapping A or B; press A once when it is level with the lure. The two lures start the fight differently by fish size, so check the size class on each lure card.',
+    ja: '魚がルアーと同じマスにいて、AかBを押し続けると追ってきます。同じ高さに来たらAを1回。この2つはファイトの開始値が魚のサイズで違うので、ルアーのカードでサイズ区分を確認してください。',
+    th: 'ปลาว่ายตามเมื่ออยู่ช่องเดียวกับลัวร์และคุณกด A หรือ B ต่อเนื่อง พอปลาอยู่ระดับเดียวกับลัวร์ให้กด A หนึ่งครั้ง ลัวร์สองชิ้นนี้เริ่มสู้ได้ไม่เท่ากันกับปลาแต่ละขนาด ดูกลุ่มขนาดบนการ์ดลัวร์',
   }
   assert(section?.includes(scope[lang]), `Area ${stage} lost its lure-compatibility limit`)
   assert(
@@ -214,27 +214,27 @@ function checkKitContextPanel(result, lang, itemId, kitKey) {
 function checkKitContextCopy(panel, lang) {
   const copy = {
     en: [
-      '38 lure-compatible profiles',
+      'all 38 lure fish',
       'compare individual items',
       'with a selected fish, they compare choices for that fish',
-      'Check the coverage of the complete pair before replacing a member',
-      'Coverage does not guarantee a bite or landing',
+      'Check that the complete pair still covers every fish before replacing a member',
+      'A cheaper lure can sit in a different size class',
       'you do not need to buy it again',
     ],
     ja: [
-      '38プロフィール',
+      '対象38種すべて',
       '道具単体の比較',
       '魚を選択している場合は、その魚について比較',
-      '片方を替えるときはセット全体のカバーも確認',
-      '食いつきや取り込みの保証ではありません',
+      '片方を替えるときはセット全体のカバーを確認',
+      'サイズ区分が違い',
       '買い直す必要はありません',
     ],
     th: [
-      '38 โปรไฟล์',
-      'เปรียบเทียบไอเท็มแต่ละชิ้น',
+      'ปลาลัวร์ทั้ง 38 ชนิด',
+      'เทียบทีละชิ้น',
       'ถ้าเลือกปลาไว้จะเทียบสำหรับปลานั้น',
-      'การเปลี่ยนชิ้นหนึ่งต้องตรวจความครอบคลุมของทั้งคู่',
-      'ไม่ได้รับประกันปลากินหรือดึงขึ้นสำเร็จ',
+      'ให้ตรวจว่าทั้งคู่ยังครอบคลุมปลาครบ',
+      'อยู่คนละกลุ่มขนาด',
       'ไม่ต้องซื้อซ้ำ',
     ],
   }[lang]

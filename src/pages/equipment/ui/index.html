@@ -286,27 +286,107 @@
         </section>
       </details>
       <details class="guide-details" id="fly-instructions">
-        <summary>Make a fly: step-by-step screens</summary>
-        <section class="customizer-section">
+        <summary>Building your own fly: do you need to, when, and how</summary>
+        <section class="customizer-section fly-guide">
           <div class="section-heading">
             <div>
-              <p class="eyebrow dark" data-t="fly-kicker">THE CUSTOM FLY MAKER</p>
-              <h2 data-t="fly-title">Body, wing, tail… and a real price quote</h2>
+              <p class="eyebrow dark" data-t="fly-kicker">THE FLY MAKER GUIDE</p>
+              <h2 data-t="fly-title">Do I need to build a fly?</h2>
             </div>
             <p class="section-copy" data-t="fly-copy">
-              Original Japanese game captures show the verified ¥25 default recipe and ¥17 no-tail
-              example. Choose a body for your target fish first; these examples explain menu input
-              and price, not which fly catches best.
+              Usually not. The shop sells ready-made sets made from the same parts. You get the very
+              same fly, and it costs less, because a ready-made set charges only the body’s price
+              while the maker charges body + wing + tail. For example, the shop sells body 2B + wing
+              34 for ¥15; the same fly from the maker costs ¥23.
+            </p>
+          </div>
+          <div class="fly-guide-block" id="fly-guide-when">
+            <h3>When is building one worth it?</h3>
+            <ul>
+              <li>
+                You want a body and wing combination no shop sells, for instance a body your target
+                fish takes whose ready-made set carries a wing a fresh save locks (wing group 2), so
+                you build it with a wing from another group.
+              </li>
+              <li>
+                You want a specific body family, such as a hopper (it helps in the fight against
+                fish of 16 to 35 cm) or a terrestrial body no shop sells ready-made.
+              </li>
+              <li>In every other case, buy the ready-made set.</li>
+            </ul>
+            <p class="fly-guide-note">
+              The fly maker exists in Areas 1 to 3 only. Wings 25, 66 and 67 are in no shop and not
+              in the maker.
+            </p>
+          </div>
+          <div class="fly-guide-block" id="fly-guide-how">
+            <h3>How to build: screens from the game</h3>
+            <p class="section-copy">
+              Original Japanese game captures; the Mayfly menu shows the buttons and the price.
+              Careful: the example recipes in the pictures (body 01, and body 02 with wing 0A) are
+              locked on a fresh save and never bite. They teach the buttons only; pick your real
+              parts from the table below.
             </p>
           </div>
           <div id="customizer-frames" class="custom-grid">
             <!-- prerender:customizer-frames --><!-- /prerender:customizer-frames -->
           </div>
           <p class="custom-fact" data-t="fly-fact">
-            Check the final quote before paying. The recorded first-body + first-wing + first-tail
-            Mayfly order cost ¥25. Choosing “None” changes the recipe, so read its quote separately.
-            Other recipes do not share a fixed ¥25 price.
+            Always read the final quote before paying. In the first example, first body + first wing
+            + first tail cost ¥25; choosing “None” for the tail changes the recipe and its price, so
+            read each quote separately.
           </p>
+          <div class="fly-guide-block" id="fly-guide-parts">
+            <h3>What each part changes</h3>
+            <div class="table-wrap">
+              <table class="fly-part-table">
+                <tbody>
+                  <tr>
+                    <th scope="col">Part</th>
+                    <th scope="col">What it changes</th>
+                    <th scope="col">What it does not change</th>
+                  </tr>
+                  <tr>
+                    <th scope="row">Body</th>
+                    <td data-label="What it changes">
+                      Which fish bite: wet bodies 33 fish, dry and terrestrial bodies 17.<br />The
+                      body half of your save’s lock: a group-1 body never bites on a fresh save.<br />How
+                      the fight starts: Caddis and hopper bodies help against fish of 16 to 35 cm;
+                      other families help against fish up to 15 cm and hurt against fish over 35 cm.
+                    </td>
+                    <td data-label="What it does not change">
+                      How fast fish bite: once the fly passes the lock, it bites within seconds.
+                    </td>
+                  </tr>
+                  <tr>
+                    <th scope="row">Wing</th>
+                    <td data-label="What it changes">
+                      Only the wing half of your save’s lock: a group-2 wing never bites on a fresh
+                      save (in the Mayfly menu that is row 2 of every column).
+                    </td>
+                    <td data-label="What it does not change">
+                      Which fish bite, the fight and the bite speed. A pricier wing is not better.
+                    </td>
+                  </tr>
+                  <tr>
+                    <th scope="row">Tail</th>
+                    <td data-label="What it changes">Nothing; it is only looks.</td>
+                    <td data-label="What it does not change">
+                      Bites and the fight. Choose “None” (¥0) to save money.
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+            <p class="fly-guide-note">
+              The save’s lock: every save hides two numbers, a body group and a wing group (0 to 3).
+              A fly never bites if its body group or wing group equals the saved number. A group is
+              the part’s ID (in decimal) divided by 4, remainder only. A save that has never rested
+              at an inn holds body group 1 and wing group 2. An inn rest has about a 34% chance of
+              changing one of them; re-equip your fly afterwards. Travelling and recasting never
+              change the lock.
+            </p>
+          </div>
         </section>
       </details>
       <details class="guide-details research-details">

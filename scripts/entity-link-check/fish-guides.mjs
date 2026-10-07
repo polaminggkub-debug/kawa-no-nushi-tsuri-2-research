@@ -2,6 +2,7 @@ import assert from 'node:assert/strict'
 import fs from 'node:fs'
 import path from 'node:path'
 import { data, locations, render, root, unescapeHtml } from './shared.mjs'
+import { flyWorksOnFreshSave } from '../../src/entities/item/index.js'
 import { checkLureKit, checkLureKitNavigation } from './lure-kit-value.mjs'
 
 checkEvidenceTouchTargets()
@@ -295,10 +296,13 @@ function starterCandidates(fishId, stage, method) {
       if (String(shop.stage) !== stage || shop.condition) continue
       const price = method === 'fly' ? shop.bundle?.shopPriceYen : item.priceYen
       if (Number.isFinite(price) && price >= 0)
-        candidates.push({ key: `${item.category}:${item.id}`, price })
+        candidates.push({ key: `${item.category}:${item.id}`, price, bundle: shop.bundle })
     }
   }
-  return candidates
+  if (method !== 'fly') return candidates
+  // A fresh save locks body group 1 and wing group 2: the starter fly must be one that bites there.
+  const usable = candidates.filter((candidate) => flyWorksOnFreshSave(candidate.bundle))
+  return usable.length ? usable : candidates
 }
 
 function checkStarterRod(rod, method, stage) {

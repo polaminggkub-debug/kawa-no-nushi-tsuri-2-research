@@ -6,6 +6,8 @@ import re
 from collections import defaultdict
 from pathlib import Path
 
+from bait_lure_copy import bait_copy, lure_copy, lure_special_scope
+
 
 PUBLICATION = Path(__file__).resolve().parents[1]
 CATALOGUE = PUBLICATION / "catalogue"
@@ -184,6 +186,18 @@ def build():
     if (DATA / "forage-locations.json").exists():
         tool_locations.update(load(DATA / "forage-locations.json")["items"])
     thai_fish_names = stage_fish_names()
+    gear_effects = load(DATA / "gear-effects.json")
+    fish_visuals = catalogue.get("fishVisuals", {})
+
+    def fish_names(fish_id):
+        visual = fish_visuals.get(fish_id, {})
+        latin = visual.get("nameLatin") or ""
+        ja = visual.get("nameJa") or fish_id
+        return {
+            "en": visual.get("nameEn") or latin or ja,
+            "ja": ja,
+            "th": visual.get("nameTh") or " / ".join(visual.get("nameThVariants") or []) or latin or ja,
+        }
 
     fish = {entry["id_hex"].upper(): entry for entry in acceptance["fish_profiles"]}
     valid_fish = {item_id for item_id, entry in fish.items() if not entry.get("name_has_unmapped_glyph") and int(item_id, 16) != 0x43}
@@ -305,30 +319,8 @@ def build():
         elif category == "lure":
             lure = lures[item_id]
             entry["fishIds"] = [fish_id for fish_id in lure["fish_ids_passing_gate"] if fish_id.upper() in valid_fish]
-            entry["fishScope"] = loc(
-                "The fish shown pass one lure check for this exact item; position, timing, and landing the fish still matter.",
-                "表示された魚はこのルアーの判定を1つ通る。位置・タイミング・取り込みは別条件。",
-                "ปลาที่แสดงผ่านเงื่อนไขหนึ่งของลัวร์ชิ้นนี้; ตำแหน่ง จังหวะ และการดึงขึ้นยังมีผล",
-            )
-            count = len(entry["fishIds"])
-            entry["summary"] = loc(
-                "Use with a lure rod; the pictures below show fish that pass this lure's check.",
-                "ルアー竿で使う。下の魚画像は、このルアーの判定を通る魚。",
-                "ใช้กับคันลัวร์; รูปปลาด้านล่างแสดงปลาที่ผ่านเงื่อนไขของลัวร์ชิ้นนี้",
-            )
-            same_name = [x for x in catalogue["items"] if x["category"] == "lure" and x["nameJa"] == item["nameJa"]]
-            same_masks = {lures[x["id"].upper()]["hook_gate_mask_hex"] for x in same_name if x["id"].upper() in lures}
-            if len(same_name) > 1 and len(same_masks) > 1:
-                entry["facts"] = loc_lists(
-                    ["Several lures share the same printed name; use the fish pictures on this exact card."],
-                    ["同じ日本語名でも魚リストが異なるIDがある。このIDのリストを確認。"],
-                    ["ลัวร์หลายชิ้นใช้ชื่อเหมือนกัน แต่รายชื่อปลาไม่เหมือนกัน ให้ดูรูปปลาของชิ้นนี้"],
-                )
-            entry["evidenceNotes"] = loc_lists(
-                [f"{count} fish profiles pass this lure record's species-mask comparison."],
-                [f"このルアーレコードは{count}種の魚プロフィールで魚種マスク判定を通る。"],
-                [f"โปรไฟล์ปลา {count} ชนิดผ่านเงื่อนไข mask ของระเบียนลัวร์นี้"],
-            )
+            selector = gear_effects["items"]["lure"][str(int(item_id, 16))]["sel"]
+            entry["summary"], entry["facts"], entry["fishScope"], entry["evidenceNotes"] = lure_copy(selector)
             special_id = lure.get("special_fish_compare_id_hex", "00").upper()
             if special_id != "00" and special_id in fish:
                 target = fish[special_id]
@@ -336,14 +328,7 @@ def build():
                 if target["name_ja_from_rom"] in thai_fish_names:
                     target_obj["nameTh"] = thai_fish_names[target["name_ja_from_rom"]]
                 entry["specialResponseTarget"] = target_obj
-                entry["specialResponseScope"] = loc(
-                    "The game uses a separate lure-response calculation for this fish; no catch-rate advantage is established.",
-                    "この魚ではルアーの応答計算が変わる。釣果率の優位性は未確認。",
-                    "เกมใช้การคำนวณตอบสนองของลัวร์ต่างออกไปกับปลาชนิดนี้; ยังไม่พบว่าเพิ่มโอกาสจับ",
-                )
-                entry["evidenceNotes"]["en"].append("This is a conditional response branch, not an exclusive accepted-fish list.")
-                entry["evidenceNotes"]["ja"].append("条件付きの応答分岐で、釣れる魚を限定するリストではない。")
-                entry["evidenceNotes"]["th"].append("เป็นเงื่อนไขตอบสนองเฉพาะ ไม่ใช่รายชื่อปลาที่ตกได้เท่านั้น")
+                entry["specialResponseScope"] = lure_special_scope(fish_names(special_id))
 
         elif category == "bait":
             bait = baits[item_id]
@@ -352,83 +337,22 @@ def build():
                 "float": list(entry["fishIds"]),
                 "sinker": [fish_id for fish_id in entry["fishIds"] if fish_id.upper() in sinker_route_fish],
             }
-            if entry["fishIdsByRoute"]["sinker"]:
-                entry["fishScope"] = loc(
-                    "Fish shown pass this bait check with a float. The sinker route has a shorter target list; position, timing, and landing still matter.",
-                    "表示された魚はウキ仕掛けでこのエサの判定を通る。オモリ仕掛けでは対象が少なく、位置・タイミング・取り込みも別条件。",
-                    "ปลาที่แสดงผ่านเงื่อนไขของเหยื่อนี้เมื่อใช้ทุ่น; ชุดตะกั่วใช้ได้กับปลาบางชนิดกว่า และตำแหน่ง จังหวะ การดึงขึ้นยังมีผล",
-                )
-                entry["summary"] = loc(
-                    "Use with a float or sinker; choose a fish from the pictures below. The sinker route has fewer targets.",
-                    "ウキ・オモリ仕掛け用のエサ。下の魚画像から対象を選ぶ。オモリ仕掛けでは対象が少ない。",
-                    "ใช้ตกแบบทุ่นหรือตะกั่ว; เลือกปลาจากรูปด้านล่าง โดยชุดตะกั่วมีเป้าหมายน้อยกว่า",
-                )
-            else:
-                entry["fishScope"] = loc(
-                    "Fish shown pass this bait check in the float route. No fish pass this bait's sinker-route check; position, timing, and landing still matter.",
-                    "表示された魚はウキ仕掛けでこのエサの判定を通る。このエサはオモリ仕掛けの判定を通る魚がいない。位置・タイミング・取り込みも別条件。",
-                    "ปลาที่แสดงผ่านเงื่อนไขของเหยื่อนี้ในเส้นทางทุ่น; ไม่มีปลาที่ผ่านเงื่อนไขเหยื่อนี้ในเส้นทางตะกั่ว และตำแหน่ง จังหวะ การดึงขึ้นยังมีผล",
-                )
-                entry["summary"] = loc(
-                    "Use with a float; choose a fish from the pictures below.",
-                    "ウキ仕掛け用のエサ。下の魚画像から対象を選ぶ。",
-                    "ใช้ตกแบบทุ่น; เลือกปลาจากรูปด้านล่าง",
-                )
-            entry["evidenceNotes"] = loc_lists(
-                ["The float list is based on the bait-record fish comparison. Sinker-route fish also need a separate profile flag and nonzero threshold."],
-                ["ウキ経路の魚リストはエサレコードの魚判定に基づく。オモリ経路では魚プロフィールの別フラグと非ゼロしきい値も必要。"],
-                ["รายชื่อเส้นทางทุ่นคำนวณจากการเทียบปลาในระเบียนเหยื่อ; เส้นทางตะกั่วยังต้องผ่านแฟล็กและเกณฑ์โปรไฟล์ปลาเพิ่ม"],
+            matched = item["rawFields"].get("+1", 0)
+            matched_fish = fish_names(f"{matched:02X}") if matched and item_id != "17" else None
+            entry["summary"], entry["facts"], entry["fishScope"], entry["evidenceNotes"] = bait_copy(
+                bool(entry["fishIdsByRoute"]["sinker"]), matched_fish
             )
 
         elif category == "fly":
+            # Summary, facts and notes come from data/fly-practical-research.json (scripts/build_fly_advice.cjs).
             body = bodies[item_id]
             entry["fishIds"] = [fish_id for fish_id in body["fish_ids_passing_mask_gate"] if fish_id.upper() in valid_fish]
-            entry["fishScope"] = loc(
-                "Fish shown pass this body's check. The game also checks the body and wing together against a value that changes during play.",
-                "表示された魚はこのボディの判定を通る。ゲーム中に変化する値に対して、ボディとウィングの組み合わせも判定される。",
-                "ปลาที่แสดงผ่านเงื่อนไขของบอดี้นี้; เกมยังตรวจบอดี้กับปีกที่เลือกเทียบกับค่าซึ่งเปลี่ยนระหว่างเล่น",
-            )
-            entry["summary"] = loc(
-                "Main body for a custom fly; the fish pictures show which fish pass its body check. The game checks the wing too.",
-                "毛バリのボディ部品。魚画像はボディ判定を通る魚。ウィングも別に判定される。",
-                "บอดี้หลักของฟลาย; รูปปลาด้านล่างคือปลาที่ผ่านเงื่อนไขบอดี้ และเกมตรวจปีกเพิ่มด้วย",
-            )
-            entry["evidenceNotes"] = loc_lists(
-                ["Body eligibility is only one check; the game also compares the selected body and wing with a changing in-game value."],
-                ["ボディの適合判定は一つだけ。選んだボディとウィングは変化するゲーム内値とも比較される。"],
-                ["ด่านบอดี้เป็นเพียงเงื่อนไขหนึ่ง; เกมยังเทียบบอดี้และปีกที่เลือกกับค่าที่เปลี่ยนระหว่างเล่น"],
-            )
 
         elif category == "fly_wing":
-            wing_class = int(item_id, 16) & 3
-            entry["summary"] = loc(
-                "Wing piece for a custom fly; the chosen wing affects an extra fish check together with the body.",
-                "毛バリのウィング部品。ボディと一緒に追加の魚判定へ影響する。",
-                "ชิ้นส่วนปีกของฟลาย; ปีกที่เลือกมีผลต่อเงื่อนไขปลาเพิ่มเติมร่วมกับบอดี้",
-            )
-            entry["wingGateClass"] = wing_class
-            entry["facts"] = loc_lists(
-                ["No wing class is shown to be best for every fish or every cast."],
-                ["すべての魚・キャストで最良と確認されたウィング分類はない。"],
-                ["ยังไม่มีหลักฐานว่ากลุ่มปีกแบบใดดีที่สุดกับปลาทุกชนิดหรือทุกครั้งที่ตก"],
-            )
-            entry["evidenceNotes"] = loc_lists(
-                [f"Its four-way ID class is {wing_class}; matching the changing runtime value blocks the traced fly event gate."],
-                [f"4分類のID値は{wing_class}。変化する実行時値と一致すると追跡した毛バリ判定を止める。"],
-                [f"กลุ่มจาก ID มี 4 แบบ; ชิ้นนี้อยู่กลุ่ม {wing_class}; ถ้าตรงกับค่าที่เปลี่ยนระหว่างเล่น ด่านฟลายที่แกะได้จะไม่ผ่าน"],
-            )
+            entry["wingGateClass"] = int(item_id, 16) & 3
 
         elif category == "fly_tail":
-            entry["summary"] = loc(
-                "Tail piece for custom flies; choose it as part of the fly's appearance and family.",
-                "毛バリのテール部品。毛バリの見た目・系統を組み立てる部品。",
-                "ชิ้นส่วนหางสำหรับประกอบฟลาย ใช้เลือกองค์ประกอบและรูปลักษณ์ของฟลาย",
-            )
-            entry["facts"] = loc_lists(
-                ["The tracked fish check uses the body and wing; it does not read this tail part."],
-                ["追跡した魚判定はボディとウィングを使い、このテール部品は読まない。"],
-                ["เกมตรวจเงื่อนไขของปลาจากบอดี้กับปีก ไม่ได้ดูชิ้นส่วนหางนี้"],
-            )
+            pass
 
         elif category == "hook":
             entry["summary"] = loc(
@@ -579,9 +503,9 @@ def build():
         if category == "rod":
             entry["evidence"] = {"type": "rom_trace", "sources": ["data/rod-response.json", "docs/rod-response-research.md"]}
         elif category == "lure":
-            entry["evidence"] = {"type": "rom_trace", "sources": ["data/lure-coverage.json", "data/lure-response.json", "docs/lure-response-research.md"]}
+            entry["evidence"] = {"type": "rom_trace", "sources": ["data/lure-coverage.json", "data/lure-response.json", "docs/lure-response-research.md", "docs/gear-effects.md"]}
         elif category == "bait":
-            entry["evidence"] = {"type": "rom_trace", "sources": ["data/fish-acceptance.json", "docs/fish-acceptance-research.md"]}
+            entry["evidence"] = {"type": "rom_trace", "sources": ["data/fish-acceptance.json", "docs/fish-acceptance-research.md", "docs/gear-effects.md"]}
         elif category == "fly":
             entry["evidence"] = {"type": "rom_trace", "sources": ["data/fish-acceptance.json", "data/fly-customization.json"]}
         elif category in ("fly_wing", "fly_tail"):

@@ -1,3 +1,4 @@
+import { freshSaveOffers } from '../../entities/item/index.js'
 import { distinctFishNames } from './fish-names.js'
 
 export function localizedFishName(ctx, fish, profileId) {
@@ -94,6 +95,8 @@ export function starterOffers(ctx, entries, stage) {
       }
     }
     candidates.sort((a, b) => a.price - b.price || a.entry.item.id.localeCompare(b.entry.item.id))
-    return candidates.length ? [candidates[0]] : []
+    const usable =
+      method === 'fly' ? freshSaveOffers(candidates, (offer) => offer.bundle) : candidates
+    return usable.length ? [usable[0]] : []
   })
 }

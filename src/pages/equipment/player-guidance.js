@@ -1,4 +1,4 @@
-import { rodAreaDecision } from '../../entities/item/index.js'
+import { freshSaveOffers, rodAreaDecision } from '../../entities/item/index.js'
 import { catalogueHpRecoveryAction } from './hp-recovery-tip.js'
 import { contextualLureCoverageDecision } from './lure-coverage-guidance.js'
 import { contextualFoodDecision } from './food-area-guidance.js'
@@ -282,8 +282,9 @@ function findFlyOffer(ctx, fish, stage) {
       (ctx.useOf(i).shops || []).filter((s) => s.bundle).map((s) => ({ body: i, ...s })),
     )
     .sort((a, b) => a.bundle.shopPriceYen - b.bundle.shopPriceYen || a.stage - b.stage)
-  const sameArea = offers.filter((o) => o.stage === stage)
-  return { offer: (sameArea.length ? sameArea : offers)[0], sameArea }
+  const usable = freshSaveOffers(offers, (o) => o.bundle)
+  const sameArea = usable.filter((o) => o.stage === stage)
+  return { offer: (sameArea.length ? sameArea : usable)[0], sameArea }
 }
 
 function noReadyFlyCard(ctx, fish) {
@@ -295,10 +296,10 @@ function noReadyFlyCard(ctx, fish) {
         : 'What to use for this fish'
   const note =
     ctx.lang === 'th'
-      ? 'ยังไม่มีชุดฟลายสำเร็จรูปที่ผ่านเงื่อนไขให้แนะนำ เปิดหน้าปลาเพื่อเลือกวิธีตกและอุปกรณ์ที่รองรับ'
+      ? 'ไม่มีบอดี้ฟลายที่ปลานี้กิน เปิดหน้าปลาเพื่อดูวิธีตกและอุปกรณ์ที่ใช้ได้'
       : ctx.lang === 'ja'
-        ? '条件に合う店売り毛バリは案内できません。魚のページで対応する釣り方と道具を選んでください。'
-        : 'No qualifying ready-made fly is listed. Open this fish’s guide to choose a supported method and setup.'
+        ? 'この魚が食べるフライボディはありません。魚のページで使える釣り方と道具を確認してください。'
+        : 'No fly body takes this fish. Open the fish page to see the methods and gear that work.'
   const action =
     ctx.lang === 'th'
       ? 'เลือกชุดตกสำหรับปลานี้'
@@ -317,22 +318,22 @@ function flyDecisionCopy(ctx, fish, offer, sameArea) {
     ].filter((r) => r.id !== '00')
   const action =
     ctx.lang === 'th'
-      ? `สำหรับ${ctx.fishName(fish)} เริ่มลองชุดนี้ได้: ร้านฟลายด่าน ${offer.stage} ราคา ${b.shopPriceYen} เยนทั้งชุด`
+      ? `สำหรับ${ctx.fishName(fish)} ซื้อชุดนี้: ร้านฟลายด่าน ${offer.stage} ราคา ${b.shopPriceYen} เยนทั้งชุด ใช้ได้บนเซฟใหม่`
       : ctx.lang === 'ja'
-        ? `${ctx.fishName(fish)}なら、この構成から試せる。エリア${offer.stage}の毛バリ店、完成品${b.shopPriceYen}円。`
-        : `For ${ctx.fishName(fish)}, start with this ready-made fly: area ${offer.stage} fly shop, ¥${b.shopPriceYen} for the complete bundle.`
+        ? `${ctx.fishName(fish)}なら、このセットを買う。エリア${offer.stage}の毛バリ店、完成品${b.shopPriceYen}円。新規セーブで使える。`
+        : `For ${ctx.fishName(fish)}, buy this ready-made fly: area ${offer.stage} fly shop, ¥${b.shopPriceYen} for the complete bundle. It works on a fresh save.`
   const reason =
     ctx.lang === 'th'
-      ? `เลือกชุดราคาต่ำสุดที่บอดี้ผ่านเงื่อนไขปลานี้${sameArea.length ? 'ในด่านของแผนที่ที่เลือก' : ''} เพื่อลดเงินที่ต้องจ่าย ไม่ใช่เพราะพิสูจน์ว่าจับง่ายที่สุด`
+      ? `เป็นชุดที่ถูกที่สุด${sameArea.length ? 'ในด่านของแผนที่ที่เลือก' : ''}ที่ปลานี้กินและไม่ติดล็อกของเซฟใหม่ (บอดี้กลุ่ม 1 หรือปีกกลุ่ม 2 ไม่กินเลย)`
       : ctx.lang === 'ja'
-        ? `ボディ判定に合う${sameArea.length ? '選択エリア内の' : ''}最安の店売り構成を選び、出費を抑える。釣果の最良構成ではない。`
-        : `Lowest listed price among qualifying bodies${sameArea.length ? ' in the selected fishing area' : ''}, to limit your spending; not a proven best-catching fly.`
+        ? `この魚が食べて、新規セーブのロックに引っかからない${sameArea.length ? '選択エリア内の' : ''}最安セット（グループ1のボディとグループ2のウィングは食いつかない）。`
+        : `The cheapest set${sameArea.length ? ' in the selected fishing area' : ''} that this fish takes and a fresh save does not lock (a group-1 body or group-2 wing never bites).`
   const scope =
     ctx.lang === 'th'
-      ? 'ยังมีเงื่อนไขซ่อนของบอดี้กับปีก ถ้าปลาไม่กิน การตีซ้ำไม่สุ่มค่านั้นใหม่ อย่าเหมาว่าราคาสูงกว่าจะดีกว่า'
+      ? 'นอนโรงแรมแล้วล็อกอาจเปลี่ยน ให้ใส่ฟลายอีกครั้ง ราคาแพงกว่าไม่ได้กินดีกว่า ถ้าอยากกันเหนียวให้ดูชุดสำรองสามตัว'
       : ctx.lang === 'ja'
-        ? '隠しボディ・ウィング条件も残る。投げ直しでは再抽選されず、高価なほど良いとは限らない。'
-        : 'Hidden body/wing conditions still apply. Recasting does not reroll them; paying more is not an established advantage.'
+        ? '宿に泊まるとロックが変わることがある。泊まったら毛バリを装備し直す。高いほど食いつくわけではない。保険がほしければ3本セットを。'
+        : 'Resting at an inn can change the lock, so re-equip the fly afterwards. Paying more does not make a fly bite better. For insurance, see the three-fly set.'
   return {
     title:
       ctx.lang === 'th'
@@ -369,9 +370,9 @@ function hasThreeBundleFlyBackup(ctx, fish) {
 
 function flyBackupAction(ctx, fish) {
   const labels = {
-    th: 'ถ้าชุดเริ่มต้นติดเงื่อนไขซ่อน: ดูชุดสำรองของปลานี้ · ไม่รับประกันว่าปลากิน',
-    en: 'If the starter is blocked by the hidden check: see this fish’s backup sets · no bite guarantee',
-    ja: '最初のセットが隠し判定でブロックされたら、この魚の予備セットを見る（食いつき保証ではありません）',
+    th: 'กันเหนียวเผื่อล็อกเปลี่ยนหลังนอนโรงแรม: ดูชุดสำรองสามตัวของปลานี้',
+    en: 'Insurance in case an inn rest changes the lock: see this fish’s three-fly set',
+    ja: '宿泊でロックが変わったときの保険：この魚の3本セットを見る',
   }
   return hasThreeBundleFlyBackup(ctx, fish)
     ? { href: `${ctx.fishHref(fish)}#fly-backup`, label: labels }

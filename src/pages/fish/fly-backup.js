@@ -1,3 +1,5 @@
+import { flyWorksOnFreshSave } from '../../entities/item/index.js'
+
 function findBackupOffers(ctx, items, choices) {
   const definitions = choices?.profiles?.[ctx.id]?.bundles || []
   if (definitions.length !== 3) return []
@@ -18,33 +20,45 @@ function findBackupOffers(ctx, items, choices) {
 }
 
 function backupTitle(ctx) {
-  if (ctx.locale === 'th') return 'ปลาไม่กินฟลาย? ทางเลือกเพื่อผ่านเงื่อนไขซ่อนหนึ่งข้อ'
-  if (ctx.locale === 'ja') return 'フライに反応しない？ 隠れた判定1つを避ける候補'
-  return 'No bite on a fly? Alternatives for one hidden check'
+  if (ctx.locale === 'th') return 'ฟลายไม่ติด? พกชุดสามตัวกันล็อกเปลี่ยน'
+  if (ctx.locale === 'ja') return 'フライに反応しない？ ロック変更に備える3本セット'
+  return 'No bite on a fly? A three-fly set against a lock change'
 }
 
 function backupIntro(ctx, total) {
   if (ctx.locale === 'th')
-    return `ถ้าจะเตรียมฟลายสำรอง ชุดด้านล่างมีราคารวมต่ำที่สุดในกลุ่มที่ซื้อชุดสำเร็จรูป 3 ชุดจากร้านทั้ง 6 ด่านแล้วผ่านเงื่อนไขนี้สำหรับปลาตัวนี้ ซื้อใหม่รวม ¥${total} และบอดี้ทั้งสามผ่านเงื่อนไขของปลาที่กำลังดู เก็บไว้เป็นชุดสำรอง ไม่จำเป็นต้องซื้อทั้งหมดเพื่อเริ่มตก`
+    return `เซฟทุกอันมีล็อกลับที่อาจเปลี่ยนหลังนอนโรงแรม ชุดสามตัวนี้ถูกที่สุดที่ปลานี้กิน และมีบอดี้กับปีกอยู่คนละกลุ่มกันหมด จึงมีอย่างน้อยหนึ่งตัวที่ใช้ได้ไม่ว่าล็อกจะเป็นเลขไหน ซื้อใหม่รวม ¥${total} ไม่ต้องซื้อครบเพื่อเริ่มตก เซฟใหม่เริ่มจากตัวที่ติดป้าย “ใช้ได้บนเซฟใหม่” ก็พอ`
   if (ctx.locale === 'ja')
-    return `予備を用意するなら、この魚の条件を満たす店売り3セットのうち、全6エリアの在庫で合計価格が最安の候補です。新規購入は合計${total}円で、3つの本体すべてが表示中の魚の判定を通ります。最初から全部買う必要はありません。`
-  return `For backup flies, these are the lowest-total-price three ready-made sets across all six recorded area stocks that satisfy this check for the current fish. They cost ¥${total} in total when buying new. All three bodies pass the current fish’s profile check. You do not need to buy all three to start fishing.`
+    return `どのセーブにも隠しロックがあり、宿泊で変わることがあります。この3本は、この魚が食べる最安の組み合わせで、ボディとウィングのグループがすべて違うため、ロックがどの数字でも少なくとも1本は使えます。新規購入は合計${total}円。始めるのに全部買う必要はありません。新規セーブでは「新規セーブで使える」の表示があるものから使えば十分です。`
+  return `Every save has a hidden lock that an inn rest can change. These three are the cheapest flies this fish takes, and their bodies and wings are all in different groups, so at least one works whatever the lock is. They cost ¥${total} in total when buying new, and you do not need all three to start. On a fresh save, begin with the one marked “Works on a fresh save”.`
 }
 
 function backupAction(ctx) {
   if (ctx.locale === 'th')
-    return 'สลับลองสามชุดในฉากที่โหลดอยู่เดิม โดยไม่พักโรงแรมหรือออกไปโหลดฉากใหม่ ตามที่เกมทำงาน อย่างน้อยหนึ่งชุดจะไม่ติดเงื่อนไขที่บล็อกเพราะบอดี้กับปีกซ้ำกัน ตราบใดที่ค่าซ่อนในเกมไม่เปลี่ยน การตีชุดเดิมซ้ำไม่ได้สุ่มค่านี้ใหม่'
+    return 'ใส่ทีละตัวในฉากเดิมได้เลย ไม่ต้องนอนโรงแรมหรือเปลี่ยนฉาก ถ้าทุ่นอยู่ช่องของปลาแล้วไม่มีปลาตัวไหนสนใจฟลายเลย ให้สลับไปตัวถัดไป ถ้าปลาหันมาหาฟลายแสดงว่าตัวนั้นผ่านล็อกแล้ว ไม่ต้องเปลี่ยน'
   if (ctx.locale === 'ja')
-    return '宿泊やフィールド再生成を挟まず、同じ読み込み済みフィールドで3セットを切り替えます。隠れた値が一定なら、コード上は少なくとも1セットがボディ・ウィングの一致による遮断を避けます。同じセットの投げ直しはこの値を再抽選しません。'
-  return 'Switch among the three sets in the same loaded field, without an inn stay or field reload. With the stored hidden values unchanged, the code guarantees at least one avoids the body/wing equality block. Recasting the same set does not reroll those values.'
+    return '同じフィールドのまま、宿泊や移動なしで1本ずつ切り替えます。ウキを魚のマスに置いても魚がまったく反応しないときは次の1本へ。魚がこちらを向いたら、そのフライはロックを通っているので替える必要はありません。'
+  return 'Swap them one at a time in the same field; no inn stay or travel needed. If your float is on the fish’s tile and nothing reacts to the fly, switch to the next one. If a fish turns toward the fly, it has passed the lock; change nothing.'
 }
 
 function backupScope(ctx) {
   if (ctx.locale === 'th')
-    return 'นี่ผ่านเงื่อนไขซ่อนเพียงหนึ่งข้อ ไม่รับประกันว่าปลาจะกินหรือตกขึ้นได้ ยังมีตำแหน่ง จังหวะ และเงื่อนไขอื่น เส้นทางสลับชุดนี้เป็นข้อสรุปจากโค้ด ยังไม่มีผลทดลองตกจริงยืนยันชุดนี้'
+    return 'การตีซ้ำด้วยฟลายตัวเดิมไม่เปลี่ยนล็อก มีแต่การนอนโรงแรมที่เปลี่ยนได้ (ราว 34% ที่เลขใดเลขหนึ่งเปลี่ยน) นอนแล้วให้ใส่ฟลายอีกครั้ง'
   if (ctx.locale === 'ja')
-    return '回避するのは隠れた判定1つだけで、食いつき・取り込みの保証ではありません。位置・タイミング・別条件も残ります。この切替手順はコードに基づく結論で、実釣比較は未実施です。'
-  return 'This avoids only one hidden check. Position, timing and other checks still apply; it does not guarantee a bite or landing. The switching strategy is derived from code and has not been confirmed by a controlled fishing trial.'
+    return '同じフライで投げ直してもロックは変わりません。変わるのは宿泊だけです（どちらかの数字が変わる確率は約34%）。泊まったら毛バリを装備し直してください。'
+  return 'Recasting the same fly never changes the lock; only an inn rest can (about a 34% chance that one of the two numbers changes). Re-equip your fly after resting.'
+}
+
+function lockBadge(ctx, bundle) {
+  const works = flyWorksOnFreshSave(bundle)
+  const text = works
+    ? { th: 'ใช้ได้บนเซฟใหม่', ja: '新規セーブで使える', en: 'Works on a fresh save' }
+    : {
+        th: 'ติดล็อกบนเซฟใหม่ (ใช้เมื่อล็อกเปลี่ยน)',
+        ja: '新規セーブではロックされる（ロックが変わったら使う）',
+        en: 'Locked on a fresh save (use it once the lock changes)',
+      }
+  return `<p class="fly-backup-lock" data-fresh-save="${works ? 'works' : 'locked'}"><strong>${ctx.escapeHtml(text[ctx.locale] || text.en)}</strong></p>`
 }
 
 function backupLocation(ctx, def) {
@@ -95,7 +109,7 @@ function backupCard(ctx, offer, items, stage) {
   const parts = backupParts(items, def)
     .map((item) => ctx.itemLink({ item, routes: [] }, stage))
     .join('')
-  return `<article class="detail-section fly-backup" data-bundle="${def.body}/${def.wing}/${def.tail}" data-price="${bundle.shopPriceYen}"><h4>${ctx.escapeHtml(backupLocation(ctx, def))} · ¥${bundle.shopPriceYen}</h4><p>${ctx.escapeHtml(backupPartsNote(ctx))}</p>${parts}<a class="route-button" href="${ctx.escapeHtml(backupShopLink(ctx, def, stage))}">${ctx.escapeHtml(backupBuyLabel(ctx))} ↗</a></article>`
+  return `<article class="detail-section fly-backup" data-bundle="${def.body}/${def.wing}/${def.tail}" data-price="${bundle.shopPriceYen}"><h4>${ctx.escapeHtml(backupLocation(ctx, def))} · ¥${bundle.shopPriceYen}</h4>${lockBadge(ctx, def)}<p>${ctx.escapeHtml(backupPartsNote(ctx))}</p>${parts}<a class="route-button" href="${ctx.escapeHtml(backupShopLink(ctx, def, stage))}">${ctx.escapeHtml(backupBuyLabel(ctx))} ↗</a></article>`
 }
 
 function backupCards(ctx, offers, items, stage) {

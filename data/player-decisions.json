@@ -147,24 +147,24 @@
       "id": "lure_coverage_pair",
       "category": "lure",
       "title": {
-        "th": "อยากพกลัวร์สองชิ้นให้ครอบคลุม: เอาคู่นี้",
-        "en": "Want a two-lure kit? Carry this pair",
-        "ja": "ルアーを2種類だけ持つならこの組み合わせ"
+        "en": "Two lures are enough: the pair that covers all 38 lure fish",
+        "ja": "ルアーは2つで十分：対象38種すべてをカバーする組み合わせ",
+        "th": "ลัวร์สองชิ้นก็พอ: คู่ที่ครอบคลุมปลาลัวร์ทั้ง 38 ชนิด"
       },
       "recommendation": {
-        "th": "ถ้าเริ่มชุดใหม่ที่ด่าน 1 ซื้อสปูน 2E ราคา ¥25 กับยางหนอน 23 ราคา ¥30 รวม ¥55. ถ้าเริ่มชุดใหม่ที่ด่าน 4 ซื้อจมน้ำ 17 ราคา ¥20 กับยางหนอน 23 รวม ¥50; ถ้ามีสปูนกับยางหนอนอยู่แล้ว ไม่ต้องซื้อจมน้ำเพิ่มเพื่อหวังประหยัด ¥5",
-        "en": "Starting a new kit in area 1: buy Spoon 2E for ¥25 and Soft worm 23 for ¥30, ¥55 total. Starting a new kit in area 4: buy Sinking lure 17 for ¥20 with Soft worm 23, ¥50 total. If you already own the Spoon-and-worm pair, buying Sinking does not save ¥5.",
-        "ja": "エリア1で新しく揃えるなら、スプーン2E（25円）とソフト・ワーム23（30円）で合計55円。エリア4で新しく揃えるなら、シンキング17（20円）とワーム23で合計50円です。すでにスプーンとワームを持っている場合、シンキングを買い足しても5円節約にはなりません。"
+        "en": "Starting a new kit in area 1: buy lure 2E for ¥25 and lure 23 for ¥30, ¥55 total. Starting a new kit in area 4: buy lure 17 for ¥20 with lure 23, ¥50 total. If you already own lure 2E and lure 23, buying lure 17 does not save ¥5.",
+        "ja": "エリア1で新しく揃えるなら、ルアー2E（25円）とルアー23（30円）で合計55円。エリア4ならルアー17（20円）とルアー23で合計50円。すでにルアー2Eとルアー23を持っていれば、ルアー17を買い足しても5円の節約にはなりません。",
+        "th": "ถ้าเริ่มชุดใหม่ที่ด่าน 1 ซื้อลัวร์ 2E ราคา ¥25 กับลัวร์ 23 ราคา ¥30 รวม ¥55 ถ้าเริ่มชุดใหม่ที่ด่าน 4 ซื้อลัวร์ 17 ราคา ¥20 กับลัวร์ 23 รวม ¥50 ถ้ามีลัวร์ 2E กับลัวร์ 23 อยู่แล้ว ไม่ต้องซื้อลัวร์ 17 เพิ่มเพื่อหวังประหยัด ¥5"
       },
       "reason": {
-        "th": "คู่นี้ใช้ได้กับปลาที่ตกด้วยลัวร์ได้ครบทั้ง 38 โปรไฟล์ ช่วยลดจำนวนชิ้นที่ต้องพก",
-        "en": "This pair works with all 38 lure-compatible fish profiles, so two items cover that confirmed set.",
-        "ja": "この組み合わせはルアーが使える38の魚プロフィールすべてに対応します。2種類で確認済みの範囲をカバーできます。"
+        "en": "A fish on a lure's list chases it once it is on the lure's tile, and these two together cover all 38 lure fish, so you carry fewer lures.",
+        "ja": "ルアーのリストにある魚は、ルアーと同じマスにいれば追ってくる。この2つで全38種をカバーできるので、持つルアーが少なくて済む。",
+        "th": "ปลาในรายชื่อของลัวร์ว่ายตามเมื่ออยู่ช่องเดียวกับลัวร์ และสองชิ้นนี้ครอบคลุมปลาลัวร์ครบทั้ง 38 ชนิด ช่วยลดจำนวนชิ้นที่ต้องพก"
       },
       "scope": {
-        "th": "นี่คือความเข้ากันได้ของชนิดเหยื่อ ไม่ใช่โอกาสที่ปลาจะกินหรือรับประกันว่าจะตกได้ ควรดูจุดตกปลาจากแผนที่ด้วย",
-        "en": "This is bait-type compatibility, not a bite rate or a guarantee of landing a fish; still use the fish-location map.",
-        "ja": "エサの種類チェックを通るという意味で、食いつき率や釣果の保証ではありません。魚の出現場所も確認してください。"
+        "en": "Keep tapping A or B while the lure is in the water, then press A once when the fish is level with the lure. The two lures sit in different size classes, so the fight starts differently by fish size (see the class on each lure card); for fish over 35 cm a lure whose class helps big fish starts the fight better.",
+        "ja": "ルアーが水中にある間はAかBを連打し、魚が同じ高さに来たらAを1回。この2つはサイズ区分が違うため、魚のサイズでファイトの開始値が変わる（各ルアーのカードで区分を確認）。35cm超の魚には、大型に有利な区分のルアーのほうが有利に始められる。",
+        "th": "กด A หรือ B ต่อเนื่องตอนลัวร์อยู่ในน้ำ แล้วกด A หนึ่งครั้งเมื่อปลาอยู่ระดับเดียวกับลัวร์ ลัวร์สองชิ้นนี้อยู่คนละกลุ่มขนาด ตอนสู้จึงเริ่มต่างกันตามขนาดปลา (ดูกลุ่มขนาดบนการ์ดลัวร์) ปลาใหญ่กว่า 35 ซม. เลือกลัวร์ในกลุ่มที่ช่วยปลาใหญ่จะเริ่มสู้ได้ดีกว่า"
       },
       "items": [
         {
@@ -185,37 +185,45 @@
       "id": "fly_bundle_choice",
       "category": "flymaker",
       "title": {
-        "th": "ฟลาย: เลือกบอดี้ก่อน ไม่ต้องไล่หาปีกเทพ",
-        "en": "Fly choice: match the body to the fish; don’t chase a ‘best’ wing",
-        "ja": "フライ選び：魚に合うボディを選び、最強ウィング探しは不要"
+        "en": "Which fly do I buy?",
+        "ja": "どの毛バリを買う？",
+        "th": "ซื้อฟลายตัวไหนดี?"
       },
       "recommendation": {
-        "th": "ถ้าเป้าหมายอยู่ในรายชื่อบอดี้เปียก ให้ใช้ชุดสำเร็จรูปด่าน 1: บอดี้ 01 + ปีก 09 + หาง 13 ราคา ¥5. ถ้าเป้าหมายไม่อยู่ในกลุ่ม 33 โปรไฟล์ของบอดี้เปียก ให้เปลี่ยนไปใช้เหยื่อหรือวิธีตกอื่น; ไม่มีหลักฐานว่าปีกหรือหางแบบใดจับปลาได้ดีกว่า",
-        "en": "If your target appears in the wet-body fish list, area 1 sells a ready-made bundle—body 01, wing 09, tail 13—for ¥5. If the target is absent from the 33 wet-body profiles, use compatible bait or another fishing style; no ordinary fly body is confirmed for that profile. No wing or tail is proven to improve catches.",
-        "ja": "狙う魚がウェットボディの魚リストにあるなら、エリア1の完成品（ボディ01・ウィング09・テール13）を5円で購入できます。対象魚がウェットの33プロフィールにない場合は、適合するエサや別の釣り方に切り替えてください。通常のフライでその対象に適合するボディは確認されていません。釣果を上げるウィングやテールも証明されていません。"
+        "en": "On a new save one set is enough. For the 33 fish that take wet bodies, buy the ready-made set 2B/34/00 for ¥15 in Area 1. For the 17 fish that take dry bodies, buy 3E/43/49 for ¥5 in Area 1. For insurance against a lock change after an inn rest, carry the three-fly set 2B/34/00 ¥15, 01/09/13 ¥5, 02/0A/14 ¥10 (¥30). Do not buy 01/09/13 (¥5) on its own: a fresh save never lets it bite.",
+        "ja": "新規セーブなら1セットで足りる。ウェットのボディを食べる33種には、完成品2B/34/00をエリア1で15円。ドライのボディを食べる17種には、3E/43/49をエリア1で5円。宿泊後のロック変更に備えるなら、3本セット2B/34/00 ¥15, 01/09/13 ¥5, 02/0A/14 ¥10（合計30円）を持つ。01/09/13（5円）を単独で買ってはいけない。新規セーブでは一切食いつかない。",
+        "th": "เซฟใหม่ซื้อชุดเดียวก็พอ ปลา 33 ชนิดที่กินบอดี้แบบเปียก ซื้อชุดสำเร็จรูป 2B/34/00 ¥15 ที่ด่าน 1 ปลา 17 ชนิดที่กินบอดี้แบบแห้งได้ ซื้อ 3E/43/49 ¥5 ที่ด่าน 1 ถ้าอยากกันเหนียวเผื่อล็อกเปลี่ยนหลังนอนโรงแรม พกชุดสามตัว 2B/34/00 ¥15, 01/09/13 ¥5, 02/0A/14 ¥10 รวม ¥30 อย่าซื้อ 01/09/13 (¥5) ตัวเดียว เพราะเซฟใหม่ไม่กินเลย"
       },
       "reason": {
-        "th": "บอดี้เปียกใช้ได้กับปลา 33 โปรไฟล์ บอดี้แห้งใช้ได้กับ 17 โปรไฟล์ ซึ่งอยู่ในกลุ่มเปียกทั้งหมด ถ้าปลาไม่อยู่ใน 33 โปรไฟล์นี้ ให้ใช้เหยื่อหรือวิธีอื่น ยังไม่มีอันดับของปีกหรือหาง",
-        "en": "Wet bodies pass 33 profile checks; dry bodies pass 17, all inside the wet set. If a fish is absent from those 33 profiles, use bait or another fishing style. No wing/tail ranking is established.",
-        "ja": "ウェットボディは33プロフィール、ドライはそのうち17プロフィールの判定を通ります。対象魚が33種にない場合は別のエサ・釣り方を選んでください。ウィング／テールの順位は確認されていません。"
+        "en": "The body decides which fish bite (wet bodies 33 fish, dry and terrestrial bodies 17) and how the fight starts. The wing is only a ticket past the lock. The tail is only looks. Every save hides a lock: a fly whose body is in group 1 or whose wing is in group 2 never bites on a fresh save (a group is the part's ID in decimal divided by 4, remainder only). An inn rest has about a 34% chance of changing the lock, so re-equip your fly after resting.",
+        "ja": "ボディが食いつく魚（ウェット33種、ドライ・テレストリアル17種）とファイトの開始値を決める。ウィングはロックを通るための部品でしかなく、テールは見た目だけ。どのセーブにも隠しロックがある。新規セーブでは、ボディがグループ1、またはウィングがグループ2の毛バリは一切食いつかない（グループは部品ID（10進）を4で割った余り）。宿泊でロックが変わる確率は約34%なので、泊まったら毛バリを装備し直す。",
+        "th": "บอดี้เป็นตัวเลือกปลาที่กิน (แบบเปียก 33 ชนิด แบบแห้งและแมลงบก 17 ชนิด) และกำหนดจุดเริ่มสู้ ปีกมีหน้าที่แค่ผ่านล็อก หางเป็นแค่หน้าตา ทุกเซฟมีล็อกลับ: ฟลายที่บอดี้อยู่กลุ่ม 1 หรือปีกอยู่กลุ่ม 2 ไม่กินเลยบนเซฟใหม่ (กลุ่ม = ID ของชิ้นส่วนฐานสิบหารด้วย 4 เอาเศษ) การนอนโรงแรมมีโอกาสราว 34% ที่ล็อกเปลี่ยน นอนแล้วให้ใส่ฟลายอีกครั้ง"
       },
       "scope": {
-        "th": "รายชื่อปลาบอกแค่ว่าใช้ได้หรือไม่ ไม่ใช่โอกาสกิน ยังไม่มีปีกหรือหางที่พิสูจน์ว่าดีที่สุด ชุดสำเร็จรูปที่ยกมาเป็นตัวอย่างราคาถูกที่ร้านขายจริง",
-        "en": "The fish list is a compatibility gate, not a bite rate. No wing or tail is proven best; the cited bundle is a verified low-price shop offer.",
-        "ja": "魚リストは適合条件で、食いつき率ではありません。最良のウィング／テールは証明されていません。記載セットは実際の店頭在庫と価格を確認した安価な例です。"
+        "en": "If a fish turns toward the fly but does not bite, change nothing: the fly is past the lock. If no fish ever reacts although your float is on its tile, swap to a fly whose body AND wing are in different groups from the first one.",
+        "ja": "魚がこちらを向いたのに食いつかないときは何も変えなくてよい（ロックは通っている）。魚のマスにウキを置いても魚がまったく反応しないときは、ボディもウィングも別グループの毛バリに替える。",
+        "th": "ถ้าปลาหันมาทางฟลายแต่ไม่กิน ไม่ต้องเปลี่ยนอะไร แปลว่าฟลายผ่านล็อกแล้ว แต่ถ้าทุ่นอยู่ช่องของปลาแล้วไม่มีปลาตัวไหนสนใจเลย ให้เปลี่ยนไปใช้ฟลายที่บอดี้และปีกอยู่คนละกลุ่มกับตัวเดิมทั้งคู่"
       },
       "items": [
         {
           "category": "fly",
-          "id": "01"
+          "id": "2B"
         },
         {
           "category": "fly_wing",
-          "id": "09"
+          "id": "34"
+        },
+        {
+          "category": "fly",
+          "id": "3E"
+        },
+        {
+          "category": "fly_wing",
+          "id": "43"
         },
         {
           "category": "fly_tail",
-          "id": "13"
+          "id": "49"
         }
       ]
     },

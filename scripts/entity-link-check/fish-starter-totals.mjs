@@ -1,4 +1,5 @@
 import assert from 'node:assert/strict'
+import { flyWorksOnFreshSave } from '../../src/entities/item/index.js'
 import { data, render, unescapeHtml } from './shared.mjs'
 
 const cases = [
@@ -59,7 +60,11 @@ function cheapestLocalOffer(fishId, stage, method) {
       }))
       .filter((offer) => Number.isFinite(offer.price) && offer.price >= 0)
   })
-  return offers.sort((a, b) => a.price - b.price || a.item.id.localeCompare(b.item.id))[0] || null
+  // A fresh save locks body group 1 and wing group 2, so the starter fly must be one that bites there.
+  const usable =
+    method === 'fly' ? offers.filter((offer) => flyWorksOnFreshSave(offer.shop.bundle)) : offers
+  const pool = usable.length ? usable : offers
+  return pool.sort((a, b) => a.price - b.price || a.item.id.localeCompare(b.item.id))[0] || null
 }
 
 function cheapestLocalRod(style, stage) {

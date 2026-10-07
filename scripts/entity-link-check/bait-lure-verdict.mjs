@@ -3,10 +3,20 @@ import { data, renderCatalogue, unescapeHtml, validate } from './shared.mjs'
 
 const items = data.items.filter((item) => ['bait', 'lure'].includes(item.category))
 assert.equal(items.length, 104)
+const baitScopeCopy = {
+  en: 'Baits: A bait on the fish’s list bites once your float is on the fish’s tile: about 2 seconds, or about 10 seconds on a sinker rig (bottom fish only). Time, weather, rod, hook and HP change nothing: if a fish ignores you, move the cast, not the bait.',
+  ja: 'エサ：リストにあるエサは、ウキが魚と同じマスにあれば食いつきます。約2秒（オモリは約10秒、底の魚のみ）。時間・天気・竿・ハリ・HPは関係ありません。反応しないときは、エサではなく投げる位置を変えます。',
+  th: 'เหยื่อจริง: เหยื่อที่อยู่ในรายชื่อของปลาจะถูกกินเมื่อทุ่นอยู่ช่องเดียวกับปลา ราว 2 วินาที (ชุดตะกั่วราว 10 วินาที เฉพาะปลาหน้าดิน) เวลา อากาศ คัน เบ็ด และ HP ไม่มีผล ถ้าปลาไม่สนใจ ให้ขยับจุดปล่อย ไม่ใช่เปลี่ยนเหยื่อ',
+}
+const lureScopeCopy = {
+  en: 'Lures: A lure on the fish’s list is chased once the lure is on the fish’s tile and you keep tapping A or B; press A once when the fish is level with the lure to hook it. Time, weather and rod change nothing.',
+  ja: 'ルアー：リストにあるルアーは、魚と同じマスにあり、AかBを連打していれば追われます。魚が同じ高さに来たらAを1回押してかけます。時間・天気・竿は関係ありません。',
+  th: 'เหยื่อปลอม: ลัวร์ที่อยู่ในรายชื่อของปลาจะมีปลาว่ายตามเมื่อปลาอยู่ช่องเดียวกับลัวร์และคุณกด A หรือ B ต่อเนื่อง พอปลาอยู่ระดับเดียวกับลัวร์ให้กด A หนึ่งครั้งเพื่อเกี่ยวปลา เวลา อากาศ และคันไม่มีผล',
+}
 const commonScopeCopy = {
-  en: 'Bait and lure choices: This compares compatible fish and recorded shop stock; it does not show which item gets more bites or is easier to land.',
-  ja: 'エサ・ルアーの選び方：これは対応する魚と店頭在庫の比較です。食いつきや取り込みやすさは示しません。',
-  th: 'การเลือกเหยื่อจริงและลัวร์: ข้อมูลนี้เทียบชนิดปลาที่ใช้ได้กับรายการของในร้าน ไม่ได้บอกว่าอันไหนทำให้ปลากินมากกว่าหรือตกขึ้นง่ายกว่า',
+  en: 'Bait and lure choices: A bait or lure on the fish’s list bites once your float or lure is on the fish’s tile (float about 2 s, sinker about 10 s, bottom fish only). Time, weather, rod, hook and HP change nothing: if a fish ignores you, move the cast.',
+  ja: 'エサ・ルアーの選び方：魚のリストにあるエサ・ルアーは、ウキやルアーが魚と同じマスにあれば食いつきます（ウキ約2秒、オモリ約10秒・底の魚のみ）。時間・天気・竿・ハリ・HPは関係ありません。反応しないときは投げる位置を変えます。',
+  th: 'การเลือกเหยื่อจริงและลัวร์: เหยื่อหรือลัวร์ที่อยู่ในรายชื่อของปลาจะถูกกินเมื่อทุ่นหรือลัวร์อยู่ช่องเดียวกับปลา (ทุ่นราว 2 วินาที ตะกั่วราว 10 วินาที เฉพาะปลาหน้าดิน) เวลา อากาศ คัน เบ็ด และ HP ไม่มีผล ถ้าปลาไม่สนใจ ให้ขยับจุดปล่อย',
 }
 
 function occurrences(value, phrase) {
@@ -159,8 +169,11 @@ async function checkSharedNoFishScope(lang, category) {
   const { nodes } = await renderCatalogue(lang, `?category=${category}&sort=id`)
   const status = unescapeHtml(nodes['fish-status'].textContent || nodes['fish-status'].innerHTML)
   const cards = unescapeHtml(nodes.cards.innerHTML)
-  assert.equal(occurrences(status, commonScopeCopy[lang]), 1, `${lang}/${category} scope count`)
-  assert.equal(occurrences(cards, commonScopeCopy[lang]), 0, `${lang}/${category} card scope`)
+  const expectedScope = { all: commonScopeCopy, bait: baitScopeCopy, lure: lureScopeCopy }[
+    category
+  ][lang]
+  assert.equal(occurrences(status, expectedScope), 1, `${lang}/${category} scope count`)
+  assert.equal(occurrences(cards, expectedScope), 0, `${lang}/${category} card scope`)
   assert.equal(occurrences(cards, 'bait-lure-evidence-limit'), 0, `${lang}/${category} card marker`)
   const expectedVerdicts = category === 'bait' ? 23 : category === 'lure' ? 81 : 104
   assert.equal(

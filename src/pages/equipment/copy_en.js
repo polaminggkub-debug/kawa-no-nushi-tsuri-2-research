@@ -10,12 +10,12 @@ export const copy_en = {
   item: 'Item',
   rom: 'ROM fields we can explain',
   price: 'ROM price field',
-  flyKicker: 'THE CUSTOM FLY MAKER',
-  flyTitle: 'Body, wing, tail… and a real price quote',
+  flyKicker: 'THE FLY MAKER GUIDE',
+  flyTitle: 'Do I need to build a fly?',
   flyCopy:
-    'Original Japanese game captures show the verified ¥25 default recipe and ¥17 no-tail example. Choose a body for your target fish first; these examples explain menu input and price, not which fly catches best.',
+    'Usually not. The shop sells ready-made sets made from the same parts. You get the very same fly, and it costs less, because a ready-made set charges only the body’s price while the maker charges body + wing + tail. For example, the shop sells body 2B + wing 34 for ¥15; the same fly from the maker costs ¥23.',
   flyFact:
-    'Check the final quote before paying. The recorded first-body + first-wing + first-tail Mayfly order cost ¥25. Choosing “None” changes the recipe, so read its quote separately. Other recipes do not share a fixed ¥25 price.',
+    'Always read the final quote before paying. In the first example, first body + first wing + first tail cost ¥25; choosing “None” for the tail changes the recipe and its price, so read each quote separately.',
   catalogueKicker: 'THE FULL INDEX',
   catalogueTitle: 'Browse all 315 listed entries',
   catalogueCopy:

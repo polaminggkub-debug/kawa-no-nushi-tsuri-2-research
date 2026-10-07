@@ -9,22 +9,22 @@ const localeExpectations = {
     contribution: (price) => `ชิ้นนี้เพิ่ม ${price} เยนในราคาฟลายที่ประกอบเอง`,
     ready: 'สำเร็จรูปด่าน 1: ¥5',
     custom: 'ประกอบชุดนี้ในเมนูที่ตรวจแล้ว ด่าน 1: ¥25',
-    action: 'ซื้อสำเร็จรูปประหยัด 20 เยน',
-    limit: 'ไม่ใช่อันดับโอกาสกัดหรือจับสำเร็จ',
+    action: 'ซื้อสำเร็จรูปถูกกว่า 20 เยน',
+    limit: 'เหมือนกันทุกอย่าง (เกมไม่เก็บว่าทำมาจากไหน)',
   },
   en: {
     contribution: (price) => `This component adds ¥${price} to a custom fly quote`,
     ready: 'Ready-made in Area 1: ¥5',
     custom: 'Make these parts in the verified Area 1 menu: ¥25',
-    action: 'buy ready-made to save ¥20',
-    limit: 'not bite or landing odds',
+    action: 'buy ready-made and save ¥20',
+    limit: 'are identical (the game does not store where a fly came from)',
   },
   ja: {
     contribution: (price) => `この部品は自作フライの見積額に${price}円を加える`,
     ready: 'エリア1の既製品：5円',
     custom: '確認済みのエリア1のメニューで自作：25円',
-    action: '既製品で20円節約',
-    limit: '食いつきや取り込み成功率の順位ではない',
+    action: '既製品で20円節約でき',
+    limit: '同一（ゲームは入手経路を記録しない）',
   },
 }
 

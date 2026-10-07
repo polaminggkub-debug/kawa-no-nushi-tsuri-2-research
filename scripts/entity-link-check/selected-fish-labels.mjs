@@ -6,27 +6,30 @@ const cases = [
   {
     query: '?category=all&fish=06#catalogue',
     expected: {
-      en: ['Items compatible with', 'ROM compatibility check', 'not guaranteed'],
-      ja: ['の条件に合うアイテム', 'ROM条件', '保証されません'],
-      th: ['รายการที่ผ่านเงื่อนไขของ', 'เงื่อนไขจาก ROM', 'ไม่ได้ยืนยัน'],
+      en: ['Items compatible with', 'float or lure is on its tile'],
+      ja: ['の条件に合うアイテム', 'ウキやルアーが魚と同じマスにあれば'],
+      th: ['รายการที่ผ่านเงื่อนไขของ', 'ทุ่นหรือลัวร์อยู่ช่องเดียวกับปลา'],
     },
     forbidden: { en: 'Baits and rigs', ja: 'エサ・仕掛け', th: 'แสดงเหยื่อที่ผ่าน' },
   },
   {
     query: '?category=flymaker&part=fly&fish=06#catalogue',
     expected: {
-      en: ['fly bodies', 'body-profile check', 'not guaranteed'],
-      ja: ['フライボディ', 'ボディプロフィール判定', '保証されません'],
-      th: ['บอดี้ฟลาย', 'เงื่อนไขโปรไฟล์', 'ไม่ได้รับประกัน'],
+      en: ['fly bodies', 'fresh save', 'group-1 bodies'],
+      ja: ['フライボディ', '新規セーブ', 'グループ1'],
+      th: ['บอดี้ที่ปลานี้กิน', 'เซฟใหม่', 'บอดี้กลุ่ม 1'],
     },
     forbidden: { en: 'baits that pass', ja: 'エサ', th: 'เหยื่อที่ผ่าน' },
   },
   {
     query: '?category=flymaker&part=fly_wing&fish=06#catalogue',
     expected: {
-      en: ['parts sold with a body that passes', 'bite bonus is not established'],
-      ja: ['ボディと一緒に販売される部品', '食いつき向上は未確認'],
-      th: ['ชิ้นส่วนที่ร้านขายพร้อมบอดี้', 'ไม่ได้ยืนยันว่าปีกหรือหางเพิ่มโอกาสกิน'],
+      en: [
+        'wings and tails sold with a body this fish takes',
+        'only a ticket past the save’s lock',
+      ],
+      ja: ['ボディと一緒に売られる部品', 'ロックを通るためだけ'],
+      th: ['ปีกและหางที่มากับชุดสำเร็จรูป', 'ผ่านล็อกของเซฟ'],
     },
     forbidden: { en: 'baits that pass', ja: 'エサ', th: 'เหยื่อที่ผ่าน' },
     requiresCards: true,
@@ -34,9 +37,12 @@ const cases = [
   {
     query: '?category=flymaker&part=fly_tail&fish=06#catalogue',
     expected: {
-      en: ['parts sold with a body that passes', 'bite bonus is not established'],
-      ja: ['ボディと一緒に販売される部品', '食いつき向上は未確認'],
-      th: ['ชิ้นส่วนที่ร้านขายพร้อมบอดี้', 'ไม่ได้ยืนยันว่าปีกหรือหางเพิ่มโอกาสกิน'],
+      en: [
+        'wings and tails sold with a body this fish takes',
+        'only a ticket past the save’s lock',
+      ],
+      ja: ['ボディと一緒に売られる部品', 'ロックを通るためだけ'],
+      th: ['ปีกและหางที่มากับชุดสำเร็จรูป', 'ผ่านล็อกของเซฟ'],
     },
     forbidden: { en: 'baits that pass', ja: 'エサ', th: 'เหยื่อที่ผ่าน' },
     requiresCards: true,
@@ -45,9 +51,9 @@ const cases = [
     query: '?category=bait&fish=06&route=float#catalogue',
     route: 'float',
     expected: {
-      en: ['Showing baits that pass the selected fish’s conditions'],
-      ja: ['選んだ魚の条件に合うエサを表示'],
-      th: ['แสดงเหยื่อที่ผ่านเงื่อนไขของปลาที่เลือก'],
+      en: ['Showing baits on the selected fish’s list'],
+      ja: ['選んだ魚のリストにあるエサを表示'],
+      th: ['แสดงเหยื่อที่อยู่ในรายชื่อของปลาที่เลือก'],
     },
     forbidden: { en: 'fly bodies', ja: 'フライボディ', th: 'บอดี้ฟลาย' },
   },
@@ -55,9 +61,9 @@ const cases = [
     query: '?category=bait&fish=06&route=sinker#catalogue',
     route: 'sinker',
     expected: {
-      en: ['Showing baits that pass the selected fish’s conditions'],
-      ja: ['選んだ魚の条件に合うエサを表示'],
-      th: ['แสดงเหยื่อที่ผ่านเงื่อนไขของปลาที่เลือก'],
+      en: ['Showing baits on the selected fish’s list'],
+      ja: ['選んだ魚のリストにあるエサを表示'],
+      th: ['แสดงเหยื่อที่อยู่ในรายชื่อของปลาที่เลือก'],
     },
     forbidden: { en: 'fly bodies', ja: 'フライボディ', th: 'บอดี้ฟลาย' },
   },

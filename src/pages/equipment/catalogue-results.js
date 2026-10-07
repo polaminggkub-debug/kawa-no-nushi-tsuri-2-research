@@ -199,7 +199,9 @@ function categoryDescription(ctx, category, fish) {
 
 function fishStatus(ctx, filters) {
   if (!filters.fish)
-    return ['bait', 'lure', 'all'].includes(filters.category) ? baitLureEvidenceScope(ctx) : ''
+    return ['bait', 'lure', 'all'].includes(filters.category)
+      ? baitLureEvidenceScope(ctx, filters.category)
+      : ''
   if (['rod', 'hook'].includes(filters.category)) {
     if (ctx.lang === 'th')
       return 'แสดงอุปกรณ์ทั้งหมวดสำหรับเลือกทั่วไป ไม่ได้จัดว่าเหมาะกับปลานี้หรือช่วยเพิ่มโอกาสตกได้'
@@ -211,17 +213,17 @@ function fishStatus(ctx, filters) {
   if (['lure', 'all'].includes(filters.category)) return targetAdviceScope(ctx)
   if (filters.category === 'flymaker' && ctx.flyPart !== 'fly') {
     if (ctx.lang === 'th')
-      return 'แสดงชิ้นส่วนที่ร้านขายพร้อมบอดี้ซึ่งผ่านเงื่อนไขปลานี้ ไม่ได้ยืนยันว่าปีกหรือหางเพิ่มโอกาสกิน'
+      return 'แสดงปีกและหางที่มากับชุดสำเร็จรูปของบอดี้ที่ปลานี้กิน ปีกมีหน้าที่แค่ผ่านล็อกของเซฟ หางเป็นแค่หน้าตา'
     if (ctx.lang === 'ja')
-      return 'この魚の条件を通るボディと一緒に販売される部品です。ウイング・テールの食いつき向上は未確認。'
-    return 'Showing parts sold with a body that passes this fish’s compatibility check; a wing or tail bite bonus is not established.'
+      return 'この魚が食べるボディと一緒に売られる部品です。ウイングはロックを通るためだけ、テールは見た目だけ。'
+    return 'Showing wings and tails sold with a body this fish takes. The wing is only a ticket past the save’s lock; the tail is only looks.'
   }
   if (filters.category === 'flymaker' && ctx.flyPart === 'fly') {
     if (ctx.lang === 'th')
-      return 'แสดงบอดี้ฟลายที่ผ่านเงื่อนไขโปรไฟล์ของปลานี้ ไม่ได้รับประกันว่าปลากินหรือตกขึ้นได้'
+      return 'แสดงบอดี้ที่ปลานี้กิน ดูป้ายบนการ์ดว่าใช้ได้บนเซฟใหม่หรือติดล็อก (บอดี้กลุ่ม 1 ใช้ไม่ได้บนเซฟใหม่)'
     if (ctx.lang === 'ja')
-      return 'この魚のボディプロフィール判定を通るフライボディです。食いつき・釣り上げは保証されません。'
-    return 'Showing fly bodies whose body-profile check passes for this fish; a bite or catch is not guaranteed.'
+      return 'この魚が食べるフライボディです。カードの表示で新規セーブで使えるかを確認（グループ1のボディは新規セーブでは使えない）。'
+    return 'Showing the fly bodies this fish takes. Check each card for whether it works on a fresh save (group-1 bodies do not).'
   }
   if (ctx.lang === 'th')
     return 'แสดงรายการในหมวดนี้ที่ผ่านเงื่อนไขจาก ROM ของปลาที่เลือก แต่ไม่ได้ยืนยันว่าปลากินหรือตกขึ้นได้'

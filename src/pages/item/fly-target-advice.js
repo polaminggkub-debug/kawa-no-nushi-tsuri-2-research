@@ -6,14 +6,14 @@ function bodyDecision(ctx, item, fish) {
   const accepted = (item.playerUse?.fishIds || []).includes(ctx.selectedFish)
   return local(ctx, {
     th: accepted
-      ? `บอดี้นี้ผ่านเงื่อนไขโปรไฟล์ของ${fish} ใช้เป็นตัวเลือกประกอบฟลายได้ แต่เป็นเพียงด่านตรวจแรก บอดี้กับปีกของชุดยังอาจติดเงื่อนไขซ่อน`
-      : `บอดี้นี้ไม่ผ่านเงื่อนไขโปรไฟล์ของ${fish} เลือกบอดี้ที่ใช้กับปลานี้ได้จากชุดเริ่มต้นด้านล่าง`,
+      ? `${fish}กินบอดี้นี้ ฟลายทั้งชุดต้องไม่ติดล็อกของเซฟด้วย: เซฟใหม่ล็อกบอดี้กลุ่ม 1 กับปีกกลุ่ม 2 ฟลายที่ตรงล็อกไม่กินเลย`
+      : `${fish}ไม่กินบอดี้นี้ เลือกบอดี้ที่ปลานี้กินได้จากชุดเริ่มต้นด้านล่าง`,
     ja: accepted
-      ? `このボディは${fish}のプロフィール判定を通り、自作候補にできます。ただし最初の判定だけで、セットのボディとウィングは隠れた条件で遮断される場合があります。`
-      : `このボディは${fish}のプロフィール判定を通りません。下の開始用セットから適合するボディを選んでください。`,
+      ? `${fish}はこのボディを食べます。毛バリ全体がセーブのロックも通る必要があります：新規セーブはボディのグループ1とウィングのグループ2をロックし、一致する毛バリは食いつきません。`
+      : `${fish}はこのボディを食べません。下の開始用セットから、この魚が食べるボディを選んでください。`,
     en: accepted
-      ? `This body passes the profile check for ${fish} and is a custom-fly candidate. That is only the first check; the set’s body and wing can still meet a hidden blocking condition.`
-      : `This body does not pass the profile check for ${fish}. Choose a compatible body from the starter sets below.`,
+      ? `${fish} takes this body. The whole fly must also get past the save’s lock: a fresh save locks body group 1 and wing group 2, and a fly matching the lock never bites.`
+      : `${fish} does not take this body. Choose a body it takes from the starter sets below.`,
   })
 }
 
@@ -24,9 +24,9 @@ function hiddenGateAction(ctx, item, available, profileHref) {
   )
     return ''
   const note = local(ctx, {
-    th: 'ถ้าปลาไม่กิน อย่าตีชุดเดิมซ้ำเพื่อหวังสุ่มเงื่อนไขนี้ใหม่ การพักค้างคืนอาจเปลี่ยนค่าแต่ก็อาจได้ค่าเดิม ลองดูชุดสำรองที่เปลี่ยนทั้งบอดี้และปีก การไม่กินอาจมีสาเหตุอื่น และชุดสำรองไม่ได้รับประกันว่าตกได้',
-    ja: '反応がなくても、同じセットの投げ直しではこの条件を再抽選しません。宿泊は値を更新する場合がありますが、同じ値にもなります。ボディとウィングを変える予備セットを確認してください。反応しない原因は他にもあり、釣果は保証しません。',
-    en: 'If there is no bite, recasting the same set does not reroll this check. An overnight stay may refresh the values but can repeat them. Check the backup sets that vary body and wing. No bite can have other causes; the backup sets do not guarantee a catch.',
+    th: 'ถ้าทุ่นอยู่ช่องของปลาแล้วไม่มีปลาตัวไหนสนใจฟลายเลย แปลว่าติดล็อกของเซฟ การตีซ้ำไม่เปลี่ยนล็อก มีแต่การนอนโรงแรมที่เปลี่ยนได้ ให้สลับไปฟลายที่บอดี้และปีกอยู่คนละกลุ่มกับตัวเดิม ดูชุดสามตัวสำรองด้านล่าง ถ้าปลาหันมาหาฟลายแล้วไม่กิน ไม่ต้องเปลี่ยนอะไร',
+    ja: 'ウキを魚のマスに置いても魚がまったく反応しないなら、セーブのロックに引っかかっています。投げ直してもロックは変わらず、変わるのは宿泊だけです。ボディもウィングも別グループの毛バリに替えてください。下の3本セットを参照。魚がこちらを向いたら替える必要はありません。',
+    en: 'If your float is on the fish’s tile and nothing reacts to the fly, the save’s lock is blocking it. Recasting does not change the lock; only an inn rest can. Switch to a fly whose body and wing are in different groups from this one (see the three-fly set below). If a fish turns toward the fly, change nothing.',
   })
   const label = local(ctx, {
     th: 'ดูชุดฟลายสำรองสำหรับปลานี้',
@@ -38,17 +38,17 @@ function hiddenGateAction(ctx, item, available, profileHref) {
 
 function partDecision(ctx, fish) {
   return local(ctx, {
-    th: `จะตก${fish} ให้เลือกบอดี้ตามปลาก่อน ปีกหรือหางชิ้นนี้อย่างเดียวไม่ได้ยืนยันว่าใช้ตกปลานี้ได้ ถ้าจะเริ่มตกทันที ให้ดูชุดฟลายสำเร็จรูปที่ผ่านเงื่อนไขบอดี้จากปุ่มด้านล่าง`,
-    ja: `${fish}を狙うなら、先に魚に合うボディを選びます。このウィング・テール単体では適合を確認できません。すぐ始めるなら、下のボタンからボディ判定を通る完成セットを確認してください。`,
-    en: `For ${fish}, choose the body first. This wing or tail alone does not establish fish compatibility. To start fishing, use the button below to find ready-made sets whose bodies pass the check.`,
+    th: `ปีกและหางไม่เลือกปลา ต้องดูที่บอดี้: ถ้าจะตก${fish} ให้เลือกบอดี้ที่ปลานี้กินก่อน ถ้าจะเริ่มตกทันที ให้ดูชุดฟลายสำเร็จรูปจากปุ่มด้านล่าง`,
+    ja: `ウィングとテールは魚を選びません。${fish}を狙うなら、先にこの魚が食べるボディを選びます。すぐ始めるなら、下のボタンから完成セットを確認してください。`,
+    en: `Wings and tails do not choose fish. For ${fish}, choose a body it takes first. To start fishing, use the button below to find ready-made sets.`,
   })
 }
 
 function noFlyDecision(ctx, fish) {
   return local(ctx, {
-    th: `ยังไม่มีบอดี้ฟลายที่ผ่านเงื่อนไขโปรไฟล์ของ${fish}ในข้อมูลที่ถอดได้ อย่าซื้อชุดฟลายเพื่อปลานี้จากคำแนะนำนี้ เปิดหน้าปลาเพื่อดูวิธีตกอื่นที่ยืนยันแล้ว`,
-    ja: `${fish}の判定を通るフライボディは解析データにありません。この案内からフライを購入せず、魚ページで確認済みの別の釣法を見てください。`,
-    en: `No decoded fly body passes the profile check for ${fish}. Do not buy a fly set for this target from this advice. Open the fish page for other verified methods.`,
+    th: `ไม่มีบอดี้ฟลายที่${fish}กิน อย่าซื้อชุดฟลายเพื่อปลานี้ เปิดหน้าปลาเพื่อดูวิธีตกอื่น`,
+    ja: `${fish}が食べるフライボディはありません。この魚のためにフライは買わず、魚ページで別の釣法を見てください。`,
+    en: `No fly body takes ${fish}. Do not buy a fly set for this fish; open the fish page for other methods.`,
   })
 }
 

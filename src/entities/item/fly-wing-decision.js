@@ -1,3 +1,5 @@
+import { FRESH_SAVE_LOCK, flyGroup } from './fly-lock.js'
+
 const PATH_LIMITED_WINGS = new Set(['25', '26', '66', '67'])
 
 export function hasUnverifiedFlyWingPath(item) {
@@ -18,61 +20,78 @@ function nameForBundleItem(items, category, id) {
 function noBundleCopy(lang, id, fish) {
   const copies = {
     th: {
-      label: `ยังไม่มีตำแหน่งเมนูหรือชุดร้านที่บันทึกไว้สำหรับ ID ${id}`,
+      label: `ปีก ${id} หาไม่ได้: ไม่มีทั้งในร้านและในร้านทำฟลาย`,
       recommendation: fish
-        ? `เมนูที่ตรวจและรายการชุดสำเร็จรูปของร้านยังไม่มีเส้นทางยืนยันสำหรับปีก ID ${id} อย่าพึ่งว่าหา ID นี้ได้จากเมนูที่มีหลักฐาน ถ้าจะตก${fish} ให้เปิดหน้าปลาเพื่อดูชุดฟลายหรือวิธีอื่นที่มีบันทึก`
-        : `เมนูที่ตรวจและรายการชุดสำเร็จรูปของร้านยังไม่มีเส้นทางยืนยันสำหรับปีก ID ${id} อย่าพึ่งว่าหา ID นี้ได้จากเมนูที่มีหลักฐาน ถ้าจะประกอบฟลายให้เลือกบอดี้ตามปลาเป้าหมาย แล้วใช้ชิ้นส่วนที่มีตำแหน่งเมนูยืนยัน หรือดูชุดเริ่มต้นบอดี้ 01 สำหรับปลาในรายชื่อของบอดี้นั้น`,
+        ? `ข้ามปีกนี้ไปได้ ปีกไม่ได้เลือกปลา จะตก${fish} ให้เปิดหน้าปลาเพื่อดูชุดฟลายที่ซื้อได้`
+        : 'ข้ามปีกนี้ไปได้ ปีกมีหน้าที่แค่ผ่านล็อกของเซฟ ถ้าจะประกอบฟลายให้เลือกปีกที่ร้านทำฟลายมีให้ หรือซื้อชุดสำเร็จรูปแทน',
       reason:
-        'นี่หมายถึงยังไม่มีเส้นทางในหลักฐานที่ตรวจ ไม่ได้พิสูจน์ว่าทุกเมนูหรือทุกพื้นที่เลือกชิ้นนี้ไม่ได้ และยังไม่มีหลักฐานโบนัสการกินหรือดึงปลาจากปีกนี้',
+        'ร้านและเมนูของร้านทำฟลายที่ตรวจไม่มีปีกชิ้นนี้ ปีกไม่ช่วยให้ปลากินดีขึ้นและไม่ช่วยตอนสู้ มีหน้าที่แค่ผ่านล็อกของเซฟ',
     },
     en: {
-      label: `No recorded menu position or shop bundle for ID ${id}`,
+      label: `Wing ${id} cannot be had: it is in no shop and not in the fly maker`,
       recommendation: fish
-        ? `The captured menus and recorded ready-made offers do not establish a route for wing ID ${id}. Do not assume it can be selected from a documented menu. For ${fish}, open the fish profile to see recorded flies or other methods.`
-        : `The captured menus and recorded ready-made offers do not establish a route for wing ID ${id}. Do not assume it can be selected from a documented menu. For a custom fly, match the body to your target first, then use a component with a recorded menu position; otherwise see the starter body 01 bundle for fish in its list.`,
+        ? `Skip this wing; a wing does not choose fish. For ${fish}, open the fish page to see the flies you can buy.`
+        : 'Skip this wing. A wing is only a ticket past the save’s lock. To build a fly, pick a wing the fly maker offers, or buy a ready-made set.',
       reason:
-        'This means no route is present in the evidence checked; it does not prove the part is unavailable in every menu or area. No bite or landing bonus from this wing is established.',
+        'No shop and no fly-maker menu we checked offers this wing. A wing does not make fish bite better and does not help in the fight; it only gets the fly past the lock.',
     },
     ja: {
-      label: `ID ${id}のメニュー位置・店売りセットは未記録`,
+      label: `ウィング${id}は入手不可：店にも毛バリ職人にもない`,
       recommendation: fish
-        ? `確認したメニューと完成品の店売り記録には、ウィングID ${id}の選択経路がありません。記録済みメニューで選べるとは限りません。${fish}の魚ページで、記録のあるフライや別の釣り方を確認してください。`
-        : `確認したメニューと完成品の店売り記録には、ウィングID ${id}の選択経路がありません。記録済みメニューで選べるとは限りません。自作する場合は先に対象魚に合うボディを選び、選択位置が確認された部品を使ってください。対象魚が未定なら、ボディ01の対象魚リストにある魚向けの入門セットを確認できます。`,
+        ? `このウィングは無視してよい。ウィングは魚を選ばない。${fish}の魚ページで、買えるフライを確認してください。`
+        : 'このウィングは無視してよい。ウィングはセーブのロックを通るための部品でしかない。自作するなら職人にあるウィングを選ぶか、完成品を買う。',
       reason:
-        'これは確認した証拠に経路がないという意味で、すべてのメニュー・エリアで入手不能という証明ではありません。このウィングの食いつき・取り込みボーナスも確認されていません。',
+        '確認した店にも毛バリ職人のメニューにも、このウィングはない。ウィングは食いつきを良くせず、ファイトにも効かない。毛バリがロックを通るためだけの部品。',
     },
   }
   return copies[lang] || copies.en
 }
 
+function lockText(lang, item) {
+  const blocked = flyGroup(item.id) === FRESH_SAVE_LOCK.wing
+  const g = flyGroup(item.id)
+  if (lang === 'th')
+    return blocked
+      ? `ปีกนี้อยู่กลุ่ม ${g} ซึ่งเซฟใหม่ล็อกไว้ ฟลายที่ใช้ปีกนี้จะไม่กินเลยบนเซฟใหม่`
+      : `ปีกนี้อยู่กลุ่ม ${g} ไม่ตรงกับล็อกของเซฟใหม่`
+  if (lang === 'ja')
+    return blocked
+      ? `このウィングはグループ${g}で、新規セーブがロックしている。新規セーブではこのウィングの毛バリは一切食いつかない。`
+      : `このウィングはグループ${g}で、新規セーブのロックとは一致しない。`
+  return blocked
+    ? `This wing is group ${g}, the group a fresh save locks, so a fly with it never bites on a fresh save.`
+    : `This wing is group ${g}, which does not match a fresh save’s lock.`
+}
+
 function bundleCopy(lang, item, bundle, fish, supported) {
+  const lock = lockText(lang, item)
   const result = {
     th: {
-      label: `ชุดสำเร็จรูปด่าน ${bundle.stage}: บอดี้ ${bundle.body} + ปีก ${bundle.wing} + หาง ${bundle.tail} · ¥${bundle.shopPriceYen} ทั้งชุด`,
+      label: `ได้เฉพาะในชุดสำเร็จรูปด่าน ${bundle.stage}: บอดี้ ${bundle.body} + ปีก ${bundle.wing} + หาง ${bundle.tail} · ¥${bundle.shopPriceYen} ทั้งชุด`,
       recommendation: fish
         ? supported
-          ? `ปลาเป้าหมาย ${fish} อยู่ในรายชื่อของบอดี้ ${bundle.body}; ลองชุดสำเร็จรูปด่าน ${bundle.stage} (${bundle.body}/${bundle.wing}/${bundle.tail}) ได้ในราคา ¥${bundle.shopPriceYen} ทั้งชุด ไม่ใช่ราคาปีกอย่างเดียว`
-          : `ปลาเป้าหมาย ${fish} ไม่อยู่ในรายชื่อที่บันทึกไว้ของบอดี้ ${bundle.body}; อย่าเลือกชุดนี้เป็นตัวเลือกที่รองรับเป้าหมายนี้ เปิดหน้าปลาเพื่อดูชุดและวิธีอื่นที่มีบันทึก`
-        : `ถ้าจะใช้ปีก ${item.id} มีชุดสำเร็จรูปด่าน ${bundle.stage}: บอดี้ ${bundle.body} + ปีก ${bundle.wing} + หาง ${bundle.tail} ราคา ¥${bundle.shopPriceYen} ทั้งชุด ตรวจว่าปลาเป้าหมายอยู่ในรายชื่อบอดี้ ${bundle.body} ก่อนซื้อ`,
-      reason: `นี่คือข้อเสนอชุดสำเร็จรูปในร้าน ไม่ใช่ตำแหน่งเลือกปีก ${item.id} ในเมนูประกอบ และ ¥${bundle.shopPriceYen} คือราคารวมทั้งชุด ยังไม่มีหลักฐานว่าปีกนี้เพิ่มโอกาสปลากินหรือช่วยให้ตกขึ้น`,
+          ? `${fish}กินบอดี้ ${bundle.body} ซื้อชุดสำเร็จรูปด่าน ${bundle.stage} (${bundle.body}/${bundle.wing}/${bundle.tail}) ได้ในราคา ¥${bundle.shopPriceYen} ทั้งชุด ${lock}`
+          : `${fish}ไม่กินบอดี้ ${bundle.body} ชุดนี้ใช้ตก${fish}ไม่ได้ เปิดหน้าปลาเพื่อดูชุดที่ใช้ได้`
+        : `ปีก ${item.id} ได้เฉพาะในชุดสำเร็จรูปด่าน ${bundle.stage}: บอดี้ ${bundle.body} + ปีก ${bundle.wing} + หาง ${bundle.tail} ราคา ¥${bundle.shopPriceYen} ทั้งชุด ${lock}`,
+      reason: `ร้านทำฟลายไม่มีปีก ${item.id} ให้เลือกเอง ราคา ¥${bundle.shopPriceYen} คือราคาทั้งชุด ปีกไม่ช่วยให้ปลากินดีขึ้นและไม่ช่วยตอนสู้ มีหน้าที่แค่ผ่านล็อกของเซฟ`,
     },
     en: {
-      label: `Area ${bundle.stage} ready-made set: body ${bundle.body} + wing ${bundle.wing} + tail ${bundle.tail} · ¥${bundle.shopPriceYen} total`,
+      label: `Only inside the Area ${bundle.stage} ready-made set: body ${bundle.body} + wing ${bundle.wing} + tail ${bundle.tail} · ¥${bundle.shopPriceYen} total`,
       recommendation: fish
         ? supported
-          ? `The target ${fish} is listed for body ${bundle.body}. You can try the area ${bundle.stage} ready-made set (${bundle.body}/${bundle.wing}/${bundle.tail}) for ¥${bundle.shopPriceYen} total, not for the wing alone.`
-          : `The target ${fish} is not in the recorded list for body ${bundle.body}; this set is not a listed profile match. Open the fish page for recorded flies and other methods.`
-        : `If you want wing ${item.id}, the recorded ready-made set is area ${bundle.stage}: body ${bundle.body} + wing ${bundle.wing} + tail ${bundle.tail}, ¥${bundle.shopPriceYen} for the complete set. Check that your target is listed for body ${bundle.body} before buying.`,
-      reason: `This is a ready-made shop offer, not a verified custom-menu position for wing ${item.id}. ¥${bundle.shopPriceYen} is the complete-set price. No bite or landing advantage from this wing is established.`,
+          ? `${fish} takes body ${bundle.body}. Buy the area ${bundle.stage} ready-made set (${bundle.body}/${bundle.wing}/${bundle.tail}) for ¥${bundle.shopPriceYen} total. ${lock}`
+          : `${fish} does not take body ${bundle.body}, so this set cannot catch it. Open the fish page for sets that can.`
+        : `Wing ${item.id} comes only in the area ${bundle.stage} ready-made set: body ${bundle.body} + wing ${bundle.wing} + tail ${bundle.tail}, ¥${bundle.shopPriceYen} for the complete set. ${lock}`,
+      reason: `The fly maker does not offer wing ${item.id}; ¥${bundle.shopPriceYen} is the price of the whole set. A wing does not make fish bite better and does not help in the fight; it only gets the fly past the lock.`,
     },
     ja: {
-      label: `エリア${bundle.stage}の完成品：ボディ${bundle.body}＋ウィング${bundle.wing}＋テール${bundle.tail} · セット価格¥${bundle.shopPriceYen}`,
+      label: `エリア${bundle.stage}の完成品の中だけ：ボディ${bundle.body}＋ウィング${bundle.wing}＋テール${bundle.tail} · セット価格¥${bundle.shopPriceYen}`,
       recommendation: fish
         ? supported
-          ? `対象の${fish}はボディ${bundle.body}の記録済みリストにあります。エリア${bundle.stage}の完成品（${bundle.body}/${bundle.wing}/${bundle.tail}）をセット価格¥${bundle.shopPriceYen}で試せます。ウィング単体の価格ではありません。`
-          : `対象の${fish}はボディ${bundle.body}の記録済みリストにありません。このセットは記録上の対象一致ではありません。魚ページで記録のあるフライや別の釣り方を確認してください。`
-        : `ウィング${item.id}を使う店売り完成品は、エリア${bundle.stage}のボディ${bundle.body}＋ウィング${bundle.wing}＋テール${bundle.tail}、セット価格¥${bundle.shopPriceYen}です。購入前に対象魚がボディ${bundle.body}のリストにあるか確認してください。`,
-      reason: `これは店売り完成品で、ウィング${item.id}の自作メニュー位置ではありません。¥${bundle.shopPriceYen}はセット全体の価格です。このウィングによる食いつき・取り込み向上は確認されていません。`,
+          ? `${fish}はボディ${bundle.body}を食べる。エリア${bundle.stage}の完成品（${bundle.body}/${bundle.wing}/${bundle.tail}）をセット価格¥${bundle.shopPriceYen}で買う。${lock}`
+          : `${fish}はボディ${bundle.body}を食べないので、このセットでは釣れない。魚ページで使えるセットを確認してください。`
+        : `ウィング${item.id}はエリア${bundle.stage}の完成品（ボディ${bundle.body}＋ウィング${bundle.wing}＋テール${bundle.tail}、セット価格¥${bundle.shopPriceYen}）の中でしか手に入らない。${lock}`,
+      reason: `毛バリ職人ではウィング${item.id}を選べない。¥${bundle.shopPriceYen}はセット全体の価格。ウィングは食いつきを良くせず、ファイトにも効かない。毛バリがロックを通るためだけの部品。`,
     },
   }
   return result[lang] || result.en
@@ -106,9 +125,9 @@ function actionLabel(lang, key, bundle) {
       ja: 'この魚のフライ候補と釣り方を見る',
     },
     starter: {
-      th: 'ดูชุดสำเร็จรูปและรายชื่อปลาของบอดี้ 01',
-      en: 'See body 01’s ready-made sets and fish list',
-      ja: 'ボディ01の完成品と対象魚リストを見る',
+      th: 'ดูชุดสำเร็จรูปและรายชื่อปลาของบอดี้เริ่มต้นที่ใช้ได้บนเซฟใหม่',
+      en: 'See the starter body that works on a fresh save, with its ready-made sets and fish list',
+      ja: '新規セーブで使える入門ボディの完成品と対象魚リストを見る',
     },
     alternative: {
       th: 'ดูปีกชิ้นอื่นที่มีตำแหน่งเมนูยืนยัน',

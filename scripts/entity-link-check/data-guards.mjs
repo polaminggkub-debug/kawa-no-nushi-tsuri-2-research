@@ -118,9 +118,8 @@ for (const item of data.items.filter((entry) => entry.category === 'hook')) {
   )
 }
 for (const item of data.items.filter((entry) => entry.category === 'fly_wing')) {
-  assert(item.gearDecision.reason.en.includes('recasting the same setup does not reroll'))
-  assert(item.gearDecision.reason.en.includes('at least one'))
-  assert(item.gearDecision.reason.en.includes('do not guarantee a bite'))
+  assert(item.gearDecision.reason.en.includes('only a ticket past the lock'))
+  assert(item.gearDecision.reason.en.includes('The tail is only looks'))
 }
 
 checkAcquisitions()

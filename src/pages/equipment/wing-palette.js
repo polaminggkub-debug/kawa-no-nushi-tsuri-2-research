@@ -1,3 +1,4 @@
+import { FRESH_SAVE_LOCK, flyGroup } from '../../entities/item/index.js'
 import { readableEvidenceHref } from '../../shared/lib/index.js'
 function itemDisplayName(ctx, item) {
   return item.playerUse?.displayName?.[ctx.lang] || ctx.itemName(item)
@@ -26,7 +27,9 @@ function renderChoice(ctx, position, copy) {
   const name = itemDisplayName(ctx, item)
   const location = `${copy.column} ${position.column}, ${copy.row} ${position.row}`
   const label = `${copy.openItem}: ${name}, ID ${position.wingId}; ${location}`
-  return `<td data-wing-cell="${position.wingId}"><a class="wing-palette__choice" data-wing-choice="${position.wingId}" data-wing-row="${position.row}" data-wing-column="${position.column}" href="${ctx.esc(wingItemHref(ctx, item))}" aria-label="${ctx.esc(label)}"><img loading="lazy" src="${ctx.esc(item.image)}" alt=""><span class="wing-palette__choice-id">${ctx.esc(position.wingId)}</span><span class="wing-palette__choice-name">${ctx.esc(name)}</span><span class="wing-palette__choice-open"><span class="wing-palette__choice-open-label">${ctx.esc(copy.openItem)}</span> ↗</span></a></td>`
+  const locked = flyGroup(position.wingId) === FRESH_SAVE_LOCK.wing
+  const lock = locked ? `<span class="wing-palette__choice-lock">${ctx.esc(copy.lock)}</span>` : ''
+  return `<td data-wing-cell="${position.wingId}"${locked ? ' data-wing-locked="true"' : ''}><a class="wing-palette__choice" data-wing-choice="${position.wingId}" data-wing-row="${position.row}" data-wing-column="${position.column}" href="${ctx.esc(wingItemHref(ctx, item))}" aria-label="${ctx.esc(label)}"><img loading="lazy" src="${ctx.esc(item.image)}" alt=""><span class="wing-palette__choice-id">${ctx.esc(position.wingId)}</span><span class="wing-palette__choice-name">${ctx.esc(name)}</span>${lock}<span class="wing-palette__choice-open"><span class="wing-palette__choice-open-label">${ctx.esc(copy.openItem)}</span> ↗</span></a></td>`
 }
 
 function renderRow(ctx, palette, row, copy) {

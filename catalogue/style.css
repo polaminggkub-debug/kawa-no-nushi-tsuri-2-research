@@ -2179,6 +2179,98 @@ footer a {
 #wing-palette-title {
   scroll-margin-top: 8rem;
 }
+.wing-palette__choice-lock {
+  display: block;
+  padding: 1px 5px;
+  border-radius: 999px;
+  background: #f1dcd6;
+  color: #8a2f1c;
+  font-size: 0.62rem;
+  font-weight: 700;
+  line-height: 1.35;
+  text-align: center;
+}
+td[data-wing-locked=true] .wing-palette__choice {
+  background: #fbf3f0;
+}
+
+/* src/pages/equipment/styles/fly-guide.css */
+.fly-guide-block {
+  margin-top: 22px;
+}
+.fly-guide-block h3 {
+  margin: 0 0 8px;
+  font-size: 18px;
+  line-height: 1.3;
+  color: var(--deep);
+}
+.fly-guide-block ul {
+  margin: 0 0 10px;
+  padding-left: 22px;
+  line-height: 1.6;
+}
+.fly-guide-note {
+  margin: 10px 0 0;
+  color: var(--muted);
+  font-size: 14px;
+  line-height: 1.6;
+}
+.fly-part-table {
+  width: 100%;
+  border-collapse: collapse;
+}
+.fly-part-table th,
+.fly-part-table td {
+  padding: 12px 14px;
+  text-align: left;
+  vertical-align: top;
+  border-top: 1px solid #e7e9e0;
+  line-height: 1.55;
+}
+.fly-part-table tr:first-child th {
+  border-top: 0;
+  background: #e9efe4;
+  color: #385346;
+}
+.fly-part-table tr + tr th {
+  white-space: nowrap;
+  color: var(--deep);
+}
+@media (max-width: 640px) {
+  .fly-part-table,
+  .fly-part-table tbody,
+  .fly-part-table tr,
+  .fly-part-table th,
+  .fly-part-table td {
+    display: block;
+  }
+  .fly-part-table tr:first-child {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+    clip: rect(0 0 0 0);
+  }
+  .fly-part-table tr + tr {
+    border-top: 1px solid #d5dccd;
+  }
+  .fly-part-table tr + tr th {
+    padding-bottom: 2px;
+    border-top: 0;
+    font-size: 15px;
+  }
+  .fly-part-table td {
+    padding-top: 4px;
+    border-top: 0;
+  }
+  .fly-part-table td::before {
+    content: attr(data-label);
+    display: block;
+    font-size: 12px;
+    font-weight: 700;
+    color: #385346;
+  }
+}
 
 /* src/pages/equipment/index.css */
 

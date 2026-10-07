@@ -15,11 +15,11 @@ export const player_en = {
   style: 'Fishing style',
   titleByCategory: 'Equipment in this category',
   noFish: 'This category is not filtered by fish species',
-  fishOnly: 'Showing baits that pass the selected fish’s conditions',
+  fishOnly: 'Showing baits on the selected fish’s list',
   basePrice: 'Base price',
   kit: 'A lure set covering the compatible species',
   kitText:
-    'Choose by area: Spoon 2E + Soft worm 23 costs ¥55 in Area 1, Sinking lure 17 + Soft worm 24 costs ¥55 in Areas 2–3, and Sinking lure 17 + Soft worm 23 costs ¥50 in Area 4. Areas 5–6 sell no complete pair; carry one you own or buy Sinking lure 17 + Soft worm 23 in Area 4. Each pair covers the same 38 lure-compatible profiles, not a guaranteed bite or catch.',
+    'Two lures cover all 38 lure fish. The guidance card and the table below list the pair you can buy complete in each area. A fish follows when it is on the lure’s tile and you keep tapping A or B; press A once when it is level with the lure to hook it.',
   kitLink: 'See the illustrated set and fish table',
   guide: 'Make a fly in the game',
   research: 'Research details and sources',
@@ -35,9 +35,10 @@ export const player_en = {
   },
   desc: {
     rod: 'Choose a fishing style, then compare time to aim and line strength.',
-    lure: 'Choose a target fish to filter lures by the hook-acceptance condition.',
-    flymaker: 'Browse bodies, wings and tails, with conditions that affect hooking.',
-    bait: 'Choose a fish to see baits that pass the bait-mode conditions.',
+    lure: 'A fish on a lure’s list chases it when it is on the lure’s tile: keep tapping A or B, then press A once when the fish is level with the lure. Choose a fish to see its lures.',
+    flymaker:
+      'The body picks the fish that bite, the wing is only a ticket past the save’s hidden lock, and the tail is only looks. Open this category’s advice for the sets that work on a fresh save.',
+    bait: 'A fish bites when the bait is on its list and your float is on its tile: about 2 seconds (sinker about 10 seconds, bottom fish only). Choose a fish to see its baits.',
     hook: 'Hooks and rings used by different fishing styles.',
     float_weight: 'Floats, line markers and sinkers.',
     food: 'Measured recovery and food that drains HP.',
