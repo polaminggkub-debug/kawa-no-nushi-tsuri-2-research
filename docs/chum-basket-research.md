@@ -42,6 +42,29 @@ The profile-mask branch covers these 47 ROM profile IDs. The list identifies mov
 | `24` ライギョ, `25` ヘラブナ, `26` ナマズ, `28` ハス, `29` ワタカ, `2D` カムルチー, `2F` ソウギョ, `30` アオウオ, `32` メゴチ, `33` マルタ, `34` ハゼ |
 | `36` スズキ, `37` アカメ, `39` タナゴ, `3A` ウナギ, `3B` オオウナギ, `3D` クロダイ, `3E` ヌマガレイ, `3F` クサフグ, `44` イモリ, `46` ザリガニ, `47` カメ, `48` スッポン, `49` カニ |
 
+## Groundbait: the placement test (Thai ROM, 2026-10-10)
+
+This trace was made on the Thai translation (`Taro2_Thai.sfc`, 2,097,152 bytes, SHA-256 `7ed0e869…de06`). It was read statically in Ghidra 11.4.3 with the `achan1989/ghidra-65816` processor module, and nothing was run. The groundbait code sits at the same addresses as in the Japanese ROM above, and this trace confirms the coordinate pair, the marker value `12`, the `08→09→0A` charges and the `0x5180` profile mask independently.
+
+`03:C24A` first calls `00:9702`. That routine copies the facing word `$524` to `$522` and runs the tile classifier `00:B6C9`, which uses `00:8E74`:
+
+- **Target tile:** the tile in front of the player. The player tile is `$85C/$85E`. The facing mask is `$522`: `0x400` = y+1, `0x800` = y−1, `0x100` = x+1, `0x200` = x−1. At the map edge (x against `$24C`, y against `$24E`) the step is 0. The target tile ends up in DP `$12/$14`, and these become the chum coordinates `$1D41/$1D43`.
+- **Terrain class:** the layer-1 tile byte (`$216/$218`) is classed 0..9 against the thresholds `$236..$246` (`00:8F7D`). An edge tile gives 9.
+- **Water class:** the layer-2 byte (`$21A/$21C`) is classed 0..13 against `7E:6B63..6B7B` (`00:8FEC`). It is forced to 0 when the terrain class is 8 or more.
+- **Objects:** `00:B79C` scans the object table (`7F:0000/0042/0108,X`, type `0x48` skipped). An object standing on the target tile sets the terrain class to 9.
+- **Results:** stored in `$842..$84C`. `$848` is the target's terrain class and `$84A` its water class.
+
+**Refused when `$848 = 9` or `$84A = 0`** (`03:C24E..C259`). In other words, the tile the player faces must be water and must not be blocked by the map edge or an object. A refusal shows message `0108` with sound `$1E` in `$16A8` and spends nothing. The player's mode (`$834`) and movement state (`$858`/`$85A`) do not gate the use. Only the handling of terrain class 6 depends on `$858`, and that reading is likely, not sure.
+
+A successful throw (`03:C273..C2CB`) runs the window check `03:C2DE` first, which clears `$1D45` when the old target is off screen. If `$1D45` is still nonzero, the game says message `0106` and returns. Otherwise it does the following:
+
+1. Writes the target tile to `$1D41/$1D43` and `12` to `$1D45`.
+2. Puts sound `$22` in `$16A8` and shows message `0104`.
+3. Changes the item in the menu's copy of the tools list (`$1BD5`, copied back to `7E:0B5A`): `0A` is removed (the later entries move up and the last is zeroed), and any other id goes up by one.
+4. Closes the menu (`INC $1D31`).
+
+The units of `$1D41/$1D43` (tile or pixel) were not settled statically.
+
 ## Keepnet capacity: where it is read
 
 The shop-selection handler writes `10`, `20`, or `30` to the active capacity field `7E:0C12` for IDs `0B`, `0C`, and `0D` (`03:9450..94D3`). The shop checks that value before a purchase: equal capacity displays message `0198`; a smaller selection displays `019A` (`03:941E..944F`). Those item IDs have no selected-use branch in the tool dispatcher, so the useful action is to buy an upgrade at a shop.
