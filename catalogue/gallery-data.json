@@ -55079,18 +55079,21 @@
         "facts": {
           "en": [
             "Three uses. After the first successful placement, two remain.",
+            "Stand facing the water: the tile directly in front of you must be water, not the map edge, and nothing may stand on it. Otherwise the game says to scatter it at the water's edge and no use is spent. Mode does not matter: it works while walking or fishing.",
             "Place the marker where you want eligible fish to move toward. It wears off as fishing progresses or when you leave its active area.",
             "This changes fish movement; it does not establish a bite-rate or catch-success bonus.",
             "If the game says chum was scattered already, the rejected try does not use a charge. To place a new point, let the marker clear through fishing progress, move until the old target leaves the tracked fishing area, or change area."
           ],
           "ja": [
             "3回使える。1回目の設置成功後は残り2回。",
+            "水の方を向いて使う。正面の1マスが水で、マップの端でなく、何も立っていないこと。条件を外すと「水際で、寄せエサをまきましょう」と表示され、回数は減らない。歩行中でも釣り中でも使える。",
             "魚に向かわせたい場所へ置く。釣りの進行で作動値が減り、誘導点が現在のエリア範囲外になると解除される。",
             "変わるのは魚の移動方向。食いつき率や釣果率の上昇は確認できない。",
             "「さっきまいたのでまだ必要ありません」と表示された場合、その試行では回数は減りません。置き直すには、釣りの進行で現在の誘導点が消えるのを待つか、古い目標が釣り中の範囲外になるまで移動するか、エリアを移動してください。"
           ],
           "th": [
             "ใช้ได้ 3 ครั้ง; โปรยสำเร็จครั้งแรกแล้วเหลือ 2 ครั้ง",
+            "ยืนหันหน้าเข้าหาน้ำ: ช่องตรงหน้าต้องเป็นน้ำ ไม่ใช่ขอบแผนที่ และไม่มีอะไรยืนขวางอยู่ ถ้าไม่ใช่ เกมจะบอกให้ไปโปรยที่ริมน้ำ และไม่เสียจำนวนครั้ง ใช้ได้ทั้งตอนเดินและตอนตกปลา",
             "วางจุดไว้ตรงที่อยากให้ปลาเข้าหา; ผลจะลดลงตามความคืบหน้าการตกปลา และหยุดเมื่อจุดออกนอกพื้นที่ที่ยังทำงานอยู่",
             "โค้ดยืนยันว่าหันทิศการเคลื่อนที่ของปลา แต่ไม่ได้ยืนยันว่าเพิ่มอัตรากัดหรือโอกาสตกสำเร็จ",
             "ถ้าเกมบอกว่าโปรยไปแล้ว การลองซ้ำจะไม่เสียจำนวนครั้งที่เหลือ ถ้าจะวางจุดใหม่ ให้ตกต่อจนจุดเดิมหมดผล ขยับจนจุดเดิมออกนอกพื้นที่ที่เกมจำไว้ระหว่างตกปลา หรือเปลี่ยนด่าน"
@@ -55100,17 +55103,20 @@
           "en": [
             "Use handler: 03:BC4A..BD2E dispatches 08/09/0A to 03:C24A. Message offsets 0104, 0106, 0108 were rendered from the original ROM message table/font.",
             "Coordinates/marker: 03:C273..C2C8; valid location text/gate: 03:C24E..C261; active old-target bounds: 03:C2DE..C30F.",
-            "Movement: 00:D5F0..D61A and 00:D7D2..D81E. The profile mask is the ROM fish-profile +15 word loaded to 7E:1208. Counter: 04:C020..C02B, reached through 04:BF61..BF8F after target resolution."
+            "Movement: 00:D5F0..D61A and 00:D7D2..D81E. The profile mask is the ROM fish-profile +15 word loaded to 7E:1208. Counter: 04:C020..C02B, reached through 04:BF61..BF8F after target resolution.",
+            "Placement test (Thai ROM, read statically in Ghidra 11.4.3 + ghidra-65816): 03:C24A calls 00:9702 → 00:B6C9 → 00:8E74, which classifies the tile in front of the player (facing $522) into $848 (terrain, 9 = edge or object, objects from 00:B79C) and $84A (water, 0 = not water). 03:C24E..C259 refuses when $848 = 9 or $84A = 0."
           ],
           "ja": [
             "使用処理: 03:BC4A..BD2Eで08/09/0Aを03:C24Aへ送る。メッセージ0104・0106・0108はROM内のメッセージ表とフォントから描画した。",
             "座標・作動値: 03:C273..C2C8。場所条件と表示文: 03:C24E..C261。既存誘導点の範囲判定: 03:C2DE..C30F。",
-            "移動方向: 00:D5F0..D61A、00:D7D2..D81E。プロフィールマスクは魚プロフィール+15のROM値で、7E:1208に読み込まれる。カウンター: 04:C020..C02B。ターゲット判定後の04:BF61..BF8F経由で減る。"
+            "移動方向: 00:D5F0..D61A、00:D7D2..D81E。プロフィールマスクは魚プロフィール+15のROM値で、7E:1208に読み込まれる。カウンター: 04:C020..C02B。ターゲット判定後の04:BF61..BF8F経由で減る。",
+            "設置判定（タイ語版ROMをGhidra 11.4.3 + ghidra-65816で静的に解析）: 03:C24Aが00:9702 → 00:B6C9 → 00:8E74を呼び、プレイヤー正面（向き$522）のマスを$848（地形、9 = 端または物体、物体は00:B79C）と$84A（水、0 = 水でない）に分類する。03:C24E..C259で$848 = 9または$84A = 0なら拒否。"
           ],
           "th": [
             "ทางใช้ไอเท็ม: 03:BC4A..BD2E ส่ง ID 08/09/0A ไปที่ 03:C24A; ข้อความ 0104, 0106, 0108 ถอดจากตารางข้อความและฟอนต์ใน ROM ต้นฉบับ",
             "พิกัด/แฟล็ก: 03:C273..C2C8; เงื่อนไขตำแหน่ง/ข้อความ: 03:C24E..C261; ตรวจว่าจุดเดิมยังอยู่ในขอบเขตพื้นที่: 03:C2DE..C30F",
-            "โค้ดหันทิศปลา: 00:D5F0..D61A และ 00:D7D2..D81E; mask จากโปรไฟล์ปลา ROM ช่อง +15 ถูกโหลดไว้ที่ 7E:1208; ตัวนับอยู่ที่ 04:C020..C02B และลดผ่าน 04:BF61..BF8F หลังตรวจจุดหมาย"
+            "โค้ดหันทิศปลา: 00:D5F0..D61A และ 00:D7D2..D81E; mask จากโปรไฟล์ปลา ROM ช่อง +15 ถูกโหลดไว้ที่ 7E:1208; ตัวนับอยู่ที่ 04:C020..C02B และลดผ่าน 04:BF61..BF8F หลังตรวจจุดหมาย",
+            "เงื่อนไขการวาง (ROM ไทย อ่านโค้ดด้วย Ghidra 11.4.3 + ghidra-65816): 03:C24A เรียก 00:9702 → 00:B6C9 → 00:8E74 ซึ่งจัดประเภทช่องตรงหน้าผู้เล่น (ทิศ $522) ลงใน $848 (พื้น, 9 = ขอบหรือมีสิ่งของ, สิ่งของจาก 00:B79C) และ $84A (น้ำ, 0 = ไม่ใช่น้ำ); 03:C24E..C259 ปฏิเสธเมื่อ $848 = 9 หรือ $84A = 0"
           ]
         },
         "fishIds": [
@@ -55250,29 +55256,35 @@
         "facts": {
           "en": [
             "Two uses remain. After the next successful placement, one remains.",
+            "Stand facing the water: the tile directly in front of you must be water, not the map edge, and nothing may stand on it. Otherwise the game says to scatter it at the water's edge and no use is spent. Mode does not matter: it works while walking or fishing.",
             "The same marker, eligible-profile movement rule, and area/casting-progress limits apply as Chum (3 uses remaining).",
             "If the game says chum was scattered already, the rejected try does not use a charge. To place a new point, let the marker clear through fishing progress, move until the old target leaves the tracked fishing area, or change area."
           ],
           "ja": [
             "残り2回。次の設置成功後は残り1回。",
+            "水の方を向いて使う。正面の1マスが水で、マップの端でなく、何も立っていないこと。条件を外すと「水際で、寄せエサをまきましょう」と表示され、回数は減らない。歩行中でも釣り中でも使える。",
             "誘導点・対象プロフィール・フェーズ進行とエリア範囲による解除は寄せエサ（残り3回）と同じ。",
             "「さっきまいたのでまだ必要ありません」と表示された場合、その試行では回数は減りません。置き直すには、釣りの進行で現在の誘導点が消えるのを待つか、古い目標が釣り中の範囲外になるまで移動するか、エリアを移動してください。"
           ],
           "th": [
             "เหลือ 2 ครั้ง; โปรยสำเร็จครั้งถัดไปแล้วจะเหลือ 1 ครั้ง",
+            "ยืนหันหน้าเข้าหาน้ำ: ช่องตรงหน้าต้องเป็นน้ำ ไม่ใช่ขอบแผนที่ และไม่มีอะไรยืนขวางอยู่ ถ้าไม่ใช่ เกมจะบอกให้ไปโปรยที่ริมน้ำ และไม่เสียจำนวนครั้ง ใช้ได้ทั้งตอนเดินและตอนตกปลา",
             "ตั้งจุดและหันทิศปลาตามเงื่อนไขเดียวกับ เหยื่อโปรยเรียกปลา (เหลือ 3 ครั้ง); หมดผลจากความคืบหน้าการตกปลาหรือย้ายออกจากพื้นที่นั้น",
             "ถ้าเกมบอกว่าโปรยไปแล้ว การลองซ้ำจะไม่เสียจำนวนครั้งที่เหลือ ถ้าจะวางจุดใหม่ ให้ตกต่อจนจุดเดิมหมดผล ขยับจนจุดเดิมออกนอกพื้นที่ที่เกมจำไว้ระหว่างตกปลา หรือเปลี่ยนด่าน"
           ]
         },
         "evidenceNotes": {
           "en": [
-            "Same shared handler and fish-direction/countdown routines documented for ID 08. The ROM record uses the same Japanese label and a zero price field; the transition call is at 03:C29B..C29E and its byte window is 03:C29F..C2C7."
+            "Same shared handler and fish-direction/countdown routines documented for ID 08. The ROM record uses the same Japanese label and a zero price field; the transition call is at 03:C29B..C29E and its byte window is 03:C29F..C2C7.",
+            "Placement test (Thai ROM, read statically in Ghidra 11.4.3 + ghidra-65816): 03:C24A calls 00:9702 → 00:B6C9 → 00:8E74, which classifies the tile in front of the player (facing $522) into $848 (terrain, 9 = edge or object, objects from 00:B79C) and $84A (water, 0 = not water). 03:C24E..C259 refuses when $848 = 9 or $84A = 0."
           ],
           "ja": [
-            "ID 08と同じ共通処理・魚の方向・カウンター処理。ROMレコード名は同じ寄せエサで、価格欄は0。移行処理への呼び出しは03:C29B..C29E、処理バイト列は03:C29F..C2C7。"
+            "ID 08と同じ共通処理・魚の方向・カウンター処理。ROMレコード名は同じ寄せエサで、価格欄は0。移行処理への呼び出しは03:C29B..C29E、処理バイト列は03:C29F..C2C7。",
+            "設置判定（タイ語版ROMをGhidra 11.4.3 + ghidra-65816で静的に解析）: 03:C24Aが00:9702 → 00:B6C9 → 00:8E74を呼び、プレイヤー正面（向き$522）のマスを$848（地形、9 = 端または物体、物体は00:B79C）と$84A（水、0 = 水でない）に分類する。03:C24E..C259で$848 = 9または$84A = 0なら拒否。"
           ],
           "th": [
-            "ใช้ handler และโค้ดหันทิศ/ตัวนับร่วมกับ ID 08; ระเบียน ROM ใช้ชื่อญี่ปุ่นเดียวกันและช่องราคาของ ID 09 เป็น 0; จุดเรียกโค้ดเปลี่ยนไอเท็มอยู่ที่ 03:C29B..C29E และช่วงไบต์ของการเปลี่ยนอยู่ที่ 03:C29F..C2C7"
+            "ใช้ handler และโค้ดหันทิศ/ตัวนับร่วมกับ ID 08; ระเบียน ROM ใช้ชื่อญี่ปุ่นเดียวกันและช่องราคาของ ID 09 เป็น 0; จุดเรียกโค้ดเปลี่ยนไอเท็มอยู่ที่ 03:C29B..C29E และช่วงไบต์ของการเปลี่ยนอยู่ที่ 03:C29F..C2C7",
+            "เงื่อนไขการวาง (ROM ไทย อ่านโค้ดด้วย Ghidra 11.4.3 + ghidra-65816): 03:C24A เรียก 00:9702 → 00:B6C9 → 00:8E74 ซึ่งจัดประเภทช่องตรงหน้าผู้เล่น (ทิศ $522) ลงใน $848 (พื้น, 9 = ขอบหรือมีสิ่งของ, สิ่งของจาก 00:B79C) และ $84A (น้ำ, 0 = ไม่ใช่น้ำ); 03:C24E..C259 ปฏิเสธเมื่อ $848 = 9 หรือ $84A = 0"
           ]
         },
         "fishIds": [
@@ -55395,29 +55407,35 @@
         "facts": {
           "en": [
             "One use remains. A successful placement consumes it.",
+            "Stand facing the water: the tile directly in front of you must be water, not the map edge, and nothing may stand on it. Otherwise the game says to scatter it at the water's edge and no use is spent. Mode does not matter: it works while walking or fishing.",
             "The same marker, eligible-profile movement rule, and area/casting-progress limits apply as Chum (3 uses remaining).",
             "If the game says chum was scattered already, the rejected try does not use a charge. To place a new point, let the marker clear through fishing progress, move until the old target leaves the tracked fishing area, or change area."
           ],
           "ja": [
             "残り1回。設置成功時に消費される。",
+            "水の方を向いて使う。正面の1マスが水で、マップの端でなく、何も立っていないこと。条件を外すと「水際で、寄せエサをまきましょう」と表示され、回数は減らない。歩行中でも釣り中でも使える。",
             "誘導点・対象プロフィール・フェーズ進行とエリア範囲による解除は寄せエサ（残り3回）と同じ。",
             "「さっきまいたのでまだ必要ありません」と表示された場合、その試行では回数は減りません。置き直すには、釣りの進行で現在の誘導点が消えるのを待つか、古い目標が釣り中の範囲外になるまで移動するか、エリアを移動してください。"
           ],
           "th": [
             "เหลือ 1 ครั้ง; โปรยสำเร็จแล้วไอเท็มจะถูกใช้หมด",
+            "ยืนหันหน้าเข้าหาน้ำ: ช่องตรงหน้าต้องเป็นน้ำ ไม่ใช่ขอบแผนที่ และไม่มีอะไรยืนขวางอยู่ ถ้าไม่ใช่ เกมจะบอกให้ไปโปรยที่ริมน้ำ และไม่เสียจำนวนครั้ง ใช้ได้ทั้งตอนเดินและตอนตกปลา",
             "ตั้งจุดและหันทิศปลาตามเงื่อนไขเดียวกับ เหยื่อโปรยเรียกปลา (เหลือ 3 ครั้ง); หมดผลจากความคืบหน้าการตกปลาหรือย้ายออกจากพื้นที่นั้น",
             "ถ้าเกมบอกว่าโปรยไปแล้ว การลองซ้ำจะไม่เสียจำนวนครั้งที่เหลือ ถ้าจะวางจุดใหม่ ให้ตกต่อจนจุดเดิมหมดผล ขยับจนจุดเดิมออกนอกพื้นที่ที่เกมจำไว้ระหว่างตกปลา หรือเปลี่ยนด่าน"
           ]
         },
         "evidenceNotes": {
           "en": [
-            "Same shared handler and fish-direction/countdown routines documented for ID 08. 03:C2A5..C2C2 compares ID 0A, shifts later entries, then writes zero to the last slot."
+            "Same shared handler and fish-direction/countdown routines documented for ID 08. 03:C2A5..C2C2 compares ID 0A, shifts later entries, then writes zero to the last slot.",
+            "Placement test (Thai ROM, read statically in Ghidra 11.4.3 + ghidra-65816): 03:C24A calls 00:9702 → 00:B6C9 → 00:8E74, which classifies the tile in front of the player (facing $522) into $848 (terrain, 9 = edge or object, objects from 00:B79C) and $84A (water, 0 = not water). 03:C24E..C259 refuses when $848 = 9 or $84A = 0."
           ],
           "ja": [
-            "ID 08と同じ共通処理・魚の方向・カウンター処理。03:C2A5..C2C2でID 0Aを判定し、後続所持品を詰めて最後を0にする。"
+            "ID 08と同じ共通処理・魚の方向・カウンター処理。03:C2A5..C2C2でID 0Aを判定し、後続所持品を詰めて最後を0にする。",
+            "設置判定（タイ語版ROMをGhidra 11.4.3 + ghidra-65816で静的に解析）: 03:C24Aが00:9702 → 00:B6C9 → 00:8E74を呼び、プレイヤー正面（向き$522）のマスを$848（地形、9 = 端または物体、物体は00:B79C）と$84A（水、0 = 水でない）に分類する。03:C24E..C259で$848 = 9または$84A = 0なら拒否。"
           ],
           "th": [
-            "ใช้ handler/โค้ดหันทิศ/ตัวนับร่วมกับ ID 08; 03:C2A5..C2C2 ตรวจ ID 0A แล้วเลื่อนช่องถัดไปและเขียน 0 ลงช่องสุดท้าย"
+            "ใช้ handler/โค้ดหันทิศ/ตัวนับร่วมกับ ID 08; 03:C2A5..C2C2 ตรวจ ID 0A แล้วเลื่อนช่องถัดไปและเขียน 0 ลงช่องสุดท้าย",
+            "เงื่อนไขการวาง (ROM ไทย อ่านโค้ดด้วย Ghidra 11.4.3 + ghidra-65816): 03:C24A เรียก 00:9702 → 00:B6C9 → 00:8E74 ซึ่งจัดประเภทช่องตรงหน้าผู้เล่น (ทิศ $522) ลงใน $848 (พื้น, 9 = ขอบหรือมีสิ่งของ, สิ่งของจาก 00:B79C) และ $84A (น้ำ, 0 = ไม่ใช่น้ำ); 03:C24E..C259 ปฏิเสธเมื่อ $848 = 9 หรือ $84A = 0"
           ]
         },
         "fishIds": [
