@@ -81,6 +81,13 @@ for(const item of data.items){
     item.search=item.search.replace(/(^| )(\S+)(?: \2)+(?= |$)/g,'$1$2');
   }
 }
+// Thai gear names exactly as the game shows them; they win over every other source.
+const gameNamesTh=JSON.parse(fs.readFileSync(path.join(root,'data/game-names-th.json'),'utf8')).items;
+for(const item of data.items){
+  const name=gameNamesTh[item.category+':'+item.id];if(!name)continue;
+  const was=item.nameTh;item.nameTh=name;
+  if(item.search)item.search=was&&item.search.includes(was)?item.search.split(was).join(name):item.search.replace(item.nameEn,item.nameEn+' '+name);
+}
 const fishFood=data.items.find(item=>item.category==='food'&&item.id==='08');if(fishFood&&fishFood.labelImageTh)fishFood.labelContextTh='ตัวอย่างชื่อปลาที่ถือ: เรนโบว์เทราต์ (รหัสชนิด06 ขนาดดิบ30) ชื่อนี้เปลี่ยนตามปลาที่ถือ ไม่ใช่ชื่ออาหารตายตัว';
 fs.writeFileSync(path.join(root,'catalogue/gallery-data.json'),JSON.stringify(data,null,2)+'\n');
 // Merge player-facing explanations and verified fish art into the delivered payload.

@@ -238,7 +238,7 @@
       "fishScope": {
         "en": "These are the creatures whose movement can be steered toward the groundbait point when the equipped-bait direction does not take priority. The list includes non-fish creatures. It does not show which bait they will eat or prove a bite-rate bonus.",
         "ja": "装備中のエサへの移動が優先されない場合、寄せエサの地点へ誘導される生物の一覧。魚以外の生物も含む。食べるエサの一覧や食いつき率上昇を示すものではない。",
-        "th": "รายชื่อนี้คือสัตว์ที่โค้ดให้ว่ายเข้าหาจุดโปรยได้ เมื่อการว่ายเข้าหาเหยื่อเบ็ดไม่ได้ทำงานก่อน มีสัตว์ที่ไม่ใช่ปลาด้วย รายชื่อนี้ไม่ได้บอกว่ามันกินเหยื่ออะไรหรือได้โบนัสอัตรากัดเท่าไร"
+        "th": "รายชื่อนี้คือสัตว์ที่โค้ดให้ว่ายเข้าหาจุดโปรยได้ เมื่อการว่ายเข้าหาเหยื่อตะขอไม่ได้ทำงานก่อน มีสัตว์ที่ไม่ใช่ปลาด้วย รายชื่อนี้ไม่ได้บอกว่ามันกินเหยื่ออะไรหรือได้โบนัสอัตรากัดเท่าไร"
       },
       "evidence": {
         "type": "rom_trace",
@@ -375,7 +375,7 @@
       "fishScope": {
         "en": "These are the creatures whose movement can be steered toward the groundbait point when the equipped-bait direction does not take priority. The list includes non-fish creatures. It does not show which bait they will eat or prove a bite-rate bonus.",
         "ja": "装備中のエサへの移動が優先されない場合、寄せエサの地点へ誘導される生物の一覧。魚以外の生物も含む。食べるエサの一覧や食いつき率上昇を示すものではない。",
-        "th": "รายชื่อนี้คือสัตว์ที่โค้ดให้ว่ายเข้าหาจุดโปรยได้ เมื่อการว่ายเข้าหาเหยื่อเบ็ดไม่ได้ทำงานก่อน มีสัตว์ที่ไม่ใช่ปลาด้วย รายชื่อนี้ไม่ได้บอกว่ามันกินเหยื่ออะไรหรือได้โบนัสอัตรากัดเท่าไร"
+        "th": "รายชื่อนี้คือสัตว์ที่โค้ดให้ว่ายเข้าหาจุดโปรยได้ เมื่อการว่ายเข้าหาเหยื่อตะขอไม่ได้ทำงานก่อน มีสัตว์ที่ไม่ใช่ปลาด้วย รายชื่อนี้ไม่ได้บอกว่ามันกินเหยื่ออะไรหรือได้โบนัสอัตรากัดเท่าไร"
       }
     },
     "0A": {
@@ -483,7 +483,7 @@
       "fishScope": {
         "en": "These are the creatures whose movement can be steered toward the groundbait point when the equipped-bait direction does not take priority. The list includes non-fish creatures. It does not show which bait they will eat or prove a bite-rate bonus.",
         "ja": "装備中のエサへの移動が優先されない場合、寄せエサの地点へ誘導される生物の一覧。魚以外の生物も含む。食べるエサの一覧や食いつき率上昇を示すものではない。",
-        "th": "รายชื่อนี้คือสัตว์ที่โค้ดให้ว่ายเข้าหาจุดโปรยได้ เมื่อการว่ายเข้าหาเหยื่อเบ็ดไม่ได้ทำงานก่อน มีสัตว์ที่ไม่ใช่ปลาด้วย รายชื่อนี้ไม่ได้บอกว่ามันกินเหยื่ออะไรหรือได้โบนัสอัตรากัดเท่าไร"
+        "th": "รายชื่อนี้คือสัตว์ที่โค้ดให้ว่ายเข้าหาจุดโปรยได้ เมื่อการว่ายเข้าหาเหยื่อตะขอไม่ได้ทำงานก่อน มีสัตว์ที่ไม่ใช่ปลาด้วย รายชื่อนี้ไม่ได้บอกว่ามันกินเหยื่ออะไรหรือได้โบนัสอัตรากัดเท่าไร"
       }
     },
     "0B": {

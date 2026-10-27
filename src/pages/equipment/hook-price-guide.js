@@ -8,7 +8,7 @@ function hookSizeCell(ctx, stage, size) {
   const row = ctx.gearPriceGuide.hook[stage].bySize[size]
   if (!row) {
     return ctx.lang === 'th'
-      ? 'ยังไม่มีขาย ใช้เบ็ดของปลา 16–35 ซม.'
+      ? 'ยังไม่มีขาย ใช้ตะขอของปลา 16–35 ซม.'
       : ctx.lang === 'ja'
         ? '未販売。16〜35cm用で代用'
         : 'Not sold yet; use the 16–35 cm hook'
@@ -20,13 +20,13 @@ function hookSizeCell(ctx, stage, size) {
 export function hookPriceGuide(ctx) {
   const title =
     ctx.lang === 'th'
-      ? 'เบ็ดหายหรือยังไม่มี? ซื้อเบ็ดที่ถูกสุดตามขนาดปลา ในด่านนี้'
+      ? 'ตะขอหายหรือยังไม่มี? ซื้อตะขอที่ถูกสุดตามขนาดปลา ในด่านนี้'
       : ctx.lang === 'ja'
         ? '針を失った・持っていない？魚の大きさ別の最安の針（現在エリア）'
         : 'Lost your hook or have none? Cheapest hook by fish size in your area'
   const note =
     ctx.lang === 'th'
-      ? 'ถ้ามีเบ็ดอยู่แล้วใช้ต่อได้ เลือกเบ็ดให้ตรงขนาดปลาที่จะตก ตะขอตรงขนาดให้พลาดได้เพิ่ม 1 จังหวะ ผิดขนาดเสีย 1 จังหวะ ขายเป็นชุด 9 ตัว ไม่ต้องซื้อเบ็ดชุดเหยื่อสำหรับลัวร์หรือฟลาย'
+      ? 'ถ้ามีตะขออยู่แล้วใช้ต่อได้ เลือกตะขอให้ตรงขนาดปลาที่จะตก ตะขอตรงขนาดให้พลาดได้เพิ่ม 1 จังหวะ ผิดขนาดเสีย 1 จังหวะ ขายเป็นชุด 9 ตัว ไม่ต้องซื้อตะขอชุดเหยื่อสำหรับลัวร์หรือฟลาย'
       : ctx.lang === 'ja'
         ? '所持している針はそのまま使えます。魚の大きさに合う針を選びます。大きさに合う針は許されるミスが1回増え、合わない針は1回減ります。9個1組で売っています。ルアー・フライ用にエサ釣りの針を買う必要はありません。'
         : 'Keep the hook you own. Pick the hook for the size of the fish you want: a hook that fits allows 1 more mistake, one that does not costs 1. Hooks are sold in stacks of 9. Do not buy a bait-rig hook for lure or fly fishing.'

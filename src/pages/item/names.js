@@ -43,7 +43,7 @@ export function categoryName(ctx, c) {
       fly: 'ฟลาย',
       fly_wing: 'ปีกฟลาย',
       fly_tail: 'หางฟลาย',
-      hook: 'เบ็ด',
+      hook: 'ตะขอ',
       float_weight: 'ทุ่นและตะกั่ว',
       bait: 'เหยื่อจริง',
       food: 'อาหาร',

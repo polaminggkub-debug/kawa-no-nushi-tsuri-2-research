@@ -234,7 +234,7 @@ export function gearNextActions(ctx, item) {
     const label =
       category === 'hook'
         ? ctx.lang === 'th'
-          ? 'เบ็ดหายหรือยังไม่มี? ดูเบ็ดที่ถูกสุดตามขนาดปลาทั้งหกด่าน'
+          ? 'ตะขอหายหรือยังไม่มี? ดูตะขอที่ถูกสุดตามขนาดปลาทั้งหกด่าน'
           : ctx.lang === 'ja'
             ? '針を失った・持っていない？6エリアの大きさ別最安の針を見る'
             : 'Lost your hook or have none? See the cheapest hook by fish size in each area'
@@ -252,7 +252,7 @@ export function gearNextActions(ctx, item) {
   if (item.category === 'hook' && ids.length)
     return (
       hookBudget +
-      `<p>${ctx.lang === 'th' ? 'ดูเหยื่อและจุดตกของปลาที่ชื่อเบ็ดอ้างถึง' : ctx.lang === 'ja' ? 'ハリ名の魚のエサ・場所を見る' : 'Bait and locations for the fish named by this hook'}: ${ids.map((id) => `<a href="${ctx.esc(ctx.fishHref(id))}">${ctx.esc(ctx.fishName(id))} ↗</a>`).join(' · ')}</p>`
+      `<p>${ctx.lang === 'th' ? 'ดูเหยื่อและจุดตกของปลาที่ชื่อตะขออ้างถึง' : ctx.lang === 'ja' ? 'ハリ名の魚のエサ・場所を見る' : 'Bait and locations for the fish named by this hook'}: ${ids.map((id) => `<a href="${ctx.esc(ctx.fishHref(id))}">${ctx.esc(ctx.fishName(id))} ↗</a>`).join(' · ')}</p>`
     )
   if (item.category.startsWith('fly')) {
     const id = document.getElementById('fish-filter').value

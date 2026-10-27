@@ -15,7 +15,7 @@ METHOD = {
     "ja": {"float": "ウキ", "casting": "投げ", "lure": "ルアー", "fly": "フライ"},
 }
 ROD_CUE = {"th": "คัน", "en": "rod", "ja": "竿"}
-HOOK_CUE = {"th": "เบ็ด", "en": "hook", "ja": "ハリ"}
+HOOK_CUE = {"th": "ตะขอ", "en": "hook", "ja": "ハリ"}
 FLOAT_CUE = {"th": "ทุ่น", "en": "float", "ja": "ウキ"}
 SINKER_CUE = {"th": "ตะกั่ว", "en": "sinker", "ja": "オモリ"}
 

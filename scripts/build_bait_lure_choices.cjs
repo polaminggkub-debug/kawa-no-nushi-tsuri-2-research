@@ -56,7 +56,7 @@ const t = (en, ja, th) => ({ en, ja, th });
 const BAIT_RULE = t(
   'A bait bites when it is on the fish\'s list and your float is on the fish\'s exact tile: about 2 seconds on a float rig, about 10 seconds on a sinker rig (bottom fish only). Time of day, weather, rod, hook and HP change nothing. A fish that ignores you is on another tile or does not list this bait, so move the cast instead of swapping the bait.',
   'エサは、魚のリストにあり、ウキが魚と同じマスにあれば食いつく。ウキ仕掛けは約2秒、オモリ仕掛けは約10秒（底の魚のみ）。時間帯・天気・竿・ハリ・HPは関係ない。反応しない魚は別のマスにいるか、このエサがリストにない。エサを替えず、投げる位置を変える。',
-  'เหยื่อกินได้เมื่ออยู่ในรายชื่อของปลาและทุ่นอยู่ช่องเดียวกับปลา ชุดทุ่นราว 2 วินาที ชุดตะกั่วราว 10 วินาที (ปลาหน้าดินเท่านั้น) เวลา อากาศ คัน เบ็ด และ HP ไม่มีผล ปลาที่ไม่สนใจอยู่คนละช่องหรือเหยื่อไม่อยู่ในรายชื่อ ให้ขยับจุดปล่อย ไม่ใช่เปลี่ยนเหยื่อ'
+  'เหยื่อกินได้เมื่ออยู่ในรายชื่อของปลาและทุ่นอยู่ช่องเดียวกับปลา ชุดทุ่นราว 2 วินาที ชุดตะกั่วราว 10 วินาที (ปลาหน้าดินเท่านั้น) เวลา อากาศ คัน ตะขอ และ HP ไม่มีผล ปลาที่ไม่สนใจอยู่คนละช่องหรือเหยื่อไม่อยู่ในรายชื่อ ให้ขยับจุดปล่อย ไม่ใช่เปลี่ยนเหยื่อ'
 );
 const LURE_RULE = t(
   'A lure\'s fish list decides which fish chase it, and the fish must be on the lure\'s tile. Keep tapping A or B while the lure is in the water; when a fish is level with the lure, press A once to hook it. Two lures cover all 38 lure fish: lure 17 or lure 2E, plus lure 23. Time of day, weather and rod do not change who follows.',

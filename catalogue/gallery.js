@@ -1291,7 +1291,7 @@
   }
   function targetAdviceScope(ctx) {
     return text3(ctx, {
-      th: "ปลากินหรือว่ายตามเมื่อทุ่นหรือลัวร์อยู่ช่องเดียวกับปลา เวลา อากาศ คัน เบ็ด และ HP ไม่มีผล",
+      th: "ปลากินหรือว่ายตามเมื่อทุ่นหรือลัวร์อยู่ช่องเดียวกับปลา เวลา อากาศ คัน ตะขอ และ HP ไม่มีผล",
       ja: "ウキやルアーが魚と同じマスにあれば食いつく・追ってくる。時間・天気・竿・ハリ・HPは関係ない。",
       en: "The fish bites or chases once your float or lure is on its tile. Time, weather, rod, hook and HP do not matter."
     });
@@ -1810,14 +1810,14 @@
   function hookSizeCell(ctx, stage, size) {
     const row = ctx.gearPriceGuide.hook[stage].bySize[size];
     if (!row) {
-      return ctx.lang === "th" ? "ยังไม่มีขาย ใช้เบ็ดของปลา 16–35 ซม." : ctx.lang === "ja" ? "未販売。16〜35cm用で代用" : "Not sold yet; use the 16–35 cm hook";
+      return ctx.lang === "th" ? "ยังไม่มีขาย ใช้ตะขอของปลา 16–35 ซม." : ctx.lang === "ja" ? "未販売。16〜35cm用で代用" : "Not sold yet; use the 16–35 cm hook";
     }
     const item = ctx.allItems.find((i) => i.category === row.category && i.id === row.id);
     return `<a data-hook-budget-stage="${stage}" data-hook-size="${size}" href="${ctx.esc(ctx.areaItemLink(item, stage))}">${ctx.esc(ctx.itemName(item))} (${row.id}) · ¥${row.priceYen}</a>`;
   }
   function hookPriceGuide(ctx) {
-    const title = ctx.lang === "th" ? "เบ็ดหายหรือยังไม่มี? ซื้อเบ็ดที่ถูกสุดตามขนาดปลา ในด่านนี้" : ctx.lang === "ja" ? "針を失った・持っていない？魚の大きさ別の最安の針（現在エリア）" : "Lost your hook or have none? Cheapest hook by fish size in your area";
-    const note = ctx.lang === "th" ? "ถ้ามีเบ็ดอยู่แล้วใช้ต่อได้ เลือกเบ็ดให้ตรงขนาดปลาที่จะตก ตะขอตรงขนาดให้พลาดได้เพิ่ม 1 จังหวะ ผิดขนาดเสีย 1 จังหวะ ขายเป็นชุด 9 ตัว ไม่ต้องซื้อเบ็ดชุดเหยื่อสำหรับลัวร์หรือฟลาย" : ctx.lang === "ja" ? "所持している針はそのまま使えます。魚の大きさに合う針を選びます。大きさに合う針は許されるミスが1回増え、合わない針は1回減ります。9個1組で売っています。ルアー・フライ用にエサ釣りの針を買う必要はありません。" : "Keep the hook you own. Pick the hook for the size of the fish you want: a hook that fits allows 1 more mistake, one that does not costs 1. Hooks are sold in stacks of 9. Do not buy a bait-rig hook for lure or fly fishing.";
+    const title = ctx.lang === "th" ? "ตะขอหายหรือยังไม่มี? ซื้อตะขอที่ถูกสุดตามขนาดปลา ในด่านนี้" : ctx.lang === "ja" ? "針を失った・持っていない？魚の大きさ別の最安の針（現在エリア）" : "Lost your hook or have none? Cheapest hook by fish size in your area";
+    const note = ctx.lang === "th" ? "ถ้ามีตะขออยู่แล้วใช้ต่อได้ เลือกตะขอให้ตรงขนาดปลาที่จะตก ตะขอตรงขนาดให้พลาดได้เพิ่ม 1 จังหวะ ผิดขนาดเสีย 1 จังหวะ ขายเป็นชุด 9 ตัว ไม่ต้องซื้อตะขอชุดเหยื่อสำหรับลัวร์หรือฟลาย" : ctx.lang === "ja" ? "所持している針はそのまま使えます。魚の大きさに合う針を選びます。大きさに合う針は許されるミスが1回増え、合わない針は1回減ります。9個1組で売っています。ルアー・フライ用にエサ釣りの針を買う必要はありません。" : "Keep the hook you own. Pick the hook for the size of the fish you want: a hook that fits allows 1 more mistake, one that does not costs 1. Hooks are sold in stacks of 9. Do not buy a bait-rig hook for lure or fly fishing.";
     const area = ctx.lang === "th" ? "ด่าน" : ctx.lang === "ja" ? "エリア" : "Area";
     const headers = (hookSizeHeaders[ctx.lang] || hookSizeHeaders.en).map((label) => `<th>${label}</th>`).join("");
     const rows = [1, 2, 3, 4, 5, 6].map(
@@ -2353,7 +2353,7 @@
         route: ctx.baitRoute,
         returnPath: ctx.sourceReturn()
       });
-      const label = category === "hook" ? ctx.lang === "th" ? "เบ็ดหายหรือยังไม่มี? ดูเบ็ดที่ถูกสุดตามขนาดปลาทั้งหกด่าน" : ctx.lang === "ja" ? "針を失った・持っていない？6エリアの大きさ別最安の針を見る" : "Lost your hook or have none? See the cheapest hook by fish size in each area" : ctx.lang === "th" ? "ดูทุ่นและตะกั่วราคาต่ำสุดแยกทั้งหกด่าน" : ctx.lang === "ja" ? "6エリアの最安ウキ・オモリを見る" : "See the cheapest float and sinker in each of six areas";
+      const label = category === "hook" ? ctx.lang === "th" ? "ตะขอหายหรือยังไม่มี? ดูตะขอที่ถูกสุดตามขนาดปลาทั้งหกด่าน" : ctx.lang === "ja" ? "針を失った・持っていない？6エリアの大きさ別最安の針を見る" : "Lost your hook or have none? See the cheapest hook by fish size in each area" : ctx.lang === "th" ? "ดูทุ่นและตะกั่วราคาต่ำสุดแยกทั้งหกด่าน" : ctx.lang === "ja" ? "6エリアの最安ウキ・オモリを見る" : "See the cheapest float and sinker in each of six areas";
       return `<p><a class="route-button" data-${marker}-price-guide href="${ctx.esc(href)}">${label} ↗</a></p>`;
     };
     if (item.category === "float_weight") return guideLink("float_weight", "float");
@@ -2361,7 +2361,7 @@
     const hookBudget = item.category === "hook" ? guideLink("hook", "hook") : "";
     if (item.category === "hook" && !ids.length) return hookBudget;
     if (item.category === "hook" && ids.length)
-      return hookBudget + `<p>${ctx.lang === "th" ? "ดูเหยื่อและจุดตกของปลาที่ชื่อเบ็ดอ้างถึง" : ctx.lang === "ja" ? "ハリ名の魚のエサ・場所を見る" : "Bait and locations for the fish named by this hook"}: ${ids.map((id) => `<a href="${ctx.esc(ctx.fishHref(id))}">${ctx.esc(ctx.fishName(id))} ↗</a>`).join(" · ")}</p>`;
+      return hookBudget + `<p>${ctx.lang === "th" ? "ดูเหยื่อและจุดตกของปลาที่ชื่อตะขออ้างถึง" : ctx.lang === "ja" ? "ハリ名の魚のエサ・場所を見る" : "Bait and locations for the fish named by this hook"}: ${ids.map((id) => `<a href="${ctx.esc(ctx.fishHref(id))}">${ctx.esc(ctx.fishName(id))} ↗</a>`).join(" · ")}</p>`;
     if (item.category.startsWith("fly")) {
       const id = document.getElementById("fish-filter").value;
       if (id && !ctx.allItems.some(
@@ -3006,8 +3006,8 @@
       noBaitFish: "ไม่พบปลาที่บันทึกว่าใช้เหยื่อนี้ได้ทั้งสายทุ่นและสายตะกั่ว",
       area: (stage) => `ด่าน ${stage}`,
       coveragePeers: "ตัวเลือกที่ร้านมีขายและรองรับรายชื่อปลาเดียวกันตามสายตกนี้:",
-      limit: "เหยื่อหรือลัวร์ที่อยู่ในรายชื่อของปลาจะถูกกินเมื่อทุ่นหรือลัวร์อยู่ช่องเดียวกับปลา (ทุ่นราว 2 วินาที ตะกั่วราว 10 วินาที เฉพาะปลาหน้าดิน) เวลา อากาศ คัน เบ็ด และ HP ไม่มีผล ถ้าปลาไม่สนใจ ให้ขยับจุดปล่อย",
-      limitBait: "เหยื่อที่อยู่ในรายชื่อของปลาจะถูกกินเมื่อทุ่นอยู่ช่องเดียวกับปลา ราว 2 วินาที (ชุดตะกั่วราว 10 วินาที เฉพาะปลาหน้าดิน) เวลา อากาศ คัน เบ็ด และ HP ไม่มีผล ถ้าปลาไม่สนใจ ให้ขยับจุดปล่อย ไม่ใช่เปลี่ยนเหยื่อ",
+      limit: "เหยื่อหรือลัวร์ที่อยู่ในรายชื่อของปลาจะถูกกินเมื่อทุ่นหรือลัวร์อยู่ช่องเดียวกับปลา (ทุ่นราว 2 วินาที ตะกั่วราว 10 วินาที เฉพาะปลาหน้าดิน) เวลา อากาศ คัน ตะขอ และ HP ไม่มีผล ถ้าปลาไม่สนใจ ให้ขยับจุดปล่อย",
+      limitBait: "เหยื่อที่อยู่ในรายชื่อของปลาจะถูกกินเมื่อทุ่นอยู่ช่องเดียวกับปลา ราว 2 วินาที (ชุดตะกั่วราว 10 วินาที เฉพาะปลาหน้าดิน) เวลา อากาศ คัน ตะขอ และ HP ไม่มีผล ถ้าปลาไม่สนใจ ให้ขยับจุดปล่อย ไม่ใช่เปลี่ยนเหยื่อ",
       limitLure: "ลัวร์ที่อยู่ในรายชื่อของปลาจะมีปลาว่ายตามเมื่อปลาอยู่ช่องเดียวกับลัวร์และคุณกด A หรือ B ต่อเนื่อง พอปลาอยู่ระดับเดียวกับลัวร์ให้กด A หนึ่งครั้งเพื่อเกี่ยวปลา เวลา อากาศ และคันไม่มีผล"
     }
   };
@@ -3893,7 +3893,7 @@
       "แค็ตตาล็อกนี้ลงรายการที่มีชื่อหรือภาพให้ตรวจสอบได้ครบ 315 รายการ: คันเบ็ด 21, เหยื่อปลอม 81, บอดี้ฟลาย 64, ปีก 47, หาง 23, เหยื่อ 23, ตะขอ 13, ทุ่น/ตะกั่ว 10, อาหาร 10 และอุปกรณ์/ไอเท็มเควสต์ 23 ชิ้นส่วนบอดี้ 64 + ปีก 47 + หาง 23 ครบระเบียนฟลายทั้ง 134 รายการในตาราง ROM",
       "แสดงระเบียนตารางฟลายทั้ง 134 รายการ แบ่งเป็นบอดี้ 64 ปีก 47 และหาง 23 โดยตัด ID 87 ออก เพราะเป็นตัวเลือก “ไม่ใส่” (無し) ของช่างประกอบฟลาย ราคา 0 เยน ไม่ใช่ชิ้นส่วน",
       "ช่องราคาใน ROM ไม่ได้ยืนยันว่าร้านใดมีไอเท็มขาย และช่องราคา 0 ก็ไม่ได้ยืนยันว่าได้มาฟรี ค่าราคาของชิ้นส่วนฟลายเป็นราคาของชิ้นส่วน ไม่ใช่ราคาขายปลีกของฟลายที่ประกอบเสร็จแล้ว",
-      "คู่มือ SFC ภาษาญี่ปุ่นอธิบายประเภทคันเบ็ด ทุ่น เครื่องหมายบนสาย ตะกั่ว ตะขอ เหยื่อ และตระกูลฟลาย ชื่อภาษาอังกฤษในรายการเป็นคำแปล ส่วนชื่อญี่ปุ่นคงข้อความที่พบในเกม",
+      "คู่มือ SFC ภาษาญี่ปุ่นอธิบายประเภทคันเบ็ด ทุ่น ตัวชี้ตำแหน่ง ตะกั่ว ตะขอ เหยื่อ และตระกูลฟลาย ชื่อภาษาอังกฤษในรายการเป็นคำแปล ส่วนชื่อญี่ปุ่นคงข้อความที่พบในเกม",
       "ตรวจเมนูช่างประกอบฟลายในร้านด่านแรกโดยตรง: เลือกประเภท บอดี้ ปีก หางหรือ “ไม่มี” แล้วจึงยืนยัน ชุดเริ่มต้นที่ตรวจราคา 25 เยน (5 + 5 + 15) ไม่ใช่ราคากลางของทุกชุด จำนวนภาพปีกที่เคยนับยังไม่ตรงกับรายการ ROM จึงไม่ใช้เป็นจำนวนตัวเลือกที่ยืนยันแล้ว",
       "ภาพจับจาก ROM ญี่ปุ่นที่ผู้ใช้ให้มา ซึ่งไม่ได้ดัดแปลง ในการจำลอง Snes9x แบบแยกสำหรับไอเท็มที่ซ่อนอยู่ เราเขียน ID ของไอเท็มที่ถูกต้องลง WRAM ชั่วคราวเพื่อให้ตัวเกมเป็นผู้วาดภาพ ไม่ได้ใช้ภาพที่สร้างด้วย AI",
       "ชื่อไทยที่มีภาพประกอบใต้ชื่อไอเท็ม จับจากแพตช์ไทย V1.2 โดยตรง หากยังอ่านตัวสะกดจากภาพไม่ชัด จะคงชื่อญี่ปุ่นไว้ให้เทียบกับภาพ ชื่อปลาที่ถือในเมนูอาหารเปลี่ยนตามปลาตัวนั้น ส่วนคำอธิบายค่าต่าง ๆ เป็นคำแปลสำหรับเว็บไซต์จากผลวิจัย ROM ญี่ปุ่นต้นฉบับ"

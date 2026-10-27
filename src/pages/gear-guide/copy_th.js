@@ -21,7 +21,7 @@ export default {
   },
   slots: {
     rod: 'คัน',
-    hook: 'เบ็ด',
+    hook: 'ตะขอ',
     bait: 'เหยื่อ',
     lure: 'ลัวร์',
     fly: 'ฟลาย',
