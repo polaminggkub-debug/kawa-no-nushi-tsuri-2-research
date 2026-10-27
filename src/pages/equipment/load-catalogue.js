@@ -98,15 +98,15 @@ function scrollCategoryAdviceFromHash() {
   document.getElementById('category-decisions')?.scrollIntoView({ block: 'start' })
 }
 
+const arrivalHash = typeof window === 'undefined' ? '' : window.location.hash
+
 function openInitialContext() {
   openFlyGuideFromHash()
   scrollCategoryAdviceFromHash()
   if (typeof window === 'undefined') return
   const targets = ['#catalogue', '#cards', '#fish-location-panel']
-  if (targets.includes(window.location.hash))
-    document
-      .querySelector(window.location.hash)
-      ?.scrollIntoView({ behavior: 'instant', block: 'start' })
+  if (targets.includes(arrivalHash))
+    document.querySelector(arrivalHash)?.scrollIntoView({ behavior: 'instant', block: 'start' })
 }
 
 function handleCategoryClick(ctx, event) {
