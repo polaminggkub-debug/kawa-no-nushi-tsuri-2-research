@@ -90,7 +90,7 @@
         }
       }
     </script>
-    <link rel="stylesheet" href="style.css?v=257e4e0a517cf2dc" />
+    <link rel="stylesheet" href="style.css?v=fa756abd6ce45406" />
     <link rel="stylesheet" href="compendium.css?v=944b2e768f29779c" />
     <script src="compendium.js?v=de337224916509f8" defer></script>
   <script data-goatcounter="https://polamin.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script></head>
@@ -151,6 +151,50 @@
     </header>
 
     <main id="main-content">
+      <section class="task-chooser" id="task-chooser" aria-labelledby="task-chooser-title">
+        <h2 id="task-chooser-title">What do you want to do today?</h2>
+        <p class="task-sub">Pick the path that matches what you are looking for</p>
+        <div class="path-grid">
+          <article class="path-card" id="path-1">
+            <span class="path-num" aria-hidden="true">1</span>
+            <h3>Find a fish</h3>
+            <p>Search the fish → see the area and map spots → see the kit to use</p>
+            <a class="path-cta" href="maps.html">Search fish →</a>
+          </article>
+          <article class="path-card" id="path-2">
+            <span class="path-num" aria-hidden="true">2</span>
+            <h3>Pick gear</h3>
+            <p>Choose a fish → get the kit to carry → see price and shop</p>
+            <a class="path-cta" href="gear-guide.html">Open the gear guide →</a>
+          </article>
+          <article class="path-card" id="path-3">
+            <span class="path-num" aria-hidden="true">3</span>
+            <h3>Buy in this area</h3>
+            <p>Choose an area → choose an item → see which shop sells it</p>
+            <ul class="path-stages" aria-label="Choose the area">
+              <li>
+                <a href="shops.html?stage=1&amp;place=town">Area 1<small>Mountain Stream</small></a>
+              </li>
+              <li>
+                <a href="shops.html?stage=2&amp;place=town">Area 2<small>Mountain Lake</small></a>
+              </li>
+              <li>
+                <a href="shops.html?stage=3&amp;place=town">Area 3<small>Clear Stream</small></a>
+              </li>
+              <li>
+                <a href="shops.html?stage=4&amp;place=town">Area 4<small>Lake</small></a>
+              </li>
+              <li>
+                <a href="shops.html?stage=5&amp;place=town">Area 5<small>Downstream</small></a>
+              </li>
+              <li>
+                <a href="shops.html?stage=6&amp;place=town">Area 6<small>River Mouth</small></a>
+              </li>
+            </ul>
+          </article>
+        </div>
+      </section>
+
       <section class="catalogue-section" id="catalogue">
         <div class="catalogue-workspace">
           <div id="catalogue-load-feedback" hidden></div>

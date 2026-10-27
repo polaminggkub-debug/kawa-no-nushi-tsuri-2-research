@@ -90,7 +90,7 @@
         }
       }
     </script>
-    <link rel="stylesheet" href="style.css?v=257e4e0a517cf2dc" />
+    <link rel="stylesheet" href="style.css?v=fa756abd6ce45406" />
     <link rel="stylesheet" href="compendium.css?v=944b2e768f29779c" />
     <script src="compendium.js?v=de337224916509f8" defer></script>
   <script data-goatcounter="https://polamin.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script></head>
@@ -152,6 +152,54 @@
     </header>
 
     <main id="main-content">
+      <section class="task-chooser" id="task-chooser" aria-labelledby="task-chooser-title">
+        <h2 id="task-chooser-title">วันนี้อยากทำอะไร?</h2>
+        <p class="task-sub">เลือกทางที่ตรงกับที่คุณกำลังหา</p>
+        <div class="path-grid">
+          <article class="path-card" id="path-1">
+            <span class="path-num" aria-hidden="true">1</span>
+            <h3>หาปลาตัวหนึ่ง</h3>
+            <p>ค้นชื่อปลา → ดูด่านและจุดบนแผนที่ → ดูชุดเบ็ดที่ใช้</p>
+            <a class="path-cta" href="maps.th.html">ค้นหาปลา →</a>
+          </article>
+          <article class="path-card" id="path-2">
+            <span class="path-num" aria-hidden="true">2</span>
+            <h3>เลือกชุดเบ็ด</h3>
+            <p>เลือกปลา → ได้ชุดที่ควรพก → ดูราคาและร้านที่ขาย</p>
+            <a class="path-cta" href="gear-guide.th.html">เปิดคู่มือชุดเบ็ด →</a>
+          </article>
+          <article class="path-card" id="path-3">
+            <span class="path-num" aria-hidden="true">3</span>
+            <h3>ซื้อของในด่านนี้</h3>
+            <p>เลือกด่าน → เลือกของ → ดูว่าร้านไหนขาย</p>
+            <ul class="path-stages" aria-label="เลือกด่านที่ซื้อ">
+              <li>
+                <a href="shops.th.html?stage=1&amp;place=town">ด่าน 1<small>ลำธารบนภูเขา</small></a>
+              </li>
+              <li>
+                <a href="shops.th.html?stage=2&amp;place=town"
+                  >ด่าน 2<small>ทะเลสาบบนภูเขา</small></a
+                >
+              </li>
+              <li>
+                <a href="shops.th.html?stage=3&amp;place=town">ด่าน 3<small>ลำธารใส</small></a>
+              </li>
+              <li>
+                <a href="shops.th.html?stage=4&amp;place=town">ด่าน 4<small>ทะเลสาบ</small></a>
+              </li>
+              <li>
+                <a href="shops.th.html?stage=5&amp;place=town"
+                  >ด่าน 5<small>แม่น้ำตอนล่าง</small></a
+                >
+              </li>
+              <li>
+                <a href="shops.th.html?stage=6&amp;place=town">ด่าน 6<small>ปากแม่น้ำ</small></a>
+              </li>
+            </ul>
+          </article>
+        </div>
+      </section>
+
       <section class="catalogue-section" id="catalogue">
         <div class="catalogue-workspace">
           <div id="catalogue-load-feedback" hidden></div>

@@ -143,6 +143,50 @@
     </header>
 
     <main id="main-content">
+      <section class="task-chooser" id="task-chooser" aria-labelledby="task-chooser-title">
+        <h2 id="task-chooser-title">今日は何をしますか？</h2>
+        <p class="task-sub">探していることに近い道を選んでください</p>
+        <div class="path-grid">
+          <article class="path-card" id="path-1">
+            <span class="path-num" aria-hidden="true">1</span>
+            <h3>魚を探す</h3>
+            <p>魚を検索 → エリアとマップの地点 → 使う仕掛け</p>
+            <a class="path-cta" href="maps.ja.html">魚を検索 →</a>
+          </article>
+          <article class="path-card" id="path-2">
+            <span class="path-num" aria-hidden="true">2</span>
+            <h3>仕掛けを選ぶ</h3>
+            <p>魚を選ぶ → 持っていく仕掛け → 価格と店</p>
+            <a class="path-cta" href="gear-guide.ja.html">仕掛けガイドを開く →</a>
+          </article>
+          <article class="path-card" id="path-3">
+            <span class="path-num" aria-hidden="true">3</span>
+            <h3>このエリアで買う</h3>
+            <p>エリア → アイテム → 売っている店</p>
+            <ul class="path-stages" aria-label="買うエリアを選ぶ">
+              <li>
+                <a href="shops.ja.html?stage=1&amp;place=town">エリア 1<small>渓流</small></a>
+              </li>
+              <li>
+                <a href="shops.ja.html?stage=2&amp;place=town">エリア 2<small>山上湖</small></a>
+              </li>
+              <li>
+                <a href="shops.ja.html?stage=3&amp;place=town">エリア 3<small>清流</small></a>
+              </li>
+              <li>
+                <a href="shops.ja.html?stage=4&amp;place=town">エリア 4<small>湖</small></a>
+              </li>
+              <li>
+                <a href="shops.ja.html?stage=5&amp;place=town">エリア 5<small>下流</small></a>
+              </li>
+              <li>
+                <a href="shops.ja.html?stage=6&amp;place=town">エリア 6<small>河口</small></a>
+              </li>
+            </ul>
+          </article>
+        </div>
+      </section>
+
       <section class="catalogue-section" id="catalogue">
         <div class="catalogue-workspace">
           <div id="catalogue-load-feedback" hidden></div>
