@@ -26,7 +26,10 @@ export default {
     lure: 'Lure',
     fly: 'Fly',
   },
-  roles: { buy: 'Best kit you can buy', enough: 'Cheaper, almost as good (within 3 points)' },
+  roles: {
+    buy: 'Easiest-start kit you can buy',
+    enough: 'Cheaper, almost as good (within 3 points)',
+  },
   total: (price) => `Kit total ${price}`,
   from: (price) => `from ${price}`,
   extra: (name, price) => `Also needed, any will do: ${name} (${price})`,
@@ -43,7 +46,7 @@ export default {
   lost: (pct) => `${pct} lost the tackle`,
   notSimulated: 'Landing odds are not simulated for lures and flies.',
   neverSold: (names) =>
-    `The roomiest rod for this fish (${names}) is never sold. This is the best you can buy.`,
+    `The roomiest rod for this fish (${names}) is never sold. This is the easiest start you can buy.`,
   flySwapped: (from, to) =>
     `The cheapest fly for this fish (${from}) never bites on a fresh save, so this kit uses ${to}.`,
   simLink: 'Try this kit in the fight simulator',

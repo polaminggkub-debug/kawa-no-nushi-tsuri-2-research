@@ -374,7 +374,10 @@ ${itemCell(data, locale, secondLabel, second, kit[second], second, kit.why.item)
       lure: "Lure",
       fly: "Fly"
     },
-    roles: { buy: "Best kit you can buy", enough: "Cheaper, almost as good (within 3 points)" },
+    roles: {
+      buy: "Easiest-start kit you can buy",
+      enough: "Cheaper, almost as good (within 3 points)"
+    },
     total: (price) => `Kit total ${price}`,
     from: (price) => `from ${price}`,
     extra: (name, price) => `Also needed, any will do: ${name} (${price})`,
@@ -389,7 +392,7 @@ ${itemCell(data, locale, secondLabel, second, kit[second], second, kit.why.item)
     running: (pct) => `${pct} were still going after 100 seconds (slow, not lost)`,
     lost: (pct) => `${pct} lost the tackle`,
     notSimulated: "Landing odds are not simulated for lures and flies.",
-    neverSold: (names) => `The roomiest rod for this fish (${names}) is never sold. This is the best you can buy.`,
+    neverSold: (names) => `The roomiest rod for this fish (${names}) is never sold. This is the easiest start you can buy.`,
     flySwapped: (from, to) => `The cheapest fly for this fish (${from}) never bites on a fresh save, so this kit uses ${to}.`,
     simLink: "Try this kit in the fight simulator",
     fishLink: "Where to find this fish"
@@ -423,7 +426,7 @@ ${itemCell(data, locale, secondLabel, second, kit[second], second, kit.why.item)
       fly: "ฟลาย"
     },
     roles: {
-      buy: "ชุดที่ดีที่สุดที่ซื้อได้",
+      buy: "ชุดที่เริ่มสู้ง่ายที่สุดที่ซื้อได้",
       enough: "ถูกกว่า แต่เกือบดีเท่ากัน (ห่างไม่เกิน 3 แต้ม)"
     },
     total: (price) => `รวมทั้งชุด ${price}`,
@@ -440,7 +443,7 @@ ${itemCell(data, locale, secondLabel, second, kit[second], second, kit.why.item)
     running: (pct) => `อีก ${pct} ยังสู้กันอยู่หลังผ่านไป 100 วินาที (ช้า ไม่ได้แปลว่าเสีย)`,
     lost: (pct) => `สายขาด ${pct}`,
     notSimulated: "ลัวร์และฟลายยังไม่ได้จำลองโอกาสตกได้",
-    neverSold: (names) => `คันที่เผื่อพลาดได้มากที่สุดสำหรับปลาตัวนี้ (${names}) ไม่มีขายเลย ชุดนี้คือชุดที่ดีที่สุดที่ซื้อได้`,
+    neverSold: (names) => `คันที่เผื่อพลาดได้มากที่สุดสำหรับปลาตัวนี้ (${names}) ไม่มีขายเลย ชุดนี้คือชุดที่เริ่มสู้ง่ายที่สุดที่ซื้อได้`,
     flySwapped: (from, to) => `ฟลายที่ถูกที่สุดสำหรับปลาตัวนี้ (${from}) ไม่มีวันมีปลากินในเซฟใหม่ ชุดนี้จึงใช้ ${to} แทน`,
     simLink: "ลองชุดนี้ในจำลองการสู้ปลา",
     fishLink: "ดูว่าปลาตัวนี้อยู่ที่ไหน"
@@ -488,7 +491,7 @@ ${itemCell(data, locale, secondLabel, second, kit[second], second, kit.why.item)
     running: (pct) => `${pct}は100秒たっても決着せず（遅いだけで失敗ではありません）`,
     lost: (pct) => `${pct}で仕掛けを失う`,
     notSimulated: "ルアーと毛バリの釣り上げ率はシミュレーションしていません。",
-    neverSold: (names) => `この魚にいちばん余裕のある竿（${names}）は売っていません。これが買える中で最善です。`,
+    neverSold: (names) => `この魚にいちばん余裕のある竿（${names}）は売っていません。これが買える中で出だしがいちばん楽です。`,
     flySwapped: (from, to) => `この魚に一番安い毛バリ（${from}）は新しいセーブでは食わないので、このセットは${to}にしています。`,
     simLink: "このセットをファイトシミュレーターで試す",
     fishLink: "この魚の居場所を見る"
