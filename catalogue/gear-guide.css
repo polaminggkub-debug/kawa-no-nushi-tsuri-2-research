@@ -1834,6 +1834,10 @@ body:has(.kit-grid) main > details code {
 }
 
 /* src/shared/ui/touch.css */
+.table-wrap {
+  max-width: 100%;
+  overflow-x: auto;
+}
 @media (max-width: 700px) {
   main button,
   main select,

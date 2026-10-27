@@ -1,0 +1,31 @@
+390px home -> search: kept suggestion: ปลาคาร์ป / โคอิ | ปลา · ID 0D
+390px search -> fish: kept fish.th.html?id=0D&stage=4&return=index.th.html
+390px search memory on fish page: kept {"query":"โคอิ","type":"fish"}
+390px fish stage chosen: kept stage=5
+390px fish -> map: kept fish=0D stage=5 section=s5-c1-r1
+390px map shows spot count: kept แสดง 4 จุดที่ปลาอาจอยู่ในส่วนนี้ จากทั้งหมด 11 จุดของด่าน · อีก 7 จุดอยู่ในส่วนอื่น
+390px map -> shop: kept stage=5 fish=0D
+390px shop -> back (map): kept maps.th.html?stage=5&return=fish.th.html%3Fid%3D0D%26stage%3D5%26return%3Dindex.th.html%23
+390px map -> back to fish: kept id=0D stage=5 section=s5-c1-r1
+390px search text after the trip: kept search box: "โคอิ"
+390px language after the trip: kept lang=th
+390px map data fails: kept retry button shown
+390px map retry: kept fish=0D stage=5 section=s5-c1-r1
+390px search list fails then retry: kept query kept, suggestions back
+390px no sideways scroll (research page): kept 
+1280px home -> search: kept suggestion: ปลาคาร์ป / โคอิ | ปลา · ID 0D
+1280px search -> fish: kept fish.th.html?id=0D&stage=4&return=index.th.html
+1280px search memory on fish page: kept {"query":"โคอิ","type":"fish"}
+1280px fish stage chosen: kept stage=5
+1280px fish -> map: kept fish=0D stage=5 section=s5-c1-r1
+1280px map shows spot count: kept แสดง 4 จุดที่ปลาอาจอยู่ในส่วนนี้ จากทั้งหมด 11 จุดของด่าน · อีก 7 จุดอยู่ในส่วนอื่น
+1280px map -> shop: kept stage=5 fish=0D
+1280px shop -> back (map): kept maps.th.html?stage=5&return=fish.th.html%3Fid%3D0D%26stage%3D5%26return%3Dindex.th.html%23
+1280px map -> back to fish: kept id=0D stage=5 section=s5-c1-r1
+1280px search text after the trip: kept search box: "โคอิ"
+1280px language after the trip: kept lang=th
+1280px map data fails: kept retry button shown
+1280px map retry: kept fish=0D stage=5 section=s5-c1-r1
+1280px search list fails then retry: kept query kept, suggestions back
+1280px no sideways scroll (research page): kept 
+ALL HOPS KEPT

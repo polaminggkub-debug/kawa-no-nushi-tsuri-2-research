@@ -1,0 +1,108 @@
+// Acceptance flow: home -> search -> fish -> map -> shop -> back, in Thai, at 390px and 1280px.
+// Run: node acceptance-flow.mjs <site-base-url> <screenshot-dir>   (needs playwright-core)
+import { createRequire } from 'node:module'
+const { chromium } = createRequire(process.env.PW_DIR || '/tmp/pw/')('playwright-core')
+const [base, outDir] = process.argv.slice(2)
+const results = []
+const hop = (width, name, kept, detail) => {
+  results.push({ width, hop: name, result: kept ? 'kept' : 'LOST', detail })
+  console.log(`${width}px ${name}: ${kept ? 'kept' : 'LOST'} ${detail}`)
+}
+const q = (url) => new URL(url).searchParams
+
+async function openMenuSearch(page, width) {
+  if (width < 1180) await page.click('.gsearch-toggle')
+}
+
+async function run(width) {
+  const browser = await chromium.launch()
+  const page = await browser.newPage({ viewport: { width, height: 900 } })
+  const errors = []
+  page.on('pageerror', (e) => errors.push(e.message))
+  await page.goto(`${base}/catalogue/index.th.html`, { waitUntil: 'networkidle' })
+  await page.screenshot({ path: `${outDir}/home-th-${width}.png`, fullPage: true })
+  // 1. home -> search (type filter set to fish first)
+  await openMenuSearch(page, width)
+  await page.fill('#gsearch-input', 'โคอิ')
+  await page.click('.gsearch-type[data-type=fish]')
+  await page.waitForSelector('.gsearch-option')
+  const label = await page.innerText('.gsearch-option')
+  hop(width, 'home -> search', label.includes('ปลา') && label.includes('ID 0D'), `suggestion: ${label.replace(/\n/g, ' | ')}`)
+  await page.screenshot({ path: `${outDir}/search-th-${width}.png` })
+  // 2. search -> fish
+  await Promise.all([page.waitForURL(/fish\.th\.html/), page.click('.gsearch-option')])
+  await page.waitForSelector('#best-gear')
+  hop(width, 'search -> fish', q(page.url()).get('id') === '0D' && page.url().includes('.th.'), page.url().split('/').pop())
+  const remembered = await page.evaluate(() => sessionStorage.getItem('kawa-search'))
+  hop(width, 'search memory on fish page', remembered?.includes('โคอิ') && remembered.includes('"fish"'), remembered)
+  // choose a different stage on the fish page
+  const stages = await page.$$eval('#shopping-area option', (o) => o.map((x) => x.value))
+  const stage = stages[1]
+  await page.selectOption('#shopping-area', stage)
+  await page.waitForSelector('#best-gear')
+  hop(width, 'fish stage chosen', q(page.url()).get('stage') === stage, `stage=${stage}`)
+  await page.screenshot({ path: `${outDir}/fish-th-${width}.png`, fullPage: true })
+  // 3. fish -> map
+  await Promise.all([page.waitForURL(/maps\.th\.html/), page.click('.area-map-preview')])
+  await page.waitForSelector('#back-to-fish')
+  const mp = q(page.url())
+  hop(width, 'fish -> map', mp.get('fish') === '0D' && mp.get('stage') === stage && Boolean(mp.get('section')), `fish=${mp.get('fish')} stage=${mp.get('stage')} section=${mp.get('section')}`)
+  const summary = await page.innerText('#target-section-summary')
+  hop(width, 'map shows spot count', /\d+ จุด/.test(summary), summary)
+  await page.screenshot({ path: `${outDir}/map-th-${width}.png`, fullPage: true })
+  // 4. map -> shop
+  await Promise.all([page.waitForURL(/shops\.th\.html/), page.click('#shop-browser-link')])
+  await page.waitForLoadState('networkidle')
+  const sp = q(page.url())
+  hop(width, 'map -> shop', sp.get('stage') === stage && sp.get('fish') === '0D', `stage=${sp.get('stage')} fish=${sp.get('fish')}`)
+  await page.screenshot({ path: `${outDir}/shop-th-${width}.png`, fullPage: true })
+  // 5. shop -> back to map -> back to fish
+  await page.goBack({ waitUntil: 'networkidle' })
+  await page.waitForSelector('#back-to-fish')
+  const back = q(page.url())
+  hop(width, 'shop -> back (map)', back.get('fish') === '0D' && back.get('section') === mp.get('section') && back.get('stage') === stage, page.url().split('/').pop().slice(0, 90))
+  await Promise.all([page.waitForURL(/fish\.th\.html/), page.click('#back-to-fish')])
+  await page.waitForSelector('#best-gear')
+  const fp = q(page.url())
+  hop(width, 'map -> back to fish', fp.get('id') === '0D' && fp.get('stage') === stage && fp.get('section') === mp.get('section'), `id=${fp.get('id')} stage=${fp.get('stage')} section=${fp.get('section')}`)
+  const kept = await page.inputValue('#gsearch-input').catch(() => '')
+  hop(width, 'search text after the trip', kept === 'โคอิ', `search box: "${kept}"`)
+  const lang = await page.evaluate(() => document.documentElement.lang)
+  hop(width, 'language after the trip', lang === 'th', `lang=${lang}`)
+  // 6. failed data load -> retry -> state kept (maps page)
+  const mapsUrl = page.url().replace('fish.th.html', 'maps.th.html').replace(/\?.*/, `?${mp}`)
+  await page.route('**/fish-locations.json*', (route) => route.abort())
+  await page.goto(mapsUrl, { waitUntil: 'networkidle' })
+  const retry = await page.$('#map-retry')
+  hop(width, 'map data fails', Boolean(retry), retry ? 'retry button shown' : 'no retry button')
+  await page.unroute('**/fish-locations.json*')
+  await Promise.all([page.waitForNavigation({ waitUntil: 'networkidle' }), page.click('#map-retry')])
+  await page.waitForSelector('#back-to-fish')
+  const after = q(page.url())
+  hop(width, 'map retry', after.get('fish') === '0D' && after.get('stage') === stage && after.get('section') === mp.get('section'), `fish=${after.get('fish')} stage=${after.get('stage')} section=${after.get('section')}`)
+  // 7. failed search list -> retry
+  await page.route('**/search-index.json*', (route) => route.abort())
+  await page.goto(`${base}/catalogue/quests.th.html`, { waitUntil: 'networkidle' })
+  await openMenuSearch(page, width)
+  await page.fill('#gsearch-input', 'koi')
+  await page.waitForSelector('.gsearch-retry')
+  await page.unroute('**/search-index.json*')
+  await page.click('.gsearch-retry')
+  await page.waitForSelector('.gsearch-option')
+  hop(width, 'search list fails then retry', (await page.inputValue('#gsearch-input')) === 'koi', 'query kept, suggestions back')
+  await page.goto(`${base}/catalogue/gear-guide.th.html`, { waitUntil: 'networkidle' })
+  await page.screenshot({ path: `${outDir}/gear-guide-th-${width}.png`, fullPage: true })
+  await page.goto(`${base}/catalogue/quests.th.html`, { waitUntil: 'networkidle' })
+  await page.screenshot({ path: `${outDir}/quests-th-${width}.png`, fullPage: true })
+  await page.goto(`${base}/catalogue/fight-sim.th.html`, { waitUntil: 'networkidle' })
+  await page.screenshot({ path: `${outDir}/fight-sim-th-${width}.png`, fullPage: true })
+  await page.goto(`${base}/research/index.th.html`, { waitUntil: 'networkidle' })
+  await page.screenshot({ path: `${outDir}/research-th-${width}.png`, fullPage: true })
+  const sideways = await page.evaluate(() => document.documentElement.scrollWidth > innerWidth)
+  hop(width, 'no sideways scroll (research page)', !sideways, '')
+  if (errors.length) console.log('PAGE ERRORS', errors)
+  await browser.close()
+}
+for (const width of [390, 1280]) await run(width)
+const lost = results.filter((r) => r.result === 'LOST')
+console.log(lost.length ? `LOST HOPS: ${lost.length}` : 'ALL HOPS KEPT')
