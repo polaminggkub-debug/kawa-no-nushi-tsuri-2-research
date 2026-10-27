@@ -63,6 +63,12 @@ export const copy_en = {
     'Every rule has a ROM address and a test that runs the real game. The full table and rules:',
   evidenceLink: 'gear-fish-matrix.md',
   noBite: 'This fish does not take this method',
+  buyAt: 'Buy at:',
+  stage: (n) => `Stage ${n}`,
+  shops: { shop: 'shop', special: 'special rod shop', fly: 'ready-made fly shop' },
+  laterHead: (n) => `Once you reach stage ${n}:`,
+  nothingYet: (n) =>
+    `The shops of stage ${n} and earlier do not sell anything this fish takes with this method yet`,
   yen: (n) => `¥${n.toLocaleString('en-US')}`,
   loading: 'Loading the gear…',
   failed: 'Could not load the gear',

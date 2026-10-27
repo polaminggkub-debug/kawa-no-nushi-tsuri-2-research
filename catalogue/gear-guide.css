@@ -63,6 +63,22 @@
   color: var(--muted);
   font-size: 0.92rem;
 }
+.bg-buy {
+  color: var(--muted);
+  font-size: 0.88rem;
+}
+.bg-stage {
+  margin-block: 14px 0;
+}
+.bg-table td.bg-later-cell small {
+  display: inline;
+}
+.bg-later-cell {
+  grid-template-columns: 1fr !important;
+}
+.bg-later-cell::before {
+  content: none !important;
+}
 .bg-ease {
   display: grid;
   gap: 6px;

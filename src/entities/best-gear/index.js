@@ -4,7 +4,16 @@ import { whyHtml } from './why.js'
 import { bestGearCopy, escapeHtml } from './view.js'
 
 export { loadBestGear } from './load.js'
-export { bestGearCopy, easeByBand, easePips, escapeHtml, itemName, kitSlots } from './view.js'
+export {
+  bestGearCopy,
+  buyOf,
+  buyText,
+  easeByBand,
+  easePips,
+  escapeHtml,
+  itemName,
+  kitSlots,
+} from './view.js'
 export { methodHtml } from './box.js'
 export { maxHtml, shownHigh } from './max.js'
 

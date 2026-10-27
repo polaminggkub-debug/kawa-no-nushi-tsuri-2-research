@@ -1602,6 +1602,11 @@
     evidence: "Every rule has a ROM address and a test that runs the real game. The full table and rules:",
     evidenceLink: "gear-fish-matrix.md",
     noBite: "This fish does not take this method",
+    buyAt: "Buy at:",
+    stage: (n) => `Stage ${n}`,
+    shops: { shop: "shop", special: "special rod shop", fly: "ready-made fly shop" },
+    laterHead: (n) => `Once you reach stage ${n}:`,
+    nothingYet: (n) => `The shops of stage ${n} and earlier do not sell anything this fish takes with this method yet`,
     yen: (n) => `¥${n.toLocaleString("en-US")}`,
     loading: "Loading the gear…",
     failed: "Could not load the gear"
@@ -1674,6 +1679,11 @@
     evidence: "すべてのルールにROMのアドレスと、実際のゲームを動かすテストがあります。全表とルール：",
     evidenceLink: "gear-fish-matrix.md",
     noBite: "この魚はこの方法では食いません",
+    buyAt: "購入先:",
+    stage: (n) => `エリア${n}`,
+    shops: { shop: "店", special: "特別な竿屋", fly: "完成品の毛バリ屋" },
+    laterHead: (n) => `エリア${n}に着いたら:`,
+    nothingYet: (n) => `エリア${n}までの店には、この魚がこの方法で食うものはまだ売っていません`,
     yen: (n) => `¥${n.toLocaleString("en-US")}`,
     loading: "装備を読み込み中…",
     failed: "装備を読み込めませんでした"
@@ -1746,6 +1756,11 @@
     evidence: "ทุกกฎมีที่อยู่โค้ดใน ROM และมีเทสต์ที่รันเกมจริงยืนยัน ดูตารางและกฎทั้งหมดที่",
     evidenceLink: "gear-fish-matrix.md",
     noBite: "ปลานี้ไม่กินวิธีนี้",
+    buyAt: "ซื้อที่:",
+    stage: (n) => `ด่าน ${n}`,
+    shops: { shop: "ร้านค้า", special: "ร้านขายคันพิเศษ", fly: "ร้านฟลายสำเร็จรูป" },
+    laterHead: (n) => `ถ้าไปถึงด่าน ${n} แล้ว:`,
+    nothingYet: (n) => `ร้านในด่าน ${n} และด่านก่อนหน้ายังไม่มีของที่ปลาตัวนี้กินด้วยวิธีนี้ขาย`,
     yen: (n) => `¥${n.toLocaleString("en-US")}`,
     loading: "กำลังโหลดชุดอุปกรณ์…",
     failed: "โหลดชุดอุปกรณ์ไม่สำเร็จ"
@@ -1783,12 +1798,15 @@
     ).join("");
     return `<ul class="bg-ease" aria-label="${escapeHtml2(text2.fightEase)}">${items}</ul>`;
   }
+  var buyText = (text2, [stage, shop]) => `${text2.buyAt} ${text2.stage(stage)} ${text2.shops[shop]}`;
+  var buyOf = (kit, slot) => kit.buy[slot === "rod" || slot === "hook" ? slot : "item"];
 
   // src/entities/best-gear/box.js
-  function rowHtml(data, locale, [slot, id, group], why) {
+  function rowHtml(data, locale, [slot, id, group], kit) {
+    const why = kit.why;
     const text2 = bestGearCopy(locale);
     const reason = text2.why[group]?.[why[slot === "rod" ? "rod" : slot === "hook" ? "hook" : "item"]];
-    return `<li><span class="bg-slot">${escapeHtml2(text2.slots[slot])}</span><span class="bg-item"><strong>${escapeHtml2(itemName(data, locale, slot, id))}</strong>${reason ? `<span class="bg-reason">${escapeHtml2(reason)}</span>` : ""}</span></li>`;
+    return `<li><span class="bg-slot">${escapeHtml2(text2.slots[slot])}</span><span class="bg-item"><strong>${escapeHtml2(itemName(data, locale, slot, id))}</strong>${reason ? `<span class="bg-reason">${escapeHtml2(reason)}</span>` : ""}<span class="bg-buy">${escapeHtml2(buyText(text2, buyOf(kit, slot)))}</span></span></li>`;
   }
   function floatRow(data, locale) {
     const text2 = bestGearCopy(locale);
@@ -1816,17 +1834,34 @@
   function cheapHtml(data, locale, method, kit) {
     const text2 = bestGearCopy(locale);
     const names = kitSlots(method, kit).map(
-      ([slot, id]) => escapeHtml2(itemName(data, locale, slot, id))
+      ([slot, id]) => `${escapeHtml2(itemName(data, locale, slot, id))} <small class="bg-buy">(${escapeHtml2(buyText(text2, buyOf(kit, slot)))})</small>`
     );
     return `<div class="bg-cheap"><h4>${escapeHtml2(text2.cheap)} ${trustBadge(locale, "rom")} <span class="bg-total">${escapeHtml2(text2.total(text2.yen(kit.yen)))}</span></h4><p>${names.join(" · ")}</p>${easeByBand(text2, kit.starts)}</div>`;
   }
-  function methodHtml(data, locale, method, plan, open) {
+  function kitBlock(data, locale, method, head, kit, extra = "") {
+    const text2 = bestGearCopy(locale);
+    const rows = kitSlots(method, kit).map((slot) => rowHtml(data, locale, slot, kit));
+    if (method === "float") rows.push(floatRow(data, locale));
+    return `<h4>${head} ${trustBadge(locale, "rom")} <span class="bg-total">${escapeHtml2(text2.total(text2.yen(kit.yen)))}</span></h4>
+<ul class="bg-kit">${rows.join("")}</ul>${easeByBand(text2, kit.starts)}${extra}`;
+  }
+  function laterHtml(data, locale, method, later) {
+    const text2 = bestGearCopy(locale);
+    const head = escapeHtml2(text2.laterHead(later.stage));
+    return `<div class="bg-cheap bg-later">${kitBlock(data, locale, method, head, later.kit)}</div>`;
+  }
+  function stageHtml(data, locale, method, stage, plan) {
     const text2 = bestGearCopy(locale);
     const [best, cheap] = plan.kits;
-    const rows = kitSlots(method, best).map((slot) => rowHtml(data, locale, slot, best.why));
-    if (method === "float") rows.push(floatRow(data, locale));
-    const body = `<h4>${escapeHtml2(text2.best)} ${trustBadge(locale, "rom")} <span class="bg-total">${escapeHtml2(text2.total(text2.yen(best.yen)))}</span></h4>
-<ul class="bg-kit">${rows.join("")}</ul>${easeByBand(text2, best.starts)}${alsoHtml(data, locale, method, plan)}${cheap ? cheapHtml(data, locale, method, cheap) : ""}`;
+    const later = plan.later ? laterHtml(data, locale, method, plan.later) : "";
+    const head = `<p class="bg-stage"><strong>${escapeHtml2(text2.stage(stage))}</strong></p>`;
+    if (!best) return `${head}<p class="bg-empty">${escapeHtml2(text2.nothingYet(stage))}</p>${later}`;
+    const extra = `${alsoHtml(data, locale, method, plan)}${cheap ? cheapHtml(data, locale, method, cheap) : ""}`;
+    return `${head}${kitBlock(data, locale, method, escapeHtml2(text2.best), best, extra)}${later}`;
+  }
+  function methodHtml(data, locale, method, plan, open) {
+    const text2 = bestGearCopy(locale);
+    const body = Object.entries(plan.stages).map(([stage, entry]) => stageHtml(data, locale, method, +stage, entry)).join("");
     return `<details class="bg-method"${open ? " open" : ""}><summary>${escapeHtml2(text2.methods[method])}</summary><div class="bg-body">${body}</div></details>`;
   }
 
@@ -1846,7 +1881,7 @@
   var EVIDENCE_URL = "https://github.com/polaminggkub-debug/kawa-no-nushi-tsuri-2-research/blob/main/docs/gear-fish-matrix.md";
   function whyHtml(locale, fish) {
     const text2 = bestGearCopy(locale);
-    const best = fish.methods.float?.kits[0];
+    const best = Object.values(fish.methods.float?.stages ?? {}).find((entry) => entry.kits.length)?.kits[0];
     const lines = [text2.startsLine(fish.base)];
     best?.starts.forEach((notch, band) => {
       if (notch != null) lines.push(text2.startsWith(text2.bands[band], notch));

@@ -81,6 +81,7 @@ await import('./hook-target-links.mjs')
 await import('./fight-sim.mjs')
 await import('./gear-guide.mjs')
 await import('./complete-guide.mjs')
+await import('./gear-best-stage.mjs')
 await import('./map-focus-action.mjs')
 
 await import('./shop-fish-decisions.mjs')

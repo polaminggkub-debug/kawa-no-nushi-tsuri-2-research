@@ -47,3 +47,10 @@ export function easeByBand(text, starts) {
     .join('')
   return `<ul class="bg-ease" aria-label="${escapeHtml(text.fightEase)}">${items}</ul>`
 }
+
+/** "Buy at: Stage 2 shop" for one part; `at` is [stage, shop]. */
+export const buyText = (text, [stage, shop]) =>
+  `${text.buyAt} ${text.stage(stage)} ${text.shops[shop]}`
+
+/** The `buy` entry of a kit for a slot of kitSlots(). */
+export const buyOf = (kit, slot) => kit.buy[slot === 'rod' || slot === 'hook' ? slot : 'item']

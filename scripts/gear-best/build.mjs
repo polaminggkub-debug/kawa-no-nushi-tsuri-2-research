@@ -1,6 +1,6 @@
-import { liveBundles } from '../../src/pages/gear-guide/kits.js'
 import { maxView } from '../complete-guide/plan.mjs'
 import { BAND_OF, BAND_SIZE, startNotch } from './rule.mjs'
+import { priceIn } from './stock.mjs'
 
 // Builds catalogue/gear-best.json: for every fish and every method the best kit (lowest fight
 // start for the sizes the fish really has), a cheaper kit that is nearly as good, and the
@@ -19,44 +19,43 @@ function bandWeights({ low, high }) {
   return weights
 }
 
-/** Cheapest ready-made fly set that passes a fresh save's lock, or null. */
-function flyYen(effects, id) {
-  const bundles = liveBundles(effects, id)
-  return bundles.length ? Math.min(...bundles.map((bundle) => bundle[2])) : null
-}
-
-function slotYen(effects, slot, id) {
-  return slot === 'fly' ? flyYen(effects, id) : (effects.items[slot][id]?.yen ?? null)
-}
-
-function rodsFor(matrix, effects, fishId, method) {
+function rodsFor(matrix, effects, price, fishId, method) {
   const need = effects.fish[fishId]?.methods[method]?.need ?? 0
   const sold = Object.entries(matrix.items.rod)
-    .filter(([id, rod]) => rod.style === STYLE[method] && effects.items.rod[id].yen != null)
-    .map(([id, rod]) => ({ id: +id, ...rod, yen: effects.items.rod[id].yen }))
+    .filter(([id, rod]) => rod.style === STYLE[method] && price('rod', +id))
+    .map(([id, rod]) => ({ id: +id, ...rod, ...price('rod', +id) }))
   const reaching = sold.filter((rod) => rod.reach >= need)
   return { need, rods: reaching.length ? reaching : sold }
 }
 
 /** Every second-slot candidate: { hook?, item, named, selector, yen }. */
-function itemChoices(matrix, effects, fish, method) {
+function itemChoices(matrix, price, fish, method) {
   const slot = ACCEPT[method]
   const items = fish.accepts[slot]
-    .map((id) => ({ id, yen: slotYen(effects, slot, id) }))
+    .map((id) => ({ id, ...price(slot, id) }))
     .filter((entry) => entry.yen != null)
   if (method !== 'float')
-    return items.map(({ id, yen }) => ({
+    return items.map(({ id, yen, at }) => ({
       item: id,
+      at: { item: at },
       named: slot === 'lure' && matrix.items.lure[id].match === fish.id,
       selector: matrix.items[slot][id].sel,
       yen,
     }))
   const choices = []
   for (const [hookId, hook] of Object.entries(matrix.items.hook))
-    for (const { id, yen } of items) {
+    for (const { id, yen, at } of items) {
       const named = hook.match === fish.id || matrix.items.bait[id].match === fish.id
-      const hookYen = effects.items.hook[hookId].yen
-      choices.push({ hook: +hookId, item: id, named, selector: hook.sel, yen: yen + hookYen })
+      const hookPrice = price('hook', +hookId)
+      if (!hookPrice) continue
+      choices.push({
+        hook: +hookId,
+        item: id,
+        named,
+        selector: hook.sel,
+        yen: yen + hookPrice.yen,
+        at: { hook: hookPrice.at, item: at },
+      })
     }
   return choices
 }
@@ -88,6 +87,7 @@ function whyOf(matrix, fish, method, rod, choice) {
 
 function toKit(matrix, fish, method, { rod, choice, rating }) {
   const kit = { rod: rod.id, [ACCEPT[method]]: choice.item }
+  const buy = { rod: rod.at, ...(choice.at.hook && { hook: choice.at.hook }), item: choice.at.item }
   if (choice.hook != null) kit.hook = choice.hook
   return {
     ...kit,
@@ -95,16 +95,17 @@ function toKit(matrix, fish, method, { rod, choice, rating }) {
     starts: rating.starts,
     score: Math.round(rating.score * 100) / 100,
     why: whyOf(matrix, fish, method, rod, choice),
+    buy,
   }
 }
 
 const better = (a, b) =>
   a.rating.score - b.rating.score || a.rating.worst - b.rating.worst || a.yen - b.yen
 
-function planMethod(matrix, effects, fish, method) {
-  const choices = itemChoices(matrix, effects, fish, method)
+function planMethod(matrix, effects, price, fish, method) {
+  const choices = itemChoices(matrix, price, fish, method)
   if (!choices.length) return null
-  const { need, rods } = rodsFor(matrix, effects, fish.id, method)
+  const { need, rods } = rodsFor(matrix, effects, price, fish.id, method)
   const weights = bandWeights(fish.size)
   const all = []
   for (const rod of rods)
@@ -163,12 +164,39 @@ function ties(all, best, method) {
   return result
 }
 
-export function buildGearBest(matrix, effects, maxSize) {
+/** The kit of a later stage worth showing under a stage's own kit: the first stage that reaches the overall best. */
+function laterKit(plans, stage, own) {
+  const target = plans[6]?.kits[0].score
+  if (target == null || (own && target >= own.kits[0].score)) return null
+  for (let later = stage + 1; later <= 6; later++)
+    if (plans[later]?.kits[0].score <= target) return { stage: later, kit: plans[later].kits[0] }
+  return null
+}
+
+function methodByStage(matrix, effects, prices, row, method, stages) {
+  const plans = {}
+  for (let stage = 1; stage <= 6; stage++)
+    plans[stage] = planMethod(matrix, effects, prices[stage], row, method)
+  if (!plans[6]) return null
+  const byStage = {}
+  for (const stage of stages)
+    byStage[stage] = {
+      ...(plans[stage] ?? { kits: [] }),
+      later: laterKit(plans, stage, plans[stage]),
+    }
+  return { need: plans[6].need, stages: byStage }
+}
+
+export function buildGearBest(matrix, effects, maxSize, stock) {
+  const prices = {}
+  for (let stage = 1; stage <= 6; stage++) prices[stage] = priceIn(stock, effects, stage)
   const fish = {}
   for (const row of matrix.fish) {
+    const rows = maxSize.rows.filter((entry) => entry.fish === row.id)
+    const stages = [...new Set(rows.map((entry) => entry.map))].sort((a, b) => a - b)
     const methods = {}
     for (const method of Object.keys(STYLE)) {
-      const plan = planMethod(matrix, effects, row, method)
+      const plan = methodByStage(matrix, effects, prices, row, method, stages)
       if (plan) methods[method] = plan
     }
     fish[row.id] = {
@@ -177,9 +205,10 @@ export function buildGearBest(matrix, effects, maxSize) {
       record: [row.record.min, row.record.max],
       base: row.baseNotch,
       rodFor: row.namedFor.rod,
-      max: maxView(maxSize.rows.filter((entry) => entry.fish === row.id).slice(0, 1)),
+      max: maxView(rows.slice(0, 1)),
+      stages,
       methods,
     }
   }
-  return { schema: 1, route: effects.routes.float, fish }
+  return { schema: 2, route: effects.routes.float, fish }
 }
