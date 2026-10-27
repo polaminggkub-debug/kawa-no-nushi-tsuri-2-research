@@ -862,6 +862,40 @@
     return `<section class="method-rig" data-method-rig="${method}"><h4>${ctx.escapeHtml(rigTitle(ctx))}</h4><p>${ctx.escapeHtml(rigOwnedNote(ctx))}</p>${cards}${totalLine}${fallback}${rigEvidenceLink(ctx)}</section>`;
   }
 
+  // src/shared/lib/hp-recovery-action.js
+  var labels = {
+    th: "เลือกอาหารฟื้น HP และดูแหล่งซื้อ",
+    ja: "HP回復用の食料と販売場所を選ぶ",
+    en: "Choose recovery food and see where to buy it"
+  };
+  function hpRecoveryAction(options) {
+    const { locale, cataloguePath: cataloguePath2, stage, returnPath, source, escapeHtml: escapeHtml3 } = options;
+    const query = new URLSearchParams({ category: "food", return: returnPath });
+    if (/^[1-6]$/.test(String(stage))) query.set("stage", String(stage));
+    const href = `${cataloguePath2}?${query}#category-decisions`;
+    return `<a class="route-button" data-hp-food-action data-hp-source="${escapeHtml3(source)}" href="${escapeHtml3(href)}">${escapeHtml3(labels[locale] || labels.en)} ↗</a>`;
+  }
+
+  // src/shared/lib/trust.js
+  var labels2 = {
+    th: { rom: "ยืนยันจาก ROM", tested: "ยืนยันจากการทดสอบ", unconfirmed: "ยังไม่ยืนยัน" },
+    en: { rom: "Confirmed from the ROM", tested: "Confirmed by test", unconfirmed: "Not confirmed" },
+    ja: { rom: "ROMで確認済み", tested: "テストで確認済み", unconfirmed: "未確認" }
+  };
+  function trustBadge(locale, level) {
+    const text2 = (labels2[locale] || labels2.en)[level];
+    return `<span class="trust trust-${level}">${text2}</span>`;
+  }
+
+  // src/shared/lib/index.js
+  function createPageRuntime(api) {
+    const runtime = {};
+    for (const [name, value] of Object.entries(api)) {
+      if (name !== "initialize") runtime[name] = value.bind(null, runtime);
+    }
+    return runtime;
+  }
+
   // src/pages/fish/maps.js
   function pointCount(ctx, location2) {
     return (location2.points || []).length;
@@ -916,7 +950,7 @@
     const selected = locations.find((location2) => String(location2.stage) === String(activeStage)) || locations[0];
     const stage = String(selected.stage), name = selected.stageName?.[ctx.locale] || selected.stageName?.en || ctx.copy.stage(stage);
     const maps = (selected.maps || []).map((map) => ctx.renderAreaMap(map, selected, fish)).join("");
-    return `<section class="detail-section fish-where-to-go" id="fish-area-map"><h2>${ctx.escapeHtml(ctx.copy.areas)}</h2><label class="area-select-label" for="shopping-area">${ctx.escapeHtml(ctx.shoppingCopy.area)}</label><select id="shopping-area" class="area-select">${locations.map((location2) => `<option value="${ctx.escapeHtml(location2.stage)}" ${String(location2.stage) === stage ? "selected" : ""}>${ctx.escapeHtml(ctx.copy.stage(location2.stage))} · ${ctx.escapeHtml(location2.stageName?.[ctx.locale] || location2.stageName?.en || "")}</option>`).join("")}</select><article class="detail-section area-card current-area" data-active="true"><h3>${ctx.escapeHtml(ctx.copy.stage(stage))} · ${ctx.escapeHtml(name)}</h3><p class="area-point-count">${ctx.escapeHtml(ctx.copy.configuredPoints(ctx.pointCount(selected)))}</p><p class="section-lede spots-hint">${ctx.escapeHtml(ctx.copy.spotsHint)}</p>${maps ? `<div class="detail-grid area-map-grid">${maps}</div>` : ""}<a class="route-button" href="${ctx.escapeHtml(ctx.fishMapLink(stage))}">${ctx.escapeHtml(ctx.copy.mapAction)} ↗</a></article></section>`;
+    return `<section class="detail-section fish-where-to-go" id="fish-area-map"><h2>${ctx.escapeHtml(ctx.copy.areas)}</h2><label class="area-select-label" for="shopping-area">${ctx.escapeHtml(ctx.shoppingCopy.area)}</label><select id="shopping-area" class="area-select">${locations.map((location2) => `<option value="${ctx.escapeHtml(location2.stage)}" ${String(location2.stage) === stage ? "selected" : ""}>${ctx.escapeHtml(ctx.copy.stage(location2.stage))} · ${ctx.escapeHtml(location2.stageName?.[ctx.locale] || location2.stageName?.en || "")}</option>`).join("")}</select><article class="detail-section area-card current-area" data-active="true"><h3>${ctx.escapeHtml(ctx.copy.stage(stage))} · ${ctx.escapeHtml(name)}</h3><p class="area-point-count">${ctx.escapeHtml(ctx.copy.configuredPoints(ctx.pointCount(selected)))}</p><p class="section-lede spots-hint">${trustBadge(ctx.locale, "rom")} ${ctx.escapeHtml(ctx.copy.spotsHint)}</p>${maps ? `<div class="detail-grid area-map-grid">${maps}</div>` : ""}<a class="route-button" href="${ctx.escapeHtml(ctx.fishMapLink(stage))}">${ctx.escapeHtml(ctx.copy.mapAction)} ↗</a></article></section>`;
   }
   function renderFishNotes(ctx, locations, activeStage) {
     const selected = locations.find((entry) => String(entry.stage) === String(activeStage));
@@ -953,29 +987,6 @@
     const title = ctx.locale === "th" ? "ไม่ต้องจัดชุดตกสำหรับรายการ 43" : ctx.locale === "ja" ? "プロフィール43用の仕掛けを買う必要はありません" : "Do not buy a fishing setup for profile 43";
     const text2 = ctx.locale === "th" ? "เลือกปลาที่มีชื่อและจุดตกยืนยันแล้วแทน รายการนี้ไม่มีจุดที่ปลาปรากฏที่ยืนยันแล้ว และไม่มีเหยื่อจริง ลัวร์ หรือตัวฟลายที่ใช้ได้กับมัน การมีข้อมูลอยู่ในเกมไม่ได้แปลว่าเป็นปลาที่พบและตกได้ตามปกติ" : ctx.locale === "ja" ? "名前と確認済みの釣り場がある魚を選んでください。この項目には抽出した出現表の確認済み地点がなく、エサ・ルアー・フライ本体の判定を通る候補もありません。ROMに行があるだけでは、通常出現して釣れる魚とは確認できません。" : "Choose a named fish with confirmed fishing spots instead. This entry has no confirmed point in the extracted spawn table, and no bait, lure or fly body passes its recorded check. A row in the ROM does not establish that it normally appears and can be caught.";
     return `<section class="detail-section" data-unconfirmed-profile-action><h2>${ctx.escapeHtml(title)}</h2><p>${ctx.escapeHtml(text2)}</p><a class="route-button" href="${ctx.escapeHtml(ctx.cataloguePath())}?category=all#catalogue">${ctx.locale === "th" ? "เลือกปลาอื่นจากช่องค้นหา" : ctx.locale === "ja" ? "検索欄で別の魚を選ぶ" : "Choose another fish in the search field"} ↗</a></section>`;
-  }
-
-  // src/shared/lib/hp-recovery-action.js
-  var labels = {
-    th: "เลือกอาหารฟื้น HP และดูแหล่งซื้อ",
-    ja: "HP回復用の食料と販売場所を選ぶ",
-    en: "Choose recovery food and see where to buy it"
-  };
-  function hpRecoveryAction(options) {
-    const { locale, cataloguePath: cataloguePath2, stage, returnPath, source, escapeHtml: escapeHtml3 } = options;
-    const query = new URLSearchParams({ category: "food", return: returnPath });
-    if (/^[1-6]$/.test(String(stage))) query.set("stage", String(stage));
-    const href = `${cataloguePath2}?${query}#category-decisions`;
-    return `<a class="route-button" data-hp-food-action data-hp-source="${escapeHtml3(source)}" href="${escapeHtml3(href)}">${escapeHtml3(labels[locale] || labels.en)} ↗</a>`;
-  }
-
-  // src/shared/lib/index.js
-  function createPageRuntime(api) {
-    const runtime = {};
-    for (const [name, value] of Object.entries(api)) {
-      if (name !== "initialize") runtime[name] = value.bind(null, runtime);
-    }
-    return runtime;
   }
 
   // src/pages/fish/shopping.js
@@ -1189,12 +1200,12 @@
     const area = selectedArea(ctx, locations, stage, text2);
     const kit = ctx.renderReusableKit(allItems, stage);
     const fallback = ctx.renderFlyFallback(allItems, stage, flyChoices);
-    return `<section id="fish-shopping" class="detail-section shopping-plan"><h2>${ctx.escapeHtml(text2.title)}</h2>${area}<p>${ctx.escapeHtml(text2.intro)}</p>${offers.length ? `<div class="detail-grid">${cards}</div>` : noOffer}${missingMethods ? `<div class="detail-grid missing-method-grid">${missingMethods}</div>` : ""}<p class="muted">${ctx.escapeHtml(text2.scope)}</p><a href="#all-compatible">${ctx.escapeHtml(text2.all)} ↓</a>${kit}${fallback}</section>`;
+    return `<section id="fish-shopping" class="detail-section shopping-plan"><h2>${ctx.escapeHtml(text2.title)}</h2>${area}<p>${ctx.escapeHtml(text2.intro)}</p><p class="trust-line">${ctx.escapeHtml(text2.trustPrice)} ${trustBadge(ctx.locale, "rom")} · ${ctx.escapeHtml(text2.trustRod)} ${trustBadge(ctx.locale, "tested")}</p>${offers.length ? `<div class="detail-grid">${cards}</div>` : noOffer}${missingMethods ? `<div class="detail-grid missing-method-grid">${missingMethods}</div>` : ""}<p class="muted">${ctx.escapeHtml(text2.scope)}</p><a href="#all-compatible">${ctx.escapeHtml(text2.all)} ↓</a>${kit}${fallback}</section>`;
   }
 
   // src/pages/fish/water-icons.js
   var classOrder = ["small", "large", "bubble"];
-  var labels2 = {
+  var labels3 = {
     en: {
       title: "Read the water marks",
       intro: "Use these marks to narrow down candidates on the map. A mark records size when the object is built; later growth does not directly update it. The caught size may differ, and a mark alone cannot identify the species.",
@@ -1242,7 +1253,7 @@
     }
   };
   function copyFor(ctx) {
-    return labels2[ctx.locale] || labels2.en;
+    return labels3[ctx.locale] || labels3.en;
   }
   function imageFor(waterIcons, iconClass) {
     const image = waterIcons?.classes?.[iconClass]?.image;
@@ -1533,14 +1544,14 @@
 
   // src/entities/best-gear/copy_en.js
   var copy_en = {
-    title: "Best gear for this fish",
+    title: "Gear for this fish",
     size: (low, high) => `Real size ${low === high ? low : `${low}–${high}`} cm`,
     maxSize: (high) => `MAX size ${high} cm`,
     methods: { float: "Float rod + bait", lure: "Lure rod + lure", fly: "Fly rod + fly" },
     slots: { rod: "Rod", hook: "Hook", bait: "Bait", lure: "Lure", fly: "Fly body", float: "Float" },
     anyFloat: (name) => `Any float works (cheapest: ${name})`,
-    best: "Best kit",
-    cheap: "Cheaper kit, still good",
+    best: "Easiest-start kit",
+    cheap: "Cheapest kit that still works well",
     total: (price) => `Total ${price}`,
     level: ["Easiest", "Easy", "Easy", "Medium", "Hard", "Very hard", "Very hard"],
     bands: ["Small fish (up to 15 cm)", "Medium fish (16–35 cm)", "Big fish (over 35 cm)"],
@@ -1594,7 +1605,7 @@
 
   // src/entities/best-gear/copy_ja.js
   var copy_ja = {
-    title: "この魚のベスト装備",
+    title: "この魚の仕掛け",
     size: (low, high) => `実際のサイズ ${low === high ? low : `${low}–${high}`} cm`,
     maxSize: (high) => `最大サイズ ${high} cm`,
     methods: { float: "ウキ竿 + エサ", lure: "ルアー竿 + ルアー", fly: "フライ竿 + フライ" },
@@ -1607,8 +1618,8 @@
       float: "ウキ"
     },
     anyFloat: (name) => `ウキはどれでもOK（いちばん安い：${name}）`,
-    best: "ベストの組み合わせ",
-    cheap: "安くて十分な組み合わせ",
+    best: "最初の戦いがいちばん楽な組み合わせ",
+    cheap: "十分使える中でいちばん安い組み合わせ",
     total: (price) => `合計 ${price}`,
     level: ["いちばん楽", "楽", "楽", "ふつう", "難しい", "とても難しい", "とても難しい"],
     bands: ["小さい魚（15 cm 以下）", "中くらいの魚（16–35 cm）", "大きい魚（35 cm 超）"],
@@ -1662,7 +1673,7 @@
 
   // src/entities/best-gear/copy_th.js
   var copy_th = {
-    title: "อุปกรณ์ที่ดีที่สุดสำหรับปลานี้",
+    title: "ชุดเบ็ดสำหรับปลานี้",
     size: (low, high) => `ขนาดจริง ${low === high ? low : `${low}–${high}`} ซม.`,
     maxSize: (high) => `ไซส์ MAX ${high} ซม.`,
     methods: { float: "คันทุ่น + เหยื่อ", lure: "คันลัวร์ + ลัวร์", fly: "คันฟลาย + ฟลาย" },
@@ -1675,8 +1686,8 @@
       float: "ทุ่น"
     },
     anyFloat: (name) => `ทุ่นอะไรก็ได้ (ถูกสุด: ${name})`,
-    best: "ชุดที่ดีที่สุด",
-    cheap: "ชุดที่ถูกกว่า ยังใช้ได้ดี",
+    best: "ชุดที่สู้ง่ายที่สุดตอนเริ่ม",
+    cheap: "ชุดที่ถูกที่สุดที่ยังใช้ได้ดี",
     total: (price) => `รวม ${price}`,
     level: ["ง่ายที่สุด", "ง่าย", "ง่าย", "ปานกลาง", "ยาก", "ยากมาก", "ยากมาก"],
     bands: ["ปลาเล็ก (ไม่เกิน 15 ซม.)", "ปลากลาง (16–35 ซม.)", "ปลาใหญ่ (เกิน 35 ซม.)"],
@@ -1795,14 +1806,14 @@
     const names = kitSlots(method, kit).map(
       ([slot, id]) => escapeHtml2(itemName(data, locale, slot, id))
     );
-    return `<div class="bg-cheap"><h4>${escapeHtml2(text2.cheap)} <span class="bg-total">${escapeHtml2(text2.total(text2.yen(kit.yen)))}</span></h4><p>${names.join(" · ")}</p>${easeByBand(text2, kit.starts)}</div>`;
+    return `<div class="bg-cheap"><h4>${escapeHtml2(text2.cheap)} ${trustBadge(locale, "rom")} <span class="bg-total">${escapeHtml2(text2.total(text2.yen(kit.yen)))}</span></h4><p>${names.join(" · ")}</p>${easeByBand(text2, kit.starts)}</div>`;
   }
   function methodHtml(data, locale, method, plan, open) {
     const text2 = bestGearCopy(locale);
     const [best, cheap] = plan.kits;
     const rows = kitSlots(method, best).map((slot) => rowHtml(data, locale, slot, best.why));
     if (method === "float") rows.push(floatRow(data, locale));
-    const body = `<h4>${escapeHtml2(text2.best)} <span class="bg-total">${escapeHtml2(text2.total(text2.yen(best.yen)))}</span></h4>
+    const body = `<h4>${escapeHtml2(text2.best)} ${trustBadge(locale, "rom")} <span class="bg-total">${escapeHtml2(text2.total(text2.yen(best.yen)))}</span></h4>
 <ul class="bg-kit">${rows.join("")}</ul>${easeByBand(text2, best.starts)}${alsoHtml(data, locale, method, plan)}${cheap ? cheapHtml(data, locale, method, cheap) : ""}`;
     return `<details class="bg-method"${open ? " open" : ""}><summary>${escapeHtml2(text2.methods[method])}</summary><div class="bg-body">${body}</div></details>`;
   }
@@ -1817,8 +1828,9 @@
       if (notch != null) lines.push(text2.startsWith(text2.bands[band], notch));
     });
     const need = fish.methods.float?.need;
-    if (need) lines.push(text2.reach(need));
-    return `<details class="bg-why"><summary>${escapeHtml2(text2.detailsTitle)}</summary><ul>${lines.map((line) => `<li>${escapeHtml2(line)}</li>`).join("")}</ul><p>${escapeHtml2(text2.evidence)} <a href="${EVIDENCE_URL}">${escapeHtml2(text2.evidenceLink)}</a></p></details>`;
+    const reachLine = need ? text2.reach(need) : "";
+    if (need) lines.push(reachLine);
+    return `<details class="bg-why"><summary>${escapeHtml2(text2.detailsTitle)}</summary><ul>${lines.map((line) => `<li>${escapeHtml2(line)}${line === reachLine ? ` ${trustBadge(locale, "unconfirmed")}` : ""}</li>`).join("")}</ul><p>${escapeHtml2(text2.evidence)} <a href="${EVIDENCE_URL}">${escapeHtml2(text2.evidenceLink)}</a></p></details>`;
   }
 
   // src/entities/best-gear/load.js
@@ -2163,7 +2175,9 @@
     bundle: "Ready-made fly set",
     all: "All compatible tackle",
     buy: "Open use and shop details",
-    shop: "Shop that sells it here"
+    shop: "Shop that sells it here",
+    trustPrice: "Prices and shops",
+    trustRod: "Rod advice (fight simulation)"
   };
 
   // src/pages/fish/shoppingCopy_ja.js
@@ -2178,7 +2192,9 @@
     bundle: "店売りフライセット",
     all: "対応道具の全一覧",
     buy: "使い方と店の詳細を見る",
-    shop: "この道具を売る店"
+    shop: "この道具を売る店",
+    trustPrice: "価格と販売店",
+    trustRod: "竿の助言（戦闘シミュレーション）"
   };
 
   // src/pages/fish/shoppingCopy_th.js
@@ -2193,7 +2209,9 @@
     bundle: "ชุดฟลายสำเร็จรูป",
     all: "เหยื่อทั้งหมดที่ใช้ด้วยได้",
     buy: "เปิดวิธีใช้และร้าน",
-    shop: "ร้านที่ขายในด่านนี้"
+    shop: "ร้านที่ขายในด่านนี้",
+    trustPrice: "ราคาและร้านที่ขาย",
+    trustRod: "คำแนะนำเรื่องคัน (จำลองการสู้ปลา)"
   };
 
   // src/pages/fish/load-profile.js

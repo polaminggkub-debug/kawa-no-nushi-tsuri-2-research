@@ -1637,6 +1637,34 @@ body:has(.kit-grid) main > details code {
   }
 }
 
+/* src/shared/ui/trust.css */
+.trust {
+  display: inline-block;
+  padding: 2px 9px;
+  border-radius: 999px;
+  font-size: 12px;
+  font-weight: 700;
+  line-height: 1.5;
+  white-space: nowrap;
+  vertical-align: middle;
+}
+.trust-rom {
+  background: #dcefe2;
+  color: #17472f;
+}
+.trust-tested {
+  background: #dde9f5;
+  color: #1d3f66;
+}
+.trust-unconfirmed {
+  background: #f5e6c8;
+  color: #6b4a0b;
+}
+.trust-line {
+  color: var(--muted);
+  font-size: 14px;
+}
+
 /* src/shared/ui/index.css */
 
 /* src/pages/quests/index.css */

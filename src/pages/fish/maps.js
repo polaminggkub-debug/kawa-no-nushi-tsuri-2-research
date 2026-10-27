@@ -1,3 +1,4 @@
+import { trustBadge } from '../../shared/lib/index.js'
 export function pointCount(ctx, location) {
   return (location.points || []).length
 }
@@ -70,7 +71,7 @@ export function renderAreas(ctx, locations, activeStage, fish) {
   const stage = String(selected.stage),
     name = selected.stageName?.[ctx.locale] || selected.stageName?.en || ctx.copy.stage(stage)
   const maps = (selected.maps || []).map((map) => ctx.renderAreaMap(map, selected, fish)).join('')
-  return `<section class="detail-section fish-where-to-go" id="fish-area-map"><h2>${ctx.escapeHtml(ctx.copy.areas)}</h2><label class="area-select-label" for="shopping-area">${ctx.escapeHtml(ctx.shoppingCopy.area)}</label><select id="shopping-area" class="area-select">${locations.map((location) => `<option value="${ctx.escapeHtml(location.stage)}" ${String(location.stage) === stage ? 'selected' : ''}>${ctx.escapeHtml(ctx.copy.stage(location.stage))} · ${ctx.escapeHtml(location.stageName?.[ctx.locale] || location.stageName?.en || '')}</option>`).join('')}</select><article class="detail-section area-card current-area" data-active="true"><h3>${ctx.escapeHtml(ctx.copy.stage(stage))} · ${ctx.escapeHtml(name)}</h3><p class="area-point-count">${ctx.escapeHtml(ctx.copy.configuredPoints(ctx.pointCount(selected)))}</p><p class="section-lede spots-hint">${ctx.escapeHtml(ctx.copy.spotsHint)}</p>${maps ? `<div class="detail-grid area-map-grid">${maps}</div>` : ''}<a class="route-button" href="${ctx.escapeHtml(ctx.fishMapLink(stage))}">${ctx.escapeHtml(ctx.copy.mapAction)} ↗</a></article></section>`
+  return `<section class="detail-section fish-where-to-go" id="fish-area-map"><h2>${ctx.escapeHtml(ctx.copy.areas)}</h2><label class="area-select-label" for="shopping-area">${ctx.escapeHtml(ctx.shoppingCopy.area)}</label><select id="shopping-area" class="area-select">${locations.map((location) => `<option value="${ctx.escapeHtml(location.stage)}" ${String(location.stage) === stage ? 'selected' : ''}>${ctx.escapeHtml(ctx.copy.stage(location.stage))} · ${ctx.escapeHtml(location.stageName?.[ctx.locale] || location.stageName?.en || '')}</option>`).join('')}</select><article class="detail-section area-card current-area" data-active="true"><h3>${ctx.escapeHtml(ctx.copy.stage(stage))} · ${ctx.escapeHtml(name)}</h3><p class="area-point-count">${ctx.escapeHtml(ctx.copy.configuredPoints(ctx.pointCount(selected)))}</p><p class="section-lede spots-hint">${trustBadge(ctx.locale, 'rom')} ${ctx.escapeHtml(ctx.copy.spotsHint)}</p>${maps ? `<div class="detail-grid area-map-grid">${maps}</div>` : ''}<a class="route-button" href="${ctx.escapeHtml(ctx.fishMapLink(stage))}">${ctx.escapeHtml(ctx.copy.mapAction)} ↗</a></article></section>`
 }
 
 export function renderFishNotes(ctx, locations, activeStage) {

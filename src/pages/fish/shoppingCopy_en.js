@@ -12,4 +12,6 @@ export const shoppingCopy_en = {
   all: 'All compatible tackle',
   buy: 'Open use and shop details',
   shop: 'Shop that sells it here',
+  trustPrice: 'Prices and shops',
+  trustRod: 'Rod advice (fight simulation)',
 }

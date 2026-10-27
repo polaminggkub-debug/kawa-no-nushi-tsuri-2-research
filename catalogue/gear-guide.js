@@ -11,16 +11,25 @@
     initialize: () => initialize
   });
 
+  // src/shared/lib/index.js
+  function createPageRuntime(api) {
+    const runtime = {};
+    for (const [name, value] of Object.entries(api)) {
+      if (name !== "initialize") runtime[name] = value.bind(null, runtime);
+    }
+    return runtime;
+  }
+
   // src/entities/best-gear/copy_en.js
   var copy_en = {
-    title: "Best gear for this fish",
+    title: "Gear for this fish",
     size: (low, high) => `Real size ${low === high ? low : `${low}–${high}`} cm`,
     maxSize: (high) => `MAX size ${high} cm`,
     methods: { float: "Float rod + bait", lure: "Lure rod + lure", fly: "Fly rod + fly" },
     slots: { rod: "Rod", hook: "Hook", bait: "Bait", lure: "Lure", fly: "Fly body", float: "Float" },
     anyFloat: (name) => `Any float works (cheapest: ${name})`,
-    best: "Best kit",
-    cheap: "Cheaper kit, still good",
+    best: "Easiest-start kit",
+    cheap: "Cheapest kit that still works well",
     total: (price) => `Total ${price}`,
     level: ["Easiest", "Easy", "Easy", "Medium", "Hard", "Very hard", "Very hard"],
     bands: ["Small fish (up to 15 cm)", "Medium fish (16–35 cm)", "Big fish (over 35 cm)"],
@@ -74,7 +83,7 @@
 
   // src/entities/best-gear/copy_ja.js
   var copy_ja = {
-    title: "この魚のベスト装備",
+    title: "この魚の仕掛け",
     size: (low, high) => `実際のサイズ ${low === high ? low : `${low}–${high}`} cm`,
     maxSize: (high) => `最大サイズ ${high} cm`,
     methods: { float: "ウキ竿 + エサ", lure: "ルアー竿 + ルアー", fly: "フライ竿 + フライ" },
@@ -87,8 +96,8 @@
       float: "ウキ"
     },
     anyFloat: (name) => `ウキはどれでもOK（いちばん安い：${name}）`,
-    best: "ベストの組み合わせ",
-    cheap: "安くて十分な組み合わせ",
+    best: "最初の戦いがいちばん楽な組み合わせ",
+    cheap: "十分使える中でいちばん安い組み合わせ",
     total: (price) => `合計 ${price}`,
     level: ["いちばん楽", "楽", "楽", "ふつう", "難しい", "とても難しい", "とても難しい"],
     bands: ["小さい魚（15 cm 以下）", "中くらいの魚（16–35 cm）", "大きい魚（35 cm 超）"],
@@ -142,7 +151,7 @@
 
   // src/entities/best-gear/copy_th.js
   var copy_th = {
-    title: "อุปกรณ์ที่ดีที่สุดสำหรับปลานี้",
+    title: "ชุดเบ็ดสำหรับปลานี้",
     size: (low, high) => `ขนาดจริง ${low === high ? low : `${low}–${high}`} ซม.`,
     maxSize: (high) => `ไซส์ MAX ${high} ซม.`,
     methods: { float: "คันทุ่น + เหยื่อ", lure: "คันลัวร์ + ลัวร์", fly: "คันฟลาย + ฟลาย" },
@@ -155,8 +164,8 @@
       float: "ทุ่น"
     },
     anyFloat: (name) => `ทุ่นอะไรก็ได้ (ถูกสุด: ${name})`,
-    best: "ชุดที่ดีที่สุด",
-    cheap: "ชุดที่ถูกกว่า ยังใช้ได้ดี",
+    best: "ชุดที่สู้ง่ายที่สุดตอนเริ่ม",
+    cheap: "ชุดที่ถูกที่สุดที่ยังใช้ได้ดี",
     total: (price) => `รวม ${price}`,
     level: ["ง่ายที่สุด", "ง่าย", "ง่าย", "ปานกลาง", "ยาก", "ยากมาก", "ยากมาก"],
     bands: ["ปลาเล็ก (ไม่เกิน 15 ซม.)", "ปลากลาง (16–35 ซม.)", "ปลาใหญ่ (เกิน 35 ซม.)"],
@@ -730,15 +739,6 @@ ${itemCell(data, locale, secondLabel, second, kit[second], second, kit.why.item)
   function initialize(ctx) {
     setupContext(ctx);
     start(ctx);
-  }
-
-  // src/shared/lib/index.js
-  function createPageRuntime(api) {
-    const runtime = {};
-    for (const [name, value] of Object.entries(api)) {
-      if (name !== "initialize") runtime[name] = value.bind(null, runtime);
-    }
-    return runtime;
   }
 
   // src/app/gear-guide.js

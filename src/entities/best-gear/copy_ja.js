@@ -1,5 +1,5 @@
 export const copy_ja = {
-  title: 'この魚のベスト装備',
+  title: 'この魚の仕掛け',
   size: (low, high) => `実際のサイズ ${low === high ? low : `${low}–${high}`} cm`,
   maxSize: (high) => `最大サイズ ${high} cm`,
   methods: { float: 'ウキ竿 + エサ', lure: 'ルアー竿 + ルアー', fly: 'フライ竿 + フライ' },
@@ -12,8 +12,8 @@ export const copy_ja = {
     float: 'ウキ',
   },
   anyFloat: (name) => `ウキはどれでもOK（いちばん安い：${name}）`,
-  best: 'ベストの組み合わせ',
-  cheap: '安くて十分な組み合わせ',
+  best: '最初の戦いがいちばん楽な組み合わせ',
+  cheap: '十分使える中でいちばん安い組み合わせ',
   total: (price) => `合計 ${price}`,
   level: ['いちばん楽', '楽', '楽', 'ふつう', '難しい', 'とても難しい', 'とても難しい'],
   bands: ['小さい魚（15 cm 以下）', '中くらいの魚（16–35 cm）', '大きい魚（35 cm 超）'],

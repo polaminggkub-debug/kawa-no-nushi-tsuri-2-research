@@ -12,4 +12,6 @@ export const shoppingCopy_ja = {
   all: '対応道具の全一覧',
   buy: '使い方と店の詳細を見る',
   shop: 'この道具を売る店',
+  trustPrice: '価格と販売店',
+  trustRod: '竿の助言（戦闘シミュレーション）',
 }

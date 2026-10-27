@@ -1,3 +1,4 @@
+import { trustBadge } from '../../shared/lib/index.js'
 import { bestGearCopy, easeByBand, escapeHtml, itemName, kitSlots } from './view.js'
 
 function rowHtml(data, locale, [slot, id, group], why) {
@@ -38,7 +39,7 @@ function cheapHtml(data, locale, method, kit) {
   const names = kitSlots(method, kit).map(([slot, id]) =>
     escapeHtml(itemName(data, locale, slot, id)),
   )
-  return `<div class="bg-cheap"><h4>${escapeHtml(text.cheap)} <span class="bg-total">${escapeHtml(text.total(text.yen(kit.yen)))}</span></h4><p>${names.join(' · ')}</p>${easeByBand(text, kit.starts)}</div>`
+  return `<div class="bg-cheap"><h4>${escapeHtml(text.cheap)} ${trustBadge(locale, 'rom')} <span class="bg-total">${escapeHtml(text.total(text.yen(kit.yen)))}</span></h4><p>${names.join(' · ')}</p>${easeByBand(text, kit.starts)}</div>`
 }
 
 /** One way to catch the fish: the best kit with a reason per item, its ease, and the alternatives. */
@@ -47,7 +48,7 @@ export function methodHtml(data, locale, method, plan, open) {
   const [best, cheap] = plan.kits
   const rows = kitSlots(method, best).map((slot) => rowHtml(data, locale, slot, best.why))
   if (method === 'float') rows.push(floatRow(data, locale))
-  const body = `<h4>${escapeHtml(text.best)} <span class="bg-total">${escapeHtml(text.total(text.yen(best.yen)))}</span></h4>
+  const body = `<h4>${escapeHtml(text.best)} ${trustBadge(locale, 'rom')} <span class="bg-total">${escapeHtml(text.total(text.yen(best.yen)))}</span></h4>
 <ul class="bg-kit">${rows.join('')}</ul>${easeByBand(text, best.starts)}${alsoHtml(data, locale, method, plan)}${cheap ? cheapHtml(data, locale, method, cheap) : ''}`
   return `<details class="bg-method"${open ? ' open' : ''}><summary>${escapeHtml(text.methods[method])}</summary><div class="bg-body">${body}</div></details>`
 }

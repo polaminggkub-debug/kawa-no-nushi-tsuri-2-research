@@ -1,3 +1,4 @@
+import { trustBadge } from '../../shared/lib/index.js'
 import { bestGearCopy, escapeHtml } from './view.js'
 
 const EVIDENCE_URL =
@@ -12,6 +13,7 @@ export function whyHtml(locale, fish) {
     if (notch != null) lines.push(text.startsWith(text.bands[band], notch))
   })
   const need = fish.methods.float?.need
-  if (need) lines.push(text.reach(need))
-  return `<details class="bg-why"><summary>${escapeHtml(text.detailsTitle)}</summary><ul>${lines.map((line) => `<li>${escapeHtml(line)}</li>`).join('')}</ul><p>${escapeHtml(text.evidence)} <a href="${EVIDENCE_URL}">${escapeHtml(text.evidenceLink)}</a></p></details>`
+  const reachLine = need ? text.reach(need) : ''
+  if (need) lines.push(reachLine)
+  return `<details class="bg-why"><summary>${escapeHtml(text.detailsTitle)}</summary><ul>${lines.map((line) => `<li>${escapeHtml(line)}${line === reachLine ? ` ${trustBadge(locale, 'unconfirmed')}` : ''}</li>`).join('')}</ul><p>${escapeHtml(text.evidence)} <a href="${EVIDENCE_URL}">${escapeHtml(text.evidenceLink)}</a></p></details>`
 }
