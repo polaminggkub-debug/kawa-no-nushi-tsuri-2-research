@@ -11,6 +11,21 @@
     initialize: () => initialize
   });
 
+  // src/shared/lib/sprite.js
+  var escapeAttr = (value) => String(value).replace(
+    /[&<>"]/g,
+    (char) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" })[char]
+  );
+  function spriteHtml(src, alt, size = "gear") {
+    if (!src) return "";
+    return `<img class="pic pic-${size}" src="${escapeAttr(src)}" alt="${escapeAttr(alt)}" width="${size === "fish" ? 48 : 32}" height="${size === "fish" ? 48 : 32}" loading="lazy" decoding="async">`;
+  }
+  function withSprite(src, label, alt, size = "gear") {
+    const picture = spriteHtml(src, alt, size);
+    return picture ? `<span class="pic-row">${picture}<span class="pic-name">${label}</span></span>` : label;
+  }
+  var spriteOf = (names, kind, id) => names.sprite?.[kind]?.[id] ?? null;
+
   // src/shared/lib/index.js
   function createPageRuntime(api) {
     const runtime = {};
@@ -237,6 +252,10 @@
     /[&<>"]/g,
     (char) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" })[char]
   );
+  function itemPic(data, locale, slot, id, size = "gear") {
+    const name = itemName(data, locale, slot, id);
+    return withSprite(spriteOf(data.names, slot, id), escapeHtml(name), name, size);
+  }
   function itemName(data, locale, slot, id) {
     const entry = data.names[slot]?.[id];
     return entry?.[locale] ?? entry?.en ?? String(id);
@@ -281,7 +300,7 @@
   function itemCell(data, locale, label, slot, id, group, why) {
     const text = bestGearCopy(locale);
     const reason = why && why !== "plain" && why !== "any" ? text.why[group]?.[why] : "";
-    const name = id == null ? "–" : escapeHtml(itemName(data, locale, slot, id));
+    const name = id == null ? "–" : itemPic(data, locale, slot, id);
     return `<td data-label="${escapeHtml(label)}"><span>${name}${reason ? `<small>${escapeHtml(reason)}</small>` : ""}</span></td>`;
   }
   function rowHtml(ctx, id, fish, plan) {
@@ -290,7 +309,7 @@
     const [size, rod, hook, start2, price] = LABELS[locale];
     const kit = plan.kits[0];
     const second = SECOND[ctx.method];
-    const name = escapeHtml(itemName(data, locale, "fish", id));
+    const name = itemPic(data, locale, "fish", id, "fish");
     const secondLabel = text.slots[second];
     return `<tr><td><a href="${escapeHtml(fishLink(locale, id))}"><strong>${name}</strong></a></td>
 <td data-label="${size}"><span>${escapeHtml(text.size(fish.size[0], shownHigh(fish)))}<small>${maxHtml(text, fish)}</small></span></td>
@@ -600,6 +619,10 @@ ${itemCell(data, locale, secondLabel, second, kit[second], second, kit.why.item)
   // src/pages/gear-guide/kit-view.js
   var suffixes2 = { en: "", th: ".th", ja: ".ja" };
   var itemLabel = (ctx, slot, id) => localName(ctx.names[slot]?.[id], ctx.locale);
+  var itemPic2 = (ctx, slot, id, size = "gear") => {
+    const name = itemLabel(ctx, slot, id);
+    return withSprite(spriteOf(ctx.names, slot, id), escapeHtml2(name), name, size);
+  };
   function whereText(ctx, row) {
     const { where } = ctx.text;
     if (row.special.length) return where.special(row.special);
@@ -607,13 +630,13 @@ ${itemCell(data, locale, secondLabel, second, kit[second], second, kit.why.item)
     return row.slot === "fly" ? `${where.readyMade}, ${place}` : place;
   }
   function rowHtml2(ctx, row) {
-    return `<li><span class="gg-slot">${ctx.text.slots[row.slot]}</span><span class="gg-item"><strong>${escapeHtml2(itemLabel(ctx, row.slot, row.id))}</strong><span class="gg-sub">${yen(row.yen)} · ${whereText(ctx, row)}</span></span></li>`;
+    return `<li><span class="gg-slot">${ctx.text.slots[row.slot]}</span><span class="gg-item"><strong>${itemPic2(ctx, row.slot, row.id)}</strong><span class="gg-sub">${yen(row.yen)} · ${whereText(ctx, row)}</span></span></li>`;
   }
   function routeHtml(ctx, method) {
     const route = routeItem(ctx.effects, method);
     if (!route) return "";
-    const name = itemLabel(ctx, "float_weight", route.id);
-    return `<p class="gg-note">${ctx.text.extra(escapeHtml2(name), yen(route.yen))}</p>`;
+    const name = itemPic2(ctx, "float_weight", route.id);
+    return `<p class="gg-note">${ctx.text.extra(name, yen(route.yen))}</p>`;
   }
   function statsHtml(ctx, entry) {
     const { text } = ctx;
@@ -648,13 +671,13 @@ ${itemCell(data, locale, secondLabel, second, kit[second], second, kit.why.item)
     const notes = [];
     if (text.hints[plan.method]) notes.push(text.hints[plan.method]);
     if (plan.swappedFrom) {
-      const priced = (id, price) => `${escapeHtml2(itemLabel(ctx, "fly", id))} (${yen(price)})`;
+      const priced = (id, price) => `${itemPic2(ctx, "fly", id)} (${yen(price)})`;
       const fromPrice = Math.min(...ctx.effects.items.fly[plan.swappedFrom].bundles.map((b) => b[2]));
       const flyRow = plan.kits[0].rows.find((row) => row.slot === "fly");
       notes.push(text.flySwapped(priced(plan.swappedFrom, fromPrice), priced(flyRow.id, flyRow.yen)));
     }
     if (plan.neverSold.length) {
-      const names = plan.neverSold.map((id) => escapeHtml2(itemLabel(ctx, "rod", id)));
+      const names = plan.neverSold.map((id) => itemPic2(ctx, "rod", id));
       notes.push(text.neverSold(names.join(", ")));
     }
     return notes.map((note) => `<p class="gg-note">${note}</p>`).join("");
@@ -700,7 +723,8 @@ ${itemCell(data, locale, secondLabel, second, kit[second], second, kit.why.item)
     const { size } = ctx.best.fish[fishId];
     const { need } = plans[0];
     const link = `fish${suffixes3[ctx.locale]}.html?id=${hexId(fishId)}&return=gear-guide${suffixes3[ctx.locale]}.html`;
-    return `${ctx.text.sizeLine(...size)} ${ctx.text.reachLine(need)} <a href="${escapeHtml2(link)}">${ctx.text.fishLink}</a>`;
+    const head = `<span class="gg-fish-head">${itemPic2(ctx, "fish", fishId, "fish")}</span>`;
+    return `${head} ${ctx.text.sizeLine(...size)} ${ctx.text.reachLine(need)} <a href="${escapeHtml2(link)}">${ctx.text.fishLink}</a>`;
   }
   function show(ctx, fishId) {
     const plans = planFish(ctx.effects, fishId);

@@ -17,10 +17,13 @@ const readJson = (file) => JSON.parse(readFileSync(resolve(root, file), 'utf8'))
 function namesWithWeights(gallery, effects) {
   const names = buildGuideNames(gallery, effects)
   names.float_weight = {}
-  for (const item of gallery.items.filter((entry) => entry.category === 'float_weight'))
+  names.sprite.float_weight ??= {}
+  for (const item of gallery.items.filter((entry) => entry.category === 'float_weight')) {
     names.float_weight[item.idDecimal] = Object.fromEntries(
       ['en', 'th', 'ja'].map((lang) => [lang, imageName({ lang }, item)]),
     )
+    names.sprite.float_weight[item.idDecimal] = item.image
+  }
   return names
 }
 

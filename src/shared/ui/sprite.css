@@ -1,0 +1,25 @@
+.pic {
+  flex: none;
+  object-fit: contain;
+  image-rendering: pixelated;
+  image-rendering: crisp-edges;
+}
+.pic-gear {
+  width: 32px;
+  height: 32px;
+}
+.pic-fish {
+  width: 48px;
+  height: 48px;
+}
+.pic-row {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  max-width: 100%;
+  vertical-align: middle;
+}
+.pic-name {
+  min-width: 0;
+  overflow-wrap: anywhere;
+}

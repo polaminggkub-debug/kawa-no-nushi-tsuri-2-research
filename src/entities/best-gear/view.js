@@ -1,3 +1,4 @@
+import { spriteOf, withSprite } from '../../shared/lib/index.js'
 import { copy_en } from './copy_en.js'
 import { copy_ja } from './copy_ja.js'
 import { copy_th } from './copy_th.js'
@@ -13,6 +14,11 @@ export const escapeHtml = (value) =>
     /[&<>"]/g,
     (char) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' })[char],
   )
+
+export function itemPic(data, locale, slot, id, size = 'gear') {
+  const name = itemName(data, locale, slot, id)
+  return withSprite(spriteOf(data.names, slot, id), escapeHtml(name), name, size)
+}
 
 export function itemName(data, locale, slot, id) {
   const entry = data.names[slot]?.[id]

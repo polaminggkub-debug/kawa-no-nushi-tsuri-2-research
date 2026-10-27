@@ -3,6 +3,7 @@ import {
   easeByBand,
   escapeHtml,
   itemName,
+  itemPic,
   maxHtml,
   shownHigh,
 } from '../../entities/best-gear/index.js'
@@ -24,7 +25,7 @@ function fishLink(locale, id) {
 function itemCell(data, locale, label, slot, id, group, why) {
   const text = bestGearCopy(locale)
   const reason = why && why !== 'plain' && why !== 'any' ? text.why[group]?.[why] : ''
-  const name = id == null ? '–' : escapeHtml(itemName(data, locale, slot, id))
+  const name = id == null ? '–' : itemPic(data, locale, slot, id)
   return `<td data-label="${escapeHtml(label)}"><span>${name}${reason ? `<small>${escapeHtml(reason)}</small>` : ''}</span></td>`
 }
 
@@ -34,7 +35,7 @@ function rowHtml(ctx, id, fish, plan) {
   const [size, rod, hook, start, price] = LABELS[locale]
   const kit = plan.kits[0]
   const second = SECOND[ctx.method]
-  const name = escapeHtml(itemName(data, locale, 'fish', id))
+  const name = itemPic(data, locale, 'fish', id, 'fish')
   const secondLabel = text.slots[second]
   return `<tr><td><a href="${escapeHtml(fishLink(locale, id))}"><strong>${name}</strong></a></td>
 <td data-label="${size}"><span>${escapeHtml(text.size(fish.size[0], shownHigh(fish)))}<small>${maxHtml(text, fish)}</small></span></td>

@@ -1,7 +1,7 @@
 import { bindTable, renderTable } from './best-table.js'
 import { copy } from './copy.js'
 import { escapeHtml } from './format.js'
-import { itemLabel, renderPlans } from './kit-view.js'
+import { itemLabel, itemPic, renderPlans } from './kit-view.js'
 import { planFish } from './kits.js'
 import { loadData } from './load.js'
 
@@ -21,7 +21,8 @@ function fishFacts(ctx, fishId, plans) {
   const { size } = ctx.best.fish[fishId]
   const { need } = plans[0]
   const link = `fish${suffixes[ctx.locale]}.html?id=${hexId(fishId)}&return=gear-guide${suffixes[ctx.locale]}.html`
-  return `${ctx.text.sizeLine(...size)} ${ctx.text.reachLine(need)} <a href="${escapeHtml(link)}">${ctx.text.fishLink}</a>`
+  const head = `<span class="gg-fish-head">${itemPic(ctx, 'fish', fishId, 'fish')}</span>`
+  return `${head} ${ctx.text.sizeLine(...size)} ${ctx.text.reachLine(need)} <a href="${escapeHtml(link)}">${ctx.text.fishLink}</a>`
 }
 
 function show(ctx, fishId) {

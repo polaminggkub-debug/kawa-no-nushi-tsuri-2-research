@@ -32,20 +32,28 @@ function findItem(gallery, kind, id) {
 
 /** Localized names for the kit finder, from the same catalogue rules the other pages use. */
 export function buildGuideNames(gallery, effects) {
-  const names = { fish: {}, float_weight: {} }
+  const names = { fish: {}, float_weight: {}, sprite: { fish: {} } }
+  for (const [hex, visual] of Object.entries(gallery.fishVisuals))
+    if (visual.image) names.sprite.fish[parseInt(hex, 16)] = visual.image
   for (const id of Object.keys(effects.fish))
     names.fish[id] = label(
       (ctx) => FISH_GLOSS[id]?.[ctx.lang] ?? fishName(ctx, hexId(id), gallery.fishVisuals),
     )
   for (const kind of GEAR_KINDS) {
     names[kind] = {}
-    for (const id of Object.keys(effects.items[kind]))
-      names[kind][id] = label((ctx) => imageName(ctx, findItem(gallery, kind, id)))
+    names.sprite[kind] = {}
+    for (const id of Object.keys(effects.items[kind])) {
+      const item = findItem(gallery, kind, id)
+      names[kind][id] = label((ctx) => imageName(ctx, item))
+      names.sprite[kind][id] = item.image
+    }
   }
-  for (const route of Object.values(effects.routes))
-    names.float_weight[route.id] = label((ctx) =>
-      imageName(ctx, findItem(gallery, 'float_weight', route.id)),
-    )
+  names.sprite.float_weight = {}
+  for (const route of Object.values(effects.routes)) {
+    const item = findItem(gallery, 'float_weight', route.id)
+    names.float_weight[route.id] = label((ctx) => imageName(ctx, item))
+    names.sprite.float_weight[route.id] = item.image
+  }
   return names
 }
 

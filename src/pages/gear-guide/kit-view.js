@@ -1,9 +1,16 @@
 import { escapeHtml, localName, percent, yen } from './format.js'
+import { withSprite, spriteOf } from '../../shared/lib/index.js'
 import { routeItem } from './kits.js'
 
 const suffixes = { en: '', th: '.th', ja: '.ja' }
 
 export const itemLabel = (ctx, slot, id) => localName(ctx.names[slot]?.[id], ctx.locale)
+
+/** The escaped name with its sprite beside it. */
+export const itemPic = (ctx, slot, id, size = 'gear') => {
+  const name = itemLabel(ctx, slot, id)
+  return withSprite(spriteOf(ctx.names, slot, id), escapeHtml(name), name, size)
+}
 
 function whereText(ctx, row) {
   const { where } = ctx.text
@@ -13,14 +20,14 @@ function whereText(ctx, row) {
 }
 
 function rowHtml(ctx, row) {
-  return `<li><span class="gg-slot">${ctx.text.slots[row.slot]}</span><span class="gg-item"><strong>${escapeHtml(itemLabel(ctx, row.slot, row.id))}</strong><span class="gg-sub">${yen(row.yen)} · ${whereText(ctx, row)}</span></span></li>`
+  return `<li><span class="gg-slot">${ctx.text.slots[row.slot]}</span><span class="gg-item"><strong>${itemPic(ctx, row.slot, row.id)}</strong><span class="gg-sub">${yen(row.yen)} · ${whereText(ctx, row)}</span></span></li>`
 }
 
 function routeHtml(ctx, method) {
   const route = routeItem(ctx.effects, method)
   if (!route) return ''
-  const name = itemLabel(ctx, 'float_weight', route.id)
-  return `<p class="gg-note">${ctx.text.extra(escapeHtml(name), yen(route.yen))}</p>`
+  const name = itemPic(ctx, 'float_weight', route.id)
+  return `<p class="gg-note">${ctx.text.extra(name, yen(route.yen))}</p>`
 }
 
 function statsHtml(ctx, entry) {
@@ -59,13 +66,13 @@ function notesHtml(ctx, plan) {
   const notes = []
   if (text.hints[plan.method]) notes.push(text.hints[plan.method])
   if (plan.swappedFrom) {
-    const priced = (id, price) => `${escapeHtml(itemLabel(ctx, 'fly', id))} (${yen(price)})`
+    const priced = (id, price) => `${itemPic(ctx, 'fly', id)} (${yen(price)})`
     const fromPrice = Math.min(...ctx.effects.items.fly[plan.swappedFrom].bundles.map((b) => b[2]))
     const flyRow = plan.kits[0].rows.find((row) => row.slot === 'fly')
     notes.push(text.flySwapped(priced(plan.swappedFrom, fromPrice), priced(flyRow.id, flyRow.yen)))
   }
   if (plan.neverSold.length) {
-    const names = plan.neverSold.map((id) => escapeHtml(itemLabel(ctx, 'rod', id)))
+    const names = plan.neverSold.map((id) => itemPic(ctx, 'rod', id))
     notes.push(text.neverSold(names.join(', ')))
   }
   return notes.map((note) => `<p class="gg-note">${note}</p>`).join('')

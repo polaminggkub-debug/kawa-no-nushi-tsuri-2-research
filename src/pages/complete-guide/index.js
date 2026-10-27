@@ -1,7 +1,7 @@
 // The complete fishing guide is rendered at build time from the plan (scripts/complete-guide/plan.mjs).
 import { METHODS_ORDER } from './order.js'
 import { renderStage } from './stage.js'
-import { badge, esc, hex, list, makeNamer } from './parts.js'
+import { badge, esc, hex, list, makeNamer, makePic } from './parts.js'
 
 const SUFFIX = { en: '', th: '.th', ja: '.ja' }
 
@@ -51,6 +51,7 @@ export function renderCompleteGuide({ plan, names, matrix, copy }) {
     copy,
     lang,
     name,
+    pic: makePic(names, lang),
     matrix: { items: matrix.items, fishById: new Map(matrix.fish.map((f) => [f.id, f])) },
     fishName: (id) => names.fish[id]?.[lang] ?? names.fish[id]?.en ?? String(id),
     fishHref: (id) => `fish${suffix}.html?id=${hex(id)}&return=complete-guide${suffix}.html`,

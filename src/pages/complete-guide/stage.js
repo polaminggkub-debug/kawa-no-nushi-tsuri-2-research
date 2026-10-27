@@ -15,7 +15,7 @@ function maxCell(copy, row) {
 function fishTable(ctx, stage) {
   const { copy, lang } = ctx
   const rows = stage.fish.map((f) => [
-    `<a href="${esc(ctx.fishHref(f.id))}">${esc(ctx.fishName(f.id))}</a>`,
+    `<a href="${esc(ctx.fishHref(f.id))}">${ctx.pic('fish', f.id)}</a>`,
     `${f.size[0]}–${f.size[1]}`,
     maxCell(copy, f),
   ])
@@ -46,7 +46,7 @@ function whichTable(ctx, stage) {
             .map((m) => copy.methodNames[m])
             .join(', ')
     return [
-      `<a href="${esc(ctx.fishHref(f.id))}">${esc(ctx.fishName(f.id))}</a>`,
+      `<a href="${esc(ctx.fishHref(f.id))}">${ctx.pic('fish', f.id)}</a>`,
       ...cells,
       esc(easy),
     ]

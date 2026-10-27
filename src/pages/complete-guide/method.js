@@ -9,16 +9,16 @@ function cheapest(weights) {
 }
 
 function kitList(ctx, method, plan, kit) {
-  const { copy, name } = ctx
+  const { copy, pic } = ctx
   const parts = copy.stage.kitParts
-  const rows = [[parts.rod, name('rod', kit.rod), yen(ctx.matrix.items.rod[kit.rod].price)]]
+  const rows = [[parts.rod, pic('rod', kit.rod), yen(ctx.matrix.items.rod[kit.rod].price)]]
   if (kit.hook != null)
-    rows.push([parts.hook, name('hook', kit.hook), yen(ctx.matrix.items.hook[kit.hook].price)])
+    rows.push([parts.hook, pic('hook', kit.hook), yen(ctx.matrix.items.hook[kit.hook].price)])
   const slot = KIT_SLOTS[method]
   const itemYen = plan.parts.items.find((i) => i.id === kit.item).yen
-  rows.push([parts[slot], name(slot, kit.item), yen(itemYen)])
+  rows.push([parts[slot], pic(slot, kit.item), yen(itemYen)])
   const weight = cheapest(plan.parts.weights)
-  if (plan.parts.weights.length) rows.push([parts.weight, copy.stage.weightNote, yen(weight)])
+  if (plan.parts.weights.length) rows.push([parts.weight, esc(copy.stage.weightNote), yen(weight)])
   return { rows, total: kit.yen + weight }
 }
 
@@ -27,7 +27,7 @@ function kitBlock(ctx, method, plan, kit, head) {
   const { rows, total } = kitList(ctx, method, plan, kit)
   const body = rows.map(
     ([part, label, price]) =>
-      `<li><strong>${part}</strong> ${esc(label)} <span class="cg-yen">${price}</span></li>`,
+      `<li><strong>${part}</strong> ${label} <span class="cg-yen">${price}</span></li>`,
   )
   return `<div class="cg-kit"><h4>${head} ${badge(lang, 'rom')}</h4><ul class="cg-kit-list">${body.join('')}</ul><p><strong>${copy.stage.total(total)}</strong></p></div>`
 }
@@ -37,7 +37,7 @@ function fishNamed(ctx, stageFish, matchId) {
 }
 
 function rodRow(ctx, stage, plan, rod, inKit) {
-  const { copy, name } = ctx
+  const { copy, pic } = ctx
   const named = fishNamed(ctx, stage.fish, rod.match)
   let verdict = 'maybe'
   let reason = [
@@ -55,7 +55,7 @@ function rodRow(ctx, stage, plan, rod, inKit) {
     reason = `${copy.stage.reasons.kit}; ${reason}`
   }
   return [
-    name('rod', rod.id),
+    pic('rod', rod.id),
     copy.classes[rod.cls],
     yen(rod.yen),
     verdictCell(copy, verdict),
@@ -64,7 +64,7 @@ function rodRow(ctx, stage, plan, rod, inKit) {
 }
 
 function hookRow(ctx, stage, hook, inKit) {
-  const { copy, name } = ctx
+  const { copy, pic } = ctx
   const named = fishNamed(ctx, stage.fish, hook.match)
   let verdict = 'maybe'
   let reason = copy.stage.reasons.hookSize[hook.sel] ?? ''
@@ -77,7 +77,7 @@ function hookRow(ctx, stage, hook, inKit) {
     reason = `${copy.stage.reasons.kit}; ${reason}`
   }
   return [
-    name('hook', hook.id),
+    pic('hook', hook.id),
     yen(hook.yen),
     verdictCell(copy, verdict),
     `${esc(reason)} ${badge(ctx.lang, 'rom')}`,
@@ -88,7 +88,7 @@ const LURE_REASON = { sinking: 'lureSinking', surface: 'lureSurface', untested: 
 const LURE_TRUST = { sinking: 'tested', surface: 'tested', untested: 'unconfirmed' }
 
 function itemRow(ctx, stage, method, plan, item, inKit) {
-  const { copy, name } = ctx
+  const { copy, pic } = ctx
   const slot = KIT_SLOTS[method]
   const accepted = stage.fish.filter((f) =>
     ctx.matrix.fishById
@@ -122,7 +122,7 @@ function itemRow(ctx, stage, method, plan, item, inKit) {
     reason = `${copy.stage.reasons.kit}; ${reason}`
   }
   return [
-    name(slot, item.id),
+    pic(slot, item.id),
     yen(item.yen),
     verdictCell(copy, verdict),
     `${esc(reason)} ${badge(ctx.lang, trust)}`,
@@ -130,10 +130,10 @@ function itemRow(ctx, stage, method, plan, item, inKit) {
 }
 
 function weightRows(ctx, plan) {
-  const { copy, name } = ctx
+  const { copy, pic } = ctx
   const low = cheapest(plan.parts.weights)
   return plan.parts.weights.map((w) => [
-    name('float_weight', w.id),
+    pic('float_weight', w.id),
     yen(w.yen),
     verdictCell(copy, w.yen === low ? 'buy' : 'skip'),
     `${esc(copy.stage.reasons.weight)} ${badge(ctx.lang, 'rom')}`,
@@ -141,20 +141,20 @@ function weightRows(ctx, plan) {
 }
 
 function fishKitTable(ctx, stage, method, plan) {
-  const { copy, name, lang } = ctx
+  const { copy, pic, lang } = ctx
   const slot = KIT_SLOTS[method]
   const parts = copy.stage.kitParts
   const rows = stage.fish
     .filter((f) => plan.perFish[f.id])
     .map((f) => {
       const k = plan.perFish[f.id]
-      const rod = `${name('rod', k.rod)} (${copy.classes[ctx.matrix.items.rod[k.rod].class]})`
+      const rod = `${pic('rod', k.rod)} (${esc(copy.classes[ctx.matrix.items.rod[k.rod].class])})`
       return [
-        `<a href="${esc(ctx.fishHref(f.id))}">${esc(ctx.fishName(f.id))}</a>`,
+        `<a href="${esc(ctx.fishHref(f.id))}">${ctx.pic('fish', f.id)}</a>`,
         `${f.size[0]}–${f.size[1]}`,
-        esc(rod),
-        k.hook == null ? copy.stage.none : esc(name('hook', k.hook)),
-        esc(name(slot, k.item)),
+        rod,
+        k.hook == null ? copy.stage.none : pic('hook', k.hook),
+        pic(slot, k.item),
         k.score.toFixed(1),
       ]
     })

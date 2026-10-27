@@ -11,3 +11,4 @@ export { targetAdvice, renderTargetAdvice, targetAdviceScope } from './target-ad
 export { readableEvidenceHref } from './evidence-link.js'
 export { hpRecoveryAction } from './hp-recovery-action.js'
 export { trustBadge } from './trust.js'
+export { spriteHtml, withSprite, spriteOf } from './sprite.js'

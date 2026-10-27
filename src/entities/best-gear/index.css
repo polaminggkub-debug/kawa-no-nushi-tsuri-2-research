@@ -93,6 +93,11 @@
 .bg-pips i.on {
   background: var(--deep);
 }
+.bg-pics {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px 14px;
+}
 .bg-also,
 .bg-cheap {
   margin-top: 14px;

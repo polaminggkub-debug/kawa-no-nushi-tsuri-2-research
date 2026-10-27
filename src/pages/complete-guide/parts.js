@@ -1,5 +1,5 @@
 // Small HTML pieces shared by the complete guide: names, badges, tables and the shop verdicts.
-import { trustBadge } from '../../shared/lib/index.js'
+import { trustBadge, withSprite } from '../../shared/lib/index.js'
 
 export const esc = (value) =>
   String(value).replace(
@@ -12,6 +12,18 @@ export const hex = (id) => Number(id).toString(16).toUpperCase().padStart(2, '0'
 
 export function makeNamer(names, lang) {
   return (kind, id) => names[kind]?.[id]?.[lang] ?? names[kind]?.[id]?.en ?? `${kind} ${id}`
+}
+
+/** Escaped name of a gear item or fish with its sprite beside it. */
+export function makePic(names, lang) {
+  const name = makeNamer(names, lang)
+  return (kind, id, size = 'gear') => {
+    const label =
+      kind === 'fish'
+        ? (names.fish[id]?.[lang] ?? names.fish[id]?.en ?? String(id))
+        : name(kind, id)
+    return withSprite(names.sprite?.[kind]?.[id], esc(label), label, size)
+  }
 }
 
 export const badge = (lang, level) => trustBadge(lang, level)

@@ -887,6 +887,21 @@
     return `<span class="trust trust-${level}">${text2}</span>`;
   }
 
+  // src/shared/lib/sprite.js
+  var escapeAttr = (value) => String(value).replace(
+    /[&<>"]/g,
+    (char) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" })[char]
+  );
+  function spriteHtml(src, alt, size = "gear") {
+    if (!src) return "";
+    return `<img class="pic pic-${size}" src="${escapeAttr(src)}" alt="${escapeAttr(alt)}" width="${size === "fish" ? 48 : 32}" height="${size === "fish" ? 48 : 32}" loading="lazy" decoding="async">`;
+  }
+  function withSprite(src, label, alt, size = "gear") {
+    const picture = spriteHtml(src, alt, size);
+    return picture ? `<span class="pic-row">${picture}<span class="pic-name">${label}</span></span>` : label;
+  }
+  var spriteOf = (names, kind, id) => names.sprite?.[kind]?.[id] ?? null;
+
   // src/shared/lib/index.js
   function createPageRuntime(api) {
     const runtime = {};
@@ -1760,6 +1775,10 @@
     /[&<>"]/g,
     (char) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" })[char]
   );
+  function itemPic(data, locale, slot, id, size = "gear") {
+    const name = itemName(data, locale, slot, id);
+    return withSprite(spriteOf(data.names, slot, id), escapeHtml2(name), name, size);
+  }
   function itemName(data, locale, slot, id) {
     const entry = data.names[slot]?.[id];
     return entry?.[locale] ?? entry?.en ?? String(id);
@@ -1788,16 +1807,17 @@
   function rowHtml(data, locale, [slot, id, group], why) {
     const text2 = bestGearCopy(locale);
     const reason = text2.why[group]?.[why[slot === "rod" ? "rod" : slot === "hook" ? "hook" : "item"]];
-    return `<li><span class="bg-slot">${escapeHtml2(text2.slots[slot])}</span><span class="bg-item"><strong>${escapeHtml2(itemName(data, locale, slot, id))}</strong>${reason ? `<span class="bg-reason">${escapeHtml2(reason)}</span>` : ""}</span></li>`;
+    return `<li><span class="bg-slot">${escapeHtml2(text2.slots[slot])}</span><span class="bg-item"><strong>${itemPic(data, locale, slot, id)}</strong>${reason ? `<span class="bg-reason">${escapeHtml2(reason)}</span>` : ""}</span></li>`;
   }
   function floatRow(data, locale) {
     const text2 = bestGearCopy(locale);
     const name = itemName(data, locale, "float_weight", data.best.route.id);
-    return `<li><span class="bg-slot">${escapeHtml2(text2.slots.float)}</span><span class="bg-item"><span class="bg-reason">${escapeHtml2(text2.anyFloat(name))}</span></span></li>`;
+    const pic = itemPic(data, locale, "float_weight", data.best.route.id);
+    return `<li><span class="bg-slot">${escapeHtml2(text2.slots.float)}</span><span class="bg-item">${pic}<span class="bg-reason">${escapeHtml2(text2.anyFloat(name))}</span></span></li>`;
   }
   function alsoHtml(data, locale, method, plan) {
     const text2 = bestGearCopy(locale);
-    const names = (slot, ids) => ids.map((id) => escapeHtml2(itemName(data, locale, slot, id)));
+    const names = (slot, ids) => ids.map((id) => itemPic(data, locale, slot, id));
     const second = method === "float" ? "bait" : method;
     const lines = [];
     for (const [key, slot] of [
@@ -1815,10 +1835,8 @@
   }
   function cheapHtml(data, locale, method, kit) {
     const text2 = bestGearCopy(locale);
-    const names = kitSlots(method, kit).map(
-      ([slot, id]) => escapeHtml2(itemName(data, locale, slot, id))
-    );
-    return `<div class="bg-cheap"><h4>${escapeHtml2(text2.cheap)} ${trustBadge(locale, "rom")} <span class="bg-total">${escapeHtml2(text2.total(text2.yen(kit.yen)))}</span></h4><p>${names.join(" · ")}</p>${easeByBand(text2, kit.starts)}</div>`;
+    const names = kitSlots(method, kit).map(([slot, id]) => itemPic(data, locale, slot, id));
+    return `<div class="bg-cheap"><h4>${escapeHtml2(text2.cheap)} ${trustBadge(locale, "rom")} <span class="bg-total">${escapeHtml2(text2.total(text2.yen(kit.yen)))}</span></h4><p class="bg-pics">${names.join(" ")}</p>${easeByBand(text2, kit.starts)}</div>`;
   }
   function methodHtml(data, locale, method, plan, open) {
     const text2 = bestGearCopy(locale);
