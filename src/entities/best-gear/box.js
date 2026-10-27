@@ -1,5 +1,5 @@
 import { trustBadge } from '../../shared/lib/index.js'
-import { bestGearCopy, easeByBand, escapeHtml, itemName, kitSlots } from './view.js'
+import { bestGearCopy, easeByBand, easeHint, escapeHtml, itemName, kitSlots } from './view.js'
 
 function rowHtml(data, locale, [slot, id, group], why) {
   const text = bestGearCopy(locale)
@@ -49,6 +49,6 @@ export function methodHtml(data, locale, method, plan, open) {
   const rows = kitSlots(method, best).map((slot) => rowHtml(data, locale, slot, best.why))
   if (method === 'float') rows.push(floatRow(data, locale))
   const body = `<h4>${escapeHtml(text.best)} ${trustBadge(locale, 'rom')} <span class="bg-total">${escapeHtml(text.total(text.yen(best.yen)))}</span></h4>
-<ul class="bg-kit">${rows.join('')}</ul>${easeByBand(text, best.starts)}${alsoHtml(data, locale, method, plan)}${cheap ? cheapHtml(data, locale, method, cheap) : ''}`
+<ul class="bg-kit">${rows.join('')}</ul>${easeByBand(text, best.starts)}${easeHint(text)}${alsoHtml(data, locale, method, plan)}${cheap ? cheapHtml(data, locale, method, cheap) : ''}`
   return `<details class="bg-method"${open ? ' open' : ''}><summary>${escapeHtml(text.methods[method])}</summary><div class="bg-body">${body}</div></details>`
 }

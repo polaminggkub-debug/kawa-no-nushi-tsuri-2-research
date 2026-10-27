@@ -4,7 +4,6 @@ import { copy_th } from './copy_th.js'
 
 const COPY = { en: copy_en, th: copy_th, ja: copy_ja }
 const SLOT_OF_METHOD = { float: 'bait', lure: 'lure', fly: 'fly' }
-const PIPS = 6
 
 export const bestGearCopy = (locale) => COPY[locale] ?? copy_en
 
@@ -28,22 +27,24 @@ export function kitSlots(method, kit) {
   return slots
 }
 
-/** Six pips: the more filled, the easier the fight starts. */
-export function easePips(text, notch) {
-  const filled = PIPS - notch
-  const label = `${text.level[notch]} (${filled}/${PIPS})`
-  const dots = Array.from({ length: PIPS }, (_, i) => `<i${i < filled ? ' class="on"' : ''}></i>`)
-  return `<span class="bg-pips" role="img" aria-label="${escapeHtml(label)}">${dots.join('')}</span>`
-}
+/** Level 0..6 folded into five words: 0 very easy, 1 easy, 2 medium, 3 hard, 4+ very hard. */
+const tierOf = (notch) => Math.min(notch, 4)
 
-/** The kit's start for each size band the fish really has, as "Small: [pips] Easy". */
+/** A coloured word pill; the word is always shown, so colour is never the only cue. */
+export const easePill = (text, notch) =>
+  `<span class="bg-pill bg-pill-${tierOf(notch)}">${escapeHtml(text.tier[tierOf(notch)])}</span>`
+
+/** One line per size the fish really has: "Medium fish (16–35 cm) [Easy]". */
 export function easeByBand(text, starts) {
   const items = starts
     .map((notch, band) =>
       notch == null
         ? ''
-        : `<li><span class="bg-band">${escapeHtml(text.bandShort[band])}</span>${easePips(text, notch)}<span>${escapeHtml(text.level[notch])}</span></li>`,
+        : `<li><span class="bg-band">${escapeHtml(text.bands[band])}</span>${easePill(text, notch)}</li>`,
     )
     .join('')
-  return `<ul class="bg-ease" aria-label="${escapeHtml(text.fightEase)}">${items}</ul>`
+  return `<div class="bg-ease-box"><p class="bg-ease-label">${escapeHtml(text.fightEase)}</p><ul class="bg-ease">${items}</ul></div>`
 }
+
+/** The one-line hint shown once per page section. */
+export const easeHint = (text) => `<p class="bg-ease-hint">${escapeHtml(text.easeHint)}</p>`

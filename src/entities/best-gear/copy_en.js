@@ -15,10 +15,10 @@ export const copy_en = {
   best: 'Easiest-start kit',
   cheap: 'Cheapest kit that still works well',
   total: (price) => `Total ${price}`,
-  level: ['Easiest', 'Easy', 'Easy', 'Medium', 'Hard', 'Very hard', 'Very hard'],
+  tier: ['Very easy', 'Easy', 'Medium', 'Hard', 'Very hard'],
   bands: ['Small fish (up to 15 cm)', 'Medium fish (16–35 cm)', 'Big fish (over 35 cm)'],
-  bandShort: ['Small', 'Medium', 'Big'],
-  fightEase: 'How easy the fight starts',
+  fightEase: 'Difficulty at the start of the fight',
+  easeHint: 'The easier it is, the harder it is for the fish to get away',
   why: {
     rod: {
       named: 'The rod named for this fish: it skips the fish-size penalty',

@@ -1,6 +1,7 @@
 import {
   bestGearCopy,
   easeByBand,
+  easeHint,
   escapeHtml,
   itemName,
   maxHtml,
@@ -86,7 +87,7 @@ export function renderTable(ctx) {
   const rows = visibleFish(ctx)
   const text = bestGearCopy(ctx.locale)
   ctx.target.innerHTML = rows.length
-    ? `<table class="bg-table">${headHtml(ctx)}<tbody>${rows.map(([id, fish]) => rowHtml(ctx, id, fish, fish.methods[ctx.method])).join('')}</tbody></table>`
+    ? `<table class="bg-table">${headHtml(ctx)}<tbody>${rows.map(([id, fish]) => rowHtml(ctx, id, fish, fish.methods[ctx.method])).join('')}</tbody></table>${easeHint(text)}`
     : `<p class="bg-empty">${escapeHtml(text.noBite)}</p>`
 }
 
