@@ -246,19 +246,19 @@
   }
 
   // src/features/global-search/index.js
-  function pageContext(nav) {
+  function pageContext(nav2) {
     const lang = ["th", "ja"].includes(document.documentElement.lang.slice(0, 2)) ? document.documentElement.lang.slice(0, 2) : "en";
-    const brand = nav.querySelector(".compendium-brand");
+    const brand = nav2.querySelector(".compendium-brand");
     const base = new URL(".", new URL(brand?.getAttribute("href") || "index.html", location.href));
     const inCatalogue = !location.pathname.includes("/research/");
     const returnTo = inCatalogue ? location.pathname.split("/").pop() + location.search : "";
     return { lang, base: base.pathname, indexUrl: new URL("search-index.json", base).href, returnTo };
   }
-  function mountGlobalSearch(nav) {
-    if (!nav || nav.querySelector("#gsearch")) return;
-    const context = pageContext(nav);
+  function mountGlobalSearch(nav2) {
+    if (!nav2 || nav2.querySelector("#gsearch")) return;
+    const context = pageContext(nav2);
     const state = loadSearch();
-    nav.insertAdjacentHTML("beforeend", mountMarkup(context.lang, state));
+    nav2.insertAdjacentHTML("beforeend", mountMarkup(context.lang, state));
     const toggle = document.createElement("button");
     toggle.type = "button";
     toggle.className = "gsearch-toggle";
@@ -266,9 +266,9 @@
     toggle.setAttribute("aria-expanded", "false");
     toggle.setAttribute("aria-label", copy[context.lang].label);
     toggle.textContent = "⌕";
-    nav.querySelector(".compendium-brand").after(toggle);
-    const box = createBox(nav.querySelector("#gsearch"), context, state);
-    bindToggle(nav, toggle, box);
+    nav2.querySelector(".compendium-brand").after(toggle);
+    const box = createBox(nav2.querySelector("#gsearch"), context, state);
+    bindToggle(nav2, toggle, box);
     bindInput(box);
     bindControls(box, toggle);
     if (state.query) box.load().then(box.render);
@@ -327,9 +327,9 @@
     });
     return box.pending;
   }
-  function bindToggle(nav, toggle, box) {
+  function bindToggle(nav2, toggle, box) {
     toggle.addEventListener("click", () => {
-      const shown = nav.classList.toggle("gsearch-open");
+      const shown = nav2.classList.toggle("gsearch-open");
       toggle.setAttribute("aria-expanded", String(shown));
       if (shown) box.input.focus();
     });
@@ -375,6 +375,53 @@
     });
   }
 
+  // src/features/mobile-menu/index.js
+  var label = { th: "เมนู", ja: "メニュー", en: "Menu" };
+  function mountMobileMenu(nav2) {
+    const links = nav2?.querySelector(".compendium-links");
+    if (!links || nav2.querySelector(".menu-toggle")) return;
+    const lang = document.documentElement.lang.slice(0, 2);
+    const button = document.createElement("button");
+    button.type = "button";
+    button.className = "menu-toggle";
+    button.setAttribute("aria-expanded", "false");
+    button.setAttribute("aria-controls", "compendium-links");
+    button.textContent = `☰ ${label[lang] || label.en}`;
+    links.id ||= "compendium-links";
+    nav2.querySelector(".compendium-brand").after(button);
+    button.addEventListener("click", () => {
+      const open = nav2.classList.toggle("menu-open");
+      button.setAttribute("aria-expanded", String(open));
+    });
+    links.addEventListener("click", () => nav2.classList.remove("menu-open"));
+  }
+
+  // src/features/quiet-repeats/index.js
+  var SELECTOR = "main p, main li, main small";
+  var MIN_LENGTH = 40;
+  function markRepeats(root) {
+    const seen = /* @__PURE__ */ new Set();
+    for (const node of root.querySelectorAll(SELECTOR)) {
+      if (node.children.length || node.closest(".cards")) continue;
+      const text = node.textContent.replace(/\s+/g, " ").trim();
+      if (text.length < MIN_LENGTH) continue;
+      if (seen.has(text)) node.dataset.repeat = "true";
+      else seen.add(text);
+    }
+  }
+  function quietRepeats(main) {
+    if (!main || typeof MutationObserver === "undefined") return;
+    let timer = 0;
+    const run = () => {
+      timer = 0;
+      markRepeats(main);
+    };
+    new MutationObserver(() => {
+      if (!timer) timer = setTimeout(run, 150);
+    }).observe(main, { childList: true, subtree: true });
+    run();
+  }
+
   // src/shared/lib/index.js
   function createPageRuntime(api) {
     const runtime = {};
@@ -387,5 +434,8 @@
   // src/app/navigation.js
   var runtimeContext = createPageRuntime(navigation_exports);
   initialize(runtimeContext);
-  mountGlobalSearch(document.querySelector(".compendium-nav"));
+  var nav = document.querySelector(".compendium-nav");
+  mountMobileMenu(nav);
+  mountGlobalSearch(nav);
+  quietRepeats(document.querySelector("main"));
 })();

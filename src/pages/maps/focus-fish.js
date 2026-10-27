@@ -69,3 +69,38 @@ export function renderBackToFish(ctx) {
   link.href = `fish${ctx.lang === 'en' ? '' : '.' + ctx.lang}.html?${query}#fish-area-map`
   link.textContent = `← ${label[ctx.lang] || label.en} · ${name}`
 }
+
+/** Two fingers on the map zoom the map (not the page); the new zoom applies when they lift. */
+export function bindMapPinch(ctx) {
+  const scroller = ctx.$('map-view').parentElement
+  const fingers = new Map()
+  let startGap = 0,
+    lastGap = 0,
+    baseZoom = 1
+  const gap = () => {
+    const [a, b] = [...fingers.values()]
+    return Math.hypot(a.x - b.x, a.y - b.y)
+  }
+  scroller.addEventListener('pointerdown', (event) => {
+    fingers.set(event.pointerId, { x: event.clientX, y: event.clientY })
+    if (fingers.size === 2) {
+      startGap = lastGap = gap()
+      baseZoom = ctx.zoom
+    }
+  })
+  scroller.addEventListener('pointermove', (event) => {
+    if (!fingers.has(event.pointerId)) return
+    fingers.set(event.pointerId, { x: event.clientX, y: event.clientY })
+    if (fingers.size === 2) lastGap = gap()
+  })
+  const lift = (event) => {
+    if (fingers.size === 2 && startGap > 0) {
+      ctx.zoom = Math.min(3, Math.max(0.6, baseZoom * (lastGap / startGap)))
+      ctx.renderMap()
+    }
+    fingers.delete(event.pointerId)
+    startGap = 0
+  }
+  scroller.addEventListener('pointerup', lift)
+  scroller.addEventListener('pointercancel', lift)
+}

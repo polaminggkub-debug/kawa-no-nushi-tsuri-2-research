@@ -1,4 +1,4 @@
-export { focusSelectedFish, renderBackToFish } from './focus-fish.js'
+export { focusSelectedFish, renderBackToFish, bindMapPinch } from './focus-fish.js'
 export { renderNotebookGuide } from './notebook-guide.js'
 export { renderWaterKey } from './water-icons.js'
 export {

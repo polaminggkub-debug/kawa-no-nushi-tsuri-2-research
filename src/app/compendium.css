@@ -1,2 +1,4 @@
 @import '../shared/ui/index.css';
 @import '../features/global-search/index.css';
+@import '../features/mobile-menu/index.css';
+@import '../features/quiet-repeats/index.css';
