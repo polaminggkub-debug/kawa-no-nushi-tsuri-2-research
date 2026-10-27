@@ -102,6 +102,7 @@ export function currentFishPath(ctx, stage = ctx.requestedStage) {
   if (ctx.id) query.set('id', ctx.id)
   if (stage) query.set('stage', stage)
   if (ctx.requestedMethod) query.set('route', ctx.requestedMethod)
+  if (ctx.requestedSection?.startsWith(`s${stage}-`)) query.set('section', ctx.requestedSection)
   if (ctx.localReturn) query.set('return', ctx.localReturn)
   return `${window.location.pathname.split('/').pop()}?${query.toString()}`
 }
@@ -126,7 +127,9 @@ export function fishMapLink(ctx, stage, section = '') {
   const query = new URLSearchParams({ fish: ctx.id })
   if (stage) query.set('stage', String(stage))
   if (ctx.requestedMethod) query.set('route', ctx.requestedMethod)
-  if (/^s[1-6]-c\d+-r\d+$/.test(section)) query.set('section', section)
+  const wanted =
+    section || (ctx.requestedSection?.startsWith(`s${stage}-`) ? ctx.requestedSection : '')
+  if (/^s[1-6]-c\d+-r\d+$/.test(wanted)) query.set('section', wanted)
   query.set('return', `${ctx.currentFishPath(stage)}#fish-area-map`)
   return `${ctx.mapPath()}?${query.toString()}#map-view`
 }

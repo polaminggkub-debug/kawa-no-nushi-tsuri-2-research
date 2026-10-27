@@ -9,6 +9,9 @@ export function loadProfile(ctx) {
   ctx.originalReturn = ctx.params.get('return') || ''
   ctx.id = ctx.normalizeId(ctx.params.get('id'))
   ctx.requestedStage = ctx.validStage(ctx.params.get('stage'))
+  ctx.requestedSection = /^s[1-6]-c\d+-r\d+$/.test(ctx.params.get('section') || '')
+    ? ctx.params.get('section')
+    : ''
   ctx.requestedMethod = ['float', 'sinker', 'lure', 'fly'].includes(ctx.params.get('route'))
     ? ctx.params.get('route')
     : ''

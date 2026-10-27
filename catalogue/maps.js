@@ -19,6 +19,7 @@
     fishChoice: () => fishChoice,
     fishInStage: () => fishInStage,
     fishMatchesWaterMark: () => fishMatchesWaterMark,
+    focusSelectedFish: () => focusSelectedFish,
     indexMapSections: () => indexMapSections,
     initFromUrl: () => initFromUrl,
     initialize: () => initialize,
@@ -29,6 +30,7 @@
     normalizedSearch: () => normalizedSearch,
     render: () => render,
     renderAreas: () => renderAreas,
+    renderBackToFish: () => renderBackToFish,
     renderFishList: () => renderFishList,
     renderFishListHeader: () => renderFishListHeader,
     renderMap: () => renderMap,
@@ -56,6 +58,70 @@
     waterMarkFishIds: () => waterMarkFishIds,
     waterMarkPinHelp: () => waterMarkPinHelp
   });
+
+  // src/pages/maps/focus-fish.js
+  var PADDING = 70;
+  function pinBounds(pins) {
+    const box = { left: Infinity, top: Infinity, right: -Infinity, bottom: -Infinity };
+    for (const pin of pins) {
+      box.left = Math.min(box.left, pin.offsetLeft - pin.offsetWidth / 2);
+      box.right = Math.max(box.right, pin.offsetLeft + pin.offsetWidth / 2);
+      box.top = Math.min(box.top, pin.offsetTop - pin.offsetHeight / 2);
+      box.bottom = Math.max(box.bottom, pin.offsetTop + pin.offsetHeight / 2);
+    }
+    return { ...box, width: box.right - box.left, height: box.bottom - box.top };
+  }
+  function ensureMapVisible(ctx) {
+    const rect = ctx.$("map-title").getBoundingClientRect();
+    if (rect.top < 0 || rect.top > window.innerHeight * 0.5)
+      ctx.$("map-title").scrollIntoView({ block: "start" });
+  }
+  function focusSelectedFish(ctx) {
+    const view = ctx.$("map-view"), scroller = view.parentElement;
+    if (!ctx.selectedFish || !view.querySelector(".fish-pin")) return;
+    let box = pinBounds(view.querySelectorAll(".fish-pin"));
+    const fit = Math.min(
+      scroller.clientWidth / (box.width + PADDING * 2),
+      scroller.clientHeight / (box.height + PADDING * 2)
+    );
+    const zoom = Math.min(3, Math.max(1, ctx.zoom * Math.min(fit, 3)));
+    if (Math.abs(zoom - ctx.zoom) > 0.05) {
+      ctx.zoom = zoom;
+      ctx.renderMap();
+      box = pinBounds(view.querySelectorAll(".fish-pin"));
+    }
+    scroller.scrollTo({
+      left: Math.max(0, (box.left + box.right) / 2 - scroller.clientWidth / 2),
+      top: Math.max(0, (box.top + box.bottom) / 2 - scroller.clientHeight / 2)
+    });
+    ensureMapVisible(ctx);
+  }
+  var label = {
+    th: "กลับไปหน้าปลา",
+    ja: "魚のページに戻る",
+    en: "Back to the fish page"
+  };
+  function renderBackToFish(ctx) {
+    let link = ctx.$("back-to-fish");
+    if (!ctx.selectedFish) {
+      link?.remove();
+      return;
+    }
+    if (!link) {
+      link = document.createElement("a");
+      link.id = "back-to-fish";
+      link.className = "back-to-fish";
+      ctx.$("map-zoom-bar").before(link);
+    }
+    const query = new URLSearchParams({ id: ctx.selectedFish, stage: String(ctx.activeStage) });
+    if (ctx.selectedRoute) query.set("route", ctx.selectedRoute);
+    if (ctx.activeSection) query.set("section", ctx.activeSection);
+    const original = ctx.returnPath && new URL(ctx.returnPath, location.href).searchParams.get("return");
+    if (original) query.set("return", original);
+    const name = ctx.fishName(ctx.selectedFish);
+    link.href = `fish${ctx.lang === "en" ? "" : "." + ctx.lang}.html?${query}#fish-area-map`;
+    link.textContent = `← ${label[ctx.lang] || label.en} · ${name}`;
+  }
 
   // src/pages/maps/notebook-progress.js
   var storageKey = "kawa-notebook-manual-v1";
@@ -130,14 +196,14 @@
     }
   }
   function addCheckbox(ctx, card, id, c) {
-    const label = document.createElement("label");
-    label.className = "notebook-mark";
+    const label2 = document.createElement("label");
+    label2.className = "notebook-mark";
     const input = document.createElement("input");
     input.type = "checkbox";
     input.dataset.notebookMark = id;
     input.setAttribute("aria-label", `${c.mark}: ${ctx.species[id].name}`);
-    label.append(input, document.createTextNode(` ${c.markShort}`));
-    card.append(label);
+    label2.append(input, document.createTextNode(` ${c.markShort}`));
+    card.append(label2);
   }
   function updateProgress(mount, eligible, ids, c, persistent) {
     mount.querySelector(".notebook-manual-count").textContent = c.count(ids.length, eligible.size);
@@ -367,8 +433,8 @@
     if (!ctx.notebookFullRoute || id !== ctx.notebookSpecies) return "";
     const first = ctx.activeStage;
     const selected = ctx.notebookSelectedStage || first;
-    const label = ctx.lang === "th" ? `จัดไว้ในด่าน ${first} เพื่อไม่นับซ้ำ · จุดตกที่เลือก: ด่าน ${selected}` : ctx.lang === "ja" ? `重複しないようエリア${first}に掲載 · 選択中の釣り場：エリア${selected}` : `Filed under Area ${first} to avoid duplicates · Selected fishing area: ${selected}`;
-    return `<p class="notebook-focus-context">${ctx.esc(label)}</p>`;
+    const label2 = ctx.lang === "th" ? `จัดไว้ในด่าน ${first} เพื่อไม่นับซ้ำ · จุดตกที่เลือก: ด่าน ${selected}` : ctx.lang === "ja" ? `重複しないようエリア${first}に掲載 · 選択中の釣り場：エリア${selected}` : `Filed under Area ${first} to avoid duplicates · Selected fishing area: ${selected}`;
+    return `<p class="notebook-focus-context">${ctx.esc(label2)}</p>`;
   }
   function fishCard(ctx, copyText, id) {
     const fish = ctx.species[id];
@@ -665,8 +731,8 @@
     const mark = ctx.activeWaterMark;
     if (!mark)
       return `<div class="water-mark-results" id="water-mark-results"><p>${ctx.esc(labels.idle)}</p></div>`;
-    const ids = ctx.waterMarkFishIds(ctx.activeStage, mark), label = labels[mark], status = ids.length ? labels.count(ids.length, ctx.activeStage, label) : labels.none(ctx.activeStage), conflict = ctx.selectedFish && !ctx.fishMatchesWaterMark(ctx.selectedFish, mark);
-    return `<div class="water-mark-results" id="water-mark-results"><p class="water-mark-count" aria-live="polite">${ctx.esc(status)}</p>${renderClassCounts(ctx, labels, ids, mark)}<p>${ctx.esc(labels.resultLimit)}</p>${conflict ? `<p class="water-mark-conflict" data-water-mark-conflict role="status">${ctx.esc(labels.conflict(ctx.fishName(ctx.selectedFish), label))}</p>` : ""}<div class="water-mark-actions"><a href="#fish-list">${ctx.esc(labels.listLink)} ↘</a>${ctx.selectedFish ? `<button type="button" data-action="show-mark-candidates">${ctx.esc(labels.clearTarget)}</button>` : ""}<button type="button" data-action="clear-water-mark">${ctx.esc(labels.clearFilter)}</button></div></div>`;
+    const ids = ctx.waterMarkFishIds(ctx.activeStage, mark), label2 = labels[mark], status = ids.length ? labels.count(ids.length, ctx.activeStage, label2) : labels.none(ctx.activeStage), conflict = ctx.selectedFish && !ctx.fishMatchesWaterMark(ctx.selectedFish, mark);
+    return `<div class="water-mark-results" id="water-mark-results"><p class="water-mark-count" aria-live="polite">${ctx.esc(status)}</p>${renderClassCounts(ctx, labels, ids, mark)}<p>${ctx.esc(labels.resultLimit)}</p>${conflict ? `<p class="water-mark-conflict" data-water-mark-conflict role="status">${ctx.esc(labels.conflict(ctx.fishName(ctx.selectedFish), label2))}</p>` : ""}<div class="water-mark-actions"><a href="#fish-list">${ctx.esc(labels.listLink)} ↘</a>${ctx.selectedFish ? `<button type="button" data-action="show-mark-candidates">${ctx.esc(labels.clearTarget)}</button>` : ""}<button type="button" data-action="clear-water-mark">${ctx.esc(labels.clearFilter)}</button></div></div>`;
   }
   function renderClassCounts(ctx, labels, ids, mark) {
     const groups = classifyWaterMarkFish(ctx, ids, mark);
@@ -676,8 +742,8 @@
   }
   function renderGrowthOnlyFishBadge(ctx, id) {
     if (ctx.activeWaterMark !== "large" || !isGrowthOnlyWaterMark(ctx, id, "large")) return "";
-    const label = copy2[ctx.lang].growthBadge;
-    return `<small class="water-mark-growth-badge">${ctx.esc(label)}</small>`;
+    const label2 = copy2[ctx.lang].growthBadge;
+    return `<small class="water-mark-growth-badge">${ctx.esc(label2)}</small>`;
   }
   function waterMarkAreaText(ctx, stage) {
     if (!ctx.activeWaterMark) return "";
@@ -1071,7 +1137,7 @@
         ctx.lang === "th" ? "ส่วนที่กำลังดู" : ctx.lang === "ja" ? "表示範囲" : "Current section"
       ]
     ].map(
-      ([value, label]) => `<button type="button" data-scope="${value}" aria-pressed="${ctx.listScope === value}">${label}</button>`
+      ([value, label2]) => `<button type="button" data-scope="${value}" aria-pressed="${ctx.listScope === value}">${label2}</button>`
     ).join("");
     ctx.$("area-summary").textContent = ctx.activeWaterMark && !term ? ctx.waterMarkAreaText(ctx.activeStage) : term && ctx.activeWaterMark ? `${ctx.c.area(ctx.activeStage)} · ${ids.length} ${ctx.c.fish}` : term ? `${ids.length} ${ctx.c.fish} · ${ctx.c.areas} ${ctx.lang === "ja" ? "で出現" : ctx.lang === "th" ? "ที่พบ" : "with configured points"}` : `${ctx.c.area(ctx.activeStage)} · ${ids.length} ${ctx.c.fish}`;
     ctx.$("search-count").textContent = `${ids.length} ${ctx.c.fish}`;
@@ -1134,8 +1200,8 @@
     ctx.stageSelect.innerHTML = sections.map((section) => {
       const visible = section.pins.map((pin) => ctx.visibleMapFishIds(pin.fishIds)).filter((fishIds) => fishIds.length);
       const speciesCount = new Set(visible.flat()).size;
-      const label = `${ctx.c.mapSection(section.col + 1, section.row + 1)} · ${ctx.c.point(visible.length)} · ${speciesCount} ${ctx.c.species}`;
-      return `<option value="${section.key}" ${section.key === ctx.activeSection ? "selected" : ""}>${ctx.esc(label)}</option>`;
+      const label2 = `${ctx.c.mapSection(section.col + 1, section.row + 1)} · ${ctx.c.point(visible.length)} · ${speciesCount} ${ctx.c.species}`;
+      return `<option value="${section.key}" ${section.key === ctx.activeSection ? "selected" : ""}>${ctx.esc(label2)}</option>`;
     }).join("");
     ctx.stageSelect.disabled = !sections.length;
     ctx.renderTargetSectionLinks(data, sections);
@@ -1159,7 +1225,7 @@
     const current = sections.find((entry) => entry.section.key === ctx.activeSection)?.count || 0;
     const elsewhere = Math.max(0, total - current);
     summary.hidden = false;
-    summary.textContent = ctx.lang === "th" ? `ส่วนนี้ ${current} จาก ${total} จุด · อีก ${elsewhere} จุดอยู่ในส่วนอื่น` : ctx.lang === "ja" ? `この範囲 ${current}/${total} 地点 · 他の範囲に ${elsewhere} 地点` : `This section: ${current} of ${total} points · ${elsewhere} elsewhere`;
+    summary.textContent = ctx.lang === "th" ? `แสดง ${current} จุดที่ปลาอาจอยู่ในส่วนนี้ จากทั้งหมด ${total} จุดของด่าน · อีก ${elsewhere} จุดอยู่ในส่วนอื่น` : ctx.lang === "ja" ? `この範囲に出現しうる地点 ${current}か所（エリア全体 ${total}か所）· 他の範囲に ${elsewhere}か所` : `Showing ${current} possible spots in this section, of ${total} in the area · ${elsewhere} elsewhere`;
     const other = sections.filter((entry) => entry.section.key !== ctx.activeSection);
     shortcuts.hidden = !other.length;
     shortcuts.innerHTML = other.map(
@@ -1180,6 +1246,7 @@
       ctx.selectedFish ? targetInCurrentSection ? previousSection : "" : previousSection
     );
     ctx.render();
+    if (ctx.selectedFish) ctx.focusSelectedFish();
   }
   function showPinDetails(ctx, ids, x, y) {
     const box = ctx.$("pin-details");
@@ -1288,9 +1355,11 @@
     };
   }
   function mapZoomHelp(lang) {
-    if (lang === "th") return "กด + เพื่อขยายจุดที่อยู่ชิดกัน";
-    if (lang === "ja") return "近い地点は＋で拡大できます。";
-    return "Use + to enlarge closely spaced points.";
+    if (lang === "th")
+      return "จุดคือที่ที่ปลาอาจอยู่ ไม่รับประกันว่ามีปลาทุกครั้ง · กด + เพื่อขยายจุดที่อยู่ชิดกัน";
+    if (lang === "ja")
+      return "地点は魚がいるかもしれない場所で、毎回いる保証はありません。近い地点は＋で拡大できます。";
+    return "Spots are where the fish may be, not a guarantee. Use + to enlarge closely spaced points.";
   }
   function renderMapSummary(ctx, section, filtered) {
     const counts = new Set(filtered.flatMap((pin) => pin.fishIds)).size;
@@ -1320,6 +1389,7 @@
     }
     const catalogue = ctx.$("catalogue-fish-link");
     catalogue.textContent = ctx.selectedFish ? ctx.c.tackle : ctx.lang === "th" ? "กลับไปเลือกอุปกรณ์ตกปลา ↗" : ctx.lang === "ja" ? "道具カタログへ ↗" : "Browse the equipment catalogue ↗";
+    ctx.renderBackToFish?.();
     const query = new URLSearchParams({ return: ctx.sourceReturn() });
     if (ctx.selectedFish) {
       query.set("fish", ctx.selectedFish);
@@ -1739,6 +1809,8 @@
       ctx.initFromUrl();
       ctx.enableControls();
       ctx.render();
+      if (ctx.selectedFish && !ctx.openNotebookGuide && !ctx.notebookRouteStage)
+        ctx.focusSelectedFish();
       if (scrollToNotebookSpecies(ctx)) return;
       if (ctx.notebookRouteStage)
         ctx.$(`notebook-route-${ctx.notebookRouteStage}`)?.scrollIntoView({ block: "start" });

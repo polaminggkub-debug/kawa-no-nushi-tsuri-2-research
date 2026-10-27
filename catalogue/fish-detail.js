@@ -133,6 +133,7 @@
     if (ctx.id) query.set("id", ctx.id);
     if (stage) query.set("stage", stage);
     if (ctx.requestedMethod) query.set("route", ctx.requestedMethod);
+    if (ctx.requestedSection?.startsWith(`s${stage}-`)) query.set("section", ctx.requestedSection);
     if (ctx.localReturn) query.set("return", ctx.localReturn);
     return `${window.location.pathname.split("/").pop()}?${query.toString()}`;
   }
@@ -149,7 +150,8 @@
     const query = new URLSearchParams({ fish: ctx.id });
     if (stage) query.set("stage", String(stage));
     if (ctx.requestedMethod) query.set("route", ctx.requestedMethod);
-    if (/^s[1-6]-c\d+-r\d+$/.test(section)) query.set("section", section);
+    const wanted = section || (ctx.requestedSection?.startsWith(`s${stage}-`) ? ctx.requestedSection : "");
+    if (/^s[1-6]-c\d+-r\d+$/.test(wanted)) query.set("section", wanted);
     query.set("return", `${ctx.currentFishPath(stage)}#fish-area-map`);
     return `${ctx.mapPath()}?${query.toString()}#map-view`;
   }
@@ -2201,6 +2203,7 @@
     ctx.originalReturn = ctx.params.get("return") || "";
     ctx.id = ctx.normalizeId(ctx.params.get("id"));
     ctx.requestedStage = ctx.validStage(ctx.params.get("stage"));
+    ctx.requestedSection = /^s[1-6]-c\d+-r\d+$/.test(ctx.params.get("section") || "") ? ctx.params.get("section") : "";
     ctx.requestedMethod = ["float", "sinker", "lure", "fly"].includes(ctx.params.get("route")) ? ctx.params.get("route") : "";
     ctx.localReturn = ctx.safeLocalReturn(ctx.originalReturn);
     ctx.shoppingCopy = { en: shoppingCopy_en, ja: shoppingCopy_ja, th: shoppingCopy_th }[ctx.locale];

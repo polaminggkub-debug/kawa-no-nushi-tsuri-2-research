@@ -58,7 +58,7 @@ function checkAreaDecision(result, lang, fishId, area) {
     currentArea.includes(configuredPointLabel(lang, pointCount)),
     `${lang}/${fishId}/${area.stage}: configured point count missing or wrong`,
   )
-  checkEmptyPointAdvice(currentArea, lang, fishId, area.stage, pointCount)
+  checkEmptyPointAdvice(result.html, lang, fishId, area.stage, pointCount)
   checkFishMapLinks(currentArea, result, lang, fishId, area)
 }
 
@@ -69,7 +69,9 @@ function configuredPointLabel(lang, count) {
 }
 
 function checkEmptyPointAdvice(html, lang, fishId, stage, count) {
-  const advice = html.match(/<p class="section-lede">([\s\S]*?)<\/p>/)?.[1]
+  const advice = html.match(
+    /<section class="detail-section fish-notes" id="fish-notes"><h2>[^<]*<\/h2><p>([\s\S]*?)<\/p>/,
+  )?.[1]
   assert(advice, `${lang}/${fishId}/${stage}: missing empty-point advice`)
   if (count === 1) {
     const wording = {

@@ -55,10 +55,10 @@ export function renderTargetSectionLinks(ctx, data, targetSections) {
   summary.hidden = false
   summary.textContent =
     ctx.lang === 'th'
-      ? `ส่วนนี้ ${current} จาก ${total} จุด · อีก ${elsewhere} จุดอยู่ในส่วนอื่น`
+      ? `แสดง ${current} จุดที่ปลาอาจอยู่ในส่วนนี้ จากทั้งหมด ${total} จุดของด่าน · อีก ${elsewhere} จุดอยู่ในส่วนอื่น`
       : ctx.lang === 'ja'
-        ? `この範囲 ${current}/${total} 地点 · 他の範囲に ${elsewhere} 地点`
-        : `This section: ${current} of ${total} points · ${elsewhere} elsewhere`
+        ? `この範囲に出現しうる地点 ${current}か所（エリア全体 ${total}か所）· 他の範囲に ${elsewhere}か所`
+        : `Showing ${current} possible spots in this section, of ${total} in the area · ${elsewhere} elsewhere`
   const other = sections.filter((entry) => entry.section.key !== ctx.activeSection)
   shortcuts.hidden = !other.length
   shortcuts.innerHTML = other
@@ -87,6 +87,7 @@ export function setFish(ctx, id, { toggle = true } = {}) {
     ctx.selectedFish ? (targetInCurrentSection ? previousSection : '') : previousSection,
   )
   ctx.render()
+  if (ctx.selectedFish) ctx.focusSelectedFish()
 }
 
 export function showPinDetails(ctx, ids, x, y) {
@@ -225,9 +226,11 @@ export function mapGeometry(ctx, data, section, pins = section?.pins || []) {
   }
 }
 function mapZoomHelp(lang) {
-  if (lang === 'th') return 'กด + เพื่อขยายจุดที่อยู่ชิดกัน'
-  if (lang === 'ja') return '近い地点は＋で拡大できます。'
-  return 'Use + to enlarge closely spaced points.'
+  if (lang === 'th')
+    return 'จุดคือที่ที่ปลาอาจอยู่ ไม่รับประกันว่ามีปลาทุกครั้ง · กด + เพื่อขยายจุดที่อยู่ชิดกัน'
+  if (lang === 'ja')
+    return '地点は魚がいるかもしれない場所で、毎回いる保証はありません。近い地点は＋で拡大できます。'
+  return 'Spots are where the fish may be, not a guarantee. Use + to enlarge closely spaced points.'
 }
 
 export function renderMapSummary(ctx, section, filtered) {
@@ -274,6 +277,7 @@ export function renderMapNavigation(ctx) {
       : ctx.lang === 'ja'
         ? '道具カタログへ ↗'
         : 'Browse the equipment catalogue ↗'
+  ctx.renderBackToFish?.()
   const query = new URLSearchParams({ return: ctx.sourceReturn() })
   if (ctx.selectedFish) {
     query.set('fish', ctx.selectedFish)
