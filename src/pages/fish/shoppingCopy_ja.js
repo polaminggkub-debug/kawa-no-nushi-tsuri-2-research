@@ -11,4 +11,5 @@ export const shoppingCopy_ja = {
   bundle: '店売りフライセット',
   all: '対応道具の全一覧',
   buy: '使い方と店の詳細を見る',
+  shop: 'この道具を売る店',
 }

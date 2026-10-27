@@ -11,4 +11,5 @@ export const shoppingCopy_en = {
   bundle: 'Ready-made fly set',
   all: 'All compatible tackle',
   buy: 'Open use and shop details',
+  shop: 'Shop that sells it here',
 }

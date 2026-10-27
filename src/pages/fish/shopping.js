@@ -70,7 +70,8 @@ function starterCard(ctx, offer, stage, allItems, text) {
   const summaryTotal = total || rod.match(/data-method-setup-total="(\d+)"/)?.[1]
   const summary = starterSummary(ctx, offer, summaryTotal)
   const open = ctx.requestedMethod === method ? ' open' : ''
-  return `<details class="detail-section starter-offer" id="starter-${method}" data-method="${method}" data-item="${item.category}:${item.id}" data-price="${offer.price}"${open}><summary>${summary}</summary>${starterItem(ctx, offer, stage, text)}${rod}${rig}${aim}${fly}<a class="route-button" href="${ctx.escapeHtml(link)}">${ctx.escapeHtml(text.buy)} ↗</a></details>`
+  const shopLink = offerLink(ctx, method, offer.entry, stage, stage, '#fish-shopping')
+  return `<details class="detail-section starter-offer" id="starter-${method}" data-method="${method}" data-item="${item.category}:${item.id}" data-price="${offer.price}"${open}><summary>${summary}</summary>${starterItem(ctx, offer, stage, text)}${rod}${rig}${aim}${fly}<a class="route-button" href="${ctx.escapeHtml(link)}">${ctx.escapeHtml(text.buy)} ↗</a> <a class="route-button" data-sold-at href="${ctx.escapeHtml(shopLink)}">${ctx.escapeHtml(text.shop)} ↗</a></details>`
 }
 
 function starterSummary(ctx, offer, total) {

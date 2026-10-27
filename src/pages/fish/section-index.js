@@ -1,7 +1,8 @@
 const sections = [
-  ['best-gear', 'อุปกรณ์ที่ดีที่สุด', 'ベスト装備', 'Best gear'],
-  ['fish-area-map', 'จุดตกปลา', '釣り場', 'Fishing spots'],
-  ['fish-shopping', 'ชุดเริ่มตก', '最初の仕掛け', 'Fishing setup'],
+  ['fish-area-map', 'ไปตกที่ไหน', '釣り場', 'Where'],
+  ['best-gear', 'ชุดเบ็ดที่ควรใช้', 'ベスト装備', 'Gear'],
+  ['fish-shopping', 'ซื้ออะไร ที่ไหน', '買うもの・店', 'What to buy'],
+  ['fish-notes', 'ควรรู้', '知っておくこと', 'Good to know'],
   ['fish-notebook', 'สมุดปลา', '釣りノート', 'Notebook'],
   ['all-compatible', 'เหยื่อทางเลือก', 'エサの候補', 'Bait alternatives'],
   ['fish-evidence', 'หลักฐาน', '根拠', 'Evidence'],

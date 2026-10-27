@@ -29,6 +29,7 @@
     renderCompatibility: () => renderCompatibility,
     renderEvidence: () => renderEvidence,
     renderExchange: () => renderExchange,
+    renderFishNotes: () => renderFishNotes,
     renderFlyFallback: () => renderFlyFallback,
     renderReusableKit: () => renderReusableKit,
     renderRigForMethod: () => renderRigForMethod,
@@ -913,8 +914,12 @@
     const selected = locations.find((location2) => String(location2.stage) === String(activeStage)) || locations[0];
     const stage = String(selected.stage), name = selected.stageName?.[ctx.locale] || selected.stageName?.en || ctx.copy.stage(stage);
     const maps = (selected.maps || []).map((map) => ctx.renderAreaMap(map, selected, fish)).join("");
-    const caution = emptyPointAdvice(ctx, pointCount(ctx, selected));
-    return `<section class="detail-section fish-where-to-go" id="fish-area-map"><h2>${ctx.escapeHtml(ctx.copy.areas)}</h2><label class="area-select-label" for="shopping-area">${ctx.escapeHtml(ctx.shoppingCopy.area)}</label><select id="shopping-area" class="area-select">${locations.map((location2) => `<option value="${ctx.escapeHtml(location2.stage)}" ${String(location2.stage) === stage ? "selected" : ""}>${ctx.escapeHtml(ctx.copy.stage(location2.stage))} · ${ctx.escapeHtml(location2.stageName?.[ctx.locale] || location2.stageName?.en || "")}</option>`).join("")}</select><article class="detail-section area-card current-area" data-active="true"><h3>${ctx.escapeHtml(ctx.copy.stage(stage))} · ${ctx.escapeHtml(name)}</h3><p class="area-point-count">${ctx.escapeHtml(ctx.copy.configuredPoints(ctx.pointCount(selected)))}</p><p class="section-lede">${ctx.escapeHtml(caution)}</p>${howItWorksLink(ctx)}${maps ? `<div class="detail-grid area-map-grid">${maps}</div>` : ""}<a class="route-button" href="${ctx.escapeHtml(ctx.fishMapLink(stage))}">${ctx.escapeHtml(ctx.copy.mapAction)} ↗</a></article></section>`;
+    return `<section class="detail-section fish-where-to-go" id="fish-area-map"><h2>${ctx.escapeHtml(ctx.copy.areas)}</h2><label class="area-select-label" for="shopping-area">${ctx.escapeHtml(ctx.shoppingCopy.area)}</label><select id="shopping-area" class="area-select">${locations.map((location2) => `<option value="${ctx.escapeHtml(location2.stage)}" ${String(location2.stage) === stage ? "selected" : ""}>${ctx.escapeHtml(ctx.copy.stage(location2.stage))} · ${ctx.escapeHtml(location2.stageName?.[ctx.locale] || location2.stageName?.en || "")}</option>`).join("")}</select><article class="detail-section area-card current-area" data-active="true"><h3>${ctx.escapeHtml(ctx.copy.stage(stage))} · ${ctx.escapeHtml(name)}</h3><p class="area-point-count">${ctx.escapeHtml(ctx.copy.configuredPoints(ctx.pointCount(selected)))}</p><p class="section-lede spots-hint">${ctx.escapeHtml(ctx.copy.spotsHint)}</p>${maps ? `<div class="detail-grid area-map-grid">${maps}</div>` : ""}<a class="route-button" href="${ctx.escapeHtml(ctx.fishMapLink(stage))}">${ctx.escapeHtml(ctx.copy.mapAction)} ↗</a></article></section>`;
+  }
+  function renderFishNotes(ctx, locations, activeStage) {
+    const selected = locations.find((entry) => String(entry.stage) === String(activeStage));
+    if (!selected) return "";
+    return `<section class="detail-section fish-notes" id="fish-notes"><h2>${ctx.escapeHtml(ctx.copy.notes)}</h2><p>${ctx.escapeHtml(emptyPointAdvice(ctx, pointCount(ctx, selected)))}</p>${howItWorksLink(ctx)}</section>`;
   }
 
   // src/pages/fish/evidence.js
@@ -1029,7 +1034,8 @@
     const summaryTotal = total || rod.match(/data-method-setup-total="(\d+)"/)?.[1];
     const summary = starterSummary(ctx, offer, summaryTotal);
     const open = ctx.requestedMethod === method ? " open" : "";
-    return `<details class="detail-section starter-offer" id="starter-${method}" data-method="${method}" data-item="${item.category}:${item.id}" data-price="${offer.price}"${open}><summary>${summary}</summary>${starterItem(ctx, offer, stage, text2)}${rod}${rig}${aim}${fly}<a class="route-button" href="${ctx.escapeHtml(link)}">${ctx.escapeHtml(text2.buy)} ↗</a></details>`;
+    const shopLink = offerLink(ctx, method, offer.entry, stage, stage, "#fish-shopping");
+    return `<details class="detail-section starter-offer" id="starter-${method}" data-method="${method}" data-item="${item.category}:${item.id}" data-price="${offer.price}"${open}><summary>${summary}</summary>${starterItem(ctx, offer, stage, text2)}${rod}${rig}${aim}${fly}<a class="route-button" href="${ctx.escapeHtml(link)}">${ctx.escapeHtml(text2.buy)} ↗</a> <a class="route-button" data-sold-at href="${ctx.escapeHtml(shopLink)}">${ctx.escapeHtml(text2.shop)} ↗</a></details>`;
   }
   function starterSummary(ctx, offer, total) {
     const bait = ctx.localizedItemName(offer.entry.item);
@@ -1286,9 +1292,10 @@
 
   // src/pages/fish/section-index.js
   var sections = [
-    ["best-gear", "อุปกรณ์ที่ดีที่สุด", "ベスト装備", "Best gear"],
-    ["fish-area-map", "จุดตกปลา", "釣り場", "Fishing spots"],
-    ["fish-shopping", "ชุดเริ่มตก", "最初の仕掛け", "Fishing setup"],
+    ["fish-area-map", "ไปตกที่ไหน", "釣り場", "Where"],
+    ["best-gear", "ชุดเบ็ดที่ควรใช้", "ベスト装備", "Gear"],
+    ["fish-shopping", "ซื้ออะไร ที่ไหน", "買うもの・店", "What to buy"],
+    ["fish-notes", "ควรรู้", "知っておくこと", "Good to know"],
     ["fish-notebook", "สมุดปลา", "釣りノート", "Notebook"],
     ["all-compatible", "เหยื่อทางเลือก", "エサの候補", "Bait alternatives"],
     ["fish-evidence", "หลักฐาน", "根拠", "Evidence"]
@@ -1850,6 +1857,7 @@
     "#fly-backup": "fly-backup",
     "#fight-controls": "fight-controls",
     "#fish-shopping": "fish-shopping",
+    "#fish-notes": "fish-notes",
     "#fish-notebook": "fish-notebook",
     "#fish-evidence": "fish-evidence"
   };
@@ -1915,7 +1923,7 @@
     const notebook = fishData.notebookCompletion?.species?.[ctx.id];
     const firstStep = notebook?.notebookEligible === true ? "" : renderFirstStep(ctx);
     const bestGear = ctx.bestGear ? renderBestGear(ctx.bestGear, ctx.locale, parseInt(ctx.id, 16)) : "";
-    const content = `${renderEelQuestContext(ctx, locationData)}${firstStep}${bestGear}${ctx.renderAreas(state.locations, state.activeStage, fish)}${ctx.renderExchange(fishData.items || [], state.activeStage)}${ctx.renderShopping(state.matches, state.locations, state.activeStage, fishData.items || [], fishData.flyBackupChoices)}${renderFightControls(ctx, state.activeStage)}${renderNotebookStatus(ctx, fishData)}${compatibleSection(ctx, state)}${ctx.renderWaterIcons(fishData.waterIcons, state.activeStage)}${ctx.renderEvidence(fish, state.locations, state.matches)}`;
+    const content = `${renderEelQuestContext(ctx, locationData)}${firstStep}${ctx.renderAreas(state.locations, state.activeStage, fish)}${bestGear}${ctx.renderShopping(state.matches, state.locations, state.activeStage, fishData.items || [], fishData.flyBackupChoices)}${ctx.renderExchange(fishData.items || [], state.activeStage)}${ctx.renderFishNotes(state.locations, state.activeStage)}${renderFightControls(ctx, state.activeStage)}${renderNotebookStatus(ctx, fishData)}${compatibleSection(ctx, state)}${ctx.renderWaterIcons(fishData.waterIcons, state.activeStage)}${ctx.renderEvidence(fish, state.locations, state.matches)}`;
     return `${renderProfileHero(ctx, state)}${renderSectionIndex(ctx, content)}${content}`;
   }
   function unconfirmedProfileContent(ctx, fishData, locationData, fish, state) {
@@ -2003,7 +2011,9 @@
     catalogue: "Browse fish and equipment",
     back: "Back to previous page",
     map: "Open this fish on the map",
-    areas: "Confirmed areas and fishing spots",
+    areas: "Where to fish · areas and possible spots",
+    notes: "Good to know before you go",
+    spotsHint: "Map spots are places the fish may be, not a guarantee it is there every time.",
     bait: "Live bait",
     lure: "Lures",
     fly: "Fly bodies",
@@ -2048,7 +2058,9 @@
     catalogue: "魚と道具の一覧",
     back: "前のページに戻る",
     map: "この魚のマップを開く",
-    areas: "確認済みエリアと釣りポイント",
+    areas: "どこで釣る？ エリアと出現しうるポイント",
+    notes: "行く前に知っておくこと",
+    spotsHint: "地図の印は魚がいるかもしれない場所で、毎回いる保証はありません。",
     bait: "エサ",
     lure: "ルアー",
     fly: "フライ本体",
@@ -2093,7 +2105,9 @@
     catalogue: "ดูรายชื่อปลาและอุปกรณ์",
     back: "กลับหน้าก่อนหน้า",
     map: "เปิดแผนที่ของปลานี้",
-    areas: "ด่านและจุดตกที่ยืนยันจากเกม",
+    areas: "ไปตกที่ไหน · ด่านและจุดที่ปลาอาจอยู่",
+    notes: "ควรรู้ก่อนไปตก",
+    spotsHint: "จุดบนแผนที่คือที่ที่ปลาอาจอยู่ ไม่ได้รับประกันว่าจะมีปลาทุกครั้ง",
     bait: "เหยื่อจริง",
     lure: "เหยื่อปลอม",
     fly: "ตัวฟลาย",
@@ -2146,7 +2160,8 @@
     cost: "Price",
     bundle: "Ready-made fly set",
     all: "All compatible tackle",
-    buy: "Open use and shop details"
+    buy: "Open use and shop details",
+    shop: "Shop that sells it here"
   };
 
   // src/pages/fish/shoppingCopy_ja.js
@@ -2160,7 +2175,8 @@
     cost: "価格",
     bundle: "店売りフライセット",
     all: "対応道具の全一覧",
-    buy: "使い方と店の詳細を見る"
+    buy: "使い方と店の詳細を見る",
+    shop: "この道具を売る店"
   };
 
   // src/pages/fish/shoppingCopy_th.js
@@ -2174,7 +2190,8 @@
     cost: "ราคา",
     bundle: "ชุดฟลายสำเร็จรูป",
     all: "เหยื่อทั้งหมดที่ใช้ด้วยได้",
-    buy: "เปิดวิธีใช้และร้าน"
+    buy: "เปิดวิธีใช้และร้าน",
+    shop: "ร้านที่ขายในด่านนี้"
   };
 
   // src/pages/fish/load-profile.js
