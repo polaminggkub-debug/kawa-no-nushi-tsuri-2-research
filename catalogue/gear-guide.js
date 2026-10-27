@@ -48,6 +48,8 @@
     maxEel: "MAX size 220 cm, one eel per game, in the eel story only. It does not grow and loses 2 cm after each lost fight.",
     methods: { float: "Float rod + bait", lure: "Lure rod + lure", fly: "Fly rod + fly" },
     slots: { rod: "Rod", hook: "Hook", bait: "Bait", lure: "Lure", fly: "Fly body", float: "Float" },
+    line: { short: "Short line", medium: "Medium line", long: "Long line" },
+    shortWarn: "Short line: big fish snap it easily",
     anyFloat: (name) => `Any float works (cheapest: ${name})`,
     best: "Easiest-start kit",
     cheap: "Cheapest kit that still works well",
@@ -125,6 +127,8 @@
       fly: "フライ（ボディ）",
       float: "ウキ"
     },
+    line: { short: "糸が短い", medium: "糸が普通", long: "糸が長い" },
+    shortWarn: "糸が短く、大物に切られやすい",
     anyFloat: (name) => `ウキはどれでもOK（いちばん安い：${name}）`,
     best: "最初の戦いがいちばん楽な組み合わせ",
     cheap: "十分使える中でいちばん安い組み合わせ",
@@ -202,6 +206,8 @@
       fly: "ฟลาย (บอดี้)",
       float: "ทุ่น"
     },
+    line: { short: "สายสั้น", medium: "สายกลาง", long: "สายยาว" },
+    shortWarn: "สายสั้น ปลาใหญ่ดึงสายขาดง่าย",
     anyFloat: (name) => `ทุ่นอะไรก็ได้ (ถูกสุด: ${name})`,
     best: "ชุดที่สู้ง่ายที่สุดตอนเริ่ม",
     cheap: "ชุดที่ถูกที่สุดที่ยังใช้ได้ดี",
@@ -300,6 +306,13 @@
   var easeHint = (text) => `<p class="bg-ease-hint">${escapeHtml(text.easeHint)}</p>`;
   var buyText = (text, [stage, shop]) => `${text.buyAt} ${text.stage(stage)} ${text.shops[shop]}`;
   var buyOf = (kit, slot) => kit.buy[slot === "rod" || slot === "hook" ? slot : "item"];
+  var lineOf = (reach) => reach <= 9 ? "short" : reach <= 18 ? "medium" : "long";
+  function lineNote(text, kit) {
+    if (kit.reach == null) return "";
+    const word = lineOf(kit.reach);
+    const label = kit.big && kit.reach < 12 ? text.shortWarn : text.line[word];
+    return `<small class="bg-line bg-line-${word}">${escapeHtml(label)}</small>`;
+  }
 
   // src/entities/best-gear/max.js
   function maxHtml(text, fish) {
@@ -331,7 +344,7 @@
     const buy = escapeHtml(buyText(text, buyOf(kit, slot)));
     const reason = why && why !== "plain" && why !== "any" ? text.why[group]?.[why] : "";
     const name = id == null ? "–" : itemPic(data, locale, slot, id);
-    return `<td data-label="${escapeHtml(label)}"><span>${name}${reason ? `<small>${escapeHtml(reason)}</small>` : ""}<small>${buy}</small></span></td>`;
+    return `<td data-label="${escapeHtml(label)}"><span>${name}${slot === "rod" ? lineNote(text, kit) : ""}${reason ? `<small>${escapeHtml(reason)}</small>` : ""}<small>${buy}</small></span></td>`;
   }
   var colCount = (ctx) => ctx.method === "float" ? 6 : 5;
   function noteRow(ctx, html) {
@@ -342,7 +355,7 @@
     const text = bestGearCopy(locale);
     const { kit, stage } = plan.later;
     const names = kitSlots(ctx.method, kit).map(
-      ([slot, id]) => `${itemPic(data, locale, slot, id)} <small>(${escapeHtml(buyText(text, buyOf(kit, slot)))})</small>`
+      ([slot, id]) => `${itemPic(data, locale, slot, id)}${slot === "rod" ? lineNote(text, kit) : ""} <small>(${escapeHtml(buyText(text, buyOf(kit, slot)))})</small>`
     );
     return noteRow(
       ctx,

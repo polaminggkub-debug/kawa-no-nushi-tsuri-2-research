@@ -63,6 +63,18 @@
   color: var(--muted);
   font-size: 0.92rem;
 }
+.bg-line {
+  display: block;
+  font-size: 0.92rem;
+  font-weight: 600;
+}
+.bg-line-short {
+  color: #b45309;
+}
+.bg-line-medium,
+.bg-line-long {
+  color: var(--muted);
+}
 .bg-ease-box {
   margin-block: 12px 0;
 }

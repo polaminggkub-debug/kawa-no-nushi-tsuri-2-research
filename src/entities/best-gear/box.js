@@ -9,13 +9,14 @@ import {
   itemName,
   itemPic,
   kitSlots,
+  lineNote,
 } from './view.js'
 
 function rowHtml(data, locale, [slot, id, group], kit) {
   const why = kit.why
   const text = bestGearCopy(locale)
   const reason = text.why[group]?.[why[slot === 'rod' ? 'rod' : slot === 'hook' ? 'hook' : 'item']]
-  return `<li><span class="bg-slot">${escapeHtml(text.slots[slot])}</span><span class="bg-item"><strong>${itemPic(data, locale, slot, id)}</strong>${reason ? `<span class="bg-reason">${escapeHtml(reason)}</span>` : ''}<span class="bg-buy">${escapeHtml(buyText(text, buyOf(kit, slot)))}</span></span></li>`
+  return `<li><span class="bg-slot">${escapeHtml(text.slots[slot])}</span><span class="bg-item"><strong>${itemPic(data, locale, slot, id)}</strong>${slot === 'rod' ? lineNote(text, kit) : ''}${reason ? `<span class="bg-reason">${escapeHtml(reason)}</span>` : ''}<span class="bg-buy">${escapeHtml(buyText(text, buyOf(kit, slot)))}</span></span></li>`
 }
 
 function floatRow(data, locale) {
@@ -50,7 +51,7 @@ function cheapHtml(data, locale, method, kit) {
   const text = bestGearCopy(locale)
   const names = kitSlots(method, kit).map(
     ([slot, id]) =>
-      `${itemPic(data, locale, slot, id)} <small class="bg-buy">(${escapeHtml(buyText(text, buyOf(kit, slot)))})</small>`,
+      `${itemPic(data, locale, slot, id)}${slot === 'rod' ? lineNote(text, kit) : ''} <small class="bg-buy">(${escapeHtml(buyText(text, buyOf(kit, slot)))})</small>`,
   )
   return `<div class="bg-cheap"><h4>${escapeHtml(text.cheap)} ${trustBadge(locale, 'rom')} <span class="bg-total">${escapeHtml(text.total(text.yen(kit.yen)))}</span></h4><p class="bg-pics">${names.join(' · ')}</p>${easeByBand(text, kit.starts)}</div>`
 }

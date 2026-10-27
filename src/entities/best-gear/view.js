@@ -66,3 +66,14 @@ export const buyText = (text, [stage, shop]) =>
 
 /** The `buy` entry of a kit for a slot of kitSlots(). */
 export const buyOf = (kit, slot) => kit.buy[slot === 'rod' || slot === 'hook' ? slot : 'item']
+
+/** Rod line length word from its reach: short (9 or less), medium (12-18), long (21 or more). */
+export const lineOf = (reach) => (reach <= 9 ? 'short' : reach <= 18 ? 'medium' : 'long')
+
+/** The tag shown next to a rod: its line length, plus the warning on a big-fish kit with a short line. */
+export function lineNote(text, kit) {
+  if (kit.reach == null) return ''
+  const word = lineOf(kit.reach)
+  const label = kit.big && kit.reach < 12 ? text.shortWarn : text.line[word]
+  return `<small class="bg-line bg-line-${word}">${escapeHtml(label)}</small>`
+}

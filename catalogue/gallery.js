@@ -1321,11 +1321,11 @@
     en: "Choose recovery food and see where to buy it"
   };
   function hpRecoveryAction(options) {
-    const { locale, cataloguePath, stage, returnPath, source, escapeHtml } = options;
+    const { locale, cataloguePath, stage, returnPath, source, escapeHtml: escapeHtml2 } = options;
     const query = new URLSearchParams({ category: "food", return: returnPath });
     if (/^[1-6]$/.test(String(stage))) query.set("stage", String(stage));
     const href = `${cataloguePath}?${query}#category-decisions`;
-    return `<a class="route-button" data-hp-food-action data-hp-source="${escapeHtml(source)}" href="${escapeHtml(href)}">${escapeHtml(labels[locale] || labels.en)} ↗</a>`;
+    return `<a class="route-button" data-hp-food-action data-hp-source="${escapeHtml2(source)}" href="${escapeHtml2(href)}">${escapeHtml2(labels[locale] || labels.en)} ↗</a>`;
   }
 
   // src/shared/lib/index.js
@@ -1631,6 +1631,241 @@
       return `<a class="category-button" href="${ctx.esc(categoryNavigationHref(ctx, c, document.getElementById("fish-filter").value))}" data-category="${c}"><img src="${ctx.esc(i?.image)}" alt=""><span><strong>${ctx.esc(ctx.player.cat[c])}</strong><small>${ctx.allItems.filter((i2) => ctx.groupOf(i2) === c).length}</small></span></a>`;
     }).join("");
   }
+
+  // src/entities/best-gear/copy_en.js
+  var copy_en = {
+    title: "Gear for this fish",
+    size: (low, high) => `Real size ${low === high ? low : `${low}–${high}`} cm`,
+    maxSize: (high) => `MAX size ${high} cm`,
+    maxSlow: "Takes long to raise",
+    maxSlowNote: (picks, nights) => `MAX needs ${picks[0]}–${picks[1]} inn nights that pick its cell; at about 30 fights between nights that is roughly ${nights[0]}–${nights[1]} nights.`,
+    maxAkame: "MAX size 150 cm only for character 1 before the quest fish is landed. Everyone else gets 60–119 cm.",
+    maxEel: "MAX size 220 cm, one eel per game, in the eel story only. It does not grow and loses 2 cm after each lost fight.",
+    methods: { float: "Float rod + bait", lure: "Lure rod + lure", fly: "Fly rod + fly" },
+    slots: { rod: "Rod", hook: "Hook", bait: "Bait", lure: "Lure", fly: "Fly body", float: "Float" },
+    line: { short: "Short line", medium: "Medium line", long: "Long line" },
+    shortWarn: "Short line: big fish snap it easily",
+    anyFloat: (name) => `Any float works (cheapest: ${name})`,
+    best: "Easiest-start kit",
+    cheap: "Cheapest kit that still works well",
+    total: (price) => `Total ${price}`,
+    tier: ["Very easy", "Easy", "Medium", "Hard", "Very hard"],
+    bands: ["Small fish (up to 15 cm)", "Medium fish (16–35 cm)", "Big fish (over 35 cm)"],
+    fightEase: "Difficulty at the start of the fight",
+    easeHint: "The easier it is, the harder it is for the fish to get away",
+    why: {
+      rod: {
+        named: "The rod named for this fish: it skips the fish-size penalty",
+        light: "Light rod: easiest on small fish, and ties with a medium rod on medium fish",
+        medium: "Medium rod: as easy as a light rod for fish this size",
+        heavy: "Heavy rod: does not make the fight easier, but gives the long reach big fish need"
+      },
+      hook: {
+        named: "The hook named for this fish: one step easier",
+        any: "Any hook will do, because the bait is already named for this fish (take the cheapest)",
+        small: "Small hook, right for fish up to 15 cm",
+        medium: "Medium hook, right for fish 16–35 cm",
+        large: "Big hook, right for fish over 35 cm",
+        plain: "This hook does not change the fight"
+      },
+      bait: {
+        named: "The bait named for this fish: one step easier",
+        plain: "The fish takes this bait; take the cheapest one it takes"
+      },
+      lure: {
+        named: "The lure named for this fish: one step easier",
+        small: "This lure type helps small fish (up to 15 cm)",
+        medium: "This lure type helps fish 16–35 cm",
+        large: "This lure type helps fish over 35 cm",
+        plain: "This lure does not change the fight"
+      },
+      fly: {
+        small: "This fly body helps small fish (up to 15 cm)",
+        medium: "This fly body helps fish 16–35 cm",
+        large: "This fly body helps fish over 35 cm",
+        plain: "This fly body does not change the fight; it only decides whether the fish bites"
+      }
+    },
+    alsoOk: "Also fine (equally easy)",
+    detailsTitle: "Why this kit (ROM evidence)",
+    startsLine: (base) => `This fish starts at level ${base} before any gear (0 easiest to 6 hardest)`,
+    startsWith: (band, n) => `${band}: level ${n} with this kit`,
+    reach: (need) => `Rod reach needed: about ${need} or more. This is only an estimate from the wiki’s own simulation, not proven in the ROM`,
+    evidence: "Every rule has a ROM address and a test that runs the real game. The full table and rules:",
+    evidenceLink: "gear-fish-matrix.md",
+    noBite: "This fish does not take this method",
+    buyAt: "Buy at:",
+    stage: (n) => `Stage ${n}`,
+    shops: { shop: "shop", special: "special rod shop", fly: "ready-made fly shop" },
+    laterHead: (n) => `Once you reach stage ${n}:`,
+    nothingYet: (n) => `The shops of stage ${n} and earlier do not sell anything this fish takes with this method yet`,
+    yen: (n) => `¥${n.toLocaleString("en-US")}`,
+    loading: "Loading the gear…",
+    failed: "Could not load the gear"
+  };
+
+  // src/entities/best-gear/copy_ja.js
+  var copy_ja = {
+    title: "この魚の仕掛け",
+    size: (low, high) => `実際のサイズ ${low === high ? low : `${low}–${high}`} cm`,
+    maxSize: (high) => `最大サイズ ${high} cm`,
+    maxSlow: "育つまで長い",
+    maxSlowNote: (picks, nights) => `MAXになるには、その魚のマスが宿の夜に${picks[0]}〜${picks[1]}回選ばれる必要があります。夜の間に約30回ファイトする場合、およそ${nights[0]}〜${nights[1]}泊です。`,
+    maxAkame: "最大サイズ150cmはキャラクター1がクエストの魚を釣る前だけ。ほかの人は60〜119cmです。",
+    maxEel: "最大サイズ220cm。1ゲームに1匹、ウナギの話の間だけ。育たず、ファイトで逃がすたびに2cm小さくなります。",
+    methods: { float: "ウキ竿 + エサ", lure: "ルアー竿 + ルアー", fly: "フライ竿 + フライ" },
+    slots: {
+      rod: "竿",
+      hook: "ハリ",
+      bait: "エサ",
+      lure: "ルアー",
+      fly: "フライ（ボディ）",
+      float: "ウキ"
+    },
+    line: { short: "糸が短い", medium: "糸が普通", long: "糸が長い" },
+    shortWarn: "糸が短く、大物に切られやすい",
+    anyFloat: (name) => `ウキはどれでもOK（いちばん安い：${name}）`,
+    best: "最初の戦いがいちばん楽な組み合わせ",
+    cheap: "十分使える中でいちばん安い組み合わせ",
+    total: (price) => `合計 ${price}`,
+    tier: ["とても楽", "楽", "ふつう", "難しい", "とても難しい"],
+    bands: ["小さい魚（15 cm 以下）", "中くらいの魚（16–35 cm）", "大きい魚（35 cm 超）"],
+    fightEase: "ファイト開始時の難しさ",
+    easeHint: "楽なほど魚は外れにくい",
+    why: {
+      rod: {
+        named: "この魚の名前がついた竿。サイズによる不利がありません",
+        light: "軽い竿。小さい魚にいちばん楽で、中くらいの魚では中の竿と同じです",
+        medium: "中の竿。このサイズの魚では軽い竿と同じ楽さです",
+        heavy: "重い竿。ファイトは楽になりませんが、大きい魚に必要な長い距離が出ます"
+      },
+      hook: {
+        named: "この魚の名前がついたハリ。1段階楽になります",
+        any: "エサがこの魚の名前つきなので、ハリは何でもOK（いちばん安いもの）",
+        small: "小さいハリ。15 cm 以下の魚向き",
+        medium: "中のハリ。16–35 cm の魚向き",
+        large: "大きいハリ。35 cm 超の魚向き",
+        plain: "このハリはファイトを変えません"
+      },
+      bait: {
+        named: "この魚の名前がついたエサ。1段階楽になります",
+        plain: "この魚が食べるエサ。食べるものの中でいちばん安いものを"
+      },
+      lure: {
+        named: "この魚の名前がついたルアー。1段階楽になります",
+        small: "このタイプのルアーは小さい魚（15 cm 以下）に有利",
+        medium: "このタイプのルアーは 16–35 cm の魚に有利",
+        large: "このタイプのルアーは 35 cm 超の魚に有利",
+        plain: "このルアーはファイトを変えません"
+      },
+      fly: {
+        small: "このフライボディは小さい魚（15 cm 以下）に有利",
+        medium: "このフライボディは 16–35 cm の魚に有利",
+        large: "このフライボディは 35 cm 超の魚に有利",
+        plain: "このフライボディはファイトを変えず、食うかどうかだけを決めます"
+      }
+    },
+    alsoOk: "代わりに使える（同じ楽さ）",
+    detailsTitle: "なぜこの組み合わせか（ROMの根拠）",
+    startsLine: (base) => `この魚は装備なしだとレベル ${base} から始まります（0 が最も楽、6 が最も難しい）`,
+    startsWith: (band, n) => `${band}：この組み合わせでレベル ${n}`,
+    reach: (need) => `必要な竿の距離：約 ${need} 以上。これはウィキ自身のシミュレーションによる推定で、ROMでは証明されていません`,
+    evidence: "すべてのルールにROMのアドレスと、実際のゲームを動かすテストがあります。全表とルール：",
+    evidenceLink: "gear-fish-matrix.md",
+    noBite: "この魚はこの方法では食いません",
+    buyAt: "購入先:",
+    stage: (n) => `エリア${n}`,
+    shops: { shop: "店", special: "特別な竿屋", fly: "完成品の毛バリ屋" },
+    laterHead: (n) => `エリア${n}に着いたら:`,
+    nothingYet: (n) => `エリア${n}までの店には、この魚がこの方法で食うものはまだ売っていません`,
+    yen: (n) => `¥${n.toLocaleString("en-US")}`,
+    loading: "装備を読み込み中…",
+    failed: "装備を読み込めませんでした"
+  };
+
+  // src/entities/best-gear/copy_th.js
+  var copy_th = {
+    title: "ชุดตะขอสำหรับปลานี้",
+    size: (low, high) => `ขนาดจริง ${low === high ? low : `${low}–${high}`} ซม.`,
+    maxSize: (high) => `ไซส์ MAX ${high} ซม.`,
+    maxSlow: "ต้องเลี้ยงนาน",
+    maxSlowNote: (picks, nights) => `ไซส์ MAX ต้องรอให้คืนที่พักโรงแรมเลือกช่องของปลาตัวนี้ ${picks[0]}–${picks[1]} ครั้ง ถ้าสู้ปลาราว 30 ครั้งระหว่างคืน ก็ราว ${nights[0]}–${nights[1]} คืน`,
+    maxAkame: "ไซส์ MAX 150 ซม. เฉพาะตัวละคร 1 ก่อนตกปลาเควสต์ได้ คนอื่นได้ 60–119 ซม.",
+    maxEel: "ไซส์ MAX 220 ซม. มีตัวเดียวต่อเกม เฉพาะช่วงเรื่องปลาไหล ไม่โตขึ้น และเสีย 2 ซม. ทุกครั้งที่สู้หลุด",
+    methods: { float: "คันทุ่น + เหยื่อ", lure: "คันลัวร์ + ลัวร์", fly: "คันฟลาย + ฟลาย" },
+    slots: {
+      rod: "คัน",
+      hook: "ตะขอ",
+      bait: "เหยื่อ",
+      lure: "ลัวร์",
+      fly: "ฟลาย (บอดี้)",
+      float: "ทุ่น"
+    },
+    line: { short: "สายสั้น", medium: "สายกลาง", long: "สายยาว" },
+    shortWarn: "สายสั้น ปลาใหญ่ดึงสายขาดง่าย",
+    anyFloat: (name) => `ทุ่นอะไรก็ได้ (ถูกสุด: ${name})`,
+    best: "ชุดที่สู้ง่ายที่สุดตอนเริ่ม",
+    cheap: "ชุดที่ถูกที่สุดที่ยังใช้ได้ดี",
+    total: (price) => `รวม ${price}`,
+    tier: ["ง่ายมาก", "ง่าย", "ปานกลาง", "ยาก", "ยากมาก"],
+    bands: ["ปลาขนาดเล็ก (ไม่เกิน 15 ซม.)", "ปลาขนาดกลาง (16–35 ซม.)", "ปลาขนาดใหญ่ (เกิน 35 ซม.)"],
+    fightEase: "ความยากตอนเริ่มสู้",
+    easeHint: "ยิ่งง่าย ปลายิ่งหลุดยาก",
+    why: {
+      rod: {
+        named: "คันที่ตั้งชื่อตามปลานี้ ไม่โดนบวกความยากตามขนาดปลา",
+        light: "คันเบา ง่ายที่สุดกับปลาเล็ก และเท่ากับคันกลางกับปลาขนาดกลาง",
+        medium: "คันกลาง ง่ายพอ ๆ กับคันเบาสำหรับปลาขนาดนี้",
+        heavy: "คันหนัก ไม่ได้ทำให้การสู้ง่ายขึ้น แต่ให้ระยะสายไกลสำหรับปลาตัวใหญ่"
+      },
+      hook: {
+        named: "ตะขอที่ตั้งชื่อตามปลานี้ ง่ายขึ้นหนึ่งขั้น",
+        any: "ไม่ต้องเลือกตะขอ เพราะเหยื่อนี้ชื่อตรงกับปลาแล้ว (ใช้อันถูกสุด)",
+        small: "ตะขอเล็ก เหมาะกับปลาไม่เกิน 15 ซม.",
+        medium: "ตะขอกลาง เหมาะกับปลา 16–35 ซม.",
+        large: "ตะขอใหญ่ เหมาะกับปลาเกิน 35 ซม.",
+        plain: "ตะขอนี้ไม่ทำให้การสู้ต่างไป"
+      },
+      bait: {
+        named: "เหยื่อที่ตั้งชื่อตามปลานี้ ง่ายขึ้นหนึ่งขั้น",
+        plain: "ปลากินเหยื่อนี้ เลือกอันถูกสุดที่ปลากิน"
+      },
+      lure: {
+        named: "ลัวร์ที่ตั้งชื่อตามปลานี้ ง่ายขึ้นหนึ่งขั้น",
+        small: "ลัวร์แบบนี้ช่วยปลาเล็ก (ไม่เกิน 15 ซม.)",
+        medium: "ลัวร์แบบนี้ช่วยปลา 16–35 ซม.",
+        large: "ลัวร์แบบนี้ช่วยปลาเกิน 35 ซม.",
+        plain: "ลัวร์นี้ไม่ทำให้การสู้ต่างไป"
+      },
+      fly: {
+        small: "บอดี้ฟลายแบบนี้ช่วยปลาเล็ก (ไม่เกิน 15 ซม.)",
+        medium: "บอดี้ฟลายแบบนี้ช่วยปลา 16–35 ซม.",
+        large: "บอดี้ฟลายแบบนี้ช่วยปลาเกิน 35 ซม.",
+        plain: "บอดี้ฟลายนี้ไม่ทำให้การสู้ต่างไป มีผลแค่ว่าปลากินหรือไม่"
+      }
+    },
+    alsoOk: "ใช้แทนกันได้ (ง่ายเท่ากัน)",
+    detailsTitle: "ทำไมถึงเป็นชุดนี้ (หลักฐานจาก ROM)",
+    startsLine: (base) => `ปลานี้เริ่มที่ระดับ ${base} ก่อนใส่อุปกรณ์ (0 ง่ายที่สุด ถึง 6 ยากที่สุด)`,
+    startsWith: (band, n) => `${band}: ระดับ ${n} หลังใส่ชุดนี้`,
+    reach: (need) => `ระยะสายที่ต้องใช้: ประมาณ ${need} ขึ้นไป เป็นค่าประมาณจากการจำลองของวิกิเท่านั้น ยังไม่ได้พิสูจน์จาก ROM`,
+    evidence: "ทุกกฎมีที่อยู่โค้ดใน ROM และมีเทสต์ที่รันเกมจริงยืนยัน ดูตารางและกฎทั้งหมดที่",
+    evidenceLink: "gear-fish-matrix.md",
+    noBite: "ปลานี้ไม่กินวิธีนี้",
+    buyAt: "ซื้อที่:",
+    stage: (n) => `ด่าน ${n}`,
+    shops: { shop: "ร้านค้า", special: "ร้านขายคันพิเศษ", fly: "ร้านฟลายสำเร็จรูป" },
+    laterHead: (n) => `ถ้าไปถึงด่าน ${n} แล้ว:`,
+    nothingYet: (n) => `ร้านในด่าน ${n} และด่านก่อนหน้ายังไม่มีของที่ปลาตัวนี้กินด้วยวิธีนี้ขาย`,
+    yen: (n) => `¥${n.toLocaleString("en-US")}`,
+    loading: "กำลังโหลดชุดอุปกรณ์…",
+    failed: "โหลดชุดอุปกรณ์ไม่สำเร็จ"
+  };
+
+  // src/entities/best-gear/view.js
+  var COPY3 = { en: copy_en, th: copy_th, ja: copy_ja };
+  var bestGearCopy = (locale) => COPY3[locale] ?? copy_en;
+  var lineOf = (reach) => reach <= 9 ? "short" : reach <= 18 ? "medium" : "long";
 
   // src/pages/equipment/hp-recovery-tip.js
   function catalogueHpRecoveryAction(ctx) {
@@ -2063,7 +2298,7 @@
     const areaDecision = selected ? rodAreaDecision(ctx.lang, item, ctx.allItems, selected) : null;
     const stockPrice = areaDecision ? localRodOffer(areaDecision) ? ctx.formatYen(item) : ctx.lang === "th" ? `${areaLabel(ctx, selected)}: ไม่พบรายการขายที่บันทึกไว้` : ctx.lang === "ja" ? `${areaLabel(ctx, selected)}：販売記録なし` : `${areaLabel(ctx, selected)}: no offer recorded` : ctx.useOf(item).shops?.length ? ctx.formatYen(item) : ctx.lang === "th" ? "ไม่พบในร้าน" : ctx.lang === "ja" ? "店頭在庫なし" : "No recorded shop stock";
     const rowMarker = areaDecision ? ` data-rod-area-decision="${selected}" data-rod-area-status="${ctx.esc(areaDecision.status)}"${localRodOffer(areaDecision) ? ' data-selected-area-offer="true"' : ""}` : "";
-    return `<tr${rowMarker}><td><a href="${ctx.esc(ctx.itemHref(item))}">${ctx.esc(ctx.itemName(item))}</a></td><td>${ctx.esc(styles[item.decodedFields.styleCode])}</td><td>${item.decodedFields.castAimHoldCutoffInternal}</td><td>${item.decodedFields.rangeMultiplier}</td><td>${ctx.esc(stockPrice)}</td>${rodTableAdvice(ctx, item, areaDecision)}</tr>`;
+    return `<tr${rowMarker}><td><a href="${ctx.esc(ctx.itemHref(item))}">${ctx.esc(ctx.itemName(item))}</a></td><td>${ctx.esc(styles[item.decodedFields.styleCode])}</td><td>${item.decodedFields.castAimHoldCutoffInternal}</td><td>${item.decodedFields.rangeMultiplier} <small>${ctx.esc(bestGearCopy(ctx.lang).line[lineOf(item.decodedFields.rangeMultiplier)])}</small></td><td>${ctx.esc(stockPrice)}</td>${rodTableAdvice(ctx, item, areaDecision)}</tr>`;
   }
   function renderComparison(ctx, category) {
     const box = document.getElementById("rod-comparison");
@@ -2913,7 +3148,7 @@
   }
 
   // src/pages/equipment/bait-lure-verdict.js
-  var COPY3 = {
+  var COPY4 = {
     en: {
       ownBait: (route, count, wait) => `${count} fish take this bait on the ${route}. Put your float on the tile the fish is on; it bites in about ${wait} seconds. If it ignores you, move the cast, not the bait.`,
       ownLure: (count) => `${count} fish chase this lure. Keep tapping A or B while it is in the water, then press A once when the fish is level with the lure to hook it.`,
@@ -3012,7 +3247,7 @@
     }
   };
   function copy(ctx) {
-    return COPY3[ctx.lang] || COPY3.en;
+    return COPY4[ctx.lang] || COPY4.en;
   }
   function stageNumber(value) {
     const stage = Number(value);
@@ -3732,7 +3967,7 @@
   }
 
   // src/pages/equipment/copy_en.js
-  var copy_en = {
+  var copy_en2 = {
     title: "Kawa no Nushi Tsuri 2 — Item Catalogue & ROM Research",
     lead: "A searchable catalogue of the game’s rods, lures, fly parts, baits, hooks, floats, food and tools—with ROM fields we could verify and clear notes where a stat is still a mystery.",
     edition: "SFC / SNES · JAPAN VERSION",
@@ -3812,7 +4047,7 @@
   };
 
   // src/pages/equipment/copy_th.js
-  var copy_th = {
+  var copy_th2 = {
     title: "ตกตัวไหน ใช้อะไร ไปที่ไหน",
     lead: "ค้นปลา เลือกอุปกรณ์ที่ใช้ได้ แล้วเปิดจุดตกบนแผนที่",
     edition: "SFC / SNES · ฉบับญี่ปุ่น",
@@ -3923,7 +4158,7 @@
   };
 
   // src/pages/equipment/copy_ja.js
-  var copy_ja = {
+  var copy_ja2 = {
     title: "川のぬし釣り2 — アイテム一覧・ROM解析",
     lead: "竿、ルアー、毛バリ部品、餌、針、ウキ、食料、道具を検索できる一覧。ROMで確認できた数値と、まだ意味が分からない値を分けて掲載。",
     edition: "SFC · 日本版",
@@ -4005,7 +4240,7 @@
   // src/pages/equipment/setup-locale.js
   function setupLocale(ctx) {
     ctx.lang = ["ja", "th"].includes(document.documentElement.dataset.locale) ? document.documentElement.dataset.locale : "en";
-    ctx.copy = { en: copy_en, th: copy_th, ja: copy_ja }[ctx.lang];
+    ctx.copy = { en: copy_en2, th: copy_th2, ja: copy_ja2 }[ctx.lang];
     if (typeof ctx.copy.entries === "string") {
       const template = ctx.copy.entries;
       ctx.copy.entries = (n) => template.replace("{n}", n);

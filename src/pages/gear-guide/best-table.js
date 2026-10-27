@@ -8,6 +8,7 @@ import {
   itemName,
   itemPic,
   kitSlots,
+  lineNote,
   maxHtml,
   shownHigh,
 } from '../../entities/best-gear/index.js'
@@ -32,7 +33,7 @@ function itemCell(data, locale, label, slot, id, group, kit) {
   const buy = escapeHtml(buyText(text, buyOf(kit, slot)))
   const reason = why && why !== 'plain' && why !== 'any' ? text.why[group]?.[why] : ''
   const name = id == null ? '–' : itemPic(data, locale, slot, id)
-  return `<td data-label="${escapeHtml(label)}"><span>${name}${reason ? `<small>${escapeHtml(reason)}</small>` : ''}<small>${buy}</small></span></td>`
+  return `<td data-label="${escapeHtml(label)}"><span>${name}${slot === 'rod' ? lineNote(text, kit) : ''}${reason ? `<small>${escapeHtml(reason)}</small>` : ''}<small>${buy}</small></span></td>`
 }
 
 const colCount = (ctx) => (ctx.method === 'float' ? 6 : 5)
@@ -48,7 +49,7 @@ function laterRow(ctx, plan) {
   const { kit, stage } = plan.later
   const names = kitSlots(ctx.method, kit).map(
     ([slot, id]) =>
-      `${itemPic(data, locale, slot, id)} <small>(${escapeHtml(buyText(text, buyOf(kit, slot)))})</small>`,
+      `${itemPic(data, locale, slot, id)}${slot === 'rod' ? lineNote(text, kit) : ''} <small>(${escapeHtml(buyText(text, buyOf(kit, slot)))})</small>`,
   )
   return noteRow(
     ctx,

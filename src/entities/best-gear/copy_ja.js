@@ -17,6 +17,8 @@ export const copy_ja = {
     fly: 'フライ（ボディ）',
     float: 'ウキ',
   },
+  line: { short: '糸が短い', medium: '糸が普通', long: '糸が長い' },
+  shortWarn: '糸が短く、大物に切られやすい',
   anyFloat: (name) => `ウキはどれでもOK（いちばん安い：${name}）`,
   best: '最初の戦いがいちばん楽な組み合わせ',
   cheap: '十分使える中でいちばん安い組み合わせ',

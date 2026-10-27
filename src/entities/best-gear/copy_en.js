@@ -11,6 +11,8 @@ export const copy_en = {
     'MAX size 220 cm, one eel per game, in the eel story only. It does not grow and loses 2 cm after each lost fight.',
   methods: { float: 'Float rod + bait', lure: 'Lure rod + lure', fly: 'Fly rod + fly' },
   slots: { rod: 'Rod', hook: 'Hook', bait: 'Bait', lure: 'Lure', fly: 'Fly body', float: 'Float' },
+  line: { short: 'Short line', medium: 'Medium line', long: 'Long line' },
+  shortWarn: 'Short line: big fish snap it easily',
   anyFloat: (name) => `Any float works (cheapest: ${name})`,
   best: 'Easiest-start kit',
   cheap: 'Cheapest kit that still works well',

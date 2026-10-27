@@ -91,6 +91,8 @@ function toKit(matrix, fish, method, { rod, choice, rating }) {
   if (choice.hook != null) kit.hook = choice.hook
   return {
     ...kit,
+    reach: rod.reach,
+    ...(fish.size.high > BIG && { big: true }),
     yen: rod.yen + choice.yen,
     starts: rating.starts,
     score: Math.round(rating.score * 100) / 100,
@@ -99,8 +101,15 @@ function toKit(matrix, fish, method, { rod, choice, rating }) {
   }
 }
 
-const better = (a, b) =>
-  a.rating.score - b.rating.score || a.rating.worst - b.rating.worst || a.yen - b.yen
+/** A fish that grows past the medium band runs far: among equal starts the longest line wins, then price. */
+const BIG = BAND_SIZE[1]
+const byReach = (a, b) => b.rod.reach - a.rod.reach
+
+const betterFor = (fish) => (a, b) =>
+  a.rating.score - b.rating.score ||
+  a.rating.worst - b.rating.worst ||
+  (fish.size.high > BIG ? byReach(a, b) : 0) ||
+  a.yen - b.yen
 
 function planMethod(matrix, effects, price, fish, method) {
   const choices = itemChoices(matrix, price, fish, method)
@@ -116,6 +125,7 @@ function planMethod(matrix, effects, price, fish, method) {
         rating: evaluate(fish, weights, rod, choice),
         yen: rod.yen + choice.yen,
       })
+  const better = betterFor(fish)
   const best = [...all].sort(better)[0]
   const cheap = all
     .filter(

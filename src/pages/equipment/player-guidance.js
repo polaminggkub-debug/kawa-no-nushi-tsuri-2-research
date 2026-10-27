@@ -1,3 +1,4 @@
+import { bestGearCopy, lineOf } from '../../entities/best-gear/index.js'
 import { freshSaveOffers, rodAreaDecision } from '../../entities/item/index.js'
 import { catalogueHpRecoveryAction } from './hp-recovery-tip.js'
 import { contextualLureCoverageDecision } from './lure-coverage-guidance.js'
@@ -428,7 +429,7 @@ function rodComparisonRow(ctx, item, styles) {
   const rowMarker = areaDecision
     ? ` data-rod-area-decision="${selected}" data-rod-area-status="${ctx.esc(areaDecision.status)}"${localRodOffer(areaDecision) ? ' data-selected-area-offer="true"' : ''}`
     : ''
-  return `<tr${rowMarker}><td><a href="${ctx.esc(ctx.itemHref(item))}">${ctx.esc(ctx.itemName(item))}</a></td><td>${ctx.esc(styles[item.decodedFields.styleCode])}</td><td>${item.decodedFields.castAimHoldCutoffInternal}</td><td>${item.decodedFields.rangeMultiplier}</td><td>${ctx.esc(stockPrice)}</td>${rodTableAdvice(ctx, item, areaDecision)}</tr>`
+  return `<tr${rowMarker}><td><a href="${ctx.esc(ctx.itemHref(item))}">${ctx.esc(ctx.itemName(item))}</a></td><td>${ctx.esc(styles[item.decodedFields.styleCode])}</td><td>${item.decodedFields.castAimHoldCutoffInternal}</td><td>${item.decodedFields.rangeMultiplier} <small>${ctx.esc(bestGearCopy(ctx.lang).line[lineOf(item.decodedFields.rangeMultiplier)])}</small></td><td>${ctx.esc(stockPrice)}</td>${rodTableAdvice(ctx, item, areaDecision)}</tr>`
 }
 
 export function renderComparison(ctx, category) {

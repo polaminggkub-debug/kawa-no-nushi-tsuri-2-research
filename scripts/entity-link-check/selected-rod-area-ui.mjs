@@ -164,7 +164,8 @@ function comparisonCells(row) {
 function checkComparisonFacts(row, lang, stage, item) {
   const cells = comparisonCells(row)
   requireEqual(cells[2], String(item.decodedFields.castAimHoldCutoffInternal))
-  requireEqual(cells[3], String(item.decodedFields.rangeMultiplier))
+  // The cell is the number, then the rod's line-length word.
+  requireEqual(cells[3].split(' ')[0], String(item.decodedFields.rangeMultiplier))
   const local = stockByStage.get(stage).has(item.id)
   if (local)
     requireEqual(cells[4], `¥${item.priceYen}`, `Wrong local quote: ${lang}/${stage}/${item.id}`)

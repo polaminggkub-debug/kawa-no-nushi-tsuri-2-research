@@ -15,6 +15,8 @@ export {
   itemName,
   itemPic,
   kitSlots,
+  lineNote,
+  lineOf,
 } from './view.js'
 export { methodHtml } from './box.js'
 export { maxHtml, shownHigh } from './max.js'
