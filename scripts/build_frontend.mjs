@@ -7,6 +7,7 @@ import { assetVersion, versionAssetReferences } from './code-quality/asset-versi
 import { addGoatCounter } from './code-quality/analytics.mjs'
 import { renderGearGuide, renderGuideNames } from './gear-guide/render.mjs'
 import { renderGearBest } from './gear-best/render.mjs'
+import { renderSearchIndex } from './search-index/render.mjs'
 
 const root = fileURLToPath(new URL('../', import.meta.url))
 export const scripts = {
@@ -241,6 +242,7 @@ export async function renderFrontendOutputs() {
   }
   outputs.set('catalogue/gear-guide-names.json', renderGuideNames())
   outputs.set('catalogue/gear-best.json', renderGearBest())
+  outputs.set('catalogue/search-index.json', renderSearchIndex())
   outputs.set('index.html', addGoatCounter(readFileSync(resolve(root, 'index.html'), 'utf8')))
   return outputs
 }
