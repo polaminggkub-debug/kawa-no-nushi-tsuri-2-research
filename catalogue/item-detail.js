@@ -193,7 +193,7 @@
         fly: "ฟลาย",
         fly_wing: "ปีกฟลาย",
         fly_tail: "หางฟลาย",
-        hook: "เบ็ด",
+        hook: "ตะขอ",
         float_weight: "ทุ่นและตะกั่ว",
         bait: "เหยื่อจริง",
         food: "อาหาร",
@@ -1903,7 +1903,7 @@
         route: ctx.selectedRoute,
         returnPath: ctx.currentLocalRoute()
       });
-      const label = category === "hook" ? ctx.lang === "th" ? "เบ็ดหายหรือยังไม่มี? ดูเบ็ดที่ถูกสุดตามขนาดปลาทั้งหกด่าน" : ctx.lang === "ja" ? "針を失った・持っていない？6エリアの大きさ別最安の針を見る" : "Lost your hook or have none? See the cheapest hook by fish size in each area" : ctx.lang === "th" ? "ดูทุ่นและตะกั่วราคาต่ำสุดแยกทั้งหกด่าน" : ctx.lang === "ja" ? "6エリアの最安ウキ・オモリを見る" : "See the cheapest float and sinker in each of six areas";
+      const label = category === "hook" ? ctx.lang === "th" ? "ตะขอหายหรือยังไม่มี? ดูตะขอที่ถูกสุดตามขนาดปลาทั้งหกด่าน" : ctx.lang === "ja" ? "針を失った・持っていない？6エリアの大きさ別最安の針を見る" : "Lost your hook or have none? See the cheapest hook by fish size in each area" : ctx.lang === "th" ? "ดูทุ่นและตะกั่วราคาต่ำสุดแยกทั้งหกด่าน" : ctx.lang === "ja" ? "6エリアの最安ウキ・オモリを見る" : "See the cheapest float and sinker in each of six areas";
       return `<p><a class="route-button" data-${marker}-price-guide href="${ctx.esc(href)}">${label} ↗</a></p>`;
     };
     if (item.category === "float_weight") return guideLink("float_weight", "float");
@@ -1911,7 +1911,7 @@
     const hookBudget = item.category === "hook" ? guideLink("hook", "hook") : "";
     if (item.category === "hook" && !ids.length) return hookBudget;
     if (item.category === "hook" && ids.length)
-      return hookBudget + `<p>${ctx.lang === "th" ? "ดูเหยื่อและจุดตกของปลาที่ชื่อเบ็ดอ้างถึง" : ctx.lang === "ja" ? "ハリ名が参照する魚のエサ・場所を確認" : "See bait and locations for the fish named by this hook"}</p>${ids.map((id) => `<a class="route-button" href="${ctx.esc(ctx.fishProfileLink(id, fishLocations))}">${ctx.esc(ctx.fishName(id, fishVisuals))} ↗</a>`).join("")}`;
+      return hookBudget + `<p>${ctx.lang === "th" ? "ดูเหยื่อและจุดตกของปลาที่ชื่อตะขออ้างถึง" : ctx.lang === "ja" ? "ハリ名が参照する魚のエサ・場所を確認" : "See bait and locations for the fish named by this hook"}</p>${ids.map((id) => `<a class="route-button" href="${ctx.esc(ctx.fishProfileLink(id, fishLocations))}">${ctx.esc(ctx.fishName(id, fishVisuals))} ↗</a>`).join("")}`;
     if (item.category.startsWith("fly")) {
       const target = ctx.selectedFish && fishVisuals[ctx.selectedFish] ? ctx.selectedFish : "";
       if (target) {
@@ -2457,7 +2457,7 @@
   }
   function targetAdviceScope(ctx) {
     return text3(ctx, {
-      th: "ปลากินหรือว่ายตามเมื่อทุ่นหรือลัวร์อยู่ช่องเดียวกับปลา เวลา อากาศ คัน เบ็ด และ HP ไม่มีผล",
+      th: "ปลากินหรือว่ายตามเมื่อทุ่นหรือลัวร์อยู่ช่องเดียวกับปลา เวลา อากาศ คัน ตะขอ และ HP ไม่มีผล",
       ja: "ウキやルアーが魚と同じマスにあれば食いつく・追ってくる。時間・天気・竿・ハリ・HPは関係ない。",
       en: "The fish bites or chases once your float or lure is on its tile. Time, weather, rod, hook and HP do not matter."
     });

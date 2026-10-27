@@ -6,7 +6,7 @@ assert.equal(items.length, 104)
 const baitScopeCopy = {
   en: 'Baits: A bait on the fish’s list bites once your float is on the fish’s tile: about 2 seconds, or about 10 seconds on a sinker rig (bottom fish only). Time, weather, rod, hook and HP change nothing: if a fish ignores you, move the cast, not the bait.',
   ja: 'エサ：リストにあるエサは、ウキが魚と同じマスにあれば食いつきます。約2秒（オモリは約10秒、底の魚のみ）。時間・天気・竿・ハリ・HPは関係ありません。反応しないときは、エサではなく投げる位置を変えます。',
-  th: 'เหยื่อจริง: เหยื่อที่อยู่ในรายชื่อของปลาจะถูกกินเมื่อทุ่นอยู่ช่องเดียวกับปลา ราว 2 วินาที (ชุดตะกั่วราว 10 วินาที เฉพาะปลาหน้าดิน) เวลา อากาศ คัน เบ็ด และ HP ไม่มีผล ถ้าปลาไม่สนใจ ให้ขยับจุดปล่อย ไม่ใช่เปลี่ยนเหยื่อ',
+  th: 'เหยื่อจริง: เหยื่อที่อยู่ในรายชื่อของปลาจะถูกกินเมื่อทุ่นอยู่ช่องเดียวกับปลา ราว 2 วินาที (ชุดตะกั่วราว 10 วินาที เฉพาะปลาหน้าดิน) เวลา อากาศ คัน ตะขอ และ HP ไม่มีผล ถ้าปลาไม่สนใจ ให้ขยับจุดปล่อย ไม่ใช่เปลี่ยนเหยื่อ',
 }
 const lureScopeCopy = {
   en: 'Lures: A lure on the fish’s list is chased once the lure is on the fish’s tile and you keep tapping A or B; press A once when the fish is level with the lure to hook it. Time, weather and rod change nothing.',
@@ -16,7 +16,7 @@ const lureScopeCopy = {
 const commonScopeCopy = {
   en: 'Bait and lure choices: A bait or lure on the fish’s list bites once your float or lure is on the fish’s tile (float about 2 s, sinker about 10 s, bottom fish only). Time, weather, rod, hook and HP change nothing: if a fish ignores you, move the cast.',
   ja: 'エサ・ルアーの選び方：魚のリストにあるエサ・ルアーは、ウキやルアーが魚と同じマスにあれば食いつきます（ウキ約2秒、オモリ約10秒・底の魚のみ）。時間・天気・竿・ハリ・HPは関係ありません。反応しないときは投げる位置を変えます。',
-  th: 'การเลือกเหยื่อจริงและลัวร์: เหยื่อหรือลัวร์ที่อยู่ในรายชื่อของปลาจะถูกกินเมื่อทุ่นหรือลัวร์อยู่ช่องเดียวกับปลา (ทุ่นราว 2 วินาที ตะกั่วราว 10 วินาที เฉพาะปลาหน้าดิน) เวลา อากาศ คัน เบ็ด และ HP ไม่มีผล ถ้าปลาไม่สนใจ ให้ขยับจุดปล่อย',
+  th: 'การเลือกเหยื่อจริงและลัวร์: เหยื่อหรือลัวร์ที่อยู่ในรายชื่อของปลาจะถูกกินเมื่อทุ่นหรือลัวร์อยู่ช่องเดียวกับปลา (ทุ่นราว 2 วินาที ตะกั่วราว 10 วินาที เฉพาะปลาหน้าดิน) เวลา อากาศ คัน ตะขอ และ HP ไม่มีผล ถ้าปลาไม่สนใจ ให้ขยับจุดปล่อย',
 }
 
 function occurrences(value, phrase) {

@@ -1,6 +1,6 @@
 const sections = [
   ['fish-area-map', 'ไปตกที่ไหน', '釣り場', 'Where'],
-  ['best-gear', 'ชุดเบ็ดที่ควรใช้', 'ベスト装備', 'Gear'],
+  ['best-gear', 'ชุดตะขอที่ควรใช้', 'ベスト装備', 'Gear'],
   ['fish-shopping', 'ซื้ออะไร ที่ไหน', '買うもの・店', 'What to buy'],
   ['fish-notes', 'ควรรู้', '知っておくこと', 'Good to know'],
   ['fish-notebook', 'สมุดปลา', '釣りノート', 'Notebook'],

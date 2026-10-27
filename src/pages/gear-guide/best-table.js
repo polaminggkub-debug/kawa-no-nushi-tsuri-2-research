@@ -11,7 +11,7 @@ const suffixes = { en: '', th: '.th', ja: '.ja' }
 const SECOND = { float: 'bait', lure: 'lure', fly: 'fly' }
 const LABELS = {
   en: ['Size', 'Rod', 'Hook', 'Fight start', 'Price'],
-  th: ['ขนาด', 'คัน', 'เบ็ด', 'การสู้เริ่ม', 'ราคา'],
+  th: ['ขนาด', 'คัน', 'ตะขอ', 'การสู้เริ่ม', 'ราคา'],
   ja: ['サイズ', '竿', 'ハリ', 'ファイト開始', '価格'],
 }
 

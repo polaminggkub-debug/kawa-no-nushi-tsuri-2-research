@@ -202,7 +202,7 @@ function shopDecision(ctx, advice) {
 
 export function targetAdviceScope(ctx) {
   return text(ctx, {
-    th: 'ปลากินหรือว่ายตามเมื่อทุ่นหรือลัวร์อยู่ช่องเดียวกับปลา เวลา อากาศ คัน เบ็ด และ HP ไม่มีผล',
+    th: 'ปลากินหรือว่ายตามเมื่อทุ่นหรือลัวร์อยู่ช่องเดียวกับปลา เวลา อากาศ คัน ตะขอ และ HP ไม่มีผล',
     ja: 'ウキやルアーが魚と同じマスにあれば食いつく・追ってくる。時間・天気・竿・ハリ・HPは関係ない。',
     en: 'The fish bites or chases once your float or lure is on its tile. Time, weather, rod, hook and HP do not matter.',
   })

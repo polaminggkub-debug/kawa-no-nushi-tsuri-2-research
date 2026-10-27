@@ -27,9 +27,6 @@
     },
     "float_weight:02": {
       "nameEn": "Round bead float",
-      "displayName": {
-        "th": "ทุ่นเม็ดเล็กทรงกลม"
-      },
       "factsAdd": {
         "en": [
           "A shimori float: a small bead-type float that sits on the line. This one is round."
@@ -44,9 +41,6 @@
     },
     "float_weight:03": {
       "nameEn": "Streamlined bead float",
-      "displayName": {
-        "th": "ทุ่นเม็ดเล็กทรงเรียว"
-      },
       "factsAdd": {
         "en": [
           "A shimori float: a small bead-type float that sits on the line. This one has a slim, streamlined shape."
@@ -61,9 +55,6 @@
     },
     "float_weight:0A": {
       "nameEn": "Jujube-shaped sinker",
-      "displayName": {
-        "th": "ตะกั่วทรงพุทรา"
-      },
       "factsAdd": {
         "en": [
           "Natsume means jujube (Chinese date): an oval sinker with slightly tapered ends."

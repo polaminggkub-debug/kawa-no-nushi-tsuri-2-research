@@ -55,7 +55,7 @@ export const text_th = {
   types: {
     rod: 'คันเบ็ด',
     lure: 'ลัวร์',
-    hook: 'เบ็ด',
+    hook: 'ตะขอ',
     float_weight: 'ทุ่นและตะกั่ว',
     bait: 'เหยื่อ',
     fly: 'ฟลายสำเร็จรูป',
