@@ -60,9 +60,9 @@ export const copy_en = {
   ],
   quick: {
     'rod:0A':
-      'Cast/aim hold-time cutoff 70; reach multiplier 15 × 336 = 5,040 internal units. Under 100 HP the cutoff scales with current HP (minimum 10).',
+      'Cast-distance (charge) limit 70; reach multiplier 15 × 336 = 5,040 internal units. Under 100 HP the cutoff scales with current HP (minimum 10).',
     'rod:0D':
-      'Cast/aim hold-time cutoff 120; reach multiplier 24 × 336 = 8,064 internal units. Under 100 HP the cutoff scales with current HP (minimum 10).',
+      'Cast-distance (charge) limit 120; reach multiplier 24 × 336 = 8,064 internal units. Under 100 HP the cutoff scales with current HP (minimum 10).',
     'lure:12':
       'Action branch 9; conditional fish-ID comparison value 11 → Black bass. Changes a behavior path; does not prove an exclusive target or bonus.',
     'lure:21':
@@ -74,7 +74,7 @@ export const copy_en = {
   },
   fieldNames: {
     styleCode: 'Rod style code',
-    castAimHoldCutoffInternal: 'Cast/aim hold-time cutoff',
+    castAimHoldCutoffInternal: 'Cast-distance (charge) limit',
     rangeMultiplier: 'Reach multiplier',
     rangeInternalValueAtBase0x0150: 'Reach threshold (internal units)',
     fishIdMatchCode: 'Fish-ID comparison code',

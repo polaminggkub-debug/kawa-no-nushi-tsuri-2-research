@@ -170,7 +170,7 @@ def build(rom: bytes, fish_index: dict[int, dict[str, object]]) -> dict[str, obj
                 "style_1": "uses the field directly",
                 "styles_2_and_4": "if HP at 7E:0862 is below 100, computes raw * HP / 100 and clamps the result to at least 10; at HP 100 or above it uses raw",
                 "style_8": "uses raw and also stores raw >> 1 in 7E:1FA3",
-                "branch_effect": "The D66B control loop increments 1F6F while the action button is held. Releasing it or reaching the cutoff sets 1F73. The BF61 dispatcher then resolves the current world target tile; it sends 1322==0 to D17B phase 1 setup or 1322!=0 to C01D phase 3 setup. Static call flow identifies this as a cast/aim hold-time cutoff, not a fish-fight strength rating. A larger threshold leaves more time before automatic advance; no catch or cast-distance advantage has been measured.",
+                "branch_effect": "The D66B control loop increments 1F6F while the action button is held. Releasing it or reaching the cutoff sets 1F73. The BF61 dispatcher then resolves the current world target tile; it sends 1322==0 to D17B phase 1 setup or 1322!=0 to C01D phase 3 setup. Static call flow identifies this as a cast-distance (charge) limit, not a fish-fight strength rating. A larger threshold leaves more time before automatic advance; no catch or cast-distance advantage has been measured.",
                 "phase_identification_confidence": "strong static identification from D66B button/release checks, directional target-coordinate updates, BF61 target-tile resolution, and D17B/C01D phase setup; D66B itself does not read 11E8; no controlled in-game visual capture in this subtask",
             },
             "reach": {

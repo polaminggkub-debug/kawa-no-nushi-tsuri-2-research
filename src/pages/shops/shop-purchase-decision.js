@@ -4,17 +4,17 @@ const copy = {
   th: {
     details: 'เหตุผลและสิ่งที่คำแนะนำนี้เทียบ',
     rodScope:
-      'เทียบราคาซื้อใหม่ เวลาเล็ง สายขาดยาก และจุดเริ่มสู้ คันเหมาะกับปลาชนิดไหนดูในหน้าคัน',
+      'เทียบราคาซื้อใหม่ ระยะเหวี่ยง สายขาดยาก และจุดเริ่มสู้ คันเหมาะกับปลาชนิดไหนดูในหน้าคัน',
   },
   en: {
     details: 'Why choose it and what the comparison covers',
     rodScope:
-      'Compares new-purchase price, time to aim, line strength and fight start; the rod page says which fish it suits.',
+      'Compares new-purchase price, cast distance, line strength and fight start; the rod page says which fish it suits.',
   },
   ja: {
     details: '選ぶ理由と比較の範囲',
     rodScope:
-      '新品価格・狙う時間・糸の切れにくさ・ファイトの出だしの比較です。どの魚に向くかは竿のページで確認できます。',
+      '新品価格・投げる距離・糸の切れにくさ・ファイトの出だしの比較です。どの魚に向くかは竿のページで確認できます。',
   },
 }
 

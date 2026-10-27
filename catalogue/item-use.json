@@ -51,15 +51,15 @@
       },
       "evidenceNotes": {
         "th": [
-          "ที่ HP 100 ช่วงเล็งก่อนเปลี่ยนอัตโนมัติคือ 10 หน่วยตัวนับ ระยะสายคือ 1008 หน่วยตำแหน่งภายใน (3 × 336) ไม่ใช่เมตร: เกมใช้ค่านี้ตัดสินว่าปลาถูกลากไกลเกินสายหรือไม่",
+          "ที่ HP 100 ขีดชาร์จการเหวี่ยง (ระยะเหวี่ยงสูงสุด) คือ 10 หน่วยตัวนับ ระยะสายคือ 1008 หน่วยตำแหน่งภายใน (3 × 336) ไม่ใช่เมตร: เกมใช้ค่านี้ตัดสินว่าปลาถูกลากไกลเกินสายหรือไม่",
           "จุดเริ่มของมาตรวัดแรงตึงคำนวณโดยรูทีน 04:8D2A..8EC1 จากกลุ่มของคัน (selector 0) ขนาดปลา และ ID ปลาที่ตรงกัน ผลที่วัดอยู่ใน docs/gear-effects.md"
         ],
         "en": [
-          "At 100 HP the automatic aim cutoff is 10 counter ticks. The line range is 1008 internal position units (3 × 336), not meters: the game uses it to decide whether the fish was dragged past the line.",
+          "At 100 HP the cast charge limit (how far you can cast) is 10 counter ticks. The line range is 1008 internal position units (3 × 336), not meters: the game uses it to decide whether the fish was dragged past the line.",
           "The fight meter's start is computed by the routine at 04:8D2A..8EC1 from the rod's class (selector 0), the fish's size and a matching fish ID. The measured effect is in docs/gear-effects.md."
         ],
         "ja": [
-          "HP100のとき、照準の自動移行上限はゲーム内カウンター10です。糸の範囲は内部位置単位で1008（3 × 336）で、メートルではありません。魚がその先まで引かれたかをゲームが判定します。",
+          "HP100のとき、投げる強さ（チャージ）の上限＝投げる距離はゲーム内カウンター10です。糸の範囲は内部位置単位で1008（3 × 336）で、メートルではありません。魚がその先まで引かれたかをゲームが判定します。",
           "ファイトのメーターの出だしは04:8D2A..8EC1のルーチンが、竿の区分（selector 0）、魚の大きさ、一致する魚IDから計算します。測定結果はdocs/gear-effects.mdにあります。"
         ]
       },
@@ -86,9 +86,9 @@
         "aimRankAt100Hp": 11,
         "reachRank": 11,
         "of": 11,
-        "en": "Within Float / Ayu rods: time to aim ranks 11/11 at full HP; line strength ranks 11/11. Rank 1 is longest/highest in that dimension.",
-        "ja": "ウキ・アユ用の竿11本中、HP満タン時の狙う時間は11位、糸の切れにくさは11位。1位が最長・最大。",
-        "th": "ในกลุ่มคันสายทุ่น / ปลาอายุ 11 คัน: เวลาเล็งอันดับ 11/11 เมื่อ HP เต็ม; สายขาดยากอันดับ 11/11; อันดับ 1 คือดีที่สุด"
+        "en": "Within Float / Ayu rods: cast distance ranks 11/11 at full HP; line strength ranks 11/11. Rank 1 is longest/highest in that dimension.",
+        "ja": "ウキ・アユ用の竿11本中、HP満タン時の投げる距離は11位、糸の切れにくさは11位。1位が最長・最大。",
+        "th": "ในกลุ่มคันสายทุ่น / ปลาอายุ 11 คัน: ระยะเหวี่ยงอันดับ 11/11 เมื่อ HP เต็ม; สายขาดยากอันดับ 11/11; อันดับ 1 คือดีที่สุด"
       },
       "targetMatches": [
         {
@@ -142,15 +142,15 @@
       },
       "evidenceNotes": {
         "th": [
-          "ที่ HP 100 ช่วงเล็งก่อนเปลี่ยนอัตโนมัติคือ 60 หน่วยตัวนับ ระยะสายคือ 2688 หน่วยตำแหน่งภายใน (8 × 336) ไม่ใช่เมตร: เกมใช้ค่านี้ตัดสินว่าปลาถูกลากไกลเกินสายหรือไม่",
+          "ที่ HP 100 ขีดชาร์จการเหวี่ยง (ระยะเหวี่ยงสูงสุด) คือ 60 หน่วยตัวนับ ระยะสายคือ 2688 หน่วยตำแหน่งภายใน (8 × 336) ไม่ใช่เมตร: เกมใช้ค่านี้ตัดสินว่าปลาถูกลากไกลเกินสายหรือไม่",
           "จุดเริ่มของมาตรวัดแรงตึงคำนวณโดยรูทีน 04:8D2A..8EC1 จากกลุ่มของคัน (selector 1) ขนาดปลา และ ID ปลาที่ตรงกัน ผลที่วัดอยู่ใน docs/gear-effects.md"
         ],
         "en": [
-          "At 100 HP the automatic aim cutoff is 60 counter ticks. The line range is 2688 internal position units (8 × 336), not meters: the game uses it to decide whether the fish was dragged past the line.",
+          "At 100 HP the cast charge limit (how far you can cast) is 60 counter ticks. The line range is 2688 internal position units (8 × 336), not meters: the game uses it to decide whether the fish was dragged past the line.",
           "The fight meter's start is computed by the routine at 04:8D2A..8EC1 from the rod's class (selector 1), the fish's size and a matching fish ID. The measured effect is in docs/gear-effects.md."
         ],
         "ja": [
-          "HP100のとき、照準の自動移行上限はゲーム内カウンター60です。糸の範囲は内部位置単位で2688（8 × 336）で、メートルではありません。魚がその先まで引かれたかをゲームが判定します。",
+          "HP100のとき、投げる強さ（チャージ）の上限＝投げる距離はゲーム内カウンター60です。糸の範囲は内部位置単位で2688（8 × 336）で、メートルではありません。魚がその先まで引かれたかをゲームが判定します。",
           "ファイトのメーターの出だしは04:8D2A..8EC1のルーチンが、竿の区分（selector 1）、魚の大きさ、一致する魚IDから計算します。測定結果はdocs/gear-effects.mdにあります。"
         ]
       },
@@ -177,9 +177,9 @@
         "aimRankAt100Hp": 3,
         "reachRank": 6,
         "of": 11,
-        "en": "Within Float / Ayu rods: time to aim ranks 3/11 at full HP; line strength ranks 6/11. Rank 1 is longest/highest in that dimension.",
-        "ja": "ウキ・アユ用の竿11本中、HP満タン時の狙う時間は3位、糸の切れにくさは6位。1位が最長・最大。",
-        "th": "ในกลุ่มคันสายทุ่น / ปลาอายุ 11 คัน: เวลาเล็งอันดับ 3/11 เมื่อ HP เต็ม; สายขาดยากอันดับ 6/11; อันดับ 1 คือดีที่สุด"
+        "en": "Within Float / Ayu rods: cast distance ranks 3/11 at full HP; line strength ranks 6/11. Rank 1 is longest/highest in that dimension.",
+        "ja": "ウキ・アユ用の竿11本中、HP満タン時の投げる距離は3位、糸の切れにくさは6位。1位が最長・最大。",
+        "th": "ในกลุ่มคันสายทุ่น / ปลาอายุ 11 คัน: ระยะเหวี่ยงอันดับ 3/11 เมื่อ HP เต็ม; สายขาดยากอันดับ 6/11; อันดับ 1 คือดีที่สุด"
       },
       "targetMatches": [
         {
@@ -225,15 +225,15 @@
       },
       "evidenceNotes": {
         "th": [
-          "ที่ HP 100 ช่วงเล็งก่อนเปลี่ยนอัตโนมัติคือ 30 หน่วยตัวนับ ระยะสายคือ 1680 หน่วยตำแหน่งภายใน (5 × 336) ไม่ใช่เมตร: เกมใช้ค่านี้ตัดสินว่าปลาถูกลากไกลเกินสายหรือไม่",
+          "ที่ HP 100 ขีดชาร์จการเหวี่ยง (ระยะเหวี่ยงสูงสุด) คือ 30 หน่วยตัวนับ ระยะสายคือ 1680 หน่วยตำแหน่งภายใน (5 × 336) ไม่ใช่เมตร: เกมใช้ค่านี้ตัดสินว่าปลาถูกลากไกลเกินสายหรือไม่",
           "จุดเริ่มของมาตรวัดแรงตึงคำนวณโดยรูทีน 04:8D2A..8EC1 จากกลุ่มของคัน (selector 1) ขนาดปลา และ ID ปลาที่ตรงกัน ผลที่วัดอยู่ใน docs/gear-effects.md"
         ],
         "en": [
-          "At 100 HP the automatic aim cutoff is 30 counter ticks. The line range is 1680 internal position units (5 × 336), not meters: the game uses it to decide whether the fish was dragged past the line.",
+          "At 100 HP the cast charge limit (how far you can cast) is 30 counter ticks. The line range is 1680 internal position units (5 × 336), not meters: the game uses it to decide whether the fish was dragged past the line.",
           "The fight meter's start is computed by the routine at 04:8D2A..8EC1 from the rod's class (selector 1), the fish's size and a matching fish ID. The measured effect is in docs/gear-effects.md."
         ],
         "ja": [
-          "HP100のとき、照準の自動移行上限はゲーム内カウンター30です。糸の範囲は内部位置単位で1680（5 × 336）で、メートルではありません。魚がその先まで引かれたかをゲームが判定します。",
+          "HP100のとき、投げる強さ（チャージ）の上限＝投げる距離はゲーム内カウンター30です。糸の範囲は内部位置単位で1680（5 × 336）で、メートルではありません。魚がその先まで引かれたかをゲームが判定します。",
           "ファイトのメーターの出だしは04:8D2A..8EC1のルーチンが、竿の区分（selector 1）、魚の大きさ、一致する魚IDから計算します。測定結果はdocs/gear-effects.mdにあります。"
         ]
       },
@@ -260,9 +260,9 @@
         "aimRankAt100Hp": 8,
         "reachRank": 9,
         "of": 11,
-        "en": "Within Float / Ayu rods: time to aim ranks 8/11 at full HP; line strength ranks 9/11. Rank 1 is longest/highest in that dimension.",
-        "ja": "ウキ・アユ用の竿11本中、HP満タン時の狙う時間は8位、糸の切れにくさは9位。1位が最長・最大。",
-        "th": "ในกลุ่มคันสายทุ่น / ปลาอายุ 11 คัน: เวลาเล็งอันดับ 8/11 เมื่อ HP เต็ม; สายขาดยากอันดับ 9/11; อันดับ 1 คือดีที่สุด"
+        "en": "Within Float / Ayu rods: cast distance ranks 8/11 at full HP; line strength ranks 9/11. Rank 1 is longest/highest in that dimension.",
+        "ja": "ウキ・アユ用の竿11本中、HP満タン時の投げる距離は8位、糸の切れにくさは9位。1位が最長・最大。",
+        "th": "ในกลุ่มคันสายทุ่น / ปลาอายุ 11 คัน: ระยะเหวี่ยงอันดับ 8/11 เมื่อ HP เต็ม; สายขาดยากอันดับ 9/11; อันดับ 1 คือดีที่สุด"
       },
       "evidence": {
         "type": "rom_trace",
@@ -309,15 +309,15 @@
       },
       "evidenceNotes": {
         "th": [
-          "ที่ HP 100 ช่วงเล็งก่อนเปลี่ยนอัตโนมัติคือ 50 หน่วยตัวนับ ระยะสายคือ 2352 หน่วยตำแหน่งภายใน (7 × 336) ไม่ใช่เมตร: เกมใช้ค่านี้ตัดสินว่าปลาถูกลากไกลเกินสายหรือไม่",
+          "ที่ HP 100 ขีดชาร์จการเหวี่ยง (ระยะเหวี่ยงสูงสุด) คือ 50 หน่วยตัวนับ ระยะสายคือ 2352 หน่วยตำแหน่งภายใน (7 × 336) ไม่ใช่เมตร: เกมใช้ค่านี้ตัดสินว่าปลาถูกลากไกลเกินสายหรือไม่",
           "จุดเริ่มของมาตรวัดแรงตึงคำนวณโดยรูทีน 04:8D2A..8EC1 จากกลุ่มของคัน (selector 1) ขนาดปลา และ ID ปลาที่ตรงกัน ผลที่วัดอยู่ใน docs/gear-effects.md"
         ],
         "en": [
-          "At 100 HP the automatic aim cutoff is 50 counter ticks. The line range is 2352 internal position units (7 × 336), not meters: the game uses it to decide whether the fish was dragged past the line.",
+          "At 100 HP the cast charge limit (how far you can cast) is 50 counter ticks. The line range is 2352 internal position units (7 × 336), not meters: the game uses it to decide whether the fish was dragged past the line.",
           "The fight meter's start is computed by the routine at 04:8D2A..8EC1 from the rod's class (selector 1), the fish's size and a matching fish ID. The measured effect is in docs/gear-effects.md."
         ],
         "ja": [
-          "HP100のとき、照準の自動移行上限はゲーム内カウンター50です。糸の範囲は内部位置単位で2352（7 × 336）で、メートルではありません。魚がその先まで引かれたかをゲームが判定します。",
+          "HP100のとき、投げる強さ（チャージ）の上限＝投げる距離はゲーム内カウンター50です。糸の範囲は内部位置単位で2352（7 × 336）で、メートルではありません。魚がその先まで引かれたかをゲームが判定します。",
           "ファイトのメーターの出だしは04:8D2A..8EC1のルーチンが、竿の区分（selector 1）、魚の大きさ、一致する魚IDから計算します。測定結果はdocs/gear-effects.mdにあります。"
         ]
       },
@@ -344,9 +344,9 @@
         "aimRankAt100Hp": 5,
         "reachRank": 7,
         "of": 11,
-        "en": "Within Float / Ayu rods: time to aim ranks 5/11 at full HP; line strength ranks 7/11. Rank 1 is longest/highest in that dimension.",
-        "ja": "ウキ・アユ用の竿11本中、HP満タン時の狙う時間は5位、糸の切れにくさは7位。1位が最長・最大。",
-        "th": "ในกลุ่มคันสายทุ่น / ปลาอายุ 11 คัน: เวลาเล็งอันดับ 5/11 เมื่อ HP เต็ม; สายขาดยากอันดับ 7/11; อันดับ 1 คือดีที่สุด"
+        "en": "Within Float / Ayu rods: cast distance ranks 5/11 at full HP; line strength ranks 7/11. Rank 1 is longest/highest in that dimension.",
+        "ja": "ウキ・アユ用の竿11本中、HP満タン時の投げる距離は5位、糸の切れにくさは7位。1位が最長・最大。",
+        "th": "ในกลุ่มคันสายทุ่น / ปลาอายุ 11 คัน: ระยะเหวี่ยงอันดับ 5/11 เมื่อ HP เต็ม; สายขาดยากอันดับ 7/11; อันดับ 1 คือดีที่สุด"
       },
       "evidence": {
         "type": "rom_trace",
@@ -399,15 +399,15 @@
       },
       "evidenceNotes": {
         "th": [
-          "ที่ HP 100 ช่วงเล็งก่อนเปลี่ยนอัตโนมัติคือ 40 หน่วยตัวนับ ระยะสายคือ 2016 หน่วยตำแหน่งภายใน (6 × 336) ไม่ใช่เมตร: เกมใช้ค่านี้ตัดสินว่าปลาถูกลากไกลเกินสายหรือไม่",
+          "ที่ HP 100 ขีดชาร์จการเหวี่ยง (ระยะเหวี่ยงสูงสุด) คือ 40 หน่วยตัวนับ ระยะสายคือ 2016 หน่วยตำแหน่งภายใน (6 × 336) ไม่ใช่เมตร: เกมใช้ค่านี้ตัดสินว่าปลาถูกลากไกลเกินสายหรือไม่",
           "จุดเริ่มของมาตรวัดแรงตึงคำนวณโดยรูทีน 04:8D2A..8EC1 จากกลุ่มของคัน (selector 1) ขนาดปลา และ ID ปลาที่ตรงกัน ผลที่วัดอยู่ใน docs/gear-effects.md"
         ],
         "en": [
-          "At 100 HP the automatic aim cutoff is 40 counter ticks. The line range is 2016 internal position units (6 × 336), not meters: the game uses it to decide whether the fish was dragged past the line.",
+          "At 100 HP the cast charge limit (how far you can cast) is 40 counter ticks. The line range is 2016 internal position units (6 × 336), not meters: the game uses it to decide whether the fish was dragged past the line.",
           "The fight meter's start is computed by the routine at 04:8D2A..8EC1 from the rod's class (selector 1), the fish's size and a matching fish ID. The measured effect is in docs/gear-effects.md."
         ],
         "ja": [
-          "HP100のとき、照準の自動移行上限はゲーム内カウンター40です。糸の範囲は内部位置単位で2016（6 × 336）で、メートルではありません。魚がその先まで引かれたかをゲームが判定します。",
+          "HP100のとき、投げる強さ（チャージ）の上限＝投げる距離はゲーム内カウンター40です。糸の範囲は内部位置単位で2016（6 × 336）で、メートルではありません。魚がその先まで引かれたかをゲームが判定します。",
           "ファイトのメーターの出だしは04:8D2A..8EC1のルーチンが、竿の区分（selector 1）、魚の大きさ、一致する魚IDから計算します。測定結果はdocs/gear-effects.mdにあります。"
         ]
       },
@@ -434,9 +434,9 @@
         "aimRankAt100Hp": 6,
         "reachRank": 8,
         "of": 11,
-        "en": "Within Float / Ayu rods: time to aim ranks 6/11 at full HP; line strength ranks 8/11. Rank 1 is longest/highest in that dimension.",
-        "ja": "ウキ・アユ用の竿11本中、HP満タン時の狙う時間は6位、糸の切れにくさは8位。1位が最長・最大。",
-        "th": "ในกลุ่มคันสายทุ่น / ปลาอายุ 11 คัน: เวลาเล็งอันดับ 6/11 เมื่อ HP เต็ม; สายขาดยากอันดับ 8/11; อันดับ 1 คือดีที่สุด"
+        "en": "Within Float / Ayu rods: cast distance ranks 6/11 at full HP; line strength ranks 8/11. Rank 1 is longest/highest in that dimension.",
+        "ja": "ウキ・アユ用の竿11本中、HP満タン時の投げる距離は6位、糸の切れにくさは8位。1位が最長・最大。",
+        "th": "ในกลุ่มคันสายทุ่น / ปลาอายุ 11 คัน: ระยะเหวี่ยงอันดับ 6/11 เมื่อ HP เต็ม; สายขาดยากอันดับ 8/11; อันดับ 1 คือดีที่สุด"
       },
       "targetMatches": [
         {
@@ -492,15 +492,15 @@
       },
       "evidenceNotes": {
         "th": [
-          "ที่ HP 100 ช่วงเล็งก่อนเปลี่ยนอัตโนมัติคือ 20 หน่วยตัวนับ ระยะสายคือ 1344 หน่วยตำแหน่งภายใน (4 × 336) ไม่ใช่เมตร: เกมใช้ค่านี้ตัดสินว่าปลาถูกลากไกลเกินสายหรือไม่",
+          "ที่ HP 100 ขีดชาร์จการเหวี่ยง (ระยะเหวี่ยงสูงสุด) คือ 20 หน่วยตัวนับ ระยะสายคือ 1344 หน่วยตำแหน่งภายใน (4 × 336) ไม่ใช่เมตร: เกมใช้ค่านี้ตัดสินว่าปลาถูกลากไกลเกินสายหรือไม่",
           "จุดเริ่มของมาตรวัดแรงตึงคำนวณโดยรูทีน 04:8D2A..8EC1 จากกลุ่มของคัน (selector 0) ขนาดปลา และ ID ปลาที่ตรงกัน ผลที่วัดอยู่ใน docs/gear-effects.md"
         ],
         "en": [
-          "At 100 HP the automatic aim cutoff is 20 counter ticks. The line range is 1344 internal position units (4 × 336), not meters: the game uses it to decide whether the fish was dragged past the line.",
+          "At 100 HP the cast charge limit (how far you can cast) is 20 counter ticks. The line range is 1344 internal position units (4 × 336), not meters: the game uses it to decide whether the fish was dragged past the line.",
           "The fight meter's start is computed by the routine at 04:8D2A..8EC1 from the rod's class (selector 0), the fish's size and a matching fish ID. The measured effect is in docs/gear-effects.md."
         ],
         "ja": [
-          "HP100のとき、照準の自動移行上限はゲーム内カウンター20です。糸の範囲は内部位置単位で1344（4 × 336）で、メートルではありません。魚がその先まで引かれたかをゲームが判定します。",
+          "HP100のとき、投げる強さ（チャージ）の上限＝投げる距離はゲーム内カウンター20です。糸の範囲は内部位置単位で1344（4 × 336）で、メートルではありません。魚がその先まで引かれたかをゲームが判定します。",
           "ファイトのメーターの出だしは04:8D2A..8EC1のルーチンが、竿の区分（selector 0）、魚の大きさ、一致する魚IDから計算します。測定結果はdocs/gear-effects.mdにあります。"
         ]
       },
@@ -533,9 +533,9 @@
         "aimRankAt100Hp": 10,
         "reachRank": 10,
         "of": 11,
-        "en": "Within Float / Ayu rods: time to aim ranks 10/11 at full HP; line strength ranks 10/11. Rank 1 is longest/highest in that dimension.",
-        "ja": "ウキ・アユ用の竿11本中、HP満タン時の狙う時間は10位、糸の切れにくさは10位。1位が最長・最大。",
-        "th": "ในกลุ่มคันสายทุ่น / ปลาอายุ 11 คัน: เวลาเล็งอันดับ 10/11 เมื่อ HP เต็ม; สายขาดยากอันดับ 10/11; อันดับ 1 คือดีที่สุด"
+        "en": "Within Float / Ayu rods: cast distance ranks 10/11 at full HP; line strength ranks 10/11. Rank 1 is longest/highest in that dimension.",
+        "ja": "ウキ・アユ用の竿11本中、HP満タン時の投げる距離は10位、糸の切れにくさは10位。1位が最長・最大。",
+        "th": "ในกลุ่มคันสายทุ่น / ปลาอายุ 11 คัน: ระยะเหวี่ยงอันดับ 10/11 เมื่อ HP เต็ม; สายขาดยากอันดับ 10/11; อันดับ 1 คือดีที่สุด"
       },
       "targetMatches": [
         {
@@ -584,15 +584,15 @@
       },
       "evidenceNotes": {
         "th": [
-          "ที่ HP 100 ช่วงเล็งก่อนเปลี่ยนอัตโนมัติคือ 70 หน่วยตัวนับ ระยะสายคือ 3024 หน่วยตำแหน่งภายใน (9 × 336) ไม่ใช่เมตร: เกมใช้ค่านี้ตัดสินว่าปลาถูกลากไกลเกินสายหรือไม่",
+          "ที่ HP 100 ขีดชาร์จการเหวี่ยง (ระยะเหวี่ยงสูงสุด) คือ 70 หน่วยตัวนับ ระยะสายคือ 3024 หน่วยตำแหน่งภายใน (9 × 336) ไม่ใช่เมตร: เกมใช้ค่านี้ตัดสินว่าปลาถูกลากไกลเกินสายหรือไม่",
           "จุดเริ่มของมาตรวัดแรงตึงคำนวณโดยรูทีน 04:8D2A..8EC1 จากกลุ่มของคัน (selector 1) ขนาดปลา และ ID ปลาที่ตรงกัน ผลที่วัดอยู่ใน docs/gear-effects.md"
         ],
         "en": [
-          "At 100 HP the automatic aim cutoff is 70 counter ticks. The line range is 3024 internal position units (9 × 336), not meters: the game uses it to decide whether the fish was dragged past the line.",
+          "At 100 HP the cast charge limit (how far you can cast) is 70 counter ticks. The line range is 3024 internal position units (9 × 336), not meters: the game uses it to decide whether the fish was dragged past the line.",
           "The fight meter's start is computed by the routine at 04:8D2A..8EC1 from the rod's class (selector 1), the fish's size and a matching fish ID. The measured effect is in docs/gear-effects.md."
         ],
         "ja": [
-          "HP100のとき、照準の自動移行上限はゲーム内カウンター70です。糸の範囲は内部位置単位で3024（9 × 336）で、メートルではありません。魚がその先まで引かれたかをゲームが判定します。",
+          "HP100のとき、投げる強さ（チャージ）の上限＝投げる距離はゲーム内カウンター70です。糸の範囲は内部位置単位で3024（9 × 336）で、メートルではありません。魚がその先まで引かれたかをゲームが判定します。",
           "ファイトのメーターの出だしは04:8D2A..8EC1のルーチンが、竿の区分（selector 1）、魚の大きさ、一致する魚IDから計算します。測定結果はdocs/gear-effects.mdにあります。"
         ]
       },
@@ -619,9 +619,9 @@
         "aimRankAt100Hp": 2,
         "reachRank": 5,
         "of": 11,
-        "en": "Within Float / Ayu rods: time to aim ranks 2/11 at full HP; line strength ranks 5/11. Rank 1 is longest/highest in that dimension.",
-        "ja": "ウキ・アユ用の竿11本中、HP満タン時の狙う時間は2位、糸の切れにくさは5位。1位が最長・最大。",
-        "th": "ในกลุ่มคันสายทุ่น / ปลาอายุ 11 คัน: เวลาเล็งอันดับ 2/11 เมื่อ HP เต็ม; สายขาดยากอันดับ 5/11; อันดับ 1 คือดีที่สุด"
+        "en": "Within Float / Ayu rods: cast distance ranks 2/11 at full HP; line strength ranks 5/11. Rank 1 is longest/highest in that dimension.",
+        "ja": "ウキ・アユ用の竿11本中、HP満タン時の投げる距離は2位、糸の切れにくさは5位。1位が最長・最大。",
+        "th": "ในกลุ่มคันสายทุ่น / ปลาอายุ 11 คัน: ระยะเหวี่ยงอันดับ 2/11 เมื่อ HP เต็ม; สายขาดยากอันดับ 5/11; อันดับ 1 คือดีที่สุด"
       },
       "targetMatches": [
         {
@@ -677,15 +677,15 @@
       },
       "evidenceNotes": {
         "th": [
-          "ที่ HP 100 ช่วงเล็งก่อนเปลี่ยนอัตโนมัติคือ 40 หน่วยตัวนับ ระยะสายคือ 8064 หน่วยตำแหน่งภายใน (24 × 336) ไม่ใช่เมตร: เกมใช้ค่านี้ตัดสินว่าปลาถูกลากไกลเกินสายหรือไม่",
+          "ที่ HP 100 ขีดชาร์จการเหวี่ยง (ระยะเหวี่ยงสูงสุด) คือ 40 หน่วยตัวนับ ระยะสายคือ 8064 หน่วยตำแหน่งภายใน (24 × 336) ไม่ใช่เมตร: เกมใช้ค่านี้ตัดสินว่าปลาถูกลากไกลเกินสายหรือไม่",
           "จุดเริ่มของมาตรวัดแรงตึงคำนวณโดยรูทีน 04:8D2A..8EC1 จากกลุ่มของคัน (selector 2) ขนาดปลา และ ID ปลาที่ตรงกัน ผลที่วัดอยู่ใน docs/gear-effects.md"
         ],
         "en": [
-          "At 100 HP the automatic aim cutoff is 40 counter ticks. The line range is 8064 internal position units (24 × 336), not meters: the game uses it to decide whether the fish was dragged past the line.",
+          "At 100 HP the cast charge limit (how far you can cast) is 40 counter ticks. The line range is 8064 internal position units (24 × 336), not meters: the game uses it to decide whether the fish was dragged past the line.",
           "The fight meter's start is computed by the routine at 04:8D2A..8EC1 from the rod's class (selector 2), the fish's size and a matching fish ID. The measured effect is in docs/gear-effects.md."
         ],
         "ja": [
-          "HP100のとき、照準の自動移行上限はゲーム内カウンター40です。糸の範囲は内部位置単位で8064（24 × 336）で、メートルではありません。魚がその先まで引かれたかをゲームが判定します。",
+          "HP100のとき、投げる強さ（チャージ）の上限＝投げる距離はゲーム内カウンター40です。糸の範囲は内部位置単位で8064（24 × 336）で、メートルではありません。魚がその先まで引かれたかをゲームが判定します。",
           "ファイトのメーターの出だしは04:8D2A..8EC1のルーチンが、竿の区分（selector 2）、魚の大きさ、一致する魚IDから計算します。測定結果はdocs/gear-effects.mdにあります。"
         ]
       },
@@ -712,9 +712,9 @@
         "aimRankAt100Hp": 6,
         "reachRank": 1,
         "of": 11,
-        "en": "Within Float / Ayu rods: time to aim ranks 6/11 at full HP; line strength ranks 1/11. Rank 1 is longest/highest in that dimension.",
-        "ja": "ウキ・アユ用の竿11本中、HP満タン時の狙う時間は6位、糸の切れにくさは1位。1位が最長・最大。",
-        "th": "ในกลุ่มคันสายทุ่น / ปลาอายุ 11 คัน: เวลาเล็งอันดับ 6/11 เมื่อ HP เต็ม; สายขาดยากอันดับ 1/11; อันดับ 1 คือดีที่สุด"
+        "en": "Within Float / Ayu rods: cast distance ranks 6/11 at full HP; line strength ranks 1/11. Rank 1 is longest/highest in that dimension.",
+        "ja": "ウキ・アユ用の竿11本中、HP満タン時の投げる距離は6位、糸の切れにくさは1位。1位が最長・最大。",
+        "th": "ในกลุ่มคันสายทุ่น / ปลาอายุ 11 คัน: ระยะเหวี่ยงอันดับ 6/11 เมื่อ HP เต็ม; สายขาดยากอันดับ 1/11; อันดับ 1 คือดีที่สุด"
       },
       "targetMatches": [
         {
@@ -768,15 +768,15 @@
       },
       "evidenceNotes": {
         "th": [
-          "ที่ HP 100 ช่วงเล็งก่อนเปลี่ยนอัตโนมัติคือ 30 หน่วยตัวนับ ระยะสายคือ 4032 หน่วยตำแหน่งภายใน (12 × 336) ไม่ใช่เมตร: เกมใช้ค่านี้ตัดสินว่าปลาถูกลากไกลเกินสายหรือไม่",
+          "ที่ HP 100 ขีดชาร์จการเหวี่ยง (ระยะเหวี่ยงสูงสุด) คือ 30 หน่วยตัวนับ ระยะสายคือ 4032 หน่วยตำแหน่งภายใน (12 × 336) ไม่ใช่เมตร: เกมใช้ค่านี้ตัดสินว่าปลาถูกลากไกลเกินสายหรือไม่",
           "จุดเริ่มของมาตรวัดแรงตึงคำนวณโดยรูทีน 04:8D2A..8EC1 จากกลุ่มของคัน (selector 1) ขนาดปลา และ ID ปลาที่ตรงกัน ผลที่วัดอยู่ใน docs/gear-effects.md"
         ],
         "en": [
-          "At 100 HP the automatic aim cutoff is 30 counter ticks. The line range is 4032 internal position units (12 × 336), not meters: the game uses it to decide whether the fish was dragged past the line.",
+          "At 100 HP the cast charge limit (how far you can cast) is 30 counter ticks. The line range is 4032 internal position units (12 × 336), not meters: the game uses it to decide whether the fish was dragged past the line.",
           "The fight meter's start is computed by the routine at 04:8D2A..8EC1 from the rod's class (selector 1), the fish's size and a matching fish ID. The measured effect is in docs/gear-effects.md."
         ],
         "ja": [
-          "HP100のとき、照準の自動移行上限はゲーム内カウンター30です。糸の範囲は内部位置単位で4032（12 × 336）で、メートルではありません。魚がその先まで引かれたかをゲームが判定します。",
+          "HP100のとき、投げる強さ（チャージ）の上限＝投げる距離はゲーム内カウンター30です。糸の範囲は内部位置単位で4032（12 × 336）で、メートルではありません。魚がその先まで引かれたかをゲームが判定します。",
           "ファイトのメーターの出だしは04:8D2A..8EC1のルーチンが、竿の区分（selector 1）、魚の大きさ、一致する魚IDから計算します。測定結果はdocs/gear-effects.mdにあります。"
         ]
       },
@@ -803,9 +803,9 @@
         "aimRankAt100Hp": 8,
         "reachRank": 4,
         "of": 11,
-        "en": "Within Float / Ayu rods: time to aim ranks 8/11 at full HP; line strength ranks 4/11. Rank 1 is longest/highest in that dimension.",
-        "ja": "ウキ・アユ用の竿11本中、HP満タン時の狙う時間は8位、糸の切れにくさは4位。1位が最長・最大。",
-        "th": "ในกลุ่มคันสายทุ่น / ปลาอายุ 11 คัน: เวลาเล็งอันดับ 8/11 เมื่อ HP เต็ม; สายขาดยากอันดับ 4/11; อันดับ 1 คือดีที่สุด"
+        "en": "Within Float / Ayu rods: cast distance ranks 8/11 at full HP; line strength ranks 4/11. Rank 1 is longest/highest in that dimension.",
+        "ja": "ウキ・アユ用の竿11本中、HP満タン時の投げる距離は8位、糸の切れにくさは4位。1位が最長・最大。",
+        "th": "ในกลุ่มคันสายทุ่น / ปลาอายุ 11 คัน: ระยะเหวี่ยงอันดับ 8/11 เมื่อ HP เต็ม; สายขาดยากอันดับ 4/11; อันดับ 1 คือดีที่สุด"
       },
       "targetMatches": [
         {
@@ -846,34 +846,34 @@
         "th": [
           "สายขาดยาก ×15 ใช้ได้กับปลา 27 จาก 38 ชนิด อีก 11 ชนิด (เช่น โออูนางิ, โคคุเร็น, อาคาเมะ) วิ่งไกลกว่านี้ สายจะขาดและเสียตะขอ ต้องใช้คันที่ยาวกว่า",
           "จุดเริ่มของมาตรวัดแรงตึงตามขนาดปลา: คันนี้ดีสุดกับปลา 34 จาก 38 ชนิด เฉลี่ยพลาดได้น้อยลง 0.1 จังหวะ",
-          "เวลาเล็ง 70 เมื่อ HP เต็ม 100 ถ้า HP ต่ำกว่านั้นเวลาเล็งสั้นลง"
+          "ระยะเหวี่ยงสูงสุด 70 เมื่อ HP เต็ม 100 ถ้า HP ต่ำกว่านั้นเหวี่ยงได้สั้นลง"
         ],
         "en": [
           "Line strength ×15 holds 27 of 38 species. The other 11 species (e.g. Oo-unagi, Kokuren, Akame) run farther than that, so the line breaks and the hook is lost; they need a longer rod.",
           "Fight start by fish size: this rod is best for 34 of 38 species and costs 0.1 mistakes on average.",
-          "Time to aim is 70 at full 100 HP and gets shorter below that."
+          "Cast distance limit is 70 at full 100 HP and gets shorter below that."
         ],
         "ja": [
           "糸の切れにくさ×15は38種中27種に足ります。残り11種（例：オオウナギ、コクレン、アカメ）はそれ以上走るため、糸が切れて針を失います。もっと長い竿が必要です。",
           "魚の大きさごとのファイトの出だし：この竿は38種中34種で最良で、平均0.1回分のミスを失います。",
-          "狙う時間はHP100のとき70で、HPが減ると短くなります。"
+          "投げる距離はHP100のとき70で、HPが減ると短くなります。"
         ]
       },
       "evidenceNotes": {
         "th": [
-          "ที่ HP 100 ช่วงเล็งก่อนเปลี่ยนอัตโนมัติคือ 70 หน่วยตัวนับ ระยะสายคือ 5040 หน่วยตำแหน่งภายใน (15 × 336) ไม่ใช่เมตร: เกมใช้ค่านี้ตัดสินว่าปลาถูกลากไกลเกินสายหรือไม่",
+          "ที่ HP 100 ขีดชาร์จการเหวี่ยง (ระยะเหวี่ยงสูงสุด) คือ 70 หน่วยตัวนับ ระยะสายคือ 5040 หน่วยตำแหน่งภายใน (15 × 336) ไม่ใช่เมตร: เกมใช้ค่านี้ตัดสินว่าปลาถูกลากไกลเกินสายหรือไม่",
           "จุดเริ่มของมาตรวัดแรงตึงคำนวณโดยรูทีน 04:8D2A..8EC1 จากกลุ่มของคัน (selector 0) ขนาดปลา และ ID ปลาที่ตรงกัน ผลที่วัดอยู่ใน docs/gear-effects.md",
-          "ถ้า HP ต่ำกว่า 100 ช่วงเล็งก่อนเปลี่ยนอัตโนมัติสั้นลงตาม HP (ต่ำสุด 10) ที่ HP 100 ใช้ค่าเต็ม"
+          "ถ้า HP ต่ำกว่า 100 ระยะเหวี่ยงสั้นลงตาม HP (ต่ำสุด 10) ที่ HP 100 ใช้ค่าเต็ม"
         ],
         "en": [
-          "At 100 HP the automatic aim cutoff is 70 counter ticks. The line range is 5040 internal position units (15 × 336), not meters: the game uses it to decide whether the fish was dragged past the line.",
+          "At 100 HP the cast charge limit (how far you can cast) is 70 counter ticks. The line range is 5040 internal position units (15 × 336), not meters: the game uses it to decide whether the fish was dragged past the line.",
           "The fight meter's start is computed by the routine at 04:8D2A..8EC1 from the rod's class (selector 0), the fish's size and a matching fish ID. The measured effect is in docs/gear-effects.md.",
-          "Below 100 HP the automatic aim cutoff shrinks with current HP (minimum 10); at 100 HP it uses the full value."
+          "Below 100 HP the cast charge limit shrinks with current HP (minimum 10), so you cast shorter; at 100 HP it uses the full value."
         ],
         "ja": [
-          "HP100のとき、照準の自動移行上限はゲーム内カウンター70です。糸の範囲は内部位置単位で5040（15 × 336）で、メートルではありません。魚がその先まで引かれたかをゲームが判定します。",
+          "HP100のとき、投げる強さ（チャージ）の上限＝投げる距離はゲーム内カウンター70です。糸の範囲は内部位置単位で5040（15 × 336）で、メートルではありません。魚がその先まで引かれたかをゲームが判定します。",
           "ファイトのメーターの出だしは04:8D2A..8EC1のルーチンが、竿の区分（selector 0）、魚の大きさ、一致する魚IDから計算します。測定結果はdocs/gear-effects.mdにあります。",
-          "HPが100未満だと、照準の自動移行上限はHPに応じて短くなります（最小10）。HP100以上では全値を使います。"
+          "HPが100未満だと、投げる強さ（チャージ）の上限＝投げる距離はHPに応じて短くなります（最小10）。HP100以上では全値を使います。"
         ]
       },
       "fishIds": [],
@@ -899,9 +899,9 @@
         "aimRankAt100Hp": 4,
         "reachRank": 4,
         "of": 4,
-        "en": "Within Lure rods: time to aim ranks 4/4 at full HP; line strength ranks 4/4. Rank 1 is longest/highest in that dimension.",
-        "ja": "ルアー用の竿4本中、HP満タン時の狙う時間は4位、糸の切れにくさは4位。1位が最長・最大。",
-        "th": "ในกลุ่มคันลัวร์ 4 คัน: เวลาเล็งอันดับ 4/4 เมื่อ HP เต็ม; สายขาดยากอันดับ 4/4; อันดับ 1 คือดีที่สุด"
+        "en": "Within Lure rods: cast distance ranks 4/4 at full HP; line strength ranks 4/4. Rank 1 is longest/highest in that dimension.",
+        "ja": "ルアー用の竿4本中、HP満タン時の投げる距離は4位、糸の切れにくさは4位。1位が最長・最大。",
+        "th": "ในกลุ่มคันลัวร์ 4 คัน: ระยะเหวี่ยงอันดับ 4/4 เมื่อ HP เต็ม; สายขาดยากอันดับ 4/4; อันดับ 1 คือดีที่สุด"
       },
       "evidence": {
         "type": "rom_trace",
@@ -939,34 +939,34 @@
         "th": [
           "สายขาดยาก ×18 ใช้ได้กับปลา 27 จาก 38 ชนิด อีก 11 ชนิด (เช่น โออูนางิ, โคคุเร็น, อาคาเมะ) วิ่งไกลกว่านี้ สายจะขาดและเสียตะขอ ต้องใช้คันที่ยาวกว่า",
           "จุดเริ่มของมาตรวัดแรงตึงตามขนาดปลา: คันนี้ดีสุดกับปลา 34 จาก 38 ชนิด เฉลี่ยพลาดได้น้อยลง 0.1 จังหวะ",
-          "เวลาเล็ง 80 เมื่อ HP เต็ม 100 ถ้า HP ต่ำกว่านั้นเวลาเล็งสั้นลง"
+          "ระยะเหวี่ยงสูงสุด 80 เมื่อ HP เต็ม 100 ถ้า HP ต่ำกว่านั้นเหวี่ยงได้สั้นลง"
         ],
         "en": [
           "Line strength ×18 holds 27 of 38 species. The other 11 species (e.g. Oo-unagi, Kokuren, Akame) run farther than that, so the line breaks and the hook is lost; they need a longer rod.",
           "Fight start by fish size: this rod is best for 34 of 38 species and costs 0.1 mistakes on average.",
-          "Time to aim is 80 at full 100 HP and gets shorter below that."
+          "Cast distance limit is 80 at full 100 HP and gets shorter below that."
         ],
         "ja": [
           "糸の切れにくさ×18は38種中27種に足ります。残り11種（例：オオウナギ、コクレン、アカメ）はそれ以上走るため、糸が切れて針を失います。もっと長い竿が必要です。",
           "魚の大きさごとのファイトの出だし：この竿は38種中34種で最良で、平均0.1回分のミスを失います。",
-          "狙う時間はHP100のとき80で、HPが減ると短くなります。"
+          "投げる距離はHP100のとき80で、HPが減ると短くなります。"
         ]
       },
       "evidenceNotes": {
         "th": [
-          "ที่ HP 100 ช่วงเล็งก่อนเปลี่ยนอัตโนมัติคือ 80 หน่วยตัวนับ ระยะสายคือ 6048 หน่วยตำแหน่งภายใน (18 × 336) ไม่ใช่เมตร: เกมใช้ค่านี้ตัดสินว่าปลาถูกลากไกลเกินสายหรือไม่",
+          "ที่ HP 100 ขีดชาร์จการเหวี่ยง (ระยะเหวี่ยงสูงสุด) คือ 80 หน่วยตัวนับ ระยะสายคือ 6048 หน่วยตำแหน่งภายใน (18 × 336) ไม่ใช่เมตร: เกมใช้ค่านี้ตัดสินว่าปลาถูกลากไกลเกินสายหรือไม่",
           "จุดเริ่มของมาตรวัดแรงตึงคำนวณโดยรูทีน 04:8D2A..8EC1 จากกลุ่มของคัน (selector 0) ขนาดปลา และ ID ปลาที่ตรงกัน ผลที่วัดอยู่ใน docs/gear-effects.md",
-          "ถ้า HP ต่ำกว่า 100 ช่วงเล็งก่อนเปลี่ยนอัตโนมัติสั้นลงตาม HP (ต่ำสุด 10) ที่ HP 100 ใช้ค่าเต็ม"
+          "ถ้า HP ต่ำกว่า 100 ระยะเหวี่ยงสั้นลงตาม HP (ต่ำสุด 10) ที่ HP 100 ใช้ค่าเต็ม"
         ],
         "en": [
-          "At 100 HP the automatic aim cutoff is 80 counter ticks. The line range is 6048 internal position units (18 × 336), not meters: the game uses it to decide whether the fish was dragged past the line.",
+          "At 100 HP the cast charge limit (how far you can cast) is 80 counter ticks. The line range is 6048 internal position units (18 × 336), not meters: the game uses it to decide whether the fish was dragged past the line.",
           "The fight meter's start is computed by the routine at 04:8D2A..8EC1 from the rod's class (selector 0), the fish's size and a matching fish ID. The measured effect is in docs/gear-effects.md.",
-          "Below 100 HP the automatic aim cutoff shrinks with current HP (minimum 10); at 100 HP it uses the full value."
+          "Below 100 HP the cast charge limit shrinks with current HP (minimum 10), so you cast shorter; at 100 HP it uses the full value."
         ],
         "ja": [
-          "HP100のとき、照準の自動移行上限はゲーム内カウンター80です。糸の範囲は内部位置単位で6048（18 × 336）で、メートルではありません。魚がその先まで引かれたかをゲームが判定します。",
+          "HP100のとき、投げる強さ（チャージ）の上限＝投げる距離はゲーム内カウンター80です。糸の範囲は内部位置単位で6048（18 × 336）で、メートルではありません。魚がその先まで引かれたかをゲームが判定します。",
           "ファイトのメーターの出だしは04:8D2A..8EC1のルーチンが、竿の区分（selector 0）、魚の大きさ、一致する魚IDから計算します。測定結果はdocs/gear-effects.mdにあります。",
-          "HPが100未満だと、照準の自動移行上限はHPに応じて短くなります（最小10）。HP100以上では全値を使います。"
+          "HPが100未満だと、投げる強さ（チャージ）の上限＝投げる距離はHPに応じて短くなります（最小10）。HP100以上では全値を使います。"
         ]
       },
       "fishIds": [],
@@ -992,9 +992,9 @@
         "aimRankAt100Hp": 3,
         "reachRank": 3,
         "of": 4,
-        "en": "Within Lure rods: time to aim ranks 3/4 at full HP; line strength ranks 3/4. Rank 1 is longest/highest in that dimension.",
-        "ja": "ルアー用の竿4本中、HP満タン時の狙う時間は3位、糸の切れにくさは3位。1位が最長・最大。",
-        "th": "ในกลุ่มคันลัวร์ 4 คัน: เวลาเล็งอันดับ 3/4 เมื่อ HP เต็ม; สายขาดยากอันดับ 3/4; อันดับ 1 คือดีที่สุด"
+        "en": "Within Lure rods: cast distance ranks 3/4 at full HP; line strength ranks 3/4. Rank 1 is longest/highest in that dimension.",
+        "ja": "ルアー用の竿4本中、HP満タン時の投げる距離は3位、糸の切れにくさは3位。1位が最長・最大。",
+        "th": "ในกลุ่มคันลัวร์ 4 คัน: ระยะเหวี่ยงอันดับ 3/4 เมื่อ HP เต็ม; สายขาดยากอันดับ 3/4; อันดับ 1 คือดีที่สุด"
       },
       "evidence": {
         "type": "rom_trace",
@@ -1016,34 +1016,34 @@
         "th": [
           "สายขาดยาก ×21 ใช้ได้กับปลา 27 จาก 38 ชนิด อีก 11 ชนิด (เช่น โออูนางิ, โคคุเร็น, อาคาเมะ) วิ่งไกลกว่านี้ สายจะขาดและเสียตะขอ ต้องใช้คันที่ยาวกว่า",
           "จุดเริ่มของมาตรวัดแรงตึงตามขนาดปลา: คันนี้ดีสุดกับปลา 32 จาก 38 ชนิด เฉลี่ยพลาดได้น้อยลง 0.2 จังหวะ",
-          "เวลาเล็ง 100 เมื่อ HP เต็ม 100 ถ้า HP ต่ำกว่านั้นเวลาเล็งสั้นลง"
+          "ระยะเหวี่ยงสูงสุด 100 เมื่อ HP เต็ม 100 ถ้า HP ต่ำกว่านั้นเหวี่ยงได้สั้นลง"
         ],
         "en": [
           "Line strength ×21 holds 27 of 38 species. The other 11 species (e.g. Oo-unagi, Kokuren, Akame) run farther than that, so the line breaks and the hook is lost; they need a longer rod.",
           "Fight start by fish size: this rod is best for 32 of 38 species and costs 0.2 mistakes on average.",
-          "Time to aim is 100 at full 100 HP and gets shorter below that."
+          "Cast distance limit is 100 at full 100 HP and gets shorter below that."
         ],
         "ja": [
           "糸の切れにくさ×21は38種中27種に足ります。残り11種（例：オオウナギ、コクレン、アカメ）はそれ以上走るため、糸が切れて針を失います。もっと長い竿が必要です。",
           "魚の大きさごとのファイトの出だし：この竿は38種中32種で最良で、平均0.2回分のミスを失います。",
-          "狙う時間はHP100のとき100で、HPが減ると短くなります。"
+          "投げる距離はHP100のとき100で、HPが減ると短くなります。"
         ]
       },
       "evidenceNotes": {
         "th": [
-          "ที่ HP 100 ช่วงเล็งก่อนเปลี่ยนอัตโนมัติคือ 100 หน่วยตัวนับ ระยะสายคือ 7056 หน่วยตำแหน่งภายใน (21 × 336) ไม่ใช่เมตร: เกมใช้ค่านี้ตัดสินว่าปลาถูกลากไกลเกินสายหรือไม่",
+          "ที่ HP 100 ขีดชาร์จการเหวี่ยง (ระยะเหวี่ยงสูงสุด) คือ 100 หน่วยตัวนับ ระยะสายคือ 7056 หน่วยตำแหน่งภายใน (21 × 336) ไม่ใช่เมตร: เกมใช้ค่านี้ตัดสินว่าปลาถูกลากไกลเกินสายหรือไม่",
           "จุดเริ่มของมาตรวัดแรงตึงคำนวณโดยรูทีน 04:8D2A..8EC1 จากกลุ่มของคัน (selector 1) ขนาดปลา และ ID ปลาที่ตรงกัน ผลที่วัดอยู่ใน docs/gear-effects.md",
-          "ถ้า HP ต่ำกว่า 100 ช่วงเล็งก่อนเปลี่ยนอัตโนมัติสั้นลงตาม HP (ต่ำสุด 10) ที่ HP 100 ใช้ค่าเต็ม"
+          "ถ้า HP ต่ำกว่า 100 ระยะเหวี่ยงสั้นลงตาม HP (ต่ำสุด 10) ที่ HP 100 ใช้ค่าเต็ม"
         ],
         "en": [
-          "At 100 HP the automatic aim cutoff is 100 counter ticks. The line range is 7056 internal position units (21 × 336), not meters: the game uses it to decide whether the fish was dragged past the line.",
+          "At 100 HP the cast charge limit (how far you can cast) is 100 counter ticks. The line range is 7056 internal position units (21 × 336), not meters: the game uses it to decide whether the fish was dragged past the line.",
           "The fight meter's start is computed by the routine at 04:8D2A..8EC1 from the rod's class (selector 1), the fish's size and a matching fish ID. The measured effect is in docs/gear-effects.md.",
-          "Below 100 HP the automatic aim cutoff shrinks with current HP (minimum 10); at 100 HP it uses the full value."
+          "Below 100 HP the cast charge limit shrinks with current HP (minimum 10), so you cast shorter; at 100 HP it uses the full value."
         ],
         "ja": [
-          "HP100のとき、照準の自動移行上限はゲーム内カウンター100です。糸の範囲は内部位置単位で7056（21 × 336）で、メートルではありません。魚がその先まで引かれたかをゲームが判定します。",
+          "HP100のとき、投げる強さ（チャージ）の上限＝投げる距離はゲーム内カウンター100です。糸の範囲は内部位置単位で7056（21 × 336）で、メートルではありません。魚がその先まで引かれたかをゲームが判定します。",
           "ファイトのメーターの出だしは04:8D2A..8EC1のルーチンが、竿の区分（selector 1）、魚の大きさ、一致する魚IDから計算します。測定結果はdocs/gear-effects.mdにあります。",
-          "HPが100未満だと、照準の自動移行上限はHPに応じて短くなります（最小10）。HP100以上では全値を使います。"
+          "HPが100未満だと、投げる強さ（チャージ）の上限＝投げる距離はHPに応じて短くなります（最小10）。HP100以上では全値を使います。"
         ]
       },
       "fishIds": [],
@@ -1069,9 +1069,9 @@
         "aimRankAt100Hp": 2,
         "reachRank": 2,
         "of": 4,
-        "en": "Within Lure rods: time to aim ranks 2/4 at full HP; line strength ranks 2/4. Rank 1 is longest/highest in that dimension.",
-        "ja": "ルアー用の竿4本中、HP満タン時の狙う時間は2位、糸の切れにくさは2位。1位が最長・最大。",
-        "th": "ในกลุ่มคันลัวร์ 4 คัน: เวลาเล็งอันดับ 2/4 เมื่อ HP เต็ม; สายขาดยากอันดับ 2/4; อันดับ 1 คือดีที่สุด"
+        "en": "Within Lure rods: cast distance ranks 2/4 at full HP; line strength ranks 2/4. Rank 1 is longest/highest in that dimension.",
+        "ja": "ルアー用の竿4本中、HP満タン時の投げる距離は2位、糸の切れにくさは2位。1位が最長・最大。",
+        "th": "ในกลุ่มคันลัวร์ 4 คัน: ระยะเหวี่ยงอันดับ 2/4 เมื่อ HP เต็ม; สายขาดยากอันดับ 2/4; อันดับ 1 คือดีที่สุด"
       },
       "evidence": {
         "type": "rom_trace",
@@ -1109,37 +1109,37 @@
         "th": [
           "สายขาดยาก ×24 ยาวพอกับปลาทุกชนิด รวมปลาใหญ่",
           "จุดเริ่มของมาตรวัดแรงตึงตามขนาดปลา: คันนี้ดีสุดกับปลา 19 จาก 38 ชนิด เฉลี่ยพลาดได้น้อยลง 1 จังหวะ",
-          "เวลาเล็ง 120 เมื่อ HP เต็ม 100 ถ้า HP ต่ำกว่านั้นเวลาเล็งสั้นลง",
+          "ระยะเหวี่ยงสูงสุด 120 เมื่อ HP เต็ม 100 ถ้า HP ต่ำกว่านั้นเหวี่ยงได้สั้นลง",
           "คันนี้ตรงกับนามาซุ: ตอนตกปลาชนิดนี้ คันไม่โดนผลปรับตามขนาดปลา"
         ],
         "en": [
           "Line strength ×24 is long enough for every species, including the biggest.",
           "Fight start by fish size: this rod is best for 19 of 38 species and costs 1 mistakes on average.",
-          "Time to aim is 120 at full 100 HP and gets shorter below that.",
+          "Cast distance limit is 120 at full 100 HP and gets shorter below that.",
           "This rod is matched to Namazu: when you fish for it, the rod skips the size adjustment."
         ],
         "ja": [
           "糸の切れにくさ×24は、最大の魚を含む全魚種に十分な長さです。",
           "魚の大きさごとのファイトの出だし：この竿は38種中19種で最良で、平均1回分のミスを失います。",
-          "狙う時間はHP100のとき120で、HPが減ると短くなります。",
+          "投げる距離はHP100のとき120で、HPが減ると短くなります。",
           "この竿はナマズに対応しています。この魚を釣るとき、大きさによる調整を受けません。"
         ]
       },
       "evidenceNotes": {
         "th": [
-          "ที่ HP 100 ช่วงเล็งก่อนเปลี่ยนอัตโนมัติคือ 120 หน่วยตัวนับ ระยะสายคือ 8064 หน่วยตำแหน่งภายใน (24 × 336) ไม่ใช่เมตร: เกมใช้ค่านี้ตัดสินว่าปลาถูกลากไกลเกินสายหรือไม่",
+          "ที่ HP 100 ขีดชาร์จการเหวี่ยง (ระยะเหวี่ยงสูงสุด) คือ 120 หน่วยตัวนับ ระยะสายคือ 8064 หน่วยตำแหน่งภายใน (24 × 336) ไม่ใช่เมตร: เกมใช้ค่านี้ตัดสินว่าปลาถูกลากไกลเกินสายหรือไม่",
           "จุดเริ่มของมาตรวัดแรงตึงคำนวณโดยรูทีน 04:8D2A..8EC1 จากกลุ่มของคัน (selector 2) ขนาดปลา และ ID ปลาที่ตรงกัน ผลที่วัดอยู่ใน docs/gear-effects.md",
-          "ถ้า HP ต่ำกว่า 100 ช่วงเล็งก่อนเปลี่ยนอัตโนมัติสั้นลงตาม HP (ต่ำสุด 10) ที่ HP 100 ใช้ค่าเต็ม"
+          "ถ้า HP ต่ำกว่า 100 ระยะเหวี่ยงสั้นลงตาม HP (ต่ำสุด 10) ที่ HP 100 ใช้ค่าเต็ม"
         ],
         "en": [
-          "At 100 HP the automatic aim cutoff is 120 counter ticks. The line range is 8064 internal position units (24 × 336), not meters: the game uses it to decide whether the fish was dragged past the line.",
+          "At 100 HP the cast charge limit (how far you can cast) is 120 counter ticks. The line range is 8064 internal position units (24 × 336), not meters: the game uses it to decide whether the fish was dragged past the line.",
           "The fight meter's start is computed by the routine at 04:8D2A..8EC1 from the rod's class (selector 2), the fish's size and a matching fish ID. The measured effect is in docs/gear-effects.md.",
-          "Below 100 HP the automatic aim cutoff shrinks with current HP (minimum 10); at 100 HP it uses the full value."
+          "Below 100 HP the cast charge limit shrinks with current HP (minimum 10), so you cast shorter; at 100 HP it uses the full value."
         ],
         "ja": [
-          "HP100のとき、照準の自動移行上限はゲーム内カウンター120です。糸の範囲は内部位置単位で8064（24 × 336）で、メートルではありません。魚がその先まで引かれたかをゲームが判定します。",
+          "HP100のとき、投げる強さ（チャージ）の上限＝投げる距離はゲーム内カウンター120です。糸の範囲は内部位置単位で8064（24 × 336）で、メートルではありません。魚がその先まで引かれたかをゲームが判定します。",
           "ファイトのメーターの出だしは04:8D2A..8EC1のルーチンが、竿の区分（selector 2）、魚の大きさ、一致する魚IDから計算します。測定結果はdocs/gear-effects.mdにあります。",
-          "HPが100未満だと、照準の自動移行上限はHPに応じて短くなります（最小10）。HP100以上では全値を使います。"
+          "HPが100未満だと、投げる強さ（チャージ）の上限＝投げる距離はHPに応じて短くなります（最小10）。HP100以上では全値を使います。"
         ]
       },
       "fishIds": [],
@@ -1165,9 +1165,9 @@
         "aimRankAt100Hp": 1,
         "reachRank": 1,
         "of": 4,
-        "en": "Within Lure rods: time to aim ranks 1/4 at full HP; line strength ranks 1/4. Rank 1 is longest/highest in that dimension.",
-        "ja": "ルアー用の竿4本中、HP満タン時の狙う時間は1位、糸の切れにくさは1位。1位が最長・最大。",
-        "th": "ในกลุ่มคันลัวร์ 4 คัน: เวลาเล็งอันดับ 1/4 เมื่อ HP เต็ม; สายขาดยากอันดับ 1/4; อันดับ 1 คือดีที่สุด"
+        "en": "Within Lure rods: cast distance ranks 1/4 at full HP; line strength ranks 1/4. Rank 1 is longest/highest in that dimension.",
+        "ja": "ルアー用の竿4本中、HP満タン時の投げる距離は1位、糸の切れにくさは1位。1位が最長・最大。",
+        "th": "ในกลุ่มคันลัวร์ 4 คัน: ระยะเหวี่ยงอันดับ 1/4 เมื่อ HP เต็ม; สายขาดยากอันดับ 1/4; อันดับ 1 คือดีที่สุด"
       },
       "targetMatches": [
         {
@@ -1206,34 +1206,34 @@
         "th": [
           "สายขาดยาก ×18 ใช้ได้กับปลา 25 จาก 30 ชนิด อีก 5 ชนิด (เช่น โออูนางิ, อาโอะอุโอะ, อูนางิ) วิ่งไกลกว่านี้ สายจะขาดและเสียตะขอ ต้องใช้คันที่ยาวกว่า",
           "จุดเริ่มของมาตรวัดแรงตึงตามขนาดปลา: คันนี้ดีสุดกับปลา 24 จาก 30 ชนิด เฉลี่ยพลาดได้น้อยลง 0.2 จังหวะ",
-          "เวลาเล็ง 70 เมื่อ HP เต็ม 100 ถ้า HP ต่ำกว่านั้นเวลาเล็งสั้นลง"
+          "ระยะเหวี่ยงสูงสุด 70 เมื่อ HP เต็ม 100 ถ้า HP ต่ำกว่านั้นเหวี่ยงได้สั้นลง"
         ],
         "en": [
           "Line strength ×18 holds 25 of 30 species. The other 5 species (e.g. Oo-unagi, Aouo, Unagi) run farther than that, so the line breaks and the hook is lost; they need a longer rod.",
           "Fight start by fish size: this rod is best for 24 of 30 species and costs 0.2 mistakes on average.",
-          "Time to aim is 70 at full 100 HP and gets shorter below that."
+          "Cast distance limit is 70 at full 100 HP and gets shorter below that."
         ],
         "ja": [
           "糸の切れにくさ×18は30種中25種に足ります。残り5種（例：オオウナギ、アオウオ、ウナギ）はそれ以上走るため、糸が切れて針を失います。もっと長い竿が必要です。",
           "魚の大きさごとのファイトの出だし：この竿は30種中24種で最良で、平均0.2回分のミスを失います。",
-          "狙う時間はHP100のとき70で、HPが減ると短くなります。"
+          "投げる距離はHP100のとき70で、HPが減ると短くなります。"
         ]
       },
       "evidenceNotes": {
         "th": [
-          "ที่ HP 100 ช่วงเล็งก่อนเปลี่ยนอัตโนมัติคือ 70 หน่วยตัวนับ ระยะสายคือ 6048 หน่วยตำแหน่งภายใน (18 × 336) ไม่ใช่เมตร: เกมใช้ค่านี้ตัดสินว่าปลาถูกลากไกลเกินสายหรือไม่",
+          "ที่ HP 100 ขีดชาร์จการเหวี่ยง (ระยะเหวี่ยงสูงสุด) คือ 70 หน่วยตัวนับ ระยะสายคือ 6048 หน่วยตำแหน่งภายใน (18 × 336) ไม่ใช่เมตร: เกมใช้ค่านี้ตัดสินว่าปลาถูกลากไกลเกินสายหรือไม่",
           "จุดเริ่มของมาตรวัดแรงตึงคำนวณโดยรูทีน 04:8D2A..8EC1 จากกลุ่มของคัน (selector 0) ขนาดปลา และ ID ปลาที่ตรงกัน ผลที่วัดอยู่ใน docs/gear-effects.md",
-          "ถ้า HP ต่ำกว่า 100 ช่วงเล็งก่อนเปลี่ยนอัตโนมัติสั้นลงตาม HP (ต่ำสุด 10) ที่ HP 100 ใช้ค่าเต็ม"
+          "ถ้า HP ต่ำกว่า 100 ระยะเหวี่ยงสั้นลงตาม HP (ต่ำสุด 10) ที่ HP 100 ใช้ค่าเต็ม"
         ],
         "en": [
-          "At 100 HP the automatic aim cutoff is 70 counter ticks. The line range is 6048 internal position units (18 × 336), not meters: the game uses it to decide whether the fish was dragged past the line.",
+          "At 100 HP the cast charge limit (how far you can cast) is 70 counter ticks. The line range is 6048 internal position units (18 × 336), not meters: the game uses it to decide whether the fish was dragged past the line.",
           "The fight meter's start is computed by the routine at 04:8D2A..8EC1 from the rod's class (selector 0), the fish's size and a matching fish ID. The measured effect is in docs/gear-effects.md.",
-          "Below 100 HP the automatic aim cutoff shrinks with current HP (minimum 10); at 100 HP it uses the full value."
+          "Below 100 HP the cast charge limit shrinks with current HP (minimum 10), so you cast shorter; at 100 HP it uses the full value."
         ],
         "ja": [
-          "HP100のとき、照準の自動移行上限はゲーム内カウンター70です。糸の範囲は内部位置単位で6048（18 × 336）で、メートルではありません。魚がその先まで引かれたかをゲームが判定します。",
+          "HP100のとき、投げる強さ（チャージ）の上限＝投げる距離はゲーム内カウンター70です。糸の範囲は内部位置単位で6048（18 × 336）で、メートルではありません。魚がその先まで引かれたかをゲームが判定します。",
           "ファイトのメーターの出だしは04:8D2A..8EC1のルーチンが、竿の区分（selector 0）、魚の大きさ、一致する魚IDから計算します。測定結果はdocs/gear-effects.mdにあります。",
-          "HPが100未満だと、照準の自動移行上限はHPに応じて短くなります（最小10）。HP100以上では全値を使います。"
+          "HPが100未満だと、投げる強さ（チャージ）の上限＝投げる距離はHPに応じて短くなります（最小10）。HP100以上では全値を使います。"
         ]
       },
       "fishIds": [],
@@ -1259,9 +1259,9 @@
         "aimRankAt100Hp": 3,
         "reachRank": 3,
         "of": 3,
-        "en": "Within Casting rods: time to aim ranks 3/3 at full HP; line strength ranks 3/3. Rank 1 is longest/highest in that dimension.",
-        "ja": "投げ釣り用の竿3本中、HP満タン時の狙う時間は3位、糸の切れにくさは3位。1位が最長・最大。",
-        "th": "ในกลุ่มคันหวด 3 คัน: เวลาเล็งอันดับ 3/3 เมื่อ HP เต็ม; สายขาดยากอันดับ 3/3; อันดับ 1 คือดีที่สุด"
+        "en": "Within Casting rods: cast distance ranks 3/3 at full HP; line strength ranks 3/3. Rank 1 is longest/highest in that dimension.",
+        "ja": "投げ釣り用の竿3本中、HP満タン時の投げる距離は3位、糸の切れにくさは3位。1位が最長・最大。",
+        "th": "ในกลุ่มคันหวด 3 คัน: ระยะเหวี่ยงอันดับ 3/3 เมื่อ HP เต็ม; สายขาดยากอันดับ 3/3; อันดับ 1 คือดีที่สุด"
       },
       "evidence": {
         "type": "rom_trace",
@@ -1299,34 +1299,34 @@
         "th": [
           "สายขาดยาก ×21 ใช้ได้กับปลา 26 จาก 30 ชนิด อีก 4 ชนิด (เช่น โออูนางิ, อาโอะอุโอะ, อูนางิ) วิ่งไกลกว่านี้ สายจะขาดและเสียตะขอ ต้องใช้คันที่ยาวกว่า",
           "จุดเริ่มของมาตรวัดแรงตึงตามขนาดปลา: คันนี้ดีสุดกับปลา 18 จาก 30 ชนิด เฉลี่ยพลาดได้น้อยลง 0.4 จังหวะ",
-          "เวลาเล็ง 100 เมื่อ HP เต็ม 100 ถ้า HP ต่ำกว่านั้นเวลาเล็งสั้นลง"
+          "ระยะเหวี่ยงสูงสุด 100 เมื่อ HP เต็ม 100 ถ้า HP ต่ำกว่านั้นเหวี่ยงได้สั้นลง"
         ],
         "en": [
           "Line strength ×21 holds 26 of 30 species. The other 4 species (e.g. Oo-unagi, Aouo, Unagi) run farther than that, so the line breaks and the hook is lost; they need a longer rod.",
           "Fight start by fish size: this rod is best for 18 of 30 species and costs 0.4 mistakes on average.",
-          "Time to aim is 100 at full 100 HP and gets shorter below that."
+          "Cast distance limit is 100 at full 100 HP and gets shorter below that."
         ],
         "ja": [
           "糸の切れにくさ×21は30種中26種に足ります。残り4種（例：オオウナギ、アオウオ、ウナギ）はそれ以上走るため、糸が切れて針を失います。もっと長い竿が必要です。",
           "魚の大きさごとのファイトの出だし：この竿は30種中18種で最良で、平均0.4回分のミスを失います。",
-          "狙う時間はHP100のとき100で、HPが減ると短くなります。"
+          "投げる距離はHP100のとき100で、HPが減ると短くなります。"
         ]
       },
       "evidenceNotes": {
         "th": [
-          "ที่ HP 100 ช่วงเล็งก่อนเปลี่ยนอัตโนมัติคือ 100 หน่วยตัวนับ ระยะสายคือ 7056 หน่วยตำแหน่งภายใน (21 × 336) ไม่ใช่เมตร: เกมใช้ค่านี้ตัดสินว่าปลาถูกลากไกลเกินสายหรือไม่",
+          "ที่ HP 100 ขีดชาร์จการเหวี่ยง (ระยะเหวี่ยงสูงสุด) คือ 100 หน่วยตัวนับ ระยะสายคือ 7056 หน่วยตำแหน่งภายใน (21 × 336) ไม่ใช่เมตร: เกมใช้ค่านี้ตัดสินว่าปลาถูกลากไกลเกินสายหรือไม่",
           "จุดเริ่มของมาตรวัดแรงตึงคำนวณโดยรูทีน 04:8D2A..8EC1 จากกลุ่มของคัน (selector 1) ขนาดปลา และ ID ปลาที่ตรงกัน ผลที่วัดอยู่ใน docs/gear-effects.md",
-          "ถ้า HP ต่ำกว่า 100 ช่วงเล็งก่อนเปลี่ยนอัตโนมัติสั้นลงตาม HP (ต่ำสุด 10) ที่ HP 100 ใช้ค่าเต็ม"
+          "ถ้า HP ต่ำกว่า 100 ระยะเหวี่ยงสั้นลงตาม HP (ต่ำสุด 10) ที่ HP 100 ใช้ค่าเต็ม"
         ],
         "en": [
-          "At 100 HP the automatic aim cutoff is 100 counter ticks. The line range is 7056 internal position units (21 × 336), not meters: the game uses it to decide whether the fish was dragged past the line.",
+          "At 100 HP the cast charge limit (how far you can cast) is 100 counter ticks. The line range is 7056 internal position units (21 × 336), not meters: the game uses it to decide whether the fish was dragged past the line.",
           "The fight meter's start is computed by the routine at 04:8D2A..8EC1 from the rod's class (selector 1), the fish's size and a matching fish ID. The measured effect is in docs/gear-effects.md.",
-          "Below 100 HP the automatic aim cutoff shrinks with current HP (minimum 10); at 100 HP it uses the full value."
+          "Below 100 HP the cast charge limit shrinks with current HP (minimum 10), so you cast shorter; at 100 HP it uses the full value."
         ],
         "ja": [
-          "HP100のとき、照準の自動移行上限はゲーム内カウンター100です。糸の範囲は内部位置単位で7056（21 × 336）で、メートルではありません。魚がその先まで引かれたかをゲームが判定します。",
+          "HP100のとき、投げる強さ（チャージ）の上限＝投げる距離はゲーム内カウンター100です。糸の範囲は内部位置単位で7056（21 × 336）で、メートルではありません。魚がその先まで引かれたかをゲームが判定します。",
           "ファイトのメーターの出だしは04:8D2A..8EC1のルーチンが、竿の区分（selector 1）、魚の大きさ、一致する魚IDから計算します。測定結果はdocs/gear-effects.mdにあります。",
-          "HPが100未満だと、照準の自動移行上限はHPに応じて短くなります（最小10）。HP100以上では全値を使います。"
+          "HPが100未満だと、投げる強さ（チャージ）の上限＝投げる距離はHPに応じて短くなります（最小10）。HP100以上では全値を使います。"
         ]
       },
       "fishIds": [],
@@ -1352,9 +1352,9 @@
         "aimRankAt100Hp": 2,
         "reachRank": 2,
         "of": 3,
-        "en": "Within Casting rods: time to aim ranks 2/3 at full HP; line strength ranks 2/3. Rank 1 is longest/highest in that dimension.",
-        "ja": "投げ釣り用の竿3本中、HP満タン時の狙う時間は2位、糸の切れにくさは2位。1位が最長・最大。",
-        "th": "ในกลุ่มคันหวด 3 คัน: เวลาเล็งอันดับ 2/3 เมื่อ HP เต็ม; สายขาดยากอันดับ 2/3; อันดับ 1 คือดีที่สุด"
+        "en": "Within Casting rods: cast distance ranks 2/3 at full HP; line strength ranks 2/3. Rank 1 is longest/highest in that dimension.",
+        "ja": "投げ釣り用の竿3本中、HP満タン時の投げる距離は2位、糸の切れにくさは2位。1位が最長・最大。",
+        "th": "ในกลุ่มคันหวด 3 คัน: ระยะเหวี่ยงอันดับ 2/3 เมื่อ HP เต็ม; สายขาดยากอันดับ 2/3; อันดับ 1 คือดีที่สุด"
       },
       "evidence": {
         "type": "rom_trace",
@@ -1389,37 +1389,37 @@
         "th": [
           "สายขาดยาก ×24 ยาวพอกับปลาทุกชนิด รวมปลาใหญ่",
           "จุดเริ่มของมาตรวัดแรงตึงตามขนาดปลา: คันนี้ดีสุดกับปลา 10 จาก 30 ชนิด เฉลี่ยพลาดได้น้อยลง 1.4 จังหวะ",
-          "เวลาเล็ง 120 เมื่อ HP เต็ม 100 ถ้า HP ต่ำกว่านั้นเวลาเล็งสั้นลง",
+          "ระยะเหวี่ยงสูงสุด 120 เมื่อ HP เต็ม 100 ถ้า HP ต่ำกว่านั้นเหวี่ยงได้สั้นลง",
           "คันนี้ตรงกับอาคาเมะ: ตอนตกปลาชนิดนี้ คันไม่โดนผลปรับตามขนาดปลา"
         ],
         "en": [
           "Line strength ×24 is long enough for every species, including the biggest.",
           "Fight start by fish size: this rod is best for 10 of 30 species and costs 1.4 mistakes on average.",
-          "Time to aim is 120 at full 100 HP and gets shorter below that.",
+          "Cast distance limit is 120 at full 100 HP and gets shorter below that.",
           "This rod is matched to Akame: when you fish for it, the rod skips the size adjustment."
         ],
         "ja": [
           "糸の切れにくさ×24は、最大の魚を含む全魚種に十分な長さです。",
           "魚の大きさごとのファイトの出だし：この竿は30種中10種で最良で、平均1.4回分のミスを失います。",
-          "狙う時間はHP100のとき120で、HPが減ると短くなります。",
+          "投げる距離はHP100のとき120で、HPが減ると短くなります。",
           "この竿はアカメに対応しています。この魚を釣るとき、大きさによる調整を受けません。"
         ]
       },
       "evidenceNotes": {
         "th": [
-          "ที่ HP 100 ช่วงเล็งก่อนเปลี่ยนอัตโนมัติคือ 120 หน่วยตัวนับ ระยะสายคือ 8064 หน่วยตำแหน่งภายใน (24 × 336) ไม่ใช่เมตร: เกมใช้ค่านี้ตัดสินว่าปลาถูกลากไกลเกินสายหรือไม่",
+          "ที่ HP 100 ขีดชาร์จการเหวี่ยง (ระยะเหวี่ยงสูงสุด) คือ 120 หน่วยตัวนับ ระยะสายคือ 8064 หน่วยตำแหน่งภายใน (24 × 336) ไม่ใช่เมตร: เกมใช้ค่านี้ตัดสินว่าปลาถูกลากไกลเกินสายหรือไม่",
           "จุดเริ่มของมาตรวัดแรงตึงคำนวณโดยรูทีน 04:8D2A..8EC1 จากกลุ่มของคัน (selector 2) ขนาดปลา และ ID ปลาที่ตรงกัน ผลที่วัดอยู่ใน docs/gear-effects.md",
-          "ถ้า HP ต่ำกว่า 100 ช่วงเล็งก่อนเปลี่ยนอัตโนมัติสั้นลงตาม HP (ต่ำสุด 10) ที่ HP 100 ใช้ค่าเต็ม"
+          "ถ้า HP ต่ำกว่า 100 ระยะเหวี่ยงสั้นลงตาม HP (ต่ำสุด 10) ที่ HP 100 ใช้ค่าเต็ม"
         ],
         "en": [
-          "At 100 HP the automatic aim cutoff is 120 counter ticks. The line range is 8064 internal position units (24 × 336), not meters: the game uses it to decide whether the fish was dragged past the line.",
+          "At 100 HP the cast charge limit (how far you can cast) is 120 counter ticks. The line range is 8064 internal position units (24 × 336), not meters: the game uses it to decide whether the fish was dragged past the line.",
           "The fight meter's start is computed by the routine at 04:8D2A..8EC1 from the rod's class (selector 2), the fish's size and a matching fish ID. The measured effect is in docs/gear-effects.md.",
-          "Below 100 HP the automatic aim cutoff shrinks with current HP (minimum 10); at 100 HP it uses the full value."
+          "Below 100 HP the cast charge limit shrinks with current HP (minimum 10), so you cast shorter; at 100 HP it uses the full value."
         ],
         "ja": [
-          "HP100のとき、照準の自動移行上限はゲーム内カウンター120です。糸の範囲は内部位置単位で8064（24 × 336）で、メートルではありません。魚がその先まで引かれたかをゲームが判定します。",
+          "HP100のとき、投げる強さ（チャージ）の上限＝投げる距離はゲーム内カウンター120です。糸の範囲は内部位置単位で8064（24 × 336）で、メートルではありません。魚がその先まで引かれたかをゲームが判定します。",
           "ファイトのメーターの出だしは04:8D2A..8EC1のルーチンが、竿の区分（selector 2）、魚の大きさ、一致する魚IDから計算します。測定結果はdocs/gear-effects.mdにあります。",
-          "HPが100未満だと、照準の自動移行上限はHPに応じて短くなります（最小10）。HP100以上では全値を使います。"
+          "HPが100未満だと、投げる強さ（チャージ）の上限＝投げる距離はHPに応じて短くなります（最小10）。HP100以上では全値を使います。"
         ]
       },
       "fishIds": [],
@@ -1445,9 +1445,9 @@
         "aimRankAt100Hp": 1,
         "reachRank": 1,
         "of": 3,
-        "en": "Within Casting rods: time to aim ranks 1/3 at full HP; line strength ranks 1/3. Rank 1 is longest/highest in that dimension.",
-        "ja": "投げ釣り用の竿3本中、HP満タン時の狙う時間は1位、糸の切れにくさは1位。1位が最長・最大。",
-        "th": "ในกลุ่มคันหวด 3 คัน: เวลาเล็งอันดับ 1/3 เมื่อ HP เต็ม; สายขาดยากอันดับ 1/3; อันดับ 1 คือดีที่สุด"
+        "en": "Within Casting rods: cast distance ranks 1/3 at full HP; line strength ranks 1/3. Rank 1 is longest/highest in that dimension.",
+        "ja": "投げ釣り用の竿3本中、HP満タン時の投げる距離は1位、糸の切れにくさは1位。1位が最長・最大。",
+        "th": "ในกลุ่มคันหวด 3 คัน: ระยะเหวี่ยงอันดับ 1/3 เมื่อ HP เต็ม; สายขาดยากอันดับ 1/3; อันดับ 1 คือดีที่สุด"
       },
       "targetMatches": [
         {
@@ -1498,15 +1498,15 @@
       },
       "evidenceNotes": {
         "th": [
-          "ที่ HP 100 ช่วงเล็งก่อนเปลี่ยนอัตโนมัติคือ 50 หน่วยตัวนับ ระยะสายคือ 5040 หน่วยตำแหน่งภายใน (15 × 336) ไม่ใช่เมตร: เกมใช้ค่านี้ตัดสินว่าปลาถูกลากไกลเกินสายหรือไม่",
+          "ที่ HP 100 ขีดชาร์จการเหวี่ยง (ระยะเหวี่ยงสูงสุด) คือ 50 หน่วยตัวนับ ระยะสายคือ 5040 หน่วยตำแหน่งภายใน (15 × 336) ไม่ใช่เมตร: เกมใช้ค่านี้ตัดสินว่าปลาถูกลากไกลเกินสายหรือไม่",
           "จุดเริ่มของมาตรวัดแรงตึงคำนวณโดยรูทีน 04:8D2A..8EC1 จากกลุ่มของคัน (selector 0) ขนาดปลา และ ID ปลาที่ตรงกัน ผลที่วัดอยู่ใน docs/gear-effects.md"
         ],
         "en": [
-          "At 100 HP the automatic aim cutoff is 50 counter ticks. The line range is 5040 internal position units (15 × 336), not meters: the game uses it to decide whether the fish was dragged past the line.",
+          "At 100 HP the cast charge limit (how far you can cast) is 50 counter ticks. The line range is 5040 internal position units (15 × 336), not meters: the game uses it to decide whether the fish was dragged past the line.",
           "The fight meter's start is computed by the routine at 04:8D2A..8EC1 from the rod's class (selector 0), the fish's size and a matching fish ID. The measured effect is in docs/gear-effects.md."
         ],
         "ja": [
-          "HP100のとき、照準の自動移行上限はゲーム内カウンター50です。糸の範囲は内部位置単位で5040（15 × 336）で、メートルではありません。魚がその先まで引かれたかをゲームが判定します。",
+          "HP100のとき、投げる強さ（チャージ）の上限＝投げる距離はゲーム内カウンター50です。糸の範囲は内部位置単位で5040（15 × 336）で、メートルではありません。魚がその先まで引かれたかをゲームが判定します。",
           "ファイトのメーターの出だしは04:8D2A..8EC1のルーチンが、竿の区分（selector 0）、魚の大きさ、一致する魚IDから計算します。測定結果はdocs/gear-effects.mdにあります。"
         ]
       },
@@ -1533,9 +1533,9 @@
         "aimRankAt100Hp": 3,
         "reachRank": 3,
         "of": 3,
-        "en": "Within Fly rods: time to aim ranks 3/3 at full HP; line strength ranks 3/3. Rank 1 is longest/highest in that dimension.",
-        "ja": "毛バリ用の竿3本中、HP満タン時の狙う時間は3位、糸の切れにくさは3位。1位が最長・最大。",
-        "th": "ในกลุ่มคันฟลาย 3 คัน: เวลาเล็งอันดับ 3/3 เมื่อ HP เต็ม; สายขาดยากอันดับ 3/3; อันดับ 1 คือดีที่สุด"
+        "en": "Within Fly rods: cast distance ranks 3/3 at full HP; line strength ranks 3/3. Rank 1 is longest/highest in that dimension.",
+        "ja": "毛バリ用の竿3本中、HP満タン時の投げる距離は3位、糸の切れにくさは3位。1位が最長・最大。",
+        "th": "ในกลุ่มคันฟลาย 3 คัน: ระยะเหวี่ยงอันดับ 3/3 เมื่อ HP เต็ม; สายขาดยากอันดับ 3/3; อันดับ 1 คือดีที่สุด"
       },
       "evidence": {
         "type": "rom_trace",
@@ -1569,15 +1569,15 @@
       },
       "evidenceNotes": {
         "th": [
-          "ที่ HP 100 ช่วงเล็งก่อนเปลี่ยนอัตโนมัติคือ 60 หน่วยตัวนับ ระยะสายคือ 6048 หน่วยตำแหน่งภายใน (18 × 336) ไม่ใช่เมตร: เกมใช้ค่านี้ตัดสินว่าปลาถูกลากไกลเกินสายหรือไม่",
+          "ที่ HP 100 ขีดชาร์จการเหวี่ยง (ระยะเหวี่ยงสูงสุด) คือ 60 หน่วยตัวนับ ระยะสายคือ 6048 หน่วยตำแหน่งภายใน (18 × 336) ไม่ใช่เมตร: เกมใช้ค่านี้ตัดสินว่าปลาถูกลากไกลเกินสายหรือไม่",
           "จุดเริ่มของมาตรวัดแรงตึงคำนวณโดยรูทีน 04:8D2A..8EC1 จากกลุ่มของคัน (selector 1) ขนาดปลา และ ID ปลาที่ตรงกัน ผลที่วัดอยู่ใน docs/gear-effects.md"
         ],
         "en": [
-          "At 100 HP the automatic aim cutoff is 60 counter ticks. The line range is 6048 internal position units (18 × 336), not meters: the game uses it to decide whether the fish was dragged past the line.",
+          "At 100 HP the cast charge limit (how far you can cast) is 60 counter ticks. The line range is 6048 internal position units (18 × 336), not meters: the game uses it to decide whether the fish was dragged past the line.",
           "The fight meter's start is computed by the routine at 04:8D2A..8EC1 from the rod's class (selector 1), the fish's size and a matching fish ID. The measured effect is in docs/gear-effects.md."
         ],
         "ja": [
-          "HP100のとき、照準の自動移行上限はゲーム内カウンター60です。糸の範囲は内部位置単位で6048（18 × 336）で、メートルではありません。魚がその先まで引かれたかをゲームが判定します。",
+          "HP100のとき、投げる強さ（チャージ）の上限＝投げる距離はゲーム内カウンター60です。糸の範囲は内部位置単位で6048（18 × 336）で、メートルではありません。魚がその先まで引かれたかをゲームが判定します。",
           "ファイトのメーターの出だしは04:8D2A..8EC1のルーチンが、竿の区分（selector 1）、魚の大きさ、一致する魚IDから計算します。測定結果はdocs/gear-effects.mdにあります。"
         ]
       },
@@ -1604,9 +1604,9 @@
         "aimRankAt100Hp": 2,
         "reachRank": 2,
         "of": 3,
-        "en": "Within Fly rods: time to aim ranks 2/3 at full HP; line strength ranks 2/3. Rank 1 is longest/highest in that dimension.",
-        "ja": "毛バリ用の竿3本中、HP満タン時の狙う時間は2位、糸の切れにくさは2位。1位が最長・最大。",
-        "th": "ในกลุ่มคันฟลาย 3 คัน: เวลาเล็งอันดับ 2/3 เมื่อ HP เต็ม; สายขาดยากอันดับ 2/3; อันดับ 1 คือดีที่สุด"
+        "en": "Within Fly rods: cast distance ranks 2/3 at full HP; line strength ranks 2/3. Rank 1 is longest/highest in that dimension.",
+        "ja": "毛バリ用の竿3本中、HP満タン時の投げる距離は2位、糸の切れにくさは2位。1位が最長・最大。",
+        "th": "ในกลุ่มคันฟลาย 3 คัน: ระยะเหวี่ยงอันดับ 2/3 เมื่อ HP เต็ม; สายขาดยากอันดับ 2/3; อันดับ 1 คือดีที่สุด"
       },
       "evidence": {
         "type": "rom_trace",
@@ -1653,15 +1653,15 @@
       },
       "evidenceNotes": {
         "th": [
-          "ที่ HP 100 ช่วงเล็งก่อนเปลี่ยนอัตโนมัติคือ 70 หน่วยตัวนับ ระยะสายคือ 7056 หน่วยตำแหน่งภายใน (21 × 336) ไม่ใช่เมตร: เกมใช้ค่านี้ตัดสินว่าปลาถูกลากไกลเกินสายหรือไม่",
+          "ที่ HP 100 ขีดชาร์จการเหวี่ยง (ระยะเหวี่ยงสูงสุด) คือ 70 หน่วยตัวนับ ระยะสายคือ 7056 หน่วยตำแหน่งภายใน (21 × 336) ไม่ใช่เมตร: เกมใช้ค่านี้ตัดสินว่าปลาถูกลากไกลเกินสายหรือไม่",
           "จุดเริ่มของมาตรวัดแรงตึงคำนวณโดยรูทีน 04:8D2A..8EC1 จากกลุ่มของคัน (selector 2) ขนาดปลา และ ID ปลาที่ตรงกัน ผลที่วัดอยู่ใน docs/gear-effects.md"
         ],
         "en": [
-          "At 100 HP the automatic aim cutoff is 70 counter ticks. The line range is 7056 internal position units (21 × 336), not meters: the game uses it to decide whether the fish was dragged past the line.",
+          "At 100 HP the cast charge limit (how far you can cast) is 70 counter ticks. The line range is 7056 internal position units (21 × 336), not meters: the game uses it to decide whether the fish was dragged past the line.",
           "The fight meter's start is computed by the routine at 04:8D2A..8EC1 from the rod's class (selector 2), the fish's size and a matching fish ID. The measured effect is in docs/gear-effects.md."
         ],
         "ja": [
-          "HP100のとき、照準の自動移行上限はゲーム内カウンター70です。糸の範囲は内部位置単位で7056（21 × 336）で、メートルではありません。魚がその先まで引かれたかをゲームが判定します。",
+          "HP100のとき、投げる強さ（チャージ）の上限＝投げる距離はゲーム内カウンター70です。糸の範囲は内部位置単位で7056（21 × 336）で、メートルではありません。魚がその先まで引かれたかをゲームが判定します。",
           "ファイトのメーターの出だしは04:8D2A..8EC1のルーチンが、竿の区分（selector 2）、魚の大きさ、一致する魚IDから計算します。測定結果はdocs/gear-effects.mdにあります。"
         ]
       },
@@ -1688,9 +1688,9 @@
         "aimRankAt100Hp": 1,
         "reachRank": 1,
         "of": 3,
-        "en": "Within Fly rods: time to aim ranks 1/3 at full HP; line strength ranks 1/3. Rank 1 is longest/highest in that dimension.",
-        "ja": "毛バリ用の竿3本中、HP満タン時の狙う時間は1位、糸の切れにくさは1位。1位が最長・最大。",
-        "th": "ในกลุ่มคันฟลาย 3 คัน: เวลาเล็งอันดับ 1/3 เมื่อ HP เต็ม; สายขาดยากอันดับ 1/3; อันดับ 1 คือดีที่สุด"
+        "en": "Within Fly rods: cast distance ranks 1/3 at full HP; line strength ranks 1/3. Rank 1 is longest/highest in that dimension.",
+        "ja": "毛バリ用の竿3本中、HP満タン時の投げる距離は1位、糸の切れにくさは1位。1位が最長・最大。",
+        "th": "ในกลุ่มคันฟลาย 3 คัน: ระยะเหวี่ยงอันดับ 1/3 เมื่อ HP เต็ม; สายขาดยากอันดับ 1/3; อันดับ 1 คือดีที่สุด"
       },
       "evidence": {
         "type": "rom_trace",
@@ -1740,15 +1740,15 @@
       },
       "evidenceNotes": {
         "th": [
-          "ที่ HP 100 ช่วงเล็งก่อนเปลี่ยนอัตโนมัติคือ 80 หน่วยตัวนับ ระยะสายคือ 5040 หน่วยตำแหน่งภายใน (15 × 336) ไม่ใช่เมตร: เกมใช้ค่านี้ตัดสินว่าปลาถูกลากไกลเกินสายหรือไม่",
+          "ที่ HP 100 ขีดชาร์จการเหวี่ยง (ระยะเหวี่ยงสูงสุด) คือ 80 หน่วยตัวนับ ระยะสายคือ 5040 หน่วยตำแหน่งภายใน (15 × 336) ไม่ใช่เมตร: เกมใช้ค่านี้ตัดสินว่าปลาถูกลากไกลเกินสายหรือไม่",
           "จุดเริ่มของมาตรวัดแรงตึงคำนวณโดยรูทีน 04:8D2A..8EC1 จากกลุ่มของคัน (selector 1) ขนาดปลา และ ID ปลาที่ตรงกัน ผลที่วัดอยู่ใน docs/gear-effects.md"
         ],
         "en": [
-          "At 100 HP the automatic aim cutoff is 80 counter ticks. The line range is 5040 internal position units (15 × 336), not meters: the game uses it to decide whether the fish was dragged past the line.",
+          "At 100 HP the cast charge limit (how far you can cast) is 80 counter ticks. The line range is 5040 internal position units (15 × 336), not meters: the game uses it to decide whether the fish was dragged past the line.",
           "The fight meter's start is computed by the routine at 04:8D2A..8EC1 from the rod's class (selector 1), the fish's size and a matching fish ID. The measured effect is in docs/gear-effects.md."
         ],
         "ja": [
-          "HP100のとき、照準の自動移行上限はゲーム内カウンター80です。糸の範囲は内部位置単位で5040（15 × 336）で、メートルではありません。魚がその先まで引かれたかをゲームが判定します。",
+          "HP100のとき、投げる強さ（チャージ）の上限＝投げる距離はゲーム内カウンター80です。糸の範囲は内部位置単位で5040（15 × 336）で、メートルではありません。魚がその先まで引かれたかをゲームが判定します。",
           "ファイトのメーターの出だしは04:8D2A..8EC1のルーチンが、竿の区分（selector 1）、魚の大きさ、一致する魚IDから計算します。測定結果はdocs/gear-effects.mdにあります。"
         ]
       },
@@ -1775,9 +1775,9 @@
         "aimRankAt100Hp": 1,
         "reachRank": 3,
         "of": 11,
-        "en": "Within Float / Ayu rods: time to aim ranks 1/11 at full HP; line strength ranks 3/11. Rank 1 is longest/highest in that dimension.",
-        "ja": "ウキ・アユ用の竿11本中、HP満タン時の狙う時間は1位、糸の切れにくさは3位。1位が最長・最大。",
-        "th": "ในกลุ่มคันสายทุ่น / ปลาอายุ 11 คัน: เวลาเล็งอันดับ 1/11 เมื่อ HP เต็ม; สายขาดยากอันดับ 3/11; อันดับ 1 คือดีที่สุด"
+        "en": "Within Float / Ayu rods: cast distance ranks 1/11 at full HP; line strength ranks 3/11. Rank 1 is longest/highest in that dimension.",
+        "ja": "ウキ・アユ用の竿11本中、HP満タン時の投げる距離は1位、糸の切れにくさは3位。1位が最長・最大。",
+        "th": "ในกลุ่มคันสายทุ่น / ปลาอายุ 11 คัน: ระยะเหวี่ยงอันดับ 1/11 เมื่อ HP เต็ม; สายขาดยากอันดับ 3/11; อันดับ 1 คือดีที่สุด"
       },
       "targetMatches": [
         {
@@ -1836,15 +1836,15 @@
       },
       "evidenceNotes": {
         "th": [
-          "ที่ HP 100 ช่วงเล็งก่อนเปลี่ยนอัตโนมัติคือ 60 หน่วยตัวนับ ระยะสายคือ 8064 หน่วยตำแหน่งภายใน (24 × 336) ไม่ใช่เมตร: เกมใช้ค่านี้ตัดสินว่าปลาถูกลากไกลเกินสายหรือไม่",
+          "ที่ HP 100 ขีดชาร์จการเหวี่ยง (ระยะเหวี่ยงสูงสุด) คือ 60 หน่วยตัวนับ ระยะสายคือ 8064 หน่วยตำแหน่งภายใน (24 × 336) ไม่ใช่เมตร: เกมใช้ค่านี้ตัดสินว่าปลาถูกลากไกลเกินสายหรือไม่",
           "จุดเริ่มของมาตรวัดแรงตึงคำนวณโดยรูทีน 04:8D2A..8EC1 จากกลุ่มของคัน (selector 1) ขนาดปลา และ ID ปลาที่ตรงกัน ผลที่วัดอยู่ใน docs/gear-effects.md"
         ],
         "en": [
-          "At 100 HP the automatic aim cutoff is 60 counter ticks. The line range is 8064 internal position units (24 × 336), not meters: the game uses it to decide whether the fish was dragged past the line.",
+          "At 100 HP the cast charge limit (how far you can cast) is 60 counter ticks. The line range is 8064 internal position units (24 × 336), not meters: the game uses it to decide whether the fish was dragged past the line.",
           "The fight meter's start is computed by the routine at 04:8D2A..8EC1 from the rod's class (selector 1), the fish's size and a matching fish ID. The measured effect is in docs/gear-effects.md."
         ],
         "ja": [
-          "HP100のとき、照準の自動移行上限はゲーム内カウンター60です。糸の範囲は内部位置単位で8064（24 × 336）で、メートルではありません。魚がその先まで引かれたかをゲームが判定します。",
+          "HP100のとき、投げる強さ（チャージ）の上限＝投げる距離はゲーム内カウンター60です。糸の範囲は内部位置単位で8064（24 × 336）で、メートルではありません。魚がその先まで引かれたかをゲームが判定します。",
           "ファイトのメーターの出だしは04:8D2A..8EC1のルーチンが、竿の区分（selector 1）、魚の大きさ、一致する魚IDから計算します。測定結果はdocs/gear-effects.mdにあります。"
         ]
       },
@@ -1871,9 +1871,9 @@
         "aimRankAt100Hp": 3,
         "reachRank": 1,
         "of": 11,
-        "en": "Within Float / Ayu rods: time to aim ranks 3/11 at full HP; line strength ranks 1/11. Rank 1 is longest/highest in that dimension.",
-        "ja": "ウキ・アユ用の竿11本中、HP満タン時の狙う時間は3位、糸の切れにくさは1位。1位が最長・最大。",
-        "th": "ในกลุ่มคันสายทุ่น / ปลาอายุ 11 คัน: เวลาเล็งอันดับ 3/11 เมื่อ HP เต็ม; สายขาดยากอันดับ 1/11; อันดับ 1 คือดีที่สุด"
+        "en": "Within Float / Ayu rods: cast distance ranks 3/11 at full HP; line strength ranks 1/11. Rank 1 is longest/highest in that dimension.",
+        "ja": "ウキ・アユ用の竿11本中、HP満タン時の投げる距離は3位、糸の切れにくさは1位。1位が最長・最大。",
+        "th": "ในกลุ่มคันสายทุ่น / ปลาอายุ 11 คัน: ระยะเหวี่ยงอันดับ 3/11 เมื่อ HP เต็ม; สายขาดยากอันดับ 1/11; อันดับ 1 คือดีที่สุด"
       },
       "targetMatches": [
         {

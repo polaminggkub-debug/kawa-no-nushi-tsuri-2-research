@@ -10,7 +10,7 @@ export const player_en = {
   more: 'Show all fish',
   evidence: 'Technical evidence',
   compare: 'Compare rods within a fishing style',
-  aim: 'Time to aim',
+  aim: 'Cast distance',
   reach: 'Line strength',
   style: 'Fishing style',
   titleByCategory: 'Equipment in this category',
@@ -34,7 +34,7 @@ export const player_en = {
     general_tool: 'Tools / quest items',
   },
   desc: {
-    rod: 'Choose a fishing style, then compare time to aim and line strength.',
+    rod: 'Choose a fishing style, then compare cast distance and line strength.',
     lure: 'A fish on a lure’s list chases it when it is on the lure’s tile: keep tapping A or B, then press A once when the fish is level with the lure. Choose a fish to see its lures.',
     flymaker:
       'The body picks the fish that bite, the wing is only a ticket past the save’s hidden lock, and the tail is only looks. Open this category’s advice for the sets that work on a fresh save.',

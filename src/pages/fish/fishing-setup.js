@@ -253,10 +253,10 @@ function rodUpgradeLeaders(rods, budgetRod, fish) {
 function upgradeHeadline(ctx, dimensions) {
   const aim =
     ctx.locale === 'th'
-      ? 'มีเวลาเล็งนานสุดในร้านด่านนี้'
+      ? 'เหวี่ยงได้ไกลสุดในร้านด่านนี้'
       : ctx.locale === 'ja'
-        ? 'このエリアの店頭で狙う時間が最長'
-        : 'Most time to aim in this area'
+        ? 'このエリアの店頭で投げる距離が最長'
+        : 'Farthest cast in this area'
   const parts = dimensions.map((dimension) =>
     dimension === 'aim' ? aim : fitHeadline(ctx, dimension),
   )
@@ -269,16 +269,16 @@ function upgradeEffect(ctx, dimension, item, budgetRod) {
   const baseAim = rodMetric(budgetRod, 'aimCutoffAt100Hp')
   if ([2, 4].includes(item.decodedFields?.styleCode)) {
     if (ctx.locale === 'th')
-      return `ที่ HP 100 มีเวลาเล็ง ${aim} เทียบกับ ${baseAim} ของคันราคาต่ำสุด; ถ้า HP ต่ำกว่า 100 เวลาเล็งจะสั้นลง`
+      return `ที่ HP 100 ระยะเหวี่ยงสูงสุด ${aim} เทียบกับ ${baseAim} ของคันราคาต่ำสุด; ถ้า HP ต่ำกว่า 100 จะเหวี่ยงได้สั้นลง`
     if (ctx.locale === 'ja')
-      return `HP100のときの狙う時間は${aim}、最安竿は${baseAim}。HPが100未満だと短くなります。`
-    return `At 100 HP, aim time ${aim} vs ${baseAim} for the cheapest rod; below 100 HP you get less time to aim.`
+      return `HP100のときの投げる距離は${aim}、最安竿は${baseAim}。HPが100未満だと短くなります。`
+    return `At 100 HP, cast distance limit ${aim} vs ${baseAim} for the cheapest rod; below 100 HP you cast shorter.`
   }
   if (ctx.locale === 'th')
-    return `เวลาเล็ง ${aim} เทียบกับ ${baseAim} ของคันราคาต่ำสุด จึงมีเวลาขยับเป้านานขึ้นก่อนเกมตัดสินว่าเหยื่อตกตรงไหน`
+    return `ระยะเหวี่ยงสูงสุด ${aim} เทียบกับ ${baseAim} ของคันราคาต่ำสุด จึงเหวี่ยงเหยื่อได้ไกลกว่า`
   if (ctx.locale === 'ja')
-    return `狙う時間は${aim}、最安竿は${baseAim}。投げ先を動かす時間が長くなります。`
-  return `Aim time ${aim} vs ${baseAim} for the cheapest rod gives you longer to move the target before the game decides where the cast lands.`
+    return `投げる距離は${aim}、最安竿は${baseAim}。投げ先を動かす時間が長くなります。`
+  return `Cast distance limit ${aim} vs ${baseAim} for the cheapest rod: the cast can reach farther.`
 }
 
 function upgradeCost(ctx, item, budgetRod) {
@@ -315,16 +315,16 @@ function renderRodUpgradeChoices(ctx, method, stage, rods, budgetRod, baseTotal)
   if (!choices.length) return ''
   const title =
     ctx.locale === 'th'
-      ? 'ถ้าคันถูกสุดไม่เหมาะกับปลานี้ หรืออยากมีเวลาเล็งนานขึ้น'
+      ? 'ถ้าคันถูกสุดไม่เหมาะกับปลานี้ หรืออยากเหวี่ยงให้ไกลขึ้น'
       : ctx.locale === 'ja'
-        ? '最安竿がこの魚に合わない場合や、狙う時間を上げたい場合'
-        : 'If the budget rod does not suit this fish, or you want more time to aim'
+        ? '最安竿がこの魚に合わない場合や、投げる距離を伸ばしたい場合'
+        : 'If the budget rod does not suit this fish, or you want to cast farther'
   const scope =
     ctx.locale === 'th'
-      ? 'สายยาวพอและจุดเริ่มสู้ที่ดีกว่าช่วยให้ปลาไม่หลุดและสายไม่ขาด (วัดจากการจำลองการสู้ปลา) ส่วนเวลาเล็งไม่ได้ทำให้ปลากินง่ายขึ้น; คันนี้ต้องซื้อใหม่ราคาเต็ม'
+      ? 'สายยาวพอและจุดเริ่มสู้ที่ดีกว่าช่วยให้ปลาไม่หลุดและสายไม่ขาด (วัดจากการจำลองการสู้ปลา) ส่วนระยะเหวี่ยงไม่ได้ทำให้ปลากินง่ายขึ้น; คันนี้ต้องซื้อใหม่ราคาเต็ม'
       : ctx.locale === 'ja'
-        ? '糸の長さが足りて出だしが有利なほど、魚を逃がしにくく糸も切れにくくなります（ファイトのシミュレーションによる）。狙う時間で食いつきは良くなりません。新品の全額が必要です。'
-        : 'A line that is long enough and a better fight start keep the fish from escaping and the line from breaking (measured in simulated fights). Time to aim does not make fish bite more. The rod costs its full new-purchase price.'
+        ? '糸の長さが足りて出だしが有利なほど、魚を逃がしにくく糸も切れにくくなります（ファイトのシミュレーションによる）。投げる距離で食いつきは良くなりません。新品の全額が必要です。'
+        : 'A line that is long enough and a better fight start keep the fish from escaping and the line from breaking (measured in simulated fights). Cast distance does not make fish bite more. The rod costs its full new-purchase price.'
   return `<div class="method-rod-upgrades" data-rod-upgrades-for="${method}"><h5>${ctx.escapeHtml(title)}</h5><div class="detail-grid">${choices.map((choice) => upgradeCard(ctx, method, stage, choice, budgetRod, baseTotal)).join('')}</div><p class="muted">${ctx.escapeHtml(scope)}</p></div>`
 }
 

@@ -265,30 +265,30 @@ def build():
             range_units = rod["range_threshold_internal_at_base_0x0150"]
             if style_code in (2, 4):
                 hp_detail = loc(
-                    "Below 100 HP the automatic aim cutoff shrinks with current HP (minimum 10); at 100 HP it uses the full value.",
-                    "HPが100未満では照準の自動移行上限がHPに応じて短くなる（最小10）。HP100以上では全値を使う。",
-                    "ถ้า HP ต่ำกว่า 100 ช่วงเล็งก่อนเปลี่ยนอัตโนมัติจะสั้นลงตาม HP (ต่ำสุด 10); ที่ HP 100 ใช้ค่าเต็ม",
+                    "Below 100 HP the cast charge limit shrinks with current HP (minimum 10), so you cast shorter; at 100 HP it uses the full value.",
+                    "HPが100未満では投げる強さ（チャージ）の上限＝投げる距離がHPに応じて短くなる（最小10）。HP100以上では全値を使う。",
+                    "ถ้า HP ต่ำกว่า 100 ระยะเหวี่ยงจะสั้นลงตาม HP (ต่ำสุด 10); ที่ HP 100 ใช้ค่าเต็ม",
                 )
             else:
                 hp_detail = None
             entry["summary"] = loc(
-                f"Use for {style['en']} fishing; more time to aim gives you longer to position the cast.",
-                f"{style['ja']}釣り用。狙う時間が長いほど投げる位置を調整できる。",
-                f"ใช้ตกแบบ{style['th']}; มีเวลาเล็งนานขึ้นจะมีเวลาปรับจุดปล่อยเหยื่อมากขึ้น",
+                f"Use for {style['en']} fishing; more cast distance gives you longer to position the cast.",
+                f"{style['ja']}釣り用。遠くへ投げられるほど投げる位置を調整できる。",
+                f"ใช้ตกแบบ{style['th']}; มีระยะเหวี่ยงนานขึ้นจะมีเวลาปรับจุดปล่อยเหยื่อมากขึ้น",
             )
             entry["facts"] = loc_lists(
-                [f"Time to aim ranks {aim_rank}/{group_count} among this style at full HP; rank 1 is longest."],
-                [f"HP満タン時の狙う時間は同系統{group_count}本中{aim_rank}位。1位が最長。"],
-                [f"เมื่อ HP เต็ม เวลาเล็งอยู่ลำดับ {aim_rank}/{group_count} ในคันแบบเดียวกัน; อันดับ 1 คือนานที่สุด"],
+                [f"Cast distance ranks {aim_rank}/{group_count} among this style at full HP; rank 1 is longest."],
+                [f"HP満タン時の投げる距離は同系統{group_count}本中{aim_rank}位。1位が最長。"],
+                [f"เมื่อ HP เต็ม ระยะเหวี่ยงอยู่ลำดับ {aim_rank}/{group_count} ในคันแบบเดียวกัน; อันดับ 1 คือนานที่สุด"],
             )
             if hp_detail:
-                entry["facts"]["en"].append("Casting and lure rods give you less time to aim when HP is below 100.")
-                entry["facts"]["ja"].append("投げ竿・ルアー竿はHP100未満で狙う時間が短くなる。")
-                entry["facts"]["th"].append("คันหวดและคันลัวร์มีเวลาเล็งสั้นลงเมื่อ HP ต่ำกว่า 100")
+                entry["facts"]["en"].append("Casting and lure rods cast shorter when HP is below 100.")
+                entry["facts"]["ja"].append("投げ竿・ルアー竿はHP100未満で投げる距離が短くなる。")
+                entry["facts"]["th"].append("คันหวดและคันลัวร์เหวี่ยงได้สั้นลงเมื่อ HP ต่ำกว่า 100")
             entry["evidenceNotes"] = loc_lists(
                 [f"At 100 HP the cutoff is {cutoff} game counter ticks. The later reach threshold is {range_units} internal position units ({range_mult} × 336), not meters. These are handling values, not catch power."],
                 [f"HP100時の上限はゲーム内カウンター{cutoff}。後段の到達しきい値は{range_units}内部位置単位（{range_mult} × 336）で、メートルではない。釣果の強さを示す値ではない。"],
-                [f"เมื่อ HP 100 เกณฑ์ค้างเล็งคือ {cutoff} หน่วยตัวนับ; เกณฑ์ระยะช่วงสู้ปลาคือ {range_units} หน่วยตำแหน่งภายในเกม ({range_mult} × 336) ไม่ใช่เมตร ทั้งสองค่าไม่ใช่พลังจับปลา"],
+                [f"เมื่อ HP 100 ขีดชาร์จเหวี่ยงคือ {cutoff} หน่วยตัวนับ; เกณฑ์ระยะช่วงสู้ปลาคือ {range_units} หน่วยตำแหน่งภายในเกม ({range_mult} × 336) ไม่ใช่เมตร ทั้งสองค่าไม่ใช่พลังจับปลา"],
             )
             if hp_detail:
                 for lang in ("en", "ja", "th"):
@@ -307,9 +307,9 @@ def build():
                 "aimRankAt100Hp": aim_rank,
                 "reachRank": range_rank,
                 "of": group_count,
-                "en": f"Within {style['en']} rods: time to aim ranks {aim_rank}/{group_count} at full HP; line strength ranks {range_rank}/{group_count}. Rank 1 is longest/highest in that dimension.",
-                "ja": f"{style['ja']}用の竿{group_count}本中、HP満タン時の狙う時間は{aim_rank}位、糸の切れにくさは{range_rank}位。1位が最長・最大。",
-                "th": f"ในกลุ่มคัน{style['th']} {group_count} คัน: เวลาเล็งอันดับ {aim_rank}/{group_count} เมื่อ HP เต็ม; สายขาดยากอันดับ {range_rank}/{group_count}; อันดับ 1 คือดีที่สุด",
+                "en": f"Within {style['en']} rods: cast distance ranks {aim_rank}/{group_count} at full HP; line strength ranks {range_rank}/{group_count}. Rank 1 is longest/highest in that dimension.",
+                "ja": f"{style['ja']}用の竿{group_count}本中、HP満タン時の投げる距離は{aim_rank}位、糸の切れにくさは{range_rank}位。1位が最長・最大。",
+                "th": f"ในกลุ่มคัน{style['th']} {group_count} คัน: ระยะเหวี่ยงอันดับ {aim_rank}/{group_count} เมื่อ HP เต็ม; สายขาดยากอันดับ {range_rank}/{group_count}; อันดับ 1 คือดีที่สุด",
             }
             match_code = (rod.get("fish_id_match_label") or {}).get("id_hex")
             if match_code:

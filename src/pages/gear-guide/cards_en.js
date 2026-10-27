@@ -148,7 +148,7 @@ export default {
           title: 'Food and HP',
           chip: 'Food & HP',
           verdict: 'some',
-          does: 'HP drains when you swim (1 HP every half second), row the tub or canoe (1 HP per tile) and when a fight costs you tackle (1 to 4 HP). At 0 HP you black out and wake up with 1 HP; money, fish and tools stay. With low HP casting and lure rods get less aiming time (half at 50 HP).',
+          does: 'HP drains when you swim (1 HP every half second), row the tub or canoe (1 HP per tile) and when a fight costs you tackle (1 to 4 HP). At 0 HP you black out and wake up with 1 HP; money, fish and tools stay. With low HP casting and lure rods get shorter casts (half at 50 HP).',
           matters:
             'Some. HP is never read during a fight, so full HP does not help you land a fish.',
           choose: [

@@ -273,13 +273,13 @@
       labels: {
         only: "{area}: only same-style rod listed",
         dominated: "{area}: buy {otherId} instead — {betterReason}{hpNote}",
-        dual: "{area}: lowest price, most time to aim{hpNote} and the line that breaks least easily",
+        dual: "{area}: lowest price, most cast distance{hpNote} and the line that breaks least easily",
         cheapest: "{area}: lowest new-purchase price",
-        aim: "{area}: most time to aim{hpNote}",
+        aim: "{area}: most cast distance{hpNote}",
         aimChoice: "{area}: choose {id} when {comparison}{hpNote}",
         boundary: "{area}: choose for the line that breaks least easily",
         boundaryPeerCheapest: "{area}: choose {id} for the hardest-to-break line at the lowest price among those rods",
-        boundaryPeerAim: "{area}: choose {id} for more time to aim than {otherId}, with the same hardest-to-break line{hpNote}",
+        boundaryPeerAim: "{area}: choose {id} for more cast distance than {otherId}, with the same hardest-to-break line{hpNote}",
         tradeoff: "{area}: choose {id} when {comparison}{hpNote}",
         tradeoffFallback: "{area}: choose {id} when {comparison}{hpNote}",
         itemMissing: "{area}: {id} is not sold here; the cheapest local option is {budgetId} ({budgetPrice})",
@@ -287,12 +287,12 @@
         styleNever: "{area}: no same-style rod is sold in any of the six areas"
       },
       comparison: {
-        aimMore: "you get more time to aim than with the cheaper {id}",
-        aimLess: "you get less time to aim than with the cheaper {id}",
+        aimMore: "you get more cast distance than with the cheaper {id}",
+        aimLess: "you get less cast distance than with the cheaper {id}",
         boundaryMore: "the line breaks less easily than with the cheaper {id}",
         boundaryLess: "the line breaks more easily than with the cheaper {id}",
-        aimMoreAny: "you get more time to aim than with {id}",
-        aimLessAny: "you get less time to aim than with {id}",
+        aimMoreAny: "you get more cast distance than with {id}",
+        aimLessAny: "you get less cast distance than with {id}",
         boundaryMoreAny: "the line breaks less easily than with {id}",
         boundaryLessAny: "the line breaks more easily than with {id}",
         startMore: "you can afford more mistakes on average than with the cheaper {id}",
@@ -308,30 +308,30 @@
       recommendation: {
         only: "This is the only {style} rod sold in {area}: {stats}. Choose it if you need this style here; if you already own it, keep using it.",
         dominated: "For a new {style} rod in {area}, choose {otherId} ({otherStats}) over {id} ({stats}): {betterReason}. If you already own {id}, keep using it; which fish it suits is on its own page.",
-        dual: "Choose {id} in {area} if you need a new {style} rod: it has the lowest full price ({price}), the most time to aim ({aim}){hpNote}, and the line that breaks least easily (×{boundary}). If you already own a rod, keep using it.",
+        dual: "Choose {id} in {area} if you need a new {style} rod: it has the lowest full price ({price}), the most cast distance ({aim}){hpNote}, and the line that breaks least easily (×{boundary}). If you already own a rod, keep using it.",
         cheapest: "Choose {id} to pay the lowest full price in {area} ({price}). {aimLine} {boundaryLine} These are full new-purchase prices, not trade-in costs; if you already own a rod, keep using it.",
-        aim: "Choose {id} in {area} when you want more time to aim: its aim time ({aim}){hpNote} is the highest among the {style} rods sold here. {budgetLine} {boundaryLine}",
+        aim: "Choose {id} in {area} when you want more cast distance: its cast distance ({aim}){hpNote} is the highest among the {style} rods sold here. {budgetLine} {boundaryLine}",
         aimChoice: "Choose {id} at the full new-purchase price {price} when {comparison}{hpNote}. The cheaper option is {lowerId} at {lowerPrice}; if you already own a rod, keep using it.",
         boundary: "Choose {id} in {area} when you want the line that breaks least easily (×{boundary}). {budgetLine} {aimLine}",
-        boundaryPeerCheapest: "Choose {id} for the hardest-to-break line at the lowest full price among rods tied on that ({price}). {otherId} costs {otherPrice} and gives more time to aim{hpNote} with the same line strength.",
-        boundaryPeerAim: "Choose {id} when you want more time to aim than with {otherId}{hpNote} and the same hardest-to-break line. Full new-purchase price: {price} versus {otherPrice}.",
-        tradeoff: "{id} is a trade-off among the {style} rods sold here: {lowerLine} {higherLine} Decide by the full new-purchase price, the time to aim and how hard the line is to break.",
-        itemMissing: "{id} is not sold in {area}. The same-style rods sold here are {options}. If you already own {id}, keep using it. If you are buying new: {budgetLine} {aimLine} {boundaryLine} This compares price, time to aim, line strength and fight start; which fish a rod suits is on its own page.",
+        boundaryPeerCheapest: "Choose {id} for the hardest-to-break line at the lowest full price among rods tied on that ({price}). {otherId} costs {otherPrice} and casts farther{hpNote} with the same line strength.",
+        boundaryPeerAim: "Choose {id} when you want more cast distance than with {otherId}{hpNote} and the same hardest-to-break line. Full new-purchase price: {price} versus {otherPrice}.",
+        tradeoff: "{id} is a trade-off among the {style} rods sold here: {lowerLine} {higherLine} Decide by the full new-purchase price, the cast distance and how hard the line is to break.",
+        itemMissing: "{id} is not sold in {area}. The same-style rods sold here are {options}. If you already own {id}, keep using it. If you are buying new: {budgetLine} {aimLine} {boundaryLine} This compares price, cast distance, line strength and fight start; which fish a rod suits is on its own page.",
         styleMissing: "{area} does not sell a {style} rod. The {direction} area that does is Area {nextStage}: {options}. If you already own {id}, keep using it. This only covers shop stock; the rod may be available some other way.",
-        aimLeader: "The most time to aim: {id} ({stats}).",
-        aimOther: "{id} ({stats}) gives more time to aim than this rod.",
+        aimLeader: "The most cast distance: {id} ({stats}).",
+        aimOther: "{id} ({stats}) casts farther than this rod.",
         boundaryLeader: "The line that breaks least easily: {id} ({stats}).",
         boundaryOther: "{id} ({stats}) breaks less easily than this rod.",
         budgetLeader: "The lowest full price: {id} ({stats}).",
         budgetOther: "{id} ({stats}) has the lowest full price.",
-        step: "Compared with {otherId} ({otherStats}), {choiceId} has full price {price} (from {otherPrice}), aim time {aim} (from {otherAim}), and line strength ×{boundary} (from ×{otherBoundary}).",
+        step: "Compared with {otherId} ({otherStats}), {choiceId} has full price {price} (from {otherPrice}), cast distance {aim} (from {otherAim}), and line strength ×{boundary} (from ×{otherBoundary}).",
         area: "Area {stage}",
-        reason: "This advice uses only the same-style rods the shops sell, their full prices, and three measured values: time to aim, line strength and fight start (how many mistakes you can afford).",
+        reason: "This advice uses only the same-style rods the shops sell, their full prices, and three measured values: cast distance, line strength and fight start (how many mistakes you can afford).",
         styleNever: "No {style} rod is sold in any of the six areas. If you already own {id}, keep using it; no shop that sells one has been found.",
         tradeoffChoice: "Choose {id} at the full new-purchase price {price} when {comparison}{hpNote}. {higherLine} If you already own a rod, keep using it. Which fish it suits is on the rod’s own page.",
         noHigher: "",
-        scope: "What is compared: rods of the same style that shops sell, full new-purchase price, time to aim, how hard the line is to break (the fish can pull farther before tackle is lost) and fight start (how many mistakes you can afford, on average). Which fish a rod suits is on its own page.{hp}{fly}",
-        hp: " Aim time for lure/casting rods is measured at HP 100 and gets shorter when HP is lower.",
+        scope: "What is compared: rods of the same style that shops sell, full new-purchase price, cast distance, how hard the line is to break (the fish can pull farther before tackle is lost) and fight start (how many mistakes you can afford, on average). Which fish a rod suits is on its own page.{hp}{fly}",
+        hp: " Cast distance for lure/casting rods is measured at HP 100 and gets shorter when HP is lower.",
         fly: " The fly rod’s second hidden value is left out because its effect is unknown.",
         noHp: "",
         noFly: "",
@@ -345,13 +345,13 @@
       labels: {
         only: "ด่าน {stage}: ร้านขายคันแบบนี้คันเดียว",
         dominated: "ด่าน {stage}: ซื้อ {otherId} แทน — {betterReason}{hpNote}",
-        dual: "ด่าน {stage}: ถูกสุด มีเวลาเล็งนานสุด{hpNote} และสายขาดยากสุด",
+        dual: "ด่าน {stage}: ถูกสุด มีระยะเหวี่ยงนานสุด{hpNote} และสายขาดยากสุด",
         cheapest: "ด่าน {stage}: ราคาซื้อใหม่ถูกสุด",
-        aim: "ด่าน {stage}: มีเวลาเล็งนานสุด{hpNote}",
+        aim: "ด่าน {stage}: มีระยะเหวี่ยงนานสุด{hpNote}",
         aimChoice: "ด่าน {stage}: เลือก {id} เพราะ{comparison}{hpNote}",
         boundary: "ด่าน {stage}: เลือกถ้าอยากให้สายขาดยากสุด",
         boundaryPeerCheapest: "ด่าน {stage}: เลือก {id} ถ้าอยากได้สายขาดยากสุดในราคาถูกสุดของกลุ่ม",
-        boundaryPeerAim: "ด่าน {stage}: เลือก {id} ถ้าอยากมีเวลาเล็งนานกว่า {otherId} โดยยังได้สายขาดยากสุดเท่ากัน{hpNote}",
+        boundaryPeerAim: "ด่าน {stage}: เลือก {id} ถ้าอยากเหวี่ยงได้ไกลกว่า {otherId} โดยยังได้สายขาดยากสุดเท่ากัน{hpNote}",
         tradeoff: "ด่าน {stage}: เลือก {id} เพราะ{comparison}{hpNote}",
         tradeoffFallback: "ด่าน {stage}: เลือก {id} เพราะ{comparison}{hpNote}",
         itemMissing: "ด่าน {stage}: ร้านไม่ขาย {id}; ตัวเลือกที่ถูกสุดในด่านนี้คือ {budgetId} ({budgetPrice})",
@@ -359,12 +359,12 @@
         styleNever: "ด่าน {stage}: ไม่มีร้านไหนขายคันแบบนี้ทั้ง 6 ด่าน"
       },
       comparison: {
-        aimMore: "มีเวลาเล็งนานกว่า {id} ที่ถูกกว่า",
-        aimLess: "มีเวลาเล็งน้อยกว่า {id} ที่ถูกกว่า",
+        aimMore: "เหวี่ยงได้ไกลกว่า {id} ที่ถูกกว่า",
+        aimLess: "มีระยะเหวี่ยงน้อยกว่า {id} ที่ถูกกว่า",
         boundaryMore: "สายขาดยากกว่า {id} ที่ถูกกว่า",
         boundaryLess: "สายขาดง่ายกว่า {id} ที่ถูกกว่า",
-        aimMoreAny: "มีเวลาเล็งนานกว่า {id}",
-        aimLessAny: "มีเวลาเล็งน้อยกว่า {id}",
+        aimMoreAny: "เหวี่ยงได้ไกลกว่า {id}",
+        aimLessAny: "มีระยะเหวี่ยงน้อยกว่า {id}",
         boundaryMoreAny: "สายขาดยากกว่า {id}",
         boundaryLessAny: "สายขาดง่ายกว่า {id}",
         startMore: "เฉลี่ยพลาดได้มากกว่า {id} ที่ถูกกว่า",
@@ -380,30 +380,30 @@
       recommendation: {
         only: "{area} มีคัน{style}ขายแค่คันนี้: {stats} ถ้าต้องใช้คันแบบนี้ก็ซื้อได้ ถ้ามีอยู่แล้วใช้ต่อได้ ไม่ต้องซื้อใหม่",
         dominated: "ถ้าจะซื้อคัน{style}ใหม่ใน{area} ให้เลือก {otherId} ({otherStats}) แทน {id} ({stats}): {betterReason} ถ้ามี {id} อยู่แล้วใช้ต่อได้ ไม่ต้องซื้อใหม่ ส่วนว่าเหมาะกับปลาชนิดไหนดูในหน้าคันนั้น",
-        dual: "ถ้าต้องซื้อคัน{style}ใหม่ใน{area} ให้เลือก {id}: ราคาเต็มถูกสุด ({price}) มีเวลาเล็งนานสุด ({aim}){hpNote} และสายขาดยากสุด (×{boundary}) ถ้ามีคันเดิมอยู่แล้วใช้ต่อได้ ไม่ต้องซื้อใหม่",
+        dual: "ถ้าต้องซื้อคัน{style}ใหม่ใน{area} ให้เลือก {id}: ราคาเต็มถูกสุด ({price}) มีระยะเหวี่ยงนานสุด ({aim}){hpNote} และสายขาดยากสุด (×{boundary}) ถ้ามีคันเดิมอยู่แล้วใช้ต่อได้ ไม่ต้องซื้อใหม่",
         cheapest: "เลือก {id} ถ้าอยากจ่ายถูกสุดใน{area} ({price}) {aimLine} {boundaryLine} ราคานี้คือราคาเต็มซื้อใหม่ ไม่ใช่ราคาหลังหักคันเก่า ถ้ามีคันเดิมอยู่แล้วใช้ต่อได้ ไม่ต้องซื้อใหม่",
-        aim: "เลือก {id} ใน{area} ถ้าอยากมีเวลาเล็งนานขึ้น: เวลาเล็ง ({aim}){hpNote} มากสุดในกลุ่มคัน{style}ที่ขายในด่านนี้ {budgetLine} {boundaryLine}",
+        aim: "เลือก {id} ใน{area} ถ้าอยากเหวี่ยงให้ไกลขึ้น: ระยะเหวี่ยง ({aim}){hpNote} มากสุดในกลุ่มคัน{style}ที่ขายในด่านนี้ {budgetLine} {boundaryLine}",
         aimChoice: "เลือก {id} ราคาเต็มซื้อใหม่ {price} เพราะ{comparison}{hpNote} ตัวเลือกที่ถูกกว่าคือ {lowerId} ราคา {lowerPrice} ถ้ามีคันเดิมอยู่แล้วใช้ต่อได้ ไม่ต้องซื้อใหม่",
         boundary: "เลือก {id} ใน{area} ถ้าอยากให้สายขาดยากสุด (×{boundary}) {budgetLine} {aimLine}",
-        boundaryPeerCheapest: "เลือก {id} ถ้าอยากได้สายขาดยากสุดในราคาเต็มถูกสุดของกลุ่มที่เท่ากัน ({price}) ส่วน {otherId} ราคา {otherPrice} มีเวลาเล็งนานกว่า{hpNote} และสายขาดยากเท่ากัน",
-        boundaryPeerAim: "เลือก {id} ถ้าอยากมีเวลาเล็งนานกว่า {otherId}{hpNote} โดยยังได้สายขาดยากสุดเท่ากัน ราคาเต็มซื้อใหม่ {price} เทียบกับ {otherPrice}",
-        tradeoff: "{id} มีข้อแลกเปลี่ยนเมื่อเทียบกับคัน{style}ที่ขายในด่านนี้: {lowerLine} {higherLine} ให้เลือกโดยดูราคาเต็มซื้อใหม่ เวลาเล็ง และความยากที่สายจะขาด",
-        itemMissing: "ร้านใน{area} ไม่ขาย {id}; คัน{style}ที่ขายคือ {options} ถ้ามี {id} อยู่แล้วใช้ต่อได้ ไม่ต้องซื้อใหม่ ถ้าจะซื้อใหม่: {budgetLine} {aimLine} {boundaryLine} นี่เทียบราคา เวลาเล็ง ความยากที่สายจะขาด และจุดเริ่มสู้ ส่วนว่าเหมาะกับปลาชนิดไหนดูในหน้าคันนั้น",
+        boundaryPeerCheapest: "เลือก {id} ถ้าอยากได้สายขาดยากสุดในราคาเต็มถูกสุดของกลุ่มที่เท่ากัน ({price}) ส่วน {otherId} ราคา {otherPrice} เหวี่ยงได้ไกลกว่า{hpNote} และสายขาดยากเท่ากัน",
+        boundaryPeerAim: "เลือก {id} ถ้าอยากเหวี่ยงได้ไกลกว่า {otherId}{hpNote} โดยยังได้สายขาดยากสุดเท่ากัน ราคาเต็มซื้อใหม่ {price} เทียบกับ {otherPrice}",
+        tradeoff: "{id} มีข้อแลกเปลี่ยนเมื่อเทียบกับคัน{style}ที่ขายในด่านนี้: {lowerLine} {higherLine} ให้เลือกโดยดูราคาเต็มซื้อใหม่ ระยะเหวี่ยง และความยากที่สายจะขาด",
+        itemMissing: "ร้านใน{area} ไม่ขาย {id}; คัน{style}ที่ขายคือ {options} ถ้ามี {id} อยู่แล้วใช้ต่อได้ ไม่ต้องซื้อใหม่ ถ้าจะซื้อใหม่: {budgetLine} {aimLine} {boundaryLine} นี่เทียบราคา ระยะเหวี่ยง ความยากที่สายจะขาด และจุดเริ่มสู้ ส่วนว่าเหมาะกับปลาชนิดไหนดูในหน้าคันนั้น",
         styleMissing: "{area} ไม่มีร้านขายคัน{style}; ด่าน{direction}ที่มีขายคือด่าน {nextStage}: {options} ถ้ามี {id} อยู่แล้วใช้ต่อได้ ไม่ต้องซื้อใหม่ ข้อมูลนี้บอกแค่ของที่วางขายในร้าน ไม่ได้บอกว่าหาทางอื่นไม่ได้",
-        aimLeader: "มีเวลาเล็งนานสุด: {id} ({stats})",
-        aimOther: "{id} ({stats}) มีเวลาเล็งนานกว่าคันนี้",
+        aimLeader: "มีระยะเหวี่ยงนานสุด: {id} ({stats})",
+        aimOther: "{id} ({stats}) เหวี่ยงได้ไกลกว่าคันนี้",
         boundaryLeader: "สายขาดยากสุด: {id} ({stats})",
         boundaryOther: "{id} ({stats}) สายขาดยากกว่าคันนี้",
         budgetLeader: "ราคาเต็มถูกสุด: {id} ({stats})",
         budgetOther: "{id} ({stats}) ราคาเต็มถูกสุด",
-        step: "เทียบ {otherId} ({otherStats}) กับ {choiceId}: ราคาเต็ม {price} (เดิม {otherPrice}), เวลาเล็ง {aim} (เดิม {otherAim}), สายขาดยาก ×{boundary} (เดิม ×{otherBoundary})",
+        step: "เทียบ {otherId} ({otherStats}) กับ {choiceId}: ราคาเต็ม {price} (เดิม {otherPrice}), ระยะเหวี่ยง {aim} (เดิม {otherAim}), สายขาดยาก ×{boundary} (เดิม ×{otherBoundary})",
         area: "ด่าน {stage}",
-        reason: "คำแนะนำนี้ดูจากคันแบบเดียวกันที่ร้านขาย ราคาเต็ม และตัวเลขที่วัดได้สามค่า คือเวลาเล็ง ความยากที่สายจะขาด และจุดเริ่มสู้ (พลาดได้กี่จังหวะ)",
+        reason: "คำแนะนำนี้ดูจากคันแบบเดียวกันที่ร้านขาย ราคาเต็ม และตัวเลขที่วัดได้สามค่า คือระยะเหวี่ยง ความยากที่สายจะขาด และจุดเริ่มสู้ (พลาดได้กี่จังหวะ)",
         styleNever: "ไม่มีร้านไหนขายคัน{style}ทั้ง 6 ด่าน ถ้ามี {id} อยู่แล้วใช้ต่อได้ ไม่ต้องซื้อใหม่; ยังไม่พบร้านที่ขายคันแบบนี้",
         tradeoffChoice: "เลือก {id} ในราคาเต็มซื้อใหม่ {price} เพราะ{comparison}{hpNote} {higherLine} ถ้ามีคันเดิมอยู่แล้วใช้ต่อได้ ไม่ต้องซื้อใหม่ ส่วนว่าเหมาะกับปลาชนิดไหนดูในหน้าคันนั้น",
         noHigher: "",
-        scope: "สิ่งที่เทียบ: คันแบบเดียวกันที่ร้านขาย ราคาเต็มซื้อใหม่ เวลาเล็ง ความยากที่สายจะขาด (ปลาดึงหนีได้ไกลกว่าก่อนสายขาด) และจุดเริ่มสู้ (เฉลี่ยพลาดได้กี่จังหวะ) คันเหมาะกับปลาชนิดไหนดูในหน้าคันนั้น{hp}{fly}",
-        hp: " เวลาเล็งของคันลัวร์/คันหวดวัดที่ HP 100 และสั้นลงเมื่อ HP ต่ำกว่า 100",
+        scope: "สิ่งที่เทียบ: คันแบบเดียวกันที่ร้านขาย ราคาเต็มซื้อใหม่ ระยะเหวี่ยง ความยากที่สายจะขาด (ปลาดึงหนีได้ไกลกว่าก่อนสายขาด) และจุดเริ่มสู้ (เฉลี่ยพลาดได้กี่จังหวะ) คันเหมาะกับปลาชนิดไหนดูในหน้าคันนั้น{hp}{fly}",
+        hp: " ระยะเหวี่ยงของคันลัวร์/คันหวดวัดที่ HP 100 และสั้นลงเมื่อ HP ต่ำกว่า 100",
         fly: " ไม่รวมค่าที่สองของคันฟลาย เพราะยังไม่รู้ว่ามีผลอะไร",
         noHp: "",
         noFly: "",
@@ -417,13 +417,13 @@
       labels: {
         only: "エリア{stage}：同じ釣り方で売っているのはこの竿だけ",
         dominated: "エリア{stage}：{id}より{otherId}を買う — {betterReason}{hpNote}",
-        dual: "エリア{stage}：最安で、狙う時間も最長{hpNote}、糸も最も切れにくい",
+        dual: "エリア{stage}：最安で、投げる距離も最長{hpNote}、糸も最も切れにくい",
         cheapest: "エリア{stage}：新品の全額が最安",
-        aim: "エリア{stage}：狙う時間が最長{hpNote}",
+        aim: "エリア{stage}：投げる距離が最長{hpNote}",
         aimChoice: "エリア{stage}：{id}は{comparison}{hpNote}",
         boundary: "エリア{stage}：糸が最も切れにくい竿を選ぶ",
         boundaryPeerCheapest: "エリア{stage}：糸が最も切れにくい竿の中で最安の{id}を選ぶ",
-        boundaryPeerAim: "エリア{stage}：{otherId}より狙う時間が長く、糸の切れにくさは最高で同じ{id}を選ぶ{hpNote}",
+        boundaryPeerAim: "エリア{stage}：{otherId}より投げる距離が長く、糸の切れにくさは最高で同じ{id}を選ぶ{hpNote}",
         tradeoff: "エリア{stage}：{comparison}ので{id}を選ぶ{hpNote}",
         tradeoffFallback: "エリア{stage}：{comparison}ので{id}を選ぶ{hpNote}",
         itemMissing: "エリア{stage}：{id}は売っていません。同エリアの最安候補は{budgetId}（{budgetPrice}）",
@@ -431,12 +431,12 @@
         styleNever: "エリア{stage}：同じ釣り方の竿は全6エリアのどの店にもありません"
       },
       comparison: {
-        aimMore: "安い{id}より狙う時間が長い",
-        aimLess: "安い{id}より狙う時間が短い",
+        aimMore: "安い{id}より投げる距離が長い",
+        aimLess: "安い{id}より投げる距離が短い",
         boundaryMore: "安い{id}より糸が切れにくい",
         boundaryLess: "安い{id}より糸が切れやすい",
-        aimMoreAny: "{id}より狙う時間が長い",
-        aimLessAny: "{id}より狙う時間が短い",
+        aimMoreAny: "{id}より遠くへ投げられる",
+        aimLessAny: "{id}より投げる距離が短い",
         boundaryMoreAny: "{id}より糸が切れにくい",
         boundaryLessAny: "{id}より糸が切れやすい",
         startMore: "安い{id}より許されるミスが平均で多い",
@@ -452,30 +452,30 @@
       recommendation: {
         only: "エリア{stage}で売っている{style}竿はこれだけです：{stats}。この釣り方が必要なら買ってください。すでに持っていれば、そのまま使えます。",
         dominated: "エリア{stage}で{style}竿を新しく買うなら、{id}（{stats}）より{otherId}（{otherStats}）がおすすめです：{betterReason}。{id}をすでに持っていれば、そのまま使えます。どの魚に向くかは、その竿のページで確認できます。",
-        dual: "エリア{stage}で{style}竿を新しく買うなら{id}。新品の全額が最安（{price}）で、狙う時間（{aim}）{hpNote}も最長、糸も最も切れにくい（×{boundary}）竿です。すでに持っていれば、そのまま使えます。",
+        dual: "エリア{stage}で{style}竿を新しく買うなら{id}。新品の全額が最安（{price}）で、投げる距離（{aim}）{hpNote}も最長、糸も最も切れにくい（×{boundary}）竿です。すでに持っていれば、そのまま使えます。",
         cheapest: "エリア{stage}で新品の全額を抑えるなら{id}（{price}）が最安です。{aimLine} {boundaryLine} 下取りを引いた値段ではなく、新品の全額です。すでに持っていれば、そのまま使えます。",
-        aim: "狙う時間を長くしたいなら、エリア{stage}の{id}（{aim}）{hpNote}です。ここで売っている{style}竿で最長です。{budgetLine} {boundaryLine}",
+        aim: "投げる距離を長くしたいなら、エリア{stage}の{id}（{aim}）{hpNote}です。ここで売っている{style}竿で最長です。{budgetLine} {boundaryLine}",
         aimChoice: "新品の全額{price}の{id}を選びます。{comparison}{hpNote}。出費を抑えるなら{lowerId}（{lowerPrice}）です。持っている竿はそのまま使えます。",
         boundary: "糸が最も切れにくい竿がよければ、エリア{stage}の{id}（×{boundary}）を選びます。{budgetLine} {aimLine}",
-        boundaryPeerCheapest: "糸が最も切れにくい竿の中で、新品の全額が最安なのは{id}（{price}）です。{otherId}（{otherPrice}）なら糸の切れにくさは同じまま、狙う時間がもっと長くなります{hpNote}。",
-        boundaryPeerAim: "糸が最も切れにくいまま、{otherId}より狙う時間を長くしたいなら{id}を選びます{hpNote}。新品の全額は{price}で、{otherId}は{otherPrice}です。",
-        tradeoff: "{id}は、エリア{stage}で売っている{style}竿の中で、値段・狙う時間・糸の切れにくさに一長一短があります。{lowerLine} {higherLine} 新品の全額と、必要な狙う時間・糸の切れにくさで選んでください。",
-        itemMissing: "{id}はエリア{stage}で売っていません。同じ釣り方でこのエリアで売っている竿は{options}です。{id}を持っていれば、そのまま使えます。新しく買うなら：{budgetLine} {aimLine} {boundaryLine} 比べているのは値段・狙う時間・糸の切れにくさ・ファイトの出だしで、どの魚に向くかはその竿のページで確認できます。",
+        boundaryPeerCheapest: "糸が最も切れにくい竿の中で、新品の全額が最安なのは{id}（{price}）です。{otherId}（{otherPrice}）なら糸の切れにくさは同じまま、投げる距離がもっと長くなります{hpNote}。",
+        boundaryPeerAim: "糸が最も切れにくいまま、{otherId}より投げる距離を長くしたいなら{id}を選びます{hpNote}。新品の全額は{price}で、{otherId}は{otherPrice}です。",
+        tradeoff: "{id}は、エリア{stage}で売っている{style}竿の中で、値段・投げる距離・糸の切れにくさに一長一短があります。{lowerLine} {higherLine} 新品の全額と、必要な投げる距離・糸の切れにくさで選んでください。",
+        itemMissing: "{id}はエリア{stage}で売っていません。同じ釣り方でこのエリアで売っている竿は{options}です。{id}を持っていれば、そのまま使えます。新しく買うなら：{budgetLine} {aimLine} {boundaryLine} 比べているのは値段・投げる距離・糸の切れにくさ・ファイトの出だしで、どの魚に向くかはその竿のページで確認できます。",
         styleMissing: "エリア{stage}に{style}竿は売っていません。同じ釣り方の竿を売っている{direction}エリアは、エリア{nextStage}です：{options}。{id}を持っていれば、そのまま使えます。分かるのは店の品ぞろえだけで、他の入手方法がないとは言えません。",
         styleNever: "6エリアのどの店にも{style}竿はありません。{id}を持っていれば、そのまま使えます。買える店は見つかっていません。",
         tradeoffChoice: "新品の全額{price}の{id}を選びます。{comparison}{hpNote}。{higherLine}。持っている竿はそのまま使えます。どの魚に向くかは、その竿のページで確認できます。",
         noHigher: "",
-        aimLeader: "狙う時間が最長なのは{id}（{stats}）。",
-        aimOther: "{id}（{stats}）の方が狙う時間が長いです。",
+        aimLeader: "投げる距離が最長なのは{id}（{stats}）。",
+        aimOther: "{id}（{stats}）の方が遠くへ投げられるです。",
         boundaryLeader: "糸が最も切れにくいのは{id}（{stats}）。",
         boundaryOther: "{id}（{stats}）の方が糸が切れにくいです。",
         budgetLeader: "新品の全額が最安なのは{id}（{stats}）。",
         budgetOther: "新品の全額が最安なのは{id}（{stats}）です。",
-        step: "{otherId}（{otherStats}）と{choiceId}の比較：新品の全額 {price}（{otherPrice}から）、狙う時間 {aim}（{otherAim}から）、切れにくさ ×{boundary}（×{otherBoundary}から）。",
+        step: "{otherId}（{otherStats}）と{choiceId}の比較：新品の全額 {price}（{otherPrice}から）、投げる距離 {aim}（{otherAim}から）、切れにくさ ×{boundary}（×{otherBoundary}から）。",
         area: "エリア{stage}",
-        reason: "同じ釣り方の店の品ぞろえ、新品の全額、測定できた3つの値（狙う時間・切れにくさ・ファイトの出だし）で比べています。",
-        scope: "比べているもの：同じ釣り方で店が売っている竿、新品の全額、狙う時間、糸の切れにくさ（魚が遠くまで引いても道具を失いにくい）、ファイトの出だし（許されるミスの数の平均）。どの魚に向くかは竿のページで確認できます。{hp}{fly}",
-        hp: " ルアー竿・投げ竿の狙う時間はHP100のときの値で、HPが減ると短くなります。",
+        reason: "同じ釣り方の店の品ぞろえ、新品の全額、測定できた3つの値（投げる距離・切れにくさ・ファイトの出だし）で比べています。",
+        scope: "比べているもの：同じ釣り方で店が売っている竿、新品の全額、投げる距離、糸の切れにくさ（魚が遠くまで引いても道具を失いにくい）、ファイトの出だし（許されるミスの数の平均）。どの魚に向くかは竿のページで確認できます。{hp}{fly}",
+        hp: " ルアー竿・投げ竿の投げる距離はHP100のときの値で、HPが減ると短くなります。",
         fly: " フライ竿のもう1つの隠れた値は、効果が分からないため比べていません。",
         noHp: "",
         noFly: "",
@@ -676,10 +676,10 @@
   function offerStats(lang, choice) {
     const hpNote = aimCondition2(lang, choice.item);
     if (lang === "th")
-      return `${offerPrice2(lang, choice.price)} · เวลาเล็ง ${choice.aim}${hpNote} · สายขาดยาก ×${choice.boundary}`;
+      return `${offerPrice2(lang, choice.price)} · ระยะเหวี่ยง ${choice.aim}${hpNote} · สายขาดยาก ×${choice.boundary}`;
     if (lang === "ja")
-      return `${offerPrice2(lang, choice.price)}・狙う時間${choice.aim}${hpNote}・切れにくさ×${choice.boundary}`;
-    return `${offerPrice2(lang, choice.price)} · aim ${choice.aim}${hpNote} · line strength ×${choice.boundary}`;
+      return `${offerPrice2(lang, choice.price)}・投げる距離${choice.aim}${hpNote}・切れにくさ×${choice.boundary}`;
+    return `${offerPrice2(lang, choice.price)} · cast distance ${choice.aim}${hpNote} · line strength ×${choice.boundary}`;
   }
   function aimCondition2(lang, item) {
     if (![2, 4].includes(styleCode(item))) return "";
@@ -1845,8 +1845,8 @@
   }
   function renderPlayerDecisionOverview(ctx) {
     const title = ctx.lang === "th" ? "ซื้ออะไร พกอะไร ทำอะไรก่อนตก" : ctx.lang === "ja" ? "買う・持つ・釣る前にすること" : "What to buy, carry and do before fishing";
-    const tip = ctx.lang === "th" ? "ใช้ลัวร์หรือคันหวด: เติม HP ให้ถึง 100 ก่อน ถ้าอยากได้เวลาเล็งเต็มของคัน" : ctx.lang === "ja" ? "ルアー・投げ釣り：狙う時間を最大にするには、先にHPを100まで回復する。" : "Lure / casting: restore HP to 100 first to get your rod’s full time to aim.";
-    const scope = ctx.lang === "th" ? "หลักฐานนี้ยืนยันผลเรื่องเวลาเล็ง ยังไม่ได้ยืนยันโบนัสโอกาสปลากินเหยื่อ" : ctx.lang === "ja" ? "狙う時間への効果は確認済み。食いつき率ボーナスは未確認。" : "This restores time to aim; a bite-rate bonus is not established.";
+    const tip = ctx.lang === "th" ? "ใช้ลัวร์หรือคันหวด: เติม HP ให้ถึง 100 ก่อน ถ้าอยากเหวี่ยงได้ไกลเต็มที่ของคัน" : ctx.lang === "ja" ? "ルアー・投げ釣り：投げる距離を最大にするには、先にHPを100まで回復する。" : "Lure / casting: restore HP to 100 first to get your rod’s full cast distance.";
+    const scope = ctx.lang === "th" ? "หลักฐานนี้ยืนยันผลเรื่องระยะเหวี่ยง ยังไม่ได้ยืนยันโบนัสโอกาสปลากินเหยื่อ" : ctx.lang === "ja" ? "投げる距離への効果は確認済み。食いつき率ボーナスは未確認。" : "This restores cast distance; a bite-rate bonus is not established.";
     const categoryLink = ctx.lang === "th" ? "ดูคำแนะนำของหมวดที่เลือกด้านบน" : ctx.lang === "ja" ? "選択中のカテゴリの案内を見る" : "See recommendations for the selected category above";
     const hasCategoryDisclosure = Boolean(
       document.getElementById("category-recommendations-disclosure")
@@ -2074,7 +2074,7 @@
     const rods2 = ctx.allItems.filter((item) => item.category === "rod");
     const wasOpen = Boolean(box.querySelector?.(".comparison")?.open);
     const styles = ctx.lang === "th" ? { 1: "ทุ่น / อายุ", 2: "หวด", 4: "ลัวร์", 8: "ฟลาย" } : ctx.lang === "ja" ? { 1: "ウキ・アユ", 2: "投げ", 4: "ルアー", 8: "フライ" } : { 1: "Float / Ayu", 2: "Casting", 4: "Lure", 8: "Fly" };
-    box.innerHTML = `<details id="rod-comparison-details" class="overview-disclosure comparison"${wasOpen ? " open" : ""}><summary>${ctx.esc(ctx.player.compare)} · ${rods2.length}</summary><p>${ctx.lang === "th" ? "เวลาเล็งมาก = ขยับเป้าหมายได้นานขึ้น; สายขาดยากมาก = ปลาดึงหนีได้ไกลกว่าก่อนอุปกรณ์หลุด ตัวเลขใช้เทียบกันเท่านั้น ไม่ใช่เมตรหรือคะแนนพลัง และปลายังหนีด้วยวิธีอื่นได้" : ctx.lang === "ja" ? "狙う時間が大きいほど、狙いを動かせる時間が長い。糸の切れにくさが大きいほど、魚が遠くまで引いても道具を失いにくい。数値は比べるためのもので、メートルや強さではない。他の逃げ方もある。" : "More aim time lets you move the target longer. A higher line strength means the fish can pull farther before tackle is lost. The numbers are only for comparing rods, not metres or power. Fish can still escape other ways."}</p><div class="table-wrap"><table><thead><tr><th>${ctx.esc(ctx.copy.item)}</th><th>${ctx.esc(ctx.player.style)}</th><th>${ctx.esc(ctx.player.aim)}</th><th>${ctx.esc(ctx.player.reach)}</th><th>${ctx.lang === "th" ? "ราคาซื้อ" : ctx.lang === "ja" ? "購入価格" : "Purchase price"}</th><th>${ctx.lang === "th" ? "คำแนะนำ" : ctx.lang === "ja" ? "選び方" : "Recommendation"}</th></tr></thead><tbody>${rods2.slice().sort(
+    box.innerHTML = `<details id="rod-comparison-details" class="overview-disclosure comparison"${wasOpen ? " open" : ""}><summary>${ctx.esc(ctx.player.compare)} · ${rods2.length}</summary><p>${ctx.lang === "th" ? "ระยะเหวี่ยงมาก = เหวี่ยงได้ไกลขึ้น; สายขาดยากมาก = ปลาดึงหนีได้ไกลกว่าก่อนอุปกรณ์หลุด ตัวเลขใช้เทียบกันเท่านั้น ไม่ใช่เมตรหรือคะแนนพลัง และปลายังหนีด้วยวิธีอื่นได้" : ctx.lang === "ja" ? "投げる距離が大きいほど、遠くへ投げられる。糸の切れにくさが大きいほど、魚が遠くまで引いても道具を失いにくい。数値は比べるためのもので、メートルや強さではない。他の逃げ方もある。" : "More cast distance lets you move the target longer. A higher line strength means the fish can pull farther before tackle is lost. The numbers are only for comparing rods, not metres or power. Fish can still escape other ways."}</p><div class="table-wrap"><table><thead><tr><th>${ctx.esc(ctx.copy.item)}</th><th>${ctx.esc(ctx.player.style)}</th><th>${ctx.esc(ctx.player.aim)}</th><th>${ctx.esc(ctx.player.reach)}</th><th>${ctx.lang === "th" ? "ราคาซื้อ" : ctx.lang === "ja" ? "購入価格" : "Purchase price"}</th><th>${ctx.lang === "th" ? "คำแนะนำ" : ctx.lang === "ja" ? "選び方" : "Recommendation"}</th></tr></thead><tbody>${rods2.slice().sort(
       (a, b) => a.decodedFields.styleCode - b.decodedFields.styleCode || b.decodedFields.rangeMultiplier - a.decodedFields.rangeMultiplier
     ).map((item) => rodComparisonRow(ctx, item, styles)).join("")}</tbody></table></div></details>`;
   }
@@ -3789,8 +3789,8 @@
       "After the order was accepted."
     ],
     quick: {
-      "rod:0A": "Cast/aim hold-time cutoff 70; reach multiplier 15 × 336 = 5,040 internal units. Under 100 HP the cutoff scales with current HP (minimum 10).",
-      "rod:0D": "Cast/aim hold-time cutoff 120; reach multiplier 24 × 336 = 8,064 internal units. Under 100 HP the cutoff scales with current HP (minimum 10).",
+      "rod:0A": "Cast-distance (charge) limit 70; reach multiplier 15 × 336 = 5,040 internal units. Under 100 HP the cutoff scales with current HP (minimum 10).",
+      "rod:0D": "Cast-distance (charge) limit 120; reach multiplier 24 × 336 = 8,064 internal units. Under 100 HP the cutoff scales with current HP (minimum 10).",
       "lure:12": "Action branch 9; conditional fish-ID comparison value 11 → Black bass. Changes a behavior path; does not prove an exclusive target or bonus.",
       "lure:21": "Action branch 7; conditional fish-ID comparison value 38 → Namazu. Changes a behavior path; does not prove an exclusive target or bonus.",
       "lure:51": "Action branch 5; conditional fish-ID comparison value 55 → Akame. Changes a behavior path; does not prove an exclusive target or bonus.",
@@ -3799,7 +3799,7 @@
     },
     fieldNames: {
       styleCode: "Rod style code",
-      castAimHoldCutoffInternal: "Cast/aim hold-time cutoff",
+      castAimHoldCutoffInternal: "Cast-distance (charge) limit",
       rangeMultiplier: "Reach multiplier",
       rangeInternalValueAtBase0x0150: "Reach threshold (internal units)",
       fishIdMatchCode: "Fish-ID comparison code",
@@ -3869,8 +3869,8 @@
       "หลังยืนยันการสั่งทำ"
     ],
     quick: {
-      "rod:0A": "ตัวนับค้างเล็ง/ปล่อยเหยื่อ 70; เกณฑ์ระยะ 15 × 336 = 5,040 หน่วยภายใน หาก HP ต่ำกว่า 100 ตัวนับช่วงเล็งจะลดตาม HP (ขั้นต่ำ 10) ไม่ใช่พลังสู้ปลา",
-      "rod:0D": "ตัวนับค้างเล็ง/ปล่อยเหยื่อ 120; เกณฑ์ระยะ 24 × 336 = 8,064 หน่วยภายใน หาก HP ต่ำกว่า 100 ตัวนับช่วงเล็งจะลดตาม HP (ขั้นต่ำ 10) ไม่ใช่พลังสู้ปลา",
+      "rod:0A": "ขีดชาร์จการเหวี่ยง (ระยะเหวี่ยง) 70; เกณฑ์ระยะ 15 × 336 = 5,040 หน่วยภายใน หาก HP ต่ำกว่า 100 ระยะเหวี่ยงจะลดตาม HP (ขั้นต่ำ 10) ไม่ใช่พลังสู้ปลา",
+      "rod:0D": "ขีดชาร์จการเหวี่ยง (ระยะเหวี่ยง) 120; เกณฑ์ระยะ 24 × 336 = 8,064 หน่วยภายใน หาก HP ต่ำกว่า 100 ระยะเหวี่ยงจะลดตาม HP (ขั้นต่ำ 10) ไม่ใช่พลังสู้ปลา",
       "lure:12": "รหัสแขนงการทำงาน 9; มีการเทียบ ID ปลาแบบมีเงื่อนไขกับค่า 11 → Black bass (ブラックバス) ทำให้เข้าเส้นทางการทำงานอีกแบบ ไม่ได้ยืนยันว่าใช้ได้เฉพาะปลานี้หรือมีโบนัส",
       "lure:21": "รหัสแขนงการทำงาน 7; มีการเทียบ ID ปลาแบบมีเงื่อนไขกับค่า 38 → Namazu (ナマズ) ทำให้เข้าเส้นทางการทำงานอีกแบบ ไม่ได้ยืนยันว่าใช้ได้เฉพาะปลานี้หรือมีโบนัส",
       "lure:51": "รหัสแขนงการทำงาน 5; มีการเทียบ ID ปลาแบบมีเงื่อนไขกับค่า 55 → Akame (アカメ) ทำให้เข้าเส้นทางการทำงานอีกแบบ ไม่ได้ยืนยันว่าใช้ได้เฉพาะปลานี้หรือมีโบนัส",
@@ -3879,7 +3879,7 @@
     },
     fieldNames: {
       styleCode: "รหัสรูปแบบการตกของคันเบ็ด",
-      castAimHoldCutoffInternal: "เกณฑ์ตัวนับค้างเล็ง/ปล่อยเหยื่อ",
+      castAimHoldCutoffInternal: "เกณฑ์ขีดชาร์จการเหวี่ยง (ระยะเหวี่ยง)",
       rangeMultiplier: "ตัวคูณระยะ",
       rangeInternalValueAtBase0x0150: "เกณฑ์ระยะ (หน่วยภายในเกม)",
       fishIdMatchCode: "รหัสเทียบ ID ปลา",
@@ -3980,8 +3980,8 @@
       "注文を確定した後。"
     ],
     quick: {
-      "rod:0A": "投げ・照準の保持時間上限70。距離判定係数15 × 336 = 内部値5,040。HP100未満ではHPに応じて上限が縮小（最低10）。",
-      "rod:0D": "投げ・照準の保持時間上限120。距離判定係数24 × 336 = 内部値8,064。HP100未満ではHPに応じて上限が縮小（最低10）。",
+      "rod:0A": "投げる距離（チャージ上限）70。距離判定係数15 × 336 = 内部値5,040。HP100未満ではHPに応じて上限が縮小（最低10）。",
+      "rod:0D": "投げる距離（チャージ上限）120。距離判定係数24 × 336 = 内部値8,064。HP100未満ではHPに応じて上限が縮小（最低10）。",
       "lure:12": "動作分岐9。魚ID比較値11 → ブラックバス。一致時は別処理に入る。対象魚専用やボーナスとは確認されていない。",
       "lure:21": "動作分岐7。魚ID比較値38 → ナマズ。一致時は別処理に入る。対象魚専用やボーナスとは確認されていない。",
       "lure:51": "動作分岐5。魚ID比較値55 → アカメ。一致時は別処理に入る。対象魚専用やボーナスとは確認されていない。",
@@ -3990,7 +3990,7 @@
     },
     fieldNames: {
       styleCode: "竿の釣り方コード",
-      castAimHoldCutoffInternal: "投げ・照準の保持時間上限",
+      castAimHoldCutoffInternal: "投げる距離（チャージ上限）",
       rangeMultiplier: "距離判定係数",
       rangeInternalValueAtBase0x0150: "距離判定値（内部単位）",
       fishIdMatchCode: "魚ID比較コード",
@@ -4070,7 +4070,7 @@
     more: "ดูรายชื่อทั้งหมด",
     evidence: "หลักฐานทางเทคนิค",
     compare: "เทียบคันในรูปแบบเดียวกัน",
-    aim: "เวลาเล็ง",
+    aim: "ระยะเหวี่ยง",
     reach: "สายขาดยาก",
     style: "รูปแบบการตก",
     titleByCategory: "อุปกรณ์ในหมวดนี้",
@@ -4093,7 +4093,7 @@
       general_tool: "อุปกรณ์และของเควสต์"
     },
     desc: {
-      rod: "เลือกวิธีตกก่อน แล้วเลือกคันที่มีเวลาเล็งนานหรือสายขาดยากตามที่ต้องการ",
+      rod: "เลือกวิธีตกก่อน แล้วเลือกคันที่มีระยะเหวี่ยงนานหรือสายขาดยากตามที่ต้องการ",
       lure: "ปลาในรายชื่อของลัวร์ว่ายตามเมื่ออยู่ช่องเดียวกับลัวร์ กด A หรือ B ต่อเนื่อง แล้วกด A หนึ่งครั้งตอนปลาอยู่ระดับเดียวกับลัวร์ เลือกปลาเพื่อดูลัวร์ที่ใช้ได้",
       flymaker: "บอดี้เลือกปลาที่กิน ปีกเป็นแค่ตัวผ่านล็อกลับของเซฟ หางเป็นแค่หน้าตา เปิดคำแนะนำของหมวดนี้เพื่อดูชุดที่ใช้ได้บนเซฟใหม่",
       bait: "ปลากินเมื่อเหยื่ออยู่ในรายชื่อของปลาและทุ่นอยู่ช่องเดียวกับปลา ราว 2 วินาที (ตะกั่วราว 10 วินาที เฉพาะปลาหน้าดิน) เลือกปลาเพื่อดูเหยื่อที่ใช้ได้",
@@ -4117,7 +4117,7 @@
     more: "Show all fish",
     evidence: "Technical evidence",
     compare: "Compare rods within a fishing style",
-    aim: "Time to aim",
+    aim: "Cast distance",
     reach: "Line strength",
     style: "Fishing style",
     titleByCategory: "Equipment in this category",
@@ -4140,7 +4140,7 @@
       general_tool: "Tools / quest items"
     },
     desc: {
-      rod: "Choose a fishing style, then compare time to aim and line strength.",
+      rod: "Choose a fishing style, then compare cast distance and line strength.",
       lure: "A fish on a lure’s list chases it when it is on the lure’s tile: keep tapping A or B, then press A once when the fish is level with the lure. Choose a fish to see its lures.",
       flymaker: "The body picks the fish that bite, the wing is only a ticket past the save’s hidden lock, and the tail is only looks. Open this category’s advice for the sets that work on a fresh save.",
       bait: "A fish bites when the bait is on its list and your float is on its tile: about 2 seconds (sinker about 10 seconds, bottom fish only). Choose a fish to see its baits.",
@@ -4164,7 +4164,7 @@
     more: "全魚名を見る",
     evidence: "技術的根拠",
     compare: "釣り方別に竿を比較",
-    aim: "狙う時間",
+    aim: "投げる距離",
     reach: "糸の切れにくさ",
     style: "釣り方",
     titleByCategory: "この種類の装備",
@@ -4187,7 +4187,7 @@
       general_tool: "道具 / イベント品"
     },
     desc: {
-      rod: "釣り方を選び、狙う時間と糸の切れにくさを比べる。",
+      rod: "釣り方を選び、投げる距離と糸の切れにくさを比べる。",
       lure: "ルアーのリストにある魚は、ルアーと同じマスにいれば追ってくる。AかBを連打し、同じ高さに来たらAを1回。魚を選んで使えるルアーを見る。",
       flymaker: "ボディが食いつく魚を決め、ウイングはセーブの隠しロックを通るための部品、テールは見た目だけ。この種類の案内で、新規セーブで使えるセットを確認。",
       bait: "エサが魚のリストにあり、ウキが魚と同じマスにあれば食いつく。約2秒（オモリは約10秒、底の魚のみ）。魚を選んで使えるエサを見る。",

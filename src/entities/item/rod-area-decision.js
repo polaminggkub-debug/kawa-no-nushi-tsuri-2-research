@@ -86,10 +86,10 @@ function offerPrice(lang, price) {
 function offerStats(lang, choice) {
   const hpNote = aimCondition(lang, choice.item)
   if (lang === 'th')
-    return `${offerPrice(lang, choice.price)} · เวลาเล็ง ${choice.aim}${hpNote} · สายขาดยาก ×${choice.boundary}`
+    return `${offerPrice(lang, choice.price)} · ระยะเหวี่ยง ${choice.aim}${hpNote} · สายขาดยาก ×${choice.boundary}`
   if (lang === 'ja')
-    return `${offerPrice(lang, choice.price)}・狙う時間${choice.aim}${hpNote}・切れにくさ×${choice.boundary}`
-  return `${offerPrice(lang, choice.price)} · aim ${choice.aim}${hpNote} · line strength ×${choice.boundary}`
+    return `${offerPrice(lang, choice.price)}・投げる距離${choice.aim}${hpNote}・切れにくさ×${choice.boundary}`
+  return `${offerPrice(lang, choice.price)} · cast distance ${choice.aim}${hpNote} · line strength ×${choice.boundary}`
 }
 
 function aimCondition(lang, item) {

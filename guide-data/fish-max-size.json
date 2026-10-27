@@ -1,0 +1,3837 @@
+{
+ "schema": 1,
+ "title": "Fish max size: can the wiki MAX be caught on every map?",
+ "rom": {
+  "file": "Taro2_Thai.sfc",
+  "sha1": "453047280f53ab9faf93142b957967c1eec69afc",
+  "bytes": 2097152
+ },
+ "basis": "Thai ROM read in Ghidra, proven by fish-max-size-rom.test.ts and fish-quest-size-rom.test.ts (poo local, headless browser core).",
+ "rules": {
+  "cap": "The inn refill (03:838B..85C5; one copy per area, $085A 7..12 = maps 1..6) grows a picked cell by 1; max-1 becomes max, max becomes 0 (removed). max is the fish record +1 ($11EC from 03:8042). No per-map, per-cell, season or time cap exists.",
+  "newFish": "An empty picked cell gets floor(min/2) + random mod floor(min/2) = floor(min/2) .. 2*floor(min/2)-1 (03:83B0..83C5). The new game fills 1152 of 1536 cells the same way (04:EC56), so no fish starts at or above its record min.",
+  "whenGrowth": "Only at an inn night (yes to the innkeeper), only in the inn's own map: $0C2E picks (fishing activity, 1..255, then reset to 0 at 03:85C8). Picks walk the 256-byte permutation at 00:EDFA (00:EDE9), so up to 255 different cells per night. Time, sleep at home, map entry, catch and loss do not grow anything (fish-stock-rom.test.ts).",
+  "activity": "+1 per fight started (01:8019), +2 more when the fish is lost (01:81F8), +3 more when it slips back at the landing (01:927E), +4 per fish handed in (03:A650); capped at 255.",
+  "slipBack": "A landed fish that slips back (Down at the landing, 01:85FF -> 01:9273) grows by floor(min/16)+1, held at max, and stays in its cell (01:935C..9373).",
+  "kept": "A kept fish empties its cell (01:8E0B); a lost fish is unchanged except the quest/eel sizes.",
+  "pointsPerPass": "One pass of a given cell costs on average 256 activity points spent at that map's inn (each point picks one cell of 256)."
+ },
+ "rows": [
+  {
+   "fish": 1,
+   "name": {
+    "ja": "イワナ",
+    "th": "อิวานะ",
+    "en": "Iwana"
+   },
+   "map": 1,
+   "mapName": {
+    "en": "Mountain Stream",
+    "ja": "渓流",
+    "th": "ลำธารบนภูเขา"
+   },
+   "record": {
+    "min": 40,
+    "max": 55
+   },
+   "wikiMax": 55,
+   "cells": 100,
+   "newFish": [
+    20,
+    39
+   ],
+   "passesFromNewFish": {
+    "best": 16,
+    "worst": 35
+   },
+   "pointsPerPass": 256,
+   "nightsAt255": {
+    "firstCellAtMax": 16,
+    "everyCellAtMax": 36,
+    "mostCellsAtMaxInOneNight": 9
+   },
+   "reachableMax": 55,
+   "status": "ok",
+   "evidence": "fish-max-size-rom.test.ts (inn refill 03:838B..85C5, cap 03:83CB..83DF)"
+  },
+  {
+   "fish": 2,
+   "name": {
+    "ja": "アメマス",
+    "th": "ปลาอาเมะมาสุ",
+    "en": "Amemasu"
+   },
+   "map": 2,
+   "mapName": {
+    "en": "Mountain Lake",
+    "ja": "山上湖",
+    "th": "ทะเลสาบบนภูเขา"
+   },
+   "record": {
+    "min": 60,
+    "max": 70
+   },
+   "wikiMax": 70,
+   "cells": 14,
+   "newFish": [
+    30,
+    59
+   ],
+   "passesFromNewFish": {
+    "best": 11,
+    "worst": 40
+   },
+   "pointsPerPass": 256,
+   "nightsAt255": {
+    "firstCellAtMax": 11,
+    "everyCellAtMax": 38,
+    "mostCellsAtMaxInOneNight": 3
+   },
+   "reachableMax": 70,
+   "status": "ok",
+   "evidence": "fish-max-size-rom.test.ts (inn refill 03:838B..85C5, cap 03:83CB..83DF)"
+  },
+  {
+   "fish": 3,
+   "name": {
+    "ja": "ヤマメ",
+    "th": "ยามาเมะ",
+    "en": "Yamame"
+   },
+   "map": 1,
+   "mapName": {
+    "en": "Mountain Stream",
+    "ja": "渓流",
+    "th": "ลำธารบนภูเขา"
+   },
+   "record": {
+    "min": 30,
+    "max": 35
+   },
+   "wikiMax": 35,
+   "cells": 42,
+   "newFish": [
+    15,
+    29
+   ],
+   "passesFromNewFish": {
+    "best": 6,
+    "worst": 20
+   },
+   "pointsPerPass": 256,
+   "nightsAt255": {
+    "firstCellAtMax": 7,
+    "everyCellAtMax": 20,
+    "mostCellsAtMaxInOneNight": 6
+   },
+   "reachableMax": 35,
+   "status": "ok",
+   "evidence": "fish-max-size-rom.test.ts (inn refill 03:838B..85C5, cap 03:83CB..83DF)"
+  },
+  {
+   "fish": 4,
+   "name": {
+    "ja": "アマゴ",
+    "th": "อามาโกะ",
+    "en": "Amago"
+   },
+   "map": 1,
+   "mapName": {
+    "en": "Mountain Stream",
+    "ja": "渓流",
+    "th": "ลำธารบนภูเขา"
+   },
+   "record": {
+    "min": 20,
+    "max": 25
+   },
+   "wikiMax": 25,
+   "cells": 48,
+   "newFish": [
+    10,
+    19
+   ],
+   "passesFromNewFish": {
+    "best": 6,
+    "worst": 15
+   },
+   "pointsPerPass": 256,
+   "nightsAt255": {
+    "firstCellAtMax": 6,
+    "everyCellAtMax": 17,
+    "mostCellsAtMaxInOneNight": 8
+   },
+   "reachableMax": 25,
+   "status": "ok",
+   "evidence": "fish-max-size-rom.test.ts (inn refill 03:838B..85C5, cap 03:83CB..83DF)"
+  },
+  {
+   "fish": 5,
+   "name": {
+    "ja": "カジカ",
+    "th": "ปลาคาจิกะ",
+    "en": "Kajika"
+   },
+   "map": 3,
+   "mapName": {
+    "en": "Clear Stream",
+    "ja": "清流",
+    "th": "ลำธารใส"
+   },
+   "record": {
+    "min": 15,
+    "max": 17
+   },
+   "wikiMax": 17,
+   "cells": 13,
+   "newFish": [
+    7,
+    13
+   ],
+   "passesFromNewFish": {
+    "best": 4,
+    "worst": 10
+   },
+   "pointsPerPass": 256,
+   "nightsAt255": {
+    "firstCellAtMax": 4,
+    "everyCellAtMax": 10,
+    "mostCellsAtMaxInOneNight": 5
+   },
+   "reachableMax": 17,
+   "status": "ok",
+   "evidence": "fish-max-size-rom.test.ts (inn refill 03:838B..85C5, cap 03:83CB..83DF)"
+  },
+  {
+   "fish": 6,
+   "name": {
+    "ja": "ニジマス",
+    "th": "นิจิมาสุ / ปลาเรนโบว์เทราต์",
+    "en": "Nijimasu (rainbow trout)"
+   },
+   "map": 1,
+   "mapName": {
+    "en": "Mountain Stream",
+    "ja": "渓流",
+    "th": "ลำธารบนภูเขา"
+   },
+   "record": {
+    "min": 40,
+    "max": 70
+   },
+   "wikiMax": 70,
+   "cells": 18,
+   "newFish": [
+    20,
+    39
+   ],
+   "passesFromNewFish": {
+    "best": 31,
+    "worst": 50
+   },
+   "pointsPerPass": 256,
+   "nightsAt255": {
+    "firstCellAtMax": 32,
+    "everyCellAtMax": 50,
+    "mostCellsAtMaxInOneNight": 3
+   },
+   "reachableMax": 70,
+   "status": "ok",
+   "evidence": "fish-max-size-rom.test.ts (inn refill 03:838B..85C5, cap 03:83CB..83DF)"
+  },
+  {
+   "fish": 6,
+   "name": {
+    "ja": "ニジマス",
+    "th": "นิจิมาสุ / ปลาเรนโบว์เทราต์",
+    "en": "Nijimasu (rainbow trout)"
+   },
+   "map": 2,
+   "mapName": {
+    "en": "Mountain Lake",
+    "ja": "山上湖",
+    "th": "ทะเลสาบบนภูเขา"
+   },
+   "record": {
+    "min": 40,
+    "max": 70
+   },
+   "wikiMax": 70,
+   "cells": 24,
+   "newFish": [
+    20,
+    39
+   ],
+   "passesFromNewFish": {
+    "best": 31,
+    "worst": 50
+   },
+   "pointsPerPass": 256,
+   "nightsAt255": {
+    "firstCellAtMax": 31,
+    "everyCellAtMax": 51,
+    "mostCellsAtMaxInOneNight": 3
+   },
+   "reachableMax": 70,
+   "status": "ok",
+   "evidence": "fish-max-size-rom.test.ts (inn refill 03:838B..85C5, cap 03:83CB..83DF)"
+  },
+  {
+   "fish": 6,
+   "name": {
+    "ja": "ニジマス",
+    "th": "นิจิมาสุ / ปลาเรนโบว์เทราต์",
+    "en": "Nijimasu (rainbow trout)"
+   },
+   "map": 3,
+   "mapName": {
+    "en": "Clear Stream",
+    "ja": "清流",
+    "th": "ลำธารใส"
+   },
+   "record": {
+    "min": 40,
+    "max": 70
+   },
+   "wikiMax": 70,
+   "cells": 17,
+   "newFish": [
+    20,
+    39
+   ],
+   "passesFromNewFish": {
+    "best": 31,
+    "worst": 50
+   },
+   "pointsPerPass": 256,
+   "nightsAt255": {
+    "firstCellAtMax": 32,
+    "everyCellAtMax": 51,
+    "mostCellsAtMaxInOneNight": 4
+   },
+   "reachableMax": 70,
+   "status": "ok",
+   "evidence": "fish-max-size-rom.test.ts (inn refill 03:838B..85C5, cap 03:83CB..83DF)"
+  },
+  {
+   "fish": 7,
+   "name": {
+    "ja": "ヒメマス",
+    "th": "ปลาฮิเมะมาสุ",
+    "en": "Himemasu"
+   },
+   "map": 2,
+   "mapName": {
+    "en": "Mountain Lake",
+    "ja": "山上湖",
+    "th": "ทะเลสาบบนภูเขา"
+   },
+   "record": {
+    "min": 30,
+    "max": 45
+   },
+   "wikiMax": 45,
+   "cells": 15,
+   "newFish": [
+    15,
+    29
+   ],
+   "passesFromNewFish": {
+    "best": 16,
+    "worst": 30
+   },
+   "pointsPerPass": 256,
+   "nightsAt255": {
+    "firstCellAtMax": 16,
+    "everyCellAtMax": 31,
+    "mostCellsAtMaxInOneNight": 3
+   },
+   "reachableMax": 45,
+   "status": "ok",
+   "evidence": "fish-max-size-rom.test.ts (inn refill 03:838B..85C5, cap 03:83CB..83DF)"
+  },
+  {
+   "fish": 8,
+   "name": {
+    "ja": "ブラウントラウト",
+    "th": "บราวน์เทราต์",
+    "en": "Brown trout"
+   },
+   "map": 2,
+   "mapName": {
+    "en": "Mountain Lake",
+    "ja": "山上湖",
+    "th": "ทะเลสาบบนภูเขา"
+   },
+   "record": {
+    "min": 50,
+    "max": 100
+   },
+   "wikiMax": 100,
+   "cells": 9,
+   "newFish": [
+    25,
+    49
+   ],
+   "passesFromNewFish": {
+    "best": 51,
+    "worst": 75
+   },
+   "pointsPerPass": 256,
+   "nightsAt255": {
+    "firstCellAtMax": 66,
+    "everyCellAtMax": 72,
+    "mostCellsAtMaxInOneNight": 3
+   },
+   "reachableMax": 100,
+   "status": "ok",
+   "evidence": "fish-max-size-rom.test.ts (inn refill 03:838B..85C5, cap 03:83CB..83DF)"
+  },
+  {
+   "fish": 8,
+   "name": {
+    "ja": "ブラウントラウト",
+    "th": "บราวน์เทราต์",
+    "en": "Brown trout"
+   },
+   "map": 3,
+   "mapName": {
+    "en": "Clear Stream",
+    "ja": "清流",
+    "th": "ลำธารใส"
+   },
+   "record": {
+    "min": 50,
+    "max": 100
+   },
+   "wikiMax": 100,
+   "cells": 7,
+   "newFish": [
+    25,
+    49
+   ],
+   "passesFromNewFish": {
+    "best": 51,
+    "worst": 75
+   },
+   "pointsPerPass": 256,
+   "nightsAt255": {
+    "firstCellAtMax": 55,
+    "everyCellAtMax": 75,
+    "mostCellsAtMaxInOneNight": 2
+   },
+   "reachableMax": 100,
+   "status": "ok",
+   "evidence": "fish-max-size-rom.test.ts (inn refill 03:838B..85C5, cap 03:83CB..83DF)"
+  },
+  {
+   "fish": 9,
+   "name": {
+    "ja": "カワマス",
+    "th": "คาวามาสุ / ปลาคาวะมาสุ",
+    "en": "Kawamasu"
+   },
+   "map": 1,
+   "mapName": {
+    "en": "Mountain Stream",
+    "ja": "渓流",
+    "th": "ลำธารบนภูเขา"
+   },
+   "record": {
+    "min": 40,
+    "max": 53
+   },
+   "wikiMax": 53,
+   "cells": 30,
+   "newFish": [
+    20,
+    39
+   ],
+   "passesFromNewFish": {
+    "best": 14,
+    "worst": 33
+   },
+   "pointsPerPass": 256,
+   "nightsAt255": {
+    "firstCellAtMax": 14,
+    "everyCellAtMax": 34,
+    "mostCellsAtMaxInOneNight": 4
+   },
+   "reachableMax": 53,
+   "status": "ok",
+   "evidence": "fish-max-size-rom.test.ts (inn refill 03:838B..85C5, cap 03:83CB..83DF)"
+  },
+  {
+   "fish": 9,
+   "name": {
+    "ja": "カワマス",
+    "th": "คาวามาสุ / ปลาคาวะมาสุ",
+    "en": "Kawamasu"
+   },
+   "map": 2,
+   "mapName": {
+    "en": "Mountain Lake",
+    "ja": "山上湖",
+    "th": "ทะเลสาบบนภูเขา"
+   },
+   "record": {
+    "min": 40,
+    "max": 53
+   },
+   "wikiMax": 53,
+   "cells": 30,
+   "newFish": [
+    20,
+    39
+   ],
+   "passesFromNewFish": {
+    "best": 14,
+    "worst": 33
+   },
+   "pointsPerPass": 256,
+   "nightsAt255": {
+    "firstCellAtMax": 15,
+    "everyCellAtMax": 32,
+    "mostCellsAtMaxInOneNight": 3
+   },
+   "reachableMax": 53,
+   "status": "ok",
+   "evidence": "fish-max-size-rom.test.ts (inn refill 03:838B..85C5, cap 03:83CB..83DF)"
+  },
+  {
+   "fish": 10,
+   "name": {
+    "ja": "ワカサギ",
+    "th": "ปลาวากาซากิ / วากาซากิ / วากาซางิ",
+    "en": "Wakasagi"
+   },
+   "map": 2,
+   "mapName": {
+    "en": "Mountain Lake",
+    "ja": "山上湖",
+    "th": "ทะเลสาบบนภูเขา"
+   },
+   "record": {
+    "min": 14,
+    "max": 15
+   },
+   "wikiMax": 15,
+   "cells": 28,
+   "newFish": [
+    7,
+    13
+   ],
+   "passesFromNewFish": {
+    "best": 2,
+    "worst": 8
+   },
+   "pointsPerPass": 256,
+   "nightsAt255": {
+    "firstCellAtMax": 2,
+    "everyCellAtMax": 8,
+    "mostCellsAtMaxInOneNight": 9
+   },
+   "reachableMax": 15,
+   "status": "ok",
+   "evidence": "fish-max-size-rom.test.ts (inn refill 03:838B..85C5, cap 03:83CB..83DF)"
+  },
+  {
+   "fish": 10,
+   "name": {
+    "ja": "ワカサギ",
+    "th": "ปลาวากาซากิ / วากาซากิ / วากาซางิ",
+    "en": "Wakasagi"
+   },
+   "map": 4,
+   "mapName": {
+    "en": "Lake",
+    "ja": "湖",
+    "th": "ทะเลสาบ"
+   },
+   "record": {
+    "min": 14,
+    "max": 15
+   },
+   "wikiMax": 15,
+   "cells": 5,
+   "newFish": [
+    7,
+    13
+   ],
+   "passesFromNewFish": {
+    "best": 2,
+    "worst": 8
+   },
+   "pointsPerPass": 256,
+   "nightsAt255": {
+    "firstCellAtMax": 3,
+    "everyCellAtMax": 8,
+    "mostCellsAtMaxInOneNight": 3
+   },
+   "reachableMax": 15,
+   "status": "ok",
+   "evidence": "fish-max-size-rom.test.ts (inn refill 03:838B..85C5, cap 03:83CB..83DF)"
+  },
+  {
+   "fish": 10,
+   "name": {
+    "ja": "ワカサギ",
+    "th": "ปลาวากาซากิ / วากาซากิ / วากาซางิ",
+    "en": "Wakasagi"
+   },
+   "map": 6,
+   "mapName": {
+    "en": "River Mouth",
+    "ja": "河口",
+    "th": "ปากแม่น้ำ"
+   },
+   "record": {
+    "min": 14,
+    "max": 15
+   },
+   "wikiMax": 15,
+   "cells": 17,
+   "newFish": [
+    7,
+    13
+   ],
+   "passesFromNewFish": {
+    "best": 2,
+    "worst": 8
+   },
+   "pointsPerPass": 256,
+   "nightsAt255": {
+    "firstCellAtMax": 2,
+    "everyCellAtMax": 8,
+    "mostCellsAtMaxInOneNight": 7
+   },
+   "reachableMax": 15,
+   "status": "ok",
+   "evidence": "fish-max-size-rom.test.ts (inn refill 03:838B..85C5, cap 03:83CB..83DF)"
+  },
+  {
+   "fish": 11,
+   "name": {
+    "ja": "ブラックバス",
+    "th": "ปลาแบล็กแบส",
+    "en": "Black bass"
+   },
+   "map": 2,
+   "mapName": {
+    "en": "Mountain Lake",
+    "ja": "山上湖",
+    "th": "ทะเลสาบบนภูเขา"
+   },
+   "record": {
+    "min": 50,
+    "max": 83
+   },
+   "wikiMax": 83,
+   "cells": 53,
+   "newFish": [
+    25,
+    49
+   ],
+   "passesFromNewFish": {
+    "best": 34,
+    "worst": 58
+   },
+   "pointsPerPass": 256,
+   "nightsAt255": {
+    "firstCellAtMax": 35,
+    "everyCellAtMax": 59,
+    "mostCellsAtMaxInOneNight": 5
+   },
+   "reachableMax": 83,
+   "status": "ok",
+   "evidence": "fish-max-size-rom.test.ts (inn refill 03:838B..85C5, cap 03:83CB..83DF)"
+  },
+  {
+   "fish": 12,
+   "name": {
+    "ja": "ウグイ",
+    "th": "ปลาอุไก / อุไก",
+    "en": "Ugui"
+   },
+   "map": 3,
+   "mapName": {
+    "en": "Clear Stream",
+    "ja": "清流",
+    "th": "ลำธารใส"
+   },
+   "record": {
+    "min": 30,
+    "max": 45
+   },
+   "wikiMax": 45,
+   "cells": 31,
+   "newFish": [
+    15,
+    29
+   ],
+   "passesFromNewFish": {
+    "best": 16,
+    "worst": 30
+   },
+   "pointsPerPass": 256,
+   "nightsAt255": {
+    "firstCellAtMax": 16,
+    "everyCellAtMax": 31,
+    "mostCellsAtMaxInOneNight": 4
+   },
+   "reachableMax": 45,
+   "status": "ok",
+   "evidence": "fish-max-size-rom.test.ts (inn refill 03:838B..85C5, cap 03:83CB..83DF)"
+  },
+  {
+   "fish": 12,
+   "name": {
+    "ja": "ウグイ",
+    "th": "ปลาอุไก / อุไก",
+    "en": "Ugui"
+   },
+   "map": 4,
+   "mapName": {
+    "en": "Lake",
+    "ja": "湖",
+    "th": "ทะเลสาบ"
+   },
+   "record": {
+    "min": 30,
+    "max": 45
+   },
+   "wikiMax": 45,
+   "cells": 5,
+   "newFish": [
+    15,
+    29
+   ],
+   "passesFromNewFish": {
+    "best": 16,
+    "worst": 30
+   },
+   "pointsPerPass": 256,
+   "nightsAt255": {
+    "firstCellAtMax": 17,
+    "everyCellAtMax": 26,
+    "mostCellsAtMaxInOneNight": 1
+   },
+   "reachableMax": 45,
+   "status": "ok",
+   "evidence": "fish-max-size-rom.test.ts (inn refill 03:838B..85C5, cap 03:83CB..83DF)"
+  },
+  {
+   "fish": 12,
+   "name": {
+    "ja": "ウグイ",
+    "th": "ปลาอุไก / อุไก",
+    "en": "Ugui"
+   },
+   "map": 5,
+   "mapName": {
+    "en": "Downstream",
+    "ja": "下流",
+    "th": "แม่น้ำตอนล่าง"
+   },
+   "record": {
+    "min": 30,
+    "max": 45
+   },
+   "wikiMax": 45,
+   "cells": 8,
+   "newFish": [
+    15,
+    29
+   ],
+   "passesFromNewFish": {
+    "best": 16,
+    "worst": 30
+   },
+   "pointsPerPass": 256,
+   "nightsAt255": {
+    "firstCellAtMax": 18,
+    "everyCellAtMax": 30,
+    "mostCellsAtMaxInOneNight": 2
+   },
+   "reachableMax": 45,
+   "status": "ok",
+   "evidence": "fish-max-size-rom.test.ts (inn refill 03:838B..85C5, cap 03:83CB..83DF)"
+  },
+  {
+   "fish": 13,
+   "name": {
+    "ja": "コイ",
+    "th": "ปลาคาร์ป / โคอิ",
+    "en": "Koi"
+   },
+   "map": 4,
+   "mapName": {
+    "en": "Lake",
+    "ja": "湖",
+    "th": "ทะเลสาบ"
+   },
+   "record": {
+    "min": 60,
+    "max": 115
+   },
+   "wikiMax": 115,
+   "cells": 22,
+   "newFish": [
+    30,
+    59
+   ],
+   "passesFromNewFish": {
+    "best": 56,
+    "worst": 85
+   },
+   "pointsPerPass": 256,
+   "nightsAt255": {
+    "firstCellAtMax": 57,
+    "everyCellAtMax": 85,
+    "mostCellsAtMaxInOneNight": 3
+   },
+   "reachableMax": 115,
+   "status": "ok",
+   "evidence": "fish-max-size-rom.test.ts (inn refill 03:838B..85C5, cap 03:83CB..83DF)"
+  },
+  {
+   "fish": 13,
+   "name": {
+    "ja": "コイ",
+    "th": "ปลาคาร์ป / โคอิ",
+    "en": "Koi"
+   },
+   "map": 5,
+   "mapName": {
+    "en": "Downstream",
+    "ja": "下流",
+    "th": "แม่น้ำตอนล่าง"
+   },
+   "record": {
+    "min": 60,
+    "max": 115
+   },
+   "wikiMax": 115,
+   "cells": 11,
+   "newFish": [
+    30,
+    59
+   ],
+   "passesFromNewFish": {
+    "best": 56,
+    "worst": 85
+   },
+   "pointsPerPass": 256,
+   "nightsAt255": {
+    "firstCellAtMax": 59,
+    "everyCellAtMax": 85,
+    "mostCellsAtMaxInOneNight": 2
+   },
+   "reachableMax": 115,
+   "status": "ok",
+   "evidence": "fish-max-size-rom.test.ts (inn refill 03:838B..85C5, cap 03:83CB..83DF)",
+   "note": "Cell 1025 is character 4's quest cell (re-rolled at every start of fishing, the quest fish at record max for that character); the other 10 cells grow normally."
+  },
+  {
+   "fish": 13,
+   "name": {
+    "ja": "コイ",
+    "th": "ปลาคาร์ป / โคอิ",
+    "en": "Koi"
+   },
+   "map": 6,
+   "mapName": {
+    "en": "River Mouth",
+    "ja": "河口",
+    "th": "ปากแม่น้ำ"
+   },
+   "record": {
+    "min": 60,
+    "max": 115
+   },
+   "wikiMax": 115,
+   "cells": 20,
+   "newFish": [
+    30,
+    59
+   ],
+   "passesFromNewFish": {
+    "best": 56,
+    "worst": 85
+   },
+   "pointsPerPass": 256,
+   "nightsAt255": {
+    "firstCellAtMax": 62,
+    "everyCellAtMax": 85,
+    "mostCellsAtMaxInOneNight": 2
+   },
+   "reachableMax": 115,
+   "status": "ok",
+   "evidence": "fish-max-size-rom.test.ts (inn refill 03:838B..85C5, cap 03:83CB..83DF)"
+  },
+  {
+   "fish": 14,
+   "name": {
+    "ja": "ドンコ",
+    "th": "ปลาดงโกะ",
+    "en": "Donko"
+   },
+   "map": 2,
+   "mapName": {
+    "en": "Mountain Lake",
+    "ja": "山上湖",
+    "th": "ทะเลสาบบนภูเขา"
+   },
+   "record": {
+    "min": 25,
+    "max": 25
+   },
+   "wikiMax": 25,
+   "cells": 8,
+   "newFish": [
+    12,
+    23
+   ],
+   "passesFromNewFish": {
+    "best": 2,
+    "worst": 13
+   },
+   "pointsPerPass": 256,
+   "nightsAt255": {
+    "firstCellAtMax": 3,
+    "everyCellAtMax": 13,
+    "mostCellsAtMaxInOneNight": 3
+   },
+   "reachableMax": 25,
+   "status": "ok",
+   "evidence": "fish-max-size-rom.test.ts (inn refill 03:838B..85C5, cap 03:83CB..83DF)"
+  },
+  {
+   "fish": 14,
+   "name": {
+    "ja": "ドンコ",
+    "th": "ปลาดงโกะ",
+    "en": "Donko"
+   },
+   "map": 3,
+   "mapName": {
+    "en": "Clear Stream",
+    "ja": "清流",
+    "th": "ลำธารใส"
+   },
+   "record": {
+    "min": 25,
+    "max": 25
+   },
+   "wikiMax": 25,
+   "cells": 8,
+   "newFish": [
+    12,
+    23
+   ],
+   "passesFromNewFish": {
+    "best": 2,
+    "worst": 13
+   },
+   "pointsPerPass": 256,
+   "nightsAt255": {
+    "firstCellAtMax": 2,
+    "everyCellAtMax": 14,
+    "mostCellsAtMaxInOneNight": 5
+   },
+   "reachableMax": 25,
+   "status": "ok",
+   "evidence": "fish-max-size-rom.test.ts (inn refill 03:838B..85C5, cap 03:83CB..83DF)"
+  },
+  {
+   "fish": 15,
+   "name": {
+    "ja": "オイカワ",
+    "th": "ปลาโออิคาวะ",
+    "en": "Oikawa"
+   },
+   "map": 3,
+   "mapName": {
+    "en": "Clear Stream",
+    "ja": "清流",
+    "th": "ลำธารใส"
+   },
+   "record": {
+    "min": 15,
+    "max": 18
+   },
+   "wikiMax": 18,
+   "cells": 29,
+   "newFish": [
+    7,
+    13
+   ],
+   "passesFromNewFish": {
+    "best": 5,
+    "worst": 11
+   },
+   "pointsPerPass": 256,
+   "nightsAt255": {
+    "firstCellAtMax": 5,
+    "everyCellAtMax": 12,
+    "mostCellsAtMaxInOneNight": 7
+   },
+   "reachableMax": 18,
+   "status": "ok",
+   "evidence": "fish-max-size-rom.test.ts (inn refill 03:838B..85C5, cap 03:83CB..83DF)"
+  },
+  {
+   "fish": 16,
+   "name": {
+    "ja": "モツゴ",
+    "th": "โมสึโกะ",
+    "en": "Motsugo"
+   },
+   "map": 5,
+   "mapName": {
+    "en": "Downstream",
+    "ja": "下流",
+    "th": "แม่น้ำตอนล่าง"
+   },
+   "record": {
+    "min": 8,
+    "max": 8
+   },
+   "wikiMax": 8,
+   "cells": 8,
+   "newFish": [
+    4,
+    7
+   ],
+   "passesFromNewFish": {
+    "best": 1,
+    "worst": 4
+   },
+   "pointsPerPass": 256,
+   "nightsAt255": {
+    "firstCellAtMax": 2,
+    "everyCellAtMax": 4,
+    "mostCellsAtMaxInOneNight": 6
+   },
+   "reachableMax": 8,
+   "status": "ok",
+   "evidence": "fish-max-size-rom.test.ts (inn refill 03:838B..85C5, cap 03:83CB..83DF)"
+  },
+  {
+   "fish": 17,
+   "name": {
+    "ja": "イトモロコ",
+    "th": "อิโตะโมะโระโกะ",
+    "en": "Itomoroko"
+   },
+   "map": 5,
+   "mapName": {
+    "en": "Downstream",
+    "ja": "下流",
+    "th": "แม่น้ำตอนล่าง"
+   },
+   "record": {
+    "min": 8,
+    "max": 8
+   },
+   "wikiMax": 8,
+   "cells": 10,
+   "newFish": [
+    4,
+    7
+   ],
+   "passesFromNewFish": {
+    "best": 1,
+    "worst": 4
+   },
+   "pointsPerPass": 256,
+   "nightsAt255": {
+    "firstCellAtMax": 1,
+    "everyCellAtMax": 5,
+    "mostCellsAtMaxInOneNight": 6
+   },
+   "reachableMax": 8,
+   "status": "ok",
+   "evidence": "fish-max-size-rom.test.ts (inn refill 03:838B..85C5, cap 03:83CB..83DF)"
+  },
+  {
+   "fish": 18,
+   "name": {
+    "ja": "ギギ",
+    "th": "กิกิ",
+    "en": "Gigi"
+   },
+   "map": 4,
+   "mapName": {
+    "en": "Lake",
+    "ja": "湖",
+    "th": "ทะเลสาบ"
+   },
+   "record": {
+    "min": 30,
+    "max": 30
+   },
+   "wikiMax": 30,
+   "cells": 20,
+   "newFish": [
+    15,
+    29
+   ],
+   "passesFromNewFish": {
+    "best": 1,
+    "worst": 15
+   },
+   "pointsPerPass": 256,
+   "nightsAt255": {
+    "firstCellAtMax": 2,
+    "everyCellAtMax": 15,
+    "mostCellsAtMaxInOneNight": 5
+   },
+   "reachableMax": 30,
+   "status": "ok",
+   "evidence": "fish-max-size-rom.test.ts (inn refill 03:838B..85C5, cap 03:83CB..83DF)"
+  },
+  {
+   "fish": 19,
+   "name": {
+    "ja": "サクラマス",
+    "th": "ปลาซากุระมาสุ",
+    "en": "Sakuramasu"
+   },
+   "map": 2,
+   "mapName": {
+    "en": "Mountain Lake",
+    "ja": "山上湖",
+    "th": "ทะเลสาบบนภูเขา"
+   },
+   "record": {
+    "min": 60,
+    "max": 60
+   },
+   "wikiMax": 60,
+   "cells": 9,
+   "newFish": [
+    30,
+    59
+   ],
+   "passesFromNewFish": {
+    "best": 1,
+    "worst": 30
+   },
+   "pointsPerPass": 256,
+   "nightsAt255": {
+    "firstCellAtMax": 2,
+    "everyCellAtMax": 29,
+    "mostCellsAtMaxInOneNight": 2
+   },
+   "reachableMax": 60,
+   "status": "ok",
+   "evidence": "fish-max-size-rom.test.ts (inn refill 03:838B..85C5, cap 03:83CB..83DF)"
+  },
+  {
+   "fish": 20,
+   "name": {
+    "ja": "コクレン",
+    "th": "โคคุเร็น",
+    "en": "Kokuren"
+   },
+   "map": 4,
+   "mapName": {
+    "en": "Lake",
+    "ja": "湖",
+    "th": "ทะเลสาบ"
+   },
+   "record": {
+    "min": 100,
+    "max": 160
+   },
+   "wikiMax": 160,
+   "cells": 5,
+   "newFish": [
+    50,
+    99
+   ],
+   "passesFromNewFish": {
+    "best": 61,
+    "worst": 110
+   },
+   "pointsPerPass": 256,
+   "nightsAt255": {
+    "firstCellAtMax": 73,
+    "everyCellAtMax": 106,
+    "mostCellsAtMaxInOneNight": 2
+   },
+   "reachableMax": 160,
+   "status": "ok",
+   "evidence": "fish-max-size-rom.test.ts (inn refill 03:838B..85C5, cap 03:83CB..83DF)"
+  },
+  {
+   "fish": 21,
+   "name": {
+    "ja": "ハクレン",
+    "th": "ฮักเร็น",
+    "en": "Hakuren"
+   },
+   "map": 4,
+   "mapName": {
+    "en": "Lake",
+    "ja": "湖",
+    "th": "ทะเลสาบ"
+   },
+   "record": {
+    "min": 100,
+    "max": 100
+   },
+   "wikiMax": 100,
+   "cells": 10,
+   "newFish": [
+    50,
+    99
+   ],
+   "passesFromNewFish": {
+    "best": 1,
+    "worst": 50
+   },
+   "pointsPerPass": 256,
+   "nightsAt255": {
+    "firstCellAtMax": 1,
+    "everyCellAtMax": 37,
+    "mostCellsAtMaxInOneNight": 2
+   },
+   "reachableMax": 100,
+   "status": "ok",
+   "evidence": "fish-max-size-rom.test.ts (inn refill 03:838B..85C5, cap 03:83CB..83DF)"
+  },
+  {
+   "fish": 21,
+   "name": {
+    "ja": "ハクレン",
+    "th": "ฮักเร็น",
+    "en": "Hakuren"
+   },
+   "map": 5,
+   "mapName": {
+    "en": "Downstream",
+    "ja": "下流",
+    "th": "แม่น้ำตอนล่าง"
+   },
+   "record": {
+    "min": 100,
+    "max": 100
+   },
+   "wikiMax": 100,
+   "cells": 3,
+   "newFish": [
+    50,
+    99
+   ],
+   "passesFromNewFish": {
+    "best": 1,
+    "worst": 50
+   },
+   "pointsPerPass": 256,
+   "nightsAt255": {
+    "firstCellAtMax": 11,
+    "everyCellAtMax": 21,
+    "mostCellsAtMaxInOneNight": 1
+   },
+   "reachableMax": 100,
+   "status": "ok",
+   "evidence": "fish-max-size-rom.test.ts (inn refill 03:838B..85C5, cap 03:83CB..83DF)"
+  },
+  {
+   "fish": 22,
+   "name": {
+    "ja": "ムギツク",
+    "th": "มุกิสึคุ",
+    "en": "Mugitsuku"
+   },
+   "map": 5,
+   "mapName": {
+    "en": "Downstream",
+    "ja": "下流",
+    "th": "แม่น้ำตอนล่าง"
+   },
+   "record": {
+    "min": 15,
+    "max": 15
+   },
+   "wikiMax": 15,
+   "cells": 5,
+   "newFish": [
+    7,
+    13
+   ],
+   "passesFromNewFish": {
+    "best": 2,
+    "worst": 8
+   },
+   "pointsPerPass": 256,
+   "nightsAt255": {
+    "firstCellAtMax": 2,
+    "everyCellAtMax": 7,
+    "mostCellsAtMaxInOneNight": 3
+   },
+   "reachableMax": 15,
+   "status": "ok",
+   "evidence": "fish-max-size-rom.test.ts (inn refill 03:838B..85C5, cap 03:83CB..83DF)"
+  },
+  {
+   "fish": 23,
+   "name": {
+    "ja": "ホンモロコ",
+    "th": "ฮอนโมโระโกะ",
+    "en": "Honmoroko"
+   },
+   "map": 4,
+   "mapName": {
+    "en": "Lake",
+    "ja": "湖",
+    "th": "ทะเลสาบ"
+   },
+   "record": {
+    "min": 14,
+    "max": 17
+   },
+   "wikiMax": 17,
+   "cells": 11,
+   "newFish": [
+    7,
+    13
+   ],
+   "passesFromNewFish": {
+    "best": 4,
+    "worst": 10
+   },
+   "pointsPerPass": 256,
+   "nightsAt255": {
+    "firstCellAtMax": 4,
+    "everyCellAtMax": 10,
+    "mostCellsAtMaxInOneNight": 4
+   },
+   "reachableMax": 17,
+   "status": "ok",
+   "evidence": "fish-max-size-rom.test.ts (inn refill 03:838B..85C5, cap 03:83CB..83DF)"
+  },
+  {
+   "fish": 24,
+   "name": {
+    "ja": "ヤマノカミ",
+    "th": "ปลายามาโนะคามิ",
+    "en": "Yamanokami"
+   },
+   "map": 3,
+   "mapName": {
+    "en": "Clear Stream",
+    "ja": "清流",
+    "th": "ลำธารใส"
+   },
+   "record": {
+    "min": 16,
+    "max": 17
+   },
+   "wikiMax": 17,
+   "cells": 8,
+   "newFish": [
+    8,
+    15
+   ],
+   "passesFromNewFish": {
+    "best": 2,
+    "worst": 9
+   },
+   "pointsPerPass": 256,
+   "nightsAt255": {
+    "firstCellAtMax": 3,
+    "everyCellAtMax": 10,
+    "mostCellsAtMaxInOneNight": 4
+   },
+   "reachableMax": 17,
+   "status": "ok",
+   "evidence": "fish-max-size-rom.test.ts (inn refill 03:838B..85C5, cap 03:83CB..83DF)"
+  },
+  {
+   "fish": 25,
+   "name": {
+    "ja": "ドジョウ",
+    "th": "โดโจ",
+    "en": "Dojou"
+   },
+   "map": 5,
+   "mapName": {
+    "en": "Downstream",
+    "ja": "下流",
+    "th": "แม่น้ำตอนล่าง"
+   },
+   "record": {
+    "min": 12,
+    "max": 12
+   },
+   "wikiMax": 12,
+   "cells": 26,
+   "newFish": [
+    6,
+    11
+   ],
+   "passesFromNewFish": {
+    "best": 1,
+    "worst": 6
+   },
+   "pointsPerPass": 256,
+   "nightsAt255": {
+    "firstCellAtMax": 1,
+    "everyCellAtMax": 7,
+    "mostCellsAtMaxInOneNight": 10
+   },
+   "reachableMax": 12,
+   "status": "ok",
+   "evidence": "fish-max-size-rom.test.ts (inn refill 03:838B..85C5, cap 03:83CB..83DF)"
+  },
+  {
+   "fish": 26,
+   "name": {
+    "ja": "タモロコ",
+    "th": "ทาโมะโระโกะ",
+    "en": "Tamoroko"
+   },
+   "map": 4,
+   "mapName": {
+    "en": "Lake",
+    "ja": "湖",
+    "th": "ทะเลสาบ"
+   },
+   "record": {
+    "min": 14,
+    "max": 14
+   },
+   "wikiMax": 14,
+   "cells": 16,
+   "newFish": [
+    7,
+    13
+   ],
+   "passesFromNewFish": {
+    "best": 1,
+    "worst": 7
+   },
+   "pointsPerPass": 256,
+   "nightsAt255": {
+    "firstCellAtMax": 2,
+    "everyCellAtMax": 8,
+    "mostCellsAtMaxInOneNight": 7
+   },
+   "reachableMax": 14,
+   "status": "ok",
+   "evidence": "fish-max-size-rom.test.ts (inn refill 03:838B..85C5, cap 03:83CB..83DF)"
+  },
+  {
+   "fish": 26,
+   "name": {
+    "ja": "タモロコ",
+    "th": "ทาโมะโระโกะ",
+    "en": "Tamoroko"
+   },
+   "map": 5,
+   "mapName": {
+    "en": "Downstream",
+    "ja": "下流",
+    "th": "แม่น้ำตอนล่าง"
+   },
+   "record": {
+    "min": 14,
+    "max": 14
+   },
+   "wikiMax": 14,
+   "cells": 14,
+   "newFish": [
+    7,
+    13
+   ],
+   "passesFromNewFish": {
+    "best": 1,
+    "worst": 7
+   },
+   "pointsPerPass": 256,
+   "nightsAt255": {
+    "firstCellAtMax": 1,
+    "everyCellAtMax": 7,
+    "mostCellsAtMaxInOneNight": 7
+   },
+   "reachableMax": 14,
+   "status": "ok",
+   "evidence": "fish-max-size-rom.test.ts (inn refill 03:838B..85C5, cap 03:83CB..83DF)"
+  },
+  {
+   "fish": 27,
+   "name": {
+    "ja": "カワムツ",
+    "th": "ปลาคาวะมุสึ",
+    "en": "Kawamutsu"
+   },
+   "map": 3,
+   "mapName": {
+    "en": "Clear Stream",
+    "ja": "清流",
+    "th": "ลำธารใส"
+   },
+   "record": {
+    "min": 15,
+    "max": 20
+   },
+   "wikiMax": 20,
+   "cells": 24,
+   "newFish": [
+    7,
+    13
+   ],
+   "passesFromNewFish": {
+    "best": 7,
+    "worst": 13
+   },
+   "pointsPerPass": 256,
+   "nightsAt255": {
+    "firstCellAtMax": 7,
+    "everyCellAtMax": 13,
+    "mostCellsAtMaxInOneNight": 7
+   },
+   "reachableMax": 20,
+   "status": "ok",
+   "evidence": "fish-max-size-rom.test.ts (inn refill 03:838B..85C5, cap 03:83CB..83DF)"
+  },
+  {
+   "fish": 28,
+   "name": {
+    "ja": "キンブナ",
+    "th": "คินบุนะ",
+    "en": "Kinbuna"
+   },
+   "map": 5,
+   "mapName": {
+    "en": "Downstream",
+    "ja": "下流",
+    "th": "แม่น้ำตอนล่าง"
+   },
+   "record": {
+    "min": 15,
+    "max": 20
+   },
+   "wikiMax": 20,
+   "cells": 12,
+   "newFish": [
+    7,
+    13
+   ],
+   "passesFromNewFish": {
+    "best": 7,
+    "worst": 13
+   },
+   "pointsPerPass": 256,
+   "nightsAt255": {
+    "firstCellAtMax": 7,
+    "everyCellAtMax": 14,
+    "mostCellsAtMaxInOneNight": 4
+   },
+   "reachableMax": 20,
+   "status": "ok",
+   "evidence": "fish-max-size-rom.test.ts (inn refill 03:838B..85C5, cap 03:83CB..83DF)"
+  },
+  {
+   "fish": 29,
+   "name": {
+    "ja": "マブナ",
+    "th": "มาบุนะ",
+    "en": "Mabuna"
+   },
+   "map": 4,
+   "mapName": {
+    "en": "Lake",
+    "ja": "湖",
+    "th": "ทะเลสาบ"
+   },
+   "record": {
+    "min": 25,
+    "max": 30
+   },
+   "wikiMax": 30,
+   "cells": 13,
+   "newFish": [
+    12,
+    23
+   ],
+   "passesFromNewFish": {
+    "best": 7,
+    "worst": 18
+   },
+   "pointsPerPass": 256,
+   "nightsAt255": {
+    "firstCellAtMax": 7,
+    "everyCellAtMax": 19,
+    "mostCellsAtMaxInOneNight": 4
+   },
+   "reachableMax": 30,
+   "status": "ok",
+   "evidence": "fish-max-size-rom.test.ts (inn refill 03:838B..85C5, cap 03:83CB..83DF)"
+  },
+  {
+   "fish": 29,
+   "name": {
+    "ja": "マブナ",
+    "th": "มาบุนะ",
+    "en": "Mabuna"
+   },
+   "map": 5,
+   "mapName": {
+    "en": "Downstream",
+    "ja": "下流",
+    "th": "แม่น้ำตอนล่าง"
+   },
+   "record": {
+    "min": 25,
+    "max": 30
+   },
+   "wikiMax": 30,
+   "cells": 1,
+   "newFish": [
+    12,
+    23
+   ],
+   "passesFromNewFish": {
+    "best": 7,
+    "worst": 18
+   },
+   "pointsPerPass": 256,
+   "nightsAt255": {
+    "firstCellAtMax": 8,
+    "everyCellAtMax": 8,
+    "mostCellsAtMaxInOneNight": 1
+   },
+   "reachableMax": 30,
+   "status": "ok",
+   "evidence": "fish-max-size-rom.test.ts (inn refill 03:838B..85C5, cap 03:83CB..83DF)"
+  },
+  {
+   "fish": 30,
+   "name": {
+    "ja": "アカザ",
+    "th": "อาคาซะ / ปลาอาคาซะ",
+    "en": "Akaza"
+   },
+   "map": 1,
+   "mapName": {
+    "en": "Mountain Stream",
+    "ja": "渓流",
+    "th": "ลำธารบนภูเขา"
+   },
+   "record": {
+    "min": 10,
+    "max": 15
+   },
+   "wikiMax": 15,
+   "cells": 7,
+   "newFish": [
+    5,
+    9
+   ],
+   "passesFromNewFish": {
+    "best": 6,
+    "worst": 10
+   },
+   "pointsPerPass": 256,
+   "nightsAt255": {
+    "firstCellAtMax": 6,
+    "everyCellAtMax": 11,
+    "mostCellsAtMaxInOneNight": 4
+   },
+   "reachableMax": 15,
+   "status": "ok",
+   "evidence": "fish-max-size-rom.test.ts (inn refill 03:838B..85C5, cap 03:83CB..83DF)"
+  },
+  {
+   "fish": 30,
+   "name": {
+    "ja": "アカザ",
+    "th": "อาคาซะ / ปลาอาคาซะ",
+    "en": "Akaza"
+   },
+   "map": 3,
+   "mapName": {
+    "en": "Clear Stream",
+    "ja": "清流",
+    "th": "ลำธารใส"
+   },
+   "record": {
+    "min": 10,
+    "max": 15
+   },
+   "wikiMax": 15,
+   "cells": 8,
+   "newFish": [
+    5,
+    9
+   ],
+   "passesFromNewFish": {
+    "best": 6,
+    "worst": 10
+   },
+   "pointsPerPass": 256,
+   "nightsAt255": {
+    "firstCellAtMax": 6,
+    "everyCellAtMax": 10,
+    "mostCellsAtMaxInOneNight": 2
+   },
+   "reachableMax": 15,
+   "status": "ok",
+   "evidence": "fish-max-size-rom.test.ts (inn refill 03:838B..85C5, cap 03:83CB..83DF)"
+  },
+  {
+   "fish": 31,
+   "name": {
+    "ja": "メダカ",
+    "th": "เมดากะ",
+    "en": "Medaka"
+   },
+   "map": 5,
+   "mapName": {
+    "en": "Downstream",
+    "ja": "下流",
+    "th": "แม่น้ำตอนล่าง"
+   },
+   "record": {
+    "min": 2,
+    "max": 4
+   },
+   "wikiMax": 4,
+   "cells": 20,
+   "newFish": [
+    1,
+    1
+   ],
+   "passesFromNewFish": {
+    "best": 3,
+    "worst": 3
+   },
+   "pointsPerPass": 256,
+   "nightsAt255": {
+    "firstCellAtMax": 3,
+    "everyCellAtMax": 4,
+    "mostCellsAtMaxInOneNight": 15
+   },
+   "reachableMax": 4,
+   "status": "ok",
+   "evidence": "fish-max-size-rom.test.ts (inn refill 03:838B..85C5, cap 03:83CB..83DF)"
+  },
+  {
+   "fish": 32,
+   "name": {
+    "ja": "ブルーギル",
+    "th": "ปลาบลูกิล",
+    "en": "Bluegill"
+   },
+   "map": 2,
+   "mapName": {
+    "en": "Mountain Lake",
+    "ja": "山上湖",
+    "th": "ทะเลสาบบนภูเขา"
+   },
+   "record": {
+    "min": 25,
+    "max": 35
+   },
+   "wikiMax": 35,
+   "cells": 18,
+   "newFish": [
+    12,
+    23
+   ],
+   "passesFromNewFish": {
+    "best": 12,
+    "worst": 23
+   },
+   "pointsPerPass": 256,
+   "nightsAt255": {
+    "firstCellAtMax": 12,
+    "everyCellAtMax": 23,
+    "mostCellsAtMaxInOneNight": 4
+   },
+   "reachableMax": 35,
+   "status": "ok",
+   "evidence": "fish-max-size-rom.test.ts (inn refill 03:838B..85C5, cap 03:83CB..83DF)"
+  },
+  {
+   "fish": 33,
+   "name": {
+    "ja": "オヤニラミ",
+    "th": "โอยะนิรามิ",
+    "en": "Oyanirami"
+   },
+   "map": 5,
+   "mapName": {
+    "en": "Downstream",
+    "ja": "下流",
+    "th": "แม่น้ำตอนล่าง"
+   },
+   "record": {
+    "min": 13,
+    "max": 13
+   },
+   "wikiMax": 13,
+   "cells": 7,
+   "newFish": [
+    6,
+    11
+   ],
+   "passesFromNewFish": {
+    "best": 2,
+    "worst": 7
+   },
+   "pointsPerPass": 256,
+   "nightsAt255": {
+    "firstCellAtMax": 2,
+    "everyCellAtMax": 7,
+    "mostCellsAtMaxInOneNight": 5
+   },
+   "reachableMax": 13,
+   "status": "ok",
+   "evidence": "fish-max-size-rom.test.ts (inn refill 03:838B..85C5, cap 03:83CB..83DF)"
+  },
+  {
+   "fish": 34,
+   "name": {
+    "ja": "ハリヨ",
+    "th": "ปลาฮาริโยะ",
+    "en": "Hariyo"
+   },
+   "map": 2,
+   "mapName": {
+    "en": "Mountain Lake",
+    "ja": "山上湖",
+    "th": "ทะเลสาบบนภูเขา"
+   },
+   "record": {
+    "min": 5,
+    "max": 7
+   },
+   "wikiMax": 7,
+   "cells": 19,
+   "newFish": [
+    2,
+    3
+   ],
+   "passesFromNewFish": {
+    "best": 4,
+    "worst": 5
+   },
+   "pointsPerPass": 256,
+   "nightsAt255": {
+    "firstCellAtMax": 4,
+    "everyCellAtMax": 6,
+    "mostCellsAtMaxInOneNight": 10
+   },
+   "reachableMax": 7,
+   "status": "ok",
+   "evidence": "fish-max-size-rom.test.ts (inn refill 03:838B..85C5, cap 03:83CB..83DF)"
+  },
+  {
+   "fish": 35,
+   "name": {
+    "ja": "トミヨ",
+    "th": "โทมิโยะ",
+    "en": "Tomiyo"
+   },
+   "map": 5,
+   "mapName": {
+    "en": "Downstream",
+    "ja": "下流",
+    "th": "แม่น้ำตอนล่าง"
+   },
+   "record": {
+    "min": 5,
+    "max": 5
+   },
+   "wikiMax": 5,
+   "cells": 11,
+   "newFish": [
+    2,
+    3
+   ],
+   "passesFromNewFish": {
+    "best": 2,
+    "worst": 3
+   },
+   "pointsPerPass": 256,
+   "nightsAt255": {
+    "firstCellAtMax": 2,
+    "everyCellAtMax": 4,
+    "mostCellsAtMaxInOneNight": 5
+   },
+   "reachableMax": 5,
+   "status": "ok",
+   "evidence": "fish-max-size-rom.test.ts (inn refill 03:838B..85C5, cap 03:83CB..83DF)"
+  },
+  {
+   "fish": 36,
+   "name": {
+    "ja": "ライギョ",
+    "th": "ไรเกียว / ปลาช่อน",
+    "en": "Raigyo"
+   },
+   "map": 4,
+   "mapName": {
+    "en": "Lake",
+    "ja": "湖",
+    "th": "ทะเลสาบ"
+   },
+   "record": {
+    "min": 60,
+    "max": 121
+   },
+   "wikiMax": 121,
+   "cells": 4,
+   "newFish": [
+    30,
+    59
+   ],
+   "passesFromNewFish": {
+    "best": 62,
+    "worst": 91
+   },
+   "pointsPerPass": 256,
+   "nightsAt255": {
+    "firstCellAtMax": 67,
+    "everyCellAtMax": 87,
+    "mostCellsAtMaxInOneNight": 2
+   },
+   "reachableMax": 121,
+   "status": "ok",
+   "evidence": "fish-max-size-rom.test.ts (inn refill 03:838B..85C5, cap 03:83CB..83DF)"
+  },
+  {
+   "fish": 36,
+   "name": {
+    "ja": "ライギョ",
+    "th": "ไรเกียว / ปลาช่อน",
+    "en": "Raigyo"
+   },
+   "map": 5,
+   "mapName": {
+    "en": "Downstream",
+    "ja": "下流",
+    "th": "แม่น้ำตอนล่าง"
+   },
+   "record": {
+    "min": 60,
+    "max": 121
+   },
+   "wikiMax": 121,
+   "cells": 6,
+   "newFish": [
+    30,
+    59
+   ],
+   "passesFromNewFish": {
+    "best": 62,
+    "worst": 91
+   },
+   "pointsPerPass": 256,
+   "nightsAt255": {
+    "firstCellAtMax": 72,
+    "everyCellAtMax": 91,
+    "mostCellsAtMaxInOneNight": 2
+   },
+   "reachableMax": 121,
+   "status": "ok",
+   "evidence": "fish-max-size-rom.test.ts (inn refill 03:838B..85C5, cap 03:83CB..83DF)"
+  },
+  {
+   "fish": 37,
+   "name": {
+    "ja": "ヘラブナ",
+    "th": "เฮระบูนะ",
+    "en": "Herabuna"
+   },
+   "map": 4,
+   "mapName": {
+    "en": "Lake",
+    "ja": "湖",
+    "th": "ทะเลสาบ"
+   },
+   "record": {
+    "min": 35,
+    "max": 45
+   },
+   "wikiMax": 45,
+   "cells": 44,
+   "newFish": [
+    17,
+    33
+   ],
+   "passesFromNewFish": {
+    "best": 12,
+    "worst": 28
+   },
+   "pointsPerPass": 256,
+   "nightsAt255": {
+    "firstCellAtMax": 12,
+    "everyCellAtMax": 29,
+    "mostCellsAtMaxInOneNight": 6
+   },
+   "reachableMax": 45,
+   "status": "ok",
+   "evidence": "fish-max-size-rom.test.ts (inn refill 03:838B..85C5, cap 03:83CB..83DF)"
+  },
+  {
+   "fish": 37,
+   "name": {
+    "ja": "ヘラブナ",
+    "th": "เฮระบูนะ",
+    "en": "Herabuna"
+   },
+   "map": 5,
+   "mapName": {
+    "en": "Downstream",
+    "ja": "下流",
+    "th": "แม่น้ำตอนล่าง"
+   },
+   "record": {
+    "min": 35,
+    "max": 45
+   },
+   "wikiMax": 45,
+   "cells": 2,
+   "newFish": [
+    17,
+    33
+   ],
+   "passesFromNewFish": {
+    "best": 12,
+    "worst": 28
+   },
+   "pointsPerPass": 256,
+   "nightsAt255": {
+    "firstCellAtMax": 13,
+    "everyCellAtMax": 24,
+    "mostCellsAtMaxInOneNight": 1
+   },
+   "reachableMax": 45,
+   "status": "ok",
+   "evidence": "fish-max-size-rom.test.ts (inn refill 03:838B..85C5, cap 03:83CB..83DF)"
+  },
+  {
+   "fish": 38,
+   "name": {
+    "ja": "ナマズ",
+    "th": "นามาซุ / ปลาดุก",
+    "en": "Namazu"
+   },
+   "map": 4,
+   "mapName": {
+    "en": "Lake",
+    "ja": "湖",
+    "th": "ทะเลสาบ"
+   },
+   "record": {
+    "min": 60,
+    "max": 100
+   },
+   "wikiMax": 100,
+   "cells": 11,
+   "newFish": [
+    30,
+    59
+   ],
+   "passesFromNewFish": {
+    "best": 41,
+    "worst": 70
+   },
+   "pointsPerPass": 256,
+   "nightsAt255": {
+    "firstCellAtMax": 42,
+    "everyCellAtMax": 70,
+    "mostCellsAtMaxInOneNight": 2
+   },
+   "reachableMax": 100,
+   "status": "ok",
+   "evidence": "fish-max-size-rom.test.ts (inn refill 03:838B..85C5, cap 03:83CB..83DF)",
+   "note": "Cell 768 is character 3's quest cell (re-rolled at every start of fishing, the quest fish at record max for that character); the other 10 cells grow normally."
+  },
+  {
+   "fish": 38,
+   "name": {
+    "ja": "ナマズ",
+    "th": "นามาซุ / ปลาดุก",
+    "en": "Namazu"
+   },
+   "map": 5,
+   "mapName": {
+    "en": "Downstream",
+    "ja": "下流",
+    "th": "แม่น้ำตอนล่าง"
+   },
+   "record": {
+    "min": 60,
+    "max": 100
+   },
+   "wikiMax": 100,
+   "cells": 6,
+   "newFish": [
+    30,
+    59
+   ],
+   "passesFromNewFish": {
+    "best": 41,
+    "worst": 70
+   },
+   "pointsPerPass": 256,
+   "nightsAt255": {
+    "firstCellAtMax": 51,
+    "everyCellAtMax": 68,
+    "mostCellsAtMaxInOneNight": 1
+   },
+   "reachableMax": 100,
+   "status": "ok",
+   "evidence": "fish-max-size-rom.test.ts (inn refill 03:838B..85C5, cap 03:83CB..83DF)"
+  },
+  {
+   "fish": 39,
+   "name": {
+    "ja": "サヨリ",
+    "th": "ซาโยริ",
+    "en": "Sayori"
+   },
+   "map": 6,
+   "mapName": {
+    "en": "River Mouth",
+    "ja": "河口",
+    "th": "ปากแม่น้ำ"
+   },
+   "record": {
+    "min": 20,
+    "max": 30
+   },
+   "wikiMax": 30,
+   "cells": 18,
+   "newFish": [
+    10,
+    19
+   ],
+   "passesFromNewFish": {
+    "best": 11,
+    "worst": 20
+   },
+   "pointsPerPass": 256,
+   "nightsAt255": {
+    "firstCellAtMax": 11,
+    "everyCellAtMax": 20,
+    "mostCellsAtMaxInOneNight": 4
+   },
+   "reachableMax": 30,
+   "status": "ok",
+   "evidence": "fish-max-size-rom.test.ts (inn refill 03:838B..85C5, cap 03:83CB..83DF)"
+  },
+  {
+   "fish": 40,
+   "name": {
+    "ja": "ハス",
+    "th": "ปลาฮาสุ / ฮาสุ",
+    "en": "Hasu"
+   },
+   "map": 3,
+   "mapName": {
+    "en": "Clear Stream",
+    "ja": "清流",
+    "th": "ลำธารใส"
+   },
+   "record": {
+    "min": 30,
+    "max": 35
+   },
+   "wikiMax": 35,
+   "cells": 2,
+   "newFish": [
+    15,
+    29
+   ],
+   "passesFromNewFish": {
+    "best": 6,
+    "worst": 20
+   },
+   "pointsPerPass": 256,
+   "nightsAt255": {
+    "firstCellAtMax": 14,
+    "everyCellAtMax": 14,
+    "mostCellsAtMaxInOneNight": 2
+   },
+   "reachableMax": 35,
+   "status": "ok",
+   "evidence": "fish-max-size-rom.test.ts (inn refill 03:838B..85C5, cap 03:83CB..83DF)"
+  },
+  {
+   "fish": 40,
+   "name": {
+    "ja": "ハス",
+    "th": "ปลาฮาสุ / ฮาสุ",
+    "en": "Hasu"
+   },
+   "map": 4,
+   "mapName": {
+    "en": "Lake",
+    "ja": "湖",
+    "th": "ทะเลสาบ"
+   },
+   "record": {
+    "min": 30,
+    "max": 35
+   },
+   "wikiMax": 35,
+   "cells": 7,
+   "newFish": [
+    15,
+    29
+   ],
+   "passesFromNewFish": {
+    "best": 6,
+    "worst": 20
+   },
+   "pointsPerPass": 256,
+   "nightsAt255": {
+    "firstCellAtMax": 7,
+    "everyCellAtMax": 16,
+    "mostCellsAtMaxInOneNight": 3
+   },
+   "reachableMax": 35,
+   "status": "ok",
+   "evidence": "fish-max-size-rom.test.ts (inn refill 03:838B..85C5, cap 03:83CB..83DF)"
+  },
+  {
+   "fish": 41,
+   "name": {
+    "ja": "ワタカ",
+    "th": "วาตากะ",
+    "en": "Wataka"
+   },
+   "map": 4,
+   "mapName": {
+    "en": "Lake",
+    "ja": "湖",
+    "th": "ทะเลสาบ"
+   },
+   "record": {
+    "min": 30,
+    "max": 30
+   },
+   "wikiMax": 30,
+   "cells": 4,
+   "newFish": [
+    15,
+    29
+   ],
+   "passesFromNewFish": {
+    "best": 1,
+    "worst": 15
+   },
+   "pointsPerPass": 256,
+   "nightsAt255": {
+    "firstCellAtMax": 2,
+    "everyCellAtMax": 12,
+    "mostCellsAtMaxInOneNight": 2
+   },
+   "reachableMax": 30,
+   "status": "ok",
+   "evidence": "fish-max-size-rom.test.ts (inn refill 03:838B..85C5, cap 03:83CB..83DF)"
+  },
+  {
+   "fish": 41,
+   "name": {
+    "ja": "ワタカ",
+    "th": "วาตากะ",
+    "en": "Wataka"
+   },
+   "map": 5,
+   "mapName": {
+    "en": "Downstream",
+    "ja": "下流",
+    "th": "แม่น้ำตอนล่าง"
+   },
+   "record": {
+    "min": 30,
+    "max": 30
+   },
+   "wikiMax": 30,
+   "cells": 4,
+   "newFish": [
+    15,
+    29
+   ],
+   "passesFromNewFish": {
+    "best": 1,
+    "worst": 15
+   },
+   "pointsPerPass": 256,
+   "nightsAt255": {
+    "firstCellAtMax": 7,
+    "everyCellAtMax": 15,
+    "mostCellsAtMaxInOneNight": 3
+   },
+   "reachableMax": 30,
+   "status": "ok",
+   "evidence": "fish-max-size-rom.test.ts (inn refill 03:838B..85C5, cap 03:83CB..83DF)"
+  },
+  {
+   "fish": 42,
+   "name": {
+    "ja": "カマツカ",
+    "th": "ปลาคามะสึกะ / คามัตสึกะ",
+    "en": "Kamatsuka"
+   },
+   "map": 3,
+   "mapName": {
+    "en": "Clear Stream",
+    "ja": "清流",
+    "th": "ลำธารใส"
+   },
+   "record": {
+    "min": 20,
+    "max": 20
+   },
+   "wikiMax": 20,
+   "cells": 21,
+   "newFish": [
+    10,
+    19
+   ],
+   "passesFromNewFish": {
+    "best": 1,
+    "worst": 10
+   },
+   "pointsPerPass": 256,
+   "nightsAt255": {
+    "firstCellAtMax": 1,
+    "everyCellAtMax": 11,
+    "mostCellsAtMaxInOneNight": 7
+   },
+   "reachableMax": 20,
+   "status": "ok",
+   "evidence": "fish-max-size-rom.test.ts (inn refill 03:838B..85C5, cap 03:83CB..83DF)"
+  },
+  {
+   "fish": 42,
+   "name": {
+    "ja": "カマツカ",
+    "th": "ปลาคามะสึกะ / คามัตสึกะ",
+    "en": "Kamatsuka"
+   },
+   "map": 4,
+   "mapName": {
+    "en": "Lake",
+    "ja": "湖",
+    "th": "ทะเลสาบ"
+   },
+   "record": {
+    "min": 20,
+    "max": 20
+   },
+   "wikiMax": 20,
+   "cells": 13,
+   "newFish": [
+    10,
+    19
+   ],
+   "passesFromNewFish": {
+    "best": 1,
+    "worst": 10
+   },
+   "pointsPerPass": 256,
+   "nightsAt255": {
+    "firstCellAtMax": 1,
+    "everyCellAtMax": 9,
+    "mostCellsAtMaxInOneNight": 4
+   },
+   "reachableMax": 20,
+   "status": "ok",
+   "evidence": "fish-max-size-rom.test.ts (inn refill 03:838B..85C5, cap 03:83CB..83DF)"
+  },
+  {
+   "fish": 42,
+   "name": {
+    "ja": "カマツカ",
+    "th": "ปลาคามะสึกะ / คามัตสึกะ",
+    "en": "Kamatsuka"
+   },
+   "map": 5,
+   "mapName": {
+    "en": "Downstream",
+    "ja": "下流",
+    "th": "แม่น้ำตอนล่าง"
+   },
+   "record": {
+    "min": 20,
+    "max": 20
+   },
+   "wikiMax": 20,
+   "cells": 7,
+   "newFish": [
+    10,
+    19
+   ],
+   "passesFromNewFish": {
+    "best": 1,
+    "worst": 10
+   },
+   "pointsPerPass": 256,
+   "nightsAt255": {
+    "firstCellAtMax": 4,
+    "everyCellAtMax": 10,
+    "mostCellsAtMaxInOneNight": 3
+   },
+   "reachableMax": 20,
+   "status": "ok",
+   "evidence": "fish-max-size-rom.test.ts (inn refill 03:838B..85C5, cap 03:83CB..83DF)"
+  },
+  {
+   "fish": 43,
+   "name": {
+    "ja": "ツチフキ",
+    "th": "สึจิฟุกิ",
+    "en": "Tsuchifuki"
+   },
+   "map": 5,
+   "mapName": {
+    "en": "Downstream",
+    "ja": "下流",
+    "th": "แม่น้ำตอนล่าง"
+   },
+   "record": {
+    "min": 10,
+    "max": 10
+   },
+   "wikiMax": 10,
+   "cells": 26,
+   "newFish": [
+    5,
+    9
+   ],
+   "passesFromNewFish": {
+    "best": 1,
+    "worst": 5
+   },
+   "pointsPerPass": 256,
+   "nightsAt255": {
+    "firstCellAtMax": 1,
+    "everyCellAtMax": 6,
+    "mostCellsAtMaxInOneNight": 12
+   },
+   "reachableMax": 10,
+   "status": "ok",
+   "evidence": "fish-max-size-rom.test.ts (inn refill 03:838B..85C5, cap 03:83CB..83DF)"
+  },
+  {
+   "fish": 44,
+   "name": {
+    "ja": "シマドジョウ",
+    "th": "ปลาชิมะโดโจ / ชิมะโดโจ",
+    "en": "Shimadojou"
+   },
+   "map": 3,
+   "mapName": {
+    "en": "Clear Stream",
+    "ja": "清流",
+    "th": "ลำธารใส"
+   },
+   "record": {
+    "min": 14,
+    "max": 15
+   },
+   "wikiMax": 15,
+   "cells": 12,
+   "newFish": [
+    7,
+    13
+   ],
+   "passesFromNewFish": {
+    "best": 2,
+    "worst": 8
+   },
+   "pointsPerPass": 256,
+   "nightsAt255": {
+    "firstCellAtMax": 2,
+    "everyCellAtMax": 8,
+    "mostCellsAtMaxInOneNight": 4
+   },
+   "reachableMax": 15,
+   "status": "ok",
+   "evidence": "fish-max-size-rom.test.ts (inn refill 03:838B..85C5, cap 03:83CB..83DF)"
+  },
+  {
+   "fish": 44,
+   "name": {
+    "ja": "シマドジョウ",
+    "th": "ปลาชิมะโดโจ / ชิมะโดโจ",
+    "en": "Shimadojou"
+   },
+   "map": 5,
+   "mapName": {
+    "en": "Downstream",
+    "ja": "下流",
+    "th": "แม่น้ำตอนล่าง"
+   },
+   "record": {
+    "min": 14,
+    "max": 15
+   },
+   "wikiMax": 15,
+   "cells": 9,
+   "newFish": [
+    7,
+    13
+   ],
+   "passesFromNewFish": {
+    "best": 2,
+    "worst": 8
+   },
+   "pointsPerPass": 256,
+   "nightsAt255": {
+    "firstCellAtMax": 2,
+    "everyCellAtMax": 7,
+    "mostCellsAtMaxInOneNight": 4
+   },
+   "reachableMax": 15,
+   "status": "ok",
+   "evidence": "fish-max-size-rom.test.ts (inn refill 03:838B..85C5, cap 03:83CB..83DF)"
+  },
+  {
+   "fish": 45,
+   "name": {
+    "ja": "カムルチー",
+    "th": "คามุรุจิ",
+    "en": "Kamuruchi"
+   },
+   "map": 4,
+   "mapName": {
+    "en": "Lake",
+    "ja": "湖",
+    "th": "ทะเลสาบ"
+   },
+   "record": {
+    "min": 80,
+    "max": 85
+   },
+   "wikiMax": 85,
+   "cells": 6,
+   "newFish": [
+    40,
+    79
+   ],
+   "passesFromNewFish": {
+    "best": 6,
+    "worst": 45
+   },
+   "pointsPerPass": 256,
+   "nightsAt255": {
+    "firstCellAtMax": 8,
+    "everyCellAtMax": 45,
+    "mostCellsAtMaxInOneNight": 2
+   },
+   "reachableMax": 85,
+   "status": "ok",
+   "evidence": "fish-max-size-rom.test.ts (inn refill 03:838B..85C5, cap 03:83CB..83DF)"
+  },
+  {
+   "fish": 45,
+   "name": {
+    "ja": "カムルチー",
+    "th": "คามุรุจิ",
+    "en": "Kamuruchi"
+   },
+   "map": 5,
+   "mapName": {
+    "en": "Downstream",
+    "ja": "下流",
+    "th": "แม่น้ำตอนล่าง"
+   },
+   "record": {
+    "min": 80,
+    "max": 85
+   },
+   "wikiMax": 85,
+   "cells": 4,
+   "newFish": [
+    40,
+    79
+   ],
+   "passesFromNewFish": {
+    "best": 6,
+    "worst": 45
+   },
+   "pointsPerPass": 256,
+   "nightsAt255": {
+    "firstCellAtMax": 22,
+    "everyCellAtMax": 30,
+    "mostCellsAtMaxInOneNight": 2
+   },
+   "reachableMax": 85,
+   "status": "ok",
+   "evidence": "fish-max-size-rom.test.ts (inn refill 03:838B..85C5, cap 03:83CB..83DF)"
+  },
+  {
+   "fish": 46,
+   "name": {
+    "ja": "ヒガイ",
+    "th": "ฮิไก",
+    "en": "Higai"
+   },
+   "map": 4,
+   "mapName": {
+    "en": "Lake",
+    "ja": "湖",
+    "th": "ทะเลสาบ"
+   },
+   "record": {
+    "min": 20,
+    "max": 22
+   },
+   "wikiMax": 22,
+   "cells": 15,
+   "newFish": [
+    10,
+    19
+   ],
+   "passesFromNewFish": {
+    "best": 3,
+    "worst": 12
+   },
+   "pointsPerPass": 256,
+   "nightsAt255": {
+    "firstCellAtMax": 6,
+    "everyCellAtMax": 13,
+    "mostCellsAtMaxInOneNight": 5
+   },
+   "reachableMax": 22,
+   "status": "ok",
+   "evidence": "fish-max-size-rom.test.ts (inn refill 03:838B..85C5, cap 03:83CB..83DF)"
+  },
+  {
+   "fish": 47,
+   "name": {
+    "ja": "ソウギョ",
+    "th": "โซเกียว",
+    "en": "Sougyo"
+   },
+   "map": 4,
+   "mapName": {
+    "en": "Lake",
+    "ja": "湖",
+    "th": "ทะเลสาบ"
+   },
+   "record": {
+    "min": 100,
+    "max": 140
+   },
+   "wikiMax": 140,
+   "cells": 6,
+   "newFish": [
+    50,
+    99
+   ],
+   "passesFromNewFish": {
+    "best": 41,
+    "worst": 90
+   },
+   "pointsPerPass": 256,
+   "nightsAt255": {
+    "firstCellAtMax": 60,
+    "everyCellAtMax": 88,
+    "mostCellsAtMaxInOneNight": 1
+   },
+   "reachableMax": 140,
+   "status": "ok",
+   "evidence": "fish-max-size-rom.test.ts (inn refill 03:838B..85C5, cap 03:83CB..83DF)"
+  },
+  {
+   "fish": 48,
+   "name": {
+    "ja": "アオウオ",
+    "th": "อาโอะอุโอะ",
+    "en": "Aouo"
+   },
+   "map": 4,
+   "mapName": {
+    "en": "Lake",
+    "ja": "湖",
+    "th": "ทะเลสาบ"
+   },
+   "record": {
+    "min": 100,
+    "max": 130
+   },
+   "wikiMax": 130,
+   "cells": 6,
+   "newFish": [
+    50,
+    99
+   ],
+   "passesFromNewFish": {
+    "best": 31,
+    "worst": 80
+   },
+   "pointsPerPass": 256,
+   "nightsAt255": {
+    "firstCellAtMax": 35,
+    "everyCellAtMax": 77,
+    "mostCellsAtMaxInOneNight": 1
+   },
+   "reachableMax": 130,
+   "status": "ok",
+   "evidence": "fish-max-size-rom.test.ts (inn refill 03:838B..85C5, cap 03:83CB..83DF)"
+  },
+  {
+   "fish": 49,
+   "name": {
+    "ja": "ニゴイ",
+    "th": "ปลานิโกอิ / นิโกอิ / นิโงอิ",
+    "en": "Nigoi"
+   },
+   "map": 3,
+   "mapName": {
+    "en": "Clear Stream",
+    "ja": "清流",
+    "th": "ลำธารใส"
+   },
+   "record": {
+    "min": 50,
+    "max": 50
+   },
+   "wikiMax": 50,
+   "cells": 8,
+   "newFish": [
+    25,
+    49
+   ],
+   "passesFromNewFish": {
+    "best": 1,
+    "worst": 25
+   },
+   "pointsPerPass": 256,
+   "nightsAt255": {
+    "firstCellAtMax": 9,
+    "everyCellAtMax": 26,
+    "mostCellsAtMaxInOneNight": 3
+   },
+   "reachableMax": 50,
+   "status": "ok",
+   "evidence": "fish-max-size-rom.test.ts (inn refill 03:838B..85C5, cap 03:83CB..83DF)"
+  },
+  {
+   "fish": 49,
+   "name": {
+    "ja": "ニゴイ",
+    "th": "ปลานิโกอิ / นิโกอิ / นิโงอิ",
+    "en": "Nigoi"
+   },
+   "map": 5,
+   "mapName": {
+    "en": "Downstream",
+    "ja": "下流",
+    "th": "แม่น้ำตอนล่าง"
+   },
+   "record": {
+    "min": 50,
+    "max": 50
+   },
+   "wikiMax": 50,
+   "cells": 4,
+   "newFish": [
+    25,
+    49
+   ],
+   "passesFromNewFish": {
+    "best": 1,
+    "worst": 25
+   },
+   "pointsPerPass": 256,
+   "nightsAt255": {
+    "firstCellAtMax": 12,
+    "everyCellAtMax": 22,
+    "mostCellsAtMaxInOneNight": 2
+   },
+   "reachableMax": 50,
+   "status": "ok",
+   "evidence": "fish-max-size-rom.test.ts (inn refill 03:838B..85C5, cap 03:83CB..83DF)"
+  },
+  {
+   "fish": 49,
+   "name": {
+    "ja": "ニゴイ",
+    "th": "ปลานิโกอิ / นิโกอิ / นิโงอิ",
+    "en": "Nigoi"
+   },
+   "map": 6,
+   "mapName": {
+    "en": "River Mouth",
+    "ja": "河口",
+    "th": "ปากแม่น้ำ"
+   },
+   "record": {
+    "min": 50,
+    "max": 50
+   },
+   "wikiMax": 50,
+   "cells": 6,
+   "newFish": [
+    25,
+    49
+   ],
+   "passesFromNewFish": {
+    "best": 1,
+    "worst": 25
+   },
+   "pointsPerPass": 256,
+   "nightsAt255": {
+    "firstCellAtMax": 2,
+    "everyCellAtMax": 23,
+    "mostCellsAtMaxInOneNight": 3
+   },
+   "reachableMax": 50,
+   "status": "ok",
+   "evidence": "fish-max-size-rom.test.ts (inn refill 03:838B..85C5, cap 03:83CB..83DF)"
+  },
+  {
+   "fish": 50,
+   "name": {
+    "ja": "メゴチ",
+    "th": "เมโกจิ",
+    "en": "Megochi"
+   },
+   "map": 6,
+   "mapName": {
+    "en": "River Mouth",
+    "ja": "河口",
+    "th": "ปากแม่น้ำ"
+   },
+   "record": {
+    "min": 25,
+    "max": 25
+   },
+   "wikiMax": 25,
+   "cells": 21,
+   "newFish": [
+    12,
+    23
+   ],
+   "passesFromNewFish": {
+    "best": 2,
+    "worst": 13
+   },
+   "pointsPerPass": 256,
+   "nightsAt255": {
+    "firstCellAtMax": 3,
+    "everyCellAtMax": 12,
+    "mostCellsAtMaxInOneNight": 8
+   },
+   "reachableMax": 25,
+   "status": "ok",
+   "evidence": "fish-max-size-rom.test.ts (inn refill 03:838B..85C5, cap 03:83CB..83DF)"
+  },
+  {
+   "fish": 51,
+   "name": {
+    "ja": "マルタ",
+    "th": "มารุตะ",
+    "en": "Maruta"
+   },
+   "map": 6,
+   "mapName": {
+    "en": "River Mouth",
+    "ja": "河口",
+    "th": "ปากแม่น้ำ"
+   },
+   "record": {
+    "min": 40,
+    "max": 50
+   },
+   "wikiMax": 50,
+   "cells": 15,
+   "newFish": [
+    20,
+    39
+   ],
+   "passesFromNewFish": {
+    "best": 11,
+    "worst": 30
+   },
+   "pointsPerPass": 256,
+   "nightsAt255": {
+    "firstCellAtMax": 13,
+    "everyCellAtMax": 29,
+    "mostCellsAtMaxInOneNight": 3
+   },
+   "reachableMax": 50,
+   "status": "ok",
+   "evidence": "fish-max-size-rom.test.ts (inn refill 03:838B..85C5, cap 03:83CB..83DF)"
+  },
+  {
+   "fish": 52,
+   "name": {
+    "ja": "ハゼ",
+    "th": "ฮาเซะ",
+    "en": "Haze"
+   },
+   "map": 6,
+   "mapName": {
+    "en": "River Mouth",
+    "ja": "河口",
+    "th": "ปากแม่น้ำ"
+   },
+   "record": {
+    "min": 25,
+    "max": 45
+   },
+   "wikiMax": 45,
+   "cells": 30,
+   "newFish": [
+    12,
+    23
+   ],
+   "passesFromNewFish": {
+    "best": 22,
+    "worst": 33
+   },
+   "pointsPerPass": 256,
+   "nightsAt255": {
+    "firstCellAtMax": 22,
+    "everyCellAtMax": 33,
+    "mostCellsAtMaxInOneNight": 6
+   },
+   "reachableMax": 45,
+   "status": "ok",
+   "evidence": "fish-max-size-rom.test.ts (inn refill 03:838B..85C5, cap 03:83CB..83DF)"
+  },
+  {
+   "fish": 53,
+   "name": {
+    "ja": "ボラ",
+    "th": "โบระ",
+    "en": "Bora"
+   },
+   "map": 6,
+   "mapName": {
+    "en": "River Mouth",
+    "ja": "河口",
+    "th": "ปากแม่น้ำ"
+   },
+   "record": {
+    "min": 60,
+    "max": 60
+   },
+   "wikiMax": 60,
+   "cells": 15,
+   "newFish": [
+    30,
+    59
+   ],
+   "passesFromNewFish": {
+    "best": 1,
+    "worst": 30
+   },
+   "pointsPerPass": 256,
+   "nightsAt255": {
+    "firstCellAtMax": 2,
+    "everyCellAtMax": 31,
+    "mostCellsAtMaxInOneNight": 3
+   },
+   "reachableMax": 60,
+   "status": "ok",
+   "evidence": "fish-max-size-rom.test.ts (inn refill 03:838B..85C5, cap 03:83CB..83DF)"
+  },
+  {
+   "fish": 54,
+   "name": {
+    "ja": "スズキ",
+    "th": "ซึซึกิ",
+    "en": "Suzuki"
+   },
+   "map": 6,
+   "mapName": {
+    "en": "River Mouth",
+    "ja": "河口",
+    "th": "ปากแม่น้ำ"
+   },
+   "record": {
+    "min": 80,
+    "max": 100
+   },
+   "wikiMax": 100,
+   "cells": 25,
+   "newFish": [
+    40,
+    79
+   ],
+   "passesFromNewFish": {
+    "best": 21,
+    "worst": 60
+   },
+   "pointsPerPass": 256,
+   "nightsAt255": {
+    "firstCellAtMax": 22,
+    "everyCellAtMax": 66,
+    "mostCellsAtMaxInOneNight": 4
+   },
+   "reachableMax": 100,
+   "status": "ok",
+   "evidence": "fish-max-size-rom.test.ts (inn refill 03:838B..85C5, cap 03:83CB..83DF)"
+  },
+  {
+   "fish": 55,
+   "name": {
+    "ja": "アカメ",
+    "th": "อาคาเมะ",
+    "en": "Akame"
+   },
+   "map": 6,
+   "mapName": {
+    "en": "River Mouth",
+    "ja": "河口",
+    "th": "ปากแม่น้ำ"
+   },
+   "record": {
+    "min": 120,
+    "max": 150
+   },
+   "wikiMax": 150,
+   "cells": 1,
+   "newFish": [
+    60,
+    119
+   ],
+   "passesFromNewFish": {
+    "best": 31,
+    "worst": 90
+   },
+   "pointsPerPass": 256,
+   "nightsAt255": {
+    "firstCellAtMax": 64,
+    "everyCellAtMax": 64,
+    "mostCellsAtMaxInOneNight": 1
+   },
+   "reachableMax": {
+    "character1BeforeQuest": 150,
+    "otherwise": 119
+   },
+   "status": "quest-only",
+   "evidence": "fish-quest-size-rom.test.ts",
+   "note": "Only cell 1280. Every start of fishing (04:C289) re-rolls it to a new fish 60..119; character 1 ($0860=1) finds $0C1E there (150 at new game, -2 per lost fight, floor 60) until it is landed ($0C18 bit 0, 01:91B6). The inn growth never shows."
+  },
+  {
+   "fish": 56,
+   "name": {
+    "ja": "アユ",
+    "th": "ปลาอายุ",
+    "en": "Ayu"
+   },
+   "map": 3,
+   "mapName": {
+    "en": "Clear Stream",
+    "ja": "清流",
+    "th": "ลำธารใส"
+   },
+   "record": {
+    "min": 30,
+    "max": 30
+   },
+   "wikiMax": 30,
+   "cells": 52,
+   "newFish": [
+    15,
+    29
+   ],
+   "passesFromNewFish": {
+    "best": 1,
+    "worst": 15
+   },
+   "pointsPerPass": 256,
+   "nightsAt255": {
+    "firstCellAtMax": 1,
+    "everyCellAtMax": 15,
+    "mostCellsAtMaxInOneNight": 11
+   },
+   "reachableMax": 30,
+   "status": "ok",
+   "evidence": "fish-max-size-rom.test.ts (inn refill 03:838B..85C5, cap 03:83CB..83DF)"
+  },
+  {
+   "fish": 56,
+   "name": {
+    "ja": "アユ",
+    "th": "ปลาอายุ",
+    "en": "Ayu"
+   },
+   "map": 4,
+   "mapName": {
+    "en": "Lake",
+    "ja": "湖",
+    "th": "ทะเลสาบ"
+   },
+   "record": {
+    "min": 30,
+    "max": 30
+   },
+   "wikiMax": 30,
+   "cells": 4,
+   "newFish": [
+    15,
+    29
+   ],
+   "passesFromNewFish": {
+    "best": 1,
+    "worst": 15
+   },
+   "pointsPerPass": 256,
+   "nightsAt255": {
+    "firstCellAtMax": 1,
+    "everyCellAtMax": 12,
+    "mostCellsAtMaxInOneNight": 2
+   },
+   "reachableMax": 30,
+   "status": "ok",
+   "evidence": "fish-max-size-rom.test.ts (inn refill 03:838B..85C5, cap 03:83CB..83DF)"
+  },
+  {
+   "fish": 57,
+   "name": {
+    "ja": "タナゴ",
+    "th": "ทานาโกะ",
+    "en": "Tanago"
+   },
+   "map": 4,
+   "mapName": {
+    "en": "Lake",
+    "ja": "湖",
+    "th": "ทะเลสาบ"
+   },
+   "record": {
+    "min": 10,
+    "max": 10
+   },
+   "wikiMax": 10,
+   "cells": 14,
+   "newFish": [
+    5,
+    9
+   ],
+   "passesFromNewFish": {
+    "best": 1,
+    "worst": 5
+   },
+   "pointsPerPass": 256,
+   "nightsAt255": {
+    "firstCellAtMax": 1,
+    "everyCellAtMax": 6,
+    "mostCellsAtMaxInOneNight": 7
+   },
+   "reachableMax": 10,
+   "status": "ok",
+   "evidence": "fish-max-size-rom.test.ts (inn refill 03:838B..85C5, cap 03:83CB..83DF)"
+  },
+  {
+   "fish": 57,
+   "name": {
+    "ja": "タナゴ",
+    "th": "ทานาโกะ",
+    "en": "Tanago"
+   },
+   "map": 5,
+   "mapName": {
+    "en": "Downstream",
+    "ja": "下流",
+    "th": "แม่น้ำตอนล่าง"
+   },
+   "record": {
+    "min": 10,
+    "max": 10
+   },
+   "wikiMax": 10,
+   "cells": 18,
+   "newFish": [
+    5,
+    9
+   ],
+   "passesFromNewFish": {
+    "best": 1,
+    "worst": 5
+   },
+   "pointsPerPass": 256,
+   "nightsAt255": {
+    "firstCellAtMax": 1,
+    "everyCellAtMax": 6,
+    "mostCellsAtMaxInOneNight": 7
+   },
+   "reachableMax": 10,
+   "status": "ok",
+   "evidence": "fish-max-size-rom.test.ts (inn refill 03:838B..85C5, cap 03:83CB..83DF)",
+   "note": "Cell 1024 is character 2's quest cell (re-rolled at every start of fishing, the quest fish at record max for that character); the other 17 cells grow normally."
+  },
+  {
+   "fish": 58,
+   "name": {
+    "ja": "ウナギ",
+    "th": "อูนางิ / ปลาไหลญี่ปุ่น",
+    "en": "Unagi"
+   },
+   "map": 4,
+   "mapName": {
+    "en": "Lake",
+    "ja": "湖",
+    "th": "ทะเลสาบ"
+   },
+   "record": {
+    "min": 100,
+    "max": 130
+   },
+   "wikiMax": 130,
+   "cells": 5,
+   "newFish": [
+    50,
+    99
+   ],
+   "passesFromNewFish": {
+    "best": 31,
+    "worst": 80
+   },
+   "pointsPerPass": 256,
+   "nightsAt255": {
+    "firstCellAtMax": 46,
+    "everyCellAtMax": 77,
+    "mostCellsAtMaxInOneNight": 1
+   },
+   "reachableMax": 130,
+   "status": "ok",
+   "evidence": "fish-max-size-rom.test.ts (inn refill 03:838B..85C5, cap 03:83CB..83DF)"
+  },
+  {
+   "fish": 58,
+   "name": {
+    "ja": "ウナギ",
+    "th": "อูนางิ / ปลาไหลญี่ปุ่น",
+    "en": "Unagi"
+   },
+   "map": 5,
+   "mapName": {
+    "en": "Downstream",
+    "ja": "下流",
+    "th": "แม่น้ำตอนล่าง"
+   },
+   "record": {
+    "min": 100,
+    "max": 130
+   },
+   "wikiMax": 130,
+   "cells": 1,
+   "newFish": [
+    50,
+    99
+   ],
+   "passesFromNewFish": {
+    "best": 31,
+    "worst": 80
+   },
+   "pointsPerPass": 256,
+   "nightsAt255": {
+    "firstCellAtMax": 65,
+    "everyCellAtMax": 65,
+    "mostCellsAtMaxInOneNight": 1
+   },
+   "reachableMax": 130,
+   "status": "ok",
+   "evidence": "fish-max-size-rom.test.ts (inn refill 03:838B..85C5, cap 03:83CB..83DF)"
+  },
+  {
+   "fish": 58,
+   "name": {
+    "ja": "ウナギ",
+    "th": "อูนางิ / ปลาไหลญี่ปุ่น",
+    "en": "Unagi"
+   },
+   "map": 6,
+   "mapName": {
+    "en": "River Mouth",
+    "ja": "河口",
+    "th": "ปากแม่น้ำ"
+   },
+   "record": {
+    "min": 100,
+    "max": 130
+   },
+   "wikiMax": 130,
+   "cells": 11,
+   "newFish": [
+    50,
+    99
+   ],
+   "passesFromNewFish": {
+    "best": 31,
+    "worst": 80
+   },
+   "pointsPerPass": 256,
+   "nightsAt255": {
+    "firstCellAtMax": 31,
+    "everyCellAtMax": 79,
+    "mostCellsAtMaxInOneNight": 2
+   },
+   "reachableMax": 130,
+   "status": "ok",
+   "evidence": "fish-max-size-rom.test.ts (inn refill 03:838B..85C5, cap 03:83CB..83DF)"
+  },
+  {
+   "fish": 59,
+   "name": {
+    "ja": "オオウナギ",
+    "th": "โออูนางิ / ปลาไหลยักษ์",
+    "en": "Giant eel (Oo-unagi)"
+   },
+   "map": 6,
+   "mapName": {
+    "en": "River Mouth",
+    "ja": "河口",
+    "th": "ปากแม่น้ำ"
+   },
+   "record": {
+    "min": 220,
+    "max": 220
+   },
+   "wikiMax": 220,
+   "cells": 1,
+   "newFish": null,
+   "passesFromNewFish": null,
+   "pointsPerPass": 256,
+   "nightsAt255": {
+    "firstCellAtMax": 16,
+    "everyCellAtMax": 16,
+    "mostCellsAtMaxInOneNight": 1
+   },
+   "reachableMax": {
+    "onceInTheEelStory": 220,
+    "otherwise": null
+   },
+   "status": "story-only",
+   "evidence": "fish-quest-size-rom.test.ts",
+   "note": "Only cell 1281. Every start of fishing empties it; it holds $0C20 (220 at new game, -2 per lost fight, floor 110 = floor(min/2)) only while $0C18 bit 2 is set (01:DEB3: bit 1 set and 65+ of the 66 words at $0DC8 non-zero) and bit 3 clear (set when the eel is landed, 01:9198). One eel per game, no growth."
+  },
+  {
+   "fish": 60,
+   "name": {
+    "ja": "アブラハヤ",
+    "th": "ปลาอาบุระฮายะ",
+    "en": "Aburahaya"
+   },
+   "map": 2,
+   "mapName": {
+    "en": "Mountain Lake",
+    "ja": "山上湖",
+    "th": "ทะเลสาบบนภูเขา"
+   },
+   "record": {
+    "min": 13,
+    "max": 13
+   },
+   "wikiMax": 13,
+   "cells": 20,
+   "newFish": [
+    6,
+    11
+   ],
+   "passesFromNewFish": {
+    "best": 2,
+    "worst": 7
+   },
+   "pointsPerPass": 256,
+   "nightsAt255": {
+    "firstCellAtMax": 3,
+    "everyCellAtMax": 8,
+    "mostCellsAtMaxInOneNight": 7
+   },
+   "reachableMax": 13,
+   "status": "ok",
+   "evidence": "fish-max-size-rom.test.ts (inn refill 03:838B..85C5, cap 03:83CB..83DF)"
+  },
+  {
+   "fish": 61,
+   "name": {
+    "ja": "クロダイ",
+    "th": "คุโรได",
+    "en": "Kurodai"
+   },
+   "map": 6,
+   "mapName": {
+    "en": "River Mouth",
+    "ja": "河口",
+    "th": "ปากแม่น้ำ"
+   },
+   "record": {
+    "min": 60,
+    "max": 60
+   },
+   "wikiMax": 60,
+   "cells": 13,
+   "newFish": [
+    30,
+    59
+   ],
+   "passesFromNewFish": {
+    "best": 1,
+    "worst": 30
+   },
+   "pointsPerPass": 256,
+   "nightsAt255": {
+    "firstCellAtMax": 3,
+    "everyCellAtMax": 28,
+    "mostCellsAtMaxInOneNight": 3
+   },
+   "reachableMax": 60,
+   "status": "ok",
+   "evidence": "fish-max-size-rom.test.ts (inn refill 03:838B..85C5, cap 03:83CB..83DF)"
+  },
+  {
+   "fish": 62,
+   "name": {
+    "ja": "ヌマガレイ",
+    "th": "นุมะกาเรย์",
+    "en": "Numagarei"
+   },
+   "map": 6,
+   "mapName": {
+    "en": "River Mouth",
+    "ja": "河口",
+    "th": "ปากแม่น้ำ"
+   },
+   "record": {
+    "min": 95,
+    "max": 95
+   },
+   "wikiMax": 95,
+   "cells": 29,
+   "newFish": [
+    47,
+    93
+   ],
+   "passesFromNewFish": {
+    "best": 2,
+    "worst": 48
+   },
+   "pointsPerPass": 256,
+   "nightsAt255": {
+    "firstCellAtMax": 2,
+    "everyCellAtMax": 49,
+    "mostCellsAtMaxInOneNight": 4
+   },
+   "reachableMax": 95,
+   "status": "ok",
+   "evidence": "fish-max-size-rom.test.ts (inn refill 03:838B..85C5, cap 03:83CB..83DF)"
+  },
+  {
+   "fish": 63,
+   "name": {
+    "ja": "クサフグ",
+    "th": "คุซะฟุกุ",
+    "en": "Kusafugu"
+   },
+   "map": 6,
+   "mapName": {
+    "en": "River Mouth",
+    "ja": "河口",
+    "th": "ปากแม่น้ำ"
+   },
+   "record": {
+    "min": 15,
+    "max": 15
+   },
+   "wikiMax": 15,
+   "cells": 18,
+   "newFish": [
+    7,
+    13
+   ],
+   "passesFromNewFish": {
+    "best": 2,
+    "worst": 8
+   },
+   "pointsPerPass": 256,
+   "nightsAt255": {
+    "firstCellAtMax": 2,
+    "everyCellAtMax": 8,
+    "mostCellsAtMaxInOneNight": 7
+   },
+   "reachableMax": 15,
+   "status": "ok",
+   "evidence": "fish-max-size-rom.test.ts (inn refill 03:838B..85C5, cap 03:83CB..83DF)"
+  },
+  {
+   "fish": 64,
+   "name": {
+    "ja": "トウギョ",
+    "th": "โทเกียว",
+    "en": "Tougyo"
+   },
+   "map": 5,
+   "mapName": {
+    "en": "Downstream",
+    "ja": "下流",
+    "th": "แม่น้ำตอนล่าง"
+   },
+   "record": {
+    "min": 7,
+    "max": 7
+   },
+   "wikiMax": 7,
+   "cells": 5,
+   "newFish": [
+    3,
+    5
+   ],
+   "passesFromNewFish": {
+    "best": 2,
+    "worst": 4
+   },
+   "pointsPerPass": 256,
+   "nightsAt255": {
+    "firstCellAtMax": 2,
+    "everyCellAtMax": 5,
+    "mostCellsAtMaxInOneNight": 4
+   },
+   "reachableMax": 7,
+   "status": "ok",
+   "evidence": "fish-max-size-rom.test.ts (inn refill 03:838B..85C5, cap 03:83CB..83DF)"
+  },
+  {
+   "fish": 65,
+   "name": {
+    "ja": "テナガエビ",
+    "th": "กุ้งเทนากะ",
+    "en": "Tenagaebi"
+   },
+   "map": 5,
+   "mapName": {
+    "en": "Downstream",
+    "ja": "下流",
+    "th": "แม่น้ำตอนล่าง"
+   },
+   "record": {
+    "min": 12,
+    "max": 20
+   },
+   "wikiMax": 20,
+   "cells": 18,
+   "newFish": [
+    6,
+    11
+   ],
+   "passesFromNewFish": {
+    "best": 9,
+    "worst": 14
+   },
+   "pointsPerPass": 256,
+   "nightsAt255": {
+    "firstCellAtMax": 9,
+    "everyCellAtMax": 15,
+    "mostCellsAtMaxInOneNight": 7
+   },
+   "reachableMax": 20,
+   "status": "ok",
+   "evidence": "fish-max-size-rom.test.ts (inn refill 03:838B..85C5, cap 03:83CB..83DF)"
+  },
+  {
+   "fish": 66,
+   "name": {
+    "ja": "サツキマス",
+    "th": "ปลาซัตสึกิมาสุ / ซัทสึกิมาสึ",
+    "en": "Satsukimasu"
+   },
+   "map": 3,
+   "mapName": {
+    "en": "Clear Stream",
+    "ja": "清流",
+    "th": "ลำธารใส"
+   },
+   "record": {
+    "min": 25,
+    "max": 50
+   },
+   "wikiMax": 50,
+   "cells": 5,
+   "newFish": [
+    12,
+    23
+   ],
+   "passesFromNewFish": {
+    "best": 27,
+    "worst": 38
+   },
+   "pointsPerPass": 256,
+   "nightsAt255": {
+    "firstCellAtMax": 28,
+    "everyCellAtMax": 40,
+    "mostCellsAtMaxInOneNight": 1
+   },
+   "reachableMax": 50,
+   "status": "ok",
+   "evidence": "fish-max-size-rom.test.ts (inn refill 03:838B..85C5, cap 03:83CB..83DF)"
+  },
+  {
+   "fish": 66,
+   "name": {
+    "ja": "サツキマス",
+    "th": "ปลาซัตสึกิมาสุ / ซัทสึกิมาสึ",
+    "en": "Satsukimasu"
+   },
+   "map": 5,
+   "mapName": {
+    "en": "Downstream",
+    "ja": "下流",
+    "th": "แม่น้ำตอนล่าง"
+   },
+   "record": {
+    "min": 25,
+    "max": 50
+   },
+   "wikiMax": 50,
+   "cells": 1,
+   "newFish": [
+    12,
+    23
+   ],
+   "passesFromNewFish": {
+    "best": 27,
+    "worst": 38
+   },
+   "pointsPerPass": 256,
+   "nightsAt255": {
+    "firstCellAtMax": 32,
+    "everyCellAtMax": 32,
+    "mostCellsAtMaxInOneNight": 1
+   },
+   "reachableMax": 50,
+   "status": "ok",
+   "evidence": "fish-max-size-rom.test.ts (inn refill 03:838B..85C5, cap 03:83CB..83DF)"
+  },
+  {
+   "fish": 68,
+   "name": {
+    "ja": "イモリ",
+    "th": "อิโมริ (นิวต์)",
+    "en": "Imori"
+   },
+   "map": 1,
+   "mapName": {
+    "en": "Mountain Stream",
+    "ja": "渓流",
+    "th": "ลำธารบนภูเขา"
+   },
+   "record": {
+    "min": 10,
+    "max": 10
+   },
+   "wikiMax": 10,
+   "cells": 11,
+   "newFish": [
+    5,
+    9
+   ],
+   "passesFromNewFish": {
+    "best": 1,
+    "worst": 5
+   },
+   "pointsPerPass": 256,
+   "nightsAt255": {
+    "firstCellAtMax": 2,
+    "everyCellAtMax": 6,
+    "mostCellsAtMaxInOneNight": 5
+   },
+   "reachableMax": 10,
+   "status": "ok",
+   "evidence": "fish-max-size-rom.test.ts (inn refill 03:838B..85C5, cap 03:83CB..83DF)"
+  },
+  {
+   "fish": 69,
+   "name": {
+    "ja": "カエル",
+    "th": "กบ",
+    "en": "Kaeru"
+   },
+   "map": 2,
+   "mapName": {
+    "en": "Mountain Lake",
+    "ja": "山上湖",
+    "th": "ทะเลสาบบนภูเขา"
+   },
+   "record": {
+    "min": 10,
+    "max": 10
+   },
+   "wikiMax": 10,
+   "cells": 9,
+   "newFish": [
+    5,
+    9
+   ],
+   "passesFromNewFish": {
+    "best": 1,
+    "worst": 5
+   },
+   "pointsPerPass": 256,
+   "nightsAt255": {
+    "firstCellAtMax": 1,
+    "everyCellAtMax": 6,
+    "mostCellsAtMaxInOneNight": 5
+   },
+   "reachableMax": 10,
+   "status": "ok",
+   "evidence": "fish-max-size-rom.test.ts (inn refill 03:838B..85C5, cap 03:83CB..83DF)"
+  },
+  {
+   "fish": 70,
+   "name": {
+    "ja": "ザリガニ",
+    "th": "กุ้งเครย์ฟิชญี่ปุ่น (ซาริกานิ)",
+    "en": "Zarigani (crayfish)"
+   },
+   "map": 3,
+   "mapName": {
+    "en": "Clear Stream",
+    "ja": "清流",
+    "th": "ลำธารใส"
+   },
+   "record": {
+    "min": 5,
+    "max": 5
+   },
+   "wikiMax": 5,
+   "cells": 11,
+   "newFish": [
+    2,
+    3
+   ],
+   "passesFromNewFish": {
+    "best": 2,
+    "worst": 3
+   },
+   "pointsPerPass": 256,
+   "nightsAt255": {
+    "firstCellAtMax": 2,
+    "everyCellAtMax": 4,
+    "mostCellsAtMaxInOneNight": 7
+   },
+   "reachableMax": 5,
+   "status": "ok",
+   "evidence": "fish-max-size-rom.test.ts (inn refill 03:838B..85C5, cap 03:83CB..83DF)"
+  },
+  {
+   "fish": 71,
+   "name": {
+    "ja": "カメ",
+    "th": "เต่าน้ำจืด",
+    "en": "Kame"
+   },
+   "map": 4,
+   "mapName": {
+    "en": "Lake",
+    "ja": "湖",
+    "th": "ทะเลสาบ"
+   },
+   "record": {
+    "min": 25,
+    "max": 30
+   },
+   "wikiMax": 30,
+   "cells": 10,
+   "newFish": [
+    12,
+    23
+   ],
+   "passesFromNewFish": {
+    "best": 7,
+    "worst": 18
+   },
+   "pointsPerPass": 256,
+   "nightsAt255": {
+    "firstCellAtMax": 8,
+    "everyCellAtMax": 18,
+    "mostCellsAtMaxInOneNight": 3
+   },
+   "reachableMax": 30,
+   "status": "ok",
+   "evidence": "fish-max-size-rom.test.ts (inn refill 03:838B..85C5, cap 03:83CB..83DF)"
+  },
+  {
+   "fish": 72,
+   "name": {
+    "ja": "スッポン",
+    "th": "ตะพาบน้ำ",
+    "en": "Suppon"
+   },
+   "map": 5,
+   "mapName": {
+    "en": "Downstream",
+    "ja": "下流",
+    "th": "แม่น้ำตอนล่าง"
+   },
+   "record": {
+    "min": 30,
+    "max": 40
+   },
+   "wikiMax": 40,
+   "cells": 9,
+   "newFish": [
+    15,
+    29
+   ],
+   "passesFromNewFish": {
+    "best": 11,
+    "worst": 25
+   },
+   "pointsPerPass": 256,
+   "nightsAt255": {
+    "firstCellAtMax": 12,
+    "everyCellAtMax": 25,
+    "mostCellsAtMaxInOneNight": 4
+   },
+   "reachableMax": 40,
+   "status": "ok",
+   "evidence": "fish-max-size-rom.test.ts (inn refill 03:838B..85C5, cap 03:83CB..83DF)"
+  },
+  {
+   "fish": 73,
+   "name": {
+    "ja": "カニ",
+    "th": "ปู",
+    "en": "Kani"
+   },
+   "map": 6,
+   "mapName": {
+    "en": "River Mouth",
+    "ja": "河口",
+    "th": "ปากแม่น้ำ"
+   },
+   "record": {
+    "min": 4,
+    "max": 4
+   },
+   "wikiMax": 4,
+   "cells": 16,
+   "newFish": [
+    2,
+    3
+   ],
+   "passesFromNewFish": {
+    "best": 1,
+    "worst": 2
+   },
+   "pointsPerPass": 256,
+   "nightsAt255": {
+    "firstCellAtMax": 1,
+    "everyCellAtMax": 2,
+    "mostCellsAtMaxInOneNight": 9
+   },
+   "reachableMax": 4,
+   "status": "ok",
+   "evidence": "fish-max-size-rom.test.ts (inn refill 03:838B..85C5, cap 03:83CB..83DF)"
+  }
+ ]
+}

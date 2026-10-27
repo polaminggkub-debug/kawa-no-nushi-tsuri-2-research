@@ -1,5 +1,7 @@
 # Practical choices for all 21 rods
 
+> **Correction (2026-10-27, ROM-proven, see [big-fish-method-proof.md](big-fish-method-proof.md)):** rod `+2` is the **cast distance** (the charge limit while the cast button is held); it is not fight time, aim time or a fight stat. Casting and lure rods cast shorter when HP (stamina) is below 100. Rod `+3` × 336 is the **range line**: how long a running fish can be left before the line snaps and the tackle is lost; it never makes a fish easier to land. Older wording below about an "aim/hold-time" window means this cast distance.
+
 This note explains the player-facing decisions in [rod-item-decisions.json](../data/rod-item-decisions.json). The source is the supplied original Japanese SFC ROM, SHA-1 `c2103dd94e2a1a65a495fc02adc2e7d040f31212`, plus local ROM-derived item and shop records. No outside fishing guide is used.
 
 ## What these decisions compare
@@ -26,11 +28,11 @@ Prices in the decisions are full new-purchase quotes read from the ROM item reco
 | `05` | ¥750 | 1, 2 | 40 / ×6 | Skip for these effects: 04 is cheaper and higher on both in the same areas. |
 | `06` | — | No offer | 20 / ×4 | Keep if sufficient; no shop offer appears in the extracted lists. |
 | `07` | ¥1,500 | 3, 5 | 70 / ×9 | Area 3: choose 14 at the same quote; area 5: choose 07 for aim or 08 for threshold. |
-| `08` | ¥1,500 | 5* | 40 / ×24 | Lower full quote for the float group's maximum threshold; 15 buys more aim at ¥2,000. |
+| `08` | ¥1,500 | 5* | 40 / ×24 | Lower full quote for the float group's maximum threshold; 15 buys a longer cast at ¥2,000. |
 | `09` | ¥200 | 4, 5 | 30 / ×12 | Budget option in areas 4–5: lower aim than 04, higher threshold; ¥300 lower new quote. |
 | `0A` | ¥500 | 1, 2, 3, 5, 6 | 70 / ×15 | Budget lure start; in areas 1–3 and 6, 0C costs ¥100 more new and raises both values. |
 | `0B` | — | No offer | 80 / ×18 | Keep if sufficient; no shop offer appears in the extracted lists. |
-| `0C` | ¥600 | 1, 2, 3, 4, 6 | 100 / ×21 | Buy for a longer aim window than 0A; 0D is available only in area 4. |
+| `0C` | ¥600 | 1, 2, 3, 4, 6 | 100 / ×21 | Buy for a longer cast distance than 0A; 0D is available only in area 4. |
 | `0D` | ¥650 | 4* | 120 / ×24 | Lure style's highest values for the two traced effects. |
 | `0E` | ¥250 | 1, 3, 4, 5, 6 | 70 / ×18 | Lowest-price casting start; 0F raises both values where both are stocked. |
 | `0F` | ¥600 | 2, 4, 5, 6 | 100 / ×21 | Middle casting choice; 10 costs ¥900 more new for the maximum values. |
@@ -38,15 +40,15 @@ Prices in the decisions are full new-purchase quotes read from the ROM item reco
 | `11` | — | No offer | 50 / ×15 | Keep if sufficient; shop-listed 12 and 13 have higher recorded values on both effects. |
 | `12` | ¥400 | 1, 2, 3, 5 | 60 / ×18 | Fly middle choice; at area 5 it is the listed fly rod; 13 costs ¥50 more new for higher values. |
 | `13` | ¥450 | 1, 2, 3, 4 | 70 / ×21 | Fly style's highest values for the two compared effects; area 5 lists 12 instead. |
-| `14` | ¥1,500 | 3, 4, 6 | 80 / ×15 | Float/Ayu style's longest aim window; 15 trades aim for ×24 threshold. |
+| `14` | ¥1,500 | 3, 4, 6 | 80 / ×15 | Float/Ayu style's longest cast; 15 trades aim for ×24 threshold. |
 | `15` | ¥2,000 | 4, 5, 6 | 60 / ×24 | Float/Ayu style's highest threshold; compare against 14 for aim and 08 for price. |
 
 ## Why the choices are bounded this way
 
 - Every card recommends a purchase only when an extracted shop offer exists for that rod. For `02`, `06`, `0B` and `11`, the recommendation is limited to keeping/using it if already owned and sufficient; the ROM's stored price field is not presented as a way to buy it.
-- Within a style, the aim cutoff and +3 multiplier can trade off. Float/Ayu examples include `07` versus `08`, `14` versus `15`, and the low-cost `09`; the card tells the player which measured effect each option favors instead of combining unlike values into one score.
+- Within a style, the cast-distance limit and +3 multiplier can trade off. Float/Ayu examples include `07` versus `08`, `14` versus `15`, and the low-cost `09`; the card tells the player which measured effect each option favors instead of combining unlike values into one score.
 - Purchase comparisons name the area and use full quotes. Availability changes the choice: `14` is not listed in area 5; `12` is the fly rod listed there; `0A` appears in area 5 while `0C` does not. Fixed special rods `01`, `08`, `0D`, and `10` are identified as special-merchant stock.
-- The recommendation for the 100-HP aim values of lure and casting rods remains conditional on HP. Fly cards use only the main aim cutoff and +3 comparison; the unexplained half-value threshold stays in the scope note, not as an item-level selling point.
+- The recommendation for the 100-HP aim values of lure and casting rods remains conditional on HP. Fly cards use only the main cast-distance limit and +3 comparison; the unexplained half-value threshold stays in the scope note, not as an item-level selling point.
 
 ## Local evidence
 

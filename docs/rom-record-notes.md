@@ -1,5 +1,7 @@
 # Kawa no Nushi Tsuri 2 item record notes
 
+> **Correction (2026-10-27, ROM-proven, see [big-fish-method-proof.md](big-fish-method-proof.md)):** rod `+2` is the **cast distance** (the charge limit while the cast button is held); it is not fight time, aim time or a fight stat. Casting and lure rods cast shorter when HP (stamina) is below 100. Rod `+3` × 336 is the **range line**: how long a running fish can be left before the line snaps and the tackle is lost; it never makes a fish easier to land. Older wording below about an "aim/hold-time" window means this cast distance.
+
 These files analyze the user's original Japanese SFC ROM without changing it. The ROM dump has SHA-1 `c2103dd94e2a1a65a495fc02adc2e7d040f31212`, physical size 1,572,864 bytes, and LoROM mapping. `scripts/extract_items.py` reads the original ROM and writes the item index to a caller-selected JSON path.
 
 ## Record tables
@@ -24,7 +26,7 @@ For the current player-facing interpretation and decoded loss messages, see [wha
 Rod rows are 12 bytes. `D11F` copies bytes `+0` through `+7`, then words `+8` and `+10` to temporary WRAM fields. The meanings below come from code that consumes those fields.
 
 - `+0` selects the fishing style family: 1 float/Ayu, 2 casting, 4 lure, 8 fly.
-- `+2` feeds the cast/aim hold-time cutoff. Style 1 uses it raw; style 8 uses it raw and sets a second cutoff to half. Styles 2 and 4 scale it by current HP (`$7E:0862`) divided by 100 when HP is below 100, with a floor of 10; at HP 100 or higher they use the raw value. The food-effects runtime record independently confirms `$7E:0862` is current HP in [food-effects-confirmed.json](../data/food-effects-confirmed.json). The aim/cast loop increments `$1F6F` and sets state-transition flag `$1F73` when it reaches `$1F71`; following the dispatcher does not establish a catch-failure meaning. The earlier failure-state description is withdrawn. The demonstrated effect is more time to move the target tile before automatic advance; this internal counter is not a menu strength rating or a proven number of seconds. The full field value is restored at HP 100 for casting/lure styles. See [the current practical interpretation](rod-lure-practical-research.md).
+- `+2` feeds the cast-distance (charge) limit. Style 1 uses it raw; style 8 uses it raw and sets a second cutoff to half. Styles 2 and 4 scale it by current HP (`$7E:0862`) divided by 100 when HP is below 100, with a floor of 10; at HP 100 or higher they use the raw value. The food-effects runtime record independently confirms `$7E:0862` is current HP in [food-effects-confirmed.json](../data/food-effects-confirmed.json). The aim/cast loop increments `$1F6F` and sets state-transition flag `$1F73` when it reaches `$1F71`; following the dispatcher does not establish a catch-failure meaning. The earlier failure-state description is withdrawn. The demonstrated effect is more time to move the target tile before automatic advance; this internal counter is not a menu strength rating or a proven number of seconds. The full field value is restored at HP 100 for casting/lure styles. See [the current practical interpretation](rod-lure-practical-research.md).
 - `+3` is multiplied by `$0150` and stored as the internal range threshold `$1ED7`. Fishing routines compare fish position `$1ED5` against that threshold and move it toward the limit. The decoded downstream messages identify a particular hook/lure/fly-loss path when its separate fight-state condition also holds. A larger threshold gives more fish-position room before that path; it does not prevent all escapes. There is no verified meter conversion. See [the condition and mode-specific loss messages](rod-lure-practical-research.md).
 - `+4` is compared directly with the active fish ID `$11E8`; the matching branch changes handling. It is stored as a fish-ID match code, not a general fish-size rating.
 - `+5` contributes to selecting the rod graphic tile offset.
@@ -58,6 +60,6 @@ python3 scripts/extract_items.py --rom /path/to/original.sfc --output local-run/
 
 The helper reads the ROM and writes JSON only; it does not patch or rewrite the ROM.
 
-Rod +2 correction: target-coordinate movement, B-button release and the downstream tile-target resolver identify this timer as the **pre-hook aim/cast hold-time cutoff**, not fight endurance. See [the traced consumers](rod-response-research.md).
+Rod +2 correction: target-coordinate movement, B-button release and the downstream tile-target resolver identify this timer as the **pre-hook cast-distance (charge) limit**, not fight endurance. See [the traced consumers](rod-response-research.md).
 
 See the [three-language equipment guide](../research/index.html) for exact lure IDs and the per-profile mask matrix.

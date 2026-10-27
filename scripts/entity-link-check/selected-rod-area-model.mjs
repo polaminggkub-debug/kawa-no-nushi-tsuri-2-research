@@ -135,7 +135,7 @@ function expectedDecision(item, stage) {
 function hasMetric(copy, lang, field, value) {
   if (field === 'price') return copy.includes(lang === 'ja' ? `${value}円` : `¥${value}`)
   if (field === 'boundary') return copy.includes(`×${value}`)
-  const label = lang === 'th' ? 'เวลาเล็ง' : lang === 'ja' ? '狙う時間' : 'aim'
+  const label = lang === 'th' ? 'ระยะเหวี่ยง' : lang === 'ja' ? '投げる距離' : 'cast distance'
   let position = copy.indexOf(label)
   while (position >= 0) {
     const values = copy.slice(position, position + 32).match(/\d+(?:\.\d+)?/g) || []
@@ -162,18 +162,18 @@ function escapeRegExp(value) {
 function directionPattern(lang, field, direction) {
   const patterns = {
     en: {
-      aim: { more: /more time to aim/i, less: /less time to aim/i },
+      aim: { more: /more cast distance/i, less: /less cast distance/i },
       boundary: {
         more: /breaks less easily|hardest-to-break/i,
         less: /breaks more easily/i,
       },
     },
     th: {
-      aim: { more: /มีเวลาเล็งนานกว่า/, less: /มีเวลาเล็งน้อยกว่า/ },
+      aim: { more: /เหวี่ยงได้ไกลกว่า/, less: /มีระยะเหวี่ยงน้อยกว่า/ },
       boundary: { more: /สายขาดยากกว่า/, less: /สายขาดง่ายกว่า/ },
     },
     ja: {
-      aim: { more: /狙う時間が長/, less: /狙う時間が短/ },
+      aim: { more: /投げる距離が長/, less: /投げる距離が短/ },
       boundary: { more: /糸が切れにくい/, less: /糸が切れやすい/ },
     },
   }
@@ -426,8 +426,8 @@ function checkClaimScope(decision, lang, item, stage) {
   if ([2, 4].includes(styleOf(item))) {
     const aimWords = {
       en: /aim/i,
-      th: /เวลาเล็ง/,
-      ja: /狙う時間/,
+      th: /ระยะเหวี่ยง/,
+      ja: /投げる距離/,
     }
     const hp100 = /HP\s*100/i
     requireValue(

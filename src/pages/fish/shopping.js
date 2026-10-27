@@ -24,10 +24,10 @@ function aimTip(ctx, method, stage) {
   if (!['lure', 'sinker'].includes(method)) return ''
   const text =
     ctx.locale === 'th'
-      ? 'ก่อนใช้คันลัวร์หรือคันหวด เติม HP ให้ถึง 100 เพื่อให้ได้เวลาเล็งเต็มของคันนั้น ไม่ใช่โบนัสโอกาสปลากิน'
+      ? 'ก่อนใช้คันลัวร์หรือคันหวด เติม HP ให้ถึง 100 เพื่อให้ได้ระยะเหวี่ยงเต็มของคันนั้น ไม่ใช่โบนัสโอกาสปลากิน'
       : ctx.locale === 'ja'
-        ? 'ルアー竿・投げ竿を使う前にHPを100まで回復すると、竿本来の狙う時間になります。食いつき率のボーナスではありません。'
-        : 'Restore HP to 100 before lure or casting fishing to get the rod’s full time to aim. This does not add a bite-rate bonus.'
+        ? 'ルアー竿・投げ竿を使う前にHPを100まで回復すると、竿本来の投げる距離になります。食いつき率のボーナスではありません。'
+        : 'Restore HP to 100 before lure or casting fishing to get the rod’s full cast distance. This does not add a bite-rate bonus.'
   const action = hpRecoveryAction({
     locale: ctx.locale,
     cataloguePath: ctx.cataloguePath(),

@@ -32,7 +32,7 @@ COPY = {
         "rule_big": "ปลาเกิน 35 ซม. คันไหนก็เกือบเท่ากัน",
         "unsold": "ไม่มีขายที่ไหนเลย: {refs}",
         "special": "ขายเฉพาะร้านคันเบ็ดพิเศษ: {refs}",
-        "aim": "คันหวดและคันลัวร์มีเวลาเล็งสั้นลงเมื่อ HP ต่ำกว่า 100 เติม HP ก่อนตก",
+        "aim": "คันหวดและคันลัวร์เหวี่ยงได้สั้นลงเมื่อ HP ต่ำกว่า 100 เติม HP ก่อนตก",
         "end": ".",
     },
     "en": {
@@ -57,7 +57,7 @@ COPY = {
         "rule_big": "for fish over 35 cm almost any rod is the same",
         "unsold": "Never sold anywhere: {refs}",
         "special": "Only sold by the special rod seller: {refs}",
-        "aim": "Casting and lure rods give you less time to aim below 100 HP; restore HP before you fish",
+        "aim": "Casting and lure rods cast shorter below 100 HP; restore HP before you fish",
         "end": ".",
     },
     "ja": {
@@ -82,7 +82,7 @@ COPY = {
         "rule_big": "35cm超の魚はほとんどどの竿でも同じです",
         "unsold": "どの店にも売っていません：{refs}",
         "special": "特別な竿の販売所だけで売っています：{refs}",
-        "aim": "投げ竿とルアー竿は、HPが100未満だと狙う時間が短くなります。釣る前にHPを回復してください",
+        "aim": "投げ竿とルアー竿は、HPが100未満だと投げる距離が短くなります。釣る前にHPを回復してください",
         "end": "。",
     },
 }

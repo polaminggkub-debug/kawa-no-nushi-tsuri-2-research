@@ -73,7 +73,7 @@ const ID_TOKEN =
 const QUANTITY_AFTER =
   /^\s*(?:and ×|และ ×|と×|units?\b|species\b|of\b|จาก|cm\b|ซม\.|m\b|ม\.|หน่วย|ตัว|คัน|HP|fish|ชนิด|profiles?|โปรไฟล์|プロフィール|yen|เยน|[本位・円対種匹個倍枚点秒歩回台段]|%)/i
 const QUANTITY_BEFORE =
-  /(?:\bof |\bthan |\baim |จาก |เกิน|ครบ |ใน |เวลาเล็ง |狙う時間|×)\s*$/i
+  /(?:\bof |\bthan |\baim |\bdistance |จาก |เกิน|ครบ |ใน |ระยะเหวี่ยง |投げる距離|×)\s*$/i
 const NOT_AN_ITEM = /(?:fish|ปลา|魚)\s*ID\s*$|บอดี้(?:เปียก|แห้ง)\s*$/i
 
 function idSuffixed(lang, name, id) {

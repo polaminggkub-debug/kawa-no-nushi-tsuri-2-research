@@ -36,7 +36,7 @@ The guide starts with equipment categories, then explains each item's use. Bait/
 **[Visual guide: English](https://polaminggkub-debug.github.io/kawa-no-nushi-tsuri-2-research/research/) · [日本語](https://polaminggkub-debug.github.io/kawa-no-nushi-tsuri-2-research/research/index.ja.html) · [ไทย](https://polaminggkub-debug.github.io/kawa-no-nushi-tsuri-2-research/research/index.th.html)**
 
 - Two lure IDs cover the **mask compatibility** of all 38 lure-eligible fish/creature profiles: one of `17/18/2E/2F/30/31` plus `23/24` (hex). The cheapest ROM base-price pair is `17 + 23`, ¥50. Area 1 sells the Spoon `2E` + Soft worm `23` alternative for ¥55; the ¥50 pair is sold together in area 4.
-- Rod byte `+2` was previously mislabeled as a fight counter. Target movement, B release and the next state identify it as a **pre-hook aim/cast hold-time cutoff**. It is not fight strength.
+- Rod byte `+2` was previously mislabeled as a fight counter. Target movement, B release and the next state identify it as a **pre-hook cast-distance (charge) limit**. It is not fight strength.
 - Fly body normalization and bait/lure mask checks now have a [reproducible matrix](docs/fish-acceptance-research.md). These are compatibility checks, not measured bite or landing rates.
 - [Rod consumers](docs/rod-response-research.md), [lure setup transforms](docs/lure-response-research.md), and [six-area shop stock](docs/shop-stock-research.md) document exact limits.
 

@@ -1,5 +1,7 @@
 # Findings: item records and confirmed effects
 
+> **Correction (2026-10-27, ROM-proven, see [big-fish-method-proof.md](big-fish-method-proof.md)):** rod `+2` is the **cast distance** (the charge limit while the cast button is held); it is not fight time, aim time or a fight stat. Casting and lure rods cast shorter when HP (stamina) is below 100. Rod `+3` × 336 is the **range line**: how long a running fish can be left before the line snaps and the tackle is lost; it never makes a fish easier to land. Older wording below about an "aim/hold-time" window means this cast distance.
+
 This note describes what the current research can support for the Japanese SFC release of *Kawa no Nushi Tsuri 2* (『川のぬし釣り2』). It separates values found in ROM tables, behavior traced through code, and effects measured in the running game. A raw byte is not automatically a useful player stat.
 
 **Target dump:** 1,572,864 bytes; SHA-1 `c2103dd94e2a1a65a495fc02adc2e7d040f31212`; SHA-256 `e0594921a5a2ef1a2613b9d2e29fed066569e3793393c591bf4c4968a54c0b49`. Findings below describe this Japanese SFC dump. Other regional or modified ROMs were not checked.
@@ -14,7 +16,7 @@ Names were seeded from published community item-ID lists and checked against ROM
 
 Rod table rows are 12 bytes. Code copies their first eight bytes into working fields and uses them in fishing-style and fish-fight routines. This table shows three examples; values labeled “cutoff” and “range” are internal game quantities, not ratings shown in the manual.
 
-| ID | Japanese name | English gloss | Style | Cast/aim hold-time cutoff at 100+ HP | Range multiplier | Internal range threshold (`0x0150 × multiplier`) | Fish-ID compare byte | ROM price |
+| ID | Japanese name | English gloss | Style | Cast-distance (charge) limit at 100+ HP | Range multiplier | Internal range threshold (`0x0150 × multiplier`) | Fish-ID compare byte | ROM price |
 | ---: | --- | --- | ---: | ---: | ---: | ---: | ---: | ---: |
 | `01` | タナゴ竿10本継2m | Bitterling rod, 10-piece, 2 m | 1 | 10 | 3 | 1,008 | `0x39` | ¥500 |
 | `07` | アユ竿6本継7m | Ayu rod, 6-piece, 7 m | 1 | 70 | 9 | 3,024 | `0x38` | ¥1,500 |
@@ -23,7 +25,7 @@ Rod table rows are 12 bytes. Code copies their first eight bytes into working fi
 **How to interpret these fields:**
 
 - Rod byte `+0` selects a fishing-style family: `1` float/Ayu, `2` casting, `4` lure, `8` fly.
-- Byte `+2` feeds a hold-time cutoff in the pre-hook aim/cast routine. For style `1`, the value is used directly. Style `8` uses it directly and also derives a second cutoff at half that value. Styles `2` and `4` scale it by current HP when HP is below 100, with a floor of 10; at 100 HP or more the raw value is used. The player-facing name and unit for this parameter remain unknown.
+- Byte `+2` feeds a cast-distance limit in the pre-hook aim/cast routine. For style `1`, the value is used directly. Style `8` uses it directly and also derives a second cutoff at half that value. Styles `2` and `4` scale it by current HP when HP is below 100, with a floor of 10; at 100 HP or more the raw value is used. The player-facing name and unit for this parameter remain unknown.
 - Byte `+3` is multiplied by `0x0150` and compared with an internal fish-position quantity. The unit conversion to distance, time, or meters is unknown; do not read the result as a cast distance in meters.
 - Byte `+4` is compared with the active fish ID in a handling branch. It is a fish-ID comparison, not a general fish-size score.
 - Byte `+5` affects rod graphic selection. Byte `+7` selects branches in fight-response logic; its player-facing meaning has not been named. Bytes `+1` and `+6` remain unresolved.
@@ -99,4 +101,4 @@ Research snapshot: 4 October 2026.
 
 The lure-hook gate uses a 16-bit acceptance word, and the gear setup response has now been traced more precisely. See [lure acceptance coverage](../data/lure-coverage.json), [fish acceptance](fish-acceptance-research.md), [lure setup](lure-response-research.md), and [rod trace](rod-response-research.md). The old description of rod +2 as a catch-failure cutoff is withdrawn; its gameplay phase is being followed separately.
 
-Rod +2 correction: target-coordinate movement, B-button release and the downstream tile-target resolver identify this timer as the **pre-hook aim/cast hold-time cutoff**, not fight endurance. See [the traced consumers](rod-response-research.md).
+Rod +2 correction: target-coordinate movement, B-button release and the downstream tile-target resolver identify this timer as the **pre-hook cast-distance (charge) limit**, not fight endurance. See [the traced consumers](rod-response-research.md).

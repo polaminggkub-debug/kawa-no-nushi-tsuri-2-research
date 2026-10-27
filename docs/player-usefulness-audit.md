@@ -96,7 +96,7 @@ Actual browser checks in this cycle include Rainbow trout area 1 → area 3 shop
 - A dedicated multilingual shop page connects item profiles to recorded stock, authentic outdoor entrance crops and separate town seller crops. Normal-shop entrance associations are observed for areas 1–5; special-rod-seller associations are observed for areas 4–6. The area-6 regular seller is an endpoint only. Source: `data/shop-locations-rom.json`, `docs/shop-location-research.md`; no outside guide.
 - The source extractor removes the out-of-bounds `(255,255)` entries in areas 2 and 3. An independent direct read of the supplied ROM validates the 28 included outdoor/arrival pairs, seller object coordinates and six town image hashes.
 - Empty bottle, key and candle profiles now show town chest crops, labelled town rooms, reward/required-key links, and expandable outdoor entrance crops. Bottle/candle acquisition appears before their outdoor use point. Chest coordinates are directly rechecked against ROM town object slot `0E`; rendered town-image hashes and quest-trace identity are checked by `build_tool_use_locations.py`. Pairing a chest room with a recorded town arrival is static evidence, not a controlled walk to every chest.
-- Direct purchase actions on the three-fly backup cards open the corresponding shop and preserve the fish-page return path. A lure starter card now explicitly says to restore HP to 100 for the rod's full aim window; this is not a bite-rate claim.
+- Direct purchase actions on the three-fly backup cards open the corresponding shop and preserve the fish-page return path. A lure starter card now explicitly says to restore HP to 100 for the rod's full cast distance; this is not a bite-rate claim.
 
 ## Follow-up: each of the 21 rods answers a purchase decision
 
@@ -342,7 +342,7 @@ A separate current-page review confirmed the next context gap: rod 03 still lead
 
 ## Rod advice follows the selected area (2026-10-05)
 
-The rod context layer compares only recorded shop candidates for the same ROM fishing style in the selected area. The catalogue card, comparison row and item detail share this decision. Full new-purchase price, aim-window cutoff and the traced fish-position loss boundary support budget and handling choices; they do not establish catch probability, a universal best rod or fish-specific advantages. Casting/lure aim comparisons assume HP100.
+The rod context layer compares only recorded shop candidates for the same ROM fishing style in the selected area. The catalogue card, comparison row and item detail share this decision. Full new-purchase price, cast-distance limit and the traced fish-position loss boundary support budget and handling choices; they do not establish catch probability, a universal best rod or fish-specific advantages. Casting/lure aim comparisons assume HP100.
 
 A rod without a local offer must be distinguished from an area without any recorded rod of that style. In the first case, the guide compares recorded local candidates; in the second, it gives explicitly other-area purchase options and a keep-owned path. General route advice is retained with its scope labeled, and original records and research sources remain accessible.
 

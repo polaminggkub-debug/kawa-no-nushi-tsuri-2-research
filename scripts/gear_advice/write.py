@@ -12,9 +12,9 @@ SOURCES = ["data/gear-effects.json", "docs/gear-effects.md", "docs/fight-model.m
 HOOK_SECTION_OLD = "hook_purchase_caution"
 
 ROD_SCOPE = {
-    "th": "คำแนะนำนี้มาจากการจำลองการสู้ปลา (data/gear-effects.json) และรายการสินค้าของร้านทั้ง 6 ด่าน คันกำหนดสองอย่าง: สายขาดยาก คือปลาวิ่งไกลได้แค่ไหนก่อนสายขาดและเสียตะขอ (ชี้ขาดกับปลาใหญ่) และจุดเริ่มของมาตรวัดแรงตึง คือพลาดได้กี่จังหวะ เวลาเล็งสั้นลงเมื่อ HP ต่ำกว่า 100 กับคันหวดและคันลัวร์ ราคาที่ใช้คือราคาเต็มซื้อใหม่ ไม่ใช่ส่วนต่างตอนอัปเกรด",
-    "en": "These choices come from simulated fights (data/gear-effects.json) and the six areas' shop lists. A rod decides two things: line strength, how far a fish can run before the line breaks and the hook is lost (decisive for big fish), and the fight meter's start, how many mistakes you can afford. Casting and lure rods give less time to aim below 100 HP. Prices are full new-purchase prices, not upgrade costs.",
-    "ja": "この案内は、ファイトのシミュレーション（data/gear-effects.json）と全6エリアの店の品ぞろえに基づきます。竿が決めるのは2つです。糸の切れにくさ（魚が走っても糸が切れて針を失わない距離。大物はここで決まります）と、ファイトのメーターの出だし（許されるミスの数）です。投げ竿とルアー竿は、HPが100未満だと狙う時間が短くなります。価格は新品の全額で、強化費用ではありません。",
+    "th": "คำแนะนำนี้มาจากการจำลองการสู้ปลา (data/gear-effects.json) และรายการสินค้าของร้านทั้ง 6 ด่าน คันกำหนดสองอย่าง: สายขาดยาก คือปลาวิ่งไกลได้แค่ไหนก่อนสายขาดและเสียตะขอ (ชี้ขาดกับปลาใหญ่) และจุดเริ่มของมาตรวัดแรงตึง คือพลาดได้กี่จังหวะ เหวี่ยงได้สั้นลงเมื่อ HP ต่ำกว่า 100 กับคันหวดและคันลัวร์ ราคาที่ใช้คือราคาเต็มซื้อใหม่ ไม่ใช่ส่วนต่างตอนอัปเกรด",
+    "en": "These choices come from simulated fights (data/gear-effects.json) and the six areas' shop lists. A rod decides two things: line strength, how far a fish can run before the line breaks and the hook is lost (decisive for big fish), and the fight meter's start, how many mistakes you can afford. Casting and lure rods cast shorter below 100 HP. Prices are full new-purchase prices, not upgrade costs.",
+    "ja": "この案内は、ファイトのシミュレーション（data/gear-effects.json）と全6エリアの店の品ぞろえに基づきます。竿が決めるのは2つです。糸の切れにくさ（魚が走っても糸が切れて針を失わない距離。大物はここで決まります）と、ファイトのメーターの出だし（許されるミスの数）です。投げ竿とルアー竿は、HPが100未満だと投げる距離が短くなります。価格は新品の全額で、強化費用ではありません。",
 }
 
 
