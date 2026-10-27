@@ -6,7 +6,8 @@ import { priceIn } from './stock.mjs'
 // start for the sizes the fish really has), a cheaper kit that is nearly as good, and the
 // items that tie with the best one. Starts come from the proven rule in rule.mjs.
 
-const STYLE = { float: 1, lure: 4, fly: 8 }
+/** Rod styles per method: casting rods (2) fight like float rods, so bait kits may use either. */
+const STYLES = { float: [1, 2], lure: [4], fly: [8] }
 const ACCEPT = { float: 'bait', lure: 'lure', fly: 'fly' }
 const NEAR = 1
 /** A cheaper kit is only worth showing when it saves a fifth of the price. */
@@ -22,7 +23,7 @@ function bandWeights({ low, high }) {
 function rodsFor(matrix, effects, price, fishId, method) {
   const need = effects.fish[fishId]?.methods[method]?.need ?? 0
   const sold = Object.entries(matrix.items.rod)
-    .filter(([id, rod]) => rod.style === STYLE[method] && price('rod', +id))
+    .filter(([id, rod]) => STYLES[method].includes(rod.style) && price('rod', +id))
     .map(([id, rod]) => ({ id: +id, ...rod, ...price('rod', +id) }))
   const reaching = sold.filter((rod) => rod.reach >= need)
   return { need, rods: reaching.length ? reaching : sold }
@@ -205,7 +206,7 @@ export function buildGearBest(matrix, effects, maxSize, stock) {
     const rows = maxSize.rows.filter((entry) => entry.fish === row.id)
     const stages = [...new Set(rows.map((entry) => entry.map))].sort((a, b) => a - b)
     const methods = {}
-    for (const method of Object.keys(STYLE)) {
+    for (const method of Object.keys(STYLES)) {
       const plan = methodByStage(matrix, effects, prices, row, method, stages)
       if (plan) methods[method] = plan
     }
