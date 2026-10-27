@@ -19,7 +19,7 @@ export function loadMaps(ctx) {
       ctx.enableControls()
       ctx.render()
       if (ctx.selectedFish && !ctx.openNotebookGuide && !ctx.notebookRouteStage)
-        ctx.focusSelectedFish()
+        ctx.focusSelectedFish?.()
       if (scrollToNotebookSpecies(ctx)) return
       if (ctx.notebookRouteStage)
         ctx.$(`notebook-route-${ctx.notebookRouteStage}`)?.scrollIntoView({ block: 'start' })

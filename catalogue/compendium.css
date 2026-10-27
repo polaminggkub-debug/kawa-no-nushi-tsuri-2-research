@@ -1818,7 +1818,7 @@ body:has(.kit-grid) main > details code {
 }
 @media (max-width: 700px) {
   html {
-    scroll-padding-top: 76px;
+    scroll-padding-top: 84px;
   }
   .compendium-nav {
     display: flex;

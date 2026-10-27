@@ -33,7 +33,7 @@ export function bindMapControls(ctx) {
     ctx.zoom = Math.min(3, ctx.zoom * 1.3)
     ctx.renderMap()
   })
-  ctx.bindMapPinch()
+  ctx.bindMapPinch?.()
   ctx.$('zoom-fit').addEventListener('click', () => {
     ctx.zoom = 1
     ctx.renderMap()

@@ -92,8 +92,8 @@ function checkRenderPlacement() {
   const sections = [
     'renderFirstStep(ctx)',
     'ctx.renderAreas(',
-    'ctx.renderExchange(',
     'ctx.renderShopping(',
+    'ctx.renderExchange(',
     'compatibleSection(ctx, state)',
     'ctx.renderWaterIcons(',
     'ctx.renderEvidence(',

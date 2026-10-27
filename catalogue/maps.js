@@ -79,7 +79,7 @@
   }
   function focusSelectedFish(ctx) {
     const view = ctx.$("map-view"), scroller = view.parentElement;
-    if (!ctx.selectedFish || !view.querySelector(".fish-pin")) return;
+    if (!ctx.selectedFish || !view.querySelector?.(".fish-pin")) return;
     let box = pinBounds(view.querySelectorAll(".fish-pin"));
     const fit = Math.min(
       scroller.clientWidth / (box.width + PADDING * 2),
@@ -103,6 +103,7 @@
     en: "Back to the fish page"
   };
   function renderBackToFish(ctx) {
+    if (typeof ctx.$("map-zoom-bar")?.before !== "function") return;
     let link = ctx.$("back-to-fish");
     if (!ctx.selectedFish) {
       link?.remove();
@@ -125,6 +126,7 @@
   }
   function bindMapPinch(ctx) {
     const scroller = ctx.$("map-view").parentElement;
+    if (typeof scroller?.addEventListener !== "function") return;
     const fingers = /* @__PURE__ */ new Map();
     let startGap = 0, lastGap = 0, baseZoom = 1;
     const gap = () => {
@@ -1278,7 +1280,7 @@
       ctx.selectedFish ? targetInCurrentSection ? previousSection : "" : previousSection
     );
     ctx.render();
-    if (ctx.selectedFish) ctx.focusSelectedFish();
+    if (ctx.selectedFish) ctx.focusSelectedFish?.();
   }
   function showPinDetails(ctx, ids, x, y) {
     const box = ctx.$("pin-details");
@@ -1727,7 +1729,7 @@
       ctx.zoom = Math.min(3, ctx.zoom * 1.3);
       ctx.renderMap();
     });
-    ctx.bindMapPinch();
+    ctx.bindMapPinch?.();
     ctx.$("zoom-fit").addEventListener("click", () => {
       ctx.zoom = 1;
       ctx.renderMap();
@@ -1843,7 +1845,7 @@
       ctx.enableControls();
       ctx.render();
       if (ctx.selectedFish && !ctx.openNotebookGuide && !ctx.notebookRouteStage)
-        ctx.focusSelectedFish();
+        ctx.focusSelectedFish?.();
       if (scrollToNotebookSpecies(ctx)) return;
       if (ctx.notebookRouteStage)
         ctx.$(`notebook-route-${ctx.notebookRouteStage}`)?.scrollIntoView({ block: "start" });

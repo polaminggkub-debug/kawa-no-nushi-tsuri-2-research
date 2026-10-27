@@ -87,7 +87,7 @@ export function setFish(ctx, id, { toggle = true } = {}) {
     ctx.selectedFish ? (targetInCurrentSection ? previousSection : '') : previousSection,
   )
   ctx.render()
-  if (ctx.selectedFish) ctx.focusSelectedFish()
+  if (ctx.selectedFish) ctx.focusSelectedFish?.()
 }
 
 export function showPinDetails(ctx, ids, x, y) {

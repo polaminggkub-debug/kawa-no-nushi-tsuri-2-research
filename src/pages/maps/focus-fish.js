@@ -21,7 +21,7 @@ function ensureMapVisible(ctx) {
 export function focusSelectedFish(ctx) {
   const view = ctx.$('map-view'),
     scroller = view.parentElement
-  if (!ctx.selectedFish || !view.querySelector('.fish-pin')) return
+  if (!ctx.selectedFish || !view.querySelector?.('.fish-pin')) return
   let box = pinBounds(view.querySelectorAll('.fish-pin'))
   const fit = Math.min(
     scroller.clientWidth / (box.width + PADDING * 2),
@@ -48,6 +48,7 @@ const label = {
 
 /** Link back to the selected fish with the same area, map section and fishing method. */
 export function renderBackToFish(ctx) {
+  if (typeof ctx.$('map-zoom-bar')?.before !== 'function') return
   let link = ctx.$('back-to-fish')
   if (!ctx.selectedFish) {
     link?.remove()
@@ -73,6 +74,7 @@ export function renderBackToFish(ctx) {
 /** Two fingers on the map zoom the map (not the page); the new zoom applies when they lift. */
 export function bindMapPinch(ctx) {
   const scroller = ctx.$('map-view').parentElement
+  if (typeof scroller?.addEventListener !== 'function') return
   const fingers = new Map()
   let startGap = 0,
     lastGap = 0,

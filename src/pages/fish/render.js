@@ -1,5 +1,6 @@
 import { renderSectionIndex, bindSectionIndex } from './section-index.js'
 import { distinctFishNames } from './fish-names.js'
+import { renderFishNotes } from './maps.js'
 import { renderFightControls } from './fight-controls.js'
 import { renderNotebookStatus } from './notebook-status.js'
 import { renderEelQuestContext } from './quest-context.js'
@@ -96,7 +97,7 @@ function profileContent(ctx, fishData, locationData, fish, state) {
   const bestGear = ctx.bestGear
     ? renderBestGear(ctx.bestGear, ctx.locale, parseInt(ctx.id, 16))
     : ''
-  const content = `${renderEelQuestContext(ctx, locationData)}${firstStep}${ctx.renderAreas(state.locations, state.activeStage, fish)}${bestGear}${ctx.renderShopping(state.matches, state.locations, state.activeStage, fishData.items || [], fishData.flyBackupChoices)}${ctx.renderExchange(fishData.items || [], state.activeStage)}${ctx.renderFishNotes(state.locations, state.activeStage)}${renderFightControls(ctx, state.activeStage)}${renderNotebookStatus(ctx, fishData)}${compatibleSection(ctx, state)}${ctx.renderWaterIcons(fishData.waterIcons, state.activeStage)}${ctx.renderEvidence(fish, state.locations, state.matches)}`
+  const content = `${renderEelQuestContext(ctx, locationData)}${firstStep}${ctx.renderAreas(state.locations, state.activeStage, fish)}${bestGear}${ctx.renderShopping(state.matches, state.locations, state.activeStage, fishData.items || [], fishData.flyBackupChoices)}${ctx.renderExchange(fishData.items || [], state.activeStage)}${renderFishNotes(ctx, state.locations, state.activeStage)}${renderFightControls(ctx, state.activeStage)}${renderNotebookStatus(ctx, fishData)}${compatibleSection(ctx, state)}${ctx.renderWaterIcons(fishData.waterIcons, state.activeStage)}${ctx.renderEvidence(fish, state.locations, state.matches)}`
   return `${renderProfileHero(ctx, state)}${renderSectionIndex(ctx, content)}${content}`
 }
 
