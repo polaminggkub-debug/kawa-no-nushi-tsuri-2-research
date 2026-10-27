@@ -16,13 +16,15 @@
     /[&<>"]/g,
     (char) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" })[char]
   );
+  var SIZES = { gear: [32, 32], rod: [14, 48], fishrow: [64, 32], fish: [96, 48] };
   function spriteHtml(src, alt, size = "gear") {
     if (!src) return "";
-    return `<img class="pic pic-${size}" src="${escapeAttr(src)}" alt="${escapeAttr(alt)}" width="${size === "fish" ? 48 : 32}" height="${size === "fish" ? 48 : 32}" loading="lazy" decoding="async">`;
+    const [width, height] = SIZES[size];
+    return `<img class="pic pic-${size}" src="${escapeAttr(src)}" alt="${escapeAttr(alt)}" width="${width}" height="${height}" loading="lazy" decoding="async">`;
   }
   function withSprite(src, label, alt, size = "gear") {
     const picture = spriteHtml(src, alt, size);
-    return picture ? `<span class="pic-row">${picture}<span class="pic-name">${label}</span></span>` : label;
+    return picture ? `<span class="pic-row pic-row-${size}">${picture}<span class="pic-name">${label}</span></span>` : label;
   }
   var spriteOf = (names, kind, id) => names.sprite?.[kind]?.[id] ?? null;
 
@@ -254,7 +256,12 @@
   );
   function itemPic(data, locale, slot, id, size = "gear") {
     const name = itemName(data, locale, slot, id);
-    return withSprite(spriteOf(data.names, slot, id), escapeHtml(name), name, size);
+    return withSprite(
+      spriteOf(data.names, slot, id),
+      escapeHtml(name),
+      name,
+      slot === "rod" ? "rod" : size
+    );
   }
   function itemName(data, locale, slot, id) {
     const entry = data.names[slot]?.[id];
@@ -309,7 +316,7 @@
     const [size, rod, hook, start2, price] = LABELS[locale];
     const kit = plan.kits[0];
     const second = SECOND[ctx.method];
-    const name = itemPic(data, locale, "fish", id, "fish");
+    const name = itemPic(data, locale, "fish", id, "fishrow");
     const secondLabel = text.slots[second];
     return `<tr><td><a href="${escapeHtml(fishLink(locale, id))}"><strong>${name}</strong></a></td>
 <td data-label="${size}"><span>${escapeHtml(text.size(fish.size[0], shownHigh(fish)))}<small>${maxHtml(text, fish)}</small></span></td>
@@ -621,7 +628,12 @@ ${itemCell(data, locale, secondLabel, second, kit[second], second, kit.why.item)
   var itemLabel = (ctx, slot, id) => localName(ctx.names[slot]?.[id], ctx.locale);
   var itemPic2 = (ctx, slot, id, size = "gear") => {
     const name = itemLabel(ctx, slot, id);
-    return withSprite(spriteOf(ctx.names, slot, id), escapeHtml2(name), name, size);
+    return withSprite(
+      spriteOf(ctx.names, slot, id),
+      escapeHtml2(name),
+      name,
+      slot === "rod" ? "rod" : size
+    );
   };
   function whereText(ctx, row) {
     const { where } = ctx.text;

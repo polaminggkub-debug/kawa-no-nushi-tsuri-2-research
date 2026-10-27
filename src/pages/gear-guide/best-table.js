@@ -35,7 +35,7 @@ function rowHtml(ctx, id, fish, plan) {
   const [size, rod, hook, start, price] = LABELS[locale]
   const kit = plan.kits[0]
   const second = SECOND[ctx.method]
-  const name = itemPic(data, locale, 'fish', id, 'fish')
+  const name = itemPic(data, locale, 'fish', id, 'fishrow')
   const secondLabel = text.slots[second]
   return `<tr><td><a href="${escapeHtml(fishLink(locale, id))}"><strong>${name}</strong></a></td>
 <td data-label="${size}"><span>${escapeHtml(text.size(fish.size[0], shownHigh(fish)))}<small>${maxHtml(text, fish)}</small></span></td>

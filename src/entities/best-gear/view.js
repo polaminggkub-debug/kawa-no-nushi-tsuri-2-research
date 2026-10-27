@@ -17,7 +17,12 @@ export const escapeHtml = (value) =>
 
 export function itemPic(data, locale, slot, id, size = 'gear') {
   const name = itemName(data, locale, slot, id)
-  return withSprite(spriteOf(data.names, slot, id), escapeHtml(name), name, size)
+  return withSprite(
+    spriteOf(data.names, slot, id),
+    escapeHtml(name),
+    name,
+    slot === 'rod' ? 'rod' : size,
+  )
 }
 
 export function itemName(data, locale, slot, id) {

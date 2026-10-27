@@ -9,7 +9,12 @@ export const itemLabel = (ctx, slot, id) => localName(ctx.names[slot]?.[id], ctx
 /** The escaped name with its sprite beside it. */
 export const itemPic = (ctx, slot, id, size = 'gear') => {
   const name = itemLabel(ctx, slot, id)
-  return withSprite(spriteOf(ctx.names, slot, id), escapeHtml(name), name, size)
+  return withSprite(
+    spriteOf(ctx.names, slot, id),
+    escapeHtml(name),
+    name,
+    slot === 'rod' ? 'rod' : size,
+  )
 }
 
 function whereText(ctx, row) {

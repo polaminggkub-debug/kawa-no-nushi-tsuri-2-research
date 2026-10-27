@@ -1927,8 +1927,12 @@ body:has(.kit-grid) main > details code {
   width: 32px;
   height: 32px;
 }
+.pic-fishrow {
+  width: 64px;
+  height: 32px;
+}
 .pic-fish {
-  width: 48px;
+  width: 96px;
   height: 48px;
 }
 .pic-row {
@@ -1941,6 +1945,33 @@ body:has(.kit-grid) main > details code {
 .pic-name {
   min-width: 0;
   overflow-wrap: anywhere;
+}
+@media (max-width: 600px) {
+  .pic-row-fishrow {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 2px;
+  }
+}
+.gg-group .pic-gear {
+  width: 24px;
+  height: 24px;
+}
+.gg-group .pic-fishrow {
+  width: 48px;
+  height: 24px;
+}
+.pic-rod {
+  width: 14px;
+  height: 48px;
+}
+.gg-group .pic-row-fishrow {
+  flex-direction: row;
+  align-items: center;
+}
+.gg-group .pic-rod {
+  width: 8px;
+  height: 28px;
 }
 
 /* src/shared/ui/index.css */

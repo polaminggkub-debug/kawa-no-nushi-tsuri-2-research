@@ -150,7 +150,7 @@ function fishKitTable(ctx, stage, method, plan) {
       const k = plan.perFish[f.id]
       const rod = `${pic('rod', k.rod)} (${esc(copy.classes[ctx.matrix.items.rod[k.rod].class])})`
       return [
-        `<a href="${esc(ctx.fishHref(f.id))}">${ctx.pic('fish', f.id)}</a>`,
+        `<a href="${esc(ctx.fishHref(f.id))}">${ctx.pic('fish', f.id, 'fishrow')}</a>`,
         `${f.size[0]}–${f.size[1]}`,
         rod,
         k.hook == null ? copy.stage.none : pic('hook', k.hook),

@@ -22,7 +22,7 @@ export function makePic(names, lang) {
       kind === 'fish'
         ? (names.fish[id]?.[lang] ?? names.fish[id]?.en ?? String(id))
         : name(kind, id)
-    return withSprite(names.sprite?.[kind]?.[id], esc(label), label, size)
+    return withSprite(names.sprite?.[kind]?.[id], esc(label), label, kind === 'rod' ? 'rod' : size)
   }
 }
 

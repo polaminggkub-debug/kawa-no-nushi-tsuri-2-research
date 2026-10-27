@@ -2,6 +2,7 @@ import { readFileSync } from 'node:fs'
 import { resolve } from 'node:path'
 import { fileURLToPath } from 'node:url'
 import { fishName, imageName as catalogueName } from '../../src/pages/item/names.js'
+import { withSprite } from '../../src/shared/lib/index.js'
 import { renderCards } from '../../src/pages/gear-guide/cards.js'
 import cardsEn from '../../src/pages/gear-guide/cards_en.js'
 import cardsTh from '../../src/pages/gear-guide/cards_th.js'
@@ -77,12 +78,16 @@ export function fillTokens(html, lang, gallery, effects) {
   const filled = html.replace(
     /\{\{(?:(name|yen):([a-z_]+):(\d+)|fish:(\d+))\}\}/g,
     (_match, what, kind, id, fishId) => {
-      if (fishId)
-        return escapeHtml(
-          FISH_GLOSS[fishId]?.[lang] ?? fishName({ lang }, hexId(fishId), gallery.fishVisuals),
-        )
+      if (fishId) {
+        const name =
+          FISH_GLOSS[fishId]?.[lang] ?? fishName({ lang }, hexId(fishId), gallery.fishVisuals)
+        const art = gallery.fishVisuals[hexId(fishId)]?.image
+        return withSprite(art, escapeHtml(name), name, 'fishrow')
+      }
       if (what === 'yen') return yenOf(effects, gallery, kind, id)
-      return escapeHtml(imageName({ lang }, findItem(gallery, kind, id)))
+      const item = findItem(gallery, kind, id)
+      const name = imageName({ lang }, item)
+      return withSprite(item.image, escapeHtml(name), name, kind === 'rod' ? 'rod' : 'gear')
     },
   )
   if (filled.includes('{{')) throw new Error(`Gear guide: unresolved token in ${lang} page`)
