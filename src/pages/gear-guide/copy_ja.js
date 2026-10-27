@@ -1,6 +1,7 @@
 const areaWord = (list) => `エリア${list.join('・')}`
 
 export default {
+  fishLabel: '魚',
   loading: 'セットのデータを読み込み中…',
   failed: 'セットのデータを読み込めませんでした。',
   retry: '再試行',

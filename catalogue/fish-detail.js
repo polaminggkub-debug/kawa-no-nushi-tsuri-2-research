@@ -955,11 +955,11 @@
     en: "Choose recovery food and see where to buy it"
   };
   function hpRecoveryAction(options) {
-    const { locale, cataloguePath: cataloguePath2, stage, returnPath, source, escapeHtml: escapeHtml2 } = options;
+    const { locale, cataloguePath: cataloguePath2, stage, returnPath, source, escapeHtml: escapeHtml3 } = options;
     const query = new URLSearchParams({ category: "food", return: returnPath });
     if (/^[1-6]$/.test(String(stage))) query.set("stage", String(stage));
     const href = `${cataloguePath2}?${query}#category-decisions`;
-    return `<a class="route-button" data-hp-food-action data-hp-source="${escapeHtml2(source)}" href="${escapeHtml2(href)}">${escapeHtml2(labels[locale] || labels.en)} ↗</a>`;
+    return `<a class="route-button" data-hp-food-action data-hp-source="${escapeHtml3(source)}" href="${escapeHtml3(href)}">${escapeHtml3(labels[locale] || labels.en)} ↗</a>`;
   }
 
   // src/shared/lib/index.js
@@ -1286,6 +1286,7 @@
 
   // src/pages/fish/section-index.js
   var sections = [
+    ["best-gear", "อุปกรณ์ที่ดีที่สุด", "ベスト装備", "Best gear"],
     ["fish-area-map", "จุดตกปลา", "釣り場", "Fishing spots"],
     ["fish-shopping", "ชุดเริ่มตก", "最初の仕掛け", "Fishing setup"],
     ["fish-notebook", "สมุดปลา", "釣りノート", "Notebook"],
@@ -1521,8 +1522,328 @@
     return `<aside class="detail-section fish-quest-context" data-fish-quest-context="postcard-eel"><h2>${ctx.escapeHtml(text2.title)}</h2><p>${ctx.escapeHtml(text2.body)}</p><p><a class="route-button" data-fish-postcard-link href="${ctx.escapeHtml(postcardHref(ctx))}">${ctx.escapeHtml(text2.link)} ↗</a></p><p data-eel-ending-action>${ctx.escapeHtml(text2.afterCatch)}</p><p><a class="route-button" data-eel-return-map href="${ctx.escapeHtml(returnVillageHref(ctx))}">${ctx.escapeHtml(text2.returnMap)} ↗</a></p><p>${ctx.escapeHtml(text2.limit)}</p></aside>`;
   }
 
+  // src/entities/best-gear/copy_en.js
+  var copy_en = {
+    title: "Best gear for this fish",
+    size: (low, high) => `Real size ${low === high ? low : `${low}–${high}`} cm`,
+    maxSize: (high) => `MAX size ${high} cm`,
+    methods: { float: "Float rod + bait", lure: "Lure rod + lure", fly: "Fly rod + fly" },
+    slots: { rod: "Rod", hook: "Hook", bait: "Bait", lure: "Lure", fly: "Fly body", float: "Float" },
+    anyFloat: (name) => `Any float works (cheapest: ${name})`,
+    best: "Best kit",
+    cheap: "Cheaper kit, still good",
+    total: (price) => `Total ${price}`,
+    level: ["Easiest", "Easy", "Easy", "Medium", "Hard", "Very hard", "Very hard"],
+    bands: ["Small fish (up to 15 cm)", "Medium fish (16–35 cm)", "Big fish (over 35 cm)"],
+    bandShort: ["Small", "Medium", "Big"],
+    fightEase: "How easy the fight starts",
+    why: {
+      rod: {
+        named: "The rod named for this fish: it skips the fish-size penalty",
+        light: "Light rod: easiest on small fish, and ties with a medium rod on medium fish",
+        medium: "Medium rod: as easy as a light rod for fish this size",
+        heavy: "Heavy rod: does not make the fight easier, but gives the long reach big fish need"
+      },
+      hook: {
+        named: "The hook named for this fish: one step easier",
+        any: "Any hook will do, because the bait is already named for this fish (take the cheapest)",
+        small: "Small hook, right for fish up to 15 cm",
+        medium: "Medium hook, right for fish 16–35 cm",
+        large: "Big hook, right for fish over 35 cm",
+        plain: "This hook does not change the fight"
+      },
+      bait: {
+        named: "The bait named for this fish: one step easier",
+        plain: "The fish takes this bait; take the cheapest one it takes"
+      },
+      lure: {
+        named: "The lure named for this fish: one step easier",
+        small: "This lure type helps small fish (up to 15 cm)",
+        medium: "This lure type helps fish 16–35 cm",
+        large: "This lure type helps fish over 35 cm",
+        plain: "This lure does not change the fight"
+      },
+      fly: {
+        small: "This fly body helps small fish (up to 15 cm)",
+        medium: "This fly body helps fish 16–35 cm",
+        large: "This fly body helps fish over 35 cm",
+        plain: "This fly body does not change the fight; it only decides whether the fish bites"
+      }
+    },
+    alsoOk: "Also fine (equally easy)",
+    detailsTitle: "Why this kit (ROM evidence)",
+    startsLine: (base) => `This fish starts at level ${base} before any gear (0 easiest to 6 hardest)`,
+    startsWith: (band, n) => `${band}: level ${n} with this kit`,
+    reach: (need) => `Rod reach needed: about ${need} or more. This is only an estimate from the wiki’s own simulation, not proven in the ROM`,
+    evidence: "Every rule has a ROM address and a test that runs the real game. The full table and rules:",
+    evidenceLink: "gear-fish-matrix.md",
+    noBite: "This fish does not take this method",
+    yen: (n) => `¥${n.toLocaleString("en-US")}`,
+    loading: "Loading the gear…",
+    failed: "Could not load the gear"
+  };
+
+  // src/entities/best-gear/copy_ja.js
+  var copy_ja = {
+    title: "この魚のベスト装備",
+    size: (low, high) => `実際のサイズ ${low === high ? low : `${low}–${high}`} cm`,
+    maxSize: (high) => `最大サイズ ${high} cm`,
+    methods: { float: "ウキ竿 + エサ", lure: "ルアー竿 + ルアー", fly: "フライ竿 + フライ" },
+    slots: {
+      rod: "竿",
+      hook: "ハリ",
+      bait: "エサ",
+      lure: "ルアー",
+      fly: "フライ（ボディ）",
+      float: "ウキ"
+    },
+    anyFloat: (name) => `ウキはどれでもOK（いちばん安い：${name}）`,
+    best: "ベストの組み合わせ",
+    cheap: "安くて十分な組み合わせ",
+    total: (price) => `合計 ${price}`,
+    level: ["いちばん楽", "楽", "楽", "ふつう", "難しい", "とても難しい", "とても難しい"],
+    bands: ["小さい魚（15 cm 以下）", "中くらいの魚（16–35 cm）", "大きい魚（35 cm 超）"],
+    bandShort: ["小", "中", "大"],
+    fightEase: "ファイトの始まりの楽さ",
+    why: {
+      rod: {
+        named: "この魚の名前がついた竿。サイズによる不利がありません",
+        light: "軽い竿。小さい魚にいちばん楽で、中くらいの魚では中の竿と同じです",
+        medium: "中の竿。このサイズの魚では軽い竿と同じ楽さです",
+        heavy: "重い竿。ファイトは楽になりませんが、大きい魚に必要な長い距離が出ます"
+      },
+      hook: {
+        named: "この魚の名前がついたハリ。1段階楽になります",
+        any: "エサがこの魚の名前つきなので、ハリは何でもOK（いちばん安いもの）",
+        small: "小さいハリ。15 cm 以下の魚向き",
+        medium: "中のハリ。16–35 cm の魚向き",
+        large: "大きいハリ。35 cm 超の魚向き",
+        plain: "このハリはファイトを変えません"
+      },
+      bait: {
+        named: "この魚の名前がついたエサ。1段階楽になります",
+        plain: "この魚が食べるエサ。食べるものの中でいちばん安いものを"
+      },
+      lure: {
+        named: "この魚の名前がついたルアー。1段階楽になります",
+        small: "このタイプのルアーは小さい魚（15 cm 以下）に有利",
+        medium: "このタイプのルアーは 16–35 cm の魚に有利",
+        large: "このタイプのルアーは 35 cm 超の魚に有利",
+        plain: "このルアーはファイトを変えません"
+      },
+      fly: {
+        small: "このフライボディは小さい魚（15 cm 以下）に有利",
+        medium: "このフライボディは 16–35 cm の魚に有利",
+        large: "このフライボディは 35 cm 超の魚に有利",
+        plain: "このフライボディはファイトを変えず、食うかどうかだけを決めます"
+      }
+    },
+    alsoOk: "代わりに使える（同じ楽さ）",
+    detailsTitle: "なぜこの組み合わせか（ROMの根拠）",
+    startsLine: (base) => `この魚は装備なしだとレベル ${base} から始まります（0 が最も楽、6 が最も難しい）`,
+    startsWith: (band, n) => `${band}：この組み合わせでレベル ${n}`,
+    reach: (need) => `必要な竿の距離：約 ${need} 以上。これはウィキ自身のシミュレーションによる推定で、ROMでは証明されていません`,
+    evidence: "すべてのルールにROMのアドレスと、実際のゲームを動かすテストがあります。全表とルール：",
+    evidenceLink: "gear-fish-matrix.md",
+    noBite: "この魚はこの方法では食いません",
+    yen: (n) => `¥${n.toLocaleString("en-US")}`,
+    loading: "装備を読み込み中…",
+    failed: "装備を読み込めませんでした"
+  };
+
+  // src/entities/best-gear/copy_th.js
+  var copy_th = {
+    title: "อุปกรณ์ที่ดีที่สุดสำหรับปลานี้",
+    size: (low, high) => `ขนาดจริง ${low === high ? low : `${low}–${high}`} ซม.`,
+    maxSize: (high) => `ไซส์ MAX ${high} ซม.`,
+    methods: { float: "คันทุ่น + เหยื่อ", lure: "คันลัวร์ + ลัวร์", fly: "คันฟลาย + ฟลาย" },
+    slots: {
+      rod: "คัน",
+      hook: "เบ็ด",
+      bait: "เหยื่อ",
+      lure: "ลัวร์",
+      fly: "ฟลาย (บอดี้)",
+      float: "ทุ่น"
+    },
+    anyFloat: (name) => `ทุ่นอะไรก็ได้ (ถูกสุด: ${name})`,
+    best: "ชุดที่ดีที่สุด",
+    cheap: "ชุดที่ถูกกว่า ยังใช้ได้ดี",
+    total: (price) => `รวม ${price}`,
+    level: ["ง่ายที่สุด", "ง่าย", "ง่าย", "ปานกลาง", "ยาก", "ยากมาก", "ยากมาก"],
+    bands: ["ปลาเล็ก (ไม่เกิน 15 ซม.)", "ปลากลาง (16–35 ซม.)", "ปลาใหญ่ (เกิน 35 ซม.)"],
+    bandShort: ["เล็ก", "กลาง", "ใหญ่"],
+    fightEase: "การสู้เริ่มง่ายแค่ไหน",
+    why: {
+      rod: {
+        named: "คันที่ตั้งชื่อตามปลานี้ ไม่โดนบวกความยากตามขนาดปลา",
+        light: "คันเบา ง่ายที่สุดกับปลาเล็ก และเท่ากับคันกลางกับปลาขนาดกลาง",
+        medium: "คันกลาง ง่ายพอ ๆ กับคันเบาสำหรับปลาขนาดนี้",
+        heavy: "คันหนัก ไม่ได้ทำให้การสู้ง่ายขึ้น แต่ให้ระยะสายไกลสำหรับปลาตัวใหญ่"
+      },
+      hook: {
+        named: "เบ็ดที่ตั้งชื่อตามปลานี้ ง่ายขึ้นหนึ่งขั้น",
+        any: "ไม่ต้องเลือกเบ็ด เพราะเหยื่อนี้ชื่อตรงกับปลาแล้ว (ใช้อันถูกสุด)",
+        small: "เบ็ดเล็ก เหมาะกับปลาไม่เกิน 15 ซม.",
+        medium: "เบ็ดกลาง เหมาะกับปลา 16–35 ซม.",
+        large: "เบ็ดใหญ่ เหมาะกับปลาเกิน 35 ซม.",
+        plain: "เบ็ดนี้ไม่ทำให้การสู้ต่างไป"
+      },
+      bait: {
+        named: "เหยื่อที่ตั้งชื่อตามปลานี้ ง่ายขึ้นหนึ่งขั้น",
+        plain: "ปลากินเหยื่อนี้ เลือกอันถูกสุดที่ปลากิน"
+      },
+      lure: {
+        named: "ลัวร์ที่ตั้งชื่อตามปลานี้ ง่ายขึ้นหนึ่งขั้น",
+        small: "ลัวร์แบบนี้ช่วยปลาเล็ก (ไม่เกิน 15 ซม.)",
+        medium: "ลัวร์แบบนี้ช่วยปลา 16–35 ซม.",
+        large: "ลัวร์แบบนี้ช่วยปลาเกิน 35 ซม.",
+        plain: "ลัวร์นี้ไม่ทำให้การสู้ต่างไป"
+      },
+      fly: {
+        small: "บอดี้ฟลายแบบนี้ช่วยปลาเล็ก (ไม่เกิน 15 ซม.)",
+        medium: "บอดี้ฟลายแบบนี้ช่วยปลา 16–35 ซม.",
+        large: "บอดี้ฟลายแบบนี้ช่วยปลาเกิน 35 ซม.",
+        plain: "บอดี้ฟลายนี้ไม่ทำให้การสู้ต่างไป มีผลแค่ว่าปลากินหรือไม่"
+      }
+    },
+    alsoOk: "ใช้แทนกันได้ (ง่ายเท่ากัน)",
+    detailsTitle: "ทำไมถึงเป็นชุดนี้ (หลักฐานจาก ROM)",
+    startsLine: (base) => `ปลานี้เริ่มที่ระดับ ${base} ก่อนใส่อุปกรณ์ (0 ง่ายที่สุด ถึง 6 ยากที่สุด)`,
+    startsWith: (band, n) => `${band}: ระดับ ${n} หลังใส่ชุดนี้`,
+    reach: (need) => `ระยะสายที่ต้องใช้: ประมาณ ${need} ขึ้นไป เป็นค่าประมาณจากการจำลองของวิกิเท่านั้น ยังไม่ได้พิสูจน์จาก ROM`,
+    evidence: "ทุกกฎมีที่อยู่โค้ดใน ROM และมีเทสต์ที่รันเกมจริงยืนยัน ดูตารางและกฎทั้งหมดที่",
+    evidenceLink: "gear-fish-matrix.md",
+    noBite: "ปลานี้ไม่กินวิธีนี้",
+    yen: (n) => `¥${n.toLocaleString("en-US")}`,
+    loading: "กำลังโหลดชุดอุปกรณ์…",
+    failed: "โหลดชุดอุปกรณ์ไม่สำเร็จ"
+  };
+
+  // src/entities/best-gear/view.js
+  var COPY = { en: copy_en, th: copy_th, ja: copy_ja };
+  var SLOT_OF_METHOD = { float: "bait", lure: "lure", fly: "fly" };
+  var PIPS = 6;
+  var bestGearCopy = (locale) => COPY[locale] ?? copy_en;
+  var escapeHtml2 = (value) => String(value).replace(
+    /[&<>"]/g,
+    (char) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" })[char]
+  );
+  function itemName(data, locale, slot, id) {
+    const entry = data.names[slot]?.[id];
+    return entry?.[locale] ?? entry?.en ?? String(id);
+  }
+  function kitSlots(method, kit) {
+    const slots = [["rod", kit.rod, "rod"]];
+    if (method === "float") slots.push(["hook", kit.hook, "hook"]);
+    const second = SLOT_OF_METHOD[method];
+    slots.push([second, kit[second], second]);
+    return slots;
+  }
+  function easePips(text2, notch) {
+    const filled = PIPS - notch;
+    const label = `${text2.level[notch]} (${filled}/${PIPS})`;
+    const dots = Array.from({ length: PIPS }, (_, i) => `<i${i < filled ? ' class="on"' : ""}></i>`);
+    return `<span class="bg-pips" role="img" aria-label="${escapeHtml2(label)}">${dots.join("")}</span>`;
+  }
+  function easeByBand(text2, starts) {
+    const items = starts.map(
+      (notch, band) => notch == null ? "" : `<li><span class="bg-band">${escapeHtml2(text2.bandShort[band])}</span>${easePips(text2, notch)}<span>${escapeHtml2(text2.level[notch])}</span></li>`
+    ).join("");
+    return `<ul class="bg-ease" aria-label="${escapeHtml2(text2.fightEase)}">${items}</ul>`;
+  }
+
+  // src/entities/best-gear/box.js
+  function rowHtml(data, locale, [slot, id, group], why) {
+    const text2 = bestGearCopy(locale);
+    const reason = text2.why[group]?.[why[slot === "rod" ? "rod" : slot === "hook" ? "hook" : "item"]];
+    return `<li><span class="bg-slot">${escapeHtml2(text2.slots[slot])}</span><span class="bg-item"><strong>${escapeHtml2(itemName(data, locale, slot, id))}</strong>${reason ? `<span class="bg-reason">${escapeHtml2(reason)}</span>` : ""}</span></li>`;
+  }
+  function floatRow(data, locale) {
+    const text2 = bestGearCopy(locale);
+    const name = itemName(data, locale, "float_weight", data.best.route.id);
+    return `<li><span class="bg-slot">${escapeHtml2(text2.slots.float)}</span><span class="bg-item"><span class="bg-reason">${escapeHtml2(text2.anyFloat(name))}</span></span></li>`;
+  }
+  function alsoHtml(data, locale, method, plan) {
+    const text2 = bestGearCopy(locale);
+    const names = (slot, ids) => ids.map((id) => escapeHtml2(itemName(data, locale, slot, id)));
+    const second = method === "float" ? "bait" : method;
+    const lines = [];
+    for (const [key, slot] of [
+      ["rod", "rod"],
+      ["hook", "hook"],
+      [second, second]
+    ]) {
+      const ids = plan.ties[key];
+      if (ids?.length)
+        lines.push(
+          `<li><span class="bg-slot">${escapeHtml2(text2.slots[slot])}</span> ${names(slot, ids).join(" · ")}</li>`
+        );
+    }
+    return lines.length ? `<div class="bg-also"><h4>${escapeHtml2(text2.alsoOk)}</h4><ul>${lines.join("")}</ul></div>` : "";
+  }
+  function cheapHtml(data, locale, method, kit) {
+    const text2 = bestGearCopy(locale);
+    const names = kitSlots(method, kit).map(
+      ([slot, id]) => escapeHtml2(itemName(data, locale, slot, id))
+    );
+    return `<div class="bg-cheap"><h4>${escapeHtml2(text2.cheap)} <span class="bg-total">${escapeHtml2(text2.total(text2.yen(kit.yen)))}</span></h4><p>${names.join(" · ")}</p>${easeByBand(text2, kit.starts)}</div>`;
+  }
+  function methodHtml(data, locale, method, plan, open) {
+    const text2 = bestGearCopy(locale);
+    const [best, cheap] = plan.kits;
+    const rows = kitSlots(method, best).map((slot) => rowHtml(data, locale, slot, best.why));
+    if (method === "float") rows.push(floatRow(data, locale));
+    const body = `<h4>${escapeHtml2(text2.best)} <span class="bg-total">${escapeHtml2(text2.total(text2.yen(best.yen)))}</span></h4>
+<ul class="bg-kit">${rows.join("")}</ul>${easeByBand(text2, best.starts)}${alsoHtml(data, locale, method, plan)}${cheap ? cheapHtml(data, locale, method, cheap) : ""}`;
+    return `<details class="bg-method"${open ? " open" : ""}><summary>${escapeHtml2(text2.methods[method])}</summary><div class="bg-body">${body}</div></details>`;
+  }
+
+  // src/entities/best-gear/why.js
+  var EVIDENCE_URL = "https://github.com/polaminggkub-debug/kawa-no-nushi-tsuri-2-research/blob/main/docs/gear-fish-matrix.md";
+  function whyHtml(locale, fish) {
+    const text2 = bestGearCopy(locale);
+    const best = fish.methods.float?.kits[0];
+    const lines = [text2.startsLine(fish.base)];
+    best?.starts.forEach((notch, band) => {
+      if (notch != null) lines.push(text2.startsWith(text2.bands[band], notch));
+    });
+    const need = fish.methods.float?.need;
+    if (need) lines.push(text2.reach(need));
+    return `<details class="bg-why"><summary>${escapeHtml2(text2.detailsTitle)}</summary><ul>${lines.map((line) => `<li>${escapeHtml2(line)}</li>`).join("")}</ul><p>${escapeHtml2(text2.evidence)} <a href="${EVIDENCE_URL}">${escapeHtml2(text2.evidenceLink)}</a></p></details>`;
+  }
+
+  // src/entities/best-gear/load.js
+  var pending;
+  function getJson(url) {
+    return fetch(url).then((response) => {
+      if (!response.ok) throw new Error(`${url}: ${response.status}`);
+      return response.json();
+    });
+  }
+  function loadBestGear() {
+    pending ||= Promise.all([getJson("gear-best.json"), getJson("gear-guide-names.json")]).then(
+      ([best, names]) => {
+        if (!best?.fish || !names?.fish) throw new Error("best-gear data has an unexpected shape");
+        return { best, names };
+      }
+    );
+    pending.catch(() => pending = void 0);
+    return pending;
+  }
+
+  // src/entities/best-gear/index.js
+  function renderBestGear(data, locale, fishId) {
+    const fish = data.best.fish[fishId];
+    if (!fish) return "";
+    const text2 = bestGearCopy(locale);
+    const methods = Object.entries(fish.methods).map(([method, plan], index) => methodHtml(data, locale, method, plan, index === 0)).join("");
+    const [low, high] = fish.size;
+    return `<section id="best-gear" class="detail-section best-gear"><h2>${escapeHtml2(text2.title)}</h2><p class="bg-size"><strong>${escapeHtml2(text2.size(low, high))}</strong> · ${escapeHtml2(text2.maxSize(high))}</p>${methods}${whyHtml(locale, fish)}</section>`;
+  }
+
   // src/pages/fish/render.js
   var profileAnchors = {
+    "#best-gear": "best-gear",
     "#fish-area-map": "fish-area-map",
     "#water-icons": "water-icons",
     "#all-compatible": "all-compatible",
@@ -1593,7 +1914,8 @@
   function profileContent(ctx, fishData, locationData, fish, state) {
     const notebook = fishData.notebookCompletion?.species?.[ctx.id];
     const firstStep = notebook?.notebookEligible === true ? "" : renderFirstStep(ctx);
-    const content = `${renderEelQuestContext(ctx, locationData)}${firstStep}${ctx.renderAreas(state.locations, state.activeStage, fish)}${ctx.renderExchange(fishData.items || [], state.activeStage)}${ctx.renderShopping(state.matches, state.locations, state.activeStage, fishData.items || [], fishData.flyBackupChoices)}${renderFightControls(ctx, state.activeStage)}${renderNotebookStatus(ctx, fishData)}${compatibleSection(ctx, state)}${ctx.renderWaterIcons(fishData.waterIcons, state.activeStage)}${ctx.renderEvidence(fish, state.locations, state.matches)}`;
+    const bestGear = ctx.bestGear ? renderBestGear(ctx.bestGear, ctx.locale, parseInt(ctx.id, 16)) : "";
+    const content = `${renderEelQuestContext(ctx, locationData)}${firstStep}${bestGear}${ctx.renderAreas(state.locations, state.activeStage, fish)}${ctx.renderExchange(fishData.items || [], state.activeStage)}${ctx.renderShopping(state.matches, state.locations, state.activeStage, fishData.items || [], fishData.flyBackupChoices)}${renderFightControls(ctx, state.activeStage)}${renderNotebookStatus(ctx, fishData)}${compatibleSection(ctx, state)}${ctx.renderWaterIcons(fishData.waterIcons, state.activeStage)}${ctx.renderEvidence(fish, state.locations, state.matches)}`;
     return `${renderProfileHero(ctx, state)}${renderSectionIndex(ctx, content)}${content}`;
   }
   function unconfirmedProfileContent(ctx, fishData, locationData, fish, state) {
@@ -1674,7 +1996,7 @@
   }
 
   // src/pages/fish/copy_en.js
-  var copy_en = {
+  var copy_en2 = {
     pageTitle: "Fish profile",
     missing: "Choose a fish from the catalogue or map.",
     invalid: "This fish profile is not in the extracted catalogue.",
@@ -1719,7 +2041,7 @@
   };
 
   // src/pages/fish/copy_ja.js
-  var copy_ja = {
+  var copy_ja2 = {
     pageTitle: "魚の情報",
     missing: "マップまたはカタログから魚を選んでください。",
     invalid: "抽出済みカタログにこの魚プロフィールはありません。",
@@ -1764,7 +2086,7 @@
   };
 
   // src/pages/fish/copy_th.js
-  var copy_th = {
+  var copy_th2 = {
     pageTitle: "ข้อมูลปลา",
     missing: "เลือกปลาจากหน้าแผนที่หรือแคตตาล็อกก่อนครับ",
     invalid: "ไม่พบโปรไฟล์ปลานี้ในรายการที่ถอดข้อมูลไว้",
@@ -1810,7 +2132,7 @@
 
   // src/pages/fish/load-copy.js
   function loadCopy(ctx) {
-    ctx.copy = { en: copy_en, ja: copy_ja, th: copy_th }[ctx.locale] || null;
+    ctx.copy = { en: copy_en2, ja: copy_ja2, th: copy_th2 }[ctx.locale] || null;
   }
 
   // src/pages/fish/shoppingCopy_en.js
@@ -1869,7 +2191,10 @@
     fetchProfile(ctx);
   }
   function fetchProfile(ctx) {
-    Promise.all([loadGallery(), loadLocations()]).then(([fishData, locationData]) => ctx.render(fishData, locationData)).catch((error) => {
+    Promise.all([loadGallery(), loadLocations(), loadBestGear().catch(() => null)]).then(([fishData, locationData, bestGear]) => {
+      ctx.bestGear = bestGear;
+      ctx.render(fishData, locationData);
+    }).catch((error) => {
       console.error("Fish profile failed to load or render.", error);
       showLoadError(ctx);
     });

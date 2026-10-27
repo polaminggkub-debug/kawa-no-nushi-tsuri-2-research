@@ -6,7 +6,7 @@
     <title>How to choose your gear — Kawa no Nushi Tsuri 2</title>
     <meta
       name="description"
-      content="What every rod, hook, bait, lure and fly does, whether it matters, how to pick one and what not to waste money on. Pick a fish and get the cheapest kit worth buying."
+      content="The best rod, hook, bait, lure and fly for every fish, in five short steps. Search a fish and see what to buy."
     />
     <link
       rel="canonical"
@@ -63,83 +63,148 @@
       <header class="gg-heading">
         <h1>How to choose your gear</h1>
         <p class="lead">
-          For every kind of item: what it does, whether it matters, how to pick one, and what not to
-          waste money on. Short answers, no guesswork.
+          Pick your fish and get the gear to buy. Short steps first; the reasons are folded away
+          under “Why”.
         </p>
       </header>
       <section id="steps" class="gg-section" aria-labelledby="steps-title">
-        <h2 id="steps-title">3 steps to pick a kit for any fish</h2>
+        <h2 id="steps-title">Pick your gear in 5 steps</h2>
         <ol class="gg-steps">
           <li class="gg-step">
-            <h3>Pick the method</h3>
+            <h3>Pick your fish</h3>
+            <p>Find it in the table below (type its name). Every fish has one best kit.</p>
+          </li>
+          <li class="gg-step">
+            <h3>Check how big it is</h3>
             <p>
-              A float rod with bait catches all 72 fish, so start there. Use a lure rod (38 fish) or
-              a fly rod (33 fish) only if you want to.
-            </p>
-            <p>
-              Skip the casting rod: it only catches bottom fish, and a float rod catches those too.
+              Real fish sizes start at <strong>half</strong> the notebook minimum and go up to the
+              MAX size. Small is up to 15 cm, medium 16–35 cm, big over 35 cm. The table shows each
+              fish’s real size.
             </p>
           </li>
           <li class="gg-step">
-            <h3>Pick the rod and the hook</h3>
+            <h3>Pick the rod</h3>
             <p>
-              <strong>Rod:</strong> enough reach for the fish. 38 fish are fine on any float rod, 15
-              need reach 24.
-            </p>
-            <p>
-              <strong>Hook:</strong> the one named for your fish. No named hook: up to 15 cm a small
-              hook, 16 to 35 cm a medium hook, over 35 cm a big hook.
+              Best: the rod named for the fish (for example the Yamame rod for Yamame). If there is
+              none: a <strong>light</strong> rod for small fish ({{name:rod:6}}, {{name:rod:14}}), a
+              light or medium rod for medium fish, and any rod for big fish. A heavy rod
+              ({{name:rod:8}}) never makes the fight easier; buy one only when the fish needs its
+              reach.
             </p>
           </li>
           <li class="gg-step">
-            <h3>Pick what it bites</h3>
+            <h3>Pick the hook and the bait</h3>
             <p>
-              Bait, lure or fly from the fish's own list, then cast so the bobber sits on the fish's
-              exact tile.
+              A hook or a bait named for the fish makes the fight one step easier (they do not add
+              up). If none is named, match the hook to the size: small ({{name:hook:8}},
+              {{name:hook:7}}, {{name:hook:11}}) up to 15 cm, medium ({{name:hook:9}},
+              {{name:hook:6}}) for 16–35 cm, big ({{name:hook:4}}, {{name:hook:3}}, {{name:hook:1}})
+              over 35 cm. The bait only has to be one the fish takes; the table gives the cheapest.
             </p>
-            <p>Not sure? The kit finder below picks all of it for you.</p>
+          </li>
+          <li class="gg-step">
+            <h3>Pick the method and the float</h3>
+            <p>
+              A float rod with bait catches all 72 fish, so start there. Use the lure or fly tabs
+              only if you want to try them: 38 fish take lures and 33 take flies. Floats and sinkers
+              never change the fight; they only decide which fish can bite.
+            </p>
           </li>
         </ol>
-        <div class="gg-meter">
-          <h3>Why gear matters: the line-strain meter</h3>
-          <p>
-            Every fight has a six-step meter. Each mistake (pressing A at the wrong moment, see the
-            <a href="fight-sim.html">fight simulator</a> for the right rhythm) moves it up one step.
-            At the top the fish is lost.
-          </p>
-          <ul class="gg-meter-steps" aria-label="Meter steps">
-            <li>1</li>
-            <li>3</li>
-            <li>7</li>
-            <li>15</li>
-            <li>31</li>
-            <li>63</li>
+        <p class="gg-note">
+          A good kit makes the fight start easier: the fish has to pull more times before it bolts
+          and gets away. The boxes show it: <strong>more filled = easier</strong>.
+        </p>
+      </section>
+      <section id="best" class="gg-section" aria-labelledby="best-title">
+        <h2 id="best-title">Best gear for every fish</h2>
+        <p class="lead">
+          Search a fish. Each row is the kit that makes the fight start easiest for the sizes that
+          fish really has.
+        </p>
+        <p id="bg-status" class="status" role="status" aria-live="polite"></p>
+        <div class="bg-tools">
+          <input
+            id="bg-search"
+            class="bg-search"
+            type="search"
+            placeholder="Search fish"
+            aria-label="Search fish"
+            autocomplete="off"
+          />
+          <div class="bg-tabs" role="radiogroup" aria-label="Method">
+            <label><input type="radio" name="bg-method" value="float" checked />Float + bait</label>
+            <label><input type="radio" name="bg-method" value="lure" />Lure</label>
+            <label><input type="radio" name="bg-method" value="fly" />Fly</label>
+          </div>
+        </div>
+        <div id="bg-table" aria-live="polite"></div>
+        <details id="why" class="bg-why">
+          <summary>Why: the proof from the ROM</summary>
+          <ul class="gg-why-list">
+            <li>
+              Gear sets how hard a fight <strong>starts</strong>, on a scale from 0 (easiest) to 6
+              (hardest). One level lower gives the fish one more pull before it bolts. Proven in a
+              running game: with start 3, 2 and 0 holding A loses the fish at frame 12, 28 and 92.
+            </li>
+            <li>
+              Three things set the start: the <strong>rod</strong> (light is one easier, heavy one
+              harder, then a penalty when the rod is the wrong size for the fish unless it is named
+              for it), then <strong>one</strong> of the hook, bait, lure or fly body (named for the
+              fish: one easier; otherwise by size), and the fish itself.
+            </li>
+            <li>
+              Real fish size runs from <strong>half</strong> the record minimum up to the MAX size,
+              so 34 of the 72 fish reach a smaller size band than the notebook suggests (Yamame is
+              15–35 cm, not 30–35).
+            </li>
+            <li>
+              A fish only bites an item it accepts: bait, lure or fly body. Time, weather, rod and
+              hook do not change who bites.
+            </li>
+            <li>
+              <strong>Not proven:</strong> how much rod reach each fish needs. The table uses the
+              wiki’s own simulation for that, so treat it as an estimate. The share of fish you land
+              also depends on your rhythm.
+            </li>
           </ul>
           <p>
-            Your gear decides where the meter starts, which is how many mistakes you can afford.
-            Start at 0, 1 or 3 and you land the fish almost every time. Start at 7 and it works for
-            about 6 fish in 10. Start at 15 and almost everything gets away (median catch: about 1
-            in 70).
+            Full table, rules and ROM addresses:
+            <a
+              href="https://github.com/polaminggkub-debug/kawa-no-nushi-tsuri-2-research/blob/main/docs/gear-fish-matrix.md"
+              >gear-fish-matrix.md</a
+            >. Source: kawa commit <code>ea99698</code>; ROM tests
+            <code>gear-start-rom.test.ts</code>, <code>fight-chain-rom.test.ts</code> and
+            <code>fish-size-bite-rom.test.ts</code>.
           </p>
-        </div>
+        </details>
       </section>
       <section id="finder" class="gg-section" aria-labelledby="finder-title">
-        <h2 id="finder-title">Kit finder</h2>
-        <p class="lead">
-          Choose a fish. For each way to catch it you get the cheapest kit worth buying: items,
-          prices, where to buy, how many mistakes you can afford and the simulated landing rate.
-        </p>
-        <p id="gg-status" class="status" role="status" aria-live="polite">Loading the kit data…</p>
-        <div class="gg-form">
-          <label for="gg-fish">Fish</label>
-          <select id="gg-fish"></select>
-          <p id="gg-facts" class="gg-facts"></p>
-        </div>
-        <div id="gg-results" aria-live="polite"></div>
-        <p class="gg-note">
-          Bait and hooks are sold in stacks of 9: the price is per stack. Landing rates are from 400
-          simulated fights per kit using the best A rhythm from the fight simulator.
-        </p>
+        <h2 id="finder-title">Prices and simulated landing rates</h2>
+        <details class="gg-old">
+          <summary>Show prices, shops and simulated landing rates</summary>
+          <p class="gg-note">
+            Older estimate: the landing rates below use the notebook size range, not the real one
+            shown above.
+          </p>
+          <p class="lead">
+            Choose a fish. For each way to catch it you get the cheapest kit worth buying: items,
+            prices, where to buy, how many mistakes you can afford and the simulated landing rate.
+          </p>
+          <p id="gg-status" class="status" role="status" aria-live="polite">
+            Loading the kit data…
+          </p>
+          <div class="gg-form">
+            <label for="gg-fish">Fish</label>
+            <select id="gg-fish"></select>
+            <p id="gg-facts" class="gg-facts"></p>
+          </div>
+          <div id="gg-results" aria-live="polite"></div>
+          <p class="gg-note">
+            Bait and hooks are sold in stacks of 9: the price is per stack. Landing rates are from
+            400 simulated fights per kit using the best A rhythm from the fight simulator.
+          </p>
+        </details>
       </section>
       <section id="cards" class="gg-section" aria-labelledby="cards-title">
         <h2 id="cards-title">Item by item</h2>

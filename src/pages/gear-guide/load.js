@@ -7,7 +7,9 @@ function getJson(url) {
 
 /** The measured gear effects and the localized item names built from the catalogue. */
 export function loadData() {
-  return Promise.all([getJson('../data/gear-effects.json'), getJson('gear-guide-names.json')]).then(
-    ([effects, names]) => ({ effects, names }),
-  )
+  return Promise.all([
+    getJson('../data/gear-effects.json'),
+    getJson('gear-guide-names.json'),
+    getJson('gear-best.json'),
+  ]).then(([effects, names, best]) => ({ effects, names, best }))
 }

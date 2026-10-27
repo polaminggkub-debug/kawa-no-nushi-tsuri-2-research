@@ -1,3 +1,4 @@
+import { loadBestGear } from '../../entities/best-gear/index.js'
 import { shoppingCopy_en } from './shoppingCopy_en.js'
 import { shoppingCopy_ja } from './shoppingCopy_ja.js'
 import { shoppingCopy_th } from './shoppingCopy_th.js'
@@ -18,8 +19,11 @@ export function loadProfile(ctx) {
 }
 
 function fetchProfile(ctx) {
-  Promise.all([loadGallery(), loadLocations()])
-    .then(([fishData, locationData]) => ctx.render(fishData, locationData))
+  Promise.all([loadGallery(), loadLocations(), loadBestGear().catch(() => null)])
+    .then(([fishData, locationData, bestGear]) => {
+      ctx.bestGear = bestGear
+      ctx.render(fishData, locationData)
+    })
     .catch((error) => {
       console.error('Fish profile failed to load or render.', error)
       showLoadError(ctx)
