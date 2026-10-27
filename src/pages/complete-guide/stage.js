@@ -20,7 +20,7 @@ function fishTable(ctx, stage) {
     maxCell(copy, f),
   ])
   const head = [copy.stage.colFish, copy.stage.colSize, copy.stage.colMax]
-  return `${table(head.map(esc), rows, copy.stage.fishHead)}<p class="cg-note">${esc(copy.stage.growNote)} ${badge(lang, 'rom')}</p>`
+  return `${table(head.map(esc), rows, copy.stage.fishHead, ' cg-table-fish')}<p class="cg-note">${esc(copy.stage.growNote)} ${badge(lang, 'rom')}</p>`
 }
 
 function whichTable(ctx, stage) {
@@ -71,7 +71,7 @@ export function renderStage(ctx, stage, firstStage) {
   const { copy, lang } = ctx
   const name = stage.mapName[lang] ?? stage.mapName.en
   const methods = METHODS_ORDER.map((m) => renderMethod(ctx, stage, m, firstStage)).join('')
-  return `<section class="cg-stage" id="stage-${stage.stage}" aria-labelledby="stage-${stage.stage}-title">
+  return `<section class="cg-stage" data-keep-repeats id="stage-${stage.stage}" aria-labelledby="stage-${stage.stage}-title">
 <h2 id="stage-${stage.stage}-title">${esc(copy.stage.head(stage.stage, name))}</h2>
 <h3>${esc(copy.stage.fishHead)}</h3>${fishTable(ctx, stage)}
 ${whichTable(ctx, stage)}${switchLines(ctx, stage)}

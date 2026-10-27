@@ -4,7 +4,7 @@ const MIN_LENGTH = 40
 function markRepeats(root) {
   const seen = new Set()
   for (const node of root.querySelectorAll(SELECTOR)) {
-    if (node.children.length || node.closest('.cards')) continue
+    if (node.children.length || node.closest('.cards, [data-keep-repeats]')) continue
     const text = node.textContent.replace(/\s+/g, ' ').trim()
     if (text.length < MIN_LENGTH) continue
     if (seen.has(text)) node.dataset.repeat = 'true'
@@ -12,7 +12,7 @@ function markRepeats(root) {
   }
 }
 
-/** The item grid is left alone: each card must stand on its own. A long technical sentence is shown once per page; later copies are hidden, not deleted. */
+/** The item grid and anything marked data-keep-repeats (each guide stage must stand on its own) are left alone. A long technical sentence is shown once per page; later copies are hidden, not deleted. */
 export function quietRepeats(main) {
   if (!main || typeof MutationObserver === 'undefined') return
   let timer = 0

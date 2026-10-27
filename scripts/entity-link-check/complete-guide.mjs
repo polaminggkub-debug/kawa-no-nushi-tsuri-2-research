@@ -63,6 +63,10 @@ function checkPages() {
       `${file}: trust badges`,
     )
     assert(html.includes('trust trust-unconfirmed'), `${file}: untested lure types are marked`)
+    assert(
+      html.split('data-keep-repeats').length - 1 === 6,
+      `${file}: stages are exempt from quiet repeats`,
+    )
     assert(!html.includes('เพดาน'), `${file}: plain Thai for size MAX`)
     assert(!/fight time|เวลาสู้ปลา.{0,6}\+2|戦闘時間/i.test(html), `${file}: +2 is not fight time`)
     const home = read(`catalogue/index${suffix}.html`)

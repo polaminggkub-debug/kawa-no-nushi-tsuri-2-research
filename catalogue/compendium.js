@@ -402,7 +402,7 @@
   function markRepeats(root) {
     const seen = /* @__PURE__ */ new Set();
     for (const node of root.querySelectorAll(SELECTOR)) {
-      if (node.children.length || node.closest(".cards")) continue;
+      if (node.children.length || node.closest(".cards, [data-keep-repeats]")) continue;
       const text = node.textContent.replace(/\s+/g, " ").trim();
       if (text.length < MIN_LENGTH) continue;
       if (seen.has(text)) node.dataset.repeat = "true";

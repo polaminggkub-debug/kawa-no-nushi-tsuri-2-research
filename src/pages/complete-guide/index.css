@@ -195,3 +195,10 @@
     grid-template-columns: repeat(3, 1fr);
   }
 }
+
+.cg-table-fish {
+  min-width: 0;
+}
+.cg-table td:first-child {
+  min-width: 112px;
+}

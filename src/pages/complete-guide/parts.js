@@ -16,9 +16,9 @@ export function makeNamer(names, lang) {
 
 export const badge = (lang, level) => trustBadge(lang, level)
 
-export function table(head, rows, label) {
+export function table(head, rows, label, extra = '') {
   const cells = (tag, row) => row.map((cell) => `<${tag}>${cell}</${tag}>`).join('')
-  return `<div class="cg-scroll" tabindex="0" role="region" aria-label="${esc(label)}"><table class="cg-table"><thead><tr>${cells('th', head)}</tr></thead><tbody>${rows
+  return `<div class="cg-scroll" tabindex="0" role="region" aria-label="${esc(label)}"><table class="cg-table${extra}"><thead><tr>${cells('th', head)}</tr></thead><tbody>${rows
     .map((row) => `<tr>${cells('td', row)}</tr>`)
     .join('')}</tbody></table></div>`
 }
