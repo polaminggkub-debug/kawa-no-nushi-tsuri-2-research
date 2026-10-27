@@ -1,4 +1,5 @@
 const sections = [
+  ['best-gear', 'อุปกรณ์ที่ดีที่สุด', 'ベスト装備', 'Best gear'],
   ['fish-area-map', 'จุดตกปลา', '釣り場', 'Fishing spots'],
   ['fish-shopping', 'ชุดเริ่มตก', '最初の仕掛け', 'Fishing setup'],
   ['fish-notebook', 'สมุดปลา', '釣りノート', 'Notebook'],

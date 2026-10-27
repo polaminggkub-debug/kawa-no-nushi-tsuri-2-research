@@ -1,6 +1,7 @@
 const areaWord = (list) => `ด่าน ${list.join(', ')}`
 
 export default {
+  fishLabel: 'ปลา',
   loading: 'กำลังโหลดข้อมูลชุดอุปกรณ์…',
   failed: 'โหลดข้อมูลชุดอุปกรณ์ไม่สำเร็จ',
   retry: 'ลองอีกครั้ง',

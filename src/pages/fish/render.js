@@ -3,8 +3,10 @@ import { distinctFishNames } from './fish-names.js'
 import { renderFightControls } from './fight-controls.js'
 import { renderNotebookStatus } from './notebook-status.js'
 import { renderEelQuestContext } from './quest-context.js'
+import { renderBestGear } from '../../entities/best-gear/index.js'
 
 const profileAnchors = {
+  '#best-gear': 'best-gear',
   '#fish-area-map': 'fish-area-map',
   '#water-icons': 'water-icons',
   '#all-compatible': 'all-compatible',
@@ -90,7 +92,10 @@ function compatibleSection(ctx, state) {
 function profileContent(ctx, fishData, locationData, fish, state) {
   const notebook = fishData.notebookCompletion?.species?.[ctx.id]
   const firstStep = notebook?.notebookEligible === true ? '' : renderFirstStep(ctx)
-  const content = `${renderEelQuestContext(ctx, locationData)}${firstStep}${ctx.renderAreas(state.locations, state.activeStage, fish)}${ctx.renderExchange(fishData.items || [], state.activeStage)}${ctx.renderShopping(state.matches, state.locations, state.activeStage, fishData.items || [], fishData.flyBackupChoices)}${renderFightControls(ctx, state.activeStage)}${renderNotebookStatus(ctx, fishData)}${compatibleSection(ctx, state)}${ctx.renderWaterIcons(fishData.waterIcons, state.activeStage)}${ctx.renderEvidence(fish, state.locations, state.matches)}`
+  const bestGear = ctx.bestGear
+    ? renderBestGear(ctx.bestGear, ctx.locale, parseInt(ctx.id, 16))
+    : ''
+  const content = `${renderEelQuestContext(ctx, locationData)}${firstStep}${bestGear}${ctx.renderAreas(state.locations, state.activeStage, fish)}${ctx.renderExchange(fishData.items || [], state.activeStage)}${ctx.renderShopping(state.matches, state.locations, state.activeStage, fishData.items || [], fishData.flyBackupChoices)}${renderFightControls(ctx, state.activeStage)}${renderNotebookStatus(ctx, fishData)}${compatibleSection(ctx, state)}${ctx.renderWaterIcons(fishData.waterIcons, state.activeStage)}${ctx.renderEvidence(fish, state.locations, state.matches)}`
   return `${renderProfileHero(ctx, state)}${renderSectionIndex(ctx, content)}${content}`
 }
 

@@ -1,6 +1,7 @@
 const areaWord = (list) => (list.length === 1 ? `Area ${list[0]}` : `Areas ${list.join(', ')}`)
 
 export default {
+  fishLabel: 'Fish',
   loading: 'Loading the kit data…',
   failed: 'Could not load the kit data.',
   retry: 'Try again',

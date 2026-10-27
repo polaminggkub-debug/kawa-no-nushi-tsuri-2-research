@@ -1,3 +1,4 @@
+import { bindTable, renderTable } from './best-table.js'
 import { copy } from './copy.js'
 import { escapeHtml } from './format.js'
 import { itemLabel, renderPlans } from './kit-view.js'
@@ -17,7 +18,7 @@ function setupContext(ctx) {
 const hexId = (id) => Number(id).toString(16).toUpperCase().padStart(2, '0')
 
 function fishFacts(ctx, fishId, plans) {
-  const { size } = ctx.effects.fish[fishId]
+  const { size } = ctx.best.fish[fishId]
   const { need } = plans[0]
   const link = `fish${suffixes[ctx.locale]}.html?id=${hexId(fishId)}&return=gear-guide${suffixes[ctx.locale]}.html`
   return `${ctx.text.sizeLine(...size)} ${ctx.text.reachLine(need)} <a href="${escapeHtml(link)}">${ctx.text.fishLink}</a>`
@@ -46,7 +47,21 @@ function fillFish(ctx, selected) {
     .join('')
 }
 
+function startTable(ctx) {
+  const table = {
+    data: { best: ctx.best, names: ctx.names },
+    locale: ctx.locale,
+    method: 'float',
+    query: '',
+    target: ctx.$('bg-table'),
+    fishLabel: ctx.text.fishLabel,
+  }
+  renderTable(table)
+  bindTable(table, ctx.$('bg-search'), document.querySelectorAll('input[name="bg-method"]'))
+}
+
 function ready(ctx) {
+  startTable(ctx)
   const asked = new URLSearchParams(location.search).get('fish')
   const fishId = ctx.effects.fish[asked] ? asked : DEFAULT_FISH
   fillFish(ctx, fishId)

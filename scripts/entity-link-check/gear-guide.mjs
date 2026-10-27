@@ -40,6 +40,7 @@ checkNamedTackle()
 checkCoverage()
 checkFlyLock()
 checkKits()
+checkBestGear()
 
 console.log(
   'Gear guide PASS: EN/TH/JA pages render with navigation, home-intro link and visitor statistics; card numbers match the measured data; every fish has a working kit finder result in every language.',
@@ -75,9 +76,22 @@ function checkPage(locale, suffix) {
   const html = read(file)
   assert(html.includes(`<html lang="${locale}" data-locale="${locale}">`), `${file}: locale`)
   assert.equal(html.split(goatCounterScript()).length, 2, `${file}: visitor statistics once`)
-  for (const id of ['steps', 'finder', 'cards', 'gg-fish', 'gg-results', 'gg-facts', 'gg-status'])
+  for (const id of [
+    'steps',
+    'best',
+    'bg-table',
+    'bg-search',
+    'why',
+    'finder',
+    'cards',
+    'gg-fish',
+    'gg-results',
+    'gg-facts',
+    'gg-status',
+  ])
     assert(html.includes(`id="${id}"`), `${file}: missing #${id}`)
-  assert.equal((html.match(/<li class="gg-step">/g) ?? []).length, 3, `${file}: three steps`)
+  assert.equal((html.match(/<li class="gg-step">/g) ?? []).length, 5, `${file}: five steps`)
+  assert.equal((html.match(/name="bg-method"/g) ?? []).length, 3, `${file}: three method tabs`)
   assert.equal((html.match(/<article class="gg-card"/g) ?? []).length, allCards(locale).length)
   assert.equal(allCards(locale).length, 14, `${locale}: one card per item kind`)
   assert.equal((html.match(/<h4>/g) ?? []).length, 28, `${file}: choose and avoid on every card`)
@@ -350,4 +364,48 @@ function checkKits() {
       }
     }
   }
+}
+
+// catalogue/gear-best.json: every fish has real sizes (half the record minimum up to the maximum),
+// kits whose prices add up, and starts that are never better than the proven best.
+function checkBestGear() {
+  const matrix = json('guide-data/gear-fish-matrix.json')
+  const best = json('catalogue/gear-best.json')
+  assert.equal(Object.keys(best.fish).length, 72, 'gear-best: every fish')
+  const band = (size) => (size <= 15 ? 0 : size <= 35 ? 1 : 2)
+  let smaller = 0
+  for (const row of matrix.fish) {
+    const entry = best.fish[row.id]
+    assert.deepEqual(entry.size, [row.record.min >> 1, row.record.max], `fish ${row.id}: real size`)
+    if (band(entry.size[0]) < band(row.record.min)) smaller += 1
+    assert(entry.methods.float, `fish ${row.id}: float plan`)
+    for (const [method, plan] of Object.entries(entry.methods)) {
+      const proven = row.best[method === 'float' ? 'bait' : method].start
+      for (const kit of plan.kits) {
+        const second = method === 'float' ? 'bait' : method
+        const yen = [
+          effects.items.rod[kit.rod].yen,
+          kit.hook == null ? 0 : effects.items.hook[kit.hook].yen,
+          method === 'fly'
+            ? Math.min(...liveBundles(effects, kit.fly).map((bundle) => bundle[2]))
+            : effects.items[second][kit[second]].yen,
+        ]
+        assert.equal(
+          yen.reduce((a, b) => a + b, 0),
+          kit.yen,
+          `fish ${row.id} ${method}: kit price adds up`,
+        )
+        kit.starts.forEach((start, band) =>
+          assert(start == null || start >= proven[band], `fish ${row.id} ${method}: start ${band}`),
+        )
+      }
+    }
+  }
+  assert.equal(
+    smaller,
+    34,
+    'gear-best: 34 of 72 fish reach a smaller size band than the record minimum',
+  )
+  const yamame = best.fish[3].methods.float.kits[0]
+  assert.deepEqual([best.fish[3].size, yamame.rod, yamame.hook], [[15, 35], 5, 13], 'Yamame kit')
 }
