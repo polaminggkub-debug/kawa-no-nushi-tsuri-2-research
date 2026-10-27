@@ -25,7 +25,14 @@ function checkLocale(locale) {
   const required = {
     en: ['buying advice for this area', 'price', 'cast distance', 'line strength', 'fight start'],
     th: ['คำแนะนำซื้อ', 'ด่านนี้', 'ราคา', 'ระยะเหวี่ยง', 'สายขาดยาก', 'จุดเริ่มสู้'],
-    ja: ['このエリア', '購入アドバイス', '価格', '投げる距離', '糸の切れにくさ', 'ファイトの出だし'],
+    ja: [
+      'このエリア',
+      '購入アドバイス',
+      '価格',
+      '投げる距離',
+      '糸の切れにくさ',
+      'ファイトの出だし',
+    ],
   }[locale]
   for (const phrase of required)
     assert(guidance.includes(phrase), `${locale}: common rod scope/action missing ${phrase}`)

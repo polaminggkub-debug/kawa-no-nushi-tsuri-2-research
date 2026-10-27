@@ -35,6 +35,7 @@ export function sourceFiles(root, context) {
     ...collectTree(join(root, 'scripts/entity-link-check'), 'scripts/entity-link-check', context),
     ...collectTree(join(root, 'scripts/gear-effects'), 'scripts/gear-effects', context),
     ...collectTree(join(root, 'scripts/gear-guide'), 'scripts/gear-guide', context),
+    ...collectTree(join(root, 'scripts/complete-guide'), 'scripts/complete-guide', context),
   ]
   const buildTool = join(root, 'scripts/build_frontend.mjs')
   if (existsSync(buildTool) && statSync(buildTool).isFile())

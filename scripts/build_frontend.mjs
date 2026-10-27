@@ -6,6 +6,7 @@ import vm from 'node:vm'
 import { assetVersion, versionAssetReferences } from './code-quality/asset-versions.mjs'
 import { addGoatCounter } from './code-quality/analytics.mjs'
 import { renderGearGuide, renderGuideNames } from './gear-guide/render.mjs'
+import { renderCompleteGuidePage } from './complete-guide/render.mjs'
 import { renderGearBest } from './gear-best/render.mjs'
 import { renderSearchIndex } from './search-index/render.mjs'
 
@@ -33,6 +34,7 @@ export const styles = {
   quests: 'catalogue/quests.css',
   'fight-sim': 'catalogue/fight-sim.css',
   'gear-guide': 'catalogue/gear-guide.css',
+  'complete-guide': 'catalogue/complete-guide.css',
 }
 
 async function compile(entry, extension) {
@@ -225,6 +227,7 @@ export async function renderFrontendOutputs() {
     'quests',
     'fight-sim',
     'gear-guide',
+    'complete-guide',
   ]) {
     for (const { file, source } of templateFiles(slice)) {
       const locale = file.includes('.th.') ? 'th' : file.includes('.ja.') ? 'ja' : 'en'
@@ -235,7 +238,9 @@ export async function renderFrontendOutputs() {
             ? strategyTables(file, source)
             : slice === 'gear-guide'
               ? renderGearGuide(file, source)
-              : source
+              : slice === 'complete-guide'
+                ? renderCompleteGuidePage(file, source)
+                : source
       const outputPath = `${slice === 'strategy' ? 'research' : 'catalogue'}/${file}`
       outputs.set(outputPath, addGoatCounter(versionAssetReferences(html, outputPath, outputs)))
     }
