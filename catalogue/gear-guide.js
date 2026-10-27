@@ -52,10 +52,10 @@
     best: "Easiest-start kit",
     cheap: "Cheapest kit that still works well",
     total: (price) => `Total ${price}`,
-    level: ["Easiest", "Easy", "Easy", "Medium", "Hard", "Very hard", "Very hard"],
+    tier: ["Very easy", "Easy", "Medium", "Hard", "Very hard"],
     bands: ["Small fish (up to 15 cm)", "Medium fish (16–35 cm)", "Big fish (over 35 cm)"],
-    bandShort: ["Small", "Medium", "Big"],
-    fightEase: "How easy the fight starts",
+    fightEase: "Difficulty at the start of the fight",
+    easeHint: "The easier it is, the harder it is for the fish to get away",
     why: {
       rod: {
         named: "The rod named for this fish: it skips the fish-size penalty",
@@ -124,10 +124,10 @@
     best: "最初の戦いがいちばん楽な組み合わせ",
     cheap: "十分使える中でいちばん安い組み合わせ",
     total: (price) => `合計 ${price}`,
-    level: ["いちばん楽", "楽", "楽", "ふつう", "難しい", "とても難しい", "とても難しい"],
+    tier: ["とても楽", "楽", "ふつう", "難しい", "とても難しい"],
     bands: ["小さい魚（15 cm 以下）", "中くらいの魚（16–35 cm）", "大きい魚（35 cm 超）"],
-    bandShort: ["小", "中", "大"],
-    fightEase: "ファイトの始まりの楽さ",
+    fightEase: "ファイト開始時の難しさ",
+    easeHint: "楽なほど魚は外れにくい",
     why: {
       rod: {
         named: "この魚の名前がついた竿。サイズによる不利がありません",
@@ -196,10 +196,10 @@
     best: "ชุดที่สู้ง่ายที่สุดตอนเริ่ม",
     cheap: "ชุดที่ถูกที่สุดที่ยังใช้ได้ดี",
     total: (price) => `รวม ${price}`,
-    level: ["ง่ายที่สุด", "ง่าย", "ง่าย", "ปานกลาง", "ยาก", "ยากมาก", "ยากมาก"],
-    bands: ["ปลาเล็ก (ไม่เกิน 15 ซม.)", "ปลากลาง (16–35 ซม.)", "ปลาใหญ่ (เกิน 35 ซม.)"],
-    bandShort: ["เล็ก", "กลาง", "ใหญ่"],
-    fightEase: "การสู้เริ่มง่ายแค่ไหน",
+    tier: ["ง่ายมาก", "ง่าย", "ปานกลาง", "ยาก", "ยากมาก"],
+    bands: ["ปลาขนาดเล็ก (ไม่เกิน 15 ซม.)", "ปลาขนาดกลาง (16–35 ซม.)", "ปลาขนาดใหญ่ (เกิน 35 ซม.)"],
+    fightEase: "ความยากตอนเริ่มสู้",
+    easeHint: "ยิ่งง่าย ปลายิ่งหลุดยาก",
     why: {
       rod: {
         named: "คันที่ตั้งชื่อตามปลานี้ ไม่โดนบวกความยากตามขนาดปลา",
@@ -248,7 +248,6 @@
 
   // src/entities/best-gear/view.js
   var COPY = { en: copy_en, th: copy_th, ja: copy_ja };
-  var PIPS = 6;
   var bestGearCopy = (locale) => COPY[locale] ?? copy_en;
   var escapeHtml = (value) => String(value).replace(
     /[&<>"]/g,
@@ -267,18 +266,15 @@
     const entry = data.names[slot]?.[id];
     return entry?.[locale] ?? entry?.en ?? String(id);
   }
-  function easePips(text, notch) {
-    const filled = PIPS - notch;
-    const label = `${text.level[notch]} (${filled}/${PIPS})`;
-    const dots = Array.from({ length: PIPS }, (_, i) => `<i${i < filled ? ' class="on"' : ""}></i>`);
-    return `<span class="bg-pips" role="img" aria-label="${escapeHtml(label)}">${dots.join("")}</span>`;
-  }
+  var tierOf = (notch) => Math.min(notch, 4);
+  var easePill = (text, notch) => `<span class="bg-pill bg-pill-${tierOf(notch)}">${escapeHtml(text.tier[tierOf(notch)])}</span>`;
   function easeByBand(text, starts) {
     const items = starts.map(
-      (notch, band) => notch == null ? "" : `<li><span class="bg-band">${escapeHtml(text.bandShort[band])}</span>${easePips(text, notch)}<span>${escapeHtml(text.level[notch])}</span></li>`
+      (notch, band) => notch == null ? "" : `<li><span class="bg-band">${escapeHtml(text.bands[band])}</span>${easePill(text, notch)}</li>`
     ).join("");
-    return `<ul class="bg-ease" aria-label="${escapeHtml(text.fightEase)}">${items}</ul>`;
+    return `<div class="bg-ease-box"><p class="bg-ease-label">${escapeHtml(text.fightEase)}</p><ul class="bg-ease">${items}</ul></div>`;
   }
+  var easeHint = (text) => `<p class="bg-ease-hint">${escapeHtml(text.easeHint)}</p>`;
 
   // src/entities/best-gear/max.js
   function maxHtml(text, fish) {
@@ -358,7 +354,7 @@ ${itemCell(data, locale, secondLabel, second, kit[second], second, kit.why.item)
   function renderTable(ctx) {
     const rows = visibleFish(ctx);
     const text = bestGearCopy(ctx.locale);
-    ctx.target.innerHTML = rows.length ? `<table class="bg-table">${headHtml(ctx)}<tbody>${rows.map(([id, fish]) => rowHtml(ctx, id, fish, fish.methods[ctx.method])).join("")}</tbody></table>` : `<p class="bg-empty">${escapeHtml(text.noBite)}</p>`;
+    ctx.target.innerHTML = rows.length ? `<table class="bg-table">${headHtml(ctx)}<tbody>${rows.map(([id, fish]) => rowHtml(ctx, id, fish, fish.methods[ctx.method])).join("")}</tbody></table>${easeHint(text)}` : `<p class="bg-empty">${escapeHtml(text.noBite)}</p>`;
   }
   function bindTable(ctx, search, radios) {
     search.addEventListener("input", () => {

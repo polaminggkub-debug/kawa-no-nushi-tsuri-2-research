@@ -63,10 +63,18 @@
   color: var(--muted);
   font-size: 0.92rem;
 }
+.bg-ease-box {
+  margin-block: 12px 0;
+}
+.bg-ease-label {
+  margin: 0 0 4px;
+  color: var(--muted);
+  font-size: 0.88rem;
+}
 .bg-ease {
   display: grid;
   gap: 6px;
-  margin-block: 12px 0;
+  margin: 0;
   padding: 0;
   list-style: none;
 }
@@ -77,21 +85,39 @@
   align-items: center;
 }
 .bg-band {
-  min-width: 3.4rem;
   font-weight: 650;
 }
-.bg-pips {
-  display: inline-flex;
-  gap: 3px;
+.bg-pill {
+  padding: 1px 10px;
+  border-radius: 999px;
+  font-size: 0.88rem;
+  font-weight: 700;
+  white-space: nowrap;
 }
-.bg-pips i {
-  width: 14px;
-  height: 14px;
-  border: 1px solid var(--deep);
-  border-radius: 3px;
+.bg-pill-0 {
+  background: #166534;
+  color: #fff;
 }
-.bg-pips i.on {
-  background: var(--deep);
+.bg-pill-1 {
+  background: #bbf7d0;
+  color: #14532d;
+}
+.bg-pill-2 {
+  background: #fde68a;
+  color: #78350f;
+}
+.bg-pill-3 {
+  background: #c2410c;
+  color: #fff;
+}
+.bg-pill-4 {
+  background: #b91c1c;
+  color: #fff;
+}
+.bg-ease-hint {
+  margin: 8px 0 0;
+  color: var(--muted);
+  font-size: 0.88rem;
 }
 .bg-pics {
   display: flex;

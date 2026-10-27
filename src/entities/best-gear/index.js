@@ -7,7 +7,8 @@ export { loadBestGear } from './load.js'
 export {
   bestGearCopy,
   easeByBand,
-  easePips,
+  easeHint,
+  easePill,
   escapeHtml,
   itemName,
   itemPic,
