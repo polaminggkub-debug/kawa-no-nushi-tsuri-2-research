@@ -1,4 +1,11 @@
-import { bestGearCopy, easeByBand, escapeHtml, itemName } from '../../entities/best-gear/index.js'
+import {
+  bestGearCopy,
+  easeByBand,
+  escapeHtml,
+  itemName,
+  maxHtml,
+  shownHigh,
+} from '../../entities/best-gear/index.js'
 
 const suffixes = { en: '', th: '.th', ja: '.ja' }
 const SECOND = { float: 'bait', lure: 'lure', fly: 'fly' }
@@ -30,7 +37,7 @@ function rowHtml(ctx, id, fish, plan) {
   const name = escapeHtml(itemName(data, locale, 'fish', id))
   const secondLabel = text.slots[second]
   return `<tr><td><a href="${escapeHtml(fishLink(locale, id))}"><strong>${name}</strong></a></td>
-<td data-label="${size}"><span>${escapeHtml(text.size(...fish.size))}<small>${escapeHtml(text.maxSize(fish.size[1]))}</small></span></td>
+<td data-label="${size}"><span>${escapeHtml(text.size(fish.size[0], shownHigh(fish)))}<small>${maxHtml(text, fish)}</small></span></td>
 ${itemCell(data, locale, rod, 'rod', kit.rod, 'rod', kit.why.rod)}
 ${ctx.method === 'float' ? itemCell(data, locale, hook, 'hook', kit.hook, 'hook', kit.why.hook) : ''}
 ${itemCell(data, locale, secondLabel, second, kit[second], second, kit.why.item)}

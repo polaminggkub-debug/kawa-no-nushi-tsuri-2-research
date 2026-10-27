@@ -75,8 +75,17 @@ function checkPages() {
   }
 }
 
+function checkMaxSize() {
+  const best = json('catalogue/gear-best.json').fish
+  assert.equal(best[55].max.status, 'quest-only', 'Akame MAX is quest-only')
+  assert.equal(best[59].max.status, 'story-only', 'Giant eel MAX is story-only')
+  assert(best[13].max.slow && best[13].max.picks[0] === 56, 'Koi MAX takes long to raise')
+  assert(!best[1].max.slow, 'Iwana MAX is quick')
+}
+
 checkPlan()
 checkPages()
+checkMaxSize()
 console.log(
   'Complete guide PASS: EN/TH/JA pages cover 5 methods in 6 stages; every kit is on sale in its stage at the stated price; trust badges, navigation and home links present.',
 )

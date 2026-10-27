@@ -2,6 +2,13 @@ export const copy_en = {
   title: 'Gear for this fish',
   size: (low, high) => `Real size ${low === high ? low : `${low}–${high}`} cm`,
   maxSize: (high) => `MAX size ${high} cm`,
+  maxSlow: 'Takes long to raise',
+  maxSlowNote: (picks, nights) =>
+    `MAX needs ${picks[0]}–${picks[1]} inn nights that pick its cell; at about 30 fights between nights that is roughly ${nights[0]}–${nights[1]} nights.`,
+  maxAkame:
+    'MAX size 150 cm only for character 1 before the quest fish is landed. Everyone else gets 60–119 cm.',
+  maxEel:
+    'MAX size 220 cm, one eel per game, in the eel story only. It does not grow and loses 2 cm after each lost fight.',
   methods: { float: 'Float rod + bait', lure: 'Lure rod + lure', fly: 'Fly rod + fly' },
   slots: { rod: 'Rod', hook: 'Hook', bait: 'Bait', lure: 'Lure', fly: 'Fly body', float: 'Float' },
   anyFloat: (name) => `Any float works (cheapest: ${name})`,

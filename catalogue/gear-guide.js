@@ -25,6 +25,10 @@
     title: "Gear for this fish",
     size: (low, high) => `Real size ${low === high ? low : `${low}–${high}`} cm`,
     maxSize: (high) => `MAX size ${high} cm`,
+    maxSlow: "Takes long to raise",
+    maxSlowNote: (picks, nights) => `MAX needs ${picks[0]}–${picks[1]} inn nights that pick its cell; at about 30 fights between nights that is roughly ${nights[0]}–${nights[1]} nights.`,
+    maxAkame: "MAX size 150 cm only for character 1 before the quest fish is landed. Everyone else gets 60–119 cm.",
+    maxEel: "MAX size 220 cm, one eel per game, in the eel story only. It does not grow and loses 2 cm after each lost fight.",
     methods: { float: "Float rod + bait", lure: "Lure rod + lure", fly: "Fly rod + fly" },
     slots: { rod: "Rod", hook: "Hook", bait: "Bait", lure: "Lure", fly: "Fly body", float: "Float" },
     anyFloat: (name) => `Any float works (cheapest: ${name})`,
@@ -86,6 +90,10 @@
     title: "この魚の仕掛け",
     size: (low, high) => `実際のサイズ ${low === high ? low : `${low}–${high}`} cm`,
     maxSize: (high) => `最大サイズ ${high} cm`,
+    maxSlow: "育つまで長い",
+    maxSlowNote: (picks, nights) => `MAXになるには、その魚のマスが宿の夜に${picks[0]}〜${picks[1]}回選ばれる必要があります。夜の間に約30回ファイトする場合、およそ${nights[0]}〜${nights[1]}泊です。`,
+    maxAkame: "最大サイズ150cmはキャラクター1がクエストの魚を釣る前だけ。ほかの人は60〜119cmです。",
+    maxEel: "最大サイズ220cm。1ゲームに1匹、ウナギの話の間だけ。育たず、ファイトで逃がすたびに2cm小さくなります。",
     methods: { float: "ウキ竿 + エサ", lure: "ルアー竿 + ルアー", fly: "フライ竿 + フライ" },
     slots: {
       rod: "竿",
@@ -154,6 +162,10 @@
     title: "ชุดเบ็ดสำหรับปลานี้",
     size: (low, high) => `ขนาดจริง ${low === high ? low : `${low}–${high}`} ซม.`,
     maxSize: (high) => `ไซส์ MAX ${high} ซม.`,
+    maxSlow: "ต้องเลี้ยงนาน",
+    maxSlowNote: (picks, nights) => `ไซส์ MAX ต้องรอให้คืนที่พักโรงแรมเลือกช่องของปลาตัวนี้ ${picks[0]}–${picks[1]} ครั้ง ถ้าสู้ปลาราว 30 ครั้งระหว่างคืน ก็ราว ${nights[0]}–${nights[1]} คืน`,
+    maxAkame: "ไซส์ MAX 150 ซม. เฉพาะตัวละคร 1 ก่อนตกปลาเควสต์ได้ คนอื่นได้ 60–119 ซม.",
+    maxEel: "ไซส์ MAX 220 ซม. มีตัวเดียวต่อเกม เฉพาะช่วงเรื่องปลาไหล ไม่โตขึ้น และเสีย 2 ซม. ทุกครั้งที่สู้หลุด",
     methods: { float: "คันทุ่น + เหยื่อ", lure: "คันลัวร์ + ลัวร์", fly: "คันฟลาย + ฟลาย" },
     slots: {
       rod: "คัน",
@@ -242,6 +254,18 @@
     return `<ul class="bg-ease" aria-label="${escapeHtml(text.fightEase)}">${items}</ul>`;
   }
 
+  // src/entities/best-gear/max.js
+  function maxHtml(text, fish) {
+    const max = fish.max;
+    if (max?.status === "quest-only") return escapeHtml(text.maxAkame);
+    if (max?.status === "story-only") return escapeHtml(text.maxEel);
+    const line = escapeHtml(text.maxSize(fish.size[1]));
+    if (!max?.slow) return line;
+    const note = escapeHtml(text.maxSlowNote(max.picks, max.nights));
+    return `${line} <span class="bg-tag">${escapeHtml(text.maxSlow)}</span><small>${note}</small>`;
+  }
+  var shownHigh = (fish) => fish.max?.status === "quest-only" ? fish.max.reachable.otherwise : fish.size[1];
+
   // src/pages/gear-guide/best-table.js
   var suffixes = { en: "", th: ".th", ja: ".ja" };
   var SECOND = { float: "bait", lure: "lure", fly: "fly" };
@@ -269,7 +293,7 @@
     const name = escapeHtml(itemName(data, locale, "fish", id));
     const secondLabel = text.slots[second];
     return `<tr><td><a href="${escapeHtml(fishLink(locale, id))}"><strong>${name}</strong></a></td>
-<td data-label="${size}"><span>${escapeHtml(text.size(...fish.size))}<small>${escapeHtml(text.maxSize(fish.size[1]))}</small></span></td>
+<td data-label="${size}"><span>${escapeHtml(text.size(fish.size[0], shownHigh(fish)))}<small>${maxHtml(text, fish)}</small></span></td>
 ${itemCell(data, locale, rod, "rod", kit.rod, "rod", kit.why.rod)}
 ${ctx.method === "float" ? itemCell(data, locale, hook, "hook", kit.hook, "hook", kit.why.hook) : ""}
 ${itemCell(data, locale, secondLabel, second, kit[second], second, kit.why.item)}

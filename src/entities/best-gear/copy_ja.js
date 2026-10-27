@@ -2,6 +2,12 @@ export const copy_ja = {
   title: 'この魚の仕掛け',
   size: (low, high) => `実際のサイズ ${low === high ? low : `${low}–${high}`} cm`,
   maxSize: (high) => `最大サイズ ${high} cm`,
+  maxSlow: '育つまで長い',
+  maxSlowNote: (picks, nights) =>
+    `MAXになるには、その魚のマスが宿の夜に${picks[0]}〜${picks[1]}回選ばれる必要があります。夜の間に約30回ファイトする場合、およそ${nights[0]}〜${nights[1]}泊です。`,
+  maxAkame: '最大サイズ150cmはキャラクター1がクエストの魚を釣る前だけ。ほかの人は60〜119cmです。',
+  maxEel:
+    '最大サイズ220cm。1ゲームに1匹、ウナギの話の間だけ。育たず、ファイトで逃がすたびに2cm小さくなります。',
   methods: { float: 'ウキ竿 + エサ', lure: 'ルアー竿 + ルアー', fly: 'フライ竿 + フライ' },
   slots: {
     rod: '竿',

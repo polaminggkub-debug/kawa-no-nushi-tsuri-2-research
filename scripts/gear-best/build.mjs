@@ -1,4 +1,5 @@
 import { liveBundles } from '../../src/pages/gear-guide/kits.js'
+import { maxView } from '../complete-guide/plan.mjs'
 import { BAND_OF, BAND_SIZE, startNotch } from './rule.mjs'
 
 // Builds catalogue/gear-best.json: for every fish and every method the best kit (lowest fight
@@ -162,7 +163,7 @@ function ties(all, best, method) {
   return result
 }
 
-export function buildGearBest(matrix, effects) {
+export function buildGearBest(matrix, effects, maxSize) {
   const fish = {}
   for (const row of matrix.fish) {
     const methods = {}
@@ -176,6 +177,7 @@ export function buildGearBest(matrix, effects) {
       record: [row.record.min, row.record.max],
       base: row.baseNotch,
       rodFor: row.namedFor.rod,
+      max: maxView(maxSize.rows.filter((entry) => entry.fish === row.id).slice(0, 1)),
       methods,
     }
   }

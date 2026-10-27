@@ -1547,6 +1547,10 @@
     title: "Gear for this fish",
     size: (low, high) => `Real size ${low === high ? low : `${low}–${high}`} cm`,
     maxSize: (high) => `MAX size ${high} cm`,
+    maxSlow: "Takes long to raise",
+    maxSlowNote: (picks, nights) => `MAX needs ${picks[0]}–${picks[1]} inn nights that pick its cell; at about 30 fights between nights that is roughly ${nights[0]}–${nights[1]} nights.`,
+    maxAkame: "MAX size 150 cm only for character 1 before the quest fish is landed. Everyone else gets 60–119 cm.",
+    maxEel: "MAX size 220 cm, one eel per game, in the eel story only. It does not grow and loses 2 cm after each lost fight.",
     methods: { float: "Float rod + bait", lure: "Lure rod + lure", fly: "Fly rod + fly" },
     slots: { rod: "Rod", hook: "Hook", bait: "Bait", lure: "Lure", fly: "Fly body", float: "Float" },
     anyFloat: (name) => `Any float works (cheapest: ${name})`,
@@ -1608,6 +1612,10 @@
     title: "この魚の仕掛け",
     size: (low, high) => `実際のサイズ ${low === high ? low : `${low}–${high}`} cm`,
     maxSize: (high) => `最大サイズ ${high} cm`,
+    maxSlow: "育つまで長い",
+    maxSlowNote: (picks, nights) => `MAXになるには、その魚のマスが宿の夜に${picks[0]}〜${picks[1]}回選ばれる必要があります。夜の間に約30回ファイトする場合、およそ${nights[0]}〜${nights[1]}泊です。`,
+    maxAkame: "最大サイズ150cmはキャラクター1がクエストの魚を釣る前だけ。ほかの人は60〜119cmです。",
+    maxEel: "最大サイズ220cm。1ゲームに1匹、ウナギの話の間だけ。育たず、ファイトで逃がすたびに2cm小さくなります。",
     methods: { float: "ウキ竿 + エサ", lure: "ルアー竿 + ルアー", fly: "フライ竿 + フライ" },
     slots: {
       rod: "竿",
@@ -1676,6 +1684,10 @@
     title: "ชุดเบ็ดสำหรับปลานี้",
     size: (low, high) => `ขนาดจริง ${low === high ? low : `${low}–${high}`} ซม.`,
     maxSize: (high) => `ไซส์ MAX ${high} ซม.`,
+    maxSlow: "ต้องเลี้ยงนาน",
+    maxSlowNote: (picks, nights) => `ไซส์ MAX ต้องรอให้คืนที่พักโรงแรมเลือกช่องของปลาตัวนี้ ${picks[0]}–${picks[1]} ครั้ง ถ้าสู้ปลาราว 30 ครั้งระหว่างคืน ก็ราว ${nights[0]}–${nights[1]} คืน`,
+    maxAkame: "ไซส์ MAX 150 ซม. เฉพาะตัวละคร 1 ก่อนตกปลาเควสต์ได้ คนอื่นได้ 60–119 ซม.",
+    maxEel: "ไซส์ MAX 220 ซม. มีตัวเดียวต่อเกม เฉพาะช่วงเรื่องปลาไหล ไม่โตขึ้น และเสีย 2 ซม. ทุกครั้งที่สู้หลุด",
     methods: { float: "คันทุ่น + เหยื่อ", lure: "คันลัวร์ + ลัวร์", fly: "คันฟลาย + ฟลาย" },
     slots: {
       rod: "คัน",
@@ -1818,6 +1830,18 @@
     return `<details class="bg-method"${open ? " open" : ""}><summary>${escapeHtml2(text2.methods[method])}</summary><div class="bg-body">${body}</div></details>`;
   }
 
+  // src/entities/best-gear/max.js
+  function maxHtml(text2, fish) {
+    const max = fish.max;
+    if (max?.status === "quest-only") return escapeHtml2(text2.maxAkame);
+    if (max?.status === "story-only") return escapeHtml2(text2.maxEel);
+    const line = escapeHtml2(text2.maxSize(fish.size[1]));
+    if (!max?.slow) return line;
+    const note = escapeHtml2(text2.maxSlowNote(max.picks, max.nights));
+    return `${line} <span class="bg-tag">${escapeHtml2(text2.maxSlow)}</span><small>${note}</small>`;
+  }
+  var shownHigh = (fish) => fish.max?.status === "quest-only" ? fish.max.reachable.otherwise : fish.size[1];
+
   // src/entities/best-gear/why.js
   var EVIDENCE_URL = "https://github.com/polaminggkub-debug/kawa-no-nushi-tsuri-2-research/blob/main/docs/gear-fish-matrix.md";
   function whyHtml(locale, fish) {
@@ -1858,8 +1882,9 @@
     if (!fish) return "";
     const text2 = bestGearCopy(locale);
     const methods = Object.entries(fish.methods).map(([method, plan], index) => methodHtml(data, locale, method, plan, index === 0)).join("");
-    const [low, high] = fish.size;
-    return `<section id="best-gear" class="detail-section best-gear"><h2>${escapeHtml2(text2.title)}</h2><p class="bg-size"><strong>${escapeHtml2(text2.size(low, high))}</strong> · ${escapeHtml2(text2.maxSize(high))}</p>${methods}${whyHtml(locale, fish)}</section>`;
+    const low = fish.size[0];
+    const high = shownHigh(fish);
+    return `<section id="best-gear" class="detail-section best-gear"><h2>${escapeHtml2(text2.title)}</h2><p class="bg-size"><strong>${escapeHtml2(text2.size(low, high))}</strong> · ${maxHtml(text2, fish)}</p>${methods}${whyHtml(locale, fish)}</section>`;
   }
 
   // src/pages/fish/render.js

@@ -224,7 +224,7 @@ function methodPlan(matrix, fishList, method, p) {
   }
 }
 
-function maxView(rows) {
+export function maxView(rows) {
   const row = rows[0]
   const picks = row.passesFromNewFish
   const base = {

@@ -232,3 +232,13 @@
   min-width: 0;
   overflow-wrap: anywhere;
 }
+
+.bg-tag {
+  display: inline-block;
+  padding: 1px 8px;
+  border-radius: 999px;
+  background: #f5e6c8;
+  color: #6b4a0b;
+  font-size: 12px;
+  font-weight: 700;
+}
