@@ -97,6 +97,11 @@
     evidence: "Every rule has a ROM address and a test that runs the real game. The full table and rules:",
     evidenceLink: "gear-fish-matrix.md",
     noBite: "This fish does not take this method",
+    buyAt: "Buy at:",
+    stage: (n) => `Stage ${n}`,
+    shops: { shop: "shop", special: "special rod shop", fly: "ready-made fly shop" },
+    laterHead: (n) => `Once you reach stage ${n}:`,
+    nothingYet: (n) => `The shops of stage ${n} and earlier do not sell anything this fish takes with this method yet`,
     yen: (n) => `¥${n.toLocaleString("en-US")}`,
     loading: "Loading the gear…",
     failed: "Could not load the gear"
@@ -169,6 +174,11 @@
     evidence: "すべてのルールにROMのアドレスと、実際のゲームを動かすテストがあります。全表とルール：",
     evidenceLink: "gear-fish-matrix.md",
     noBite: "この魚はこの方法では食いません",
+    buyAt: "購入先:",
+    stage: (n) => `エリア${n}`,
+    shops: { shop: "店", special: "特別な竿屋", fly: "完成品の毛バリ屋" },
+    laterHead: (n) => `エリア${n}に着いたら:`,
+    nothingYet: (n) => `エリア${n}までの店には、この魚がこの方法で食うものはまだ売っていません`,
     yen: (n) => `¥${n.toLocaleString("en-US")}`,
     loading: "装備を読み込み中…",
     failed: "装備を読み込めませんでした"
@@ -241,6 +251,11 @@
     evidence: "ทุกกฎมีที่อยู่โค้ดใน ROM และมีเทสต์ที่รันเกมจริงยืนยัน ดูตารางและกฎทั้งหมดที่",
     evidenceLink: "gear-fish-matrix.md",
     noBite: "ปลานี้ไม่กินวิธีนี้",
+    buyAt: "ซื้อที่:",
+    stage: (n) => `ด่าน ${n}`,
+    shops: { shop: "ร้านค้า", special: "ร้านขายคันพิเศษ", fly: "ร้านฟลายสำเร็จรูป" },
+    laterHead: (n) => `ถ้าไปถึงด่าน ${n} แล้ว:`,
+    nothingYet: (n) => `ร้านในด่าน ${n} และด่านก่อนหน้ายังไม่มีของที่ปลาตัวนี้กินด้วยวิธีนี้ขาย`,
     yen: (n) => `¥${n.toLocaleString("en-US")}`,
     loading: "กำลังโหลดชุดอุปกรณ์…",
     failed: "โหลดชุดอุปกรณ์ไม่สำเร็จ"
@@ -248,6 +263,7 @@
 
   // src/entities/best-gear/view.js
   var COPY = { en: copy_en, th: copy_th, ja: copy_ja };
+  var SLOT_OF_METHOD = { float: "bait", lure: "lure", fly: "fly" };
   var bestGearCopy = (locale) => COPY[locale] ?? copy_en;
   var escapeHtml = (value) => String(value).replace(
     /[&<>"]/g,
@@ -266,6 +282,13 @@
     const entry = data.names[slot]?.[id];
     return entry?.[locale] ?? entry?.en ?? String(id);
   }
+  function kitSlots(method, kit) {
+    const slots = [["rod", kit.rod, "rod"]];
+    if (method === "float") slots.push(["hook", kit.hook, "hook"]);
+    const second = SLOT_OF_METHOD[method];
+    slots.push([second, kit[second], second]);
+    return slots;
+  }
   var tierOf = (notch) => Math.min(notch, 4);
   var easePill = (text, notch) => `<span class="bg-pill bg-pill-${tierOf(notch)}">${escapeHtml(text.tier[tierOf(notch)])}</span>`;
   function easeByBand(text, starts) {
@@ -275,6 +298,8 @@
     return `<div class="bg-ease-box"><p class="bg-ease-label">${escapeHtml(text.fightEase)}</p><ul class="bg-ease">${items}</ul></div>`;
   }
   var easeHint = (text) => `<p class="bg-ease-hint">${escapeHtml(text.easeHint)}</p>`;
+  var buyText = (text, [stage, shop]) => `${text.buyAt} ${text.stage(stage)} ${text.shops[shop]}`;
+  var buyOf = (kit, slot) => kit.buy[slot === "rod" || slot === "hook" ? slot : "item"];
 
   // src/entities/best-gear/max.js
   function maxHtml(text, fish) {
@@ -300,27 +325,49 @@
     const hex = Number(id).toString(16).toUpperCase().padStart(2, "0");
     return `fish${suffixes[locale]}.html?id=${hex}&return=gear-guide${suffixes[locale]}.html`;
   }
-  function itemCell(data, locale, label, slot, id, group, why) {
+  function itemCell(data, locale, label, slot, id, group, kit) {
     const text = bestGearCopy(locale);
+    const why = kit.why[group === "rod" || group === "hook" ? group : "item"];
+    const buy = escapeHtml(buyText(text, buyOf(kit, slot)));
     const reason = why && why !== "plain" && why !== "any" ? text.why[group]?.[why] : "";
     const name = id == null ? "–" : itemPic(data, locale, slot, id);
-    return `<td data-label="${escapeHtml(label)}"><span>${name}${reason ? `<small>${escapeHtml(reason)}</small>` : ""}</span></td>`;
+    return `<td data-label="${escapeHtml(label)}"><span>${name}${reason ? `<small>${escapeHtml(reason)}</small>` : ""}<small>${buy}</small></span></td>`;
   }
-  function rowHtml(ctx, id, fish, plan) {
+  var colCount = (ctx) => ctx.method === "float" ? 6 : 5;
+  function noteRow(ctx, html) {
+    return `<tr class="bg-note-row"><td class="bg-later-cell" colspan="${colCount(ctx) + 1}">${html}</td></tr>`;
+  }
+  function laterRow(ctx, plan) {
+    const { data, locale } = ctx;
+    const text = bestGearCopy(locale);
+    const { kit, stage } = plan.later;
+    const names = kitSlots(ctx.method, kit).map(
+      ([slot, id]) => `${itemPic(data, locale, slot, id)} <small>(${escapeHtml(buyText(text, buyOf(kit, slot)))})</small>`
+    );
+    return noteRow(
+      ctx,
+      `<strong>${escapeHtml(text.laterHead(stage))}</strong> ${names.join(" · ")}<div>${easeByBand(text, kit.starts)}</div>${escapeHtml(text.yen(kit.yen))}`
+    );
+  }
+  function rowHtml(ctx, id, fish, stage, plan) {
     const { data, locale } = ctx;
     const text = bestGearCopy(locale);
     const [size, rod, hook, start2, price] = LABELS[locale];
     const kit = plan.kits[0];
     const second = SECOND[ctx.method];
     const name = itemPic(data, locale, "fish", id, "fishrow");
+    const head = `<td><a href="${escapeHtml(fishLink(locale, id))}"><strong>${name}</strong></a> <span class="bg-tag">${escapeHtml(text.stage(stage))}</span></td>`;
+    const later = plan.later ? laterRow(ctx, plan) : "";
+    if (!kit)
+      return `<tr>${head}<td colspan="${colCount(ctx)}">${escapeHtml(text.nothingYet(stage))}</td></tr>${later}`;
     const secondLabel = text.slots[second];
-    return `<tr><td><a href="${escapeHtml(fishLink(locale, id))}"><strong>${name}</strong></a></td>
+    return `<tr>${head}
 <td data-label="${size}"><span>${escapeHtml(text.size(fish.size[0], shownHigh(fish)))}<small>${maxHtml(text, fish)}</small></span></td>
-${itemCell(data, locale, rod, "rod", kit.rod, "rod", kit.why.rod)}
-${ctx.method === "float" ? itemCell(data, locale, hook, "hook", kit.hook, "hook", kit.why.hook) : ""}
-${itemCell(data, locale, secondLabel, second, kit[second], second, kit.why.item)}
+${itemCell(data, locale, rod, "rod", kit.rod, "rod", kit)}
+${ctx.method === "float" ? itemCell(data, locale, hook, "hook", kit.hook, "hook", kit) : ""}
+${itemCell(data, locale, secondLabel, second, kit[second], second, kit)}
 <td data-label="${start2}"><div>${easeByBand(text, kit.starts)}</div></td>
-<td data-label="${price}">${escapeHtml(text.yen(kit.yen))}</td></tr>`;
+<td data-label="${price}">${escapeHtml(text.yen(kit.yen))}</td></tr>${later}`;
   }
   function headHtml(ctx) {
     const text = bestGearCopy(ctx.locale);
@@ -351,10 +398,14 @@ ${itemCell(data, locale, secondLabel, second, kit[second], second, kit.why.item)
       )
     );
   }
+  function stageRows(ctx, id, fish) {
+    const plan = fish.methods[ctx.method];
+    return Object.entries(plan.stages).map(([stage, entry]) => rowHtml(ctx, id, fish, +stage, entry)).join("");
+  }
   function renderTable(ctx) {
     const rows = visibleFish(ctx);
     const text = bestGearCopy(ctx.locale);
-    ctx.target.innerHTML = rows.length ? `<table class="bg-table">${headHtml(ctx)}<tbody>${rows.map(([id, fish]) => rowHtml(ctx, id, fish, fish.methods[ctx.method])).join("")}</tbody></table>${easeHint(text)}` : `<p class="bg-empty">${escapeHtml(text.noBite)}</p>`;
+    ctx.target.innerHTML = rows.length ? `<table class="bg-table">${headHtml(ctx)}<tbody>${rows.map(([id, fish]) => stageRows(ctx, id, fish)).join("")}</tbody></table>${easeHint(text)}` : `<p class="bg-empty">${escapeHtml(text.noBite)}</p>`;
   }
   function bindTable(ctx, search, radios) {
     search.addEventListener("input", () => {

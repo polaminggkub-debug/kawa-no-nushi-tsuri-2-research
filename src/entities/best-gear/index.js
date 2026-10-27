@@ -6,6 +6,8 @@ import { bestGearCopy, escapeHtml } from './view.js'
 export { loadBestGear } from './load.js'
 export {
   bestGearCopy,
+  buyOf,
+  buyText,
   easeByBand,
   easeHint,
   easePill,

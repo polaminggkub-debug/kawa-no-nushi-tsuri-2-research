@@ -7,7 +7,8 @@ const EVIDENCE_URL =
 /** The collapsed "why" block: the fish's own numbers and the evidence link. */
 export function whyHtml(locale, fish) {
   const text = bestGearCopy(locale)
-  const best = fish.methods.float?.kits[0]
+  const best = Object.values(fish.methods.float?.stages ?? {}).find((entry) => entry.kits.length)
+    ?.kits[0]
   const lines = [text.startsLine(fish.base)]
   best?.starts.forEach((notch, band) => {
     if (notch != null) lines.push(text.startsWith(text.bands[band], notch))

@@ -12,6 +12,7 @@ export function renderGearBest() {
     readJson('guide-data/gear-fish-matrix.json'),
     readJson('data/gear-effects.json'),
     readJson('guide-data/fish-max-size.json'),
+    readJson('data/shop-stock-rom.json'),
   )
   return `${JSON.stringify(best)}\n`
 }

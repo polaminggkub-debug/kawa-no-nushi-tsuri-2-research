@@ -368,6 +368,13 @@ function checkKits() {
 
 // catalogue/gear-best.json: every fish has real sizes (half the record minimum up to the maximum),
 // kits whose prices add up, and starts that are never better than the proven best.
+function stageKits(plan) {
+  return Object.values(plan.stages).flatMap((entry) => [
+    ...entry.kits,
+    ...(entry.later ? [entry.later.kit] : []),
+  ])
+}
+
 function checkBestGear() {
   const matrix = json('guide-data/gear-fish-matrix.json')
   const best = json('catalogue/gear-best.json')
@@ -381,7 +388,7 @@ function checkBestGear() {
     assert(entry.methods.float, `fish ${row.id}: float plan`)
     for (const [method, plan] of Object.entries(entry.methods)) {
       const proven = row.best[method === 'float' ? 'bait' : method].start
-      for (const kit of plan.kits) {
+      for (const kit of stageKits(plan)) {
         const second = method === 'float' ? 'bait' : method
         const yen = [
           effects.items.rod[kit.rod].yen,
@@ -406,6 +413,6 @@ function checkBestGear() {
     34,
     'gear-best: 34 of 72 fish reach a smaller size band than the record minimum',
   )
-  const yamame = best.fish[3].methods.float.kits[0]
+  const yamame = stageKits(best.fish[3].methods.float).sort((a, b) => a.score - b.score)[0]
   assert.deepEqual([best.fish[3].size, yamame.rod, yamame.hook], [[15, 35], 5, 13], 'Yamame kit')
 }

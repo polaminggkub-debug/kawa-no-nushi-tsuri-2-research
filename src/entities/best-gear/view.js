@@ -59,3 +59,10 @@ export function easeByBand(text, starts) {
 
 /** The one-line hint shown once per page section. */
 export const easeHint = (text) => `<p class="bg-ease-hint">${escapeHtml(text.easeHint)}</p>`
+
+/** "Buy at: Stage 2 shop" for one part; `at` is [stage, shop]. */
+export const buyText = (text, [stage, shop]) =>
+  `${text.buyAt} ${text.stage(stage)} ${text.shops[shop]}`
+
+/** The `buy` entry of a kit for a slot of kitSlots(). */
+export const buyOf = (kit, slot) => kit.buy[slot === 'rod' || slot === 'hook' ? slot : 'item']

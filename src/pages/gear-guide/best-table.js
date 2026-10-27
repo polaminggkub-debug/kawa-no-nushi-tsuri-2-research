@@ -1,10 +1,13 @@
 import {
   bestGearCopy,
+  buyOf,
+  buyText,
   easeByBand,
   easeHint,
   escapeHtml,
   itemName,
   itemPic,
+  kitSlots,
   maxHtml,
   shownHigh,
 } from '../../entities/best-gear/index.js'
@@ -23,28 +26,55 @@ function fishLink(locale, id) {
 }
 
 /** One item cell: the name, and the one-line reason when it says something. */
-function itemCell(data, locale, label, slot, id, group, why) {
+function itemCell(data, locale, label, slot, id, group, kit) {
   const text = bestGearCopy(locale)
+  const why = kit.why[group === 'rod' || group === 'hook' ? group : 'item']
+  const buy = escapeHtml(buyText(text, buyOf(kit, slot)))
   const reason = why && why !== 'plain' && why !== 'any' ? text.why[group]?.[why] : ''
   const name = id == null ? '–' : itemPic(data, locale, slot, id)
-  return `<td data-label="${escapeHtml(label)}"><span>${name}${reason ? `<small>${escapeHtml(reason)}</small>` : ''}</span></td>`
+  return `<td data-label="${escapeHtml(label)}"><span>${name}${reason ? `<small>${escapeHtml(reason)}</small>` : ''}<small>${buy}</small></span></td>`
 }
 
-function rowHtml(ctx, id, fish, plan) {
+const colCount = (ctx) => (ctx.method === 'float' ? 6 : 5)
+
+/** A full-width row under a fish row: the later-stage kit, or nothing to say. */
+function noteRow(ctx, html) {
+  return `<tr class="bg-note-row"><td class="bg-later-cell" colspan="${colCount(ctx) + 1}">${html}</td></tr>`
+}
+
+function laterRow(ctx, plan) {
+  const { data, locale } = ctx
+  const text = bestGearCopy(locale)
+  const { kit, stage } = plan.later
+  const names = kitSlots(ctx.method, kit).map(
+    ([slot, id]) =>
+      `${itemPic(data, locale, slot, id)} <small>(${escapeHtml(buyText(text, buyOf(kit, slot)))})</small>`,
+  )
+  return noteRow(
+    ctx,
+    `<strong>${escapeHtml(text.laterHead(stage))}</strong> ${names.join(' · ')}<div>${easeByBand(text, kit.starts)}</div>${escapeHtml(text.yen(kit.yen))}`,
+  )
+}
+
+function rowHtml(ctx, id, fish, stage, plan) {
   const { data, locale } = ctx
   const text = bestGearCopy(locale)
   const [size, rod, hook, start, price] = LABELS[locale]
   const kit = plan.kits[0]
   const second = SECOND[ctx.method]
   const name = itemPic(data, locale, 'fish', id, 'fishrow')
+  const head = `<td><a href="${escapeHtml(fishLink(locale, id))}"><strong>${name}</strong></a> <span class="bg-tag">${escapeHtml(text.stage(stage))}</span></td>`
+  const later = plan.later ? laterRow(ctx, plan) : ''
+  if (!kit)
+    return `<tr>${head}<td colspan="${colCount(ctx)}">${escapeHtml(text.nothingYet(stage))}</td></tr>${later}`
   const secondLabel = text.slots[second]
-  return `<tr><td><a href="${escapeHtml(fishLink(locale, id))}"><strong>${name}</strong></a></td>
+  return `<tr>${head}
 <td data-label="${size}"><span>${escapeHtml(text.size(fish.size[0], shownHigh(fish)))}<small>${maxHtml(text, fish)}</small></span></td>
-${itemCell(data, locale, rod, 'rod', kit.rod, 'rod', kit.why.rod)}
-${ctx.method === 'float' ? itemCell(data, locale, hook, 'hook', kit.hook, 'hook', kit.why.hook) : ''}
-${itemCell(data, locale, secondLabel, second, kit[second], second, kit.why.item)}
+${itemCell(data, locale, rod, 'rod', kit.rod, 'rod', kit)}
+${ctx.method === 'float' ? itemCell(data, locale, hook, 'hook', kit.hook, 'hook', kit) : ''}
+${itemCell(data, locale, secondLabel, second, kit[second], second, kit)}
 <td data-label="${start}"><div>${easeByBand(text, kit.starts)}</div></td>
-<td data-label="${price}">${escapeHtml(text.yen(kit.yen))}</td></tr>`
+<td data-label="${price}">${escapeHtml(text.yen(kit.yen))}</td></tr>${later}`
 }
 
 function headHtml(ctx) {
@@ -84,11 +114,18 @@ function visibleFish(ctx) {
     )
 }
 
+function stageRows(ctx, id, fish) {
+  const plan = fish.methods[ctx.method]
+  return Object.entries(plan.stages)
+    .map(([stage, entry]) => rowHtml(ctx, id, fish, +stage, entry))
+    .join('')
+}
+
 export function renderTable(ctx) {
   const rows = visibleFish(ctx)
   const text = bestGearCopy(ctx.locale)
   ctx.target.innerHTML = rows.length
-    ? `<table class="bg-table">${headHtml(ctx)}<tbody>${rows.map(([id, fish]) => rowHtml(ctx, id, fish, fish.methods[ctx.method])).join('')}</tbody></table>${easeHint(text)}`
+    ? `<table class="bg-table">${headHtml(ctx)}<tbody>${rows.map(([id, fish]) => stageRows(ctx, id, fish)).join('')}</tbody></table>${easeHint(text)}`
     : `<p class="bg-empty">${escapeHtml(text.noBite)}</p>`
 }
 
