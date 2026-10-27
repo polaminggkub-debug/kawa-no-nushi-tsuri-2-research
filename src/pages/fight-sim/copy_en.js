@@ -132,6 +132,6 @@ export default {
     you: 'You',
     sizeLine: (cm) => `This fish is ${cm} cm.`,
     canvas:
-      'Side view of the water. The fish swims between you on the left and the rod range line on the right.',
+      'Side view of the water. The fish swims between you on the right and the rod range line on the left.',
   },
 }

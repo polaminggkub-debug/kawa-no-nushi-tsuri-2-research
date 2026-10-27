@@ -38,16 +38,17 @@ export const meterSteps = (fightValue) => fightValue.toString(2).replace(/0/g, '
 
 function layout({ width, height }, view) {
   const sky = Math.round(height * 0.16)
-  const left = Math.round(width * 0.09)
-  const right = width - Math.round(width * 0.04)
+  // Mirrored like the game: you stand on the right bank and the fish runs away to the left.
+  const bank = width - Math.round(width * 0.09)
+  const far = Math.round(width * 0.04)
   const range = Math.max(view.boundary * 1.06, 1200)
-  const x = (distance) => left + ((right - left) * Math.min(distance, range)) / range
+  const x = (distance) => bank - ((bank - far) * Math.min(distance, range)) / range
   const bottom = height - Math.round(height * 0.13)
   // Heights are unsigned 16-bit words in the game: a fish lifted out of the view is 0xFFxx (negative).
   const signed = (depth) => (depth >= 0x8000 ? depth - 0x10000 : depth)
   const y = (depth) =>
     sky + 14 + ((bottom - sky - 24) * Math.max(0, Math.min(signed(depth), DEEPEST))) / DEEPEST
-  return { sky, left, right, bottom, x, y }
+  return { sky, bank, far, bottom, x, y }
 }
 
 function drawWater(g, size, geo, colors) {
@@ -79,26 +80,26 @@ function drawBoundary(g, geo, view, text, colors, size) {
   g.restore()
   g.fillStyle = colors.alert
   g.font = `600 ${Math.max(11, size.width / 52)}px system-ui, sans-serif`
-  g.textAlign = 'right'
-  g.fillText(text.play.range, edge - 6, geo.bottom - 4)
+  g.textAlign = 'left'
+  g.fillText(text.play.range, edge + 6, geo.bottom - 4)
 }
 
 function drawAngler(g, geo, text, colors, size) {
   g.fillStyle = colors.deep
   g.beginPath()
-  g.arc(geo.left - 14, geo.sky - 20, 7, 0, Math.PI * 2)
+  g.arc(geo.bank + 14, geo.sky - 20, 7, 0, Math.PI * 2)
   g.fill()
-  g.fillRect(geo.left - 19, geo.sky - 13, 10, 13)
+  g.fillRect(geo.bank + 9, geo.sky - 13, 10, 13)
   g.strokeStyle = colors.deep
   g.lineWidth = 3
   g.beginPath()
-  g.moveTo(geo.left - 8, geo.sky - 10)
-  g.lineTo(geo.left + 14, geo.sky - 34)
+  g.moveTo(geo.bank + 8, geo.sky - 10)
+  g.lineTo(geo.bank - 14, geo.sky - 34)
   g.stroke()
   g.fillStyle = colors.ink
   g.font = `600 ${Math.max(11, size.width / 52)}px system-ui, sans-serif`
-  g.textAlign = 'left'
-  g.fillText(text.play.you, geo.left - 24, geo.sky + 15)
+  g.textAlign = 'right'
+  g.fillText(text.play.you, geo.bank + 24, geo.sky + 15)
 }
 
 /** One fish: body, tail and eye; it faces away from you while running, towards you otherwise. */
@@ -124,14 +125,14 @@ function drawFish(g, at, facing, fill, alpha, scale) {
   g.restore()
 }
 
-const facingOf = (view) => (view.fishRunning ? 1 : -1)
+const facingOf = (view) => (view.fishRunning ? -1 : 1)
 
 function drawLine(g, geo, at, view, colors) {
   const strain = meterSteps(view.fightValue)
   g.strokeStyle = strain >= 5 ? colors.alert : colors.ink
   g.lineWidth = view.holding ? 2.5 : 1.2
   g.beginPath()
-  g.moveTo(geo.left + 14, geo.sky - 34)
+  g.moveTo(geo.bank - 14, geo.sky - 34)
   g.lineTo(at.x, at.y)
   g.stroke()
 }
@@ -153,11 +154,11 @@ function drawMeter(g, size, geo, view, text, colors) {
 
 function drawBadge(g, size, status, colors, held, text) {
   g.font = `700 ${Math.max(12, size.width / 46)}px system-ui, sans-serif`
-  g.textAlign = 'right'
+  g.textAlign = 'left'
   g.fillStyle = held ? colors.green : colors.muted
-  g.fillText(held ? text.play.held : text.play.released, size.width - 8, 18)
+  g.fillText(held ? text.play.held : text.play.released, 8, 18)
   g.fillStyle = colors.ink
-  g.fillText(status, size.width - 8, 18 + Math.max(16, size.width / 38))
+  g.fillText(status, 8, 18 + Math.max(16, size.width / 38))
 }
 
 /** Draw one frame of the side view: water, rod range, fish, ghost, line, meter and badges. */

@@ -127,7 +127,7 @@
       range: "Rod range",
       you: "You",
       sizeLine: (cm) => `This fish is ${cm} cm.`,
-      canvas: "Side view of the water. The fish swims between you on the left and the rod range line on the right."
+      canvas: "Side view of the water. The fish swims between you on the right and the rod range line on the left."
     }
   };
 
@@ -246,7 +246,7 @@
       range: "ขีดสุดของคัน",
       you: "เรา",
       sizeLine: (cm) => `ปลาตัวนี้ยาว ${cm} ซม.`,
-      canvas: "ภาพข้างของน้ำ ปลาว่ายอยู่ระหว่างเราทางซ้ายกับขีดสุดของคันทางขวา"
+      canvas: "ภาพข้างของน้ำ ปลาว่ายอยู่ระหว่างเราทางขวากับขีดสุดของคันทางซ้าย"
     }
   };
 
@@ -370,7 +370,7 @@
       range: "竿の限界",
       you: "自分",
       sizeLine: (cm) => `この魚は${cm}cm。`,
-      canvas: "水中を横から見た図。左の自分と右の竿の限界線のあいだを魚が泳ぎます。"
+      canvas: "水中を横から見た図。右の自分と左の竿の限界線のあいだを魚が泳ぎます。"
     }
   };
 
@@ -1905,14 +1905,14 @@ ${headline(plain, text)}${steps(plain.spec, text)}${outcomeBar(plain.m, text)}${
   var meterSteps = (fightValue) => fightValue.toString(2).replace(/0/g, "").length;
   function layout({ width, height }, view) {
     const sky = Math.round(height * 0.16);
-    const left = Math.round(width * 0.09);
-    const right = width - Math.round(width * 0.04);
+    const bank = width - Math.round(width * 0.09);
+    const far = Math.round(width * 0.04);
     const range = Math.max(view.boundary * 1.06, 1200);
-    const x = (distance) => left + (right - left) * Math.min(distance, range) / range;
+    const x = (distance) => bank - (bank - far) * Math.min(distance, range) / range;
     const bottom = height - Math.round(height * 0.13);
     const signed = (depth) => depth >= 32768 ? depth - 65536 : depth;
     const y = (depth) => sky + 14 + (bottom - sky - 24) * Math.max(0, Math.min(signed(depth), DEEPEST)) / DEEPEST;
-    return { sky, left, right, bottom, x, y };
+    return { sky, bank, far, bottom, x, y };
   }
   function drawWater(g, size, geo, colors) {
     g.fillStyle = colors.paper;
@@ -1942,25 +1942,25 @@ ${headline(plain, text)}${steps(plain.spec, text)}${outcomeBar(plain.m, text)}${
     g.restore();
     g.fillStyle = colors.alert;
     g.font = `600 ${Math.max(11, size.width / 52)}px system-ui, sans-serif`;
-    g.textAlign = "right";
-    g.fillText(text.play.range, edge - 6, geo.bottom - 4);
+    g.textAlign = "left";
+    g.fillText(text.play.range, edge + 6, geo.bottom - 4);
   }
   function drawAngler(g, geo, text, colors, size) {
     g.fillStyle = colors.deep;
     g.beginPath();
-    g.arc(geo.left - 14, geo.sky - 20, 7, 0, Math.PI * 2);
+    g.arc(geo.bank + 14, geo.sky - 20, 7, 0, Math.PI * 2);
     g.fill();
-    g.fillRect(geo.left - 19, geo.sky - 13, 10, 13);
+    g.fillRect(geo.bank + 9, geo.sky - 13, 10, 13);
     g.strokeStyle = colors.deep;
     g.lineWidth = 3;
     g.beginPath();
-    g.moveTo(geo.left - 8, geo.sky - 10);
-    g.lineTo(geo.left + 14, geo.sky - 34);
+    g.moveTo(geo.bank + 8, geo.sky - 10);
+    g.lineTo(geo.bank - 14, geo.sky - 34);
     g.stroke();
     g.fillStyle = colors.ink;
     g.font = `600 ${Math.max(11, size.width / 52)}px system-ui, sans-serif`;
-    g.textAlign = "left";
-    g.fillText(text.play.you, geo.left - 24, geo.sky + 15);
+    g.textAlign = "right";
+    g.fillText(text.play.you, geo.bank + 24, geo.sky + 15);
   }
   function drawFish(g, at, facing, fill, alpha, scale) {
     g.save();
@@ -1983,13 +1983,13 @@ ${headline(plain, text)}${steps(plain.spec, text)}${outcomeBar(plain.m, text)}${
     g.fill();
     g.restore();
   }
-  var facingOf = (view) => view.fishRunning ? 1 : -1;
+  var facingOf = (view) => view.fishRunning ? -1 : 1;
   function drawLine(g, geo, at, view, colors) {
     const strain = meterSteps(view.fightValue);
     g.strokeStyle = strain >= 5 ? colors.alert : colors.ink;
     g.lineWidth = view.holding ? 2.5 : 1.2;
     g.beginPath();
-    g.moveTo(geo.left + 14, geo.sky - 34);
+    g.moveTo(geo.bank - 14, geo.sky - 34);
     g.lineTo(at.x, at.y);
     g.stroke();
   }
@@ -2009,11 +2009,11 @@ ${headline(plain, text)}${steps(plain.spec, text)}${outcomeBar(plain.m, text)}${
   }
   function drawBadge(g, size, status, colors, held, text) {
     g.font = `700 ${Math.max(12, size.width / 46)}px system-ui, sans-serif`;
-    g.textAlign = "right";
+    g.textAlign = "left";
     g.fillStyle = held ? colors.green : colors.muted;
-    g.fillText(held ? text.play.held : text.play.released, size.width - 8, 18);
+    g.fillText(held ? text.play.held : text.play.released, 8, 18);
     g.fillStyle = colors.ink;
-    g.fillText(status, size.width - 8, 18 + Math.max(16, size.width / 38));
+    g.fillText(status, 8, 18 + Math.max(16, size.width / 38));
   }
   function drawScene(canvas, scene) {
     const size = fitCanvas(canvas);
